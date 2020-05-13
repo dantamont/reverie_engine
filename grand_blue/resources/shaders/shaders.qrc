@@ -1,0 +1,22 @@
+<RCC>
+    <qresource prefix="/shaders">
+		<file>basic.frag</file>
+		<file>basic.vert</file>
+		<file>cubemap.frag</file>
+		<file>cubemap.vert</file>
+		<file>gui.frag</file>
+		<file>gui.vert</file>
+		<file>text.frag</file>
+		<file>text.vert</file>
+		<file>lines.frag</file>
+		<file>lines.vert</file>
+		<file>points.frag</file>
+		<file>points.vert</file>
+		<file>simple.frag</file>
+		<file>simple.vert</file>
+		<file>axes.frag</file>
+		<file>axes.vert</file>
+		<file>debug_skeleton.frag</file>
+		<file>debug_skeleton.vert</file>
+    </qresource>
+</RCC>

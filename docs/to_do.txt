@@ -1,0 +1,54 @@
+FOUR MAIN TASKS BEFORE 1.0:
+1. Animation (event system)
+	- https://www.gamasutra.com/view/feature/3456/animation_blending_achieving_.php?print=1
+2. Physics
+	- Terrain (heightfields preferred, or triangle mesh)
+	    * See: http://www.rastertek.com/dx11ter08.html, and related tutorials
+		* https://gamedev.stackexchange.com/questions/86186/how-to-load-and-render-physx-3-3-heightfield
+	- https://developer.nvidia.com/content/physx-dynamic-heightfield-modifications
+	- https://www.reddit.com/r/gamedev/comments/gdfeix/creating_infinite_procedural_3d_terrain_with/ https://www.reddit.com/r/gamedev/comments/gdfeix/creating_infinite_procedural_3d_terrain_with/ https://github.com/Bekwnn/L-Terrain-UE4/tree/master/Plugins/LTerrainEditor/Source/LTerrainEditor
+3. Sound
+4. 2D rendering
+5. Finishing graphics
+	- Fix lights (remove from scene, make shader-driven), see openGL tutorials
+	- Implement render layers
+	- Go through remaining graphics tutorials
+	- Volumetric lighting: http://www.alexandre-pestana.com/volumetric-lights/
+	- PBR: http://www.alexandre-pestana.com/disney-principled-brdf-implementation/, and in projects
+	- Shader abstraction layer, node-based. 
+		* Can have input nodes, need reflection for types that can be piped into shaders (models, materials, lights, etc.)
+		* Think about whether or not this can be entirely node-based, may need an abstracted scripting language (gross)
+6. Optimizations
+	-Frustum culling (http://www.lighthouse3d.com/tutorials/view-frustum-culling/view-frustums-shape/)
+7. Implement widgets
+	- See: https://github.com/JesseTG/awesome-qt
+	- See: https://github.com/gwihlidal/QNodeView (in projects already)
+Python:
+1. Flesh out remaining types (models, animations, physics events, 2d rendering)
+
+1. Put everything out to framebuffers
+2. Add a "View" component, which encapsulates a camera and GUI elements, renders onto a framebuffer, and can be arranged with other views
+2.a. Gui Renderer (i.e. Canvas), contains GuiTextures, which subclass from Model<V>, but share the same geometry
+2.b. Mainrenderer would iterate through views, not cameras
+2.c. All GUI rendering would happen after scene rendering to FBO
+
+4.a. Convert resource cache to use process manager
+4.b Make Material a resource
+
+5. add required components to component construction
+
+Animation:
+https://gamedev.stackexchange.com/questions/112143/when-to-use-a-blend-tree-vs-state-machine-for-animation
+
+Physics/Animation:
+https://www.reddit.com/r/gamedev/comments/49t2wd/how_do_you_combine_animated_creatures_with_a/
+
+// See the following on convex hulls:
+// https://github.com/kmammou/v-hacd
+
+//  PhysX, I am pretty sure you can use something like "ComputeConvexDynamicShape" from arbitrary triangle cooked mesh to have a fully dynamic actor defined by triangle shape. It will do the decomposition for you.
+
+// https://www.toptal.com/game/video-game-physics-part-ii-collision-detection-for-solid-objects
+
+
+

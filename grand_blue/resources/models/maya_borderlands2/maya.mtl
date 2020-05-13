@@ -1,0 +1,15 @@
+newmtl Model001_Material001
+map_Kd SirenHands_Dif.tga
+map_Kn SirenHands_Nrm.tga
+
+newmtl Model001_Material002
+map_Kd SirenBody_Bm.tga
+map_Kn SirenBody_Nrm.tga
+
+newmtl Model001_Material003
+map_Kd SirenHead_Bm.tga
+map_Kn SirenHead_Nrm.tga
+
+newmtl Model001_Material004
+map_Kd Mouth.tga
+

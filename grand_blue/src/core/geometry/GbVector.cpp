@@ -1,0 +1,10 @@
+#include "GbVector.h"
+#include "GbMatrix.h"
+#include "../containers/GbContainerExtensions.h"
+
+namespace Gb {
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+// End namespaces
+}

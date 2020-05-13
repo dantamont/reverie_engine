@@ -1,0 +1,103 @@
+#ifndef GB_SETTINGS_H
+#define GB_SETTINGS_H
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+// Includes
+/////////////////////////////////////////////////////////////////////////////////////////////
+#include <map>
+
+// Qt
+#include <QObject>
+#include <QVariant>
+#include <QSettings>
+#include <QSurfaceFormat>
+
+namespace Gb { 
+/////////////////////////////////////////////////////////////////////////////////////////////
+// Forward Declarations
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+namespace Settings {
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+// Statics
+/////////////////////////////////////////////////////////////////////////////////////////////
+/// @brief Valid rendering modes for graphics backend
+enum RenderingMode {
+    kGL_ES,
+    kGL,
+    kVulkan //TODO: Implement
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+// Class Definitions
+/////////////////////////////////////////////////////////////////////////////////////////////
+class INISettings : public QSettings {
+    Q_OBJECT
+public:
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+    /// @name Static
+    /// @{
+    /// @}
+    static const QString INI_FILE;
+
+    /// @}
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+    /// @name Constructors/Destructor
+    /// @{
+    /// @}
+    INISettings(QObject *parent = nullptr);
+	~INISettings();
+
+    /// @}
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+    /// @name Public Methods
+    /// @{
+    /// @}
+
+    /// @brief Apply a default set of settings for Open GL ES 3.1.0 configuration to a format
+    QSurfaceFormat configOpenGLES();
+
+	/// @brief Apply a default set of settings for Open GL ES 3.1.0 configuration to a format, using ANGLE
+	QSurfaceFormat configOpenGLESAngle();
+
+    /// @brief Apply a default set of settings for Open GL 4.3.0 configuration to a format
+    QSurfaceFormat configOpenGL();
+
+    /// @brief set rendering mode
+    void setRenderingMode(RenderingMode mode, int major, int minor);
+
+    /// @}
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+    /// @name Properties
+    /// @{
+    /// @}
+
+    /// @brief Most recent project
+    QString getRecentProject();
+    void setRecentProject(const QString& filepath);
+
+    /// @brief Get major and minor version of the current rendering backend
+    /// @details Currently, GL is the only supported backend
+    int getMajorVersion();
+    int getMinorVersion();
+
+    /// @brief get rendering mode from settings
+    RenderingMode getRenderingMode();
+
+    /// @}
+
+private:
+};
+
+
+
+// End namespaces
+}}
+
+#endif
