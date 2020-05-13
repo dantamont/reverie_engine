@@ -1,3 +1,3 @@
-Repository containing subtrees for all relevant projects to the Reverie Engine. Currently contains only:
+Repository containing subtrees for all projects relevant to the Reverie Engine. 
 
-engine: main repository
+Currently contains only the main engine repository
