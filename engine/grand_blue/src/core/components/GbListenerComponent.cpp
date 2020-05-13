@@ -1,0 +1,74 @@
+#include "GbListenerComponent.h"
+
+#include "../GbCoreEngine.h"
+#include "../events/GbEvent.h"
+#include "../events/GbEventManager.h"
+#include "../events/GbEventListener.h"
+
+#include "../scene/GbScene.h"
+#include "../scene/GbScenario.h"
+#include "../scene/GbSceneObject.h"
+
+namespace Gb {
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ListenerComponent::ListenerComponent() :
+    Component(kListener)
+{
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ListenerComponent::ListenerComponent(const std::shared_ptr<SceneObject>& object) :
+    Component(object, kListener)
+{
+    setSceneObject(sceneObject());
+    sceneObject()->addComponent(this);
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Gb::ListenerComponent::~ListenerComponent()
+{
+    // Delete event listener
+    delete m_listener;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void ListenerComponent::initializeListener(const QString & filepath)
+{
+    m_listener->initializeScript(filepath, sceneObject());
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void ListenerComponent::enable()
+{
+    Component::enable();
+}
+//////////////// ///////////////////////////////////////////////////////////////////////////////////////////////////////
+void ListenerComponent::disable()
+{
+    Component::disable();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+QJsonValue ListenerComponent::asJson() const
+{
+    QJsonObject object = Component::asJson().toObject();
+    if (m_listener) {
+        object.insert("listener", m_listener->asJson());
+    }
+
+    return object;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void ListenerComponent::loadFromJson(const QJsonValue & json)
+{
+    Component::loadFromJson(json);
+    const QJsonObject& object = json.toObject();
+
+    // Delete previous listener
+    if (m_listener) {
+        delete m_listener;
+    }
+
+    // Initialize listener
+    if (object.contains("listener")) {
+        m_listener = new EventListener(m_engine, object.value("listener"));
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+} // end namespacing

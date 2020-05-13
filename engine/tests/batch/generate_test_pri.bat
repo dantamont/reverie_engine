@@ -1,0 +1,2 @@
+cd C:\Users\dante\Documents\Projects\grand-blue-engine\utils
+python generate_external_pri.py C:\Users\dante\Documents\Projects\grand-blue-engine\grand_blue C:\Users\dante\Documents\Projects\grand-blue-engine\tests\unit_tests unit_tests.pri

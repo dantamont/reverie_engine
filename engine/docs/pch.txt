@@ -1,0 +1,13 @@
+/// \file Pre-compiled headers to help speed up compule time
+
+/// C Includes
+
+#ifdef __cplusplus
+/// C++ includes
+
+#include <vector>
+#include <map>
+#include <unordered_map>
+#include <QString>
+
+#endif // __cplusplus

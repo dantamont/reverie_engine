@@ -1,0 +1,2 @@
+https://learnopengl.com/Model-Loading/Assimp
+https://www.reddit.com/r/opengl/comments/2ra0ql/how_do_i_get_assimp_to_work_in_opengl/

@@ -1,0 +1,5 @@
+# CMake generation dependency list for this directory.
+C:/Users/dante/Documents/Projects/grand-blue-engine/third_party/assimp/assimp-5.0.0/cmake-modules/FindRT.cmake
+C:/Users/dante/Documents/Projects/grand-blue-engine/third_party/assimp/assimp-5.0.0/code/CMakeLists.txt
+C:/Users/dante/Documents/Projects/grand-blue-engine/third_party/cmake-3.16.3-win64-x64/share/cmake-3.16/Modules/FindPackageHandleStandardArgs.cmake
+C:/Users/dante/Documents/Projects/grand-blue-engine/third_party/cmake-3.16.3-win64-x64/share/cmake-3.16/Modules/FindPackageMessage.cmake

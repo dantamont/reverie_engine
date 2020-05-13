@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/images">
+		<file>night_lights.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/fonts">
+		<file alias="brands-regular-400.otf">fontawesome/otfs/brands-regular-400.otf</file>
+		<file alias="free-regular-400.otf">fontawesome/otfs/free-regular-400.otf</file>
+		<file alias="free-solid-900.otf">fontawesome/otfs/free-solid-900.otf</file>
+    </qresource>
+</RCC>

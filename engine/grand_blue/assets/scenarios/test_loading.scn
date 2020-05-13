@@ -1,0 +1,29 @@
+{
+    "filePath": "",
+    "name": "New Scenario 2",
+    "processManager": {
+        "sortingLayers": [
+            {
+                "label": "default",
+                "order": 0
+            }
+        ]
+    },
+    "resourceCache": {
+        "materials": [
+        ],
+        "maxCost": 4083,
+        "models": [
+        ],
+        "resources": [
+        ],
+        "scripts": [
+        ],
+        "shaderPrograms": [
+        ]
+    },
+    "scenes": [
+    ],
+    "settings": {
+    }
+}
