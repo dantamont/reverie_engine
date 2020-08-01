@@ -14,20 +14,22 @@
 
 #include "GbOBJReader.h"
 
-#define USE_THREADING true
+#define USE_THREADING false
 
 namespace Gb {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-ModelReader::ModelReader(ResourceCache* cache, const QString& filepath) :
-    FileReader(filepath),
-    m_resourceCache(cache)
+ModelReader::ModelReader(ResourceCache* cache, ResourceHandle& handle) :
+    FileReader(handle.getPath()),
+    m_resourceCache(cache),
+    m_handle(&handle)
 {
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ModelReader::ModelReader(const ModelReader & reader) :
     FileReader(reader.m_filePath),
-    m_resourceCache(reader.m_resourceCache)
+    m_resourceCache(reader.m_resourceCache),
+    m_handle(reader.m_handle)
 {
     // Only used for QObject construction
 }
@@ -52,7 +54,7 @@ void ModelReader::loadFile()
         aiProcess_ValidateDataStructure | // perform a full validation of the loader's output
         aiProcess_ImproveCacheLocality | // improve the cache locality of the output vertices
         aiProcess_RemoveRedundantMaterials | // remove redundant materials
-        //aiProcess_FindDegenerates | // remove degenerated polygons from the import
+        //aiProcess_FindDegenerates | // remove degenerated polygons from the import, was causing graphical bugs with OBJ files
         aiProcess_FindInvalidData | // detect invalid model data, such as invalid normal vectors
         aiProcess_GenUVCoords | // convert spherical, cylindrical, box and planar mapping to proper UVs
         aiProcess_TransformUVCoords | // preprocess UV transformations (scaling, translation ...)
@@ -64,36 +66,52 @@ void ModelReader::loadFile()
     );
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void ModelReader::loadModel(Mesh& mesh)
+std::shared_ptr<Model> ModelReader::loadModel()
 {
-    //QString extension = filepath.split(".").back();
-    //if (extension == "obj") {
-    //    // Special case for OBJ extension
-    //    ObjReader* reader = new ObjReader(m_resourceCache, filepath);
-    //    reader->loadModel(mesh);
-    //}
-    //else {
-    //    logError("Error, model type not yet supported");
-    //}
-
     // Load file into scene
     loadFile();
+
+    // Instantiate model
+    Model::ModelType modelType = Model::kStaticMesh;
+    if (m_scene->mNumAnimations > 0) modelType = Model::kAnimatedMesh;
+    std::shared_ptr<Model> model = std::make_shared<Model>(m_resourceCache->engine(),
+        FileReader::pathToName(m_handle->getPath()),
+        modelType);
+    //if (modelType == Model::kAnimatedMesh)
+    m_handle->setResource(model, false);
+    m_handle->setIsLoading(true);
+    model->addSkeleton(); // Current approach relies on skeleton for mesh hierarchy
 
     // Check that file loaded correctly
     if (!m_scene || m_scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !m_scene->mRootNode)
     {
         logError(QStringLiteral("ERROR::ASSIMP::") +  m_importer.GetErrorString());
-        return;
+        return nullptr;
     }
 
     // Process nodes
     processNodes(m_scene->mRootNode);
 
-    // Load mesh
-    loadMesh(mesh);
-
     // Load materials
     loadMaterials();
+
+    // Load meshes
+    loadMeshes();
+
+    // Load animations
+    loadAnimations();
+
+    // Assign animation metadata to skeleton
+    postProcessSkeleton();
+
+    // Assign node animation data to each animation
+    //for (const auto& animation : m_animations) {
+    //    for (const auto& joint : ModelReader::model()->skeleton()->nodes()) {
+    //        animation->m_nameToIndex[joint.second->getName()] = joint.second->skeletonTransformIndex();
+    //    }
+    //}
+
+    return model;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void ModelReader::loadMaterials()
@@ -105,74 +123,70 @@ void ModelReader::loadMaterials()
 
     QString dir = FileReader::dirFromPath(m_filePath);
     for (size_t i = 0; i < m_scene->mNumMaterials; i++) {
+        // Obtain material data
         aiMaterial* aiMaterial = m_scene->mMaterials[i];
-
         MaterialData materialData = processMaterial(aiMaterial);
 
+        // Construct material filepath
         QString mtlName = QString::fromStdString(materialData.m_name);
         QString materialPath = QDir::cleanPath(dir + QDir::separator() + mtlName);
         materialData.m_path = materialPath.toStdString();
 
-        // Skip if material is loaded already
-        if (m_resourceCache->hasMaterial(mtlName)) {
-            continue;
-        }
+        // Create material and handle
+        std::shared_ptr<Material> mtl = model()->addMaterial(mtlName);
+        mtl->handle()->setIsLoading(true); // Flag loading for post-construction
 
-        // Create material
-        std::shared_ptr<Material> mtl = std::make_shared<Material>(
-            m_resourceCache->engine(),
-            std::move(materialData));
-        m_resourceCache->addMaterial(mtl);
+        // Populate material data
+        mtl->setData(std::move(materialData));
     }
-
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void ModelReader::loadMesh(Mesh & outMesh)
+void ModelReader::loadMeshes()
 {
     // Convert to custom Mesh type
     for(unsigned int i = 0; i < m_scene->mNumMeshes; i++)
     {
         aiMesh *mesh = m_scene->mMeshes[i]; 
-        const VertexArrayData& meshData = processMesh(mesh, outMesh);
+        const Mesh& meshData = processMesh(mesh);
         m_meshNames[i] = meshData.getName();
     }
 
     // Set skeleton name and global inverse transform
-    outMesh.m_skeleton->setGlobalInverseTransform(m_globalInverseTransform);
+    model()->skeleton()->setGlobalInverseTransform(m_globalInverseTransform);
 
     // Walk scene tree to construct mesh hierarchy
-    outMesh.m_skeleton->addRootNode(m_scene->mRootNode->mName.C_Str());
-    parseNodeHierarchy(m_scene->mRootNode, outMesh.m_skeleton->m_root, outMesh);
+    model()->skeleton()->addRootNode(m_scene->mRootNode->mName.C_Str());
+    parseNodeHierarchy(m_scene->mRootNode, model()->skeleton()->m_root);
 
     // Generate bind pose for the skeleton
-    outMesh.m_skeleton->constructInverseBindPose();
-
-    // Load bone animations
-    loadAnimations(outMesh);
+    model()->skeleton()->constructInverseBindPose();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void ModelReader::loadAnimations(Mesh & outMesh)
+void ModelReader::loadAnimations()
 {
     // Create animations
     unsigned int loopSize = m_scene->mNumAnimations;
-    for (unsigned int i = 0; i < loopSize; i++) {
-        const aiAnimation* aiAnimation = m_scene->mAnimations[i];
-        QString animationName = aiAnimation->mName.C_Str();
-        Map::Emplace(m_animations, animationName, std::make_shared<Animation>(animationName));
-    }
+    //for (unsigned int i = 0; i < loopSize; i++) {
+    //    const aiAnimation* aiAnimation = m_scene->mAnimations[i];
+    //    QString animationName = aiAnimation->mName.C_Str();
+    //    Map::Emplace(m_animations, animationName, std::make_shared<Animation>(animationName));
+    //}
 
     // Populate animations
     ParallelLoopGenerator loop(nullptr, USE_THREADING);
-    //ParallelLoopGenerator loop(nullptr, false);
     loop.parallelFor(loopSize, [&](int start, int end) {
         for (int i = start; i < end; ++i) {
             const aiAnimation* aiAnimation = m_scene->mAnimations[i];
             QString animationName = aiAnimation->mName.C_Str();
-            Map::Emplace(m_animations, animationName, std::make_shared<Animation>(animationName));
+            //Map::Emplace(m_animations, animationName, std::make_shared<Animation>(animationName));
 
-            std::shared_ptr<ResourceHandle> animHandle = m_resourceCache->getAnimationByName(animationName);
-            animHandle->setPath(m_filePath);
-            std::shared_ptr<Animation> animation = m_animations[animationName];
+            // Create handle for animation
+            auto animHandle = model()->addAnimation(animationName)->handle();
+            animHandle->setIsLoading(true);
+
+            // Create animation
+            std::shared_ptr<Animation> animation = animHandle->resourceAs<Animation>();
+            m_animations.push_back(animation);
             animation->m_ticksPerSecond = aiAnimation->mTicksPerSecond;
             animation->m_durationInTicks = aiAnimation->mDuration;
             std::vector<float>& animationTimes = animation->m_times;
@@ -180,16 +194,32 @@ void ModelReader::loadAnimations(Mesh & outMesh)
             // Resize to number of bones, not channels, since not all animations are actually
             // used to impact the shader results, i.e., not all animations make it into a bone ID
             // or bone weight vertex attribute
-            std::unordered_map<QString, NodeAnimation>& nodeAnimations = animation->m_nodeAnimations;
+            std::vector<NodeAnimation>& nodeAnimations = animation->m_nodeAnimations;
 
-            // Iterate through channels (nodes) of the animation
+            // NOTE: Assumes that animated nodes are the same for each animation
             // Each channel is a node (and possible bone) with all of its transformations
+            if (!m_processedSkeleton) {
+                for (unsigned int n = 0; n < aiAnimation->mNumChannels; n++) {
+                    // Mark that nodes are animated
+                    const aiNodeAnim* aiNodeAnim = aiAnimation->mChannels[n];
+                    QString nodeName = aiNodeAnim->mNodeName.C_Str();
+                    SkeletonJoint* node = model()->skeleton()->getNode(nodeName);
+                    node->setAnimated(true);
+                }
+
+                // Set node transform indices
+                postProcessSkeleton();
+            }
+
+            // Iterate through channels (nodes) of the animation for actual load
+            // Each channel is a node (and possible bone) with all of its transformations
+            nodeAnimations.resize(aiAnimation->mNumChannels);
             for (unsigned int n = 0; n < aiAnimation->mNumChannels; n++) {
                 const aiNodeAnim* aiNodeAnim = aiAnimation->mChannels[n];
                 QString nodeName = aiNodeAnim->mNodeName.C_Str();
-                const MeshNode* node = outMesh.m_skeleton->getNode(nodeName);
+                SkeletonJoint* node = model()->skeleton()->getNode(nodeName);
                 int boneIndex = node->bone().m_index;
-                nodeAnimations[nodeName] = NodeAnimation();
+                nodeAnimations[node->skeletonTransformIndex()] = NodeAnimation();
 
                 size_t maxKeys = std::max(aiNodeAnim->mNumPositionKeys,
                     std::max(aiNodeAnim->mNumRotationKeys,
@@ -229,11 +259,14 @@ void ModelReader::loadAnimations(Mesh & outMesh)
                         animationTimes.end()), animationTimes.end());
             }
 
+            // TODO: Figure out a performant way to avoid including translation
+            // and scaling if they are not used
             // Iterate through all time-steps to create skeletal poses
             for (unsigned int n = 0; n < aiAnimation->mNumChannels; n++) {
                 const aiNodeAnim* aiNodeAnim = aiAnimation->mChannels[n];
                 QString nodeName = aiNodeAnim->mNodeName.C_Str();
-                NodeAnimation& nodeAnimation = nodeAnimations[nodeName];
+                SkeletonJoint* node = model()->skeleton()->getNode(nodeName);
+                NodeAnimation& nodeAnimation = nodeAnimations[node->skeletonTransformIndex()];
 
                 // Convert arrays to vectors
                 std::vector<aiVectorKey> translations(aiNodeAnim->mPositionKeys,
@@ -367,9 +400,6 @@ void ModelReader::loadAnimations(Mesh & outMesh)
                             Interpolation::lerp(start, end, weight));
                     }
                 }
-
-                // Add animation to handle
-                animHandle->setResource(animation, true);
             }
         }
     });
@@ -380,17 +410,26 @@ void ModelReader::loadAnimations(Mesh & outMesh)
     //}
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-const VertexArrayData& ModelReader::processMesh(aiMesh * mesh, Mesh& baseMesh)
+const Mesh& ModelReader::processMesh(aiMesh * mesh)
 {
     // Create sub-mesh
     QString meshName = QString::fromStdString(mesh->mName.C_Str());
     if (meshName.isEmpty()) {
         meshName = Uuid().createUniqueName("mesh_");
     }
+    
+    // Create handle for mesh resource
+    std::shared_ptr<Mesh> newMesh = model()->addMesh(meshName);
+    newMesh->handle()->setIsLoading(true); // Flag loading for post-construction
+    VertexArrayData& meshData = newMesh->m_vertexData;
 
-    // Create mesh data
-    baseMesh.m_meshData.emplace(meshName, new VertexArrayData(meshName));
-    VertexArrayData& meshData = *baseMesh.m_meshData[meshName];
+    // Initialize limits for bounding box of the mesh
+    float minX = std::numeric_limits<float>::max();
+    float maxX = -std::numeric_limits<float>::max();
+    float minY = std::numeric_limits<float>::max();
+    float maxY = -std::numeric_limits<float>::max();
+    float minZ = std::numeric_limits<float>::max();
+    float maxZ = -std::numeric_limits<float>::max();
 
     // Populate vertices, texture coordinates, and normals from assimp meshes
     for (size_t i = 0; i < mesh->mNumVertices; i++) {
@@ -398,11 +437,14 @@ const VertexArrayData& ModelReader::processMesh(aiMesh * mesh, Mesh& baseMesh)
         const aiVector3D& aiVert = mesh->mVertices[i];
         const aiVector3D& aiNormal = mesh->mNormals[i];
         const aiVector3D& aiTexCoords = mesh->mTextureCoords[0][i]; // TexCoords are stored as array of array, for multiple coords per vertex
-        
-        // Convert vertex data
-        // Vector3g vertex = Vector3g(aiVert.x, aiVert.y, aiVert.z);
-        // Vector3g normal = Vector3g(aiNormal.x, aiNormal.y, aiNormal.z);
-        // Vector2g texCoord = Vector2g(aiTexCoords.x, aiTexCoords.y);
+
+        // Update min/max vertex data
+        minX = std::min(aiVert.x, minX);
+        maxX = std::max(aiVert.x, maxX);
+        minY = std::min(aiVert.y, minY);
+        maxY = std::max(aiVert.y, maxY);
+        minZ = std::min(aiVert.z, minZ);
+        maxZ = std::max(aiVert.z, maxZ);
 
         // Append vertex data to new mesh
         Vec::EmplaceBack(meshData.m_attributes.m_vertices, aiVert.x, aiVert.y, aiVert.z);
@@ -425,11 +467,29 @@ const VertexArrayData& ModelReader::processMesh(aiMesh * mesh, Mesh& baseMesh)
         }
     }
 
-    // Add material info 
+    // Create chunk to add to model, matching to material info
     if (mesh->mMaterialIndex >= 0) {
         aiMaterial* mat = m_scene->mMaterials[mesh->mMaterialIndex];
         QString materialName = QString(mat->GetName().C_Str()).toLower();
-        meshData.m_materialName = materialName;
+        auto matHandle = model()->getMaterial(materialName);
+        auto meshHandle = m_resourceCache->getHandle(newMesh->handle()->getUuid());
+
+        // Set bounding box for chunk
+        AABB box;
+        box.setMinX(minX);
+        box.setMaxX(maxX);
+        box.setMinY(minY);
+        box.setMaxY(maxY);
+        box.setMinZ(minZ);
+        box.setMaxZ(maxZ);
+
+        // Add to internal list of chunks
+        m_chunks.push_back({ meshHandle->getUuid(),
+            matHandle->getUuid(),
+            box });
+    }
+    else {
+        throw("Error, chunk not created, material not found");
     }
 
     // Load bone vertex data
@@ -472,7 +532,7 @@ const VertexArrayData& ModelReader::processMesh(aiMesh * mesh, Mesh& baseMesh)
 
     }
 
-    return meshData;
+    return *newMesh;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -692,7 +752,7 @@ void ModelReader::processNodes(const aiNode* node)
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void ModelReader::parseNodeHierarchy(aiNode * assimpNode, MeshNode * currentNode, Mesh& mesh)
+void ModelReader::parseNodeHierarchy(aiNode * assimpNode, SkeletonJoint * currentNode)
 {
     QString nodeName(assimpNode->mName.C_Str());
     uint nameCount = std::count(m_nodeNames.begin(), m_nodeNames.end(), nodeName);
@@ -720,20 +780,35 @@ void ModelReader::parseNodeHierarchy(aiNode * assimpNode, MeshNode * currentNode
     for (size_t i = 0; i < assimpNode->mNumMeshes; i++) {
         size_t meshInt = assimpNode->mMeshes[i];
         QString meshName = m_meshNames[meshInt];
-        VertexArrayData* data = mesh.m_meshData.find(meshName)->second;
-        currentNode->addMeshData(data);
+        //VertexArrayData* data = mesh.m_vertexData.find(meshName)->second;
+        //currentNode->addMeshData(data);
     }
 
     // Recursively add child nodes and their meshes
     for (size_t i = 0; i < assimpNode->mNumChildren; i++) {
         aiNode* aiChildNode = assimpNode->mChildren[i];
-        //MeshNode* childNode = new MeshNode(aiChildNode->mName.C_Str(), mesh.m_skeleton.get());
-        currentNode->addChild(aiChildNode->mName.C_Str(),
-            mesh.m_skeleton.get());
-        //Vec::EmplaceBack(currentNode->m_children, 
-        //    aiChildNode->mName.C_Str(), 
-        //    mesh.m_skeleton.get() );
-        parseNodeHierarchy(aiChildNode, currentNode->m_children.back(), mesh);
+        currentNode->addChild(aiChildNode->mName.C_Str());
+        parseNodeHierarchy(aiChildNode, currentNode->m_children.back());
+    }
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void ModelReader::postProcessSkeleton()
+{
+    if (m_scene->mNumAnimations == 0) { return; }
+
+    m_animatedJointCount = 0;
+    postProcessSkeleton(model()->skeleton()->root());
+    m_processedSkeleton = true;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void ModelReader::postProcessSkeleton(SkeletonJoint * joint)
+{
+    if (joint->isAnimated()) {
+        joint->setSkeletonTransformIndex(m_animatedJointCount++);
+        
+    }
+    for (SkeletonJoint* child : joint->children()) {
+        postProcessSkeleton(child);
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -745,6 +820,11 @@ Matrix4x4g ModelReader::toMatrix(const aiMatrix4x4 & mat)
         {mat.a3, mat.b3, mat.c3, mat.d3},
         {mat.a4, mat.b4, mat.c4, mat.d4} });
     return matrix;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+std::shared_ptr<Model> ModelReader::model()
+{
+    return m_handle->resourceAs<Model>();
 }
 
 

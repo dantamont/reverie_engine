@@ -70,41 +70,43 @@ public:
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
-/// @class MeshNode:
-class MeshNode : public Object {
+/// @class SkeletonJoint:
+class SkeletonJoint : public Object {
 public:
     //---------------------------------------------------------------------------------------
     /// @name Static
     /// @{
+
+    enum JointFlag {
+        kIsAnimated = 1 << 0
+    };
 
     /// @}
 
     //---------------------------------------------------------------------------------------
     /// @name Constructors and Destructors
     /// @{
-    MeshNode(const QString& uniqueName, Skeleton* skeleton);
-    MeshNode(const MeshNode& meshNode, Skeleton* skeleton, MeshNode* parent, bool justBones = false);
-    ~MeshNode();
+    SkeletonJoint(const QString& uniqueName, Skeleton* skeleton);
+    SkeletonJoint(const SkeletonJoint& meshNode, Skeleton* skeleton, SkeletonJoint* parent, bool justBones = false);
+    ~SkeletonJoint();
     /// @}
 
     //---------------------------------------------------------------------------------------
     /// @name Methods
     /// @{
 
-    /// @brief Draw the mesh node, is recursive
-    void draw(CoreEngine* core, const std::shared_ptr<Gb::ShaderProgram>& shaderProgram, int glMode);
-
     /// @brief Whether or not the node has a bone or not
     bool hasBone() const { return m_bone.m_index >= 0; }
 
-    /// @brief Add a mesh to this node
-    void addMeshData(VertexArrayData* meshData);
+    /// @brief Whether or not the node is animated
+    bool isAnimated() const { return m_jointFlags.testFlag(kIsAnimated); }
+    void setAnimated(bool animated) { m_jointFlags.setFlag(kIsAnimated, animated); }
 
     /// @brief Add a child node to this node
-    void addChild(const QString& uniqueName, Skeleton* skeleton);
+    void addChild(const QString& uniqueName);
 
     /// @brief Siblings of this node, including this node
-    std::vector<MeshNode*>& siblings() const { return m_parent->children(); }
+    std::vector<SkeletonJoint*>& siblings() const { return m_parent->children(); }
 
     /// @}
 
@@ -112,8 +114,15 @@ public:
     /// @name Properties 
     /// @{
 
-    MeshNode* parent() { return m_parent; }
-    const MeshNode* parent() const { return m_parent; }
+    int skeletonTransformIndex() const {
+        return m_skeletonTransformIndex;
+    }
+    void setSkeletonTransformIndex(int idx) {
+        m_skeletonTransformIndex = idx;
+    }
+
+    SkeletonJoint* parent() { return m_parent; }
+    const SkeletonJoint* parent() const { return m_parent; }
 
     const Skeleton& skeleton() const { return *m_skeleton; }
     Skeleton& skeleton() { return *m_skeleton; }
@@ -126,8 +135,8 @@ public:
     Bone& bone() { return m_bone; }
 
     /// @brief Children
-    std::vector<MeshNode*>& children() { return m_children; }
-    const std::vector<MeshNode*>& children() const { return m_children; }
+    std::vector<SkeletonJoint*>& children() { return m_children; }
+    const std::vector<SkeletonJoint*>& children() const { return m_children; }
 
     /// @}
 
@@ -142,10 +151,10 @@ public:
     /// @{
 
     /// @property className
-    virtual const char* className() const { return "MeshNode"; }
+    virtual const char* className() const { return "SkeletonJoint"; }
 
     /// @property namespaceName
-    virtual const char* namespaceName() const { return "Gb::MeshNode"; }
+    virtual const char* namespaceName() const { return "Gb::SkeletonJoint"; }
     /// @}
 
 private:
@@ -164,7 +173,7 @@ private:
     /// @name Private methods 
     /// @{
 
-    void addChild(MeshNode* node);
+    void addChild(SkeletonJoint* node);
 
     /// @}
 
@@ -178,18 +187,24 @@ private:
     /// @brief Bone corresponding to this mesh node
     Bone m_bone;
 
+    /// @brief The index associated with this joint in vector of skeletal animation transforms
+    int m_skeletonTransformIndex;
+
+    /// @brief Whether or not the joint has animation data associated with it
+    QFlags<JointFlag> m_jointFlags;
+
     /// @brief Transform of the node
     /// FIXME: Actually implement this in rendering
     Transform m_transform;
 
     /// @brief Direct children of this mesh node
-    std::vector<MeshNode*> m_children;
+    std::vector<SkeletonJoint*> m_children;
 
-    /// @brief Map of mesh data
-    std::unordered_map<QString, VertexArrayData*> m_meshData;
+    ///// @brief Map of mesh data
+    //std::unordered_map<QString, VertexArrayData*> m_meshData;
 
     /// @brief Pointer to the parent mesh node
-    MeshNode* m_parent = nullptr;
+    SkeletonJoint* m_parent = nullptr;
 
     /// @}
 };
@@ -198,7 +213,7 @@ private:
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 /// @class Skeleton
-class Skeleton : public Object {
+class Skeleton : public Resource {
 public:
     //---------------------------------------------------------------------------------------
     /// @name Constructors and Destructors
@@ -216,11 +231,13 @@ public:
     /// @name Public Methhods
     /// @{
 
+    void onRemoval(ResourceCache* cache = nullptr) override;
+
     /// @brief Whether or not the skeleton is malformed for inverse kinematics
     bool isMalformed() const;
 
-    const MeshNode* root() const { return m_root; }
-    MeshNode* root() { return m_root; }
+    const SkeletonJoint* root() const { return m_root; }
+    SkeletonJoint* root() { return m_root; }
 
     const std::vector<Matrix4x4g>& inverseBindPose() const { return m_inverseBindPose; }
 
@@ -234,15 +251,16 @@ public:
     void addRootNode(const QString& name);
 
     /// @brief Get the vector of nodes that have bones
-    const std::vector<MeshNode*>& boneNodes() const { return m_boneNodes; }
+    const std::vector<SkeletonJoint*>& boneNodes() const { return m_boneNodes; }
 
-    const std::unordered_map<QString, MeshNode*>& nodes() const { return m_nodes; }
+    const std::unordered_map<QString, SkeletonJoint*>& nodes() const { return m_nodes; }
 
     /// @brief Return hierarchy with just bones (root may not have a bone)
     Skeleton prunedBoneSkeleton() const;
 
     /// @brief Get the node with the given name
-    const MeshNode* getNode(const QString& name) const { return m_nodes.at(name); }
+    const SkeletonJoint* getNode(const QString& name) const { return m_nodes.at(name); }
+    SkeletonJoint* getNode(const QString& name) { return m_nodes.at(name); }
 
     /// @brief Return default pose of the skeleton
     std::vector<Matrix4x4g> defaultPose() const;
@@ -252,7 +270,7 @@ public:
 private:
     //---------------------------------------------------------------------------------------
     /// @name Friends
-    friend class MeshNode;
+    friend class SkeletonJoint;
     friend class ModelReader;
     friend class Animation;
     friend class NodeAnimation;
@@ -264,10 +282,10 @@ private:
     
     /// @brief Recursive function to construct inverse bind pose
     void constructInverseBindPose();
-    void constructInverseBindPose(MeshNode& node);
+    void constructInverseBindPose(SkeletonJoint& node);
 
     /// @brief Recursive function for determining if skeleton is malformed
-    bool isMalformed(const MeshNode* node) const;
+    bool isMalformed(const SkeletonJoint* node) const;
 
     /// @}
 
@@ -278,14 +296,14 @@ private:
     /// @brief global inverse transform of the skeleton
     Matrix4x4g m_globalInverseTransform;
 
-    /// @brief Pointer to the root node
-    MeshNode* m_root = nullptr;
+    /// @brief Pointer to the root joint
+    SkeletonJoint* m_root = nullptr;
 
-    /// @brief Map of all nodes
-    std::unordered_map<QString, MeshNode*> m_nodes;
+    /// @brief Map of all joints
+    std::unordered_map<QString, SkeletonJoint*> m_nodes;
 
-    /// @brief Vector of nodes with bones
-    std::vector<MeshNode*> m_boneNodes;
+    /// @brief Vector of joints with bones
+    std::vector<SkeletonJoint*> m_boneNodes;
 
     /// @brief Inverse bind pose of the skeleton
     std::vector<Matrix4x4g> m_inverseBindPose;

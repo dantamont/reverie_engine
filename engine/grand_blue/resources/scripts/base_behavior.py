@@ -4,10 +4,10 @@ Script for the BaseBehavior class
 from PythonQt.scriptedBehaviors import PythonBehavior
 from PythonQt.scene import SceneObject
 from PythonQt.components import (TransformComponent,
-                                 Light,
+                                 LightComponent,
                                  CharControlComponent,
                                  CameraComponent,
-                                 RendererComponent)
+                                 ShaderComponent)
 from PythonQt.alg import (Quaternion, 
                           EulerAngles,
                           Vector2,
@@ -26,7 +26,6 @@ DEBUG_MODE = True
 # ==============================================================================
 # Classes Aliases
 # ==============================================================================
-Renderer = RendererComponent
 
 # ==============================================================================
 # Classes

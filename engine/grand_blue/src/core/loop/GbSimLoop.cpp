@@ -61,7 +61,7 @@ void SimulationLoop::pause()
 void SimulationLoop::update()
 {
     // Mutex lock rendering to avoid conflicts with GUI interactions
-    QMutexLocker lock(&userInterfaceMutex());
+    QMutexLocker lock(&m_uiMutex);
 
     // Get delta time
     unsigned long deltaMs = m_updateTimer.restart();
@@ -103,6 +103,11 @@ void SimulationLoop::update()
     // Perform late update 
     // Scripted processes know to perform lateUpdate the second time around
     m_processManager->updateProcesses(deltaMs);
+
+#ifdef DEVELOP_MODE
+    // Update widgets
+    m_engine->widgetManager()->update();
+#endif
 
     // Render
     m_engine->widgetManager()->mainGLWidget()->update();

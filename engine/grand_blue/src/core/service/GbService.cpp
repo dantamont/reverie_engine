@@ -29,6 +29,8 @@ AbstractService::AbstractService(const QString& name, bool defer) :
     m_deferPostConstruction(defer)
 {
     m_name = name;
+    ServiceManager& sm = ServiceManager::getInstance();
+    sm.addService(this);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 AbstractService::~AbstractService()
@@ -74,7 +76,6 @@ Service::Service(const QString& name, QObject* parent, bool defer) :
     QObject(parent)
 {
     ServiceManager& sm = ServiceManager::getInstance();
-    sm.addService(this);
     QEvent* postConstructionEvent = new QEvent(sm.postConstructionEventType());
     qApp->postEvent(this, postConstructionEvent, Qt::HighEventPriority);
     setObjectName(name);

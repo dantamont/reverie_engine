@@ -5,7 +5,8 @@
 #ifndef GB_PYTHON_WRAPPER_H
 #define GB_PYTHON_WRAPPER_H
 
-#include "../../third_party/PythonQt/src/PythonQtPythonInclude.h"
+//#include "../../third_party/PythonQt/src/PythonQtPythonInclude.h"
+#include "../pythonqt/PythonQtPythonInclude.h"
 
 //#pragma push_macro("slots")
 //#undef slots

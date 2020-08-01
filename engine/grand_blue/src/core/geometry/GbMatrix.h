@@ -678,7 +678,7 @@ public:
     /// @details Given angle must be in radians
     inline void addRotate(const Vector<D, 3>& axis, float angle) {
         static_assert(N==4, "N must be 4");
-        Gb::Quaternion quaternion = Gb::Quaternion::fromAxisAngle(axis.x(), axis.y(), axis.z(), angle * Gb::Constants::RAD_TO_DEG);
+        Gb::Quaternion quaternion = Gb::Quaternion::fromAxisAngle(axis.x(), axis.y(), axis.z(), angle);
         auto mtx = quaternion.toRotationMatrix4x4();
 
         for (int j = 0; j < size(); j++) {

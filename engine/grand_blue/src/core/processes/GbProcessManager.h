@@ -81,7 +81,7 @@ public:
     unsigned int getProcessCount() const { return m_processes.size(); }
 
     /// @property number of load processes
-    unsigned int loadProcessCount() const;
+    unsigned int loadProcessCount();
 
     /// @}
 
@@ -187,8 +187,8 @@ protected:
     /// @brief Time since last update loop
     unsigned long m_deltaMs;
 
-    /// @brief Mutex for getting attributes
-    QMutex m_accessMutex;
+    /// @brief Mutex for getting thread process queue
+    QMutex m_threadedProcessMutex;
 
     /// @brief Queue for temporarily staging processes to run
     ProcessSet m_processQueue;

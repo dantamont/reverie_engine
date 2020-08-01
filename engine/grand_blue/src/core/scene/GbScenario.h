@@ -10,6 +10,7 @@
 // Internal
 #include "../GbManager.h"
 #include "../mixins/GbLoadable.h"
+#include "../containers/GbSortingLayer.h"
 
 namespace Gb {
 
@@ -29,9 +30,10 @@ class PythonClassScript;
 // Class definitions
 /////////////////////////////////////////////////////////////////////////////////////////////
 
+// TODO: Don't let sorting layers persist in cameras and scene objects if deleted from here
 /// @class ScenarioSettings
 /// @brief Class for managing scenario settings
-class ScenarioSettings: public Serializable {
+class ScenarioSettings : public Serializable {
 public:
     //--------------------------------------------------------------------------------------------
     /// @name Constructors/Destructor
@@ -40,6 +42,39 @@ public:
     ~ScenarioSettings() {
     }
     /// @}
+
+    //-----------------------------------------------------------------------------------------------------------------
+    /// @name Properties
+    /// @{
+
+    SortingLayers& renderLayers() { return m_renderLayers; }
+
+    /// @}
+
+    //-----------------------------------------------------------------------------------------------------------------
+    /// @name Public methods
+    /// @{
+
+    std::shared_ptr<SortingLayer> renderLayer(const QString& label) {
+        auto iter = std::find_if(m_renderLayers.begin(), m_renderLayers.end(),
+            [&](const std::shared_ptr<SortingLayer>& layer) {
+            return layer->getName() == label;
+        });
+        if (iter != m_renderLayers.end())
+            return *iter;
+        else
+            return nullptr;
+    }
+
+    std::shared_ptr<SortingLayer> addRenderLayer();
+    std::shared_ptr<SortingLayer> addRenderLayer(const QString& name, int order);
+    bool removeRenderLayer(const QString& label);
+
+    /// @brief Sort the vector of render layers to reflect any modifications
+    void sortRenderLayers();
+
+    /// @}
+
 
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Loadable Overrides
@@ -52,13 +87,30 @@ public:
     virtual void loadFromJson(const QJsonValue& json) override;
 
     /// @}
-private:
+
+protected:
     friend class Scenario;
+
     //--------------------------------------------------------------------------------------------
-    /// @name Private Members
+    /// @name Protected Methods
+    /// @{
+
+    static bool SortRenderLayers(const std::shared_ptr<SortingLayer>& l1, 
+        const std::shared_ptr<SortingLayer>& l2);
+
+    /// @}
+
+    //--------------------------------------------------------------------------------------------
+    /// @name Protected Members
     /// @{
 
     Scenario* m_scenario;
+
+    /// @brief All of the layers for rendering available for the scene
+    SortingLayers m_renderLayers;
+
+    /// @brief The default render order for the scenario
+    // TODO: Implement
 
     /// @}
 };
@@ -98,6 +150,9 @@ public:
     /// @details Used by scenes and scene objects
     CoreEngine* engine() const { return m_engine; }
 
+    /// @brief Miscellaneous settings describing the scenario
+    ScenarioSettings& settings() { return m_settings; }
+
     /// @}
 	//--------------------------------------------------------------------------------------------
 	/// @name Public Methods
@@ -114,7 +169,7 @@ public:
     std::shared_ptr<Scene> addScene();
 
     /// @brief Remove a scene from the map
-    void removeScene(std::shared_ptr<Scene> scene);
+    void removeScene(const std::shared_ptr<Scene>& scene);
 
     /// @brief Get a scene given the UUID
     std::shared_ptr<Scene> getScene(const Uuid& uuid);
@@ -184,7 +239,7 @@ protected:
     /// @{
 
     /// @brief Add an existing scene to scene map
-    void addScene(std::shared_ptr<Scene> scene);
+    void addScene(const std::shared_ptr<Scene>& scene);
     //std::shared_ptr<Scene> addScene(const Uuid& uuid); // Scene gets the given UUID
 
     /// @brief Initialize the scenario

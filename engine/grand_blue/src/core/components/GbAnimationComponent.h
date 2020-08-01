@@ -26,6 +26,8 @@ class Model;
 class ShaderProgram;
 struct Uniform;
 class AnimationController;
+class ResourceHandle;
+class DrawCommand;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Class Definitions
@@ -54,8 +56,9 @@ public:
     /// @name Public Methods
     /// @{
 
-    /// @brief Set uniforms for the model component, which are specific to only this instance of a model
-    void bindUniforms(const std::shared_ptr<ShaderProgram>&  shaderProgram);
+    /// @brief Set uniforms for the animation component, which are specific to only one instance of a model
+    void bindUniforms(DrawCommand& drawCommand);
+    void bindUniforms(ShaderProgram& shaderProgram);
 
     /// @brief Enable the behavior of this component
     virtual void enable() override;
@@ -73,7 +76,7 @@ public:
     /// @{
 
     /// @property Model
-    std::shared_ptr<Model> model() const;
+    const std::shared_ptr<ResourceHandle>& modelHandle() const;
 
     std::unique_ptr<AnimationController>& animationController() {
         return m_animationController;

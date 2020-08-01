@@ -44,6 +44,9 @@ public:
     static QString pathToName(const QString& path, bool extension=true, bool caseSensitive = false);
     static QString dirFromPath(const QString& path);
 
+    /// @brief Search subdirectories and files in given directory recursively for a file
+    static bool fileExists(const QString& directory, const QString& fileName, QString& outPath);
+
     /// @brief Return true if file exists, false otherwise
     static bool fileExists(const QString& filepath);
 

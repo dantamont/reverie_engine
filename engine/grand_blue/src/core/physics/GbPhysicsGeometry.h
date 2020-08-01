@@ -122,6 +122,10 @@ public:
     float hy() const { return m_box.halfExtents.y; };
     float hz() const { return m_box.halfExtents.z; };
 
+    void setHx(float x) { m_box.halfExtents.x = x; };
+    void setHy(float y) { m_box.halfExtents.y = y; };
+    void setHz(float z) { m_box.halfExtents.z = z; };
+
     Vector3 halfExtents() const;
 
     /// @}
@@ -205,6 +209,7 @@ public:
     }
 
     float radius() const { return m_sphere.radius; }
+    void setRadius(float r) { m_sphere.radius = r; };
 
     /// @}
     //--------------------------------------------------------------------------------------------

@@ -21,7 +21,6 @@ class Scene;
 class SceneObject;
 class Component;
 namespace View {
-class TreeItem;
 class SceneTreeWidget;
 }
 
@@ -240,7 +239,7 @@ protected:
     QJsonObject m_parentSceneObject;
 
     /// @brief The scene which the scene object belongs to
-    QJsonObject m_scene;
+    QJsonValue m_scene;
     //std::shared_ptr<Scene> m_scene;
 
     /// @}

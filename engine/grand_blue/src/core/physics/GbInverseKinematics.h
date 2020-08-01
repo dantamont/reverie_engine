@@ -23,7 +23,7 @@ namespace Gb {
 //////////////////////////////////////////////////////////////////////////////////
 class CoreEngine;
 class Skeleton;
-class MeshNode;
+class SkeletonJoint;
 class IKChain;
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -63,7 +63,7 @@ public:
 
     IKNode();
     IKNode(IKChain* chain);
-    IKNode(IKChain* chain, const MeshNode& meshNode);
+    IKNode(IKChain* chain, const SkeletonJoint& meshNode);
     virtual ~IKNode();
 
     /// @}
@@ -83,7 +83,7 @@ public:
     }
 
     /// @brief Add a child to this node, returning the child
-    IKNode* addChild(const MeshNode& child);
+    IKNode* addChild(const SkeletonJoint& child);
 
     /// @}
 
@@ -174,7 +174,7 @@ protected:
     /// @{
 
     void initialize(const Skeleton& skeleton);
-    void addNode(const MeshNode& child, IKNode* parent = nullptr);
+    void addNode(const SkeletonJoint& child, IKNode* parent = nullptr);
 
     /// @}
 

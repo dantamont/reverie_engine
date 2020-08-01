@@ -20,6 +20,7 @@
 #include "../../containers/GbVariant.h"
 #include "../../geometry/GbMatrix.h"
 #include "../../containers/GbContainerExtensions.h"
+#include "../GbGLFunctions.h"
 
 namespace Gb {
 
@@ -33,27 +34,57 @@ typedef std::vector<Vector4g> Vec4List;
 // Class Definitions
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-/// @brief struct containing a uniform's name and type
-struct UniformInfo{
+enum class ShaderInputType {
+    kNone = -1,
+    kBool = GL_BOOL,
+    kInt = GL_INT,
+    kFloat = GL_FLOAT,
+    kDouble = GL_DOUBLE,
+    kVec2 = GL_FLOAT_VEC2,
+    kVec3 = GL_FLOAT_VEC3,
+    kVec4 = GL_FLOAT_VEC4,
+    kMat2 = GL_FLOAT_MAT2,
+    kMat3 = GL_FLOAT_MAT3,
+    kMat4 = GL_FLOAT_MAT4,
+    kSamplerCube = GL_SAMPLER_CUBE,
+    kSampler2D = GL_SAMPLER_2D
+};
 
-    enum PrecisionQualifier {
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/// @brief struct containing a uniform's name and type
+struct ShaderInputInfo{
+
+    /// @brief Determines if the given value is a valid ShaderInputType
+    static bool IsValidGLType(int typeInt);
+
+    enum class PrecisionQualifier {
         kNone=-1,
         kHigh,
         kMedium,
         kLow
     };
 
-    UniformInfo();
-    UniformInfo(const QString& name, const QString& type, bool isArray);
-    UniformInfo(const QString& name, const QString& type, bool isArray, int id);
+    enum ShaderInputFlag {
+        kIsArray = 1 << 0,
+        kInBlockOrBuffer = 1 << 1
+    };
+
+    ShaderInputInfo();
+    ShaderInputInfo(const QString& name, const ShaderInputType& type, bool isArray);
+    ShaderInputInfo(const QString& name, const ShaderInputType& type, bool isArray, int id);
+
+    bool isArray() const { return m_flags.testFlag(kIsArray); }
+    bool inBlockOrBuffer() const { return m_flags.testFlag(kInBlockOrBuffer); }
 
     QString m_name = "";
-    QString m_typeStr = ""; // variable type in glsl, e.g. vec3, vec2, float
-    int m_uniformType = -1;
-    bool m_isArray = false; // whether the uniform is an array or not
+    //QString m_typeStr = ""; // variable type in glsl, e.g. vec3, vec2, float
+    ShaderInputType m_inputType = ShaderInputType::kNone; // Uniform::UniformType // Supports GL_UNIFORM, GL_PROGRAM_INPUT, GL_PROGRAM_OUTPUT, GL_TRANSFORM_FEEDBACK_VARYING, GL_BUFFER_VARIABLE
+    QFlags<ShaderInputFlag> m_flags; // whether the uniform is an array or not
     int m_uniformID = -1; // ID to be set when bound to a shader
+    int m_localIndex = -1; // Index of the uniform in the m_uniforms vector of corresponding ShaderProgram object
     int m_arraySize = -1;
-    PrecisionQualifier m_precision = kNone;
+    PrecisionQualifier m_precision = PrecisionQualifier::kNone;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -61,7 +92,7 @@ struct UniformInfo{
 /// @brief struct containing a uniform's name and type
 struct ShaderStruct {
     QString m_name;
-    std::vector<UniformInfo> m_fields;
+    std::vector<ShaderInputInfo> m_fields;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -82,24 +113,9 @@ public:
     /// @name Static
     /// @{
 
-    enum UniformType {
-        kNone=-1,
-        kBool,
-        kInt,
-        kFloat,
-        kDouble,
-        kVec2,
-        kVec3,
-        kVec4,
-        kMat2,
-        kMat3,
-        kMat4,
-        kSamplerCube,
-        kSampler2D
-    };
-
     static std::unordered_map<QString, std::type_index> UNIFORM_TYPE_MAP;
-    static std::unordered_map<QString, UniformType> UNIFORM_TYPE_STR_MAP;
+    static std::unordered_map<ShaderInputType, std::type_index> UNIFORM_GL_TYPE_MAP;
+    static std::unordered_map<QString, ShaderInputType> UNIFORM_TYPE_STR_MAP;
 
     /// @}
 
@@ -123,6 +139,16 @@ public:
     ~Uniform();
     /// @}
 
+
+    //---------------------------------------------------------------------------------------
+    /// @name Operators
+    /// @{
+
+    /// @brief Conversion to QString
+    operator QString() const;
+
+    /// @}
+
     //---------------------------------------------------------------------------------------
     /// @name Properties
     /// @{
@@ -139,7 +165,7 @@ public:
     /// @{
 
     /// @brief Whether or not the uniform's type ID matches the given uniform info struct
-    bool matchesInfo(const UniformInfo& typeInfo) const;
+    bool matchesInfo(const ShaderInputInfo& typeInfo) const;
 
     /// @brief Convert to QVariant
     QVariant asQVariant() const;

@@ -22,7 +22,7 @@ class PhysicsGeometry;
 class PhysicsMaterial;
 class PhysicsShapePrefab;
 class PhysicsScene;
-struct PhysicsShape;
+class PhysicsShape;
 class CoreEngine;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -147,7 +147,7 @@ public:
     /// @{
     
     enum RigidType {
-        kStatic,
+        kStatic = 0,
         kDynamic,
         kArticulationLink // TODO: Implement
     };
@@ -176,9 +176,20 @@ public:
     /// @name Properties
     /// @{
 
-    std::unordered_map<Uuid, PhysicsShape>& shapes() {
-        return m_shapes; 
+    float density() const { return m_density; }
+    void setDensity(float density) { 
+        m_density = density;
+        if(dynamicBody())
+            updateMassAndInertia();
     }
+
+    /// @brief The type of rigid body
+    /// @details Setting this requires a call to the reinitialize routine in order to take effect on
+    /// the underlying PhysX body
+    RigidType rigidType() const { return m_rigidType; }
+    void setRigidType(RigidType type) { m_rigidType = type; }
+
+    std::vector<PhysicsShape>& shapes() { return m_shapes; }
 
     /// @brief Whether the body is kinematic or not
     bool isKinematic() const { return m_isKinematic; }
@@ -195,13 +206,13 @@ public:
     /// @details Does not need to be called on destruction, detachment is automatic
     void clearShapes();
 
-    /// @brief Calls physX::detachShape to remove shape from the body
-    void removeShape(const PhysicsShape& shape);
-
     /// @}
     //--------------------------------------------------------------------------------------------
     /// @name Public Methods
     /// @{
+
+    /// @brief Return shape at index
+    PhysicsShape& shape(int index = 0);
 
     /// @brief Toggle for scene queries
     void toggleContact(bool contact);
@@ -211,10 +222,10 @@ public:
 
     bool updateMassAndInertia();
 
-    void setKinematic(bool isKinematic, bool setMember = false);
+    void setKinematic(bool isKinematic, bool setMember);
 
     /// @brief Add a shape to the rigid body
-    void addShape(const PhysicsShapePrefab& prefab);
+    void addShape(PhysicsShapePrefab& prefab);
 
     /// @brief Get the transform of the rigid body
     Transform getTransform() const;
@@ -253,6 +264,9 @@ public:
     /// @property namespaceName
     const char* namespaceName() const override { return "Gb::RigidBody"; }
 
+    void reinitialize();
+    void reinitialize(PhysicsShapePrefab& prefab);
+
     /// @}
 
 protected:
@@ -268,7 +282,8 @@ protected:
     /// @{
 
     /// @brief Initialize the rigid body
-    void initialize(const std::shared_ptr<SceneObject>& so, const Transform& transform, const PhysicsShapePrefab& prefab);
+    void initialize(const std::shared_ptr<SceneObject>& so,
+        const Transform& transform, PhysicsShapePrefab& prefab);
 
     /// @}
 
@@ -276,9 +291,9 @@ protected:
     /// @name Protected Members
     /// @{
 
-    /// @brief Shape instantiations, indexed by shape prefab Uuid
+    /// @brief Shape instantiations
     /// @details Can also be obtained with PxRigidActor::getShapes
-    std::unordered_map<Uuid, PhysicsShape> m_shapes;
+    std::vector<PhysicsShape> m_shapes;
 
     /// @brief The type of rigid body, e.g. static vs dynamic
     RigidType m_rigidType;

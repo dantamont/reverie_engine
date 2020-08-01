@@ -1,6 +1,7 @@
 #include "GbFileReader.h"
 #include <QFileInfo>
 #include <QDir>
+#include <QDirIterator>
 #include "../containers/GbContainerExtensions.h"
 
 namespace Gb {
@@ -44,6 +45,30 @@ QString FileReader::dirFromPath(const QString & path)
 {
     QFileInfo info = QFileInfo(path);
     return info.absoluteDir().absolutePath();
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+bool FileReader::fileExists(const QString & directory, const QString & fileName, QString & outFilePath)
+{
+    QDirIterator it(directory, QDir::Files, QDirIterator::Subdirectories);
+    bool found = false;
+    QString currentFile;
+    do {
+        // Iterate through directories to find file
+        if (it.fileName() == fileName) {
+            found = true;
+            outFilePath = it.filePath();
+            break;
+        }
+        Object().logInfo(it.next());
+    } while (it.hasNext());
+
+    // Check for last iterator
+    if (it.fileName() == fileName) {
+        found = true;
+        outFilePath = it.filePath();
+    }
+
+    return found;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 bool FileReader::fileExists(const QString & filepath)

@@ -7,19 +7,24 @@
 #include "../components/GbCanvasComponent.h"
 #include "../utils/GbParallelization.h"
 #include "../geometry/GbVector.h"
+#include "../../view/style/GbFontIcon.h"
 
 #define USE_THREADING false
 
 namespace Gb {
 //////////////////////////////////////////////////////////////////////////////////
-FontFace::FontFace(FontEncoding encoding) :
-    m_encoding(encoding)
+FontFace::FontFace(CoreEngine* engine, bool isCore, FontEncoding encoding) :
+    m_encoding(encoding),
+    m_engine(engine),
+    m_isCore(isCore)
 {
 }
 //////////////////////////////////////////////////////////////////////////////////
-FontFace::FontFace(const QString & path, FontEncoding encoding):
+FontFace::FontFace(CoreEngine* engine, bool isCore, const QString & path, FontEncoding encoding):
     Loadable(path),
-    m_encoding(encoding)
+    m_encoding(encoding),
+    m_engine(engine),
+    m_isCore(isCore)
 {
     loadFont();
 }
@@ -61,20 +66,23 @@ void FontFace::bindTexture(float fontSize)
     if (!Map::HasKey(m_textures, pixelSize)) {
         loadGLTexture(pixelSize);
     }
-    auto texture = m_textures.at(pixelSize);
+    auto texture = m_textures.at(pixelSize)->resourceAs<Texture>();
     //int h = texture->height();
     //int w = texture->width();
 
     GL::OpenGLFunctions gl = GL::OpenGLFunctions();
     int texUnit = 0;
     gl.glActiveTexture(GL_TEXTURE0 + texUnit); // set active texture unit
-    texture->bind(texUnit); // bind texture to this unit
+    if (texture->handle()->isConstructed()) {
+        texture->bind(texUnit); // bind texture to this unit
+    }
 }
 //////////////////////////////////////////////////////////////////////////////////
 void FontFace::releaseTexture(float fontSize)
 {
     size_t pixelSize = pointToPixelSize(fontSize);
-    m_textures.at(pixelSize)->release(); // bind texture to this unit
+    if (m_textures.at(pixelSize)->isConstructed())
+        m_textures.at(pixelSize)->resourceAs<Texture>()->release(); // bind texture to this unit
 }
 //////////////////////////////////////////////////////////////////////////////////
 QSize FontFace::getBitmapSize(float height)
@@ -115,8 +123,8 @@ void FontFace::setPixelSize(size_t height)
 //////////////////////////////////////////////////////////////////////////////////
 void FontFace::setPointSize(float width, float height)
 {
-    int xRes = CanvasComponent::screenDPIX();
-    int yRes = CanvasComponent::screenDPIY();
+    int xRes = Renderable::screenDPIX();
+    int yRes = Renderable::screenDPIY();
     int error = FT_Set_Char_Size(
         m_face,             /* handle to face object           */
         int(width * 64),    /* char_width in 1/64th of points  */
@@ -256,14 +264,14 @@ int FontFace::pointToPixelSize(float pointSize)
 {
     // Points are a physical unit, where 1 point equals 1/72th of an inch in digital typography
     // Resolution is in DPI
-    float resolution = CanvasComponent::screenDPI();
+    float resolution = Renderable::screenDPI();
     int pixelSize = int(pointSize * resolution / 72.0);
     return pixelSize;
 }
 //////////////////////////////////////////////////////////////////////////////////
 float FontFace::pixelToPointSize(size_t pixelSize)
 {
-    float resolution = CanvasComponent::screenDPI();
+    float resolution = Renderable::screenDPI();
     float pointSize = pixelSize * 72.0 / resolution;
     return pointSize;
 }
@@ -278,7 +286,7 @@ void FontFace::clear()
 void FontFace::loadFont()
 {
     // Initialize freetype if not yet initialized
-    if (!FontManager::m_freeType) FontManager::initializeFreeType();
+    if (!FontManager::s_freeType) FontManager::initializeFreeType();
 
     // Check that file exists
     if (!QFile::exists(m_path)) {
@@ -289,7 +297,7 @@ void FontFace::loadFont()
     }
 
     // Load font face from file
-    if (FT_New_Face(*FontManager::m_freeType, m_path.toStdString().c_str(), 0, &m_face))
+    if (FT_New_Face(*FontManager::s_freeType, m_path.toStdString().c_str(), 0, &m_face))
         throw("ERROR::FREETYPE: Failed to load font");
 }
 //////////////////////////////////////////////////////////////////////////////////
@@ -335,12 +343,21 @@ void FontFace::loadGLTexture(size_t fontPixelSize)
     }
 #endif
 
+    // Create unique name for texture
+    QString uniqueName = "font_" + FileReader::pathToName(m_path, false) + "_" + m_uuid.asString() + "_" + QString::number(fontPixelSize);
+
     // Create OpenGL texture
-    m_textures[fontPixelSize] = std::make_shared<Texture>(bitmap, 
+    m_textures[fontPixelSize] = Texture::createHandle(m_engine,
+        bitmap, 
         Texture::kDiffuse,
         QOpenGLTexture::Linear,
         QOpenGLTexture::Linear,
         QOpenGLTexture::ClampToEdge);
+    m_textures[fontPixelSize]->setName(uniqueName);
+    //m_textures[fontPixelSize]->postConstruct();
+
+    // If this is a core font-face, preserve textures
+    m_textures[fontPixelSize]->setCore(m_isCore);
 }
 
 
@@ -348,19 +365,15 @@ void FontFace::loadGLTexture(size_t fontPixelSize)
 
 //////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
-QString FontManager::getUnicodeCharacter(const QString& fontAwesomeIcon)
+QString FontManager::faUnicodeCharacter(const QString& fontAwesomeIcon)
 {
-    QString infoPath = QDir::currentPath() + "/resources/fonts/fontawesome/unicode_info.json";
-    QJsonObject fontAwesome = JsonReader(infoPath).getContentsAsJsonObject();
-
-    QString fa = JsonReader::getJsonValueAsQString(fontAwesome);
-    if (!fontAwesome.contains(fontAwesomeIcon)) {
+    if (!s_faInfo.contains(fontAwesomeIcon)) {
         qDebug() << "Error, font awesome icon not found";
 #ifdef DEBUG_MODE
         throw("Error, font awesome icon not found");
 #endif
     }
-    QString unicode = fontAwesome.value(fontAwesomeIcon).toObject().value("unicode").toString();
+    QString unicode = s_faInfo.value(fontAwesomeIcon).toObject().value("unicode").toString();
     return unicode;
 }
 //////////////////////////////////////////////////////////////////////////////////
@@ -369,41 +382,44 @@ FontManager::FontManager(CoreEngine* engine):
 {
     initializeFreeType();
     initializeWidgetFonts();
+
+    // Load font-awesome icon metadata
+    QString infoPath = QDir::currentPath() + "/resources/fonts/fontawesome/unicode_info.json";
+    s_faInfo = JsonReader(infoPath).getContentsAsJsonObject();
 }
 //////////////////////////////////////////////////////////////////////////////////
 FontManager::~FontManager()
 {
     // Clear faces
-    for (const std::pair<QString, FontFace>& facePair : m_faces) {
+    for (const std::pair<QString, FontFace>& facePair : s_faces) {
         FT_Done_Face(facePair.second.m_face);
     }
 
     // Clear resources
-    FT_Done_FreeType(*m_freeType);
+    FT_Done_FreeType(*s_freeType);
 }
 //////////////////////////////////////////////////////////////////////////////////
 FontFace* FontManager::getFontFace(const QString & name)
 {
-    if (!Map::HasKey(m_faces, name)) {
+    if (!Map::HasKey(s_faces, name)) {
 #ifdef DEBUG_MODE
         throw("Error, no face found with the name " + name);
 #endif
         return nullptr;
     }
     else {
-        return &m_faces[name];
+        return &s_faces[name];
     }
 }
 //////////////////////////////////////////////////////////////////////////////////
-void FontManager::loadFontFace(const QString & path, FontFace::FontEncoding encoding)
+void FontManager::loadFontFace(CoreEngine* engine, const QString & path, bool isCore, FontFace::FontEncoding encoding)
 {
     QString fontName = FileReader::pathToName(path, false);
 
     // Return if font already loaded
-    if (Map::HasKey(m_faces, fontName)) return;
+    if (Map::HasKey(s_faces, fontName)) return;
 
-    Map::Emplace(m_faces, fontName, path, encoding);
-    //m_faces[fontName].loadBitmap(12);
+    Map::Emplace(s_faces, fontName, engine, isCore, path, encoding);
 }
 //////////////////////////////////////////////////////////////////////////////////
 void FontManager::postConstruction()
@@ -414,27 +430,27 @@ void FontManager::postConstruction()
 //////////////////////////////////////////////////////////////////////////////////
 QString FontManager::regularFontAwesomeFamily()
 {
-    QStringList families = QFontDatabase::applicationFontFamilies(m_faRegular);
+    QStringList families = QFontDatabase::applicationFontFamilies(s_faRegular);
     return families[0];
 }
 //////////////////////////////////////////////////////////////////////////////////
 QString FontManager::brandFontAwesomeFamily()
 {
-    QStringList families = QFontDatabase::applicationFontFamilies(m_faBrands);
+    QStringList families = QFontDatabase::applicationFontFamilies(s_faBrands);
     return families[0];
 }
 //////////////////////////////////////////////////////////////////////////////////
 QString FontManager::solidFontAwesomeFamily()
 {
-    QStringList families = QFontDatabase::applicationFontFamilies(m_faSolid);
+    QStringList families = QFontDatabase::applicationFontFamilies(s_faSolid);
     return families[0];
 }
 //////////////////////////////////////////////////////////////////////////////////
 void FontManager::initializeFreeType()
 {
-    if (!m_freeType) {
-        m_freeType = std::make_unique<FT_Library>();
-        if (FT_Init_FreeType(m_freeType.get())) {
+    if (!s_freeType) {
+        s_freeType = std::make_unique<FT_Library>();
+        if (FT_Init_FreeType(s_freeType.get())) {
             throw("ERROR::FREETYPE: Could not init FreeType Library");
         }
     }
@@ -446,7 +462,7 @@ void FontManager::initializeGLFonts()
 
     // Load font awesome
     QString freeSolidPath = currentPath + "/resources/fonts/fontawesome/otfs/free-solid-900.otf";
-    FontManager::loadFontFace(freeSolidPath, FontFace::kUnicode);
+    FontManager::loadFontFace(m_engine, freeSolidPath, true, FontFace::kUnicode);
 
     // Load windows fonts
     ParallelLoopGenerator loop(&CoreEngine::HELPER_THREADPOOL, USE_THREADING);
@@ -457,7 +473,10 @@ void FontManager::initializeGLFonts()
         for (int i = start; i < end; i++) {
             const QString& fontFile = fontPaths[i];
             QString fontPath = windowsFontPath + fontFile;
-            FontManager::loadFontFace(fontPath, FontFace::kASCII);
+            FontManager::loadFontFace(m_engine, fontPath, true, FontFace::kASCII);
+
+            // Add font for qt to use
+            //FontIcon::addFont(fontPath);
         }
     });
 
@@ -466,26 +485,42 @@ void FontManager::initializeGLFonts()
 void FontManager::initializeWidgetFonts()
 {
     // Load fonts
-    m_faBrands = QFontDatabase::addApplicationFont(":/fonts/brands-regular-400.otf");
-    if (m_faBrands < 0) {
-        logError("FontAwesome cannot be loaded!");
+    if (s_faBrands < 0) {
+        s_faBrands = FontIcon::addFont(":/fonts/brands-regular-400.otf");
+        if (s_faBrands < 0) {
+            logError("FontAwesome cannot be loaded!");
+        }
     }
-    m_faRegular = QFontDatabase::addApplicationFont(":/fonts/free-regular-400.otf");
-    if (m_faRegular < 0) {
-        logError("FontAwesome cannot be loaded!");
+    if (s_faRegular < 0) {
+        s_faRegular = FontIcon::addFont(":/fonts/free-regular-400.otf");
+        if (s_faRegular < 0) {
+            logError("FontAwesome cannot be loaded!");
+        }
     }
-    m_faSolid = QFontDatabase::addApplicationFont(":/fonts/free-solid-900.otf");
-    if (m_faSolid < 0) {
-        logError("FontAwesome cannot be loaded!");
+    if (s_faSolid < 0) {
+        s_faSolid = FontIcon::addFont(":/fonts/free-solid-900.otf");
+        if (s_faSolid < 0) {
+            logError("FontAwesome cannot be loaded!");
+        }
     }
 
 }
 //////////////////////////////////////////////////////////////////////////////////
-std::unique_ptr<FT_Library>  FontManager::m_freeType = nullptr;
+std::unique_ptr<FT_Library>  FontManager::s_freeType = nullptr;
 
 //////////////////////////////////////////////////////////////////////////////////
-std::unordered_map<QString, FontFace> FontManager::m_faces = {};
+std::unordered_map<QString, FontFace> FontManager::s_faces = {};
 
+//////////////////////////////////////////////////////////////////////////////////
+int FontManager::s_faBrands = -1;
+
+//////////////////////////////////////////////////////////////////////////////////
+int FontManager::s_faRegular = -1;
+
+//////////////////////////////////////////////////////////////////////////////////
+int FontManager::s_faSolid = -1;
+//////////////////////////////////////////////////////////////////////////////////
+QJsonObject FontManager::s_faInfo = QJsonObject();
 
 //////////////////////////////////////////////////////////////////////////////////
 } // End namespaces

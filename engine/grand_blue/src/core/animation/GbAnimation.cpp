@@ -5,14 +5,17 @@
 #include "../resource/GbResource.h"
 
 #include "../geometry/GbMatrix.h"
-#include "../rendering/geometry/GbMesh.h"
-#include "../rendering/geometry/GbSkeleton.h"
 #include "../geometry/GbTransform.h"
 #include "../utils/GbInterpolation.h"
 #include "../utils/GbParallelization.h"
 #include "../processes/GbAnimationProcess.h"
 #include "../processes/GbProcessManager.h"
+
+#include "../rendering/geometry/GbMesh.h"
+#include "../rendering/geometry/GbSkeleton.h"
+#include "../rendering/models/GbModel.h"
 #include "../rendering/shaders/GbShaders.h"
+#include "../rendering/renderer/GbRenderCommand.h"
 
 
 //#define NUMBER_OF_ANIMATION_THREADS 3
@@ -63,11 +66,8 @@ void BlendPose::blend()
     //std::unordered_map<QString, BlendSet>::const_iterator it = std::next(m_blendSets.begin(), start);
     //std::unordered_map<QString, BlendSet>::const_iterator endIt = std::next(m_blendSets.begin(), end);
     //
-    std::unordered_map<QString, BlendSet>::const_iterator it = m_blendSets.begin();
-    std::unordered_map<QString, BlendSet>::const_iterator endIt = m_blendSets.end();
-    for (it; it != endIt; it++) {
-        const BlendSet& blendSet = it->second;
-        const QString& nodeName = it->first;
+    for (size_t i = 0; i < m_blendSets.size(); i++) {
+        const BlendSet& blendSet = m_blendSets[i];
         const std::vector<Vector3g>& translations = blendSet.m_translations;
         const std::vector<Quaternion>& rotations = blendSet.m_rotations;
         const std::vector<Vector3g>& scales = blendSet.m_scales;
@@ -75,7 +75,7 @@ void BlendPose::blend()
         mutex.lockForWrite();
         // Necessary to avoid move and destruction
         // C++17 - Try emplace
-        Map::Emplace(m_transforms, nodeName,
+        Vec::EmplaceBack(m_transforms,
             Interpolation::lerp(translations, m_weights).asDouble(),
             Quaternion::average(rotations, m_weights),
             Interpolation::lerp(scales, m_weights).asDouble(),
@@ -129,9 +129,9 @@ SkeletonPose::SkeletonPose()
 {
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-SkeletonPose::SkeletonPose(Mesh * mesh, BlendPose&& blendPose):
+SkeletonPose::SkeletonPose(Model * model, BlendPose&& blendPose):
     m_blendPose(blendPose),
-    m_mesh(mesh)
+    m_model(model)
 {
     m_blendPose.blend();
 }
@@ -149,28 +149,31 @@ void SkeletonPose::getBoneTransforms(std::vector<Matrix4x4g>& outBoneTransforms,
         m_blendPose.blend();
     }
 
-    // TODO: use a reserve and push back
+    // Add transforms to vector to be used as a uniform
+    // Resizing instead of reserving, because (I think) a clear every step would be a bit more expensive
     if (!outBoneTransforms.size()) {
         size_t numBones = m_blendPose.size() - m_blendPose.m_numNonBones;
         outBoneTransforms.resize(numBones);
+        //outBoneTransforms.reserve(numBones);
     }
-    MeshNode* root = m_mesh->skeleton().root();
+
+    SkeletonJoint* root = m_model->skeleton()->root();
     processNodeHierarchy(*root, IDENTITY, outBoneTransforms);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
-void SkeletonPose::processNodeHierarchy(MeshNode& node, 
+void SkeletonPose::processNodeHierarchy(SkeletonJoint& node, 
     Transform & parentTransform,
     std::vector<Matrix4x4g>& outBoneTransforms)
 {
     // By default, use local node transform
     Transform* localTransform = &node.transform();
-    std::unordered_map<QString, Transform>& blendedTransforms = m_blendPose.m_transforms;
+    std::vector<Transform>& blendedTransforms = m_blendPose.m_transforms;
 
     // If node has an animation use that transform
-    const QString& nodeName = node.getName();
-    if (Map::HasKey(blendedTransforms, nodeName)) {
-        localTransform = &blendedTransforms[nodeName];
+    //const QString& nodeName = node.getName();
+    if (node.isAnimated()) {
+        localTransform = &blendedTransforms[node.skeletonTransformIndex()];
         localTransform->computeLocalMatrix();
     }
 
@@ -185,13 +188,12 @@ void SkeletonPose::processNodeHierarchy(MeshNode& node,
     // See: https://www.youtube.com/watch?v=F-kcaonjHf8&list=PLRIWtICgwaX2tKWCxdeB7Wv_rTET9JtWW&index=2 (starting at ~3:00)
     if (node.hasBone()) {
         uint idx = node.bone().m_index;
-        Vec::Replace<Matrix4x4g>(outBoneTransforms.begin() + idx, 
-            localTransform->m_worldMatrix 
-            //node.getBone().m_offsetMatrix
-            );
+        //Vec::Replace<Matrix4x4g>(outBoneTransforms.begin() + idx, 
+        //    localTransform->m_worldMatrix);
+        outBoneTransforms[idx] = localTransform->worldMatrix();
     }
 
-    for (MeshNode* child : node.children()) {
+    for (SkeletonJoint* child : node.children()) {
         processNodeHierarchy(*child, *localTransform, outBoneTransforms);
     }
 }
@@ -235,16 +237,13 @@ float Animation::getRate() const
     return 1.0f / getTimeDuration();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Animation::getAnimationFrame(Mesh * mesh,
-    float timeInSec,
+void Animation::getAnimationFrame(float timeInSec,
     const AnimationSettings& settings,
     AnimationPlaybackMode mode,
     int numPlays,
     bool& isDonePlaying,
     BlendPose& outFrames)
 {
-    Q_UNUSED(mesh);
-
     // Get timing info
     float animationTime = getAnimationTime(timeInSec, settings,
         mode, numPlays, isDonePlaying);
@@ -329,11 +328,11 @@ void Animation::interpolatePose(float animationTime, BlendPose& outPose) const
     }
 
     // If there are no output frames generated
-    std::unordered_map<QString, BlendSet>& outFrames = outPose.m_blendSets;
-    const std::unordered_map<QString, NodeAnimation>& nodeAnimations = m_nodeAnimations;
+    std::vector<BlendSet>& outFrames = outPose.m_blendSets;
+    const std::vector<NodeAnimation>& nodeAnimations = m_nodeAnimations;
     if (!outFrames.size()) {
-        for (const std::pair<QString, NodeAnimation>& nodeAnimationPair: nodeAnimations) {
-            outFrames.emplace(nodeAnimationPair.first, BlendSet());
+        for (const NodeAnimation& nodeAnimationPair: nodeAnimations) {
+            Vec::EmplaceBack(outFrames, BlendSet());
         }
     }
 
@@ -343,15 +342,12 @@ void Animation::interpolatePose(float animationTime, BlendPose& outPose) const
     //loop.parallelFor(mapSize, [&](int start, int end) {
         //std::unordered_map<QString, NodeAnimation>::const_iterator it = std::next(nodeAnimations.begin(), start);
         //std::unordered_map<QString, NodeAnimation>::const_iterator endIt = std::next(nodeAnimations.begin(), end);
-    std::unordered_map<QString, NodeAnimation>::const_iterator it = nodeAnimations.begin();
-    std::unordered_map<QString, NodeAnimation>::const_iterator endIt = nodeAnimations.end();
-    for (it; it != endIt; it++) {
+    for (size_t i = 0; i < nodeAnimations.size(); i++) {
 
-        const NodeAnimation& nodeAnimation = it->second;
-        const QString& nodeName = it->first;
+        const NodeAnimation& nodeAnimation = nodeAnimations[i];
 
         float numFrames = nodeAnimation.size();
-        BlendSet& currentBlendSet = outFrames[nodeName];
+        BlendSet& currentBlendSet = outFrames[i];
         const std::vector<Vector3g>& nodeTranslations = nodeAnimation.translations();
         const std::vector<Quaternion>& nodeRotations = nodeAnimation.rotations();
         const std::vector<Vector3g>& nodeScales = nodeAnimation.scales();
@@ -446,17 +442,21 @@ void AnimationClip::setDuration(float secs)
     m_settings.m_speedFactor = dur / secs;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void AnimationClip::getAnimationFrame(Mesh * mesh, 
-    float timeInSec, 
-    BlendPose& outFrames)
+void AnimationClip::getAnimationFrame(float timeInSec, BlendPose& outFrames)
 {
+    if (!m_animationHandle) {
+        // If no animation handle, was not created at time of loadFromJson, so try to load again
+        m_animationHandle = m_engine->resourceCache()->getHandleWithName(m_animationHandleName,
+            Resource::kAnimation);
+    }
+
     if (!animation()) return;
 
     if (outFrames.m_numNonBones == 0) {
         outFrames.m_numNonBones = numNonBones();
     }
 
-    return animation()->getAnimationFrame(mesh,
+    return animation()->getAnimationFrame(
         timeInSec, 
         m_settings,
         m_playbackMode, 
@@ -469,13 +469,21 @@ QJsonValue AnimationClip::asJson() const
 {
     QJsonObject object;
     
+    const QString* animName;
+    if (!m_animationHandle) {
+        animName = &m_animationHandleName;
+    }
+    else {
+        animName = &m_animationHandle->getName();
+    }
+
     if (!m_name.isEmpty()) {
         object["name"] = m_name;
     }
     else {
-        object["name"] = m_animationHandle->getName();
+        object["name"] = *animName;
     }
-    object["animation"] = m_animationHandle->asJson();
+    object["animation"] = *animName;
     object["settings"] = m_settings.asJson();
     object["playbackMode"] = int(m_playbackMode);
     object["numPlays"] = m_numPlays;
@@ -486,8 +494,12 @@ QJsonValue AnimationClip::asJson() const
 void AnimationClip::loadFromJson(const QJsonValue & json)
 {
     if (m_engine) {
-        QJsonObject animationHandle = json["animation"].toObject();
-        m_animationHandle = m_engine->resourceCache()->getResourceHandle(animationHandle);
+        QString animationHandleName = json["animation"].toString();
+        m_animationHandle = m_engine->resourceCache()->getHandleWithName(animationHandleName, 
+            Resource::kAnimation);
+        if (!m_animationHandle) {
+            m_animationHandleName = animationHandleName;
+        }
     }
     else {
         logWarning("Warning, no engine pointer found for animation clip");
@@ -500,7 +512,10 @@ void AnimationClip::loadFromJson(const QJsonValue & json)
 /////////////////////////////////////////////////////////////////////////////////////////////
 std::shared_ptr<Animation> AnimationClip::animation() const
 {
-    if (m_animationHandle->resource(false)) {
+    if (!m_animationHandle) {
+        return nullptr;
+    }
+    else if (m_animationHandle->resource(false)) {
         return std::static_pointer_cast<Animation>(m_animationHandle->resource(false));
     }
     else {
@@ -556,12 +571,12 @@ void AnimationState::addLayer(AnimationClip * state)
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
-void AnimationState::getAnimationFrame(Mesh * mesh, 
+void AnimationState::getAnimationFrame(Model * model, 
     float timeInSec, bool& isDone,
     SkeletonPose& outSkeletalPose)
 {
     // Set mesh
-    outSkeletalPose.m_mesh = mesh;
+    outSkeletalPose.m_model = model;
 
     // Return if no clips
     if (!m_clips.size()) return;
@@ -580,9 +595,7 @@ void AnimationState::getAnimationFrame(Mesh * mesh,
         float clipWeight = clip->settings().m_blendWeight;
 
         // Get the poses from the animation clip
-        clip->getAnimationFrame(mesh,
-            timeInSec,
-            outPose);
+        clip->getAnimationFrame(timeInSec, outPose);
 
         // Add weights to weight vector
         Vec::EmplaceBack(normalizedBlendWeights, clipWeight);
@@ -669,9 +682,9 @@ AnimationController::AnimationController(CoreEngine * engine, const QJsonValue &
     loadFromJson(json);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-AnimationController::AnimationController(CoreEngine * engine, const std::shared_ptr<ResourceHandle>& mesh):
+AnimationController::AnimationController(CoreEngine * engine, const std::shared_ptr<ResourceHandle>& model):
     m_engine(engine),
-    m_meshHandle(mesh)
+    m_modelHandle(model)
 {
     initializeProcess();
 }
@@ -687,10 +700,13 @@ AnimationController::~AnimationController()
         m_process->abort();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<Mesh> AnimationController::getMesh() const
+std::shared_ptr<Model> AnimationController::getModel() const
 {
-    if (m_meshHandle->resource(false)) {
-        return std::static_pointer_cast<Mesh>(m_meshHandle->resource(false));
+    if (!m_modelHandle) {
+        throw("Error, no model handle found");
+    }
+    if (m_modelHandle->resource(false)) {
+        return m_modelHandle->resourceAs<Model>(false);
     }
     else {
         return nullptr;
@@ -706,28 +722,53 @@ void AnimationController::addState(AnimationState * state)
     m_stateMap[state->getName()] = state;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void AnimationController::bindUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram)
+void AnimationController::bindUniforms(DrawCommand& drawCommand)
 {
     Uniform transformUniform = Uniform("boneTransforms", m_process->m_transforms);
 
-    std::shared_ptr<Mesh> mesh = getMesh();
-    if (!mesh) return;
+    std::shared_ptr<Model> model = getModel();
+    if (!model) return;
 
     // Don't save this value to the shader's cached values 
     // (this flag set may be unnecessary)
     transformUniform.setPersistence(false);
 
     // Set uniform that this model is animated
-    shaderProgram->setUniformValue("isAnimated", true);
+    drawCommand.setUniform(Uniform("isAnimated", true));
 
     // Set global inverse transform
-    shaderProgram->setUniformValue("globalInverseTransform", mesh->skeleton().globalInverseTransform());
+    drawCommand.setUniform(Uniform("globalInverseTransform", model->skeleton()->globalInverseTransform()));
 
     // Set inverse bind poses
-    shaderProgram->setUniformValue("inverseBindPoseTransforms", mesh->skeleton().inverseBindPose());
+    drawCommand.setUniform(Uniform("inverseBindPoseTransforms", model->skeleton()->inverseBindPose()));
 
     // Set pose uniform value in the shader
-    shaderProgram->setUniformValue(transformUniform, false);
+    drawCommand.setUniform(transformUniform);
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+void AnimationController::bindUniforms(ShaderProgram& shaderProgram)
+{
+    // TODO: Only used by debug manager right now, deprecate
+    Uniform transformUniform = Uniform("boneTransforms", m_process->m_transforms);
+
+    std::shared_ptr<Model> model = getModel();
+    if (!model) return;
+
+    // Don't save this value to the shader's cached values 
+    // (this flag set may be unnecessary)
+    transformUniform.setPersistence(false);
+
+    // Set uniform that this model is animated
+    shaderProgram.setUniformValue("isAnimated", true);
+
+    // Set global inverse transform
+    shaderProgram.setUniformValue("globalInverseTransform", model->skeleton()->globalInverseTransform());
+
+    // Set inverse bind poses
+    shaderProgram.setUniformValue("inverseBindPoseTransforms", model->skeleton()->inverseBindPose());
+
+    // Set pose uniform value in the shader
+    shaderProgram.setUniformValue(transformUniform, false);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 QJsonValue AnimationController::asJson() const
@@ -735,8 +776,8 @@ QJsonValue AnimationController::asJson() const
     QJsonObject object;
 
     // Add the mesh used by this controller to JSON
-    if (m_meshHandle) {
-        object.insert("mesh", m_meshHandle->getName());
+    if (m_modelHandle) {
+        object.insert("model", m_modelHandle->getName());
     }
 
     // Add the current state of this controller to JSON
@@ -762,9 +803,9 @@ void AnimationController::loadFromJson(const QJsonValue & json)
     QJsonObject object = json.toObject();
 
     // Set mesh from resource cache
-    if (object.contains("mesh")) {
-        QString meshName = object["mesh"].toString();
-        m_meshHandle = m_engine->resourceCache()->getMesh(meshName);
+    if (object.contains("model")) {
+        QString modelName = object["model"].toString();
+        m_modelHandle = m_engine->resourceCache()->getHandleWithName(modelName, Resource::kModel);
     }
 
     // Load animation states from JSON
@@ -773,7 +814,7 @@ void AnimationController::loadFromJson(const QJsonValue & json)
         for (const QString& animName : animStates.keys()) {
             AnimationState* state = new AnimationState(animName, m_engine);
             state->loadFromJson(animStates[animName]);
-            m_stateMap[animName.toLower()] = state;
+            addState(state);
         }
     }
 

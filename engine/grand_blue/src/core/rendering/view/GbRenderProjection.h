@@ -2,8 +2,8 @@
 // Includes
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef GB_RENDER_CONTEXT_H
-#define GB_RENDER_CONTEXT_H
+#ifndef GB_RENDER_PROJECTION_H
+#define GB_RENDER_PROJECTION_H
 
 // QT
 
@@ -71,9 +71,17 @@ public:
 
     /// @brief near plane distance
     double nearClipPlane() const { return m_zNear; }
+    void setNearClipPlane(double nearClip) { 
+        m_zNear = nearClip; 
+        computeProjectionMatrix();
+    }
 
     /// @brief far plane distance
     double farClipPlane() const { return m_zFar; }
+    void setFarClipPlane(double farClip) { 
+        m_zFar = farClip; 
+        computeProjectionMatrix();
+    }
 
     /// @property Projection matrix
     const Matrix4x4f& projectionMatrix() const { return m_projectionMatrix; }
@@ -82,6 +90,31 @@ public:
     /// @property Projection Type
     ProjectionType getProjectionType() const { return m_projectionType; }
     void setProjectionType(ProjectionType type);
+
+    // For orthographic projection
+    double leftBound() const { return m_left; }
+    void setLeftBound(double left) {
+        m_left = left;        
+        computeProjectionMatrix();
+    }
+
+    double topBound() const { return m_top; }
+    void setTopBound(double top) {
+        m_top = top;
+        computeProjectionMatrix();
+    }
+
+    double rightBound() const { return m_right; }
+    void setRightBound(double right) {
+        m_right = right;
+        computeProjectionMatrix();
+    }
+
+    double bottomBound() const { return m_bottom; }
+    void setBottomBound(double bottom) {
+        m_bottom = bottom;
+        computeProjectionMatrix();
+    }
 
     /// @}
 

@@ -26,7 +26,7 @@ ProcessManager::ProcessManager(CoreEngine* engine, size_t initialThreadCount):
 {
     // Initialize sorting layer list 
     SortingLayer* defaultLayer = new SortingLayer();
-    m_sortingLayers.emplace(defaultLayer->m_label, defaultLayer);
+    m_sortingLayers.emplace(defaultLayer->getName(), defaultLayer);
 
     // Initialize threads
     initializeThreads(initialThreadCount);
@@ -59,8 +59,8 @@ void ProcessManager::refreshProcessOrder()
 void ProcessManager::addSortingLayer()
 {
     SortingLayer* newLayer = new SortingLayer();
-    newLayer->m_label = newLayer->getUuid().createUniqueName("layer_");
-    m_sortingLayers[newLayer->m_label] = newLayer;
+    newLayer->setName(newLayer->getUuid().createUniqueName("layer_"));
+    m_sortingLayers[newLayer->getName()] = newLayer;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 bool ProcessManager::hasSortingLayer(const QString& label) const
@@ -81,12 +81,12 @@ void ProcessManager::removeSortingLayer(const QString& label)
 {
     // Find all processes with sorting layer and set to default
     for (const auto& process : m_processes) {
-        if (process->getSortingLayer().m_label == label) {
+        if (process->getSortingLayer().getName() == label) {
             process->setSortingLayer(m_sortingLayers["default"]);
         }
     }
     for (const auto& process : m_processQueue) {
-        if (process->getSortingLayer().m_label == label) {
+        if (process->getSortingLayer().getName() == label) {
             process->setSortingLayer(m_sortingLayers["default"]);
         }
     }
@@ -169,9 +169,12 @@ WeakProcessPtr ProcessManager::attachProcess(StrongProcessPtr process, bool init
             process->onInit();
     }
     else {
+        m_threadedProcessMutex.lock();
+
         // Add threaded process to thread pool queue
         auto threadedProcess = std::dynamic_pointer_cast<ThreadedProcess>(process);
         Vec::EmplaceBack(m_threadedProcesses, threadedProcess);
+        m_threadedProcessMutex.unlock();
 
         //int count = m_threadPool->activeThreadCount();
         //int maxCount = m_threadPool->maxThreadCount();
@@ -204,11 +207,11 @@ WeakProcessPtr ProcessManager::reattachProcess(StrongProcessPtr process)
         return process->getUuid() == process->getUuid();
     });
     if (iter == m_processes.end()) {
-#ifdef DEBUG_MODE
+//#ifdef DEBUG_MODE
         throw("Error, cannot reattach process that was never attached");
-#else
-        attachProcess(process);
-#endif
+//#else
+//        attachProcess(process);
+//#endif
     }
     else {
         m_processQueue.erase(iter);
@@ -231,6 +234,8 @@ void ProcessManager::abortAllProcesses(bool immediate)
     }
 
     if (m_threadedProcesses.size()) {
+        QMutexLocker locker(&m_threadedProcessMutex);
+
         std::vector<StrongProcessPtr> threadedProcesses = m_threadedProcesses;
         std::vector<StrongProcessPtr>::iterator thrit = threadedProcesses.begin();
         while (thrit != threadedProcesses.end())
@@ -270,7 +275,7 @@ void ProcessManager::loadFromJson(const QJsonValue & json)
         const QJsonArray& sortingLayers = object.value("sortingLayers").toArray();
         for (const auto& layerJson : sortingLayers) {
             SortingLayer* newLayer = new SortingLayer(layerJson);
-            m_sortingLayers.emplace(newLayer->m_label, newLayer);
+            m_sortingLayers.emplace(newLayer->getName(), newLayer);
         }
     }
 }
@@ -297,8 +302,10 @@ void ProcessManager::initializeThreads(unsigned int threadCount)
     m_engine->THREAD_COUNT += threadCount;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-unsigned int ProcessManager::loadProcessCount() const
+unsigned int ProcessManager::loadProcessCount()
 {
+    QMutexLocker locker(&m_threadedProcessMutex);
+
     int count = 0;
     for (StrongProcessPtr ptr : m_threadedProcesses) {
         if (QString(ptr->className()).contains("LoadProcess")) {
@@ -315,11 +322,15 @@ void ProcessManager::clearAllProcesses()
     abortAllProcesses(true);
 
     // Clear process queues
+    QMutexLocker locker(&m_threadedProcessMutex);
     m_processes.clear();
     m_threadedProcesses.clear();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 void ProcessManager::deleteThreadedProcess(const Uuid& uuid){
+
+    QMutexLocker locker(&m_threadedProcessMutex);
+
     auto iter = std::find_if(m_threadedProcesses.begin(), m_threadedProcesses.end(),
         [&](const std::shared_ptr<Process>& process) {
         if (!process) { 
@@ -362,9 +373,11 @@ void ProcessManager::abortProcess(StrongProcessPtr process, bool immediate)
             });
             if (iter != m_processes.end()) {
                 m_processes.erase(iter);
+                return;
             }
 
             // Remove from threaded process list if threaded
+            QMutexLocker locker(&m_threadedProcessMutex);
             std::vector<StrongProcessPtr>::const_iterator titer = std::find_if(m_threadedProcesses.begin(),
                 m_threadedProcesses.end(),
                 [&](StrongProcessPtr p) {

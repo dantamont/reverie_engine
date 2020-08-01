@@ -40,6 +40,7 @@ class CubeMap;
 class Animation;
 class CoreEngine;
 class ProcessManager;
+class ShaderPreset;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Type Definitions
@@ -56,7 +57,17 @@ class ResourceCache: public Manager, public Serializable{
     Q_OBJECT
 public:
     typedef std::list<std::shared_ptr<ResourceHandle>> ResourceList;
-    typedef std::unordered_map<QString, std::shared_ptr<ResourceHandle>> ResourceMap;
+    typedef std::unordered_map<Uuid, std::shared_ptr<ResourceHandle>> ResourceMap;
+
+    //--------------------------------------------------------------------------------------------
+    /// @name Static/Enums
+    /// @{
+
+    //enum class CacheFlag {
+    //    kIsLoading = 1 << 0 // Flag that resource cache is loading resources
+    //};
+
+    /// @}
 
 	//--------------------------------------------------------------------------------------------
 	/// @name Constructors/Destructor
@@ -69,17 +80,28 @@ public:
     /// @name Properties
     /// @{
 
+    QMutex& resourceMapMutex() { return m_resourceMutex; }
+
     /// @brief Process manager for pushing load requests
     ProcessManager* processManager() { return m_processManager; }
 
     /// @brief Map of all shader programs, since shader programs are not resources
-    std::unordered_map<QString, std::shared_ptr<ShaderProgram>>& shaderPrograms() { return m_shaderPrograms; }
+    const ResourceMap& shaderPrograms() const { return m_shaderPrograms; }
 
-    /// @brief Map of all materials, since materials are not resources
-    std::unordered_map<QString, std::shared_ptr<Material>>& materials() { return m_materials; }
+    /// @brief Map of all materials
+    const ResourceMap& materials() const { return m_materials; }
 
-    /// @brief Map of all models, since models are not resources
-    std::unordered_map<QString, std::shared_ptr<Model>>& models() { return m_models; }
+    /// @brief Map of all models
+    const ResourceMap& models() const { return m_models; }
+
+    /// @brief Map of all python scripts
+    const ResourceMap& pythonScripts() { return m_pythonScripts; }
+
+    /// @brief Map of all skeletons
+    const ResourceMap& skeletons() { return m_skeletons; }
+
+    /// @brief Map of all shader presets
+    std::unordered_map<Uuid, std::shared_ptr<ShaderPreset>>& shaderPresets() { return m_shaderPresets; }
 
     /// @property resourceCache
     const ResourceMap& resources() {
@@ -87,7 +109,7 @@ public:
     }
 
     /// @property PolyconCache
-    std::shared_ptr<PolygonCache> polygonCache() {
+    const std::shared_ptr<PolygonCache>& polygonCache() {
         return m_polygonCache;
     }
 
@@ -100,106 +122,59 @@ public:
 	/// @name Public Methods
 	/// @{
 
-    /// @brief Remove shader program from resource cache and all renderers
-    bool removeShaderProgram(const std::shared_ptr<ShaderProgram>& shader);
+    /// @brief Whether or not the resource cache is currently loading any resources
+    bool isLoadingResources() const { return m_loadCount > 0; }
 
-    /// @brief Remove material from resource cache
-    bool removeMaterial(const QString& name);
-    bool removeMaterial(const Uuid& uuid);
-    bool removeMaterial(std::shared_ptr<Material> material);
+    /// @brief Increment count of loading resources
+    void incrementLoadCount();
+    void decrementLoadCount();
 
-    /// @brief Remove model from resource cache
-    bool removeModel(const QString& name);
-    bool removeModel(std::shared_ptr<Model> model);
-
-    /// @brief Remove resurces with the given filepath
-    bool removeResources(const QString& filepath);
+    /// @brief Remove shader material from resource cache
+    bool removeShaderPreset(const QString& name);
 
     /// @brief Return true if all removable resources have been removed
     bool clearedRemovable() const;
 
     /// @brief Insert a resource into the cache
     /// @details Returns true if successful insert
-    bool insert(std::shared_ptr<ResourceHandle> resource);
-    bool insert(std::shared_ptr<ResourceHandle> resource, bool* clearedResources);
+    bool insertHandle(const std::shared_ptr<ResourceHandle>& resource);
+    bool insertHandle(const std::shared_ptr<ResourceHandle>& resource, bool* clearedResources);
 
-    /// @brief Whether the resource map has the specified resource
-    std::shared_ptr<ResourceHandle> handleWithName(const QString& name, Resource::ResourceType type);
-    std::shared_ptr<ResourceHandle> handleWithFilepath(const QString& filepath, Resource::ResourceType type);
-
-    /// @brief Whether the resource map has the specified model
-    inline bool hasShaderProgram(const QString& name) {
-        return m_shaderPrograms.find(name.toLower()) != m_shaderPrograms.end();
-    }
-
-    /// @brief Whether the resource map has the specified model
-    inline bool hasModel(const QString& name) {
-        return m_models.find(name.toLower()) != m_models.end();
-    }
-
-    /// @brief Whether the resource map has the specified material
-    inline bool hasMaterial(const QString& name) {
-        return m_materials.find(name.toLower()) != m_materials.end();
-    }
+    /// @brief Whether the resource map has the specified shader preset
+    bool hasShaderPreset(const QString& name, 
+        std::unordered_map<Uuid, std::shared_ptr<ShaderPreset>>::const_iterator& iter) const;
 
     /// @brief Clears all resources
     void clear();
 
-    /// @brief Clear all models
-    void clearModels();
-
-    /// @brief Clear all shader programs
-    void clearShaderPrograms();
-
-    /// @brief Obtains shader given the name, creating if it doesn't exist
-    std::shared_ptr<ShaderProgram> getShaderProgramByName(const QString& name);
-    std::shared_ptr<ShaderProgram> getShaderProgramByFilePath(const QString& fragpath, const QString& vertPath);
-
-    /// @brief Obtains a material to add to the renderer's list, creating if it doesn't exist
-    std::shared_ptr<Material> getMaterial(const QString& name, bool create=true);
-    std::shared_ptr<Material> createMaterial(const QJsonValue& json);
-    //std::shared_ptr<Material> getMaterialByFilePath(const QString& filepath);
-
-    /// @brief Add a material to the resource cache
-    void addMaterial(std::shared_ptr<Material> material);
-
-    /// @brief Return cubemap with given filepath and name
-    std::shared_ptr<CubeMap> getCubemap(const QString& name);
-    std::shared_ptr<CubeMap> createCubemap(const QString& name, const QString& filepath);
-
-    /// @brief Return animation with the given name
-    std::shared_ptr<ResourceHandle> getAnimationByName(const QString& name);
-
-    /// @brief Add a model to the resource cache
-    void addModel(std::shared_ptr<Model> model);
-
-    /// @brief Return model with the given name
-    /// @details If model not found in map, return new model
-    std::shared_ptr<Model> getModel(const QString& name);
-    std::shared_ptr<Model> getModelByFilePath(const QString& filepath);
-    std::shared_ptr<Model> createModel(const QJsonValue& json);
-
-    /// @brief Obtains a script, given a source filepath
-    std::shared_ptr<PythonClassScript> getScript(const QString& filepath);
-
-    /// @brief Obtains a mesh, given a source filepath
-    std::shared_ptr<ResourceHandle> getMesh(const QString& nameOrFilepath);
-
-    /// @brief Obtains a texture given the filepath, creating if it doesn't exist
-    std::shared_ptr<ResourceHandle> getTexture(const QString& filePath, int textureType);
-
-    /// @brief Obtains a cube texture given the filepaths, creating if it doesn't exist
-    std::shared_ptr<ResourceHandle> getCubeTexture(const QString& filePath);
-
-    /// @brief Obtains an image given the filepath, creating if it doesn't exist
-    std::shared_ptr<ResourceHandle> getImage(const QString& filePath,
-        QImage::Format format = QImage::Format_Invalid);
+    /// @brief Shader preset
+    std::shared_ptr<ShaderPreset> getShaderPreset(const QString& name, bool& created);
+    std::shared_ptr<ShaderPreset> getShaderPreset(const Uuid& uuid);
 
     /// @brief Return resource handle by UUID
-    std::shared_ptr<ResourceHandle> getResourceHandle(const Uuid& uuid);
+    std::shared_ptr<ResourceHandle> getHandle(const Uuid& uuid) const;
 
-    /// @brief Obtain a resource handle corresponding to the given JSON
-    std::shared_ptr<ResourceHandle> getResourceHandle(const QJsonValue& json);
+    /// @brief Obtain handle corresponding to the given JSON, or create if it does not exist
+    std::shared_ptr<ResourceHandle> getHandle(const QJsonValue& handleJson) const;
+
+    /// @brief Return a handle given it's name and type
+    std::shared_ptr<ResourceHandle> getHandleWithName(const QString& name, Resource::ResourceType type) const;
+
+    /// @brief This routine will only return top-level handles
+    std::shared_ptr<ResourceHandle> getTopLevelHandleWithPath(const QString& filepath) const;
+
+    /// @brief Retrieve or create a top-level handle
+    std::shared_ptr<ResourceHandle> guaranteeHandleWithPath(const QString& filepath,
+        Resource::ResourceType type,
+        ResourceHandle::BehaviorFlags flags=0);
+    std::shared_ptr<ResourceHandle> guaranteeHandleWithPath(const std::vector<QString>& filepaths,
+        Resource::ResourceType type,
+        ResourceHandle::BehaviorFlags flags=0);
+
+    virtual void postConstruction() override;
+
+    /// @brief Delete the given resource
+    bool remove(std::shared_ptr<ResourceHandle> resource, ResourceHandle::DeleteFlags deleteFlags = 0);
 
 	/// @}
 
@@ -227,25 +202,14 @@ public:
     /// @}
 
 signals:
-    void resourceChanged(std::shared_ptr<Object> resourceLike);
-    //void resourceChanged(const std::shared_ptr<ResourceHandle>& resource);
-    //void resourceChanged(const std::shared_ptr<Material>& mtl);
-    //void resourceChanged(const std::shared_ptr<Model>& model);
-    //void resourceChanged(const std::shared_ptr<ShaderProgram>& shader);
+    void resourceChanged(std::shared_ptr<ResourceHandle> handle);
+    void resourceAdded(std::shared_ptr<ResourceHandle> handle);
+    void resourceDeleted(std::shared_ptr<ResourceHandle> handle);
 
-    void resourceAdded(std::shared_ptr<Object> resourceLike);
-    //void resourceAdded(const std::shared_ptr<ResourceHandle>& resourceLike);
-    //void resourceAdded(const std::shared_ptr<Material>& mtl);
-    //void resourceAdded(const std::shared_ptr<Model>& model);
-    //void resourceAdded(const std::shared_ptr<ShaderProgram>& shader);
-    //void resourceAdded(const std::shared_ptr<PythonClassScript>& script);
-
-    void resourceDeleted(std::shared_ptr<Object> resourceLike);
-    //void resourceDeleted(const std::shared_ptr<ResourceHandle>& resource);
-    //void resourceDeleted(const std::shared_ptr<Material>& mtl);
-    //void resourceDeleted(const std::shared_ptr<Model>& model);
-    //void resourceDeleted(const std::shared_ptr<ShaderProgram>& shader);
-    //void resourceDeleted(const std::shared_ptr<PythonClassScript>& script);
+    void doneLoadingResources(); // Done loading all resources
+    void startedLoadingResources(); // Started loading resource when none were loading
+    void doneLoadingResource(std::shared_ptr<ResourceHandle> resourceHandle);
+    void resourceNeedsReload(std::shared_ptr<ResourceHandle> resourceHandle);
 
 public slots:
 
@@ -269,37 +233,24 @@ protected:
     /// @{
 
     /// @brief Clear all resources that aren't core resources
-    void clearResources();
-
-    /// @brief Obtain a resource of the given type from the resource cache
-    /// @details Identifier string is a resource name if the resource is generated in memory,
-    /// e.g. A polygonal mesh, such as a cube or rectangle 
-    std::shared_ptr<ResourceHandle> getResourceHandleByFilePath(const QString& filePath,
-        Resource::ResourceType type,
-        ResourceHandle::Priority priority = ResourceHandle::kRemovable,
-        const ResourceAttributes& resourceAttributes = ResourceAttributes());
-
-    std::shared_ptr<ResourceHandle> getResourceHandleByName(const QString& name,
-        Resource::ResourceType type,
-        ResourceHandle::Priority priority = ResourceHandle::kRemovable,
-        const ResourceAttributes& resourceAttributes = ResourceAttributes());
-
-    /// @brief Update position of resource to front of queue
-    void update(std::shared_ptr<ResourceHandle> resource);
+    void clearResources(ResourceMap& map);
+    void clearTopLevelResources();
 
     /// @brief Returns the oldest object
-    std::shared_ptr<ResourceHandle> oldestResource() const {
-        return m_lru.back();
+    const std::shared_ptr<ResourceHandle>& oldestResource() const {
+        return m_topLevelResources.back();
     }
-
-    /// @brief Delete the given resource
-    bool remove(std::shared_ptr<ResourceHandle> resource);
 
     /// @brief Return max memory allowed by the system, in megabytes
     static qint64 getMaxMemoryMb();
 
     /// @brief Log current cost
     void logCurrentCost() const;
+
+    void initializeCoreResources();
+
+    /// @brief Recursive routine for constructing a resource
+    void postConstructResource(const std::shared_ptr<ResourceHandle>& handle);
 
     /// @}
 
@@ -310,39 +261,53 @@ protected:
     /// @brief Mutex for managing resource map and list
     QMutex m_resourceMutex;
 
-    /// @brief Most recently used resources
-    ResourceList m_lru;
+    /// @brief Mutex for managing count of loaded objects
+    QMutex m_loadCountMutex;
 
-    /// @brief Map of resources for easy access
-    /// @details Indexed by unique name, which is filename only 
-    /// if filepath exists and filepath is unique
-    /// Contains meshes, textures
+    /// @brief Top-level resources, sorted by most recently used
+    ResourceList m_topLevelResources;
+
+    /// @brief Map of all resources for easy access
+    /// @details Indexed by UUID
+    /// @note Contains all resources
     ResourceMap m_resources;
 
     /// @brief Cache dedicated to storing generated polygons
     std::shared_ptr<PolygonCache> m_polygonCache;
 
-    /// @brief Map of all materials, since materials are not resources
-    /// @details Materials are indexed by lowercase material name
-    std::unordered_map<QString, std::shared_ptr<Material>> m_materials;
+    /// @brief Map of all materials
+    /// @details Materials are indexed by UUID
+    ResourceMap m_materials;
 
-    /// @brief Map of all models, since models are not resources
-    /// @details Map key is the unique name (lowercase) of the model
-    std::unordered_map<QString, std::shared_ptr<Model>> m_models;
+    /// @brief Map of all models
+    /// @details Map key is the UUID of the model
+    ResourceMap m_models;
 
     /// @brief The shader programs used by all renderers
-    /// @details Indexed by name
-    std::unordered_map<QString, std::shared_ptr<ShaderProgram>> m_shaderPrograms;
+    /// @details Indexed by UUID
+    ResourceMap m_shaderPrograms;
 
-    /// @brief Map of all python scripts, which are not resources due to small size, indexed by filepath
-    /// @details indexed by file path
-    std::unordered_map<QString, std::shared_ptr<PythonClassScript>> m_pythonScripts;
+    /// @brief Map of all python scripts
+    /// @details Indexed by UUID
+    ResourceMap m_pythonScripts;
+
+    /// @brief Map of all skeletons
+    ResourceMap m_skeletons;
+
+    /// @brief Map of all shader presets
+    std::unordered_map<Uuid, std::shared_ptr<ShaderPreset>> m_shaderPresets;
 
     /// @brief Max allowed cost in the cache
     size_t m_maxCost;
 
     /// @brief Current cost in the cache
     size_t m_currentCost;
+
+    ///// @brief whether or not the cache is currently loading an object
+    //QFlags<CacheFlag> m_cacheFlags;
+
+    /// @brief count of currently loading objects
+    size_t m_loadCount = 0;
 
     /// @brief Process manager for pushing load requests
     ProcessManager* m_processManager;

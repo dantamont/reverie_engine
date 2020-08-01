@@ -148,7 +148,7 @@ RotationComponent::~RotationComponent()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void RotationComponent::addRotation(const EulerAngles & eulerAngles, bool updateTransform)
 {
-    Matrix4x4f addedRotation = eulerAngles.toRotationMatrix();
+    Matrix4x4f addedRotation = eulerAngles.toRotationMatrixF();
     m_transformMatrix = addedRotation * m_transformMatrix;
     m_quaternion = Quaternion::fromRotationMatrix(m_transformMatrix);
     if(updateTransform) AffineComponent::computeTransformMatrix();
@@ -188,7 +188,7 @@ void RotationComponent::computeTransformMatrix(bool updateTransform)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void RotationComponent::computeTransformMatrix(const EulerAngles & eulerAngles, bool updateTransform)
 {
-    m_transformMatrix = eulerAngles.toRotationMatrix();
+    m_transformMatrix = eulerAngles.toRotationMatrixF();
     setRotation(Quaternion::fromRotationMatrix(m_transformMatrix));
     AffineComponent::computeTransformMatrix(updateTransform);
 }

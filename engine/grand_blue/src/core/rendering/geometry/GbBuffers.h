@@ -77,7 +77,9 @@ public:
 
     /// @brief Load a buffer into the given array attribute
     /// @note Assumes zero offset and stride equivalent to tupleSize * real_g (float or double)
-    void loadAttributeBuffer(std::shared_ptr<BufferObject> buffer, bool bindThis = false);
+    void loadAttributeBuffer(BufferObject& buffer, bool bindThis = false);
+
+
 
     /// @}
 protected:
@@ -115,7 +117,8 @@ public:
         kNormal,
         kTangent,
         kMiscInt,
-        kMiscReal
+        kMiscReal,
+        kMAX_ATTRIBUTE_TYPE
     };
 
     /// @brief Create and bind an attribute VBO
@@ -145,7 +148,32 @@ public:
     
     /// @brief Get contents
     /// @details Count is the number of elements to return
-    std::vector<float> getContents(int offset, int count);
+    template<typename T>
+    void getContents(std::vector<T>& outContents) {
+        // Note: Must bind buffer before calling this or will crash
+        int s = size();
+        if (s < 0) return;
+        size_t count = s / sizeof(T);
+        getContents(0, count, outContents);
+    }
+
+    template<typename T>
+    void getContents(int offset, int count, std::vector<T>& outContents) {
+        // Must bind buffer or will crash
+        Q_UNUSED(offset)
+        if (m_type != kNone) {
+            bind();
+
+            outContents.resize(count);
+            unsigned int size = count * sizeof(T);
+            bool readData = read(offset, &outContents[0], size);
+#ifdef DEBUG_MODE
+            if (!readData) {
+                throw("Failed to readData");
+            }
+#endif
+        }
+    }
 
     /// @}
 

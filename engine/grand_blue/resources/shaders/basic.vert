@@ -1,5 +1,4 @@
 // Defines:
-#define MAX_LIGHTS 20
 #define MAX_BONES 100
 
 // See: https://www.khronos.org/opengl/wiki/Layout_Qualifier_(GLSL)
@@ -19,21 +18,16 @@ layout(location = 6) in vec4 boneWeights;
 // } outName;
 
 out vec3 pos;
+out vec4 worldPosition;
 out vec4 vColor;
 out vec2 uvCoord;
 out vec3 surfaceNormal; // applies world matrix
-out vec3 toLightPositions[MAX_LIGHTS];
 out vec3 toCameraVector;
-
-uniform int numberOfTextureRows;
-uniform vec2 offsetInTexture;
 
 uniform int shaderMode;
 uniform float diffuseColorScale;
 
 uniform mat4 worldMatrix;
-//uniform mat4 viewMatrix;
-//uniform mat4 projectionMatrix;
 
 // Uniform block for projection and view matrices
 layout (std140) uniform CameraMatrices
@@ -46,20 +40,37 @@ uniform mat4 boneTransforms[MAX_BONES];
 uniform mat4 globalInverseTransform;
 uniform mat4 inverseBindPoseTransforms[MAX_BONES];
 uniform bool isAnimated;
-// TODO: Add array of inverse kinematic positions?
-// uniform vec3 ikPositions[MAX_BONES]
-layout (std140) uniform LightBuffer
+
+// Uniform block for light settings
+layout (std140) uniform LightSettingsBuffer
 {
 	int lightingModel;
 	int lightCount;
-	vec4 lightPositions[MAX_LIGHTS];
-	vec4 lightDirections[MAX_LIGHTS];
-	vec4 lightAmbientColors[MAX_LIGHTS];
-	vec4 lightDiffuseColors[MAX_LIGHTS];
-	vec4 lightSpecularColors[MAX_LIGHTS];
-	vec4 lightAttributes[MAX_LIGHTS];
-	vec4 lightAttributes1[MAX_LIGHTS]; // types, intensities
 };
+
+struct Light {
+	vec4 position;
+	vec4 direction;
+	vec4 ambientColor;
+	vec4 diffuseColor;
+	vec4 specularColor;
+	vec4 attributes;
+	vec4 typeIntensityIndex;
+};
+
+// struct VisibleIndex {
+	// int index;
+// };
+
+// Shader storage buffer objects
+layout(std430, binding = 0) readonly buffer LightBuffer {
+	Light data[];
+} lightBuffer;
+
+// layout(std430, binding = 1) readonly buffer VisibleLightIndicesBuffer {
+	// VisibleIndex data[];
+// } visibleLightIndicesBuffer;
+
 
 
 // Struct representing a material
@@ -122,26 +133,18 @@ void main()
 		surfaceNormal = (boneTransform * vec4(surfaceNormal, 0.0)).xyz;
 	}
 
-	vec4 worldPosition = worldMatrix * posL;
+	worldPosition = worldMatrix * posL;
 
     gl_Position = projectionMatrix * viewMatrix * worldPosition;
   
 	// Assign output variables
 	pos = gl_Position.xyz;
-	uvCoord = (uv/numberOfTextureRows) + offsetInTexture;
+	uvCoord = uv;
 	toCameraVector = (inverse(viewMatrix) * vec4(0.0, 0.0, 0.0, 1.0)).xyz - worldPosition.xyz;
 	
 	if(shaderMode == 1){
 		// Colored shader mode
 		vColor = color * diffuseColorScale;
-	}
-	else if(shaderMode == 3 || shaderMode == 4){
-		// Assign output variables
-		for(int i=0; i < lightCount; ++i){
-			// Directional light do not need a position
-			// Need to make direction TOWARDS the light source, is specified as FROM the light source
-			toLightPositions[i] = lightPositions[i].xyz - worldPosition.xyz;
-		}
 	}
 	else{
 		// Default to white color

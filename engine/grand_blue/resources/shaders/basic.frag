@@ -7,38 +7,50 @@ precision mediump float;
 #endif 
 
 // Defines:
-# define MAX_LIGHTS 20
 
 // Vertex info
 in vec3 pos;
+in vec4 worldPosition;
 in vec4 vColor;
 in vec2 uvCoord;
 in vec3 surfaceNormal;
 
-in vec3 toLightPositions[MAX_LIGHTS];
 in vec3 toCameraVector;
 
 out vec4 fColor;
 
 uniform int shaderMode;
-uniform mat4 worldMatrix;
+// uniform mat4 worldMatrix;
 
-// Uniform block for lights
-// TODO: Maybe use a struct to represent lights
-// https://learnopengl.com/Lighting/Light-casters
-// https://learnopengl.com/Lighting/Multiple-lights
-layout (std140) uniform LightBuffer
+// Uniform block for light settings
+layout (std140) uniform LightSettingsBuffer
 {
 	int lightingModel;
 	int lightCount;
-	vec4 lightPositions[MAX_LIGHTS];
-	vec4 lightDirections[MAX_LIGHTS];
-	vec4 lightAmbientColors[MAX_LIGHTS];
-	vec4 lightDiffuseColors[MAX_LIGHTS];
-	vec4 lightSpecularColors[MAX_LIGHTS];
-	vec4 lightAttributes[MAX_LIGHTS];
-	vec4 lightAttributes1[MAX_LIGHTS]; // types, intensities
 };
+
+struct Light {
+	vec4 position;
+	vec4 direction;
+	vec4 ambientColor;
+	vec4 diffuseColor;
+	vec4 specularColor;
+	vec4 attributes;
+	vec4 typeIntensityIndex;
+};
+
+// struct VisibleIndex {
+	// int index;
+// };
+
+// Shader storage buffer objects
+layout(std430, binding = 0) readonly buffer LightBuffer {
+	Light data[];
+} lightBuffer;
+
+// layout(std430, binding = 1) readonly buffer VisibleLightIndicesBuffer {
+	// VisibleIndex data[];
+// } visibleLightIndicesBuffer;
 
 
 // Struct representing a material
@@ -47,7 +59,7 @@ struct Material{
     bool useNormalMap; // If true, use unitNormal map for reflections, otherwise use geometry
 	float shininess;
     vec3 specularity;
-	float pad0; // vec3 are treated as vec4 in glsl, so need implicit paddiing for buffer
+	float pad0; // vec3 are treated as vec4 in glsl, so need implicit padding for buffer
 	mediump sampler2D diffuseTexture;
     bool useDiffuseTexture;
 	mediump sampler2D normalMap;
@@ -57,12 +69,13 @@ uniform Material material;
 // Calculate color for a single light ================================================
 vec4 calcLightcolor(int lightIndex, vec3 unitVectorToCamera)
 {
-    float intensity = lightAttributes1[lightIndex][1];
+	Light light = lightBuffer.data[lightIndex];
+    float intensity = light.typeIntensityIndex[1];
 
 	// Get vectors to and from light
-	int lightType = int(lightAttributes1[lightIndex][0]);
-	vec3 toLightPosition = toLightPositions[lightIndex];
-	vec3 lightDirection = lightDirections[lightIndex].xyz;
+	int lightType = int(light.typeIntensityIndex[0]);
+	vec3 toLightPosition = light.position.xyz - worldPosition.xyz;
+	vec3 lightDirection = light.direction.xyz;
 	if(lightType == 1){
 		// Directional light
 		toLightPosition = -lightDirection;
@@ -73,7 +86,7 @@ vec4 calcLightcolor(int lightIndex, vec3 unitVectorToCamera)
 	float distance = length(toLightPosition);
 		
 	// Determine light attenuation
-	vec4 attributes = lightAttributes[lightIndex];
+	vec4 attributes = light.attributes;
 	float attenuationFactor = 1.0f;
 	
 	if(lightType == 0){
@@ -82,7 +95,7 @@ vec4 calcLightcolor(int lightIndex, vec3 unitVectorToCamera)
 	}
 		
 	// Diffuse, with normal
-	vec3 diffuseColor = lightDiffuseColors[lightIndex].xyz;
+	vec3 diffuseColor = light.diffuseColor.xyz;
 	float normDotLight = dot(surfaceNormal, unitToLightVector);
 	bool isSpotLight = lightType == 2;
 
@@ -92,8 +105,8 @@ vec4 calcLightcolor(int lightIndex, vec3 unitVectorToCamera)
 	if(isSpotLight){
 		// TODO: Could use a flashlight texture to simulate real effect
 		spotTheta = dot(unitToLightVector, -normalize(lightDirection));
-		innerSpotCutoff = lightAttributes[lightIndex][0];
-		outerSpotCutoff = lightAttributes[lightIndex][1];
+		innerSpotCutoff = attributes[0];
+		outerSpotCutoff = attributes[1];
 		float epsilon = innerSpotCutoff - outerSpotCutoff;
 		intensity *= smoothstep(0.0, 1.0, (spotTheta - outerSpotCutoff) / epsilon);
 	}
@@ -117,7 +130,7 @@ vec4 calcLightcolor(int lightIndex, vec3 unitVectorToCamera)
 		// Calculate specular
 		// TODO: Implement specular map
 		float specularFactor;
-		vec3 specularColor = lightSpecularColors[lightIndex].xyz;
+		vec3 specularColor = light.specularColor.xyz;
 		if(lightingModel == 0){
 			// Phong lighting model
 			vec3 reflectedLightDirection = reflect(fromLightVector, surfaceNormal);
@@ -140,8 +153,10 @@ vec4 calcLightcolor(int lightIndex, vec3 unitVectorToCamera)
 	}
 
 	// Calculate ambient color
-	vec4 ambient = vec4(lightAmbientColors[lightIndex].xyz, 1.0);
-	ambient = ambient * texture(material.diffuseTexture, uvCoord.st);
+	vec4 ambient = vec4(light.ambientColor.xyz, 1.0);
+	if(material.useDiffuseTexture && shaderMode != 3){
+		ambient = ambient * texture(material.diffuseTexture, uvCoord.st);
+	}
 
 	return vec4(diffuse + specular + vec3(ambient), 1.0f);
 } 
@@ -160,9 +175,14 @@ vec4 getLightingColor(){
 // Main ============================================================================
 void main()
 {
+	vec4 textureColor = texture(material.diffuseTexture, uvCoord.st);
 	if(shaderMode == 2){
+		// Discard fragments with low opacity
+		if(textureColor.a <= 0.2){
+			discard;
+		}
+		
 		// Purely textured shader mode
-		vec4 textureColor = texture(material.diffuseTexture, uvCoord.st);
 		fColor = textureColor;
 	}
 	else if(shaderMode == 3){
@@ -170,6 +190,11 @@ void main()
 		fColor = getLightingColor();
 	}
 	else if(shaderMode == 4){
+		// Discard fragments with low opacity
+		if(textureColor.a <= 0.2){
+			discard;
+		}
+		
 		// Textured shader mode with normals
 		fColor = getLightingColor();
 	}

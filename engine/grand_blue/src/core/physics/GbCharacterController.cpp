@@ -257,6 +257,7 @@ void CharacterController::initialize()
         PX_RELEASE(m_controller);
     }
 
+    std::shared_ptr<SceneObject> so = sceneObject();
     auto pxDesc = m_description->toPhysX();
     if (pxDesc->isValid()) {
         m_controller = 
@@ -265,11 +266,15 @@ void CharacterController::initialize()
         );
     }
     else {
+#ifdef DEBUG_MODE
+        throw("Description for character controller is invalid");
+#else
         logError("Description for character controller is invalid");
+#endif
     }
 
     // Set initial position of the controller
-    Vector3 initPos = sceneObject()->transform()->getPosition() + m_heightOffset * m_description->m_upDirection.asDouble();
+    Vector3 initPos = so->transform()->getPosition() + m_heightOffset * m_description->m_upDirection.asDouble();
     setPosition(initPos);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////

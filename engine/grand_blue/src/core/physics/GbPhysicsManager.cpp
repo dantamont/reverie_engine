@@ -97,6 +97,31 @@ void ErrorCallback::reportError(physx::PxErrorCode::Enum e,
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // PhysicsManager
 //////////////////////////////////////////////////////////////////////////////////////////////////
+void PhysicsManager::RemoveShape(const std::shared_ptr<PhysicsShapePrefab>& prefab)
+{
+    if (!Map::HasKey(s_shapes, prefab->getName()))
+        throw("Error, no prefab with given name found in map: " + prefab->getName());
+
+    // Set instances of this shape to default shape
+    for (const auto& pair : prefab->m_instances) {
+        pair.second->setPrefab(*PhysicsManager::DefaultShape(), false);
+    }
+    prefab->m_instances.clear();
+
+    // Remove shape
+    s_shapes.erase(prefab->getName());
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////
+void PhysicsManager::RenameShape(const std::shared_ptr<PhysicsShapePrefab>& prefab, const QString & name)
+{
+    if (!Map::HasKey(s_shapes, prefab->getName()))
+        throw("Error, no prefab with given name found in map: " + prefab->getName());
+
+    s_shapes.erase(prefab->getName());
+    prefab->setName(name);
+    s_shapes[name] = prefab;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////
 Vector3 PhysicsManager::toVec3(const physx::PxVec3 & vec)
 {
     return Vector3(vec.x, vec.y, vec.z);
@@ -125,13 +150,29 @@ Quaternion PhysicsManager::toQuaternion(const physx::PxQuat & quat)
 void PhysicsManager::clear()
 {
     // Clear geometry
-    m_geometry.clear();
+    s_geometry.clear();
 
     // Clear materials
-    m_materials.clear();
+    std::unordered_map<QString, std::shared_ptr<PhysicsMaterial>>::iterator mit;
+    for (mit = s_materials.begin(); mit != s_materials.end();) {
+        if (mit->first != s_defaultMaterialKey) {
+            mit = s_materials.erase(mit);
+        }
+        else {
+            ++mit;
+        }
+    }
 
     // Clear shapes
-    m_shapes.clear();
+    std::unordered_map<QString, std::shared_ptr<PhysicsShapePrefab>>::iterator sit;
+    for (sit = s_shapes.begin(); sit != s_shapes.end();) {
+        if (sit->first != s_defaultShapeKey) {
+            sit = s_shapes.erase(sit);
+        }
+        else {
+            ++sit;
+        }
+    }
 
     // Clear scenes
     m_scenes.clear();
@@ -207,19 +248,21 @@ QJsonValue PhysicsManager::asJson() const
     QJsonObject object;
 
     QJsonObject geometry;
-    for (const auto& geoPair : m_geometry) {
+    for (const auto& geoPair : s_geometry) {
         geometry.insert(geoPair.first, geoPair.second->asJson());
     }
     object.insert("geometry", geometry);
 
     QJsonObject materials;
-    for (const auto& mtlPair : m_materials) {
+    for (const auto& mtlPair : s_materials) {
+        if (mtlPair.first == s_defaultMaterialKey) continue;
         materials.insert(mtlPair.first, mtlPair.second->asJson());
     }
     object.insert("materials", materials);
 
     QJsonObject shapes;
-    for (const auto& shapePair : m_shapes) {
+    for (const auto& shapePair : s_shapes) {
+        if (shapePair.first == s_defaultShapeKey) continue;
         shapes.insert(shapePair.first, shapePair.second->asJson());
     }
     object.insert("shapes", shapes);
@@ -234,13 +277,13 @@ void PhysicsManager::loadFromJson(const QJsonValue & json)
     QJsonObject geometry = object.value("geometry").toObject();
     for (const QString& key : geometry.keys()) {
         std::shared_ptr<PhysicsGeometry> geo = PhysicsGeometry::createGeometry(geometry.value(key).toObject());
-        m_geometry[key] = geo;
+        s_geometry[key] = geo;
     }
 
     QJsonObject materials = object.value("materials").toObject();
     QStringList keys = materials.keys();
     for (const QString& key : keys) {
-        if (m_materials.count(key))
+        if (s_materials.count(key))
             continue;
         PhysicsMaterial::create(materials.value(key));
     }
@@ -248,8 +291,8 @@ void PhysicsManager::loadFromJson(const QJsonValue & json)
     QJsonObject shapes = object.value("shapes").toObject();
     QStringList shapeKeys = shapes.keys();
     for (const QString& key : shapeKeys) {
-        if (m_shapes.count(key)) {
-            throw("Error, reloading key");
+        if (s_shapes.count(key) ) {
+            if(key != s_defaultShapeKey) throw("Error, reloading key");
             continue;
         }
         PhysicsShapePrefab::create(shapes.value(key));
@@ -288,6 +331,14 @@ void PhysicsManager::initialize()
     if (!m_physics) {
         throw("PxCreatePhysics failed!");
     }
+
+    // Initialize default shape, material
+    std::shared_ptr<PhysicsMaterial> defaultMaterial = PhysicsMaterial::create(s_defaultMaterialKey,
+        0.5f, 0.5f, 0.2f);
+    std::shared_ptr<PhysicsShapePrefab> defaultShape = PhysicsShapePrefab::create(s_defaultShapeKey,
+        std::make_shared<BoxGeometry>(),
+        defaultMaterial
+    );
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
 void PhysicsManager::onDelete()
@@ -321,11 +372,18 @@ physx::PxDefaultCpuDispatcher* PhysicsManager::m_dispatcher = nullptr;
 
 std::vector<std::shared_ptr<PhysicsScene>> PhysicsManager::m_scenes;
 
-std::unordered_map<QString, std::shared_ptr<PhysicsShapePrefab>> PhysicsManager::m_shapes;
+std::unordered_map<QString, std::shared_ptr<PhysicsShapePrefab>> PhysicsManager::s_shapes;
 
-std::unordered_map<QString, std::shared_ptr<PhysicsGeometry>> PhysicsManager::m_geometry;
+std::unordered_map<QString, std::shared_ptr<PhysicsGeometry>> PhysicsManager::s_geometry;
 
-std::unordered_map<QString, std::shared_ptr<PhysicsMaterial>> PhysicsManager::m_materials;
+std::unordered_map<QString, std::shared_ptr<PhysicsMaterial>> PhysicsManager::s_materials;
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+QString PhysicsManager::s_defaultShapeKey = "defaultShape";
+//////////////////////////////////////////////////////////////////////////////////////////////////
+QString PhysicsManager::s_defaultMaterialKey = "defaultMaterial";
+
+
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////

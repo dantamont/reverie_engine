@@ -31,16 +31,16 @@ class CoreEngine;
 /** @class Component
     @brief  A component to be attached to a Scene or SceneObject
 */
-class Component: public Object, public Serializable {
+class Component: public Object, public Serializable, public Persistable {
 public:
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Static
     /// @{
 
-    enum ComponentType {
+    enum class ComponentType {
         kNone = -1,
         kTransform,
-        kRenderer,
+        kShader,
         kCamera,
         kLight,
         kPythonScript,
@@ -52,6 +52,7 @@ public:
         kCanvas,
         kCharacterController,
         kBoneAnimation,
+        kCubeMap,
         MAX_COMPONENT_TYPE_VALUE
     };
 
@@ -60,13 +61,13 @@ public:
         kSceneObject
     };
 
-    /// @brief The required component types to create this component
-    struct Requirements {
-        bool isEmpty() const { return m_requiredTypes.size() == 0; }
-        std::set<ComponentType> m_requiredTypes;
+    /// @brief The required component types to create this component, and those incompatible
+    struct Constraints {
+        bool isEmpty() const { return m_constraints.size() == 0; }
+        std::unordered_map<ComponentType, bool> m_constraints;
     };
 
-    static Requirements GetRequirements(ComponentType type);
+    static Constraints GetRequirements(ComponentType type);
 
     /// @brief Creat a component from its type
     static Component* create(const std::shared_ptr<SceneObject>& object, ComponentType type);
@@ -89,6 +90,9 @@ public:
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Public Methods
     /// @{
+
+    /// @brief Add any required components for this component to be added to scene or object
+    virtual void addRequiredComponents() {}
 
     /// @brief Toggle this component
     void toggle(int enable);
@@ -168,19 +172,20 @@ public:
     /// @}
 
 protected:
+    friend class SceneObject;
+
     //-----------------------------------------------------------------------------------------------------------------
-    /// @name Protected Members
+    /// @name Protected Methods
     /// @{
-
-
-    /// @brief Map of component requirements, indexed by type
-    static std::unordered_map<ComponentType, Requirements> TypeRequirements;
 
     /// @}
 
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Protected Members
     /// @{
+
+    /// @brief Map of component requirements, indexed by type
+    static std::unordered_map<ComponentType, Constraints> TypeConstraints;
 
     /// @brief If component is to be attached to a scene rather than a scene object
     bool m_isSceneComponent;

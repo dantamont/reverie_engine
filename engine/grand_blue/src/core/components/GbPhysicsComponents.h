@@ -79,6 +79,9 @@ public:
     /// @brief Update the physics for the current update frame
     void updateTransformFromPhysics();
 
+    /// @brief Reinitialize the body with the latest settings
+    void refreshBody();
+
     /// @brief Enable this component
     virtual void enable();
 

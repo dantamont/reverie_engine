@@ -49,6 +49,24 @@ void Label::setFontSize(float pointSize)
     populateVertexData();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
+void Label::setFontFace(const QString & faceName)
+{
+    m_fontFace = faceName;
+    populateVertexData();
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+void Label::setLineMaxSize(float width)
+{
+    m_lineMaxSize = width;
+    populateVertexData();
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+void Label::setLineSpacing(float spacing)
+{
+    m_lineSpacing = spacing;
+    populateVertexData();
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
 void Label::reload()
 {
     populateVertexData();
@@ -293,28 +311,31 @@ Label::TextMetrics Label::getTextMetrics()
     return {numLines, textWidth, textHeight};
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Label::bindUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram)
+void Label::bindUniforms(ShaderProgram& shaderProgram)
 {
     Glyph::bindUniforms(shaderProgram);
 
     // Set text color
-    shaderProgram->setUniformValue("textColor", m_color.toVector3g());
+    Vector3g color = m_color.toVector3g();
+    shaderProgram.setUniformValue("textColor", std::move(color));
 
     // Set texture uniform
-    shaderProgram->setUniformValue("guiTexture", 0);
+    shaderProgram.setUniformValue("guiTexture", 0);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Label::bindTextures()
+void Label::bindTextures(ShaderProgram* shaderProgram)
 {
+    Q_UNUSED(shaderProgram);
     getFontFace()->bindTexture(m_fontSize);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Label::releaseTextures()
+void Label::releaseTextures(ShaderProgram* shaderProgram)
 {
+    Q_UNUSED(shaderProgram);
     getFontFace()->releaseTexture(m_fontSize);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Label::drawGeometry(const std::shared_ptr<ShaderProgram>& shaderProgram, RenderSettings* settings)
+void Label::drawGeometry(ShaderProgram& shaderProgram, RenderSettings* settings)
 {
     Q_UNUSED(settings)
     Q_UNUSED(shaderProgram)

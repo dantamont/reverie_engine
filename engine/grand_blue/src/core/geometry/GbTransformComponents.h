@@ -178,6 +178,7 @@ public:
 
     /// @brief Obtain scaling vector
     const Vector3& getScale() const { return m_scale; }
+    Vector3& scale() { return m_scale; }
 
     /// @brief Set scaling vector and update transform matrix
     void setScale(const Vector3& scaling, bool updateTransform = true);
@@ -374,6 +375,7 @@ public:
 
     /// @brief Position/velocity/acceleration
     const Vector3& getPosition() const { return m_translation.m_position; }
+    Vector3& position() { return m_translation.m_position; }
     void setPosition(const Vector3& p, bool updateTransform = true);
 
     //const Vector3& getVelocity() const { return m_translation.m_velocity; }

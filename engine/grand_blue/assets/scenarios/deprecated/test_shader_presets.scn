@@ -1,0 +1,4074 @@
+{
+    "debug": {
+        "debugScene": {
+            "components": [
+            ],
+            "name": "Debug Objects",
+            "sceneObjects": [
+                {
+                    "children": [
+                    ],
+                    "components": [
+                        {
+                            "camera": {
+                                "projection": {
+                                    "aspectRatio": 1.3143483023001095,
+                                    "bottom": -0.5,
+                                    "fov": 70,
+                                    "left": -0.5,
+                                    "projType": 0,
+                                    "right": 0.5,
+                                    "top": 0.5,
+                                    "zFar": 10000,
+                                    "zNear": 0.01
+                                },
+                                "viewMatrix": [
+                                    "m",
+                                    [
+                                        0.9994377493858337,
+                                        0.01506136916577816,
+                                        0.029958011582493782,
+                                        0
+                                    ],
+                                    [
+                                        -0.02796090766787529,
+                                        0.8674792051315308,
+                                        0.4966871738433838,
+                                        0
+                                    ],
+                                    [
+                                        -0.018507160246372223,
+                                        -0.49724555015563965,
+                                        0.8674124479293823,
+                                        0
+                                    ],
+                                    [
+                                        -1.0406843423843384,
+                                        -6.751344203948975,
+                                        -45.19151306152344,
+                                        1
+                                    ]
+                                ],
+                                "viewport": {
+                                    "d": 0,
+                                    "h": 1,
+                                    "w": 1,
+                                    "x": 0,
+                                    "y": 0
+                                }
+                            },
+                            "controller": {
+                                "profile": {
+                                    "movementTypes": [
+                                        0,
+                                        1,
+                                        2,
+                                        3,
+                                        4
+                                    ],
+                                    "panScaling": [
+                                        -1,
+                                        1
+                                    ],
+                                    "rotateScaling": [
+                                        1,
+                                        -1
+                                    ],
+                                    "tiltScaling": [
+                                        -1,
+                                        1
+                                    ],
+                                    "translateScaling": [
+                                        1,
+                                        1
+                                    ],
+                                    "zoomScaling": -0.25
+                                },
+                                "target": [
+                                    1.08436119556427,
+                                    4.875524044036865,
+                                    -5.038951396942139
+                                ]
+                            },
+                            "isEnabled": true,
+                            "type": 2
+                        }
+                    ],
+                    "name": "Debug Camera",
+                    "scene": "Debug Objects",
+                    "transform": {
+                        "inheritanceType": 0,
+                        "isEnabled": true,
+                        "rotation": {
+                            "quaternion": [
+                                -0.2571702301502228,
+                                0.012539883144199848,
+                                -0.011131586506962776,
+                                0.9662206768989563
+                            ]
+                        },
+                        "scale": {
+                            "scaling": [
+                                0.9999999403953552,
+                                0.9999999403953552,
+                                0.9999999403953552
+                            ]
+                        },
+                        "translation": {
+                            "translation": {
+                                "position": [
+                                    2.495631694793701,
+                                    28.273597717285156,
+                                    35.82334899902344
+                                ]
+                            }
+                        },
+                        "type": 0
+                    }
+                }
+            ],
+            "uniforms": {
+            }
+        }
+    },
+    "name": "New Scenario",
+    "physicsManager": {
+        "geometry": {
+        },
+        "materials": {
+            "cube2": {
+                "dynamic_friction": 0.5,
+                "name": "cube2",
+                "restitution": 0.10000000149011612,
+                "static_friction": 0.5
+            },
+            "defaultMaterial": {
+                "dynamic_friction": 0.5,
+                "name": "defaultMaterial",
+                "restitution": 0.20000000298023224,
+                "static_friction": 0.5
+            },
+            "plane": {
+                "dynamic_friction": 0.5,
+                "name": "plane",
+                "restitution": 0.10000000149011612,
+                "static_friction": 0.5
+            }
+        },
+        "shapes": {
+            "cube2": {
+                "geometry": {
+                    "radius": 1,
+                    "type": 1
+                },
+                "materials": [
+                    "cube2"
+                ],
+                "name": "cube2"
+            },
+            "defaultShape": {
+                "geometry": {
+                    "hx": 1,
+                    "hy": 1,
+                    "hz": 1,
+                    "type": 0
+                },
+                "materials": [
+                    "defaultMaterial"
+                ],
+                "name": "defaultShape"
+            },
+            "plane": {
+                "geometry": {
+                    "type": 2
+                },
+                "materials": [
+                    "plane"
+                ],
+                "name": "plane"
+            }
+        }
+    },
+    "processManager": {
+        "sortingLayers": [
+            {
+                "label": "default",
+                "order": 0
+            }
+        ]
+    },
+    "resourceCache": {
+        "materials": [
+            {
+                "filePath": "",
+                "name": "basic",
+                "properties": {
+                    "shininess": 1,
+                    "specularity": [
+                        0,
+                        0,
+                        0
+                    ]
+                },
+                "textures": {
+                    "0": {
+                        "attributes": {
+                        },
+                        "name": "night_lights.png",
+                        "path": ":/images/night_lights.png",
+                        "priority": 0,
+                        "type": 1
+                    }
+                }
+            },
+            {
+                "filePath": "",
+                "name": "dragonMaterial",
+                "properties": {
+                    "shininess": 100,
+                    "specularity": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                "textures": {
+                }
+            },
+            {
+                "filePath": "",
+                "name": "boi_mtl",
+                "properties": {
+                    "shininess": 1,
+                    "specularity": [
+                        0,
+                        0,
+                        0
+                    ]
+                },
+                "textures": {
+                    "0": {
+                        "attributes": {
+                        },
+                        "name": "clothedlightskin.png",
+                        "path": "C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/assets/models/animated_human/FBX/ClothedLightSkin.png",
+                        "priority": 0,
+                        "type": 1
+                    }
+                }
+            },
+            {
+                "filePath": "",
+                "name": "floor_mtl",
+                "properties": {
+                    "shininess": 1,
+                    "specularity": [
+                        0,
+                        0,
+                        0
+                    ]
+                },
+                "textures": {
+                    "0": {
+                        "attributes": {
+                        },
+                        "name": "wood.png",
+                        "path": "C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/assets/textures/wood.png",
+                        "priority": 0,
+                        "type": 1
+                    }
+                }
+            },
+            {
+                "filePath": "C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/resources/models/dragon/DefaultMaterial",
+                "name": "defaultmaterial",
+                "properties": {
+                    "shininess": 1,
+                    "specularity": [
+                        0,
+                        0,
+                        0
+                    ]
+                },
+                "textures": {
+                }
+            },
+            {
+                "filePath": "C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/assets/models/animated_human/FBX/Texture",
+                "name": "texture",
+                "properties": {
+                    "shininess": 20,
+                    "specularity": [
+                        0.20000000298023224,
+                        0.20000000298023224,
+                        0.20000000298023224
+                    ]
+                },
+                "textures": {
+                }
+            },
+            {
+                "filePath": "",
+                "name": "sphere_mtl",
+                "properties": {
+                    "shininess": 1,
+                    "specularity": [
+                        0,
+                        0,
+                        0
+                    ]
+                },
+                "textures": {
+                    "0": {
+                        "attributes": {
+                        },
+                        "name": "test_red_sphere.jpg",
+                        "path": "C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/assets/textures/test_red_sphere.jpg",
+                        "priority": 0,
+                        "type": 1
+                    }
+                }
+            }
+        ],
+        "maxCost": 4083,
+        "models": [
+            {
+                "materials": {
+                    "Human_CylinderMesh.003": "boi_mtl"
+                },
+                "mesh": {
+                    "attributes": {
+                    },
+                    "name": "animated human.fbx",
+                    "path": "C:\\Users\\dante\\Documents\\Projects\\grand-blue-engine\\grand_blue\\assets\\models\\animated_human\\FBX\\Animated Human.fbx",
+                    "priority": 0,
+                    "type": 3
+                },
+                "name": "animated human.fbx",
+                "renderSettings": {
+                    "settings": [
+                    ],
+                    "shapeMode": 4
+                },
+                "type": 0
+            },
+            {
+                "materials": {
+                    "cube": "floor_mtl"
+                },
+                "mesh": {
+                    "attributes": {
+                    },
+                    "name": "cube",
+                    "path": "",
+                    "priority": 1,
+                    "type": 3
+                },
+                "name": "floor_model",
+                "renderSettings": {
+                    "settings": [
+                    ],
+                    "shapeMode": 4
+                },
+                "type": 0
+            },
+            {
+                "materials": {
+                    "latlonsphere_5_5": "basic"
+                },
+                "mesh": {
+                    "attributes": {
+                    },
+                    "name": "latlonsphere_5_5",
+                    "path": "",
+                    "priority": 1,
+                    "type": 3
+                },
+                "name": "latlonsphere_5_5",
+                "renderSettings": {
+                    "settings": [
+                    ],
+                    "shapeMode": 4
+                },
+                "type": 0
+            },
+            {
+                "materials": {
+                    "cube": "basic"
+                },
+                "mesh": {
+                    "attributes": {
+                    },
+                    "name": "cube",
+                    "path": "",
+                    "priority": 1,
+                    "type": 3
+                },
+                "name": "cube",
+                "renderSettings": {
+                    "settings": [
+                    ],
+                    "shapeMode": 4
+                },
+                "type": 0
+            },
+            {
+                "materials": {
+                    "latlonsphere_10_10": "defaultmaterial"
+                },
+                "mesh": {
+                    "attributes": {
+                    },
+                    "name": "latlonsphere_10_10",
+                    "path": "",
+                    "priority": 1,
+                    "type": 3
+                },
+                "name": "latlonsphere_10_10",
+                "renderSettings": {
+                    "settings": [
+                    ],
+                    "shapeMode": 4
+                },
+                "type": 0
+            },
+            {
+                "materials": {
+                    "latlonsphere_20_40": "sphere_mtl"
+                },
+                "mesh": {
+                    "attributes": {
+                    },
+                    "name": "latlonsphere_20_40",
+                    "path": "",
+                    "priority": 1,
+                    "type": 3
+                },
+                "name": "latlonsphere_20_40",
+                "renderSettings": {
+                    "settings": [
+                    ],
+                    "shapeMode": 4
+                },
+                "type": 0
+            },
+            {
+                "diffuseColor": [
+                    1,
+                    1,
+                    1
+                ],
+                "materials": {
+                },
+                "mesh": {
+                    "attributes": {
+                    },
+                    "name": "cube",
+                    "path": "",
+                    "priority": 1,
+                    "type": 3
+                },
+                "name": "prettySky",
+                "renderSettings": {
+                    "settings": [
+                    ],
+                    "shapeMode": 4
+                },
+                "texture": {
+                    "attributes": {
+                    },
+                    "name": "test.cubemap",
+                    "path": "C:\\Users\\dante\\Documents\\Projects\\grand-blue-engine\\grand_blue\\resources\\images\\skyboxes\\skybox\\test.cubemap",
+                    "priority": 0,
+                    "type": 4
+                },
+                "transform": {
+                    "inheritanceType": 0,
+                    "rotation": {
+                        "quaternion": [
+                            0,
+                            0,
+                            0,
+                            1
+                        ]
+                    },
+                    "scale": {
+                        "scaling": [
+                            3000,
+                            3000,
+                            3000
+                        ]
+                    },
+                    "translation": {
+                        "translation": {
+                            "position": [
+                                0,
+                                0,
+                                0
+                            ]
+                        }
+                    }
+                },
+                "type": 1
+            }
+        ],
+        "resources": [
+            {
+                "attributes": {
+                },
+                "name": "human armature|punch",
+                "path": "C:\\Users\\dante\\Documents\\Projects\\grand-blue-engine\\grand_blue\\assets\\models\\animated_human\\FBX\\Animated Human.fbx",
+                "priority": 0,
+                "type": 5
+            },
+            {
+                "attributes": {
+                },
+                "name": "animated human.fbx",
+                "path": "C:\\Users\\dante\\Documents\\Projects\\grand-blue-engine\\grand_blue\\assets\\models\\animated_human\\FBX\\Animated Human.fbx",
+                "priority": 0,
+                "type": 3
+            },
+            {
+                "attributes": {
+                },
+                "name": "animated human.fbx",
+                "path": "C:\\Users\\dante\\Documents\\Projects\\grand-blue-engine\\grand_blue\\assets\\models\\animated_human\\FBX\\Animated Human.fbx",
+                "priority": 0,
+                "type": 3
+            },
+            {
+                "attributes": {
+                },
+                "name": "72751783-blue-marble-texture-abstract-seamless-background.jpg",
+                "path": "C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/assets/textures/72751783-blue-marble-texture-abstract-seamless-background.jpg",
+                "priority": 0,
+                "type": 1
+            },
+            {
+                "attributes": {
+                },
+                "name": "clothedlightskin.png",
+                "path": "C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/assets/models/animated_human/FBX/ClothedLightSkin.png",
+                "priority": 0,
+                "type": 1
+            },
+            {
+                "attributes": {
+                },
+                "name": "night_lights.png",
+                "path": ":/images/night_lights.png",
+                "priority": 0,
+                "type": 1
+            },
+            {
+                "attributes": {
+                },
+                "name": "test.cubemap",
+                "path": "C:\\Users\\dante\\Documents\\Projects\\grand-blue-engine\\grand_blue\\resources\\images\\skyboxes\\skybox\\test.cubemap",
+                "priority": 0,
+                "type": 4
+            },
+            {
+                "attributes": {
+                },
+                "name": "test_red_sphere.jpg",
+                "path": "C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/assets/textures/test_red_sphere.jpg",
+                "priority": 0,
+                "type": 1
+            },
+            {
+                "attributes": {
+                },
+                "name": "wood.png",
+                "path": "C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/assets/textures/wood.png",
+                "priority": 0,
+                "type": 1
+            },
+            {
+                "attributes": {
+                },
+                "name": "human armature|armatureaction.001",
+                "path": "C:\\Users\\dante\\Documents\\Projects\\grand-blue-engine\\grand_blue\\assets\\models\\animated_human\\FBX\\Animated Human.fbx",
+                "priority": 0,
+                "type": 5
+            },
+            {
+                "attributes": {
+                },
+                "name": "human armature|armatureaction.002",
+                "path": "C:\\Users\\dante\\Documents\\Projects\\grand-blue-engine\\grand_blue\\assets\\models\\animated_human\\FBX\\Animated Human.fbx",
+                "priority": 0,
+                "type": 5
+            },
+            {
+                "attributes": {
+                },
+                "name": "human armature|idle",
+                "path": "C:\\Users\\dante\\Documents\\Projects\\grand-blue-engine\\grand_blue\\assets\\models\\animated_human\\FBX\\Animated Human.fbx",
+                "priority": 0,
+                "type": 5
+            },
+            {
+                "attributes": {
+                },
+                "name": "human armature|death",
+                "path": "C:\\Users\\dante\\Documents\\Projects\\grand-blue-engine\\grand_blue\\assets\\models\\animated_human\\FBX\\Animated Human.fbx",
+                "priority": 0,
+                "type": 5
+            },
+            {
+                "attributes": {
+                },
+                "name": "human armature|jump",
+                "path": "C:\\Users\\dante\\Documents\\Projects\\grand-blue-engine\\grand_blue\\assets\\models\\animated_human\\FBX\\Animated Human.fbx",
+                "priority": 0,
+                "type": 5
+            },
+            {
+                "attributes": {
+                },
+                "name": "human armature|run",
+                "path": "C:\\Users\\dante\\Documents\\Projects\\grand-blue-engine\\grand_blue\\assets\\models\\animated_human\\FBX\\Animated Human.fbx",
+                "priority": 0,
+                "type": 5
+            },
+            {
+                "attributes": {
+                },
+                "name": "human armature|walk",
+                "path": "C:\\Users\\dante\\Documents\\Projects\\grand-blue-engine\\grand_blue\\assets\\models\\animated_human\\FBX\\Animated Human.fbx",
+                "priority": 0,
+                "type": 5
+            },
+            {
+                "attributes": {
+                },
+                "name": "human armature|working",
+                "path": "C:\\Users\\dante\\Documents\\Projects\\grand-blue-engine\\grand_blue\\assets\\models\\animated_human\\FBX\\Animated Human.fbx",
+                "priority": 0,
+                "type": 5
+            }
+        ],
+        "scripts": [
+            {
+                "executionLayerName": "default",
+                "filePath": "C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/resources/scripts/test_behavior.py"
+            },
+            {
+                "executionLayerName": "default",
+                "filePath": "C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/assets/scripts/spin_behavior.py"
+            },
+            {
+                "executionLayerName": "default",
+                "filePath": "C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/resources/scripts/base_listener.py"
+            },
+            {
+                "executionLayerName": "default",
+                "filePath": "C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/resources/scripts/test_listener.py"
+            },
+            {
+                "executionLayerName": "default",
+                "filePath": "C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/assets/scripts/char_behavior.py"
+            }
+        ],
+        "shaderPresets": [
+            {
+                "name": "preset_bb3bd68d_e75b_47ed_97d7_98d5007cf1ba",
+                "renderer": {
+                    "renderLayers": [
+                    ],
+                    "renderSettings": {
+                        "settings": [
+                        ],
+                        "shapeMode": 4
+                    },
+                    "uniforms": {
+                        "shaderMode": {
+                            "name": "shaderMode",
+                            "value": 4
+                        }
+                    }
+                },
+                "shaderProgram": "basic"
+            },
+            {
+                "name": "preset_eb172d9e_68f0_4996_9cd1_3b819f9aac3e",
+                "renderer": {
+                    "renderLayers": [
+                    ],
+                    "renderSettings": {
+                        "settings": [
+                        ],
+                        "shapeMode": 4
+                    },
+                    "uniforms": {
+                        "shaderMode": {
+                            "name": "shaderMode",
+                            "value": 2
+                        }
+                    }
+                },
+                "shaderProgram": "basic"
+            },
+            {
+                "name": "preset_a3186d84_34b2_432a_bdf6_64a1491174b3",
+                "renderer": {
+                    "renderLayers": [
+                    ],
+                    "renderSettings": {
+                        "settings": [
+                        ],
+                        "shapeMode": 4
+                    },
+                    "uniforms": {
+                        "shaderMode": {
+                            "name": "shaderMode",
+                            "value": 2
+                        }
+                    }
+                },
+                "shaderProgram": "basic"
+            },
+            {
+                "name": "preset_239e1a5c_dba6_487e_9c8b_87307712057d",
+                "renderer": {
+                    "renderLayers": [
+                    ],
+                    "renderSettings": {
+                        "settings": [
+                        ],
+                        "shapeMode": 4
+                    },
+                    "uniforms": {
+                        "shaderMode": {
+                            "name": "shaderMode",
+                            "value": 3
+                        }
+                    }
+                },
+                "shaderProgram": "effects"
+            },
+            {
+                "name": "preset_b2deffd0_9826_4bf7_8ac5_951d2677a426",
+                "renderer": {
+                    "renderLayers": [
+                    ],
+                    "renderSettings": {
+                        "settings": [
+                        ],
+                        "shapeMode": 4
+                    },
+                    "uniforms": {
+                    }
+                },
+                "shaderProgram": "text"
+            },
+            {
+                "name": "preset_2b8621f4_ee28_497a_bc6e_812b4757b1ad",
+                "renderer": {
+                    "renderLayers": [
+                    ],
+                    "renderSettings": {
+                        "settings": [
+                        ],
+                        "shapeMode": 4
+                    },
+                    "uniforms": {
+                        "shaderMode": {
+                            "name": "shaderMode",
+                            "value": 4
+                        }
+                    }
+                },
+                "shaderProgram": "basic"
+            },
+            {
+                "name": "preset_6948a2bf_6614_4424_974f_233f9c1480dc",
+                "renderer": {
+                    "renderLayers": [
+                    ],
+                    "renderSettings": {
+                        "settings": [
+                        ],
+                        "shapeMode": 4
+                    },
+                    "uniforms": {
+                        "shaderMode": {
+                            "name": "shaderMode",
+                            "value": 4
+                        }
+                    }
+                },
+                "shaderProgram": "basic"
+            },
+            {
+                "name": "preset_0669d81e_18f2_45fa_bb4d_2ecf9d76892b",
+                "renderer": {
+                    "renderLayers": [
+                    ],
+                    "renderSettings": {
+                        "settings": [
+                        ],
+                        "shapeMode": 4
+                    },
+                    "uniforms": {
+                    }
+                },
+                "shaderProgram": "text"
+            }
+        ],
+        "shaderPrograms": [
+            {
+                "name": "axes",
+                "programType": -1,
+                "shaders": {
+                    "1": {
+                        "filePath": ":/shaders/axes.vert",
+                        "name": "axes",
+                        "shaderType": 1
+                    },
+                    "2": {
+                        "filePath": ":/shaders/axes.frag",
+                        "name": "axes",
+                        "shaderType": 2
+                    }
+                },
+                "uniforms": {
+                    "axis": {
+                        "name": "axis",
+                        "value": 2
+                    },
+                    "color": {
+                        "name": "color",
+                        "value": [
+                            0,
+                            0,
+                            1,
+                            1
+                        ]
+                    },
+                    "isCone": {
+                        "name": "isCone",
+                        "value": false
+                    },
+                    "worldMatrix": {
+                        "name": "worldMatrix",
+                        "value": [
+                            "m",
+                            [
+                                1,
+                                0,
+                                0,
+                                0
+                            ],
+                            [
+                                0,
+                                1,
+                                0,
+                                0
+                            ],
+                            [
+                                0,
+                                0,
+                                1,
+                                0
+                            ],
+                            [
+                                0,
+                                5,
+                                20,
+                                1
+                            ]
+                        ]
+                    },
+                    "xConeTransform": {
+                        "name": "xConeTransform",
+                        "value": [
+                            "m",
+                            [
+                                5.960464477539063e-08,
+                                0,
+                                -0.9999999403953552,
+                                0
+                            ],
+                            [
+                                0,
+                                1,
+                                0,
+                                0
+                            ],
+                            [
+                                0.9999999403953552,
+                                0,
+                                5.960464477539063e-08,
+                                0
+                            ],
+                            [
+                                3,
+                                0,
+                                8.940696716308594e-08,
+                                1
+                            ]
+                        ]
+                    },
+                    "xCylTransform": {
+                        "name": "xCylTransform",
+                        "value": [
+                            "m",
+                            [
+                                5.960464477539063e-08,
+                                0,
+                                -0.9999999403953552,
+                                0
+                            ],
+                            [
+                                0,
+                                1,
+                                0,
+                                0
+                            ],
+                            [
+                                0.9999999403953552,
+                                0,
+                                5.960464477539063e-08,
+                                0
+                            ],
+                            [
+                                1.5,
+                                0,
+                                0,
+                                1
+                            ]
+                        ]
+                    },
+                    "yConeTransform": {
+                        "name": "yConeTransform",
+                        "value": [
+                            "m",
+                            [
+                                1,
+                                0,
+                                0,
+                                0
+                            ],
+                            [
+                                0,
+                                5.960464477539063e-08,
+                                -0.9999999403953552,
+                                0
+                            ],
+                            [
+                                0,
+                                0.9999999403953552,
+                                5.960464477539063e-08,
+                                0
+                            ],
+                            [
+                                0,
+                                3,
+                                8.940696716308594e-08,
+                                1
+                            ]
+                        ]
+                    },
+                    "yCylTransform": {
+                        "name": "yCylTransform",
+                        "value": [
+                            "m",
+                            [
+                                1,
+                                0,
+                                0,
+                                0
+                            ],
+                            [
+                                0,
+                                5.960464477539063e-08,
+                                -0.9999999403953552,
+                                0
+                            ],
+                            [
+                                0,
+                                0.9999999403953552,
+                                5.960464477539063e-08,
+                                0
+                            ],
+                            [
+                                0,
+                                1.5,
+                                0,
+                                1
+                            ]
+                        ]
+                    },
+                    "zConeTransform": {
+                        "name": "zConeTransform",
+                        "value": [
+                            "m",
+                            [
+                                1,
+                                0,
+                                0,
+                                0
+                            ],
+                            [
+                                0,
+                                1,
+                                0,
+                                0
+                            ],
+                            [
+                                0,
+                                0,
+                                1,
+                                0
+                            ],
+                            [
+                                0,
+                                0,
+                                3,
+                                1
+                            ]
+                        ]
+                    },
+                    "zCylTransform": {
+                        "name": "zCylTransform",
+                        "value": [
+                            "m",
+                            [
+                                1,
+                                0,
+                                0,
+                                0
+                            ],
+                            [
+                                0,
+                                1,
+                                0,
+                                0
+                            ],
+                            [
+                                0,
+                                0,
+                                1,
+                                0
+                            ],
+                            [
+                                0,
+                                0,
+                                1.5,
+                                1
+                            ]
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "text",
+                "programType": -1,
+                "shaders": {
+                    "1": {
+                        "filePath": ":/shaders/text.vert",
+                        "name": "text",
+                        "shaderType": 1
+                    },
+                    "2": {
+                        "filePath": ":/shaders/text.frag",
+                        "name": "text",
+                        "shaderType": 2
+                    }
+                },
+                "uniforms": {
+                    "faceCamera": {
+                        "name": "faceCamera",
+                        "value": false
+                    },
+                    "guiTexture": {
+                        "name": "guiTexture",
+                        "value": 0
+                    },
+                    "onTop": {
+                        "name": "onTop",
+                        "value": false
+                    },
+                    "perspectiveInverseScale": {
+                        "name": "perspectiveInverseScale",
+                        "value": [
+                            "m",
+                            [
+                                1,
+                                0,
+                                0
+                            ],
+                            [
+                                0,
+                                1,
+                                0
+                            ],
+                            [
+                                0,
+                                0,
+                                1
+                            ]
+                        ]
+                    },
+                    "scaleWithDistance": {
+                        "name": "scaleWithDistance",
+                        "value": false
+                    },
+                    "screenOffset": {
+                        "name": "screenOffset",
+                        "value": [
+                            -1,
+                            -0.75
+                        ]
+                    },
+                    "textColor": {
+                        "name": "textColor",
+                        "value": [
+                            1,
+                            1,
+                            1
+                        ]
+                    },
+                    "worldMatrix": {
+                        "name": "worldMatrix",
+                        "value": [
+                            "m",
+                            [
+                                1,
+                                0,
+                                0,
+                                0
+                            ],
+                            [
+                                0,
+                                1,
+                                0,
+                                0
+                            ],
+                            [
+                                0,
+                                0,
+                                1,
+                                0
+                            ],
+                            [
+                                0,
+                                0,
+                                -1,
+                                1
+                            ]
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "cubemap",
+                "programType": 1,
+                "shaders": {
+                    "1": {
+                        "filePath": ":/shaders/cubemap.vert",
+                        "name": "cubemap",
+                        "shaderType": 1
+                    },
+                    "2": {
+                        "filePath": ":/shaders/cubemap.frag",
+                        "name": "cubemap",
+                        "shaderType": 2
+                    }
+                },
+                "uniforms": {
+                    "cubeTexture": {
+                        "name": "cubeTexture",
+                        "value": 0
+                    },
+                    "diffuseColor": {
+                        "name": "diffuseColor",
+                        "value": [
+                            1,
+                            1,
+                            1
+                        ]
+                    },
+                    "worldMatrix": {
+                        "name": "worldMatrix",
+                        "value": [
+                            "m",
+                            [
+                                3000,
+                                0,
+                                0,
+                                0
+                            ],
+                            [
+                                0,
+                                3000,
+                                0,
+                                0
+                            ],
+                            [
+                                0,
+                                0,
+                                3000,
+                                0
+                            ],
+                            [
+                                0,
+                                0,
+                                0,
+                                1
+                            ]
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "lines",
+                "programType": -1,
+                "shaders": {
+                    "1": {
+                        "filePath": ":/shaders/lines.vert",
+                        "name": "lines",
+                        "shaderType": 1
+                    },
+                    "2": {
+                        "filePath": ":/shaders/lines.frag",
+                        "name": "lines",
+                        "shaderType": 2
+                    }
+                },
+                "uniforms": {
+                    "constantScreenThickness": {
+                        "name": "constantScreenThickness",
+                        "value": false
+                    },
+                    "e": {
+                        "name": "e",
+                        "value": false
+                    },
+                    "fadeWithDistance": {
+                        "name": "fadeWithDistance",
+                        "value": true
+                    },
+                    "lineColor": {
+                        "name": "lineColor",
+                        "value": [
+                            0.8500000238418579,
+                            0.800000011920929,
+                            0,
+                            0.8999999761581421
+                        ]
+                    },
+                    "thickness": {
+                        "name": "thickness",
+                        "value": 0.10000000149011612
+                    },
+                    "useMiter": {
+                        "name": "useMiter",
+                        "value": false
+                    },
+                    "worldMatrix": {
+                        "name": "worldMatrix",
+                        "value": [
+                            "m",
+                            [
+                                -7.1054265105680546e-15,
+                                5.960464477539063e-08,
+                                -0.9999999403953552,
+                                0
+                            ],
+                            [
+                                -1,
+                                -1.1920927533992653e-07,
+                                0,
+                                0
+                            ],
+                            [
+                                -1.1920926823449918e-07,
+                                0.9999999403953552,
+                                5.960464477539063e-08,
+                                0
+                            ],
+                            [
+                                0,
+                                0,
+                                0,
+                                1
+                            ]
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "effects",
+                "programType": 2,
+                "shaders": {
+                    "1": {
+                        "filePath": "C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/assets/shaders/effects.vert",
+                        "name": "effects",
+                        "shaderType": 1
+                    },
+                    "2": {
+                        "filePath": "C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/assets/shaders/effects.frag",
+                        "name": "effects",
+                        "shaderType": 2
+                    }
+                },
+                "uniforms": {
+                    "diffuseColorScale": {
+                        "name": "diffuseColorScale",
+                        "value": false
+                    },
+                    "material.diffuseTexture": {
+                        "name": "material.diffuseTexture",
+                        "value": 0
+                    },
+                    "material.normalMap": {
+                        "name": "material.normalMap",
+                        "value": false
+                    },
+                    "material.pad0": {
+                        "name": "material.pad0",
+                        "value": false
+                    },
+                    "material.shininess": {
+                        "name": "material.shininess",
+                        "value": 1
+                    },
+                    "material.specularity": {
+                        "name": "material.specularity",
+                        "value": [
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    "material.useDiffuseTexture": {
+                        "name": "material.useDiffuseTexture",
+                        "value": true
+                    },
+                    "material.useNormalMap": {
+                        "name": "material.useNormalMap",
+                        "value": false
+                    },
+                    "numberOfTextureRows": {
+                        "name": "numberOfTextureRows",
+                        "value": 1
+                    },
+                    "offsetInTexture": {
+                        "name": "offsetInTexture",
+                        "value": [
+                            0,
+                            0
+                        ]
+                    },
+                    "rimColor": {
+                        "name": "rimColor",
+                        "value": [
+                            0.5,
+                            0.45115232467651367,
+                            0.5972279906272888
+                        ]
+                    },
+                    "shaderMode": {
+                        "name": "shaderMode",
+                        "value": 3
+                    },
+                    "worldMatrix": {
+                        "name": "worldMatrix",
+                        "value": [
+                            "m",
+                            [
+                                -0.08294931799173355,
+                                0,
+                                0.03998100012540817,
+                                0
+                            ],
+                            [
+                                0,
+                                0.09197915345430374,
+                                0,
+                                0
+                            ],
+                            [
+                                -0.03998100012540817,
+                                0,
+                                -0.08294931799173355,
+                                0
+                            ],
+                            [
+                                -8.899999618530273,
+                                0,
+                                -1.2999999523162842,
+                                1
+                            ]
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "simple",
+                "programType": -1,
+                "shaders": {
+                    "1": {
+                        "filePath": ":/shaders/simple.vert",
+                        "name": "simple",
+                        "shaderType": 1
+                    },
+                    "2": {
+                        "filePath": ":/shaders/simple.frag",
+                        "name": "simple",
+                        "shaderType": 2
+                    }
+                },
+                "uniforms": {
+                    "color": {
+                        "name": "color",
+                        "value": [
+                            0,
+                            1,
+                            0,
+                            1
+                        ]
+                    },
+                    "worldMatrix": {
+                        "name": "worldMatrix",
+                        "value": [
+                            "m",
+                            [
+                                -1.1920927533992653e-07,
+                                -1,
+                                0,
+                                0
+                            ],
+                            [
+                                1,
+                                -1.1920927533992653e-07,
+                                0,
+                                0
+                            ],
+                            [
+                                0,
+                                0,
+                                1,
+                                0
+                            ],
+                            [
+                                0,
+                                20,
+                                0,
+                                1
+                            ]
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "points",
+                "programType": -1,
+                "shaders": {
+                    "1": {
+                        "filePath": ":/shaders/points.vert",
+                        "name": "points",
+                        "shaderType": 1
+                    },
+                    "2": {
+                        "filePath": ":/shaders/points.frag",
+                        "name": "points",
+                        "shaderType": 2
+                    }
+                },
+                "uniforms": {
+                    "color": {
+                        "name": "color",
+                        "value": [
+                            0.5,
+                            0.5,
+                            0.5,
+                            0.8999999761581421
+                        ]
+                    },
+                    "pointSize": {
+                        "name": "pointSize",
+                        "value": 0.004000000189989805
+                    },
+                    "screenPixelWidth": {
+                        "name": "screenPixelWidth",
+                        "value": 1920
+                    },
+                    "worldMatrix": {
+                        "name": "worldMatrix",
+                        "value": [
+                            "m",
+                            [
+                                0,
+                                0.7071068286895752,
+                                -0.7071068286895752,
+                                0
+                            ],
+                            [
+                                -0.7071068286895752,
+                                0.5,
+                                0.5,
+                                0
+                            ],
+                            [
+                                0.7071068286895752,
+                                0.5,
+                                0.5,
+                                0
+                            ],
+                            [
+                                -5,
+                                12,
+                                5,
+                                1
+                            ]
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "basic",
+                "programType": 0,
+                "shaders": {
+                    "1": {
+                        "filePath": ":/shaders/basic.vert",
+                        "name": "basic",
+                        "shaderType": 1
+                    },
+                    "2": {
+                        "filePath": ":/shaders/basic.frag",
+                        "name": "basic",
+                        "shaderType": 2
+                    }
+                },
+                "uniforms": {
+                    "diffuseColorScale": {
+                        "name": "diffuseColorScale",
+                        "value": false
+                    },
+                    "globalInverseTransform": {
+                        "name": "globalInverseTransform",
+                        "value": [
+                            "m",
+                            [
+                                1,
+                                0,
+                                0,
+                                0
+                            ],
+                            [
+                                0,
+                                1,
+                                0,
+                                0
+                            ],
+                            [
+                                0,
+                                0,
+                                1,
+                                0
+                            ],
+                            [
+                                0,
+                                0,
+                                0,
+                                1
+                            ]
+                        ]
+                    },
+                    "inverseBindPoseTransforms": {
+                        "name": "inverseBindPoseTransforms",
+                        "value": [
+                            [
+                                "m",
+                                [
+                                    -4.371138828673793e-08,
+                                    -7.248784545477764e-22,
+                                    1,
+                                    0
+                                ],
+                                [
+                                    1.6292069915380125e-07,
+                                    1.0000001192092896,
+                                    7.121488796346838e-15,
+                                    0
+                                ],
+                                [
+                                    -1,
+                                    1.6292069915380125e-07,
+                                    -4.371138828673793e-08,
+                                    0
+                                ],
+                                [
+                                    2.9211881802382322e-09,
+                                    -4.095881462097168,
+                                    -0.06682899594306946,
+                                    1
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    -4.363010930319433e-08,
+                                    -0.06095490977168083,
+                                    0.9981406927108765,
+                                    0
+                                ],
+                                [
+                                    1.602562917923933e-07,
+                                    0.9981406927108765,
+                                    0.06095490977168083,
+                                    0
+                                ],
+                                [
+                                    -1,
+                                    1.6261775215298258e-07,
+                                    -3.378057300551518e-08,
+                                    0
+                                ],
+                                [
+                                    1.3828813649752192e-08,
+                                    -4.54147481918335,
+                                    -0.3163675367832184,
+                                    1
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    -4.3630102197766973e-08,
+                                    -0.0609549917280674,
+                                    0.9981405138969421,
+                                    0
+                                ],
+                                [
+                                    1.6025623494897445e-07,
+                                    0.9981405138969421,
+                                    0.06095500290393829,
+                                    0
+                                ],
+                                [
+                                    -0.9999998807907104,
+                                    1.6261773794212786e-07,
+                                    -3.3780562347374143e-08,
+                                    0
+                                ],
+                                [
+                                    1.3828982403651935e-08,
+                                    -5.0749735832214355,
+                                    -0.3163680136203766,
+                                    1
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    -4.363011285590801e-08,
+                                    -0.060955096036195755,
+                                    0.9981405138969421,
+                                    0
+                                ],
+                                [
+                                    1.6025623494897445e-07,
+                                    0.9981405138969421,
+                                    0.06095510348677635,
+                                    0
+                                ],
+                                [
+                                    -0.9999998807907104,
+                                    1.6261772373127314e-07,
+                                    -3.3780555241946786e-08,
+                                    0
+                                ],
+                                [
+                                    1.3828913125735198e-08,
+                                    -5.684687614440918,
+                                    -0.31636863946914673,
+                                    1
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    -4.352550675434941e-08,
+                                    0.092124342918396,
+                                    0.9957476258277893,
+                                    0
+                                ],
+                                [
+                                    1.6694757221102918e-07,
+                                    0.9957476258277893,
+                                    -0.092124342918396,
+                                    0
+                                ],
+                                [
+                                    -1,
+                                    1.62227877353871e-07,
+                                    -5.872034947174143e-08,
+                                    0
+                                ],
+                                [
+                                    -2.884097405342345e-08,
+                                    -6.344250679016113,
+                                    0.65980464220047,
+                                    1
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    -4.352549609620837e-08,
+                                    0.09212533384561539,
+                                    0.9957473874092102,
+                                    0
+                                ],
+                                [
+                                    1.6694761484359333e-07,
+                                    0.9957473874092102,
+                                    -0.09212533384561539,
+                                    0
+                                ],
+                                [
+                                    -0.9999999403953552,
+                                    1.6222784893216158e-07,
+                                    -5.8720505791143296e-08,
+                                    0
+                                ],
+                                [
+                                    -2.8841263599588274e-08,
+                                    -6.688902854919434,
+                                    0.65981125831604,
+                                    1
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    -0.997873067855835,
+                                    -0.0050709666684269905,
+                                    0.06499187648296356,
+                                    0
+                                ],
+                                [
+                                    -0.06115339696407318,
+                                    -0.27253082394599915,
+                                    -0.9602017998695374,
+                                    0
+                                ],
+                                [
+                                    0.022581448778510094,
+                                    -0.9621337652206421,
+                                    0.27164095640182495,
+                                    0
+                                ],
+                                [
+                                    0.31750136613845825,
+                                    1.4324157238006592,
+                                    6.126636028289795,
+                                    1
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    -0.995718777179718,
+                                    -0.07227785140275955,
+                                    0.05762143060564995,
+                                    0
+                                ],
+                                [
+                                    -0.04448356851935387,
+                                    -0.17175553739070892,
+                                    -0.9841348528862,
+                                    0
+                                ],
+                                [
+                                    0.08102793991565704,
+                                    -0.982484757900238,
+                                    0.16780494153499603,
+                                    0
+                                ],
+                                [
+                                    0.2670693099498749,
+                                    0.1805310845375061,
+                                    6.181149482727051,
+                                    1.0000001192092896
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    -0.9983360767364502,
+                                    -0.006190530955791473,
+                                    0.05733468011021614,
+                                    0
+                                ],
+                                [
+                                    -0.05640160292387009,
+                                    -0.1023896187543869,
+                                    -0.9931443929672241,
+                                    0
+                                ],
+                                [
+                                    0.012018549256026745,
+                                    -0.9947254657745361,
+                                    0.10187003761529922,
+                                    0
+                                ],
+                                [
+                                    0.1901548057794571,
+                                    -1.5133663415908813,
+                                    6.093990325927734,
+                                    1
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    -0.9868336915969849,
+                                    -0.1368522346019745,
+                                    0.08620081841945648,
+                                    0
+                                ],
+                                [
+                                    -0.07533209025859833,
+                                    -0.08271267265081406,
+                                    -0.993722140789032,
+                                    0
+                                ],
+                                [
+                                    0.14312300086021423,
+                                    -0.9871324300765991,
+                                    0.071314238011837,
+                                    0
+                                ],
+                                [
+                                    0.7498144507408142,
+                                    -2.921945333480835,
+                                    5.997951030731201,
+                                    0.9999998807907104
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    -0.7536181807518005,
+                                    0.6382246613502502,
+                                    -0.1572553664445877,
+                                    0
+                                ],
+                                [
+                                    0.20433638989925385,
+                                    8.499340765411034e-05,
+                                    -0.9789008498191833,
+                                    0
+                                ],
+                                [
+                                    -0.6247451901435852,
+                                    -0.769850492477417,
+                                    -0.13047663867473602,
+                                    0
+                                ],
+                                [
+                                    -3.4496805667877197,
+                                    -2.73759388923645,
+                                    5.1792778968811035,
+                                    1
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    -0.9401120543479919,
+                                    0.3258510231971741,
+                                    0.10005275160074234,
+                                    0
+                                ],
+                                [
+                                    -0.16172900795936584,
+                                    -0.16801977157592773,
+                                    -0.9724265336990356,
+                                    0
+                                ],
+                                [
+                                    -0.3000554144382477,
+                                    -0.9303713440895081,
+                                    0.21065688133239746,
+                                    0
+                                ],
+                                [
+                                    -0.11382468789815903,
+                                    -2.5153310298919678,
+                                    6.392436504364014,
+                                    1
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    -0.8899676203727722,
+                                    0.023010535165667534,
+                                    0.45544320344924927,
+                                    0
+                                ],
+                                [
+                                    -0.4516659080982208,
+                                    -0.18222501873970032,
+                                    -0.8733797073364258,
+                                    0
+                                ],
+                                [
+                                    0.06289609521627426,
+                                    -0.9829878807067871,
+                                    0.17256738245487213,
+                                    0
+                                ],
+                                [
+                                    2.948674440383911,
+                                    -2.7509570121765137,
+                                    5.632399082183838,
+                                    1
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    -0.9938220381736755,
+                                    -0.051336053758859634,
+                                    0.098399817943573,
+                                    0
+                                ],
+                                [
+                                    -0.07835867255926132,
+                                    -0.3033285140991211,
+                                    -0.9496588110923767,
+                                    0
+                                ],
+                                [
+                                    0.0785992220044136,
+                                    -0.9515023827552795,
+                                    0.2974318861961365,
+                                    0
+                                ],
+                                [
+                                    0.5230146050453186,
+                                    -1.8456037044525146,
+                                    6.600370407104492,
+                                    1
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    -0.992122232913971,
+                                    -0.05013740435242653,
+                                    0.11480315774679184,
+                                    0
+                                ],
+                                [
+                                    -0.08650214225053787,
+                                    -0.388692170381546,
+                                    -0.9172980189323425,
+                                    0
+                                ],
+                                [
+                                    0.09061403572559357,
+                                    -0.920002818107605,
+                                    0.3812931478023529,
+                                    0
+                                ],
+                                [
+                                    0.6176213026046753,
+                                    -1.4810938835144043,
+                                    6.7556023597717285,
+                                    1
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    -0.9945070147514343,
+                                    -0.04651341959834099,
+                                    0.09377019852399826,
+                                    0
+                                ],
+                                [
+                                    -0.07462608814239502,
+                                    -0.31310760974884033,
+                                    -0.9467812776565552,
+                                    0
+                                ],
+                                [
+                                    0.07339820265769958,
+                                    -0.9485782384872437,
+                                    0.3079164922237396,
+                                    0
+                                ],
+                                [
+                                    0.4789276123046875,
+                                    -2.1962788105010986,
+                                    6.610935688018799,
+                                    1
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    0.9980547428131104,
+                                    0.005068517290055752,
+                                    0.06213652715086937,
+                                    0
+                                ],
+                                [
+                                    0.06116381287574768,
+                                    -0.27253612875938416,
+                                    -0.9601993560791016,
+                                    0
+                                ],
+                                [
+                                    0.012067618779838085,
+                                    0.9621322154998779,
+                                    -0.27231600880622864,
+                                    0
+                                ],
+                                [
+                                    -0.3175711929798126,
+                                    1.4331833124160767,
+                                    6.126415729522705,
+                                    1
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    0.995424747467041,
+                                    -0.07885561883449554,
+                                    0.05395917966961861,
+                                    0
+                                ],
+                                [
+                                    0.039759572595357895,
+                                    -0.17167018353939056,
+                                    -0.9843519330024719,
+                                    0
+                                ],
+                                [
+                                    0.08688480406999588,
+                                    0.9819934964179993,
+                                    -0.1677495390176773,
+                                    0
+                                ],
+                                [
+                                    -0.25257936120033264,
+                                    0.1806669682264328,
+                                    6.181643009185791,
+                                    1.0000001192092896
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    0.9985074996948242,
+                                    -0.011937490664422512,
+                                    0.05329236015677452,
+                                    0
+                                ],
+                                [
+                                    0.05179543420672417,
+                                    -0.10238799452781677,
+                                    -0.9933951497077942,
+                                    0
+                                ],
+                                [
+                                    0.017315074801445007,
+                                    0.994672954082489,
+                                    -0.10161688178777695,
+                                    0
+                                ],
+                                [
+                                    -0.17509214580059052,
+                                    -1.514228105545044,
+                                    6.094197750091553,
+                                    1.0000001192092896
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    0.9869810342788696,
+                                    -0.15762650966644287,
+                                    0.031973857432603836,
+                                    0
+                                ],
+                                [
+                                    0.028739165514707565,
+                                    -0.022758586332201958,
+                                    -0.9993281364440918,
+                                    0
+                                ],
+                                [
+                                    0.1582481861114502,
+                                    0.9872366786003113,
+                                    -0.01793224923312664,
+                                    0
+                                ],
+                                [
+                                    -0.5259616374969482,
+                                    -3.2732484340667725,
+                                    5.838397026062012,
+                                    1.000000238418579
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    0.7342091798782349,
+                                    0.6541147232055664,
+                                    -0.18185341358184814,
+                                    0
+                                ],
+                                [
+                                    -0.24658532440662384,
+                                    0.007357008755207062,
+                                    -0.9690930843353271,
+                                    0
+                                ],
+                                [
+                                    -0.6325601935386658,
+                                    0.7563595175743103,
+                                    0.1666966825723648,
+                                    0
+                                ],
+                                [
+                                    3.7217698097229004,
+                                    -2.7273337841033936,
+                                    4.993227005004883,
+                                    0.9999997615814209
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    0.9406740665435791,
+                                    0.33456185460090637,
+                                    0.056571632623672485,
+                                    0
+                                ],
+                                [
+                                    0.12169807404279709,
+                                    -0.1770298331975937,
+                                    -0.9766524434089661,
+                                    0
+                                ],
+                                [
+                                    -0.3167359232902527,
+                                    0.9255964159965515,
+                                    -0.2072429656982422,
+                                    0
+                                ],
+                                [
+                                    0.40466785430908203,
+                                    -2.4422690868377686,
+                                    6.4092302322387695,
+                                    1
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    0.944939136505127,
+                                    0.14051887392997742,
+                                    0.29554054141044617,
+                                    0
+                                ],
+                                [
+                                    0.31693756580352783,
+                                    -0.16808699071407318,
+                                    -0.9334330558776855,
+                                    0
+                                ],
+                                [
+                                    -0.08148862421512604,
+                                    0.9757053256034851,
+                                    -0.20336779952049255,
+                                    0
+                                ],
+                                [
+                                    -1.6263930797576904,
+                                    -2.8157637119293213,
+                                    6.115850448608398,
+                                    0.9999998807907104
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    0.9985157251358032,
+                                    -0.020849576219916344,
+                                    0.05031607672572136,
+                                    0
+                                ],
+                                [
+                                    0.03496110811829567,
+                                    -0.46301743388175964,
+                                    -0.8856595158576965,
+                                    0
+                                ],
+                                [
+                                    0.04176277667284012,
+                                    0.8861041069030762,
+                                    -0.4616013169288635,
+                                    0
+                                ],
+                                [
+                                    -0.11932370811700821,
+                                    -0.6797611713409424,
+                                    6.862844467163086,
+                                    1.0000001192092896
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    0.9991761445999146,
+                                    -0.0216544009745121,
+                                    0.03432576730847359,
+                                    0
+                                ],
+                                [
+                                    0.027120893821120262,
+                                    -0.2729541063308716,
+                                    -0.9616449475288391,
+                                    0
+                                ],
+                                [
+                                    0.03019312024116516,
+                                    0.9617834687232971,
+                                    -0.2721419632434845,
+                                    0
+                                ],
+                                [
+                                    -0.028694065287709236,
+                                    -2.29410982131958,
+                                    6.533752918243408,
+                                    1.0000001192092896
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    0.9989756941795349,
+                                    -0.020603543147444725,
+                                    0.04029133915901184,
+                                    0
+                                ],
+                                [
+                                    0.030026908963918686,
+                                    -0.36432945728302,
+                                    -0.9307860136032104,
+                                    0
+                                ],
+                                [
+                                    0.03385673835873604,
+                                    0.9310423135757446,
+                                    -0.3633376657962799,
+                                    0
+                                ],
+                                [
+                                    -0.060258712619543076,
+                                    -1.8265354633331299,
+                                    6.740729331970215,
+                                    1.0000001192092896
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    0.001068820245563984,
+                                    0.021493777632713318,
+                                    0.9997884035110474,
+                                    0
+                                ],
+                                [
+                                    -0.05069660022854805,
+                                    -0.998482346534729,
+                                    0.021518807858228683,
+                                    0
+                                ],
+                                [
+                                    0.9988241791725159,
+                                    -0.050708867609500885,
+                                    0.00011609758075792342,
+                                    0
+                                ],
+                                [
+                                    0.5632736682891846,
+                                    3.8182027339935303,
+                                    -0.0529627725481987,
+                                    1
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    0.0005966807366348803,
+                                    -0.07003095746040344,
+                                    0.9975645542144775,
+                                    0
+                                ],
+                                [
+                                    -0.02765037678182125,
+                                    -0.9971644282341003,
+                                    -0.069987453520298,
+                                    0
+                                ],
+                                [
+                                    0.9997280836105347,
+                                    -0.02754775434732437,
+                                    -0.0024379417300224304,
+                                    0
+                                ],
+                                [
+                                    0.5162890553474426,
+                                    2.039031744003296,
+                                    0.1341031938791275,
+                                    1
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    -0.0748211145401001,
+                                    0.9221580624580383,
+                                    0.3795602023601532,
+                                    0
+                                ],
+                                [
+                                    -0.022273510694503784,
+                                    -0.38207098841667175,
+                                    0.923864483833313,
+                                    0
+                                ],
+                                [
+                                    0.9970513582229614,
+                                    0.060763321816921234,
+                                    0.0491643063724041,
+                                    0
+                                ],
+                                [
+                                    0.5046716928482056,
+                                    0.24105454981327057,
+                                    -0.1780921220779419,
+                                    0.9999999403953552
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    -0.0759337842464447,
+                                    0.9971265196800232,
+                                    0.003495762124657631,
+                                    0
+                                ],
+                                [
+                                    -0.021820422261953354,
+                                    -0.005167752504348755,
+                                    0.9997483491897583,
+                                    0
+                                ],
+                                [
+                                    0.9969772100448608,
+                                    0.07593873143196106,
+                                    0.02214987203478813,
+                                    0
+                                ],
+                                [
+                                    0.5052677392959595,
+                                    -0.5245229005813599,
+                                    0.021457258611917496,
+                                    0.9999999403953552
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    -0.0013773977989330888,
+                                    0.02711874060332775,
+                                    0.9996417760848999,
+                                    0
+                                ],
+                                [
+                                    0.050678011029958725,
+                                    -0.9983459115028381,
+                                    0.02715327776968479,
+                                    0
+                                ],
+                                [
+                                    0.9987503886222839,
+                                    0.05069724842905998,
+                                    -3.8099169614724815e-05,
+                                    0
+                                ],
+                                [
+                                    -0.5631878972053528,
+                                    3.817880630493164,
+                                    -0.07343599945306778,
+                                    1
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    -0.0007546345586888492,
+                                    -0.07848522812128067,
+                                    0.996925413608551,
+                                    0
+                                ],
+                                [
+                                    0.02766536734998226,
+                                    -0.99653559923172,
+                                    -0.07843374460935593,
+                                    0
+                                ],
+                                [
+                                    0.9996532797813416,
+                                    0.02752462401986122,
+                                    0.0028846024069935083,
+                                    0
+                                ],
+                                [
+                                    -0.5162788033485413,
+                                    2.0385162830352783,
+                                    0.14245165884494781,
+                                    1
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    0.07283267378807068,
+                                    0.9254452586174011,
+                                    0.3718430995941162,
+                                    0
+                                ],
+                                [
+                                    0.021799109876155853,
+                                    -0.37421754002571106,
+                                    0.9270845651626587,
+                                    0
+                                ],
+                                [
+                                    0.9971392154693604,
+                                    -0.059453848749399185,
+                                    -0.04744459688663483,
+                                    0
+                                ],
+                                [
+                                    -0.5043551921844482,
+                                    0.2445991337299347,
+                                    -0.17835143208503723,
+                                    1
+                                ]
+                            ],
+                            [
+                                "m",
+                                [
+                                    0.0762675404548645,
+                                    0.9970914125442505,
+                                    0.0036348807625472546,
+                                    0
+                                ],
+                                [
+                                    0.020411601290106773,
+                                    -0.005206213798373938,
+                                    0.9997782707214355,
+                                    0
+                                ],
+                                [
+                                    0.9969116449356079,
+                                    -0.07621719688177109,
+                                    -0.020749706774950027,
+                                    0
+                                ],
+                                [
+                                    -0.5062314867973328,
+                                    -0.5346853137016296,
+                                    0.020702356472611427,
+                                    1.0000001192092896
+                                ]
+                            ]
+                        ]
+                    },
+                    "isAnimated": {
+                        "name": "isAnimated",
+                        "value": false
+                    },
+                    "material.diffuseTexture": {
+                        "name": "material.diffuseTexture",
+                        "value": 0
+                    },
+                    "material.normalMap": {
+                        "name": "material.normalMap",
+                        "value": 1
+                    },
+                    "material.pad0": {
+                        "name": "material.pad0",
+                        "value": false
+                    },
+                    "material.shininess": {
+                        "name": "material.shininess",
+                        "value": 1
+                    },
+                    "material.specularity": {
+                        "name": "material.specularity",
+                        "value": [
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    "material.useDiffuseTexture": {
+                        "name": "material.useDiffuseTexture",
+                        "value": true
+                    },
+                    "material.useNormalMap": {
+                        "name": "material.useNormalMap",
+                        "value": false
+                    },
+                    "numberOfTextureRows": {
+                        "name": "numberOfTextureRows",
+                        "value": 1
+                    },
+                    "offsetInTexture": {
+                        "name": "offsetInTexture",
+                        "value": [
+                            0,
+                            0
+                        ]
+                    },
+                    "shaderMode": {
+                        "name": "shaderMode",
+                        "value": 4
+                    },
+                    "worldMatrix": {
+                        "name": "worldMatrix",
+                        "value": [
+                            "m",
+                            [
+                                2.2855277061462402,
+                                0,
+                                -1.9435555934906006,
+                                0
+                            ],
+                            [
+                                0,
+                                3,
+                                0,
+                                0
+                            ],
+                            [
+                                1.9435555934906006,
+                                0,
+                                2.2855277061462402,
+                                0
+                            ],
+                            [
+                                -2.7755575615628914e-17,
+                                10,
+                                -7.400000095367432,
+                                1
+                            ]
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "line",
+                "programType": -1,
+                "shaders": {
+                    "1": {
+                        "filePath": "C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/resources/shaders/line.vert",
+                        "name": "line",
+                        "shaderType": 1
+                    },
+                    "2": {
+                        "filePath": "C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/resources/shaders/line.frag",
+                        "name": "line",
+                        "shaderType": 2
+                    }
+                },
+                "uniforms": {
+                }
+            }
+        ]
+    },
+    "scenes": [
+        {
+            "components": [
+                {
+                    "isEnabled": true,
+                    "physicsScene": {
+                        "cct": {
+                            "name": ""
+                        },
+                        "g": [
+                            0,
+                            -9.8100004196167,
+                            0
+                        ]
+                    },
+                    "type": 9
+                }
+            ],
+            "name": "{b82e7545-55fa-4e6f-832d-18263b173e6d}",
+            "sceneObjects": [
+                {
+                    "children": [
+                    ],
+                    "components": [
+                        {
+                            "isEnabled": true,
+                            "shaderPreset": "preset_eb172d9e_68f0_4996_9cd1_3b819f9aac3e",
+                            "type": 1
+                        },
+                        {
+                            "isEnabled": true,
+                            "model": "cube",
+                            "renderable": {
+                                "renderLayers": [
+                                ],
+                                "renderSettings": {
+                                    "settings": [
+                                    ],
+                                    "shapeMode": 4
+                                },
+                                "uniforms": {
+                                }
+                            },
+                            "type": 6
+                        },
+                        {
+                            "body": {
+                                "actorType": 1,
+                                "density": 1,
+                                "isKinematic": false,
+                                "name": "",
+                                "rigidType": 1,
+                                "sceneObject": "cube",
+                                "shapes": [
+                                    "defaultShape"
+                                ]
+                            },
+                            "isEnabled": true,
+                            "type": 8
+                        }
+                    ],
+                    "name": "cube",
+                    "scene": "{b82e7545-55fa-4e6f-832d-18263b173e6d}",
+                    "transform": {
+                        "inheritanceType": 0,
+                        "isEnabled": true,
+                        "rotation": {
+                            "quaternion": [
+                                -6.205851832419285e-07,
+                                0.003819257253780961,
+                                6.19544880464673e-06,
+                                0.9999927282333374
+                            ]
+                        },
+                        "scale": {
+                            "scaling": [
+                                1,
+                                1,
+                                1
+                            ]
+                        },
+                        "translation": {
+                            "translation": {
+                                "position": [
+                                    6.618090629577637,
+                                    0.9999969601631165,
+                                    1.446995735168457
+                                ]
+                            }
+                        },
+                        "type": 0
+                    }
+                },
+                {
+                    "children": [
+                    ],
+                    "components": [
+                        {
+                            "isEnabled": true,
+                            "shaderPreset": "preset_a3186d84_34b2_432a_bdf6_64a1491174b3",
+                            "type": 1
+                        },
+                        {
+                            "isEnabled": true,
+                            "model": "cube",
+                            "renderable": {
+                                "renderLayers": [
+                                ],
+                                "renderSettings": {
+                                    "settings": [
+                                    ],
+                                    "shapeMode": 4
+                                },
+                                "uniforms": {
+                                }
+                            },
+                            "type": 6
+                        },
+                        {
+                            "body": {
+                                "actorType": 1,
+                                "density": 1,
+                                "isKinematic": false,
+                                "name": "",
+                                "rigidType": 1,
+                                "sceneObject": "cube2",
+                                "shapes": [
+                                    "cube2"
+                                ]
+                            },
+                            "isEnabled": false,
+                            "type": 8
+                        }
+                    ],
+                    "name": "cube2",
+                    "scene": "{b82e7545-55fa-4e6f-832d-18263b173e6d}",
+                    "transform": {
+                        "inheritanceType": 0,
+                        "isEnabled": true,
+                        "rotation": {
+                            "quaternion": [
+                                0,
+                                0.5,
+                                0.5,
+                                0.7071068286895752
+                            ]
+                        },
+                        "scale": {
+                            "scaling": [
+                                1,
+                                1,
+                                1
+                            ]
+                        },
+                        "translation": {
+                            "translation": {
+                                "position": [
+                                    -5,
+                                    12,
+                                    5
+                                ]
+                            }
+                        },
+                        "type": 0
+                    }
+                },
+                {
+                    "children": [
+                    ],
+                    "components": [
+                        {
+                            "isEnabled": true,
+                            "shaderPreset": "preset_239e1a5c_dba6_487e_9c8b_87307712057d",
+                            "type": 1
+                        },
+                        {
+                            "isEnabled": true,
+                            "path": "C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/resources/scripts/test_behavior.py",
+                            "type": 4
+                        }
+                    ],
+                    "name": "Dragon",
+                    "scene": "{b82e7545-55fa-4e6f-832d-18263b173e6d}",
+                    "transform": {
+                        "inheritanceType": 0,
+                        "isEnabled": true,
+                        "rotation": {
+                            "quaternion": [
+                                0,
+                                0.9718555808067322,
+                                0,
+                                -0.2368294894695282
+                            ]
+                        },
+                        "scale": {
+                            "scaling": [
+                                0.09197915574462306,
+                                0.09197915574462306,
+                                0.09197915574462306
+                            ]
+                        },
+                        "translation": {
+                            "translation": {
+                                "position": [
+                                    -8.899999999999993,
+                                    0,
+                                    -1.2999999999999998
+                                ]
+                            }
+                        },
+                        "type": 0
+                    }
+                },
+                {
+                    "children": [
+                    ],
+                    "components": [
+                        {
+                            "isEnabled": true,
+                            "shaderPreset": "preset_bb3bd68d_e75b_47ed_97d7_98d5007cf1ba",
+                            "type": 1
+                        },
+                        {
+                            "isEnabled": true,
+                            "path": "C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/assets/scripts/char_behavior.py",
+                            "type": 4
+                        },
+                        {
+                            "isEnabled": true,
+                            "model": "animated human.fbx",
+                            "renderable": {
+                                "renderLayers": [
+                                ],
+                                "renderSettings": {
+                                    "settings": [
+                                    ],
+                                    "shapeMode": 4
+                                },
+                                "uniforms": {
+                                }
+                            },
+                            "type": 6
+                        },
+                        {
+                            "isEnabled": true,
+                            "listener": {
+                                "eventTypes": [
+                                    2,
+                                    3,
+                                    4
+                                ],
+                                "path": "C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/resources/scripts/test_listener.py",
+                                "sceneObject": "Boi"
+                            },
+                            "type": 7
+                        },
+                        {
+                            "animationController": {
+                                "animationStates": {
+                                    "human armature|armatureaction.001": {
+                                        "clips": {
+                                            "human armature|armatureaction.001": {
+                                                "animation": {
+                                                    "attributes": {
+                                                    },
+                                                    "name": "human armature|armatureaction.001",
+                                                    "path": "C:\\Users\\dante\\Documents\\Projects\\grand-blue-engine\\grand_blue\\assets\\models\\animated_human\\FBX\\Animated Human.fbx",
+                                                    "priority": 0,
+                                                    "type": 5
+                                                },
+                                                "name": "human armature|armatureaction.001",
+                                                "numPlays": -1,
+                                                "playbackMode": 1,
+                                                "settings": {
+                                                    "blendWeight": 1,
+                                                    "speedFactor": 1,
+                                                    "tickOffset": 0,
+                                                    "timeOffsetSec": 0
+                                                }
+                                            }
+                                        },
+                                        "layers": {
+                                        }
+                                    },
+                                    "human armature|armatureaction.002": {
+                                        "clips": {
+                                            "human armature|armatureaction.002": {
+                                                "animation": {
+                                                    "attributes": {
+                                                    },
+                                                    "name": "human armature|armatureaction.002",
+                                                    "path": "C:\\Users\\dante\\Documents\\Projects\\grand-blue-engine\\grand_blue\\assets\\models\\animated_human\\FBX\\Animated Human.fbx",
+                                                    "priority": 0,
+                                                    "type": 5
+                                                },
+                                                "name": "human armature|armatureaction.002",
+                                                "numPlays": -1,
+                                                "playbackMode": 1,
+                                                "settings": {
+                                                    "blendWeight": 1,
+                                                    "speedFactor": 1,
+                                                    "tickOffset": 0,
+                                                    "timeOffsetSec": 0
+                                                }
+                                            }
+                                        },
+                                        "layers": {
+                                        }
+                                    },
+                                    "human armature|death": {
+                                        "clips": {
+                                            "human armature|death": {
+                                                "animation": {
+                                                    "attributes": {
+                                                    },
+                                                    "name": "human armature|death",
+                                                    "path": "C:\\Users\\dante\\Documents\\Projects\\grand-blue-engine\\grand_blue\\assets\\models\\animated_human\\FBX\\Animated Human.fbx",
+                                                    "priority": 0,
+                                                    "type": 5
+                                                },
+                                                "name": "human armature|death",
+                                                "numPlays": -1,
+                                                "playbackMode": 1,
+                                                "settings": {
+                                                    "blendWeight": 1,
+                                                    "speedFactor": 1,
+                                                    "tickOffset": 0,
+                                                    "timeOffsetSec": 0
+                                                }
+                                            }
+                                        },
+                                        "layers": {
+                                        }
+                                    },
+                                    "human armature|idle": {
+                                        "clips": {
+                                            "human armature|idle": {
+                                                "animation": {
+                                                    "attributes": {
+                                                    },
+                                                    "name": "human armature|idle",
+                                                    "path": "C:\\Users\\dante\\Documents\\Projects\\grand-blue-engine\\grand_blue\\assets\\models\\animated_human\\FBX\\Animated Human.fbx",
+                                                    "priority": 0,
+                                                    "type": 5
+                                                },
+                                                "name": "human armature|idle",
+                                                "numPlays": -1,
+                                                "playbackMode": 1,
+                                                "settings": {
+                                                    "blendWeight": 1,
+                                                    "speedFactor": 1,
+                                                    "tickOffset": 0,
+                                                    "timeOffsetSec": 0
+                                                }
+                                            }
+                                        },
+                                        "layers": {
+                                        }
+                                    },
+                                    "human armature|jump": {
+                                        "clips": {
+                                            "human armature|jump": {
+                                                "animation": {
+                                                    "attributes": {
+                                                    },
+                                                    "name": "human armature|jump",
+                                                    "path": "C:\\Users\\dante\\Documents\\Projects\\grand-blue-engine\\grand_blue\\assets\\models\\animated_human\\FBX\\Animated Human.fbx",
+                                                    "priority": 0,
+                                                    "type": 5
+                                                },
+                                                "name": "human armature|jump",
+                                                "numPlays": -1,
+                                                "playbackMode": 1,
+                                                "settings": {
+                                                    "blendWeight": 1,
+                                                    "speedFactor": 1,
+                                                    "tickOffset": 0,
+                                                    "timeOffsetSec": 0
+                                                }
+                                            }
+                                        },
+                                        "layers": {
+                                        }
+                                    },
+                                    "human armature|punch": {
+                                        "clips": {
+                                            "human armature|punch": {
+                                                "animation": {
+                                                    "attributes": {
+                                                    },
+                                                    "name": "human armature|punch",
+                                                    "path": "C:\\Users\\dante\\Documents\\Projects\\grand-blue-engine\\grand_blue\\assets\\models\\animated_human\\FBX\\Animated Human.fbx",
+                                                    "priority": 0,
+                                                    "type": 5
+                                                },
+                                                "name": "human armature|punch",
+                                                "numPlays": -1,
+                                                "playbackMode": 1,
+                                                "settings": {
+                                                    "blendWeight": 1,
+                                                    "speedFactor": 1,
+                                                    "tickOffset": 0,
+                                                    "timeOffsetSec": 0
+                                                }
+                                            }
+                                        },
+                                        "layers": {
+                                        }
+                                    },
+                                    "human armature|run": {
+                                        "clips": {
+                                            "human armature|run": {
+                                                "animation": {
+                                                    "attributes": {
+                                                    },
+                                                    "name": "human armature|run",
+                                                    "path": "C:\\Users\\dante\\Documents\\Projects\\grand-blue-engine\\grand_blue\\assets\\models\\animated_human\\FBX\\Animated Human.fbx",
+                                                    "priority": 0,
+                                                    "type": 5
+                                                },
+                                                "name": "human armature|run",
+                                                "numPlays": -1,
+                                                "playbackMode": 1,
+                                                "settings": {
+                                                    "blendWeight": 1,
+                                                    "speedFactor": 0.5,
+                                                    "tickOffset": 0,
+                                                    "timeOffsetSec": 0
+                                                }
+                                            }
+                                        },
+                                        "layers": {
+                                        }
+                                    },
+                                    "human armature|walk": {
+                                        "clips": {
+                                            "human armature|walk": {
+                                                "animation": {
+                                                    "attributes": {
+                                                    },
+                                                    "name": "human armature|walk",
+                                                    "path": "C:\\Users\\dante\\Documents\\Projects\\grand-blue-engine\\grand_blue\\assets\\models\\animated_human\\FBX\\Animated Human.fbx",
+                                                    "priority": 0,
+                                                    "type": 5
+                                                },
+                                                "name": "human armature|walk",
+                                                "numPlays": -1,
+                                                "playbackMode": 1,
+                                                "settings": {
+                                                    "blendWeight": 1,
+                                                    "speedFactor": 1,
+                                                    "tickOffset": 0,
+                                                    "timeOffsetSec": 0
+                                                }
+                                            }
+                                        },
+                                        "layers": {
+                                        }
+                                    },
+                                    "human armature|working": {
+                                        "clips": {
+                                            "human armature|working": {
+                                                "animation": {
+                                                    "attributes": {
+                                                    },
+                                                    "name": "human armature|working",
+                                                    "path": "C:\\Users\\dante\\Documents\\Projects\\grand-blue-engine\\grand_blue\\assets\\models\\animated_human\\FBX\\Animated Human.fbx",
+                                                    "priority": 0,
+                                                    "type": 5
+                                                },
+                                                "name": "human armature|working",
+                                                "numPlays": -1,
+                                                "playbackMode": 1,
+                                                "settings": {
+                                                    "blendWeight": 1,
+                                                    "speedFactor": 1,
+                                                    "tickOffset": 0,
+                                                    "timeOffsetSec": 0
+                                                }
+                                            }
+                                        },
+                                        "layers": {
+                                        }
+                                    }
+                                },
+                                "currentState": "human armature|run",
+                                "isPlaying": true,
+                                "mesh": "animated human.fbx"
+                            },
+                            "isEnabled": true,
+                            "type": 12
+                        }
+                    ],
+                    "name": "Boi",
+                    "scene": "{b82e7545-55fa-4e6f-832d-18263b173e6d}",
+                    "transform": {
+                        "inheritanceType": 0,
+                        "isEnabled": true,
+                        "rotation": {
+                            "quaternion": [
+                                0,
+                                0.20275940001010895,
+                                0,
+                                0.9792287349700928
+                            ]
+                        },
+                        "scale": {
+                            "scaling": [
+                                0.025,
+                                0.025,
+                                0.025
+                            ]
+                        },
+                        "translation": {
+                            "translation": {
+                                "position": [
+                                    0,
+                                    -0.10000278521329165,
+                                    0
+                                ]
+                            }
+                        },
+                        "type": 0
+                    }
+                },
+                {
+                    "children": [
+                    ],
+                    "components": [
+                        {
+                            "isEnabled": true,
+                            "shaderPreset": "preset_b2deffd0_9826_4bf7_8ac5_951d2677a426",
+                            "type": 1
+                        },
+                        {
+                            "camera": {
+                                "projection": {
+                                    "aspectRatio": 1.3143483023001095,
+                                    "bottom": -0.5,
+                                    "fov": 70,
+                                    "left": -0.5,
+                                    "projType": 0,
+                                    "right": 0.5,
+                                    "top": 0.5,
+                                    "zFar": 10000,
+                                    "zNear": 0.01
+                                },
+                                "viewMatrix": [
+                                    "m",
+                                    [
+                                        1,
+                                        0,
+                                        0,
+                                        0
+                                    ],
+                                    [
+                                        0,
+                                        1,
+                                        0,
+                                        0
+                                    ],
+                                    [
+                                        0,
+                                        0,
+                                        1,
+                                        0
+                                    ],
+                                    [
+                                        0,
+                                        -5,
+                                        -20,
+                                        1
+                                    ]
+                                ],
+                                "viewport": {
+                                    "d": 0,
+                                    "h": 1,
+                                    "w": 1,
+                                    "x": 0,
+                                    "y": 0
+                                }
+                            },
+                            "controller": {
+                                "profile": {
+                                    "movementTypes": [
+                                    ],
+                                    "panScaling": [
+                                        0,
+                                        1.1192680907203328e-38
+                                    ],
+                                    "rotateScaling": [
+                                        1.1192630460458612e-38,
+                                        1.3900674206218632e+35
+                                    ],
+                                    "tiltScaling": [
+                                        -1,
+                                        1
+                                    ],
+                                    "translateScaling": [
+                                        1.793662034335766e-43,
+                                        0
+                                    ],
+                                    "zoomScaling": 0
+                                },
+                                "target": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "isEnabled": true,
+                            "type": 2
+                        },
+                        {
+                            "glyphs": [
+                                {
+                                    "color": [
+                                        0.7490196228027344,
+                                        0.4000000059604645,
+                                        0.20000000298023224,
+                                        1
+                                    ],
+                                    "coordinates": [
+                                        0,
+                                        0.75
+                                    ],
+                                    "faceCamera": true,
+                                    "font": "arial",
+                                    "fontSize": 40,
+                                    "horAlign": 1,
+                                    "mode": 1,
+                                    "onTop": true,
+                                    "renderLayers": [
+                                    ],
+                                    "renderSettings": {
+                                        "settings": [
+                                            {
+                                                "beAlpha": 32774,
+                                                "beRGB": 32774,
+                                                "blendColor": [
+                                                    0,
+                                                    0,
+                                                    0,
+                                                    0
+                                                ],
+                                                "blendEnabled": true,
+                                                "destAlpha": 771,
+                                                "destRGB": 0,
+                                                "order": 0,
+                                                "sourceAlpha": 770,
+                                                "sourceRGB": 1,
+                                                "type": 1
+                                            }
+                                        ],
+                                        "shapeMode": 4
+                                    },
+                                    "scaleWithDistance": true,
+                                    "text": "This is a sphere",
+                                    "transform": {
+                                        "inheritanceType": 0,
+                                        "rotation": {
+                                            "quaternion": [
+                                                0,
+                                                0,
+                                                0,
+                                                1
+                                            ]
+                                        },
+                                        "scale": {
+                                            "scaling": [
+                                                1,
+                                                1,
+                                                1
+                                            ]
+                                        },
+                                        "translation": {
+                                            "translation": {
+                                                "position": [
+                                                    0,
+                                                    10,
+                                                    -2.5
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": 0,
+                                    "uniforms": {
+                                    },
+                                    "vertAlign": 0
+                                },
+                                {
+                                    "color": [
+                                        0.7490196228027344,
+                                        0.4000000059604645,
+                                        0.20000000298023224,
+                                        1
+                                    ],
+                                    "coordinates": [
+                                        0,
+                                        0
+                                    ],
+                                    "faceCamera": true,
+                                    "font": "free-solid-900",
+                                    "fontSize": 40,
+                                    "horAlign": 1,
+                                    "mode": 1,
+                                    "onTop": true,
+                                    "renderLayers": [
+                                    ],
+                                    "renderSettings": {
+                                        "settings": [
+                                            {
+                                                "beAlpha": 32774,
+                                                "beRGB": 32774,
+                                                "blendColor": [
+                                                    0,
+                                                    0,
+                                                    0,
+                                                    0
+                                                ],
+                                                "blendEnabled": true,
+                                                "destAlpha": 771,
+                                                "destRGB": 0,
+                                                "order": 0,
+                                                "sourceAlpha": 770,
+                                                "sourceRGB": 1,
+                                                "type": 1
+                                            }
+                                        ],
+                                        "shapeMode": 4
+                                    },
+                                    "scaleWithDistance": true,
+                                    "text": "",
+                                    "transform": {
+                                        "inheritanceType": 0,
+                                        "rotation": {
+                                            "quaternion": [
+                                                0,
+                                                0,
+                                                0,
+                                                1
+                                            ]
+                                        },
+                                        "scale": {
+                                            "scaling": [
+                                                1,
+                                                1,
+                                                1
+                                            ]
+                                        },
+                                        "translation": {
+                                            "translation": {
+                                                "position": [
+                                                    0,
+                                                    10,
+                                                    -2.5
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": 1,
+                                    "uniforms": {
+                                    },
+                                    "vertAlign": 1
+                                }
+                            ],
+                            "isEnabled": true,
+                            "renderProjection": {
+                                "aspectRatio": 1.3143483023001095,
+                                "bottom": -0.5,
+                                "fov": 70,
+                                "left": -0.5,
+                                "projType": 0,
+                                "right": 0.5,
+                                "top": 0.5,
+                                "zFar": 1000,
+                                "zNear": 0.01
+                            },
+                            "renderable": {
+                                "renderLayers": [
+                                ],
+                                "renderSettings": {
+                                    "settings": [
+                                    ],
+                                    "shapeMode": 4
+                                },
+                                "uniforms": {
+                                }
+                            },
+                            "type": 10,
+                            "uniforms": {
+                            },
+                            "viewport": {
+                                "d": 0,
+                                "h": 1,
+                                "w": 1,
+                                "x": 0,
+                                "y": 0
+                            }
+                        }
+                    ],
+                    "name": "Camera",
+                    "scene": "{b82e7545-55fa-4e6f-832d-18263b173e6d}",
+                    "transform": {
+                        "inheritanceType": 0,
+                        "isEnabled": true,
+                        "rotation": {
+                            "quaternion": [
+                                0,
+                                0,
+                                0,
+                                1
+                            ]
+                        },
+                        "scale": {
+                            "scaling": [
+                                1,
+                                1,
+                                1
+                            ]
+                        },
+                        "translation": {
+                            "translation": {
+                                "position": [
+                                    0,
+                                    5,
+                                    20
+                                ]
+                            }
+                        },
+                        "type": 0
+                    }
+                },
+                {
+                    "children": [
+                    ],
+                    "components": [
+                        {
+                            "ambientColor": [
+                                0.009994659572839737,
+                                0,
+                                0,
+                                1
+                            ],
+                            "attributes": [
+                                1,
+                                1,
+                                0,
+                                0
+                            ],
+                            "diffuseColor": [
+                                1,
+                                0,
+                                0,
+                                1
+                            ],
+                            "direction": [
+                                0,
+                                0,
+                                0,
+                                0
+                            ],
+                            "intensity": 15,
+                            "isEnabled": true,
+                            "lightType": 0,
+                            "specularColor": [
+                                1,
+                                0,
+                                0,
+                                1
+                            ],
+                            "type": 3
+                        }
+                    ],
+                    "name": "Light 1",
+                    "scene": "{b82e7545-55fa-4e6f-832d-18263b173e6d}",
+                    "transform": {
+                        "inheritanceType": 0,
+                        "isEnabled": true,
+                        "rotation": {
+                            "quaternion": [
+                                0,
+                                0,
+                                0,
+                                1
+                            ]
+                        },
+                        "scale": {
+                            "scaling": [
+                                1,
+                                1,
+                                1
+                            ]
+                        },
+                        "translation": {
+                            "translation": {
+                                "position": [
+                                    -5,
+                                    7,
+                                    0
+                                ]
+                            }
+                        },
+                        "type": 0
+                    }
+                },
+                {
+                    "children": [
+                    ],
+                    "components": [
+                        {
+                            "ambientColor": [
+                                0.5000076293945312,
+                                0.45000380277633667,
+                                0.10000763088464737,
+                                1
+                            ],
+                            "attributes": [
+                                1,
+                                0.02500000037252903,
+                                0.02500000037252903,
+                                0
+                            ],
+                            "diffuseColor": [
+                                1,
+                                0.9607843160629272,
+                                0.7843137383460999,
+                                1
+                            ],
+                            "direction": [
+                                0,
+                                0,
+                                0,
+                                0
+                            ],
+                            "intensity": 2,
+                            "isEnabled": true,
+                            "lightType": 0,
+                            "specularColor": [
+                                1,
+                                0.9607843160629272,
+                                0.7843137383460999,
+                                1
+                            ],
+                            "type": 3
+                        }
+                    ],
+                    "name": "Light 2",
+                    "scene": "{b82e7545-55fa-4e6f-832d-18263b173e6d}",
+                    "transform": {
+                        "inheritanceType": 0,
+                        "isEnabled": true,
+                        "rotation": {
+                            "quaternion": [
+                                0,
+                                0,
+                                0,
+                                1
+                            ]
+                        },
+                        "scale": {
+                            "scaling": [
+                                1,
+                                1,
+                                1
+                            ]
+                        },
+                        "translation": {
+                            "translation": {
+                                "position": [
+                                    9,
+                                    10,
+                                    9
+                                ]
+                            }
+                        },
+                        "type": 0
+                    }
+                },
+                {
+                    "children": [
+                        {
+                            "children": [
+                            ],
+                            "components": [
+                                {
+                                    "isEnabled": true,
+                                    "shaderPreset": "preset_2b8621f4_ee28_497a_bc6e_812b4757b1ad",
+                                    "type": 1
+                                },
+                                {
+                                    "isEnabled": true,
+                                    "model": "floor_model",
+                                    "renderable": {
+                                        "renderLayers": [
+                                        ],
+                                        "renderSettings": {
+                                            "settings": [
+                                            ],
+                                            "shapeMode": 4
+                                        },
+                                        "uniforms": {
+                                        }
+                                    },
+                                    "type": 6
+                                }
+                            ],
+                            "name": "floor_rendering",
+                            "scene": "{b82e7545-55fa-4e6f-832d-18263b173e6d}",
+                            "transform": {
+                                "inheritanceType": 0,
+                                "isEnabled": true,
+                                "rotation": {
+                                    "quaternion": [
+                                        0,
+                                        0,
+                                        -0.7071068286895752,
+                                        0.7071068286895752
+                                    ]
+                                },
+                                "scale": {
+                                    "scaling": [
+                                        50,
+                                        0.25,
+                                        50
+                                    ]
+                                },
+                                "translation": {
+                                    "translation": {
+                                        "position": [
+                                            0,
+                                            0,
+                                            0
+                                        ]
+                                    }
+                                },
+                                "type": 0
+                            }
+                        }
+                    ],
+                    "components": [
+                        {
+                            "body": {
+                                "actorType": 1,
+                                "density": 1,
+                                "isKinematic": false,
+                                "name": "",
+                                "rigidType": 0,
+                                "sceneObject": "floor",
+                                "shapes": [
+                                    "plane"
+                                ]
+                            },
+                            "isEnabled": true,
+                            "type": 8
+                        }
+                    ],
+                    "name": "floor",
+                    "scene": "{b82e7545-55fa-4e6f-832d-18263b173e6d}",
+                    "transform": {
+                        "inheritanceType": 0,
+                        "isEnabled": true,
+                        "rotation": {
+                            "quaternion": [
+                                0,
+                                0,
+                                0.7071068286895752,
+                                0.7071068286895752
+                            ]
+                        },
+                        "scale": {
+                            "scaling": [
+                                1,
+                                1,
+                                1
+                            ]
+                        },
+                        "translation": {
+                            "translation": {
+                                "position": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            }
+                        },
+                        "type": 0
+                    }
+                },
+                {
+                    "children": [
+                    ],
+                    "components": [
+                        {
+                            "isEnabled": true,
+                            "shaderPreset": "preset_0669d81e_18f2_45fa_bb4d_2ecf9d76892b",
+                            "type": 1
+                        },
+                        {
+                            "glyphs": [
+                                {
+                                    "color": [
+                                        1,
+                                        1,
+                                        1,
+                                        1
+                                    ],
+                                    "coordinates": [
+                                        -1,
+                                        -0.75
+                                    ],
+                                    "font": "arial",
+                                    "fontSize": 20,
+                                    "horAlign": 2,
+                                    "mode": 0,
+                                    "renderLayers": [
+                                    ],
+                                    "renderSettings": {
+                                        "settings": [
+                                            {
+                                                "beAlpha": 32774,
+                                                "beRGB": 32774,
+                                                "blendColor": [
+                                                    0,
+                                                    0,
+                                                    0,
+                                                    0
+                                                ],
+                                                "blendEnabled": true,
+                                                "destAlpha": 771,
+                                                "destRGB": 0,
+                                                "order": 0,
+                                                "sourceAlpha": 770,
+                                                "sourceRGB": 1,
+                                                "type": 1
+                                            }
+                                        ],
+                                        "shapeMode": 4
+                                    },
+                                    "text": "Default Text, this text should span multiple lines if it goes on for long enough.  This will ensure readability, and will make it less tedious to write large paragraphs.  We may now be on yet another line.",
+                                    "transform": {
+                                        "inheritanceType": 0,
+                                        "rotation": {
+                                            "quaternion": [
+                                                0,
+                                                0,
+                                                0,
+                                                1
+                                            ]
+                                        },
+                                        "scale": {
+                                            "scaling": [
+                                                1,
+                                                1,
+                                                1
+                                            ]
+                                        },
+                                        "translation": {
+                                            "translation": {
+                                                "position": [
+                                                    0,
+                                                    0,
+                                                    -1
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": 0,
+                                    "uniforms": {
+                                    },
+                                    "vertAlign": 1
+                                }
+                            ],
+                            "isEnabled": true,
+                            "renderProjection": {
+                                "aspectRatio": 1.307443365695793,
+                                "bottom": -0.5,
+                                "fov": 70,
+                                "left": -0.5,
+                                "projType": 1,
+                                "right": 0.5,
+                                "top": 0.5,
+                                "zFar": 1000,
+                                "zNear": 0.01
+                            },
+                            "renderable": {
+                                "renderLayers": [
+                                ],
+                                "renderSettings": {
+                                    "settings": [
+                                    ],
+                                    "shapeMode": 4
+                                },
+                                "uniforms": {
+                                }
+                            },
+                            "type": 10,
+                            "uniforms": {
+                            },
+                            "viewport": {
+                                "d": 0,
+                                "h": 1,
+                                "w": 1,
+                                "x": 0,
+                                "y": 0
+                            }
+                        }
+                    ],
+                    "name": "test_canvas",
+                    "scene": "{b82e7545-55fa-4e6f-832d-18263b173e6d}",
+                    "transform": {
+                        "inheritanceType": 0,
+                        "isEnabled": true,
+                        "rotation": {
+                            "quaternion": [
+                                0,
+                                0,
+                                0,
+                                1
+                            ]
+                        },
+                        "scale": {
+                            "scaling": [
+                                1,
+                                1,
+                                1
+                            ]
+                        },
+                        "translation": {
+                            "translation": {
+                                "position": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            }
+                        },
+                        "type": 0
+                    }
+                },
+                {
+                    "children": [
+                    ],
+                    "components": [
+                        {
+                            "isEnabled": true,
+                            "shaderPreset": "preset_6948a2bf_6614_4424_974f_233f9c1480dc",
+                            "type": 1
+                        },
+                        {
+                            "isEnabled": true,
+                            "path": "C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/assets/scripts/spin_behavior.py",
+                            "type": 4
+                        },
+                        {
+                            "isEnabled": true,
+                            "model": "latlonsphere_20_40",
+                            "renderable": {
+                                "renderLayers": [
+                                ],
+                                "renderSettings": {
+                                    "settings": [
+                                    ],
+                                    "shapeMode": 4
+                                },
+                                "uniforms": {
+                                }
+                            },
+                            "type": 6
+                        }
+                    ],
+                    "name": "sphere",
+                    "scene": "{b82e7545-55fa-4e6f-832d-18263b173e6d}",
+                    "transform": {
+                        "inheritanceType": 0,
+                        "isEnabled": true,
+                        "rotation": {
+                            "quaternion": [
+                                0,
+                                0.3585343360900879,
+                                0,
+                                0.9335343837738037
+                            ]
+                        },
+                        "scale": {
+                            "scaling": [
+                                3,
+                                3,
+                                3
+                            ]
+                        },
+                        "translation": {
+                            "translation": {
+                                "position": [
+                                    -2.7755575615628914e-17,
+                                    10,
+                                    -7.4
+                                ]
+                            }
+                        },
+                        "type": 0
+                    }
+                },
+                {
+                    "children": [
+                    ],
+                    "components": [
+                        {
+                            "ambientColor": [
+                                0,
+                                0,
+                                0.10000763088464737,
+                                1
+                            ],
+                            "attributes": [
+                                1,
+                                0,
+                                0,
+                                0
+                            ],
+                            "diffuseColor": [
+                                0,
+                                0,
+                                1,
+                                1
+                            ],
+                            "direction": [
+                                0,
+                                -1,
+                                0,
+                                0
+                            ],
+                            "intensity": 2,
+                            "isEnabled": true,
+                            "lightType": 1,
+                            "specularColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "type": 3
+                        }
+                    ],
+                    "name": "Directional Light",
+                    "scene": "{b82e7545-55fa-4e6f-832d-18263b173e6d}",
+                    "transform": {
+                        "inheritanceType": 0,
+                        "isEnabled": true,
+                        "rotation": {
+                            "quaternion": [
+                                0,
+                                0,
+                                0,
+                                1
+                            ]
+                        },
+                        "scale": {
+                            "scaling": [
+                                1,
+                                1,
+                                1
+                            ]
+                        },
+                        "translation": {
+                            "translation": {
+                                "position": [
+                                    2,
+                                    2,
+                                    0
+                                ]
+                            }
+                        },
+                        "type": 0
+                    }
+                },
+                {
+                    "children": [
+                    ],
+                    "components": [
+                        {
+                            "ambientColor": [
+                                0,
+                                0.050003815442323685,
+                                0,
+                                1
+                            ],
+                            "attributes": [
+                                0.8700000643730164,
+                                0.8200000524520874,
+                                0,
+                                0
+                            ],
+                            "diffuseColor": [
+                                0,
+                                1,
+                                0,
+                                1
+                            ],
+                            "direction": [
+                                0,
+                                -1,
+                                0,
+                                0
+                            ],
+                            "intensity": 3,
+                            "isEnabled": true,
+                            "lightType": 2,
+                            "specularColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "type": 3
+                        }
+                    ],
+                    "name": "Spot Light",
+                    "scene": "{b82e7545-55fa-4e6f-832d-18263b173e6d}",
+                    "transform": {
+                        "inheritanceType": 0,
+                        "isEnabled": true,
+                        "rotation": {
+                            "quaternion": [
+                                0,
+                                0,
+                                -0.7071068286895752,
+                                0.7071068286895752
+                            ]
+                        },
+                        "scale": {
+                            "scaling": [
+                                1,
+                                1,
+                                1
+                            ]
+                        },
+                        "translation": {
+                            "translation": {
+                                "position": [
+                                    0,
+                                    20,
+                                    0
+                                ]
+                            }
+                        },
+                        "type": 0
+                    }
+                }
+            ],
+            "skybox": "prettySky",
+            "uniforms": {
+                "ambientColor": {
+                    "name": "ambientColor",
+                    "value": [
+                        0,
+                        0.21568627655506134,
+                        0.21568627655506134
+                    ]
+                }
+            }
+        }
+    ],
+    "settings": {
+    }
+}

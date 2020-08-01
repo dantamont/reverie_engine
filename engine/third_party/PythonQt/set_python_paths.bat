@@ -17,6 +17,8 @@ setx PYTHON_DLL_PATH %pypath%\DLLs
 setx PYTHON_LIB %pylibpath%
 setx PYTHON_QT_PATH %pythonqtpath%
 setx PYTHON_VERSION 38
+rem for static linking
+setx PYTHONQT_STATIC 1
 
 rem see if setting system path works for finding DLLs
 rem https://stackoverflow.com/questions/17240725/setx-doesnt-append-path-to-system-path-variable

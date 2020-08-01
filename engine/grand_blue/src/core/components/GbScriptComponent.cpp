@@ -15,7 +15,7 @@
 namespace Gb {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Gb::ScriptComponent::ScriptComponent(const std::shared_ptr<SceneObject>& object):
-    Component(object, kPythonScript)
+    Component(object, ComponentType::kPythonScript)
 {
     setSceneObject(sceneObject());
     sceneObject()->addComponent(this);
@@ -45,15 +45,6 @@ void ScriptComponent::reset()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void ScriptComponent::initializeBehavior(const QString& filepath)
 {
-    // If no base behavior defined, checkValidity it
-    QString baseScriptPath;
-#ifndef DEBUG_MODE
-    baseScriptPath = ":scripts/base_behavior.py"
-#else
-    baseScriptPath = QFileInfo(QFile("py_scripts:base_behavior.py")).absoluteFilePath();
-#endif
-    m_engine->resourceCache()->getScript(baseScriptPath);
-
     // Return if no filepath
     QFile file(filepath);
     if (!file.exists()) {
@@ -66,7 +57,8 @@ void ScriptComponent::initializeBehavior(const QString& filepath)
     // Set script for this component
     // Note: Adds script to the scenario (and python) if not present
     m_path = filepath;
-    m_script = m_engine->resourceCache()->getScript(filepath);
+    m_script = m_engine->resourceCache()->guaranteeHandleWithPath(m_path, 
+        Resource::kPythonScript)->resourceAs<PythonClassScript>();
 
     // Start the process for this script component
     m_scriptProcess = std::make_shared<ScriptedProcess>(

@@ -747,7 +747,7 @@ public:
         return type_index == detail::direct_type<recursive_wrapper<T>, Types...>::index;
     }
 
-    VARIANT_INLINE bool valid() const
+    VARIANT_INLINE bool isValid() const
     {
         return type_index != detail::invalid_value;
     }
@@ -974,7 +974,7 @@ public:
     // equality
     VARIANT_INLINE bool operator==(Variant const& rhs) const
     {
-        assert(valid() && rhs.valid());
+        assert(isValid() && rhs.isValid());
         if (this->which() != rhs.which())
         {
             return false;
@@ -991,7 +991,7 @@ public:
     // less than
     VARIANT_INLINE bool operator<(Variant const& rhs) const
     {
-        assert(valid() && rhs.valid());
+        assert(isValid() && rhs.isValid());
         if (this->which() != rhs.which())
         {
             return this->which() < rhs.which();

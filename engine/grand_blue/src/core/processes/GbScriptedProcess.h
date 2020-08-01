@@ -5,7 +5,7 @@
 #ifndef GB_SCRIPTED_PROCESS_H
 #define GB_SCRIPTED_PROCESS_H
 // External
-#include <PythonQt.h>
+#include "../../third_party/pythonqt/PythonQt.h"
 
 // QT
 

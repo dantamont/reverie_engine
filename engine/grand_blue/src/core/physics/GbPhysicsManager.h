@@ -87,16 +87,22 @@ public:
     static physx::PxDefaultCpuDispatcher* dispatcher() { return m_dispatcher; }
 
     /// @brief Pointers to all the physics scenes
-    static std::vector< std::shared_ptr<PhysicsScene>>& scenes() { return m_scenes; }
+    static std::vector<std::shared_ptr<PhysicsScene>>& scenes() { return m_scenes; }
 
     /// @brief Pointers to all the physics shapes
-    static std::unordered_map<QString, std::shared_ptr<PhysicsShapePrefab>>& shapes() { return m_shapes; }
+    /// @details Shapes are indexed by unique name
+    static const std::shared_ptr<PhysicsShapePrefab>& DefaultShape() {
+        return s_shapes[DefaultShapeKey()];
+    }
+    static void RemoveShape(const std::shared_ptr<PhysicsShapePrefab>& prefab);
+    static void RenameShape(const std::shared_ptr<PhysicsShapePrefab>& prefab, const QString& name);
+    static const std::unordered_map<QString, std::shared_ptr<PhysicsShapePrefab>>& shapes() { return s_shapes; }
 
     /// @brief Pointers to all baked physics geometry
-    static std::unordered_map<QString, std::shared_ptr<PhysicsGeometry>>& geometry() { return m_geometry; }
+    static std::unordered_map<QString, std::shared_ptr<PhysicsGeometry>>& geometry() { return s_geometry; }
 
     /// @brief Pointers to all physics materials
-    static std::unordered_map<QString, std::shared_ptr<PhysicsMaterial>>& materials() { return m_materials; }
+    static std::unordered_map<QString, std::shared_ptr<PhysicsMaterial>>& materials() { return s_materials; }
 
     /// @brief Clear all geometry and materials
     static void clear();
@@ -106,6 +112,9 @@ public:
     static physx::PxVec3 toPhysX(const Vector3& vec3);
     static physx::PxVec3 toPhysX(const Vector3f& vec3);
     static Quaternion toQuaternion(const physx::PxQuat& quat);
+
+    static const QString& DefaultShapeKey() { return s_defaultShapeKey; }
+    static const QString& DefaultMaterialKey() { return s_defaultMaterialKey; }
 
     //--------------------------------------------------------------------------------------------
     /// @name Constructors/Destructor
@@ -164,6 +173,7 @@ protected:
     /// @name Friends
     /// @{
 
+    friend class PhysicsShapePrefab;
 
     /// @}
     //--------------------------------------------------------------------------------------------
@@ -204,15 +214,19 @@ protected:
     static std::vector<std::shared_ptr<PhysicsScene>> m_scenes;
 
     /// @brief Pointers to all physics shapes
-    static std::unordered_map<QString, std::shared_ptr<PhysicsShapePrefab>> m_shapes;
+    /// @details Shapes are indexed by name
+    static std::unordered_map<QString, std::shared_ptr<PhysicsShapePrefab>> s_shapes;
 
     /// @brief Pointers to all baked physics geometry
-    static std::unordered_map<QString, std::shared_ptr<PhysicsGeometry>> m_geometry;
+    static std::unordered_map<QString, std::shared_ptr<PhysicsGeometry>> s_geometry;
 
     /// @brief Pointers to all physics materials
-    static std::unordered_map<QString, std::shared_ptr<PhysicsMaterial>> m_materials;
+    static std::unordered_map<QString, std::shared_ptr<PhysicsMaterial>> s_materials;
 
     physx::PxPvd* m_pvd = nullptr;
+
+    static QString s_defaultShapeKey;
+    static QString s_defaultMaterialKey;
 
     /// @}
 

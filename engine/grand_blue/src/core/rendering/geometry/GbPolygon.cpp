@@ -230,7 +230,14 @@ PolygonCache::~PolygonCache()
 {
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<ResourceHandle> PolygonCache::getPolygon(const QString& polygonName)
+void PolygonCache::initializeCoreResources()
+{
+    // Create cube resource
+    std::shared_ptr<Mesh> cubeMesh = getCube();
+    cubeMesh->handle()->setCore(true);
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+std::shared_ptr<Mesh> PolygonCache::getPolygon(const QString& polygonName)
 {
     PolygonType type = typeFromName(polygonName);
     switch (type) {
@@ -263,7 +270,45 @@ std::shared_ptr<ResourceHandle> PolygonCache::getPolygon(const QString& polygonN
     return nullptr;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<ResourceHandle> PolygonCache::getGridPlane(const QString & gridName)
+std::shared_ptr<Mesh> PolygonCache::createPolygon(const QString& polygonName,
+    std::shared_ptr<ResourceHandle> handle)
+{
+    // If the polygon exists already, throw an error
+    auto exists = getExistingPolygon(polygonName);
+    if (exists) throw("Error, polygon already exists");
+
+    PolygonType type = typeFromName(polygonName);
+    switch (type) {
+    case kRectangle: {
+        return createSquare();
+    }
+    case kCube: {
+        return createCube();
+    }
+    case kLatLonSphere: {
+        return createUnitSphere(polygonName);
+    }
+    case kGridPlane: {
+        return createGridPlane(polygonName);
+    }
+    case kGridCube: {
+        return createGridCube(polygonName);
+    }
+    case kCylinder: {
+        return createCylinder(polygonName);
+    }
+    case kCapsule: {
+        return createCapsule(polygonName);
+    }
+    default:
+        throw("Error, polygon type not implemented");
+        break;
+    }
+
+    return nullptr;
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+std::shared_ptr<Mesh> PolygonCache::getGridPlane(const QString & gridName)
 {
     // Get grid of the correct grid size from a given grid name
     QStringList strings = gridName.split("_");
@@ -272,23 +317,20 @@ std::shared_ptr<ResourceHandle> PolygonCache::getGridPlane(const QString & gridN
     return getGridPlane(spacing, halfNumSpaces);
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<ResourceHandle> PolygonCache::getGridPlane(float spacing, int halfNumSpaces)
+std::shared_ptr<Mesh> PolygonCache::getGridPlane(float spacing, int halfNumSpaces)
 {
     // Check if grid exists
     const QString& gridStr = getGridPlaneName(spacing, halfNumSpaces);
-    if (m_engine->resourceCache()->handleWithName(gridStr, Resource::kMesh)) {
-        return m_engine->resourceCache()->getMesh(gridStr);
-    }
+    auto exists = getExistingPolygon(gridStr);
+    if (exists) return exists;
 
     // Create grid and resource handle
     std::shared_ptr<Mesh> grid = createGridPlane(spacing, halfNumSpaces);
-    auto handle = std::make_shared<ResourceHandle>(m_engine, grid, ResourceHandle::kPermanent);
-    m_engine->resourceCache()->insert(handle);
-
-    return handle;
+    addToCache(grid);
+    return grid;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<ResourceHandle> PolygonCache::getGridCube(const QString & gridName)
+std::shared_ptr<Mesh> PolygonCache::getGridCube(const QString & gridName)
 {
     // Get grid of the correct grid size from a given grid name
     QStringList strings = gridName.split("_");
@@ -297,23 +339,20 @@ std::shared_ptr<ResourceHandle> PolygonCache::getGridCube(const QString & gridNa
     return getGridCube(spacing, halfNumSpaces);
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<ResourceHandle> PolygonCache::getGridCube(float spacing, int halfNumSpaces)
+std::shared_ptr<Mesh> PolygonCache::getGridCube(float spacing, int halfNumSpaces)
 {
     // Check if grid exists
     const QString& gridStr = getGridCubeName(spacing, halfNumSpaces);
-    if (m_engine->resourceCache()->handleWithName(gridStr, Resource::kMesh)) {
-        return m_engine->resourceCache()->getMesh(gridStr);
-    }
+    auto exists = getExistingPolygon(gridStr);
+    if (exists) return exists;
 
     // Create grid and resource handle
     std::shared_ptr<Mesh> grid = createGridCube(spacing, halfNumSpaces);
-    auto handle = std::make_shared<ResourceHandle>(m_engine, grid, ResourceHandle::kPermanent);
-    m_engine->resourceCache()->insert(handle);
-
-    return handle;
+    addToCache(grid);
+    return grid;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<ResourceHandle> PolygonCache::getCylinder(const QString & cylinderName)
+std::shared_ptr<Mesh> PolygonCache::getCylinder(const QString & cylinderName)
 {
     // Get cylinder with correct specifications from name
     QStringList strings = cylinderName.split("_");
@@ -329,26 +368,23 @@ std::shared_ptr<ResourceHandle> PolygonCache::getCylinder(const QString & cylind
     return getCylinder(baseRadius, topRadius, height, sectorCount, stackCount);
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<ResourceHandle> PolygonCache::getCylinder(float baseRadius, float topRadius, 
+std::shared_ptr<Mesh> PolygonCache::getCylinder(float baseRadius, float topRadius, 
     float height, int sectorCount, int stackCount)
 {
     // Check if cylinder exists
     const QString& cylinderStr = getCylinderName(baseRadius, topRadius,
         height, sectorCount, stackCount);
-    if (m_engine->resourceCache()->handleWithName(cylinderStr, Resource::kMesh)) {
-        return m_engine->resourceCache()->getMesh(cylinderStr);
-    }
+    auto exists = getExistingPolygon(cylinderStr);
+    if (exists) return exists;
 
     // Create cylinder and resource handle
-    std::shared_ptr<Mesh> grid = createCylinder(baseRadius, topRadius,
+    std::shared_ptr<Mesh> cylinder = createCylinder(baseRadius, topRadius,
         height, sectorCount, stackCount);
-    auto handle = std::make_shared<ResourceHandle>(m_engine, grid, ResourceHandle::kPermanent);
-    m_engine->resourceCache()->insert(handle);
-
-    return handle;
+    addToCache(cylinder);
+    return cylinder;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<ResourceHandle> PolygonCache::getCapsule(const QString & capsuleName)
+std::shared_ptr<Mesh> PolygonCache::getCapsule(const QString & capsuleName)
 {
     // Get capsule with correct specifications from name
     QStringList strings = capsuleName.split("_");
@@ -357,55 +393,46 @@ std::shared_ptr<ResourceHandle> PolygonCache::getCapsule(const QString & capsule
     return getCapsule(radius, halfHeight);
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<ResourceHandle> PolygonCache::getCapsule(float radius, float halfHeight)
+std::shared_ptr<Mesh> PolygonCache::getCapsule(float radius, float halfHeight)
 {
     // Check if capsule exists
     const QString& capsuleStr = getCapsuleName(radius, halfHeight);
-    if (m_engine->resourceCache()->handleWithName(capsuleStr, Resource::kMesh)) {
-        return m_engine->resourceCache()->getMesh(capsuleStr);
-    }
+    auto exists = getExistingPolygon(capsuleStr);
+    if (exists) return exists;
 
     // Create capsule and resource handle
-    std::shared_ptr<Mesh> grid = createCapsule(radius, halfHeight);
-    auto handle = std::make_shared<ResourceHandle>(m_engine, grid, ResourceHandle::kPermanent);
-    m_engine->resourceCache()->insert(handle);
-
-    return handle;
+    std::shared_ptr<Mesh> capsule = createCapsule(radius, halfHeight);
+    addToCache(capsule);
+    return capsule;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<ResourceHandle> PolygonCache::getSquare()
+std::shared_ptr<Mesh> PolygonCache::getSquare()
 {
     // Check if rectangle exists
     const QString& rectStr = POLYGON_NAMES.at(kRectangle);
-    if (m_engine->resourceCache()->handleWithName(rectStr, Resource::kMesh)) {
-        return m_engine->resourceCache()->getMesh(rectStr);
-    }
+    auto exists = getExistingPolygon(rectStr);
+    if (exists) return exists;
 
     // Create square and resource handle
-    std::shared_ptr<Mesh> square = createRectangle(1, 1, 0, QOpenGLBuffer::StaticDraw);
-    auto handle = std::make_shared<ResourceHandle>(m_engine, square, ResourceHandle::kPermanent);
-    m_engine->resourceCache()->insert(handle);
-
-    return handle;
+    std::shared_ptr<Mesh> square = createSquare();
+    addToCache(square);
+    return square;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<ResourceHandle> PolygonCache::getCube()
+std::shared_ptr<Mesh> PolygonCache::getCube()
 {
     // Check if cube found
     const QString& cubeStr = POLYGON_NAMES.at(kCube);
-    if (m_engine->resourceCache()->handleWithName(cubeStr, Resource::kMesh)) {
-        return m_engine->resourceCache()->getMesh(cubeStr);
-    }
+    auto exists = getExistingPolygon(cubeStr);
+    if (exists) return exists;
 
     // Create cube if not found
-    std::shared_ptr<Mesh> cube = createCube(QOpenGLBuffer::StaticDraw);
-    auto handle = std::make_shared<ResourceHandle>(m_engine, cube, ResourceHandle::kPermanent);
-    m_engine->resourceCache()->insert(handle);
-
-    return handle;
+    std::shared_ptr<Mesh> cube = createCube();
+    addToCache(cube);
+    return cube;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<ResourceHandle> PolygonCache::getSphere(const QString & sphereName)
+std::shared_ptr<Mesh> PolygonCache::getSphere(const QString & sphereName)
 {
     // Get sphere of the correct grid size from a given sphere name
     QStringList strings = sphereName.split("_");
@@ -414,20 +441,39 @@ std::shared_ptr<ResourceHandle> PolygonCache::getSphere(const QString & sphereNa
     return getSphere(latSize, lonSize);
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<ResourceHandle> PolygonCache::getSphere(int latSize, int lonSize)
+std::shared_ptr<Mesh> PolygonCache::getSphere(int latSize, int lonSize)
 {
     // Check if sphere found
     const QString& sphereStr = getSphereName(latSize, lonSize);
-    if (m_engine->resourceCache()->handleWithName(sphereStr, Resource::kMesh)) {
-        return m_engine->resourceCache()->getMesh(sphereStr);
-    }
+    auto exists = getExistingPolygon(sphereStr);
+    if (exists) return exists;
 
     // Create sphere if not found
-    std::shared_ptr<Mesh> sphere = createUnitSphere(latSize, lonSize, QOpenGLBuffer::StaticDraw);
-    auto handle = std::make_shared<ResourceHandle>(m_engine, sphere, ResourceHandle::kPermanent);
-    m_engine->resourceCache()->insert(handle);
+    std::shared_ptr<Mesh> sphere = createUnitSphere(latSize, lonSize);
+    addToCache(sphere);
+    return sphere;
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+std::shared_ptr<Mesh> PolygonCache::getExistingPolygon(const QString & name) const
+{
+    auto handle = m_engine->resourceCache()->getHandleWithName(name, Resource::kMesh);
+    if (handle) {
+        return handle->resourceAs<Mesh>();
+    }
 
-    return handle;
+    return nullptr;
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+void PolygonCache::addToCache(const std::shared_ptr<Mesh>& mesh) const
+{
+    auto handle = ResourceHandle::create(m_engine, Resource::kMesh);
+    handle->setResourceType(Resource::kMesh);
+    handle->setName(mesh->getName());
+    handle->setUserGenerated(true);
+    handle->setResource(mesh, false);
+    handle->setIsLoading(true);
+    m_engine->resourceCache()->incrementLoadCount();
+    emit m_engine->resourceCache()->doneLoadingResource(handle); // Need to make sure that post-construction is called
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 QString PolygonCache::getGridPlaneName(float spacing, int halfNumSpaces)
@@ -458,12 +504,22 @@ QString PolygonCache::getSphereName(int numLatLines, int numLonLines)
     return QStringLiteral("latlonsphere") + "_" + QString::number(numLatLines) + "_" + QString::number(numLonLines);
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<Mesh> PolygonCache::createGridPlane(float spacing,
-    int halfNumSpaces,
-    QOpenGLBuffer::UsagePattern usage)
+std::shared_ptr<Mesh> PolygonCache::createGridPlane(const QString & name)
 {
-    // Define vertices
-    VertexArrayData vertexData;
+    // Get grid of the correct grid size from a given grid name
+    QStringList strings = name.split("_");
+    float spacing = (float)strings[1].toDouble();
+    int halfNumSpaces = strings[2].toInt();
+    std::shared_ptr<Mesh> grid = createGridPlane(spacing, halfNumSpaces);
+    return grid;
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+std::shared_ptr<Mesh> PolygonCache::createGridPlane(float spacing, int halfNumSpaces)
+{
+    // Construct mesh
+    QString gridStr = getGridPlaneName(spacing, halfNumSpaces);
+    auto mesh = std::make_shared<Mesh>(gridStr);
+    VertexArrayData& vertexData = mesh->vertexData();
 
     // Vertical lines
     float x = 0;
@@ -487,18 +543,26 @@ std::shared_ptr<Mesh> PolygonCache::createGridPlane(float spacing,
         Vec::EmplaceBack(vertexData.m_indices, count++);
     }
 
-    // Construct final mesh
-    QString gridStr = getGridPlaneName(spacing, halfNumSpaces);
-    auto mesh = std::make_shared<Mesh>(gridStr, std::move(vertexData), usage);
     return mesh;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<Mesh> PolygonCache::createGridCube(float spacing,
-    int halfNumSpaces,
-    QOpenGLBuffer::UsagePattern usage)
+std::shared_ptr<Mesh> PolygonCache::createGridCube(const QString & name)
 {
-    // Define vertices
-    VertexArrayData vertexData;
+    // Get grid of the correct grid size from a given grid name
+    QStringList strings = name.split("_");
+    float spacing = (float)strings[1].toDouble();
+    int halfNumSpaces = strings[2].toInt();
+    std::shared_ptr<Mesh> grid = createGridCube(spacing, halfNumSpaces);
+    return grid;
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+std::shared_ptr<Mesh> PolygonCache::createGridCube(float spacing,
+    int halfNumSpaces)
+{
+    // Construct mesh
+    QString gridStr = getGridCubeName(spacing, halfNumSpaces);
+    auto mesh = std::make_shared<Mesh>(gridStr);
+    VertexArrayData& vertexData = mesh->vertexData();
 
     // Vertical lines
     float x = 0;
@@ -538,19 +602,22 @@ std::shared_ptr<Mesh> PolygonCache::createGridCube(float spacing,
         }
     }
 
-
-
-
-    // Construct final mesh
-    QString gridStr = getGridCubeName(spacing, halfNumSpaces);
-    auto mesh = std::make_shared<Mesh>(gridStr, std::move(vertexData), usage);
     return mesh;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<Mesh> PolygonCache::createRectangle(real_g height, 
-    real_g width, real_g z,
-    QOpenGLBuffer::UsagePattern pattern)
+std::shared_ptr<Mesh> PolygonCache::createSquare()
 {
+    std::shared_ptr<Mesh> square = createRectangle(2, 2, 0);
+    return square;
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+std::shared_ptr<Mesh> PolygonCache::createRectangle(real_g height, 
+    real_g width, real_g z)
+{
+    const QString& rectStr = POLYGON_NAMES.at(kRectangle);
+    auto mesh = std::make_shared<Mesh>(rectStr);
+    VertexArrayData& meshData = mesh->vertexData();
+
     // Define vertex positions
     Vector3f p21(-0.5f * width, 0.5f * height, z);
     Vector3f p22(-0.5f * width, -0.5f * height, z);
@@ -563,7 +630,6 @@ std::shared_ptr<Mesh> PolygonCache::createRectangle(real_g height,
         3,1,2//bottom right triangle (v3, v1, v2)
     };
 
-    Gb::VertexArrayData meshData;
     meshData.m_indices.swap(indices);
 
     Color white = Color(QColor(255, 255, 255));
@@ -578,20 +644,20 @@ std::shared_ptr<Mesh> PolygonCache::createRectangle(real_g height,
     meshData.m_attributes.m_texCoords = { uv1, uv2, uv3, uv4 };
     meshData.m_attributes.m_colors = {whiteVec, whiteVec, whiteVec, whiteVec };
 
-    const QString& rectStr = POLYGON_NAMES.at(kRectangle);
-    auto mesh = std::make_shared<Mesh>(rectStr, std::move(meshData), pattern);
-
     return mesh;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<Mesh> PolygonCache::createCube(QOpenGLBuffer::UsagePattern pattern)
+std::shared_ptr<Mesh> PolygonCache::createCube()
 {
+    const QString& cubeStr = POLYGON_NAMES.at(kCube);
+    auto mesh = std::make_shared<Mesh>(cubeStr);
+    Gb::VertexArrayData& meshData = mesh->vertexData();
+
     // Color
     Color white = Color(QColor(255, 255, 255));
     Vector4f whiteVec = white.toVector4g();
 
     // Define vertices
-    Gb::VertexArrayData meshData;
     for (size_t i = 0; i < PolygonCache::CUBE_VERTEX_POSITIONS.size(); i++) {
         Vec::EmplaceBack(meshData.m_attributes.m_vertices, PolygonCache::CUBE_VERTEX_POSITIONS[i]);
         Vec::EmplaceBack(meshData.m_attributes.m_normals, PolygonCache::CUBE_NORMALS[i]);
@@ -600,18 +666,24 @@ std::shared_ptr<Mesh> PolygonCache::createCube(QOpenGLBuffer::UsagePattern patte
     }
     meshData.m_indices = PolygonCache::CUBE_VERTEX_INDICES;
 
-    const QString& cubeStr = POLYGON_NAMES.at(kCube);
-    auto mesh = std::make_shared<Mesh>(cubeStr, std::move(meshData), pattern);
-
     return mesh;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<Mesh> PolygonCache::createUnitSphere(int numLatLines,
-    int numLonLines, 
-    QOpenGLBuffer::UsagePattern pattern)
+std::shared_ptr<Mesh> PolygonCache::createUnitSphere(const QString & sphereName)
 {
-    // Define vertices
-    Gb::VertexArrayData meshData;
+    // Get sphere of the correct grid size from a given sphere name
+    QStringList strings = sphereName.split("_");
+    int latSize = strings[1].toInt();
+    int lonSize = strings[2].toInt();
+    return createUnitSphere(latSize, lonSize);
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+std::shared_ptr<Mesh> PolygonCache::createUnitSphere(int numLatLines, int numLonLines)
+{
+    // Construct mesh
+    const QString& sphereStr = getSphereName(numLatLines, numLonLines);
+    auto mesh = std::make_shared<Mesh>(sphereStr);
+    Gb::VertexArrayData& meshData = mesh->vertexData();
 
     float radius = 1.0;
     float x, y, z, xy;                              // vertex position
@@ -685,10 +757,26 @@ std::shared_ptr<Mesh> PolygonCache::createUnitSphere(int numLatLines,
         }
     }
 
-    // Construct final mesh
-    const QString& sphereStr = getSphereName(numLatLines, numLonLines);
-    auto mesh = std::make_shared<Mesh>(sphereStr, std::move(meshData), pattern);
     return mesh;
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+std::shared_ptr<Mesh> PolygonCache::createCylinder(const QString & name)
+{
+    // Get cylinder with correct specifications from name
+    QStringList strings = name.split("_");
+    float baseRadius = (float)strings[1].toDouble();
+    float topRadius = (float)strings[2].toDouble();
+    float height = (float)strings[3].toDouble();
+    int sectorCount = 36;
+    int stackCount = 1;
+    if (strings.size() >= 5) {
+        sectorCount = strings[4].toInt();
+        stackCount = strings[5].toInt();
+    }
+
+    std::shared_ptr<Mesh> cylinder = createCylinder(baseRadius, topRadius,
+        height, sectorCount, stackCount);
+    return cylinder;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 std::shared_ptr<Mesh> PolygonCache::createCylinder(float baseRadius, float topRadius, float height, 
@@ -696,15 +784,27 @@ std::shared_ptr<Mesh> PolygonCache::createCylinder(float baseRadius, float topRa
 {
     QString cylinderStr = getCylinderName(baseRadius, topRadius, height, sectorCount, stackCount);
     auto cylinder = Cylinder(baseRadius, topRadius, height, sectorCount, stackCount);
-    auto mesh = std::make_shared<Mesh>(cylinderStr, std::move(*cylinder.vertexData()), QOpenGLBuffer::StaticDraw);
+    auto mesh = std::make_shared<Mesh>(cylinderStr);
+    mesh->vertexData() = std::move(*cylinder.vertexData());
     return mesh;
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+std::shared_ptr<Mesh> PolygonCache::createCapsule(const QString & name)
+{
+    // Get capsule with correct specifications from name
+    QStringList strings = name.split("_");
+    float radius = (float)strings[1].toDouble();
+    float halfHeight = (float)strings[2].toDouble();
+    std::shared_ptr<Mesh> capsule = createCapsule(radius, halfHeight);
+    return capsule;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 std::shared_ptr<Mesh> PolygonCache::createCapsule(float radius, float halfHeight)
 {
     QString capsuleStr = getCapsuleName(radius, halfHeight);
     auto capsule = Capsule(radius, halfHeight);
-    auto mesh = std::make_shared<Mesh>(capsuleStr, std::move(*capsule.vertexData()), QOpenGLBuffer::StaticDraw);
+    auto mesh = std::make_shared<Mesh>(capsuleStr);
+    mesh->vertexData() = std::move(*capsule.vertexData());
     return mesh;
 }
 

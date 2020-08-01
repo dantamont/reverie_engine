@@ -5,7 +5,7 @@
 #ifndef GB_ANIMATION_PROCESS_H
 #define GB_ANIMATION_PROCESS_H
 // External
-#include <PythonQt.h>
+//#include <PythonQt.h>
 
 // QT
 

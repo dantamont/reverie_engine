@@ -6,6 +6,7 @@
 #include "../scene/GbSceneObject.h"
 #include "../components/GbCamera.h"
 #include "../components/GbCanvasComponent.h"
+#include "../components/GbModelComponent.h"
 #include "../components/GbTransformComponent.h"
 #include "../canvas/GbLabel.h"
 
@@ -16,7 +17,10 @@
 #include "../rendering/geometry/GbSkeleton.h"
 #include "../rendering/shaders/GbUniformBufferObject.h"
 
+#include "../rendering/renderer/GbMainRenderer.h"
+#include "../rendering/renderer/GbRenderCommand.h"
 #include "../rendering/renderer/GbRenderers.h"
+
 #include "../../view/GbWidgetManager.h"
 #include "../../view/GL/GbGLWidget.h"
 #include "../../view/tree/GbSceneTreeWidget.h"
@@ -29,7 +33,7 @@
 #include "../physics/GbPhysicsGeometry.h"
 #include "../physics/GbCharacterController.h"
 #include "../components/GbPhysicsComponents.h"
-#include "../components/GbLight.h"
+#include "../components/GbLightComponent.h"
 
 #include "../components/GbAnimationComponent.h"
 #include "../processes/GbAnimationProcess.h"
@@ -37,6 +41,8 @@
 
 #include "../../view/GL/GbGLWidget.h"
 #include "../../view/GbWidgetManager.h"
+
+#include "../utils/GbMemoryManager.h"
 
 namespace Gb {
 
@@ -53,13 +59,11 @@ DebugCoordinateAxes::DebugCoordinateAxes(CoreEngine* engine) :
     m_setUniforms(false)
 {
     // Get resources, and set them as core resources so they don't get removed
-    std::shared_ptr<ResourceHandle> cylinderHandle = engine->resourceCache()->polygonCache()->getCylinder(0.075f, 0.075f, m_columnHeight, 36, 1);
-    cylinderHandle->setCore(true);
-    m_cylinder = std::static_pointer_cast<Mesh>(cylinderHandle->resource(false));
+    m_cylinder = engine->resourceCache()->polygonCache()->getCylinder(0.075f, 0.075f, m_columnHeight, 36, 1);
+    m_cylinder->handle()->setCore(true);
 
-    std::shared_ptr<ResourceHandle> coneHandle = engine->resourceCache()->polygonCache()->getCylinder(0.2f, 0.0f, m_coneHeight, 36, 1);
-    coneHandle->setCore(true);
-    m_cone = std::static_pointer_cast<Mesh>(coneHandle->resource(false));
+    m_cone = engine->resourceCache()->polygonCache()->getCylinder(0.2f, 0.0f, m_coneHeight, 36, 1);
+    m_cone->handle()->setCore(true);
 
     // Initialize GL draw settings
     m_renderSettings.setShapeMode(GL_TRIANGLES);
@@ -91,62 +95,62 @@ DebugCoordinateAxes::~DebugCoordinateAxes()
 {
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void DebugCoordinateAxes::setTransform(Transform * transform)
+void DebugCoordinateAxes::setTransform(const std::shared_ptr<Transform>& transform)
 {
     m_transform = transform;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 void DebugCoordinateAxes::clear()
 {
-    m_transform = nullptr;
+    m_transform = std::make_shared<Transform>();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void DebugCoordinateAxes::bindUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram)
+void DebugCoordinateAxes::bindUniforms(ShaderProgram& shaderProgram)
 {
     Q_UNUSED(shaderProgram)
     if (!m_transform) return;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void DebugCoordinateAxes::releaseUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram)
+void DebugCoordinateAxes::releaseUniforms(ShaderProgram& shaderProgram)
 {
     Q_UNUSED(shaderProgram)
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void DebugCoordinateAxes::drawGeometry(const std::shared_ptr<ShaderProgram>& shaderProgram,
+void DebugCoordinateAxes::drawGeometry(ShaderProgram& shaderProgram,
     RenderSettings * settings)
 {
     Transform transform;
     if (m_transform) {
         transform = *m_transform;
     }
-    VertexArrayData* cylinderData = m_cylinder->meshData().begin()->second;
-    VertexArrayData* coneData = m_cone->meshData().begin()->second;
+    VertexArrayData& cylinderData = m_cylinder->vertexData();
+    VertexArrayData& coneData = m_cone->vertexData();
 
     // Initialize uniforms
     if (!m_setUniforms) {
-        shaderProgram->setUniformValue("xConeTransform", m_xConeTransform->worldMatrix());
-        shaderProgram->setUniformValue("xCylTransform", m_xCylinderTransform->worldMatrix());
-        shaderProgram->setUniformValue("yConeTransform", m_yConeTransform->worldMatrix());
-        shaderProgram->setUniformValue("yCylTransform", m_yCylinderTransform->worldMatrix());
-        shaderProgram->setUniformValue("zConeTransform", m_zConeTransform->worldMatrix());
-        shaderProgram->setUniformValue("zCylTransform", m_zCylinderTransform->worldMatrix());
+        shaderProgram.setUniformValue("xConeTransform", m_xConeTransform->worldMatrix());
+        shaderProgram.setUniformValue("xCylTransform", m_xCylinderTransform->worldMatrix());
+        shaderProgram.setUniformValue("yConeTransform", m_yConeTransform->worldMatrix());
+        shaderProgram.setUniformValue("yCylTransform", m_yCylinderTransform->worldMatrix());
+        shaderProgram.setUniformValue("zConeTransform", m_zConeTransform->worldMatrix());
+        shaderProgram.setUniformValue("zCylTransform", m_zCylinderTransform->worldMatrix());
         m_setUniforms = true;
     }
     // Set world matrix to rotation and translation of scene object
-    shaderProgram->setUniformValue("worldMatrix", transform.rotationTranslationMatrix());
+    shaderProgram.setUniformValue("worldMatrix", transform.rotationTranslationMatrix());
 
     // X-axis
     Vector4g color = Vector4g(0.0f, 0.0f, 0.0f, 1.0f);
     for (size_t i = 0; i < 3; i++) {
         color[i] = 1.0f;
         if (i != 0) color[i - 1] = 0.0f;
-        shaderProgram->setUniformValue("axis", (int)i);
-        shaderProgram->setUniformValue("color", color);
-        shaderProgram->setUniformValue("isCone", true, true);
-        coneData->drawGeometry(settings->shapeMode());
+        shaderProgram.setUniformValue("axis", (int)i);
+        shaderProgram.setUniformValue("color", color);
+        shaderProgram.setUniformValue("isCone", true, true);
+        coneData.drawGeometry(settings->shapeMode());
 
-        shaderProgram->setUniformValue("isCone", false, true);
-        cylinderData->drawGeometry(settings->shapeMode());
+        shaderProgram.setUniformValue("isCone", false, true);
+        cylinderData.drawGeometry(settings->shapeMode());
     }
 
     //shaderProgram->release();
@@ -160,9 +164,9 @@ DebugGrid::DebugGrid() :
     m_grid(Lines::getPlane(1.0, 100))
 {
     // Set the grid as a core resource
-    std::shared_ptr<ResourceHandle> handle =
+    std::shared_ptr<Mesh> grid = 
         CoreEngine::engines().begin()->second->resourceCache()->polygonCache()->getGridPlane(1.0, 100);
-    handle->setCore(true);
+    grid->handle()->setCore(true);
 
     // Set GL draw settings
     m_renderSettings.setShapeMode(GL_TRIANGLES);
@@ -175,9 +179,9 @@ DebugGrid::~DebugGrid()
 {
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void DebugGrid::bindUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram)
+void DebugGrid::bindUniforms(ShaderProgram& shaderProgram)
 {
-    shaderProgram->setUniformValue("lineColor", Vector4g(1.0, 1.0, 1.0, 1.0));
+    shaderProgram.setUniformValue("lineColor", Vector4g(1.0, 1.0, 1.0, 1.0));
 
 	if (!UBO::getCameraBuffer()) return;
     auto cameraBuffer = UBO::getCameraBuffer();
@@ -203,19 +207,19 @@ void DebugGrid::bindUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram
     m_grid->transform().rotateAboutAxis({ 1.0f, 0.0f, 0.0f }, Constants::PI_2);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void DebugGrid::releaseUniforms(const std::shared_ptr<Gb::ShaderProgram>& shaderProgram)
+void DebugGrid::releaseUniforms(Gb::ShaderProgram& shaderProgram)
 {
     Q_UNUSED(shaderProgram)
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void DebugGrid::drawGeometry(const std::shared_ptr<ShaderProgram>& shaderProgram, RenderSettings * settings)
+void DebugGrid::drawGeometry(ShaderProgram& shaderProgram, RenderSettings * settings)
 {
     // Draw outer grid
     Q_UNUSED(settings);
     m_grid->draw(shaderProgram);
 
     // Draw inner grid
-    Matrix3x3g worldMatrix3x3 = shaderProgram->getUniformValue("worldMatrix")->get<Matrix4x4g>();
+    Matrix3x3g worldMatrix3x3 = m_grid->transform().worldMatrix();
     worldMatrix3x3 *= (real_g)(1.0 / 10.0);
     Matrix4x4g worldMatrix(worldMatrix3x3);
     worldMatrix.setTranslation({ 0.0f, -0.05f, 0.0f });
@@ -236,7 +240,8 @@ void DebugGrid::drawGeometry(const std::shared_ptr<ShaderProgram>& shaderProgram
 DebugManager::DebugManager(CoreEngine* engine) :
     Manager(engine, "Debug Manager"),
     m_raycast(std::make_unique<Raycast>()),
-    m_fpsCounter(nullptr)
+    m_fpsCounter(nullptr),
+    m_debugRenderLayer(std::make_shared<SortingLayer>(QStringLiteral("Debug"), 100))
 {
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -251,52 +256,57 @@ CameraComponent * DebugManager::camera()
     return m_cameraObject->camera();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void DebugManager::draw(std::shared_ptr<Scene> scene)
+void DebugManager::draw(const std::shared_ptr<Scene>& scene)
 {
+    // Make sure to bind camera buffer uniforms!
+    camera()->camera().bindUniforms();
     drawStatic();
-    drawDynamic(scene);
+    if (scene != m_scene) {
+        drawDynamic(scene);
+    }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void DebugManager::drawDynamic(std::shared_ptr<Scene> scene)
+void DebugManager::drawDynamic(const std::shared_ptr<Scene>& scene)
 {
     // Render component-specific renderables
     for (const std::shared_ptr<SceneObject>& so : scene->topLevelSceneObjects()) {
 
-        const std::unordered_map<Component::ComponentType, std::vector<Component*>>& components = so->components();
-        for (const auto& componentMapPair : components) {
+        const std::vector<std::vector<Component*>>& components = so->components();
+        size_t count = 0;
+        for (const auto& componentVec : components) {
             // Iterate through scene object components
-            Component::ComponentType componentType = componentMapPair.first;
-            for (const auto& component : componentMapPair.second) {
+            Component::ComponentType componentType = Component::ComponentType(count);
+            for (const auto& component : componentVec) {
 
                 // Draw debug renderable based on component type
                 DebugRenderable* renderable = nullptr;
                 switch (componentType) {
-                case Component::kTransform: {
+                case Component::ComponentType::kTransform: {
                     // Handled separately
                     break;
                 }
-                case Component::kRigidBody: {
+                case Component::ComponentType::kRigidBody: {
                     RigidBodyComponent* rigidBodyComp = static_cast<RigidBodyComponent*>(component);
                     // TODO: Draw if disabled, just grey
-                    for (const auto& shapePair : rigidBodyComp->body()->shapes()) {
-                        const PhysicsShapePrefab& shape = shapePair.second.prefab();
-                        drawPhysicsShape(shape, *so->transform(),
+                    for (const auto& shape : rigidBodyComp->body()->shapes()) {
+                        const PhysicsShapePrefab& prefab = shape.prefab();
+                        drawPhysicsShape(prefab, *so->transform(),
                             rigidBodyComp->isEnabled());
                     }
                     break;
                 }
-                case Component::kBoneAnimation: {
+                case Component::ComponentType::kBoneAnimation: {
                     BoneAnimationComponent* comp = static_cast<BoneAnimationComponent*>(component);
                     drawAnimation(comp);
                     break;
                 }
-                case Component::kCharacterController: {
+                case Component::ComponentType::kCharacterController: {
                     CharControlComponent* comp = static_cast<CharControlComponent*>(component);
                     drawCharacterController(comp);
                     break;
                 }
-                case Component::kLight: {
-                    Light* comp = static_cast<Light*>(component);
+                case Component::ComponentType::kLight: {
+                    LightComponent* comp = static_cast<LightComponent*>(component);
                     drawLight(comp);
                     break;
                 }
@@ -307,6 +317,8 @@ void DebugManager::drawDynamic(std::shared_ptr<Scene> scene)
                     renderable->draw();
                 }
             }
+
+            count++;
         }
     }
 
@@ -319,7 +331,13 @@ void DebugManager::drawDynamic(std::shared_ptr<Scene> scene)
 
         // Set uniforms
         transformRenderable->m_shaderProgram->bind();
-        debugAxes->setTransform(so->transform().get());
+        debugAxes->setTransform(so->transform());
+        transformRenderable->m_shaderProgram->updateUniforms();
+        //for (const auto& uniform : transformRenderable->m_shaderProgram->uniforms()) {
+        //    logInfo(QString(uniform));
+        //}
+        //logInfo(UBO::getCameraBuffer()->getUniformValue("viewMatrix"));
+        //logWarning("------------");
         transformRenderable->draw();
     }
 
@@ -330,8 +348,8 @@ void DebugManager::drawDynamic(std::shared_ptr<Scene> scene)
 void DebugManager::drawStatic()
 {
     // Render label and icon for scene object location
-    m_textCanvas.m_shaderProgram->bind();
-    m_textCanvas.draw();
+    //m_textCanvas.m_shaderProgram->bind();
+    //m_textCanvas.draw();
 
     for (auto it = m_staticRenderables.begin(); it != m_staticRenderables.end();) {
 
@@ -375,9 +393,40 @@ void DebugManager::drawDoodads()
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
+void DebugManager::createDrawCommands(Scene& scene, MainRenderer & renderer)
+{
+    // Text commands
+    std::shared_ptr<ShaderProgram> textProgram = m_engine->resourceCache()->getHandleWithName("text",
+        Resource::kShaderProgram)->resourceAs<ShaderProgram>();
+    std::vector<std::shared_ptr<DrawCommand>> drawCommands;
+    m_textCanvas->createDrawCommands(drawCommands,
+        camera()->camera(),
+        *textProgram);
+
+    // For frustum culling, create bounding boxes
+    //std::vector<std::shared_ptr<RenderCommand>>& sceneCommands = renderer.receivedCommands();
+    //for (const auto& command : sceneCommands) {
+    //    auto drawCommand = S_CAST<DrawCommand>(command);
+    //    BoundingBoxes& boxes = drawCommand->renderable()->boundingBoxes();
+    //    for (const auto& box : boxes.geometry()) {
+    //        createDrawCommand(box, drawCommands);
+    //    }
+    //}
+    for (const std::shared_ptr<SceneObject>& so : scene.topLevelSceneObjects()) {
+        createDrawCommand(*so, drawCommands);
+    }
+
+
+    // Add commands to debug layer
+    for (const auto& command : drawCommands) {
+        command->setRenderLayer(m_debugRenderLayer.get());
+        renderer.addRenderCommand(command);
+    }
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
 void DebugManager::step(unsigned long deltaMs)
 {
-    if (!m_postConstructionDone) return;
+    if (!m_engine->isConstructed()) return;
     if (!m_cameraObject) {
         return;
     }
@@ -400,20 +449,6 @@ void DebugManager::step(unsigned long deltaMs)
         m_fpsCounter->setText(QString::number(fps, 'g', 3));
     }
 
-    // For testing
-    //for (const auto& scenePair:  m_engine->scenario()->getScenes()) {
-    //    const std::shared_ptr<Scene>& scene = scenePair.second;
-    //    for (const std::shared_ptr<SceneObject>& so : scene->topLevelSceneObjects()) {
-            //if (so->characterController()) {
-            //    so->characterController()->move({ 0.01, 0, 0 });
-            //}
-    //        if (so->boneAnimation()) {
-    //            const Skeleton& skelly = 
-    //                so->boneAnimation()->animationController()->getMesh()->skeleton();
-    //            IKChain testChain(skelly);
-    //        }
-    //    }
-    //}
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 void DebugManager::postConstruction()
@@ -423,22 +458,19 @@ void DebugManager::postConstruction()
     m_scene->setName("Debug Objects");
 
     // Set up canvas
-    auto canvas = std::make_shared<CanvasComponent>(m_engine);
-    canvas->setName("Debug Canvas");
-    auto textProgram = m_engine->resourceCache()->getShaderProgramByFilePath(
-        ":/shaders/text.frag",
-        ":/shaders/text.vert");
-    m_textCanvas = { canvas, textProgram, canvas };
-    std::shared_ptr<Label> mainLabel = std::make_shared<Label>(canvas.get(), "Debug View",
+    m_textCanvas = std::make_shared<CanvasComponent>(m_engine);
+    m_textCanvas->setName("Debug Canvas");
+
+    std::shared_ptr<Label> mainLabel = std::make_shared<Label>(m_textCanvas.get(), "Debug View",
         "arial", 30);
     mainLabel->setToGui();
     mainLabel->setFaceCamera(true);
     mainLabel->setOnTop(true);
     mainLabel->setCoordinates({ 0.0f, 0.95f });
     mainLabel->setAlignment(Glyph::kMiddle, Glyph::kCenter);
-    canvas->addGlyph(mainLabel);
+    m_textCanvas->addGlyph(mainLabel);
 
-    m_fpsCounter = std::make_shared<Label>(canvas.get(), "0",
+    m_fpsCounter = std::make_shared<Label>(m_textCanvas.get(), "0",
         "courier", 30);
     m_fpsCounter->setToGui();
     m_fpsCounter->setFaceCamera(true);
@@ -446,64 +478,62 @@ void DebugManager::postConstruction()
     m_fpsCounter->setCoordinates({ -0.97f, 0.95f });
     m_fpsCounter->setColor(Color(Vector3g(0.4f, 0.2f, 0.7f)));
     m_fpsCounter->setAlignment(Glyph::kMiddle, Glyph::kLeft);
-    canvas->addGlyph(m_fpsCounter);
+    m_textCanvas->addGlyph(m_fpsCounter);
+
+    // Set up camera
+    initializeCamera();
 
     // Set up grid
     // TODO: Use actual infinite ground plane
     // https://github.com/martin-pr/possumwood/wiki/Infinite-ground-plane-using-GLSL-shaders
-    m_lineShaderProgram = m_engine->resourceCache()->getShaderProgramByFilePath(
-        ":/shaders/lines.frag",
-        ":/shaders/lines.vert");
+    m_lineShaderProgram = m_engine->resourceCache()->getHandleWithName("lines",
+        Resource::kShaderProgram)->resourceAs<ShaderProgram>();
     auto grid = std::make_shared<DebugGrid>();
     m_staticRenderables["grid"] = { grid, m_lineShaderProgram, grid };
 
     // Set up a line plane
-    auto plane = Lines::getPlane(1.0, 1000);
+    std::shared_ptr<Lines> plane = Lines::getPlane(1.0, 1000, int(ResourceHandle::kCore));
     m_dynamicRenderables["plane"] = { plane, m_lineShaderProgram, plane };
 
     // Set up line and point box
-    auto box = Lines::getCube();
+    std::shared_ptr<Lines> box = Lines::getCube(int(ResourceHandle::kCore));
     m_dynamicRenderables["cube"] = { box, m_lineShaderProgram, box };
 
     std::shared_ptr<Points> boxPoints = std::make_shared<Points>(*box);
     m_dynamicRenderables["pointCube"] = { boxPoints , m_pointShaderProgram, boxPoints };
 
     // Set up line and point sphere
-    auto sphere = Lines::getSphere(20, 30);
+    std::shared_ptr<Lines> sphere = Lines::getSphere(20, 30, int(ResourceHandle::kCore));
     m_dynamicRenderables["sphere"] = { sphere, m_lineShaderProgram, sphere };
 
     std::shared_ptr<Points> spherePoints = std::make_shared<Points>(*sphere);
     m_dynamicRenderables["pointSphere"] = { spherePoints , m_pointShaderProgram, spherePoints };
 
     // Set up simple shader program
-    m_simpleShaderProgram = m_engine->resourceCache()->getShaderProgramByFilePath(
-        ":/shaders/simple.frag",
-        ":/shaders/simple.vert");
+    m_simpleShaderProgram = m_engine->resourceCache()->getHandleWithName("simple",
+        Resource::kShaderProgram)->resourceAs<ShaderProgram>();
 
     // Set up point shader program
-    m_pointShaderProgram = m_engine->resourceCache()->getShaderProgramByFilePath(
-        ":/shaders/points.frag",
-        ":/shaders/points.vert");
+    m_pointShaderProgram = m_engine->resourceCache()->getHandleWithName("points",
+        Resource::kShaderProgram)->resourceAs<ShaderProgram>();
 
     // Set up coordinate axes
-    m_axisShaderProgram = m_engine->resourceCache()->getShaderProgramByFilePath(
-        ":/shaders/axes.frag",
-        ":/shaders/axes.vert");
+    m_axisShaderProgram = m_engine->resourceCache()->getHandleWithName("axes",
+        Resource::kShaderProgram)->resourceAs<ShaderProgram>();
     auto coordinateAxes = std::make_shared<DebugCoordinateAxes>(m_engine);
     m_dynamicRenderables["coordinateAxes"] = { coordinateAxes, m_axisShaderProgram , coordinateAxes };
     m_staticRenderables["coordinateAxes"] = m_dynamicRenderables["coordinateAxes"];
 
     // Create debug skeleton program
-    m_debugSkeletonProgram = m_engine->resourceCache()->getShaderProgramByFilePath(
-        ":/shaders/debug_skeleton.frag",
-        ":/shaders/debug_skeleton.vert");
+    m_debugSkeletonProgram = m_engine->resourceCache()->getHandleWithName("debug_skeleton",
+        Resource::kShaderProgram)->resourceAs<ShaderProgram>();
 
     auto skeletonPoints = std::make_shared<Points>(100);
     skeletonPoints->renderSettings().addSetting(std::make_shared<DepthSetting>(false));
     m_dynamicRenderables["skeletonPoints"] = { skeletonPoints, m_debugSkeletonProgram, skeletonPoints};
 
     // Set renderable for raycast hit
-    auto raycastHit = Lines::getPrism(0.25f, 0.0f, 2.0f, 6, 1);
+    auto raycastHit = Lines::getPrism(0.25f, 0.0f, 2.0f, 6, 1, int(ResourceHandle::kCore));
     m_dynamicRenderables["raycastHit"] = {raycastHit, m_lineShaderProgram, raycastHit};
 
     // Set GL widget
@@ -528,10 +558,10 @@ void DebugManager::loadFromJson(const QJsonValue & json)
         m_cameraObject = m_scene->getSceneObjectByName("Debug Camera");
     }
     else {
-        initializeCamera();
         m_cameraObject->loadFromJson(object.value("cameraObject"));
     }
 
+    m_cameraObject->camera()->camera().cameraOptions().setFlag(Camera::kShowAllRenderLayers, true);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 void DebugManager::processRaycasts() {
@@ -539,6 +569,8 @@ void DebugManager::processRaycasts() {
     bool hit;
 
     if (!m_glWidget->underMouse()) return;
+
+    if (!m_engine->scenario()) return;
 
     for (const std::pair<Uuid, std::shared_ptr<Scene>>& scenePair : m_engine->scenario()->getScenes()) {
         // Skip if the scene has no physics
@@ -582,6 +614,7 @@ void DebugManager::initializeCamera()
         {CameraController::kRotate, true},
         {CameraController::kTilt, true}
     };
+    m_cameraObject->camera()->camera().cameraOptions().setFlag(Camera::kShowAllRenderLayers, true);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 InputHandler& DebugManager::inputHandler() const
@@ -650,6 +683,7 @@ void DebugManager::drawPhysicsShape(const PhysicsShapePrefab& shape,
         // Set line and world space uniforms
         std::shared_ptr<Lines> lines = std::static_pointer_cast<Lines>(
             m_dynamicRenderables["cube"].object());
+        lines->drawFlags().setFlag(Lines::DrawFlag::kIgnoreWorldMatrix, false);
         lines->setLineColor(lineColor);
         lines->setLineThickness(lineThickness);
         lines->setConstantScreenThickness(true);
@@ -664,7 +698,7 @@ void DebugManager::drawPhysicsShape(const PhysicsShapePrefab& shape,
         points->setPointColor(pointColor);
         points->setPointSize(pointSize);
         points->transform().updateWorldMatrix(worldMatrix);
-        points->draw(m_pointShaderProgram);
+        points->draw(*m_pointShaderProgram);
         break;
     }
     case PhysicsGeometry::kSphere: {
@@ -689,7 +723,7 @@ void DebugManager::drawPhysicsShape(const PhysicsShapePrefab& shape,
         points->setPointColor(pointColor);
         points->setPointSize(pointSize);
         points->transform().updateWorldMatrix(worldMatrix);
-        points->draw(m_pointShaderProgram);
+        points->draw(*m_pointShaderProgram);
         break;
     }
     case PhysicsGeometry::kPlane: {
@@ -762,6 +796,7 @@ void DebugManager::drawRaycastContact()
 /////////////////////////////////////////////////////////////////////////////////////////////
 void DebugManager::clear()
 {
+    // Delete coordinate axes to avoid crash
     QString coordAxesStr = QStringLiteral("coordinateAxes");
     if (Map::HasKey(m_dynamicRenderables, coordAxesStr)) {
         DebugRenderable* coordAxes = &m_dynamicRenderables[coordAxesStr];
@@ -769,36 +804,44 @@ void DebugManager::clear()
             coordAxes->m_renderable);
         debugAxes->clear();
     }
+
+    // 
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 void DebugManager::drawAnimation(BoneAnimationComponent * animComp)
 {
+    // FIXME: Get rid of unused uniform warnings in ShaderProgram::updateUniforms from:
+    // color, etc.
     // Bind shader program
     if (!m_debugSkeletonProgram) return;
     m_debugSkeletonProgram->bind();
 
-    auto mesh = animComp->animationController()->getMesh();
-    if (!mesh) return;
+    auto model = animComp->animationController()->getModel();
+    if (!model) return;
+
+    if (model->skeleton()->handle()->isLoading()) {
+        return;
+    }
 
     // Get renderable
     Points& points = *std::static_pointer_cast<Points>(
         m_dynamicRenderables["skeletonPoints"].m_renderable);
 
     // Bind uniforms
-    animComp->bindUniforms(m_debugSkeletonProgram);
+    animComp->bindUniforms(*m_debugSkeletonProgram);
     points.setPointColor({1.0f, 0.0f, 1.0f, 1.0f});
     points.setPointSize(0.005f);
     points.transform().updateWorldMatrix(animComp->sceneObject()->transform()->worldMatrix());
     
     // Get colors
-    Skeleton skeleton = mesh->skeleton().prunedBoneSkeleton();
+    Skeleton skeleton = model->skeleton()->prunedBoneSkeleton();
     IKChain chain(skeleton);
     std::vector<Vector4g> colors(points.numPoints());
     size_t idx;
     Vector4g color;
     for (const auto& nodePair : skeleton.nodes()) {
-        MeshNode* node = nodePair.second;
+        SkeletonJoint* node = nodePair.second;
         if (!node->hasBone()) continue;
 
         idx = node->bone().m_index;
@@ -822,7 +865,15 @@ void DebugManager::drawAnimation(BoneAnimationComponent * animComp)
     m_debugSkeletonProgram->setUniformValue("colors", colors);
 
     // Draw skeleton points
-    points.draw(m_debugSkeletonProgram);
+    points.draw(*m_debugSkeletonProgram);
+
+    //auto boneTransforms = m_debugSkeletonProgram->getUniformValue("boneTransforms")->get<std::vector<Matrix4x4g>>();
+    //for (const auto& t : boneTransforms) {
+    //    auto point = animComp->sceneObject()->transform()->worldMatrix() * t * Vector4g(0.0f, 0.0f, 0.0f, 1.0f);
+    //    logInfo(QString(point));
+    //}
+    //logWarning("-----------");
+
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -871,9 +922,7 @@ void DebugManager::drawCharacterController(CharControlComponent * comp)
             // Set line and world space uniforms
             if (!Map::HasKey(m_dynamicRenderables, name)) {
                 std::shared_ptr<Lines> lines = Lines::getCapsule(radius, halfHeight);
-                auto capsule = std::static_pointer_cast<Mesh>(
-                    m_engine->resourceCache()->polygonCache()->getCylinder(
-                        radius, halfHeight)->resource(false));
+                auto capsule = m_engine->resourceCache()->polygonCache()->getCylinder(radius, halfHeight);
                 m_dynamicRenderables[name] = {lines, m_lineShaderProgram, comp->sceneObject()};
             }
             std::shared_ptr<Lines> lines = std::static_pointer_cast<Lines>(m_dynamicRenderables[name].m_renderable);
@@ -885,7 +934,7 @@ void DebugManager::drawCharacterController(CharControlComponent * comp)
             lines->transform().updateWorldMatrix(worldMatrix);
 
             // Draw outer capsule (with contact offset)
-            lines->draw(m_lineShaderProgram);
+            lines->draw(*m_lineShaderProgram);
 
             //// Draw inner capsule
             //float offset = comp->controller()->getContactOffset();
@@ -909,12 +958,13 @@ void DebugManager::drawCharacterController(CharControlComponent * comp)
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
-void DebugManager::drawLight(Light * light)
+void DebugManager::drawLight(LightComponent * light)
 {
     if (!m_simpleShaderProgram) return;
 
     // Get color and world matrix uniforms
-    Vector4g color = light->getDiffuseColor().toVector4g();
+    Vector4g color = light->light().getDiffuseColor();
+    light->unbindLightBuffer();
     if (!light->isEnabled()) {
         color = Vector4g(0.5f, 0.5f, 0.5f, 0.75f);
     }
@@ -924,15 +974,57 @@ void DebugManager::drawLight(Light * light)
     m_simpleShaderProgram->bind();
     
     // Get geometry and set uniforms
-    const auto& sphereHandle = m_engine->resourceCache()->polygonCache()->getSphere(20, 30);
+    const auto& sphereMesh = m_engine->resourceCache()->polygonCache()->getSphere(20, 30);
     
     m_simpleShaderProgram->setUniformValue("worldMatrix", worldMatrix);
     m_simpleShaderProgram->setUniformValue("color", color, true);
 
     // Draw outer capsule (with contact offset)
-    auto mesh = std::static_pointer_cast<Mesh>(sphereHandle->resource(false));
-    mesh->meshData().begin()->second->drawGeometry(GL_TRIANGLES);
+    sphereMesh->vertexData().drawGeometry(GL_TRIANGLES);
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+void DebugManager::createDrawCommand(SceneObject& so, std::vector<std::shared_ptr<DrawCommand>>& outDrawCommands)
+{
+    // Draw bounding boxes (slow, need to only draw for visible geometry)
+    //if (so.hasComponent(Component::ComponentType::kModel)) {
+    //    ModelComponent* modelComp = so.modelComponent();
+
+    //    for (const BoundingBoxes& boxes : modelComp->bounds()) {
+    //        for (const AABB& box : boxes.geometry()) {
+    //            std::shared_ptr<Lines> lineCube = S_CAST<Lines>(m_dynamicRenderables["cube"].m_renderable);
+    //            
+    //            // FIXME: Set this during draw call
+    //            lineCube->drawFlags().setFlag(Lines::DrawFlag::kIgnoreWorldMatrix, true);
+    //            lineCube->setLineColor(Vector4g(1.0f, 0.0f, 1.0f, 1.0f));
+    //            lineCube->setLineThickness(0.1f);
+    //            lineCube->setConstantScreenThickness(false);
+    //            lineCube->setFadeWithDistance(false);
+    //            lineCube->setUseMiter(false);
+
+    //            Matrix4x4g worldMatrix;
+    //            std::vector<Vector3g> points;
+    //            box.getPoints(points);
+
+    //            Vector3g scale = box.getDimensions();
+    //            worldMatrix(0, 0) = scale.x();
+    //            worldMatrix(1, 1) = scale.y();
+    //            worldMatrix(2, 2) = scale.z();
+
+    //            Vector3g origin = box.getOrigin();
+    //            worldMatrix.setTranslation(origin);
+    //            lineCube->transform().updateWorldMatrix(worldMatrix);
+
+    //            auto command = std::make_shared<DrawCommand>(*lineCube,
+    //                *m_lineShaderProgram,
+    //                camera()->camera());
+    //            command->setUniform(Uniform("worldMatrix", worldMatrix));
+    //            outDrawCommands.push_back(command);
+    //        }
+    //    }
+    //}
+}
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////

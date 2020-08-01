@@ -48,6 +48,7 @@ void GLWidget::addRenderProjection(RenderProjection * rp)
 void GLWidget::clear()
 {
     m_renderProjections.clear();
+    m_renderer->requestResize();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 void GLWidget::resizeEvent(QResizeEvent * event)
@@ -67,7 +68,7 @@ void GLWidget::resizeEvent(QResizeEvent * event)
 void GLWidget::initializeGL()
 {
 	// Needed to checkValidity GL
-	m_renderer = std::make_shared<GL::MainRenderer>(m_engine, this);
+	m_renderer = std::make_shared<MainRenderer>(m_engine, this);
 	m_renderer->initialize();
 
     // Emit signal that GL context is initialized
@@ -79,6 +80,7 @@ void GLWidget::resizeGL(int w, int h)
     Q_UNUSED(w);
     Q_UNUSED(h);
     if (m_engine->scenario()) {
+        m_renderer->requestResize();
         m_renderer->render();
     }
 }
@@ -86,6 +88,9 @@ void GLWidget::resizeGL(int w, int h)
 void GLWidget::paintGL()
 {
     if (m_engine->scenario()) {
+        // This is called from the main simloop's update routine (GLWidget::update())
+        // TODO: Separate processScenes and render logic into different loops
+        m_renderer->processScenes(); 
         m_renderer->render();
     }
 }

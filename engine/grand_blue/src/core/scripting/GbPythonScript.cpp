@@ -1,6 +1,6 @@
 #include "GbPythonScript.h"
 
-#include <PythonQtConversion.h>
+#include "../../third_party/pythonqt/PythonQtConversion.h"
 #include "GbPythonAPI.h"
 #include "../GbCoreEngine.h"
 #include "../readers/GbFileReader.h"
@@ -113,12 +113,14 @@ void PythonBehaviorWrapper::on_abort(PythonBehavior* o)
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 PythonScript::PythonScript(CoreEngine * engine) :
+    Resource(kPythonScript),
     m_engine(engine)
 {
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 PythonScript::PythonScript(CoreEngine * engine, const QString & filepath) :
     Loadable(filepath),
+    Resource(kPythonScript),
     m_engine(engine)
 {
 }
@@ -142,7 +144,7 @@ void PythonScript::loadFromJson(const QJsonValue & json)
 {
     QJsonObject object = json.toObject();
 #ifdef DEBUG_MODE
-    QString objStr = JsonReader::getJsonValueAsQString(object);
+    QString objStr = JsonReader::ToQString(object);
 #endif
     if (object.contains("filePath")) {
         // Check for non-null filepath before loading
@@ -240,7 +242,7 @@ QJsonValue PythonClassScript::asJson() const
 {
     QJsonObject jsonObject = PythonScript::asJson().toObject();
     if (m_sortingLayer) {
-        jsonObject.insert("executionLayerName", m_sortingLayer->m_label);
+        jsonObject.insert("executionLayerName", m_sortingLayer->getName());
     }
 
     return jsonObject;

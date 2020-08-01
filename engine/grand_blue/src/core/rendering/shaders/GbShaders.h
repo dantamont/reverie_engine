@@ -19,6 +19,7 @@
 #include "../GbGLFunctions.h"
 #include "GbUniform.h"
 #include "../../containers/GbContainerExtensions.h"
+#include "../../resource/GbResource.h"
 
 namespace Gb { 
 
@@ -30,9 +31,24 @@ class ShaderProgram;
 class CubeMap;
 class Model;
 class UBO;
+class Light;
+template<typename T> class ShaderStorageBuffer;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Class Definitions
+/////////////////////////////////////////////////////////////////////////////////////////////
+/// @brief struct containing a shader buffer's metadata
+struct ShaderBufferInfo {
+
+    QString m_name; // Name of the buffer
+    GL::BufferType m_bufferType = GL::BufferType::kShaderStorage;
+    size_t m_bufferBinding = 0; // the index of the buffer binding point associated with the active shader storage block
+    unsigned long m_bufferDataSize = 0; // the minimum size in bytes to hold active variables 
+    size_t m_numActiveVariables = 0; // the number of active variables associated with the block
+};
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 /// @brief Class representing an openGL shader
 /// @detailed Note that QT's abstraction of the shader program is bizarre... "I can't tell what's worse: 
@@ -43,11 +59,13 @@ class UBO;
 /// - mediump for texture coordinates,
 /// - lowp for colors.
 /// @}
-class Shader : public Gb::Object, public Serializable{
+class Shader : public Gb::Object, public Loadable{
 public:
     //---------------------------------------------------------------------------------------
     /// @name Static
     /// @{
+
+    static QStringList Builtins;
 
     /// @}
 
@@ -73,14 +91,24 @@ public:
     //---------------------------------------------------------------------------------------/
     /// @name Statics
     /// @{
+    enum ShaderFlags
+    {
+        kVertexFlag = 0x0001,
+        kFragmentFlag = 0x0002,
+        kGeometryFlag = 0x0004, //  (requires OpenGL >= 4.0 or OpenGL ES >= 3.2).
+        kTessellationControlFlag = 0x0008, //  (requires OpenGL >= 4.0 or OpenGL ES >= 3.2).
+        kTessellationEvaluationFlag = 0x0010, //  (requires OpenGL >= 4.0 or OpenGL ES >= 3.2).
+        kComputeFlag = 0x0020 // (requires OpenGL >= 4.3 or OpenGL ES >= 3.1).
+    };
+
     enum ShaderType
     {
-        kVertex = 0x0001,
-        kFragment = 0x0002,
-        kGeometry = 0x0004, //  (requires OpenGL >= 4.0 or OpenGL ES >= 3.2).
-        kTessellationControl = 0x0008, //  (requires OpenGL >= 4.0 or OpenGL ES >= 3.2).
-        kTessellationEvaluation = 0x0010, //  (requires OpenGL >= 4.0 or OpenGL ES >= 3.2).
-        kCompute = 0x0020 // (requires OpenGL >= 4.3 or OpenGL ES >= 3.1).
+        kVertex = 0,
+        kFragment = 1,
+        kGeometry = 2, //  (requires OpenGL >= 4.0 or OpenGL ES >= 3.2).
+        kCompute = 3, // (requires OpenGL >= 4.3 or OpenGL ES >= 3.1).
+        kTessellationControl = 4, //  (requires OpenGL >= 4.0 or OpenGL ES >= 3.2).
+        kTessellationEvaluation = 5 //  (requires OpenGL >= 4.0 or OpenGL ES >= 3.2).
     };
 
     /** @brief Obtain map of ShaderType to corresponding GL type
@@ -96,14 +124,13 @@ public:
     Shader(){}
     Shader(const QJsonValue& json);
     Shader(const QString& file, ShaderType type);
+    Shader(const QString& file, ShaderType type, bool deferConstruction=true);
     ~Shader();
     /// @{
     //---------------------------------------------------------------------------------------/
     /// @name Properties
     /// @{
     unsigned int getID() const { return m_shaderID; }
-
-    const QString& getPath() const { return m_filePath; }
 
     bool isValid() const { return m_isValid; }
 
@@ -165,13 +192,11 @@ protected:
 	/// @{
 
     /// @brief Whether or not the shader loaded successfully
-    bool m_isValid;
+    bool m_isValid = false;
 
     ShaderType m_type;
 
     unsigned int m_shaderID;
-
-    QString m_filePath;
 
     /// @brief For all OpenGL operations
     GL::OpenGLFunctions m_gl;
@@ -183,7 +208,7 @@ protected:
     std::vector<ShaderStruct> m_uniformBuffers;
 
     /// @brief The uniforms in the shader
-    std::vector<UniformInfo> m_uniforms;
+    std::vector<ShaderInputInfo> m_uniforms;
 
     /// @brief Define values (integers needed for array sizes)
     std::unordered_map<QString, int> m_defines;
@@ -211,18 +236,11 @@ protected:
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-/// @brief Shader program type (based on source files)
-enum ShaderProgramType {
-    kGeneric = -1,
-    kBasic,
-    kCubemap
-};
-
 /// @brief Class representing an openGL shader program
 /// @detailed Note that QT's abstraction of the shader program is bizarre... "I can't tell what's worse: 
 /// that they made setAttributeBuffer a member of a type that has absolutely nothing to do with vertex state"
 class ShaderProgram: 
-    public Object,
+    public Resource,
     public Serializable
     //std::enable_shared_from_this<ShaderProgram> 
 {
@@ -232,8 +250,10 @@ public:
     /// @name Static
     /// @{
 
-    /// @brief Create from JSON
-    static std::shared_ptr<ShaderProgram> create(const QJsonValue& json);
+    /// @brief Create a handle to a shader resource
+    static std::shared_ptr<ResourceHandle> createHandle(CoreEngine* engine, const QJsonValue& json);
+
+    static ShaderProgram* CurrentlyBound() { return s_boundShader; }
 
     /// @}
 
@@ -243,7 +263,7 @@ public:
     ShaderProgram();
     ShaderProgram(const ShaderProgram& shaderProgram);
     ShaderProgram(const QJsonValue& json);
-    ShaderProgram(const QString& vertfile, const QString& fragfile, ShaderProgramType type=kGeneric);
+    ShaderProgram(const QString& vertfile, const QString& fragfile);
     virtual ~ShaderProgram();
     /// @}
 
@@ -252,16 +272,17 @@ public:
     /// @name Properties
     /// @{
 
+    size_t getProgramID() const { return m_programID; }
+
+    const std::vector<Uniform>& uniforms() const { return m_uniforms; }
+
     bool isValid() const;
     
     /// @brief Whether or not the shader is bound to a context
     inline bool isBound() const { 
-        if (!BOUND_SHADER) return false;
-        return m_uuid == BOUND_SHADER->getUuid(); 
+        if (!s_boundShader) return false;
+        return m_uuid == s_boundShader->getUuid(); 
     }
-
-    /// @brief Return type of shader
-    inline ShaderProgramType programType() { return m_programType; }
 
     /// @brief Return the fragment shader
     const Shader* getFragShader() const;
@@ -286,6 +307,9 @@ public:
     /// @name Public Methods
     /// @{   
 
+    /// @brief Whether the shader has the buffer with the given name and type
+    bool hasBuffer(const QString& name, GL::BufferType type, int* outIndex = nullptr);
+
     /// @brief updates uniforms that are present in the queue
     bool updateUniforms();
 
@@ -293,12 +317,13 @@ public:
     void setName();
 
     /// @brief Whether or not the given string is a valid uniform in the shader
-    bool hasUniform(const QString& uniformName) const;
+    bool hasUniform(const QString& uniformName, int* localIndex = nullptr) const;
     bool hasCachedUniform(const QString& uniformName, std::vector<Uniform>::const_iterator& iter) const;
 
     /// @brief Get the the given uniform
     inline const Uniform* getUniformValue(const QString& uniformName) const {
-        if (!hasUniform(uniformName)) {
+        int uniformID = -1;
+        if (!hasUniform(uniformName, &uniformID)) {
             std::vector<Uniform>::const_iterator iter;
             if (!hasCachedUniform(uniformName, iter)) {
                 return nullptr;
@@ -307,7 +332,7 @@ public:
                 return &(*iter);
             }
         }
-        return &m_uniforms.at(uniformName);
+        return &m_uniforms[uniformID];
     }
     /// @brief starts the program
     /// @detailed upon binding, any uniforms in the queue will be updated
@@ -330,6 +355,16 @@ public:
 
     /// @brief Sets the value of the given uniform in GL, given the uniform ID
     // TODO: Implement
+
+    /// @brief Override resource's post-construction routine
+    virtual void postConstruction() override;
+
+    /// @brief What action to perform on removal of the resource
+    virtual void onRemoval(ResourceCache* cache = nullptr) override {
+        Q_UNUSED(cache)
+    }
+
+    void clearUniforms();
 
     /// @}
 
@@ -363,24 +398,12 @@ protected:
 
     /// @brief Obtain the ID of the uniform corresponding to the given string
     /// See: https://www.khronos.org/registry/OpenGL-Refpages/es2.0/xhtml/glUniform.xml
-    inline GLuint getUniformID(const QString& uniformName) {
-        int id;
-        if (m_uniformInfo.find(uniformName) != m_uniformInfo.end()) {
-            // If uniform name found in uniform info (will be found unless is an array uniform)
-            id = m_uniformInfo.at(uniformName).m_uniformID;
-            if (id < 0) {
-                // If id not assigned, assign
-                id = m_gl.glGetUniformLocation(m_programID, uniformName.toStdString().c_str());
-                if (id > 0) {
-                    m_uniformInfo.at(uniformName).m_uniformID = id;
-                }
-            }
-        }
-        else {
-            id = m_gl.glGetUniformLocation(m_programID, uniformName.toStdString().c_str());
-            m_uniformInfo[uniformName] = {uniformName, "", false, id};
-        }
-        return id;
+    GLuint getUniformID(const QString& uniformName);
+
+    /// @brief Obtain the ID of the uniform corresponding to the given string
+    /// See: https://www.khronos.org/registry/OpenGL-Refpages/es2.0/xhtml/glUniform.xml
+    inline GLuint getUniformIDGL(const QString& uniformName) {
+        return m_gl.glGetUniformLocation(m_programID, uniformName.toUtf8().constData());
     }
 
     /// @brief Sets the value of the given uniform in GL, given the string
@@ -478,6 +501,27 @@ protected:
     /// @details See: https://learnopengl.com/Advanced-OpenGL/Advanced-GLSL
     void bindUniformBlock(const QString& blockName);
 
+    /// @brief Get uniform info
+    // See: https://stackoverflow.com/questions/440144/in-opengl-is-there-a-way-to-get-a-list-of-all-uniforms-attribs-used-by-a-shade
+    void getActiveUniforms(std::vector<ShaderInputInfo>& outInfo);
+
+    /// @brief Get active shader storage blocks
+    // See: https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glGetProgramResource.xhtml
+    void getActiveSSBs(std::vector<ShaderBufferInfo>& outInfo);
+
+    /// @brief Get attribute info
+    // See: https://stackoverflow.com/questions/440144/in-opengl-is-there-a-way-to-get-a-list-of-all-uniforms-attribs-used-by-a-shade
+    void getActiveAttributes(std::vector<ShaderInputInfo>& outInfo);
+
+    /// @brief Get number of active uniforms
+    GLint getNumActiveUniforms();
+
+    /// @brief Get number of active buffers of the specified type
+    GLint getNumActiveBuffers(GL::BufferType type);
+
+    /// @brief Get number of active attributes
+    GLint getNumActiveAttributes();
+
 	/// @}
 
 	//---------------------------------------------------------------------------------------
@@ -490,129 +534,39 @@ protected:
     /// @brief Lock data for multithreading
     QMutex m_mutex;
 
-    /// @brief Type of shader program
-    ShaderProgramType m_programType;
-
     /// @brief For all OpenGL operations
     GL::OpenGLFunctions m_gl;
 
     /// @brief Map of all shaders associated with the shader program
     /// @details Typically is just a vertex and a fragment shader
-    std::unordered_map<Shader::ShaderType, Shader> m_shaders;
+    std::vector<Shader> m_shaders;
 
 	/// @brief Queue for uniforms that need to be updated in GL
 	std::vector<Uniform> m_uniformQueue;
 
-    /// @brief Map of uniforms names and their values
-    std::unordered_map<QString, Uniform> m_uniforms;
+    /// @brief Vector of uniforms names and their values
+    std::vector<Uniform> m_uniforms;
 
-    /// @brief Map of uniforms names with corresponding GLSL info
-    std::unordered_map<QString, UniformInfo> m_uniformInfo;
+    /// @brief Map of uniform names with corresponding GLSL info
+    std::unordered_map<QString, ShaderInputInfo> m_uniformInfo;
+
+    /// @brief Vector of buffer info
+    std::vector<ShaderBufferInfo> m_bufferInfo;
+
+    /// @brief Light buffer
+    ShaderStorageBuffer<Light>* m_lightBuffer = nullptr;
 
     /// @brief Map of uniform buffers associated with this shader program
     std::unordered_map<QString, std::shared_ptr<UBO>> m_uniformBuffers;
 
     /// @brief The currently bound shader program
-    static ShaderProgram* BOUND_SHADER;
+    static ShaderProgram* s_boundShader;
 
 	/// @}
 };
 typedef std::shared_ptr<ShaderProgram> ShaderProgramPtr;
 Q_DECLARE_METATYPE(ShaderProgramPtr)
 
-/////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////
-/// @brief BasicShaderProgram
-/// @brief Class for a basic vertex-coloring shader program
-class BasicShaderProgram : public ShaderProgram {
-public:
-	//---------------------------------------------------------------------------------------//
-	/// @name Static
-	/// @{
-	/// @brief Shader program mode (based on uniforms)
-	enum BasicShaderMode {
-		kSimple = 0,
-		kColor,
-		kTextureColor,
-        kNormal,
-        kTextureNormal
-	};
-
-	/// @}
-
-	//---------------------------------------------------------------------------------------//
-	/// @name Constructors/Destructors
-	/// @{    
-    BasicShaderProgram();
-    BasicShaderProgram(const QJsonValue& json);
-    ~BasicShaderProgram();
-	/// @}
-
-    //---------------------------------------------------------------------------------------
-    /// @name Properties
-    /// @{
-
-    /// @property className
-    /// @brief The name of this class
-    virtual const char* className() const { return "BasicShaderProgram"; }
-
-    /// @property namespaceName
-    /// @brief The full namespace for this class
-    virtual const char* namespaceName() const { return "Gb::GL::BasicShaderProgram"; }
-    /// @}
-
-	//---------------------------------------------------------------------------------------//
-	/// @name Public Methods
-	/// @{   
-	/// @}
-
-protected:
-};
-Q_DECLARE_METATYPE(BasicShaderProgram)
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-/// @brief Class for shading cubemaps
-class CubemapShaderProgram : public ShaderProgram {
-public:
-    //---------------------------------------------------------------------------------------//
-    /// @name Static
-    /// @{
-
-    /// @}
-
-    //---------------------------------------------------------------------------------------//
-    /// @name Constructors/Destructors
-    /// @{    
-    CubemapShaderProgram();
-    CubemapShaderProgram(const QJsonValue& json);
-    ~CubemapShaderProgram();
-    /// @}
-
-    //---------------------------------------------------------------------------------------
-    /// @name Properties
-    /// @{
-    /** @property className
-        @brief The name of this class
-    */
-    virtual const char* className() const { return "CubemapShaderProgram"; }
-
-    /** @property namespaceName
-        @brief The full namespace for this class
-    */
-    virtual const char* namespaceName() const { return "Gb::CubemapShaderProgram"; }
-    /// @}
-
-    //---------------------------------------------------------------------------------------//
-    /// @name Public Methods
-    /// @{   
-
-    /// @}
-protected:
-
-};
-Q_DECLARE_METATYPE(CubemapShaderProgram)
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////

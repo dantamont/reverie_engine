@@ -159,15 +159,17 @@ protected:
     /// @{
 
     /// @brief Actions performable in this widget
-    QAction* m_addRendererComponent;
+    QAction* m_addShaderComponent;
     QAction* m_addCameraComponent;
     QAction* m_addLightComponent;
     QAction* m_addScriptComponent;
     QAction* m_addModelComponent;
+    QAction* m_addAnimationComponent;
     QAction* m_addListenerComponent;
     QAction* m_addRigidBodyComponent;
     QAction* m_addCanvasComponent;
     QAction* m_addCharControllerComponent;
+    QAction* m_addCubeMapComponent;
 
     /// @brief Actions to add scene components
     QAction* m_addPhysicsSceneComponent;

@@ -13,6 +13,8 @@ DESTDIR    = ../lib
 CONFIG += qt
 CONFIG -= flat
 
+# Set compiler flags /////////////////////////////////////////////////////////////
+QMAKE_CXXFLAGS += /MP # Multiprocess compile, much faster
 
 # allow to choose static linking through the environment variable PYTHONQT_STATIC
 PYTHONQT_STATIC = $$(PYTHONQT_STATIC)
@@ -39,6 +41,22 @@ TARGET = $$replace(TARGET, PythonXY, Python$${PYTHON_VERSION})
 
 include ( src.pri )  
 
+# debug_and_release {
+# CONFIG -= debug_and_release
+# CONFIG += debug_and_release
+# }
+
+# CONFIG(debug, debug|release) {
+# CONFIG -= debug_and_release
+# CONFIG -= debug release
+# CONFIG += debug
+# }
+
+# CONFIG(release, debug|release) {
+# CONFIG -= debug_and_release
+# CONFIG -= debug release
+# CONFIG += release
+# }
 include($${PYTHONQT_GENERATED_PATH}/com_trolltech_qt_core_builtin/com_trolltech_qt_core_builtin.pri)
 include($${PYTHONQT_GENERATED_PATH}/com_trolltech_qt_gui_builtin/com_trolltech_qt_gui_builtin.pri)
 

@@ -9,29 +9,113 @@
 
 // Internal
 #include "GbComponent.h"
-#include "../geometry/GbMatrix.h"
+#include "../geometry/GbCollisions.h"
 #include "../rendering/view/GbRenderProjection.h"
+#include "../rendering/view/GbFrameBuffer.h"
+#include "../containers/GbSortingLayer.h"
 
 namespace Gb {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // Forward Declarations
 //////////////////////////////////////////////////////////////////////////////////////////////////
+class Camera;
 class CoreEngine;
 class TransformComponent;
 class SceneObject;
 
 class RenderProjection;
 class ShaderProgram;
-namespace GL {
 class MainRenderer;
-}
 class InputHandler;
+class CubeMapComponent;
+class FrameBuffer;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // Class definitions
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
+/// @brief Describes the view frustum for a camera
+/// @details Currently 36 bytes
+class Frustum: public Object {
+public:
+
+    //---------------------------------------------------------------------------------------
+    /// @name Static
+    /// @{
+
+    enum Plane {
+        kLeft,
+        kRight,
+        kTop,
+        kBottom,
+        kNear,
+        kFar
+    };
+
+    /// @}
+
+    //---------------------------------------------------------------------------------------
+    /// @name Constructors/Destructor
+    /// @{
+
+    Frustum(Camera* camera);
+    ~Frustum();
+
+    /// @}
+
+    //---------------------------------------------------------------------------------------
+    /// @name Public methods
+    /// @{
+
+    /// @brief Initialize the frustum
+    void initialize();
+
+    /// @brief Normalize the planes of the frustum
+    void normalizePlanes();
+
+    /// @brief Checks whether or not the given geometry is inside the frustum
+    bool contains(const CollidingGeometry& geometry) const;
+    bool contains(const Vector3g& point) const;
+
+    /// @}
+
+    //-----------------------------------------------------------------------------------------------------------------
+    /// @name GB object Properties
+    /// @{
+    /// @property className
+    const char* className() const override { return "Frustum"; }
+
+    /// @property namespaceName
+    const char* namespaceName() const override { return "Gb::Frustum"; }
+
+    /// @}
+
+private:
+    //---------------------------------------------------------------------------------------
+    /// @name Private Methods
+    /// @{
+
+    void initialize(const Matrix4x4g& viewMatrix, const Matrix4x4g& projectionMatrix);
+
+    /// @}
+
+    //---------------------------------------------------------------------------------------
+    /// @name Private Members
+    /// @{
+
+    Camera* m_camera;
+
+    /// @brief The culling planes for the frustum
+    /// @details All planes have normals facing inside the frustum
+    std::vector<BoundingPlane> m_planes;
+
+    /// @}
+};
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////
 /// @brief Settings for viewport
 /// @details Currently 36 bytes
 class Viewport: Serializable {
@@ -49,7 +133,8 @@ public:
     /// @}
 
     /// @brief Set viewport in GL
-    void setGLViewport(const GL::MainRenderer& r) const;
+    void setGLViewport(const MainRenderer& r) const;
+    void resizeFrameBuffer(const MainRenderer& r, FrameBuffer& fbo) const;
 
     /// @brief The order of viewport rendering, larger is rendered later (on top)
     int m_depth = 0;
@@ -71,18 +156,29 @@ public:
 //////////////////////////////////////////////////////////////////////////////////////////////////
 /// @class Camera
 /// @brief Camera view in GL
-class Camera : public Object, public Serializable {
+class Camera : public Object, public Serializable, private GL::OpenGLFunctions {
 public:
     //---------------------------------------------------------------------------------------
     /// @name Static
     /// @{
+
+    /// @brief Flags for toggling camera settings
+    enum CameraOption {
+        kFrustumCulling = (1 << 0), // Flag to toggle frustum culling
+        kOcclusionCulling = (1 << 1), // Flag to toggle occlusion culling
+        kShowAllRenderLayers = (1 << 2), // Flag to force rendering of all render layers, even those unassociated with the camera
+        kEnablePostProcessing = (1 << 3), // Flag to enable post-processing effects
+        kUseZBufferPass = (1 << 4) // Flag to make a zbuffer pass before rendering scene
+    };
+    typedef QFlags<CameraOption> CameraOptions;
+
     /// @}
 
     //---------------------------------------------------------------------------------------
     /// @name Constructors/Destructor
     /// @{
 
-    Camera();
+    //Camera();
     Camera(CameraComponent* component);
     ~Camera();
 
@@ -91,6 +187,15 @@ public:
     //---------------------------------------------------------------------------------------
     /// @name Properties
     /// @{
+
+    /// @brief The view frustum for the camera
+    const Frustum& frustum() const { return m_frustum; }
+
+    /// @brief The framebuffer that this camera renders into
+    FrameBuffer& frameBuffer() { return m_frameBuffer; }
+
+    /// @brief Camera options (flags)
+    CameraOptions& cameraOptions() { return m_cameraOptions; }
 
     /// @brief Viewport settings
     const Viewport& getViewport() const { return m_viewport; }
@@ -102,12 +207,22 @@ public:
     /// @brief The view matrix for this camera
     const Matrix4x4f& getViewMatrix() { return m_viewMatrix; }
 
+    size_t index() const { return m_index; }
+
+    /// @brief Get depth of an object (world-space) given its position
+    /// @brief Positive is behind camera
+    float getDepth(const Vector3g& position);
+
+    std::vector<std::weak_ptr<SortingLayer>>& _renderLayers() { return m_renderLayers; }
 
     /// @}
 
     //---------------------------------------------------------------------------------------
     /// @name Public Methods
     /// @{
+
+    /// @brie Render a framebuffer quad to screen
+    void drawFrameBufferQuad(MainRenderer& r);
 
     /// @brief Conversions between world and widget space
     void widgetToWorldSpace(const Vector3g& widgetSpace, Vector3g& worldSpace) const;
@@ -117,7 +232,7 @@ public:
     /// @details should take in a GL-widget space mouse position (e.g., from widgetMousePosition of input handelr)
     // See: http://antongerdelan.net/opengl/raycasting.html
     void widgetToRayDirection(const Vector2g& widgetSpace, Vector3g& outRayDirection,
-        const GL::MainRenderer& renderer);
+        const MainRenderer& renderer);
 
     /// @brief The position of the camera in world-space
     Vector3g eye() const;
@@ -139,7 +254,7 @@ public:
 
     /// @brief Translate the camera, given a change in screen-space (NDC coordinates)
     /// @details Note that the specified target will change as a result of this operation
-    void translate(Vector3g & target, const Vector2g& moveDelta, real_g speedFactor = real_g(1.0));
+    void translate(Vector3g & target, const Vector3g& moveDelta, real_g speedFactor = real_g(1.0));
 
     /// @brief Rotate about a target point, given a screen-space mouse change in positiion
     void rotateAboutPoint(const Vector3g& target, const Vector2g& mouseDelta, real_g speedFactor = real_g(1.0));
@@ -148,12 +263,14 @@ public:
     void setLookAt(const Vector3g& eye, const Vector3g& target, const Vector3g& up);
 
     /// @brief Set viewport in GL
-    void setGLViewport(const GL::MainRenderer& r);
+    void setGLViewport(const MainRenderer& r);
+
+    /// @brief Resize the camera's framebuffer to accomodate the given renderer
+    void resizeFrameBuffer(const MainRenderer& r);
 
     /// @brief Set uniforms related to the camera
     /// @details e.g. View matrix, projection matrix, etc.
     void bindUniforms();
-    //void bindUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram);
 
     /// @}
 
@@ -186,6 +303,7 @@ protected:
     /// @{
 
     friend class TransformComponent;
+    friend class CameraComponent;
     //friend class Gb::SceneObject;
 
     /// @}
@@ -199,8 +317,11 @@ protected:
     /// @brief Update the transform to reflect this camera's view matrix
     void updateTransform();
 
-    /// @brief compute view matrix given a world matrix
-    void computeViewMatrix(const Matrix4x4f& worldMatrix);
+    /// @brief compute view matrix and frustum given a world matrix
+    void updateViewMatrix(const Matrix4x4f& worldMatrix);
+
+    /// @brief Updates the frustum with the latest view/projection matrices from the camera
+    void updateFrustum();
 
     /// @brief Calculate look-at matrix given the eye, target, and up vectors
     /// @details Eye is the camera position, target is the point being aimed at, and up is analogous
@@ -208,12 +329,24 @@ protected:
     /// See: https://www.3dgep.com/understanding-the-view-matrix/
     static Matrix4x4g lookAtRH(const Vector3g& eye, const Vector3g& target, const Vector3g& up);
 
+    void setIndex();
+
+    std::vector<std::shared_ptr<SortingLayer>> renderLayers();
+    std::vector<std::shared_ptr<SortingLayer>> getRenderLayers() const;
+
+    void setDefaultRenderLayers();
 
     /// @}
 
     //---------------------------------------------------------------------------------------
     /// @name Protected Members
     /// @{
+
+    /// @brief The framebuffer that this camera renders onto
+    FrameBuffer m_frameBuffer;
+
+    /// @brief Miscellaneous options for the camera
+    CameraOptions m_cameraOptions;
 
     /// @brief The camera component that owns this camera
     CameraComponent* m_component;
@@ -229,9 +362,24 @@ protected:
     /// @details 132 bytes in size
     RenderProjection m_renderProjection;
 
+    /// @brief The view frustum for the camera
+    Frustum m_frustum;
+
+    /// @brief The index of the camera for use in sort key
+    size_t m_index;
+
+    /// @brief Vector of rendering layers drawn by this camera
+    std::vector<std::weak_ptr<SortingLayer>> m_renderLayers;
+
+    /// @brief IDs to be used again
+    static std::vector<size_t> s_deletedIndices;
+
+    /// @brief Camera count
+    static size_t s_cameraCount;
+
     /// @}
 };
-
+typedef QFlags<Camera::CameraOption> CameraOptions;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -275,7 +423,7 @@ public:
         //Vector3g m_target;
 
         real_g m_zoomScaling = real_g(-0.25);
-        Vector2g m_translateScaling = Vector2g(real_g(1.0), real_g(1.0));
+        Vector3g m_translateScaling = Vector3g(real_g(1.0), real_g(1.0), real_g(1.0));
         Vector2g m_rotateScaling = Vector2g(real_g(1.0), real_g(-1.0));
         Vector2g m_panScaling = Vector2g(real_g(-1.0), real_g(1.0));
         Vector2g m_tiltScaling = Vector2g(real_g(-1.0), real_g(1.0));
@@ -394,6 +542,9 @@ public:
     /// @brief Max number of allowed components per scene object
     virtual int maxAllowed() const override { return 1; }
 
+    const UUID& cubeMapID() const { return m_cubeMapID; }
+    void setCubeMapID(const UUID& cm) { m_cubeMapID = cm; }
+
     /// @}
 
     //---------------------------------------------------------------------------------------
@@ -401,7 +552,8 @@ public:
     /// @{
 
     /// @brief Draw scene
-    void drawScene(std::shared_ptr<Scene> scene, const GL::MainRenderer& renderer);
+    void createDrawCommands(Scene& scene, MainRenderer& renderer);
+    void createDebugDrawCommands(Scene& scene, MainRenderer& renderer);
 
     /// @}
 
@@ -447,6 +599,7 @@ protected:
 
     Camera m_camera;
     CameraController m_controller;
+    Uuid m_cubeMapID = Uuid(false);
 
     /// @}
 };

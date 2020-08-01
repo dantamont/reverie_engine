@@ -4,175 +4,16 @@
 #include <QDebug>
 
 // internal
+#include "../../utils/GbMemoryManager.h"
 #include "../../GbCoreEngine.h"
 #include "../../resource/GbResourceCache.h"
 #include "../shaders/GbShaders.h"
 #include "../../processes/GbProcess.h"
 #include "../../readers/GbJsonReader.h"
 #include "../GbGLFunctions.h"
+#include "QGLFramebufferObject"
 
 namespace Gb {
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-TextureData::TextureData(bool isBump)
-{
-    initialize(isBump);
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-TextureData::~TextureData()
-{
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-void TextureData::initialize(bool isBump)
-{
-    if (isBump) {
-        m_properties.m_imfChannel = 'l';
-    }
-    else {
-        m_properties.m_imfChannel = 'm';
-    }
-}
-
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////
-// Texture
-/////////////////////////////////////////////////////////////////////////////////////////////
-const std::unordered_map<Texture::TextureType, QString> Texture::TYPE_TO_UNIFORM_MAP = {
-    {kDiffuse, "material.diffuseTexture"},
-    {kNormalMap, "material.normalMap"}
-};
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-Texture::Texture(const QString & filePath, TextureType type):
-    Resource(kTexture),
-    m_texture(QOpenGLTexture::Target2D), // Does not create underlying OpenGL object, so safe without context
-    m_type(type)
-{
-    // Load image
-    initialize(filePath);
-
-    // Run post-construction if on the main thread, otherwise return
-    if (Process::isMainThread()) {
-        postConstruction();
-    }
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-Texture::Texture(const Image & image, TextureType type,
-    QOpenGLTexture::Filter minFilter,
-    QOpenGLTexture::Filter magFilter,
-    QOpenGLTexture::WrapMode wrapMode):
-    Resource(kTexture),
-    m_image(image),
-    m_texture(QOpenGLTexture::Target2D), // Does not create underlying OpenGL object, so safe without context
-    m_type(type),
-    m_minFilter(minFilter),
-    m_magFilter(magFilter),
-    m_wrapMode(wrapMode)
-{
-    setCost();
-
-    // Run post-construction if on the main thread, otherwise return
-    if (Process::isMainThread()) {
-        postConstruction();
-    }
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-Texture::~Texture()
-{
-    // Destroy underlying GL texture on destruction
-    // Requires a current valid OpenGL context
-    //if (!QOpenGLContext::currentContext()) {
-    //    throw("Error, no current OpenGL context found");
-    //}
-    destroy();
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-void Texture::bind(int texUnit)
-{
-    if (texUnit > -1) {
-        // Texture unit was specified
-        m_texture.bind(size_t(texUnit));
-    }
-    else {
-        m_texture.bind();
-    }
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-void Texture::onRemoval(ResourceCache* cache)
-{
-    Q_UNUSED(cache)
-    // Destroy GL-side texture on resource removal
-    destroy();
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-void Texture::postConstruction()
-{
-#ifdef DEBUG_MODE
-    logConstructedWarning();
-    if (m_isConstructed) {
-        return;
-    }
-    GL::OpenGLFunctions functions;
-    bool error = functions.printGLError("Error before constructing texture");
-#else
-    if (m_isConstructed) {
-        return;
-    }
-#endif
-
-    // Set image for GL texture, mirrored to have (0,0) texture coordinate at the lower left
-    m_texture.setData(m_image.m_image);
-
-    // Set mipmap generation settings
-    m_texture.setMinificationFilter(m_minFilter);
-    m_texture.setMagnificationFilter(m_magFilter);
-    m_texture.setWrapMode(m_wrapMode);
-
-    // Print any GL errors
-#ifdef DEBUG_MODE
-    error = functions.printGLError("Error post-constructing texture");
-#endif
-	
-	// Call parent class construction routine
-	Resource::postConstruction();
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-void Texture::setCost()
-{
-    // Cost is twice the size of image in Mb, since image is also copied by GL
-    // See: https://community.khronos.org/t/does-glteximage2d-copy-the-texture-data/1952
-    // TODO: Possible remove image as a member
-    if (!m_image.m_image.isNull()) {
-        m_cost = 2 * m_image.sizeInMegaBytes();
-    }
-    else {
-        m_cost = 0;
-    }
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-void Texture::initialize(const QString& filePath)
-{
-    // Load image from file path and check validity
-    // Need to flip image due to Qt image convention
-    // Mirrored to have (0,0) texture coordinate at the lower left
-    bool exists = QFile(filePath).exists();
-    if (exists) {
-        // For .tga: https://forum.qt.io/topic/74712/qimage-from-tga-with-alpha/11
-        // https://forum.qt.io/topic/101971/qimage-and-tga-support-in-c/5
-        //QImage qImage = QImage(filePath);
-        //QImageReader reader(filePath);
-        //QImage qImage = reader.read();
-        m_image = Gb::Image(filePath);
-        m_image.m_image = m_image.m_image.mirrored(false, true);
-    }
-
-    setCost();
-  
-}
-
-
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -206,6 +47,7 @@ void MaterialProperties::loadFromJson(const QJsonValue & json)
     m_shininess = object.value("shininess").toDouble();
     m_specularity = Vector3g(object.value("specularity"));
 }
+
 
 
 
@@ -276,94 +118,93 @@ TextureData & MaterialData::textureData(Texture::TextureType type)
 }
 
 
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Material
 /////////////////////////////////////////////////////////////////////////////////////////////
-Material::Material(CoreEngine* engine, const QJsonValue & json):
-    m_engine(engine)
+std::shared_ptr<ResourceHandle> Material::createHandle(CoreEngine * engine, const QString & mtlName)
 {
-    loadFromJson(json);
+    // Create handle for material
+    auto handle = ResourceHandle::create(engine,
+        Resource::kMaterial);
+    //handle->setResourceType(Resource::kMaterial);
+    handle->setUserGenerated(true); // material is generated in engine
+    handle->setName(mtlName);
+
+    // Create material
+    auto mtl = prot_make_shared<Material>(engine, mtlName);
+    handle->setResource(mtl, false);
+
+    return handle;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+void Material::clearCount()
+{
+    s_materialCount = 0;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+Material::Material(CoreEngine* engine):
+    Resource(kMaterial),
+    m_engine(engine),
+    m_sortID(s_materialCount++)
+{
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 Material::Material(CoreEngine* core, const QString & name) :
-    Object(name),
-    m_engine(core)
+    Resource(name, kMaterial),
+    m_engine(core),
+    m_sortID(s_materialCount++)
 {
 }
-/////////////////////////////////////////////////////////////////////////////////////////////
-Material::Material(CoreEngine * core, MaterialData & data):
-    Loadable(QString::fromStdString(data.m_path)),
-    Object(QString::fromStdString(data.m_name).toLower()),
-    m_engine(core)
-{
-    // Initialize properties
-    m_properties = data.m_properties;
-
-    // Initialize textures
-    initializeTexture(int(Texture::kDiffuse), data);
-    initializeTexture(int(Texture::kNormalMap), data);
-
-    // TODO: Load options
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-Material::Material(CoreEngine * core, MaterialData && data) :
-    Loadable(QString::fromStdString(data.m_path)),
-    Object(QString::fromStdString(data.m_name).toLower()),
-    m_engine(core)
-{
-    // Initialize properties
-    m_properties = data.m_properties;
-
-    // Initialize textures
-    initializeTexture(int(Texture::kDiffuse), data);
-    initializeTexture(int(Texture::kNormalMap), data);
-
-    // TODO: Load options
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-Material::Material(CoreEngine* core, const QString & name, const std::shared_ptr<ResourceHandle>& diffuse) :
-    Object(name),
-    m_engine(core)
-{
-    setTexture(diffuse, Texture::kDiffuse);
-}
-
+///////////////////////////////////////////////////////////////////////////////////////////////
+//Material::Material(CoreEngine * core, MaterialData && data) :
+//    Serializable(),
+//    Resource(QString::fromStdString(data.m_name).toLower(), kMaterial),
+//    m_engine(core),
+//    m_sortID(s_materialCount++)
+//{
+//    setData(std::move(data));
+//}
+///////////////////////////////////////////////////////////////////////////////////////////////
+//Material::Material(CoreEngine* core, const QString & name, const std::shared_ptr<ResourceHandle>& diffuse) :
+//    Resource(name, kMaterial),
+//    m_engine(core),
+//    m_sortID(s_materialCount++)
+//{
+//    setTexture(diffuse, Texture::kDiffuse);
+//}
 /////////////////////////////////////////////////////////////////////////////////////////////
 Material::~Material()
 {
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Material::rename(const QString & name)
+size_t Material::getSortID() const
 {
-    // TODO: Make this a common mixin for resource-likes
-    if (name == m_name) return;
+    return m_sortID;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+void Material::setData(MaterialData && data)
+{
+    // Initialize properties
+    m_properties = data.m_properties;
 
-    // Delete from resource cache map
-    if (inResourceCache()) {
-        auto pointer_to_this = m_engine->resourceCache()->getMaterial(m_name);
-        m_engine->resourceCache()->removeMaterial(m_name);
+    // Initialize textures
+    initializeTexture(int(Texture::kDiffuse), data);
+    initializeTexture(int(Texture::kNormalMap), data);
 
-        // Set the name
-        setName(name);
-
-        // Add back to resource cache map
-        m_engine->resourceCache()->addMaterial(pointer_to_this);
-    }
-    else {
-        setName(name);
-    }
+    // TODO: Load options
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 bool Material::inResourceCache() const
 {
-    return m_engine->resourceCache()->hasMaterial(m_name);
+    return m_engine->resourceCache()->getHandle(m_uuid) != nullptr;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 QString Material::getSearchDirectory() const
 {
-    QFileInfo info = QFileInfo(m_path);
+    QFileInfo info = QFileInfo(m_handle->getPath());
     return info.absoluteDir().absolutePath();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -373,20 +214,20 @@ void Material::setDiffuseTexture(std::shared_ptr<Gb::ResourceHandle> diffuse)
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Material::bind(const std::shared_ptr<ShaderProgram>& shaderProgram)
+void Material::bind(ShaderProgram& shaderProgram)
 {
     // Set uniforms and bind textures
     setShaderUniformsAndBindTextures(shaderProgram);
 
-    // Update uniforms in GL if the shader program isn't null
-    if (shaderProgram) {
-        // updateUniforms is an expensive call, and this is redundant
-        // Update the uniforms in GL
-        // shaderProgram->updateUniforms();
-    }
-    else {
-        throw("Error, no shader program linked to material");
-    }
+    //// Update uniforms in GL if the shader program isn't null
+    //if (shaderProgram) {
+    //    // updateUniforms is an expensive call, and this is redundant
+    //    // Update the uniforms in GL
+    //    // shaderProgram->updateUniforms();
+    //}
+    //else {
+    //    throw("Error, no shader program linked to material");
+    //}
 
     // Set bound status
     m_isBound = true;
@@ -395,22 +236,31 @@ void Material::bind(const std::shared_ptr<ShaderProgram>& shaderProgram)
 /////////////////////////////////////////////////////////////////////////////////////////////
 void Material::release()
 {
-	for (const auto& texturePair : m_textures) {
-        std::shared_ptr<ResourceHandle> textureHandle = getTexture(texturePair.first);
+	for (const auto& textureHandle : m_handle->children()) {
+        if (!textureHandle->getResourceType() == Resource::kTexture)
+            throw("Error, material has a child resource that is not a texture");
+        if (!textureHandle->resource(false)) continue;
         QMutexLocker locker(&textureHandle->mutex());
-        auto texture = std::static_pointer_cast<Texture>(textureHandle->resource(false));
-        if (texture && texture->isConstructed()) texture->release();
+        if (textureHandle->isConstructed()) 
+            textureHandle->resourceAs<Texture>(false)->release();
 	}
 	m_isBound = false;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
+void Material::onRemoval(ResourceCache * cache)
+{
+    Q_UNUSED(cache)
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
 QJsonValue Material::asJson() const
 {
-    QJsonObject object = Loadable::asJson().toObject();
+    QJsonObject object;
+
     // Store textures
     QJsonObject textures;
-    for (const std::pair<Texture::TextureType, std::shared_ptr<Gb::ResourceHandle>>& texturePair : m_textures) {
-        textures.insert(QString::number(int(texturePair.first)), texturePair.second->asJson());
+    for (const std::shared_ptr<Gb::ResourceHandle>& textureHandle : m_handle->children()) {
+        int textureType = int(textureHandle->resourceAs<Texture>(false)->getType());
+        textures.insert(QString::number(textureType), textureHandle->getName());
     }
     object.insert("textures", textures);
 
@@ -425,24 +275,42 @@ void Material::loadFromJson(const QJsonValue & json)
 {
     const QJsonObject& object = json.toObject();
 
-    // Load path
-    Loadable::loadFromJson(json);
-
     // Load texture
-    QString jsonStr = JsonReader::getJsonValueAsQString(json);
+    QString jsonStr = JsonReader::ToQString(json);
     const QJsonObject& textures = object.value("textures").toObject();
     for(const QString& key: textures.keys()) {
-        QJsonValue textureJson = textures.value(key);
-        Texture::TextureType texType = Texture::TextureType(key.toInt());
-        std::shared_ptr<ResourceHandle> texHandle = 
-            m_engine->resourceCache()->getResourceHandle(textureJson);
-        m_textures[texType] = texHandle;
+        QString texHandleName = textures.value(key).toString();
+        //Texture::TextureType texType = Texture::TextureType(key.toInt());
+        auto texHandle = m_engine->resourceCache()->getHandleWithName(texHandleName, Resource::kTexture);
+#ifdef DEBUG_MODE
+        if (!texHandle) throw("Error, handle not found for given name");
+#endif
+        m_handle->addChild(texHandle);
     }
 
     // Load other attributes
     // Move the material in the resource cache map if it's been renamed
-    rename(object.value("name").toString());
+    m_name = object.value("name").toString();
     m_properties = MaterialProperties(object.value("properties"));
+    m_handle->setName(m_name); // Nice for names to match for book-keeping
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+bool Material::hasType(Texture::TextureType type)
+{
+    auto iter = std::find_if(m_handle->children().begin(), m_handle->children().end(),
+        [&](const std::shared_ptr<ResourceHandle>& handle) {
+        if (handle->getResourceType() != Resource::kTexture)
+            throw("Wrong resource type");
+        auto texture = handle->resourceAs<Texture>(false);
+        return texture->getType() == type;
+    });
+
+    if (iter == m_handle->children().end()) {
+        return false;
+    }
+    else {
+        return true;
+    }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 void Material::initializeTexture(int intType, MaterialData & data)
@@ -455,63 +323,88 @@ void Material::initializeTexture(int intType, MaterialData & data)
         return;
     }
 
-    // Load texture from data
+    // Get texture path from material data
     QString filename = QString::fromStdString(texData.m_textureFileName);
     QString dir;
+    QString texturePath;
     if (texData.m_textureFileDir.empty()) {
+        // If there is no directory specified, walk directory structure to find
         dir = getSearchDirectory();
+        bool exists = FileReader::fileExists(dir, filename, texturePath);
+        if (!exists) {
+            throw("Error, file not found");
+        }
     }
     else {
         dir = QString(texData.m_textureFileDir.c_str());
+        texturePath = QDir::cleanPath(dir + QDir::separator() + filename);
     }
-    QString texturePath = QDir::cleanPath(dir + QDir::separator() + filename);
-    std::shared_ptr<ResourceHandle> textureHandle = 
-        m_engine->resourceCache()->getTexture(texturePath, intType);
-    Map::Emplace(m_textures, textureType, textureHandle);
 
+    // Create handle to load texture from material data
+    std::shared_ptr<ResourceHandle> textureHandle =
+        Texture::createHandle(texturePath, textureType, *m_handle);
+
+    // Load texture
+    textureHandle->loadResource();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 std::shared_ptr<ResourceHandle> Material::getTexture(Texture::TextureType type)
 {
     // See if material has this type of texture
-    if (m_textures.find(type) == m_textures.end()) {
-        throw("Error, texture type not found in texture map");
-    }
-    return m_textures.at(type);
+    auto iter = std::find_if(m_handle->children().begin(), m_handle->children().end(),
+        [&](const std::shared_ptr<ResourceHandle>& handle) {
+        if (handle->getResourceType() != Resource::kTexture)
+            throw("Wrong resource type");
+        auto texture = handle->resourceAs<Texture>(false);
+        return texture->getType() == type;
+    });
+
+    if (iter == m_handle->children().end())
+        throw("Error, texture of the specified type not found");
+
+    return *iter;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 void Material::setTexture(std::shared_ptr<Gb::ResourceHandle> resourceHandle, 
     Texture::TextureType type)
 {
-    if (resourceHandle->getType() != Resource::kTexture) {
+    if (resourceHandle->getResourceType() != Resource::kTexture) {
         throw("Error, resource handle is of the incorrect type");
     }
-    m_textures[type] = resourceHandle;
+    if (hasType(type)) throw("Error, texture type already present in material");
+
+    m_handle->addChild(resourceHandle);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Material::setShaderUniformsAndBindTextures(const std::shared_ptr<ShaderProgram>& shaderProgram)
+void Material::setShaderUniformsAndBindTextures(ShaderProgram& shaderProgram)
 {
     // Set uniforms for textures
     int texUnit = 0;
     GL::OpenGLFunctions gl = GL::OpenGLFunctions();
     bool useDiffuseTexture = false;
     bool useNormalMap = false;
-    for (const auto& texturePair : m_textures) {
+    for (const auto& textureHandle : m_handle->children()) {
         // Bind each texture to a texture unit
-        std::shared_ptr<ResourceHandle> textureHandle = getTexture(texturePair.first);
+        if (textureHandle->getResourceType() != Resource::kTexture)
+            throw("Error, resource is not a texture");
+
 
         // Continue if resource is loading
-        if (textureHandle->getIsLoading()) {
+        if (textureHandle->isLoading()) {
             continue;
         }
 
         // Lock resource handle
         QMutexLocker locker(&textureHandle->mutex());
-        auto texture = std::static_pointer_cast<Texture>(textureHandle->resource(false));
+        auto texture = textureHandle->resourceAs<Texture>(false);
 
         // Return if texture not yet loaded
-        if (!texture) continue;
-        if (!texture->isConstructed()) continue;
+        if (!texture) 
+            continue;
+#ifdef DEBUG_MODE
+        if (!textureHandle->isConstructed()) 
+            throw("Error, texture should be constructed");
+#endif
         gl.glActiveTexture(GL_TEXTURE0 + texUnit); // set active texture unit
         texture->bind(texUnit); // bind texture to this unit
 
@@ -528,45 +421,44 @@ void Material::setShaderUniformsAndBindTextures(const std::shared_ptr<ShaderProg
         }
 
         // Set corresponding uniform in the shader program to this texture
-        if (shaderProgram) {
-            const QString& texUniformName = Texture::getUniformName(texture->m_type);
-            shaderProgram->setUniformValue(texUniformName, texUnit);
-        }
+        const QString& texUniformName = Texture::getUniformName(texture->m_type);
+        shaderProgram.setUniformValue(texUniformName, texUnit);
 
         // Increment texture unit
         texUnit++;
     }
 
     // Set more uniforms for textures
-    shaderProgram->setUniformValue("material.useDiffuseTexture", useDiffuseTexture);
-    shaderProgram->setUniformValue("material.useNormalMap", useNormalMap);
+    shaderProgram.setUniformValue("material.useDiffuseTexture", useDiffuseTexture);
+    shaderProgram.setUniformValue("material.useNormalMap", useNormalMap);
 
     // Set uniforms for lighting attributes
-    shaderProgram->setUniformValue("material.specularity", m_properties.m_specularity);
-    shaderProgram->setUniformValue("material.shininess", (real_g)m_properties.m_shininess);
+    shaderProgram.setUniformValue("material.specularity", m_properties.m_specularity);
+    shaderProgram.setUniformValue("material.shininess", (real_g)m_properties.m_shininess);
 
 }
-/////////////////////////////////////////////////////////////////////////////////////////////
-bool operator==(const Material & m1, const Material & m2)
-{
-    bool sameTextures = true;
-    if (m1.m_textures.size() != m2.m_textures.size()) {
-        // Texture maps are not the same size, so materials cannot be equivalent
-        sameTextures = false;
-    }
-    for (const auto& texturePair: m1.m_textures) {
-        // Iterate through textures to make sure they are the same
-        if (m2.m_textures.find(texturePair.first) != m2.m_textures.end()) {
-            sameTextures &= texturePair.second == m2.m_textures.at(texturePair.first);
-        }
-        else {
-            sameTextures &= false;
-        }
-    }
-
-    return sameTextures;
-}
-
+///////////////////////////////////////////////////////////////////////////////////////////////
+//bool operator==(const Material & m1, const Material & m2)
+//{
+//    bool sameTextures = true;
+//    if (m1.m_textures.size() != m2.m_textures.size()) {
+//        // Texture maps are not the same size, so materials cannot be equivalent
+//        sameTextures = false;
+//    }
+//    for (const auto& texturePair: m1.m_textures) {
+//        // Iterate through textures to make sure they are the same
+//        if (m2.m_textures.find(texturePair.first) != m2.m_textures.end()) {
+//            sameTextures &= texturePair.second == m2.m_textures.at(texturePair.first);
+//        }
+//        else {
+//            sameTextures &= false;
+//        }
+//    }
+//
+//    return sameTextures;
+//}
+///////////////////////////////////////////////////////////////////////////////////////////////
+size_t Material::s_materialCount = 0;
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////

@@ -64,8 +64,8 @@ public:
     /// @name Constructors/Destructor
     /// @{
 
-    FontFace(FontEncoding encoding = kASCII);
-    FontFace(const QString& path, FontEncoding encoding = kASCII);
+    FontFace(CoreEngine* core = nullptr, bool isCore = false, FontEncoding encoding = kASCII);
+    FontFace(CoreEngine* core, bool isCore, const QString& path, FontEncoding encoding = kASCII);
     ~FontFace();
 
     /// @}
@@ -157,6 +157,11 @@ private:
     /// @name Protected members
     /// @{
 
+    /// @brief Whether or not this is loaded in as one of the core fonts
+    bool m_isCore;
+
+    CoreEngine* m_engine;
+
     /// @brief The encoding for the font
     FontEncoding m_encoding;
 
@@ -173,7 +178,7 @@ private:
     std::unordered_map<size_t, CharacterMap> m_characterMaps;
 
     /// @brief The GL textures corresponding to the bitmaps for this font
-    std::unordered_map<size_t, std::shared_ptr<Texture>> m_textures;
+    std::unordered_map<size_t, std::shared_ptr<ResourceHandle>> m_textures;
 
     /// @}
 };
@@ -190,13 +195,21 @@ public:
     /// @name Static
     /// @{
 
-    static QString getUnicodeCharacter(const QString& fontAwesomeIcon);
+    static std::unordered_map<QString, FontFace>& FontFaces() {
+        return s_faces;
+    }
+
+    static const QJsonObject& FontAwesomeInfo() {
+        return s_faInfo;
+    }
+
+    static QString faUnicodeCharacter(const QString& fontAwesomeIcon);
 
     /// @brief Retrieve a font face with a given file name
     static FontFace* getFontFace(const QString& name);
 
     /// @brief Load a font from a given file, with the specified encoding, and generates bitmap
-    static void loadFontFace(const QString& path, FontFace::FontEncoding encoding = FontFace::kASCII);
+    static void loadFontFace(CoreEngine* core, const QString& path, bool isCore, FontFace::FontEncoding encoding = FontFace::kASCII);
 
     /// @}
 
@@ -216,9 +229,9 @@ public:
     virtual void postConstruction() override;
 
     /// @brief Font awesome font families
-    QString regularFontAwesomeFamily();
-    QString brandFontAwesomeFamily();
-    QString solidFontAwesomeFamily();
+    static QString regularFontAwesomeFamily();
+    static QString brandFontAwesomeFamily();
+    static QString solidFontAwesomeFamily();
 
 	/// @}
 
@@ -246,15 +259,18 @@ protected:
     /// @{
 
     /// @brief The wrapped freetype library
-    static std::unique_ptr<FT_Library> m_freeType;
+    static std::unique_ptr<FT_Library> s_freeType;
     
     /// @brief Map of fonts wrapping "faces", i.e. fonts loaded via freetype
-    static std::unordered_map<QString, FontFace> m_faces;
+    static std::unordered_map<QString, FontFace> s_faces;
 
     /// @brief Font Awesome font family IDs
-    int m_faBrands;
-    int m_faRegular;
-    int m_faSolid;
+    static int s_faBrands;
+    static int s_faRegular;
+    static int s_faSolid;
+
+    /// @brief JSON document containing font-awesome icon metadata
+    static QJsonObject s_faInfo;
 
     /// @}
 };

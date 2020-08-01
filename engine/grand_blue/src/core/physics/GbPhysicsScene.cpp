@@ -126,8 +126,7 @@ void PhysicsScene::fetchResults(bool block)
 
     // Iterate through scene objects with rigid bodies and set transforms
     const std::shared_ptr<Scene>& sc = scene();
-    const std::multiset<std::shared_ptr<SceneObject>, CompareByRenderLayer>& topObjects
-        = sc->topLevelSceneObjects();
+    const std::vector<std::shared_ptr<SceneObject>>& topObjects = sc->topLevelSceneObjects();
     for (const std::shared_ptr<SceneObject>& so : topObjects) {
         so->updatePhysics();
     }

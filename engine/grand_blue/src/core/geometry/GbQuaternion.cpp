@@ -3,6 +3,7 @@
 
 #include "GbMatrix.h"
 #include "../physics/GbPhysics.h"
+#include "GbEulerAngles.h"
 
 namespace Gb {
 
@@ -35,11 +36,11 @@ Quaternion::Quaternion(const Vector4g & vec) :
     m_w(vec[3])
 {
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Quaternion::Quaternion(real_g pitch, real_g yaw, real_g roll)
-{
-    *this = std::move(fromEulerAngles(pitch, yaw, roll));
-}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Quaternion::Quaternion(real_g pitch, real_g yaw, real_g roll)
+//{
+//    *this = std::move(fromEulerAngles(pitch, yaw, roll));
+//}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Quaternion::Quaternion(const Vector3g & rotationAxis, real_g rotationAngleRad):
     m_x(rotationAxis.x() * sin(rotationAngleRad / 2.0)),
@@ -301,13 +302,13 @@ Quaternion Quaternion::fromAxisAngle(real_g x, real_g y, real_g z, real_g angle)
     real_g c = std::cos(a);
     return Quaternion(x * s, y * s, z * s, c).normalized();
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Vector3g Quaternion::toEulerAngles() const
-{
-    real_g pitch, yaw, roll;
-    getEulerAngles(&pitch, &yaw, &roll);
-    return Vector3g(pitch, yaw, roll);
-}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Vector3g Quaternion::toEulerAngles() const
+//{
+//    real_g pitch, yaw, roll;
+//    getEulerAngles(&pitch, &yaw, &roll);
+//    return Vector3g(pitch, yaw, roll);
+//}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Quaternion::toAngularVelocity(Vector3g& vel) const
 {
@@ -320,33 +321,38 @@ void Quaternion::toAngularVelocity(Vector3g& vel) const
     vel[1] = m_y * gain;
     vel[2] = m_z * gain;
 }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Quaternion Quaternion::fromEulerAngles(const Vector3g & eulerAngles)
+//{
+//    return Quaternion::fromEulerAngles(eulerAngles.x(), eulerAngles.y(), eulerAngles.z());
+//}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Quaternion Quaternion::fromEulerAngles(const Vector3g & eulerAngles)
+Quaternion Quaternion::fromEulerAngles(const EulerAngles & eulerAngles)
 {
-    return Quaternion::fromEulerAngles(eulerAngles.x(), eulerAngles.y(), eulerAngles.z());
+    return Quaternion::fromRotationMatrix(Matrix3x3(eulerAngles.toRotationMatrix()).toFloatMatrix());
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Quaternion Quaternion::fromEulerAngles(real_g pitch, real_g yaw, real_g roll)
-{
-    // Algorithm from:
-    // http://www.j3d.org/matrix_faq/matrfaq_latest.html#Q60
-    pitch *= 0.5f;
-    yaw *= 0.5f;
-    roll *= 0.5f;
-    const real_g cy = std::cos(yaw);
-    const real_g sy = std::sin(yaw);
-    const real_g cz = std::cos(roll);
-    const real_g sz = std::sin(roll);
-    const real_g cx = std::cos(pitch);
-    const real_g sx = std::sin(pitch);
-    const real_g cy_cz = cy * cz;
-    const real_g sy_sz = sy * sz;
-    const real_g w = cy_cz * cx + sy_sz * sx;
-    const real_g x = cy_cz * sx + sy_sz * cx;
-    const real_g y = sy * cz * cx - cy * sz * sx;
-    const real_g z = cy * sz * cx - sy * cz * sx;
-    return Quaternion(x, y, z, w);
-}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Quaternion Quaternion::fromEulerAngles(real_g pitch, real_g yaw, real_g roll)
+//{
+//    // Algorithm from:
+//    // http://www.j3d.org/matrix_faq/matrfaq_latest.html#Q60
+//    pitch *= 0.5f;
+//    yaw *= 0.5f;
+//    roll *= 0.5f;
+//    const real_g cy = std::cos(yaw);
+//    const real_g sy = std::sin(yaw);
+//    const real_g cz = std::cos(roll);
+//    const real_g sz = std::sin(roll);
+//    const real_g cx = std::cos(pitch);
+//    const real_g sx = std::sin(pitch);
+//    const real_g cy_cz = cy * cz;
+//    const real_g sy_sz = sy * sz;
+//    const real_g w = cy_cz * cx + sy_sz * sx;
+//    const real_g x = cy_cz * sx + sy_sz * cx;
+//    const real_g y = sy * cz * cx - cy * sz * sx;
+//    const real_g z = cy * sz * cx - sy * cz * sx;
+//    return Quaternion(x, y, z, w);
+//}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Quaternion Quaternion::fromRotationMatrix(const Matrix3x3g& rot3x3)
 {
@@ -698,50 +704,50 @@ Quaternion Quaternion::nlerp(const Quaternion & q1, const Quaternion & q2, real_
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void Quaternion::getEulerAngles(real_g * pitch, real_g * yaw, real_g * roll) const
-{
-    assert(pitch && yaw && roll);
-    // Algorithm from:
-    // http://www.j3d.org/matrix_faq/matrfaq_latest.html#Q37
-    real_g xx = m_x * m_x;
-    real_g xy = m_x * m_y;
-    real_g xz = m_x * m_z;
-    real_g xw = m_x * m_w;
-    real_g yy = m_y * m_y;
-    real_g yz = m_y * m_z;
-    real_g yw = m_y * m_w;
-    real_g zz = m_z * m_z;
-    real_g zw = m_z * m_w;
-    const real_g lengthSquared = xx + yy + zz + m_w * m_w;
-    if (!qFuzzyIsNull(lengthSquared - 1.0f) && !qFuzzyIsNull(lengthSquared)) {
-        xx /= lengthSquared;
-        xy /= lengthSquared; // same as (m_x / length) * (m_y / length)
-        xz /= lengthSquared;
-        xw /= lengthSquared;
-        yy /= lengthSquared;
-        yz /= lengthSquared;
-        yw /= lengthSquared;
-        zz /= lengthSquared;
-        zw /= lengthSquared;
-    }
-    *pitch = std::asin(-2.0f * (yz - xw));
-    if (*pitch < Constants::PI_2) {
-        if (*pitch > -Constants::PI_2) {
-            *yaw = std::atan2(2.0f * (xz + yw), 1.0f - 2.0f * (xx + yy));
-            *roll = std::atan2(2.0f * (xy + zw), 1.0f - 2.0f * (xx + zz));
-        }
-        else {
-            // not a unique solution
-            *roll = 0.0f;
-            *yaw = -std::atan2(-2.0f * (xy - zw), 1.0f - 2.0f * (yy + zz));
-        }
-    }
-    else {
-        // not a unique solution
-        *roll = 0.0f;
-        *yaw = std::atan2(-2.0f * (xy - zw), 1.0f - 2.0f * (yy + zz));
-    }
-}
+//void Quaternion::getEulerAngles(real_g * pitch, real_g * yaw, real_g * roll) const
+//{
+//    assert(pitch && yaw && roll);
+//    // Algorithm from:
+//    // http://www.j3d.org/matrix_faq/matrfaq_latest.html#Q37
+//    real_g xx = m_x * m_x;
+//    real_g xy = m_x * m_y;
+//    real_g xz = m_x * m_z;
+//    real_g xw = m_x * m_w;
+//    real_g yy = m_y * m_y;
+//    real_g yz = m_y * m_z;
+//    real_g yw = m_y * m_w;
+//    real_g zz = m_z * m_z;
+//    real_g zw = m_z * m_w;
+//    const real_g lengthSquared = xx + yy + zz + m_w * m_w;
+//    if (!qFuzzyIsNull(lengthSquared - 1.0f) && !qFuzzyIsNull(lengthSquared)) {
+//        xx /= lengthSquared;
+//        xy /= lengthSquared; // same as (m_x / length) * (m_y / length)
+//        xz /= lengthSquared;
+//        xw /= lengthSquared;
+//        yy /= lengthSquared;
+//        yz /= lengthSquared;
+//        yw /= lengthSquared;
+//        zz /= lengthSquared;
+//        zw /= lengthSquared;
+//    }
+//    *pitch = std::asin(-2.0f * (yz - xw));
+//    if (*pitch < Constants::PI_2) {
+//        if (*pitch > -Constants::PI_2) {
+//            *yaw = std::atan2(2.0f * (xz + yw), 1.0f - 2.0f * (xx + yy));
+//            *roll = std::atan2(2.0f * (xy + zw), 1.0f - 2.0f * (xx + zz));
+//        }
+//        else {
+//            // not a unique solution
+//            *roll = 0.0f;
+//            *yaw = -std::atan2(-2.0f * (xy - zw), 1.0f - 2.0f * (yy + zz));
+//        }
+//    }
+//    else {
+//        // not a unique solution
+//        *roll = 0.0f;
+//        *yaw = std::atan2(-2.0f * (xy - zw), 1.0f - 2.0f * (yy + zz));
+//    }
+//}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Vector4g Quaternion::toVector4() const
 {

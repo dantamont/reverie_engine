@@ -4,6 +4,7 @@
 
 // Internal
 #include "../../utils/GbMemoryManager.h"
+#include "../lighting/GbLight.h"
 
 namespace Gb {
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -11,31 +12,31 @@ BufferUniform::BufferUniform()
 {
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-BufferUniform::BufferUniform(const UniformInfo & info):
+BufferUniform::BufferUniform(const ShaderInputInfo & info):
     m_info(info)
 {
     initialize(info);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void BufferUniform::initialize(const UniformInfo & info)
+void BufferUniform::initialize(const ShaderInputInfo & info)
 {
     // Set default value for uniform from info
     m_uniform = Uniform(info.m_name);
-    switch (Uniform::UniformType(info.m_uniformType)) {
-    case Uniform::kInt:
-        if (info.m_isArray) throw("Error, arrays of int not accepted, try array of vec4");
+    switch (info.m_inputType) {
+    case ShaderInputType::kInt:
+        if (info.isArray()) throw("Error, arrays of int not accepted, try array of vec4");
         m_uniform.set<int>(-1);
         break;
-    case Uniform::kBool:
-        if (info.m_isArray) throw("Error, arrays of bool not accepted, try array of vec4");
+    case ShaderInputType::kBool:
+        if (info.isArray()) throw("Error, arrays of bool not accepted, try array of vec4");
         m_uniform.set<bool>(true);
         break;
-    case Uniform::kFloat:
-        if (info.m_isArray) throw("Error, arrays of float not accepted, try array of vec4");
+    case ShaderInputType::kFloat:
+        if (info.isArray()) throw("Error, arrays of float not accepted, try array of vec4");
         m_uniform.set<float>(0.0f);
         break;
-    case Uniform::kVec4:
-        if (info.m_isArray) {
+    case ShaderInputType::kVec4:
+        if (info.isArray()) {
             Vec4List vec;
             vec.resize(info.m_arraySize);
             m_uniform.set<Vec4List>(vec);
@@ -44,8 +45,8 @@ void BufferUniform::initialize(const UniformInfo & info)
             m_uniform.set<Vector4g>(Vector4g());
         }
         break;
-    case Uniform::kMat4:
-        if (info.m_isArray) {
+    case ShaderInputType::kMat4:
+        if (info.isArray()) {
             std::vector<Matrix4x4g> vec;
             vec.resize(info.m_arraySize);
             m_uniform.set<std::vector<Matrix4x4g>>(vec);
@@ -55,7 +56,7 @@ void BufferUniform::initialize(const UniformInfo & info)
         }
         break;
     default:
-        throw("Uniform type is invalid: " + info.m_typeStr);
+        throw("Uniform type is invalid for uniform " + info.m_name);
         break;
     }
 }
@@ -71,6 +72,11 @@ std::shared_ptr<UBO> UBO::get(const QString & name)
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
+std::shared_ptr<UBO> UBO::getLightBuffer()
+{
+    return get(LIGHT_SETTINGS_BUFFER_NAME);
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
 std::shared_ptr<UBO> UBO::create(const ShaderStruct & ss)
 {
     auto ubo = prot_make_shared<UBO>(ss);
@@ -80,7 +86,19 @@ std::shared_ptr<UBO> UBO::create(const ShaderStruct & ss)
 /////////////////////////////////////////////////////////////////////////////////////////////
 void UBO::clearUBOs()
 {
-    UBO_MAP.clear();
+    auto endIter = UBO_MAP.end();
+    for (auto it = UBO_MAP.begin(); it != endIter;) {
+        if (!it->second->isCore())
+        {
+            // Erase UBO if not a core req
+            UBO_MAP.erase(it++);    
+        }
+        else {
+            // Skip if is a core resource
+            // FIXME: Clear UBOs in a nice way, something is not right on scenario switch
+            it++;
+        }
+    }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 UBO::UBO(const ShaderStruct& shaderStruct):
@@ -126,8 +144,7 @@ Uniform UBO::getUniformBufferValue(const QString & uniformName)
     
     // Get uniform value from GL
     // See: https://antongerdelan.net/blog/formatted/2014_06_04_glmapbufferrange.html
-    size_t size = ALIGNED_TYPE_SIZES[bufferUniform.m_info.m_typeStr];
-    size_t offset = bufferUniform.m_offset;
+    size_t size = ALIGNED_TYPE_SIZES[bufferUniform.m_info.m_inputType];
 
     // Case based on type
     if (uniform.is<int>()) {
@@ -257,7 +274,7 @@ void UBO::refreshUniform(const BufferUniform & bufferUniform)
     else if (uniform.is<std::vector<Matrix4x4f>>()) {
         const std::vector<Matrix4x4g>& value = uniform.get<std::vector<Matrix4x4g>>();
         size_t offset = bufferUniform.m_offset;
-        size_t size = ALIGNED_TYPE_SIZES["mat4"];
+        size_t size = ALIGNED_TYPE_SIZES[ShaderInputType::kMat4];
         for (const Matrix4x4g& mat : value) {
             glBufferSubData(GL_UNIFORM_BUFFER, offset, size, mat.getData());
             offset += size;
@@ -266,7 +283,7 @@ void UBO::refreshUniform(const BufferUniform & bufferUniform)
     else if (uniform.is<Vec4List>()) {
         const Vec4List& value = uniform.get<Vec4List>();
         size_t offset = bufferUniform.m_offset;
-        size_t size = ALIGNED_TYPE_SIZES["vec4"];
+        size_t size = ALIGNED_TYPE_SIZES[ShaderInputType::kVec4];
         for (const Vector4f& vec : value) {
             glBufferSubData(GL_UNIFORM_BUFFER, offset, size, vec.getData());
             offset += size;
@@ -308,13 +325,13 @@ void UBO::populateUniforms(const ShaderStruct& shaderStruct)
     // This will incorrectly add padding for a vec3, assuming a byteSize of 16, when in reality, we will have 12 + 4, with no padding
     // SOLUTION: Do NOT use vec3s or similarly unaligned types in uniform blocks
     m_name = shaderStruct.m_name;
-    size_t vec4Size = ALIGNED_TYPE_SIZES["vec4"];
+    size_t vec4Size = ALIGNED_TYPE_SIZES[ShaderInputType::kVec4];
     m_data.m_byteSize = 0;
-    for (const UniformInfo& info: shaderStruct.m_fields) {
+    for (const ShaderInputInfo& info: shaderStruct.m_fields) {
         m_data.m_uniforms[info.m_name] = BufferUniform(info);
         BufferUniform& uniform = m_data.m_uniforms[info.m_name];
-        size_t typeSize = ALIGNED_TYPE_SIZES[info.m_typeStr];
-        if (info.m_isArray) {
+        size_t typeSize = ALIGNED_TYPE_SIZES[info.m_inputType];
+        if (info.isArray()) {
             // Sizing according to std140 spacing
             uniform.m_alignmentByteSize = vec4Size * info.m_arraySize;
         }
@@ -362,19 +379,19 @@ std::unordered_map<QString, std::shared_ptr<UBO>> UBO::UBO_MAP = {};
 /// Array of scalars or vectors: Each element has a base alignment equal to that of a vec4.
 /// Matrices:                  	 Stored as a large array of column vectors, where each of those vectors has a base alignment of vec4.
 /// Struct: 	                 Equal to the computed size of its elements according to the previous rules, but padded to a multiple of the size of a vec4.
-std::unordered_map<QString, size_t> UBO::ALIGNED_TYPE_SIZES = {
-    {"bool",        sizeof(GLfloat)},
-    {"int",         sizeof(GLfloat)},
-    {"float",       sizeof(GLfloat)},
-    {"double",      sizeof(GLfloat)},
-    {"vec2",        2 * sizeof(GLfloat)},
-    {"vec3",        4 * sizeof(GLfloat)},
-    {"vec4",        4 * sizeof(GLfloat)},
-    {"mat2",        2 * 4 * sizeof(GLfloat)},
-    {"mat3",        3 * 4 * sizeof(GLfloat)},
-    {"mat4",        4 * 4 * sizeof(GLfloat)},
-    {"samplerCube", sizeof(GLfloat)},
-    {"sampler2D",   sizeof(GLfloat)}
+std::unordered_map<ShaderInputType, size_t> UBO::ALIGNED_TYPE_SIZES = {
+    {ShaderInputType::kBool,        sizeof(GLfloat)},
+    {ShaderInputType::kInt,         sizeof(GLfloat)},
+    {ShaderInputType::kFloat,       sizeof(GLfloat)},
+    {ShaderInputType::kDouble,      sizeof(GLfloat)},
+    {ShaderInputType::kVec2,        2 * sizeof(GLfloat)},
+    {ShaderInputType::kVec3,        4 * sizeof(GLfloat)},
+    {ShaderInputType::kVec4,        4 * sizeof(GLfloat)},
+    {ShaderInputType::kMat2,        2 * 4 * sizeof(GLfloat)},
+    {ShaderInputType::kMat3,        3 * 4 * sizeof(GLfloat)},
+    {ShaderInputType::kMat4,        4 * 4 * sizeof(GLfloat)},
+    {ShaderInputType::kSamplerCube, sizeof(GLfloat)},
+    {ShaderInputType::kSampler2D,   sizeof(GLfloat)}
 };
 
 

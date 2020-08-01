@@ -24,6 +24,10 @@ bool VertexArrayObject::bind()
     bool error = false;
 #ifdef DEBUG_MODE
     error = printGLError("VAO::bind: Error before binding VAO");
+    if (error) {
+        if (!isCreated())
+            logInfo("Error, VAO not created");
+    }
 #endif
     //QOpenGLVertexArrayObject::bind();
     glBindVertexArray(objectId());
@@ -69,21 +73,21 @@ void VertexArrayObject::initialize(bool bind_)
 
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void VertexArrayObject::loadAttributeBuffer(std::shared_ptr<BufferObject> buffer,
+void VertexArrayObject::loadAttributeBuffer(BufferObject& buffer,
     bool bindThis)
 {
     // Bind this VAO
     if (bindThis) { bind(); }
 
     // Bind the buffer
-    buffer->bind();
+    buffer.bind();
 
     // Load buffer contents into the specified attribute
     // Array is tightly packed, so don't need stride
     //unsigned int stride = tupleSize * sizeof(real_g);
-    int type = int(buffer->m_type);
-    uint tupleSize = buffer->getTupleSize();
-    switch (buffer->m_type) {
+    int type = int(buffer.m_type);
+    uint tupleSize = buffer.getTupleSize();
+    switch (buffer.m_type) {
     case BufferObject::kMiscInt:
         loadIntAttribute(type, tupleSize, 0, 0);
         break;
@@ -184,26 +188,6 @@ BufferObject::BufferObject() : QOpenGLBuffer()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 BufferObject::~BufferObject()
 {
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::vector<float> BufferObject::getContents(int offset, int count)
-{
-    Q_UNUSED(offset)
-    if (m_type != kNone) {
-        bind();
-
-        std::vector<float> vertices(count);
-        unsigned int size = count * sizeof(float);
-        bool readData = read(0, &vertices[0], size);
-#ifdef DEBUG_MODE
-        if (!readData) {
-            logWarning("Failed to readData");
-        }
-#endif
-        return vertices;
-    }
-
-    return std::vector<float>();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 unsigned int BufferObject::getTupleSize()

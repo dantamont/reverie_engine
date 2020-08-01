@@ -18,23 +18,32 @@
 #include "../GbFileReader.h"
 #include "../../rendering/geometry/GbVertexData.h"
 #include "../../rendering/materials/GbMaterial.h"
+#include "../../geometry/GbCollisions.h"
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Forward Declarations
 /////////////////////////////////////////////////////////////////////////////////////////////
 namespace Gb {  
 
+class ResourceHandle;
 class ResourceCache;
 class Mesh;
 class Model;
 class VertexArrayData;
 class Bone;
 class Animation;
-class MeshNode;
+class SkeletonJoint;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Class definitions
 /////////////////////////////////////////////////////////////////////////////////////////////
+/// @struct ModelChunkData
+struct ModelChunkData {
+    Uuid m_meshHandleID;
+    Uuid m_matHandleID;
+    AABB m_boundingBox;
+};
+
 
 /// @class ModelReader
 /// @brief For loading in 3D model data from a .obj file
@@ -57,7 +66,7 @@ public:
     /// @name Constructor/Destructpr
     /// @{    
 
-    ModelReader(ResourceCache* cache, const QString& filepath);
+    ModelReader(ResourceCache* cache, ResourceHandle& handle);
     ModelReader(const ModelReader& reader);
     ~ModelReader();
 
@@ -69,6 +78,8 @@ public:
 
     const aiScene* scene() const { return m_scene; }
 
+    std::vector<ModelChunkData>& chunks() { return m_chunks; }
+
     /// @}
 
     //-----------------------------------------------------------------------------------------------------------------
@@ -79,7 +90,7 @@ public:
     void loadFile();
     
     /// @brief Retrieve a model at the given filepath (loading only if not loaded)
-    void loadModel(Mesh& mesh);
+    std::shared_ptr<Model> loadModel();
 
     /// @}   
 
@@ -94,13 +105,13 @@ protected:
     void loadMaterials();
 
     /// @brief Construct mesh data after parsing from a file
-    void loadMesh(Mesh& outMesh);
+    void loadMeshes();
 
     /// @brief load animations
-    void loadAnimations(Mesh& outMesh);
+    void loadAnimations();
 
     /// @brief Process mesh data from a assimp mesh
-    const VertexArrayData& processMesh(aiMesh* mesh, Mesh& baseMesh);
+    const Mesh& processMesh(aiMesh* mesh);
 
     /// @brief Process material
     MaterialData processMaterial(aiMaterial* mat);
@@ -115,10 +126,16 @@ protected:
     void processNodes(const aiNode* node);
 
     /// @brief Recursive method for walking aiMesh to construct output
-    void parseNodeHierarchy(aiNode* aiNode, MeshNode* currentNode, Mesh& mesh);
+    void parseNodeHierarchy(aiNode* aiNode, SkeletonJoint* currentNode);
+
+    /// @brief Add animation data to skeleton if necessary
+    void postProcessSkeleton();
+    void postProcessSkeleton(SkeletonJoint* joint);
 
     /// @brief Convert an assimp matrix to a custom matrix
     Matrix4x4g toMatrix(const aiMatrix4x4& mat);
+
+    std::shared_ptr<Model> model();
 
     /// @}   
 
@@ -126,6 +143,8 @@ protected:
     /// @name Private Members
     /// @{    
 
+    /// @brief The resource handle that the model is being loaded into
+    ResourceHandle* m_handle;
 
     /// @brief Resource cache
     ResourceCache* m_resourceCache;
@@ -139,14 +158,22 @@ protected:
     /// @brief Vector of node names
     std::vector<QString> m_nodeNames;
 
+    /// @brief Vector of model chunk data
+    std::vector<ModelChunkData> m_chunks;
+
     /// @brief Map of bones, according to node/bone name
     std::unordered_map<QString, Bone*> m_boneMapping;
 
     /// @brief Map of meshes, by name and index in scene mesh list
     std::unordered_map<uint, QString> m_meshNames;
 
-    /// @brief Map of animations
-    std::unordered_map<QString, std::shared_ptr<Animation>> m_animations;
+    /// @brief Count of animated joints
+    int m_animatedJointCount = 0;
+
+    /// @brief Vector of animations
+    std::vector<std::shared_ptr<Animation>> m_animations;
+
+    bool m_processedSkeleton = false;
 
     /// @brief Global inverse transformation
     Matrix4x4g m_globalInverseTransform;

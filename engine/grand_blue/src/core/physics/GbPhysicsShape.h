@@ -20,7 +20,7 @@ class Scene;
 class PhysicsMaterial;
 class PhysicsGeometry;
 class RigidBody;
-struct PhysicsShape;
+class PhysicsShape;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Class definitions
@@ -57,7 +57,8 @@ public:
 
     /// @brief Get the geometry of the shape
     std::shared_ptr<PhysicsGeometry> geometry() { return m_geometry; }
-    const std::shared_ptr<PhysicsGeometry> geometry() const { return m_geometry; }
+    const std::shared_ptr<PhysicsGeometry>& geometry() const { return m_geometry; }
+    void setGeometry(const std::shared_ptr<PhysicsGeometry>& geometry);
 
     /// @brief Get the material for the shape
     std::shared_ptr<PhysicsMaterial> material() {
@@ -111,6 +112,9 @@ public:
     /// @}
 
 protected:
+    friend class PhysicsShape;
+    friend class PhysicsManager;
+
     //--------------------------------------------------------------------------------------------
     /// @name Constructors/Destructor
     /// @{
@@ -129,6 +133,9 @@ protected:
     /// @brief Add this material to the physics manager static map
     static void addToManager(std::shared_ptr<PhysicsShapePrefab> shape);
 
+    void addInstance(PhysicsShape* instance);
+    void removeInstance(PhysicsShape* instance);
+
     /// @}
     //-----------------------------------------------------------------------------------------------------------------    
     /// @name Private Members
@@ -140,6 +147,8 @@ protected:
     /// @brief The materials for this shape
     std::unordered_map<QString, std::shared_ptr<PhysicsMaterial>> m_materials;
 
+    std::unordered_map<Uuid, PhysicsShape*> m_instances;
+
     /// @}
 };
 
@@ -150,21 +159,18 @@ protected:
 /// @brief An instantiation of a physics shame
 /// @details Simulation Shapes are enabled for contact generation, and scene query shapes are enabled for raycasts
 /// by default, shapes are enabled for both.  Contact generation is not necessarily always a part of physics
-struct PhysicsShape {
+class PhysicsShape: public Object {
+public:
 
-    PhysicsShape() :
+    PhysicsShape() : // Default constructor for container storage
         m_pxShape(nullptr),
         m_prefab(nullptr){
     }
-    PhysicsShape(const PhysicsShapePrefab& prefab, physx::PxShape* pxShape = nullptr):
-        m_prefab(&prefab),
-        m_pxShape(pxShape)
-    {
-    }
-    ~PhysicsShape() {
-        // Shapes should be released when detached from actors
-        //PX_RELEASE(m_pxShape);
-    }
+    PhysicsShape(PhysicsShapePrefab& prefab, RigidBody* body);
+    ~PhysicsShape();
+
+    /// @brief Detach from the associated body
+    void detach() const;
 
     /// @brief Toggle the physics shape on or off for contact tests
     void toggleContact(bool toggle) {
@@ -176,12 +182,26 @@ struct PhysicsShape {
         m_pxShape->setFlag(physx::PxShapeFlag::eSCENE_QUERY_SHAPE, toggle);
     }
 
+    /// @brief Called when prefab is modified
+    void reinitialize();
+
     bool isEmpty() const { return !m_pxShape && !m_prefab; }
-    const PhysicsShapePrefab& prefab() const { return *m_prefab; }
+    PhysicsShapePrefab& prefab() const { return *m_prefab; }
+    
+    void setPrefab(PhysicsShapePrefab& prefab, bool removeFromOldPrefab = true);
+
+    physx::PxShape* pxShape() { return m_pxShape; }
+private:
+    friend class Rigidbody;
+    friend class PhysicsShapePrefab;
+
+    /// @brief Called from prefab destructor to ensure clean deletion
+    void prepareForDelete();
 
     physx::PxShape* m_pxShape = nullptr;
+    RigidBody* m_body = nullptr;
 
-    const PhysicsShapePrefab* m_prefab;
+    PhysicsShapePrefab* m_prefab;
 };
 
 

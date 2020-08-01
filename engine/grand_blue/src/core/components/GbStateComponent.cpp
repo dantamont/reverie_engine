@@ -12,12 +12,12 @@
 namespace Gb {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 StateComponent::StateComponent() :
-    Component(kStateMachine)
+    Component(ComponentType::kStateMachine)
 {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 StateComponent::StateComponent(const std::shared_ptr<SceneObject>& object) :
-    Component(object, kStateMachine)
+    Component(object, ComponentType::kStateMachine)
 {
     setSceneObject(sceneObject());
     sceneObject()->addComponent(this);

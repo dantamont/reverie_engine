@@ -1,3 +1,11 @@
+Misc:
+- __line__ and __func__
+- unistd.h chdir
+- zeromq
+- delimited stream
+- explore https://github.com/nothings/stb
+- python autoformatter vs code
+- CLANG for formatting C++ code
 FOUR MAIN TASKS BEFORE 1.0:
 1. Animation (event system)
 	- https://www.gamasutra.com/view/feature/3456/animation_blending_achieving_.php?print=1
@@ -8,34 +16,86 @@ FOUR MAIN TASKS BEFORE 1.0:
 	- https://developer.nvidia.com/content/physx-dynamic-heightfield-modifications
 	- https://www.reddit.com/r/gamedev/comments/gdfeix/creating_infinite_procedural_3d_terrain_with/ https://www.reddit.com/r/gamedev/comments/gdfeix/creating_infinite_procedural_3d_terrain_with/ https://github.com/Bekwnn/L-Terrain-UE4/tree/master/Plugins/LTerrainEditor/Source/LTerrainEditor
 3. Sound
-4. 2D rendering
-5. Finishing graphics
-	- Fix lights (remove from scene, make shader-driven), see openGL tutorials
-	- Implement render layers
+4. Finishing graphics
 	- Go through remaining graphics tutorials
+	- Abstract out QOpenGLContext into a "RenderContext", which can store "global" state for each renderer
+	- Anti-aliasing with framebuffers, is tricky, got working, but modern games - try FXAA
+		~ SMAA- the best https://github.com/iryoku/smaa https://github.com/dmnsgn/glsl-smaa
+		~https://gamedev.stackexchange.com/questions/18777/how-do-i-implement-anti-aliasing-in-opengl
+		~https://www.geeks3d.com/20110405/fxaa-fast-approximate-anti-aliasing-demo-glsl-opengl-test-radeon-geforce/3/
 	- Volumetric lighting: http://www.alexandre-pestana.com/volumetric-lights/
 	- PBR: http://www.alexandre-pestana.com/disney-principled-brdf-implementation/, and in projects
 	- Shader abstraction layer, node-based. 
 		* Can have input nodes, need reflection for types that can be piped into shaders (models, materials, lights, etc.)
 		* Think about whether or not this can be entirely node-based, may need an abstracted scripting language (gross)
+	- Implement Octree? Maybe loose octree or BVH, since octree is tough for moving objects https://www.flipcode.com/archives/Introduction_To_Octrees.shtml https://geidav.wordpress.com/2014/11/18/advanced-octrees-3-non-static-octrees/
+	https://www.gamedev.net/tutorials/programming/general-and-gameplay-programming/introduction-to-octrees-r3529/
+	
+	-Skyboxes and image-based lighting
+	
+	- Fix lights
+	- https://github.com/Angelo1211/HybridRenderingEngine
+	- https://www.3dgep.com/forward-plus/#Forward
+	- Light modes, ensure that forward_plus is an additional configuration
+	- Implement a buffer class that is generic and has shared features between UBO and SSB
+	- Reimplement python routines for light
+	~ clustered: https://www.yosoygames.com.ar/wp/2016/11/clustered-forward-vs-deferred-shading/
+	~ https://www.reddit.com/r/opengl/comments/4384zn/emulating_forward_rendering_on_the_cpu/
+    ~Maybe have a setting for different lighting modes: deferred rendering (only works for solid objects, need forward rendering for transparent, so deferred pass, then forward-rendering for transparent) , clustered forward rendering == forward plus rendering
+	https://github.com/bcrusco/Forward-Plus-Renderer 
+	https://gamedevelopment.tutsplus.com/articles/forward-rendering-vs-deferred-rendering--gamedev-12342
+	
+	
+    Post-processing effects (including multipass effects such as bloom etc)
+    -Light volumes
+    -Cascading Shadow Maps
+    -Particle systems
+    -Multitexturing (normal maps, specular maps, emission etc.)
+    -Instancing
+    -Animation blending and blend trees
+		~Make sure that all structures are contiguous (i.e., no maps, just vectors or arrays)
+			~QString hashing in the maps is killing me right now
+		~Make sure that uniforms are set via index, not via name (is much much slower)
+		~https://www.gamedev.net/tutorials/programming/graphics/skeletal-animation-optimization-tips-and-tricks-r3988/
+    -Terrain, water, transparency, reflections
+    -A whole host of OpenGL optimizations (texture arrays etc. etc.)
+	-Logarithmic depth buffer (in fragment shader), to allow for much greater range. https://outerra.blogspot.com/2009/08/logarithmic-z-buffer.html
+			gl_Vertex = modelviewproj * pos;
+			gl_Vertex.z = logzbuf(gl_Vertex, invfarplanecoef);
+
+			Where logzbuf function is:
+
+			float logzbuf( vec4 xyzw, float invfarplanecoef ) {
+			return (log(1 + xyzw.w) * invfarplanecoef - 1) * xyzw.w;
+			}
+
+			invfarplanecoef is a uniform containing precomputed value:
+
+			invfarplanecoef = 2.0f / log(farp + 1);
+
+			with farp being the far plane distance. 
+	
 6. Optimizations
 	-Frustum culling (http://www.lighthouse3d.com/tutorials/view-frustum-culling/view-frustums-shape/)
+	-Occlusion culling  
+	-Convex hulls https://github.com/akuukka/quickhull
+	-Binary loading:
+		-https://stackoverflow.com/questions/37038909/c-read-write-class-from-to-binary-file
+		-is_trivially_copyable
 7. Implement widgets
 	- See: https://github.com/JesseTG/awesome-qt
 	- See: https://github.com/gwihlidal/QNodeView (in projects already)
-Python:
-1. Flesh out remaining types (models, animations, physics events, 2d rendering)
-
-1. Put everything out to framebuffers
-2. Add a "View" component, which encapsulates a camera and GUI elements, renders onto a framebuffer, and can be arranged with other views
-2.a. Gui Renderer (i.e. Canvas), contains GuiTextures, which subclass from Model<V>, but share the same geometry
-2.b. Mainrenderer would iterate through views, not cameras
-2.c. All GUI rendering would happen after scene rendering to FBO
-
-4.a. Convert resource cache to use process manager
-4.b Make Material a resource
-
-5. add required components to component construction
+	
+8. Refactoring resources
+	- Use actual priorities instead of just isCore flag
+	
+9. Python
+	- Encapsulate as much functionality as possible
+	
+10. 2D rendering
+11. Controls
+	- Qt gestures or Qt Gamepad? Maybe third party
+	- Connect to QApplication::focusChanged signal so that inputs are cleared on deselection
 
 Animation:
 https://gamedev.stackexchange.com/questions/112143/when-to-use-a-blend-tree-vs-state-machine-for-animation

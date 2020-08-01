@@ -23,15 +23,20 @@ namespace Gb {
 // Forward Declarations
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class Model;
+class ResourceHandle;
 class ShaderProgram;
 struct Uniform;
+class DrawCommand;
+class Camera;
+struct SortingLayer;
+class MainRenderer;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Class Definitions
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /// @class ModelComponent
-class ModelComponent: public Component, public Renderable {
+class ModelComponent: public Component, public Shadable {
 public:
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Static Methods
@@ -52,9 +57,14 @@ public:
     /// @name Public Methods
     /// @{
 
-    /// @brief Draw this model component
-    void draw(const std::shared_ptr<Gb::ShaderProgram>& shaderProgram, 
-        RenderSettings* settings = nullptr) override;
+    /// @brief Update bounds given a transform
+    void updateBounds(const Transform& transform);
+
+    /// @brief Create the draw commands for the model component
+    void createDrawCommands(
+        std::vector<std::shared_ptr<DrawCommand>>& outDrawCommands,
+        Camera& camera,
+        ShaderProgram& shaderProgram);
 
     /// @brief Enable the behavior of this script component
     virtual void enable() override;
@@ -65,17 +75,22 @@ public:
     /// @brief Max number of allowed components per scene object
     virtual int maxAllowed() const override { return 1; }
 
-    virtual void reload() override {}
-
     /// @}
 
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Properties
     /// @{
 
+    const std::vector<BoundingBoxes>& bounds() const { return m_transformedBounds; }
+
     /// @property Model
-    std::shared_ptr<Model> model() { return m_model; }
-    void setModel(std::shared_ptr<Model> model) { m_model = model; }
+    std::shared_ptr<Model> model() const;
+    const std::shared_ptr<ResourceHandle>& modelHandle() const {
+        return m_modelHandle;
+    }
+    void setModelHandle(const std::shared_ptr<ResourceHandle>& handle) {
+        m_modelHandle = handle;
+    }
 
     /// @}
 
@@ -108,18 +123,18 @@ protected:
     /// @{
 
     /// @brief Set uniforms for the model component, which are specific to only this instance of a model
-    void bindUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram) override;
-    virtual void releaseUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram) override;
-   
-    void drawGeometry(const std::shared_ptr<ShaderProgram>& shaderProgram, RenderSettings* settings = nullptr) override;
-    
+    //void bindUniforms(DrawCommand& drawCommand);
+       
     /// @}
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Protected Members
     /// @{
 
+    /// @brief Transformed bounding geometry for all model chunks
+    std::vector<BoundingBoxes> m_transformedBounds;
+
     /// @brief The model used by this model instance
-    std::shared_ptr<Model> m_model;
+    std::shared_ptr<ResourceHandle> m_modelHandle;
 
     /// @}
 

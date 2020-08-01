@@ -379,10 +379,7 @@ bool KeyHandler::wasDoubleClicked(const QString & key)
 bool KeyHandler::isHeld(const Qt::Key& key) const
 {
     bool held = false;
-    if (m_keyInputs.find(key) == m_keyInputs.end()) {
-        held = false;
-    }
-    else{
+    if (m_keyInputs.find(key) != m_keyInputs.end()) {
         const KeyInput& input = m_keyInputs.at(key);
         if (input.isPress()) {
             long heldTime = m_inputHandler->m_timer.elapsed() - input.m_timeStamps.at(KeyInput::kPress);

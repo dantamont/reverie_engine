@@ -5,7 +5,7 @@
 #include "../../core/resource/GbResourceCache.h"
 #include "../../core/resource/GbResource.h"
 #include "../../core/rendering/models/GbModel.h"
-#include "../../core/rendering/materials/GbCubeMap.h"
+#include "../../core/rendering/materials/GbCubeTexture.h"
 #include "../../core/rendering/materials/GbMaterial.h"
 #include "../../core/rendering/shaders/GbShaders.h"
 
@@ -16,10 +16,89 @@
 
 #include "../GbWidgetManager.h"
 #include "../../GbMainWindow.h"
+#include "../parameters/GbModelWidgets.h"
+#include "../parameters/GbMaterialWidgets.h"
+#include "../../core/containers/GbFlags.h"
 
 namespace Gb {
 
-// TODO: Remove shared pointers to resources, need to be WEAK
+#define FULL_DELETE_RESOURCE Flags::toFlags<ResourceHandle::DeleteFlag>(3)
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// LoadTextureCommand
+///////////////////////////////////////////////////////////////////////////////////////////////////
+LoadTextureCommand::LoadTextureCommand(CoreEngine * core,
+    const QString & text,
+    QUndoCommand * parent) :
+    UndoCommand(core, text, parent)
+{
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+LoadTextureCommand::~LoadTextureCommand()
+{
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+void LoadTextureCommand::redo()
+{
+    // Create widget for loading in model
+    if (!m_textureLoadWidget) {
+        m_textureLoadWidget = new View::LoadTextureWidget(m_engine);
+    }
+
+    // Show add model dialog on redo
+    m_textureLoadWidget->show();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+void LoadTextureCommand::undo()
+{
+    if (!m_textureLoadWidget->m_textureHandleID.isNull()) {
+        auto handle = m_engine->resourceCache()->getHandle(m_textureLoadWidget->m_textureHandleID);
+        m_engine->resourceCache()->remove(handle, FULL_DELETE_RESOURCE);
+        m_textureLoadWidget->m_textureHandleID = Uuid(false);
+    }
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// AddMaterialCommand
+///////////////////////////////////////////////////////////////////////////////////////////////////
+DeleteTextureCommand::DeleteTextureCommand(CoreEngine * core,
+    const QString & text,
+    const std::shared_ptr<ResourceHandle>& texture,
+    QUndoCommand * parent) :
+    UndoCommand(core, text, parent),
+    m_textureHandleID(texture->getUuid())
+{
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+DeleteTextureCommand::~DeleteTextureCommand()
+{
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+void DeleteTextureCommand::redo()
+{
+    //// Add material to resource cache
+    //QString name = "material_" + Uuid().asString();
+    //auto handle = Material::createHandle(m_engine, name);
+    //m_materialID = handle->getUuid();
+
+    //// Emit signal that material was created
+    //emit m_engine->resourceCache()->resourceAdded(handle);
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+void DeleteTextureCommand::undo()
+{
+    //// Delete material
+    //auto handle = m_engine->resourceCache()->getHandle(m_uuid);
+    //m_engine->resourceCache()->remove(handle, FULL_DELETE_RESOURCE);
+    //m_materialID = Uuid();
+}
+
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // AddMaterialCommand
@@ -39,24 +118,21 @@ void AddMaterialCommand::redo()
 {
     // Add material to resource cache
     QString name = "material_" + Uuid().asString();
-    m_material = std::make_shared<Material>(m_engine, name);
-    m_engine->resourceCache()->materials().emplace(m_material->getName().toLower(), 
-        m_material);
+    auto handle = Material::createHandle(m_engine, name);
+    m_materialID = handle->getUuid();
 
-    // Repopulate resource widget
-    emit m_engine->resourceCache()->resourceAdded(m_material);
+    // Emit signal that material was created
+    emit m_engine->resourceCache()->resourceAdded(handle);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void AddMaterialCommand::undo()
 {
     // Delete material
-    m_materialJson = m_material->asJson();
-    m_engine->resourceCache()->removeMaterial(m_material);
-    m_material = nullptr;
-
-    // Repopulate resource widget
-    emit m_engine->resourceCache()->resourceDeleted(m_material);
+    auto handle = m_engine->resourceCache()->getHandle(m_uuid);
+    m_engine->resourceCache()->remove(handle, FULL_DELETE_RESOURCE);
+    m_materialID = Uuid(false);
 }
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Copy Material Command
@@ -79,16 +155,22 @@ CopyMaterialCommand::~CopyMaterialCommand()
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void CopyMaterialCommand::redo()
 {
-    auto mtl = m_engine->resourceCache()->createMaterial(m_materialJson);
-    emit m_engine->resourceCache()->resourceAdded(mtl);
+    // Add material to resource cache
+    QString name = "material_" + Uuid().asString();
+    auto matHandle = Material::createHandle(m_engine, name);
+    matHandle->resourceAs<Material>()->loadFromJson(m_materialJson);
+    m_materialUuid = matHandle->getUuid();
+
+    // Emit signal that material was created
+    emit m_engine->resourceCache()->resourceAdded(matHandle);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void CopyMaterialCommand::undo()
 {
-    QString name = m_materialJson["name"].toString();
-    auto mtl = m_engine->resourceCache()->getMaterial(name);
-    m_engine->resourceCache()->removeMaterial(name);
-    emit m_engine->resourceCache()->resourceDeleted(mtl);
+    auto mtl = m_engine->resourceCache()->getHandle(m_materialUuid);
+    m_materialJson = mtl->asJson();
+    m_engine->resourceCache()->remove(mtl, FULL_DELETE_RESOURCE);
+    m_materialUuid = Uuid(false);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 QString CopyMaterialCommand::getUniqueName()
@@ -103,27 +185,105 @@ QString CopyMaterialCommand::getUniqueName()
     return newName;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Add Mesh Command
+///////////////////////////////////////////////////////////////////////////////////////////////////
+AddMeshCommand::AddMeshCommand(CoreEngine * core,
+    const QString & text,
+    QUndoCommand * parent) :
+    UndoCommand(core, text, parent),
+    m_meshWidget(nullptr)
+{
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+AddMeshCommand::~AddMeshCommand()
+{
+    delete m_meshWidget;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+void AddMeshCommand::redo()
+{
+    // Create widget for loading in model
+    if (!m_meshWidget) {
+        m_meshWidget = new View::CreateMeshWidget(m_engine);
+    }
+
+    // Show add model dialog on redo
+    m_meshWidget->show();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+void AddMeshCommand::undo()
+{
+    if (!m_meshWidget->m_meshHandleID.isNull()) {
+        auto handle = m_engine->resourceCache()->getHandle(m_meshWidget->m_meshHandleID);
+        m_engine->resourceCache()->remove(handle, FULL_DELETE_RESOURCE);
+        m_meshWidget->m_meshHandleID = Uuid(false);
+    }
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Add Model Command
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
-AddModelCommand::AddModelCommand(CoreEngine * core, 
-    const QString & text, 
+AddModelCommand::AddModelCommand(CoreEngine * core,
+    const QString & text,
     QUndoCommand * parent) :
-    UndoCommand(core, text, parent),
-    m_modelWidget(nullptr),
-    m_model(nullptr)
+    UndoCommand(core, text, parent)
 {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 AddModelCommand::~AddModelCommand()
 {
-    delete m_modelWidget;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void AddModelCommand::redo()
+{
+    // Add model to resource cache
+    auto handle = Model::createHandle(m_engine);
+    m_modelHandleID = handle->getUuid();
+    handle->setUserGenerated(true);
+    handle->setIsLoading(true);
+    //handle->setResourceJson(m_modelJson.toObject());
+    //handle->loadResource();
+    QString uniqueName = Uuid::UniqueName("model_");
+    auto model = std::make_shared<Model>(*handle, handle->resourceJson());
+    model->setName(uniqueName);
+    handle->setName(uniqueName);
+    handle->setResource(model, false);
+    handle->setConstructed(true);
+
+    emit m_engine->resourceCache()->resourceAdded(handle);
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+void AddModelCommand::undo()
+{
+    auto handle = m_engine->resourceCache()->getHandle(m_modelHandleID);
+    m_engine->resourceCache()->remove(handle, FULL_DELETE_RESOURCE);
+    m_modelHandleID = Uuid(false);
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Load Model Command
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+LoadModelCommand::LoadModelCommand(CoreEngine * core, 
+    const QString & text, 
+    QUndoCommand * parent) :
+    UndoCommand(core, text, parent),
+    m_modelWidget(nullptr)
+{
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+LoadModelCommand::~LoadModelCommand()
+{
+    delete m_modelWidget;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+void LoadModelCommand::redo()
 {
     // Create widget for loading in model
     if (!m_modelWidget) {
@@ -134,80 +294,27 @@ void AddModelCommand::redo()
     m_modelWidget->show();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-void AddModelCommand::undo()
+void LoadModelCommand::undo()
 {
-    if (m_model) {
-        m_modelJson = m_model->asJson();
-        m_engine->resourceCache()->removeModel(m_model);
-        emit m_engine->resourceCache()->resourceDeleted(m_model);
-        m_model = nullptr;
+    if (!m_modelWidget->m_modelID.isNull()) {
+        auto handle = m_engine->resourceCache()->getHandle(m_modelWidget->m_modelID);
+        m_engine->resourceCache()->remove(handle, FULL_DELETE_RESOURCE);
+        m_modelWidget->m_modelID = Uuid(false);
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-void AddModelCommand::createModelWidget()
+void LoadModelCommand::createModelWidget()
 {
     // Create widget to add model to resource cache
-    m_modelWidget = new QWidget();
-    QVBoxLayout* layout = new QVBoxLayout();
-
-    // Create new layouts
-    QHBoxLayout* modelLayout = new QHBoxLayout();
-    QLabel* modelLabel = new QLabel();
-    modelLabel->setText("Model: ");
-    View::FileLoadWidget* modelFileWidget = new View::FileLoadWidget(m_engine,
-        "",
-        "Open Model",
-        "Models (*.obj)");
-    modelLayout->addWidget(modelLabel);
-    modelLayout->addWidget(modelFileWidget);
-    modelLayout->setAlignment(Qt::AlignCenter);
-    modelFileWidget->connect(modelFileWidget->lineEdit(), &QLineEdit::textChanged,
-        m_modelWidget,
-        [&](const QString& text) {
-        m_modelFileOrName = text;
-    });
-
-    QDialogButtonBox::StandardButtons dialogButtons = QDialogButtonBox::Ok |
-        QDialogButtonBox::Cancel;
-    QDialogButtonBox* buttons = new QDialogButtonBox(dialogButtons);
-    m_modelWidget->connect(buttons, &QDialogButtonBox::accepted, m_modelWidget,
-        [&]() {
-
-        QFile modelFile(m_modelFileOrName);
-        if (modelFile.exists()) {
-            // Load model file if it exists
-            m_model = m_engine->resourceCache()->getModelByFilePath(m_modelFileOrName);
-        }
-        else {
-            // Obtain model by name if the file does not exist
-            m_model = m_engine->resourceCache()->getModel(m_modelFileOrName);
-        }
-
-        if (!m_model) {
-            logError("Error, failed to load model, filepath/name " 
-                + m_modelFileOrName + " not found");
-        }
-
-        // Repopulate resource widget
-        emit m_engine->resourceCache()->resourceAdded(m_model);
-
-        m_modelWidget->close();
-    });
-
-    // Add layouts to main layout
-    layout->addLayout(modelLayout);
-    layout->addWidget(buttons);
-
-    // Note, cannot call again without deleting previous layout
-    // https://doc.qt.io/qt-5/qwidget.html#setLayout
-    m_modelWidget->setLayout(layout);
-    m_modelWidget->setWindowTitle("Select Model File");
+    m_modelWidget = new View::LoadModelWidget(m_engine);
 }
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // CopyModelCommand
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-CopyModelCommand::CopyModelCommand(CoreEngine * core, 
+CopyModelCommand::CopyModelCommand(CoreEngine * core,
     const QString & text,
     const Model& model,
     QUndoCommand * parent) :
@@ -225,16 +332,23 @@ CopyModelCommand::~CopyModelCommand()
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void CopyModelCommand::redo()
 {
-    auto model = m_engine->resourceCache()->createModel(m_modelJson);
-    emit m_engine->resourceCache()->resourceAdded(model);
+    // Add model to resource cache
+    auto handle = Model::createHandle(m_engine);
+    handle->setName(m_modelJson["name"].toString());
+    m_modelHandleID = handle->getUuid();
+    handle->setUserGenerated(true);
+    handle->setResourceJson(m_modelJson.toObject());
+    handle->loadResource();
+
+    // Shouldn't be necessary now that loadResource is being called
+    //emit m_engine->resourceCache()->resourceAdded(handle);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void CopyModelCommand::undo()
 {
-    QString name = m_modelJson["name"].toString();
-    auto model = m_engine->resourceCache()->getModel(name);
-    m_engine->resourceCache()->removeModel(name);
-    emit m_engine->resourceCache()->resourceDeleted(model);
+    auto handle = m_engine->resourceCache()->getHandle(m_modelHandleID);
+    m_engine->resourceCache()->remove(handle, FULL_DELETE_RESOURCE);
+    m_modelHandleID = Uuid(false);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 QString CopyModelCommand::getUniqueName()
@@ -242,12 +356,23 @@ QString CopyModelCommand::getUniqueName()
     QString name = m_modelJson["name"].toString().toLower();
     int count = 1;
     QString newName = name;
-    while (m_engine->resourceCache()->models().find(newName)
-        != m_engine->resourceCache()->models().end()) {
+    const ResourceCache::ResourceMap& models = m_engine->resourceCache()->models();
+    auto iter = std::find_if(models.begin(), models.end(),
+        [&](const auto& modelPair) {
+        return modelPair.second->getName() == name;
+    });
+    while (iter != models.end()) {
         newName = name + "_" + QString::number(count++);
+
+        iter = std::find_if(models.begin(), models.end(),
+            [&](const auto& modelPair) {
+            return modelPair.second->getName() == newName;
+        });
     }
     return newName;
 }
+
+
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -258,7 +383,6 @@ AddShaderCommand::AddShaderCommand(CoreEngine * core,
     const QString & text,
     QUndoCommand * parent) :
     UndoCommand(core, text, parent),
-    m_shaderProgram(nullptr),
     m_shaderWidget(nullptr)
 {
 }
@@ -278,11 +402,10 @@ void AddShaderCommand::redo()
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void AddShaderCommand::undo()
 {
-    if (m_shaderProgram) {
-        m_shaderJson = m_shaderProgram->asJson();
-        m_engine->resourceCache()->removeShaderProgram(m_shaderProgram);
-        emit m_engine->resourceCache()->resourceDeleted(m_shaderProgram);
-        m_shaderProgram = nullptr;
+    if (!m_shaderProgramID.isNull()) {
+        auto handle = m_engine->resourceCache()->getHandle(m_shaderProgramID);
+        m_engine->resourceCache()->remove(handle, FULL_DELETE_RESOURCE);
+        m_shaderProgramID == Uuid(false);
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -331,12 +454,16 @@ void AddShaderCommand::createShaderWidget()
     m_shaderWidget->connect(buttons, &QDialogButtonBox::accepted, m_shaderWidget,
         [&]() {
 
-        QString name = m_shaderProgram->getName().toLower();
-        m_shaderProgram = std::make_shared<ShaderProgram>(m_vertFile, m_fragFile);
-        m_engine->resourceCache()->shaderPrograms().emplace(name, m_shaderProgram);
+        //QString name = m_shaderProgram->getName().toLower();
+        //m_shaderProgram = std::make_shared<ShaderProgram>(m_vertFile, m_fragFile);
+        //m_engine->resourceCache()->shaderPrograms().emplace(name, m_shaderProgram);
+        auto handle = m_engine->resourceCache()->guaranteeHandleWithPath(
+            { m_vertFile, m_fragFile }, Resource::kShaderProgram);
+
+        m_shaderProgramID = handle->getUuid();
 
         // Repopulate resource widget
-        emit m_engine->resourceCache()->resourceAdded(m_shaderProgram);
+        emit m_engine->resourceCache()->resourceAdded(handle);
 
         m_shaderWidget->close();
     });
@@ -358,11 +485,13 @@ void AddShaderCommand::createShaderWidget()
 // DeleteMaterialCommand
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 DeleteMaterialCommand::DeleteMaterialCommand(CoreEngine * core, 
-    std::shared_ptr<Material> material,
+    const std::shared_ptr<Material>& material,
     const QString & text,
     QUndoCommand * parent) :
     UndoCommand(core, text, parent),
-    m_material(material)
+    m_materialJson(material->asJson()),
+    m_materialName(material->handle()->getName()),
+    m_materialHandleID(material->handle()->getUuid())
 {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -372,24 +501,18 @@ DeleteMaterialCommand::~DeleteMaterialCommand()
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void DeleteMaterialCommand::redo()
 {
-    m_materialJson = m_material->asJson();
-    m_engine->resourceCache()->removeMaterial(m_material);
-
-    // Repopulate resource widget
-    emit m_engine->resourceCache()->resourceDeleted(m_material);
-    m_material = nullptr;
+    auto handle = m_engine->resourceCache()->getHandle(m_materialHandleID);
+    if (!handle) throw("Handle with the given name does not exist");
+    m_engine->resourceCache()->remove(handle, FULL_DELETE_RESOURCE);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void DeleteMaterialCommand::undo()
 {
-    // Add material back to resource cache
-    // TODO: Make it such that materials are added back into models
-    m_material = std::make_shared<Material>(m_engine, m_materialJson);
-    m_engine->resourceCache()->materials().emplace(m_material->getName().toLower(), 
-        m_material);
+    auto handle = Material::createHandle(m_engine, m_materialName);
+    handle->resourceAs<Material>()->loadFromJson(m_materialJson);
 
     // Repopulate resource widget
-    emit m_engine->resourceCache()->resourceAdded(m_material);
+    emit m_engine->resourceCache()->resourceAdded(handle);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -401,7 +524,8 @@ DeleteModelCommand::DeleteModelCommand(CoreEngine * core,
     const QString & text,
     QUndoCommand * parent) :
     UndoCommand(core, text, parent),
-    m_model(model)
+    m_modelJson(model->asJson()),
+    m_modelName(model->handle()->getName())
 {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -411,24 +535,19 @@ DeleteModelCommand::~DeleteModelCommand()
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void DeleteModelCommand::redo()
 {
-    m_modelJson = m_model->asJson();
-    m_engine->resourceCache()->removeModel(m_model);
-    
-    // Repopulate model widget
-    emit m_engine->resourceCache()->resourceDeleted(m_model);
-    m_model = nullptr;
+    auto handle = m_engine->resourceCache()->getHandleWithName(m_modelName, Resource::kModel);
+    if (!handle) throw("Handle with the given name does not exist");
+    m_engine->resourceCache()->remove(handle, FULL_DELETE_RESOURCE);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void DeleteModelCommand::undo()
 {
     // Add model back to resource cache
-    // TODO: Make it such that models are added back into renderers
-    // Note: Does not add model back into renderers, this must be done manually
-    m_model = Model::create(m_engine, m_modelJson);
-    m_engine->resourceCache()->models().emplace(m_model->getName().toLower(), m_model);
+    auto handle = Model::createHandle(m_engine, m_modelName);
+    handle->resourceAs<Model>()->loadFromJson(m_modelJson);
 
     // Repopulate resource widget
-    emit m_engine->resourceCache()->resourceAdded(m_model);
+    emit m_engine->resourceCache()->resourceAdded(handle);
 }
 
 
@@ -442,7 +561,8 @@ DeleteShaderCommand::DeleteShaderCommand(CoreEngine * core,
     const QString & text, 
     QUndoCommand * parent) :
     UndoCommand(core, text, parent),
-    m_shaderProgram(shader)
+    m_shaderJson(shader->asJson()),
+    m_shaderName(shader->handle()->getName())
 {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -452,23 +572,17 @@ DeleteShaderCommand::~DeleteShaderCommand()
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void DeleteShaderCommand::redo()
 {
-    m_shaderJson = m_shaderProgram->asJson();
-    m_engine->resourceCache()->removeShaderProgram(m_shaderProgram);
-
-    // Repopulate model widget
-    emit m_engine->resourceCache()->resourceDeleted(m_shaderProgram);
-    m_shaderProgram = nullptr;
+    auto handle = m_engine->resourceCache()->getHandleWithName(m_shaderName, Resource::kShaderProgram);
+    m_engine->resourceCache()->remove(handle);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void DeleteShaderCommand::undo()
 {
     // Add shader back to resource cache
-    m_shaderProgram = std::make_shared<ShaderProgram>(m_shaderJson);
-    m_engine->resourceCache()->shaderPrograms().emplace(m_shaderProgram->getName().toLower(),
-        m_shaderProgram);
+    auto handle = ShaderProgram::createHandle(m_engine, m_shaderJson);
 
     // Repopulate resource widget
-    emit m_engine->resourceCache()->resourceAdded(m_shaderProgram);
+    emit m_engine->resourceCache()->resourceAdded(handle);
 }
 
 
@@ -477,107 +591,17 @@ namespace View {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// ResourceLike
-///////////////////////////////////////////////////////////////////////////////////////////////////
-ResourceLike::ResourceLike() :
-    m_handle(nullptr),
-    m_model(nullptr),
-    m_material(nullptr),
-    m_shaderProgram(nullptr) {
-
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////
-ResourceLike::ResourceLike(std::shared_ptr<Object> object) :
-    m_handle(nullptr),
-    m_model(nullptr),
-    m_material(nullptr),
-    m_shaderProgram(nullptr)
-{
-    QString className(object->className());
-    if (className.contains("ResourceHandle")) {
-        m_handle = std::static_pointer_cast<ResourceHandle>(object);
-    }
-    else if (className.contains("Model") || className.contains("CubeMap")) {
-        m_model = std::static_pointer_cast<Model>(object);
-    }
-    else if (className.contains("Material")) {
-        m_material = std::static_pointer_cast<Material>(object);
-    }
-    else if (className.contains("Shader")) {
-        m_shaderProgram = std::static_pointer_cast<ShaderProgram>(object);
-    }
-    else {
-        throw("Error, bad type");
-    }
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////
-ResourceLike::~ResourceLike()
-{
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<Object> ResourceLike::object() const
-{
-    if (m_handle) {
-        return m_handle;
-    }
-    else if (m_model) {
-        return m_model;
-    }
-    else if (m_material) {
-        return m_material;
-    }
-    else if (m_shaderProgram) {
-        return m_shaderProgram;
-    }
-    return nullptr;
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<Serializable> ResourceLike::serializable() const
-{
-    if (m_handle) {
-        return m_handle;
-    }
-    else if (m_model) {
-        return m_model;
-    }
-    else if (m_material) {
-        return m_material;
-    }
-    else if (m_shaderProgram) {
-        return m_shaderProgram;
-    }
-    return nullptr;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // ResourceJsonWidget
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ResourceJsonWidget::ResourceJsonWidget(CoreEngine* core, const std::shared_ptr<ResourceHandle>& resource, QWidget *parent) :
     ParameterWidget(core, parent),
-    m_object(resource)
+    m_resourceHandleID(resource->getUuid()),
+    m_resourceName(resource->getName())
 {
-    initialize();
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////
-ResourceJsonWidget::ResourceJsonWidget(CoreEngine* core, const std::shared_ptr<Model>& model, QWidget *parent) :
-    ParameterWidget(core, parent),
-    m_object(model)
-{
-    initialize();
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////
-ResourceJsonWidget::ResourceJsonWidget(CoreEngine* core, const std::shared_ptr<Material>& mtl, QWidget *parent) :
-    ParameterWidget(core, parent),
-    m_object(mtl)
-{
-    initialize();
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////
-ResourceJsonWidget::ResourceJsonWidget(CoreEngine* core, const std::shared_ptr<ShaderProgram>& shader, QWidget *parent) :
-    ParameterWidget(core, parent),
-    m_object(shader)
-{
+#ifdef DEBUG_MODE
+    if (m_resourceHandleID != resource->getUuid())
+        throw("Error, copied UUID does not match resource UUID");
+#endif
     initialize();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -596,15 +620,39 @@ void ResourceJsonWidget::wheelEvent(QWheelEvent* event) {
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+std::shared_ptr<ResourceHandle> ResourceJsonWidget::resourceHandle() const
+{
+    auto handle = m_engine->resourceCache()->getHandle(m_resourceHandleID);
+    return handle;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
 void ResourceJsonWidget::initializeWidgets()
 {
-    m_typeLabel = new QLabel(QString(m_object.object()->className()) + ": " + m_object.object()->getName());
+    auto handle = resourceHandle();
+    if (!handle) {
+        throw("Resource deleted");
+    }
+    m_typeLabel = new QLabel(QString(handle->resource(false)->className()) + ": " +
+        handle->getName());
     m_typeLabel->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
 
     m_textEdit = new QTextEdit();
-    m_textEdit->setText(JsonReader::getJsonValueAsQString(m_object.serializable()->asJson(), true));
-    m_confirmButton = new QPushButton();
-    m_confirmButton->setIcon(style()->standardIcon(QStyle::SP_BrowserReload));
+    QString text;
+    if (handle->resource(false)->isSerializable()) {
+        Serializable& serializable = *handle->resourceAs<Serializable>();
+        QJsonValue json = serializable.asJson();
+        text = JsonReader::ToQString(json, true);
+        m_confirmButton = new QPushButton();
+        m_confirmButton->setIcon(style()->standardIcon(QStyle::SP_BrowserReload));
+    }
+    else {
+        if (!handle->getName().isEmpty())
+            text = handle->getName();
+        else
+            text = handle->getUuid().asString();
+        m_textEdit->setEnabled(false);
+    }
+    m_textEdit->setText(text);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void ResourceJsonWidget::initializeConnections()
@@ -617,7 +665,7 @@ void ResourceJsonWidget::initializeConnections()
 
         // Get text and color if not valid JSON
         QString text = m_textEdit->toPlainText();
-        QJsonDocument contents = JsonReader::getQStringAsJsonDocument(text);
+        QJsonDocument contents = JsonReader::ToJsonDocument(text);
         QPalette palette;
         QColor badColor = QApplication::palette().color(QPalette::BrightText);
         QColor goodColor = QApplication::palette().color(QPalette::Highlight);
@@ -634,43 +682,45 @@ void ResourceJsonWidget::initializeConnections()
 
     });
 
-    // Make connection to resize component 
-    connect(m_confirmButton, &QPushButton::clicked, this, [this](bool checked) {
-        //QProgressDialog progress("Reloading resource", "Close", 0, 1, 
-        //    m_engine->widgetManager()->mainWindow());
-        //progress.setWindowModality(Qt::WindowModal);
-        Q_UNUSED(checked)
+    // Make connection to reload component 
+    if (m_confirmButton) {
+        connect(m_confirmButton, &QPushButton::clicked, this, [this](bool checked) {
+            //QProgressDialog progress("Reloading resource", "Close", 0, 1, 
+            //    m_engine->widgetManager()->mainWindow());
+            //progress.setWindowModality(Qt::WindowModal);
+            Q_UNUSED(checked)
 
-        // Get text and return if not valid JSON
-        const QString& text = m_textEdit->toPlainText();
-        QJsonDocument contents = JsonReader::getQStringAsJsonDocument(text);
-        if (contents.isNull()) return;
+                // Get text and return if not valid JSON
+                const QString& text = m_textEdit->toPlainText();
+            QJsonDocument contents = JsonReader::ToJsonDocument(text);
+            if (contents.isNull()) return;
 
-        QString name = m_object.object()->getName();
+            QString name = resourceHandle()->getName();
 
-        // Pause scenario to edit resource
-        SimulationLoop* simLoop = m_engine->simulationLoop();
-        bool wasPlaying = simLoop->isPlaying();
-        if (wasPlaying) {
-            simLoop->pause();
-        }
-        m_engine->simulationLoop()->pause();
+            // Pause scenario to edit resource
+            SimulationLoop* simLoop = m_engine->simulationLoop();
+            bool wasPlaying = simLoop->isPlaying();
+            if (wasPlaying) {
+                simLoop->pause();
+            }
+            m_engine->simulationLoop()->pause();
 
-        // Edit resource via JSON
-        m_object.serializable()->loadFromJson(contents.object());
+            // Edit resource via JSON
+            resourceHandle()->resourceAs<Serializable>()->loadFromJson(contents.object());
 
-        // If object name has changed, emit signal to repopulate widget
-        if (name != m_object.object()->getName()) {
-            emit m_engine->resourceCache()->resourceChanged(m_object.object());
-        }
+            // If object name has changed, emit signal to repopulate widget
+            if (name != resourceHandle()->getName()) {
+                emit m_engine->resourceCache()->resourceChanged(resourceHandle());
+            }
 
-        // Unpause scenario
-        if (wasPlaying) {
-            simLoop->play();
-        }
+            // Unpause scenario
+            if (wasPlaying) {
+                simLoop->play();
+            }
 
-        //progress.setValue(1);
-    });
+            //progress.setValue(1);
+        });
+    }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void ResourceJsonWidget::layoutWidgets()
@@ -685,7 +735,8 @@ void ResourceJsonWidget::layoutWidgets()
     QBoxLayout* layout = new QVBoxLayout;
     layout->setMargin(0);
     layout->addWidget(m_textEdit);
-    layout->addWidget(m_confirmButton);
+    if(m_confirmButton)
+        layout->addWidget(m_confirmButton);
 
     // Add layouts to main layout
     m_mainLayout->addLayout(labelLayout);
@@ -710,9 +761,9 @@ ResourceItem::ResourceItem(const QString& text) :
     setText(0, text);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-ResourceItem::ResourceItem(std::shared_ptr<Object> object) :
+ResourceItem::ResourceItem(const std::shared_ptr<ResourceHandle>& object) :
     QTreeWidgetItem((int)getItemType(object)),
-    m_object(object),
+    m_handle(object),
     m_widget(nullptr)
 {
     initializeItem();
@@ -731,32 +782,27 @@ void ResourceItem::performAction(UndoCommand * command)
 void ResourceItem::setWidget()
 {
     // Throw error if the widget already exists
-    if (m_widget) throw("Error, item already has a widget");
+    if (m_widget) 
+        throw("Error, item already has a widget");
 
     // Get parent tree widget
     ResourceTreeWidget * parentWidget = static_cast<ResourceTreeWidget*>(treeWidget());
 
-    // Set widget
-    QJsonDocument doc(m_object.serializable()->asJson().toObject());
-    QString rep(doc.toJson(QJsonDocument::Indented));
-    if (m_object.m_handle) {
-        m_widget = new ResourceJsonWidget(parentWidget->m_engine, m_object.m_handle);
-    }
-    else if (m_object.m_model) {
-        m_widget = new ResourceJsonWidget(parentWidget->m_engine, m_object.m_model);
-    }
-    else if (m_object.m_material) {
-        m_widget = new ResourceJsonWidget(parentWidget->m_engine, m_object.m_material);
-    }
-    else if (m_object.m_shaderProgram) {
-        m_widget = new ResourceJsonWidget(parentWidget->m_engine, m_object.m_shaderProgram);
+    // Set widget if resource is JSON serializable
+    if (m_handle->resource(false)->isSerializable()) {
+        QJsonDocument doc(m_handle->resourceAs<Serializable>()->asJson().toObject());
+        QString rep(doc.toJson(QJsonDocument::Indented));
+
+        m_widget = new ResourceJsonWidget(parentWidget->m_engine, m_handle);
+
+        // Assign widget to item in tree widget
+        parentWidget->setItemWidget(this, 0, m_widget);
     }
     else {
-        throw("Error, correct object type not found");
+        setText(0, m_handle->getName());
     }
 
-    // Assign widget to item in tree widget
-    parentWidget->setItemWidget(this, 0, m_widget);
+
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void ResourceItem::removeWidget()
@@ -776,15 +822,6 @@ ResourceItem::ResourceItemType ResourceItem::getItemType(std::shared_ptr<Object>
     QString name = object->className();
     if (name == "ResourceHandle") {
         return kResourceHandle;
-    }
-    else if (name == "Material") {
-        return kMaterial;
-    }
-    else if (name == "Model" || name == "CubeMap") {
-        return kModel;
-    }
-    else if (name.contains("ShaderProgram")) {
-        return kShaderProgram;
     }
     else {
         throw("Error, type not recognized");
@@ -815,10 +852,16 @@ ResourceTreeWidget::ResourceTreeWidget(CoreEngine* engine, const QString& name, 
     AbstractService(name),
     QTreeWidget(parent),
     m_engine(engine),
-    m_resourceItem(nullptr),
-    m_modelItem(nullptr),
+    m_imageItem(nullptr),
+    m_textureItem(nullptr),
     m_materialItem(nullptr),
-    m_shaderItem(nullptr)
+    m_meshItem(nullptr),
+    m_cubeTextureItem(nullptr),
+    m_animationItem(nullptr),
+    m_skeletonItem(nullptr),
+    m_modelItem(nullptr),
+    m_shaderItem(nullptr),
+    m_scriptItem(nullptr)
 {
     initializeWidget();
 }
@@ -831,7 +874,9 @@ ResourceTreeWidget::~ResourceTreeWidget()
 void ResourceTreeWidget::repopulate()
 {
     // Return if there are still resources loading
-    if (m_engine->processManager()->loadProcessCount()) return;
+    //size_t loadProcessCount = m_engine->processManager()->loadProcessCount();
+    //if (loadProcessCount) return;
+    if (m_engine->resourceCache()->isLoadingResources()) return;
 
     // Clear the widget
     clear();
@@ -846,43 +891,29 @@ void ResourceTreeWidget::repopulate()
     // Get resource cache
     ResourceCache* cache = m_engine->resourceCache();
 
-    // Add shader programs
-    for (const auto& shaderPair : cache->shaderPrograms()) {
-        addItem(shaderPair.second);
-    }
-
-    // Add models
-    for (const auto& modelPair : cache->models()) {
-        addItem(modelPair.second);
-    }
-
-    // Add materials
-    for (const auto& materialPair : cache->materials()) {
-        addItem(materialPair.second);
-    }
-
-    // Add resource items
+    // Add resources
     for (const auto& resourcePair : cache->resources()) {
         addItem(resourcePair.second);
     }
 
     //setUpdatesEnabled(true);
 
+    resizeColumns();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-void ResourceTreeWidget::reloadItem(std::shared_ptr<Object> object)
+void ResourceTreeWidget::reloadItem(std::shared_ptr<ResourceHandle> handle)
 {
-    if (getItem(object)) {
-        removeItem(object);
+    if (getItem(handle)) {
+        removeItem(handle);
     }
     
-    addItem(object);
+    addItem(handle);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-void ResourceTreeWidget::addItem(std::shared_ptr<Object> object)
+void ResourceTreeWidget::addItem(std::shared_ptr<ResourceHandle> handle)
 {
     // Create resource item
-    ResourceItem* resourceItem = new View::ResourceItem(object);
+    ResourceItem* resourceItem = new View::ResourceItem(handle);
 
     // Add resource item
     addItem(resourceItem);
@@ -890,32 +921,59 @@ void ResourceTreeWidget::addItem(std::shared_ptr<Object> object)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void ResourceTreeWidget::addItem(View::ResourceItem * item)
 {
-    // Insert resource item into the widget
-    ResourceItem* parent = nullptr;
-    switch (item->itemType()) {
-    case ResourceItem::kResourceHandle:
-        parent = m_resourceItem;
-        break;
-    case ResourceItem::kMaterial:
-        parent = m_materialItem;
-        break;
-    case ResourceItem::kModel:
-        parent = m_modelItem;
-        break; 
-    case ResourceItem::kShaderProgram:
-        parent = m_shaderItem;
-        break;
-    case ResourceItem::kCategory:
-    default:
-        throw("Error, invalid item type");
+    // Return if this item is a category
+    if (!item->handle()) {
+        throw("Error, item has no handle");
     }
-    parent->addChild(item);
 
     // Create widget for component
-    item->setWidget();
+    if (item->handle()->isLoading()) {
+        item->setText(0, "Loading");
+        return;
+    }
 
-    // Resize columns to fit widget
-    resizeColumns();
+    // Insert resource item into the widget
+    ResourceItem* parent = nullptr;
+    switch (item->handle()->getResourceType()) {
+    case Resource::kImage:
+        parent = m_imageItem;
+        break;
+    case Resource::kTexture:
+        parent = m_textureItem;
+        break;
+    case Resource::kMaterial:
+        parent = m_materialItem;
+        break;
+    case Resource::kMesh:
+        parent = m_meshItem;
+        break;
+    case Resource::kCubeTexture:
+        parent = m_cubeTextureItem;
+        break;
+    case Resource::kAnimation:
+        parent = m_animationItem;
+        break;
+    case Resource::kSkeleton:
+        parent = m_skeletonItem;
+        break;
+    case Resource::kModel:
+        parent = m_modelItem;
+        break;
+    case Resource::kShaderProgram:
+        parent = m_shaderItem;
+        break;
+    case Resource::kPythonScript:
+        parent = m_scriptItem;
+        break;
+    default:
+        break;
+    }
+    if (parent)
+        parent->addChild(item);
+    else
+        throw("No parent found");
+
+    item->setWidget();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void ResourceTreeWidget::removeItem(ResourceItem * resourceItem)
@@ -924,20 +982,20 @@ void ResourceTreeWidget::removeItem(ResourceItem * resourceItem)
         delete resourceItem;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-void ResourceTreeWidget::removeItem(std::shared_ptr<Object> itemObject)
+void ResourceTreeWidget::removeItem(std::shared_ptr<ResourceHandle> handle)
 {
-    ResourceItem* item = getItem(itemObject);
+    ResourceItem* item = getItem(handle);
     if(item)
         delete item;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-View::ResourceItem * ResourceTreeWidget::getItem(std::shared_ptr<Object> itemObject)
+View::ResourceItem * ResourceTreeWidget::getItem(std::shared_ptr<ResourceHandle> handle)
 {
     QTreeWidgetItemIterator it(this);
     while (*it) {
         ResourceItem* item = static_cast<ResourceItem*>(*it);
-        if (item->object().object()) {
-            if (item->object().object()->getUuid() == itemObject->getUuid()) {
+        if (item->handle()) {
+            if (item->handle()->getUuid() == handle->getUuid()) {
                 return item;
             }
         }
@@ -968,16 +1026,27 @@ void ResourceTreeWidget::onItemExpanded(QTreeWidgetItem * item)
 void ResourceTreeWidget::initializeCategories()
 {
     // Insert categorioes into the widget
-    m_resourceItem = new ResourceItem("Resources");
-    m_shaderItem = new ResourceItem("Shaders");
-    m_modelItem = new ResourceItem("Models");
+    m_imageItem = new ResourceItem("Images");
+    m_textureItem = new ResourceItem("Textures");
     m_materialItem = new ResourceItem("Materials");
+    m_meshItem = new ResourceItem("Meshes");
+    m_cubeTextureItem = new ResourceItem("Cube Textures");
+    m_animationItem = new ResourceItem("Animations");
+    m_skeletonItem = new ResourceItem("Skeletons");
+    m_modelItem = new ResourceItem("Models");
+    m_shaderItem = new ResourceItem("Shaders");
+    m_scriptItem = new ResourceItem("Scripts");
 
-    addTopLevelItem(m_shaderItem);
-    addTopLevelItem(m_modelItem);
+    addTopLevelItem(m_imageItem);   
+    addTopLevelItem(m_textureItem);
     addTopLevelItem(m_materialItem);
-    //addTopLevelItem(scriptItem);
-    addTopLevelItem(m_resourceItem);
+    addTopLevelItem(m_meshItem);
+    addTopLevelItem(m_cubeTextureItem);
+    addTopLevelItem(m_animationItem);
+    addTopLevelItem(m_skeletonItem);
+    addTopLevelItem(m_modelItem);
+    addTopLevelItem(m_shaderItem);
+    addTopLevelItem(m_scriptItem);
     
     resizeColumns();
 }
@@ -1027,15 +1096,26 @@ void ResourceTreeWidget::initializeWidget()
     initializeCategories();
 
     // Initialize add actions
+    m_addTexture = new QAction(tr("&Load Texture"), this);
+    m_addTexture->setStatusTip("Load a texture into the scenario");
+    connect(m_addTexture,
+        &QAction::triggered,
+        m_engine->actionManager(),
+        [this] {m_engine->actionManager()->performAction(
+            new LoadTextureCommand(m_engine,
+                "Load Texture"));
+    });
+
     m_addMaterial = new QAction(tr("&Load Material"), this);
-    m_addMaterial->setStatusTip("Load a material into the scenario");
+    m_addMaterial->setStatusTip("Add an empty material to the scenario");
     connect(m_addMaterial,
         &QAction::triggered,
         m_engine->actionManager(),
         [this] {m_engine->actionManager()->performAction(
             new AddMaterialCommand(m_engine,
-                "Load Material"));
+                "Add Material"));
     });
+
     m_copyMaterial = new QAction(tr("&Copy Material"), this);
     m_copyMaterial->setStatusTip("Copy a material into the scenario");
     connect(m_copyMaterial,
@@ -1044,20 +1124,39 @@ void ResourceTreeWidget::initializeWidget()
         [this] {m_engine->actionManager()->performAction(
             new CopyMaterialCommand(m_engine,
                 "Copy Material",
-                *std::static_pointer_cast<Material>(m_currentResourceItem->object().object())
+                *m_currentResourceItem->handle()->resourceAs<Material>()
             ));
     });
 
-
-    m_addModel = new QAction(tr("&Load Model"), this);
-    m_addModel->setStatusTip("Load a model into the scenario");
+    m_addModel = new QAction(tr("&Add Model"), this);
+    m_addModel->setStatusTip("Create a new model in the current scenario");
     connect(m_addModel,
         &QAction::triggered,
         m_engine->actionManager(),
         [this] {m_engine->actionManager()->performAction(
             new AddModelCommand(m_engine,
+                "Add Model"));
+    });
+
+    m_loadModel = new QAction(tr("&Add Model"), this);
+    m_loadModel->setStatusTip("Load a model into the scenario");
+    connect(m_loadModel,
+        &QAction::triggered,
+        m_engine->actionManager(),
+        [this] {m_engine->actionManager()->performAction(
+            new LoadModelCommand(m_engine,
                 "Load Model"));
     });
+
+    m_addMesh = new QAction(tr("&Add Mesh"), this);
+    m_addMesh->setStatusTip("Create a mesh in the current scenario");
+    connect(m_addMesh,
+        &QAction::triggered,
+        m_engine->actionManager(),
+        [this] {m_engine->actionManager()->performAction(
+            new AddMeshCommand(m_engine, "Add Mesh"));
+    });
+
     m_copyModel = new QAction(tr("&Copy Model"), this);
     m_copyModel->setStatusTip("Copy a model from this scenario");
     connect(m_copyModel,
@@ -1065,7 +1164,7 @@ void ResourceTreeWidget::initializeWidget()
         m_engine->actionManager(),
         [this] {m_engine->actionManager()->performAction(
             new CopyModelCommand(m_engine, "Copy Model", 
-                *std::static_pointer_cast<Model>(m_currentResourceItem->object().object())
+                *m_currentResourceItem->handle()->resourceAs<Model>()
             ));
     });
 
@@ -1087,7 +1186,7 @@ void ResourceTreeWidget::initializeWidget()
         m_engine->actionManager(),
         [this] {m_engine->actionManager()->performAction(
             new DeleteMaterialCommand(m_engine,
-                m_currentResourceItem->object().m_material,
+                m_currentResourceItem->handle()->resourceAs<Material>(),
                 "Delete Material"));
     });
 
@@ -1098,7 +1197,7 @@ void ResourceTreeWidget::initializeWidget()
         m_engine->actionManager(),
         [this] {m_engine->actionManager()->performAction(
             new DeleteModelCommand(m_engine,
-                m_currentResourceItem->object().m_model,
+                m_currentResourceItem->handle()->resourceAs<Model>(),
                 "Delete Model"));
     });
 
@@ -1109,7 +1208,7 @@ void ResourceTreeWidget::initializeWidget()
         m_engine->actionManager(),
         [this] {m_engine->actionManager()->performAction(
             new DeleteShaderCommand(m_engine,
-                m_currentResourceItem->object().m_shaderProgram,
+                m_currentResourceItem->handle()->resourceAs<ShaderProgram>(),
                 "Delete Shader Program"));
     });
 
@@ -1143,7 +1242,7 @@ void ResourceTreeWidget::initializeWidget()
     connect(m_engine->resourceCache(),
         &ResourceCache::resourceDeleted,
         this,
-        static_cast<void(ResourceTreeWidget::*)(std::shared_ptr<Object>)>(&ResourceTreeWidget::removeItem),
+        static_cast<void(ResourceTreeWidget::*)(std::shared_ptr<ResourceHandle>)>(&ResourceTreeWidget::removeItem),
         Qt::QueuedConnection);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1161,29 +1260,40 @@ void ResourceTreeWidget::contextMenuEvent(QContextMenuEvent * event)
     if (itemAt(event->pos())) {
         auto* item = static_cast<ResourceItem*>(itemAt(event->pos()));
         m_currentResourceItem = item;
-        switch (item->itemType()) {
-        case ResourceItem::kResourceHandle:
-            break;
-        case ResourceItem::kMaterial:
-            menu.addAction(m_copyMaterial);
-            menu.addAction(m_deleteMaterial);
-            break;
-        case ResourceItem::kModel:
-            menu.addAction(m_copyModel);
-            menu.addAction(m_deleteModel);
-            break;
-        case ResourceItem::kShaderProgram:
-            const QString& name = m_currentResourceItem->object().m_shaderProgram->className();
-            if (name != "BasicShaderProgram" && name != "CubemapShaderProgram") {
-                menu.addAction(m_deleteShaderProgram);
+        if (item->handle()) {
+            switch (item->handle()->getResourceType()) {
+            case Resource::kMaterial:
+                menu.addAction(m_copyMaterial);
+                if (!item->handle()->isCore()) {
+                    menu.addAction(m_deleteMaterial);
+                }
+                break;
+            case Resource::kModel:
+                menu.addAction(m_copyModel);
+                if (!item->handle()->isCore()) {
+                    menu.addAction(m_deleteModel);
+                }
+                break;
+            case Resource::kShaderProgram:
+                if (!item->handle()->isCore()) {
+                    menu.addAction(m_deleteShaderProgram);
+                }
+                break;
+            default:
+                break;
             }
-            break;
         }
     }
     else {
         // Options to add things when there is no item selected
+        menu.addAction(m_addMesh);
+        menu.addSeparator();
         menu.addAction(m_addModel);
+        menu.addAction(m_loadModel);
+        menu.addSeparator();
+        menu.addAction(m_addTexture);
         menu.addAction(m_addMaterial);
+        menu.addSeparator();
         menu.addAction(m_addShaderProgram);
     }
 

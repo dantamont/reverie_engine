@@ -29,9 +29,20 @@ namespace Gb {
 class Uuid: public QUuid {
 public:
     //-----------------------------------------------------------------------------------------------------------------
+    /// @name Statiic
+    /// @{
+    
+    /// @brief Generate a unique name
+    static QString UniqueName(const QString& prefix);
+    static QString UniqueName();
+
+    /// @}
+
+    //-----------------------------------------------------------------------------------------------------------------
     /// @name Constructors and Destructors
     /// @{
     Uuid(const QUuid& uuid);
+    Uuid(const QString& str);
     explicit Uuid(bool generate = true);
     ~Uuid();
     /// @}

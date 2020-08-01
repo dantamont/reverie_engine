@@ -18,18 +18,20 @@ HEADERS += C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/Gb
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/components/GbCamera.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/components/GbCanvasComponent.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/components/GbComponent.h \ 
- 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/components/GbLight.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/components/GbCubemapComponent.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/components/GbLightComponent.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/components/GbListenerComponent.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/components/GbModelComponent.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/components/GbPhysicsComponents.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/components/GbPhysicsSceneComponent.h \ 
- 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/components/GbRendererComponent.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/components/GbScriptComponent.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/components/GbShaderComponent.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/components/GbStateComponent.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/components/GbTransformComponent.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/containers/GbColor.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/containers/GbContainerExtensions.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/containers/GbDagNode.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/containers/GbDictionary.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/containers/GbFlags.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/containers/GbGVariant.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/containers/GbRecursiveWrapper.h \ 
@@ -85,15 +87,24 @@ HEADERS += C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/Gb
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/geometry/GbPolygon.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/geometry/GbSkeleton.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/geometry/GbVertexData.h \ 
- 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/materials/GbCubeMap.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/lighting/GbLight.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/materials/GbCubeTexture.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/materials/GbMaterial.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/materials/GbTexture.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/models/GbModel.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/postprocessing/GbPostProcessing.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/renderer/GbMainRenderer.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/renderer/GbRenderCommand.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/renderer/GbRenderContext.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/renderer/GbRenderSettings.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/renderer/GbRenderers.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/renderer/GbSortKey.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/shaders/GbShaderPreset.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/shaders/GbShaderStorageBuffer.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/shaders/GbShaders.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/shaders/GbUniform.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/shaders/GbUniformBufferObject.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/view/GbFrameBuffer.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/view/GbRenderProjection.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/resource/GbImage.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/resource/GbResource.h \ 
@@ -392,23 +403,75 @@ HEADERS += C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/Gb
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/eigen/Eigen/src/plugins/CommonCwiseUnaryOps.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/eigen/Eigen/src/plugins/MatrixCwiseBinaryOps.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/eigen/Eigen/src/plugins/MatrixCwiseUnaryOps.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQt.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtBoolResult.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtClassInfo.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtClassWrapper.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtConversion.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtCppWrapperFactory.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtDoc.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtImportFileInterface.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtImporter.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtInstanceWrapper.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtMethodInfo.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtMisc.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtObjectPtr.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtProperty.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtPythonInclude.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtQFileImporter.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtSignal.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtSignalReceiver.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtSlot.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtSlotDecorator.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtStdDecorators.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtStdIn.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtStdOut.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtSystem.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtThreadSupport.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtUtils.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtVariants.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/gui/PythonQtScriptingConsole.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/stb/stb_image.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/tiny_obj_loader/tiny_obj_loader.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/GL/GbGLWidget.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/GbGroupBox.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/GbWidgetManager.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/base/GbTool.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/components/GbCameraComponentWidget.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/components/GbCanvasComponentWidget.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/components/GbCharControlComponentWidget.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/components/GbComponentWidgets.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/components/GbCubeMapComponentWidget.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/components/GbLightComponentWidget.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/components/GbModelComponentWidget.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/components/GbPhysicsWidgets.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/components/GbRigidBodyComponentWidget.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/components/GbScriptComponentWidget.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/components/GbShaderComponentWidget.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/components/GbTransformComponentWidget.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/logging/GbConsoleTool.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/nodes/GbGraphEdge.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/nodes/GbGraphNode.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/nodes/GbGraphWidget.h \ 
- 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/parameters/GbComponentWidgets.h \ 
- 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/parameters/GbGroupBox.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/parameters/GbAngleWidgets.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/parameters/GbColorWidget.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/parameters/GbMaterialWidgets.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/parameters/GbModelWidgets.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/parameters/GbParameterWidgets.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/parameters/GbRenderLayerWidgets.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/parameters/GbRenderableWidget.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/parameters/GbVectorWidget.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/players/GbPlayer.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/style/GbFontIcon.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/style/GbStyles.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/tree/GbCanvasGlyphWidget.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/tree/GbComponentWidget.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/tree/GbRenderLayerWidget.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/tree/GbResourceWidgets.h \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/tree/GbSceneTreeWidget.h \ 
- 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/tree/GbScriptOrder.h 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/tree/GbScriptOrder.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/tree/GbShaderTreeWidget.h \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/tree/GbTreeWidget.h 
  	
 SOURCES += C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/GbMainWindow.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/GbConstants.cpp \ 
@@ -426,18 +489,20 @@ SOURCES += C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/Gb
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/components/GbCamera.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/components/GbCanvasComponent.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/components/GbComponent.cpp \ 
- 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/components/GbLight.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/components/GbCubemapComponent.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/components/GbLightComponent.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/components/GbListenerComponent.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/components/GbModelComponent.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/components/GbPhysicsComponents.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/components/GbPhysicsSceneComponent.cpp \ 
- 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/components/GbRendererComponent.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/components/GbScriptComponent.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/components/GbShaderComponent.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/components/GbStateComponent.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/components/GbTransformComponent.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/containers/GbColor.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/containers/GbContainerExtensions.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/containers/GbDagNode.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/containers/GbDictionary.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/containers/GbGVariant.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/containers/GbSortingLayer.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/debugging/GbDebugManager.cpp \ 
@@ -488,15 +553,24 @@ SOURCES += C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/Gb
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/geometry/GbPolygon.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/geometry/GbSkeleton.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/geometry/GbVertexData.cpp \ 
- 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/materials/GbCubeMap.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/lighting/GbLight.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/materials/GbCubeTexture.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/materials/GbMaterial.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/materials/GbTexture.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/models/GbModel.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/postprocessing/GbPostProcessing.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/renderer/GbMainRenderer.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/renderer/GbRenderCommand.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/renderer/GbRenderContext.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/renderer/GbRenderSettings.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/renderer/GbRenderers.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/renderer/GbSortKey.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/shaders/GbShaderPreset.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/shaders/GbShaderStorageBuffer.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/shaders/GbShaders.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/shaders/GbUniform.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/shaders/GbUniformBufferObject.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/view/GbFrameBuffer.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/rendering/view/GbRenderProjection.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/resource/GbImage.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/core/resource/GbResource.cpp \ 
@@ -519,22 +593,64 @@ SOURCES += C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/Gb
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/model_control/commands/commands/GbWidgetCommands.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/model_control/models/GbComponentModels.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/model_control/models/GbSceneModels.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQt.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtBoolResult.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtClassInfo.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtClassWrapper.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtConversion.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtImporter.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtInstanceWrapper.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtMethodInfo.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtMisc.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtObjectPtr.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtProperty.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtQFileImporter.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtSignal.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtSignalReceiver.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtSlot.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtSlotDecorator.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtStdDecorators.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtStdIn.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtStdOut.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/PythonQtThreadSupport.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/third_party/pythonqt/gui/PythonQtScriptingConsole.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/GL/GbGLWidget.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/GbGroupBox.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/GbWidgetManager.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/base/GbTool.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/components/GbCameraComponentWidget.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/components/GbCanvasComponentWidget.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/components/GbCharControlComponentWidget.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/components/GbComponentWidgets.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/components/GbCubeMapComponentWidget.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/components/GbLightComponentWidget.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/components/GbModelComponentWidget.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/components/GbPhysicsWidgets.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/components/GbRigidBodyComponentWidget.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/components/GbScriptComponentWidget.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/components/GbShaderComponentWidget.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/components/GbTransformComponentWidget.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/logging/GbConsoleTool.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/nodes/GbGraphEdge.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/nodes/GbGraphNode.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/nodes/GbGraphWidget.cpp \ 
- 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/parameters/GbComponentWidgets.cpp \ 
- 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/parameters/GbGroupBox.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/parameters/GbColorWidget.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/parameters/GbMaterialWidgets.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/parameters/GbModelWidgets.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/parameters/GbParameterWidgets.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/parameters/GbRenderLayerWidgets.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/parameters/GbRenderableWidget.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/players/GbPlayer.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/style/GbFontIcon.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/style/GbStyles.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/tree/GbCanvasGlyphWidget.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/tree/GbComponentWidget.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/tree/GbRenderLayerWidget.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/tree/GbResourceWidgets.cpp \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/tree/GbSceneTreeWidget.cpp \ 
- 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/tree/GbScriptOrder.cpp 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/tree/GbScriptOrder.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/tree/GbShaderTreeWidget.cpp \ 
+ 	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/src/view/tree/GbTreeWidget.cpp 
  	
 FORMS += C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/ui/GbBlankWindow.ui \ 
  	C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/ui/GbMainWindow.ui 

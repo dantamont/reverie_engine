@@ -33,9 +33,9 @@ namespace Gb {
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Forward Declarations
 /////////////////////////////////////////////////////////////////////////////////////////////
-class Mesh;
+class Model;
 class ResourceHandle;
-class MeshNode;
+class SkeletonJoint;
 class CoreEngine;
 class Animation;
 class Skeleton;
@@ -43,9 +43,11 @@ struct AnimationSettings;
 class ThreadPool;
 class AnimationProcess;
 class SkeletonPose;
+class DrawCommand;
 template<class D, size_t N> class SquareMatrix;
 typedef SquareMatrix<real_g, 3> Matrix3x3g;
 typedef SquareMatrix<real_g, 4> Matrix4x4g;
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Class definitions
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -131,22 +133,22 @@ struct BlendPose {
 
     /// @}
 
-    /// @brief Blend sets, mapped by node name
-    std::unordered_map<QString, BlendSet> m_blendSets;
+    /// @brief Blend sets, indexed by order found in skeleton via breadth-first-search
+    std::vector<BlendSet> m_blendSets;
 
     // TODO: Remove weights from the blend pose, this should be driven at a higher level 
     std::vector<float> m_weights;
 
-    /// @brief Final map of Transforms
-    std::unordered_map<QString, Transform> m_transforms;
+    /// @brief Final vector of transforms, indexed by order found in skeleton via breadth-first-search
+    std::vector<Transform> m_transforms;
 
     size_t m_numNonBones = 0;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
-/// @class JointAnimation
-/// @brief Represents the animation history of a single joint
+/// @class NodeAnimation
+/// @brief Essentially an animation track, represents the animation history of a single joint
 class NodeAnimation {
 public:
     //--------------------------------------------------------------------------------------------
@@ -218,7 +220,7 @@ public:
     /// @{
 
     SkeletonPose();
-    SkeletonPose(Mesh* mesh, BlendPose&& frames);
+    SkeletonPose(Model* model, BlendPose&& frames);
     ~SkeletonPose();
 
     /// @}
@@ -235,7 +237,7 @@ public:
 private:
     friend class AnimationState;
 
-    void processNodeHierarchy(MeshNode& node, Transform& parentTransform,
+    void processNodeHierarchy(SkeletonJoint& node, Transform& parentTransform,
         std::vector<Matrix4x4g>& outBoneTransforms);
 
 
@@ -245,7 +247,7 @@ private:
 
     BlendPose m_blendPose;
 
-    Mesh* m_mesh;
+    Model* m_model;
 
     static QMutex POSE_MUTEX;
 
@@ -288,8 +290,7 @@ public:
     /// @details Transform vector is ordered by bone ID
     /// Speed factor is multiplicative
     /// Returns false if done playing
-    void getAnimationFrame(Mesh* mesh, 
-        float timeInSec, 
+    void getAnimationFrame(float timeInSec, 
         const AnimationSettings& settings,
         AnimationPlaybackMode mode,
         int numPlays,
@@ -305,10 +306,10 @@ public:
     /// @name Public Members
     /// @{
 
-    /// @brief Map of all node animations, indexed by node name
+    /// @brief Map of all node animations
+    /// @details Animations are in the order of which their nodes are reached in a breadth-first-search (BFS) of the joint hierarchy
     /// @note Animations may exist for nodes without bones, so a vector ordered by bones is not sufficient
-    //std::vector<SkeletonPose> m_poses;
-    std::unordered_map<QString, NodeAnimation> m_nodeAnimations;
+    std::vector<NodeAnimation> m_nodeAnimations;
 
     /// @brief Map of node names to their respective bone indices in each pose
     std::unordered_map<QString, int> m_boneIndices;
@@ -355,10 +356,19 @@ private:
 /// @brief Instantiation of a single animation
 class AnimationClip : public Object, public Serializable {
 public:
+    //---------------------------------------------------------------------------------------
+    /// @name Static
+
+    /// @}
+
+    //---------------------------------------------------------------------------------------
+    /// @name Constructors/Destructor
     AnimationClip(CoreEngine* engine, const QJsonValue& json);
     AnimationClip(const QString& name, const std::shared_ptr<ResourceHandle>& animation,
         CoreEngine* engine);
     ~AnimationClip();
+
+    /// @}
 
     //---------------------------------------------------------------------------------------
     /// @name Properties
@@ -379,7 +389,7 @@ public:
     void setDuration(float secs);
 
     /// @brief Return skeletal pose at the given animation time (in seconds)
-    void getAnimationFrame(Mesh* mesh, float timeInSec, BlendPose& outFrames);
+    void getAnimationFrame(float timeInSec, BlendPose& outFrames);
 
     /// @}
 
@@ -421,7 +431,10 @@ private:
     /// @{
 
     /// @brief Resource handle for the animation
-    std::shared_ptr<ResourceHandle> m_animationHandle;
+    std::shared_ptr<ResourceHandle> m_animationHandle = nullptr;
+
+    /// @brief Cache animation handle name for deferred assignment
+    QString m_animationHandleName;
 
     AnimationSettings m_settings;
 
@@ -463,7 +476,7 @@ public:
     void addLayer(AnimationClip* state);
 
     /// @brief Return skeletal pose at the given animation time (in seconds)
-    void getAnimationFrame(Mesh* mesh, float timeInSec, bool& isDone, 
+    void getAnimationFrame(Model* model, float timeInSec, bool& isDone, 
         SkeletonPose& outSkeletalPose);
 
     /// @}
@@ -535,7 +548,7 @@ public:
     /// @{
 
     AnimationController(CoreEngine* engine, const QJsonValue& json);
-    AnimationController(CoreEngine* engine, const std::shared_ptr<ResourceHandle>& mesh);
+    AnimationController(CoreEngine* engine, const std::shared_ptr<ResourceHandle>& model);
     ~AnimationController();
 
     /// @}
@@ -546,8 +559,8 @@ public:
 
     const std::shared_ptr<AnimationProcess>& process() { return m_process; }
 
-    /// @brief Get mesh for the animation controller
-    std::shared_ptr<Mesh> getMesh() const;
+    /// @brief Get model for the animation controller
+    std::shared_ptr<Model> getModel() const;
 
     /// @brief Add state to the controller
     void addState(AnimationState* state);
@@ -556,8 +569,9 @@ public:
     bool isPlaying() const { return m_isPlaying; }
     void setPlaying(bool play) { m_isPlaying = play; }
 
-    /// @brief Set shader uniforms
-    void bindUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram);
+    /// @brief Set uniforms in the given draw command
+    void bindUniforms(DrawCommand& drawCommand);
+    void bindUniforms(ShaderProgram& shaderProgram);
 
     /// @}
 
@@ -604,8 +618,8 @@ protected:
     /// @brief Whether or not the controller is playing
     bool m_isPlaying = true;
 
-    /// @brief The mesh being used by the controller
-    std::shared_ptr<ResourceHandle> m_meshHandle;
+    /// @brief The model being used by the controller
+    std::shared_ptr<ResourceHandle> m_modelHandle;
 
     /// @brief The current animation state
     AnimationState* m_currentState = nullptr;

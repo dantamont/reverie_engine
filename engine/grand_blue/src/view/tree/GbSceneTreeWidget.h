@@ -39,7 +39,7 @@ public:
     /// @name Constructors and Destructors
     /// @{
 
-    static unsigned int NUM_COLUMNS;
+    static unsigned int s_numColumns;
 
     /// @}
 
@@ -195,7 +195,6 @@ protected:
     SceneRelatedItem* m_currentSceneObjectItem;
 
     SceneRelatedItem* m_lastLeftClickedItem;
-    SceneRelatedItem* m_lastDoubleClickedItem;
 
     /// @brief Core engine for the application
     CoreEngine* m_engine;

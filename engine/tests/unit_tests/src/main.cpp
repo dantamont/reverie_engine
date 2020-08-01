@@ -13,6 +13,7 @@
 #include "test_GbVector.h"
 #include "test_GbQuaternion.h"
 #include "test_GbParallelization.h"
+#include "test_GbEulerAngle.h"
 
 // Main driver for running tests
 int main(int argc, char** argv)
@@ -32,6 +33,7 @@ int main(int argc, char** argv)
     ASSERT_TEST(new TestMatrix());
     ASSERT_TEST(new TestVector());
     ASSERT_TEST(new TestQuaternion());
+    ASSERT_TEST(new TestEulerAngles());
     ASSERT_TEST(new TestParallelization());
 
     // Pause Console until a key is pressed

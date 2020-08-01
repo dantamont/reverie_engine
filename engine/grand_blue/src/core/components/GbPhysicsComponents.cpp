@@ -23,6 +23,7 @@
 #include "../physics/GbCharacterController.h"
 
 #include "../readers/GbJsonReader.h"
+#include "../../view/components/GbComponentWidgets.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Namespace Definitions
@@ -34,12 +35,12 @@ namespace Gb {
 // RigidBodyComponent
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 RigidBodyComponent::RigidBodyComponent() :
-    Component(kRigidBody)
+    Component(ComponentType::kRigidBody)
 {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 RigidBodyComponent::RigidBodyComponent(const RigidBodyComponent & comp):
-    Component(kRigidBody)
+    Component(ComponentType::kRigidBody)
 {
     m_rigidBody = std::make_unique<RigidBody>(comp.sceneObject());
     comp.sceneObject()->addComponent(this);
@@ -47,7 +48,7 @@ RigidBodyComponent::RigidBodyComponent(const RigidBodyComponent & comp):
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 RigidBodyComponent::RigidBodyComponent(const std::shared_ptr<SceneObject>& object) :
-    Component(object, kRigidBody)
+    Component(object, ComponentType::kRigidBody)
 {
     if (!object->scene()->physics()) {
         object->scene()->addPhysics();
@@ -77,6 +78,17 @@ void RigidBodyComponent::updateTransformFromPhysics()
     sceneObject()->transform()->translation().setPosition(physicsTransform.translation().getPosition(), false);
     sceneObject()->transform()->rotation().setRotation(physicsTransform.getRotationQuaternion());
 
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void RigidBodyComponent::refreshBody()
+{
+    if (m_rigidBody) {
+        if (m_rigidBody->shapes().size() > 1)
+            throw("Error, more than one shape not implemented");
+        m_rigidBody->initialize(sceneObject(),
+            static_cast<Transform>(*sceneObject()->transform()),
+            m_rigidBody->shape(0).prefab());
+    }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void RigidBodyComponent::enable()
@@ -127,27 +139,10 @@ void RigidBodyComponent::loadFromJson(const QJsonValue & json)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void RigidBodyComponent::initializeDefault()
 {
-    static QString defaultShapeKey("defaultShape");
-    static QString defaultMaterialKey("defaultMaterial");
-
-    std::shared_ptr<PhysicsShapePrefab> defaultShape = nullptr;
-    std::shared_ptr<PhysicsMaterial> defaultMaterial;
-    if (Map::HasKey(PhysicsManager::shapes(), defaultShapeKey)) {
-        defaultShape = PhysicsManager::shapes().at(defaultShapeKey);
-    }
-    else {
-        if (Map::HasKey(PhysicsManager::materials(), defaultMaterialKey)) {
-            defaultMaterial = PhysicsManager::materials().at(defaultMaterialKey);
-        }
-        else {
-            defaultMaterial = PhysicsMaterial::create(defaultMaterialKey,
-                0.5f, 0.5f, 0.2f);
-        }
-        defaultShape = PhysicsShapePrefab::create(defaultShapeKey,
-            std::make_shared<BoxGeometry>(),
-            defaultMaterial
-        );
-    }
+    std::shared_ptr<PhysicsShapePrefab> defaultShape = 
+        PhysicsManager::shapes().at(PhysicsManager::DefaultShapeKey());
+    std::shared_ptr<PhysicsMaterial> defaultMaterial = 
+        PhysicsManager::materials().at(PhysicsManager::DefaultMaterialKey());
         
     // Load default parameters
     m_rigidBody->m_rigidType = RigidBody::kDynamic;
@@ -161,12 +156,12 @@ void RigidBodyComponent::initializeDefault()
 // CharControlComponent
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 CharControlComponent::CharControlComponent() :
-    Component(kCharacterController)
+    Component(ComponentType::kCharacterController)
 {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 CharControlComponent::CharControlComponent(const std::shared_ptr<SceneObject>& object) :
-    Component(object, kCharacterController)
+    Component(object, ComponentType::kCharacterController)
 {
     if (!object->scene()->physics()) {
         object->scene()->addPhysics();

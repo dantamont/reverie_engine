@@ -5,6 +5,7 @@
 #include "../events/GbEventManager.h"
 #include "../loop/GbSimLoop.h"
 #include "../rendering/geometry/GbMesh.h"
+#include "../rendering/models/GbModel.h"
 #include "../rendering/geometry/GbSkeleton.h"
 #include "../animation/GbAnimation.h"
 
@@ -28,8 +29,11 @@ Gb::AnimationProcess::~AnimationProcess()
 void AnimationProcess::onInit()
 {
     if (!m_controller->m_currentState) return;
-    if (!m_controller->getMesh()) return;
-    m_transforms = m_controller->getMesh()->skeleton().defaultPose();
+    if (!m_controller->getModel()) return;
+    if (!m_controller->getModel()->skeleton()) return;
+    if (m_controller->getModel()->skeleton()->handle()->isLoading()) return;
+
+    m_transforms = m_controller->getModel()->skeleton()->defaultPose();
     Process::onInit();
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -43,14 +47,17 @@ void AnimationProcess::onFixedUpdate(unsigned long deltaMs)
     Q_UNUSED(deltaMs)
 
     if (!m_controller->m_currentState) return;
-    if (!m_controller->getMesh()) return;
+    if (!m_controller->getModel()) return;
     if (!m_controller->isPlaying()) return;
+    if (m_controller->getModel()->handle()->isLoading()) {
+        return;
+    }
 
     // Get animation time and corresponding pose
     float timeElapsed = float(m_engine->simulationLoop()->elapsedTime()) / 1000.0;
     bool done;
     m_controller->m_currentState->getAnimationFrame(
-        m_controller->getMesh().get(),
+        m_controller->getModel().get(),
         timeElapsed,
         done,
         *m_pose);

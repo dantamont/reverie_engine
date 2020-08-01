@@ -16,14 +16,15 @@
 #include "../components/GbTransformComponent.h"
 #include "../components/GbComponent.h"
 #include "../components/GbScriptComponent.h"
-#include "../components/GbRendererComponent.h"
+#include "../components/GbShaderComponent.h"
 #include "../components/GbCamera.h"
-#include "../components/GbLight.h"
+#include "../components/GbLightComponent.h"
 #include "../components/GbModelComponent.h"
 #include "../components/GbListenerComponent.h"
 #include "../components/GbPhysicsComponents.h"
 #include "../components/GbCanvasComponent.h"
 #include "../components/GbAnimationComponent.h"
+#include "../components/GbCubeMapComponent.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Namespace Definitions
@@ -34,13 +35,13 @@ namespace Gb {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Component
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Component::Requirements Component::GetRequirements(ComponentType type)
+Component::Constraints Component::GetRequirements(ComponentType type)
 {
-    if (TypeRequirements.find(type) != TypeRequirements.end()) {
-        return TypeRequirements.at(type);
+    if (TypeConstraints.find(type) != TypeConstraints.end()) {
+        return TypeConstraints.at(type);
     }
     else {
-        return Requirements();
+        return Constraints();
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -49,45 +50,54 @@ Component* Component::create(const std::shared_ptr<SceneObject>& object, Compone
     // Instantiate/load component
     Component* component;
     switch (type) {
-    case Component::kPythonScript:
+    case ComponentType::kPythonScript:
         component = new ScriptComponent(object);
         break;
-    case Component::kLight:
-        component = new Light(object);
+    case ComponentType::kLight:
+        component = new LightComponent(object);
         break;
-    case Component::kCamera:
+    case ComponentType::kCamera:
         component = new CameraComponent(object);
         break;
-    case Component::kRenderer:
-        component = new RendererComponent(object);
+    case ComponentType::kShader:
+        component = new ShaderComponent(object);
         break;
-    case Component::kTransform:
+    case ComponentType::kTransform:
         // Transform is not stored in components list, since it is required
         component = nullptr;
         break;
-    case Component::kModel:
+    case ComponentType::kModel:
         component = new ModelComponent(object);
         break;
-    case Component::kListener:
+    case ComponentType::kListener:
         component = new ListenerComponent(object);
         break;
-    case Component::kRigidBody:
+    case ComponentType::kRigidBody:
         component = new RigidBodyComponent(object);
         break;
-    case Component::kCanvas:
+    case ComponentType::kCanvas:
         component = new CanvasComponent(object);
         break;
-    case Component::kCharacterController:
+    case ComponentType::kCharacterController:
         component = new CharControlComponent(object);
         break;
-    case Component::kBoneAnimation:
+    case ComponentType::kBoneAnimation:
         component = new BoneAnimationComponent(object);
         break;
+    case ComponentType::kCubeMap:
+    {
+        component = new CubeMapComponent(object);
+        break;
+    }
     default:
 #ifdef DEBUG_MODE
         throw("loadFromJson:: Error, this type of component is not implemented");
 #endif
+        break;
     }
+
+    // TODO: Add this to component widget instead
+    //component->addRequiredComponents();
 
     return component;
 }
@@ -197,7 +207,7 @@ void Component::setScene(std::shared_ptr<Scene> object) {
 QJsonValue Component::asJson() const
 {
     QJsonObject object;
-    object.insert("type", m_type);
+    object.insert("type", (int)m_type);
     object.insert("isEnabled", m_isEnabled);
 
     return object;
@@ -214,9 +224,12 @@ void Component::loadFromJson(const QJsonValue & json)
 
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::unordered_map<Component::ComponentType, Component::Requirements> Component::TypeRequirements =
+std::unordered_map<Component::ComponentType, Component::Constraints> Component::TypeConstraints =
 { 
-    {kBoneAnimation, { {Component::kModel} }}
+    // TODO: Enforce these in widget
+    {ComponentType::kCanvas, {{ {ComponentType::kModel, false} }}}, // Only one material per object, so either have a canvas or model
+    {ComponentType::kModel,  {{ {ComponentType::kCanvas, false} }}}, // Only one material per object, so either have a canvas or model
+    {ComponentType::kBoneAnimation, {{ {ComponentType::kModel, true} }}}
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -18,18 +18,6 @@ UndoCommand::UndoCommand(CoreEngine* core, QUndoCommand * parent):
 {
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-Gb::UndoCommand::UndoCommand(CoreEngine* core, const QString & text, std::function<void()> redo, std::function<void()> undo, QUndoCommand * parent) :
-    QUndoCommand(text, parent),
-    m_engine(core)
-{
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-Gb::UndoCommand::UndoCommand(CoreEngine* core, std::function<void()> redo, std::function<void()> undo, QUndoCommand * parent):
-    QUndoCommand(parent),
-    m_engine(core)
-{
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
 Gb::UndoCommand::~UndoCommand()
 {
 }

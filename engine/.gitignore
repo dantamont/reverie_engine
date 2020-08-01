@@ -4,6 +4,7 @@ utils/doxygen/latex/
 
 # Resource files
 *.rc
+!*PythonQt-Qt5-Python38*resource.rc
 
 # VS diagnostic files
 *.diagsession

@@ -23,8 +23,6 @@ layout (std140) uniform CameraMatrices
 
 uniform mat4 boneTransforms[MAX_BONES];
 uniform bool isAnimated;
-uniform mat4 globalInverseTransform; // unused
-uniform mat4 inverseBindPoseTransforms[1]; // unused
 uniform float pointSize;
 uniform float screenPixelWidth;
 

@@ -16,7 +16,7 @@ IKNode::IKNode(IKChain* chain):
 {
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-IKNode::IKNode(IKChain* chain, const MeshNode & meshNode):
+IKNode::IKNode(IKChain* chain, const SkeletonJoint & meshNode):
     m_chain(chain)
 {
     // Set name to match mesh node
@@ -44,7 +44,7 @@ IKNode::~IKNode()
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-IKNode* IKNode::addChild(const MeshNode& child)
+IKNode* IKNode::addChild(const SkeletonJoint& child)
 {
     Vec::EmplaceBack(m_children, new IKNode(m_chain, child));
     return m_children.back();
@@ -75,7 +75,7 @@ void IKChain::initialize(const Skeleton & skeleton)
     addNode(*skeleton.root());
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-void IKChain::addNode(const MeshNode & meshNode, IKNode* parent)
+void IKChain::addNode(const SkeletonJoint & meshNode, IKNode* parent)
 {
     IKNode* thisNode = nullptr;
     if(!parent){
@@ -93,7 +93,7 @@ void IKChain::addNode(const MeshNode & meshNode, IKNode* parent)
     m_nodes[thisNode->getName()] = thisNode;
 
     // Add children recursively
-    for (const MeshNode* child: meshNode.children()) {
+    for (const SkeletonJoint* child: meshNode.children()) {
         addNode(*child, thisNode);
     }
 }

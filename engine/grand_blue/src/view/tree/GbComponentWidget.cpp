@@ -5,7 +5,7 @@
 #include "../../core/events/GbEventManager.h"
 #include "../../model_control/commands/GbActionManager.h"
 #include "../../model_control/commands/commands/GbComponentCommand.h"
-#include "../parameters/GbComponentWidgets.h"
+#include "../components/GbComponentWidgets.h"
 
 #include "../../core/geometry/GbTransform.h"
 #include "../../core/scene/GbScenario.h"
@@ -14,6 +14,8 @@
 #include "../../core/components/GbComponent.h"
 #include "../../model_control/models/GbComponentModels.h"
 #include "../../core/debugging/GbDebugManager.h"
+
+#include "../GbWidgetManager.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Namespace Definitions
@@ -38,7 +40,10 @@ ComponentTreeWidget::~ComponentTreeWidget()
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void ComponentTreeWidget::selectObject(const Uuid& id, int parentType) {
-    Component::ComponentType type = Component::ComponentType(parentType);
+    // Temporarily disable updates for a performance boost
+    setUpdatesEnabled(false);
+
+    Component::ParentType type = Component::ParentType(parentType);
     switch (type) {
     case Component::kScene:
         selectScene(id);
@@ -47,12 +52,15 @@ void ComponentTreeWidget::selectObject(const Uuid& id, int parentType) {
         selectSceneObject(id);
         break;
     }
+
+    setUpdatesEnabled(true);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void ComponentTreeWidget::selectScene(const Uuid& sceneID) {
     clearSceneObject();
 
     // Set new scene object
+    m_currentSceneObject.reset();
     m_currentScene = m_engine->scenario()->getScene(sceneID);
 
     // Return if no scene
@@ -72,7 +80,21 @@ void ComponentTreeWidget::selectScene(const Uuid& sceneID) {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void ComponentTreeWidget::clearScene()
-{    // Clear the widget
+{    
+    // Don't clear while iterating through parameter widgets in update loop
+    // Unnecessary
+    //QMutexLocker lock(&m_engine->widgetManager()->updateMutex());
+
+    //QTreeWidgetItemIterator it(this);
+    //while (*it) {
+    //    ComponentItem* item = static_cast<ComponentItem*>(*it);
+    //    if (item->component()->getUuid() == component->getUuid()) {
+    //        return item;
+    //    }
+    //    ++it;
+    //}
+
+    // Clear the widget
     clear();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -100,9 +122,13 @@ void ComponentTreeWidget::selectSceneObject(const Uuid& sceneID, const Uuid& sce
     // Add transform component
     addItem((Component*)currentSceneObject()->transform().get());
 
+    // Add render layers widget
+    auto item = new View::ComponentItem(currentSceneObject().get());
+    addItem(item);
+
     // Populate with components of new scene object
-    for (const auto& componentListPair : currentSceneObject()->components()) {
-        for (const auto& comp : componentListPair.second) {
+    for (const auto& componentList: currentSceneObject()->components()) {
+        for (const auto& comp : componentList) {
             addItem(comp);
         }
     }
@@ -126,8 +152,8 @@ void ComponentTreeWidget::selectSceneObject(const Uuid & sceneObjectID)
     addItem((Component*)currentSceneObject()->transform().get());
 
     // Populate with components of new scene object
-    for (const auto& componentListPair : currentSceneObject()->components()) {
-        for (const auto& comp : componentListPair.second) {
+    for (const auto& componentList : currentSceneObject()->components()) {
+        for (const auto& comp : componentList) {
             addItem(comp);
         }
     }
@@ -164,7 +190,7 @@ void ComponentTreeWidget::addItem(View::ComponentItem * item)
     item->setWidget();
 
     // Resize columns to fit widget
-    resizeColumns();
+    //resizeColumns();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void ComponentTreeWidget::removeItem(Component * component)
@@ -289,13 +315,13 @@ void ComponentTreeWidget::initializeWidget()
     // Scene object components ====================================================================
 
     // Initialize add renderer component action
-    m_addRendererComponent = new QAction(tr("&New Renderer Component"), this);
-    m_addRendererComponent->setStatusTip("Create a new renderer component");
-    connect(m_addRendererComponent,
+    m_addShaderComponent = new QAction(tr("&New Shader Component"), this);
+    m_addShaderComponent->setStatusTip("Create a new shader component");
+    connect(m_addShaderComponent,
         &QAction::triggered,
         m_engine->actionManager(),
         [this] {m_engine->actionManager()->performAction(
-            new AddSceneObjectComponent(m_engine, currentSceneObject(), "Create New Renderer", Component::kRenderer));
+            new AddSceneObjectComponent(m_engine, currentSceneObject(), "Create New Shader Component", (int)Component::ComponentType::kShader));
     });
 
     // Initialize add camera component action
@@ -305,7 +331,7 @@ void ComponentTreeWidget::initializeWidget()
         &QAction::triggered,
         m_engine->actionManager(),
         [this] {m_engine->actionManager()->performAction(
-            new AddSceneObjectComponent(m_engine, currentSceneObject(), "Create New Camera", Component::kCamera));
+            new AddSceneObjectComponent(m_engine, currentSceneObject(), "Create New Camera", (int)Component::ComponentType::kCamera));
     });
 
     // Initialize add light component action
@@ -315,7 +341,7 @@ void ComponentTreeWidget::initializeWidget()
         &QAction::triggered,
         m_engine->actionManager(),
         [this] {m_engine->actionManager()->performAction(
-            new AddSceneObjectComponent(m_engine, currentSceneObject(), "Create New Light", Component::kLight));
+            new AddSceneObjectComponent(m_engine, currentSceneObject(), "Create New Light", (int)Component::ComponentType::kLight));
     });
 
     // Initialize create script component action
@@ -325,7 +351,7 @@ void ComponentTreeWidget::initializeWidget()
         &QAction::triggered,
         m_engine->actionManager(),
         [this] {m_engine->actionManager()->performAction(
-            new AddSceneObjectComponent(m_engine, currentSceneObject(), "Create New Script", Component::kPythonScript));
+            new AddSceneObjectComponent(m_engine, currentSceneObject(), "Create New Script", (int)Component::ComponentType::kPythonScript));
     });
 
     // Initialize create model component action
@@ -335,7 +361,17 @@ void ComponentTreeWidget::initializeWidget()
         &QAction::triggered,
         m_engine->actionManager(),
         [this] {m_engine->actionManager()->performAction(
-            new AddSceneObjectComponent(m_engine, currentSceneObject(), "Instantiate Model", Component::kModel));
+            new AddSceneObjectComponent(m_engine, currentSceneObject(), "Instantiate Model", (int)Component::ComponentType::kModel));
+    });
+
+    // Initialize create model component action
+    m_addAnimationComponent = new QAction(tr("&New Animation Component"), this);
+    m_addAnimationComponent->setStatusTip("Create a new Animation component");
+    connect(m_addAnimationComponent,
+        &QAction::triggered,
+        m_engine->actionManager(),
+        [this] {m_engine->actionManager()->performAction(
+            new AddSceneObjectComponent(m_engine, currentSceneObject(), "Instantiate Animation Component", (int)Component::ComponentType::kBoneAnimation));
     });
 
     // Initialize create listener component action
@@ -345,7 +381,7 @@ void ComponentTreeWidget::initializeWidget()
         &QAction::triggered,
         m_engine->actionManager(),
         [this] {m_engine->actionManager()->performAction(
-            new AddSceneObjectComponent(m_engine, currentSceneObject(), "Instantiate Listener", Component::kListener));
+            new AddSceneObjectComponent(m_engine, currentSceneObject(), "Instantiate Listener", (int)Component::ComponentType::kListener));
     });
 
     // Initialize create rigid body component action
@@ -355,7 +391,7 @@ void ComponentTreeWidget::initializeWidget()
         &QAction::triggered,
         m_engine->actionManager(),
         [this] {m_engine->actionManager()->performAction(
-            new AddSceneObjectComponent(m_engine, currentSceneObject(), "Instantiate Rigid Body", Component::kRigidBody));
+            new AddSceneObjectComponent(m_engine, currentSceneObject(), "Instantiate Rigid Body", (int)Component::ComponentType::kRigidBody));
     });
 
     // Initialize create canvas component action
@@ -365,7 +401,7 @@ void ComponentTreeWidget::initializeWidget()
         &QAction::triggered,
         m_engine->actionManager(),
         [this] {m_engine->actionManager()->performAction(
-            new AddSceneObjectComponent(m_engine, currentSceneObject(), "Instantiate Canvas", Component::kCanvas));
+            new AddSceneObjectComponent(m_engine, currentSceneObject(), "Instantiate Canvas", (int)Component::ComponentType::kCanvas));
     });
 
     // Initialize create canvas component action
@@ -374,8 +410,22 @@ void ComponentTreeWidget::initializeWidget()
     connect(m_addCharControllerComponent,
         &QAction::triggered,
         m_engine->actionManager(),
-        [this] {m_engine->actionManager()->performAction(
-            new AddSceneObjectComponent(m_engine, currentSceneObject(), "Instantiate Character Controller", Component::kCharacterController));
+        [this] {
+        std::shared_ptr<SceneObject> so = currentSceneObject();
+        m_engine->actionManager()->performAction(
+            new AddSceneObjectComponent(m_engine, so, "Instantiate Character Controller", (int)Component::ComponentType::kCharacterController));
+    });
+
+    // Initialize create cubemap component action
+    m_addCubeMapComponent = new QAction(tr("&New Cube Map Component"), this);
+    m_addCubeMapComponent->setStatusTip("Create a new Cube Map component");
+    connect(m_addCubeMapComponent,
+        &QAction::triggered,
+        m_engine->actionManager(),
+        [this] {
+        std::shared_ptr<SceneObject> so = currentSceneObject();
+        m_engine->actionManager()->performAction(
+            new AddSceneObjectComponent(m_engine, so, "Instantiate Cube Map", (int)Component::ComponentType::kCubeMap));
     });
 
     // Scene components ====================================================================
@@ -438,10 +488,31 @@ void ComponentTreeWidget::initializeWidget()
         this,
         &ComponentTreeWidget::selectObject);
 
+    // Add a component to the widget
+    connect(m_engine->eventManager(),
+        &EventManager::addedComponent,
+        this,
+        [this](Uuid compID, int typeInt, Uuid soID) {
+        if (!currentSceneObject()) return;
+
+        if (soID != currentSceneObject()->getUuid()) {
+            return;
+        }
+
+        Component::ComponentType compType = Component::ComponentType(typeInt);
+        Component* component = currentSceneObject()->getComponent(compID, compType);
+        if (component) {
+            m_engine->componentWidget()->addItem(component);
+        }
+        else {
+            throw("Error, component not found on scene object");
+        }
+    });
+
     // Connect signal for clearing on scenario load
     connect(m_engine, &CoreEngine::scenarioChanged, this, &ComponentTreeWidget::clear);
 }
-
+#ifndef QT_NO_CONTEXTMENU
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void ComponentTreeWidget::contextMenuEvent(QContextMenuEvent * event)
 {
@@ -461,8 +532,8 @@ void ComponentTreeWidget::contextMenuEvent(QContextMenuEvent * event)
         }
         else {
             // Options to add things when there is no item selected
-            if (!currentSceneObject()->hasRenderer()) {
-                menu.addAction(m_addRendererComponent);
+            if (!currentSceneObject()->hasShaderComponent()) {
+                menu.addAction(m_addShaderComponent);
             }
             if (!currentSceneObject()->hasCamera()) {
                 menu.addAction(m_addCameraComponent);
@@ -471,10 +542,12 @@ void ComponentTreeWidget::contextMenuEvent(QContextMenuEvent * event)
             menu.addAction(m_addLightComponent);
             menu.addAction(m_addScriptComponent);
             menu.addAction(m_addModelComponent);
+            menu.addAction(m_addAnimationComponent);
             menu.addAction(m_addListenerComponent);
             menu.addAction(m_addRigidBodyComponent);
             menu.addAction(m_addCanvasComponent);
             menu.addAction(m_addCharControllerComponent);
+            menu.addAction(m_addCubeMapComponent);
         }
 
         // Display menu at click location
@@ -500,7 +573,7 @@ void ComponentTreeWidget::contextMenuEvent(QContextMenuEvent * event)
         menu.exec(event->globalPos());
     }
 }
-
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }// View

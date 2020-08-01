@@ -18,22 +18,6 @@ namespace Gb {
 EventManager::EventManager(CoreEngine* engine):
     Manager(engine, "EventManager")
 {
-    // Manage connections
-
-    // Connect post-construction routine to resource cache and emit signal
-    // Queued connection will ensure slot is executed in receiver's thread
-    QObject::connect(this,
-        &EventManager::doneLoadingResource,
-        m_engine->resourceCache(),
-        &ResourceCache::runPostConstruction,
-        Qt::QueuedConnection);
-
-    // Connect signal to resize a resource to resource cache load routine
-    QObject::connect(this,
-        &EventManager::doneLoadingResource,
-        m_engine->resourceCache(),
-        (void(ResourceCache::*)(std::shared_ptr<ResourceHandle>))&ResourceCache::reloadResource,
-        Qt::QueuedConnection);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 EventManager::~EventManager()

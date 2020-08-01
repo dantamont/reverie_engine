@@ -30,19 +30,21 @@ macx {
 
   # check if debug or release
   CONFIG(debug, debug|release) {
-    DEBUG_EXT = _d 
+    DEBUG_EXT = _d
   } else {
-    DEBUG_EXT = 
+    DEBUG_EXT =
   }
 
 # commented out for now because not working
   #win32:INCLUDEPATH += $$absolute_path("include", $$(PYTHON_PATH))
-  win32:INCLUDEPATH += $$(PYTHON_PATH)/include
-  win32:LIBS += $$(PYTHON_LIB)/python$$(PYTHON_VERSION)$$(DEBUG_EXT).lib
+  win32:INCLUDEPATH += $$(PYTHON_PATH)\include
+  win32:LIBS += $$(PYTHON_LIB)\python$$(PYTHON_VERSION)$$(DEBUG_EXT).lib
 } else:unix {
   # on linux, python-config is used to autodetect Python.
   # make sure that you have installed a matching python-dev package.
   
-  unix:LIBS += $$system(python$${PYTHON_VERSION}-config --ldflags)
+  system(python$${PYTHON_VERSION}-config --embed --libs) {
+    unix:LIBS += $$system(python$${PYTHON_VERSION}-config --embed --libs)
+  } else: unix:LIBS += $$system(python$${PYTHON_VERSION}-config --libs)
   unix:QMAKE_CXXFLAGS += $$system(python$${PYTHON_VERSION}-config --includes)
 }

@@ -1,7 +1,6 @@
 #include "GbPyWrappers.h"
+
 #include <QJsonDocument>
-
-
 #include "GbPythonAPI.h"
 #include "../GbCoreEngine.h"
 #include "../../view/GbWidgetManager.h"
@@ -9,14 +8,13 @@
 
 #include "../events/GbEvent.h"
 
-#include "../components/GbLight.h"
+#include "../components/GbLightComponent.h"
 #include "../components/GbCamera.h"
-#include "../components/GbRendererComponent.h"
+#include "../components/GbShaderComponent.h"
 #include "../components/GbTransformComponent.h"
 #include "../components/GbPhysicsComponents.h"
 #include "..//physics/GbCharacterController.h"
 #include "../rendering/view/GbRenderProjection.h"
-#include "../rendering/renderer/GbRenderers.h"
 #include "../rendering/shaders/GbShaders.h"
 
 #include "../resource/GbResourceCache.h"
@@ -68,7 +66,7 @@ PyCustomEvent::PyCustomEvent()
 /////////////////////////////////////////////////////////////////////////////////////////////
 QJsonValue PyCustomEvent::as_json_str(CustomEvent * e) const
 {
-    QString strJson = JsonReader::getJsonValueAsQString(e->asJson());
+    QString strJson = JsonReader::ToQString(e->asJson());
     return strJson;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -84,7 +82,7 @@ QVariantMap PyCustomEvent::dataMap(CustomEvent * e) const
 /////////////////////////////////////////////////////////////////////////////////////////////
 QString PyCustomEvent::py_toString(CustomEvent * e)
 {
-    QString strJson = JsonReader::getJsonValueAsQString(e->asJson());
+    QString strJson = JsonReader::ToQString(e->asJson());
     return strJson;
 }
 
@@ -99,12 +97,18 @@ PyResourceCache::PyResourceCache()
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 const ShaderProgram* PyResourceCache::get_shader(ResourceCache* r, const QString& name) const {
-    return r->getShaderProgramByName(name).get();
+    auto handle = r->getHandleWithName(name, Resource::kShaderProgram);
+    if (!handle) {
+        return nullptr;
+    }
+    else {
+        return handle->resourceAs<ShaderProgram>().get();
+    }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 QJsonValue PyResourceCache::as_json_str(ResourceCache * r) const
 {
-    QString strJson = JsonReader::getJsonValueAsQString(r->asJson());
+    QString strJson = JsonReader::ToQString(r->asJson());
     return strJson;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -1096,7 +1100,7 @@ QString PySceneObject::get_name(SceneObject* object) const
 /////////////////////////////////////////////////////////////////////////////////////////////
 QJsonValue PySceneObject::as_json_str(SceneObject * so) const
 {
-    QString strJson = JsonReader::getJsonValueAsQString(so->asJson());
+    QString strJson = JsonReader::ToQString(so->asJson());
     return strJson;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -1129,81 +1133,92 @@ PyLight::PyLight()
 {
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-Light * PyLight::new_Light(SceneObject* object)
+LightComponent * PyLight::new_LightComponent(SceneObject* object)
 {
     std::shared_ptr<SceneObject> objectShared = object->scene()->getSceneObject(object->getUuid());
-    Light* l = new Light(objectShared);
+    LightComponent* l = new LightComponent(objectShared);
     l->setIsPythonGenerated(true);
     return l;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void PyLight::delete_Light(Light * l)
+void PyLight::delete_LightComponent(LightComponent * l)
 {
     // Unnecessary, deleted upon SceneObject deletion
     Q_UNUSED(l);
     //delete l;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-QJsonValue PyLight::as_json_str(Light * l) const
+QJsonValue PyLight::as_json_str(LightComponent * l) const
 {
-    QString strJson = JsonReader::getJsonValueAsQString(l->asJson());
+    QString strJson = JsonReader::ToQString(l->asJson());
     return strJson;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-PyObject * PyLight::get_diffuse_color(Light * l)
+PyObject * PyLight::get_diffuse_color(LightComponent * l)
 {
-    return PythonAPI::get()->toPyTuple(l->getDiffuseColor().toVector4i());
+    Color color(std::move(l->light().getDiffuseColor()));
+    return PythonAPI::get()->toPyTuple(color.toVector4i());
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-PyObject * PyLight::get_ambient_color(Light * l)
+PyObject * PyLight::get_ambient_color(LightComponent * l)
 {
-    return PythonAPI::get()->toPyTuple(l->getAmbientColor().toVector4i());
+    Color color(std::move(l->light().getAmbientColor()));
+    return PythonAPI::get()->toPyTuple(color.toVector4i());
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-PyObject * PyLight::get_specular_color(Light * l)
+PyObject * PyLight::get_specular_color(LightComponent * l)
 {
-    return PythonAPI::get()->toPyTuple(l->getSpecularColor().toVector4i());
+    Color color(std::move(l->light().getSpecularColor()));
+    return PythonAPI::get()->toPyTuple(color.toVector4i());
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void PyLight::set_diffuse_color(Light * l, PyObject* color)
-{
-    std::vector<int> vec = PythonAPI::get()->toVecInt(color);
-    Color c(vec);
-    l->setDiffuseColor(c);
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-void PyLight::set_ambient_color(Light * l, PyObject* color)
+void PyLight::set_diffuse_color(LightComponent * l, PyObject* color)
 {
     std::vector<int> vec = PythonAPI::get()->toVecInt(color);
     Color c(vec);
-    l->setAmbientColor(c);
+    l->light().setDiffuseColor(c);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void PyLight::set_specular_color(Light * l, PyObject* color)
+void PyLight::set_ambient_color(LightComponent * l, PyObject* color)
 {
     std::vector<int> vec = PythonAPI::get()->toVecInt(color);
     Color c(vec);
-    l->setSpecularColor(c);
+    l->light().setAmbientColor(c);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-double PyLight::get_intensity(Light * l)
+void PyLight::set_specular_color(LightComponent * l, PyObject* color)
 {
-    return l->getIntensity();
+    std::vector<int> vec = PythonAPI::get()->toVecInt(color);
+    Color c(vec);
+    l->light().setSpecularColor(c);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void PyLight::set_intensity(Light * l, PyObject* intensity)
+double PyLight::get_intensity(LightComponent * l)
+{
+    return l->light().getIntensity();
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+void PyLight::set_intensity(LightComponent * l, PyObject* intensity)
 {
     double i = PythonAPI::get()->toDouble(intensity);
-    l->setIntensity(i);
+    l->light().setIntensity(i);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-SceneObject * PyLight::scene_object(Light * l) const
+void PyLight::set_attenuations(LightComponent * l, PyObject* attenuation)
+{
+    if (l->light().getType() == Light::kPoint) {
+        std::vector<float> vec = PythonAPI::get()->toVecFloat(attenuation);
+        l->light().setAttributes(Vector3g(vec));
+    }
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+SceneObject * PyLight::scene_object(LightComponent * l) const
 {
     //const QString& uuid = l->sceneObject()->getUuid().asString();
     return l->sceneObject().get();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-QString PyLight::py_toString(Light * l)
+QString PyLight::py_toString(LightComponent * l)
 {
     return l->asQString();
 }
@@ -1211,32 +1226,32 @@ QString PyLight::py_toString(Light * l)
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
-// PyRenderer
+// PyMaterial
 /////////////////////////////////////////////////////////////////////////////////////////////
-PyRenderer::PyRenderer()
+PyMaterial::PyMaterial()
 {
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-RendererComponent* PyRenderer::new_RendererComponent(SceneObject* so)
+ShaderComponent* PyMaterial::new_MaterialComponent(SceneObject* so)
 {
     std::shared_ptr<SceneObject> objectShared = so->scene()->getSceneObject(so->getUuid());
-    RendererComponent* r = new RendererComponent(objectShared);
+    ShaderComponent* r = new ShaderComponent(objectShared);
     r->setIsPythonGenerated(true);
     return r;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void PyRenderer::delete_RendererComponent(RendererComponent* r)
+void PyMaterial::delete_MaterialComponent(ShaderComponent* r)
 {
     delete r;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-QJsonValue PyRenderer::as_json_str(RendererComponent* r) const
+QJsonValue PyMaterial::as_json_str(ShaderComponent* r) const
 {
-    QString strJson = JsonReader::getJsonValueAsQString(r->asJson());
+    QString strJson = JsonReader::ToQString(r->asJson());
     return strJson;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-QString PyRenderer::py_toString(RendererComponent* r)
+QString PyMaterial::py_toString(ShaderComponent* r)
 {
     return r->asQString();
 }
@@ -1266,7 +1281,7 @@ void PyCamera::delete_CameraComponent(CameraComponent * c)
 /////////////////////////////////////////////////////////////////////////////////////////////
 QJsonValue PyCamera::as_json_str(CameraComponent * c) const
 {
-    QString strJson = JsonReader::getJsonValueAsQString(c->asJson());
+    QString strJson = JsonReader::ToQString(c->asJson());
     return strJson;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -1383,7 +1398,7 @@ void PyCharacterController::delete_CharControlComponent(CharControlComponent * c
 /////////////////////////////////////////////////////////////////////////////////////////////
 QJsonValue PyCharacterController::as_json_str(CharControlComponent * c) const
 {
-    QString strJson = JsonReader::getJsonValueAsQString(c->asJson());
+    QString strJson = JsonReader::ToQString(c->asJson());
     return strJson;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -1410,7 +1425,7 @@ PyTransformComponent::PyTransformComponent() {
 /////////////////////////////////////////////////////////////////////////////////////////////
 QJsonValue PyTransformComponent::as_json_str(TransformComponent * t) const
 {
-    QString strJson = JsonReader::getJsonValueAsQString(t->asJson());
+    QString strJson = JsonReader::ToQString(t->asJson());
     return strJson;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -1450,7 +1465,7 @@ PyTranslationComponent::PyTranslationComponent()
 /////////////////////////////////////////////////////////////////////////////////////////////
 QJsonValue PyTranslationComponent::as_json_str(TranslationComponent * t) const
 {
-    QString strJson = JsonReader::getJsonValueAsQString(t->asJson());
+    QString strJson = JsonReader::ToQString(t->asJson());
     return strJson;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -1541,11 +1556,11 @@ Quaternion* PyQuaternion::new_Quaternion() {
 Quaternion* PyQuaternion::new_Quaternion(double x, double y, double z, double w) {
     return new Quaternion(x, y, z, w);
 }
-///////////////////////////////////////////////////////////////////////////////////////////
-Quaternion * PyQuaternion::new_Quaternion(double roll, double pitch, double yaw)
-{
-    return new Quaternion(roll, pitch, yaw);
-}
+/////////////////////////////////////////////////////////////////////////////////////////////
+//Quaternion * PyQuaternion::new_Quaternion(double roll, double pitch, double yaw)
+//{
+//    return new Quaternion(roll, pitch, yaw);
+//}
 /////////////////////////////////////////////////////////////////////////////////////////////
 Quaternion * PyQuaternion::static_Quaternion_look_rotation(const Vector3* dir, const Vector3* up)
 {
@@ -1621,7 +1636,7 @@ PyEulerAngles::PyEulerAngles() {
 EulerAngles * PyEulerAngles::new_EulerAngles(float ax, float ay, float az, PyObject* rotationOrder, int rotationType)
 {
     EulerAngles::Axes axes = toAxes(rotationOrder);
-    return new EulerAngles(ax, ay, az, axes, RotationType(rotationType));
+    return new EulerAngles(ax, ay, az, axes, RotationSpace(rotationType));
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 EulerAngles::Axes PyEulerAngles::toAxes(PyObject * o)
@@ -1672,7 +1687,7 @@ void PyRotationComponent::set_rotation(RotationComponent* r, const EulerAngles& 
 /////////////////////////////////////////////////////////////////////////////////////////////
 QJsonValue PyRotationComponent::as_json_str(RotationComponent * r) const
 {
-    QString strJson = JsonReader::getJsonValueAsQString(r->asJson());
+    QString strJson = JsonReader::ToQString(r->asJson());
     return strJson;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -1690,7 +1705,8 @@ PyShaderProgram::PyShaderProgram()
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 const ShaderProgram* PyShaderProgram::new_ShaderProgram(ResourceCache* cache, const QString& vertPath, const QString& fragPath) {
-    return cache->getShaderProgramByFilePath(vertPath, fragPath).get();
+    return cache->guaranteeHandleWithPath({ vertPath, fragPath }, 
+        Resource::kShaderProgram)->resourceAs<ShaderProgram>().get();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 void PyShaderProgram::delete_ShaderProgram(ShaderProgram* s) {
@@ -1735,7 +1751,7 @@ void PyShaderProgram::set_uniform(ShaderProgram* s, const QString & uniformName,
 /////////////////////////////////////////////////////////////////////////////////////////////
 QJsonValue PyShaderProgram::as_json_str(ShaderProgram * s) const
 {
-    QString strJson = JsonReader::getJsonValueAsQString(s->asJson());
+    QString strJson = JsonReader::ToQString(s->asJson());
     return strJson;
 }
 
@@ -1832,7 +1848,7 @@ void PyScaleComponent::set_scale(ScaleComponent* s, double x, double y, double z
 /////////////////////////////////////////////////////////////////////////////////////////////
 QJsonValue PyScaleComponent::as_json_str(ScaleComponent * s) const
 {
-    QString strJson = JsonReader::getJsonValueAsQString(s->asJson());
+    QString strJson = JsonReader::ToQString(s->asJson());
     return strJson;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////

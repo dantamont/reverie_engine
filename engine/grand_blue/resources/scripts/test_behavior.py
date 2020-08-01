@@ -37,8 +37,8 @@ class TestBehavior(BaseBehavior):
         light_object.transform().translation().set_position([0, 5, 20])
         print(light_object.transform().translation().get_position())
         self.new_camera = CameraComponent(light_object)
-        self.new_camera.set_depth(1)
-        self.new_camera.set_viewport(0, 0.0, 0.3, 0.3)
+        self.new_camera.set_depth(-1)
+        self.new_camera.set_viewport(-0.7, -0.7, 0.3, 0.3)
         # self.new_camera.set_fov(70)
         self.total_ms = 0
 
@@ -49,11 +49,11 @@ class TestBehavior(BaseBehavior):
         BaseBehavior.update(self, delta_ms)
 
         self.total_ms += delta_ms
-        effects_shader = self.resources.get_shader("effects")
-        rim_color = effects_shader.get_uniform("rimColor")
-        new_color = [(1 + np.sin(i*self.total_ms/1000.0))/2.0
-            for i, c in enumerate(rim_color)]
-        effects_shader.set_uniform("rimColor", new_color)
+        # effects_shader = self.resources.get_shader("effects")
+        # rim_color = effects_shader.get_uniform("rimColor")
+        # new_color = [(1 + np.sin(i*self.total_ms/1000.0))/2.0
+        #     for i, c in enumerate(rim_color)]
+        # effects_shader.set_uniform("rimColor", new_color)
         # effects_shader.set_uniform("rimColor", [0, 1, 0])
 
         # Test vec2

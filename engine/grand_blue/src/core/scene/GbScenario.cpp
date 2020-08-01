@@ -23,19 +23,94 @@ namespace Gb{
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ScenarioSettings::ScenarioSettings(Scenario * scenario) :
     m_scenario(scenario) {
+
+    // Add core render layers
+    addRenderLayer("skybox", -10);
+    addRenderLayer("world", 0);
+    addRenderLayer("effects", 5);
+    addRenderLayer("ui", 10);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 QJsonValue ScenarioSettings::asJson() const
 {
-    QJsonObject jsonObject = QJsonObject();
-    return jsonObject;
+    QJsonObject object = QJsonObject();
+    
+    QJsonArray renderLayers;
+    for (const auto& renderLayer : m_renderLayers) {
+        renderLayers.append(renderLayer->asJson());
+    }
+    object.insert("renderLayers", renderLayers);
+
+    return object;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void ScenarioSettings::loadFromJson(const QJsonValue & json)
 {
-    Q_UNUSED(json)
+    m_renderLayers.clear();
+
+    QJsonObject object = json.toObject();
+    if (object.contains("renderLayers")) {
+        QJsonArray renderLayers = object["renderLayers"].toArray();
+        for (const auto& layerJson : renderLayers) {
+            m_renderLayers.push_back(
+                std::make_shared<SortingLayer>(layerJson));
+        }
+    }
+    sortRenderLayers();
+
+    //if (!m_renderLayers.size()) {
+    //    // Ensure that there is always the default render layer
+    //    m_renderLayers.push_back(std::make_shared<SortingLayer>());
+    //}
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+std::shared_ptr<SortingLayer> ScenarioSettings::addRenderLayer()
+{
+    QString uniqueName = Uuid::UniqueName();
+    auto layer = std::make_shared<SortingLayer>();
+    m_renderLayers.push_back(layer);
+    m_renderLayers.back()->setName(uniqueName);
+    sortRenderLayers();
+    return layer;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+std::shared_ptr<SortingLayer> ScenarioSettings::addRenderLayer(const QString & name, int order)
+{
+    auto layer = std::make_shared<SortingLayer>(name, order);
+    m_renderLayers.push_back(layer);
+    sortRenderLayers();
+    return layer;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+bool ScenarioSettings::removeRenderLayer(const QString & label)
+{
+    if (!renderLayer(label)) {
+#ifdef DEBUG_MODE
+        throw("Error, failed to find render layer matching the given label");
+#endif
+        return false;
+    }
+
+    auto iter = std::find_if(m_renderLayers.begin(), m_renderLayers.end(),
+        [&](const std::shared_ptr<SortingLayer>& layer) {
+        return layer->getName() == label;
+    });
+
+    m_renderLayers.erase(iter);
+    return true;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+void ScenarioSettings::sortRenderLayers()
+{
+    std::sort(m_renderLayers.begin(), m_renderLayers.end(), SortRenderLayers);
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+bool ScenarioSettings::SortRenderLayers(const std::shared_ptr<SortingLayer>& l1,
+    const std::shared_ptr<SortingLayer>& l2)
+{
+    return *l1 < *l2;
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void Scenario::loadFromFile(const QString& filepath, CoreEngine* core) {
     auto reader = JsonReader(filepath);
@@ -123,7 +198,7 @@ std::shared_ptr<Scene> Scenario::addScene()
     return Scene::create(this);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-void Scenario::addScene(std::shared_ptr<Scene> scene)
+void Scenario::addScene(const std::shared_ptr<Scene>& scene)
 {
     m_scenes.emplace(scene->getUuid(), scene);
     emit addedScene(scene);
@@ -137,7 +212,7 @@ void Scenario::addScene(std::shared_ptr<Scene> scene)
 //    return scene;
 //}
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-void Scenario::removeScene(std::shared_ptr<Scene> scene)
+void Scenario::removeScene(const std::shared_ptr<Scene>& scene)
 {
     if (m_scenes.find(scene->getUuid()) == m_scenes.end()) {
         throw("Error, scene not found in scenario");
@@ -240,9 +315,8 @@ void Scenario::loadFromJson(const QJsonValue & json)
 
     // Don't load loadable class attributes, filepath is already known
 #ifdef DEBUG_MODE
-    QString jsonStr = JsonReader::getJsonValueAsQString(jsonObject);
+    QString jsonStr = JsonReader::ToQString(jsonObject);
 #endif
-    //Loadable::loadFromJson(jsonObject);
 
     int progressSize = 6;
     QProgressDialog progress("Loading Scenario...",

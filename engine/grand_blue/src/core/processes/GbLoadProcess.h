@@ -40,10 +40,7 @@ public:
 	//--------------------------------------------------------------------------------------------
 	/// @name Constructors/Destructor
 	/// @{
-    LoadProcess(CoreEngine* engine, 
-        ProcessManager* manager, 
-        std::shared_ptr<ResourceHandle> resourceHandle,
-        const ResourceAttributes& resourceAttributes = ResourceAttributes());
+    LoadProcess(CoreEngine* engine, const std::shared_ptr<ResourceHandle>& resourceHandle);
 	~LoadProcess();
 	/// @}
 
@@ -84,9 +81,13 @@ protected:
     /// @details Returns success status
     std::shared_ptr<Image> loadImage();
     std::shared_ptr<Resource> loadTexture();
+    std::shared_ptr<Resource> loadModel();
     std::shared_ptr<Resource> loadMesh();
     std::shared_ptr<Resource> loadCubeTexture();
     std::shared_ptr<Resource> loadMaterial();
+    std::shared_ptr<Resource> loadAnimation();
+    std::shared_ptr<Resource> loadShaderProgram();
+    std::shared_ptr<Resource> loadPythonScript();
 
     /// @}
 
@@ -96,9 +97,6 @@ protected:
 
     /// @brief The handle for the resource to be loaded by this process
     std::shared_ptr<ResourceHandle> m_resourceHandle;
-
-    /// @brief Attributes to process resource
-    ResourceAttributes m_resourceAttributes;
 
     /// @}
 };

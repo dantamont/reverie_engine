@@ -77,15 +77,6 @@ void EventListener::perform(CustomEvent* ev)
 /////////////////////////////////////////////////////////////////////////////////////////////
 void EventListener::initializeScript(const QString & filepath, const std::shared_ptr<SceneObject>& object)
 {
-    // If no base listener defined, create
-    QString baseScriptPath;
-#ifndef DEBUG_MODE
-    baseScriptPath = ":scripts/base_listener.py"
-#else
-    baseScriptPath = QFileInfo(QFile("py_scripts:base_listener.py")).absoluteFilePath();
-#endif
-    m_engine->resourceCache()->getScript(baseScriptPath);
-
     // Return if no filepath
     QFile file(filepath);
     if (!file.exists()) {
@@ -100,7 +91,8 @@ void EventListener::initializeScript(const QString & filepath, const std::shared
     // Set script for this component
     // Note: Adds script to the scenario (and python) if not present
     m_path = filepath;
-    m_script = m_engine->resourceCache()->getScript(filepath);
+    m_script = m_engine->resourceCache()->guaranteeHandleWithPath(m_path,
+        Resource::kPythonScript)->resourceAs<PythonClassScript>();
 
     // Create the instantiation of class from the script
     m_pythonListener = m_script->instantiate(object);

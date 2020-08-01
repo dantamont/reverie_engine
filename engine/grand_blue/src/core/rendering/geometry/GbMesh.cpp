@@ -43,17 +43,28 @@ unsigned int VertexArrayData::sizeInMegaBytes() const
     return ceil(sizeInBytes() / (1000.0 * 1000.0));
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+GL::BufferObject & VertexArrayData::getBuffer(GL::BufferObject::AttributeType type)
+{
+    if (!Map::HasKey(m_attributeBuffers, (int)type))
+        throw("Error, buffer object of the specified type not found");
+    
+    return *m_attributeBuffers[(int)type];
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void VertexArrayData::drawGeometry(int mode) const
 {
     if (!m_vao) {
         // Don't render if vao not loaded yet
-        logWarning("No mesh vertex data found, returning");
+        logWarning("No vertex data found, returning");
         return;
     }
 
-//#ifdef DEBUG_MODE
-//    m_vao->printGLError("Shape::draw:: Error before binding VAO");
-//#endif
+#ifdef DEBUG_MODE
+    bool error = m_vao->printGLError("Shape::draw:: Error before binding VAO");
+    if (error) {
+        logInfo("Error in VAO::drawGeometry: " + m_name);
+    }
+#endif
 
     bool bound = m_vao->bind();
 
@@ -73,12 +84,12 @@ void VertexArrayData::drawGeometry(int mode) const
     }
 #endif
 
-//#ifdef DEBUG_MODE
-//    bool error = m_vao->printGLError("Shape::draw:: Error after binding VAO");
-//    if (error) {
-//        throw("Error, failed to vind VAO");
-//    }
-//#endif
+#ifdef DEBUG_MODE
+    error = m_vao->printGLError("Shape::draw:: Error after binding VAO");
+    if (error) {
+        throw("Error, failed to vind VAO");
+    }
+#endif
 
     glDrawElements(mode,
         m_indices.size(),
@@ -95,8 +106,8 @@ void VertexArrayData::drawGeometry(int mode) const
 void VertexArrayData::loadAttributes()
 {
     // Load buffer attributes
-    for (const auto& bufferPair : m_attributeBuffers) {
-        m_vao->loadAttributeBuffer(bufferPair.second);
+    for (const std::pair<int, std::shared_ptr<GL::BufferObject>>& bufferPair : m_attributeBuffers) {
+        m_vao->loadAttributeBuffer(*bufferPair.second);
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -156,19 +167,12 @@ void VertexArrayData::checkValidity()
         throw("Error, invalid usage pattern");
     }
 
-    //if (m_name.isEmpty()) {
-    //    throw("Error, mesh must have a unique name");
-    //}
+    CoreEngine* engine = CoreEngine::engines().begin()->second;
+    if (QOpenGLContext::currentContext() != engine->getGLWidgetContext()) {
+        throw("Error, invalid context for loading VAO");
+    }
 
-    //if (m_meshData.isMissingData()) {
-    //    throw std::out_of_range("No vertex or index m_data given");
-    //}
 #endif
-
-    //// Check validity of all child meshes
-    //for (Mesh* child : m_children) {
-    //    child->checkValidity();
-    //}
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void VertexArrayData::release() {
@@ -199,6 +203,11 @@ void VertexArrayData::loadBufferData() {
         auto textureBuffer = GL::BufferObject::createAndBindAttributeVBO(GL::BufferObject::kTextureCoordinates, m_usagePattern);
         textureBuffer->allocate(&attributes.m_texCoords[0], attributes.m_texCoords.size() * sizeof(Vector2g));
         m_attributeBuffers[GL::BufferObject::kTextureCoordinates] = textureBuffer;
+#ifdef DEBUG_MODE
+        int size = textureBuffer->size();
+        if (size < 0) throw("Error, texture buffer is empty");
+        //logInfo("Texture buffer loaded with size: " + QString::number(size));
+#endif
     }
     if (attributes.m_colors.size()) {
         auto colorBuffer = GL::BufferObject::createAndBindAttributeVBO(GL::BufferObject::kColor, m_usagePattern);
@@ -236,112 +245,12 @@ void VertexArrayData::loadBufferData() {
 // Mesh
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Mesh::Mesh(const QString& uniqueName) :
-    Resource(uniqueName, kMesh),
-    m_skeleton(std::make_shared<Skeleton>(uniqueName)),
-    m_usagePattern(QOpenGLBuffer::StaticDraw)
+    Resource(uniqueName, kMesh)
 {
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Mesh::Mesh(const QString& uniqueName, QOpenGLBuffer::UsagePattern usagePattern):
-    Resource(uniqueName, kMesh),
-    m_skeleton(std::make_shared<Skeleton>(uniqueName)),
-    m_usagePattern(usagePattern)
-{
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Mesh::Mesh(const QString& uniqueName, const Gb::VertexArrayData& data,
-    QOpenGLBuffer::UsagePattern usagePattern) :
-    Resource(uniqueName, kMesh),
-    m_skeleton(std::make_shared<Skeleton>(uniqueName)),
-    m_usagePattern(usagePattern)
-{
-    // Load mesh data and check validity
-    m_meshData.emplace(uniqueName, new VertexArrayData(data));
-    m_meshData[uniqueName]->setName(uniqueName);
-
-    // Run post-construction if on the main thread, otherwise return
-    // Warning, be sure to run this after switching to the correct openGL context
-    if (Process::isMainThread()) {
-        postConstruction();
-    }
-
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Mesh::~Mesh()
 {
-    // Delete mesh data associated with this mesh
-    for (const std::pair<QString, VertexArrayData*>& meshPair : m_meshData) {
-        delete meshPair.second;
-    }
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void Mesh::draw(CoreEngine* core, 
-    const std::shared_ptr<Gb::ShaderProgram>& shaderProgram, 
-    int mode)
-{
-    if (m_skeleton->root()) {
-        // If there is an actual skeleton, walk node hierarchy and draw
-        m_skeleton->root()->draw(core, shaderProgram, mode);
-    }
-    else {
-        // Perform flat draw routine over meshes
-        for (const std::pair<QString, VertexArrayData*>& meshPair : m_meshData) {
-            const VertexArrayData& mesh = *meshPair.second;
-
-            if (mesh.hasMaterial()) {
-                std::shared_ptr<Material> mtl =
-                    core->resourceCache()->getMaterial(mesh.m_materialName, false);
-
-                // Draw geometry if there is a material
-                if (mtl) {
-                    // Bind material
-                    if (!mtl->isBound()) mtl->bind(shaderProgram);
-
-                    // Draw
-                    mesh.drawGeometry(mode);
-
-                    // Unbind material
-                    if (mtl->isBound()) mtl->release();
-                }
-            }
-        }
-    }
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-bool Mesh::hasMaterial() const
-{
-    bool hasMat = true;
-    for (const std::pair<QString, VertexArrayData*>& meshPair : m_meshData) {
-        const VertexArrayData& mesh = *meshPair.second;
-        hasMat |= mesh.hasMaterial();
-    }
-    return hasMat;
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void Mesh::getMaterialNames(std::unordered_map<QString, QString>& outMap) const
-{
-    for (const std::pair<QString, VertexArrayData*>& meshPair : m_meshData) {
-        const VertexArrayData& mesh = *meshPair.second;
-        Map::Emplace(outMap, m_name, mesh.m_materialName);
-    }
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void Mesh::setMaterialNames(const std::unordered_map<QString, QString>& map)
-{
-    for (std::pair<const QString, VertexArrayData*>& meshPair : m_meshData) {
-        VertexArrayData& mesh = *meshPair.second;
-
-        if (map.find(mesh.m_name) != map.end()) {
-            mesh.m_materialName = map.at(mesh.m_name);
-        }
-        else {
-#ifdef DEBUG_MODE
-            throw("Error, could not find mesh corresponding to designated material");
-#endif
-        }
-
-    }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Mesh::onRemoval(ResourceCache* cache)
@@ -351,41 +260,26 @@ void Mesh::onRemoval(ResourceCache* cache)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Mesh::postConstruction()
 {
+    if (!Process::isMainThread()) 
+        throw("Error, must be called on main thread");
+
 #ifdef DEBUG_MODE
-    logConstructedWarning();
-    if (m_isConstructed) {
-        return;
-    }
     GL::OpenGLFunctions functions;
     functions.printGLError("Error prior to mesh post-construction");
-#else
-    if (m_isConstructed) {
-        return;
-    }
 #endif
 
+    // Initialize GL buffers for the mesh
+    m_vertexData.loadIntoVAO();
 
-    // Iterate through mesh data
-    for (std::pair<const QString, VertexArrayData*>& meshPair : m_meshData) {
-        VertexArrayData& mesh = *meshPair.second;
-
-        // Set the usage pattern, ensuring it matches this mesh
-        mesh.m_usagePattern = m_usagePattern;
-
-        // Initialize GL buffers for the mesh
-        mesh.loadIntoVAO();
-
-        // Set cost to be the size of the newly initialized mesh data
-        m_cost = mesh.sizeInMegaBytes();
-    }
+    // Set cost to be the size of the newly initialized mesh data
+    m_cost = m_vertexData.sizeInMegaBytes();
 
     // Call parent class construction routine
     Resource::postConstruction();
 
-    //// Perform post-construction for all child meshes
-    //for (Mesh* child : m_children) {
-    //    child->postConstruction();
-    //}
+#ifdef DEBUG_MODE
+    functions.printGLError("Error after mesh post-construction");
+#endif
 }
 
 

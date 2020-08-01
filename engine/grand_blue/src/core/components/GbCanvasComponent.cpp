@@ -1,6 +1,8 @@
 #include "GbCanvasComponent.h"
 
 #include "../GbCoreEngine.h"
+#include "../events/GbEventManager.h"
+#include "../resource/GbResourceCache.h"
 #include "../../view/GbWidgetManager.h"
 #include "../../view/GL/GbGLWidget.h"
 #include "../rendering/renderer/GbMainRenderer.h"
@@ -10,28 +12,32 @@
 #include "../scene/GbSceneObject.h"
 
 #include "../rendering/shaders/GbShaders.h"
+#include "../rendering/renderer/GbRenderCommand.h"
 
 #include "../canvas/GbIcon.h"
 #include "../canvas/GbLabel.h"
 
+#include "GbShaderComponent.h"
+
 #include "GbCamera.h"
+
 
 namespace Gb {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 CanvasComponent::CanvasComponent() :
-    Component(kCanvas)
+    Component(ComponentType::kCanvas)
 {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 CanvasComponent::CanvasComponent(CoreEngine * core) :
-    Component(core, kCanvas),
+    Component(core, ComponentType::kCanvas),
     m_renderProjection(core->widgetManager()->mainGLWidget())
 {
     m_renderProjection.setProjectionType(RenderProjection::kOrthographic);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 CanvasComponent::CanvasComponent(const std::shared_ptr<SceneObject>& object) :
-    Component(object, kCanvas),
+    Component(object, ComponentType::kCanvas),
     m_renderProjection(object->engine()->widgetManager()->mainGLWidget())
 {
     m_renderProjection.setProjectionType(RenderProjection::kOrthographic);
@@ -45,26 +51,51 @@ Gb::CanvasComponent::~CanvasComponent()
 {
     clear();
     if (sceneObject()) {
-        if(scene())
+        if (sceneObject()->scene()) {
             sceneObject()->scene()->removeCanvas(this);
+        }
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void CanvasComponent::addGlyph(std::shared_ptr<Glyph> glyph)
+void CanvasComponent::createDrawCommands(
+    std::vector<std::shared_ptr<DrawCommand>>& outDrawCommands,
+    Camera & camera, 
+    ShaderProgram & shaderProgram)
+{
+    if (!m_isEnabled) { return; }
+
+    // Iterate through glyphs to generate draw commands
+    for (std::shared_ptr<Glyph>& glyph : m_glyphs) {
+        auto command = std::make_shared<DrawCommand>(*glyph, shaderProgram, camera);
+        //bindUniforms(*command);
+        command->setUniform(
+            Uniform("worldMatrix", glyph->transform()->worldMatrix())); // for depth calculation
+        command->addRenderSettings(&m_renderSettings);
+
+        outDrawCommands.push_back(command);
+    }
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void CanvasComponent::addGlyph(const std::shared_ptr<Glyph>& glyph)
 {
     Vec::EmplaceBack(m_glyphs, glyph);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void CanvasComponent::removeGlyph(std::shared_ptr<Glyph> glyph)
+void CanvasComponent::removeGlyph(const Glyph & glyph)
 {
     auto it = std::find_if(m_glyphs.begin(), m_glyphs.end(),
         [&](std::shared_ptr<Glyph> g) {
-        return g->getUuid() == glyph->getUuid();
+        return g->getUuid() == glyph.getUuid();
     });
 
     if (it != m_glyphs.end()) {
         m_glyphs.erase(it);
     }
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void CanvasComponent::removeGlyph(const std::shared_ptr<Glyph>& glyph)
+{
+    removeGlyph(*glyph);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 QSize CanvasComponent::mainGLWidgetDimensions() const
@@ -76,12 +107,12 @@ void CanvasComponent::clear()
 {
     m_glyphs.clear();
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void CanvasComponent::draw(const std::shared_ptr<ShaderProgram>& shaderProgram, RenderSettings* settings)
-{
-    if (!m_isEnabled) return;
-    Renderable::draw(shaderProgram, settings);
-}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//void CanvasComponent::draw(ShaderProgram& shaderProgram, RenderSettings* settings)
+//{
+//    if (!m_isEnabled) return;
+//    Renderable::draw(shaderProgram, settings);
+//}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void CanvasComponent::enable()
 {
@@ -96,7 +127,7 @@ void CanvasComponent::disable()
 QJsonValue CanvasComponent::asJson() const
 {
     QJsonObject object = Component::asJson().toObject();
-    QJsonValue renderable = Renderable::asJson();
+    QJsonValue renderable = Shadable::asJson();
     object.insert("renderable", renderable);
 
     object.insert("viewport", m_viewport.asJson());
@@ -130,19 +161,19 @@ void CanvasComponent::loadFromJson(const QJsonValue & json)
 
     // Load renderable attributes
     if (object.contains("renderable")) {
-        Renderable::loadFromJson(object["renderable"]);
+        Shadable::loadFromJson(object["renderable"]);
     }
 
     // Load view settings    
     m_viewport.loadFromJson(object.value("viewport"));
     m_renderProjection.loadFromJson(object.value("renderProjection"));
 
-    // Load uniforms used by the canvas
-    const QJsonObject& uniforms = object["uniforms"].toObject();
-    for (const QString& key : uniforms.keys()) {
-        QJsonObject uniformObject = uniforms.value(key).toObject();
-        Map::Emplace(m_uniforms, key, uniformObject);
-    }
+    //// Load uniforms used by the canvas
+    //const QJsonObject& uniforms = object["uniforms"].toObject();
+    //for (const QString& key : uniforms.keys()) {
+    //    QJsonObject uniformObject = uniforms.value(key).toObject();
+    //    Map::Emplace(m_uniforms, key, uniformObject);
+    //}
 
     // Load glyphs
     const QJsonArray& glyphs = object["glyphs"].toArray();
@@ -152,21 +183,23 @@ void CanvasComponent::loadFromJson(const QJsonValue & json)
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void CanvasComponent::bindUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram)
+void CanvasComponent::resizeViewport()
 {    
     // Reload data if screen-size changed
+    // TODO: Move somewhere else, should only be called on resize
     QSize dims = mainGLWidgetDimensions();
     if (dims != m_dimensions) {
         resize();
     }
 
+    // TODO: Associate a camera with the canvas and use that viewport instead
     // TODO: Move this somewhere else
     // Set the viewport size for canvas rendering
     // TODO: Pass widget instead of assuming main widget
-    View::GLWidget* widget = m_engine->widgetManager()->mainGLWidget();
-    m_viewport.setGLViewport(*widget->renderer());
+    //View::GLWidget* widget = m_engine->widgetManager()->mainGLWidget();
+    //m_viewport.setGLViewport(*widget->renderer());
 
-    Renderable::bindUniforms(shaderProgram);
+    //Renderable::bindUniforms(shaderProgram);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void CanvasComponent::resize()
@@ -176,13 +209,43 @@ void CanvasComponent::resize()
         glyph->reload();
     }
 }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//void CanvasComponent::drawGeometry(ShaderProgram& shaderProgram, RenderSettings * settings)
+//{
+//    Q_UNUSED(settings)
+//    // Draw each glyph
+//    for (std::shared_ptr<Glyph>& glyph : m_glyphs) {
+//        glyph->draw(shaderProgram);
+//    }
+//}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void CanvasComponent::drawGeometry(const std::shared_ptr<ShaderProgram>& shaderProgram, RenderSettings * settings)
+void CanvasComponent::addRequiredComponents()
 {
-    Q_UNUSED(settings)
-    // Draw each glyph
-    for (std::shared_ptr<Glyph>& glyph : m_glyphs) {
-        glyph->draw(shaderProgram);
+    if (!sceneObject()->hasComponent(Component::ComponentType::kShader)) {
+        // Add shader component to the scene object if not already a member
+        auto shaderComp = new ShaderComponent(sceneObject());
+        shaderComp->addRequiredComponents();
+
+        // Create text preset and add to shader component
+        bool created;
+        const QString& textStr = Shader::Builtins[1];
+        std::shared_ptr<ShaderPreset> textPreset = 
+            m_engine->resourceCache()->getShaderPreset(textStr, created);
+        
+        if (created) {
+            auto textShader = m_engine->resourceCache()->getHandleWithName(
+                textStr, Resource::kShaderProgram)->resourceAs<ShaderProgram>();
+            textPreset->setShaderProgram(textShader);
+        }
+
+        // Set text preset for shader component
+        shaderComp->setShaderPreset(textPreset);
+
+        // Emit signal to display widget for shader component
+        emit m_engine->eventManager()->addedComponent(shaderComp->getUuid(),
+            (int)Component::ComponentType::kShader, 
+            sceneObject()->getUuid());
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

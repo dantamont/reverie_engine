@@ -1,0 +1,43 @@
+float2 vPixelViewport = float2( 1.0f / VIEWPORT_WIDTH, 1.0f / VIEWPORT_HEIGHT );
+
+// Normal, scale it up 3x for a better coverage areafloat2 
+upOffset = float2( 0, vPixelViewport.y ) * 3;
+float2 rightOffset = float2( vPixelViewport.x, 0 ) * 3;
+float topHeight = GetColorLuminance( tex2D( ColorTextureSampler, i_TexCoord.xy+upOffset).rgb );
+
+float bottomHeight = GetColorLuminance( tex2D( ColorTextureSampler, i_TexCoord.xy-upOffset).rgb );
+
+float rightHeight = GetColorLuminance( tex2D( ColorTextureSampler, i_TexCoord.xy+rightOffset).rgb );
+float leftHeight = GetColorLuminance( tex2D( ColorTextureSampler, i_TexCoord.xy-rightOffset).rgb );
+float leftTopHeight = GetColorLuminance( tex2D( ColorTextureSampler, i_TexCoord.xy-rightOffset+upOffset).rgb );
+float leftBottomHeight = GetColorLuminance( tex2D( ColorTextureSampler, i_TexCoord.xy-rightOffset-upOffset).rgb );
+float rightBottomHeight = GetColorLuminance( tex2D( ColorTextureSampler, i_TexCoord.xy+rightOffset+upOffset).rgb );
+float rightTopHeight = GetColorLuminance( tex2D( ColorTextureSampler, i_TexCoord.xy+rightOffset-upOffset).rgb );
+
+// Normal map creation, this is where it differs.
+float sum0 = rightTopHeight+ topHeight + rightBottomHeight;
+float sum1 = leftTopHeight + bottomHeight + leftBottomHeight;
+float sum2 = leftTopHeight + leftHeight + TopRight;
+float sum3 = leftBottomHeight + rightHeight + rightBottomHeight ;
+// Then for the final vectors, just subtract the opposite sample set.
+// The amount of "antialiasing" is directly related to "filterStrength".
+// Higher gives better AA, but too high causes artifacts.
+float filterStrength = 1;float vec1 = (sum1 - sum0) * filterStrength;
+float vec2 = (sum2 - sum3) * filterStrength;
+
+// Put them together and multiply them by the offset scale for the final result.
+float2 Normal = float2( vec1, vec2) * vPixelViewport;
+// ColorNormal.xy *= vPixelViewport * 2;	
+// Increase pixel size to get more blur
+float4 Scene0 = tex2D( ColorTextureSampler, i_TexCoord.xy );
+float4 Scene1 = tex2D( ColorTextureSampler, i_TexCoord.xy + Normal.xy );
+float4 Scene2 = tex2D( ColorTextureSampler, i_TexCoord.xy - Normal.xy );
+float4 Scene3 = tex2D( ColorTextureSampler, i_TexCoord.xy + float2(Normal.x, -Normal.y) );
+float4 Scene4 = tex2D( ColorTextureSampler, i_TexCoord.xy - float2(Normal.x, -Normal.y) );
+
+// Final color
+
+o_Color = (Scene0 + Scene1 + Scene2 + Scene3 + Scene4) * 0.2;
+// To debug the normal image, use this:
+// o_Color .xyz = normalize(float3(vec1, vec2 , 1) * 0.5 + 0.5);
+// using vec1 and vec2 for the debug output as Normal won't display anything (due to the pixel scale applied to it).
