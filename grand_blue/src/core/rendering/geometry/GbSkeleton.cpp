@@ -32,79 +32,78 @@ Bone::Bone(const QString & name, int index) :
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Mesh Node
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-MeshNode::MeshNode(const QString & uniqueName, Skeleton* skeleton):
+SkeletonJoint::SkeletonJoint(const QString & uniqueName, Skeleton* skeleton):
     Object(uniqueName),
     m_skeleton(skeleton)
 {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-MeshNode::MeshNode(const MeshNode & meshNode, Skeleton* skeleton, MeshNode* parent, bool justBones):
+SkeletonJoint::SkeletonJoint(const SkeletonJoint & meshNode, Skeleton* skeleton, SkeletonJoint* parent, bool justBones):
     Object(meshNode.m_name),
     m_skeleton(skeleton),
     m_parent(parent),
     m_bone(meshNode.m_bone),
-    m_transform(meshNode.m_transform),
-    m_meshData(meshNode.m_meshData)
+    m_transform(meshNode.m_transform)
 {
-    for (MeshNode* otherChild : meshNode.m_children) {
+    for (SkeletonJoint* otherChild : meshNode.m_children) {
         if (otherChild->hasBone() || !justBones) {
-            MeshNode* child = new MeshNode(*otherChild, m_skeleton, this, justBones);
+            SkeletonJoint* child = new SkeletonJoint(*otherChild, m_skeleton, this, justBones);
             addChild(child);
         }
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-MeshNode::~MeshNode()
+SkeletonJoint::~SkeletonJoint()
 {
     // Unnecessary, handled by skeleton deletion
     //for(MeshNode* child: m_children)
     //    delete child;
 }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//void MeshNode::draw(CoreEngine* core, const std::shared_ptr<Gb::ShaderProgram>& shaderProgram, int glMode)
+//{
+//    // FIXME: Handle local transforms
+//
+//    // Perform actual draw routine
+//    for (const std::pair<QString, VertexArrayData*>& meshPair : m_meshData) {
+//        const VertexArrayData& mesh = *meshPair.second;
+//
+//        if (mesh.hasMaterial()) {
+//            std::shared_ptr<Material> mtl =
+//                core->resourceCache()->getMaterial(mesh.m_materialName, false);
+//
+//            // Draw geometry if there is a material
+//            if (mtl) {
+//                // Bind material
+//                if (!mtl->isBound()) mtl->bind(shaderProgram);
+//
+//                // Draw
+//                mesh.drawGeometry(glMode);
+//
+//                // Unbind material
+//                if (mtl->isBound()) mtl->release();
+//            }
+//        }
+//    }
+//
+//    // Draw child node meshes
+//    for (MeshNode* child : m_children) {
+//        child->draw(core, shaderProgram, glMode);
+//    }
+//}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//void MeshNode::addMeshData(VertexArrayData* meshData)
+//{
+//    m_meshData[meshData->getName()] = meshData;
+//}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void MeshNode::draw(CoreEngine* core, const std::shared_ptr<Gb::ShaderProgram>& shaderProgram, int glMode)
-{
-    // FIXME: Handle local transforms
-
-    // Perform actual draw routine
-    for (const std::pair<QString, VertexArrayData*>& meshPair : m_meshData) {
-        const VertexArrayData& mesh = *meshPair.second;
-
-        if (mesh.hasMaterial()) {
-            std::shared_ptr<Material> mtl =
-                core->resourceCache()->getMaterial(mesh.m_materialName, false);
-
-            // Draw geometry if there is a material
-            if (mtl) {
-                // Bind material
-                if (!mtl->isBound()) mtl->bind(shaderProgram);
-
-                // Draw
-                mesh.drawGeometry(glMode);
-
-                // Unbind material
-                if (mtl->isBound()) mtl->release();
-            }
-        }
-    }
-
-    // Draw child node meshes
-    for (MeshNode* child : m_children) {
-        child->draw(core, shaderProgram, glMode);
-    }
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void MeshNode::addMeshData(VertexArrayData* meshData)
-{
-    m_meshData[meshData->getName()] = meshData;
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void MeshNode::addChild(const QString& uniqueName, Skeleton* skeleton)
+void SkeletonJoint::addChild(const QString& uniqueName)
 {
     // Add child node to this node's list of direct children
-    m_children.push_back(new MeshNode(
+    m_children.push_back(new SkeletonJoint(
         uniqueName,
-        skeleton));
-    MeshNode* node = m_children.back();
+        m_skeleton));
+    SkeletonJoint* node = m_children.back();
 
     // Set parent of the child node
     node->m_parent = this;
@@ -113,7 +112,7 @@ void MeshNode::addChild(const QString& uniqueName, Skeleton* skeleton)
     m_skeleton->m_nodes.emplace(uniqueName, node);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void MeshNode::addChild(MeshNode * node)
+void SkeletonJoint::addChild(SkeletonJoint * node)
 {    // Add child node to this node's list of direct children
     m_children.push_back(node);
 
@@ -136,7 +135,7 @@ void MeshNode::addChild(MeshNode * node)
 // Skeleton
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Skeleton::Skeleton(const QString & uniqueName):
-    Object(uniqueName)
+    Resource(uniqueName, kSkeleton)
 {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -146,7 +145,7 @@ Skeleton::Skeleton(const Skeleton & other):
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Skeleton::Skeleton(const Skeleton & other, bool justBones) :
-    Object(other.m_name),
+    Resource(other.m_name, kSkeleton),
     m_globalInverseTransform(other.m_globalInverseTransform),
     m_inverseBindPose(other.m_inverseBindPose)
 {
@@ -157,10 +156,10 @@ Skeleton::Skeleton(const Skeleton & other, bool justBones) :
             throw("Error, skeleton is malformed.  More than one potential root");
         }
 
-        m_root = new MeshNode(*other.m_boneNodes[0], this, nullptr, justBones);
+        m_root = new SkeletonJoint(*other.m_boneNodes[0], this, nullptr, justBones);
     }
     else{
-        m_root = new MeshNode(*other.m_root, this, nullptr, justBones);
+        m_root = new SkeletonJoint(*other.m_root, this, nullptr, justBones);
     }
 
     m_nodes.emplace(m_root->getName(), m_root);
@@ -169,9 +168,14 @@ Skeleton::Skeleton(const Skeleton & other, bool justBones) :
 Skeleton::~Skeleton()
 {
     // Delete all nodes of the skeleton
-    for (const std::pair<QString, MeshNode*> nodePair : m_nodes) {
+    for (const std::pair<QString, SkeletonJoint*> nodePair : m_nodes) {
         delete nodePair.second;
     }
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Skeleton::onRemoval(ResourceCache * cache)
+{
+    Q_UNUSED(cache);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 bool Skeleton::isMalformed() const
@@ -179,11 +183,11 @@ bool Skeleton::isMalformed() const
     return isMalformed(m_root);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-bool Skeleton::isMalformed(const MeshNode * node) const
+bool Skeleton::isMalformed(const SkeletonJoint * node) const
 {
     bool malformed = false;
     bool foundBone = false;
-    for (const MeshNode* child : node->children()) {
+    for (const SkeletonJoint* child : node->children()) {
         if (foundBone && child->hasBone()) {
             // There are multiple child bones on the first level with bones, so malformed
             malformed = true;
@@ -199,7 +203,7 @@ bool Skeleton::isMalformed(const MeshNode * node) const
     }
     else {
         // If not malformed and haven't found a bone, continue
-        for (const MeshNode* child : node->children()) {
+        for (const SkeletonJoint* child : node->children()) {
             malformed |= isMalformed(child);
             if (malformed) break;
         }
@@ -214,7 +218,7 @@ void Skeleton::addRootNode(const QString& name)
     setName(name);
 
     // Add root node
-    m_root = new MeshNode(name, this);
+    m_root = new SkeletonJoint(name, this);
     m_nodes.emplace(name, m_root);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -244,14 +248,14 @@ void Skeleton::constructInverseBindPose()
     constructInverseBindPose(*m_root);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void Skeleton::constructInverseBindPose(MeshNode & node)
+void Skeleton::constructInverseBindPose(SkeletonJoint & node)
 {
     if (node.hasBone()) {
         const Bone& bone = node.bone();
         m_inverseBindPose[bone.m_index] = bone.m_offsetMatrix;
     }
 
-    for (MeshNode* child : node.children()) {
+    for (SkeletonJoint* child : node.children()) {
         constructInverseBindPose(*child);
     }
 }

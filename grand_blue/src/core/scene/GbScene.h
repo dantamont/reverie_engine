@@ -27,14 +27,16 @@ class SceneObject;
 class Scenario;
 class CameraComponent;
 class CanvasComponent;
+class CubeMapComponent;
 class Light;
 class CoreEngine;
 class Renderer;
 class ShaderProgram;
-class CubeMap;
 class PhysicsScene;
 class PhysicsSceneComponent;
 class Color;
+class DrawCommand;
+class MainRenderer;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Type Definitions
@@ -44,21 +46,11 @@ class Color;
 // Class Definitions
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/// @struct CompareByRenderLayer
-/// @brief Struct containing a comparator for sorting scene objects list by render sorting layer
-struct CompareByRenderLayer {
-    bool operator()(const std::shared_ptr<SceneObject>& a, const std::shared_ptr<SceneObject>& b) const;
-};
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /** @class Scene
     @brief A scene consisting of Scene Objects
 */
 class Scene: public Object, public Loadable, std::enable_shared_from_this<Scene>{
 public:
-    typedef std::multiset<std::shared_ptr<SceneObject>, CompareByRenderLayer> SceneObjectSet;
 
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Static
@@ -100,11 +92,11 @@ public:
     Scenario* scenario() const;
 
     /// @property Skybox
-    std::shared_ptr<CubeMap> skybox() { return m_skybox; }
-    void setSkybox(std::shared_ptr<CubeMap> skybox) { m_skybox = skybox; }
+    //std::shared_ptr<CubeMap> skybox() { return m_skybox; }
+    //void setSkybox(std::shared_ptr<CubeMap> skybox) { m_skybox = skybox; }
 
     /// @brief Return objects in the scene
-    SceneObjectSet& topLevelSceneObjects() { return m_topLevelSceneObjects; }
+    std::vector<std::shared_ptr<SceneObject>>& topLevelSceneObjects() { return m_topLevelSceneObjects; }
 
     /// @brief Return cameras in the scene
     std::vector<CameraComponent*>& cameras();
@@ -112,14 +104,21 @@ public:
     /// @brief Return all canvases in the scene
     std::vector<CanvasComponent*>& canvases();
 
-    /// @brief Return renderers in the scene
-    const std::vector<std::shared_ptr<Renderer>> renderers() const;
+    /// @brief Return all cubemap components in the scene
+    std::vector<CubeMapComponent*>& cubeMaps();
+
+    /// @brief Default skybox
+    CubeMapComponent* defaultCubeMap() { return m_defaultCubeMap; }
+    void setDefaultCubeMap(CubeMapComponent* map) { m_defaultCubeMap = map; }
 
     /// @}
 
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Public methods
     /// @{    
+
+    /// @brief Generate the draw commands for the scene
+    void createDrawCommands(MainRenderer& renderer);
 
     /// @brief Adds a camera to this scene's cache of cameras on component contruction
     void addCamera(CameraComponent* camera);
@@ -128,6 +127,11 @@ public:
     /// @brief Adds a canvas's object to this scene's cache of canvas objects on component contruction
     void addCanvas(CanvasComponent* canvas);
     void removeCanvas(CanvasComponent* canvas);
+
+    /// @brief Adds a cubemap's object to this scene's cache of cubemap objects on component contruction
+    void addCubeMap(CubeMapComponent* map);
+    void removeCubeMap(CubeMapComponent* map);
+    CubeMapComponent* getCubeMap(const Uuid& uuid);
 
     /// @brief Physics scene
     std::shared_ptr<PhysicsScene> physics();
@@ -155,11 +159,11 @@ public:
     /// @details Removes all scene objects from static map
     void clear();
 
-    /// @brief Set uniforms in the given shader program
-    void bindUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram);
+    /// @brief Set uniforms to the given render command
+    void bindUniforms(DrawCommand& command);
 
     /// @brief Iterator in scene map of given object
-    SceneObjectSet::iterator getIterator(const std::shared_ptr<SceneObject>& object);
+    std::vector<std::shared_ptr<SceneObject>>::iterator getIterator(const std::shared_ptr<SceneObject>& object);
 
     /// @brief Add component to the scene object
     /// @details Returns true if component successfully added
@@ -237,16 +241,11 @@ protected:
     /// @brief Pointer to the engine
     CoreEngine* m_engine;
 
-    /// @brief The skybox for this scene
-    std::shared_ptr<CubeMap> m_skybox;
-
     /// @brief The components attached to this scene
     std::unordered_map<Component::ComponentType, std::vector<Component*>> m_components;
 
-    /// @brief Set of top-level objects in this scene
-    /// @details Set is sorted by the render layer of each scene object
-    /// @note Must not modify in a way that would affect sorting order once added to set
-    SceneObjectSet m_topLevelSceneObjects;
+    /// @brief Vector of top-level objects in this scene
+    std::vector<std::shared_ptr<SceneObject>> m_topLevelSceneObjects;
 
     /// @brief Map of uniforms for the scene
     std::unordered_map<QString, Uniform> m_uniforms;
@@ -256,6 +255,10 @@ protected:
 
     /// @brief Map of all cameras in the scene
     std::vector<CameraComponent*> m_cameras;
+
+    /// @brief Map of all cubemap in the scene
+    std::vector<CubeMapComponent*> m_cubeMaps;
+    CubeMapComponent* m_defaultCubeMap = nullptr;
 
     /// @}
 

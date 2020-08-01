@@ -8,7 +8,6 @@
 #include "../processes/GbProcessManager.h"
 #include "../processes/GbLoadProcess.h"
 
-#include "../components/GbLight.h"
 #include "../scripting/GbPythonScript.h"
 #include "../rendering/geometry/GbPolygon.h"
 #include "../GbCoreEngine.h"
@@ -17,8 +16,9 @@
 #include "../rendering/materials/GbMaterial.h"
 #include "../rendering/geometry/GbVertexData.h"
 #include "../rendering/models/GbModel.h"
-#include "../rendering/materials/GbCubeMap.h"
+#include "../rendering/materials/GbCubeTexture.h"
 #include "../animation/GbAnimation.h"
+#include "../rendering/shaders/GbShaderPreset.h"
 
 namespace Gb {
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -35,6 +35,21 @@ ResourceCache::ResourceCache(CoreEngine* core, ProcessManager* processManager, c
     // Initialize connections
     //connect(this, &ResourceCache::readyForLoad, this, &ResourceCache::loadModelResources);
 
+    // Connect post-construction routine to resource cache and emit signal
+    // Queued connection will ensure slot is executed in receiver's thread
+    QObject::connect(this,
+        &ResourceCache::doneLoadingResource,
+        this,
+        &ResourceCache::runPostConstruction,
+        Qt::QueuedConnection);
+
+    //// Connect signal to reload a resource to resource cache load routine
+    //QObject::connect(this,
+    //    &ResourceCache::doneLoadingResource,
+    //    this,
+    //    (void(ResourceCache::*)(std::shared_ptr<ResourceHandle>))&ResourceCache::reloadResource,
+    //    Qt::QueuedConnection);
+
 #ifdef DEBUG_MODE
     if (sizeInMb > getMaxMemoryMb() / 2.0) {
         logWarning("Warning, resource cache allows for more than half of available system memory, may cause performance issues");
@@ -46,146 +61,83 @@ ResourceCache::ResourceCache(CoreEngine* core, ProcessManager* processManager, c
 ResourceCache::~ResourceCache()
 {
 }
-/////////////////////////////////////////////////////////////////////////////////////////////
-bool ResourceCache::removeShaderProgram(const std::shared_ptr<ShaderProgram>& shader)
+/////////////////////////////////////////////////////////////////////////////////////////////s
+bool ResourceCache::removeShaderPreset(const QString & name)
 {
-    auto iter = std::find_if(m_shaderPrograms.begin(), m_shaderPrograms.end(),
-        [&](const auto& shaderPair) {
-        return shaderPair.second->getUuid() == shader->getUuid();
-    });
+    std::unordered_map<Uuid, std::shared_ptr<ShaderPreset>>::iterator iter;
+    if(hasShaderPreset(name, iter)) {
+        m_shaderPresets.erase(iter);
+        return true;
+    }
 
-    if (iter != m_shaderPrograms.end()) {
-        m_shaderPrograms.erase(iter);
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-bool ResourceCache::removeMaterial(const QString & name)
-{
-    if (m_materials.find(name.toLower()) != m_materials.end()) {
-        m_materials.erase(name);
-        return true;
-    }
+    throw("Error, shader material with the specified name not found");
     return false;
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-bool ResourceCache::removeMaterial(const Uuid & uuid)
-{
-    auto iter = std::find_if(m_materials.begin(), m_materials.end(),
-        [&](const auto& matPair) {
-        return matPair.second->getUuid() == uuid;
-    });
-
-    if (iter != m_materials.end()) {
-        m_materials.erase(iter);
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-bool ResourceCache::removeMaterial(std::shared_ptr<Material> material)
-{
-    return removeMaterial(material->getUuid());
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-bool ResourceCache::removeModel(const QString & name)
-{
-    if (m_models.find(name) != m_models.end()) {
-        m_models.erase(name);
-        return true;
-    }
-    return false;
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-bool ResourceCache::removeModel(std::shared_ptr<Model> model)
-{
-    auto iter = std::find_if(m_models.begin(), m_models.end(), 
-        [&](const auto& modelPair) {
-        return modelPair.second->getUuid() == model->getUuid();
-    });
-    
-    if (iter != m_models.end()) {
-        // Remove model if iterator found
-        m_models.erase(iter);
-
-        // Remove all resources from the model filepath
-        removeResources(model->getFilePath());
-
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-bool ResourceCache::removeResources(const QString & filepath)
-{
-    bool removed = false;
-    std::unordered_map<QString, std::shared_ptr<ResourceHandle>>::iterator iter = m_resources.begin();
-    while (iter != m_resources.end()) {
-        if (iter->second->getPath() == filepath) {
-            if (iter->second->isCoreResource()) continue;
-            // Remove resource and delete handle
-            remove(iter->second);
-            iter = m_resources.erase(iter);
-            removed = true;
-        }
-        else {
-            // Continue to next resource
-            iter++;
-        }
-    }
-
-    // Remove resources from list of recently used resources
-    ResourceList::iterator litr = m_lru.begin();
-    while (litr != m_lru.end()) {
-        if ((*litr)->getPath() == filepath) {
-            if ((*litr)->isCoreResource()) continue;
-            litr = m_lru.erase(litr);
-        }
-        else {
-            // Continue to next resource
-            litr++;
-        }
-    }
-
-    return removed;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 bool ResourceCache::clearedRemovable() const
 {
-    return !std::any_of(m_lru.begin(), m_lru.end(), [](std::shared_ptr<ResourceHandle> r) {
-        return r->getPriority() == ResourceHandle::kRemovable;
+    return !std::any_of(m_topLevelResources.begin(), 
+        m_topLevelResources.end(),
+        [](const std::shared_ptr<ResourceHandle>& r) {
+            return !r->isPermanent();
     });
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-bool ResourceCache::insert(std::shared_ptr<ResourceHandle> resource)
+bool ResourceCache::insertHandle(const std::shared_ptr<ResourceHandle>& resource)
 {
-    return insert(resource, nullptr);
+    return insertHandle(resource, nullptr);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-bool ResourceCache::insert(std::shared_ptr<ResourceHandle> resourceHandle, bool* clearedResources)
+bool ResourceCache::insertHandle(const std::shared_ptr<ResourceHandle>& resourceHandle, bool* clearedResources)
 {
     // Lock in case adding from another thread
     QMutexLocker lock(&m_resourceMutex);
 
     // Add resourceHandle
-    const QString& name = resourceHandle->getName();
-    if (m_resources.find(name) != m_resources.end()) {
+    const Uuid& uuid = resourceHandle->getUuid();
+    if (m_resources.find(uuid) != m_resources.end()) {
 #ifdef DEBUG_MODE
-        logInfo("Reloading resource: " + name);
+        const std::shared_ptr<ResourceHandle>& oldHandle = m_resources[uuid];
+        logInfo("Reloading resource: " + oldHandle->getName());
 #endif
-        m_resources[name] = resourceHandle;
-        update(resourceHandle);
+        //m_resources[uuid] = resourceHandle;
+        resourceHandle->touch();
     }
     else {
-        Map::Emplace(m_resources, name, resourceHandle);
-        m_lru.push_front(resourceHandle);
+        Map::Emplace(m_resources, uuid, resourceHandle);
+
+        // Only add to top level list if resource handle is not a child
+        if (!resourceHandle->isChild()) {
+            m_topLevelResources.push_front(resourceHandle);
+        }
+
+        // Add to type-specific maps if applicable
+        switch (resourceHandle->getResourceType()) {
+        case Resource::kModel:
+            m_models[resourceHandle->getUuid()] = resourceHandle;
+            break;
+        case Resource::kMaterial:
+            m_materials[resourceHandle->getUuid()] = resourceHandle;
+            break;
+        case Resource::kShaderProgram:
+            m_shaderPrograms[resourceHandle->getUuid()] = resourceHandle;
+            break;
+        case Resource::kPythonScript:
+            m_pythonScripts[resourceHandle->getUuid()] = resourceHandle;
+            break;
+        case Resource::kSkeleton:
+            m_skeletons[resourceHandle->getUuid()] = resourceHandle;
+            break;
+        case Resource::kCubeTexture:
+        case Resource::kAnimation:
+        case Resource::kTexture:
+        case Resource::kImage:
+        case Resource::kMesh:
+            break;
+        default:
+            throw("Error, texture type not recognized");
+            break;
+        }
     }
 
     // Return if resource not yet loaded
@@ -225,367 +177,148 @@ bool ResourceCache::insert(std::shared_ptr<ResourceHandle> resourceHandle, bool*
 
     return succeeded;
 }
- /////////////////////////////////////////////////////////////////////////////////////////////
- std::shared_ptr<ResourceHandle> ResourceCache::handleWithName(const QString & name, Resource::ResourceType type)
- {
-     auto resourceIter = std::find_if(m_resources.begin(), m_resources.end(),
-         [&](const std::pair<QString, std::shared_ptr<ResourceHandle>>& r) {
-         return r.first == name && r.second->getType() == type;
-     });
-     if (resourceIter != m_resources.end()) {
-         return resourceIter->second;
-     }
-     else {
-         return nullptr;
-     }
- }
- /////////////////////////////////////////////////////////////////////////////////////////////
- std::shared_ptr<ResourceHandle> ResourceCache::handleWithFilepath(const QString & filepath, Resource::ResourceType type)
- {
-     auto resourceIter = std::find_if(m_resources.begin(), m_resources.end(),
-         [&](const std::pair<QString, std::shared_ptr<ResourceHandle>>& r) {
-         return r.second->getPath() == filepath && r.second->getType() == type;
-     });
-     if (resourceIter != m_resources.end()) {
-         return resourceIter->second;
-     }
-     else {
-         return nullptr;
-     }
- }
 /////////////////////////////////////////////////////////////////////////////////////////////
+std::shared_ptr<ResourceHandle> ResourceCache::getTopLevelHandleWithPath(const QString & filepath) const
+{
+    auto resourceIter = std::find_if(m_topLevelResources.begin(), m_topLevelResources.end(),
+        [&](const std::shared_ptr<ResourceHandle>& r) {
+        return r->getPath() == filepath;
+    });
+    if (resourceIter != m_topLevelResources.end()) {
+        return *resourceIter;
+    }
+    else {
+        return nullptr;
+    }
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+std::shared_ptr<ResourceHandle> ResourceCache::guaranteeHandleWithPath(const QString & filepath,
+    Resource::ResourceType type, ResourceHandle::BehaviorFlags flags)
+{
+    std::shared_ptr<ResourceHandle> handle = getTopLevelHandleWithPath(filepath);
+    if (handle) {
+#ifdef DEBUG_MODE
+        if (handle->getResourceType() != type)
+            throw("Handle type mismatch");
+#endif
+        if (handle->behaviorFlags() != flags) {
+            handle->setBehaviorFlags(flags);
+        }
+    }
+    else{
+        handle = ResourceHandle::create(m_engine, filepath, type);
+        handle->setBehaviorFlags(flags);
+        handle->loadResource();
+    }
+
+    return handle;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+std::shared_ptr<ResourceHandle> ResourceCache::guaranteeHandleWithPath(const std::vector<QString>& filepaths,
+    Resource::ResourceType type, ResourceHandle::BehaviorFlags flags)
+{
+    if (type != Resource::kShaderProgram)
+        throw("Only shader programs are supported with multiple-file construction");
+
+    // Check that a resource associated with any of the input files does not exist
+    std::shared_ptr<ResourceHandle> handle;
+    for (const QString& path : filepaths) {
+        handle = getTopLevelHandleWithPath(path);
+        if (handle) {
+#ifdef DEBUG_MODE
+            if (handle->getResourceType() != type)
+                throw("Handle type mismatch");
+#endif
+            if (handle->behaviorFlags() != flags) {
+                handle->setBehaviorFlags(flags);
+            }
+            return handle;
+        }
+    }
+
+    // Create handle from filepaths
+    handle = ResourceHandle::create(m_engine, filepaths[0], type);
+    for (size_t i = 1; i < filepaths.size(); i++) {
+        handle->additionalPaths().push_back(filepaths[i]);
+    }
+    handle->setBehaviorFlags(flags);
+    handle->loadResource();
+
+    return handle;
+}
+ /////////////////////////////////////////////////////////////////////////////////////////////
+ std::shared_ptr<ResourceHandle> ResourceCache::getHandleWithName(const QString & name, Resource::ResourceType type) const
+ {
+     auto resourceIter = std::find_if(m_resources.begin(), m_resources.end(),
+         [&](const auto& resourcePair) {
+         return resourcePair.second->getName() == name && resourcePair.second->getResourceType() == type;
+     });
+     if (resourceIter != m_resources.end()) {
+         return resourceIter->second;
+     }
+     else {
+         return nullptr;
+     }
+
+ }
+ /////////////////////////////////////////////////////////////////////////////////////////////
+ void ResourceCache::postConstruction()
+ {   
+     // Load built-ins
+     initializeCoreResources();
+ }
+
+ /////////////////////////////////////////////////////////////////////////////////////////////
+ bool ResourceCache::hasShaderPreset(const QString & name, 
+     std::unordered_map<Uuid, std::shared_ptr<ShaderPreset>>::const_iterator & iter) const
+ {
+     iter = std::find_if(m_shaderPresets.begin(), m_shaderPresets.end(),
+         [&](const auto& matPair) {
+         return matPair.second->getName() == name;
+     });
+     return m_shaderPresets.end() != iter;
+ }
+ /////////////////////////////////////////////////////////////////////////////////////////////
 void ResourceCache::clear()
 {
     QMutexLocker lock(&m_resourceMutex);
 
     // Start with a blank slate
     m_currentCost = 0;
-    m_lru.clear();
-    clearResources();
-    m_materials.clear();
-    clearModels();
-    clearShaderPrograms();
-    m_pythonScripts.clear();
-
+    clearTopLevelResources();
+    clearResources(m_resources);
+    clearResources(m_models);
+    clearResources(m_materials);
+    clearResources(m_pythonScripts);
+    clearResources(m_shaderPrograms);
+    m_shaderPresets.clear();
 }
-/////////////////////////////////////////////////////////////////////////////////////////////
-void ResourceCache::clearModels()
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+std::shared_ptr<ShaderPreset> ResourceCache::getShaderPreset(const QString & name, bool & created)
 {
-    m_models.clear();
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-void ResourceCache::clearShaderPrograms()
-{ 
-    // TODO: Formalize this
-    // Keep "built-in" shaders
-    QStringList builtIn = {
-        "simple", 
-        "text", 
-        "basic",
-        "lines", 
-        "cubemap",
-        "axes",
-        "points"
-    };
-
-    for (auto it = m_shaderPrograms.begin(); it != m_shaderPrograms.end(); /*no increment*/) {
-        if (!builtIn.contains(it->first))
-        {
-            m_shaderPrograms.erase(it++);    // or "it = m.erase(it)" since C++11
-        }
-        else
-        {
-            ++it;
-        }
-    }
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<ShaderProgram> ResourceCache::getShaderProgramByName(const QString& name)
-{
-    if (m_shaderPrograms.find(name) != m_shaderPrograms.end()) {
-        return m_shaderPrograms.at(name);
-    }
-
-    if (name == "basic"){
-        auto basicProgram = std::make_shared<BasicShaderProgram>();
-        m_shaderPrograms[name] = basicProgram;
-        return m_shaderPrograms[name];
-    }
-    else if (name == "cubemap"){
-        auto cubemapProgram = std::make_shared<CubemapShaderProgram>();
-        m_shaderPrograms[name] = cubemapProgram;
-        return m_shaderPrograms[name];
-    }
-    else {
-#ifdef DEBUG_MODE
-        throw("Error, no shader program found with the name " + name);
-#endif
-    }
-
-    return nullptr;
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<ShaderProgram> ResourceCache::getShaderProgramByFilePath(const QString & fragpath, const QString & vertPath)
-{
-    auto shaderIter = std::find_if(m_shaderPrograms.begin(), m_shaderPrograms.end(), 
-        [&](const std::pair<QString, std::shared_ptr<ShaderProgram>>& shaderPair) {
-        return shaderPair.second->getFragShader()->getPath() == fragpath && 
-            shaderPair.second->getVertShader()->getPath() == vertPath;
-    }
-    );
-
-    if (shaderIter != m_shaderPrograms.end()) {
-        // Found shader with matching filepaths, return
-        return shaderIter->second;
-    }
-    else {
-        // Did not find matching shader, so create
-        QString name = FileReader::pathToName(fragpath, false);
-        if (name == "basic") {
-            auto basicProgram = std::make_shared<BasicShaderProgram>();
-            m_shaderPrograms[name] = basicProgram;
-            return m_shaderPrograms[name];
-        }
-        else if (name == "cubemap") {
-            auto cubemapProgram = std::make_shared<CubemapShaderProgram>();
-            m_shaderPrograms[name] = cubemapProgram;
-            return m_shaderPrograms[name];
-        }
-        else {
-            auto customProgram = std::make_shared<ShaderProgram>(vertPath, fragpath);
-            m_shaderPrograms[customProgram->getName()] = customProgram;
-            return m_shaderPrograms[name];
-        }
-    }
-
-    // Should never be reached
-    return nullptr;
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<Material> ResourceCache::getMaterial(const QString & name, bool create)
-{
-    // Check if material is in the map 
-    std::unordered_map<QString, std::shared_ptr<Material>>::iterator iM = m_materials.find(name.toLower());
-    if (iM != m_materials.end()) {
+    // Check if shader material is in the map 
+    std::unordered_map<Uuid, std::shared_ptr<ShaderPreset>>::const_iterator iM;
+    if (hasShaderPreset(name, iM)) {
+        created = false;
         return iM->second;
     }
 
-    if (create) {
-        // Create new material if not in map
-        auto mat = std::make_shared<Material>(m_engine, name);
-        Map::Emplace(m_materials, name.toLower(), mat);
-        return mat;
-    }
-    else {
-        return nullptr;
-    }
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<Material> ResourceCache::createMaterial(const QJsonValue & json)
-{
-    auto material = std::make_shared<Material>(m_engine, json);
-    QString mtlName = material->getName().toLower();
-    m_materials.emplace(mtlName, material);
-    return material;
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-//std::shared_ptr<Material> ResourceCache::getMaterialByFilePath(const QString & filepath)
-//{
-//    auto materialIter = std::find_if(m_materials.begin(), m_materials.end(),
-//        [&](const std::pair<QString, std::shared_ptr<Material>>& mtlPair) {
-//            return mtlPair.second->getPath() == filepath;
-//    });
-//
-//    if (materialIter != m_materials.end()) {
-//        // Return material if it exists
-//        return materialIter->second;
-//    }
-//
-//    // TODO: Implement material retrieval
-//
-//    return nullptr;
-//}
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void ResourceCache::addMaterial(std::shared_ptr<Material> material)
-{
-    if (m_materials.find(material->getName().toLower()) != m_materials.end()) {
-#ifdef DEBUG_MODE
-        throw("Error, material already exists in resource cache" + material->getName());
-#endif
-        logError("Material already exists in resource cache: " + material->getName());
-    }
-    Map::Emplace(m_materials, material->getName().toLower(), material);
+    // Create new shader material if not in map
+    created = true;
+    auto preset = std::make_shared<ShaderPreset>(m_engine, name);
+    Map::Emplace(m_shaderPresets, preset->getUuid(), preset);
+    return preset;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<CubeMap> ResourceCache::getCubemap(const QString & name)
+std::shared_ptr<ShaderPreset> ResourceCache::getShaderPreset(const Uuid & uuid)
 {
-    auto iter = m_models.find(name.toLower());
-    if (iter != m_models.end()) {
-        if (iter->second->getModelType() != Model::kCubeMap) {
-            throw("Error, model found is not a cubemap");
-        }
-        else {
-            return std::static_pointer_cast<CubeMap>(iter->second);
-        }
-    }
-
-    return nullptr;
-}
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<CubeMap> ResourceCache::createCubemap(const QString & name, const QString & filepath)
-{
-    // Create cubemap
-    auto cubeTexture = m_engine->resourceCache()->getCubeTexture(filepath);
-    auto cubemap = std::make_shared<CubeMap>(m_engine, name, cubeTexture);
-    m_models.emplace(name.toLower(), cubemap);
-
-    return cubemap;
-}
-///////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<ResourceHandle> ResourceCache::getAnimationByName(const QString & name)
-{
-    // Return animation if it exists
-    return getResourceHandleByName(name.toLower(), Resource::kAnimation);
-}
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void ResourceCache::addModel(std::shared_ptr<Model> model)
-{
-    // Throw error if model exists with the same name
-    QString key = model->getName().toLower();
-    if (m_models.find(key) != m_models.end()) {
-        throw("Error, model exists with the name " + model->getName());
-    }
-    m_models[key] = model;
-}
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<Model> ResourceCache::getModel(const QString& name)
-{
-    // Return model if it exists
-    if (m_models.find(name.toLower()) != m_models.end()) {
-        return m_models.at(name.toLower());
-    }
-
-    // Create model if it is a polygon
-    std::shared_ptr<ResourceHandle> meshHandle;
-    if (PolygonCache::isPolygonName(name)) {
-        meshHandle = m_polygonCache->getPolygon(name);
-        auto model = std::make_shared<Model>(name, meshHandle);
-        m_models.emplace(name.toLower(), model);
-        return m_models[name.toLower()];
-    }
-    else {
-        return nullptr;
-    }
-}
-///////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<Model> ResourceCache::getModelByFilePath(const QString & filepath)
-{
-    // Search for model by filepath
-    auto modelIter = std::find_if(m_models.begin(), m_models.end(),
-        [&](const std::pair<QString, std::shared_ptr<Model>>& modelPair) {
-        if (!modelPair.second->isFromFile()) {
-            return false;
-        }
-        else {
-            return modelPair.second->getFilePath() == filepath;
-        }
-    });
-
-    if (modelIter != m_models.end()) {
-        // Return model if it exists
-        return modelIter->second;
-    }
-
-    // Create model if it does not exist
-    QString name = FileReader::pathToName(filepath);
-    std::shared_ptr<ResourceHandle> meshHandle = getMesh(filepath);
-    auto model = std::make_shared<Model>(name, meshHandle);
-    m_models.emplace(name.toLower(), model);
-
-    return model;
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<Model> ResourceCache::createModel(const QJsonValue & json)
-{
-    std::shared_ptr<Model> model = Model::create(m_engine, json);
-    m_models.emplace(model->getName().toLower(), model);
-    return model;
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<PythonClassScript> ResourceCache::getScript(const QString & filepath)
-{
-    // Return if script already added
-    if (m_pythonScripts.find(filepath) != m_pythonScripts.end()) {
-        return m_pythonScripts.at(filepath);
-    }
-
-    // Check if filepath exists
-    if (FileReader::fileExists(filepath)) {
-        auto script = std::make_shared<PythonClassScript>(m_engine, filepath);
-        m_pythonScripts.emplace(filepath, script);
-        return script;
-    }
-    else {
-#ifdef DEBUG_MODE
-        logError("Failed to load file at path " + filepath);
-        throw("Failed to load file");
-#endif
-    }
-    return nullptr;
+    return m_shaderPresets[uuid];
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<ResourceHandle> ResourceCache::getMesh(const QString & nameOrFilepath)
-{
-    // String can be name of resource file or name of resource
-    if (PolygonCache::isPolygonName(nameOrFilepath)) {
-        return getResourceHandleByName(nameOrFilepath, Resource::kMesh);
-    }
-    else if (handleWithName(nameOrFilepath, Resource::kMesh)) {
-        // If there is a mesh with this string as a name, find
-        return getResourceHandleByName(nameOrFilepath, Resource::kMesh);
-    }
-    else {
-        // Default to find via filepath
-        return getResourceHandleByFilePath(nameOrFilepath, Resource::kMesh);
-    }
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<ResourceHandle> ResourceCache::getTexture(const QString & filePath, int textureType)
-{
-    ResourceAttributes attr;
-    attr.m_attributes.emplace("type", textureType);
-    return getResourceHandleByFilePath(filePath,
-        Resource::kTexture,
-        ResourceHandle::kRemovable,
-        attr);
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<ResourceHandle> ResourceCache::getCubeTexture(const QString & filePath)
-{
-    return getResourceHandleByFilePath(filePath, Resource::kCubeTexture);
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<ResourceHandle> ResourceCache::getImage(
-    const QString & filePath, 
-    QImage::Format format)
-{
-    // Create resource attributes
-    ResourceAttributes attributes;
-    if (format != QImage::Format_Invalid) {
-        attributes.m_attributes["format"] = GVariant(format);
-    }
-
-    return getResourceHandleByFilePath(filePath,
-        Resource::kImage,
-        ResourceHandle::kRemovable,
-        attributes);
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<ResourceHandle> ResourceCache::getResourceHandle(const Uuid & uuid)
+std::shared_ptr<ResourceHandle> ResourceCache::getHandle(const Uuid & uuid) const
 {
     auto iter = std::find_if(m_resources.begin(), m_resources.end(),
-        [&](const std::pair<QString, std::shared_ptr<ResourceHandle>>& resourcePair) {
+        [&](const std::pair<Uuid, std::shared_ptr<ResourceHandle>>& resourcePair) {
         return resourcePair.second->getUuid() == uuid;
     });
     if (iter != m_resources.end()) {
@@ -596,48 +329,56 @@ std::shared_ptr<ResourceHandle> ResourceCache::getResourceHandle(const Uuid & uu
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<ResourceHandle> ResourceCache::getResourceHandle(const QJsonValue & json)
+std::shared_ptr<ResourceHandle> ResourceCache::getHandle(const QJsonValue & handleJson) const
 {
-    const QJsonObject& object = json.toObject();
-    QString name = object["name"].toString();
-    QString path = object["path"].toString();
-    Resource::ResourceType type = Resource::ResourceType(object["type"].toInt());
-    ResourceHandle::Priority priority = ResourceHandle::Priority(object["priority"].toInt());
-    ResourceAttributes attributes = ResourceAttributes(object["attributes"]);
-
-    std::shared_ptr<ResourceHandle> handle;
-#ifdef DEBUG_MODE
-    if (name == "" && path == "") {
-        throw("Error, no name or filepath specified");
-        return nullptr;
+    QJsonObject object = handleJson.toObject();
+    if (!object.contains("uuid")) {
+        throw("Error, no UUID associated with resource");
     }
-#endif
-
-    switch (type) {
-    case Resource::kAnimation:
-        handle = getResourceHandleByName(name, type, priority, attributes);
-        break;
-    default:
-        if (path == "") {
-            handle = getResourceHandleByName(name, type, priority, attributes);
-        }
-        else {
-            handle = getResourceHandleByFilePath(path, type, priority, attributes);
-        }
+    Uuid handleID(handleJson["uuid"].toString());
+    if (getHandle(handleID)) {
+        return getHandle(handleID);
     }
-
-    return handle;
+    else {
+        auto handle = ResourceHandle::create(m_engine, Resource::kNullType);
+        handle->loadFromJson(handleJson);
+        handle->loadResource();
+        return handle;
+    }
 }
+
 /////////////////////////////////////////////////////////////////////////////////////////////
-void ResourceCache::clearResources()
+void ResourceCache::clearResources(ResourceMap& map)
 {
     //m_resources.clear();
-    auto endIter = m_resources.end();
-    for (auto it = m_resources.begin(); it != endIter;) {
-        if (!it->second->isCoreResource())
+    auto endIter = map.end();
+    for (auto it = map.begin(); it != endIter;) {
+        if (!it->second->isCore())
         {
             // Erase resource if not a core resource
-            m_resources.erase(it++);    // or "it = m.erase(it)" since C++11
+            map.erase(it++);    // or "it = m.erase(it)" since C++11
+        }
+        else {
+            // Skip if is a core resource
+            switch (it->second->getResourceType()) {
+            case Resource::kShaderProgram:
+                // Clear uniforms for shader program on reset
+                it->second->resourceAs<ShaderProgram>()->clearUniforms();
+                break;
+            }
+            it++;
+        }
+    }
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+void ResourceCache::clearTopLevelResources()
+{
+    auto endIter = m_topLevelResources.end();
+    for (auto it = m_topLevelResources.begin(); it != endIter;) {
+        if (!(*it)->isCore())
+        {
+            // Erase resource if not a core resource
+            m_topLevelResources.erase(it++);    // or "it = m.erase(it)" since C++11
         }
         else {
             // Skip if is a core resource
@@ -646,149 +387,83 @@ void ResourceCache::clearResources()
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<ResourceHandle> ResourceCache::getResourceHandleByFilePath(const QString & filepath,
-    Resource::ResourceType type,
-    ResourceHandle::Priority priority,
-    const ResourceAttributes& resourceAttributes)
-{
-    // Check if handle is in the cache 
-    std::shared_ptr<ResourceHandle> handle;
-    if (handleWithFilepath(filepath, type)) {
-        handle = handleWithFilepath(filepath, type);
-    }
-
-    // Check if handle needs to be reloaded
-    if (!resourceAttributes.isEmpty() || !handle) {
-
-        // Create handle to add resource object to cache if not found
-        if (!handle) {
-            handle = std::make_shared<ResourceHandle>(m_engine, filepath, type, priority);
-
-            // Insert handle into map so that a duplicate doesn't get generated
-            insert(handle);
-        }
-        else {
-            // Need to set priority if reloading resource, in case has changed
-            handle->setPriority(priority);
-        }
-        auto loadResourceProcess = std::make_shared<LoadProcess>(m_engine,
-            m_processManager,
-            handle,
-            resourceAttributes);
-        m_processManager->attachProcess(loadResourceProcess);
-
-    }
-
-    return handle;
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<ResourceHandle> ResourceCache::getResourceHandleByName(const QString & name,
-    Resource::ResourceType type,
-    ResourceHandle::Priority priority,
-    const ResourceAttributes& resourceAttributes)
-{
-    // Check if handle is in the cache 
-    std::shared_ptr<ResourceHandle> handle;
-    if (handleWithName(name, type)) {
-        handle = handleWithName(name, type);
-    }
-
-    // Check if handle needs to be reloaded
-    if (!resourceAttributes.isEmpty() || !handle) {
-        // Special case for generated meshes without filepaths
-        if (type == Resource::kMesh) {
-            if (PolygonCache::isPolygonName(name)) {
-                return m_polygonCache->getPolygon(name);
-            }
-        }
-
-
-        // Create handle to add resource object to cache if not found
-        if (!handle) {
-            handle = std::make_shared<ResourceHandle>(m_engine, "", name, type, priority);
-
-            // Insert handle into map so that a duplicate doesn't get generated
-            insert(handle);
-        }
-        else {
-            // Need to set priority if reloading resource, in case it has changed
-            handle->setPriority(priority);
-        }
-
-    }
-
-    return handle;
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-void ResourceCache::update(std::shared_ptr<ResourceHandle> resource)
-{
-    auto iter = std::find_if(m_lru.begin(), m_lru.end(),
-        [&](const std::shared_ptr<ResourceHandle>& r) {
-        return resource->getUuid() == r->getUuid();
-    });
-    if (iter != m_lru.end()) {
-        m_lru.erase(iter);
-    }
-    else {
-#ifdef DEBUG_MODE
-        logError("Error, resource with UUID not found in lru");
-#endif
-    }
-    m_lru.push_front(resource);
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
 void ResourceCache::reloadResource(const Uuid& uuid)
 {
-    std::shared_ptr<ResourceHandle> handle = getResourceHandle(uuid);
-    reloadResource(handle);
+    std::shared_ptr<ResourceHandle> handle = getHandle(uuid);
+    handle->loadResource();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 void ResourceCache::reloadResource(std::shared_ptr<ResourceHandle> handle)
 {
-    // TODO: Add a resize attempt count to avoid infinitely trying to resize resource on error
     if (handle->resource(false)) {
 #ifdef DEBUG_MODE
-        logWarning("Warning, tried to resize an already loaded resource");
+        throw("Error, tried to reload an already loaded resource");
 #endif
         return;
     }
 
-#ifdef DEBUG_MODE
-        logInfo("Loading resource that went out of scope");
-#endif    
-    auto loadResourceProcess = std::make_shared<LoadProcess>(m_engine,
-        m_processManager,
-        handle,
-        handle->getAttributes());
-    m_processManager->attachProcess(loadResourceProcess);
+    handle->loadResource();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-bool ResourceCache::remove(std::shared_ptr<ResourceHandle> resourceHandle)
+bool ResourceCache::remove(std::shared_ptr<ResourceHandle> resourceHandle, ResourceHandle::DeleteFlags deleteFlags)
 {
     // Lock in case adding from another thread
     QMutexLocker lock(&m_resourceMutex);
-    //QMutexLocker lock2(&resourceHandle->mutex());
 
-    if (resourceHandle->getPriority() == ResourceHandle::kPermanent) {
-        // Move resource to the front of the queue if high priority
-        update(resourceHandle);
-#ifdef DEBUG_MODE
-        logInfo("Did not remove resource due to priority");
-        logCurrentCost();
-#endif
+    // Move resource to the front of the queue, since it will either be removed, in which case
+    // we don't want it in the back of the queue for another attempted removal, or it is permanent,
+    // in which case we also don't want to reattempt removal
+    resourceHandle->touch();
+
+    bool forceDeletion = deleteFlags.testFlag(ResourceHandle::kForce) && !resourceHandle->isCore();
+    if (!resourceHandle->isRemovable() && !forceDeletion) {
         return false;
     }
 
-    // Don't remove from structures, just call removal method for resource handle
-    // Remove resource from structures
-    //m_lru.remove(resource);
-    //m_resources.erase(resource->getPath());
+    if(resourceHandle->isChild())
+        throw("Error, only top-level resources can be removed by resource cache");
 
     // Reduce cost
     m_currentCost -= resourceHandle->resource(false)->getCost();
 
-    // Removes resource
-    resourceHandle->removeResource(false);
+    // Removes resource and child resources
+    resourceHandle->removeResources(false);
+
+    // Remove from resource cache structs if this is a hard delete
+    if (deleteFlags.testFlag(ResourceHandle::kDeleteHandle)) {
+        m_resources.erase(resourceHandle->getUuid());
+
+        auto iter = std::find_if(m_topLevelResources.begin(), m_topLevelResources.end(),
+            [&](const auto& handle) {
+            return handle->getUuid() == resourceHandle->getUuid();
+        }
+        );
+        if (iter == m_topLevelResources.end()) {
+            throw("Error, only top-level resources can be forcefully deleted");
+        }
+        m_topLevelResources.erase(iter);
+
+        // Erase from type-specific maps if applicable
+        switch (resourceHandle->getResourceType()) {
+        case Resource::kModel:
+            m_models.erase(resourceHandle->getUuid());
+            break;
+        case Resource::kMaterial:
+            m_materials.erase(resourceHandle->getUuid());
+            break;
+        case Resource::kShaderProgram:
+            m_shaderPrograms.erase(resourceHandle->getUuid());
+            break;
+        case Resource::kPythonScript:
+            m_pythonScripts.erase(resourceHandle->getUuid());
+            break;
+        case Resource::kSkeleton:
+            m_skeletons.erase(resourceHandle->getUuid());
+            break;
+        default:
+            break;
+        }
+    }
 
     if (m_currentCost < 0) {
         throw("Error, current cost cannot be less than zero");
@@ -798,6 +473,9 @@ bool ResourceCache::remove(std::shared_ptr<ResourceHandle> resourceHandle)
     logInfo("Removed resource");
     logCurrentCost();
 #endif
+
+    // Emit signal for widgets to know that the handle was deleted
+    emit m_engine->resourceCache()->resourceDeleted(resourceHandle);
 
     return true;
 }
@@ -812,6 +490,67 @@ void ResourceCache::logCurrentCost() const
     logInfo("Current cost: " + QString::number(m_currentCost));
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
+void ResourceCache::initializeCoreResources()
+{
+    // Create base behavior script
+#ifndef DEBUG_MODE
+    QString baseBehaviorPath = ":scripts/base_behavior.py";
+#else
+    QString baseBehaviorPath = QFileInfo(QFile("py_scripts:base_behavior.py")).absoluteFilePath();
+#endif
+    auto baseScriptHandle = ResourceHandle::create(m_engine, baseBehaviorPath, Resource::kPythonScript);
+    baseScriptHandle->setCore(true);
+    baseScriptHandle->loadResource();
+
+    // Create base listener script
+    QString baseListenerPath;
+#ifndef DEBUG_MODE
+    baseListenerPath = ":scripts/base_listener.py";
+#else
+    baseListenerPath = QFileInfo(QFile("py_scripts:base_listener.py")).absoluteFilePath();
+#endif
+    auto baseListenerHandle = ResourceHandle::create(m_engine, baseListenerPath, Resource::kPythonScript);
+    baseListenerHandle->setCore(true);
+    baseListenerHandle->loadResource();
+
+    // Initialize shader resources
+    for (const QString& shaderName : Shader::Builtins) {
+        QString shaderPath = ":shaders/" + shaderName;
+        auto shaderHandle = ResourceHandle::create(m_engine, shaderPath + ".vert", Resource::kShaderProgram);
+        shaderHandle->setName(shaderName);
+        shaderHandle->setCore(true);
+        shaderHandle->additionalPaths().push_back(shaderPath + ".frag");
+        shaderHandle->loadResource();
+    }
+
+    // Initialize polygons
+    m_polygonCache->initializeCoreResources();
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+void ResourceCache::incrementLoadCount()
+{
+    QMutexLocker lock(&m_engine->resourceCache()->m_loadCountMutex);
+    m_loadCount++;
+    if (m_engine->resourceCache()->m_loadCount == 1) {
+        // Emit started loading signal if first resource getting loaded
+        emit m_engine->resourceCache()->startedLoadingResources();
+    }
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+void ResourceCache::decrementLoadCount()
+{
+    QMutexLocker lock(&m_engine->resourceCache()->m_loadCountMutex);
+
+    if (m_loadCount == 0) {
+        throw("Error, count has been led astray");
+    }
+
+    m_loadCount--;
+    if (m_loadCount == 0) {
+        emit doneLoadingResources();
+    }
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
 void ResourceCache::runPostConstruction(std::shared_ptr<ResourceHandle> resourceHandle) {
 
     QMutexLocker(&resourceHandle->mutex());
@@ -819,13 +558,16 @@ void ResourceCache::runPostConstruction(std::shared_ptr<ResourceHandle> resource
     // Set OpenGL context to main context
     m_engine->setGLContext();
 
-    resourceHandle->resource(false)->postConstruction();
+    if (resourceHandle->isConstructed()) {
+        throw("Error, resource already constructed");
+    }
+    resourceHandle->postConstruct();
+
 #ifdef DEBUG_MODE
-    logInfo("Running post-construction on thread: " + Process::getThreadID());
+    logInfo("Running post-construction of " + resourceHandle->getName() +
+        " on thread: " + Process::getThreadID());
 #endif
 
-    // Emit signal that reloaded process (for widgets)
-    emit m_engine->resourceCache()->resourceAdded(resourceHandle);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -833,54 +575,26 @@ QJsonValue ResourceCache::asJson() const
 {
     QJsonObject object;
 
+    size_t loadProcessCount = m_processManager->loadProcessCount();
+    if (m_loadCount > 0 || loadProcessCount > 0) {
+        throw("Error, not all resources are done loading");
+    }
+
     // Save resources to json
     QJsonArray resources;
-    for (const auto& resourceHandlePair : m_resources) {
-        switch (resourceHandlePair.second->getType()) {
-        case Resource::kMesh:
-            // If mesh is a polygon, no need to cache
-            if (PolygonCache::isPolygonName(resourceHandlePair.second->getName()))
-                continue;
-            else
-                resources.append(resourceHandlePair.second->asJson());
-        default:
-            resources.append(resourceHandlePair.second->asJson());
-            break;
+    for (const std::shared_ptr<ResourceHandle>& handle : m_topLevelResources) {
+        if (!handle->isCore()) {
+            resources.append(handle->asJson());
         }
     }
     object.insert("resources", resources);
 
-    // Save shaders to json
-    QJsonArray shaders;
-    for (const auto& shaderPair : m_shaderPrograms) {
-        shaders.append(shaderPair.second->asJson());
+    // Save shader materials to json
+    QJsonArray shaderPresets;
+    for (const auto& smPair : m_shaderPresets) {
+        shaderPresets.append(smPair.second->asJson());
     }
-    object.insert("shaderPrograms", shaders);
-
-    // Save models to json
-    QJsonArray models;
-    for (const auto& modelPair : m_models) {
-        models.append(modelPair.second->asJson());
-    }
-    object.insert("models", models);
-
-    // Save materials to json
-    QJsonArray materials;
-    for (const auto& materialPair : m_materials) {
-        materials.append(materialPair.second->asJson());
-    }
-    object.insert("materials", materials);
-
-    // Save python scripts to json
-    QJsonArray scripts;
-    for (const std::pair<QString, std::shared_ptr<PythonClassScript>>& scriptPair : m_pythonScripts) {
-        // If script is base behavior, don't save to JSON
-        if (scriptPair.second->getPath().contains("base_behavior.py")) {
-            continue;
-        }
-        scripts.append(scriptPair.second->asJson());
-    }
-    object.insert("scripts", scripts);
+    object.insert("shaderPresets", shaderPresets);
 
     // Save max cost to json
     object.insert("maxCost", int(m_maxCost));
@@ -898,110 +612,35 @@ void ResourceCache::loadFromJson(const QJsonValue & json)
     // Set OpenGL context to main context
     m_engine->setGLContext();
 
-#ifdef DEBUG_MODE    
-    functions.printGLError("Error after setting context");
-#endif
-
     const QJsonObject& object = json.toObject();
 
-    // Load resources from json
+    // Sort resources by type to load dependencies in properly, e.g. meshes before models
     QJsonArray resources = object.value("resources").toArray();
+    std::sort(resources.begin(), resources.end(), 
+        [](const QJsonValue &v1, const QJsonValue &v2) {
+        return v1.toObject()["type"].toInt() < v2.toObject()["type"].toInt();
+    });
+
+    // Load resources from json
     for (const auto& resourceJson : resources) {
-        // Parse out JSON for resource
-        QJsonObject resourceObject = resourceJson.toObject();
-        Resource::ResourceType type = Resource::ResourceType(resourceObject["type"].toInt());
-        QString filepath = resourceObject["path"].toString();
-        ResourceHandle::Priority priority = ResourceHandle::Priority(resourceObject["priority"].toInt());
-        ResourceAttributes attributes = ResourceAttributes(resourceObject["attributes"]);
-        QString name = ResourceHandle::getNameFromJson(resourceObject);
-
-#ifdef DEBUG_MODE    
-        functions.printGLError("Error before resource creation");
-#endif
-
-        // Skip animations, there is no process for loading these
-        switch (type) {
-        case Resource::kAnimation:
-            continue;
-        }
+        QJsonObject handleObject = resourceJson.toObject();
+        Resource::ResourceType type = Resource::ResourceType(handleObject["type"].toInt());
 
         // Error checking for duplicate resources
-        std::shared_ptr<ResourceHandle> handle = handleWithName(name, type);
-        if (handle) {
-            // If resource is a material, texture, or animation, 
-            // may already have loaded in with mesh
-            // TODO: See if this needs to be reverted
-            //if (handle->getType() != Resource::kMaterial &&
-            //    handle->getType() != Resource::kTexture &&
-            //    handle->getType() != Resource::kAnimation &&
-            //    !name.contains("gridcube")
-            //    ) {
-            //    // Throw error if duplicate resource is loaded
-            //    throw("Error, filepath already in resources");
-            //}
-            //else {
-            //    continue;
-            //}
-            continue;
-        }
-
-        // Determine whether to use resource name or filepath when searching for resource
-        if (filepath.isEmpty()) {
-            // Create resource handle
-            std::shared_ptr<ResourceHandle> resourceHandle = getResourceHandleByName(name,
-                type,
-                priority,
-                attributes);
-        }
-        else {
-            // Create resource handle
-            std::shared_ptr<ResourceHandle> resourceHandle = getResourceHandleByFilePath(filepath,
-                type,
-                priority,
-                attributes);
-        }
+        std::shared_ptr<ResourceHandle> handle = ResourceHandle::create(m_engine, type);
+        handle->loadFromJson(handleObject);
 
 #ifdef DEBUG_MODE    
-        functions.printGLError("Error on resource creation");
+        functions.printGLError("Error during resource creation");
 #endif
     }
 
-    // Load materials from json
-    const QJsonArray& materials = object.value("materials").toArray();
-    for (const auto& materialJson : materials) {
-        createMaterial(materialJson);
-    }
-
-    // Load shaders from json
-    const QJsonArray& shaders = object.value("shaderPrograms").toArray();
-    for (const auto& shaderJson : shaders) {
-        auto shader = ShaderProgram::create(shaderJson);
-        if (shader) {
-            // Only add if successfully loaded
-            m_shaderPrograms.emplace(shader->getName(), shader);
-        }
-    }
-
-    // Load models from json
-    const QJsonArray& models = object.value("models").toArray();
-    for (const auto& modelJson : models) {
-        // Create models from the JSON
-        createModel(modelJson);
-    }
-
-    // Load scripts from json
-    const QJsonObject& jsonObject = json.toObject();
-    QString scriptPath;
-#ifndef DEBUG_MODE
-    scriptPath = ":scripts/base_behavior.py"
-#else
-    scriptPath = QFileInfo(QFile("py_scripts:base_behavior.py")).absoluteFilePath();
-#endif
-    m_engine->resourceCache()->getScript(scriptPath);
-    if (jsonObject.contains("scripts")) {
-        for (const auto& scriptJson : jsonObject.value("scripts").toArray()) {
-            auto script = std::make_shared<PythonClassScript>(m_engine, scriptJson);
-            m_pythonScripts.emplace(script->getPath(), script);
+    // Load shader presets from json
+    if (object.contains("shaderPresets")) { // legacy check
+        const QJsonArray& shaderPresets = object.value("shaderPresets").toArray();
+        for (const auto& shaderJson : shaderPresets) {
+            auto shaderPreset = std::make_shared<ShaderPreset>(m_engine, shaderJson);
+            m_shaderPresets.emplace(shaderPreset->getUuid(), shaderPreset);
         }
     }
 

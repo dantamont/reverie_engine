@@ -23,7 +23,7 @@ class Component;
 class CameraComponent;
 class Light;
 class ModelComponent;
-class RendererComponent;
+class ShaderComponent;
 class ScriptComponent;
 class ListenerComponent;
 class RigidBodyComponent;
@@ -32,7 +32,6 @@ class CharControlComponent;
 class PhysicsSceneComponent;
 
 namespace View {
-class TreeItem;
 class ComponentTreeWidget;
 }
 

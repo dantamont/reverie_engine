@@ -45,15 +45,15 @@ struct ShaderStruct;
 ///@brief Uniform and corresponding info about a uniform's offset in the uniform buffer
 struct BufferUniform {
     BufferUniform();
-    BufferUniform(const UniformInfo& info);
+    BufferUniform(const ShaderInputInfo& info);
 
     Uniform m_uniform;
     size_t m_offset; // The offset of the uniform in the buffer
     size_t m_alignmentByteSize; // The alignment size (padded) of the uniform in the buffer
-    UniformInfo m_info; // Info relating to the uniform itself
+    ShaderInputInfo m_info; // Info relating to the uniform itself
 
 private:
-    void initialize(const UniformInfo& info);
+    void initialize(const ShaderInputInfo& info);
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -74,6 +74,7 @@ struct UniformBufferData {
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 /// @brief Class representing a Uniform Buffer Object
+// TODO: Move much of this into a generic GLBuffer object, see SSB (Shader Storage Buffer) as well
 class UBO : public Object, 
     public Serializable, 
     private GL::OpenGLFunctions{
@@ -82,28 +83,12 @@ public:
     /// @name Static
     /// @{
 
-    /// @brief Block layout options
-    /// @details Each variable type in GLSL such as int, float and bool are defined to be 
-    /// four-byte quantities with each entity of 4 bytes represented as N. 
-    /// Scalar e.g. int or bool: 	 Each scalar has a base alignment of N.
-    /// Vector 	Either 2N or 4N;     This means that a vec3 has a base alignment of 4N.
-    /// Array of scalars or vectors: Each element has a base alignment equal to that of a vec4.
-    /// Matrices:                  	 Stored as a large array of column vectors, where each of those vectors has a base alignment of vec4.
-    /// Struct: 	                 Equal to the computed size of its elements according to the previous rules, but padded to a multiple of the size of a vec4.
-    enum BlockLayout {
-        kShared,
-        kPacked,
-        kStd140
-    };
-
     /// @brief Obtain the UBO with the given name
     static std::shared_ptr<UBO> get(const QString& name);
     static std::shared_ptr<UBO> getCameraBuffer() {
         return get(QStringLiteral("CameraMatrices"));
     }
-    static std::shared_ptr<UBO> getLightBuffer() {
-        return get(QStringLiteral("LightBuffer"));
-    }
+    static std::shared_ptr<UBO> getLightBuffer();
 
     /// @brief Create a UBO
     static std::shared_ptr<UBO> create(const ShaderStruct& ss);
@@ -125,6 +110,9 @@ public:
     //---------------------------------------------------------------------------------------
     /// @name Properties
     /// @{
+
+    bool isCore() const { return m_isCore; }
+    void setCore(bool isCore) { m_isCore = isCore; }
 
     /// @}
 
@@ -163,13 +151,17 @@ public:
     template<class VariantType>
     inline void setUniformValue(const QString& uniformName, const VariantType& value) {
         BufferUniform& bufferUniform = m_data.m_uniforms[uniformName];
-        bufferUniform.m_uniform = Uniform(uniformName, value);
-        refreshUniform(bufferUniform);
+        if (bufferUniform.m_uniform.get<VariantType>() != value) {
+            bufferUniform.m_uniform = Uniform(uniformName, value);
+            refreshUniform(bufferUniform);
+        }
     }
     void setUniformValue(const Uniform& uniform) {
         BufferUniform& bufferUniform = m_data.m_uniforms[uniform.getName()];
-        bufferUniform.m_uniform = uniform;
-        refreshUniform(bufferUniform);
+        if (bufferUniform.m_uniform != uniform) {
+            bufferUniform.m_uniform = uniform;
+            refreshUniform(bufferUniform);
+        }
     }
 
     /// @brief Set a value in the specified list-like uniform, offset from the start of the uniform by a specified amount
@@ -215,7 +207,7 @@ protected:
     static std::unordered_map<QString, std::shared_ptr<UBO>> UBO_MAP;
 
     /// @brief Map of type names to their sizes (according to std140 glsl sizing)
-    static std::unordered_map<QString, size_t> ALIGNED_TYPE_SIZES;
+    static std::unordered_map<ShaderInputType, size_t> ALIGNED_TYPE_SIZES;
 
     /// @}
 
@@ -267,6 +259,9 @@ protected:
 
     /// @brief The binding point of the UBO, should never change
     unsigned int m_bindingPoint;
+
+    /// @brief Whether or not this UBO will be deleted on scenario reload
+    bool m_isCore = false;
     
     /// @}
 

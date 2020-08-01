@@ -18,18 +18,20 @@ HEADERS += src/GbMainWindow.h \
  	src/core/components/GbCamera.h \ 
  	src/core/components/GbCanvasComponent.h \ 
  	src/core/components/GbComponent.h \ 
- 	src/core/components/GbLight.h \ 
+ 	src/core/components/GbCubemapComponent.h \ 
+ 	src/core/components/GbLightComponent.h \ 
  	src/core/components/GbListenerComponent.h \ 
  	src/core/components/GbModelComponent.h \ 
  	src/core/components/GbPhysicsComponents.h \ 
  	src/core/components/GbPhysicsSceneComponent.h \ 
- 	src/core/components/GbRendererComponent.h \ 
  	src/core/components/GbScriptComponent.h \ 
+ 	src/core/components/GbShaderComponent.h \ 
  	src/core/components/GbStateComponent.h \ 
  	src/core/components/GbTransformComponent.h \ 
  	src/core/containers/GbColor.h \ 
  	src/core/containers/GbContainerExtensions.h \ 
  	src/core/containers/GbDagNode.h \ 
+ 	src/core/containers/GbDictionary.h \ 
  	src/core/containers/GbFlags.h \ 
  	src/core/containers/GbGVariant.h \ 
  	src/core/containers/GbRecursiveWrapper.h \ 
@@ -85,15 +87,24 @@ HEADERS += src/GbMainWindow.h \
  	src/core/rendering/geometry/GbPolygon.h \ 
  	src/core/rendering/geometry/GbSkeleton.h \ 
  	src/core/rendering/geometry/GbVertexData.h \ 
- 	src/core/rendering/materials/GbCubeMap.h \ 
+ 	src/core/rendering/lighting/GbLight.h \ 
+ 	src/core/rendering/materials/GbCubeTexture.h \ 
  	src/core/rendering/materials/GbMaterial.h \ 
+ 	src/core/rendering/materials/GbTexture.h \ 
  	src/core/rendering/models/GbModel.h \ 
+ 	src/core/rendering/postprocessing/GbPostProcessing.h \ 
  	src/core/rendering/renderer/GbMainRenderer.h \ 
+ 	src/core/rendering/renderer/GbRenderCommand.h \ 
+ 	src/core/rendering/renderer/GbRenderContext.h \ 
  	src/core/rendering/renderer/GbRenderSettings.h \ 
  	src/core/rendering/renderer/GbRenderers.h \ 
+ 	src/core/rendering/renderer/GbSortKey.h \ 
+ 	src/core/rendering/shaders/GbShaderPreset.h \ 
+ 	src/core/rendering/shaders/GbShaderStorageBuffer.h \ 
  	src/core/rendering/shaders/GbShaders.h \ 
  	src/core/rendering/shaders/GbUniform.h \ 
  	src/core/rendering/shaders/GbUniformBufferObject.h \ 
+ 	src/core/rendering/view/GbFrameBuffer.h \ 
  	src/core/rendering/view/GbRenderProjection.h \ 
  	src/core/resource/GbImage.h \ 
  	src/core/resource/GbResource.h \ 
@@ -392,23 +403,75 @@ HEADERS += src/GbMainWindow.h \
  	src/third_party/eigen/Eigen/src/plugins/CommonCwiseUnaryOps.h \ 
  	src/third_party/eigen/Eigen/src/plugins/MatrixCwiseBinaryOps.h \ 
  	src/third_party/eigen/Eigen/src/plugins/MatrixCwiseUnaryOps.h \ 
+ 	src/third_party/pythonqt/PythonQt.h \ 
+ 	src/third_party/pythonqt/PythonQtBoolResult.h \ 
+ 	src/third_party/pythonqt/PythonQtClassInfo.h \ 
+ 	src/third_party/pythonqt/PythonQtClassWrapper.h \ 
+ 	src/third_party/pythonqt/PythonQtConversion.h \ 
+ 	src/third_party/pythonqt/PythonQtCppWrapperFactory.h \ 
+ 	src/third_party/pythonqt/PythonQtDoc.h \ 
+ 	src/third_party/pythonqt/PythonQtImportFileInterface.h \ 
+ 	src/third_party/pythonqt/PythonQtImporter.h \ 
+ 	src/third_party/pythonqt/PythonQtInstanceWrapper.h \ 
+ 	src/third_party/pythonqt/PythonQtMethodInfo.h \ 
+ 	src/third_party/pythonqt/PythonQtMisc.h \ 
+ 	src/third_party/pythonqt/PythonQtObjectPtr.h \ 
+ 	src/third_party/pythonqt/PythonQtProperty.h \ 
+ 	src/third_party/pythonqt/PythonQtPythonInclude.h \ 
+ 	src/third_party/pythonqt/PythonQtQFileImporter.h \ 
+ 	src/third_party/pythonqt/PythonQtSignal.h \ 
+ 	src/third_party/pythonqt/PythonQtSignalReceiver.h \ 
+ 	src/third_party/pythonqt/PythonQtSlot.h \ 
+ 	src/third_party/pythonqt/PythonQtSlotDecorator.h \ 
+ 	src/third_party/pythonqt/PythonQtStdDecorators.h \ 
+ 	src/third_party/pythonqt/PythonQtStdIn.h \ 
+ 	src/third_party/pythonqt/PythonQtStdOut.h \ 
+ 	src/third_party/pythonqt/PythonQtSystem.h \ 
+ 	src/third_party/pythonqt/PythonQtThreadSupport.h \ 
+ 	src/third_party/pythonqt/PythonQtUtils.h \ 
+ 	src/third_party/pythonqt/PythonQtVariants.h \ 
+ 	src/third_party/pythonqt/gui/PythonQtScriptingConsole.h \ 
+ 	src/third_party/stb/stb_image.h \ 
  	src/third_party/tiny_obj_loader/tiny_obj_loader.h \ 
  	src/view/GL/GbGLWidget.h \ 
+ 	src/view/GbGroupBox.h \ 
  	src/view/GbWidgetManager.h \ 
  	src/view/base/GbTool.h \ 
+ 	src/view/components/GbCameraComponentWidget.h \ 
+ 	src/view/components/GbCanvasComponentWidget.h \ 
+ 	src/view/components/GbCharControlComponentWidget.h \ 
+ 	src/view/components/GbComponentWidgets.h \ 
+ 	src/view/components/GbCubeMapComponentWidget.h \ 
+ 	src/view/components/GbLightComponentWidget.h \ 
+ 	src/view/components/GbModelComponentWidget.h \ 
+ 	src/view/components/GbPhysicsWidgets.h \ 
+ 	src/view/components/GbRigidBodyComponentWidget.h \ 
+ 	src/view/components/GbScriptComponentWidget.h \ 
+ 	src/view/components/GbShaderComponentWidget.h \ 
+ 	src/view/components/GbTransformComponentWidget.h \ 
  	src/view/logging/GbConsoleTool.h \ 
  	src/view/nodes/GbGraphEdge.h \ 
  	src/view/nodes/GbGraphNode.h \ 
  	src/view/nodes/GbGraphWidget.h \ 
- 	src/view/parameters/GbComponentWidgets.h \ 
- 	src/view/parameters/GbGroupBox.h \ 
+ 	src/view/parameters/GbAngleWidgets.h \ 
+ 	src/view/parameters/GbColorWidget.h \ 
+ 	src/view/parameters/GbMaterialWidgets.h \ 
+ 	src/view/parameters/GbModelWidgets.h \ 
  	src/view/parameters/GbParameterWidgets.h \ 
+ 	src/view/parameters/GbRenderLayerWidgets.h \ 
+ 	src/view/parameters/GbRenderableWidget.h \ 
+ 	src/view/parameters/GbVectorWidget.h \ 
  	src/view/players/GbPlayer.h \ 
+ 	src/view/style/GbFontIcon.h \ 
  	src/view/style/GbStyles.h \ 
+ 	src/view/tree/GbCanvasGlyphWidget.h \ 
  	src/view/tree/GbComponentWidget.h \ 
+ 	src/view/tree/GbRenderLayerWidget.h \ 
  	src/view/tree/GbResourceWidgets.h \ 
  	src/view/tree/GbSceneTreeWidget.h \ 
- 	src/view/tree/GbScriptOrder.h 
+ 	src/view/tree/GbScriptOrder.h \ 
+ 	src/view/tree/GbShaderTreeWidget.h \ 
+ 	src/view/tree/GbTreeWidget.h 
  	
 SOURCES += src/GbMainWindow.cpp \ 
  	src/core/GbConstants.cpp \ 
@@ -426,18 +489,20 @@ SOURCES += src/GbMainWindow.cpp \
  	src/core/components/GbCamera.cpp \ 
  	src/core/components/GbCanvasComponent.cpp \ 
  	src/core/components/GbComponent.cpp \ 
- 	src/core/components/GbLight.cpp \ 
+ 	src/core/components/GbCubemapComponent.cpp \ 
+ 	src/core/components/GbLightComponent.cpp \ 
  	src/core/components/GbListenerComponent.cpp \ 
  	src/core/components/GbModelComponent.cpp \ 
  	src/core/components/GbPhysicsComponents.cpp \ 
  	src/core/components/GbPhysicsSceneComponent.cpp \ 
- 	src/core/components/GbRendererComponent.cpp \ 
  	src/core/components/GbScriptComponent.cpp \ 
+ 	src/core/components/GbShaderComponent.cpp \ 
  	src/core/components/GbStateComponent.cpp \ 
  	src/core/components/GbTransformComponent.cpp \ 
  	src/core/containers/GbColor.cpp \ 
  	src/core/containers/GbContainerExtensions.cpp \ 
  	src/core/containers/GbDagNode.cpp \ 
+ 	src/core/containers/GbDictionary.cpp \ 
  	src/core/containers/GbGVariant.cpp \ 
  	src/core/containers/GbSortingLayer.cpp \ 
  	src/core/debugging/GbDebugManager.cpp \ 
@@ -488,15 +553,24 @@ SOURCES += src/GbMainWindow.cpp \
  	src/core/rendering/geometry/GbPolygon.cpp \ 
  	src/core/rendering/geometry/GbSkeleton.cpp \ 
  	src/core/rendering/geometry/GbVertexData.cpp \ 
- 	src/core/rendering/materials/GbCubeMap.cpp \ 
+ 	src/core/rendering/lighting/GbLight.cpp \ 
+ 	src/core/rendering/materials/GbCubeTexture.cpp \ 
  	src/core/rendering/materials/GbMaterial.cpp \ 
+ 	src/core/rendering/materials/GbTexture.cpp \ 
  	src/core/rendering/models/GbModel.cpp \ 
+ 	src/core/rendering/postprocessing/GbPostProcessing.cpp \ 
  	src/core/rendering/renderer/GbMainRenderer.cpp \ 
+ 	src/core/rendering/renderer/GbRenderCommand.cpp \ 
+ 	src/core/rendering/renderer/GbRenderContext.cpp \ 
  	src/core/rendering/renderer/GbRenderSettings.cpp \ 
  	src/core/rendering/renderer/GbRenderers.cpp \ 
+ 	src/core/rendering/renderer/GbSortKey.cpp \ 
+ 	src/core/rendering/shaders/GbShaderPreset.cpp \ 
+ 	src/core/rendering/shaders/GbShaderStorageBuffer.cpp \ 
  	src/core/rendering/shaders/GbShaders.cpp \ 
  	src/core/rendering/shaders/GbUniform.cpp \ 
  	src/core/rendering/shaders/GbUniformBufferObject.cpp \ 
+ 	src/core/rendering/view/GbFrameBuffer.cpp \ 
  	src/core/rendering/view/GbRenderProjection.cpp \ 
  	src/core/resource/GbImage.cpp \ 
  	src/core/resource/GbResource.cpp \ 
@@ -520,22 +594,64 @@ SOURCES += src/GbMainWindow.cpp \
  	src/model_control/commands/commands/GbWidgetCommands.cpp \ 
  	src/model_control/models/GbComponentModels.cpp \ 
  	src/model_control/models/GbSceneModels.cpp \ 
+ 	src/third_party/pythonqt/PythonQt.cpp \ 
+ 	src/third_party/pythonqt/PythonQtBoolResult.cpp \ 
+ 	src/third_party/pythonqt/PythonQtClassInfo.cpp \ 
+ 	src/third_party/pythonqt/PythonQtClassWrapper.cpp \ 
+ 	src/third_party/pythonqt/PythonQtConversion.cpp \ 
+ 	src/third_party/pythonqt/PythonQtImporter.cpp \ 
+ 	src/third_party/pythonqt/PythonQtInstanceWrapper.cpp \ 
+ 	src/third_party/pythonqt/PythonQtMethodInfo.cpp \ 
+ 	src/third_party/pythonqt/PythonQtMisc.cpp \ 
+ 	src/third_party/pythonqt/PythonQtObjectPtr.cpp \ 
+ 	src/third_party/pythonqt/PythonQtProperty.cpp \ 
+ 	src/third_party/pythonqt/PythonQtQFileImporter.cpp \ 
+ 	src/third_party/pythonqt/PythonQtSignal.cpp \ 
+ 	src/third_party/pythonqt/PythonQtSignalReceiver.cpp \ 
+ 	src/third_party/pythonqt/PythonQtSlot.cpp \ 
+ 	src/third_party/pythonqt/PythonQtSlotDecorator.cpp \ 
+ 	src/third_party/pythonqt/PythonQtStdDecorators.cpp \ 
+ 	src/third_party/pythonqt/PythonQtStdIn.cpp \ 
+ 	src/third_party/pythonqt/PythonQtStdOut.cpp \ 
+ 	src/third_party/pythonqt/PythonQtThreadSupport.cpp \ 
+ 	src/third_party/pythonqt/gui/PythonQtScriptingConsole.cpp \ 
  	src/view/GL/GbGLWidget.cpp \ 
+ 	src/view/GbGroupBox.cpp \ 
  	src/view/GbWidgetManager.cpp \ 
  	src/view/base/GbTool.cpp \ 
+ 	src/view/components/GbCameraComponentWidget.cpp \ 
+ 	src/view/components/GbCanvasComponentWidget.cpp \ 
+ 	src/view/components/GbCharControlComponentWidget.cpp \ 
+ 	src/view/components/GbComponentWidgets.cpp \ 
+ 	src/view/components/GbCubeMapComponentWidget.cpp \ 
+ 	src/view/components/GbLightComponentWidget.cpp \ 
+ 	src/view/components/GbModelComponentWidget.cpp \ 
+ 	src/view/components/GbPhysicsWidgets.cpp \ 
+ 	src/view/components/GbRigidBodyComponentWidget.cpp \ 
+ 	src/view/components/GbScriptComponentWidget.cpp \ 
+ 	src/view/components/GbShaderComponentWidget.cpp \ 
+ 	src/view/components/GbTransformComponentWidget.cpp \ 
  	src/view/logging/GbConsoleTool.cpp \ 
  	src/view/nodes/GbGraphEdge.cpp \ 
  	src/view/nodes/GbGraphNode.cpp \ 
  	src/view/nodes/GbGraphWidget.cpp \ 
- 	src/view/parameters/GbComponentWidgets.cpp \ 
- 	src/view/parameters/GbGroupBox.cpp \ 
+ 	src/view/parameters/GbColorWidget.cpp \ 
+ 	src/view/parameters/GbMaterialWidgets.cpp \ 
+ 	src/view/parameters/GbModelWidgets.cpp \ 
  	src/view/parameters/GbParameterWidgets.cpp \ 
+ 	src/view/parameters/GbRenderLayerWidgets.cpp \ 
+ 	src/view/parameters/GbRenderableWidget.cpp \ 
  	src/view/players/GbPlayer.cpp \ 
+ 	src/view/style/GbFontIcon.cpp \ 
  	src/view/style/GbStyles.cpp \ 
+ 	src/view/tree/GbCanvasGlyphWidget.cpp \ 
  	src/view/tree/GbComponentWidget.cpp \ 
+ 	src/view/tree/GbRenderLayerWidget.cpp \ 
  	src/view/tree/GbResourceWidgets.cpp \ 
  	src/view/tree/GbSceneTreeWidget.cpp \ 
- 	src/view/tree/GbScriptOrder.cpp 
+ 	src/view/tree/GbScriptOrder.cpp \ 
+ 	src/view/tree/GbShaderTreeWidget.cpp \ 
+ 	src/view/tree/GbTreeWidget.cpp 
  	
 FORMS += ui/GbBlankWindow.ui \ 
  	ui/GbMainWindow.ui 

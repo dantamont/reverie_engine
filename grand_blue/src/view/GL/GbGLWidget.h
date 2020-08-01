@@ -21,9 +21,7 @@ namespace Gb {
     class CoreEngine; 
     class RenderProjection;
 
-	namespace GL {
-		class MainRenderer;
-	}
+	class MainRenderer;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -52,7 +50,7 @@ public:
         return m_inputHandler.mouseHandler().widgetMousePosition();
     }
 
-    std::shared_ptr<GL::MainRenderer> renderer() { return m_renderer; }
+    std::shared_ptr<MainRenderer> renderer() { return m_renderer; }
 
     InputHandler& inputHandler() { return m_inputHandler; }
 
@@ -152,7 +150,7 @@ protected:
 	Gb::CoreEngine* m_engine;
 
 	/// @brief 3D rendering object
-	std::shared_ptr<GL::MainRenderer> m_renderer;
+	std::shared_ptr<MainRenderer> m_renderer;
 
     /// @brief Render projections associated with this widget
     std::vector<RenderProjection*> m_renderProjections;

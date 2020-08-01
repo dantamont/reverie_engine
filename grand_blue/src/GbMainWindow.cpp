@@ -8,7 +8,9 @@
 #include "view/GbWidgetManager.h"
 #include "view/GL/GbGLWidget.h"
 #include "view/tree/GbResourceWidgets.h"
+#include "view/tree/GbShaderTreeWidget.h"
 #include "view/tree/GbScriptOrder.h"
+#include "view/tree/GbRenderLayerWidget.h"
 #include "core/loop/GbSimLoop.h"
 #include "core/scene/GbScenario.h"
 #include "core/processes/GbProcess.h"
@@ -63,6 +65,8 @@ MainWindow::~MainWindow()
 {
 	delete m_ui;
     m_engine->deleteLater();
+    delete m_shaderPresetsWidget;
+    delete m_scriptOrderWidget;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -207,10 +211,10 @@ void MainWindow::saveScenarioAs()
 
         // Set window title
         setWindowTitle(m_defaultTitle + " " + filepath);
-    }
 
-    if (m_engine->scenario()->getPath() != filepath) {
-        throw("Error, scenario filepath " + m_engine->scenario()->getPath() + " is not equal to " + filepath);
+        if (m_engine->scenario()->getPath() != filepath) {
+            throw("Error, scenario filepath " + m_engine->scenario()->getPath() + " is not equal to " + filepath);
+        }
     }
 
     // Reenable actions
@@ -228,17 +232,55 @@ void MainWindow::showUndoView()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::showScriptOrderWidget()
 {
-    QWidget* scriptOrderWidget = new QWidget();
-    View::ScriptOrderTreeWidget* child = new View::ScriptOrderTreeWidget(m_engine, "Script Execution Order");
-    auto* layout =  new QVBoxLayout();;
-    layout->addWidget(child);
+    if (!m_scriptOrderWidget) {
+        m_scriptOrderWidget = new QWidget();
+        View::ScriptOrderTreeWidget* child = new View::ScriptOrderTreeWidget(m_engine);
+        auto* layout = new QVBoxLayout();;
+        layout->addWidget(child);
 
-    scriptOrderWidget->setLayout(layout);
-    //child->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+        m_scriptOrderWidget->setLayout(layout);
+        //child->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
 
-    scriptOrderWidget->setMinimumHeight(800);
-    scriptOrderWidget->setWindowTitle("Script Execution Order");
-    scriptOrderWidget->show();
+        m_scriptOrderWidget->setMinimumHeight(800);
+        m_scriptOrderWidget->setWindowTitle("Script Execution Order");
+    }
+    m_scriptOrderWidget->show();
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::showRenderLayers()
+{
+    if (!m_renderLayerWidget) {
+        m_renderLayerWidget = new QWidget();
+        View::RenderLayerTreeWidget* child = new View::RenderLayerTreeWidget(m_engine);
+        auto* layout = new QVBoxLayout();;
+        layout->addWidget(child);
+
+        m_renderLayerWidget->setLayout(layout);
+        //child->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+
+        m_renderLayerWidget->setMinimumHeight(800);
+        m_renderLayerWidget->setWindowTitle("Render Layers");
+    }
+    m_renderLayerWidget->show();
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::showShaderPresetsWidget()
+{
+    if (!m_shaderPresetsWidget) {
+        m_shaderPresetsWidget = new QWidget();
+        View::ShaderTreeWidget* child = new View::ShaderTreeWidget(m_engine);
+        auto* layout = new QVBoxLayout();;
+        layout->addWidget(child);
+
+        m_shaderPresetsWidget->setLayout(layout);
+        //child->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+
+        m_shaderPresetsWidget->setMinimumHeight(800);
+        m_shaderPresetsWidget->setWindowTitle("Shader Presets");
+    }
+    m_shaderPresetsWidget->show();
+    m_shaderPresetsWidget->activateWindow();
+    m_shaderPresetsWidget->raise();
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::viewPreferences()
@@ -271,12 +313,27 @@ void MainWindow::contextMenuEvent(QContextMenuEvent *event)
 void MainWindow::initializeMenus()
 {
    // Toggle menu bar on
-   QMenuBar * menubar = menuBar();
-   menubar->show();
+   m_menuBar = menuBar();
+   m_menuBar->show();
+
+   // Create connections to disable menu bar
+   connect(m_engine->resourceCache(), 
+       &ResourceCache::startedLoadingResources, // disable on resource load
+       m_menuBar,
+       [this]() {
+       m_menuBar->setDisabled(true);
+   });
+
+   connect(m_engine->resourceCache(),
+       &ResourceCache::doneLoadingResources, // reenable when done loading
+       m_menuBar,
+       [this]() {
+       m_menuBar->setDisabled(false);
+   });
 
    // Create a file menu
    // The ampersand in the menu item's text sets Alt+F as a shortcut for this menu
-   m_fileMenu = menubar->addMenu("&File");
+   m_fileMenu = m_menuBar->addMenu("&File");
    m_fileMenu->addAction(m_newScenario);
    m_fileMenu->addAction(m_openScenario);
    m_fileMenu->addSeparator();
@@ -285,24 +342,35 @@ void MainWindow::initializeMenus()
    //m_fileMenu->addAction(m_addScript);
 
    // Create an edit menu
-   m_editMenu = menubar->addMenu("&Edit");
+   m_editMenu = m_menuBar->addMenu("&Edit");
    m_editMenu->addAction(m_undo);
    m_editMenu->addAction(m_redo);
    m_editMenu->addAction(m_showUndoView);
 
    // Create an insert menu
-   m_insertMenu = menubar->addMenu("&Insert");
+   m_insertMenu = m_menuBar->addMenu("&Insert");
+   m_insertMenu->addAction(m_addMesh);
+   m_insertMenu->addSeparator();
+   m_insertMenu->addAction(m_addTexture);
    m_insertMenu->addAction(m_addMaterial);
+   m_insertMenu->addSeparator();
    m_insertMenu->addAction(m_addModel);
+   m_insertMenu->addAction(m_loadModel);
+   m_insertMenu->addSeparator();
    m_insertMenu->addAction(m_addShaderProgram);
 
+   // Create a resources menu
+   m_resourcesMenu = m_menuBar->addMenu("&Resources");
+   m_resourcesMenu->addAction(m_showShaderPresets);
+
    // Create a settings menu
-   m_settingsMenu = menubar->addMenu("&Settings");
+   m_settingsMenu = m_menuBar->addMenu("&Settings");
    m_settingsMenu->addAction(m_showScriptOrderSettings);
+   m_settingsMenu->addAction(m_showRenderLayers);
    m_settingsMenu->addAction(m_viewPreferences);
 
    // Create a help menu
-   m_helpMenu = menubar->addMenu("&Help");
+   m_helpMenu = m_menuBar->addMenu("&Help");
    m_helpMenu->addAction(m_aboutGrandBlue);
 
 }
@@ -334,25 +402,54 @@ void MainWindow::initializeActions()
     connect(m_saveScenarioAs, &QAction::triggered, this, &MainWindow::saveScenarioAs);
 
     // Initialize add actions
-    m_addMaterial = new QAction(tr("&Load Material"), this);
-    m_addMaterial->setStatusTip("Load a material into the scenario");
+    m_addTexture = new QAction(tr("&Load Texture"), this);
+    m_addTexture->setStatusTip("Load a texture into the scenario");
+    connect(m_addTexture,
+        &QAction::triggered,
+        m_engine->actionManager(),
+        [this] {m_engine->actionManager()->performAction(
+            new LoadTextureCommand(m_engine,
+                "Load Texture"));
+    });
+
+    m_addMaterial = new QAction(tr("&Add Material"), this);
+    m_addMaterial->setStatusTip("Add an empty material to the scenario");
     connect(m_addMaterial,
         &QAction::triggered,
         m_engine->actionManager(),
         [this] {m_engine->actionManager()->performAction(
             new AddMaterialCommand(m_engine,
-                "Load Material"));
+                "Add Material"));
     });
 
-
-    m_addModel = new QAction(tr("&Load Model"), this);
-    m_addModel->setStatusTip("Load a model into the scenario");
+    m_addModel = new QAction(tr("&Add Model"), this);
+    m_addModel->setStatusTip("Create a new model in the current scenario");
     connect(m_addModel,
         &QAction::triggered,
         m_engine->actionManager(),
         [this] {m_engine->actionManager()->performAction(
             new AddModelCommand(m_engine,
+                "Add Model"));
+    });
+
+    m_loadModel = new QAction(tr("&Load Model"), this);
+    m_loadModel->setStatusTip("Load a model into the scenario");
+    connect(m_loadModel,
+        &QAction::triggered,
+        m_engine->actionManager(),
+        [this] {m_engine->actionManager()->performAction(
+            new LoadModelCommand(m_engine,
                 "Load Model"));
+    });
+
+
+    m_addMesh = new QAction(tr("&Add Mesh"), this);
+    m_addMesh->setStatusTip("Create a mesh in the current scenario");
+    connect(m_addMesh,
+        &QAction::triggered,
+        m_engine->actionManager(),
+        [this] {m_engine->actionManager()->performAction(
+            new AddMeshCommand(m_engine, "Add Mesh"));
     });
 
     m_addShaderProgram = new QAction(tr("&Load Shader Program"), this);
@@ -380,10 +477,21 @@ void MainWindow::initializeActions()
     m_showUndoView->setStatusTip("Show the user's most recent actions");
     connect(m_showUndoView, &QAction::triggered, this, &MainWindow::showUndoView);
 
+    // Display a window for shader presets
+    m_showShaderPresets = new QAction(tr("&Shader Presets"), this);
+    m_showShaderPresets->setStatusTip("Modify the shader presets in this scenario.");
+    connect(m_showShaderPresets, &QAction::triggered, this, &MainWindow::showShaderPresetsWidget);
+
+
     // Display window for script execution settings
     m_showScriptOrderSettings = new QAction(tr("&Script Execution Order"), this);
     m_showScriptOrderSettings->setStatusTip("Modify the sorting layers that affect script execution order.");
     connect(m_showScriptOrderSettings, &QAction::triggered, this, &MainWindow::showScriptOrderWidget);
+
+    // Display window for render layers
+    m_showRenderLayers = new QAction(tr("&Rendering Layers"), this);
+    m_showRenderLayers->setStatusTip("Modify the rendering layers that match cameras to renderable objects.");
+    connect(m_showRenderLayers, &QAction::triggered, this, &MainWindow::showRenderLayers);
 
     // Create preferences action
     m_viewPreferences = new QAction(tr("&Preferences..."), this);

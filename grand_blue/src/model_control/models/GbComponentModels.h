@@ -13,6 +13,7 @@
 
 // Project
 #include "../../core/GbObject.h"
+#include "../../view/tree/GbTreeWidget.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Namespace Definitions
@@ -33,7 +34,7 @@ class ComponentTreeWidget;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Class Declarations
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-class ComponentItem : public QTreeWidgetItem, public Gb::Object {
+class ComponentItem : public TreeItem<Component> {
 public:
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Enums and Static
@@ -41,7 +42,7 @@ public:
 
     enum ComponentType {
         kTransform = 2000, // Tree widget item takes a type
-        kRenderer,
+        kShader,
         kCamera,
         kLight,
         kScript, 
@@ -52,7 +53,9 @@ public:
         kPhysicsScene,
         kCanvas,
         kCharacterController,
-        kBoneAnimation
+        kBoneAnimation,
+        kCubeMap,
+        kSceneObjectSettings
     };
 
     /// @}
@@ -61,6 +64,7 @@ public:
     /// @name Constructors and Destructors
     /// @{
     ComponentItem(Component* component);
+    ComponentItem(SceneObject* sceneObject);
     ~ComponentItem();
 
     /// @}
@@ -73,11 +77,11 @@ public:
 
     /// @brief Set the widget for this item in the given tree widget
     /// @note This is only called on the double click event
-    void setWidget();
-    void removeWidget();
+    void setWidget() override;
+    void removeWidget(int column = 0) override;
 
     /// @brief Return component represented by this tree item
-    inline Component* component() { return m_component; }
+    inline Component* component() { return m_object; }
 
     /// @brief Get the component type of this tree item
     ComponentType componentType() const { return ComponentType(type()); }
@@ -122,15 +126,10 @@ protected:
     /// @name Protected Members
     /// @{
 
-    /// @brief Pointer to the model corresponding to this tree item
-    Component* m_component;
-
-    /// @brief Pointer to widget if this item has one
-    QWidget* m_widget;
+    SceneObject* m_sceneObject;
 
     /// @}
 };
-
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -41,7 +41,8 @@ public:
     enum SettingType {
         kCullFace,
         kBlend,
-        kDepth
+        kDepth,
+        kMAX_SETTING_TYPE
     };
 
     /// @brief Creat a render setting from JSON
@@ -157,10 +158,12 @@ public:
     /// @name Properties
     /// @{
 
-        /// @property isCullFace
+    /// @property isCullFace
+    bool cullFace() const { return m_cullFace; }
     void setIsCullFace(bool cull) { m_cullFace = cull; }
 
     /// @property culledFace
+    int culledFace() const { return m_culledFace; }
     void setCulledFace(int culledFace) { m_culledFace = culledFace; }
 
     /// @}
@@ -213,6 +216,7 @@ protected:
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @class BlendSetting
+// TODO: Implement convenience wrappers for transparency presets
 class BlendSetting : public RenderSetting {
 public:
     //-----------------------------------------------------------------------------------------------------------------
@@ -329,6 +333,12 @@ public:
     /// @name Properties
     /// @{
 
+    bool isEnabled() const { return m_testEnabled; }
+    void setEnabled(bool enabled) { m_testEnabled = enabled; }
+
+    int depthMode() const { return m_mode; }
+    void setDepthMode(int mode) { m_mode = mode; }
+
     /// @}
 
     //-----------------------------------------------------------------------------------------------------------------
@@ -399,22 +409,22 @@ public:
 
     /// @brief Modes to control binding duringdrawing routines
     /// @details Determines whether or not an element (e.g. shader, texture) is bound and released on draw
-    enum BindMode {
-        kBind = 0x1,
-        kRelease = 0x2
-    };
+    //enum BindMode {
+    //    kBind = 0x1,
+    //    kRelease = 0x2
+    //};
 
-    struct BindSettings {
-        QFlags<BindMode> m_shaderBindMode;
-        QFlags<BindMode> m_materialBindMode;
-    };
+    //struct BindSettings {
+    //    QFlags<BindMode> m_shaderBindMode;
+    //    QFlags<BindMode> m_materialBindMode;
+    //};
 
     /// @brief Struct for handling sorting of settings
-    struct LessOrder {
-        bool operator()(const std::shared_ptr<RenderSetting>& lhs, const std::shared_ptr<RenderSetting>& rhs) {
-            return lhs->m_order < rhs->m_order;
-        }
-    };
+    //struct LessOrder {
+    //    bool operator()(const std::shared_ptr<RenderSetting>& lhs, const std::shared_ptr<RenderSetting>& rhs) {
+    //        return lhs->m_order < rhs->m_order;
+    //    }
+    //};
 
     /// @brief Get the setting of the given type
     static std::shared_ptr<RenderSetting> current(RenderSetting::SettingType type);
@@ -443,26 +453,19 @@ public:
     size_t shapeMode() const { return m_shapeMode; }
     void setShapeMode(size_t shapeMode) { m_shapeMode = shapeMode; }
 
-    /// @brief Set material bind/release flags
-    inline bool hasMaterialFlag(BindMode bindMode) {
-        return m_bindSettings.m_materialBindMode.testFlag(bindMode);
-    }
-    inline void setMaterialBind(bool bind) { m_bindSettings.m_materialBindMode.setFlag(kBind, bind); }
-    inline void setMaterialRelease(bool rel) { m_bindSettings.m_materialBindMode.setFlag(kRelease, rel); }
-    
-    /// @brief Set shader program bind/release flags
-    inline bool hasShaderFlag(BindMode bindMode) {
-        return m_bindSettings.m_shaderBindMode.testFlag(bindMode);
-    }
-    inline void setShaderBind(bool bind) { m_bindSettings.m_shaderBindMode.setFlag(kBind, bind); }
-    inline void setShaderRelease(bool rel) { m_bindSettings.m_shaderBindMode.setFlag(kRelease, rel); }
-
-
     /// @}
 
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Public methods
     /// @{
+
+    /// @brief Return setting of the specified type
+    inline std::shared_ptr<RenderSetting> setting(RenderSetting::SettingType type) {
+        return m_settings[type];
+    }
+
+    /// @brief Override settings with specified render settings
+    void overrideSettings(const RenderSettings& other);
 
     /// @brief Add default blend to the settings
     void addDefaultBlend();
@@ -499,16 +502,13 @@ private:
     /// @{
     
     /// @brief Whether or not this object contains the given setting type
-    inline bool hasSetting(std::shared_ptr<RenderSetting> setting) {
-        auto settingIter = std::find_if(m_settings.begin(), m_settings.end(), 
-            [&](std::shared_ptr<RenderSetting> s) {
-            return s->type() == setting->type();
-        });
-        if (settingIter == m_settings.end()) {
-            return false;
+    inline bool hasSetting(const std::shared_ptr<RenderSetting>& setting) {
+        const auto& mySetting = m_settings[setting->type()];
+        if (mySetting) {
+            return true;
         }
         else {
-            return true;
+            return false;
         }
     }
 
@@ -519,13 +519,13 @@ private:
     /// @{
 
     /// @brief Ordered multi-set of settings to toggle in GL
-    std::multiset<std::shared_ptr<RenderSetting>, LessOrder> m_settings;
+    std::vector<std::shared_ptr<RenderSetting>> m_settings;
 
     /// @brief Draw mode
     size_t m_shapeMode;
 
-    /// @brief Settings for binding materials, shaders, etc.
-    BindSettings m_bindSettings;
+    ///// @brief Settings for binding materials, shaders, etc.
+    //BindSettings m_bindSettings;
 
     /// @}
 };

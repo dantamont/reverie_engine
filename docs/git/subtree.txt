@@ -1,0 +1,75 @@
+Adding a Subtree
+
+    Destination path should look like this: ./parentDirectory/childDirectory/Test.subtree
+    From a Linux terminal, enter the directory of what is to be your parent git repository
+
+	cd parentDirectory
+
+    Create a connection to the remote repository called Test that is to become your subtree
+
+	git remote add --no-tags remote-alias ssh://origin_location/repo.git
+
+	Note that the --no-tags option is used when creating the remote tracking branch. This is because any tags brought into the remote tracking branch would defeat the point of using a squash when adding the subtree (which collapses the subtree's history to avoid an intermingled mess) 
+    Add this remote as a subtree of your repository, and push these changes
+
+	git subtree add --prefix=childDirectory/Test.subtree --squash originTest Development (note the --squash option, it is very important to avoid importing the entire subtree history)
+
+	git push
+Viewing and Verifying Subtrees
+
+    Add the following alias to your .gitconfig. This alias will list all directory paths to subtrees: 
+
+	[alias]
+
+	ls-subtrees = !"git log | grep git-subtree-dir | awk '{ print $2 }' | uniq | sort -u"
+
+	or
+
+	git log | grep subtree-dir
+
+    From a Linux terminal, enter the directory of what is to be your parent git repository
+
+	cd parentDirectory
+
+    Run the alias that you've created
+
+	git ls-subtrees
+
+	or
+
+	git log | grep subtree-dir
+
+	Note: To view remotes that are visible within Parent Directory's remote, use the command:
+
+	git remote -v
+
+	To ensure that the above command is useful, it is important to select remote aliases that make it clear which subtree is governed by the remote, e.g. my-subtree for the remote ssh://origin_location/repo.git
+	
+Updating a Subtree
+
+	You will likely need to update your subtree with any changes made to the original repository. Here is how to do so:
+
+    From an Linux terminal, enter the your parent git repository (the one containing the subtree), e.g.
+
+	cd my_repo_dir
+
+    Use the git subtree pull command, of the form git subtree pull --prefix=path/to/subtree --squash remote-alias remote-branch e.g.
+
+	git subtree pull --prefix=subtree/path --squash my-subtree master
+	
+Removing a Subtree
+
+	WARNING, once a subtree has been merged into a repository, there does not appear to be a clean way to clear the history without a hard reset to the most recent commit prior to the merge:
+
+	git reset --hard <firstCommitBeforeSubtreeAdded>
+
+	git push --force
+
+		Remove the remote repository that was created for the subtree 
+
+	git remove rm remote-alias
+
+		Hard-reset to the most recent commit prior to the merge, if desired (not recommended, unless you like losing your branch progress FOREVER)
+		Perform garbage collection for cleanup 
+
+	git gc --verbose

@@ -283,7 +283,8 @@ void ServiceManager::removeService(AbstractService* service)
         m_serviceMap.erase(iVas);
     } 
     else {
-        QString msg("ServiceManager:: removeService: Service " + service->getName() + " was not found by Service Manager");
+        QString msg("ServiceManager:: removeService: Service " 
+            + service->getName() + " was not found by Service Manager");
         logError(msg);
     }
 }

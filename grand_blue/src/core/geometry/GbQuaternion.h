@@ -34,6 +34,7 @@ template<class D, size_t N> class Vector;
 typedef Vector<real_g, 3> Vector3g;
 typedef Vector<real_g, 4> Vector4g;
 
+class EulerAngles;
 template<class D, size_t N> class SquareMatrix;
 typedef SquareMatrix<real_g, 2> Matrix2x2g;
 typedef SquareMatrix<real_g, 3> Matrix3x3g;
@@ -62,7 +63,8 @@ public:
     /// @details Creates a quaternion that corresponds to a rotation of eulerAngles.
     /// eulerAngles.z() radians around the z axis, eulerAngles.x() radians around the x axis, 
     /// and eulerAngles.y() radians around the y axis (in that order).
-    static Quaternion fromEulerAngles(const Vector3g& eulerAngles);
+    //static Quaternion fromEulerAngles(const Vector3g& eulerAngles);
+    static Quaternion fromEulerAngles(const EulerAngles& eulerAngles);
 
     /// @brief Obtain a quaternion from a set of Euler Angles
     /// @details Qt documentation states that this 
@@ -70,7 +72,7 @@ public:
     /// around the z axis, pitch radians around the x axis, and yaw radians around the y axis 
     /// (in that order), but this appears to be reversed
     /// @note See: docs\Math\euler_angles for body 3-1-2 sequence
-    static Quaternion fromEulerAngles(real_g pitch, real_g yaw, real_g roll);
+    //static Quaternion fromEulerAngles(real_g pitch, real_g yaw, real_g roll);
 
     /// @brief Obtain a quaternion from a rotation matrix
     static Quaternion fromRotationMatrix(const Matrix3x3g& rot3x3);
@@ -133,7 +135,7 @@ public:
     Quaternion(const QJsonValue& json);
     Quaternion(real_g x, real_g y, real_g z, real_g w);
     Quaternion(const Vector4g& vec);
-    Quaternion(real_g pitch, real_g yaw, real_g roll);
+    //Quaternion(real_g pitch, real_g yaw, real_g roll);
     Quaternion(const Vector3g& rotationAxis, real_g rotationAngleRad);
 
     ~Quaternion();
@@ -229,7 +231,7 @@ public:
     void getAxisAndAngle(real_g& x, real_g& y, real_g& z, real_g& angle) const;
 
     /// @brief Obtain a set of Euler Angles corresponding to this quaternion
-    Vector3g toEulerAngles() const;
+    //Vector3g toEulerAngles() const;
 
     /// @brief Convert to an "angular velocity"
     /// See: https://forum.unity.com/threads/average-quaternions.86898/
@@ -237,7 +239,7 @@ public:
 
     /// @brief Obtain euler angles corresponding to a quaternion
     /// @details Calculates roll, pitch, yaw Euler angles (in radians) corresponding to this Quaternion
-    void getEulerAngles(real_g *pitch, real_g *yaw, real_g *roll) const;
+    //void getEulerAngles(real_g *pitch, real_g *yaw, real_g *roll) const;
 
     /// @brief Convert the quaternion to a vector
     Vector4g toVector4() const;

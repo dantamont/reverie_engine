@@ -116,9 +116,6 @@ protected:
     /// @brief Set the text on this item from the data
     void refreshText();
 
-    /// @brief Get text describing this item
-    std::vector<QString> getText();
-
     /// @}
 
     //-----------------------------------------------------------------------------------------------------------------

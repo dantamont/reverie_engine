@@ -32,6 +32,7 @@ class ResourceTreeWidget;
 class SceneTreeWidget;
 class ComponentTreeWidget;
 class PlayerControls;
+class ParameterWidget;
 
 //////////////////////////////////////////////////////////////////////////////////
 // Class Definitions
@@ -56,8 +57,10 @@ public:
     /// @name Properties
     /// @{
 
+    QMutex& updateMutex() { return m_updateLock; }
+
     /// @brief GL Widgets
-    std::map<QString, Gb::View::GLWidget*>& glWidgets() { return m_glWidgets; }
+    std::unordered_map<QString, Gb::View::GLWidget*>& glWidgets() { return m_glWidgets; }
 
     /// @brief Returns the main window for the application
     MainWindow* mainWindow() { return m_mainWindow; }
@@ -80,6 +83,9 @@ public:
 	/// @name Public Methods
 	/// @{
 
+    void addParameterWidget(ParameterWidget* widget);
+    void removeParameterWidget(ParameterWidget* widget);
+
     /// @brief Called on main window resize
     void resize(int w, int h);
 
@@ -88,6 +94,13 @@ public:
 
     /// @brief Clear the widget manager
     void clear();
+
+    /// @brief Update the values displayed in widgets
+    void update();
+
+    /// @brief Called after construction of the manager
+    virtual void postConstruction() override;
+
 
 	/// @}
 
@@ -98,6 +111,7 @@ protected:
 	/// @{
 
 	friend class Gb::MainWindow;
+    friend class Gb::View::ParameterWidget;
 
 	/// @}
 
@@ -121,7 +135,10 @@ protected:
 	Gb::MainWindow* m_mainWindow;
 
 	/// @brief Map of GL widgets
-	std::map<QString, Gb::View::GLWidget*> m_glWidgets;
+	std::unordered_map<QString, Gb::View::GLWidget*> m_glWidgets;
+
+    /// @brief Map of all parameter widgets
+    std::unordered_map<Uuid, View::ParameterWidget*> m_parameterWidgets;
 
     /// @brief graph widget
     // TODO: Replace with subclass
@@ -144,6 +161,8 @@ protected:
     QDockWidget* m_resourceDock;
     QDockWidget* m_rightDock;
     QDockWidget* m_topDock;
+
+    QMutex m_updateLock;
 
 	/// @}
 

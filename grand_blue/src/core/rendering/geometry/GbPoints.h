@@ -7,6 +7,7 @@
 
 // Internal
 #include "../../mixins/GbRenderable.h"
+#include "../../GbObject.h"
 
 namespace Gb {
 
@@ -79,6 +80,9 @@ public:
     /// @brief Update any data needed for rendering, e.g. vertex data, render settings, etc.
     virtual void reload() override;
 
+    // TODO: Implement some control over sorting
+    virtual size_t getSortID() override { return 0; }
+
 	/// @}
 
     //-----------------------------------------------------------------------------------------------------------------
@@ -99,17 +103,11 @@ protected:
     /// @{
 
     /// @brief Set uniforms for the Points in the given shader
-    virtual void bindUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram) override;
-    virtual void releaseUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram) override;
-
-    /// @brief Bind the textures used by this Points
-    virtual void bindTextures() override;
-
-    /// @brief Release the textures used by this Points
-    virtual void releaseTextures() override;
+    virtual void bindUniforms(ShaderProgram& shaderProgram) override;
+    virtual void releaseUniforms(ShaderProgram& shaderProgram) override;
 
     /// @brief Draw geometry associated with this Points
-    virtual void drawGeometry(const std::shared_ptr<ShaderProgram>& shaderProgram, RenderSettings* settings = nullptr) override;
+    virtual void drawGeometry(ShaderProgram& shaderProgram, RenderSettings* settings = nullptr) override;
 
     /// @brief Add point
     void addPoint(const Vector3g& newPoint);

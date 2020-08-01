@@ -10,6 +10,7 @@
 // Project
 #include "../containers/GbDagNode.h"
 #include "../components/GbComponent.h"
+#include "../containers/GbSortingLayer.h"
 #include "../rendering/GbGLFunctions.h"
 #include "../mixins/GbLoadable.h"
 #include "../containers/GbContainerExtensions.h"
@@ -25,10 +26,10 @@ namespace Gb {
 class TransformComponent;
 class CameraComponent;
 class Camera;
-class Light;
+class LightComponent;
 class Scene;
 class ModelComponent;
-class RendererComponent;
+class ShaderComponent;
 class CanvasComponent;
 class Renderer;
 class ShaderProgram;
@@ -36,6 +37,9 @@ struct CompareByRenderLayer;
 class Renderable;
 class CharControlComponent;
 class BoneAnimationComponent;
+class CubeMapComponent;
+class DrawCommand;
+class MainRenderer;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Typedefs
@@ -50,8 +54,7 @@ class BoneAnimationComponent;
 */
 // TODO: Make scene objects toggleable
 // TODO: Make constructors protected
-class SceneObject: public DagNode, public Serializable
-{
+class SceneObject: public DagNode, public Serializable, public Persistable {
 public:
     typedef std::shared_ptr<Scene> ScenePtr;
     //-----------------------------------------------------------------------------------------------------------------
@@ -87,13 +90,12 @@ public:
     /// @} 
 
     //-----------------------------------------------------------------------------------------------------------------    
-    /// @name Constructor/Destructor
+    /// @name Destructor
     /// @{
-    /// @brief Warning, shouldn't ever call this directly
-    SceneObject();// Default constructor for Qt metatype declaration
-    SceneObject(std::shared_ptr<Scene> scene);
-    SceneObject(CoreEngine* core);
+
+    SceneObject(); // Default constructor for Qt metatype declaration
     ~SceneObject();
+
     /// @}
 
     //-----------------------------------------------------------------------------------------------------------------    
@@ -105,7 +107,7 @@ public:
     void setEnabled(bool enabled) { m_isEnabled = enabled; }
 
     /// @brief Return map of components
-    std::unordered_map<Component::ComponentType, std::vector<Component*>>& components() { return m_components; }
+    std::vector<std::vector<Component*>>& components() { return m_components; }
 
     /// @brief Return the engine used by this scene object
     CoreEngine* engine() const { return m_engine; }
@@ -115,13 +117,10 @@ public:
     void setScene(std::shared_ptr<Scene> scene) { m_scene = scene; }
 
     /// @brief The transform component for this scene object
-    std::shared_ptr<TransformComponent> transform() { return m_transformComponent; }
+    const std::shared_ptr<TransformComponent>& transform() { return m_transformComponent; }
 
-    /// @property Renderer Component
-    /// @brief Access and set a renderer to this scene object
-    /// @note Since this affects sorting, must pop from scene and add again for sorting if renderer is added
-    RendererComponent* rendererComponent();
-    void setRenderer(std::shared_ptr<Renderer> renderer);
+    /// @brief Access and set a shader for this scene object
+    ShaderComponent* shaderComponent();
 
     /// @property Camera
     /// @brief Access and set a camera to this scene object
@@ -130,18 +129,45 @@ public:
 
     /// @property Character Controller
     CharControlComponent* characterController();
+
+    /// @property Model Component
     ModelComponent* modelComponent();
+
+    /// @property Canvas Component
+    CanvasComponent* canvasComponent();
+
+    /// @property Bone animation componnet
     BoneAnimationComponent* boneAnimation();
 
     /// @property Light
     /// @brief Access a light for this scene object
-    Light* light();
+    LightComponent* light();
+
+    /// @property CubeMap
+    CubeMapComponent* cubeMap();
+
 
     /// @}
 
     //-----------------------------------------------------------------------------------------------------------------    
     /// @name Public Methods
     /// @{
+
+    /// @brief Create the commands required to draw this scene object
+    void createDrawCommands(Camera& camera,
+        MainRenderer& renderer,
+        const SortingLayer& currentLayer,
+        bool overrideLayer = false); // create draw command regardless of current layer
+
+    std::vector<std::shared_ptr<SortingLayer>> renderLayers();
+    std::vector<std::shared_ptr<SortingLayer>> getRenderLayers() const;
+    bool hasRenderLayer(const QString& label);
+    bool addRenderLayer(const std::shared_ptr<SortingLayer>& layer);
+    bool removeRenderLayer(const QString& label);
+
+    std::vector<std::weak_ptr<SortingLayer>>& _renderLayers() {
+        return m_renderLayers;
+    }
 
     /// @brief Clear models from this object and its children
     void clearModels();
@@ -151,6 +177,9 @@ public:
 
     /// @brief Abort all scripted processes associated with this object
     void abortScriptedProcesses();
+
+    /// @brief Get component from UUID
+    Component* getComponent(const Uuid& uuid, Component::ComponentType type);
 
     /// @brief Add component to the scene object
     /// @details Returns true if component successfully added
@@ -165,7 +194,7 @@ public:
     bool canAdd(Component* component);
 
     /// @brief whether or not this scene object satisfies the given component requirements
-    bool hasRequirements(const Component::ComponentType& reqs) const;
+    bool satisfiesConstraints(const Component::ComponentType& reqs) const;
 
     /// @brief Obtain direct child scene objects
     std::vector<std::shared_ptr<SceneObject>> children() const;
@@ -187,11 +216,11 @@ public:
     /// @brief Whether the object has a camera or not
     bool hasCamera() const;
 
-    /// @brief Whether or not the object has a renderer
-    bool hasRenderer() const;
+    /// @brief Whether or not the object has a shader
+    bool hasShaderComponent() const;
 
-    /// @brief Method to render the scene object, given a renderable type
-    void draw(RenderableType type);
+    ///// @brief Method to render the scene object, given a renderable type
+    //void draw(RenderableType type);
 
     /// @brief Remove all shared_ptrs to this scene object so that it can be garbage collected
     void remove();
@@ -231,18 +260,26 @@ protected:
     /// @}
 
     //-----------------------------------------------------------------------------------------------------------------    
-    /// @name Protected Methods
+    /// @name Constructors/Destructor
     /// @{
 
-    /// @brief Get vector of canvas components
-    std::vector<Renderable*> getCanvasComponents() const;
+    SceneObject(const std::shared_ptr<Scene>& scene);
+    //SceneObject(CoreEngine* core);
+
+    /// @}
+
+
+    //-----------------------------------------------------------------------------------------------------------------    
+    /// @name Protected Methods
+    /// @{
 
     /// @brief Add a component to the scene object, replacing all others of it's type
     void setComponent(Component* component);
 
-    /// @brief method to run before rendering scene object
-    /// @details Sets uniforms in shader that are related to the scene object
-    void bindUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram);
+    /// @brief Set uniforms needed to render this scene object using the given command
+    void bindUniforms(DrawCommand& rendercommand);
+
+    void setDefaultRenderLayers();
 
     /// @}
 
@@ -255,14 +292,19 @@ protected:
 
     /// @brief A pointer to the scene containing this object
     std::shared_ptr<Scene> m_scene;
+
+    /// @brief Rendering layers
+    std::vector<std::weak_ptr<SortingLayer>> m_renderLayers;
+
+    //TODO: User-defined metadata
     
     /// @brief The transform for this scene object
     std::shared_ptr<TransformComponent> m_transformComponent;
 
     /// @brief The components attached to this scene object
-    /// @details Key for sub-map is UUID
+    /// @details Main map is indexed by component type, key for sub-map is UUID
     // TODO: Move components to the scene, and store in sorted vectors
-    std::unordered_map<Component::ComponentType, std::vector<Component*>> m_components;
+    std::vector<std::vector<Component*>> m_components;
 
     /// @brief Pointer to the core engine
     CoreEngine* m_engine;

@@ -26,6 +26,7 @@ class InputHandler;
 class SceneObject;
 class Scene;
 class CameraComponent;
+class CanvasComponent;
 class Transform;
 class TransformComponent;
 class BoneAnimationComponent;
@@ -34,13 +35,18 @@ class Renderer;
 class Mesh;
 class ShaderProgram;
 class Lines;
-class Light;
+class LightComponent;
 class Label;
 class PhysicsShapePrefab;
 class Raycast;
+struct SortingLayer;
+class AABB;
+class DrawCommand;
 namespace View {
 class GLWidget;
 }
+class MainRenderer;
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Class definitions
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -62,10 +68,9 @@ public:
     /// @name Public Methods
     /// @{
 
-    void setTransform(Transform* transform);
+    void setTransform(const std::shared_ptr<Transform>& transform);
 
-    /// @brief Update the glyph data
-    virtual void reload() override {}
+    virtual size_t getSortID() override { return 0; }
 
     /// @brief Clear all transient data from the coordinate axes
     void clear();
@@ -78,12 +83,12 @@ protected:
     /// @{
 
     /// @brief Set uniforms for the glyph
-    virtual void bindUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram) override;
+    virtual void bindUniforms(ShaderProgram& shaderProgram) override;
 
-    virtual void releaseUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram) override;
+    virtual void releaseUniforms(ShaderProgram& shaderProgram) override;
 
     /// @brief Draw geometry
-    virtual void drawGeometry(const std::shared_ptr<ShaderProgram>& shaderProgram, RenderSettings* settings = nullptr) override;
+    virtual void drawGeometry(ShaderProgram& shaderProgram, RenderSettings* settings = nullptr) override;
 
     /// @}
 
@@ -110,7 +115,7 @@ protected:
     std::shared_ptr<Transform> m_yCylinderTransform;
     std::shared_ptr<Transform> m_zCylinderTransform;
 
-    Transform* m_transform = nullptr;
+    std::shared_ptr<Transform> m_transform = nullptr;
 
     /// @}
 };
@@ -135,8 +140,7 @@ public:
     /// @name Public Methods
     /// @{
 
-    /// @brief Update the glyph data
-    virtual void reload() override {}
+    virtual size_t getSortID() override { return 0; }
 
     /// @}
 
@@ -146,12 +150,12 @@ protected:
     /// @{
 
     /// @brief Set uniforms for the glyph
-    virtual void bindUniforms(const std::shared_ptr<Gb::ShaderProgram>& shaderProgram) override;
+    virtual void bindUniforms(Gb::ShaderProgram& shaderProgram) override;
 
-    virtual void releaseUniforms(const std::shared_ptr<Gb::ShaderProgram>& shaderProgram) override;
+    virtual void releaseUniforms(Gb::ShaderProgram& shaderProgram) override;
 
     /// @brief Draw geometry
-    virtual void drawGeometry(const std::shared_ptr<ShaderProgram>& shaderProgram, RenderSettings* settings = nullptr) override;
+    virtual void drawGeometry(ShaderProgram& shaderProgram, RenderSettings* settings = nullptr) override;
 
     /// @}
 
@@ -220,7 +224,11 @@ public:
 
         /// @brief Draw the debug renderable
         void draw() {
-            m_renderable->draw(m_shaderProgram);
+            m_renderable->draw(*m_shaderProgram);
+        }
+
+        inline void drawStatic()
+        {
         }
 
         /// @brief Obtain the object corresponding to the debug renderable
@@ -269,6 +277,9 @@ public:
     /// @name Properties
     /// @{
 
+    const std::shared_ptr<SortingLayer>& debugRenderLayer() const { return m_debugRenderLayer; }
+
+
     CameraComponent* camera();
     std::shared_ptr<SceneObject> cameraObject() { return m_cameraObject; }
     std::shared_ptr<Scene> scene() { return m_scene; }
@@ -286,10 +297,13 @@ public:
     // TODO: Implement
 
     /// @brief Rendering routines
-    void draw(std::shared_ptr<Scene> scene);
-    void drawDynamic(std::shared_ptr<Scene> scene);
+    void draw(const std::shared_ptr<Scene>& scene);
     void drawStatic();
+    void drawDynamic(const std::shared_ptr<Scene>& scene);
     void drawDoodads();
+
+    /// @brief Creat deferred draw commands
+    void createDrawCommands(Scene&, MainRenderer& renderer);
 
     /// @brief Step forward for debug functionality
     void step(unsigned long deltaMs);
@@ -332,11 +346,6 @@ protected:
     /// @name Static
     /// @{
 
-    //struct DebugLabel {
-    //    std::shared_ptr<Label> m_label;
-    //    std::shared_ptr<Icon> m_icon;
-    //};
-
     /// @}
 
     //--------------------------------------------------------------------------------------------
@@ -362,6 +371,7 @@ protected:
 
     float getFps() const;
 
+
     void drawPhysicsShape(const PhysicsShapePrefab& shape, const TransformComponent& translation, bool isEnabled);
 
     void drawRaycastContact();
@@ -370,7 +380,9 @@ protected:
 
     void drawCharacterController(CharControlComponent* comp);
 
-    void drawLight(Light* light);
+    void drawLight(LightComponent* light);
+
+    void createDrawCommand(SceneObject& so, std::vector<std::shared_ptr<DrawCommand>>& outDrawCommands);
 
     /// @}
 
@@ -388,7 +400,7 @@ protected:
     std::shared_ptr<SceneObject> m_cameraObject;
 
     /// @brief Canvas Renderable
-    DebugRenderable m_textCanvas;
+    std::shared_ptr<CanvasComponent> m_textCanvas;
     std::shared_ptr<Label> m_fpsCounter;
 
     /// @brief All renderables to be drawn for a given scene object or component type
@@ -412,6 +424,8 @@ protected:
 
     /// @brief List of recent frame deltas in seconds
     std::list<float> m_frameDeltas;
+
+    std::shared_ptr<SortingLayer> m_debugRenderLayer;
 
     /// @}
 };

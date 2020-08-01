@@ -9,8 +9,27 @@
 #include "../../readers/GbFileReader.h"
 #include "../../GbSettings.h"
 #include "GbUniformBufferObject.h"
+#include "../lighting/GbLight.h"
+#include "../../GbCoreEngine.h"
+#include "../renderer/GbRenderContext.h"
+#include "../renderer/GbMainRenderer.h"
+
+#define GL_GLEXT_PROTOTYPES 
 
 namespace Gb {   
+/////////////////////////////////////////////////////////////////////////////////////////////
+QStringList Shader::Builtins = {
+        "simple",
+        "text",
+        "basic",
+        "lines",
+        "cubemap",
+        "axes",
+        "points",
+        "debug_skeleton",
+        "quad",
+        "prepass"
+};
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 std::unordered_map<Shader::ShaderType, int> Shader::SHADER_TYPE_TO_GL_MAP(
@@ -30,14 +49,20 @@ Shader::Shader(const QJsonValue & json)
 {
     loadFromJson(json);
 }
+/////////////////////////////////////////////////////////////////////////////////////////////
+Shader::Shader(const QString & file, ShaderType type):
+    Shader(file, type, false)
+{
+}
 
 /////////////////////////////////////////////////////////////////////////////////////////////
-Shader::Shader(const QString& file, ShaderType type):
-    m_type(type),
-    m_filePath(file)
+Shader::Shader(const QString& file, ShaderType type, bool deferConstruction):
+    Loadable(file),
+    m_type(type)
 {
-    m_name = FileReader::pathToName(m_filePath, false);
-    initializeFromSourceFile();
+    m_name = FileReader::pathToName(m_path, false);
+    if(!deferConstruction)
+        initializeFromSourceFile();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -47,20 +72,20 @@ Shader::~Shader()
 /////////////////////////////////////////////////////////////////////////////////////////////
 QJsonValue Shader::asJson() const
 {
-    QJsonObject object;
+    QJsonObject object = Loadable::asJson().toObject();
     object.insert("shaderType", int(m_type));
-    object.insert("filePath", m_filePath);
+    object.insert("filePath", m_path);
     object.insert("name", m_name);
     return object;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 void Shader::loadFromJson(const QJsonValue & json)
 {
+    Loadable::loadFromJson(json);
     const QJsonObject& object = json.toObject();
     m_type = ShaderType(object["shaderType"].toInt());
-    m_filePath = object["filePath"].toString();
     if (!object.contains("name")) {
-        m_name = FileReader::pathToName(m_filePath, false);
+        m_name = FileReader::pathToName(m_path, false);
     }
     else {
         m_name = object["name"].toString();
@@ -72,7 +97,7 @@ void Shader::loadFromJson(const QJsonValue & json)
 bool Shader::initializeFromSourceFile()
 {
     // Read in shader source code
-    auto fileReader = Gb::FileReader(m_filePath);
+    auto fileReader = Gb::FileReader(m_path);
     QStringList fileLines = fileReader.getFileLines();
     if (!fileLines.size()) {
         m_isValid = false;
@@ -168,11 +193,11 @@ void Shader::parseBuffer(const QRegularExpressionMatch & match)
         QRegularExpressionMatch lineMatch = i.next();
 
         QString uniformName = lineMatch.captured(3);// Name
-        QString uniformType = lineMatch.captured(2); // Type 
+        QString uniformTypeStr = lineMatch.captured(2); // Type 
         bool isArray = !lineMatch.captured(4).isNull();// Is array
         int arraySize;
 
-        if (MISALIGNED_TYPES.contains(uniformType)) {
+        if (MISALIGNED_TYPES.contains(uniformTypeStr)) {
             throw("Error, type is misaligned for std140, which is not supported by UBOs");
         }
 
@@ -190,20 +215,21 @@ void Shader::parseBuffer(const QRegularExpressionMatch & match)
         }
 
         // Precision
-        UniformInfo::PrecisionQualifier precision;
+        ShaderInputInfo::PrecisionQualifier precision;
         if (!lineMatch.captured(1).isNull()) {
             QString precisionStr = lineMatch.captured(1);
             if (precisionStr.contains("high"))
-                precision = UniformInfo::kHigh;
+                precision = ShaderInputInfo::PrecisionQualifier::kHigh;
             else if (precisionStr.contains("medium"))
-                precision = UniformInfo::kMedium;
+                precision = ShaderInputInfo::PrecisionQualifier::kMedium;
             else
-                precision = UniformInfo::kLow;
+                precision = ShaderInputInfo::PrecisionQualifier::kLow;
         }
         else {
-            precision = UniformInfo::kNone;
+            precision = ShaderInputInfo::PrecisionQualifier::kNone;
         }
 
+        ShaderInputType uniformType = Uniform::UNIFORM_TYPE_STR_MAP[uniformTypeStr];
         Vec::EmplaceBack(ss.m_fields, uniformName, uniformType, isArray);
         ss.m_fields.back().m_arraySize = arraySize;
     }
@@ -240,37 +266,38 @@ void Shader::parseForUniforms()
 void Shader::parseUniform(const QRegularExpressionMatch & match)
 {
     QString uniformName = match.captured(3);// Name
-    QString uniformType = match.captured(2); // Type 
+    QString uniformTypeStr = match.captured(2); // Type 
     bool isArray = !match.captured(4).isNull();// Is array
 
     // Precision
-    UniformInfo::PrecisionQualifier precision;
+    ShaderInputInfo::PrecisionQualifier precision;
     if (!match.captured(1).isNull()) {
         QString precisionStr = match.captured(1);
         if (precisionStr.contains("high"))
-            precision = UniformInfo::kHigh;
+            precision = ShaderInputInfo::PrecisionQualifier::kHigh;
         else if (precisionStr.contains("medium"))
-            precision = UniformInfo::kMedium;
+            precision = ShaderInputInfo::PrecisionQualifier::kMedium;
         else
-            precision = UniformInfo::kLow;
+            precision = ShaderInputInfo::PrecisionQualifier::kLow;
     }
     else {
-        precision = UniformInfo::kNone;
+        precision = ShaderInputInfo::PrecisionQualifier::kNone;
     }
 
     // Check if uniform is a struct or not
     auto iter = std::find_if(m_structs.begin(), m_structs.end(),
-        [&](const ShaderStruct& s) {return s.m_name == uniformType; });
+        [&](const ShaderStruct& s) {return s.m_name == uniformTypeStr; });
     bool isStruct = iter != m_structs.end();
     if (isStruct) {
         // Add all the uniforms in the struct to the uniform list
-        for (const UniformInfo& field : iter->m_fields) {
+        for (const ShaderInputInfo& field : iter->m_fields) {
             QString combinedName = uniformName + "." + field.m_name;
-            Vec::EmplaceBack(m_uniforms, std::move(combinedName), field.m_typeStr, field.m_isArray);
+            Vec::EmplaceBack(m_uniforms, std::move(combinedName), field.m_inputType, field.isArray());
         }
     }
     else {
         // Add as a normal uniform
+        ShaderInputType uniformType = Uniform::UNIFORM_TYPE_STR_MAP[uniformTypeStr];
         Vec::EmplaceBack(m_uniforms, uniformName, uniformType, isArray);
     }
 }
@@ -324,7 +351,8 @@ void Shader::parseStruct(const QRegularExpressionMatch& match)
         QRegularExpressionMatch lineMatch = i.next();
         
         QString uniformName = lineMatch.captured(3);// Name
-        QString uniformType = lineMatch.captured(2); // Type 
+        QString uniformTypeStr = lineMatch.captured(2); // Type 
+        ShaderInputType uniformType = Uniform::UNIFORM_TYPE_STR_MAP[uniformTypeStr];
         bool isArray = !lineMatch.captured(4).isNull();// Is array
         size_t arraySize = -1;
 
@@ -342,18 +370,18 @@ void Shader::parseStruct(const QRegularExpressionMatch& match)
         }
 
         // Precision
-        UniformInfo::PrecisionQualifier precision;
+        ShaderInputInfo::PrecisionQualifier precision;
         if (!lineMatch.captured(1).isNull()) {
             QString precisionStr = lineMatch.captured(1);
             if (precisionStr.contains("high")) 
-                precision = UniformInfo::kHigh;
+                precision = ShaderInputInfo::PrecisionQualifier::kHigh;
             else if (precisionStr.contains("medium"))
-                precision = UniformInfo::kMedium;
+                precision = ShaderInputInfo::PrecisionQualifier::kMedium;
             else
-                precision = UniformInfo::kLow;
+                precision = ShaderInputInfo::PrecisionQualifier::kLow;
         }
         else {
-            precision = UniformInfo::kNone;
+            precision = ShaderInputInfo::PrecisionQualifier::kNone;
         }
 
         Vec::EmplaceBack(ss.m_fields, uniformName, uniformType, isArray);
@@ -382,78 +410,69 @@ QString Shader::DEFINE_REGEX = QStringLiteral("#[\\s\\t\\r\\n]*define[\\s\\t\\r\
 /////////////////////////////////////////////////////////////////////////////////////////////
 // ShaderProgram
 /////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<ShaderProgram> ShaderProgram::create(const QJsonValue & json)
+std::shared_ptr<ResourceHandle> ShaderProgram::createHandle(CoreEngine * engine,
+    const QJsonValue & json)
 {
-    // Return ShaderProgram based on type
-    std::shared_ptr<ShaderProgram> program;
-    const QJsonObject object = json.toObject();
-    ShaderProgramType type = ShaderProgramType(object["programType"].toInt());
-    switch (type) {
-    case kBasic:
-        program = std::make_shared<BasicShaderProgram>(object);
-        break;
-    case kCubemap:
-        program = std::make_shared<CubemapShaderProgram>(object);
-        break;
-    case kGeneric:
-    default:
-        program = std::make_shared<ShaderProgram>(object);
-        break;    
-    }
+    auto handle = ResourceHandle::create(engine,
+        Resource::kShaderProgram);
+    //handle->setResourceType(Resource::kShaderProgram);
+    handle->setUserGenerated(true);
 
-    if (program->isValid()) {
-        return program;
-    }
-    else {
-        return nullptr;
-    }
+    auto shaderProgram = std::make_shared<ShaderProgram>(json);
+    handle->setName(shaderProgram->getName());
+    handle->setResource(shaderProgram, false);
+    return handle;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-ShaderProgram::ShaderProgram():
-    Object()
+ShaderProgram::ShaderProgram(): Resource(kShaderProgram)
 {
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 ShaderProgram::ShaderProgram(const ShaderProgram & shaderProgram):
+    Resource(kShaderProgram),
     m_shaders(shaderProgram.m_shaders),
     m_programID(shaderProgram.m_programID),
     m_gl(shaderProgram.m_gl),
     m_uniformQueue(shaderProgram.m_uniformQueue),
     m_uniforms(shaderProgram.m_uniforms),
-    m_uniformInfo(shaderProgram.m_uniformInfo),
-    m_programType(shaderProgram.m_programType)
+    m_uniformInfo(shaderProgram.m_uniformInfo)
 {
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 ShaderProgram::ShaderProgram(const QJsonValue & json):
-    Object()
+    Resource(kShaderProgram)
 {
     loadFromJson(json);
 }
-
 /////////////////////////////////////////////////////////////////////////////////////////////
-ShaderProgram::ShaderProgram(const QString& vertfile, const QString& fragfile, ShaderProgramType type):
-    Object(),
-    m_programType(type)
+ShaderProgram::ShaderProgram(const QString& vertfile, const QString& fragfile) :
+    Resource(kShaderProgram)
 {
-	Map::Emplace(m_shaders, Shader::kVertex, vertfile, Shader::kVertex);
-	Map::Emplace(m_shaders, Shader::kFragment, fragfile, Shader::kFragment);
+    //m_shaders.resize(4);
+    Vec::Emplace(m_shaders, m_shaders.end(), vertfile, Shader::kVertex, false);
+    Vec::Emplace(m_shaders, m_shaders.end(), fragfile, Shader::kFragment, false);
+
+    // Initialize individual shaders
+    for (auto& shader : m_shaders) {
+        if (!shader.isValid()) {
+            shader.initializeFromSourceFile();
+        }
+    }
 
     setName();
 
     initializeShaderProgram();
 }
-
 /////////////////////////////////////////////////////////////////////////////////////////////
 ShaderProgram::~ShaderProgram()
 {
     // Delete shaders linked to the program
     release();
-	for (const auto& shaderPair : m_shaders) {
-		m_gl.glDetachShader(m_programID, shaderPair.second.getID());
+	for (const auto& shader: m_shaders) {
+		m_gl.glDetachShader(m_programID, shader.getID());
 	}
 	for (const auto& shaderPair : m_shaders) {
-        m_gl.glDeleteShader(shaderPair.second.getID());
+        m_gl.glDeleteShader(shaderPair.getID());
 	}
     m_gl.glDeleteProgram(m_programID);
 }
@@ -461,16 +480,17 @@ ShaderProgram::~ShaderProgram()
 bool ShaderProgram::isValid() const
 {
     bool valid = true;
-    for (const std::pair<Shader::ShaderType, Shader>& shaderPair : m_shaders) {
-        valid &= shaderPair.second.isValid();
+    for (const Shader& shaderPair : m_shaders) {
+        valid &= shaderPair.isValid();
     }
     return valid;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 const Shader* ShaderProgram::getFragShader() const
 {
-    if (m_shaders.find(Shader::kFragment) != m_shaders.end()) {
-        return &m_shaders.at(Shader::kFragment);
+    size_t fragIndex = (size_t)Shader::kFragment;
+    if (m_shaders.size() > fragIndex) {
+        return &m_shaders.at(fragIndex);
     }
     else {
         return nullptr;
@@ -479,8 +499,9 @@ const Shader* ShaderProgram::getFragShader() const
 /////////////////////////////////////////////////////////////////////////////////////////////
 const Shader* ShaderProgram::getVertShader() const
 {
-    if (m_shaders.find(Shader::kVertex) != m_shaders.end()) {
-        return &m_shaders.at(Shader::kVertex);
+    size_t vertIndex = (size_t)Shader::kVertex;
+    if (m_shaders.size() > vertIndex) {
+        return &m_shaders.at(vertIndex);
     }
     else {
         return nullptr;
@@ -491,9 +512,9 @@ void ShaderProgram::setName()
 {
     m_name = "";
     QString prevShaderName;
-    for (const std::pair<Shader::ShaderType, Shader>& shaderPair : m_shaders) {
+    for (const Shader& shaderPair : m_shaders) {
         // Iterate over shaders and combine names if different, otherwise take filename without extension
-        QString shaderName = shaderPair.second.getName();
+        QString shaderName = shaderPair.getName();
         if (shaderName != prevShaderName) {
             if (!prevShaderName.isEmpty()) {
                 m_name += "_";
@@ -505,9 +526,20 @@ void ShaderProgram::setName()
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
-bool ShaderProgram::hasUniform(const QString& uniformName) const
+bool ShaderProgram::hasUniform(const QString& uniformName, int* localIndex) const
 {
-    return Map::HasKey(m_uniforms, uniformName);
+    bool hasUniform = Map::HasKey(m_uniformInfo, uniformName);
+    if (hasUniform) {
+        if (localIndex) {
+            *localIndex = m_uniformInfo.at(uniformName).m_localIndex;
+        }
+    }
+//    else {
+//#ifdef DEBUG_MODE
+//        logWarning("Shader does not have the specified uniform");
+//#endif
+//    }
+    return hasUniform;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 bool ShaderProgram::hasCachedUniform(const QString & uniformName, std::vector<Uniform>::const_iterator & iter) const
@@ -527,14 +559,39 @@ void ShaderProgram::bind()
     // Bind shader program in GL
     m_gl.glUseProgram(m_programID);
 
-    BOUND_SHADER = this;
+    // Bind SSBs
+    if (m_lightBuffer) {
+        m_lightBuffer->bindToPoint(0);
+    }
+
+    s_boundShader = this;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 void ShaderProgram::release()
 {
     m_gl.glUseProgram(0);
-    BOUND_SHADER = nullptr;
+
+    if (m_lightBuffer) {
+        m_lightBuffer->releaseFromPoint(0);
+    }
+
+    s_boundShader = nullptr;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+void ShaderProgram::postConstruction()
+{
+    Resource::postConstruction();
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+void ShaderProgram::clearUniforms()
+{
+    // Need to preserve size of uniforms vector
+    size_t size = m_uniforms.size();
+    m_uniforms.clear();
+    m_uniforms.resize(size);
+
+    m_uniformQueue.clear();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 QJsonValue ShaderProgram::asJson() const
@@ -543,29 +600,26 @@ QJsonValue ShaderProgram::asJson() const
 
     // Add shaders to json
     QJsonObject shaders;
-    for (const auto& shaderPair : m_shaders) {
-        shaders.insert(QString::number(shaderPair.first), shaderPair.second.asJson());
+    for (const auto& shader : m_shaders) {
+        shaders.insert(QString::number(shader.m_type), shader.asJson());
     }
     object.insert("shaders", shaders);
 
     // Set name
     object.insert("name", m_name);
 
-    // Add current uniform values to JSON
-    QJsonObject uniforms;
-    for (const auto& uniformPair : m_uniforms) {
-        if (uniformPair.second.isPersistent()) {
-            if (uniformPair.second.valid()) {
-                // Save all valid uniforms to JSON
-                uniforms.insert(uniformPair.second.getName(), uniformPair.second.asJson());
-            }
-        }
-    }
-    object.insert("uniforms", uniforms);
-
-    // Set program type
-    QJsonObject programType;
-    object.insert("programType", int(m_programType));
+    // Uniforms blow up JSON size, and don't need to persist
+    //// Add current uniform values to JSON
+    //QJsonObject uniforms;
+    //for (const auto& uniformPair : m_uniforms) {
+    //    if (uniformPair.second.isPersistent()) {
+    //        if (uniformPair.second.valid()) {
+    //            // Save all valid uniforms to JSON
+    //            uniforms.insert(uniformPair.second.getName(), uniformPair.second.asJson());
+    //        }
+    //    }
+    //}
+    //object.insert("uniforms", uniforms);
 
     return object;
 }
@@ -574,16 +628,14 @@ void ShaderProgram::loadFromJson(const QJsonValue & json)
 {
     const QJsonObject& object = json.toObject();
 
-    // Load program type
-    m_programType = ShaderProgramType(object["programType"].toInt());
-
     // Load shaders from JSON
     QJsonObject shaders = object["shaders"].toObject();
+    m_shaders.resize(shaders.keys().size());
     for (const auto& key : shaders.keys()) {
         Shader::ShaderType shaderType = Shader::ShaderType(key.toInt());
         QJsonValue shaderJson = object["shaders"].toObject()[key];
         Shader shader = Shader(shaderJson);
-        m_shaders[shaderType] = shader;
+        m_shaders[(int)shaderType] = shader;
     }
 
     // Set name
@@ -597,17 +649,45 @@ void ShaderProgram::loadFromJson(const QJsonValue & json)
     // Initialize shader program in GL
     initializeShaderProgram();
     
-    // Load uniform values into uniform queue for update
-    QJsonObject uniforms = object["uniforms"].toObject();
-    m_uniformQueue.clear();
-    for (const auto& key : uniforms.keys()) {
-        QJsonObject uniformJson = uniforms[key].toObject();
-        Vec::EmplaceBack(m_uniformQueue, uniformJson);
-    }
+    //// Load uniform values into uniform queue for update
+    //QJsonObject uniforms = object["uniforms"].toObject();
+    //m_uniformQueue.clear();
+    //for (const auto& key : uniforms.keys()) {
+    //    QJsonObject uniformJson = uniforms[key].toObject();
+    //    Vec::EmplaceBack(m_uniformQueue, uniformJson);
+    //}
 
     // Update uniforms
     //updateUniforms();
 
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+GLuint ShaderProgram::getUniformID(const QString & uniformName)
+{
+    int id = m_uniformInfo.at(uniformName).m_uniformID;
+
+    // If uniform name found in uniform info (will be found unless is an array uniform)
+    //if (id < 0) {
+    //    // If id not assigned, assign
+    //    id = m_gl.glGetUniformLocation(m_programID, uniformName.toStdString().c_str());
+    //    if (id > 0) {
+    //        m_uniformInfo.at(uniformName).m_uniformID = id;
+    //    }
+    //}
+    return id;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+bool ShaderProgram::hasBuffer(const QString & name, GL::BufferType type, int* outIndex)
+{
+    auto iter = std::find_if(m_bufferInfo.begin(), m_bufferInfo.end(),
+        [&](const ShaderBufferInfo& info) {
+        return info.m_name == name;
+    });
+    if (outIndex) {
+        *outIndex = iter - m_bufferInfo.begin();
+    }
+    return iter != m_bufferInfo.end();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -615,48 +695,63 @@ bool ShaderProgram::updateUniforms()
 {
     QMutexLocker locker(&m_mutex);
 
+    // Return if not constructed
+    if (!m_handle->isConstructed()) return false;
+
     // Iterate through queue to update uniforms in local map and open GL
-    std::unordered_map<QString, Uniform>& uniforms = m_uniforms;
+    std::vector<Uniform>& uniforms = m_uniforms;
     bool updated = false;
+
+    if (!m_uniformQueue.size()) {
+        return updated;
+    }
+
     for (Uniform& uniform: m_uniformQueue) {
 
         // Skip if uniform is invalid
-        if (!uniform.valid()) continue;
+        if (!uniform.isValid()) continue;
 
         // Check that uniform type matches
         const QString& uniformName = uniform.getName();
 
         // Skip if uniform is not present
-        if (!Map::HasKey(uniforms, uniformName)) {
+        int localIndex = -1;
+        bool hasName = hasUniform(uniformName, &localIndex);
+        if (localIndex < 0) {
 #ifdef DEBUG_MODE
-            logWarning("Error, uniform not recognized: " + uniformName);
+            if (m_name != QStringLiteral("debug_skeleton")) {
+                // Debug skeleton has some unused uniforms that raise a warning, fix this
+                logWarning("Error, uniform not recognized: " + uniformName);
+            }
 #endif
             continue;
         }
 
         // Skip if uniform value is unchanged
-        const Uniform& prevUniform = uniforms.at(uniformName);
+        //if (Map::HasKey(uniforms, uniformName)) {
+        const Uniform& prevUniform = uniforms[localIndex];
         if (prevUniform == uniform) {
+            //logError(uniform.getName());
+            //logWarning("prev uniform: " + QString(prevUniform));
+            //logWarning("new uniform: " + QString(uniform));
+            //logError("----");
             continue;
         }
+        //}
 
-        UniformInfo& info = m_uniformInfo.at(uniformName);
-        std::type_index typeInfo = uniform.typeInfo();
+        ShaderInputInfo& info = m_uniformInfo.at(uniformName);
+        //const std::type_info& typeInfo = uniform.typeInfo();
         //auto name = typeInfo.name();
         bool matchesInfo = uniform.matchesInfo(info);
         if (!matchesInfo) {
             // TODO: Implement a more performant fix for this if speed becomes an issue
             // If uniform is a float and should be an int, was read in incorrectly
             // from Json via QVariant
-            const std::type_index& classType = Uniform::UNIFORM_TYPE_MAP.at(info.m_typeStr);
+            const std::type_index& classType = Uniform::UNIFORM_GL_TYPE_MAP.at(info.m_inputType);
             if (uniform.is<float>() && classType == typeid(int)) {
                 uniform.set<int>((int)uniform.get<float>());
             }
             else {
-                size_t intType = typeid(int).hash_code();
-                size_t boolType = typeid(bool).hash_code();
-                Q_UNUSED(intType);
-                Q_UNUSED(boolType);
                 throw("Error, uniform " + uniformName + " is not the correct type for GLSL");
             }
         }
@@ -723,7 +818,7 @@ bool ShaderProgram::updateUniforms()
         }
 
         // Update uniform in local map
-        m_uniforms[uniformName] = std::move(uniform);
+        uniforms[localIndex] = std::move(uniform);
         updated = true;
     }
 
@@ -740,6 +835,7 @@ bool ShaderProgram::updateUniforms()
     return updated;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
+// Template specialization for setting uniforms of an array of matrices
 template<>
 void ShaderProgram::setUniformValueGL(const QString& uniformName, const std::vector<Matrix4x4f>& value)
 {
@@ -747,34 +843,41 @@ void ShaderProgram::setUniformValueGL(const QString& uniformName, const std::vec
     //GLuint uniformID = getUniformID(uniformName);
     //m_gl.glUniformMatrix4fv(uniformID, value.size(), GL_FALSE, value[0].m_mtx[0].data()); // uniform ID, count, transpose, value
 
+    // Get ID of start of array
+    GLuint uniformID = getUniformID(QString(uniformName));
+
     // Send to each location in the array
+    // TODO: Optimize, don't use string for each uniform
     size_t size = value.size();
     for (unsigned int i = 0; i < size; i++) {
-        char elementName[128];
-        memset(elementName, 0, sizeof(elementName));
-        snprintf(elementName, sizeof(elementName), "%s[%d]", uniformName.toStdString().c_str(), i);
+        //char elementName[128];
+        //memset(elementName, 0, sizeof(elementName));
+        //snprintf(elementName, sizeof(elementName), "%s[%d]", uniformName.toStdString().c_str(), i);
 
         // Set uniform value
-        GLuint uniformID = getUniformID(QString(elementName));
-        m_gl.glUniformMatrix4fv(uniformID, 1, GL_FALSE, value[i].m_mtx[0].data()); // uniform ID, count, transpose, value
+        m_gl.glUniformMatrix4fv(uniformID + i, 1, GL_FALSE, value[i].m_mtx[0].data()); // uniform ID, count, transpose, value
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
+// Template specialization for setting uniforms of an array of vec3s
 template<>
 void ShaderProgram::setUniformValueGL(const QString & uniformName, const Vec3List & value)
 {
     //GLuint uniformID = getUniformID(uniformName);
     //m_gl.glUniform3fv(uniformID, value.size(), &value[0][0]); // uniform ID, count, value
 
+    // Get ID of start of array
+    GLuint uniformID = getUniformID(QString(uniformName));
+
     size_t size = value.size();
     for (unsigned int i = 0; i < size; i++) {
-        char elementName[128];
-        memset(elementName, 0, sizeof(elementName));
-        snprintf(elementName, sizeof(elementName), "%s[%d]", uniformName.toStdString().c_str(), i);
+        //char elementName[128];
+        //memset(elementName, 0, sizeof(elementName));
+        //snprintf(elementName, sizeof(elementName), "%s[%d]", uniformName.toStdString().c_str(), i);
 
         // Set uniform value
-        GLuint uniformID = getUniformID(QString(elementName));
-        m_gl.glUniform3fv(uniformID, 1, &value[i][0]);
+        //GLuint uniformID = getUniformID(QString(elementName));
+        m_gl.glUniform3fv(uniformID + i, 1, &value[i][0]);
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -784,15 +887,16 @@ void ShaderProgram::setUniformValueGL(const QString & uniformName, const Vec4Lis
     //GLuint uniformID = getUniformID(uniformName);
     //m_gl.glUniform3fv(uniformID, value.size(), &value[0][0]); // uniform ID, count, value
 
+    GLuint uniformID = getUniformID(QString(uniformName));
+
     size_t size = value.size();
     for (unsigned int i = 0; i < size; i++) {
-        char elementName[128];
-        memset(elementName, 0, sizeof(elementName));
-        snprintf(elementName, sizeof(elementName), "%s[%d]", uniformName.toStdString().c_str(), i);
+        //char elementName[128];
+        //memset(elementName, 0, sizeof(elementName));
+        //snprintf(elementName, sizeof(elementName), "%s[%d]", uniformName.toStdString().c_str(), i);
 
         // Set uniform value
-        GLuint uniformID = getUniformID(QString(elementName));
-        m_gl.glUniform4fv(uniformID, 1, &value[i][0]);
+        m_gl.glUniform4fv(uniformID + i, 1, &value[i][0]);
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -808,8 +912,8 @@ bool ShaderProgram::initializeShaderProgram()
     // Create program, attach shaders, link
     m_programID = m_gl.glCreateProgram();
 
-	for (const auto& shaderPair : m_shaders) {
-		attachShader(shaderPair.second);
+	for (const auto& shader : m_shaders) {
+		attachShader(shader);
 	}
     m_gl.glLinkProgram(m_programID);
 
@@ -861,26 +965,81 @@ void ShaderProgram::attachShader(const Shader & shader)
 /////////////////////////////////////////////////////////////////////////////////////////////
 void ShaderProgram::populateUniforms()
 {
-    for (const auto& shaderPair : m_shaders) {
-        for (const UniformInfo& info : shaderPair.second.m_uniforms) {
-            const QString& name = info.m_name;
-            Map::Emplace(m_uniforms, name, name);
-            m_uniformInfo[name] = info;
+    // New approach, read directly from OpenGL
+    std::vector<ShaderInputInfo> uniformInfo;
+    getActiveUniforms(uniformInfo);
+
+    // Old approach, deprecated, for now just update values from new info
+    //size_t count = 0;
+    //for (auto& shader : m_shaders) {
+    //    for (ShaderInputInfo& info : shader.m_uniforms) {
+    //        const QString& name = info.m_name;
+
+    //        // Set ID of the uniform
+    //        info.m_uniformID = getUniformIDGL(name);
+
+    //        //if (info.m_uniformID < 0) {
+    //        //    throw("Error, failed to load uniform ID");
+    //        //}
+
+    //        // Set uniform info in shader program
+    //        m_uniformInfo[name] = info;
+    //        count++;
+    //    }
+    //}
+
+    // New uniform info generation approach
+    for (const auto& info : uniformInfo) {
+        // Remove index from array name for map indexing
+        QString nonArrayName = info.m_name.split("[")[0];
+
+        // Add both non-array and array names to info, both are valid for opengl
+        // e.g., arrayOfValues[0] vs. arrayOfValues
+        m_uniformInfo[nonArrayName] = info;
+        if (nonArrayName != info.m_name) {
+            m_uniformInfo[info.m_name] = info;
         }
+
+        //ShaderInputInfo& thisInfo = m_uniformInfo[info.m_name];
+        //thisInfo.m_uniformID = info.m_uniformID;
+        //thisInfo.m_inputType = info.m_inputType;
     }
+
+    m_uniforms.resize(m_uniformInfo.size());
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 void ShaderProgram::populateUniformBuffers()
 {
-    for (const auto& shaderPair : m_shaders) {
-        for (const ShaderStruct& ss : shaderPair.second.m_uniformBuffers) {
+    // Populate buffer metadata
+    getActiveSSBs(m_bufferInfo);
+
+    int lightBufferIndex;
+    if (hasBuffer(LIGHT_BUFFER_NAME, GL::BufferType::kShaderStorage, &lightBufferIndex)) {
+        // Set light buffer if it is used in shader
+        CoreEngine* engine = CoreEngine::engines().begin()->second;
+        m_lightBuffer = &engine->mainRenderer()->renderContext().lightingSettings().lightBuffer();
+        size_t lightSize = sizeof(Light);
+        if (m_bufferInfo[lightBufferIndex].m_bufferDataSize % lightSize != 0) {
+            throw("Error, data-size mismatch between Light and SSB");
+        }
+    }
+
+    // Associate with uniform buffers as necessary
+    for (const auto& shader : m_shaders) {
+        for (const ShaderStruct& ss : shader.m_uniformBuffers) {
             if (!UBO::get(ss.m_name)) {
                 // Create UBO if it has not been initialized by another shader
-                UBO::create(ss);
+                auto ubo = UBO::create(ss);
+            }
+
+            // Set as a core UBO if it should not be deleted on scenario reload
+            auto ubo = UBO::UBO_MAP.at(ss.m_name);
+            if (Shader::Builtins.contains(m_name)) {
+                ubo->setCore(true);
             }
             
             // Add UBO to shader map
-            m_uniformBuffers[ss.m_name] = UBO::UBO_MAP.at(ss.m_name);
+            m_uniformBuffers[ss.m_name] = ubo;
 
             // Bind shader uniform block to the same binding point as the buffer
             bindUniformBlock(ss.m_name);
@@ -901,59 +1060,170 @@ void ShaderProgram::bindUniformBlock(const QString & blockName)
     m_gl.glUniformBlockBinding(m_programID, blockIndex, ubo->m_bindingPoint);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-ShaderProgram* ShaderProgram::BOUND_SHADER = nullptr;
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////
-// Simple color shader program
-/////////////////////////////////////////////////////////////////////////////////////////////
-BasicShaderProgram::BasicShaderProgram() :
-    ShaderProgram(":/shaders/basic.vert", ":/shaders/basic.frag", kBasic)
+void ShaderProgram::getActiveUniforms(std::vector<ShaderInputInfo>& outInfo)
 {
-    // Shader is already bound from construction, so set shader mode to 0 by default
-    setUniformValue("shaderMode", 0);
-    //setUniformValue("useNormalMap", false);
+    // See: https://www.khronos.org/registry/OpenGL-Refpages/es3.1/html/glGetProgramResource.xhtml
+    std::vector<GLchar> nameData(256);
+    std::vector<GLenum> properties = {
+        GL_NAME_LENGTH,
+        GL_TYPE,
+        GL_ARRAY_SIZE,
+        GL_BLOCK_INDEX, // Offset in block or UBO
+        GL_LOCATION
+    };
+    std::vector<GLint> values(properties.size());
+
+    GLint numActiveUniforms = getNumActiveUniforms();
+    for (int uniform = 0; uniform < numActiveUniforms; ++uniform)
+    {
+        // Get specified properties from program
+        m_gl.glGetProgramResourceiv(m_programID,
+            GL_UNIFORM,
+            uniform, // index of uniform
+            properties.size(),
+            &properties[0],
+            values.size(),
+            NULL, 
+            &values[0]);
+
+        // Get the name from the program
+        nameData.resize(values[0]); //The length of the name.
+        m_gl.glGetProgramResourceName(m_programID,
+            GL_UNIFORM,
+            uniform, // index of uniform
+            nameData.size(),
+            NULL,
+            &nameData[0]);
+        QString name((char*)&nameData[0]);
+
+        outInfo.push_back(ShaderInputInfo());
+        outInfo.back().m_name = name;
+        outInfo.back().m_uniformID = values[4];
+        outInfo.back().m_localIndex = uniform;
+        outInfo.back().m_inputType = ShaderInputType(values[1]);
+        outInfo.back().m_flags.setFlag(ShaderInputInfo::kIsArray, 
+            values[2] < 2 ? false : true);
+        outInfo.back().m_flags.setFlag(ShaderInputInfo::kInBlockOrBuffer, values[3] > -1);
+        outInfo.back().m_arraySize = values[2];
+
+    }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-BasicShaderProgram::BasicShaderProgram(const QJsonValue & json):
-    ShaderProgram(json)
+void ShaderProgram::getActiveSSBs(std::vector<ShaderBufferInfo>& outInfo)
 {
+    // See: https://www.khronos.org/registry/OpenGL-Refpages/es3.1/html/glGetProgramResource.xhtml
+    std::vector<GLchar> nameData(256);
+    std::vector<GLenum> properties = {
+        GL_NAME_LENGTH,
+        GL_BUFFER_BINDING,
+        GL_BUFFER_DATA_SIZE, //  If the final member of an active shader storage block is array with no declared size, the minimum buffer size is computed assuming the array was declared as an array with one element
+        GL_NUM_ACTIVE_VARIABLES,
+        GL_ACTIVE_VARIABLES
+    };
+    std::vector<GLint> values(properties.size());
+
+    GLint numActiveBuffers = getNumActiveBuffers(GL::BufferType::kShaderStorage);
+    for (int ssb = 0; ssb < numActiveBuffers; ++ssb)
+    {
+        // Get specified properties from program
+        m_gl.glGetProgramResourceiv(m_programID,
+            GL_SHADER_STORAGE_BLOCK,
+            ssb, // index of shader storage block
+            properties.size(),
+            &properties[0],
+            values.size(),
+            NULL,
+            &values[0]);
+
+        // Get the name from the program
+        nameData.resize(values[0]); //The length of the name.
+        m_gl.glGetProgramResourceName(m_programID,
+            GL_SHADER_STORAGE_BLOCK,
+            ssb, // index of ssb
+            nameData.size(),
+            NULL,
+            &nameData[0]);
+        QString name((char*)&nameData[0]);
+
+        outInfo.push_back(ShaderBufferInfo());
+        outInfo.back().m_name = name;
+        outInfo.back().m_bufferType = GL::BufferType::kShaderStorage;
+        outInfo.back().m_bufferBinding = values[1];
+        outInfo.back().m_bufferDataSize = values[2]; 
+        outInfo.back().m_numActiveVariables = values[3];
+    }
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+void ShaderProgram::getActiveAttributes(std::vector<ShaderInputInfo>& outInfo)
+{
+    // See: https://www.khronos.org/registry/OpenGL-Refpages/es3.1/html/glGetProgramResource.xhtml
+    // Of interest, GL_BLOCK_INDEX, GL_OFFSET
+    std::vector<GLchar> nameData(256);
+    std::vector<GLenum> properties = {
+        GL_NAME_LENGTH,
+        GL_TYPE,
+        GL_ARRAY_SIZE
+    };
+    std::vector<GLint> values(properties.size());
+
+    GLint numActiveAttributes = getNumActiveAttributes();
+    for (int attrib = 0; attrib < numActiveAttributes; ++attrib)
+    {
+        m_gl.glGetProgramResourceiv(m_programID,
+            GL_PROGRAM_INPUT, // Since attributes are just vertex shader inputs
+            attrib, // index of attribute
+            properties.size(),
+            &properties[0], 
+            values.size(), 
+            NULL, 
+            &values[0]);
+
+        nameData.resize(values[0]); //The length of the name.
+        m_gl.glGetProgramResourceName(m_programID,
+            GL_PROGRAM_INPUT, 
+            attrib, // index of attribute
+            nameData.size(), 
+            NULL,
+            &nameData[0]);
+        std::string name((char*)&nameData[0], nameData.size() - 1);
+    }
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+GLint ShaderProgram::getNumActiveUniforms()
+{
+    GLint numActiveUniforms = 0;
+    m_gl.glGetProgramInterfaceiv(m_programID,
+        GL_UNIFORM,
+        GL_ACTIVE_RESOURCES,
+        &numActiveUniforms);
+    return numActiveUniforms;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+GLint ShaderProgram::getNumActiveBuffers(GL::BufferType bufferType)
+{
+    GLint numActiveBuffers = 0;
+    m_gl.glGetProgramInterfaceiv(m_programID,
+        (size_t)bufferType,
+        GL_ACTIVE_RESOURCES,
+        &numActiveBuffers);
+    return numActiveBuffers;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+GLint ShaderProgram::getNumActiveAttributes()
+{
+    GLint numActiveAttributes = 0;
+    m_gl.glGetProgramInterfaceiv(m_programID,
+        GL_PROGRAM_INPUT,
+        GL_ACTIVE_RESOURCES,
+        &numActiveAttributes);
+    return numActiveAttributes;
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////////
-BasicShaderProgram::~BasicShaderProgram()
-{
-}
-///////////////////////////////////////////////////////////////////////////////////////////////
-//void BasicShaderProgram::setMode(int mode)
-//{
-//    //m_mode = mode;
-//    setUniformValue("shaderMode", mode);
-//    updateUniforms();
-//}
-
 
 /////////////////////////////////////////////////////////////////////////////////////////////
+ShaderProgram* ShaderProgram::s_boundShader = nullptr;
 /////////////////////////////////////////////////////////////////////////////////////////////
-// Cubemap shader program
-CubemapShaderProgram::CubemapShaderProgram() :
-    ShaderProgram(":/shaders/cubemap.vert", ":/shaders/cubemap.frag", kCubemap)
-{
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-CubemapShaderProgram::CubemapShaderProgram(const QJsonValue & json):
-    ShaderProgram(json)
-{
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-CubemapShaderProgram::~CubemapShaderProgram()
-{
-}
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////

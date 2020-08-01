@@ -3,6 +3,9 @@
 #include "../../core/GbCoreEngine.h"
 #include "../../core/mixins/GbLoadable.h"
 #include "../../core/readers/GbJsonReader.h"
+#include "../GbWidgetManager.h"
+#include "../../core/loop/GbSimLoop.h"
+#include "../../core/geometry/GbVector.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Namespace Definitions
@@ -17,10 +20,63 @@ namespace View {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // ParameterWidget
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+QBoxLayout* ParameterWidget::LabeledLayout(const QString& label,
+    QWidget* widget,
+    QBoxLayout::Direction dir) 
+{
+    QBoxLayout* layout = new QBoxLayout(dir);
+    layout->addWidget(new QLabel(label));
+    layout->addWidget(widget);
+    return layout;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void ParameterWidget::AddLabel(const QString & label, QBoxLayout * layout)
+{
+    layout->addWidget(new QLabel(label));
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void ParameterWidget::AddLabel(const QIcon & label, QBoxLayout * layout, const Vector<float, 2>& size)
+{
+    QLabel* l = new QLabel();
+    l->setPixmap(label.pixmap(size.x(), size.y()));
+    layout->addWidget(l);
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+std::vector<QWidget*> ParameterWidget::GetTopLevelWidgets(QLayout * layout)
+{
+    std::vector<QWidget*> widgets;
+    for (int i = 0; i < layout->count(); ++i)
+    {
+        QWidget *widget = layout->itemAt(i)->widget();
+        if (widget != nullptr)
+        {
+            widgets.push_back(widget);
+        }
+    }
+    return widgets;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ParameterWidget::ParameterWidget(CoreEngine* core, QWidget* parent) :
     QWidget(parent),
     m_engine(core)
 {
+    m_engine->widgetManager()->addParameterWidget(this);
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ParameterWidget::~ParameterWidget()
+{
+    m_engine->widgetManager()->removeParameterWidget(this);
+
+    // Want to properly delete children
+    //clearLayout(m_mainLayout);
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void ParameterWidget::update()
+{
+#ifdef DEBUG_MODE
+    //logInfo("Updating base routine");
+#endif
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void ParameterWidget::initialize()
@@ -32,6 +88,27 @@ void ParameterWidget::initialize()
     // Note, cannot call again without deleting previous layout
     // https://doc.qt.io/qt-5/qwidget.html#setLayout
     setLayout(m_mainLayout);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+void ParameterWidget::pauseSimulation()
+{
+    // Pause scenario to edit component
+    SimulationLoop* simLoop = m_engine->simulationLoop();
+    m_wasPlaying = simLoop->isPlaying();
+    if (m_wasPlaying) {
+        simLoop->pause();
+    }
+    m_engine->simulationLoop()->pause();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+void ParameterWidget::resumeSimulation()
+{
+    // Unpause scenario
+    SimulationLoop* simLoop = m_engine->simulationLoop();
+    if (m_wasPlaying) {
+        simLoop->play();
+    }
 }
 
 
@@ -98,25 +175,26 @@ JsonWidget::~JsonWidget()
 {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-void JsonWidget::updateText(bool reloadJson)
+void JsonWidget::updateText()
 {
     // Block signals to avoid infinite loop of signal sends
     m_textEdit->blockSignals(true);
 
     // Get text and color if not valid JSON
-    QString text;
-    if (!reloadJson) {
-        text = m_textEdit->toPlainText();
-    }
-    else {
-        text = JsonReader::getJsonValueAsQString(m_serializable->asJson(), true);
-        m_textEdit->setText(text);
-    }
-    QJsonDocument contents = JsonReader::getQStringAsJsonDocument(text);
+    QString text = m_textEdit->toPlainText();
+    //if (!m_reloadJson) {
+    //    text = m_textEdit->toPlainText();
+    //}
+    //else {
+    //    text = JsonReader::getJsonValueAsQString(m_serializable->asJson(), true);
+    //    m_textEdit->setText(text);
+    //}
+    QJsonDocument contents = JsonReader::ToJsonDocument(text);
+    QJsonObject object = contents.object();
     QPalette palette;
     QColor badColor = QApplication::palette().color(QPalette::BrightText);
     QColor goodColor = QApplication::palette().color(QPalette::Highlight);
-    if (contents.isNull()) {
+    if (contents.isNull() || !isValidObject(object)) {
         palette.setColor(QPalette::Text, badColor);
         m_textEdit->setPalette(palette);
     }
@@ -132,7 +210,7 @@ void JsonWidget::initializeWidgets()
 {
     ParameterWidget::initializeWidgets();
     m_textEdit = new QTextEdit();
-    m_textEdit->setText(JsonReader::getJsonValueAsQString(m_serializable->asJson(), true));
+    m_textEdit->setText(JsonReader::ToQString(m_serializable->asJson(), true));
     m_confirmButton = new QPushButton();
     m_confirmButton->setIcon(style()->standardIcon(QStyle::SP_BrowserReload));
 }
@@ -152,8 +230,8 @@ void JsonWidget::initializeConnections()
 
         // Get text and return if not valid JSON
         const QString& text = m_textEdit->toPlainText();
-        QJsonDocument contents = JsonReader::getQStringAsJsonDocument(text);
-        if (contents.isNull()) return;
+        QJsonDocument contents = JsonReader::ToJsonDocument(text);
+        if (contents.isNull() || !isValidObject(contents.object())) return;
 
         // Perform preloaod
         preLoad();
@@ -163,13 +241,14 @@ void JsonWidget::initializeConnections()
 
         // Update widget text with updated JSON
         m_textEdit->setText(
-            JsonReader::getJsonValueAsQString(m_serializable->asJson(), true)
+            JsonReader::ToQString(m_serializable->asJson(), true)
         );
 
         // Perform post-load
         postLoad();
 
     });
+
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void JsonWidget::layoutWidgets()

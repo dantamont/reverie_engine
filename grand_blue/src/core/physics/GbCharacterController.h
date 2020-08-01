@@ -25,7 +25,7 @@ class PhysicsGeometry;
 class PhysicsMaterial;
 class PhysicsShapePrefab;
 class PhysicsScene;
-struct PhysicsShape;
+class PhysicsShape;
 class CoreEngine;
 class CCTManager;
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -495,7 +495,7 @@ protected:
 
     /// @brief Obtain pointer to this actor's scene
     inline std::shared_ptr<SceneObject> sceneObject() const {
-        if (const std::shared_ptr<SceneObject>& so = m_sceneObject.lock()) {
+        if (std::shared_ptr<SceneObject> so = m_sceneObject.lock()) {
             return so;
         }
         else {

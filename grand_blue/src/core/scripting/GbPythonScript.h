@@ -6,7 +6,12 @@
 #define GB_PYTHON_SCRIPT_H
 
 // External
-#include <PythonQt.h>
+#include "../../third_party/pythonqt/PythonQt.h"
+#ifdef NDEBUG
+#ifdef _DEBUG
+#undef _DEBUG
+#endif
+#endif
 
 // QT
 #include <QString>
@@ -15,6 +20,7 @@
 #include "../GbObject.h"
 #include "../mixins/GbLoadable.h"
 #include "../containers/GbSortingLayer.h"
+#include "../resource/GbResource.h"
 
 namespace Gb {
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -120,7 +126,7 @@ private:
 /// @class PythonScript
 /// @brief Represents a python script
 /// @note Filename must be the same as the class name defined in the script
-class PythonScript : public Object, public Loadable {
+class PythonScript : public Resource, public Loadable {
 public:
     //--------------------------------------------------------------------------------------------
     /// @name Static
@@ -238,6 +244,11 @@ public:
     /// https://sourceforge.net/p/pythonqt/discussion/631392/thread/3954953d/
     /// https://sourceforge.net/p/pythonqt/discussion/631393/thread/5890418f/
     PythonQtObjectPtr instantiate(const std::shared_ptr<SceneObject>& sceneObject);
+
+    /// @brief What action to perform on removal of the resource
+    virtual void onRemoval(ResourceCache* cache = nullptr) override {
+        Q_UNUSED(cache)
+    }
 
     /// @}
 

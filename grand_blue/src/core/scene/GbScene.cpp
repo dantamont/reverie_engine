@@ -7,42 +7,31 @@
 #include "../GbCoreEngine.h"
 #include "../containers/GbColor.h"
 #include "../resource/GbResourceCache.h"
-#include "../rendering/materials/GbCubeMap.h"
+
 #include "../components/GbCamera.h"
 #include "../components/GbCanvasComponent.h"
-#include "../components/GbLight.h"
-#include "../components/GbRendererComponent.h"
+#include "../components/GbLightComponent.h"
+#include "../components/GbShaderComponent.h"
 #include "../components/GbPhysicsSceneComponent.h"
+#include "../components/GbCubeMapComponent.h"
+
 #include "../rendering/renderer/GbRenderers.h"
+#include "../rendering/renderer/GbMainRenderer.h"
+#include "../rendering/renderer/GbRenderCommand.h"
+
 #include "../rendering/view/GbRenderProjection.h"
 #include "../rendering/shaders/GbShaders.h"
 
 #include "../physics/GbPhysicsManager.h"
 #include "../physics/GbPhysicsScene.h"
 
+#include "../loop/GbSimLoop.h"
 #include "../debugging/GbDebugManager.h"
 
 namespace Gb {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// TypeDefs
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-typedef std::multiset<std::shared_ptr<SceneObject>, CompareByRenderLayer> SceneObjectSet;
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-bool CompareByRenderLayer::operator()(const std::shared_ptr<SceneObject>& a, const std::shared_ptr<SceneObject>& b) const
-{
-    if (!a->rendererComponent()) {
-        return false;
-    }
-    if (!b->rendererComponent()) {
-        return true;
-    }
-    return a->rendererComponent()->renderer()->getRenderLayer() < b->rendererComponent()->renderer()->getRenderLayer();
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Scene::Scene() :
     m_scenario(nullptr),
-    m_skybox(nullptr),
     m_engine(nullptr)
 {
     initialize();
@@ -50,7 +39,6 @@ Scene::Scene() :
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Scene::Scene(CoreEngine * engine) :
     m_scenario(nullptr),
-    m_skybox(nullptr),
     m_engine(engine)
 {
     initialize();
@@ -58,7 +46,6 @@ Scene::Scene(CoreEngine * engine) :
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Scene::Scene(Scenario* scenario):
     m_scenario(scenario),
-    m_skybox(nullptr),
     m_engine(scenario->engine())
 {
     initialize();
@@ -82,6 +69,24 @@ std::shared_ptr<Scene> Scene::create(CoreEngine * engine)
 Scene::~Scene()
 {
     clear();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Scene::createDrawCommands(MainRenderer & renderer)
+{
+    SimulationLoop::PlayMode mode = m_engine->simulationLoop()->getPlayMode();
+
+    if (mode == SimulationLoop::kStandard) {
+        // Standard mode, iterate through cameras
+        for (CameraComponent*& camera : m_cameras) {
+            camera->createDrawCommands(*this, renderer);
+        }
+    }
+    else if (mode == SimulationLoop::kDebug) {
+        // Debug mode is enabled, use only debug camera
+        //m_engine->debugManager()->camera()->createDrawCommands(*this, renderer);
+        m_engine->debugManager()->camera()->createDebugDrawCommands(*this, renderer);
+    }
+
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Scene::addCamera(CameraComponent * camera)
@@ -114,6 +119,34 @@ void Scene::removeCanvas(CanvasComponent * canv)
     m_canvases.erase(it);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Scene::addCubeMap(CubeMapComponent * cubemap)
+{
+    Vec::EmplaceBack(m_cubeMaps, cubemap);
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Scene::removeCubeMap(CubeMapComponent * map)
+{
+    auto it = std::find_if(m_cubeMaps.begin(), m_cubeMaps.end(),
+        [&](CubeMapComponent* cubeMap) {
+        return cubeMap->getUuid() == map->getUuid();
+    });
+    if (it == m_cubeMaps.end()) 
+        throw("Error, cubemap not found");
+    m_cubeMaps.erase(it);
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+CubeMapComponent * Scene::getCubeMap(const Uuid & uuid)
+{
+    auto it = std::find_if(m_cubeMaps.begin(), m_cubeMaps.end(),
+        [&](CubeMapComponent* cubeMap) {
+        return cubeMap->getUuid() == uuid;
+    });
+    if (it == m_cubeMaps.end())
+        throw("Error, cubemap not found");
+    
+    return *it;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 std::shared_ptr<PhysicsScene> Scene::physics()
 {
     if (physicsComponent()) {
@@ -124,9 +157,9 @@ std::shared_ptr<PhysicsScene> Scene::physics()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 PhysicsSceneComponent * Scene::physicsComponent()
 {
-    if (m_components.find(Component::kPhysicsScene) != m_components.end()) {
-        if (m_components[Component::kPhysicsScene].size() == 0) return nullptr;
-        PhysicsSceneComponent* physics = static_cast<PhysicsSceneComponent*>(m_components[Component::kPhysicsScene][0]);
+    if (m_components.find(Component::ComponentType::kPhysicsScene) != m_components.end()) {
+        if (m_components[Component::ComponentType::kPhysicsScene].size() == 0) return nullptr;
+        PhysicsSceneComponent* physics = static_cast<PhysicsSceneComponent*>(m_components[Component::ComponentType::kPhysicsScene][0]);
         return physics;
     }
     return nullptr;
@@ -146,17 +179,10 @@ std::vector<CanvasComponent*>& Scene::canvases()
 {
     return m_canvases;
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-const std::vector<std::shared_ptr<Renderer>> Scene::renderers() const
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+std::vector<CubeMapComponent*>& Scene::cubeMaps()
 {
-    std::vector<std::shared_ptr<Renderer>> renderers;
-    for (const auto& object : m_topLevelSceneObjects) {
-        if (object->hasRenderer()) {
-            RendererComponent* rc = object->rendererComponent();
-            renderers.emplace_back(rc->renderer());
-        }
-    }
-    return renderers;
+    return m_cubeMaps;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //void Scene::setAmbientLight(const Color & lightColor)
@@ -180,7 +206,8 @@ void Scene::addPhysics()
         if (!thisScene) {
             throw("Error, scene not found in scenario. addPhysics likely called before or during construction of scene");
         }
-        addComponent(new PhysicsSceneComponent(thisScene));
+        // Is added automatically to scene
+        new PhysicsSceneComponent(thisScene);
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -279,7 +306,7 @@ void Scene::addObject(const std::shared_ptr<SceneObject>& object)
     }
 
     if (!object->hasParents()) {
-        m_topLevelSceneObjects.insert(object);
+        m_topLevelSceneObjects.push_back(object);
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -315,6 +342,10 @@ void Scene::clear()
         DagNode::eraseFromNodeMap(object->getUuid());
     }
     m_topLevelSceneObjects.clear();
+    m_cameras.clear();
+    m_canvases.clear();
+    m_cubeMaps.clear();
+    m_defaultCubeMap = nullptr;
 
     // Clear scene components
     for (const std::pair<Component::ComponentType, std::vector<Component*>>& componentMapPair : m_components) {
@@ -324,17 +355,16 @@ void Scene::clear()
     }
     m_components.clear();
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void Scene::bindUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram)
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Scene::bindUniforms(DrawCommand& command)
 {
     // Set uniforms (just ambient color for now)
     for (const auto& uniformPair : m_uniforms) {
-        if (!shaderProgram->hasUniform(uniformPair.first)) continue;
-        shaderProgram->setUniformValue(uniformPair.second);
+        command.setUniform(uniformPair.second);
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-SceneObjectSet::iterator Scene::getIterator(const std::shared_ptr<SceneObject>& object)
+std::vector<std::shared_ptr<SceneObject>>::iterator Scene::getIterator(const std::shared_ptr<SceneObject>& object)
 {
     auto iterator = std::find_if(m_topLevelSceneObjects.begin(), m_topLevelSceneObjects.end(),
         [object](const std::shared_ptr<SceneObject>& so) {
@@ -401,11 +431,11 @@ bool Scene::canAdd(Component * component)
 
     // Check component type
     switch (type) {
-    case Component::kPhysicsScene:
+    case Component::ComponentType::kPhysicsScene:
         break;
     default:
 #ifdef DEBUG_MODE
-        logWarning("canAdd:: Warning, failed to add component to scene");
+        throw("canAdd:: Warning, failed to add component to scene, type unrecognized");
 #endif
         return false;
     }
@@ -449,11 +479,6 @@ QJsonValue Scene::asJson() const
     }
     object.insert("uniforms", uniforms);
 
-    // Serialize skybox
-    if (m_skybox) {
-        object.insert("skybox", m_skybox->getName());
-    }
-
     // Serialize components
     QJsonArray components;
     for (const auto& componentMapPair : m_components) {
@@ -466,6 +491,10 @@ QJsonValue Scene::asJson() const
         }
     }
     object.insert("components", components);
+
+    // Serialize default skybox
+    if(m_defaultCubeMap)
+        object.insert("defaultSkybox", m_defaultCubeMap->getUuid().asString());
 
     return object;
 }
@@ -502,7 +531,7 @@ void Scene::loadFromJson(const QJsonValue & json)
 
             // Load component
             switch (componentType) {
-            case Component::kPhysicsScene:
+            case Component::ComponentType::kPhysicsScene:
             {
                 auto pComp = new PhysicsSceneComponent(thisScene, componentJsonObject);
                 Q_UNUSED(pComp);
@@ -512,6 +541,7 @@ void Scene::loadFromJson(const QJsonValue & json)
 #ifdef DEBUG_MODE
                 throw("loadFromJson:: Error, this type of component is not implemented");
 #endif
+                break;
             }
         }
     }
@@ -535,8 +565,9 @@ void Scene::loadFromJson(const QJsonValue & json)
     }
 
     // Load skybox
-    if (object.contains("skybox")) {
-        m_skybox = m_scenario->engine()->resourceCache()->getCubemap(object["skybox"].toString());
+    if (object.contains("defaultSkybox")) {
+        Uuid skyboxUuid = Uuid(object["defaultSkybox"].toString());
+        m_defaultCubeMap = getCubeMap(skyboxUuid);
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -18,5 +18,9 @@
 		<file>axes.vert</file>
 		<file>debug_skeleton.frag</file>
 		<file>debug_skeleton.vert</file>
+		<file>quad.frag</file>
+		<file>quad.vert</file>
+		<file>prepass.frag</file>
+		<file>prepass.vert</file>
     </qresource>
 </RCC>

@@ -3,6 +3,7 @@
 include ( python.prf )  
 
 INCLUDEPATH += $$PWD/../src
+# message(Added include path $$PWD/../src)
 
 # check if debug or release
 CONFIG(debug, debug|release) {
@@ -11,5 +12,7 @@ CONFIG(debug, debug|release) {
   DEBUG_EXT = 
 }
 
-win32::LIBS += $$(PYTHON_QT_PATH)/lib/PythonQt-Qt5-Python$$(PYTHON_VERSION)$${DEBUG_EXT}.lib
-unix::LIBS += -L$$(PYTHON_QT_PATH)/lib -lPythonQt-Qt5-Python$${PYTHON_VERSION} #$${DEBUG_EXT}
+#win32::LIBS += $$(PYTHON_QT_PATH)/lib/PythonQt-Qt5-Python$$(PYTHON_VERSION)$${DEBUG_EXT}.lib
+LIBS += -L$$(PYTHON_QT_PATH)/lib -lPythonQt-Qt5-Python$${PYTHON_VERSION}$${DEBUG_EXT}
+
+# message(Linking to PythonQt Lib: -L$$(PYTHON_QT_PATH)/lib -lPythonQt-Qt5-Python$${PYTHON_VERSION}$${DEBUG_EXT})

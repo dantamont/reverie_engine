@@ -12,6 +12,7 @@
 #include "../../core/GbObject.h"
 #include "../parameters/GbParameterWidgets.h"
 #include "../../core/mixins/GbLoadable.h"
+#include "GbTreeWidget.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Forward Declarations
@@ -31,7 +32,7 @@ class ScriptOrderTreeWidget;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /// @class ScriptJsonWidget
-class ScriptJsonWidget : public ParameterWidget{
+class ScriptJsonWidget : public JsonWidget{
     Q_OBJECT
 public:
     //---------------------------------------------------------------------------------------
@@ -69,28 +70,34 @@ protected:
     void wheelEvent(QWheelEvent* event) override;
 
     /// @}
+
     //---------------------------------------------------------------------------------------
     /// @name Protected Methods
     /// @{
 
     virtual void initializeWidgets() override;
-    virtual void initializeConnections() override;
     virtual void layoutWidgets() override;
 
+    /// @brief Whether or not the specified object is valid
+    virtual bool isValidObject(const QJsonObject& object) override;
+
+    /// @brief What to do prior to reloading serializable
+    virtual void preLoad() override;
+
+    /// @brief What do do after reloading serializable
+    virtual void postLoad() override;
+
+    /// @brief Serializable object
+    SortingLayer* sortingLayer() { return reinterpret_cast<SortingLayer*>(m_serializable); }
+
     /// @}
+
     //---------------------------------------------------------------------------------------
     /// @name Protected Members
     /// @{
 
-    CoreEngine* m_engine;
+    bool m_wasPlaying = true;
 
-    QLabel* m_typeLabel;
-
-    /// @brief Serializable object
-    SortingLayer* m_sortingLayer;
-
-    QTextEdit* m_textEdit;
-    QPushButton* m_confirmButton;
     /// @}
 };
 
@@ -98,7 +105,7 @@ protected:
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /// @class ScriptOrderItem
-class ScriptOrderItem : public QTreeWidgetItem, public Gb::Object {
+class ScriptOrderItem : public TreeItem<SortingLayer> {
 public:
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Static
@@ -123,11 +130,11 @@ public:
 
     /// @brief Set the widget for this item in the given tree widget
     /// @note This is only called on the double click event
-    void setWidget();
-    void removeWidget();
+    virtual void setWidget() override;
+    virtual void removeWidget(int column = 0) override;
 
     /// @brief Return sorting layer represented by this tree item
-    inline SortingLayer* sortingLayer() { return m_sortingLayer; }
+    inline SortingLayer* sortingLayer() { return m_object; }
 
     /// @brief Get the resource item type of this tree item
     ScriptOrderItemType itemType() const { return ScriptOrderItemType(type()); }
@@ -159,27 +166,8 @@ protected:
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Protected Methods
     /// @{
-
-    /// @brief Get the resource item type of the given layer
-    ScriptOrderItemType getItemType(SortingLayer* layer);
-
-    /// @brief Initialize the component tree item
-    void initializeItem();
-
-
     /// @}
 
-    //-----------------------------------------------------------------------------------------------------------------
-    /// @name Protected Members
-    /// @{
-
-    /// @brief Pointer to the sorting layer corresponding to this tree item
-    SortingLayer* m_sortingLayer;
-
-    /// @brief Pointer to widget if this item has one
-    QWidget* m_widget;
-
-    /// @}
 };
 
 
@@ -187,13 +175,13 @@ protected:
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /// @class ScriptOrderTreeWidget
-class ScriptOrderTreeWidget : public QTreeWidget, public AbstractService {
+class ScriptOrderTreeWidget : public TreeWidget {
     Q_OBJECT
 public:
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Constructors and Destructors
     /// @{
-    ScriptOrderTreeWidget(CoreEngine* engine, const QString& name, QWidget* parent = nullptr);
+    ScriptOrderTreeWidget(CoreEngine* engine, QWidget* parent = nullptr);
     ~ScriptOrderTreeWidget();
 
     /// @}
@@ -203,16 +191,9 @@ public:
 
     /// @brief Add sorting layer item to the widget
     void addItem(SortingLayer* sortingLayer);
-    void addItem(View::ScriptOrderItem* item);
 
     /// @brief Remove component item from the widget
     void removeItem(ScriptOrderItem* ScriptOrderItem);
-
-    /// @brief Get tree item corresponding to the given sorting layer
-    View::ScriptOrderItem* getItem(SortingLayer* itemObject);
-
-    /// @brief Resize columns to fit content
-    void resizeColumns();
 
     /// @}
 
@@ -238,15 +219,6 @@ protected slots:
     /// @name Protected Slots
     /// @{
 
-    /// @brief What to do on item double click
-    void onItemDoubleClicked(QTreeWidgetItem *item, int column);
-
-    /// @brief What to do on item expanded
-    void onItemExpanded(QTreeWidgetItem* item);
-
-    /// @brief What to do on current item change
-    //void onCurrentItemChanged(QTreeWidgetItem *item, QTreeWidgetItem *previous);
-
     /// @}
 protected:
     //-----------------------------------------------------------------------------------------------------------------
@@ -260,31 +232,25 @@ protected:
     /// @name Protected Methods
     /// @{
 
+    ScriptOrderItem* currentContextItem() const {
+        return static_cast<ScriptOrderItem*>(m_currentItems[kContextClick]);
+    }
+
+    /// @brief initialize an item added to the widget
+    virtual void initializeItem(QTreeWidgetItem* item) override;
+
     /// @brief How to reorder with respect to another Sorting Layer
-    void reorder(SortingLayer* layer,
-        SortingLayer* otherLayer,
-        bool before);
+    void reorder(SortingLayer* layer, SortingLayer* otherLayer, bool before);
 
-    /// @brief Override default mouse release event
-    void mouseReleaseEvent(QMouseEvent *event) override;
-
-    void dropEvent(QDropEvent* event) override;
-    void dragEnterEvent(QDragEnterEvent* event) override;
-    void dragLeaveEvent(QDragLeaveEvent* event) override;
-    void dragMoveEvent(QDragMoveEvent *event) override;
+    virtual void onDropAbove(QDropEvent* event, QTreeWidgetItem* source, QTreeWidgetItem* destination) override;
+    virtual void onDropBelow(QDropEvent* event, QTreeWidgetItem* source, QTreeWidgetItem* destination) override;
 
     /// @brief Remove an item
     void removeItem(SortingLayer* itemObject);
 
     /// @brief Initialize the widget
-    void initializeWidget();
+    virtual void initializeWidget() override;
 
-#ifndef QT_NO_CONTEXTMENU
-    /// @brief Generates a context menu, overriding default implementation
-    /// @note Context menus can be executed either asynchronously using the popup() function or 
-    ///       synchronously using the exec() function
-    void contextMenuEvent(QContextMenuEvent *event) override;
-#endif // QT_NO_CONTEXTMENU
     /// @}
 
     //-----------------------------------------------------------------------------------------------------------------
@@ -292,16 +258,6 @@ protected:
     /// @{
 
     std::multimap<int, SortingLayer*> m_sortedLayers;
-
-    /// @brief Actions performable in this widget
-    QAction* m_addScriptLayer;
-    QAction* m_removeScriptLayer;
-
-    /// @brief The resource clicked by a right-mouse operation
-    ScriptOrderItem* m_currentScriptOrderItem;
-
-    /// @brief Core engine for the application
-    CoreEngine* m_engine;
 
     /// @}
 };

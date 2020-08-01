@@ -5,15 +5,16 @@
 
 #include "events/GbEvent.h"
 
-#include "gui/PythonQtScriptingConsole.h"
+#include "../third_party/pythonqt/gui/PythonQtScriptingConsole.h"
 #include "scripting/GbPythonAPI.h"
 #include "scripting/GbPythonScript.h"
 #include "scripting/GbPyWrappers.h"
 #include "geometry/GbEulerAngles.h"
 
 #include "components/GbTransformComponent.h"
-#include "components/GbLight.h"
+#include "components/GbLightComponent.h"
 #include "components/GbCamera.h"
+#include "components/GbShaderComponent.h"
 #include "rendering/renderer/GbRenderers.h"
 #include "rendering/shaders/GbShaders.h"
 #include "rendering/shaders/GbUniformBufferObject.h"
@@ -29,6 +30,7 @@
 #include "physics/GbPhysicsManager.h"
 
 #include "rendering/renderer/GbMainRenderer.h"
+#include "rendering/renderer/GbRenderContext.h"
 
 #include "canvas/GbFonts.h"
 #include "debugging/GbDebugManager.h"
@@ -83,7 +85,6 @@ CoreEngine::~CoreEngine()
     delete m_simulationLoop;
     delete m_widgetManager;
     delete m_actionManager;
-    delete m_resourceCache;
     delete m_eventManager;
     delete m_physicsManager;
     delete m_fontManager;
@@ -97,7 +98,7 @@ MainWindow * CoreEngine::mainWindow() const
     return m_widgetManager->mainWindow();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<GL::MainRenderer> CoreEngine::mainRenderer()
+std::shared_ptr<MainRenderer> CoreEngine::mainRenderer()
 {
     if (m_widgetManager->mainGLWidget()) {
         return m_widgetManager->mainGLWidget()->renderer();
@@ -135,7 +136,8 @@ void CoreEngine::setScenario(std::shared_ptr<Scenario> scenario)
 {
     clearEngine(false, true);
     m_scenario = scenario;
-    emit scenarioChanged();
+    emit scenarioChanged(); // TODO: Make these one signal
+    emit scenarioLoaded();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void CoreEngine::clearEngine(bool clearActionStack, bool clearScenario)
@@ -171,7 +173,21 @@ void CoreEngine::clearEngine(bool clearActionStack, bool clearScenario)
     UBO::clearUBOs();
 
     // Clear Lights
-    Light::clearLights();
+    // FIXME: Lights don't toggle on when switching scenarios
+    mainRenderer()->renderContext().lightingSettings().clearLights();
+
+    // Clear material count
+    Material::clearCount();
+
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+QOpenGLContext* CoreEngine::getGLWidgetContext()
+{
+    QOpenGLContext* context = QOpenGLContext::currentContext();
+    if (context != widgetManager()->mainGLWidget()->context()) {
+        m_widgetManager->mainGLWidget()->makeCurrent();
+    }
+    return widgetManager()->mainGLWidget()->context();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void CoreEngine::setGLContext()
@@ -219,8 +235,6 @@ void CoreEngine::initialize(MainWindow* mainWindow)
     // Create eventManager
     m_eventManager = new EventManager(this);
 
-    // Initialize a blank scenario
-    setNewScenario();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void CoreEngine::postConstruction()
@@ -232,6 +246,7 @@ void CoreEngine::postConstruction()
 
     // Perform post-construction for managers
     m_fontManager->postConstruction();
+    m_resourceCache->postConstruction();
     m_debugManager->postConstruction();
 
 #ifdef DEBUG_MODE    
@@ -258,6 +273,10 @@ void CoreEngine::postConstruction()
         }
 #endif
     }
+    else {
+        // Initialize a blank scenario
+        setNewScenario();
+    }
     delete settings;
 
     // Initialize Python console
@@ -268,6 +287,9 @@ void CoreEngine::postConstruction()
     //    window->setWindowTitle("Python Debug Console");
     //window->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
     //window->show();
+
+    // Once scenario is loaded, ensure that framebuffers are resized correctly
+    m_widgetManager->postConstruction();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 bool CoreEngine::event(QEvent * event)
@@ -341,11 +363,11 @@ void CoreEngine::initializeMetaTypes()
     qRegisterMetaType<Scenario>("Scenario");
     qRegisterMetaType<Scenario>("Gb::Scenario");
 
-    qRegisterMetaType<Light>("Light");
-    qRegisterMetaType<Light>("Gb::Light");
+    qRegisterMetaType<LightComponent>("LightComponent");
+    qRegisterMetaType<LightComponent>("Gb::LightComponent");
 
-    qRegisterMetaType<Renderer>("Renderer");
-    qRegisterMetaType<Renderer>("Gb::Renderer");
+    qRegisterMetaType<ShaderComponent>("ShaderComponent");
+    qRegisterMetaType<ShaderComponent>("Gb::ShaderComponent");
 
     qRegisterMetaType<ShaderProgram>("ShaderProgram");
     qRegisterMetaType<ShaderProgram>("Gb::ShaderProgram");
@@ -504,7 +526,7 @@ void CoreEngine::initializePythonAPI()
         "scene",
         PythonQtCreateObject<PyScenario>);
 
-    PythonQt::self()->registerCPPClass("Light",
+    PythonQt::self()->registerCPPClass("LightComponent",
         "Component",
         "components",
         PythonQtCreateObject<PyLight>);
@@ -514,10 +536,10 @@ void CoreEngine::initializePythonAPI()
         "components",
         PythonQtCreateObject<PyCamera>);
 
-    PythonQt::self()->registerCPPClass("RendererComponent",
+    PythonQt::self()->registerCPPClass("ShaderComponent",
         "Component",
         "components",
-        PythonQtCreateObject<PyRenderer>);
+        PythonQtCreateObject<PyMaterial>);
 
     PythonQt::self()->registerCPPClass("CharControlComponent",
         "Component",

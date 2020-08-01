@@ -2,8 +2,7 @@
 
 #include <QMenu>
 
-//#include "../third_party/PythonQt/src/gui/PythonQtScriptingConsole.h"
-#include "../../third_party/PythonQt/src/gui/PythonQtScriptingConsole.h"
+#include "../../third_party/pythonqt/gui/PythonQtScriptingConsole.h"
 
 #include "../GbMainWindow.h"
 
@@ -14,6 +13,7 @@
 #include "tree/GbResourceWidgets.h"
 #include "tree/GbComponentWidget.h"
 #include "players/GbPlayer.h"
+#include "parameters/GbParameterWidgets.h"
 
 #include "../core/GbCoreEngine.h"
 
@@ -44,6 +44,21 @@ WidgetManager::~WidgetManager()
     delete m_componentWidget;
 }
 //////////////////////////////////////////////////////////////////////////////////
+void WidgetManager::addParameterWidget(ParameterWidget * widget)
+{
+    QMutexLocker lock(&m_updateLock);
+    if (m_parameterWidgets.count(widget->getUuid())) {
+        throw("Error widget already added to parameter widget map");
+    }
+    m_parameterWidgets[widget->getUuid()] = widget;
+}
+//////////////////////////////////////////////////////////////////////////////////
+void WidgetManager::removeParameterWidget(ParameterWidget * widget)
+{
+    QMutexLocker lock(&m_updateLock);
+    m_parameterWidgets.erase(widget->getUuid());
+}
+//////////////////////////////////////////////////////////////////////////////////
 void WidgetManager::resize(int w, int h)
 {
     w; h;
@@ -53,17 +68,46 @@ void WidgetManager::resize(int w, int h)
 //////////////////////////////////////////////////////////////////////////////////
 void WidgetManager::clear()
 {
+    QMutexLocker lock(&m_updateLock);
+
     for (const std::pair<QString, Gb::View::GLWidget*>& widgetPair : m_glWidgets) {
         widgetPair.second->clear();
+    }
+
+    // Clear parameter widgets
+    for (const auto& widgetPair : m_parameterWidgets) {
+        widgetPair.second->clear();
+    }
+}
+//////////////////////////////////////////////////////////////////////////////////
+void WidgetManager::update()
+{
+    QMutexLocker lock(&m_updateLock);
+    for (const auto& widgetPair : m_parameterWidgets) {
+        if (!widgetPair.second->isVisible()) { 
+            continue; 
+        }
+        widgetPair.second->update();
+    }
+}
+//////////////////////////////////////////////////////////////////////////////////
+void WidgetManager::postConstruction()
+{
+    Manager::postConstruction();
+
+    for (const auto& widgetPair : m_glWidgets) {
+        // Ensure that framebuffers are properly resized
+        widgetPair.second->renderer()->requestResize();
     }
 }
 //////////////////////////////////////////////////////////////////////////////////
 void WidgetManager::initializeDefault()
 {
     // Initialize GL widget
-    m_glWidgets[QString::fromStdString("main")] = new GLWidget("main", m_engine, m_mainWindow);
+    QString mainName = QStringLiteral("main");
+    m_glWidgets[mainName] = new GLWidget(mainName, m_engine, m_mainWindow);
 
-    m_mainWindow->setCentralWidget(m_glWidgets["main"]);
+    m_mainWindow->setCentralWidget(m_glWidgets[mainName]);
 
 #ifdef DEVELOP_MODE
     // Initialize scene tree widget

@@ -7,6 +7,7 @@
 
 // Internal
 #include "../../mixins/GbRenderable.h"
+#include "../../GbObject.h"
 
 namespace Gb {
 
@@ -29,13 +30,13 @@ public:
     /// @name Static
     /// @{
 
-    static std::shared_ptr<Lines> getCube();
-    static std::shared_ptr<Lines> getSphere(int latSize = 20, int lonSize = 30);
-    static std::shared_ptr<Lines> getGridCube(float spacing = 1.0f, int numHalfSpaces = 10);
-    static std::shared_ptr<Lines> getPlane(float spacing = 1.0f, int numHalfSpaces = 10);
+    static std::shared_ptr<Lines> getCube(int handleFlags = -1);
+    static std::shared_ptr<Lines> getSphere(int latSize = 20, int lonSize = 30, int handleFlags = -1);
+    static std::shared_ptr<Lines> getGridCube(float spacing = 1.0f, int numHalfSpaces = 10, int handleFlags = -1);
+    static std::shared_ptr<Lines> getPlane(float spacing = 1.0f, int numHalfSpaces = 10, int handleFlags = -1);
     static std::shared_ptr<Lines> getPrism(float baseRadius = 1.0, float topRadius = 1.0,
-        float height = 1.0, int sectorCount = 36, int stackCount = 1);
-    static std::shared_ptr<Lines> getCapsule(float radius = 1.0, float halfHeight = 1.0);
+        float height = 1.0, int sectorCount = 36, int stackCount = 1, int handleFlags = -1);
+    static std::shared_ptr<Lines> getCapsule(float radius = 1.0, float halfHeight = 1.0, int handleFlags = -1);
 
     enum ShapeOptions {
         kUseMiter = 1, //Whether or not to use miter joins on line segments(makes lines prettier, with minimal cost)
@@ -44,6 +45,10 @@ public:
 
     enum EffectOptions {
         kFadeWithDistance = 1
+    };
+
+    enum class DrawFlag {
+        kIgnoreWorldMatrix = 1 // Ignore local world matrix when rendering
     };
 
     /// @}
@@ -58,6 +63,10 @@ public:
     //--------------------------------------------------------------------------------------------
     /// @name Properties
     /// @{
+
+    QFlags<DrawFlag>& drawFlags() {
+        return m_drawFlags;
+    }
 
     bool useMiter() const {
         return m_shapeOptions.testFlag(kUseMiter);
@@ -100,6 +109,9 @@ public:
     /// @brief Update any data needed for rendering, e.g. vertex data, render settings, etc.
     virtual void reload() override;
 
+    // TODO: Implement some control over sorting
+    virtual size_t getSortID() override { return 0; }
+
 	/// @}
 
     //-----------------------------------------------------------------------------------------------------------------
@@ -122,17 +134,11 @@ protected:
     /// @{
 
     /// @brief Set uniforms for the Lines in the given shader
-    virtual void bindUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram) override;
-    virtual void releaseUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram) override;
-
-    /// @brief Bind the textures used by this Lines
-    virtual void bindTextures() override;
-
-    /// @brief Release the textures used by this Lines
-    virtual void releaseTextures() override;
+    virtual void bindUniforms(ShaderProgram& shaderProgram) override;
+    virtual void releaseUniforms(ShaderProgram& shaderProgram) override;
 
     /// @brief Draw geometry associated with this Lines
-    virtual void drawGeometry(const std::shared_ptr<ShaderProgram>& shaderProgram, RenderSettings* settings = nullptr) override;
+    virtual void drawGeometry(ShaderProgram& shaderProgram, RenderSettings* settings = nullptr) override;
 
     /// @brief Add point
     void addPoint(const Vector3g& newPoint);
@@ -160,6 +166,8 @@ protected:
 
     QFlags<ShapeOptions> m_shapeOptions;
     QFlags<EffectOptions> m_effectOptions;
+
+    QFlags<DrawFlag> m_drawFlags;
 
     /// @brief Line color
     Vector4g m_lineColor;

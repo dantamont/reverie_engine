@@ -1,7 +1,6 @@
 // Shader for point color shading
 #define MAX_BONES 100
 
-uniform vec4 color;
 uniform vec4 colors[MAX_BONES];
 out vec4 fColor;
 flat in int boneID;

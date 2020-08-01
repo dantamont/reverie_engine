@@ -37,6 +37,8 @@ public:
 	/// @name Public Methods
 	/// @{
 
+    const QString& iconName() const { return m_iconName; }
+
     /// @brief Set to given font awesome icon
     void setFontAwesomeIcon(const QString& iconName);
 
@@ -62,6 +64,13 @@ protected:
     /// @}
 
 
+    //--------------------------------------------------------------------------------------------
+    /// @name Private Members
+    /// @{
+
+    QString m_iconName;
+
+    /// @}
 };
 
 

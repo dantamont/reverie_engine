@@ -33,8 +33,6 @@ public:
     /// @{
     UndoCommand(CoreEngine* core, const QString &text, QUndoCommand *parent = nullptr);
     UndoCommand(CoreEngine* core, QUndoCommand *parent = nullptr);
-    UndoCommand(CoreEngine* core, const QString &text, std::function<void()> redo = nullptr, std::function<void()> undo = nullptr, QUndoCommand *parent = nullptr);
-    UndoCommand(CoreEngine* core, std::function<void()> redo = nullptr, std::function<void()> undo = nullptr, QUndoCommand *parent = nullptr);
     ~UndoCommand();
     /// @}
 
@@ -44,6 +42,12 @@ public:
 
     /// @brief Convenience method to add this command to action manager
     void perform();
+
+
+    /// @brief The description for this command (used in tooltips)
+    virtual QString description() const {
+        return QStringLiteral("No description");
+    }
 
     /// @}
 

@@ -9,6 +9,7 @@ message("Beginning qmake build of grand_blue.pro")
 TEMPLATE = app
 TARGET = grand_blue
 QT += core \
+	  core-private \
       opengl \ 
 	  gui \
 	  widgets \
@@ -29,9 +30,17 @@ CONFIG += debug_and_release # Creates additional debug and release folders, but 
 CONFIG(debug, debug|release){
     DESTDIR = ../app/debug
 	DEFINES += DEBUG_MODE
-} else {
+} 
+else {
     DESTDIR = ../app/release
 }
+
+# Replace O2 flag with O3 flag
+#CONFIG(release, debug|release) {
+#    QMAKE_CXXFLAGS_RELEASE -= -O1
+#	QMAKE_CXXFLAGS_RELEASE -= -O2
+#	QMAKE_CXXFLAGS_RELEASE *= -O3
+#}
 
 # Do not display debug output in release mode
 CONFIG(debug, debug|release) : CONFIG += debug_info
@@ -44,7 +53,7 @@ CONFIG -= flat # flattens file hierarchy, subtract if this is not desired
 # Defines //////////////////////////////////////////////////////////////////////////
 DEFINES += _UNICODE _ENABLE_EXTENDED_ALIGNED_STORAGE WIN64 QT_DLL QT_OPENGL_LIB QT_OPENGLEXTENSIONS_LIB QT_WIDGETS_LIB
 DEFINES += DEVELOP_MODE
-DEFINES += PYTHONQT_STATIC_LIB
+#DEFINES += PYTHONQT_STATIC_LIB
 DEFINES += LINALG_USE_EIGEN
 INCLUDEPATH += ./qt_generated \
     . \
@@ -57,11 +66,24 @@ DEPENDPATH += .
 
 # Add Libraries ////////////////////////////////////////////////////////////////////
 # Include PythonQt and required libraries
-LIBS += -L$$(PYTHON_LIB)/ -lpython$$(PYTHON_VERSION) # L"PATH" adds PATH to library search directory list, and -lName loads library Name during linking
+# Maybe not needed here, since python.prf is included when PythonQt is built?
+# Note that both windows and linux style library links work in windows
+# LIBS += -L$$(PYTHON_LIB)/ -lpython$$(PYTHON_VERSION) # L"PATH" adds PATH to library search directory list, and -lName loads library Name during linking
 
-include ( ../third_party/PythonQt/build/common.prf )  
-include ( ../third_party/PythonQt/build/PythonQt.prf )  
+# Enable import <PythonQt.h>
+INCLUDEPATH += $$PWD/src/third_party/pythonqt
+
+include ( ../third_party/PythonQt/build/python.prf )  
+#include ( ../third_party/PythonQt/build/common.prf )  
+#include ( ../third_party/PythonQt/build/PythonQt.prf )  
 #include ( ../third_party/PythonQt/build/PythonQt_QtAll.prf )  
+
+# PYTHONQT_GENERATED_PATH comes from the common.prf
+#include($${PYTHONQT_GENERATED_PATH}/com_trolltech_qt_core_builtin/com_trolltech_qt_core_builtin.pri)
+#include($${PYTHONQT_GENERATED_PATH}/com_trolltech_qt_gui_builtin/com_trolltech_qt_gui_builtin.pri)
+
+# Compile against release version of python
+CONFIG(debug, debug|release) : DEFINES += PYTHONQT_USE_RELEASE_PYTHON_FALLBACK
 
 # Eigen
 INCLUDEPATH += $$PWD/src/third_party/eigen \

@@ -8,15 +8,33 @@
 // QT
 #include <map>
 #include <unordered_map>
+#include <unordered_set>
 #include <set>
 #include <vector>
 #include <QHash>
 #include <QString>
 #include <functional>
 #include <list>
+#include <QJsonValue>
 
 // Internal
 #include "../encoding/GbUUID.h"
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+// Global
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+/// @brief QJsonArray lacks a swap routine, which is needed to call std::sort
+inline void swap(QJsonValueRef v1, QJsonValueRef v2)
+{
+    QJsonValue temp(v1);
+    v1 = QJsonValue(v2);
+    v2 = temp;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+// std
+/////////////////////////////////////////////////////////////////////////////////////////////
 
 namespace std {
 // Even though std::size_t is larger than unsigned int on common 64 bit 
@@ -51,19 +69,50 @@ struct hash<Gb::Uuid> {
 #endif
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////
+// Gb
+/////////////////////////////////////////////////////////////////////////////////////////////
 namespace Gb {
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-// Forward Declarations
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-// Class definitions
-/////////////////////////////////////////////////////////////////////////////////////////////
 
 class Vec {
 public:
+
+    // Whether or not the two vectors intersect
+    template<typename T>
+    static bool Intersects(const std::vector<T> & v1, const std::vector<T> & v2)
+    {
+        static std::unordered_set<T> inSet;
+        inSet.clear();
+        inSet.reserve(v1.size());
+        inSet.insert(v1.begin(), v1.end());
+
+        for (const T& val : v2) {
+            if (inSet.find(val) != inSet.end()) {
+                return true;
+            }
+        }
+        return false;
+    }
+    // The intersection between two vectors
+    template<typename T>
+    static void Intersection(const std::vector<T> & v1, const std::vector<T> & v2, std::vector<T>& intersection)
+    {
+        static std::unordered_set<T> inSet;
+        inSet.clear();
+        inSet.reserve(v1.size());
+        inSet.insert(v1.begin(), v1.end());
+
+        intersection.reserve(min(v1.size(), v2.size()));
+        for (const T& val : v2) {
+            if (inSet.find(val) != inSet.end()) {
+                // Assume we only have hundreds in output set and therefore
+                // favour a linear search here for cache-friendliness:
+                if (std::find(begin(intersection), std::end(intersection), val) == std::end(intersection))
+                    intersection.emplace_back(val);
+            }
+        }
+    }
+
     // Variadic template for vector emplace_back forwarding
     template<typename T, typename ...V>
     static void EmplaceBack(std::vector<T> & v, V && ... value)

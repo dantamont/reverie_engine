@@ -5,9 +5,9 @@
 #include "../../../core/scene/GbSceneObject.h"
 #include "../../../core/components/GbComponent.h"
 #include "../../../core/components/GbScriptComponent.h"
-#include "../../../core/components/GbRendererComponent.h"
+#include "../../../core/components/GbShaderComponent.h"
 #include "../../../core/components/GbCamera.h"
-#include "../../../core/components/GbLight.h"
+#include "../../../core/components/GbLightComponent.h"
 #include "../../../core/components/GbModelComponent.h"
 #include "../../../core/components/GbListenerComponent.h"
 #include "../../../core/components/GbCanvasComponent.h"
@@ -146,6 +146,7 @@ void AddSceneObjectComponent::redo()
     // Create and add component to scene object
     if (m_component) throw("Error, component should not exist");
     m_component = Component::create(sceneObject(), Component::ComponentType(m_componentType));
+    m_component->addRequiredComponents();
 
     // Create tree widget item for the renderer
     m_engine->componentWidget()->addItem(m_component);
@@ -153,6 +154,7 @@ void AddSceneObjectComponent::redo()
 /////////////////////////////////////////////////////////////////////////////////////////////
 void AddSceneObjectComponent::undo()
 {
+    // TODO: Remove objects added by "addRequiredComponents"
     QMutexLocker lock(&m_engine->simulationLoop()->userInterfaceMutex());
 
     Component::ParentType parentType = m_component->parentType();

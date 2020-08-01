@@ -302,10 +302,12 @@ void DepthSetting::bind()
     if (m_testEnabled) {
         // Enable face culling and set face
         gl()->glEnable(GL_DEPTH_TEST);
+        glDepthMask(true); // write to depth buffer
         gl()->glDepthFunc(m_mode);
     }
     else {
-        // Disable face culling
+        // Disable depth test
+        glDepthMask(false); // don't write to depth buffer
         gl()->glDisable(GL_DEPTH_TEST);
     }
 
@@ -379,22 +381,36 @@ void RenderSettings::cacheSettings()
 RenderSettings::RenderSettings(const QJsonValue & json):
     RenderSettings()
 {
+    clearSettings();
     loadFromJson(json);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 RenderSettings::RenderSettings():
     m_shapeMode(GL_TRIANGLES)
 {
+    clearSettings();
+
+    // TODO: Remove entirely
     // Start conservatively, can always remove these flags in render loop
-    setMaterialBind(true);
-    setMaterialRelease(true);
-    setShaderBind(true);
+    //setMaterialBind(true);
+    //setMaterialRelease(true);
+    //setShaderBind(true);
     //setShaderRelease(true); // Releasing is expensive, can just bind new shader directly
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 RenderSettings::~RenderSettings()
 {
     clearSettings();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void RenderSettings::overrideSettings(const RenderSettings & other)
+{
+    for (const auto& setting : other.m_settings) {
+        if (setting) {
+            addSetting(setting);
+        }
+    }
+    m_shapeMode = other.m_shapeMode;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void RenderSettings::addDefaultBlend()
@@ -405,32 +421,32 @@ void RenderSettings::addDefaultBlend()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void RenderSettings::addSetting(std::shared_ptr<RenderSetting> setting)
 {
-    if (!hasSetting(setting)) {
-        m_settings.insert(setting);
-    }
+    //if (!hasSetting(setting)) {
+    //    m_settings.insert(setting);
+    //}
+    m_settings[(int)setting->type()] = setting;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void RenderSettings::bind()
 {
     for (const std::shared_ptr<RenderSetting>& setting : m_settings) {
-        setting->bind();
+        if(setting) setting->bind();
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void RenderSettings::release()
 {
     for (const std::shared_ptr<RenderSetting>& setting : m_settings) {
-        setting->release();
+        if(setting) setting->release();
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void RenderSettings::clearSettings()
 {    
-    //// Delete all settings
-    //for (RenderSetting* setting : m_settings) {
-    //    delete setting;
-    //}
-    m_settings.clear();
+    m_settings.resize(RenderSetting::kMAX_SETTING_TYPE);
+    for (size_t i = 0; i < m_settings.size(); i++) {
+        m_settings[i] = nullptr;
+    }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 QJsonValue RenderSettings::asJson() const
@@ -439,8 +455,8 @@ QJsonValue RenderSettings::asJson() const
 
     // Cache settings
     QJsonArray settings;
-    for(auto setting : m_settings) {
-        settings.append(setting->asJson());
+    for(std::shared_ptr<RenderSetting> setting : m_settings) {
+        if(setting) settings.append(setting->asJson());
     }
     object.insert("settings", settings);
 
@@ -464,8 +480,8 @@ void RenderSettings::loadFromJson(const QJsonValue & json)
         QJsonObject settingObject = settingJson.toObject();
         if (!settingObject.contains("type")) continue;
 
-        auto setting = RenderSetting::create(settingJson);
-        m_settings.insert(setting);
+        std::shared_ptr<RenderSetting> setting = RenderSetting::create(settingJson);
+        addSetting(setting);
     }
 
     // Cache primitive mode, triangles by default

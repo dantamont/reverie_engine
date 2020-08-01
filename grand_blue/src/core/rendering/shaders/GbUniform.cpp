@@ -8,30 +8,50 @@ namespace Gb {
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
-// Uniform Info
+// ShaderInputInfo
+/////////////////////////////////////////////////////////////////////////////////////////////
+bool ShaderInputInfo::IsValidGLType(int typeInt)
+{
+    switch (ShaderInputType(typeInt)) {
+    case ShaderInputType::kBool:
+    case ShaderInputType::kInt:
+    case ShaderInputType::kFloat:
+    case ShaderInputType::kDouble:
+    case ShaderInputType::kVec2:
+    case ShaderInputType::kVec3:
+    case ShaderInputType::kVec4:
+    case ShaderInputType::kMat2:
+    case ShaderInputType::kMat3:
+    case ShaderInputType::kMat4:
+    case ShaderInputType::kSamplerCube:
+    case ShaderInputType::kSampler2D:
+        return true;
+    default:
+        throw("GL type is not valid, need to account for this type");
+        return false;
+    }
 
-UniformInfo::UniformInfo()
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+ShaderInputInfo::ShaderInputInfo()
 {
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-UniformInfo::UniformInfo(const QString & name, const QString & type, bool isArray) :
+ShaderInputInfo::ShaderInputInfo(const QString & name, const ShaderInputType & type, bool isArray) :
     m_name(name),
-    m_typeStr(type),
-    m_uniformType(Uniform::UNIFORM_TYPE_STR_MAP[type]),
-    m_isArray(isArray)
+    m_inputType(type)
 {
-
+    m_flags.setFlag(kIsArray, isArray);
 }
 
-UniformInfo::UniformInfo(const QString & name, const QString & type, bool isArray, int id) :
+ShaderInputInfo::ShaderInputInfo(const QString & name, const ShaderInputType & type, bool isArray, int id) :
     m_name(name),
-    m_typeStr(type),
-    m_isArray(isArray), 
-    m_uniformType(Uniform::UNIFORM_TYPE_STR_MAP[type]),
+    m_inputType(type),
     m_uniformID(id)
 {
-
+    m_flags.setFlag(kIsArray, isArray);
 }
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -58,16 +78,94 @@ Uniform::~Uniform()
 {
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-bool Uniform::matchesInfo(const UniformInfo& typeInfo) const
+Uniform::operator QString() const
 {
-    auto iter = UNIFORM_TYPE_MAP.find(typeInfo.m_typeStr);
-    if (iter != UNIFORM_TYPE_MAP.end()) {
-        if (iter->second == Variant::typeInfo()) {
-            return true;
+    QString string;
+    if (is<int>()) {
+        string = QString::number(get<int>());
+    }
+    else if (is<bool>()) {
+        string = QString::number(get<bool>());
+    }
+    else if (is<real_g>()) {
+        string = QString::number(get<real_g>());
+    }
+    else if (is<Vector2g>()) {
+        string = QString(get<Vector2g>());
+    }
+    else if (is<Vector3g>()) {
+        string = QString(get<Vector3g>());
+    }
+    else if (is<Vector4g>()) {
+        string = QString(get<Vector4g>());
+    }
+    else if (is<Matrix2x2g>()) {
+        string = QString(get<Matrix2x2g>());
+    }
+    else if (is<Matrix3x3g>()) {
+        string = QString(get<Matrix3x3g>());
+    }
+    else if (is<Matrix4x4g>()) {
+        string = QString(get<Matrix4x4g>());
+    }
+    else if (is<std::vector<Matrix4x4g>>()) {
+        const std::vector<Matrix4x4f>& mats = get<std::vector<Matrix4x4g>>();
+        string += "{";
+        for (const Matrix4x4f& mat : mats) {
+            string += QString(mat) + ", \n";
         }
-        else {
-            if (!typeInfo.m_isArray) {
-                // If the uniform doesn't match and is not an array type
+        string += "}";
+    }
+    else if (is<std::vector<real_g>>()) {
+        const std::vector<real_g>& reals = get<std::vector<real_g>>();
+        string += "{";
+        for (real_g num : reals) {
+            string += QString::number(num) + ", ";
+        }
+        string += "}";
+    }
+    else if (is<Vec3List>()) {
+        const Vec3List& vecs = get<Vec3List>();
+        string += "{";
+        for (const Vector3g& vec : vecs) {
+            string += QString(vec) + ", \n";
+        }
+        string += "}";
+    }
+    else if (is<Vec4List>()) {
+        const Vec4List& vecs = get<Vec4List>();
+        string += "{";
+        for (const Vector4g& vec : vecs) {
+            string += QString(vec) + ", \n";
+        }
+        string += "}";
+    }
+    else {
+        QString err = "Error, this uniform to QString conversion is not supported";
+#ifdef DEBUG_MODE
+        QString typeName = QString::fromStdString(Variant::typeInfo().name());
+        err += ": " + typeName;
+#endif
+        throw(err);
+    }
+
+    return m_name + ": " + string;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+bool Uniform::matchesInfo(const ShaderInputInfo& typeInfo) const
+{
+    int inputType = (int)typeInfo.m_inputType;
+    if (!ShaderInputInfo::IsValidGLType(inputType)) {
+        return false;
+    }
+
+    const std::type_index& type = UNIFORM_GL_TYPE_MAP.at(typeInfo.m_inputType);
+    if (type == Variant::typeInfo()) {
+        return true;
+    }
+    else {
+        if (!typeInfo.isArray()) {
+            // If the uniform doesn't match and is not an array type
 //                for (const auto& uniformPair : typeMap) {
 //
 //#ifdef DEBUG_MODE
@@ -80,17 +178,14 @@ bool Uniform::matchesInfo(const UniformInfo& typeInfo) const
 //                    }
 //#endif
 //                }
-                return false;
-            }
-            else {
-                // Return true for array types
-                return true;
-            }
+            return false;
+        }
+        else {
+            // Return true for array types
+            return true;
         }
     }
-    else {
-        return false;
-    }
+
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 QVariant Uniform::asQVariant() const
@@ -175,6 +270,7 @@ void Uniform::loadFromJson(const QJsonValue & json)
     }
     else {
 #ifdef DEBUG_MODE
+        // Incorrect JSON format
         throw("Error, uniform JSON format is not recognized");
 #endif
     }
@@ -194,6 +290,7 @@ void Uniform::loadFromQVariant(const QVariant & qv)
     }
     else if (qv.canConvert<QJsonValue>()){
         QJsonValue json = qv.value<QJsonValue>();
+        
         if (!json.isArray()) {
             throw("Error, JSON must be an array type");
         }
@@ -276,21 +373,35 @@ std::unordered_map<QString, std::type_index> Uniform::UNIFORM_TYPE_MAP = {
     {"samplerCube", typeid(int)},
     {"sampler2D", typeid(int)}
 };
-
 /////////////////////////////////////////////////////////////////////////////////////////////
-std::unordered_map<QString, Uniform::UniformType> Uniform::UNIFORM_TYPE_STR_MAP = {
-    {"bool",   kBool},
-    {"int",    kInt},
-    {"float",  kFloat},
-    {"double", kDouble},
-    {"vec2",   kVec2},
-    {"vec3",   kVec3},
-    {"vec4",   kVec4},
-    {"mat2",   kMat2},
-    {"mat3",   kMat3},
-    {"mat4",   kMat4},
-    {"samplerCube", kSamplerCube},
-    {"sampler2D", kSampler2D}
+std::unordered_map<ShaderInputType, std::type_index> Uniform::UNIFORM_GL_TYPE_MAP = {
+    {ShaderInputType::kBool, typeid(bool)},
+    {ShaderInputType::kInt, typeid(int)},
+    {ShaderInputType::kFloat, typeid(float)},
+    {ShaderInputType::kDouble, typeid(double)},
+    {ShaderInputType::kVec2, typeid(Vector2g)},
+    {ShaderInputType::kVec3, typeid(Vector3g)},
+    {ShaderInputType::kVec4, typeid(Vector4g)},
+    {ShaderInputType::kMat2, typeid(Matrix2x2g)},
+    {ShaderInputType::kMat3, typeid(Matrix3x3g)},
+    {ShaderInputType::kMat4, typeid(Matrix4x4g)},
+    {ShaderInputType::kSamplerCube, typeid(int)},
+    {ShaderInputType::kSampler2D, typeid(int)}
+};
+///////////////////////////////////////////////////////////////////////////////////////////
+std::unordered_map<QString, ShaderInputType> Uniform::UNIFORM_TYPE_STR_MAP = {
+    {"bool",   ShaderInputType::kBool},
+    {"int",    ShaderInputType::kInt},
+    {"float",  ShaderInputType::kFloat},
+    {"double", ShaderInputType::kDouble},
+    {"vec2",   ShaderInputType::kVec2},
+    {"vec3",   ShaderInputType::kVec3},
+    {"vec4",   ShaderInputType::kVec4},
+    {"mat2",   ShaderInputType::kMat2},
+    {"mat3",   ShaderInputType::kMat3},
+    {"mat4",   ShaderInputType::kMat4},
+    {"samplerCube", ShaderInputType::kSamplerCube},
+    {"sampler2D", ShaderInputType::kSampler2D}
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////////

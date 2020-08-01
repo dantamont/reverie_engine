@@ -21,6 +21,7 @@ class ResourceCache;
 class ShaderProgram;
 class Texture;
 class CubeTexture;
+class Color;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Class definitions
@@ -30,6 +31,19 @@ class CubeTexture;
 /// @brief Class representing a resource
 class Image: public Resource{
 public:
+    //--------------------------------------------------------------------------------------------
+    /// @name Static
+    /// @{
+
+    /// @brief Set pixmap to a given color
+    static QPixmap SetPixmapColor(const QPixmap& pixmap, const Color& color);
+
+    // For Qt to OpenGL
+    static void Image::Convert32bitARGBtoRGBA(Image& image);
+    static void Image::Convert32bitRGBAtoARGB(Image& image);
+
+    /// @}
+
 	//--------------------------------------------------------------------------------------------
 	/// @name Constructors/Destructor
 	/// @{

@@ -41,19 +41,19 @@ void ObjReader::loadMaterials()
         parseFile();
     }
 
-    for(auto& materialData: m_materials){
-        QString mtlName = QString::fromStdString(materialData.m_name).toLower();
-        // Skip if material is loaded already
-        if (m_resourceCache->hasMaterial(mtlName)) {
-            continue;
-        }
+    //for(auto& materialData: m_materials){
+    //    QString mtlName = QString::fromStdString(materialData.m_name).toLower();
+    //    // Skip if material is loaded already
+    //    if (m_resourceCache->hasMaterial(mtlName)) {
+    //        continue;
+    //    }
 
-        // Create material
-        std::shared_ptr<Material> mtl = std::make_shared<Material>(
-            m_resourceCache->engine(), 
-            materialData);
-        m_resourceCache->addMaterial(mtl);
-    }
+    //    // Create material
+    //    std::shared_ptr<Material> mtl = std::make_shared<Material>(
+    //        m_resourceCache->engine(), 
+    //        materialData);
+    //    m_resourceCache->addMaterial(mtl);
+    //}
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void ObjReader::parseFile()

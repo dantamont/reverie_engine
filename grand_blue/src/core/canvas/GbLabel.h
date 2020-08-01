@@ -42,7 +42,17 @@ public:
     /// @name Properties
     /// @{
 
+    Color& color() { return m_color; }
+
+    /// @brief The font size for this label (in points)
     float getFontSize() const { return m_fontSize; }
+    const QString& text() const { return m_text; }
+
+    /// @brief the name of the font face used by this label
+    const QString& getFontFaceName() const { return m_fontFace; }
+
+    float lineMaxSize() const { return m_lineMaxSize; }
+    float lineSpacing() const { return m_lineSpacing; }
 
     /// @}
 
@@ -56,8 +66,15 @@ public:
     void setText(const QString& text);
 
     void setFontSize(float pointSize);
+    void setFontFace(const QString& faceName);
+
+    void setLineMaxSize(float width);
+    void setLineSpacing(float spacing);
 
     virtual void reload() override;
+
+    // TODO: Implement some control over sorting
+    virtual size_t getSortID() override { return 0; }
 
 	/// @}
 
@@ -100,16 +117,16 @@ protected:
     TextMetrics getTextMetrics();
 
     /// @brief Set uniforms for the label
-    virtual void bindUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram) override;
+    virtual void bindUniforms(ShaderProgram& shaderProgram) override;
 
     /// @brief Bind the textures used by this renderable
-    virtual void bindTextures() override;
+    virtual void bindTextures(ShaderProgram* shaderProgram) override;
 
     /// @brief Release the textures used by this renderable
-    virtual void releaseTextures() override;
+    virtual void releaseTextures(ShaderProgram* shaderProgram) override;
 
     /// @brief Draw geometry associated with this renderable
-    virtual void drawGeometry(const std::shared_ptr<ShaderProgram>& shaderProgram, RenderSettings* settings = nullptr) override;
+    virtual void drawGeometry(ShaderProgram& shaderProgram, RenderSettings* settings = nullptr) override;
 
     /// @}
 
@@ -127,8 +144,6 @@ protected:
 
     /// @brief The name of the font face used by this label
     QString m_fontFace;
-
-    size_t m_numberOfLines;
 
     /// @brief Max length of the line in NDC space
     float m_lineMaxSize;

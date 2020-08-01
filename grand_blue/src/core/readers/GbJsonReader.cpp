@@ -4,7 +4,7 @@
 
 namespace Gb {
 /////////////////////////////////////////////////////////////////////////////////////////////
-QString JsonReader::getJsonValueAsQString(const QJsonValue & json, bool verbose)
+QString JsonReader::ToQString(const QJsonValue & json, bool verbose)
 {
     QJsonDocument doc(json.toObject());
     QJsonDocument::JsonFormat format;
@@ -18,9 +18,14 @@ QString JsonReader::getJsonValueAsQString(const QJsonValue & json, bool verbose)
     return strJson;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-QJsonDocument JsonReader::getQStringAsJsonDocument(const QString & str)
+QJsonDocument JsonReader::ToJsonDocument(const QString & str)
 {
     return QJsonDocument::fromJson(str.toUtf8());
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+QJsonObject JsonReader::ToJsonObject(const QString & str)
+{
+    return ToJsonDocument(str).object();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 JsonReader::JsonReader(const QString & filepath):

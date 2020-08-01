@@ -32,8 +32,9 @@ public:
     /// @name Static
     /// @{   
 
-    static QString getJsonValueAsQString(const QJsonValue& json, bool verbose = false);
-    static QJsonDocument getQStringAsJsonDocument(const QString& str);
+    static QString ToQString(const QJsonValue& json, bool verbose = false);
+    static QJsonDocument ToJsonDocument(const QString& str);
+    static QJsonObject ToJsonObject(const QString& str);
 
     /// @}
 

@@ -49,6 +49,7 @@
 #include "../../core/GbCoreEngine.h"
 #include "../../core/loop/GbSimLoop.h"
 #include "../../core/canvas/GbFonts.h"
+#include "../style/GbFontIcon.h"
 
 namespace Gb {
 namespace View {
@@ -71,46 +72,29 @@ PlayerControls::PlayerControls(CoreEngine* core, QWidget *parent):
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void PlayerControls::initializeWidgets()
 {
-    // TODO: Create a QFontIcon to do this properly:
-    // See: https://github.com/dridk/QFontIcon/blob/master/QFontIcon/qfonticon.cpp
-    // Set font for button
-    QFont font;
-    QString fontFamily = m_engine->fontManager()->solidFontAwesomeFamily();
-    font.setFamily(fontFamily);
-    font.setPointSize(12);
-
     m_playButton = new QToolButton(this);
-    //m_playButton->setIcon(style()->standardIcon(icon));
-    m_playButton->setFont(font);
     setPlayIcon(m_engine->simulationLoop()->isPlaying());
     m_playButton->setToolTip("Play/Pause scene playback");
 
     m_stopButton = new QToolButton(this);
-    m_stopButton->setFont(font);
-    m_stopButton->setText(FontManager::getUnicodeCharacter("stop"));
-    //m_stopButton->setIcon(style()->standardIcon(QStyle::SP_MediaStop));
+    m_stopButton->setIcon(SAIcon(QStringLiteral("stop")));
     m_stopButton->setEnabled(false);
 
     m_nextButton = new QToolButton(this);
-    m_nextButton->setFont(font);
-    m_nextButton->setText(FontManager::getUnicodeCharacter("forward"));
-    //m_nextButton->setIcon(style()->standardIcon(QStyle::SP_MediaSkipForward));
+    m_nextButton->setIcon(SAIcon(QStringLiteral("forward")));
 
     m_previousButton = new QToolButton(this);
-    m_previousButton->setFont(font);
-    m_previousButton->setText(FontManager::getUnicodeCharacter("backward"));
-    //m_previousButton->setIcon(style()->standardIcon(QStyle::SP_MediaSkipBackward));
+    m_previousButton->setIcon(SAIcon(QStringLiteral("backward")));
 
     m_modeButton = new QToolButton(this);
-    m_modeButton->setFont(font);
     
     QString chr;
     switch (m_engine->simulationLoop()->getPlayMode()) {
     case SimulationLoop::kDebug:
-        chr = FontManager::getUnicodeCharacter("gamepad");
+        chr = FontManager::faUnicodeCharacter("gamepad");
         break;
     case SimulationLoop::kStandard:
-        chr = FontManager::getUnicodeCharacter("binoculars");
+        chr = FontManager::faUnicodeCharacter("binoculars");
         break;
     }
     m_modeButton->setText(chr);
@@ -138,18 +122,18 @@ void PlayerControls::initializeConnections()
     connect(m_nextButton, SIGNAL(clicked()), this, SIGNAL(next()));
     connect(m_previousButton, SIGNAL(clicked()), this, SIGNAL(previous()));
     connect(m_modeButton, &QAbstractButton::clicked, this, [&]() {
-        QString chr;
+        QString modeStr;
         switch (m_engine->simulationLoop()->getPlayMode()) {
         case SimulationLoop::kDebug:
             m_engine->simulationLoop()->setPlayMode(SimulationLoop::kStandard);
-            chr = FontManager::getUnicodeCharacter("binoculars");
+            modeStr = QStringLiteral("binoculars");
             break;
         case SimulationLoop::kStandard:
             m_engine->simulationLoop()->setPlayMode(SimulationLoop::kDebug);
-            chr = FontManager::getUnicodeCharacter("gamepad");
+            modeStr = QStringLiteral("gamepad");
             break;
         }
-        m_modeButton->setText(chr);
+        m_modeButton->setIcon(SAIcon(modeStr));
     });
     //connect(muteButton, SIGNAL(clicked()), this, SLOT(muteClicked()));
     //connect(volumeSlider, SIGNAL(sliderMoved(int)), this, SIGNAL(changeVolume(int)));
@@ -175,18 +159,11 @@ void PlayerControls::layoutWidgets()
 void PlayerControls::setPlayIcon(bool isPlaying)
 {
     //QStyle::StandardPixmap icon; 
-    QString playIcon;
-    if (isPlaying) {
-        playIcon = FontManager::getUnicodeCharacter("pause");
-        //icon = QStyle::SP_MediaPause;
-    }
-    else {
-        playIcon = FontManager::getUnicodeCharacter("play");
-        //icon = QStyle::SP_MediaPlay;
-    }
+    QString playIcon = QStringLiteral("play");
+    if (isPlaying)
+        playIcon = QStringLiteral("pause");
 
-    //m_playButton->setIcon(style()->standardIcon(icon));
-    m_playButton->setText(playIcon);
+    m_playButton->setIcon(SAIcon(playIcon));
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

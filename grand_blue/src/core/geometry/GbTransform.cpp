@@ -12,7 +12,6 @@
 //#include "../GbCoreEngine.h"
 //#include "../events/GbMessenger.h"
 #include "../components/GbCamera.h"
-#include "../components/GbLight.h"
 #include "../utils/GbInterpolation.h"
 #include "../physics/GbPhysicsManager.h"
 
@@ -110,6 +109,7 @@ Transform::Transform(const Vector3 & position, const Quaternion & rotation, cons
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Transform::Transform(const QJsonValue & json)
 {
+    initialize();
     loadFromJson(json);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

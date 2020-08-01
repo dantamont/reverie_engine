@@ -1,6 +1,14 @@
 # PythonQt
 [![License](https://img.shields.io/github/license/mevislab/pythonqt.svg?color=blue)](LICENSE)
 
+############################################################################################################
+NEED TO MANUALLY TOGGLE AS A STATICLIB IN THE VS SOLUTION FOR BOTH the debug AND RELEASE CONFIGS
+############################################################################################################
+FOR RELEASE BUILD, IN: Configuration Properties -> C/C++ -> Preprocessor
+ADD: _HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0;
+############################################################################################################
+
+
 PythonQt is a dynamic [Python](https://www.python.org) binding for [Qt](https://www.qt.io).
 It offers an easy way to embed the Python scripting language into
 your Qt applications.

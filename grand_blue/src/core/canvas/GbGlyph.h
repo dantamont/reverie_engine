@@ -44,7 +44,7 @@ public:
     /// @{
 
     enum GlyphType {
-        kLabel,
+        kLabel = 0,
         kIcon
     };
 
@@ -54,9 +54,16 @@ public:
         kBillboard // 2D Element specified in world-space, but rendered on top of everything
     };
 
+    // TODO: Add a movement mode flag to move glyphs with the parent canvas
+    // Would just need to parent to canvas transform (i.e. scene object transform)
+    enum MovementMode {
+        kIndependent, // Transform is set manually, default
+        kTrackObject // Tracks a scene object
+    };
+
     /// @brief Describe options for billboard display
     enum BillboardFlags: unsigned int {
-        kScale = 1, // Scale with zoom
+        kScale = 1, // Scale with zoom, i.e. if on, glyph is constant screen size
         kFaceCamera = 2, // Always face camera
         kAlwaysOnTop = 4, // Render on top of all components
     };
@@ -90,18 +97,41 @@ public:
 	/// @name Properties
 	/// @{
 
+    GlyphType glyphType() const { return m_type; }
+
+
+    MovementMode moveMode() const { return m_moveMode; }
+    void setMoveMode(MovementMode mode) { m_moveMode = mode; }
+
+    const std::shared_ptr<Transform>& transform() { return m_transform; }
+
+    QFlags<BillboardFlags>& flags() { return m_flags; }
+
+    VerticalAlignment verticalAlignment() const { return m_verticalAlignment; }
+    void setVerticalAlignment(VerticalAlignment alignment) { 
+        m_verticalAlignment = alignment;
+        reload();
+    }
+
+    HorizontalAlignment horizontalAlignment() const { return m_horizontalAlignment; }
+    void setHorizontalAlignment(HorizontalAlignment alignment) { 
+        m_horizontalAlignment = alignment;
+        reload();
+    }
+
     void setAlignment(VerticalAlignment verticalAlignment, HorizontalAlignment horizontalAlignment);
 
+    Vector2g& coordinates() { return m_coordinates; }
     const Vector2g& coordinates() const { return m_coordinates; }
     void setCoordinates(const Vector2g& coordinates) {
         m_coordinates = coordinates;
     }
 
     /// @property Glyph Mode
-    GlyphMode getGlyphMode() const { return m_mode; }
-    void setToBillboard() { m_mode = kBillboard; }
-    void setToGui() { m_mode = kGUI; }
-    void setGlyphMode(GlyphMode mode) { m_mode = mode; }
+    GlyphMode getGlyphMode() const { return m_glyphMode; }
+    void setToBillboard() { m_glyphMode = kBillboard; }
+    void setToGui() { m_glyphMode = kGUI; }
+    void setGlyphMode(GlyphMode mode) { m_glyphMode = mode; }
 
     CanvasComponent* canvas() const { return m_canvas; }
 
@@ -138,6 +168,14 @@ public:
     //Vector4g screenPos() const;
     
     /// @brief Set the scene object for this glyph to track
+    const std::shared_ptr<SceneObject> trackedObject() const {
+        if (const std::shared_ptr<SceneObject>& obj = m_trackedObject.lock()) {
+            return obj;
+        }
+        else {
+            return nullptr;
+        }
+    }
     void setTrackedObject(const std::shared_ptr<SceneObject>& object);
 
     /// @}
@@ -159,25 +197,12 @@ protected:
     /// @name Protected Methods
     /// @{
 
+    virtual void preDraw() override;
+
     /// @brief Set uniforms for the glyph
-    virtual void bindUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram) override;
+    virtual void bindUniforms(ShaderProgram& shaderProgram) override;
 
-    virtual void releaseUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram) override;
-
-    /// @brief Bind the textures used by this renderable
-    virtual void bindTextures() override {}
-
-    /// @brief Release the textures used by this renderable
-    virtual void releaseTextures() override {}
-
-    const std::shared_ptr<SceneObject> sceneObject() const{
-        if (const std::shared_ptr<SceneObject>& obj = m_object.lock()) {
-            return obj;
-        }
-        else {
-            return nullptr;
-        }
-    }
+    virtual void releaseUniforms(ShaderProgram& shaderProgram) override;
 
     /// @brief Ensures that this glyph has a valid transform
     void checkTransform();
@@ -192,7 +217,7 @@ protected:
     GlyphType m_type;
 
     /// @brief The rendering mode of the glyph
-    GlyphMode m_mode;
+    GlyphMode m_glyphMode;
 
     VerticalAlignment m_verticalAlignment;
     HorizontalAlignment m_horizontalAlignment;
@@ -200,18 +225,18 @@ protected:
     /// @brief The flags for the glyph
     QFlags<BillboardFlags> m_flags;
 
-    QString m_objectName;
+    MovementMode m_moveMode;
 
     /// @brief The transform of the glyph
     std::shared_ptr<Transform> m_transform;
 
-    /// @brief GUI mode: Screen-coordinates for the glyph, with bottom-left of screen at (0, 0)
+    /// @brief GUI mode: Screen-coordinate offset for the glyph, with bottom-left of screen at (0, 0)
     /// @details The z-value representes the world-coordinate z-value of the glyph
     Vector2g m_coordinates;
 
     /// @brief The name of the scene object that this is glyph sharing a transform with
     /// @details Is set at load time, so may not accurately reflect scene object name changes
-    std::weak_ptr<SceneObject> m_object;
+    std::weak_ptr<SceneObject> m_trackedObject;
 
     /// @brief Pointer back to the canvas component
     CanvasComponent* m_canvas;

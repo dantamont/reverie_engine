@@ -57,7 +57,9 @@ public:
         m_uuid(true) {
     }
     Object(const QString& name, NameMode mode = kCaseSensitive):
-        Nameable(name, mode){
+        Nameable(name, mode),
+        m_uuid(true)
+    {
     }
     virtual ~Object() = default;
     /// @}

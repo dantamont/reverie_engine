@@ -12,7 +12,8 @@
 #include "../scene/GbScene.h"
 #include "../scene/GbScenario.h"
 #include "../components/GbCamera.h"
-#include "../components/GbLight.h"
+#include "../components/GbLightComponent.h"
+#include "../components/GbModelComponent.h"
 #include "../components/GbPhysicsComponents.h"
 #include "../physics/GbPhysicsActor.h"
 #include "../utils/GbInterpolation.h"
@@ -26,14 +27,14 @@ namespace Gb {
 // TransformComponent
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 TransformComponent::TransformComponent() :
-    Component(kTransform),
+    Component(ComponentType::kTransform),
     Transform()
 {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 TransformComponent::TransformComponent(const std::shared_ptr<SceneObject>& object) :
     Transform(),
-    Component(object, kTransform)
+    Component(object, ComponentType::kTransform)
 {
     // Note: Cannot checkValidity with shared pointer in constructor.
     initialize();
@@ -135,28 +136,39 @@ void TransformComponent::computeWorldMatrix()
 
     // If there is a scene object for the component (should always be the case)
     auto sceneObj = sceneObject();
-    if (sceneObj) {
-        // Update view matrix if the scene object has a camera
-        if (sceneObj->hasCamera()) {
-            auto cam = sceneObj->camera();
-            cam->camera().computeViewMatrix(m_worldMatrix);
-        }
+    if (!sceneObj) {
+        throw("Error, no scene object for transform component");
+    }
 
-        // If the scene object has a light, update its position
-        if (sceneObj->hasComponent(kLight)) {
-            sceneObj->light()->setPosition(m_translation.getPosition().asReal());
-        }
+    // Update view matrix if the scene object has a camera
+    if (sceneObj->hasCamera()) {
+        auto cam = sceneObj->camera();
+        cam->camera().updateViewMatrix(m_worldMatrix);
+    }
 
-        // Update the position of any rigid bodies on the object
-        if (sceneObj->hasComponent(Component::kRigidBody)) {
-			std::vector<Component*>& rigidBodies = sceneObj->components()[Component::kRigidBody];
-            for (auto& comp : rigidBodies) {
-                RigidBodyComponent* rigidBodyComp = static_cast<RigidBodyComponent*>(comp);
-                rigidBodyComp->body()->setTransform(*static_cast<Transform*>(this));
-            }
+    // If the scene object has a light, update its position
+    if (sceneObj->hasComponent(ComponentType::kLight)) {
+        sceneObj->light()->light().setPosition(m_translation.getPosition().asReal());
+    }
+
+    // Update the position of any rigid bodies on the object
+    if (sceneObj->hasComponent(ComponentType::kRigidBody)) {
+		std::vector<Component*>& rigidBodies = sceneObj->components()[(int)Component::ComponentType::kRigidBody];
+        for (auto& comp : rigidBodies) {
+            RigidBodyComponent* rigidBodyComp = static_cast<RigidBodyComponent*>(comp);
+            rigidBodyComp->body()->setTransform(*static_cast<Transform*>(this));
         }
     }
 
+    // Update the bounding geometry for any models on this object
+    if (sceneObj->hasComponent(ComponentType::kModel)
+        && !sceneObj->hasComponent(ComponentType::kBoneAnimation)) 
+    {
+        // Don't set bounding geometry if there is an animation component, bounding boxes
+        // do not account for this yet
+        ModelComponent* modelComp = sceneObj->modelComponent();
+        modelComp->updateBounds(*this);
+    }
 
     // Update all child states
     for (const std::pair<Uuid, Transform*>& childPair: m_children) {

@@ -77,6 +77,8 @@ private slots:
     void saveScenarioAs();
     void showUndoView();
     void showScriptOrderWidget();
+    void showRenderLayers();
+    void showShaderPresetsWidget();
     void viewPreferences();
     void aboutGrandBlue();
 
@@ -131,28 +133,39 @@ protected:
 
     QString m_defaultTitle;
 
+    QWidget* m_scriptOrderWidget = nullptr;
+    QWidget* m_renderLayerWidget = nullptr;
+    QWidget* m_shaderPresetsWidget = nullptr;
+
     /// @brief Menu bar menus
     QMenu* m_fileMenu;
     QMenu* m_editMenu;
     QMenu* m_insertMenu;
+    QMenu* m_resourcesMenu;
     QMenu* m_settingsMenu;
     QMenu* m_helpMenu;
 
     /// @brief Menu bar actions
     /// @note a QActionGroup can be used to group actions such that only one can be active at a time
     /// See: https://doc.qt.io/qt-5/qtwidgets-mainwindows-menus-example.html
+    QMenuBar* m_menuBar;
     QAction* m_newScenario;
     QAction* m_openScenario;
     QAction* m_saveScenario;
     QAction* m_saveScenarioAs;
+    QAction* m_addTexture;
     QAction* m_addMaterial;
     QAction* m_addModel;
+    QAction* m_loadModel;
+    QAction* m_addMesh;
     QAction* m_addShaderProgram;
     //QAction* m_addScript;
     QAction* m_undo;
     QAction* m_redo;
     QAction* m_showUndoView;
+    QAction* m_showShaderPresets;
     QAction* m_showScriptOrderSettings;
+    QAction* m_showRenderLayers;
     QAction* m_viewPreferences;
     QAction* m_aboutGrandBlue;
 

@@ -208,6 +208,7 @@ QJsonValue GVariant::asJson() const
 /////////////////////////////////////////////////////////////////////////////////////////////
 void GVariant::loadFromJson(const QJsonValue & json)
 {
+    Q_UNUSED(json)
     throw("Error, not implemented");
 }
 

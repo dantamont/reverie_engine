@@ -12,13 +12,13 @@
 namespace Gb {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 PhysicsSceneComponent::PhysicsSceneComponent() :
-    Component(kPhysicsScene, true),
+    Component(ComponentType::kPhysicsScene, true),
     m_physicsScene(nullptr)
 {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 PhysicsSceneComponent::PhysicsSceneComponent(const PhysicsSceneComponent & component) :
-    Component(component.scene(), kPhysicsScene),
+    Component(component.scene(), ComponentType::kPhysicsScene),
     m_physicsScene(nullptr)
 {
     initialize();
@@ -26,7 +26,7 @@ PhysicsSceneComponent::PhysicsSceneComponent(const PhysicsSceneComponent & compo
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 PhysicsSceneComponent::PhysicsSceneComponent(std::shared_ptr<Scene> object, const QJsonValue & json) :
-    Component(object, kPhysicsScene),
+    Component(object, ComponentType::kPhysicsScene),
     m_physicsScene(nullptr)
 {
     loadFromJson(json);
@@ -34,7 +34,7 @@ PhysicsSceneComponent::PhysicsSceneComponent(std::shared_ptr<Scene> object, cons
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 PhysicsSceneComponent::PhysicsSceneComponent(std::shared_ptr<Scene> object) :
-    Component(object, kPhysicsScene),
+    Component(object, ComponentType::kPhysicsScene),
     m_physicsScene(nullptr)
 {
     initialize();

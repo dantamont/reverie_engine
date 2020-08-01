@@ -76,14 +76,28 @@ public:
     quint64 sizeInBytes() const;
     unsigned int sizeInMegaBytes() const;
 
+    // Moved to model
     /// @brief Whether or not the mesh data has an associated material
-    bool hasMaterial() const { return !m_materialName.isEmpty(); }
+    //bool hasMaterial() const { return !m_materialName.isEmpty(); }
 
     /// @brief Return whether or not this is empty
     bool isMissingData() const { return m_attributes.empty() || m_indices.empty(); }
 
+    GL::BufferObject& getBuffer(GL::BufferObject::AttributeType type);
+
     /// @}
 
+
+    //---------------------------------------------------------------------------------------
+    /// @name GB Object Properties 
+    /// @{
+
+    /// @property className
+    virtual const char* className() const { return "VertexArrayObject"; }
+
+    /// @property namespaceName
+    virtual const char* namespaceName() const { return "Gb::VertexArrayObject"; }
+    /// @}
 
     //---------------------------------------------------------------------------------------
     /// @name Members 
@@ -91,7 +105,7 @@ public:
 
     /// @brief OpenGL buffers
     std::shared_ptr<GL::VertexArrayObject> m_vao = nullptr;
-    std::unordered_map<GL::BufferObject::AttributeType, std::shared_ptr<GL::BufferObject>> m_attributeBuffers;
+    std::unordered_map<int, std::shared_ptr<GL::BufferObject>> m_attributeBuffers; // index is of type GL::BufferObject::AttributeType
     std::shared_ptr<GL::BufferObject> m_indexBuffer = nullptr;
 
 
@@ -108,8 +122,9 @@ public:
     /// @brief Vertex indices
     std::vector<GLuint> m_indices;
 
-    /// @brief Lowercase material name corresponding to this mesh
-    QString m_materialName;
+    // Has been moved to model
+    ///// @brief Lowercase material name corresponding to this mesh
+    //QString m_materialName;
 
     /// @brief Filepath, if loaded from a file, otherwise is an identifier name
     QString m_source;
@@ -126,7 +141,7 @@ private:
     friend class Animation;
     friend class NodeAnimation;
     friend class Mesh;
-    friend class MeshNode;
+    friend class SkeletonJoint;
 
     /// @}
 
@@ -149,7 +164,8 @@ private:
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
-/// @brief For grouping VAO with associated vertex and index buffer
+/// @class Mesh
+/// @brief Encapsulates a VAO as a resource
 class Mesh: public Resource {
 public:
     //---------------------------------------------------------------------------------------
@@ -162,27 +178,12 @@ public:
     /// @name Constructors and Destructors
     /// @{
     Mesh(const QString& uniqueName);
-    Mesh(const QString& uniqueName, QOpenGLBuffer::UsagePattern usagePattern);
-    Mesh(const QString& uniqueName, const Gb::VertexArrayData& data,
-        QOpenGLBuffer::UsagePattern usagePattern = QOpenGLBuffer::DynamicDraw);
     ~Mesh();
     /// @}
 
     //---------------------------------------------------------------------------------------
     /// @name Methods
     /// @{
-
-    /// @brief Draw the mesh for the given model
-    void draw(CoreEngine* core, const std::shared_ptr<Gb::ShaderProgram>& shaderProgram, int glMode);
-
-    /// @brief Whether or not the mesh or any of it's child meshes has a material
-    bool hasMaterial() const;
-
-    /// @brief Return material names for entire mesh hierarchy
-    void getMaterialNames(std::unordered_map<QString, QString>& outMap) const;
-
-    /// @brief Set material names for the mesh hierarchy
-    void setMaterialNames(const std::unordered_map<QString, QString>& names);
 
     /// @brief What to do on removal from resource cache
     void onRemoval(ResourceCache* cache = nullptr) override;
@@ -197,12 +198,8 @@ public:
     /// @name Properties 
     /// @{
 
-    /// @brief Skeleton for the mesh
-    const Skeleton& skeleton() const { return *m_skeleton; }
-    Skeleton& skeleton() { return *m_skeleton; }
-
     /// @brief Return map of mesh data
-    std::unordered_map<QString, Gb::VertexArrayData*>& meshData() { return m_meshData; }
+    Gb::VertexArrayData& vertexData() { return m_vertexData; }
 
     /// @}
 
@@ -245,15 +242,8 @@ private:
     /// @name Private members 
     /// @{
 
-    QOpenGLBuffer::UsagePattern m_usagePattern;
-
     /// @brief Map of mesh vertex data
-    std::unordered_map<QString, Gb::VertexArrayData*> m_meshData;
-
-    /// @brief Skeleton for the mesh
-    // TODO: Move skeleton to a subclass of Mesh, since most meshes won't have one
-    std::shared_ptr<Skeleton> m_skeleton = nullptr;
-
+    Gb::VertexArrayData m_vertexData;
 
     /// @}
 };

@@ -109,6 +109,9 @@ public:
     /// @brief Returns world matrix without scaling
     Matrix4x4g rotationTranslationMatrix() const;
 
+    Transform::InheritanceType inheritanceType() const { return m_inheritanceType; }
+    void setInheritanceType(Transform::InheritanceType type) { m_inheritanceType = type; }
+
     /// @}
 
     //-----------------------------------------------------------------------------------------------------------------

@@ -30,9 +30,7 @@ class WidgetManager;
 class SceneTreeWidget;
 class ComponentTreeWidget;
 }
-namespace GL {
 class MainRenderer;
-}
 class EventManager;
 class ActionManager;
 class ProcessManager;
@@ -88,7 +86,7 @@ public:
     EventManager* eventManager() { return m_eventManager; }
 
     /// @brief Return the renderer
-    std::shared_ptr<GL::MainRenderer> mainRenderer();
+    std::shared_ptr<MainRenderer> mainRenderer();
 
     /// @brief Return the scene tree widget
     View::SceneTreeWidget* sceneTreeWidget();
@@ -133,6 +131,7 @@ public:
 
     /// @brief Set the current OpenGL context to the main GL widget context
     /// @details Context must be set before creating a VAO, since they are not shared between contexts
+    QOpenGLContext* getGLWidgetContext();
     void setGLContext();
 
     /// @brief Create a new scenario

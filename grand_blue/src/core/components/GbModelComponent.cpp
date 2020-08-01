@@ -7,21 +7,24 @@
 #include "../scene/GbScenario.h"
 #include "../scene/GbSceneObject.h"
 
+#include "../components/GbCamera.h"
+#include "../components/GbTransformComponent.h"
 #include "../rendering/shaders/GbShaders.h"
 #include "../rendering/shaders/GbUniform.h"
 #include "../rendering/models/GbModel.h"
+#include "../rendering/renderer/GbRenderCommand.h"
 
 #include "GbAnimationComponent.h"
 
 namespace Gb {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ModelComponent::ModelComponent() :
-    Component(kModel)
+    Component(ComponentType::kModel)
 {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ModelComponent::ModelComponent(const std::shared_ptr<SceneObject>& object) :
-    Component(object, kModel)
+    Component(object, ComponentType::kModel)
 {
     setSceneObject(sceneObject());
     sceneObject()->addComponent(this);
@@ -30,68 +33,107 @@ ModelComponent::ModelComponent(const std::shared_ptr<SceneObject>& object) :
 Gb::ModelComponent::~ModelComponent()
 {
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void ModelComponent::bindUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram)
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void ModelComponent::updateBounds(const Transform & transform)
 {
-    if (!m_model) {
+    m_transformedBounds.clear();
+    std::shared_ptr<Model> m = model();
+    if (!m) { return; }
+
+    for (const auto& chunk : m->chunks()) {
+        m_transformedBounds.push_back(BoundingBoxes());
+        chunk->boundingBoxes().recalculateBounds(transform, m_transformedBounds.back());
+    }
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//void ModelComponent::bindUniforms(DrawCommand& drawCommand)
+//{
+//    if (!m_modelHandle) {
+//#ifdef DEBUG_MODE
+//        logWarning("Warning, no model is set for model component");
+//#endif
+//        return;
+//    }
+//
+//    // Iterate through uniforms to update in draw command
+//    //for (const auto& uniformPair : m_uniforms) {
+//    //    command.setUniform(uniformPair.second);
+//    //}
+//
+//    // If the shader allows animations
+//    if (shaderProgram.hasUniform("isAnimated")) {
+//        if (sceneObject()->hasComponent(Component::ComponentType::kBoneAnimation)) {
+//            // If there are animations, update the corresponding shader uniforms
+//            sceneObject()->boneAnimation()->bindUniforms(shaderProgram);
+//        }
+//        else {
+//            shaderProgram.setUniformValue("isAnimated", false);
+//        }
+//    }
+//
+//    // Update the uniforms in GL
+//    shaderProgram.updateUniforms();
+//}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void ModelComponent::createDrawCommands(
+    std::vector<std::shared_ptr<DrawCommand>>& outDrawCommands, 
+    Camera & camera,
+    ShaderProgram& shaderProgram)
+{
+    if (!m_isEnabled) { return; }
+
+    if (!m_modelHandle) {
 #ifdef DEBUG_MODE
         logWarning("Warning, no model is set for model component");
 #endif
         return;
     }
 
-    // Iterate through uniforms to update in shader program class
-    Renderable::bindUniforms(shaderProgram);
+    std::shared_ptr<Model> m = model();
+    if (!m) { return; }
 
-    // If the shader allows animations
-    if (shaderProgram->hasUniform("isAnimated")) {
-        if (sceneObject()->hasComponent(Component::kBoneAnimation)) {
-            // If there are animations, update the corresponding shader uniforms
-            sceneObject()->boneAnimation()->bindUniforms(shaderProgram);
-        }
-        else {
-            shaderProgram->setUniformValue("isAnimated", false);
+    // If there is a model, make sure that the component's bounding boxes have been updated
+    if (m_transformedBounds.size() == 0) {
+        if (!sceneObject()->hasComponent(ComponentType::kBoneAnimation)) {
+            // FIXME: Make bounding boxes work for animations
+            updateBounds(*sceneObject()->transform());
         }
     }
 
-    // Update the uniforms in GL
-    shaderProgram->updateUniforms();
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void ModelComponent::releaseUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram)
-{
-    Q_UNUSED(shaderProgram)
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void ModelComponent::drawGeometry(const std::shared_ptr<ShaderProgram>& shaderProgram, RenderSettings * settings)
-{
-    // TODO: Clean up
-    Q_UNUSED(shaderProgram);
-    Q_UNUSED(settings);
-    throw("Unused");
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void ModelComponent::draw(const std::shared_ptr<ShaderProgram>& shaderProgram, RenderSettings* settings)
-{
-    if (!m_model) {
-        return;
+    // Iterate through model chunks to generate draw commands
+    size_t numChunks = m->chunks().size();
+    for (size_t i = 0; i < numChunks; i++) {
+
+        // Check if chunk should be drawn
+        if (m_transformedBounds.size() > i) {
+            // FIXME: See TransformComponent::computeWorldMatrix()
+            // Note that scene objects with an animation component will skip this
+            // check, since their bounding box size is unreliable
+            BoundingBoxes& bounds = m_transformedBounds[i];
+            if (!bounds.inFrustum(camera.frustum())) {
+                continue;
+            }
+        }
+
+        const auto& chunk = m->chunks().at(i);
+        if (!chunk->isLoaded()) {
+            continue;
+        }
+
+        auto command = std::make_shared<DrawCommand>(*chunk, shaderProgram, camera);
+        //bindUniforms(*command);
+        command->addRenderSettings(&m_renderSettings);
+        if (shaderProgram.hasUniform("isAnimated")) {
+            if (sceneObject()->hasComponent(Component::ComponentType::kBoneAnimation)) {
+                // If there are animations, update the corresponding command uniforms
+                sceneObject()->boneAnimation()->bindUniforms(*command);
+            }
+            else {
+                command->setUniform(Uniform("isAnimated", false));
+            }
+        }
+        outDrawCommands.push_back(command);
     }
-
-    // TODO: Reload model if no longer in resource cache
-    if (!m_engine->resourceCache()->hasModel(m_model->getName())) {
-        logWarning("Removing out-of-scope model for model component: " + m_model->getName());
-        m_model = nullptr;
-        return;
-    }
-
-    // Set the uniforms for the model component
-    bindUniforms(shaderProgram);
-
-    // Draw the model
-    m_model->draw(shaderProgram, settings);
-
-    // Release the uniforms for the model component
-    releaseUniforms(shaderProgram);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void ModelComponent::enable()
@@ -104,14 +146,19 @@ void ModelComponent::disable()
     Component::disable();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+std::shared_ptr<Model> ModelComponent::model() const
+{
+    if (m_modelHandle)
+        return m_modelHandle->resourceAs<Model>(false);
+    else
+        return nullptr;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 QJsonValue ModelComponent::asJson() const
 {
     QJsonObject object = Component::asJson().toObject();
-    QJsonValue renderable = Renderable::asJson();
-    object.insert("renderable", renderable);
-
-    if (m_model) {
-        object.insert("model", m_model->getName());
+    if (model()) {
+        object.insert("model", model()->getName());
     }
 
     return object;
@@ -122,25 +169,15 @@ void ModelComponent::loadFromJson(const QJsonValue & json)
     Component::loadFromJson(json);
     const QJsonObject& object = json.toObject();
 
-    // Load renderable attributes
-    if (object.contains("renderable")) {
-        Renderable::loadFromJson(object["renderable"]);
-    }
-
     // Load model
     if (object.contains("model")) {
         const QString& modelName = object["model"].toString();
-        m_model = m_engine->resourceCache()->getModel(modelName);
-        if (!m_model) {
-            throw("Error, no model found to populate renderer");
+        m_modelHandle = m_engine->resourceCache()->getHandleWithName(modelName, Resource::kModel);
+        if (!m_modelHandle) {
+            throw("Error, no model handle found to populate renderer");
         }
     }
 
-    // (DEPRECATED) Load animations
-    if (object.contains("animationController")) {
-        auto boneAnimComp = new BoneAnimationComponent(sceneObject());
-        boneAnimComp->loadFromJson(object);
-    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

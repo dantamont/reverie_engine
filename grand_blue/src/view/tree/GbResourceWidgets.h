@@ -25,8 +25,96 @@ class Material;
 class ShaderProgram;
 class Model;
 
+namespace View {
+class LoadModelWidget;
+class LoadTextureWidget;
+class CreateMeshWidget;
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Classes
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/// @class LoadTextureCommand
+/// @brief Load a texture
+class LoadTextureCommand : public UndoCommand {
+public:
+    //--------------------------------------------------------------------------------------------
+    /// @name Constructors/Destructor
+    /// @{
+    LoadTextureCommand(CoreEngine* core,
+        const QString &text,
+        QUndoCommand *parent = nullptr);
+    ~LoadTextureCommand();
+    /// @}
+
+    //--------------------------------------------------------------------------------------------
+    /// @name Public Methods
+    /// @{
+
+    /// @brief Redoes the add scenario command
+    virtual void redo() override;
+
+    /// @brief Undoes the add scenario command
+    virtual void undo() override;
+
+    /// @}
+protected:
+    //--------------------------------------------------------------------------------------------
+    /// @name Protected members
+    /// @{
+
+    /// @brief The material added by this command
+    Uuid m_textureHandleID;
+
+    /// @brief The widget used to load a texture
+    View::LoadTextureWidget* m_textureLoadWidget = nullptr;
+
+    /// @}
+
+};
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/// @class DeleteTextureCommand
+/// @brief Load a texture
+class DeleteTextureCommand : public UndoCommand {
+public:
+    //--------------------------------------------------------------------------------------------
+    /// @name Constructors/Destructor
+    /// @{
+    DeleteTextureCommand(CoreEngine* core,
+        const QString &text,
+        const std::shared_ptr<ResourceHandle>& texture,
+        QUndoCommand *parent = nullptr);
+    ~DeleteTextureCommand();
+    /// @}
+
+    //--------------------------------------------------------------------------------------------
+    /// @name Public Methods
+    /// @{
+
+    /// @brief Redoes the add scenario command
+    virtual void redo() override;
+
+    /// @brief Undoes the add scenario command
+    virtual void undo() override;
+
+    /// @}
+protected:
+    //--------------------------------------------------------------------------------------------
+    /// @name Protected members
+    /// @{
+
+    /// @brief The material added by this command
+    Uuid m_textureHandleID;
+
+    QJsonObject m_textureJSON;
+
+    /// @}
+
+};
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /// @class AddMaterialCommand
 /// @brief Add a material
@@ -58,10 +146,7 @@ protected:
     /// @{
 
     /// @brief The material added by this command
-    std::shared_ptr<Material> m_material;
-
-    /// @brief The JSON for the material added by this command
-    QJsonValue m_materialJson;
+    Uuid m_materialID;
 
     /// @}
 
@@ -110,9 +195,59 @@ protected:
     /// @brief The JSON for the material copied by this command
     QJsonValue m_materialJson;
 
+    Uuid m_materialUuid;
+
     /// @}
 
 };
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/// @class AddMeshCommand
+/// @brief Add a mesh
+class AddMeshCommand : public UndoCommand {
+public:
+    //--------------------------------------------------------------------------------------------
+    /// @name Constructors/Destructor
+    /// @{
+    AddMeshCommand(CoreEngine* core,
+        const QString &text,
+        QUndoCommand *parent = nullptr);
+    ~AddMeshCommand();
+    /// @}
+
+    //--------------------------------------------------------------------------------------------
+    /// @name Public Methods
+    /// @{
+
+    /// @brief Redoes the command
+    virtual void redo() override;
+
+    /// @brief Undoes the command
+    virtual void undo() override;
+
+    /// @}
+protected:
+
+    //--------------------------------------------------------------------------------------------
+    /// @name Protected methods
+    /// @{
+
+    /// @}
+
+    //--------------------------------------------------------------------------------------------
+    /// @name Protected members
+    /// @{
+
+    /// @brief Mesh widget
+    View::CreateMeshWidget* m_meshWidget = nullptr;
+
+    /// @}
+
+};
+
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -146,7 +281,53 @@ protected:
     /// @name Protected methods
     /// @{
 
-    /// @brief Create material widget
+    /// @}
+
+    //--------------------------------------------------------------------------------------------
+    /// @name Protected members
+    /// @{
+
+    /// @brief The model ID added by this command
+    Uuid m_modelHandleID;
+
+    /// @}
+
+};
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/// @class LoadModelCommand
+/// @brief Add a model
+class LoadModelCommand : public UndoCommand {
+public:
+    //--------------------------------------------------------------------------------------------
+    /// @name Constructors/Destructor
+    /// @{
+    LoadModelCommand(CoreEngine* core,
+        const QString &text,
+        QUndoCommand *parent = nullptr);
+    ~LoadModelCommand();
+    /// @}
+
+    //--------------------------------------------------------------------------------------------
+    /// @name Public Methods
+    /// @{
+
+    /// @brief Redoes the command
+    virtual void redo() override;
+
+    /// @brief Undoes the command
+    virtual void undo() override;
+
+    /// @}
+protected:
+
+    //--------------------------------------------------------------------------------------------
+    /// @name Protected methods
+    /// @{
+
+    /// @brief Create model widget
     void createModelWidget();
 
     /// @}
@@ -155,21 +336,13 @@ protected:
     /// @name Protected members
     /// @{
 
-    /// @brief Model file
-    QString m_modelFileOrName;
-
-    /// @brief shader widget
-    QWidget* m_modelWidget;
-
-    /// @brief The model added by this command
-    std::shared_ptr<Model> m_model;
-
-    /// @brief The JSON for the model added by this command
-    QJsonValue m_modelJson;
+    /// @brief model widget
+    View::LoadModelWidget* m_modelWidget;
 
     /// @}
 
 };
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -211,12 +384,16 @@ protected:
     /// @name Protected members
     /// @{
 
+    /// @brief The model added by this command
+    Uuid m_modelHandleID;
+
     /// @brief The JSON for the model copied by this command
     QJsonValue m_modelJson;
 
     /// @}
 
 };
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -265,7 +442,7 @@ protected:
     QString m_vertFile;
 
     /// @brief The shader program added by this command
-    std::shared_ptr<ShaderProgram> m_shaderProgram;
+    Uuid m_shaderProgramID;
 
     /// @brief The JSON for the shader added by this command
     QJsonValue m_shaderJson;
@@ -284,7 +461,7 @@ public:
     /// @name Constructors/Destructor
     /// @{
     DeleteMaterialCommand(CoreEngine* core,
-        std::shared_ptr<Material> material,
+        const std::shared_ptr<Material>& material,
         const QString &text,
         QUndoCommand *parent = nullptr);
     ~DeleteMaterialCommand();
@@ -306,11 +483,11 @@ protected:
     /// @name Protected members
     /// @{
 
-    /// @brief The material deleted by this command
-    std::shared_ptr<Material> m_material;
-
     /// @brief The JSON for the material removed by this command
     QJsonValue m_materialJson;
+
+    Uuid m_materialHandleID;
+    QString m_materialName;
 
     /// @}
 
@@ -349,11 +526,9 @@ protected:
     /// @name Protected members
     /// @{
 
-    /// @brief The model deleted by this command
-    std::shared_ptr<Model> m_model;
-
     /// @brief The JSON for the model removed by this command
     QJsonValue m_modelJson;
+    QString m_modelName;
 
     /// @}
 
@@ -391,11 +566,9 @@ protected:
     /// @name Protected members
     /// @{
 
-    /// @brief The shader program deleted by this command
-    std::shared_ptr<ShaderProgram> m_shaderProgram;
-
     /// @brief The JSON for the shader removed by this command
     QJsonValue m_shaderJson;
+    QString m_shaderName;
 
     /// @}
 
@@ -406,28 +579,8 @@ protected:
 namespace View {
 class ResourceTreeWidget;
 
-/// @struct ResourceLike
-/// @brief Wrapper to convert resource-like types to a serializable object
-struct ResourceLike {
-    ResourceLike();
-    ResourceLike(std::shared_ptr<Object> object);
-    ~ResourceLike();
-
-    /// @brief Return stored object
-    std::shared_ptr<Object> object() const;
-
-    /// @brief Convert stored object to serializable
-    std::shared_ptr<Serializable> serializable() const;
-
-    std::shared_ptr<ResourceHandle> m_handle;
-    std::shared_ptr<Model> m_model;
-    std::shared_ptr<Material> m_material;
-    std::shared_ptr<ShaderProgram> m_shaderProgram;
-};
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// TODO: Add a method for managing type values getting updating outside of the widget
 /// @class ResourceJsonWidget
 class ResourceJsonWidget : public ParameterWidget{
     Q_OBJECT
@@ -437,9 +590,6 @@ public:
     /// @{
 
     ResourceJsonWidget(CoreEngine* core, const std::shared_ptr<ResourceHandle>& resource, QWidget *parent = 0);
-    ResourceJsonWidget(CoreEngine* core, const std::shared_ptr<Model>& resource, QWidget *parent = 0);
-    ResourceJsonWidget(CoreEngine* core, const std::shared_ptr<Material>& resource, QWidget *parent = 0);
-    ResourceJsonWidget(CoreEngine* core, const std::shared_ptr<ShaderProgram>& resource, QWidget *parent = 0);
     ~ResourceJsonWidget();
 
     /// @}
@@ -470,6 +620,8 @@ protected:
     /// @name Protected Methods
     /// @{
 
+    std::shared_ptr<ResourceHandle> resourceHandle() const;
+
     virtual void initializeWidgets() override;
     virtual void initializeConnections() override;
     virtual void layoutWidgets() override;
@@ -482,10 +634,11 @@ protected:
     QLabel* m_typeLabel;
 
     /// @brief Serializable object
-    ResourceLike m_object;
+    Uuid m_resourceHandleID;
+    QString m_resourceName;
 
     QTextEdit* m_textEdit;
-    QPushButton* m_confirmButton;
+    QPushButton* m_confirmButton = nullptr;
     /// @}
 };
 
@@ -501,9 +654,6 @@ public:
 
     enum ResourceItemType {
         kResourceHandle = 2000, // Tree widget item takes a type
-        kMaterial,
-        kModel,
-        kShaderProgram,
         kCategory
     };
 
@@ -513,13 +663,15 @@ public:
     /// @name Constructors and Destructors
     /// @{
     ResourceItem(const QString& text);
-    ResourceItem(std::shared_ptr<Object> resourceLike);
+    ResourceItem(const std::shared_ptr<ResourceHandle>& handle);
     ~ResourceItem();
 
     /// @}
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Public Methods
     /// @{
+
+    std::shared_ptr<ResourceHandle> handle() { return m_handle; }
 
     /// @brief Perform an action from this item
     void performAction(UndoCommand* command);
@@ -529,8 +681,8 @@ public:
     void setWidget();
     void removeWidget();
 
-    /// @brief Return object represented by this tree item
-    inline const ResourceLike& object() { return m_object; }
+    /// @brief Return handle represented by this tree item
+    inline const std::shared_ptr<ResourceHandle>& handle() const { return m_handle; }
 
     /// @brief Get the resource item type of this tree item
     ResourceItemType itemType() const { return ResourceItemType(type()); }
@@ -577,7 +729,7 @@ protected:
     /// @{
 
     /// @brief Pointer to the object corresponding to this tree item
-    ResourceLike m_object;
+    std::shared_ptr<ResourceHandle> m_handle;
 
     /// @brief Pointer to widget if this item has one
     QWidget* m_widget;
@@ -585,11 +737,10 @@ protected:
     /// @}
 };
 
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /// @class ResourceTreeWidget
+// TODO: Clean up with standard tree widget
 class ResourceTreeWidget : public QTreeWidget, public AbstractService {
     Q_OBJECT
 public:
@@ -607,18 +758,18 @@ public:
     /// @brief Populate the resource widget
     void repopulate();
 
-    /// @brief Reload the given resource-like widget
-    void reloadItem(std::shared_ptr<Object> object);
+    /// @brief Reload the given resource widget
+    void reloadItem(std::shared_ptr<ResourceHandle> handle);
 
     /// @brief Add component item to the widget
-    void addItem(std::shared_ptr<Object> object);
+    void addItem(std::shared_ptr<ResourceHandle> handle);
     void addItem(View::ResourceItem* item);
 
     /// @brief Remove component item from the widget
     void removeItem(ResourceItem* resourceItem);
 
     /// @brief Get tree item corresponding to the given component
-    View::ResourceItem* getItem(std::shared_ptr<Object> itemObject);
+    View::ResourceItem* getItem(std::shared_ptr<ResourceHandle> handle);
 
     /// @brief Resize columns to fit content
     void resizeColumns();
@@ -680,7 +831,7 @@ protected:
     void dragMoveEvent(QDragMoveEvent *event) override;
 
     /// @brief Remove an item
-    void removeItem(std::shared_ptr<Object> itemObject);
+    void removeItem(std::shared_ptr<ResourceHandle> handle);
 
     /// @brief Initialize the widget
     void initializeWidget();
@@ -697,20 +848,30 @@ protected:
     /// @name Protected Members
     /// @{
 
-    ResourceItem* m_resourceItem;
-    ResourceItem* m_shaderItem;
-    ResourceItem* m_modelItem;
+    ResourceItem* m_imageItem;
+    ResourceItem* m_textureItem;
     ResourceItem* m_materialItem;
+    ResourceItem* m_meshItem;
+    ResourceItem* m_cubeTextureItem;
+    ResourceItem* m_animationItem;
+    ResourceItem* m_skeletonItem;
+    ResourceItem* m_modelItem;
+    ResourceItem* m_shaderItem;
+    ResourceItem* m_scriptItem;
 
     /// @brief Actions performable in this widget
     QAction* m_addModel;
+    QAction* m_loadModel;
     QAction* m_copyModel;
     QAction* m_addShaderProgram;
+    QAction* m_addTexture;
     QAction* m_addMaterial;
     QAction* m_copyMaterial;
+    QAction* m_addMesh;
     QAction* m_deleteModel;
     QAction* m_deleteMaterial;
     QAction* m_deleteShaderProgram;
+
     /// @brief The resource clicked by a right-mouse operation
     ResourceItem* m_currentResourceItem;
 

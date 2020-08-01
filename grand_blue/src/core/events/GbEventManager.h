@@ -93,11 +93,8 @@ signals:
 
     // Scenario
     void deletedSceneObject(Uuid uuid);
+    void addedComponent(Uuid uuid, int componentType, Uuid sceneObjectID);
     void deletedComponent(Uuid parentUuid, int parentType); // Component::ParentType
-
-    // Resources
-    void doneLoadingResource(std::shared_ptr<ResourceHandle> resourceHandle);
-    void resourceNeedsReload(std::shared_ptr<ResourceHandle> resourceHandle);
     
     // Processes
     void deleteThreadedProcess(const Uuid& process);

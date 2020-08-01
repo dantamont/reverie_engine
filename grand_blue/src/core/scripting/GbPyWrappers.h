@@ -40,9 +40,9 @@ class TranslationComponent;
 class RotationComponent;
 class ScaleComponent;
 class CameraComponent;
-class RendererComponent;
+class ShaderComponent;
 class CharControlComponent;
-class Light;
+class LightComponent;
 class Scene;
 class Scenario;
 class ShaderProgram;
@@ -981,28 +981,29 @@ public slots:
     /// @{
 
     /// @brief Add a constructor
-    Light* new_Light(SceneObject* object);
+    LightComponent* new_LightComponent(SceneObject* object);
 
     /// @brief Add a destructor
-    void delete_Light(Light* l);
+    void delete_LightComponent(LightComponent* l);
 
     /// @brief Obtain TransformComponent as JSON
-    QJsonValue as_json_str(Light* l) const;
+    QJsonValue as_json_str(LightComponent* l) const;
 
     /// @brief Get/set the color of the light
-    PyObject* get_diffuse_color(Light* l);
-    PyObject* get_ambient_color(Light* l);
-    PyObject* get_specular_color(Light* l);
-    void set_diffuse_color(Light* l, PyObject* color);
-    void set_ambient_color(Light* l, PyObject* color);
-    void set_specular_color(Light* l, PyObject* color);
+    PyObject* get_diffuse_color(LightComponent* l);
+    PyObject* get_ambient_color(LightComponent* l);
+    PyObject* get_specular_color(LightComponent* l);
+    void set_diffuse_color(LightComponent* l, PyObject* color);
+    void set_ambient_color(LightComponent* l, PyObject* color);
+    void set_specular_color(LightComponent* l, PyObject* color);
+    void set_attenuations(LightComponent* l, PyObject* attenuations);
 
     /// @brief Get/set the intensity of the light
-    double get_intensity(Light* l);
-    void set_intensity(Light* l, PyObject* intensity);
+    double get_intensity(LightComponent* l);
+    void set_intensity(LightComponent* l, PyObject* intensity);
 
     /// @brief Obtain the object for the light
-    SceneObject* scene_object(Light* l) const;
+    SceneObject* scene_object(LightComponent* l) const;
 
     /// @}
 
@@ -1012,7 +1013,7 @@ public slots:
     /// @{
 
     /// @brief Wraps __str__
-    QString py_toString(Light* l);
+    QString py_toString(LightComponent* l);
 
     /// @}
 private:
@@ -1021,16 +1022,16 @@ private:
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
-/// @class PyRenderer
-/// @brief Wrapper for a Renderer component
-class PyRenderer : public QObject, public Object {
+/// @class PyMaterial
+/// @brief Wrapper for a material component
+class PyMaterial : public QObject, public Object {
     Q_OBJECT
 public:
     //-----------------------------------------------------------------------------------------------------------------    
     /// @name Constructors/Destructor
     /// @{
 
-    PyRenderer();
+    PyMaterial();
 
     /// @}
 
@@ -1038,10 +1039,10 @@ public:
     /// @name Object Properties
     /// @{
     /// @property className
-    const char* className() const override { return "PyRenderer"; }
+    const char* className() const override { return "PyMaterial"; }
 
     /// @property namespaceName
-    const char* namespaceName() const override { return "Gb::PyRenderer"; }
+    const char* namespaceName() const override { return "Gb::PyMaterial"; }
     /// @}
 
 public slots:
@@ -1051,13 +1052,13 @@ public slots:
     /// @{
 
     /// @brief Add a constructor
-    RendererComponent* new_RendererComponent(SceneObject* so);
+    ShaderComponent* new_MaterialComponent(SceneObject* so);
 
     /// @brief Add a destructor
-    void delete_RendererComponent(RendererComponent* r);
+    void delete_MaterialComponent(ShaderComponent* r);
 
     /// @brief Obtain TransformComponent as JSON
-    QJsonValue as_json_str(RendererComponent* r) const;
+    QJsonValue as_json_str(ShaderComponent* r) const;
 
     /// @}
 
@@ -1067,7 +1068,7 @@ public slots:
     /// @{
 
     /// @brief Wraps __str__
-    QString py_toString(RendererComponent* r);
+    QString py_toString(ShaderComponent* r);
 
     /// @}
 private:
@@ -1383,7 +1384,7 @@ public slots:
     /// @note Wrapper does NOT work with macro types, so need to hard-code
     Quaternion* new_Quaternion();
     Quaternion* new_Quaternion(double x, double y, double z, double w);
-    Quaternion* new_Quaternion(double roll, double pitch, double yaw);
+    //Quaternion* new_Quaternion(double roll, double pitch, double yaw);
 
     Quaternion* static_Quaternion_look_rotation(const Vector3* dir, const Vector3* up);
     Quaternion* static_Quaternion_slerp(const Quaternion* q1, const Quaternion* q2, double factor);

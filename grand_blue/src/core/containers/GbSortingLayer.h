@@ -27,25 +27,30 @@ struct SortingLayer: public Serializable, public Object {
     //--------------------------------------------------------------------------------------------
     /// @name Members
     /// @{
-    SortingLayer() {
-    }
+    SortingLayer();
     SortingLayer(const QJsonValue& json);
-    SortingLayer(const QString& name, int order):
-        m_order(order),
-        m_label(name){
-    }
+    SortingLayer(const QString& name, int order);
     ~SortingLayer(){}
-
-    /// @brief the order of this layer in the queue
-    /// @details A lower number will occur first
-	int m_order = 0;
-    QString m_label = "default";
 
     /// @}
 
     //---------------------------------------------------------------------------------------
-    /// @name Public Methods
+    /// @name Properties
     /// @{
+
+    int getOrder() const {
+        return m_order;
+    }
+    void setOrder(int order);
+
+    /// @}
+
+    //---------------------------------------------------------------------------------------
+    /// @name Public methods
+    /// @{
+
+    /// @brief Return order distance above minimum order
+    size_t getPositiveOrder() const;
 
     /// @}
 
@@ -97,7 +102,16 @@ struct SortingLayer: public Serializable, public Object {
     }
 
     /// @}
+
+private:
+
+    /// @brief the order of this layer in the queue
+    /// @details A lower number will occur first
+    int m_order = 0;
+
+    static int s_minimumOrder;
 };
+typedef std::vector<std::shared_ptr<SortingLayer>> SortingLayers;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////    
 // End namespaces

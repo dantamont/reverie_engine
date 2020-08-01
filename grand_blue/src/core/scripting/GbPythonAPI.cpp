@@ -1,6 +1,6 @@
 #include "GbPythonAPI.h"
 #include <QDir>
-#include <PythonQtConversion.h>
+#include "../../third_party/pythonqt/PythonQtConversion.h"
 
 #include "../readers/GbJsonReader.h"
 #include "../scripting/GbPyWrappers.h"
@@ -772,10 +772,8 @@ QString PythonAPI::printAndClearErrors() const
 {
     if (PyErr_Occurred()) {
         PyErr_Print();
-#ifdef DEBUG_MODE
         QString err = getStdErr();
         logError(err);
-#endif
         clearStdErr();
         return err;
     }

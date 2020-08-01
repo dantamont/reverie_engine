@@ -8,7 +8,7 @@
 #include <memory>
 #include <vector>
 #include <set>
-#include <PythonQt.h>
+#include "../../third_party/pythonqt/PythonQt.h"
 
 // QT
 

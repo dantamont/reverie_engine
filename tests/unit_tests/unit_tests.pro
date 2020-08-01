@@ -33,6 +33,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 HEADERS += src/test_base.h \
            src/test_GbDagNode.h \
 		   src/test_GbQuaternion.h \
+		   src/test_GbEulerAngle.h \
            src/test_GbMatrix.h \
 		   src/test_GbVector.h\
 		   src/test_GbParallelization.h
@@ -40,12 +41,16 @@ HEADERS += src/test_base.h \
 SOURCES += src/main.cpp \
            src/test_GbDagNode.cpp \
 		   src/test_GbQuaternion.cpp \
+		   src/test_GbEulerAngle.cpp \
            src/test_GbMatrix.cpp \
 		   src/test_GbVector.cpp\
 		   src/test_GbParallelization.cpp
 
 # Load in library files for main project
 include(unit_tests.pri)
+
+# Set compiler flags /////////////////////////////////////////////////////////////
+QMAKE_CXXFLAGS += /MP # Multiprocess compile, much faster
 
 # Set general configuration options /////////////////////////////////////////////////
 CONFIG += c++latest # Add support for c++17.

@@ -72,10 +72,15 @@ std::shared_ptr<SceneObject> SceneCommand::createSceneObject(const QJsonValue & 
 /////////////////////////////////////////////////////////////////////////////////////////////
 std::shared_ptr<Scene> SceneCommand::getScene(const QJsonValue & sceneJson) const
 {
-    QString sceneName = sceneJson["name"].toString();
-
-    if (sceneName.isEmpty()) {
-        throw("Error, scene name is empty");
+    QString sceneName;
+    if (sceneJson.isString()) {
+        sceneName = sceneJson.toString();
+    }
+    else {
+        sceneName = sceneJson["name"].toString();
+        if (sceneName.isEmpty()) {
+            throw("Error, scene name is empty");
+        }
     }
 
     auto scene = m_engine->scenario()->getSceneByName(sceneName);
@@ -203,7 +208,7 @@ void RemoveSceneCommand::redo()
     m_engine->sceneTreeWidget()->clearSelectedItems();
 
     m_sceneJson = m_scene->asJson();
-    QString json = JsonReader::getJsonValueAsQString(m_sceneJson);
+    QString json = JsonReader::ToQString(m_sceneJson);
     m_engine->scenario()->removeScene(m_scene);
     m_scene = nullptr;
     emit m_engine->scenarioChanged();
@@ -239,7 +244,7 @@ AddSceneObjectCommand::AddSceneObjectCommand(CoreEngine* core, const std::shared
     SceneCommand(core, text, parent)
 {
     if (scene) {
-        m_scene = scene->asJson().toObject();
+        m_scene = scene->getName();
     }
     if (parentObject) {
         m_parentSceneObject = parentObject->asJson().toObject();
@@ -250,7 +255,7 @@ AddSceneObjectCommand::AddSceneObjectCommand(CoreEngine* core, const std::shared
     SceneCommand(core, parent)
 {
     if (scene) {
-        m_scene = scene->asJson().toObject();
+        m_scene = scene->getName();
     }
     if (parentObject) {
         m_parentSceneObject = parentObject->asJson().toObject();

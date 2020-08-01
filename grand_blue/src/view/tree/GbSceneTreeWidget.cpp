@@ -16,6 +16,7 @@
 #include "../../model_control/models/GbSceneModels.h"
 #include "../../core/debugging/GbDebugManager.h"
 
+#include "../../core/canvas/GbFonts.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Namespace Definitions
@@ -28,7 +29,8 @@ namespace View {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // SceneTreeWidget
 
-unsigned int SceneTreeWidget::NUM_COLUMNS = 2;
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+unsigned int SceneTreeWidget::s_numColumns = 2;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 SceneTreeWidget::SceneTreeWidget(CoreEngine* core, const QString & name, QWidget * parent) :
     AbstractService(name),
@@ -36,8 +38,7 @@ SceneTreeWidget::SceneTreeWidget(CoreEngine* core, const QString & name, QWidget
     m_engine(core),
     m_currentSceneItem(nullptr),
     m_currentSceneObjectItem(nullptr),
-    m_lastLeftClickedItem(nullptr),
-    m_lastDoubleClickedItem(nullptr)
+    m_lastLeftClickedItem(nullptr)
 {
     initializeTreeWidget();
 }
@@ -79,7 +80,7 @@ void SceneTreeWidget::setScenarioTreeItem(View::SceneRelatedItem * scenario)
     // Set header item and disable scene object dragging
     setHeaderItem(scenario);
     invisibleRootItem()->setFlags(invisibleRootItem()->flags() ^ Qt::ItemIsDropEnabled);
-    resizeColumns();
+    //resizeColumns();
 
     // Set scene tree items
     for (const auto& scenePair : m_engine->scenario()->getScenes()) {
@@ -111,7 +112,7 @@ void SceneTreeWidget::addSceneTreeItem(View::SceneRelatedItem * sceneItem)
 
     // Insert scene item into widget
     insertTopLevelItem(0, sceneItem);
-    resizeColumns();
+    //resizeColumns();
 
     // Insert scene objects from scene into widget
     std::shared_ptr<Scene> scene = std::static_pointer_cast<Scene>(sceneItem->object());
@@ -149,7 +150,7 @@ void SceneTreeWidget::addSceneObjectTreeItem(const std::shared_ptr<SceneObject>&
         // If a parent scene was found
         parentItem->addChild(sceneObjectItem);
         parentItem->setExpanded(true);
-        resizeColumns();
+        //resizeColumns();
     }
 
     // Add child scene objects
@@ -192,7 +193,7 @@ View::SceneRelatedItem * SceneTreeWidget::getItem(std::shared_ptr<Gb::Object> ob
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void SceneTreeWidget::resizeColumns()
 {
-    for (unsigned int i = 0; i < NUM_COLUMNS; i++) {
+    for (unsigned int i = 0; i < s_numColumns; i++) {
         resizeColumnToContents(i);
     }
 }
@@ -202,7 +203,6 @@ void SceneTreeWidget::clearSelectedItems()
     clearSelection();
     m_currentSceneItem = nullptr;
     m_currentSceneObjectItem = nullptr;
-    m_lastDoubleClickedItem = nullptr;
 
     emit deselectedSceneObject();
 }
@@ -217,7 +217,7 @@ void SceneTreeWidget::removeScenarioTreeItem()
     // Delete scene items from scenario
     clear();
 
-    resizeColumns();
+    //resizeColumns();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void SceneTreeWidget::onItemDoubleClicked(QTreeWidgetItem *item, int column)
@@ -232,15 +232,17 @@ void SceneTreeWidget::onItemDoubleClicked(QTreeWidgetItem *item, int column)
 
     // Set widget
     sceneItem->setWidget();
-
-    // Set last double-clicked item
-    m_lastDoubleClickedItem = sceneItem;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void SceneTreeWidget::onItemClicked(QTreeWidgetItem * item, int column)
 {
     Q_UNUSED(column)
     
+    // Downcast item
+    auto* sceneItem = static_cast<SceneRelatedItem*>(item);
+
+    if (m_lastLeftClickedItem == sceneItem) return;
+
     // Emit signal that last item was deselected
     if(m_lastLeftClickedItem){
         switch (m_lastLeftClickedItem->sceneType()) {
@@ -254,9 +256,6 @@ void SceneTreeWidget::onItemClicked(QTreeWidgetItem * item, int column)
             break;
         }
     }
-
-    // Downcast item
-    auto* sceneItem = static_cast<SceneRelatedItem*>(item);
 
     switch (sceneItem->sceneType()) {
     case SceneRelatedItem::kSceneObject:
@@ -290,14 +289,6 @@ void SceneTreeWidget::onItemExpanded(QTreeWidgetItem * item)
 void SceneTreeWidget::mouseReleaseEvent(QMouseEvent * event)
 {
     QTreeWidget::mouseReleaseEvent(event);
-
-    if (!m_lastDoubleClickedItem) return;
-    QTreeWidgetItem* item = itemAt(event->pos());
-    if (!item || item != m_lastDoubleClickedItem) {
-        // If item changed
-        m_lastDoubleClickedItem->removeWidget();
-        m_lastDoubleClickedItem = nullptr;
-    }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void SceneTreeWidget::dropEvent(QDropEvent * event)
@@ -390,10 +381,15 @@ void SceneTreeWidget::removeItem(SceneRelatedItem * sceneItem)
 void SceneTreeWidget::initializeTreeWidget()
 {
     // Set tree widget settings
-    setColumnCount(NUM_COLUMNS);
+    setColumnCount(s_numColumns);
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
     setHeaderLabels(QStringList({""}));
     setAlternatingRowColors(true);
+
+    // Set first column width
+    //QFontMetrics metrics(FontManager::solidFontAwesomeFamily());
+    //setColumnWidth(0, metrics.width("\uf468") * 3);
+    setColumnWidth(0, columnWidth(0) * 0.75);
 
     // Enable drag and drop
     setDragEnabled(true);
@@ -488,6 +484,12 @@ void SceneTreeWidget::initializeTreeWidget()
         this,
         static_cast<void(SceneTreeWidget::*)(void)>(&SceneTreeWidget::setScenarioTreeItem));
 
+    //connect(m_engine,
+    //    &CoreEngine::scenarioLoaded,
+    //    this,
+    //    [&]() {
+    //    m_currentSceneItem = getItem(m_engine->scenario());
+    //});
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #ifndef QT_NO_CONTEXTMENU
@@ -503,8 +505,10 @@ void SceneTreeWidget::contextMenuEvent(QContextMenuEvent *event)
         case SceneRelatedItem::kScene: {
             m_currentSceneObjectItem = nullptr;
             m_currentSceneItem = item;
-            menu.addAction(m_addSceneObject);
-            menu.addAction(m_removeScene);
+            if (m_currentSceneItem->object()->getName() != "Debug Objects") {
+                menu.addAction(m_addSceneObject);
+                menu.addAction(m_removeScene);
+            }
             break;
         }
         case SceneRelatedItem::kSceneObject:
@@ -528,6 +532,12 @@ void SceneTreeWidget::contextMenuEvent(QContextMenuEvent *event)
     }
     else {
         // Options to add things when there is no item selected
+        if (getCurrentScene()) {
+            if (getCurrentScene() != m_engine->debugManager()->scene()) {
+                menu.addAction(m_addSceneObject);
+                menu.addSeparator();
+            }
+        }
         menu.addAction(m_addScenario);
         menu.addAction(m_addScene);
     }

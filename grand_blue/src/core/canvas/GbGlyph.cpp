@@ -43,12 +43,14 @@ std::shared_ptr<Glyph> Glyph::createGlyph(CanvasComponent* canvas, const QJsonOb
 Glyph::Glyph(CanvasComponent* canvas, GlyphType type, GlyphMode mode) :
     m_canvas(canvas),
     m_type(type),
-    m_mode(mode),
+    m_glyphMode(mode),
     m_flags({ kFaceCamera }),
     m_verticalAlignment(VerticalAlignment::kMiddle),
     m_horizontalAlignment(HorizontalAlignment::kCenter),
+    m_moveMode(kIndependent),
     m_transform(std::make_shared<Transform>())
 {
+    m_transparencyType = TransparencyType::kTransparentNormal;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -65,8 +67,23 @@ void Glyph::setAlignment(VerticalAlignment verticalAlignment, HorizontalAlignmen
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Glyph::setTrackedObject(const std::shared_ptr<SceneObject>& object)
 {
-    m_object = object;
-    m_transform = object->transform();
+    if (!object) {
+        if (m_moveMode != kIndependent) {
+            throw("Error, movement mode is not set to be independent");
+        }
+        //m_moveMode = kIndependent;
+        m_transform = std::make_shared<Transform>();
+    }
+    else {
+        if (m_moveMode != kTrackObject) {
+            throw("Error, glyph not set to track object");
+        }
+
+        m_trackedObject = object;
+        m_transform = object->transform();
+    }
+
+    checkTransform();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -98,14 +115,14 @@ QJsonValue Glyph::asJson() const
 {
     QJsonObject object = Renderable::asJson().toObject();
     object.insert("type", int(m_type));
-    object.insert("mode", int(m_mode));
+    object.insert("mode", int(m_glyphMode));
 
-    //// Get name of mesh
-    //object.insert("mesh", m_mesh->getName());
+    // Get movement mode
+    object.insert("moveMode", int(m_moveMode));
 
     // Get transform or owner scene object
-    if (sceneObject()) {
-        object.insert("sceneObject", sceneObject()->getName());
+    if (trackedObject()) {
+        object.insert("sceneObject", trackedObject()->getName());
     }
     else {
         object.insert("transform", m_transform->asJson());
@@ -116,7 +133,7 @@ QJsonValue Glyph::asJson() const
     object.insert("coordinates", m_coordinates.asJson());
 
     // Get flags
-    if (m_mode == kBillboard) {
+    if (m_glyphMode == kBillboard) {
         object.insert("faceCamera", facesCamera());
         object.insert("scaleWithDistance", scalesWithDistance());
         object.insert("onTop", onTop());
@@ -135,21 +152,20 @@ void Glyph::loadFromJson(const QJsonValue & json)
     Renderable::loadFromJson(json);
 
     m_type = GlyphType(object.value("type").toInt());
-    m_mode = GlyphMode(object.value("mode").toInt(0));
+    m_glyphMode = GlyphMode(object.value("mode").toInt(0));
 
-    //// Load mesh
-    //QString meshName = object.value("mesh").toString();
-    //m_mesh = engine->resourceCache()->getMesh(meshName);
+    // Set movement mode
+    m_moveMode = MovementMode(object["moveMode"].toInt(0));
 
     // Load transform
     if (object.contains("transform")) {
         m_transform = std::make_shared<Transform>(object.value("transform"));
     }
     else if (object.contains("sceneObject")) {
-        m_objectName = object["sceneObject"].toString();
-        auto sceneObject = SceneObject::getByName(m_objectName);
+        QString sceneObjectName = object["sceneObject"].toString();
+        auto sceneObject = SceneObject::getByName(sceneObjectName);
         if (sceneObject) {
-            m_object = sceneObject;
+            m_trackedObject = sceneObject;
             m_transform = sceneObject->transform();
         }
         else {
@@ -164,7 +180,7 @@ void Glyph::loadFromJson(const QJsonValue & json)
     }
 
     // Load flags
-    if (m_mode == kBillboard) {
+    if (m_glyphMode == kBillboard) {
         setFaceCamera(object["faceCamera"].toBool(false));
         setScaleWithDistance(object["scaleWithDistance"].toBool(true));
         setOnTop(object["onTop"].toBool(false));
@@ -173,6 +189,11 @@ void Glyph::loadFromJson(const QJsonValue & json)
     // Load alignment
     m_verticalAlignment = (VerticalAlignment)object["vertAlign"].toInt(1);
     m_horizontalAlignment = (HorizontalAlignment)object["horAlign"].toInt(1);
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Glyph::preDraw()
+{
+    m_canvas->resizeViewport();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //VertexArrayData * Glyph::getMeshData()
@@ -187,7 +208,7 @@ void Glyph::loadFromJson(const QJsonValue & json)
 //    return mesh;
 //}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void Glyph::bindUniforms(const std::shared_ptr<Gb::ShaderProgram>& shaderProgram)
+void Glyph::bindUniforms(Gb::ShaderProgram& shaderProgram)
 {
     Renderable::bindUniforms(shaderProgram);
 
@@ -195,9 +216,9 @@ void Glyph::bindUniforms(const std::shared_ptr<Gb::ShaderProgram>& shaderProgram
     std::shared_ptr<UBO> cameraBuffer = UBO::getCameraBuffer();
 
     // Set projection, view and world matrices
-    const Vector2g& p = m_coordinates;
-    Vector4g pos(p.x(), p.y(), real_g(0.0), real_g(1.0));
-    switch (m_mode) {
+    //const Vector2g& p = m_coordinates;
+    //Vector4g pos(p.x(), p.y(), real_g(0.0), real_g(1.0));
+    switch (m_glyphMode) {
     case kGUI:
     {
         // Cache previous uniforms
@@ -205,14 +226,14 @@ void Glyph::bindUniforms(const std::shared_ptr<Gb::ShaderProgram>& shaderProgram
         Vec::EmplaceBack(m_uniformCache, std::move(cameraBuffer->getUniformValue("projectionMatrix")));
 
         m_canvas->renderProjection().setProjectionType(RenderProjection::kOrthographic);
-        shaderProgram->setUniformValue("perspectiveInverseScale", Matrix3x3g());
+        shaderProgram.setUniformValue("perspectiveInverseScale", Matrix3x3g());
         cameraBuffer->setUniformValue("projectionMatrix", m_canvas->renderProjection().projectionMatrix());
 
         // View matrix should be identity
         cameraBuffer->setUniformValue("viewMatrix", m_canvas->ViewMatrix());
-        shaderProgram->setUniformValue("faceCamera", false);
-        shaderProgram->setUniformValue("onTop", onTop());
-        shaderProgram->setUniformValue("scaleWithDistance", false);
+        shaderProgram.setUniformValue("faceCamera", false);
+        shaderProgram.setUniformValue("onTop", onTop());
+        shaderProgram.setUniformValue("scaleWithDistance", false);
 
         break;
     }
@@ -221,12 +242,12 @@ void Glyph::bindUniforms(const std::shared_ptr<Gb::ShaderProgram>& shaderProgram
         // Fix perspective scaling
         const Matrix4x4g& projectionMatrix = cameraBuffer->getUniformValue("projectionMatrix").get<Matrix4x4g>();
         Matrix3x3g inversedPerspectiveScale = Matrix3x3g(projectionMatrix).inversed();
-        shaderProgram->setUniformValue("perspectiveInverseScale", inversedPerspectiveScale);
+        shaderProgram.setUniformValue("perspectiveInverseScale", inversedPerspectiveScale);
 
         // Set flag uniforms
-        shaderProgram->setUniformValue("scaleWithDistance", scalesWithDistance());
-        shaderProgram->setUniformValue("faceCamera", facesCamera());
-        shaderProgram->setUniformValue("onTop", onTop());
+        shaderProgram.setUniformValue("scaleWithDistance", scalesWithDistance());
+        shaderProgram.setUniformValue("faceCamera", facesCamera());
+        shaderProgram.setUniformValue("onTop", onTop());
 
         break;
     }
@@ -235,28 +256,27 @@ void Glyph::bindUniforms(const std::shared_ptr<Gb::ShaderProgram>& shaderProgram
     }
 
     // Set world matrix uniform
-    checkTransform();
-    shaderProgram->setUniformValue("worldMatrix", m_transform->worldMatrix());
+    shaderProgram.setUniformValue("worldMatrix", m_transform->worldMatrix());
 
     // Set screen offset uniform
-    shaderProgram->setUniformValue("screenOffset", m_coordinates);
+    shaderProgram.setUniformValue("screenOffset", m_coordinates);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Glyph::releaseUniforms(const std::shared_ptr<Gb::ShaderProgram>& shaderProgram)
+void Glyph::releaseUniforms(Gb::ShaderProgram& shaderProgram)
 {
     auto cameraBuffer = UBO::getCameraBuffer();
     if (!cameraBuffer) return;
     bool updateShader = false;
     for (const Uniform& uniform : m_uniformCache) {
-        if (shaderProgram->hasUniform(uniform.getName())) {
+        if (shaderProgram.hasUniform(uniform.getName())) {
             updateShader = true;
-            shaderProgram->setUniformValue(uniform);
+            shaderProgram.setUniformValue(uniform);
         }
         else {
             cameraBuffer->setUniformValue(uniform);
         }
     }
-    shaderProgram->updateUniforms();
+    shaderProgram.updateUniforms();
     m_uniformCache.clear();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -264,26 +284,17 @@ void Glyph::checkTransform()
 {
     if (m_transform) return;
 
-    // If there is no transform, need to set from scene object
-    if (!sceneObject()) {
-        // Retrieve scene object if not yet set
-        if (!m_objectName.isEmpty()) {
-            m_object = SceneObject::getByName(m_objectName);
-            if (sceneObject()) {
-                m_transform = sceneObject()->transform();
-            }
-            else {
-                logWarning("Glyph::checkTransform:: Scene object with the name " 
-                    + m_objectName + " does not exist");
-            }
+    switch (m_moveMode) {
+    case kIndependent:
+        m_transform = std::make_shared<Transform>();
+        break;
+    case kTrackObject:
+        // If there is no transform, need to set from scene object
+        if (!trackedObject()) {
+            throw("Glyph::checkTransform:: Scene object does not exist");
         }
-        else {
-            // No object name specified, so set to default transform
-            m_transform = std::make_shared<Transform>();
-        }
-    }
-    else {
-        logError("Error, scene object not found, but glyph missing transform");
+        m_transform = trackedObject()->transform();
+        break;
     }
 }
 

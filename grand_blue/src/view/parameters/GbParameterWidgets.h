@@ -23,24 +23,63 @@ namespace Gb {
 class CoreEngine;
 class Serializable;
 
+template<typename T, size_t S> class Vector;
+
 namespace View {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Class Declarations
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @class ParameterWidget
-class ParameterWidget : public QWidget {
+class ParameterWidget : public QWidget, public Object {
     Q_OBJECT
 public:
+    //-----------------------------------------------------------------------------------------------------------------
+    /// @name Static
+    /// @{
+    
+    static QBoxLayout* LabeledLayout(const QString& label, QWidget* widget, QBoxLayout::Direction dir = QBoxLayout::Direction::LeftToRight);
+    static void AddLabel(const QString& label, QBoxLayout* layout);
+    static void AddLabel(const QIcon& label, QBoxLayout* layout, const Vector<float, 2>& size);
+    static std::vector<QWidget*> GetTopLevelWidgets(QLayout* layout);
+
+    /// @}
+
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Constructors and Destructors
     /// @{
     ParameterWidget(CoreEngine* core, QWidget* parent = nullptr);
+    virtual ~ParameterWidget();
 
     /// @}
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Public Methods
     /// @{
+
+    /// @brief Update the parameter widget
+    virtual void update();
+
+    /// @brief Clear the widget
+    virtual void clear() {}
+
+    /// @brief Clear a layout of widgets
+    void clearLayout(QLayout *layout, bool deleteItems = true) {
+        QLayoutItem *item;
+        while ((item = layout->takeAt(0))) {
+            if (item->layout()) {
+                clearLayout(item->layout());
+                if (deleteItems)
+                    //delete item->layout();
+                    item->layout()->deleteLater();
+            }
+            if (item->widget()) {
+                if (deleteItems)
+                    //delete item->widget();
+                    item->layout()->deleteLater();
+            }
+            delete item;
+        }
+    }
 
     /// @}
 
@@ -63,6 +102,9 @@ protected:
     /// @brief Method to ay out widgets
     virtual void layoutWidgets() {}
 
+    void pauseSimulation();
+    void resumeSimulation();
+
     /// @}
 
 
@@ -75,6 +117,8 @@ protected:
 
     /// @brief Pointer to core engine
     CoreEngine* m_engine;
+
+    bool m_wasPlaying;
 
     /// @}
 
@@ -163,13 +207,15 @@ public:
     /// @{
 
     JsonWidget(CoreEngine* core, Serializable* serializable, QWidget *parent = 0);
-    ~JsonWidget();
+    virtual ~JsonWidget();
 
     /// @}
 
     //---------------------------------------------------------------------------------------
     /// @name Properties
     /// @{
+
+    void setReloadJson(bool reset) { m_reloadJson = reset; }
 
     /// @}
 
@@ -178,7 +224,7 @@ public:
     /// @{
 
     /// @brief Update text from serializable JSON
-    void updateText(bool reloadJson = false);
+    void updateText();
 
     /// @}
 
@@ -186,6 +232,12 @@ protected:
     //---------------------------------------------------------------------------------------
     /// @name Private Methods
     /// @{
+
+    /// @brief Whether or not the specified object is valid
+    virtual bool isValidObject(const QJsonObject& object) { 
+        Q_UNUSED(object);
+        return true; 
+    }
 
     /// @brief What to do prior to reloading serializable
     virtual void preLoad() {}
@@ -212,8 +264,12 @@ protected:
     /// @brief Serializable object
     Serializable* m_serializable;
 
+    /// @brief Whether or not to reload JSON text on text update
+    bool m_reloadJson = false;
+
     /// @}
 };
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 } // View

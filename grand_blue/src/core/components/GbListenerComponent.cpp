@@ -12,12 +12,12 @@
 namespace Gb {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ListenerComponent::ListenerComponent() :
-    Component(kListener)
+    Component(ComponentType::kListener)
 {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ListenerComponent::ListenerComponent(const std::shared_ptr<SceneObject>& object) :
-    Component(object, kListener)
+    Component(object, ComponentType::kListener)
 {
     setSceneObject(sceneObject());
     sceneObject()->addComponent(this);

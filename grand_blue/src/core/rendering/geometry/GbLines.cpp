@@ -8,66 +8,80 @@
 #include "../geometry/GbMesh.h"
 #include "../geometry/GbPolygon.h"
 #include "../../geometry/GbTransform.h"
+#include "../../containers/GbFlags.h"
 
 namespace Gb {
 /////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<Lines> Lines::getCube()
+std::shared_ptr<Lines> Lines::getCube(int handleFlags)
 {
-    std::shared_ptr<ResourceHandle> handle =
-        CoreEngine::engines().begin()->second->resourceCache()->polygonCache()->getCube();
-    auto mesh = std::static_pointer_cast<Mesh>(handle->resource(false));
+    CoreEngine* engine = CoreEngine::engines().begin()->second;
+    auto mesh = engine->resourceCache()->polygonCache()->getCube();
+    if (handleFlags > 0) {
+        mesh->handle()->behaviorFlags() |= Flags::toFlags<ResourceHandle::BehaviorFlag>(handleFlags);
+    }
     auto lines = std::make_shared<Lines>();
     lines->loadTriMesh(mesh);
     return lines;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<Lines> Lines::getSphere(int latSize, int lonSize)
+std::shared_ptr<Lines> Lines::getSphere(int latSize, int lonSize, int handleFlags)
 {
-    std::shared_ptr<ResourceHandle> handle =
-        CoreEngine::engines().begin()->second->resourceCache()->polygonCache()->getSphere(latSize, lonSize);
-    auto mesh = std::static_pointer_cast<Mesh>(handle->resource(false));
+    CoreEngine* engine = CoreEngine::engines().begin()->second;
+    auto mesh = engine->resourceCache()->polygonCache()->getSphere(latSize, lonSize);
+    if (handleFlags > 0) {
+        mesh->handle()->behaviorFlags() |= Flags::toFlags<ResourceHandle::BehaviorFlag>(handleFlags);
+    }
     auto lines = std::make_shared<Lines>();
     lines->loadTriMesh(mesh);
     return lines;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<Lines> Lines::getGridCube(float spacing, int numHalfSpaces)
+std::shared_ptr<Lines> Lines::getGridCube(float spacing, int numHalfSpaces, int handleFlags)
 {
-    std::shared_ptr<ResourceHandle> handle =
-        CoreEngine::engines().begin()->second->resourceCache()->polygonCache()->getGridCube(spacing, numHalfSpaces);
-    auto mesh = std::static_pointer_cast<Mesh>(handle->resource(false));
+    CoreEngine* engine = CoreEngine::engines().begin()->second;
+    auto mesh = engine->resourceCache()->polygonCache()->getGridCube(spacing, numHalfSpaces);
+    if (handleFlags > 0) {
+        mesh->handle()->behaviorFlags() |= Flags::toFlags<ResourceHandle::BehaviorFlag>(handleFlags);
+    }
     auto lines = std::make_shared<Lines>();
     lines->loadMesh(mesh);
     return lines;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<Lines> Lines::getPlane(float spacing, int numHalfSpaces)
+std::shared_ptr<Lines> Lines::getPlane(float spacing, int numHalfSpaces, int handleFlags)
 {
-    std::shared_ptr<ResourceHandle> handle =
-        CoreEngine::engines().begin()->second->resourceCache()->polygonCache()->getGridPlane(spacing, numHalfSpaces);
-    auto mesh = std::static_pointer_cast<Mesh>(handle->resource(false));
+    CoreEngine* engine = CoreEngine::engines().begin()->second;
+    auto mesh = engine->resourceCache()->polygonCache()->getGridPlane(spacing, numHalfSpaces);
+    if (handleFlags > 0) {
+        mesh->handle()->behaviorFlags() |= Flags::toFlags<ResourceHandle::BehaviorFlag>(handleFlags);
+    }
     auto lines = std::make_shared<Lines>();
     lines->loadMesh(mesh);
     return lines;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<Lines> Lines::getPrism(float baseRadius, float topRadius, float height, int sectorCount, int stackCount)
+std::shared_ptr<Lines> Lines::getPrism(float baseRadius, float topRadius, float height, 
+    int sectorCount, int stackCount, int handleFlags)
 {
-    std::shared_ptr<ResourceHandle> handle =
-        CoreEngine::engines().begin()->second->resourceCache()->polygonCache()->getCylinder(
+    CoreEngine* engine = CoreEngine::engines().begin()->second;
+    auto mesh = engine->resourceCache()->polygonCache()->getCylinder(
             baseRadius, topRadius, height, sectorCount, stackCount);
-    auto mesh = std::static_pointer_cast<Mesh>(handle->resource(false));
+    if (handleFlags > 0) {
+        mesh->handle()->behaviorFlags() |= Flags::toFlags<ResourceHandle::BehaviorFlag>(handleFlags);
+    }
     auto lines = std::make_shared<Lines>();
     lines->loadMesh(mesh);
     return lines;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<Lines> Lines::getCapsule(float radius, float halfHeight)
+std::shared_ptr<Lines> Lines::getCapsule(float radius, float halfHeight, int handleFlags)
 {
-    std::shared_ptr<ResourceHandle> handle =
-        CoreEngine::engines().begin()->second->resourceCache()->polygonCache()->getCapsule(
+    CoreEngine* engine = CoreEngine::engines().begin()->second;
+    auto mesh = engine->resourceCache()->polygonCache()->getCapsule(
             radius, halfHeight);
-    auto mesh = std::static_pointer_cast<Mesh>(handle->resource(false));
+    if (handleFlags > 0) {
+        mesh->handle()->behaviorFlags() |= Flags::toFlags<ResourceHandle::BehaviorFlag>(handleFlags);
+    }
     auto lines = std::make_shared<Lines>();
     lines->loadMesh(mesh);
     return lines;
@@ -92,16 +106,12 @@ Lines::~Lines()
 /////////////////////////////////////////////////////////////////////////////////////////////
 void Lines::loadMesh(std::shared_ptr<Mesh> mesh)
 {   
-    for (std::pair<const QString, VertexArrayData*>& dataPair : mesh->meshData()) {
-        loadVertexArrayData(*dataPair.second);
-    }
+    loadVertexArrayData(mesh->vertexData());
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 void Lines::loadTriMesh(std::shared_ptr<Mesh> mesh)
 {
-    for (std::pair<const QString, VertexArrayData*>& dataPair : mesh->meshData()) {
-        loadTriVertexArrayData(*dataPair.second);
-    }
+    loadTriVertexArrayData(mesh->vertexData());
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 void Lines::loadVertexArrayData(const VertexArrayData& data)
@@ -147,7 +157,7 @@ void Lines::loadFromJson(const QJsonValue & json)
     Renderable::loadFromJson(json);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Lines::bindUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram)
+void Lines::bindUniforms(ShaderProgram& shaderProgram)
 {
     Renderable::bindUniforms(shaderProgram);
 	
@@ -165,32 +175,27 @@ void Lines::bindUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram)
     // Set remaining uniforms
     //auto pm = shaderProgram->getUniformValue("projectionMatrix")->as<Matrix4x4g>();
     //logInfo("aspect " + QString::number(pm(1, 1)/pm(0, 0)));
-    shaderProgram->setUniformValue("worldMatrix", m_transform->worldMatrix());
-    shaderProgram->setUniformValue("constantScreenThickness", 
+    if (!m_drawFlags.testFlag(DrawFlag::kIgnoreWorldMatrix)) {
+        shaderProgram.setUniformValue("worldMatrix", m_transform->worldMatrix());
+    }
+    shaderProgram.setUniformValue("constantScreenThickness", 
         m_shapeOptions.testFlag(kConstantScreenThickness));
-    shaderProgram->setUniformValue("lineColor", m_lineColor);
-    shaderProgram->setUniformValue("thickness", m_lineThickness);
-    shaderProgram->setUniformValue("useMiter", m_shapeOptions.testFlag(kUseMiter));
-    shaderProgram->setUniformValue("fadeWithDistance", m_effectOptions.testFlag(kFadeWithDistance));
-    shaderProgram->updateUniforms();
+    shaderProgram.setUniformValue("lineColor", m_lineColor);
+    shaderProgram.setUniformValue("thickness", m_lineThickness);
+    shaderProgram.setUniformValue("useMiter", m_shapeOptions.testFlag(kUseMiter));
+    shaderProgram.setUniformValue("fadeWithDistance", m_effectOptions.testFlag(kFadeWithDistance));
+    shaderProgram.updateUniforms();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Lines::releaseUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram)
+void Lines::releaseUniforms(ShaderProgram& shaderProgram)
 {
     Q_UNUSED(shaderProgram)
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Lines::bindTextures()
-{
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-void Lines::releaseTextures()
-{
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-void Lines::drawGeometry(const std::shared_ptr<ShaderProgram>& shaderProgram, 
+void Lines::drawGeometry(ShaderProgram& shaderProgram, 
     RenderSettings * settings)
 {
+    Q_UNUSED(shaderProgram)
     for (std::shared_ptr<VertexArrayData>& data : m_vertexData) {
         data->drawGeometry(settings->shapeMode());
     }

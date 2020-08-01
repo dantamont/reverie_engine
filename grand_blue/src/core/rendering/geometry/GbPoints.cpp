@@ -101,9 +101,7 @@ size_t Points::numPoints() const
 /////////////////////////////////////////////////////////////////////////////////////////////
 void Points::loadMesh(std::shared_ptr<Mesh> mesh)
 {   
-    for (std::pair<const QString, VertexArrayData*>& dataPair : mesh->meshData()) {
-        loadVertexArrayData(*dataPair.second);
-    }
+    loadVertexArrayData(mesh->vertexData());
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 void Points::loadVertexArrayData(const VertexArrayData& data)
@@ -135,7 +133,7 @@ void Points::loadFromJson(const QJsonValue & json)
     Renderable::loadFromJson(json);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Points::bindUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram)
+void Points::bindUniforms(ShaderProgram& shaderProgram)
 {
     Renderable::bindUniforms(shaderProgram);
 
@@ -153,29 +151,23 @@ void Points::bindUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram)
     // Set remaining uniforms
     //auto pm = shaderProgram->getUniformValue("projectionMatrix")->as<Matrix4x4g>();
     //logInfo("aspect " + QString::number(pm(1, 1)/pm(0, 0)));
-    shaderProgram->setUniformValue("worldMatrix", m_transform->worldMatrix());
-    shaderProgram->setUniformValue("color", m_pointColor);
-    shaderProgram->setUniformValue("pointSize", m_pointSize);
-    shaderProgram->setUniformValue("screenPixelWidth", screenDimensionsVec().x());
-    shaderProgram->updateUniforms();
+    shaderProgram.setUniformValue("worldMatrix", m_transform->worldMatrix());
+    shaderProgram.setUniformValue("color", m_pointColor);
+    shaderProgram.setUniformValue("pointSize", m_pointSize);
+    shaderProgram.setUniformValue("screenPixelWidth", screenDimensionsVec().x());
+    shaderProgram.updateUniforms();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Points::releaseUniforms(const std::shared_ptr<ShaderProgram>& shaderProgram)
+void Points::releaseUniforms(ShaderProgram& shaderProgram)
 {
     Q_UNUSED(shaderProgram)
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Points::bindTextures()
-{
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-void Points::releaseTextures()
-{
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-void Points::drawGeometry(const std::shared_ptr<ShaderProgram>& shaderProgram, 
+void Points::drawGeometry(ShaderProgram& shaderProgram, 
     RenderSettings * settings)
 {
+    Q_UNUSED(shaderProgram)
+
     // TODO: Move this to a RenderSetting
     glEnable(GL_PROGRAM_POINT_SIZE); // Enable point sizing
     //glEnable(GL_POINT_SMOOTH); // Make points actual circles
