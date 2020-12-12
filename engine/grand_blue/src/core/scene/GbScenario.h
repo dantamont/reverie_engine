@@ -21,6 +21,8 @@ class Scene;
 class Scenario;
 class CoreEngine;
 class PythonClassScript;
+class ShaderPreset;
+class AABB;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Type definitions
@@ -49,13 +51,17 @@ public:
 
     SortingLayers& renderLayers() { return m_renderLayers; }
 
+    /// @brief Map of all shader presets
+    std::vector<std::shared_ptr<ShaderPreset>>& shaderPresets() { return m_shaderPresets; }
+
+
     /// @}
 
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Public methods
     /// @{
 
-    std::shared_ptr<SortingLayer> renderLayer(const QString& label) {
+    std::shared_ptr<SortingLayer> renderLayer(const GString& label) {
         auto iter = std::find_if(m_renderLayers.begin(), m_renderLayers.end(),
             [&](const std::shared_ptr<SortingLayer>& layer) {
             return layer->getName() == label;
@@ -67,11 +73,21 @@ public:
     }
 
     std::shared_ptr<SortingLayer> addRenderLayer();
-    std::shared_ptr<SortingLayer> addRenderLayer(const QString& name, int order);
-    bool removeRenderLayer(const QString& label);
+    std::shared_ptr<SortingLayer> addRenderLayer(const GString& name, int order);
+    bool removeRenderLayer(const GString& label);
 
     /// @brief Sort the vector of render layers to reflect any modifications
     void sortRenderLayers();
+
+    /// @brief Remove shader material from resource cache
+    bool removeShaderPreset(const GString& name);
+
+    /// @brief Whether the resource map has the specified shader preset
+    bool hasShaderPreset(const GString& name, int* iterIndex = nullptr) const;
+
+    /// @brief Shader preset
+    std::shared_ptr<ShaderPreset> getShaderPreset(const GString& name, bool& created);
+    //std::shared_ptr<ShaderPreset> getShaderPreset(const Uuid& uuid);
 
     /// @}
 
@@ -84,7 +100,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -112,6 +128,9 @@ protected:
     /// @brief The default render order for the scenario
     // TODO: Implement
 
+    /// @brief Map of all shader presets
+    std::vector<std::shared_ptr<ShaderPreset>> m_shaderPresets;
+
     /// @}
 };
 
@@ -123,11 +142,12 @@ class Scenario : public QObject, public Object, public Loadable{
     Q_OBJECT
 public:
     //--------------------------------------------------------------------------------------------
-    /// @name static
+    /// @name Static
     /// @{
 
     /// @brief Load a scenario from a file
-    static void loadFromFile(const QString& filepath, CoreEngine* core);
+    /// @details Returns false if file not found
+    static bool LoadFromFile(const GString& filepath, CoreEngine* core);
 
     /// @}
 	//--------------------------------------------------------------------------------------------
@@ -158,9 +178,16 @@ public:
 	/// @name Public Methods
 	/// @{
 
+    ///// @brief Get the visible frustum bounds for the entire scenario
+    //const AABB& getVisibleFrustumBounds();
+    //void updateVisibleFrustumBounds();
+
+        /// @brief Whether the given bounding box is visible in the scenario
+    bool isVisible(const AABB& boundingBox);
+
     /// @brief Save the scenario to a file, overwriting all contents
     bool save();
-    bool save(const QString& filepath);
+    bool save(const GString& filepath);
 
     /// @brief Whether or not the scenario has scenes
     bool isEmpty() const { return m_scenes.size() == 0; }
@@ -172,14 +199,14 @@ public:
     void removeScene(const std::shared_ptr<Scene>& scene);
 
     /// @brief Get a scene given the UUID
-    std::shared_ptr<Scene> getScene(const Uuid& uuid);
+    const std::shared_ptr<Scene>& getScene(const Uuid& uuid);
 
     /// @brief Get a scene by name
-    std::shared_ptr<Scene> getSceneByName(const QString& name);
+    std::shared_ptr<Scene> getSceneByName(const GString& name);
 
     /// @brief Get map of scenes
-    const std::unordered_map<Uuid, std::shared_ptr<Scene>>& getScenes() const { return m_scenes; }
-    std::unordered_map<Uuid, std::shared_ptr<Scene>>& scenes() { return m_scenes; }
+    const std::vector<std::shared_ptr<Scene>>& getScenes() const { return m_scenes; }
+    std::vector<std::shared_ptr<Scene>>& scenes() { return m_scenes; }
 
     /// @brief Clear the scenario
     void clear();
@@ -200,7 +227,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -224,6 +251,11 @@ signals:
     void removedScene(std::shared_ptr<Scene> scene);
     void clearedSceneObjects();
 
+public slots:
+
+    /// @brief Resize all framebuffers in the scenario that are associated with scene cameras
+    void resizeCameras(size_t width, size_t height);
+
 protected:
     //--------------------------------------------------------------------------------------------
     /// @name Friends
@@ -240,7 +272,6 @@ protected:
 
     /// @brief Add an existing scene to scene map
     void addScene(const std::shared_ptr<Scene>& scene);
-    //std::shared_ptr<Scene> addScene(const Uuid& uuid); // Scene gets the given UUID
 
     /// @brief Initialize the scenario
     void initialize();
@@ -257,8 +288,11 @@ protected:
     /// @brief Whether or not the scenario is loading
     bool m_isLoading = false;
 
+    /// @brief Aggregated bounds of all view frustums in the scenario
+    //AABB m_visibleBounds;
+
     /// @brief The scenes in this scenario
-    std::unordered_map<Uuid, std::shared_ptr<Scene>> m_scenes;
+    std::vector<std::shared_ptr<Scene>> m_scenes;
 
     /// @brief The settings associated with the scenario
     ScenarioSettings m_settings;

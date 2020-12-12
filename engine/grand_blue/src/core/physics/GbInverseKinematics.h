@@ -115,7 +115,7 @@ protected:
 
     IKChain* m_chain = nullptr;
 
-    Vector3 m_position;
+    Vector3d m_position;
 
     /// @brief Flags denoting the type of node
     NodeTypeFlags m_flags;
@@ -141,7 +141,6 @@ public:
     /// @name Constructors/Destructors
     /// @{
 
-    IKChain();
     IKChain(const Skeleton& skeleton);
     virtual ~IKChain();
 
@@ -169,6 +168,8 @@ public:
     /// @}
 
 protected:
+    friend class IKNode;
+
     //--------------------------------------------------------------------------------------------
     /// @name Protected Methods
     /// @{
@@ -182,11 +183,14 @@ protected:
     /// @name Protected Members
     /// @{
 
+    /// @brief The skeleton associated with this IK chain
+    const Skeleton& m_skeleton;
+
     /// @brief The root of the IK chain
     IKNode m_root;
 
     /// @brief Flat map of nodes for quick access by unique name
-    std::unordered_map<QString, IKNode*> m_nodes;
+    tsl::robin_map<QString, IKNode*> m_nodes;
 
     /// @}
 };
@@ -205,16 +209,16 @@ public:
     
     /// @brief The actual algorithm (FABRIK)
     /// @details See:http://www.andreasaristidou.com/publications/papers/FABRIK.pdf
-    static void Solve(const Vector3& target, 
-        std::vector<Vector3>& inOutJointPositions,
+    static void Solve(const Vector3d& target, 
+        std::vector<Vector3d>& inOutJointPositions,
         const std::vector<double>& jointDistances,
         double tolerance = 1e-6,
         size_t maxNumIter = 100);
 
     /// @brief The FABRIK algorithm, with CGA (Conformal Geometric Algebra)
     /// @details See: grand-blue-engine\docs\Physics\Inverse_Kinematics_CGA.pdf
-    static void SolveCGA(const Vector3& target,
-        std::vector<Vector3>& inOutJointPositions,
+    static void SolveCGA(const Vector3d& target,
+        std::vector<Vector3d>& inOutJointPositions,
         const std::vector<double>& jointDistances,
         double tolerance = 1e-6,
         size_t maxNumIter = 100);
@@ -254,13 +258,13 @@ protected:
 
     /// @brief Obtain the nearest point on a sphere from a point in space. 
     /// @details center, radius, pointInSpace, pointOnSphere
-    static void NearestPointSphere(const Vector3& center,
+    static void NearestPointSphere(const Vector3d& center,
         double radius,
-        const Vector3& pointInSpace,
-        Vector3& outPointOnSphere);
+        const Vector3d& pointInSpace,
+        Vector3d& outPointOnSphere);
     
     /// @brief Obtain the centroid of the given set of points
-    static void GetCentroid(const std::vector<Vector3>& points, Vector3& outCentroid);
+    static void GetCentroid(const std::vector<Vector3d>& points, Vector3d& outCentroid);
 
     /// @}
 

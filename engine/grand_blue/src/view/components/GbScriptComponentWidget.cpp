@@ -18,9 +18,8 @@
 #include "../../core/components/GbShaderComponent.h"
 #include "../../core/scripting/GbPythonScript.h"
 #include "../../core/components/GbLightComponent.h"
-#include "../../core/components/GbCamera.h"
+#include "../../core/components/GbCameraComponent.h"
 
-#include "../../core/rendering/renderer/GbRenderers.h"
 #include "../../core/components/GbShaderComponent.h"
 #include "../../core/components/GbTransformComponent.h"
 #include "../style/GbFontIcon.h"

@@ -51,12 +51,6 @@ public:
         kAborted // Aborted, may not have started
     };
 
-    /// @brief Return ID for a thread
-    static QString getThreadID();
-
-    /// @brief Determine whether this current thread is the main thread or not
-    static bool isMainThread();
-
     /// @}
 
 	//--------------------------------------------------------------------------------------------

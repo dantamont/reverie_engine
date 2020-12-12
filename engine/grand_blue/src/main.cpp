@@ -7,6 +7,8 @@
 
 // Visual memory leak detection
 // See: https://kinddragon.github.io/vld/
+// FIXME: There ARE leaks, causing occasional crashes. Find them~
+// VLD is causing crashes, unfortunate
 //#include <vld.h>
 
 /// @brief Sets GL settings for the application

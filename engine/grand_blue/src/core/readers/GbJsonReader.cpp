@@ -4,6 +4,20 @@
 
 namespace Gb {
 /////////////////////////////////////////////////////////////////////////////////////////////
+GString JsonReader::ToGString(const QJsonValue & json, bool verbose)
+{
+    QJsonDocument doc(json.toObject());
+    QJsonDocument::JsonFormat format;
+    if (verbose) {
+        format = QJsonDocument::Indented;
+    }
+    else {
+        format = QJsonDocument::Compact;
+    }
+    GString strJson(doc.toJson(format).constData());
+    return strJson;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
 QString JsonReader::ToQString(const QJsonValue & json, bool verbose)
 {
     QJsonDocument doc(json.toObject());

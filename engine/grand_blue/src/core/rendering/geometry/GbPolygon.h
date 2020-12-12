@@ -56,7 +56,7 @@ public:
     static PolygonType typeFromName(const QString& name);
 
     /// @brief QStrings used to name shape meshes
-    static std::unordered_map<PolygonType, QString> POLYGON_NAMES;
+    static tsl::robin_map<PolygonType, QString> POLYGON_NAMES;
 
     /// @brief Vector of cube vertex positions
     static std::vector<Vector3f> CUBE_VERTEX_POSITIONS;
@@ -196,12 +196,12 @@ protected:
     static std::shared_ptr<Mesh> createCapsule(float radius, float halfHeight);
 
     /// @brief Add a triangle using the given vertex data
-    static void addTriangle(std::vector<Vector3g>& vertices, std::vector<GLuint>& indices,
-        const Vector3g& v0, const Vector3g& v1, const Vector3g& v2, bool clockWise = false);
+    static void addTriangle(std::vector<Vector3>& vertices, std::vector<GLuint>& indices,
+        const Vector3& v0, const Vector3& v1, const Vector3& v2, bool clockWise = false);
 
     /// @brief Add a quad using the given vertex data
-    static void addQuad(std::vector<Vector3g>& vertices, std::vector<GLuint>& indices,
-        const Vector3g& v0, const Vector3g& v1, const Vector3g& v2, const Vector3g& v3);
+    static void addQuad(std::vector<Vector3>& vertices, std::vector<GLuint>& indices,
+        const Vector3& v0, const Vector3& v1, const Vector3& v2, const Vector3& v3);
 
     /// @}
 

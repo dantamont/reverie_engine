@@ -5,6 +5,8 @@
 #include "../events/GbEventManager.h"
 #include "../events/GbEventListener.h"
 
+#include "../scripting/GbPythonScript.h"
+
 #include "../scene/GbScene.h"
 #include "../scene/GbScenario.h"
 #include "../scene/GbSceneObject.h"
@@ -31,7 +33,20 @@ Gb::ListenerComponent::~ListenerComponent()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void ListenerComponent::initializeListener(const QString & filepath)
 {
-    m_listener->initializeScript(filepath, sceneObject());
+    if (m_listener) {
+        delete m_listener;
+    }
+
+    m_listener = new EventListener(this);
+    m_listener->initializeScript(filepath);
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void ListenerComponent::reset()
+{
+    if (m_listener) {
+        // Reload script
+        m_listener->script()->reload();
+    }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void ListenerComponent::enable()
@@ -54,9 +69,9 @@ QJsonValue ListenerComponent::asJson() const
     return object;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void ListenerComponent::loadFromJson(const QJsonValue & json)
+void ListenerComponent::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
-    Component::loadFromJson(json);
+    Component::loadFromJson(json, context);
     const QJsonObject& object = json.toObject();
 
     // Delete previous listener
@@ -66,7 +81,7 @@ void ListenerComponent::loadFromJson(const QJsonValue & json)
 
     // Initialize listener
     if (object.contains("listener")) {
-        m_listener = new EventListener(m_engine, object.value("listener"));
+        m_listener = new EventListener(this, object.value("listener"));
     }
 }
 

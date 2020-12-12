@@ -36,7 +36,8 @@ struct Light {
 	vec4 diffuseColor;
 	vec4 specularColor;
 	vec4 attributes;
-	vec4 typeIntensityIndex;
+	vec4 intensity;
+	ivec4 typeIndexAndFlags;
 };
 
 // struct VisibleIndex {
@@ -70,10 +71,10 @@ uniform Material material;
 vec4 calcLightcolor(int lightIndex, vec3 unitVectorToCamera)
 {
 	Light light = lightBuffer.data[lightIndex];
-    float intensity = light.typeIntensityIndex[1];
+    float intensity = light.intensity[0];
 
 	// Get vectors to and from light
-	int lightType = int(light.typeIntensityIndex[0]);
+	int lightType = light.typeIndexAndFlags[0];
 	vec3 toLightPosition = light.position.xyz - worldPosition.xyz;
 	vec3 lightDirection = light.direction.xyz;
 	if(lightType == 1){

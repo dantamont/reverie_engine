@@ -9,7 +9,10 @@
 #include "../shaders/GbShaders.h"
 #include "../../readers/GbJsonReader.h"
 #include "../../rendering/materials/GbMaterial.h"
+#include "../../rendering/renderer/GbRenderContext.h"
+#include "../../rendering/lighting/GbLightSettings.h"
 #include "../geometry/GbSkeleton.h"
+#include "../../containers/GbFlags.h"
 
 namespace Gb {
 
@@ -72,24 +75,26 @@ void ModelChunk::generateBounds()
     std::vector<AABB>& boxes = m_bounds.geometry();
     boxes.clear();
     boxes.push_back(AABB());
-    boxes.back().setMinX(minX);
-    boxes.back().setMaxX(maxX);
-    boxes.back().setMinY(minY);
-    boxes.back().setMaxY(maxY);
-    boxes.back().setMinZ(minZ);
-    boxes.back().setMaxZ(maxZ);
+    boxes.back().boxData().setMinX(minX);
+    boxes.back().boxData().setMaxX(maxX);
+    boxes.back().boxData().setMinY(minY);
+    boxes.back().boxData().setMaxY(maxY);
+    boxes.back().boxData().setMinZ(minZ);
+    boxes.back().boxData().setMaxZ(maxZ);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 QJsonValue ModelChunk::asJson() const
 {
     QJsonObject object;
-    object.insert("meshName", m_mesh->getName());
-    object.insert("matName", m_material->getName());
+    object.insert("meshName", m_mesh->getName().c_str());
+    object.insert("matName", m_material->getName().c_str());
     return object;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void ModelChunk::loadFromJson(const QJsonValue & json)
+void ModelChunk::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(json)
+    Q_UNUSED(context)
     throw("Error, unimplemented");
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -106,39 +111,60 @@ void ModelChunk::preDraw()
 void ModelChunk::bindUniforms(ShaderProgram& shaderProgram)
 {
     // Iterate through uniforms to update in shader program class
-    for (const std::pair<QString, Uniform>& uniformPair : m_uniforms) {
-        shaderProgram.setUniformValue(uniformPair.second);
+    for (const Uniform& uniform : m_uniforms) {
+        shaderProgram.setUniformValue(uniform);
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void ModelChunk::bindTextures(ShaderProgram* shaderProgram)
+void ModelChunk::bindTextures(ShaderProgram* shaderProgram, RenderContext* context)
 {
     QMutexLocker matLocker(&m_material->mutex());
+
+    // Bind shadow map textures
+    if (context) {
+        std::array<std::shared_ptr<Texture>, 3>& shadowTextures = context->lightingSettings().shadowTextures();
+        size_t size = shadowTextures.size();
+        for (size_t i = 0; i < size; i++) {
+            const std::shared_ptr<Texture>& shadowTexture = shadowTextures[i];
+            shadowTexture->bind(i);
+        }
+    }
 
     // Bind material
     std::shared_ptr<Material> mat = materialResource();
     if (mat) {
-        if (!mat->isBound()) {
-            mat->bind(*shaderProgram);
+        if (!mat->isBound(*context)) {
+            mat->bind(*shaderProgram, *context);
         }
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void ModelChunk::releaseTextures(ShaderProgram* shaderProgram)
+void ModelChunk::releaseTextures(ShaderProgram* shaderProgram, RenderContext* context)
 {
+    Q_UNUSED(shaderProgram);
+
     QMutexLocker matLocker(&m_material->mutex());
+
+    // Release shadow map textures
+    if (context) {
+        for (const std::shared_ptr<Texture>& shadowTexture : context->lightingSettings().shadowTextures()) {
+            shadowTexture->release();
+        }
+    }
 
     // Unbind material    
     std::shared_ptr<Material> mat = materialResource();
     if (mat) {
-        if (mat->isBound()) {
-            mat->release();
+        if (mat->isBound(*context)) {
+            mat->release(*context);
         }
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 void ModelChunk::drawGeometry(ShaderProgram & shaderProgram, RenderSettings * settings)
 {
+    Q_UNUSED(shaderProgram);
+
     QMutexLocker meshLocker(&m_mesh->mutex());
 
     int shapeMode = settings ? settings->shapeMode() : m_renderSettings.shapeMode();
@@ -183,8 +209,8 @@ std::shared_ptr<ResourceHandle> Model::createHandle(CoreEngine * engine)
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 std::shared_ptr<ResourceHandle> Model::createHandle(CoreEngine * engine,
-    const QString & modelName,
-    ModelType type)
+    const GString & modelName,
+    ModelFlags flags)
 {
     // Create handle for material
     auto handle = ResourceHandle::create(engine, Resource::kModel);
@@ -192,51 +218,37 @@ std::shared_ptr<ResourceHandle> Model::createHandle(CoreEngine * engine,
     handle->setName(modelName);
 
     // Create model
-    auto model = std::make_shared<Model>(engine, modelName, type);
+    auto model = std::make_shared<Model>(modelName, flags);
     handle->setResource(model, false);
 
     return handle;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-Model::Model(CoreEngine * engine):
-    Resource(kModel),
-    m_engine(engine),
-    m_modelType(kUndefined)
+Model::Model():
+    m_modelFlags(0)
 {
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-Model::Model(CoreEngine* engine,
-    const QString& uniqueName,
-    ModelType type) :
-    Model(engine, uniqueName, kModel, type)
-{
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-Model::Model(CoreEngine * engine, 
-    const QString & uniqueName, 
-    Resource::ResourceType resourceType,
-    ModelType type):
-    Resource(uniqueName, resourceType),
-    m_engine(engine),
-    m_modelType(type)
+Model::Model(const GString & uniqueName, 
+    ModelFlags flags):
+    Resource(uniqueName),
+    m_modelFlags(flags)
 {
 #ifdef DEBUG_MODE
 #endif
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 Model::Model(ResourceHandle& handle, const QJsonValue& json) :
-    Resource(kModel),
-    m_engine(handle.engine()),
-    m_modelType(kStaticMesh)
+    Resource(),
+    m_modelFlags(0)
 {
     m_handle = &handle;
     loadFromJson(json);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 Model::Model(ResourceHandle& handle) :
-    Resource(kModel),
-    m_engine(handle.engine()),
-    m_modelType(kStaticMesh)
+    Resource(),
+    m_modelFlags(0)
 {
     m_handle = &handle;
 }
@@ -255,28 +267,44 @@ std::shared_ptr<Skeleton> Model::skeleton() const
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
+bool Model::isAnimated() const
+{
+    return Flags::toFlags<ModelFlag>(m_modelFlags).testFlag(kIsAnimated);
+}
+///////////////////////////////////////////////////////////////////////////////////////////////
+bool Model::isStatic() const
+{
+    return !isAnimated();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////
+void Model::setAnimated(bool animated)
+{
+    ModelFlags flags = Flags::toFlags<ModelFlag>(m_modelFlags);
+    flags.setFlag(Model::ModelFlag::kIsAnimated, animated);
+    m_modelFlags = (size_t)flags;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////
 //void Model::createDrawCommands(std::vector<std::shared_ptr<DrawCommand>>& outDrawCommands,
 //    Camera & camera, 
 //    ShaderProgram & shader)
 //{
 //}
 /////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<ResourceHandle> Model::getMaterial(const QString& name)
+const std::shared_ptr<ResourceHandle>& Model::getMaterial(const GString& name)
 {
-    auto handle = m_engine->resourceCache()->getHandleWithName(name, Resource::kMaterial);
-    auto childHandle = m_handle->getChild(handle->getUuid());
-    if (!childHandle) {
-        throw("Error, no handle found, but is not child of model");
+    const std::shared_ptr<ResourceHandle>& matHandle = m_handle->getChild(name, Resource::kMaterial);
+    if (!matHandle) {
+        throw("Error, material handle not found as child of model");
     }
-    return childHandle;
+    return matHandle;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<Mesh> Model::addMesh(const QString & meshName)
+std::shared_ptr<Mesh> Model::addMesh(CoreEngine* core, const GString & meshName)
 {
     // Create handle for mesh
     ResourceHandle::BehaviorFlags flags;
     flags.setFlag(ResourceHandle::kChild, true);
-    auto handle = ResourceHandle::create(m_engine,
+    auto handle = ResourceHandle::create(core,
         m_handle->getPath(),
         Resource::kMesh,
         flags);
@@ -292,19 +320,19 @@ std::shared_ptr<Mesh> Model::addMesh(const QString & meshName)
     return mesh;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<Material> Model::addMaterial(const QString & mtlName)
+std::shared_ptr<Material> Model::addMaterial(CoreEngine* core, const GString & mtlName)
 {
     // Create handle for material
     ResourceHandle::BehaviorFlags flags;
     flags.setFlag(ResourceHandle::kChild, true);
-    auto handle = ResourceHandle::create(m_engine,
+    auto handle = ResourceHandle::create(core,
         m_handle->getPath(),
         Resource::kMaterial,
         flags);
     handle->setName(mtlName);
 
     // Create material
-    auto mtl = prot_make_shared<Material>(m_engine, mtlName);
+    auto mtl = prot_make_shared<Material>(mtlName);
     handle->setResource(mtl, false);
 
     // Add handle as child
@@ -313,12 +341,12 @@ std::shared_ptr<Material> Model::addMaterial(const QString & mtlName)
     return mtl;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<Animation> Model::addAnimation(const QString & animationName)
+std::shared_ptr<Animation> Model::addAnimation(CoreEngine* core, const GString & animationName)
 {
     // Create handle for material
     ResourceHandle::BehaviorFlags flags;
     flags.setFlag(ResourceHandle::kChild, true);
-    auto handle = ResourceHandle::create(m_engine,
+    auto handle = ResourceHandle::create(core,
         m_handle->getPath(),
         Resource::kAnimation,
         flags);
@@ -339,19 +367,15 @@ void Model::onRemoval(ResourceCache * cache)
     Q_UNUSED(cache)
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Model::addSkeleton()
+void Model::addSkeleton(CoreEngine* core)
 {
-    switch (m_modelType) {
-    case kAnimatedMesh:
-    case kStaticMesh:
-        break;
-    default:
-        throw("Error, model type does not support skeleton");
+    if (m_skeletonHandle) {
+        throw("Error, skeleton already found");
     }
-    QString skellyName = m_name + "_skeleton";
+    GString skellyName = m_name + "_skeleton";
     ResourceHandle::BehaviorFlags flags;
     flags.setFlag(ResourceHandle::kChild, true);
-    m_skeletonHandle = ResourceHandle::create(m_engine, Resource::kSkeleton, flags);
+    m_skeletonHandle = ResourceHandle::create(core, Resource::kSkeleton, flags);
     m_skeletonHandle->setName(skellyName);
     m_skeletonHandle->setResource(std::make_shared<Skeleton>(skellyName), false);
     m_skeletonHandle->setIsLoading(true);
@@ -360,6 +384,7 @@ void Model::addSkeleton()
 /////////////////////////////////////////////////////////////////////////////////////////////
 void Model::postConstruction()
 {
+    //CoreEngine* core = m_handle->engine();
     if (m_handle->reader()) {
         // Get model reader used to load model
         auto reader = S_CAST<ModelReader>(
@@ -368,19 +393,19 @@ void Model::postConstruction()
 
         // Iterate through chunks of model and set
         for (const ModelChunkData& chunkData : reader->chunks()) {
-            const std::shared_ptr<ResourceHandle>& meshHandle =
-                m_engine->resourceCache()->getHandle(chunkData.m_meshHandleID);
+            const std::shared_ptr<ResourceHandle>& meshHandle = 
+                reader->m_meshHandles[chunkData.m_meshHandleIndex];
 
             const std::shared_ptr<ResourceHandle>& matHandle =
-                m_engine->resourceCache()->getHandle(chunkData.m_matHandleID);
+                reader->m_matHandles[chunkData.m_matHandleIndex];
 
-            m_chunks.push_back(std::make_shared<ModelChunk>(
+            Vec::EmplaceBack(m_chunks,
                 meshHandle,
                 matHandle
-                ));
+                );
 
             // Set bounding box for chunk
-            m_chunks.back()->boundingBoxes().geometry().push_back(std::move(chunkData.m_boundingBox));
+            m_chunks.back().boundingBoxes().geometry().emplace_back(chunkData.m_boundingBox);
         }
 
         // Delete the model reader
@@ -398,8 +423,9 @@ void Model::postConstruction()
 QJsonValue Model::asJson() const
 {
     QJsonObject object;
-    object.insert("name", m_name);
-    object.insert("type", m_modelType);
+    object.insert("name", m_name.c_str());
+    //object.insert("type", m_modelType);
+    object.insert("flags", (int)m_modelFlags);
 
     // Don't need to cache other renderable settings, e.g. uniforms
     //object.insert("renderSettings", m_renderSettings.asJson());
@@ -410,16 +436,16 @@ QJsonValue Model::asJson() const
     QJsonArray animations;
     for (const auto& handle : m_handle->children()) {
         if (handle->getResourceType() == Resource::kMesh) {
-            meshes.append(handle->getName());
+            meshes.append(handle->getName().c_str());
         }
         else if (handle->getResourceType() == Resource::kMaterial) {
-            materials.append(handle->getName());
+            materials.append(handle->getName().c_str());
         }
         else if (handle->getResourceType() == Resource::kAnimation) {
-            animations.append(handle->getName());
+            animations.append(handle->getName().c_str());
         }
         else if (handle->getResourceType() == Resource::kSkeleton) {
-            object.insert("skeleton", handle->getName());
+            object.insert("skeleton", handle->getName().c_str());
         }
         else {
             // TODO: Link to skeleton and animations
@@ -433,10 +459,18 @@ QJsonValue Model::asJson() const
     return object;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Model::loadFromJson(const QJsonValue & json)
+void Model::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
+
     const QJsonObject& object = json.toObject();
-    m_modelType = ModelType(json["type"].toInt());
+    if (object.contains("type")) {
+        // Legacy, deprecated
+        m_modelFlags = object["type"].toInt();
+    }
+    else {
+        m_modelFlags = object["flags"].toInt();
+    }
 
     m_name = object["name"].toString();
     m_handle->setName(m_name); // Good for names to match for intuition
@@ -451,44 +485,12 @@ void Model::loadFromJson(const QJsonValue & json)
         // Legacy load method, deprecated
         loadChunksFromJson(object);
     }
-//    else {
-//        QJsonArray chunks = object["chunks"].toArray();
-//        for (const auto& chunkJson : chunks) {
-//            QJsonObject chunkObject = chunkJson.toObject();
-//
-//            // Load mesh
-//            QString meshName = chunkObject["meshName"].toString();
-//            auto meshHandle = m_engine->resourceCache()->getHandleWithName(meshName, Resource::kMesh);
-//#ifdef DEBUG_MODE
-//            if (!meshHandle) throw("Error, handle not found for given name");
-//#endif
-//            m_handle->addChild(meshHandle);
-//
-//            // Load material and set as child resource if not loaded already
-//            QString matName = chunkObject["matName"].toString();
-//            auto matHandle = m_engine->resourceCache()->getHandleWithName(matName, Resource::kMaterial);
-//#ifdef DEBUG_MODE
-//            if (!matHandle) throw("Error, handle not found for given name");
-//#endif
-//            if (!m_handle->getChild(matHandle->getUuid())) {
-//                m_handle->addChild(matHandle);
-//            }
-//
-//            // Create chunk
-//            auto chunk = std::make_shared<ModelChunk>(
-//                meshHandle->resourceAs<Mesh>(false),
-//                matHandle->resourceAs<Material>(false)
-//                );
-//            m_chunks.push_back(chunk);
-//        }
-//    }
-
 
     // Add animations
     QJsonArray animations = object["animations"].toArray();
     for (const auto& animName : animations) {
         QString name = animName.toString();
-        auto handle = m_engine->resourceCache()->getHandleWithName(name, Resource::kAnimation);
+        auto handle = m_handle->engine()->resourceCache()->getHandleWithName(name, Resource::kAnimation);
 #ifdef DEBUG_MODE
         if (!handle) throw("Error, handle not found for given name");
 #endif
@@ -498,7 +500,7 @@ void Model::loadFromJson(const QJsonValue & json)
     // Add skeleton
     if (object.contains("skeleton")) {
         QString skeletonName = object["skeleton"].toString();
-        auto handle = m_engine->resourceCache()->getHandleWithName(skeletonName, 
+        auto handle = m_handle->engine()->resourceCache()->getHandleWithName(skeletonName,
             Resource::kSkeleton);
         m_skeletonHandle = handle;
 #ifdef DEBUG_MODE
@@ -581,7 +583,7 @@ void Model::loadChunksFromJson(const QJsonObject & object)
     std::vector<std::shared_ptr<ResourceHandle>> meshHandles;
     for (const auto& meshID : meshes) {
         QString name = meshID.toString();
-        auto handle = m_engine->resourceCache()->getHandleWithName(name, Resource::kMesh);
+        auto handle = m_handle->engine()->resourceCache()->getHandleWithName(name, Resource::kMesh);
 #ifdef DEBUG_MODE
         if (!handle) throw("Error, handle not found for given name");
 #endif
@@ -594,7 +596,7 @@ void Model::loadChunksFromJson(const QJsonObject & object)
     std::vector<std::shared_ptr<ResourceHandle>> matHandles;
     for (const auto& matID : materials) {
         QString name = matID.toString();
-        auto handle = m_engine->resourceCache()->getHandleWithName(name, Resource::kMaterial);
+        auto handle = m_handle->engine()->resourceCache()->getHandleWithName(name, Resource::kMaterial);
 #ifdef DEBUG_MODE
         if (!handle) throw("Error, handle not found for given name");
 #endif
@@ -605,12 +607,10 @@ void Model::loadChunksFromJson(const QJsonObject & object)
     // Load meshes and materials as chunks
     size_t i = 0;
     for (i = 0; i < meshHandles.size(); i++) {
-        Vec::EmplaceBack(m_chunks, 
-            std::make_shared<ModelChunk>(meshHandles[i],
-                matHandles[i]));
+        Vec::EmplaceBack(m_chunks, meshHandles[i], matHandles[i]);
     
         // Generate bounding boxes from the model chunk mesh
-        m_chunks.back()->generateBounds();
+        m_chunks.back().generateBounds();
     }
 }
 

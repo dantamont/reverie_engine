@@ -51,8 +51,9 @@ QJsonValue StateComponent::asJson() const
     return object;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void StateComponent::loadFromJson(const QJsonValue & json)
+void StateComponent::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
     Component::loadFromJson(json);
     //const QJsonObject& object = json.toObject();
 }

@@ -39,7 +39,7 @@ void LoadModelWidget::initializeWidgets()
     m_fileLoadWidget = new View::FileLoadWidget(m_engine,
         "",
         "Open Model",
-        "Models (*.obj *.fbx)");
+        "Models (*.obj *.fbx *.mdl)");
 
     // Dialog buttons
     QDialogButtonBox::StandardButtons dialogButtons = QDialogButtonBox::Ok |
@@ -75,34 +75,13 @@ void LoadModelWidget::initializeConnections()
         [this]() {
 
         // Load model from file
+        // TODO: Check file extension, creating a new resource folder if not MDL
         QFile modelFile(m_fileName);
         if (modelFile.exists()) {
             // Load model file if path exists
             m_modelID = m_engine->resourceCache()->guaranteeHandleWithPath(m_fileName,
                 Resource::kModel)->getUuid();
         }
-
-        //else {
-            //// Create model from scratch
-            //auto modelHandle = m_engine->resourceCache()->getHandleWithName(m_modelFileOrName,
-            //    Resource::kModel);
-            //if (modelHandle) {
-            //    logWarning("Model with name " + m_modelFileOrName + " already exists");
-            //}
-            //else {
-            //    // Create new model with name
-            //    auto handle = ResourceHandle::create(m_engine, "", Resource::kModel);
-            //    handle->setUserGenerated(true);
-            //    handle->setName(m_modelFileOrName);
-
-            //    // Repopulate resource widget
-            //    emit m_engine->resourceCache()->resourceAdded(handle);
-
-            //    if (m_modelID.isNull()) {
-            //        throw("Error, failed to load model, filepath/name " + m_modelFileOrName + " not found");
-            //    }
-            //}
-        //}
 
         // Close this widget
         close();
@@ -419,10 +398,18 @@ void MeshTreeWidget::repopulate()
     clear();
 
     // Add loaded meshes
-    for (const auto& resourcePair : m_engine->resourceCache()->resources()) {
-        if (resourcePair.second->getResourceType() != Resource::kMesh) continue;
+    //for (const auto& resourcePair : m_engine->resourceCache()->resources()) {
+    //    if (resourcePair.second->getResourceType() != Resource::kMesh) continue;
+    //    addItem(resourcePair.second);
+    //}
+    m_engine->resourceCache()->resources().forEach(
+        [this](const std::pair<Uuid, std::shared_ptr<ResourceHandle>>& resourcePair)
+    {
+        if (resourcePair.second->getResourceType() != Resource::kMesh) {
+            return;
+        }
         addItem(resourcePair.second);
-    }
+    });
 
     // Resize columns
     resizeColumns();

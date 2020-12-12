@@ -19,8 +19,6 @@
 
 #include "GbShaderComponent.h"
 
-#include "GbCamera.h"
-
 
 namespace Gb {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -30,16 +28,17 @@ CanvasComponent::CanvasComponent() :
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 CanvasComponent::CanvasComponent(CoreEngine * core) :
-    Component(core, ComponentType::kCanvas),
-    m_renderProjection(core->widgetManager()->mainGLWidget())
+    Component(core, ComponentType::kCanvas)
 {
+    core->widgetManager()->mainGLWidget()->addRenderProjection(&m_renderProjection);
     m_renderProjection.setProjectionType(RenderProjection::kOrthographic);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 CanvasComponent::CanvasComponent(const std::shared_ptr<SceneObject>& object) :
-    Component(object, ComponentType::kCanvas),
-    m_renderProjection(object->engine()->widgetManager()->mainGLWidget())
+    Component(object, ComponentType::kCanvas)
 {
+    object->engine()->widgetManager()->mainGLWidget()->addRenderProjection(&m_renderProjection);
+
     m_renderProjection.setProjectionType(RenderProjection::kOrthographic);
     //setSceneObject(sceneObject()); // performed by parent class
     sceneObject()->addComponent(this);
@@ -59,18 +58,21 @@ Gb::CanvasComponent::~CanvasComponent()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void CanvasComponent::createDrawCommands(
     std::vector<std::shared_ptr<DrawCommand>>& outDrawCommands,
-    Camera & camera, 
-    ShaderProgram & shaderProgram)
+    SceneCamera & camera, 
+    ShaderProgram & shaderProgram,
+    ShaderProgram* prepassProgram)
 {
     if (!m_isEnabled) { return; }
 
     // Iterate through glyphs to generate draw commands
+    // TODO: Perform frustum culling for world-text
     for (std::shared_ptr<Glyph>& glyph : m_glyphs) {
-        auto command = std::make_shared<DrawCommand>(*glyph, shaderProgram, camera);
+        auto command = std::make_shared<DrawCommand>(*glyph, shaderProgram, camera, prepassProgram);
         //bindUniforms(*command);
         command->setUniform(
             Uniform("worldMatrix", glyph->transform()->worldMatrix())); // for depth calculation
-        command->addRenderSettings(&m_renderSettings);
+        command->renderSettings().overrideSettings(m_renderSettings); // may not be necessary
+        command->renderSettings().overrideSettings(glyph->renderSettings());
 
         outDrawCommands.push_back(command);
     }
@@ -136,8 +138,8 @@ QJsonValue CanvasComponent::asJson() const
 
     // Cache uniforms used by the canvas
     QJsonObject uniforms;
-    for (const auto& uniformPair : m_uniforms) {
-        uniforms.insert(uniformPair.first, uniformPair.second.asJson());
+    for (const Uniform& uniform : m_uniforms) {
+        uniforms.insert(uniform.getName(), uniform.asJson());
     }
     object.insert("uniforms", uniforms);
 
@@ -151,8 +153,10 @@ QJsonValue CanvasComponent::asJson() const
     return object;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void CanvasComponent::loadFromJson(const QJsonValue & json)
+void CanvasComponent::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
+
     // Delete any glyphs
     clear();
 
@@ -229,13 +233,12 @@ void CanvasComponent::addRequiredComponents()
 
         // Create text preset and add to shader component
         bool created;
-        const QString& textStr = Shader::Builtins[1];
         std::shared_ptr<ShaderPreset> textPreset = 
-            m_engine->resourceCache()->getShaderPreset(textStr, created);
+            m_engine->scenario()->settings().getShaderPreset(TEXT_SHADER_NAME, created);
         
         if (created) {
             auto textShader = m_engine->resourceCache()->getHandleWithName(
-                textStr, Resource::kShaderProgram)->resourceAs<ShaderProgram>();
+                TEXT_SHADER_NAME, Resource::kShaderProgram)->resourceAs<ShaderProgram>();
             textPreset->setShaderProgram(textShader);
         }
 

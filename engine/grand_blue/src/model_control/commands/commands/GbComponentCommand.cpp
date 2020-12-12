@@ -6,7 +6,7 @@
 #include "../../../core/components/GbComponent.h"
 #include "../../../core/components/GbScriptComponent.h"
 #include "../../../core/components/GbShaderComponent.h"
-#include "../../../core/components/GbCamera.h"
+#include "../../../core/components/GbCameraComponent.h"
 #include "../../../core/components/GbLightComponent.h"
 #include "../../../core/components/GbModelComponent.h"
 #include "../../../core/components/GbListenerComponent.h"

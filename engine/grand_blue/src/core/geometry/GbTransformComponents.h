@@ -80,7 +80,7 @@ public:
     virtual QJsonValue asJson() const override { return QJsonObject(); }
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override { Serializable::loadFromJson(json); }
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -115,7 +115,7 @@ public:
     /// @{    
 
     /// @brief get Matrix
-    const Matrix4x4f& getMatrix() const { return m_transformMatrix; }
+    const Matrix4x4& getMatrix() const { return m_transformMatrix; }
 
     /// @}
 
@@ -127,7 +127,7 @@ public:
     virtual QJsonValue asJson() const override { return AbstractTransformComponent::asJson(); }
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override { AbstractTransformComponent::loadFromJson(json); }
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -137,23 +137,22 @@ protected:
     virtual void computeTransformMatrix(bool updateTransform = true);
 
     /// @brief Matrix representing the transform
-    Matrix4x4f m_transformMatrix;
+    Matrix4x4 m_transformMatrix;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/** @class ScaleComponent
-    @brief  Represents a transform component that scales an object
-*/
+/// @class ScaleComponent
+///    @brief  Represents a transform component that scales an object
+
 class ScaleComponent : public AffineComponent {
 public:
-
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Constructors and Destructors
     /// @{
     ScaleComponent();
-    ScaleComponent(const Matrix4x4f& scaling);
-    ScaleComponent(const  Vector3& scaling);
+    ScaleComponent(const Matrix4x4& scaling);
+    ScaleComponent(const Vector3& scaling);
     ~ScaleComponent() {}
 
     /// @}
@@ -195,7 +194,7 @@ public:
     virtual QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -260,7 +259,7 @@ public:
     virtual QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -277,9 +276,8 @@ protected:
 Q_DECLARE_METATYPE(RotationComponent);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/** @class Translation
-    @brief  Represents a translation
-*/
+/// @class Translation
+///    @brief  Represents a translation
 struct Translation: public Serializable {
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Constructors and Destructors
@@ -287,7 +285,7 @@ struct Translation: public Serializable {
     Translation();
     Translation(const QJsonValue& json);
     Translation(const Vector3& position, CoordinateFrame frame = kGLWorld);
-    Translation(const Vector3& position, const Vector3& velocity, const Vector3& acceleration, CoordinateFrame frame = kGLWorld);
+    //Translation(const Vector3& position, const Vector3& velocity, const Vector3& acceleration, CoordinateFrame frame = kGLWorld);
     Translation(const Translation& t);
     ~Translation();
 
@@ -322,7 +320,7 @@ struct Translation: public Serializable {
     virtual QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -368,7 +366,7 @@ public:
     }
 
     /// @brief Adds to the position to this component
-    void addTranslation(const Vector3& position, bool updateTransform = true);
+    //void addTranslation(const Vector3g& position, bool updateTransform = true);
 
     /// @brief Obtain translation
     const Translation& getTranslation() const { return m_translation; }
@@ -404,7 +402,7 @@ public:
     virtual QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 

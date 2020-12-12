@@ -29,8 +29,10 @@ QJsonValue Icon::asJson() const
     return object;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Icon::loadFromJson(const QJsonValue & json)
+void Icon::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
+
     Label::loadFromJson(json);
     //QJsonObject object = json.toObject();
 }

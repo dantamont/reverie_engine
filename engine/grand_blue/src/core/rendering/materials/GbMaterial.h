@@ -9,6 +9,7 @@
 
 // Internal
 #include "GbTexture.h"
+#include "../../containers/GbString.h"
 
 namespace Gb {  
 
@@ -16,35 +17,30 @@ namespace Gb {
 // Forward Declarations
 /////////////////////////////////////////////////////////////////////////////////////////////
 class Material;
+class RenderContext;
+template<typename ...Args> class Protocol;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Class definitions
 /////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct MaterialProperties
 /// @brief Structure containing material properties
-struct MaterialProperties: Serializable {
+struct MaterialProperties {
 
     MaterialProperties();
-    MaterialProperties(const QJsonValue& json);
     ~MaterialProperties();
 
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Serializable Overrides
     /// @{
 
-    /// @brief Outputs this data as a valid json string
-    QJsonValue asJson() const override;
-
-    /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
-
     /// @}
 
-    Vector3g m_ambient; // Base color of texture
-    Vector3g m_diffuse; // Diffuse color of texture
-    Vector3g m_specularity; // (reflectivity) Specular reflection, effects color intensity of specular reflection
-    Vector3g m_transmittance; // Transmission filter of the object, 0 1 0 would allow all green through, no red or blue
-    Vector3g m_emission; // same as luminosity, self-illumination
+    Vector3 m_ambient; // Base color of texture
+    Vector3 m_diffuse; // Diffuse color of texture
+    Vector3 m_specularity; // (reflectivity) Specular reflection, effects color intensity of specular reflection
+    Vector3 m_transmittance; // Transmission filter of the object, 0 1 0 would allow all green through, no red or blue
+    Vector3 m_emission; // same as luminosity, self-illumination
     real_g m_shininess = 1.0; // Same as glossiness, shine dampening, exponent that approximates surface glossiness for specular reflection
     real_g m_ior = 1.0;       // index of refraction, also known as optical density, from 0.001 to 10, 0.001 does not bend light, glass = 1.5, want >1
     real_g m_dissolve = 1.0;  // (opacity) how much material dissolves into background, 1 == opaque; 0 == fully transparent
@@ -88,36 +84,15 @@ struct MaterialProperties: Serializable {
     real_g m_anisotropyRotation = 0.0;  // anisor. [0, 1] default 0
 
     // Custom parameters
-    std::unordered_map<std::string, std::string> m_customParameters;
+    // Only used in tiny_obj loader right now, deprecated
+    //std::unordered_map<std::string, std::string> m_customParameters;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
-/// @struct MaterialData
-/// @brief Structure for parsing in data from a file
-/// @note For structure alignment, see:
-/// http://www.catb.org/esr/structure-packing/
-struct MaterialData {
-    MaterialData();
-    ~MaterialData();
-
-    void initialize();
-
-    /// @brief Return texture of the given type
-    TextureData& textureData(Texture::TextureType type);
-
-    std::string m_name;
-
-    // Path for material file
-    /// @note May not represent an actual path, but the directory is needed for loading textures
-    std::string m_path;
-
-    // ID
-    int m_id;
-
-    // Struct for material properties
-    MaterialProperties m_properties;
-
+/// @struct MaterialTextureDataa
+/// @brief Represents all texture data associated with a material
+struct MaterialTextureData {
     // Texture options
     TextureData m_ambientTexture;           // map_Ka
     TextureData m_diffuseTexture;           // map_Kd
@@ -143,6 +118,49 @@ struct MaterialData {
 
     TextureData m_unknown;
 };
+
+// Typedef protocol
+typedef Protocol<char*, char*, int, MaterialProperties, MaterialTextureData> MaterialDataProtocol;
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/// @struct MaterialData
+/// @brief Structure for parsing in data from a file
+/// @note For structure alignment, see:
+/// http://www.catb.org/esr/structure-packing/
+struct MaterialData {
+    MaterialData();
+    ~MaterialData();
+
+    /// @brief Create protocol representing this material data
+    /// @note The material data does not assume ownership of the protocol, which must be manually deallocated
+    MaterialDataProtocol* createProtocol();
+    void createProtocol(MaterialDataProtocol& outProtocol);
+
+    void initialize();
+
+    /// @brief Return texture of the given type
+    const TextureData& textureData(TextureUsageType type) const;
+
+    /// @name Members
+    /// @{
+    GString m_name = "";
+
+    // Path for material file
+    /// @note May not represent an actual path, but the directory is needed for loading textures
+    GString m_path = "";
+
+    // ID
+    int m_id;
+
+    // Struct for material properties
+    MaterialProperties m_properties;
+    
+    /// @brief Properties of the textures used by this material
+    MaterialTextureData m_textureData;
+
+    /// @}
+};
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Material
@@ -150,7 +168,6 @@ struct MaterialData {
 /// @detailed Describes texture and related metadata for rendering
 ///     The material may serve as an atlas (a compilation of many textures in one image)
 class Material: public Resource, public Serializable{
-     
 public:
     //---------------------------------------------------------------------------------------
     /// @name Static
@@ -173,18 +190,22 @@ public:
     /// @name Properties
     /// @{
 
+    /// @brief Get the type of resource stored by this handle
+    virtual Resource::ResourceType getResourceType() const override {
+        return Resource::kMaterial;
+    }
+
     size_t getSortID() const;
 
 	/// @property isBound
 	/// @brief whether the material's textures are bound or not
-	bool isBound() { return m_isBound; }
-	void setIsBound(bool isBound) { m_isBound = isBound; }
+    bool isBound(RenderContext& context) const;
 
     /// @property Shininess
     void setShininess(real_g shininess) { m_properties.m_shininess = shininess; }
 
     /// @property Specularity
-    void setSpecularity(const Vector3g& s) { m_properties.m_specularity = s; }
+    void setSpecularity(const Vector3& s) { m_properties.m_specularity = s; }
 
     /// @}
 
@@ -193,10 +214,7 @@ public:
 	/// @{
 
     /// @brief Set material data
-    void setData(MaterialData&& data);
-
-    /// @brief Whether or not the material is still in the resourceCache
-    bool inResourceCache() const;
+    void setData(const MaterialData& data);
 
     /// @brief Search directory for the material and its textures
     QString getSearchDirectory() const;
@@ -205,10 +223,10 @@ public:
 	void setDiffuseTexture(std::shared_ptr<Gb::ResourceHandle> diffuse);
 
 	/// @brief Binds all the textures associated with this material
-	void bind(ShaderProgram& shaderProgram);
+	void bind(ShaderProgram& shaderProgram, RenderContext& context);
 
 	/// @brief Unbinds all the textures associated with this material
-	void release();
+	void release(RenderContext& context);
 
     /// @brief What action to perform on removal of the resource
     virtual void onRemoval(ResourceCache* cache = nullptr) override;
@@ -223,7 +241,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -252,10 +270,8 @@ protected:
     //---------------------------------------------------------------------------------------
     /// @name Constructors/Destructor
     /// @{
-    Material(CoreEngine*);
-    Material(CoreEngine*, const QString& name);
-    //Material(CoreEngine*, MaterialData&& data);
-    //Material(CoreEngine*, const QString& name, const std::shared_ptr<Gb::ResourceHandle>& diffuse);
+    Material();
+    Material(const QString& name);
 
     /// @}
 
@@ -264,19 +280,19 @@ protected:
     /// @{
 
     /// @brief Whether the material has a texture of the specified type
-    bool hasType(Texture::TextureType type);
+    bool hasType(TextureUsageType type);
 
     /// @brief Initialize texture in resource cache
-    void initializeTexture(int textureType, MaterialData & data);
+    void initializeTexture(int textureType, const MaterialData & data);
 
     /// @brief Return shared_ptr to specified texture type
-    std::shared_ptr<ResourceHandle> getTexture(Texture::TextureType);
+    std::shared_ptr<ResourceHandle> getTexture(TextureUsageType);
 
     /// @brief Set the texture to the correct type
-    void setTexture(std::shared_ptr<ResourceHandle> resourceHandle, Texture::TextureType type);
+    void setTexture(std::shared_ptr<ResourceHandle> resourceHandle, TextureUsageType type);
 
     /// @brief Set uniforms in the given shader program
-    void setShaderUniformsAndBindTextures(ShaderProgram& shaderProgram);
+    void setShaderUniformsAndBindTextures(ShaderProgram& shaderProgram, RenderContext& context);
 
     /// @}
 
@@ -284,19 +300,10 @@ protected:
     /// @name Protected members
     /// @{
 
-    bool m_isBound;
-
-    size_t m_sortID;
+    size_t m_sortIndex;
 
     /// @brief Properties of the material
     MaterialProperties m_properties;
-
-    /// @brief the textures used by this material
-    //std::unordered_map<Texture::TextureType, std::shared_ptr<Gb::ResourceHandle>> m_textures;
-    std::unordered_map<Texture::TextureType, TextureProperties> m_textureProperties;
-
-    /// @brief core engine
-    CoreEngine* m_engine;
 
     static size_t s_materialCount;
 

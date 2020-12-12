@@ -1,6 +1,4 @@
 <RCC>
     <qresource prefix="/scripts">
-		<file>base_behavior.py</file>
-		<file>base_listener.py</file>
     </qresource>
 </RCC>

@@ -28,7 +28,7 @@ class CoreEngine;
 class Material;
 class ShaderProgram;
 struct SortingLayer;
-class Camera;
+class SceneCamera;
 class DrawCommand;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -49,7 +49,6 @@ public:
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Properties
     /// @{
-
 
     /// @}
 
@@ -75,7 +74,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -91,8 +90,8 @@ protected:
     /// @details Uniforms are pulled from the internal list, m_uniforms
     void bindUniforms(ShaderProgram& shaderProgram) override;
 
-    void bindTextures(ShaderProgram* shaderProgram) override;
-    void releaseTextures(ShaderProgram* shaderProgram) override;
+    void bindTextures(ShaderProgram* shaderProgram, RenderContext* context) override;
+    void releaseTextures(ShaderProgram* shaderProgram, RenderContext* context) override;
 
     /// @brief Draw geometry associated with this renderable
     virtual void drawGeometry(ShaderProgram& shaderProgram, RenderSettings* settings = nullptr);
@@ -105,9 +104,6 @@ protected:
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Protected Members
     /// @{
-
-    //std::shared_ptr<Mesh> m_mesh;
-    //std::shared_ptr<Material> m_material;
 
     std::shared_ptr<ResourceHandle> m_mesh;
     std::shared_ptr<ResourceHandle> m_material;
@@ -126,26 +122,24 @@ public:
 	/// @name Static
 	/// @{
 
-    enum ModelType {
-        kUndefined = -1,
-        kStaticMesh,
-        kAnimatedMesh
+    enum ModelFlag {
+        kIsAnimated = 1 << 0 // Whether or not the model has animations associated with it
     }; 
+    typedef QFlags<ModelFlag> ModelFlags;
 
     /// @brief Create handle to a model
     static std::shared_ptr<ResourceHandle> createHandle(CoreEngine* engine);
     static std::shared_ptr<ResourceHandle> createHandle(CoreEngine* engine, 
-        const QString& uniqueName, 
-        ModelType type = kStaticMesh);
+        const GString& uniqueName, 
+        ModelFlags flags = {});
 
 	/// @}
 
 	//-----------------------------------------------------------------------------------------------------------------
 	/// @name Constructors/Destructor
 	/// @{
-    Model(CoreEngine* engine);
-    Model(CoreEngine* engine, const QString& uniqueName, ModelType type = kStaticMesh);
-    Model(CoreEngine* engine, const QString& uniqueName, Resource::ResourceType resourceType, ModelType type = kStaticMesh);
+    Model();
+    Model(const GString& uniqueName, ModelFlags flags = {});
     Model(ResourceHandle& handle, const QJsonValue& json);
     Model(ResourceHandle& handle);
 	~Model();
@@ -155,14 +149,22 @@ public:
     /// @name Properties
     /// @{
 
+    /// @brief Get the type of resource stored by this handle
+    virtual Resource::ResourceType getResourceType() const override {
+        return Resource::kModel;
+    }
+
     /// @brief Skeleton for the model
     std::shared_ptr<Skeleton> skeleton() const;
 
     const std::shared_ptr<ResourceHandle>& skeletonHandle() const { return m_skeletonHandle; }
     std::shared_ptr<ResourceHandle>& skeletonHandle() { return m_skeletonHandle; }
 
-    /// @brief Type of model
-    ModelType getModelType() const { return m_modelType; }
+    /// @brief Whether or not the model is animated
+    bool isAnimated() const;
+    bool isStatic() const;
+
+    void setAnimated(bool animated);
 
     /// @}
 
@@ -178,35 +180,25 @@ public:
 	/// @name Public methods
 	/// @{
 
-    ///// @brief Generate the draw commands for the model
-    //void createDrawCommands(std::vector<std::shared_ptr<DrawCommand>>& outDrawCommands,
-    //    Camera& camera,
-    //    ShaderProgram& shader);
-
-	///// @brief Draw this model
- //   /// [in] shapeMode 
-	//void draw(ShaderProgram& shaderProgram, RenderSettings* settings = nullptr) override;
-
     /// @brief Get material with the given name
-    std::shared_ptr<ResourceHandle> getMaterial(const QString& name);
+    const std::shared_ptr<ResourceHandle>& getMaterial(const GString& name);
 
     /// @brief Create a new mesh with the given name and add it to the model
-    std::shared_ptr<Mesh> addMesh(const QString& meshName);
+    std::shared_ptr<Mesh> addMesh(CoreEngine* core, const GString& meshName);
 
     /// @brief Create a new material with the given name and add it to the model
-    std::shared_ptr<Material> addMaterial(const QString& mtlName);
+    std::shared_ptr<Material> addMaterial(CoreEngine* core, const GString& mtlName);
 
-    /// @brief Create a new animatino with the given name and add it to the model
-    std::shared_ptr<Animation> addAnimation(const QString& animName);
+    /// @brief Create a new animation with the given name and add it to the model
+    std::shared_ptr<Animation> addAnimation(CoreEngine* core, const GString& animName);
 
-    //std::vector<std::shared_ptr<Mesh>>& meshes() { return m_meshes; }
-    //std::vector<std::shared_ptr<Material>>& materials() { return m_materials; }
-    std::vector<std::shared_ptr<ModelChunk>>& chunks() { return m_chunks; }
+    /// @brief Add a skeleton to the model
+    void addSkeleton(CoreEngine* core);
+
+    const std::vector<ModelChunk>& chunks() const { return m_chunks; }
 
     /// @brief What action to perform on removal of the resource
     virtual void onRemoval(ResourceCache* cache = nullptr) override;
-
-    void addSkeleton();
 
     /// @brief What action to perform post-construction of the model
     /// @details For performing any actions that need to be done on the main thread
@@ -222,7 +214,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -252,11 +244,6 @@ protected:
     bool checkMesh(const std::shared_ptr<ResourceHandle>& handle);
     bool checkMaterial(const std::shared_ptr<ResourceHandle>& handle);
 
-    ///// @brief Set uniforms for the given draw command
-    ///// @details Uniforms are pulled from the internal list, m_uniforms
-    //void bindUniforms(DrawCommand& drawCommand);
-
-    
     // TODO: Remove, deprecated
     void loadChunksFromJson(const QJsonObject & object);
 
@@ -266,14 +253,11 @@ protected:
     /// @name Protected Members
     /// @{
 
-    /// @brief core engine
-    CoreEngine* m_engine;
+    /// @brief Flags governing the behavior of the model
+    size_t m_modelFlags;
 
     /// @brief Vectors of meshes and associated materials
-    std::vector<std::shared_ptr<ModelChunk>> m_chunks;
-
-    /// @brief Type of model
-    ModelType m_modelType;
+    std::vector<ModelChunk> m_chunks;
 
     /// @brief Skeleton for the model
     std::shared_ptr<ResourceHandle> m_skeletonHandle = nullptr;

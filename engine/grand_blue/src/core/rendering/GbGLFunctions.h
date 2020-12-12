@@ -10,12 +10,14 @@
 #include <QDebug>
 
 namespace Gb {  
-namespace GL {
-
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Forward Declarations
 /////////////////////////////////////////////////////////////////////////////////////////////
+class GString;
+class GStringView;
+
+namespace GL {
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Statics
@@ -25,7 +27,18 @@ namespace GL {
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Class definitions
 /////////////////////////////////////////////////////////////////////////////////////////////
-
+enum class UsagePattern: size_t
+{
+    kStreamDraw = GL_STREAM_DRAW, 
+    kStreamRead = GL_STREAM_READ, // GL_STREAM_READ
+    kStreamCopy = GL_STREAM_COPY, // GL_STREAM_COPY
+    kStaticDraw = GL_STATIC_DRAW, // GL_STATIC_DRAW
+    kStaticRead = GL_STATIC_READ, // GL_STATIC_READ
+    kStaticCopy = GL_STATIC_COPY, // GL_STATIC_COPY
+    kDynamicDraw = GL_DYNAMIC_DRAW, // GL_DYNAMIC_DRAW
+    kDynamicRead = GL_DYNAMIC_READ, // GL_DYNAMIC_READ
+    kDynamicCopy = GL_DYNAMIC_COPY  // GL_DYNAMIC_COPY
+};
 
 /// @brief Block layout options
 /// @details Each variable type in GLSL such as int, float and bool are defined to be 
@@ -42,58 +55,28 @@ enum class ShaderBlockLayout{
     kStd430 // Like Std140, but with some optimizations, namely no longer rounding up to a multiple of 16 bytes
 };
 
-enum class BufferAccessType {
-    kRead = GL_READ_ONLY,
-    kWrite = GL_WRITE_ONLY,
-    kReadWrite = GL_READ_WRITE
-};
-
-enum class RangeBufferAccessType {
-    kRead = GL_MAP_READ_BIT,
-    kWrite = GL_MAP_WRITE_BIT,
-    kReadWrite = GL_MAP_READ_BIT | GL_MAP_WRITE_BIT
-};
-
-enum class BufferType {
-    kUniformBuffer = GL_UNIFORM_BLOCK, // Storage comes from a UBO
-    kShaderStorage = GL_SHADER_STORAGE_BLOCK // Storage comes from an SSB
-};
-
-enum class DrawDataMode {
-    kStream = GL_STREAM_DRAW,
-    kStatic = GL_STATIC_DRAW,
-    kDynamic = GL_DYNAMIC_DRAW
-};
-
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 /// @brief For loading 3D geometry (models) into memory
 /// @detailed Stores positional data of a model in a VAO
 class OpenGLFunctions: public QOpenGLExtraFunctions{
-     
 public:
-    //-----------------------------------------------------------------------------------------------------------------
-    /// @name Properties
-    /// @{
-    /** @property className
-        @brief The name of this class
-        @details Every subclass should redefine/override this property to
-            return its name
-    */
-    virtual const char* className() const { return "OpenGLFunctions"; }
 
-    /** @property namespaceName
-        @brief The full namespace for this class
-        @details Every subclass should redefine/override this property to
-            return its full namespace.  The built in logging methods will
-            use this value for the message category
-    */
-    virtual const char* namespaceName() const { return "Gb::GL::OpenGLFunctions"; }
+    //-----------------------------------------------------------------------------------------------------------------
+    /// @name Static
+    /// @{
+
+    static const std::shared_ptr<OpenGLFunctions>& Functions();
+
+    /// @brief Obtain max allowed number of texture units per shader
+    static size_t MaxNumTextureUnits();
+
     /// @}
+
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Constructors and Destructors
     /// @{
-    OpenGLFunctions();
+    OpenGLFunctions(bool initialize = true);
     ~OpenGLFunctions();
     /// @}
     //-----------------------------------------------------------------------------------------------------------------
@@ -101,11 +84,29 @@ public:
         @{
     */
     /// @brief Print all errors that have been raised in GL
-    static bool printGLError(const QString& errorMessage);
+    static bool printGLError(const char* errorMessage);
+    static bool printGLError(const GStringView& errorMessage);
+    
+    /// @brief Callback for printing OpenGL debug messages
+    static void QOPENGLF_APIENTRY printMessageCallBack(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam);
+
+    /// @}
+
+    //-----------------------------------------------------------------------------------------------------------------
+    /// @name Properties
+    /// @{
+
+    const char* className() const { return "OpenGLFunctions"; }
+    const char* namespaceName() const { return "Gb::GL::OpenGLFunctions"; }
 
     /// @}
 protected:
 
+    /// @brief Static instantiation of gl functions for error reporting
+    static std::shared_ptr<OpenGLFunctions> s_glFunctions;
+
+    /// @brief Cached value of max number of texture units
+    static GLint s_maxTextureUnits;
 };
 
         

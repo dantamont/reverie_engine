@@ -6,9 +6,10 @@
 #define GB_Nameable_H
 
 // QT
-#include <QString>
+//#include <QString>
 
 // Internal
+#include "../containers/GbString.h"
 
 namespace Gb {
 
@@ -39,7 +40,7 @@ public:
 	//--------------------------------------------------------------------------------------------
 	/// @name Constructors/Destructor
 	/// @{
-    Nameable(const QString& name, NameMode mode = kCaseSensitive);
+    explicit Nameable(const GString& name, NameMode mode = kCaseSensitive);
     Nameable() {}
     virtual ~Nameable() {}
 	/// @}
@@ -49,12 +50,13 @@ public:
     /// @{
 
     /// @property Name
-    virtual const QString& getName() const;
-    virtual void setName(const QString& name);
-
-    /// @brief Name as a standard string
-    inline const std::string& nameAsStdString() const { return m_name.toStdString(); }
-
+    inline const GString& getName() const {
+        return m_name;
+    }
+    inline GString& getName() {
+        return m_name;
+    }
+    void setName(const GString& name);
 
     /// @}
 	//--------------------------------------------------------------------------------------------
@@ -75,7 +77,7 @@ protected:
     /// @{
 
     /// @brief Name to the object
-    QString m_name;
+    GString m_name;
 
     /// @brief Naming mode
     NameMode m_nameMode;

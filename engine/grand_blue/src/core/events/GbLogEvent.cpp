@@ -4,9 +4,9 @@ namespace Gb {
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 LogEvent::LogEvent(
-    const QString& namespaceName,
-    const QString& logMessage,
-    const QString& threadId,
+    const GString& namespaceName,
+    const GString& logMessage,
+    const GString& threadId,
     LogLevel messageLevel) :
     Event()
 { 

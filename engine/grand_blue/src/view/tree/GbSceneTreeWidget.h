@@ -117,7 +117,7 @@ signals:
     void selectedScene(const Uuid& sceneID);
 
     /// @brief Emit on selection of a scene object
-    void selectedSceneObject(const Uuid& sceneID, const Uuid& sceneObjectID);
+    void selectedSceneObject(const Uuid& sceneObjectID);
 
     /// @brief Emit on deselection of any scene objects
     void deselectedSceneObject();

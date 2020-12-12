@@ -9,6 +9,8 @@
 #include <list>
 #include <set>
 #include <map>
+#include <shared_mutex>
+#include <thread>
 
 // QT
 #include <QKeyEvent>
@@ -56,7 +58,8 @@ struct UserInput {
         kNoAction,
         kPress,
         kRelease,
-        kScroll
+        kScroll,
+        kNUM_ACTION_TYPES
     };
 
     enum TimingType {
@@ -77,7 +80,8 @@ struct UserInput {
 
 
     /// @brief The most recent timestamps (in ms since arbitrary time) of each action type
-    std::unordered_map<ActionType, ulong> m_timeStamps = { {kPress, 0}, {kRelease, 0} };
+    /// @details Array default initializes to zero
+    std::array<ulong, kNUM_ACTION_TYPES> m_timeStamps;
 
     /// @brief Type of event
     ActionType m_actionType = ActionType::kNoAction;
@@ -148,7 +152,7 @@ struct MouseInput : public UserInput {
     Qt::MouseButtons m_activeButtons;
 
     /// @brief Scroll amount (in radians), x-component is only for horizontal-scroll enabled mice
-    Vector2g m_angleDelta;
+    Vector2 m_angleDelta;
 
     /// @}
 };
@@ -227,7 +231,7 @@ public:
     /// @name Static
     /// @{
 
-    static std::unordered_map<QString, Qt::MouseButton> MOUSE_BUTTON_MAP;
+    static tsl::robin_map<QString, Qt::MouseButton> MOUSE_BUTTON_MAP;
 
     /// @}
     //--------------------------------------------------------------------------------------------
@@ -259,7 +263,7 @@ public:
     bool wasDoubleClicked(const QString& key);
 
     /// @brief Whether the given input is held or not
-    bool isHeld(const Qt::MouseButton& key) const;
+    bool isHeld(const Qt::MouseButton& key);
     bool isHeld(const QString& key);
 
     /// @brief Whether or not the mouse wheel was scrolled
@@ -269,19 +273,19 @@ public:
     bool wasMoved() const { return m_moved; }
 
     /// @brief Get the change in scroll amount since the last frame
-    const Vector2g& scrollDelta() const { return m_scrollDelta; }
+    const Vector2& scrollDelta() const { return m_scrollDelta; }
 
     /// @brief Get the change in mouse position since the last frame
-    const Vector2g& mouseDelta() const { return m_mouseDelta; }
+    const Vector2& mouseDelta() const { return m_mouseDelta; }
 
     /// @brief Get normalized mouse position in widget space
-    Vector2g normalizeMousePosition() const;
+    Vector2 normalizeMousePosition() const;
 
     /// @brief Get mouse position in widget space
-    Vector2g widgetMousePosition() const;
+    Vector2 widgetMousePosition() const;
 
     /// @brief Get global mouse position
-    Vector2g globalMousePosition() const;
+    Vector2 globalMousePosition() const;
 
     /// @}
 
@@ -308,6 +312,9 @@ protected:
 
     /// @brief Start input collection for a new frame
     void onUpdate(unsigned long deltaMs);
+
+    /// @brief Update mouse position using input listener thread
+    void onUpdateMoved();
 
     /// @brief Get the input corresponding to the given mouse button, creating if it doesn't exist
     MouseInput& getInput(const Qt::MouseButton& btn);
@@ -348,25 +355,30 @@ protected:
     std::list<MouseInput> m_inputsCache;
 
     /// @brief All new mouse inputs
-    std::unordered_map<Qt::MouseButton, MouseInput> m_mouseInputs;
+    tsl::robin_map<Qt::MouseButton, MouseInput> m_mouseInputs;
 
     /// @brief Most recent scroll input
     MouseInput m_scrollInput;
 
     /// @brief Whether the mouse was moved or not
     bool m_moved;
-    bool m_movedCache; // Value to cache between frames
     bool m_scrolled;
     bool m_scrolledCache;
 
     /// @brief Previous mouse position in NDC (-1, 1)
-    Vector2g m_prevScreenPosition;
+    Vector2 m_prevScreenPosition;
 
     /// @brief Change in mouse position since last frame (in NCD)
-    Vector2g m_mouseDelta;
+    Vector2 m_mouseDelta;
 
     /// @brief Amount scrolled since the last frame
-    Vector2g m_scrollDelta;
+    Vector2 m_scrollDelta;
+
+    /// @brief The mutex used to manage mouse input retrieval
+    //std::shared_mutex m_mouseInputMutex;
+
+    /// @brief Mouse position used for tracking thread
+    //Vector2 m_prevTrackingMousePosition;
 
     /// @brief Input handler 
     InputHandler* m_inputHandler;
@@ -476,7 +488,7 @@ protected:
     std::list<KeyInput> m_inputsCache;
 
     /// @brief All keyboard inputs
-    std::unordered_map<Qt::Key, KeyInput> m_keyInputs;
+    tsl::robin_map<Qt::Key, KeyInput> m_keyInputs;
 
     /// @brief Input handler 
     InputHandler* m_inputHandler;
@@ -559,6 +571,8 @@ protected:
     /// @name Protected Methods
     /// @{
 
+    /// @brief Callback for input listener thread
+    //void inputThreadCallback();
 
     /// @}
 
@@ -583,6 +597,12 @@ protected:
 
     /// @brief Pointer to the core engine
     View::GLWidget* m_widget;
+
+    //bool m_threadRunning;
+
+    ///// @brief The input listener thread, used only for mouse moves right now
+    //static std::vector<std::thread> s_inputListenerThreads;
+    //std::vector<std::shared_mutex> s_runningMutexes;
 
     /// @}
 };

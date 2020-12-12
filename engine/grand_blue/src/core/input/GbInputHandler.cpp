@@ -4,6 +4,7 @@
 #include "../events/GbEventManager.h"
 #include "../GbConstants.h"
 #include "../containers/GbContainerExtensions.h"
+#include "../events/GbLogEvent.h"
 
 #include <QCursor>
 
@@ -77,7 +78,7 @@ bool KeyInput::hasSameKeys(const KeyInput & other) const
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Mouse Handler
 /////////////////////////////////////////////////////////////////////////////////////////////
-std::unordered_map<QString, Qt::MouseButton> MouseHandler::MOUSE_BUTTON_MAP = {
+tsl::robin_map<QString, Qt::MouseButton> MouseHandler::MOUSE_BUTTON_MAP = {
     {"left", Qt::LeftButton},
     {"right", Qt::RightButton},
     {"middle", Qt::MiddleButton}
@@ -90,7 +91,6 @@ MouseHandler::MouseHandler()
 MouseHandler::MouseHandler(InputHandler* handler):
     m_inputHandler(handler),
     m_moved(false),
-    m_movedCache(false),
     m_scrolled(false),
     m_scrolledCache(false)
 {
@@ -130,18 +130,27 @@ bool MouseHandler::wasDoubleClicked(const QString & btnStr)
     return wasDoubleClicked(toMouseButton(btnStr));
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-bool MouseHandler::isHeld(const Qt::MouseButton& key) const
+bool MouseHandler::isHeld(const Qt::MouseButton& key)
 {
     bool held = false;
     if (m_mouseInputs.find(key) == m_mouseInputs.end()) {
         held = false;
     }
     else {
-        const MouseInput& input = m_mouseInputs.at(key);
+        MouseInput& input = m_mouseInputs.at(key);
         if (input.isPress()) {
-            long heldTime = m_inputHandler->m_timer.elapsed() - input.m_timeStamps.at(MouseInput::kPress);
-            if (heldTime > long(m_inputHandler->m_holdTime)) {
-                held = true;
+            // TODO: Do this for keys, but with hasFocus
+            if (!m_inputHandler->m_widget->underMouse()) {
+                // If the widget is not in focus, don't recognize key hold, and set as released
+                input.m_actionType = UserInput::ActionType::kRelease;
+                return false;
+            }
+            else {
+                // If widget is in focus, the mouse button is held
+                long heldTime = m_inputHandler->m_timer.elapsed() - input.m_timeStamps.at(MouseInput::kPress);
+                if (heldTime > long(m_inputHandler->m_holdTime)) {
+                    held = true;
+                }
             }
         }
     }
@@ -153,30 +162,30 @@ bool MouseHandler::isHeld(const QString & btnStr)
     return isHeld(toMouseButton(btnStr));
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-Vector2g MouseHandler::normalizeMousePosition() const
+Vector2 MouseHandler::normalizeMousePosition() const
 {
     double width = (double)m_inputHandler->m_widget->width();
     double height = (double)m_inputHandler->m_widget->height();
-    Vector2g widgetPos = widgetMousePosition();
+    Vector2 widgetPos = widgetMousePosition();
     
     // Convert coordinate range from 0-1 to -1-1
     double screenX = 2 * (widgetPos.x() / width) - 1.0;
     double screenY = 1.0 - 2 * (widgetPos.y() / height); // Flip, since widget-space origin is top-left
-    return Vector2g(screenX, screenY);
+    return Vector2(screenX, screenY);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-Vector2g MouseHandler::widgetMousePosition() const
+Vector2 MouseHandler::widgetMousePosition() const
 {
     // Get global mouse coordinate and map to widget space
     QPoint globalPos = QCursor::pos();
     QPoint pos = m_inputHandler->m_widget->mapFromGlobal(globalPos);
-    return Vector2g(pos.x(), pos.y());
+    return Vector2(pos.x(), pos.y());
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-Vector2g MouseHandler::globalMousePosition() const
+Vector2 MouseHandler::globalMousePosition() const
 {
     QPoint pos = QCursor::pos();
-    return Vector2g(pos.x(), pos.y());
+    return Vector2(pos.x(), pos.y());
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 void MouseHandler::onUpdate(unsigned long deltaMs)
@@ -184,16 +193,14 @@ void MouseHandler::onUpdate(unsigned long deltaMs)
     Q_UNUSED(deltaMs)
 
     // Determine change in mouse position
-    Vector2g currentMousePos = normalizeMousePosition();
-    m_mouseDelta = currentMousePos - m_prevScreenPosition;
-    m_prevScreenPosition = currentMousePos;
+    onUpdateMoved();
 
     // Move inputs from temporary cache to referenced map
-    m_polledInputs.clear();
-    m_polledInputs.splice(m_polledInputs.begin(), m_inputsCache);
-    m_inputsCache.clear();
-    m_moved = m_movedCache;
-    m_movedCache = false;
+    if (m_inputsCache.size()) {
+        m_polledInputs.clear();
+        m_polledInputs.splice(m_polledInputs.begin(), m_inputsCache);
+        m_inputsCache.clear();
+    }
     m_scrolled = m_scrolledCache;
     m_scrolledCache = false;
 
@@ -203,8 +210,28 @@ void MouseHandler::onUpdate(unsigned long deltaMs)
     }
     else {
         // Set scroll amount to zero
-        m_scrollDelta = Vector2g();
+        m_scrollDelta = Vector2();
     }
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+void MouseHandler::onUpdateMoved()
+{
+    //m_mouseInputMutex.lock();
+    if (!m_inputHandler->m_widget->underMouse()) {
+        m_moved = false;
+        return;
+    }
+
+    Vector2 currentMousePos = normalizeMousePosition();
+    if (currentMousePos != m_prevScreenPosition) {
+        m_moved = true;
+    }
+    else {
+        m_moved = false;
+    }
+    m_mouseDelta = currentMousePos - m_prevScreenPosition;
+    m_prevScreenPosition = currentMousePos;
+    //m_mouseInputMutex.unlock();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 MouseInput & MouseHandler::getInput(const Qt::MouseButton & btn)
@@ -248,7 +275,7 @@ void MouseHandler::handleScrollEvent(QWheelEvent * event)
     input.m_timingType = MouseInput::TimingType::kNone;
     input.m_actionType = MouseInput::kScroll;
     input.m_timeStamps[MouseInput::kScroll] = timeStamp;
-    input.m_angleDelta = Vector2g(Constants::DEG_TO_RAD * event->angleDelta().x() / 8.0,
+    input.m_angleDelta = Vector2(Constants::DEG_TO_RAD * event->angleDelta().x() / 8.0,
         Constants::DEG_TO_RAD * event->angleDelta().y() / 8.0);
 
     // Add input to cache for polling
@@ -317,14 +344,13 @@ void MouseHandler::handleMouseDoubleClickEvent(QMouseEvent * event)
 void MouseHandler::handleMouseMoveEvent(QMouseEvent * event)
 {
     Q_UNUSED(event);
-    m_movedCache = true;
+    //m_movedCache = true;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 Qt::MouseButton MouseHandler::toMouseButton(const QString & str)
 {
     return MOUSE_BUTTON_MAP[str.toLower()];
 }
-
 
 
 
@@ -425,9 +451,11 @@ void KeyHandler::onUpdate(unsigned long deltaMs)
 {
     Q_UNUSED(deltaMs);
     // Move inputs from temporary cache to referenced map
-    m_polledInputs.clear();
-    m_polledInputs.splice(m_polledInputs.begin(), m_inputsCache);
-    m_inputsCache.clear();
+    if (m_inputsCache.size()) {
+        m_polledInputs.clear();
+        m_polledInputs.splice(m_polledInputs.begin(), m_inputsCache);
+        m_inputsCache.clear();
+    }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 void KeyHandler::handleKeyPressEvent(QKeyEvent* event)
@@ -561,6 +589,9 @@ InputHandler::InputHandler() :
 {
     // Start timer
     m_timer.start();
+
+    //s_inputListenerThreads.emplace_back();
+    //s_inputListenerThreads.back() = std::thread(&InputHandler::inputThreadCallback, this);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -573,10 +604,16 @@ InputHandler::InputHandler(View::GLWidget* widget):
 {
     // Start timer
     m_timer.start();
+
+    //s_inputListenerThreads.emplace_back();
+    //s_inputListenerThreads.back() = std::thread(&InputHandler::inputThreadCallback, this);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 InputHandler::~InputHandler()
 {
+    // Make sure the input listener thread stops executing
+    //std::unique_lock lock(m_runningMutex);
+    //m_threadRunning = false;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 void InputHandler::update(unsigned long deltaMs)
@@ -643,11 +680,30 @@ bool InputHandler::handleEvent(QInputEvent * inputEvent)
 
     return handled;
 }
-
-
-
-
-
+///////////////////////////////////////////////////////////////////////////////////////////////
+//void InputHandler::inputThreadCallback()
+//{
+//    std::shared_lock lock(m_runningMutex);
+//    while (m_threadRunning) {
+//        m_mouseHandler.m_mouseInputMutex.lock();
+//
+//        QPoint newPoint = QCursor::pos();
+//        Vector2 newPos(newPoint.x(), newPoint.y());
+//        Vector2& prevPos = m_mouseHandler.m_prevTrackingMousePosition;
+//        if (prevPos != newPos) {
+//            //QApplication::postEvent(CoreEngine::engines().begin()->second,
+//            //    new LogEvent("Gb::InputHandler", 
+//            //        "Moved mouse by " + QString(newPos - prevPos), 
+//            //        "Input", LogLevel::Info));
+//            prevPos = newPos;
+//        }
+//
+//        m_mouseHandler.m_mouseInputMutex.unlock();
+//    }
+//}
+/////////////////////////////////////////////////////////////////////////////////////////////
+//std::vector<std::thread> InputHandler::s_inputListenerThreads = {};
+//std::vector<std::thread> InputHandler::s_inputListenerThreads = {};
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 } // End namespaces

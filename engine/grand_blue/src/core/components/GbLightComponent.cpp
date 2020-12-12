@@ -4,9 +4,11 @@
 #include "../geometry/GbMatrix.h"
 #include "GbTransformComponent.h"
 #include "../scene/GbSceneObject.h"
+#include "../scene/GbScene.h"
 #include "../rendering/shaders/GbShaders.h"
-#include "../rendering/shaders/GbUniformBufferObject.h"
+#include "../rendering/buffers/GbUniformBufferObject.h"
 #include "../rendering/lighting/GbLight.h"
+#include "../rendering/lighting/GbShadowMap.h"
 #include "../rendering/renderer/GbMainRenderer.h"
 #include "../rendering/renderer/GbRenderContext.h"
 
@@ -28,86 +30,166 @@ LightComponent::LightComponent(const std::shared_ptr<SceneObject>& object, Light
     setSceneObject(sceneObject());
     sceneObject()->addComponent(this);
 
-    RenderContext& context = m_engine->mainRenderer()->renderContext();
-    m_lightIndex = Light::CreateLight(context, type);
-    Light& l = light();
-    const Vector3& position = sceneObject()->transform()->getPosition();
-    l.setPosition(position.asReal());
-    unbindLightBuffer();
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////
-LightComponent::LightComponent(const std::shared_ptr<SceneObject>& object, const Color& color, Light::LightType type):
-    Component(object, ComponentType::kLight)
-{
-    // Add light component to scene object
-    if (!sceneObject()) {
-        throw("Error, light needs a scene object");
-    }
-    setSceneObject(sceneObject());
-    sceneObject()->addComponent(this);
-
-    RenderContext& context = m_engine->mainRenderer()->renderContext();
-    m_lightIndex = Light::CreateLight(context, color, type);
-    light().setPosition(sceneObject()->transform()->getPosition().asReal());
-    unbindLightBuffer();
+    initializeLight(type);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
 LightComponent::~LightComponent()
 {
-    RenderContext& context = m_engine->mainRenderer()->renderContext();
-    context.lightingSettings().clearLight(m_lightIndex);
+    clearLight();
+
+    if (m_shadowMap) {
+        disableShadowCasting();
+    }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-Light & LightComponent::light()
+void LightComponent::setLightPosition(const Vector3 & position)
 {
-    RenderContext& context = m_engine->mainRenderer()->renderContext();
-    Light* lightData = context.lightingSettings().lightData();
-    return lightData[m_lightIndex];
+    m_cachedLight.setPosition(position);
+    updateLight();
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-const Light & LightComponent::light() const
+LightingSettings & LightComponent::lightingSettings() const
 {
-    RenderContext& context = m_engine->mainRenderer()->renderContext();
-    Light* lightData = context.lightingSettings().lightData();
-    return lightData[m_lightIndex];
+    return m_engine->mainRenderer()->renderContext().lightingSettings();
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-void LightComponent::unbindLightBuffer() const
+void LightComponent::updateLight()
+{
+    // Queue update in light buffer
+    lightingSettings().lightBuffers().queueUpdate<Light>(m_cachedLight, m_lightIndex);
+
+    // If light can cast shadows
+    if (m_shadowMap) {
+        // Whenever light is modified, update it's lightSpaceMatrix
+        updateShadowMap();
+    }
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////
+void LightComponent::updateShadow()
+{
+    // Queue update in shadow buffer
+    lightingSettings().shadowBuffers().queueUpdate<ShadowInfo>(m_cachedShadow, m_lightIndex);
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////
+void LightComponent::enableShadowCasting()
 {
     RenderContext& context = m_engine->mainRenderer()->renderContext();
-    context.lightingSettings().unbindLightData();
+    LightingSettings& settings = context.lightingSettings();
+    int availableShadowIndex;
+    if (!settings.canAddShadow(m_cachedLight.getType(), &availableShadowIndex)) {
+        throw("Error, cannot add any more shadows to scenario");
+        return;
+    }
+
+    if (m_shadowMap) {
+        throw("Shadow map should not exist");
+    }
+
+    m_castShadows = true;
+
+    size_t mapIndex = availableShadowIndex % NUM_SHADOWS_PER_LIGHT_TYPE;
+    m_shadowMap = new ShadowMap(context, this, mapIndex);
+
+    // Mark shadow map as populated in light settings
+    settings.addShadow(m_shadowMap, availableShadowIndex, m_lightIndex);
+
+    // Set shadow value in SSBO to cached values
+    m_cachedShadow.m_mapIndexBiasesFarClip[0] = mapIndex;
+    updateShadow();
+
+    // Update shadow map
+    updateShadowMap();
+
+    //Matrix4x4g* mats = settings.pointLightMatrixBuffer().data<Matrix4x4g>();
+    //
+    //for (size_t i = 0; i < 30; i++) {
+    //    logInfo(mats[i]);
+    //}
+    //logWarning("----------------------------------");
+    //settings.pointLightMatrixBuffer().unmap(true);
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////
+void LightComponent::disableShadowCasting()
+{
+    m_castShadows = false;
+
+    //RenderContext& context = m_engine->mainRenderer()->renderContext();
+    LightingSettings& settings = lightingSettings();
+
+    if (!m_shadowMap && !m_isEnabled) {
+        if (m_isEnabled) {
+            throw("Error, shadow map should exist");
+        }
+        else {
+            // If there is no shadow map, there is nothing to disable
+            return;
+        }
+    }
+
+    // Free up the shadow map's slot in settings array of shadow maps
+    int startIndex = NUM_SHADOWS_PER_LIGHT_TYPE * m_cachedLight.getType();
+    int mapIndex = m_cachedShadow.m_mapIndexBiasesFarClip[0] + startIndex;
+    settings.removeShadow(m_shadowMap, mapIndex);
+
+    // Delete shadow map
+    delete m_shadowMap;
+    m_shadowMap = nullptr;
+
+    // Set shadow value in SSBO
+    m_cachedShadow.m_mapIndexBiasesFarClip[0] = -1;
+    updateShadow();
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
 void LightComponent::enable()
 {
     Component::enable();
-    Light& l = light();
-    l.setIntensity(m_cachedIntensity);
+    if (m_cachedIntensity < 0) {
+        // Uninitialized, so no need to enable
+        return;
+    }
+    m_cachedLight.setIntensity(m_cachedIntensity);
+    m_cachedLight.enable();
+    updateLight();
 
-    unbindLightBuffer();
+    if (m_castShadows) {
+        enableShadowCasting();
+    }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
 void LightComponent::disable()
 {
     Component::disable();
-    Light& l = light();
-    m_cachedIntensity = l.getIntensity();
-    l.setIntensity(0);
-    unbindLightBuffer();
+    m_cachedIntensity = m_cachedLight.getIntensity();
+    m_cachedLight.setIntensity(0);
+    m_cachedLight.disable();
+    updateLight();
+
+    //if (m_castShadows) {
+    //    disableShadowCasting();
+    //}
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
 QJsonValue LightComponent::asJson() const
 {
     QJsonObject object = Component::asJson().toObject();
     object.insert("light", lightAsJson());
+    object.insert("castShadows", m_castShadows);
 
-    unbindLightBuffer();
+    // Get map index for light type
+    object.insert("mapIndex", m_cachedShadow.m_mapIndexBiasesFarClip[0]);
+    object.insert("bias", m_cachedShadow.m_mapIndexBiasesFarClip[1]);
+    object.insert("maxBias", m_cachedShadow.m_mapIndexBiasesFarClip[2]);
+    if (getLightType() == Light::kPoint) {
+        object.insert("farClip", m_cachedShadow.farClipPlane());
+        object.insert("nearClip", m_cachedShadow.nearClipPlane());
+    }
+
     return object;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-void LightComponent::loadFromJson(const QJsonValue & json)
+void LightComponent::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
-    Component::loadFromJson(json);
+    Q_UNUSED(context)
 
     // Get Json as object
     const QJsonObject& object = json.toObject();
@@ -118,13 +200,84 @@ void LightComponent::loadFromJson(const QJsonValue & json)
     else {
         loadLightFromJson(object["light"]);
     }
+    m_cachedIntensity = m_cachedLight.getIntensity();
 
+    // Load shadow casting
+    if (object.contains("castShadows")) {
+        m_castShadows = object["castShadows"].toBool(false);
+
+        // Get map index for light type
+        // This saves indexing headache if NUM_SHADOWS_PER_LIGHT_TYPE changes
+        //int startIndex = NUM_SHADOWS_PER_LIGHT_TYPE * m_cachedLight.getType();
+        //int typedIndex = object["mapIndex"].toInt(startIndex);
+        m_cachedShadow.m_mapIndexBiasesFarClip[0] = object["mapIndex"].toInt(0);
+        m_cachedShadow.m_mapIndexBiasesFarClip[1] = object["bias"].toDouble();
+        m_cachedShadow.m_mapIndexBiasesFarClip[2] = object["maxBias"].toDouble();
+
+        if (getLightType() == Light::kPoint) {
+            m_cachedShadow.setFarClipPlane(object["farClip"].toDouble(10000));
+            m_cachedShadow.setNearClipPlane(object["nearClip"].toDouble(1.0));
+        }
+    }
+
+    Component::loadFromJson(json);
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////
+void LightComponent::updateShadowMap()
+{
+    // TODO: Recreate shadow map if light type changes
+    m_shadowMap->updateShadowAttributes(*sceneObject()->scene());
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////
+void LightComponent::clearLight()
+{
+    // Was never assigned
+    if (m_lightIndex < 0) {
+        throw("Error, light never assigned");
+    }
+
+    // Disable cached light, and then send update to buffer queue
+    // ----------------------------------------------------------
+    LightingSettings& ls = lightingSettings();
+
+    // Set intensity of light to zero
+    if (UBO::getLightSettingsBuffer()) {
+        m_cachedLight.setIntensity(0);
+    }
+
+    // Set as disabled
+    m_cachedLight.disable();
+
+    // Flag index for overwrite in static list
+    ls.m_deletedIndices.push_back(m_lightIndex);
+
+    // Update light SSBO with disabled light
+    lightingSettings().lightBuffers().queueUpdate<Light>(m_cachedLight, m_lightIndex);
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////
+void LightComponent::initializeLight(Light::LightType type)
+{
+    RenderContext& context = m_engine->mainRenderer()->renderContext();
+
+    // Reserve index for light
+    LightingSettings& ls = lightingSettings();
+    m_lightIndex = ls.reserveLightIndex();
+
+    // Update cached light
+    m_cachedLight = Light();
+    m_cachedLight.setIndex(m_lightIndex);
+    m_cachedLight.setType(type);
+    m_cachedLight.setIntensity(1);
+    m_cachedLight.initializeLight(context);
+
+    // Set position of cached light and send update command to buffer queue
+    setLightPosition(sceneObject()->transform()->getPosition());
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
 QJsonValue LightComponent::lightAsJson() const
 {
     QJsonObject object;
-    const Light& light = LightComponent::light();
+    const Light& light = m_cachedLight;
     object.insert("intensity", light.getIntensity());
     object.insert("diffuseColor", light.getDiffuseColor().asJson());
     object.insert("ambientColor", light.getAmbientColor().asJson());
@@ -132,8 +285,8 @@ QJsonValue LightComponent::lightAsJson() const
     object.insert("attributes", light.getAttributes().asJson());
     object.insert("lightType", light.getType());
     object.insert("direction", light.getDirection().asJson());
+    object.insert("range", light.getRange());
 
-    unbindLightBuffer();
     return object;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -142,7 +295,7 @@ void LightComponent::loadLightFromJson(const QJsonValue & json)
     // Get Json as object
     const QJsonObject& object = json.toObject();
 
-    Light& light = LightComponent::light();
+    Light& light = m_cachedLight;
 
     // Set type
     if (object.contains("lightType")) {
@@ -171,11 +324,19 @@ void LightComponent::loadLightFromJson(const QJsonValue & json)
     // Set direction
     // Used for spot and directional lights
     if (object.contains("direction")) {
-        light.setDirection(Vector4g(object["direction"]));
+        light.setDirection(Vector4(object["direction"]));
     }
 
     // Set intensity
     light.setIntensity((float)object.value("intensity").toDouble());
+
+    // Set range
+    if (object.contains("range")) {
+        light.setRange((real_g)object.value("range").toDouble());
+    }
+    else {
+        light.setRange(50);
+    }
 
     // Set attenuation/generic attributes
     //    For directional lights: empty
@@ -183,11 +344,11 @@ void LightComponent::loadLightFromJson(const QJsonValue & json)
     //        Default (1, 0, 0) is no attenuation (infinite light distance)
     //    For spot lights, direction and cutoff
     QJsonArray attribArray = object.value("attributes").toArray();
-    Vector4g attribs;
+    Vector4 attribs;
     attribs.loadFromJson(attribArray);
     light.setAttributes(attribs);
 
-    unbindLightBuffer();
+    updateLight();
 }
 
 

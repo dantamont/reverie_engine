@@ -4,6 +4,7 @@
 
 QT += testlib \
       core \
+	  core-private \
       opengl \ 
 	  gui \
 	  widgets \
@@ -36,7 +37,8 @@ HEADERS += src/test_base.h \
 		   src/test_GbEulerAngle.h \
            src/test_GbMatrix.h \
 		   src/test_GbVector.h\
-		   src/test_GbParallelization.h
+		   src/test_GbParallelization.h \
+		   src/test_GbProtocol.h
 
 SOURCES += src/main.cpp \
            src/test_GbDagNode.cpp \
@@ -44,13 +46,17 @@ SOURCES += src/main.cpp \
 		   src/test_GbEulerAngle.cpp \
            src/test_GbMatrix.cpp \
 		   src/test_GbVector.cpp\
-		   src/test_GbParallelization.cpp
+		   src/test_GbParallelization.cpp \
+		   src/test_GbProtocol.cpp
 
 # Load in library files for main project
 include(unit_tests.pri)
 
 # Set compiler flags /////////////////////////////////////////////////////////////
 QMAKE_CXXFLAGS += /MP # Multiprocess compile, much faster
+QMAKE_CXXFLAGS *= /std:c++17 # Add if not there, this may be the ticket
+# QMAKE_CXXFLAGS += /std:c++latest # Manual attempt at C++17 support
+# QMAKE_CXXFLAGS += -std=c++17 # For GCC/Clang
 
 # Set general configuration options /////////////////////////////////////////////////
 CONFIG += c++latest # Add support for c++17.
@@ -75,7 +81,6 @@ CONFIG += flat # flattens file hierarchy, subtract if this is not desired
 # Defines //////////////////////////////////////////////////////////////////////////
 DEFINES += _UNICODE _ENABLE_EXTENDED_ALIGNED_STORAGE WIN64 QT_DLL QT_OPENGL_LIB QT_OPENGLEXTENSIONS_LIB QT_WIDGETS_LIB
 DEFINES += DEVELOP_MODE
-DEFINES += PYTHONQT_STATIC_LIB
 DEFINES += LINALG_USE_EIGEN
 INCLUDEPATH += ./qt_generated \
     . \
@@ -88,7 +93,7 @@ DEPENDPATH += .
 
 # Add Libraries ////////////////////////////////////////////////////////////////////
 # Include PythonQt and required libraries
-LIBS += -L$$(PYTHON_LIB)/ -lpython$$(PYTHON_VERSION) # L"PATH" adds PATH to library search directory list, and -lName loads library Name during linking
+# LIBS += -L$$(PYTHON_LIB)/ -lpython$$(PYTHON_VERSION) # L"PATH" adds PATH to library search directory list, and -lName loads library Name during linking
 
 include ( ../../third_party/PythonQt/build/common.prf )  
 include ( ../../third_party/PythonQt/build/PythonQt.prf )  
@@ -140,3 +145,17 @@ CONFIG(release, debug|release) {
 INCLUDEPATH +=  ../../third_party/freetype-2.10.1/include
 CONFIG(debug, debug|release) : LIBS += -L"C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/lib/freetype/debug" -lfreetype
 CONFIG(release, debug|release) : LIBS += -L"C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/lib/freetype/debug" -lfreetype
+
+# SoLoud
+#INCLUDEPATH += ../../third_party/SDL/include
+INCLUDEPATH += ../../third_party/soloud/include
+#LIBS += -L"C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/lib/SDL" -lSDL2
+#LIBS += -L$$PWD/lib/SDL -lSDL2main
+CONFIG(debug, debug|release) { 
+	LIBS += -L"C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/lib/soloud/debug" -lsoloud_x86_d
+	LIBS += -L"C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/lib/soloud/debug" -lsoloud_static_x86_d
+}
+CONFIG(release, debug|release) { 
+	LIBS += -L"C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/lib/soloud/release" -lsoloud_x86
+	LIBS += -L"C:/Users/dante/Documents/Projects/grand-blue-engine/grand_blue/lib/soloud/release" -lsoloud_static_x86
+}

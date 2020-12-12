@@ -121,9 +121,9 @@ public:
 
     void setAlignment(VerticalAlignment verticalAlignment, HorizontalAlignment horizontalAlignment);
 
-    Vector2g& coordinates() { return m_coordinates; }
-    const Vector2g& coordinates() const { return m_coordinates; }
-    void setCoordinates(const Vector2g& coordinates) {
+    Vector2& coordinates() { return m_coordinates; }
+    const Vector2& coordinates() const { return m_coordinates; }
+    void setCoordinates(const Vector2& coordinates) {
         m_coordinates = coordinates;
     }
 
@@ -188,7 +188,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -232,7 +232,7 @@ protected:
 
     /// @brief GUI mode: Screen-coordinate offset for the glyph, with bottom-left of screen at (0, 0)
     /// @details The z-value representes the world-coordinate z-value of the glyph
-    Vector2g m_coordinates;
+    Vector2 m_coordinates;
 
     /// @brief The name of the scene object that this is glyph sharing a transform with
     /// @details Is set at load time, so may not accurately reflect scene object name changes

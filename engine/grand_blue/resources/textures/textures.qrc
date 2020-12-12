@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/textures">
+		<file>debug_skybox/_nx.jpg</file>
+        <file>debug_skybox/_ny.jpg</file>
+        <file>debug_skybox/_nz.jpg</file>
+        <file>debug_skybox/_px.jpg</file>
+        <file>debug_skybox/_py.jpg</file>
+        <file>debug_skybox/_pz.jpg</file>
+		<file>debug_skybox/debug.cubemap</file>
+    </qresource>
+</RCC>

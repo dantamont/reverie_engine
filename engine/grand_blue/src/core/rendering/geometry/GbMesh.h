@@ -35,8 +35,8 @@ public:
     //---------------------------------------------------------------------------------------
     /// @name Constructors/Destructor
     /// @{
-    VertexArrayData(const QString& filepath = QString());
-    ~VertexArrayData();
+    VertexArrayData();
+    virtual ~VertexArrayData();
 
     /// @}
 
@@ -45,7 +45,7 @@ public:
     /// @{
 
     /// @brief Return vertex array object for this VAO group
-    std::shared_ptr<GL::VertexArrayObject> vao() { return m_vao; }
+    GL::VertexArrayObject& vao() { return m_vao; }
 
     /// @}
 
@@ -55,7 +55,7 @@ public:
     /// @{
 
     /// @brief Perform draw of geometry
-    void drawGeometry(int glMode) const;
+    void drawGeometry(int glMode);
 
     /// @brief Initialize the data for this mesh in the GL VAO
     void loadIntoVAO();
@@ -83,7 +83,7 @@ public:
     /// @brief Return whether or not this is empty
     bool isMissingData() const { return m_attributes.empty() || m_indices.empty(); }
 
-    GL::BufferObject& getBuffer(GL::BufferObject::AttributeType type);
+    GL::BufferObject& getBuffer(BufferAttributeType type);
 
     /// @}
 
@@ -103,10 +103,14 @@ public:
     /// @name Members 
     /// @{
 
-    /// @brief OpenGL buffers
-    std::shared_ptr<GL::VertexArrayObject> m_vao = nullptr;
-    std::unordered_map<int, std::shared_ptr<GL::BufferObject>> m_attributeBuffers; // index is of type GL::BufferObject::AttributeType
-    std::shared_ptr<GL::BufferObject> m_indexBuffer = nullptr;
+    /// @brief OpenGL VAO, aggregates buffers, but does not store data within itself
+    GL::VertexArrayObject m_vao;
+
+    /// @brief The buffers storing data for OpenGL
+    std::vector<GL::BufferObject> m_attributeBuffers; // index is of type BufferAttributeType
+    
+    /// @brief The buffer storing index data
+    GL::BufferObject m_indexBuffer;
 
 
     // See: https://www.reddit.com/r/opengl/comments/57i9cl/examples_of_when_to_use_gl_dynamic_draw/
@@ -114,20 +118,13 @@ public:
     // GL_STREAM_DRAW basically means "I am planning to change this vertex data basically every frame." If you are manipulating the vertices a lot on the CPU, and it's not feasible to use shaders instead, you probably want to use this one. Sprites or particles with complex behavior are often best served as STREAM vertices. While STATIC+shaders is preferable for animated geometry, modern hardware can spew incredible amounts of vertex data from the CPU to the GPU every frame without breaking a sweat, so you will generally not notice the performance impact.
     // GL_DYNAMIC_DRAW basically means "I may need to occasionally update this vertex data, but not every frame." This is the least common one.It's not really suited for most forms of animation since those usually require very frequent updates. Animations where the vertex shader interpolates between occasional keyframe updates are one possible case. A game with Minecraft-style dynamic terrain might try using DYNAMIC, since the terrain changes occur less frequently than every frame. DYNAMIC also tends to be useful in more obscure scenarios, such as if you're batching different chunks of model data in the same vertex buffer, and you occasionally need to move them around.
     // Keep in mind these 3 flags don't imply any hard and fast rules within OpenGL or the hardware. They are just hints so the driver can set things up in a way that it thinks will be the most efficient.
-    QOpenGLBuffer::UsagePattern m_usagePattern = QOpenGLBuffer::StaticDraw;
+    GL::UsagePattern m_usagePattern = GL::UsagePattern::kStaticDraw;
 
     /// @brief Vertex attribute data
     VertexAttributes m_attributes;
 
     /// @brief Vertex indices
     std::vector<GLuint> m_indices;
-
-    // Has been moved to model
-    ///// @brief Lowercase material name corresponding to this mesh
-    //QString m_materialName;
-
-    /// @brief Filepath, if loaded from a file, otherwise is an identifier name
-    QString m_source;
 
     /// @}
 
@@ -177,13 +174,18 @@ public:
     //---------------------------------------------------------------------------------------
     /// @name Constructors and Destructors
     /// @{
-    Mesh(const QString& uniqueName);
+    Mesh(const GString& uniqueName);
     ~Mesh();
     /// @}
 
     //---------------------------------------------------------------------------------------
     /// @name Methods
     /// @{
+
+    /// @brief Get the type of resource stored by this handle
+    virtual Resource::ResourceType getResourceType() const override {
+        return Resource::kMesh;
+    }
 
     /// @brief What to do on removal from resource cache
     void onRemoval(ResourceCache* cache = nullptr) override;
@@ -200,12 +202,6 @@ public:
 
     /// @brief Return map of mesh data
     Gb::VertexArrayData& vertexData() { return m_vertexData; }
-
-    /// @}
-
-    //-----------------------------------------------------------------------------------------------------------------
-    /// @name Serializable Overrides
-    /// @{
 
     /// @}
 

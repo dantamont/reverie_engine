@@ -9,9 +9,8 @@
 #include "../../core/scene/GbSceneObject.h"
 #include "../../core/readers/GbJsonReader.h"
 #include "../../core/components/GbScriptComponent.h"
-#include "../../core/components/GbCamera.h"
+#include "../../core/components/GbCameraComponent.h"
 
-#include "../../core/rendering/renderer/GbRenderers.h"
 #include "../style/GbFontIcon.h"
 #include "../../core/geometry/GbEulerAngles.h"
 #include "../../core/components/GbModelComponent.h"
@@ -108,8 +107,8 @@ void ModelSelectWidget::populateModels()
     size_t count = 0;
     for (const auto& modelPair : m_engine->resourceCache()->models()) {
         if (!modelPair.second->isConstructed()) continue;
-        m_modelSelect->addItem(modelPair.second->getName(), 
-            modelPair.second->getUuid().asString());
+        m_modelSelect->addItem(modelPair.second->getName().c_str(), 
+            modelPair.second->getUuid().asQString());
         if (m_modelComponent->modelHandle()) {
             // There may be no model component on widget construction
             if (modelPair.second->getUuid() == m_modelComponent->modelHandle()->getUuid()) {

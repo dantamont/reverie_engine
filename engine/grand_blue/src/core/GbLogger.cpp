@@ -52,14 +52,14 @@ AbstractLogHandler::~AbstractLogHandler()
 //---------------------------------------------------------------------------------------------------------------------
 // Constructors and Destructors
 //---------------------------------------------------------------------------------------------------------------------
-FileLogHandler::FileLogHandler(std::string filename) :
+FileLogHandler::FileLogHandler(const GString& filename) :
     AbstractLogHandler(LogLevel::Debug),
     m_filename(filename)
 {
     m_ofs.open(m_filename, std::ofstream::out | std::ofstream::trunc);
 }
 //---------------------------------------------------------------------------------------------------------------------
-FileLogHandler::FileLogHandler(LogLevel level, std::string filename) :
+FileLogHandler::FileLogHandler(LogLevel level, const GString& filename) :
     AbstractLogHandler(level),
     m_filename(filename)
 {
@@ -90,7 +90,7 @@ void FileLogHandler::output(LogRecord& log_record)
         // <message>
         m_ofs << "| " << (unsigned int)log_record.level() 
             << " | " << log_record.timestamp().toString("MMM dd, yyyy @ hh:mm:ss.zzz").toStdString() 
-            << " | " << log_record.category() 
+            << " | " << log_record.category()
             << " | \n" << log_record.message() << "\n";
     } else {
         // Output
@@ -109,7 +109,7 @@ void StandardOutHandler::output(LogRecord& log_record)
 {
 	if (log_record.level() != m_mostRecentRecord.level() || log_record.category() != m_mostRecentRecord.category() ||
 		abs(log_record.timestamp().msecsTo(m_mostRecentRecord.timestamp())) > 2) {
-        const std::string* level_name = Logger::levelName(log_record.level());
+        const GString* level_name = Logger::levelName(log_record.level());
         if (level_name) {
             std::cout << *level_name;
         } else {
@@ -149,7 +149,7 @@ void VSConsoleLogHandler::output(LogRecord& log_record)
 		abs(log_record.timestamp().msecsTo(m_mostRecentRecord.timestamp())) > 2) {
         QString outputStr = QStringLiteral("%1  %2  %3\n%4\n");
         QString& outputRef = outputStr;
-        const std::string* level_name = Logger::levelName(log_record.level());
+        const GString* level_name = Logger::levelName(log_record.level());
         if (level_name) {
             outputRef = outputStr.arg(level_name->c_str());
         } else {
@@ -171,7 +171,7 @@ void VSConsoleLogHandler::output(LogRecord& log_record)
 //---------------------------------------------------------------------------------------------------------------------
 // Static Variables
 //---------------------------------------------------------------------------------------------------------------------
-std::unordered_map<LogLevel, std::string> Logger::m_level_names;
+tsl::robin_map<LogLevel, GString> Logger::m_level_names;
 
 //---------------------------------------------------------------------------------------------------------------------
 // Static Methods
@@ -182,7 +182,7 @@ Logger& Logger::getInstance()
     return instance;
 }
 //---------------------------------------------------------------------------------------------------------------------
-Gb::FileLogHandler * Logger::getFileLogger(const std::string & logFileName, const std::string & loggerName, LogLevel logLevel)
+Gb::FileLogHandler * Logger::getFileLogger(const GString & logFileName, const GString & loggerName, LogLevel logLevel)
 {
     // Create logger
     auto& logger = Gb::Logger::getInstance();
@@ -190,7 +190,7 @@ Gb::FileLogHandler * Logger::getFileLogger(const std::string & logFileName, cons
     // Create a logging handler to output to a file
     if (!logger.handlerWithName(loggerName)) {
         QString log_file_name = QStringLiteral("./logs/%1.log").arg(logFileName.c_str());
-        std::string log_file_str = log_file_name.toStdString();
+        GString log_file_str(log_file_name);
 
         auto* fileHandler = new Gb::FileLogHandler(log_file_str);
         fileHandler->setLevel(logLevel);
@@ -206,7 +206,7 @@ Gb::FileLogHandler * Logger::getFileLogger(const std::string & logFileName, cons
     return nullptr;
 }
 //---------------------------------------------------------------------------------------------------------------------
-Gb::VSConsoleLogHandler * Logger::getVSLogger(const std::string & loggerName, LogLevel logLevel)
+Gb::VSConsoleLogHandler * Logger::getVSLogger(const GString & loggerName, LogLevel logLevel)
 {
     // Create logger
     auto& logger = Gb::Logger::getInstance();
@@ -226,7 +226,7 @@ Gb::VSConsoleLogHandler * Logger::getVSLogger(const std::string & loggerName, Lo
     return nullptr;
 }
 //---------------------------------------------------------------------------------------------------------------------
-Gb::View::ConsoleTool * Logger::getConsoleTool(const std::string & loggerName, LogLevel logLevel)
+Gb::View::ConsoleTool * Logger::getConsoleTool(const GString & loggerName, LogLevel logLevel)
 {
     // Create logger
     auto& logger = Gb::Logger::getInstance();
@@ -235,7 +235,7 @@ Gb::View::ConsoleTool * Logger::getConsoleTool(const std::string & loggerName, L
     if (!logger.handlerWithName("ConsoleTool")) {
         auto* consoleTool = new Gb::View::ConsoleTool("ConsoleTool");
         consoleTool->setLevel(logLevel);
-        logger.addHandler(consoleTool->getName().toStdString(), consoleTool);
+        logger.addHandler(consoleTool->getName(), consoleTool);
         consoleTool->show();
 
         return consoleTool;
@@ -245,10 +245,10 @@ Gb::View::ConsoleTool * Logger::getConsoleTool(const std::string & loggerName, L
     }
 }
 //---------------------------------------------------------------------------------------------------------------------
-const std::string* Logger::levelName(LogLevel level)
+const GString* Logger::levelName(LogLevel level)
 {
-    const std::string* result = nullptr;
-    std::unordered_map<LogLevel, std::string>::const_iterator iLm;
+    const GString* result = nullptr;
+    tsl::robin_map<LogLevel, GString>::const_iterator iLm;
     iLm = m_level_names.find(level);
     if (iLm != m_level_names.end()) {
         result = &((*iLm).second);
@@ -256,7 +256,7 @@ const std::string* Logger::levelName(LogLevel level)
     return result;
 }
 //---------------------------------------------------------------------------------------------------------------------
-void Logger::addLevelName(LogLevel level, const std::string& level_name)
+void Logger::addLevelName(LogLevel level, const GString& level_name)
 {
     m_level_names.emplace(level, level_name);
 }
@@ -266,11 +266,11 @@ void Logger::addLevelName(LogLevel level, const std::string& level_name)
 Logger::Logger() :
     m_level(LogLevel::Info)
 {
-    addLevelName(LogLevel::Critical, std::string("Critical"));
-    addLevelName(LogLevel::Error, std::string("Error"));
-    addLevelName(LogLevel::Warning, std::string("Warning"));
-    addLevelName(LogLevel::Info, std::string("Info"));
-    addLevelName(LogLevel::Debug, std::string("Debug"));
+    addLevelName(LogLevel::Critical, "Critical");
+    addLevelName(LogLevel::Error, "Error");
+    addLevelName(LogLevel::Warning, "Warning");
+    addLevelName(LogLevel::Info, "Info");
+    addLevelName(LogLevel::Debug, "Debug");
 //#ifdef QT_CORE_LIB
 //    qInstallMessageHandler(loggingHandler);
 //#endif
@@ -297,7 +297,7 @@ void Logger::logMessage(LogLevel level,
         m_log_record.setCategory(category);
         m_log_record.setMessage(msg);
         m_log_record.setTimestamp(std::move(dt));
-        std::unordered_map<std::string, AbstractLogHandler*>::const_iterator iHandler;
+        tsl::robin_map<GString, AbstractLogHandler*>::const_iterator iHandler;
         for (iHandler = m_handlers.cbegin(); iHandler != m_handlers.cend(); ++iHandler) {
             if (level >= (*iHandler).second->level()) {
                 (*iHandler).second->output(m_log_record);
@@ -312,26 +312,26 @@ void Logger::logMessage(LogLevel level,
     //m_output_mutex.unlock();
 }
 //---------------------------------------------------------------------------------------------------------------------
-void Logger::addHandler(const std::string& name, AbstractLogHandler *handler)
+void Logger::addHandler(const GString& name, AbstractLogHandler *handler)
 {
     m_handlers.insert(
-        std::pair<std::string, AbstractLogHandler*>(name, handler));
+        std::pair<GString, AbstractLogHandler*>(name, handler));
 }
 //---------------------------------------------------------------------------------------------------------------------
-AbstractLogHandler* Logger::handlerWithName(const std::string& name)
+AbstractLogHandler* Logger::handlerWithName(const GString& name)
 {
     AbstractLogHandler* result = nullptr;
-    std::unordered_map<std::string, AbstractLogHandler*>::iterator iH = m_handlers.find(name);
+    tsl::robin_map<GString, AbstractLogHandler*>::iterator iH = m_handlers.find(name);
     if (iH != m_handlers.end()) {
         result = (*iH).second;
     }
     return result;
 }
 //---------------------------------------------------------------------------------------------------------------------
-bool Logger::removeHandler(const std::string& name)
+bool Logger::removeHandler(const GString& name)
 {
     bool result = false;
-    std::unordered_map<std::string, AbstractLogHandler*>::iterator iH = m_handlers.find(name);
+    tsl::robin_map<GString, AbstractLogHandler*>::iterator iH = m_handlers.find(name);
     if (iH != m_handlers.end()) {
         m_handlers.erase(iH);
         result = true;

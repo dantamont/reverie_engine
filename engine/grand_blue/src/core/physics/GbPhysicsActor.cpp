@@ -70,20 +70,22 @@ QJsonValue PhysicsActor::asJson() const
     QJsonObject object = PhysicsBase::asJson().toObject();
     object.insert("actorType", int(m_actorType));
     if (sceneObject()) {
-        object.insert("sceneObject", sceneObject()->getName());
+        object.insert("sceneObject", sceneObject()->getName().c_str());
     }
 
     return object;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-void PhysicsActor::loadFromJson(const QJsonValue & json)
+void PhysicsActor::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
+
     PhysicsBase::loadFromJson(json);
 
     QJsonObject object = json.toObject();
     m_actorType = ActorType(object.value("actorType").toInt());
     if (object.contains("sceneObject")) {
-        QString sceneName = object.value("sceneObject").toString();
+        GString sceneName = object.value("sceneObject").toString();
         m_sceneObject = SceneObject::getByName(sceneName);
     }
 }
@@ -132,34 +134,38 @@ RigidBody::RigidBody(const std::shared_ptr<SceneObject>& so,
 RigidBody::~RigidBody()
 {
     //delete m_material;
+    for (PhysicsShape* shape : m_shapes) {
+        delete shape;
+    }
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 void RigidBody::clearShapes()
 {
-    auto endIter = m_shapes.end();
-    for (const PhysicsShape& shape: m_shapes) {
-        shape.detach();
+    //auto endIter = m_shapes.end();
+    for (PhysicsShape* shape: m_shapes) {
+        shape->detach();
+        delete shape;
     }
     m_shapes.clear();
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
 PhysicsShape & RigidBody::shape(int index)
 {
-    return m_shapes[index];
+    return *m_shapes[index];
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
 void RigidBody::toggleContact(bool contact)
 {
-    for (PhysicsShape& shape: m_shapes) {
-        shape.toggleContact(contact);
+    for (PhysicsShape* shape: m_shapes) {
+        shape->toggleContact(contact);
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
 void RigidBody::toggleQueries(bool isQueried)
 {
-    for (PhysicsShape& shape : m_shapes) {
-        shape.toggleSceneQueries(isQueried);
+    for (PhysicsShape* shape : m_shapes) {
+        shape->toggleSceneQueries(isQueried);
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -181,16 +187,16 @@ void RigidBody::setKinematic(bool isKinematic, bool setMember)
 void RigidBody::addShape(PhysicsShapePrefab& prefab)
 {
     auto shapeIter = std::find_if(m_shapes.begin(), m_shapes.end(),
-        [&](const PhysicsShape& s) {
-        return s.prefab().getUuid() == prefab.getUuid();
+        [prefab](const PhysicsShape* s) {
+        return s->prefab().getUuid() == prefab.getUuid();
     });
 
-    if (shapeIter != m_shapes.end())
+    if (shapeIter != m_shapes.end()) {
         throw("Error, shape with the given prefab already found on rigid body");
+    }
 
-    Vec::EmplaceBack(m_shapes,
-        prefab, 
-        this);
+    // This was problematic with values stored, so made pointers
+    Vec::EmplaceBack(m_shapes, new PhysicsShape(prefab, this));
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
 Transform RigidBody::getTransform() const
@@ -233,8 +239,8 @@ QJsonValue RigidBody::asJson() const
 {
     QJsonObject object =  PhysicsActor::asJson().toObject();
     QJsonArray shapeNames;
-    for (const auto& shape : m_shapes) {
-        shapeNames.append(shape.prefab().getName());
+    for (PhysicsShape* shape : m_shapes) {
+        shapeNames.append(shape->prefab().getName().c_str());
     }
     object.insert("shapes", shapeNames);
     object.insert("rigidType", int(m_rigidType));
@@ -244,8 +250,10 @@ QJsonValue RigidBody::asJson() const
     return object;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-void RigidBody::loadFromJson(const QJsonValue & json)
+void RigidBody::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
+
     PhysicsActor::loadFromJson(json);
 
     // Load in attributes
@@ -258,7 +266,7 @@ void RigidBody::loadFromJson(const QJsonValue & json)
         }
         for (auto shapeJson: shapes) {
             if (shapeJson.isString()) {
-                shape = PhysicsShapePrefab::get(shapeJson.toString());
+                shape = PhysicsShapePrefab::get(GString(shapeJson.toString()));
             }
             else {
                 // Legacy, now storing shape JSON in physics manager
@@ -280,9 +288,10 @@ void RigidBody::loadFromJson(const QJsonValue & json)
 void RigidBody::reinitialize()
 {
     // TODO: Account for more than one shape
-    if (!m_shapes.size()) 
+    if (!m_shapes.size()) {
         throw("Error, no shapes to reinitialize rigid body");
-    initialize(sceneObject(), *sceneObject()->transform(), m_shapes[0].prefab());
+    }
+    initialize(sceneObject(), *sceneObject()->transform(), m_shapes[0]->prefab());
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
 void RigidBody::reinitialize(PhysicsShapePrefab & prefab)
@@ -297,13 +306,14 @@ void RigidBody::initialize(const std::shared_ptr<SceneObject>& so,
 {
     // TODO: Account for more than one shape per rigid actor
 
+    // Clear shape instantiations
+    // Must do this before clearing the actor
+    clearShapes();
+
     // If there already is an actor, delete
     if (m_actor) {
         PX_RELEASE(m_actor);
     }
-
-    // Clear shape instantiations
-    clearShapes();
 
     // If geometry is planar, force a static body
     // See: https://docs.nvidia.com/gameworks/content/gameworkslibrary/physx/guide/Manual/Geometry.html

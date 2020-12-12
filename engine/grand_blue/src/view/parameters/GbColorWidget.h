@@ -24,7 +24,7 @@ public:
     /// @name Constructors and Destructors
     /// @{
     ColorWidget(CoreEngine* core, Color& color, QWidget* parent = nullptr);
-    ColorWidget(CoreEngine* core, Vector4g& color, QWidget* parent = nullptr);
+    ColorWidget(CoreEngine* core, Vector4& color, QWidget* parent = nullptr);
     virtual ~ColorWidget();
 
     /// @}
@@ -71,7 +71,7 @@ private:
     /// @{
 
     Color* m_color = nullptr;
-    Vector4g* m_colorVector = nullptr;
+    Vector4* m_colorVector = nullptr;
     QPushButton* m_colorButton;
     QColorDialog* m_colorDialog;
     QPixmap m_labelPixmap;

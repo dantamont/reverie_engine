@@ -45,7 +45,8 @@ public:
         kPoint,
         kAABB,
         kBoundingSphere,
-        kPlane
+        kPlane,
+        kFrustum
     };
 
     /// @}
@@ -63,7 +64,7 @@ public:
     /// @name Public Methods
     /// @{
 
-    virtual bool intersects(const CollidingGeometry& other) = 0;
+    virtual bool intersects(const CollidingGeometry& other) const = 0;
     virtual void recalculateBounds(const Transform& transform, CollidingGeometry& out) const = 0;
 
     /// @}
@@ -90,6 +91,155 @@ protected:
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////
+struct AABBData {
+    //--------------------------------------------------------------------------------------------
+    /// @name Constructor/Destructor
+    /// @{
+
+    AABBData();
+    ~AABBData();
+
+    /// @}
+
+    //--------------------------------------------------------------------------------------------
+    /// @name Properties
+    /// @{
+
+    float getMinMaxX(bool max) const { if (max) return m_max.x(); else return m_min.x(); }
+    float getMinMaxY(bool max) const { if (max) return m_max.y(); else return m_min.y(); }
+    float getMinMaxZ(bool max) const { if (max) return m_max.z(); else return m_min.z(); }
+
+    float minX() const { return m_min.x(); }
+    float maxX() const { return m_max.x(); }
+    float minY() const { return m_min.y(); }
+    float maxY() const { return m_max.y(); }
+    float minZ() const { return m_min.z(); }
+    float maxZ() const { return m_max.z(); }
+
+    void setMinX(float x) { m_min[0] = x; }
+    void setMaxX(float x) { m_max[0] = x; }
+    void setMinY(float y) { m_min[1] = y; }
+    void setMaxY(float y) { m_max[1] = y; }
+    void setMinZ(float z) { m_min[2] = z; }
+    void setMaxZ(float z) { m_max[2] = z; }
+
+    /// @}
+
+    //--------------------------------------------------------------------------------------------
+    /// @name Operators
+    /// @{
+
+    AABBData& operator=(const AABBData& other);
+
+    /// @}
+
+    //--------------------------------------------------------------------------------------------
+    /// @name Public Methods
+    /// @{
+
+    /// @brief Convert to cube that contains current AABB
+    void toContainingCube(){
+        float minDim = std::min(std::min(m_min.x(), m_min.y()), m_min.z());
+        float maxDim = std::max(std::max(m_max.x(), m_max.y()), m_max.z());
+        m_min = Vector4::Ones() * minDim;
+        m_max = Vector4::Ones() * maxDim;
+    }
+
+    /// @brief Resize given a set of points
+    template<typename D, size_t N>
+    void resize(const std::vector<Vector<D, N>>& points) {
+        static_assert(N > 2, "Vector is too small to resize");
+        for (const Vector<D, N>& point : points) {
+            float x = (float)point.x();
+            float y = (float)point.y();
+            float z = (float)point.z();
+            if (x > m_max.x()) {
+                m_max[0] = x;
+            }
+            if (x < m_min.x()) {
+                m_min[0] = x;
+            }
+            if (y > m_max.y()) {
+                m_max[1] = y;
+            }
+            if (y < m_min.y()) {
+                m_min[1] = y;
+            }
+            if (z > m_max.z()) {
+                m_max[2] = z;
+            }
+            if (z < m_min.z()) {
+                m_min[2] = z;
+            }
+        }
+    }
+
+    template<typename D, size_t N>
+    void resize(const std::array<Vector<D, N>, 8>& points) {
+        static_assert(N >= 3, "Error, vector not large enough");
+        for (const Vector<D, N>& point : points) {
+            float x = (float)point.x();
+            float y = (float)point.y();
+            float z = (float)point.z();
+            if (x > m_max.x()) {
+                m_max[0] = x;
+            }
+            if (x < m_min.x()) {
+                m_min[0] = x;
+            }
+            if (y > m_max.y()) {
+                m_max[1] = y;
+            }
+            if (y < m_min.y()) {
+                m_min[1] = y;
+            }
+            if (z > m_max.z()) {
+                m_max[2] = z;
+            }
+            if (z < m_min.z()) {
+                m_min[2] = z;
+            }
+        }
+    }
+
+    /// @brief Return dimensions in world-space x, y, z directions
+    Vector3 getDimensions() const;
+
+    /// @brief Get center of the cube
+    Vector3 getOrigin() const;
+
+    /// @brief Get the points constituting the bounding box
+    template<typename D, size_t N>
+    void getPoints(std::vector<Vector<D, N>>& points) const {
+        points.reserve(8);
+        points.assign({
+            Vector<D, N>{m_min.x(), m_min.y(), m_min.z(), 1},
+            Vector<D, N>{m_max.x(), m_min.y(), m_min.z(), 1},
+            Vector<D, N>{m_min.x(), m_max.y(), m_min.z(), 1},
+            Vector<D, N>{m_max.x(), m_max.y(), m_min.z(), 1},
+            Vector<D, N>{m_min.x(), m_min.y(), m_max.z(), 1},
+            Vector<D, N>{m_min.x(), m_max.y(), m_max.z(), 1},
+            Vector<D, N>{m_max.x(), m_min.y(), m_max.z(), 1},
+            Vector<D, N>{m_max.x(), m_max.y(), m_max.z(), 1}
+            });
+    }
+
+    /// @}
+
+    //--------------------------------------------------------------------------------------------
+    /// @name Public Members 
+    /// @{
+
+    Vector4 m_min = std::numeric_limits<real_g>::infinity() * Vector4(1, 1, 1, 1);
+    Vector4 m_max = -std::numeric_limits<real_g>::infinity() * Vector4(1, 1, 1, 1);
+
+    /// @}
+
+};
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
 /// @class AABB
 /// @brief Axis-Aligned Bounding Box
 // See: https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_collision_detection
@@ -100,6 +250,7 @@ public:
     /// @{
 
     AABB();
+    AABB(const AABBData& data);
 
     template<typename D>
     AABB(const std::vector<Vector<D, 3>>& points):
@@ -113,27 +264,20 @@ public:
     /// @}
 
     //--------------------------------------------------------------------------------------------
+    /// @name Operators
+    /// @{
+
+    AABB& operator=(const AABB& other);
+
+    /// @}
+
+    //--------------------------------------------------------------------------------------------
     /// @name Properties
     /// @{
+
+    AABBData& boxData() { return m_boxData; }
+    const AABBData& boxData() const { return m_boxData; }
     
-    const float& getMinMaxX(bool max) const { if (max) return m_maxX; else return m_minX; }
-    const float& getMinMaxY(bool max) const { if (max) return m_maxY; else return m_minZ; }
-    const float& getMinMaxZ(bool max) const { if (max) return m_maxY; else return m_minZ; }
-
-    const float& minX() const { return m_minX; }
-    const float& maxX() const { return m_maxX; }
-    const float& minY() const { return m_minY; }
-    const float& maxY() const { return m_maxY; }
-    const float& minZ() const { return m_minZ; }
-    const float& maxZ() const { return m_maxZ; }
-
-    void setMinX(float x) { m_minX = x; }
-    void setMaxX(float x) { m_maxX = x; }
-    void setMinY(float y) { m_minY = y; }
-    void setMaxY(float y) { m_maxY = y; }
-    void setMinZ(float z) { m_minZ = z; }
-    void setMaxZ(float z) { m_maxZ = z; }
-
     /// @}
 
     //--------------------------------------------------------------------------------------------
@@ -141,44 +285,14 @@ public:
     /// @{
 
     /// @brief Resize given a set of points
-    template<typename D>
-    void resize(const std::vector<Vector<D, 3>>& points) {
-        for (const Vector<D, 3>& point : points) {
-            float x = (float)point.x();
-            float y = (float)point.y();
-            float z = (float)point.z();
-            if (x > m_maxX) {
-                m_maxX = x;
-            }
-            if (x < m_minX) {
-                m_minX = x;
-            }
-            if (y > m_maxY) {
-                m_maxY = y;
-            }
-            if (y < m_minY) {
-                m_minY = y;
-            }
-            if (z > m_maxZ) {
-                m_maxZ = z;
-            }
-            if (z < m_minZ) {
-                m_minZ = z;
-            }
-        }
+    template<typename D, size_t N>
+    void resize(const std::vector<Vector<D, N>>& points) {
+        m_boxData.resize(points);
     }
 
-    /// @brief Return dimensions in world-space x, y, z directions
-    Vector3g getDimensions() const;
-
-    /// @brief Get center of the cube
-    Vector3g getOrigin() const;
-
-    /// @brief Get the points constituting the bounding box
-    void getPoints(std::vector<Vector3g>& points) const;
-
-    virtual bool intersects(const CollidingGeometry& other) override;
+    virtual bool intersects(const CollidingGeometry& other) const override;
     virtual void recalculateBounds(const Transform& transform, CollidingGeometry& out) const override;
+    void recalculateBounds(const Matrix4x4g& transform, CollidingGeometry& out) const;
 
     /// @}
 
@@ -188,12 +302,7 @@ protected:
     /// @name Protected Members 
     /// @{
 
-    float m_minX = std::numeric_limits<float>::infinity();
-    float m_maxX = -std::numeric_limits<float>::infinity();
-    float m_minY = std::numeric_limits<float>::infinity();
-    float m_maxY = -std::numeric_limits<float>::infinity();
-    float m_minZ = std::numeric_limits<float>::infinity();
-    float m_maxZ = -std::numeric_limits<float>::infinity();
+    AABBData m_boxData;
 
     /// @}
 
@@ -218,8 +327,8 @@ public:
     /// @name Properties
     /// @{
 
-    const Vector3g& origin() const { return m_origin; }
-    void setOrigin(const Vector3g& origin) { m_origin = origin; }
+    const Vector3& origin() const { return m_origin; }
+    void setOrigin(const Vector3& origin) { m_origin = origin; }
 
     const float& radius() const { return m_radius; }
     void setRadius(const float& radius) { m_radius = radius; }
@@ -230,7 +339,7 @@ public:
     /// @name Public Methods
     /// @{
 
-    virtual bool intersects(const CollidingGeometry& other) override;
+    virtual bool intersects(const CollidingGeometry& other) const override;
     virtual void recalculateBounds(const Transform& transform, CollidingGeometry& out) const override;
 
     /// @}
@@ -241,7 +350,7 @@ protected:
     /// @name Protected Members 
     /// @{
 
-    Vector3g m_origin;
+    Vector3 m_origin;
     float m_radius;
 
     /// @}
@@ -252,7 +361,7 @@ protected:
 //////////////////////////////////////////////////////////////////////////////////////////////////
 /// @class CollidingPoint
 // See: https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_collision_detection
-class CollidingPoint : public CollidingGeometry, public Vector3g {
+class CollidingPoint : public CollidingGeometry, public Vector3 {
 public:
     //--------------------------------------------------------------------------------------------
     /// @name Constructor/Destructor
@@ -267,7 +376,7 @@ public:
     /// @name Public Methods
     /// @{
 
-    virtual bool intersects(const CollidingGeometry& other) override;
+    virtual bool intersects(const CollidingGeometry& other) const override;
     virtual void recalculateBounds(const Transform& transform, CollidingGeometry& out) const override;
 
     /// @}
@@ -316,7 +425,7 @@ public:
     /// @name Properties
     /// @{
 
-    const Vector3g& normal() const { return m_normal; }
+    const Vector3& normal() const { return m_normal; }
 
     /// @}
 
@@ -324,47 +433,15 @@ public:
     /// @name Public Methods
     /// @{
 
-    virtual bool intersects(const CollidingGeometry& other) override;
+    virtual bool intersects(const CollidingGeometry& other) const override;
     virtual void recalculateBounds(const Transform& transform, CollidingGeometry& out) const override;
 
-    Halfspace classifyGeometry(const Vector3g& pt)  const
-    { 
-        float dist = m_normal.dot(pt) + m_d;
-        if (dist < 0) return kNegative;
-        if (dist > 0) return kPositive;
-        return kIntersects;
-    }
+    Halfspace classifyGeometry(const Vector3& pt)  const;
 
-    Halfspace classifyGeometry(const BoundingSphere& sphere) const
-    {
-        // Assumes normalized plane
-        float dist = m_normal.dot(sphere.origin()) + m_d;
-        if (dist < -sphere.radius()) 
-            return kNegative;
-        else if (dist < sphere.radius()) 
-            return kIntersects;
-        else 
-            return kPositive;
-    }
+    Halfspace classifyGeometry(const BoundingSphere& sphere) const;
 
     // See: http://www.lighthouse3d.com/tutorials/view-frustum-culling/geometric-approach-testing-boxes-ii/
-    Halfspace classifyGeometry(const AABB& aabb) const
-    {
-        Vector3g p = Vector3g::EmptyVector();
-        Vector3g n = Vector3g::EmptyVector();
-        findNP(aabb, n, p);
-
-        // Is the most positive vertex position outside?
-        if (classifyGeometry(p) == kNegative)
-            return kNegative;
-
-        // Is the most negative vertex outside?
-        else if (classifyGeometry(n) == kNegative)
-            // Positive vertex is inside, but negative vertex is outside
-            return kIntersects;
-        else
-            return kPositive;
-    }
+    Halfspace classifyGeometry(const AABB& aabb) const;
 
     /// @brief Plane equation coefficients
     const float& a() const { return m_normal[0]; }
@@ -380,7 +457,7 @@ public:
     void setD(float d) { m_d = d; }
 
     /// @brief Obtain the shortest signed distance from the plane to a point
-    float distanceToPoint(const Vector3g& point);
+    float distanceToPoint(const Vector3& point);
 
     /// @brief Whether or not the plane is normalixed
     bool isNormalized() const {
@@ -389,10 +466,10 @@ public:
 
     /// @brief Normalize the plane
     void normalize() {
-        float length = m_normal.length();
-        if (length != 1) {
+        float lengthSquared = m_normal.lengthSquared();
+        if (lengthSquared != 1) {
             m_normal.normalize();
-            m_d /= length;
+            m_d /= std::sqrt(lengthSquared);
         }
     }
 
@@ -405,30 +482,7 @@ protected:
     /// @{
 
     /// @brief Find the point farthest (p) and point nearest (n) to this plane of the given AABB
-    void findNP(const AABB& aabb, Vector3g& n, Vector3g& p) const {
-        // Note: This relies on the assumption that the box is axis-aligned
-        // If the box is not axis-aligned, then need to convert normal to box space and use that:
-        // nb = (bx . n, by . n, bz . n), where bx, by, and bz are the box axes
-
-        // Find p
-        p = Vector3g(aabb.minX(), aabb.minY(), aabb.minZ());
-        if (m_normal.x() >= 0)
-            p[0] = aabb.maxX();
-        if (m_normal.y() >= 0)
-            p[1] = aabb.maxY();
-        if (m_normal.z() >= 0)
-            p[2] = aabb.maxZ();
-
-        // Find n
-        n = Vector3g(aabb.maxX(), aabb.maxY(), aabb.maxZ());
-        if (m_normal.x() >= 0)
-            n[0] = aabb.minX();
-        if (m_normal.y() >= 0)
-            n[1] = aabb.minY();
-        if (m_normal.z() >= 0)
-            n[2] = aabb.minZ();
-
-    }
+    void findNP(const AABB& aabb, Vector3& n, Vector3& p) const;
 
 
     /// @}
@@ -439,7 +493,7 @@ protected:
 
     /// @brief Coefficients of the plane equation describing this plane
     /// @details ax + by + cz + d = 0
-    Vector3g m_normal;
+    Vector3 m_normal;
     float m_d; // -normal.dot(planePosition)
 
     /// @}
@@ -484,7 +538,11 @@ public:
     void recalculateBounds(const Transform& transform, BoundingGeometry<G>& transformedGeomtry);
 
     /// @brief Whether or not the bounding geometry is in the given frustum
+    // TODO: Same as in shape, deprecate (likely not used anywhere, can probably remove)
     bool inFrustum(const Frustum& frustum) const;
+
+    /// @brief Check whether or not the bounding geometry intersects the given piece of geometry
+    bool inShape(const CollidingGeometry & shape) const;
 
     /// @brief Whether or not the bounds are empty
     bool isEmpty() const { return m_geometry.size() == 0; }
@@ -525,6 +583,7 @@ inline void BoundingGeometry<G>::recalculateBounds(const Transform & transform, 
 template<typename G>
 inline bool BoundingGeometry<G>::inFrustum(const Frustum & frustum) const
 {
+    // TODO: Same as in shape, deprecate
     if (!m_geometry.size()) {
         // If no geometry, always pass frustum test
         return true;
@@ -532,13 +591,29 @@ inline bool BoundingGeometry<G>::inFrustum(const Frustum & frustum) const
 
     bool inFrustum = false;
     for (const G& geometry : m_geometry) {
-        if (frustum.contains(geometry))
+        if (frustum.contains(geometry)) {
             return true;
+        }
     }
     return inFrustum;
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////
+template<typename G>
+inline bool BoundingGeometry<G>::inShape(const CollidingGeometry & shape) const
+{
+    if (!m_geometry.size()) {
+        // If no geometry, always pass test
+        return true;
+    }
 
+    for (const G& geometry : m_geometry) {
+        if (geometry.intersects(shape)) {
+            return true;
+        }
+    }
+    return false;
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 } // End namespaces

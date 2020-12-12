@@ -5,18 +5,23 @@
 #include "../tree/GbComponentWidget.h"
 #include "../../core/resource/GbResourceCache.h"
 
+
+#include "../../core/containers/GbFlags.h"
 #include "../../core/scene/GbScene.h"
 #include "../../core/scene/GbSceneObject.h"
 #include "../../core/readers/GbJsonReader.h"
 #include "../../core/components/GbScriptComponent.h"
-#include "../../core/components/GbCamera.h"
+#include "../../core/components/GbCameraComponent.h"
 #include "../../core/components/GbCubemapComponent.h"
 
-#include "../../core/rendering/renderer/GbRenderers.h"
+#include "../../core/rendering/renderer/GbRenderContext.h"
+#include "../../core/rendering/renderer/GbMainRenderer.h"
 #include "../style/GbFontIcon.h"
 #include "../../core/geometry/GbEulerAngles.h"
 
 #include "../parameters/GbRenderLayerWidgets.h"
+
+#include "../GL/GbGLWidget.h"
 
 namespace Gb {
 namespace View {
@@ -60,13 +65,13 @@ void CameraOptionsWidget::initializeWidgets()
     m_checkBoxes.push_back(new QCheckBox("Enable Post-Processing"));
 
     m_checkBoxes[0]->setChecked(
-        m_cameraComponent->camera().cameraOptions().testFlag(Camera::kFrustumCulling));
+        m_cameraComponent->camera().cameraOptions().testFlag(CameraOption::kFrustumCulling));
     m_checkBoxes[1]->setChecked(
-        m_cameraComponent->camera().cameraOptions().testFlag(Camera::kOcclusionCulling));
+        m_cameraComponent->camera().cameraOptions().testFlag(CameraOption::kOcclusionCulling));
     m_checkBoxes[2]->setChecked(
-        m_cameraComponent->camera().cameraOptions().testFlag(Camera::kShowAllRenderLayers));
+        m_cameraComponent->camera().cameraOptions().testFlag(CameraOption::kShowAllRenderLayers));
     m_checkBoxes[3]->setChecked(
-        m_cameraComponent->camera().cameraOptions().testFlag(Camera::kEnablePostProcessing));
+        m_cameraComponent->camera().cameraOptions().testFlag(CameraOption::kEnablePostProcessing));
 
     areaLayout->addWidget(m_checkBoxes[0]);
     areaLayout->addWidget(m_checkBoxes[1]);
@@ -85,28 +90,28 @@ void CameraOptionsWidget::initializeConnections()
         this,
         [&](int state) {
         bool checked = state == 0 ? false : true;
-        m_cameraComponent->camera().cameraOptions().setFlag(Camera::kFrustumCulling, checked);
+        m_cameraComponent->camera().cameraOptions().setFlag(CameraOption::kFrustumCulling, checked);
     });
 
     connect(m_checkBoxes[1], &QCheckBox::stateChanged,
         this,
         [&](int state) {
         bool checked = state == 0 ? false : true;
-        m_cameraComponent->camera().cameraOptions().setFlag(Camera::kOcclusionCulling, checked);
+        m_cameraComponent->camera().cameraOptions().setFlag(CameraOption::kOcclusionCulling, checked);
     });
 
     connect(m_checkBoxes[2], &QCheckBox::stateChanged,
         this,
         [&](int state) {
         bool checked = state == 0 ? false : true;
-        m_cameraComponent->camera().cameraOptions().setFlag(Camera::kShowAllRenderLayers, checked);
+        m_cameraComponent->camera().cameraOptions().setFlag(CameraOption::kShowAllRenderLayers, checked);
     });
 
     connect(m_checkBoxes[3], &QCheckBox::stateChanged,
         this,
         [&](int state) {
         bool checked = state == 0 ? false : true;
-        m_cameraComponent->camera().cameraOptions().setFlag(Camera::kEnablePostProcessing, checked);
+        m_cameraComponent->camera().cameraOptions().setFlag(CameraOption::kEnablePostProcessing, checked);
     });
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -141,7 +146,7 @@ void CameraViewportWidget::initializeWidgets()
     m_depth->setMaximumWidth(50);
     m_depth->setValidator(new QIntValidator(-1e8, 1e8));
     m_depth->setToolTip("depth at which to render camera viewport");
-    m_depth->setText(QString::number(viewport.m_depth));
+    m_depth->setText(QString::number(viewport.getDepth()));
 
     m_xCoordinate = new QLineEdit();
     m_xCoordinate->setMaximumWidth(50);
@@ -174,7 +179,7 @@ void CameraViewportWidget::initializeConnections()
     connect(m_depth, &QLineEdit::editingFinished, this,
         [this]() {
         int depth = m_depth->text().toInt();
-        m_cameraComponent->camera().viewport().m_depth = depth;
+        m_cameraComponent->camera().viewport().setDepth(depth);
     });
 
     // x coordinate
@@ -187,6 +192,7 @@ void CameraViewportWidget::initializeConnections()
     // y coordinate 
     connect(m_yCoordinate, &QLineEdit::editingFinished, this,
         [this]() {
+
         double y = m_yCoordinate->text().toDouble();
         m_cameraComponent->camera().viewport().m_yn = y;
     });
@@ -194,15 +200,33 @@ void CameraViewportWidget::initializeConnections()
     // width
     connect(m_width, &QLineEdit::editingFinished, this,
         [this]() {
+        const std::shared_ptr<MainRenderer>& renderer = m_engine->mainRenderer();
+
+        if (!renderer->renderContext().isCurrent()) {
+            renderer->renderContext().makeCurrent();
+        }
+
         double width = m_width->text().toDouble();
         m_cameraComponent->camera().viewport().m_width = width;
+        m_cameraComponent->camera().resizeFrame(renderer->widget()->width(), renderer->widget()->height());
+        //m_cameraComponent->camera().updateFrustum(Flags::toFlags<CameraUpdateFlag>((size_t)CameraUpdateFlag::kProjectionUpdated));
+        m_cameraComponent->camera().lightClusterGrid().onResize();
     });
 
     // height
     connect(m_height, &QLineEdit::editingFinished, this,
         [this]() {
+        const std::shared_ptr<MainRenderer>& renderer = m_engine->mainRenderer();
+
+        if (!renderer->renderContext().isCurrent()) {
+            renderer->renderContext().makeCurrent();
+        }
+
         double height = m_height->text().toDouble();
         m_cameraComponent->camera().viewport().m_height = height;
+        m_cameraComponent->camera().resizeFrame(renderer->widget()->width(), renderer->widget()->height());
+        //m_cameraComponent->camera().updateFrustum(Flags::toFlags<CameraUpdateFlag>((size_t)CameraUpdateFlag::kProjectionUpdated));
+        m_cameraComponent->camera().lightClusterGrid().onResize();
     });
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -435,12 +459,25 @@ void CameraComponentWidget::initializeWidgets()
 
     m_cubeMaps = new QComboBox();
     m_cubeMaps->addItem("", "");
-    for (CubeMapComponent* cm : m_component->sceneObject()->scene()->cubeMaps()) {
-        if (cm->getName().length() != 0)
-            m_cubeMaps->addItem(cm->getName(), cm->getUuid().asString());
-        else
-            m_cubeMaps->addItem(cm->getUuid().asString(), cm->getUuid().asString());
+    size_t idx = 0;
+    std::vector<CubeMapComponent*> cubemaps = m_component->sceneObject()->scene()->cubeMaps();
+    size_t count = cubemaps.size();
+    const Gb::Uuid& cubemapID = cameraComponent()->cubeMapID();
+    for (size_t i = 0; i < count; i++) {
+        CubeMapComponent* cm = cubemaps[i];
+        if (cm->getName().length() != 0) {
+            m_cubeMaps->addItem(cm->getName().c_str(), cm->getUuid().asQString());
+        }
+        else {
+            m_cubeMaps->addItem(cm->getUuid().asQString(), cm->getUuid().asQString());
+        }
+
+        // Set selected cubemap in widget to current
+        if (cm->getUuid() == cubemapID) {
+            idx = i + 1; // Start indexing at 1, since there is a blank entry
+        }
     }
+    m_cubeMaps->setCurrentIndex(idx);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void CameraComponentWidget::initializeConnections()

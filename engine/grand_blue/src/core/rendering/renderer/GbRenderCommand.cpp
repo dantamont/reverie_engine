@@ -10,9 +10,13 @@
 #include "../../scene/GbScenario.h"
 #include "../../rendering/materials/GbMaterial.h"
 
+#include "../../mixins/GbRenderable.h"
 #include "../../rendering/shaders/GbShaders.h"
-#include "../../components/GbCamera.h"
+#include "../../rendering/buffers/GbShaderStorageBuffer.h"
+#include "../../components/GbCameraComponent.h"
 #include "../../containers/GbSortingLayer.h"
+#include "../../rendering/postprocessing/GbPostProcessingChain.h"
+#include "../../rendering/lighting/GbShadowMap.h"
 
 namespace Gb {
 
@@ -28,7 +32,7 @@ RenderCommand::RenderCommand()
 //    return QJsonValue();
 //}
 ///////////////////////////////////////////////////////////////////////////////////////////////
-//void RenderCommand::loadFromJson(const QJsonValue & json)
+//void RenderCommand::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 //{
 //    Q_UNUSED(json)
 //}
@@ -38,7 +42,7 @@ RenderCommand::RenderCommand()
 /////////////////////////////////////////////////////////////////////////////////////////////
 // DrawCommand
 /////////////////////////////////////////////////////////////////////////////////////////////
-void DrawCommand::resetDepths()
+void DrawCommand::ResetDepths()
 {
     s_farthestDepth = std::numeric_limits<float>::max();
     s_nearestDepth = -std::numeric_limits<float>::max();
@@ -46,31 +50,67 @@ void DrawCommand::resetDepths()
 /////////////////////////////////////////////////////////////////////////////////////////////
 DrawCommand::DrawCommand()
 {
+    // Reserve space for 5 uniforms (84 bytes each)
+    m_uniforms.reserve(5);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-DrawCommand::DrawCommand(Renderable & renderable, ShaderProgram& program, Camera& camera) :
+DrawCommand::DrawCommand(Renderable & renderable, ShaderProgram& program, AbstractCamera& camera, ShaderProgram* prepassShaderProgram) :
     m_renderable(&renderable),
     m_shaderProgram(&program),
-    m_camera(&camera)
+    m_camera(&camera),
+    m_prepassShaderProgram(prepassShaderProgram)
 {
-    //m_frameBuffer = &m_camera->frameBuffer();
+    // Reserve space for 5 uniforms (84 bytes each)
+    m_uniforms.reserve(5);
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+DrawCommand::DrawCommand(Renderable & renderable,
+    ShaderProgram & program, 
+    ShadowMap & shadowMap):
+    DrawCommand(renderable, program, *shadowMap.camera())
+{
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 void DrawCommand::perform(MainRenderer& renderer)
 {
-    if (renderer.m_renderState.m_stage == RenderFrameState::kDepthPrepass) {
-        // Performing depth pre-pass
-        depthPrePass(renderer);
-    }
-    else {
-        // Performing actual render
-        render(renderer);
-    }
+    // Set viewport and camera uniforms
+    updateCameraSettings(renderer);
+
+    // Bind shader 
+    updateShaderUniforms(renderer, *m_shaderProgram, false);
+
+    // Perform actual render
+    // Need to pass in render context to bind shadow map textures
+    m_renderable->draw(*m_shaderProgram, 
+        &renderer.m_renderContext, 
+        &m_renderSettings,
+        0);
+
+    // Set render key to this key
+    renderer.m_renderState.m_lastRenderedKey = m_sortKey;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 void DrawCommand::setUniform(const Uniform & uniform)
 {
-    m_uniforms[uniform.getName()] = uniform;
+    //auto iter = std::find_if(m_uniforms.begin(), m_uniforms.end(),
+    //    [&](const Uniform& u) {
+    //    return u.getName() == uniform.getName();
+    //});
+
+    //if (iter == m_uniforms.end()) {
+        // Append uniform if not added
+        m_uniforms.push_back(uniform);
+    //}
+    //else {
+    //    // Replace uniform if already set
+    //    int idx = iter - m_uniforms.begin();
+    //    m_uniforms[idx] = uniform;
+    //}
+}
+///////////////////////////////////////////////////////////////////////////////////////////////
+void DrawCommand::addUniforms(const std::vector<Uniform>& uniforms)
+{
+    m_uniforms.insert(m_uniforms.end(), uniforms.begin(), uniforms.end());
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 void DrawCommand::onAddToQueue()
@@ -78,10 +118,10 @@ void DrawCommand::onAddToQueue()
     size_t maxBit = (sizeof(unsigned long long) * 8) - 1;
     size_t currentBit = maxBit;
 
-    // For now, make a render layer a pre-requisite
-    if (!renderLayer()) {
-        throw("Error, no render layer assigned");
-    }
+    // Render layer is no longer a prerequisite
+    //if (!renderLayer()) {
+    //    throw("Error, no render layer assigned");
+    //}
 
     // Reset sort key
     m_sortKey = 0;
@@ -95,7 +135,11 @@ void DrawCommand::onAddToQueue()
     // Viewport Layer, layer within viewport, e.g. skybox, world layer, effects
     // 7 bits, 128 possible layers
     currentBit -= 7; // 51
-    m_sortKey.setBits(m_renderLayer->getPositiveOrder(), currentBit, 7);
+    size_t renderLayerOrder = 0;
+    if (m_renderLayer) {
+        renderLayerOrder = m_renderLayer->getPositiveOrder();
+    }
+    m_sortKey.setBits(renderLayerOrder, currentBit, 7);
 
     // Translucency, Opaque, normal, additive, or subtractive
     // 3 bits, 8 possible types of translucency (in case of future modes)
@@ -148,8 +192,9 @@ void DrawCommand::preSort()
         depth = 1.0 - depth;
     }
 
+    // Will right-shift depth before inserting into sort key, to snip down to
+    // the proper size (currently 26 bits)
     size_t rightShift = 8 * sizeof(float) - 26;
-    //m_sortKey.setBits(SortKey::FloatToSortedBinary(depth), currentBit, 26, rightShift);
     
     // For opaque objects, depth will be more significant than shader or material
     size_t currentBit = 22;
@@ -173,179 +218,206 @@ void DrawCommand::preSort()
     //float retrievedDepth = SortKey::BinaryToFloat(shiftedDepth << rightShift);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
+bool DrawCommand::hasUniform(const GString & uniformName, int * outIndex)
+{
+    auto iter = std::find_if(m_uniforms.begin(), m_uniforms.end(),
+        [&](const Uniform& u) {
+        return u.getName() == uniformName;
+    });
+
+    if (iter == m_uniforms.end()) {
+        return false;
+    }
+    else {
+        // Replace uniform if already set
+        *outIndex = iter - m_uniforms.begin();
+        return true;
+    }
+}
+///////////////////////////////////////////////////////////////////////////////////////////////
+bool DrawCommand::hasUniform(const Uniform & uniform, int * outIndex)
+{
+    return hasUniform(QString(uniform.getName()), outIndex);
+}
+///////////////////////////////////////////////////////////////////////////////////////////////
 float DrawCommand::getDepth()
 {
-#ifdef DEBUG_MODE
     // Calculate depth
-    if (!Map::HasKey(m_uniforms, QStringLiteral("worldMatrix"))) {
+    int idx;
+    if (!hasUniform(Shader::s_worldMatrixUniformName, &idx)) {
         throw("Error, command requires a world matrix");
     }
-#endif
 
-    //bool isMatrix = m_uniforms["worldMatrix"].is<Matrix4x4g>();
-    Vector3g position = m_uniforms["worldMatrix"].get<Matrix4x4g>().getTranslationVector();
+    Vector3 position = m_uniforms[idx].get<Matrix4x4g>().getTranslationVector();
     float depth = m_camera->getDepth(position);
 
     return depth;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
-void DrawCommand::render(MainRenderer & renderer)
+void DrawCommand::depthPrePass(MainRenderer & renderer)
 {
-
     // Set viewport and camera uniforms
     updateCameraSettings(renderer);
 
-    m_camera->frameBuffer().bind();
-
     // Bind shader 
-    updateShaderUniforms(renderer);
-
-    // Bind render settings
-    for (RenderSettings* settings : m_renderSettings) {
-        settings->bind();
+    // TODO: Think about a better pipeline for animation uniforms for prepass
+    //prepassShader->setUniforms(*m_shaderProgram); // "steal" uniforms from shader program
+    ShaderProgram* prepassShader;
+    if (m_prepassShaderProgram) {
+        // Use specified prepass shader for depth pass
+        prepassShader = m_prepassShaderProgram;
     }
+    else {
+        // Default to same shader program as render
+        // Need to render normals for SSAO
+        prepassShader = m_shaderProgram;
+    }
+    updateShaderUniforms(renderer, *prepassShader, true);
 
     // Perform actual render
-    m_renderable->draw(*m_shaderProgram, nullptr, 0);
-
-    // Release render settings
-    for (RenderSettings* settings : m_renderSettings) {
-        settings->release();
-    }
-
-    m_camera->frameBuffer().release();
+    m_renderable->draw(*prepassShader,
+        &renderer.m_renderContext,
+        &m_renderSettings,
+        //(size_t)Renderable::RenderPassFlag::kIgnoreSettings | 
+        (size_t)Renderable::RenderPassFlag::kIgnoreUniformMismatch);
 
     // Set render key to this key
     renderer.m_renderState.m_lastRenderedKey = m_sortKey;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
-void DrawCommand::depthPrePass(MainRenderer & renderer)
+void DrawCommand::shadowPass(MainRenderer & renderer)
 {
-    //const std::shared_ptr<ShaderProgram>& prepassShader = renderer.prepassShader();
-
-    if (m_renderable->transparencyType() != Renderable::kOpaque) {
-        // Do not write to depth buffer for transparent objects
-        // TODO: Enable depth write for transparent objects in render settings
-        // e.g., glDepthMask(true), glDepthFunc(GL_LEQUAL)
-        return;
-    }
-
     // Set viewport and camera uniforms
     updateCameraSettings(renderer);
 
-    m_camera->frameBuffer().bind();
+    // Bind shader
+    ShaderProgram* prepassShader;
+    if (m_prepassShaderProgram) {
+        // Use specified prepass shader for depth pass
+        prepassShader = m_prepassShaderProgram;
+    }
+    else {
+        // Default to same shader program as render
+        prepassShader = m_shaderProgram;
+    }
+    updateShaderUniforms(renderer, *prepassShader, true);
 
-    // Bind shader 
-    // FIXME: Add discards for transparent objects in prepass shader
-    // Also somehow update the animation-related uniforms
-    //prepassShader->bind();
-    //prepassShader->setUniformValue(m_uniforms["worldMatrix"], true);
-    updateShaderUniforms(renderer);
-
-    // Perform actual render
-    //size_t flags = (size_t)Renderable::RenderPassFlag::kIgnoreSettings |
-    //    (size_t)Renderable::RenderPassFlag::kIgnoreTextures |
-    //    (size_t)Renderable::RenderPassFlag::kIgnoreUniforms;
-    m_renderable->draw(*m_shaderProgram, 
-        nullptr,
-        (size_t)Renderable::RenderPassFlag::kIgnoreSettings);
-
-    m_camera->frameBuffer().release();
-
-    // Set render key to this key
-    renderer.m_renderState.m_lastRenderedKey = m_sortKey;
+    // Perform depth render into shadow map
+    m_renderable->draw(*prepassShader,
+        &renderer.m_renderContext,
+        &m_renderSettings,
+        //(size_t)Renderable::RenderPassFlag::kIgnoreSettings |
+        (size_t)Renderable::RenderPassFlag::kIgnoreUniformMismatch);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 void DrawCommand::updateCameraSettings(MainRenderer & renderer)
 {
-    // blue violet
-    static Color clearColor = Color(Vector4g( 0.55f, 0.6f, 0.93f, 1.0f ));
-
     // TODO: Somehow integrate viewport and GL settings checks as independent commands
     RenderFrameState& rs = renderer.m_renderState;
     if (rs.m_camera) {
         // If a camera is assigned
         if (rs.m_camera->getUuid() != m_camera->getUuid()) {
-            // If a different camera has been assigned
-
-            // Set camera in current render state
-            rs.m_camera = m_camera;
-
-            // Set the viewport size for camera rendering
-            m_camera->setGLViewport(renderer);
-
-            // Resize framebuffer dimensions if screen resized
-            if (rs.resized() || rs.playModeChanged()) {
-                m_camera->resizeFrameBuffer(renderer);
-            }
-
-            // Clear depth buffer for camera renders
-            m_camera->frameBuffer().bind();
-            m_camera->frameBuffer().clear(clearColor);
-            m_camera->frameBuffer().release();
+            switchCameras(renderer);
         }
     }
     else {
-        // If no camera is assigned (first loop)
-
-        // Set camera in current render state
-        rs.m_camera = m_camera;
-
-        // Set the viewport size for camera rendering
-        m_camera->setGLViewport(renderer);
-
-        // Resize framebuffer dimensions if screen resized
-        if (rs.resized() || rs.playModeChanged()) {
-            m_camera->resizeFrameBuffer(renderer);
-        }
-
-        // Clear depth buffer for camera renders
-        m_camera->frameBuffer().bind();
-        m_camera->frameBuffer().clear(clearColor);
-        m_camera->frameBuffer().release();
+        // If no camera is assigned (first camera in frame)
+        switchCameras(renderer);
     }
+}
+///////////////////////////////////////////////////////////////////////////////////////////////
+void DrawCommand::switchCameras(MainRenderer & renderer)
+{
+    RenderFrameState& rs = renderer.m_renderState;
+
+    // Release framebuffer of other camera
+    bool hadCamera = rs.m_camera != nullptr;
+    if (hadCamera) {
+        rs.m_camera->releaseFrame();
+        rs.m_camera = nullptr;
+    }
+
+    // Set camera in current render state
+    rs.m_camera = m_camera;
+
+    // Bind framebuffer and set viewport
+    // Do not clear framebuffer if swapping between sphere cameras during light pass, 
+    // or else shadow map data will be lost from framebuffer
+    bool isRenderingPointMaps = 
+        (m_camera->cameraType() == CameraType::kSphereCamera) &&
+        (rs.m_stage == RenderFrameState::kShadowMapping) && hadCamera;
+    m_camera->bindFrame(!isRenderingPointMaps);
 
     // Bind camera uniforms
-    // TODO: Check if camera has moved before binding uniforms
-    m_camera->bindUniforms();
-}
-///////////////////////////////////////////////////////////////////////////////////////////////
-void DrawCommand::updateShaderUniforms(MainRenderer & renderer)
-{
-    updateShaderUniforms(renderer, *m_shaderProgram);
-}
-///////////////////////////////////////////////////////////////////////////////////////////////
-void DrawCommand::updateShaderUniforms(MainRenderer & renderer, ShaderProgram & shaderProgram)
-{
-    // TODO: Somehow integrate shader program checks as independent commands
-    shaderProgram.bind();
-    if (m_uniforms.size()) {
-        for (const auto& uniformPair : m_uniforms) {
-#ifdef DEBUG_MODE
-            if (!shaderProgram.hasUniform(uniformPair.first)) {
-                throw("Error, shader program does not support uniform");
-            }
-#endif
-            shaderProgram.setUniformValue(uniformPair.second);
+    bool isRenderStage = rs.m_stage == RenderFrameState::kRender;
+    ShaderProgram* shader;
+    if (!isRenderStage && m_prepassShaderProgram) {
+        // Use specified prepass shader if depth or lighting pass
+        shader = m_prepassShaderProgram;
+    }
+    else {
+        // Default to same shader program as render
+        shader = m_shaderProgram;
+    }
+    m_camera->bindUniforms(&renderer, shader);
 
-            // If renderable has the uniform, then remove from renderable
-            // to avoid overriding DrawCommand value
-            //if (Map::HasKey(m_renderable->uniforms(), uniformPair.first)) {
-            //    m_renderable->uniforms().erase(uniformPair.first);
-            //}
-        }
-        shaderProgram.updateUniforms();
+    // Bind textures
+    m_camera->bindTextures();
+
+    // Bind SSBs for the camera light clustering or shadow mapping
+    if (renderer.m_renderState.m_stage != RenderFrameState::kDepthPrepass) {
+        m_camera->bindBuffers();
     }
 }
-///////////////////////////////////////////////////////////////////////////////////////////////
-//QJsonValue DrawCommand::asJson() const
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//void DrawCommand::switchShaders(MainRenderer & renderer)
 //{
-//    return QJsonValue();
+//    if (m_shaderProgram->isBound()) {
+//        return;
+//    }
+//
+//    RenderFrameState& rs = renderer.m_renderState;
+//
+//    // Set shader as current
+//    bool hadShader = rs.m_shaderProgram != nullptr;
+//    rs.m_shaderProgram = m_shaderProgram;
+//    
+//    // Bind shader program
+//    rs.m_shaderProgram->bind();
+//
+//    // Bind built-in buffers
 //}
 ///////////////////////////////////////////////////////////////////////////////////////////////
-//void DrawCommand::loadFromJson(const QJsonValue & json)
-//{
-//}
+void DrawCommand::updateShaderUniforms(MainRenderer & renderer, ShaderProgram & shaderProgram, bool ignoreMismatch)
+{
+    Q_UNUSED(renderer);
+
+    // TODO: Somehow integrate shader program checks as independent commands
+    shaderProgram.bind();
+    if (!m_uniforms.size()) {
+        return;
+    }
+
+    ShaderProgram::UniformInfoIter iter;
+    for (const Uniform& uniform : m_uniforms) {
+        if (!shaderProgram.hasUniform(uniform.getName(), iter)) {
+            //throw("Error, shader program does not support uniform");
+            // No longer raise error, this is better for prepass
+            continue;
+        }
+
+        shaderProgram.setUniformValue(uniform);
+
+        // FIXME: Doesn't work
+        // TODO: Make this more efficient, don't want to have to update every draw call
+        // TODO: Replace map of uniforms with vector
+        // If renderable has the uniform, then copy value to avoid overriding DrawCommand value
+        //if (Map::HasKey(m_renderable->uniforms(), uniform.getName())) {
+        //    m_renderable->uniforms()[uniform.getName()] = uniform;
+        //}
+    }
+    shaderProgram.updateUniforms(ignoreMismatch);
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////
 float DrawCommand::s_farthestDepth = std::numeric_limits<float>::max();
 ///////////////////////////////////////////////////////////////////////////////////////////////

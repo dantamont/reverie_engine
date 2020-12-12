@@ -31,7 +31,8 @@ namespace Gb {
 namespace Gb { 
 namespace View {
 
-class GLWidget : public QOpenGLWidget, public AbstractService {
+class GLWidget : public QOpenGLWidget, public Object 
+{
     Q_OBJECT
 public:
     //-----------------------------------------------------------------------------------------------------------------
@@ -46,7 +47,7 @@ public:
     /// @{
 
     /// @brief Return the position of the mouse relative to this widget
-    Vector2g widgetMousePosition() const {
+    Vector2 widgetMousePosition() const {
         return m_inputHandler.mouseHandler().widgetMousePosition();
     }
 
@@ -105,8 +106,8 @@ signals:
 
 public slots:
     /// @brief Update aspect ratios for all render projections
-    void updateAspectRatios(int width, int height);
-    void updateAspectRatios();
+    void resizeProjections(int width, int height);
+    void resizeProjections();
 
 protected:
     //---------------------------------------------------------------------------------------------

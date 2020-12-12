@@ -17,7 +17,8 @@
 #include <QDateTime>
 #include <QMutexLocker>
 #include <QMutex>
-#include "../../core/containers/GbContainerExtensions.h"
+#include "../core/containers/GbContainerExtensions.h"
+#include "../core/containers/GbString.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Namespace Definitions
@@ -73,7 +74,7 @@ public:
 	/** @brief The category for the message. 
 	    @details The category is usually the full namespace name of a class where the message emanated from.
 	*/
-    inline const QString& category() const { return m_category; }
+    inline const GString& category() const { return m_category; }
 
 	/** @brief The numeric log level for the message.
 	*/
@@ -81,7 +82,7 @@ public:
     
 	/** @brief text od the message.
 	*/
-    inline const QString& message() const { return m_message; }
+    inline const GString& message() const { return m_message; }
    
 	/** @brief The timestamp when the log message came to the Logger.
 	*/
@@ -94,9 +95,9 @@ protected:
 	inline void setTimestamp(const QDateTime& timestamp) { m_timestamp = timestamp; }
 
 private:
-    QString m_category;
+    GString m_category;
     LogLevel m_level = LogLevel::Unset;
-    QString m_message;
+    GString m_message;
     QDateTime m_timestamp;
 };
 Q_DECLARE_METATYPE(LogRecord)
@@ -170,7 +171,7 @@ public:
         @param[in] filename The full path of a file.  If the file does not
             exist, it will be created, otherwise it will be truncated.
     */
-    FileLogHandler(std::string filename);
+    FileLogHandler(const GString& filename);
 
     /** @brief Create a LogHandler to write log messages to a file
         @param[in] level Messages with a log level higher than this will be
@@ -178,7 +179,7 @@ public:
         @param[in] filename The full path of a file.  If the file does not
             exist, it will be created, otherwise it will be truncated.
     */
-    FileLogHandler(LogLevel level, std::string filename);
+    FileLogHandler(LogLevel level, const GString& filename);
 
 	~FileLogHandler();
 	/// @}
@@ -188,12 +189,12 @@ public:
     /** @brief Full path to log file
         @return file path
     */
-    inline std::string& filename() { return m_filename; }
+    inline GString& filename() { return m_filename; }
 
     /** @brief Set file path
         @param[in] filename The path for output.
     */
-    inline void setFilename(std::string& filename) { m_filename = filename; }
+    inline void setFilename(GString& filename) { m_filename = filename; }
     /// @}
 
     //-----------------------------------------------------------------------------------------------------------------
@@ -210,7 +211,7 @@ public:
 private:
 	/** @name Property
 	@{*/
-	std::string m_filename;
+    GString m_filename;
     std::ofstream m_ofs;
 	/*@}*/
 };
@@ -296,22 +297,22 @@ public:
     static Logger& getInstance();
 
     /// @brief Create instance of file logger
-    static Gb::FileLogHandler* getFileLogger(const std::string& logFileName, 
-        const std::string& loggerName,
+    static Gb::FileLogHandler* getFileLogger(const GString& logFileName,
+        const GString& loggerName,
         LogLevel logLevel = LogLevel::Debug);
 
     /// @brief Create instance of VS logger
-    static Gb::VSConsoleLogHandler* getVSLogger(const std::string& loggerName,
+    static Gb::VSConsoleLogHandler* getVSLogger(const GString& loggerName,
         LogLevel logLevel = LogLevel::Debug);
 
     /// @brief Create instance of console tool logger
-    static Gb::View::ConsoleTool* getConsoleTool(const std::string& loggerName, 
+    static Gb::View::ConsoleTool* getConsoleTool(const GString& loggerName,
         LogLevel logLevel = LogLevel::Debug);
 
     /** @brief 
     */
-    static const std::string* levelName(LogLevel level);
-    static void addLevelName(LogLevel level, const std::string& level_name);
+    static const GString* levelName(LogLevel level);
+    static void addLevelName(LogLevel level, const GString& level_name);
 
     /// @}
     //-----------------------------------------------------------------------------------------------------------------
@@ -334,12 +335,12 @@ public:
         @param[in] name The unique name of the handler
 	    @param[in] handler The subclass of AbstractLogHandler
 	*/
-	void addHandler(const std::string& name, AbstractLogHandler* handler);
+	void addHandler(const GString& name, AbstractLogHandler* handler);
 
     /** @brief Get the log handler with the given name
         @param[in] name The name of the desired handler
     */
-    AbstractLogHandler* handlerWithName(const std::string& name);
+    AbstractLogHandler* handlerWithName(const GString& name);
 
     /** @brief Output a log message to associated handlers
         @param[in] level The level for the message.  The higher the
@@ -363,7 +364,7 @@ public:
         @retval bool True if the named handler was successfully removed,
             False if the named handler was not found.
 	*/
-	bool removeHandler(const std::string& name);
+	bool removeHandler(const GString& name);
 
     /** @brief Remove the named handler from the logging system.
         @param[in] name The name of the log handler to remove
@@ -372,7 +373,7 @@ public:
     */
     bool removeHandler(const char* name)
         { 
-            std::string sname(name);
+            GString sname(name);
             return removeHandler(sname);
         }
 	/// @}
@@ -380,8 +381,8 @@ private:
     Logger();
     ~Logger();
 
-    static std::unordered_map<LogLevel, std::string> m_level_names;
-    std::unordered_map<std::string, AbstractLogHandler*> m_handlers;
+    static tsl::robin_map<LogLevel, GString> m_level_names;
+    tsl::robin_map<GString, AbstractLogHandler*> m_handlers;
     LogLevel m_level;
     LogRecord m_log_record;
     QMutex m_output_mutex;

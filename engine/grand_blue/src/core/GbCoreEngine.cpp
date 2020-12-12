@@ -5,19 +5,21 @@
 
 #include "events/GbEvent.h"
 
-#include "../third_party/pythonqt/gui/PythonQtScriptingConsole.h"
+#include "scripting/GbPythonModules.h"
 #include "scripting/GbPythonAPI.h"
+#include "scripting/GbPythonModules.h"
 #include "scripting/GbPythonScript.h"
-#include "scripting/GbPyWrappers.h"
+
 #include "geometry/GbEulerAngles.h"
 
 #include "components/GbTransformComponent.h"
 #include "components/GbLightComponent.h"
-#include "components/GbCamera.h"
+#include "components/GbCameraComponent.h"
 #include "components/GbShaderComponent.h"
-#include "rendering/renderer/GbRenderers.h"
+#include "components/GbAudioSourceComponent.h"
+#include "components/GbAnimationComponent.h"
 #include "rendering/shaders/GbShaders.h"
-#include "rendering/shaders/GbUniformBufferObject.h"
+#include "rendering/buffers/GbUniformBufferObject.h"
 #include "components/GbPhysicsComponents.h"
 
 #include "loop/GbSimLoop.h"
@@ -28,6 +30,8 @@
 #include "events/GbEventManager.h"
 #include "input/GbInputHandler.h"
 #include "physics/GbPhysicsManager.h"
+#include "sound/GbSoundManager.h"
+#include "animation/GbAnimationManager.h"
 
 #include "rendering/renderer/GbMainRenderer.h"
 #include "rendering/renderer/GbRenderContext.h"
@@ -59,6 +63,14 @@ unsigned int CoreEngine::THREAD_COUNT = 0;
 ThreadPool CoreEngine::HELPER_THREADPOOL(NUMBER_OF_HELPER_THREADS);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+QString CoreEngine::GetRootPath()
+{
+    QString appDirPath = QCoreApplication::applicationDirPath(); // Location of .exe, project/app folder
+    QString rootPath = QDir::cleanPath(appDirPath + "/../../grand_blue"); // Go up two folders
+    return rootPath;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 CoreEngine::CoreEngine():
     QObject(nullptr),
     Object("Engine_" + QString::number(ENGINES.size())),
@@ -70,6 +82,10 @@ CoreEngine::CoreEngine():
     m_physicsManager(nullptr),
     m_fontManager(nullptr)
 { 
+    // TODO: Create directory manager
+    // Set current path to desired root directory
+    QDir::setCurrent(GetRootPath());
+
     // Initialize custom Qt types
     initializeMetaTypes();
 
@@ -89,8 +105,9 @@ CoreEngine::~CoreEngine()
     delete m_physicsManager;
     delete m_fontManager;
     delete m_debugManager;
+    delete m_soundManager;
+    delete m_animationManager;
     ENGINES.erase(m_name);
-    PythonQt::cleanup();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 MainWindow * CoreEngine::mainWindow() const
@@ -143,14 +160,15 @@ void CoreEngine::setScenario(std::shared_ptr<Scenario> scenario)
 void CoreEngine::clearEngine(bool clearActionStack, bool clearScenario)
 {
     // Clear the undo stack
-    if(clearActionStack)
+    if (clearActionStack) {
         m_actionManager->undoStack()->clear();
-
-    // Clear the resource cache
-    m_resourceCache->clear();
+    }
 
     // Clear the process manager
     processManager()->clearAllProcesses();
+
+    // Clear the resource cache
+    m_resourceCache->clear();
 
     // Clear the physics manager
     physicsManager()->clear();
@@ -160,6 +178,12 @@ void CoreEngine::clearEngine(bool clearActionStack, bool clearScenario)
 
     // Clear the widget manager
     widgetManager()->clear();
+
+    // Clear the sound manager
+    m_soundManager->clear();
+
+    // Clear the animation manager
+    m_animationManager->clear();
 
     // Clear the Python API
     PythonAPI::get()->clear();
@@ -226,6 +250,8 @@ void CoreEngine::initialize(MainWindow* mainWindow)
     m_simulationLoop = new SimulationLoop(this, 10); // max 100 FPS
     m_physicsManager = new PhysicsManager(this);
     m_debugManager = new DebugManager(this);
+    m_soundManager = new SoundManager(this);
+    m_animationManager = new AnimationManager(this);
 
     // Create resource cache
     m_resourceCache = new ResourceCache(this,
@@ -240,8 +266,7 @@ void CoreEngine::initialize(MainWindow* mainWindow)
 void CoreEngine::postConstruction()
 {
 #ifdef DEBUG_MODE    
-    GL::OpenGLFunctions functions;
-    functions.printGLError("Error before setting context");
+    GL::OpenGLFunctions::printGLError("Error before setting context");
 #endif
 
     // Perform post-construction for managers
@@ -250,31 +275,31 @@ void CoreEngine::postConstruction()
     m_debugManager->postConstruction();
 
 #ifdef DEBUG_MODE    
-    functions.printGLError("Error after setting context");
+    GL::OpenGLFunctions::printGLError("Error after setting context");
 #endif
-
-    m_isConstructed = true;
 
     // Set default scenario
     auto* settings = new Gb::Settings::INISettings();
+    bool loaded = false;
     if (!settings->getRecentProject().isEmpty()) {
         QString filepath = settings->getRecentProject();
 #ifdef DEBUG_MODE
-        Scenario::loadFromFile(filepath, this);
-
-        // Set window title
-        mainWindow()->setWindowTitle(mainWindow()->getDefaultTitle() + " " + filepath);
+        loaded = Scenario::LoadFromFile(filepath, this);
 #else
         try {
-            Scenario::loadFromFile(filepath, this);
+            loaded = Scenario::LoadFromFile(filepath, this);
         }
         catch (std::exception e) {
             logWarning("Warning, failed to load file at " + filepath);
         }
 #endif
+
+        // Set window title
+        mainWindow()->setWindowTitle(mainWindow()->getDefaultTitle() + " " + filepath);
     }
-    else {
-        // Initialize a blank scenario
+
+    if(!loaded) {
+        // Initialize a blank scenario if load failed
         setNewScenario();
     }
     delete settings;
@@ -290,6 +315,9 @@ void CoreEngine::postConstruction()
 
     // Once scenario is loaded, ensure that framebuffers are resized correctly
     m_widgetManager->postConstruction();
+
+    // Engine is fully constructed
+    m_isConstructed = true;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 bool CoreEngine::event(QEvent * event)
@@ -299,8 +327,8 @@ bool CoreEngine::event(QEvent * event)
         // This is a log event
         LogEvent *logEvent = static_cast<LogEvent *>(event);
         logMessage(logEvent->getLogLevel(), 
-            logEvent->getNamespaceName().toUtf8().constData(),
-            logEvent->getLogMessage().toUtf8().constData());
+            logEvent->getNamespaceName(),
+            logEvent->getLogMessage());
     }
 
     return QObject::event(event);
@@ -322,282 +350,20 @@ void CoreEngine::initializeLogger()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void CoreEngine::initializeMetaTypes()
 {
-    // Register types to send over qt
-    bool succeeded = true;
+    // Register types to send over qt signals/slots
     qRegisterMetaType<Uuid>("Uuid");
     qRegisterMetaType<Uuid>("Gb::Uuid");
 
     qRegisterMetaType<std::shared_ptr<Object>>();
-
-    // Python Types
-    // TODO: Encapsulate initialization into a template
-    qRegisterMetaType<PythonBehavior>("ResourceCache");
-    qRegisterMetaType<PythonBehavior>("Gb::ResourceCache");
-
-    qRegisterMetaType<PythonBehavior>("PythonBehavior");
-    qRegisterMetaType<PythonBehavior>("Gb::PythonBehavior");
-
-    qRegisterMetaType<SceneObject>("SceneObject");
-    qRegisterMetaType<SceneObject>("Gb::SceneObject");
-
-    qRegisterMetaType<CustomEvent>("CustomEvent");
-    qRegisterMetaType<CustomEvent>("Gb::CustomEvent");
-
-    qRegisterMetaType<Vector2>("Vector2");
-    qRegisterMetaType<Vector2>("Gb::Vector2");
-    qRegisterMetaType<Vector3>("Vector3");
-    qRegisterMetaType<Vector3>("Gb::Vector3");
-    qRegisterMetaType<Vector4>("Vector4");
-    qRegisterMetaType<Vector4>("Gb::Vector4");
-
-    qRegisterMetaType<Matrix2x2>("Matrix2x2");
-    qRegisterMetaType<Matrix2x2>("Gb::Matrix2x2");
-    qRegisterMetaType<Matrix3x3>("Matrix3x3");
-    qRegisterMetaType<Matrix3x3>("Gb::Matrix3x3");
-    qRegisterMetaType<Matrix4x4>("Matrix4x4");
-    qRegisterMetaType<Matrix4x4>("Gb::Matrix4x4");
-
-    qRegisterMetaType<Scene>("Scene");
-    qRegisterMetaType<Scene>("Gb::Scene");
-
-    qRegisterMetaType<Scenario>("Scenario");
-    qRegisterMetaType<Scenario>("Gb::Scenario");
-
-    qRegisterMetaType<LightComponent>("LightComponent");
-    qRegisterMetaType<LightComponent>("Gb::LightComponent");
-
-    qRegisterMetaType<ShaderComponent>("ShaderComponent");
-    qRegisterMetaType<ShaderComponent>("Gb::ShaderComponent");
-
-    qRegisterMetaType<ShaderProgram>("ShaderProgram");
-    qRegisterMetaType<ShaderProgram>("Gb::ShaderProgram");
-
-    qRegisterMetaType<CameraComponent>("CameraComponent");
-    qRegisterMetaType<CameraComponent>("Gb::CameraComponent");
-
-    qRegisterMetaType<TransformComponent>("TransformComponent");
-    qRegisterMetaType<TransformComponent>("Gb::TransformComponent");
-
-    qRegisterMetaType<TranslationComponent>("TranslationComponent");
-    qRegisterMetaType<TranslationComponent>("Gb::TranslationComponent");
-
-    qRegisterMetaType<RotationComponent>("RotationComponent");
-    qRegisterMetaType<RotationComponent>("Gb::RotationComponent");
-
-    qRegisterMetaType<ScaleComponent>("ScaleComponent");
-    qRegisterMetaType<ScaleComponent>("Gb::ScaleComponent");
-
-    qRegisterMetaType<CharControlComponent>("CharControlComponent");
-    qRegisterMetaType<CharControlComponent>("Gb::CharControlComponent");
-
-    qRegisterMetaType<EulerAngles>("EulerAngles");
-    qRegisterMetaType<EulerAngles>("Gb::EulerAngles");
-
-    qRegisterMetaType<Quaternion>("Quaternion");
-    qRegisterMetaType<Quaternion>("Gb::Quaternion");
-
-    qRegisterMetaType<InputHandler>("InputHandler");
-    qRegisterMetaType<InputHandler>("Gb::InputHandler");
-
-    qRegisterMetaType<KeyHandler>("KeyHandler");
-    qRegisterMetaType<KeyHandler>("Gb::KeyHandler");
-
-    qRegisterMetaType<MouseHandler>("MouseHandler");
-    qRegisterMetaType<MouseHandler>("Gb::MouseHandler");
-
-    if (!succeeded) {
-        throw("Error, failed to register metatypes");
-    }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void CoreEngine::initializePythonAPI()
 {
-    // Initialize PythonQt
-    // Flags: IgnoreSiteModule ~ cannot load modules from site packages
-    PythonQt::init();
-
-    // Set importer
-    // Removed, was breaking package imports
-    //PythonQt::self()->installDefaultImporter();
-
     // Initialize custom Python API
     Gb::PythonAPI* api = Gb::PythonAPI::get();
-    Q_UNUSED(api)
+    Q_UNUSED(api);
 
-    // Register types that are python-compatible
-    // NOTE: Type strings must match class name
-    // TODO: Creata a helper class to wrap up these registrations
-
-    int typeFlag = int(
-        PythonQt::Type_Add |
-        PythonQt::Type_Subtract |
-        PythonQt::Type_Multiply |
-        PythonQt::Type_InplaceAdd |
-        PythonQt::Type_InplaceSubtract |
-        PythonQt::Type_InplaceMultiply |
-        PythonQt::Type_RichCompare);
-
-    PythonQt::self()->registerCPPClass("PythonBehavior",
-        "Object",
-        "scriptedBehaviors",
-        PythonQtCreateObject<PythonBehaviorWrapper>);
-
-    PythonQt::self()->registerCPPClass("CoreEngine",
-        "Object",
-        "core",
-        PythonQtCreateObject<PyEngine>);
-
-    PythonQt::self()->registerCPPClass("ResourceCache",
-        "Manager",
-        "core",
-        PythonQtCreateObject<PyResourceCache>);
-
-    PythonQt::self()->registerCPPClass("CustomEvent",
-        "Serializable",
-        "events",
-        PythonQtCreateObject<PyCustomEvent>);
-
-
-    //QString className = GbEngine::staticMetaObject.className();
-    //PythonQt::self()->registerClass(&CoreEngine::staticMetaObject,
-    //    "core",
-    //    PythonQtCreateObject<PyEngine>);
-
-    PythonQt::self()->priv()->registerCPPClass("Vector2",
-        "",
-        "alg",
-        PythonQtCreateObject<PyVector2>,
-        NULL,
-        NULL,
-        typeFlag);
-
-    PythonQt::self()->priv()->registerCPPClass("Vector3",
-        "",
-        "alg",
-        PythonQtCreateObject<PyVector3>,
-        NULL,
-        NULL,
-        typeFlag);
-
-    PythonQt::self()->priv()->registerCPPClass("Vector4",
-        "",
-        "alg",
-        PythonQtCreateObject<PyVector4>,
-        NULL,
-        NULL,
-        typeFlag);
-
-    PythonQt::self()->priv()->registerCPPClass("Matrix2x2",
-        "",
-        "alg",
-        PythonQtCreateObject<PyMatrix2x2>,
-        NULL,
-        NULL,
-        typeFlag);
-
-    PythonQt::self()->priv()->registerCPPClass("Matrix3x3",
-        "",
-        "alg",
-        PythonQtCreateObject<PyMatrix3x3>,
-        NULL,
-        NULL,
-        typeFlag);
-
-    PythonQt::self()->priv()->registerCPPClass("Matrix4x4",
-        "",
-        "alg",
-        PythonQtCreateObject<PyMatrix4x4>,
-        NULL,
-        NULL,
-        typeFlag);
-
-    PythonQt::self()->registerCPPClass("SceneObject",
-        "",
-        "scene",
-        PythonQtCreateObject<PySceneObject>);
-
-    PythonQt::self()->registerCPPClass("Scene",
-        "",
-        "scene",
-        PythonQtCreateObject<PyScene>);
-
-    PythonQt::self()->registerCPPClass("Scenario",
-        "",
-        "scene",
-        PythonQtCreateObject<PyScenario>);
-
-    PythonQt::self()->registerCPPClass("LightComponent",
-        "Component",
-        "components",
-        PythonQtCreateObject<PyLight>);
-
-    PythonQt::self()->registerCPPClass("CameraComponent",
-        "Component",
-        "components",
-        PythonQtCreateObject<PyCamera>);
-
-    PythonQt::self()->registerCPPClass("ShaderComponent",
-        "Component",
-        "components",
-        PythonQtCreateObject<PyMaterial>);
-
-    PythonQt::self()->registerCPPClass("CharControlComponent",
-        "Component",
-        "components",
-        PythonQtCreateObject<PyCharacterController>);
-
-    PythonQt::self()->registerCPPClass("ShaderProgram",
-        "",
-        "resources",
-        PythonQtCreateObject<PyShaderProgram>);
-
-    PythonQt::self()->registerCPPClass("TransformComponent",
-        "Object",
-        "components",
-        PythonQtCreateObject<PyTransformComponent>);
-
-    PythonQt::self()->registerCPPClass("TranslationComponent",
-        "AffineComponent",
-        "components",
-        PythonQtCreateObject<PyTranslationComponent>);
-
-    PythonQt::self()->registerCPPClass("RotationComponent",
-        "AffineComponent",
-        "components",
-        PythonQtCreateObject<PyRotationComponent>);
-
-    PythonQt::self()->registerCPPClass("ScaleComponent",
-        "AffineComponent",
-        "components",
-        PythonQtCreateObject<PyScaleComponent>);
-
-    PythonQt::self()->registerCPPClass("EulerAngles",
-        "",
-        "alg",
-        PythonQtCreateObject<PyEulerAngles>);
-
-    PythonQt::self()->priv()->registerCPPClass("Quaternion",
-        "Serializable",
-        "alg",
-        PythonQtCreateObject<PyQuaternion>,
-        NULL,
-        NULL,
-        typeFlag);
-
-    PythonQt::self()->registerCPPClass("InputHandler",
-        "",
-        "input",
-        PythonQtCreateObject<PyInputHandler>);
-
-    PythonQt::self()->registerCPPClass("KeyHandler",
-        "",
-        "input",
-        PythonQtCreateObject<PyKeyHandler>);
-
-    PythonQt::self()->registerCPPClass("MouseHandler",
-        "",
-        "input",
-        PythonQtCreateObject<PyMouseHandler>);
+    //py::print("Hello, World!"); // use the Python API
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void CoreEngine::initializeConnections()

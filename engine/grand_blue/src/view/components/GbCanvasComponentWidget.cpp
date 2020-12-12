@@ -9,9 +9,8 @@
 #include "../../core/scene/GbSceneObject.h"
 #include "../../core/readers/GbJsonReader.h"
 #include "../../core/components/GbScriptComponent.h"
-#include "../../core/components/GbCamera.h"
+#include "../../core/components/GbCameraComponent.h"
 
-#include "../../core/rendering/renderer/GbRenderers.h"
 #include "../style/GbFontIcon.h"
 #include "../../core/geometry/GbEulerAngles.h"
 #include "../../core/components/GbCanvasComponent.h"
@@ -56,7 +55,7 @@ void CanvasViewportWidget::initializeWidgets()
     m_depth->setMaximumWidth(50);
     m_depth->setValidator(new QIntValidator(-1e8, 1e8));
     m_depth->setToolTip("depth at which to render camera viewport");
-    m_depth->setText(QString::number(viewport.m_depth));
+    m_depth->setText(QString::number(viewport.getDepth()));
 
     m_xCoordinate = new QLineEdit();
     m_xCoordinate->setMaximumWidth(50);
@@ -88,8 +87,9 @@ void CanvasViewportWidget::initializeConnections()
     // Depth
     connect(m_depth, &QLineEdit::editingFinished, this,
         [this]() {
+        // FIXME: See if depth needs to be normalized to clip space anywhere
         int depth = m_depth->text().toInt();
-        m_canvasComponent->viewport().m_depth = depth;
+        m_canvasComponent->viewport().setDepth(depth);
     });
 
     // x coordinate

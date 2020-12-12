@@ -4,7 +4,7 @@
 #include "../../GbCoreEngine.h"
 #include "../../rendering/geometry/GbPolygon.h"
 #include "../shaders/GbShaders.h"
-#include "../shaders/GbUniformBufferObject.h"
+#include "../buffers/GbUniformBufferObject.h"
 #include "../../resource/GbResourceCache.h"
 #include "../../resource/GbResource.h"
 #include "../geometry/GbMesh.h"
@@ -127,8 +127,9 @@ QJsonValue Points::asJson() const
     return object;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Points::loadFromJson(const QJsonValue & json)
+void Points::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
     QJsonObject object = json.toObject();
     Renderable::loadFromJson(json);
 }
@@ -178,13 +179,13 @@ void Points::drawGeometry(ShaderProgram& shaderProgram,
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Points::addPoint(const Vector3g & point)
+void Points::addPoint(const Vector3 & point)
 {
     auto vertexData = m_vertexData.back();
     addPoint(vertexData, point);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Points::addPoint(std::shared_ptr<VertexArrayData> vertexData, const Vector3g & point)
+void Points::addPoint(std::shared_ptr<VertexArrayData> vertexData, const Vector3 & point)
 {
     // Set next point to this point for vertex attributes already stored
     int size = (int)vertexData->m_attributes.m_vertices.size();

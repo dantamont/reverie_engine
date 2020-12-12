@@ -140,15 +140,15 @@ public:
     }
 
     /// @note Only valid for raycasts and sweeps
-    Vector3g position() const {
+    Vector3 position() const {
         static_assert(IsRaycastOrSweep, "Invalid hit type");
-        return PhysicsManager::toVec3g(m_hit.position); 
+        return PhysicsManager::toVector3(m_hit.position); 
     }
 
     /// @note Only valid for raycasts and sweeps
-    Vector3g normal() const { 
+    Vector3 normal() const { 
         static_assert(IsRaycastOrSweep, "Invalid hit type");
-        return PhysicsManager::toVec3g(m_hit.normal); 
+        return PhysicsManager::toVector3(m_hit.normal); 
     }
 
     /// @note Only valid for raycasts and sweeps
@@ -236,10 +236,10 @@ public:
     //real_g m_maxDistance = std::numeric_limits<real_g>::infinity();
     real_g m_maxDistance = (float)1e30;
 
-    Vector3g m_origin;
+    Vector3 m_origin;
 
     /// @brief Unit direction of the raycast
-    Vector3g m_direction;
+    Vector3 m_direction;
 
     /// @brief The raycast results
     Hits<physx::PxRaycastHit> m_hits;

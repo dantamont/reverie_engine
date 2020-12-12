@@ -35,20 +35,71 @@ namespace Gb {
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Class Definitions
 /////////////////////////////////////////////////////////////////////////////////////////////
+/// @brief Enum of valid buffer data types
+/// @details Enum value represents position in shader
+enum class BufferAttributeType {
+    kNone = -1,
+    kPosition,
+    kColor,
+    kTextureCoordinates,
+    kNormal,
+    kTangent,
+    kMiscInt,
+    kMiscReal,
+    kMAX_ATTRIBUTE_TYPE
+};
 
+/////////////////////////////////////////////////////////////////////////////////////////////
+/// @struct VertexAttributeInfo
+struct VertexAttributeInfo {
+    enum NumericalType : size_t {
+        kInt,
+        kFloat,
+        kDouble
+    };
+
+    bool operator==(const VertexAttributeInfo& other) const {
+        return (other.m_attributeLength == m_attributeLength) &&
+            (other.m_numericalType == m_numericalType) &&
+            (other.m_count == m_count);
+    }
+
+    bool operator!=(const VertexAttributeInfo& other) const {
+        return !(*this == other);
+    }
+
+    size_t m_attributeLength; // e.g., vec3 vs vec4
+    NumericalType m_numericalType; // e.g., vec3i vs vec3
+    size_t m_count; // Number of attributes used, e.g., 3 for vec3 if vertices, normals, tangents used
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/// @struct VertexAttributeLayout
+/// @brief Layout for describing vertex attributesfor serialization, in case format changes
+struct VertexAttributesLayout {
+    std::vector<VertexAttributeInfo> m_layout = { 
+        {2, VertexAttributeInfo::kFloat, 1}, 
+        {3, VertexAttributeInfo::kFloat, 3}, 
+        {4, VertexAttributeInfo::kFloat, 2},
+        {4, VertexAttributeInfo::kInt, 1}
+    };
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct VertexAttributes
 /// @brief Struct holding vertex attributes
 struct VertexAttributes {
-    /// @brief Vertex attribute data
-    std::vector<Vector3g> m_vertices;    // 'v'(xyz)
-    std::vector<Vector3g> m_normals;     // 'vn'
-    std::vector<Vector2g> m_texCoords;   // 'vt'(uv)
-    std::vector<Vector4g> m_colors;      // extension: vertex colors
-    std::vector<Vector3g> m_tangents;    // tangents for normal mapping
+    std::vector<Vector2> m_texCoords;   // 'vt'(uv)
 
-    // Skeletal animation
-    std::vector<Vector4i> m_miscInt; // used for IDs of the bones corresponding to the bone weights
-    std::vector<Vector4g> m_miscReal; // used for bone weights for skeletal animation
+    /// @brief Vertex attribute data
+    std::vector<Vector3> m_vertices;    // 'v'(xyz)
+    std::vector<Vector3> m_normals;     // 'vn'
+    std::vector<Vector3> m_tangents;    // tangents for normal mapping
+
+    std::vector<Vector4> m_colors;      // extension: vertex colors
+    std::vector<Vector4> m_miscReal; // (Skeletal animation) used for bone weights for skeletal animation
+    
+    std::vector<Vector4i> m_miscInt; // (Skeletal animation) used for IDs of the bones corresponding to the bone weights
 
     quint64 getSizeInBytes() const;
 

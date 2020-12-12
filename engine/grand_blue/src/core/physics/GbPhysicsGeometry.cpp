@@ -53,8 +53,10 @@ QJsonValue PhysicsGeometry::asJson() const
     return object;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-void PhysicsGeometry::loadFromJson(const QJsonValue & json)
+void PhysicsGeometry::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
+
     QJsonObject object = json.toObject();
     m_type = GeometryType(object.value("type").toInt());
 }
@@ -81,9 +83,9 @@ BoxGeometry::~BoxGeometry()
 {
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-Vector3 BoxGeometry::halfExtents() const
+Vector3d BoxGeometry::halfExtents() const
 {
-    return PhysicsManager::toVec3(m_box.halfExtents);
+    return PhysicsManager::toVector3d(m_box.halfExtents);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
 QJsonValue BoxGeometry::asJson() const
@@ -96,8 +98,10 @@ QJsonValue BoxGeometry::asJson() const
     return object;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-void BoxGeometry::loadFromJson(const QJsonValue & json)
+void BoxGeometry::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
+
     PhysicsGeometry::loadFromJson(json);
     QJsonObject object = json.toObject();
     float hx = object.value("hx").toDouble();
@@ -135,8 +139,10 @@ QJsonValue SphereGeometry::asJson() const
     return object;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-void SphereGeometry::loadFromJson(const QJsonValue & json)
+void SphereGeometry::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
+
     PhysicsGeometry::loadFromJson(json);
     QJsonObject object = json.toObject();
     m_sphere = physx::PxSphereGeometry(object.value("radius").toDouble());
@@ -164,8 +170,9 @@ QJsonValue PlaneGeometry::asJson() const
     return object;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-void PlaneGeometry::loadFromJson(const QJsonValue & json)
+void PlaneGeometry::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context);
     PhysicsGeometry::loadFromJson(json);
 }
 

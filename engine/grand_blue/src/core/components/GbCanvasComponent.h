@@ -11,7 +11,7 @@
 #include <QSize>
 
 // Project
-#include "GbCamera.h"
+#include "GbCameraComponent.h"
 #include "../mixins/GbRenderable.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -64,8 +64,9 @@ public:
     /// @brief Create the draw commands for the canvas component
     void createDrawCommands(
         std::vector<std::shared_ptr<DrawCommand>>& outDrawCommands,
-        Camera& camera,
-        ShaderProgram& shaderProgram);
+        SceneCamera& camera,
+        ShaderProgram& shaderProgram,
+        ShaderProgram* prepassProgram = nullptr);
 
     void addGlyph(const std::shared_ptr<Glyph>& glyph);
     void removeGlyph(const Glyph& glyph);
@@ -129,7 +130,7 @@ public:
     virtual QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 

@@ -16,7 +16,6 @@
 
 // Internal
 #include "../GbGLFunctions.h"
-#include "GbRenderers.h"
 #include "GbSortKey.h"
 #include "GbRenderContext.h"
 
@@ -34,10 +33,12 @@ class UndoCommand;
 struct SortingLayer;
 class Texture;
 class Material;
-class Camera;
+class AbstractCamera;
 class ShaderProgram;
 class RenderCommand;
 class DrawCommand;
+class SceneCamera;
+//class DrawShadowMapCommand;
 
 namespace View {
     class GLWidget;
@@ -50,6 +51,7 @@ namespace View {
 struct RenderFrameState {
     enum RenderStage {
         kDepthPrepass,
+        kShadowMapping,
         kRender
     };
 
@@ -66,7 +68,8 @@ struct RenderFrameState {
     }
 
     SortKey m_lastRenderedKey;
-    Camera* m_camera = nullptr;
+    AbstractCamera* m_camera = nullptr;
+    ShaderProgram* m_shaderProgram = nullptr;
     RenderStage m_stage = kDepthPrepass;
     QFlags<RenderActionFlag> m_actionFlags;
     int m_previousPlayMode = -1;
@@ -87,9 +90,20 @@ public:
 
     enum LightingMode {
         kForward, // Most basic
-        kForwardDepthPass, // Forward rendering, with a depth pre-pass to avoid rendering occluded geometry
-        kDeferred, // TODO: More complicated, deferred rendering!
-        kForwardPlus // TODO: An alternative approach (may need compute shaders) 
+        kDeferred // TODO: More complicated, deferred rendering!
+    };
+
+    // Tiled forward shading is sometimes also referred to as Forward+
+    // See: http://www.aortiz.me/2018/12/21/CG.html#tiled-shading--forward
+
+    // For forward depth pass, need to be able to preserve glPosition as well as discards in frag shader,
+    // while minimizing performance impact of the shader. Right now, the same shader is used
+    // for both passes, which is not great
+    enum LightingFlag {
+        kClustered = 1 << 0, // Perform light-culling using clustered approach
+        kDepthPrePass = 1 << 1, // FIXME: TODO: Simplify pre-pass so that actually helps performance
+        kDynamicShadows = 1 << 2, // Whether or not to allow shadow casting
+        kSSAO = 1 << 3 // Whether or not to perform SSAO
     };
 
 	/// @}
@@ -107,6 +121,8 @@ public:
     /// @name Properties
     /// @{
 
+    QFlags<LightingFlag>& lightingFlags() { return m_lightingFlags; }
+
     View::GLWidget* widget() { return m_widget; }
     const View::GLWidget* widget() const { return m_widget; }
 
@@ -122,8 +138,25 @@ public:
 	/// @name Public methods
 	/// @{
 
-    /// @brief Return prepass shader
-    std::shared_ptr<ShaderProgram> prepassShader() const;
+    /// @brief Return default prepass shader
+    /// @details Unused, since text doesn't like it
+    //std::shared_ptr<ShaderProgram> getDefaultPrepassShader() const;
+
+    /// @brief Return SSAO shader
+    std::shared_ptr<ShaderProgram> getSSAOShader() const;
+    std::shared_ptr<ShaderProgram> getSSAOBlurShader() const;
+
+    /// @brief Return cluster grid generation compute shader
+    std::shared_ptr<ShaderProgram> getClusterGridShader() const;
+
+    /// @brief Return light culling compute shader
+    std::shared_ptr<ShaderProgram> getLightCullingShader() const;
+
+    /// @brief Return active cluster compute shader
+    std::shared_ptr<ShaderProgram> getActiveClusterShader() const;
+
+    /// @brief Return active cluster compression compute shader
+    std::shared_ptr<ShaderProgram> getActiveClusterCompressShader() const;
 
     /// @brief Render commands for the current frame
     std::vector<std::shared_ptr<RenderCommand>>& renderCommands() { return m_renderCommands; }
@@ -145,6 +178,8 @@ public:
 
     /// @brief Add a render command to the renderer
     void addRenderCommand(const std::shared_ptr<RenderCommand>& command);
+    void addShadowMapCommand(const std::shared_ptr<DrawCommand>& command);
+
 
 	/// @}
 
@@ -155,6 +190,7 @@ protected:
 
 	friend class View::GLWidget;
     friend class Viewport;
+    friend class Camera;
     friend class SceneCommand;
     friend class AddScenarioCommand;
     friend class AddSceneCommand;
@@ -169,6 +205,9 @@ protected:
 	/// @name Protected methods
 	/// @{
 
+    /// @brief SSAO pass
+    void ssaoPass(SceneCamera& camera);
+
     /// @brief Set global GL settings
     void initializeGlobalSettings();
 
@@ -181,13 +220,20 @@ protected:
 	/// @name Protected members
 	/// @{
 
-    LightingMode m_lightingMode = kForwardDepthPass;
+    LightingMode m_lightingMode = kForward;
+    QFlags<LightingFlag> m_lightingFlags = kDepthPrePass | kClustered | kDynamicShadows | kSSAO;
 
     /// @brief Vector of current render commands to iterate over
     std::vector<std::shared_ptr<RenderCommand>> m_renderCommands;
 
+    /// @brief Vector of current commands to draw to shadow map
+    std::vector<std::shared_ptr<DrawCommand>> m_shadowMapCommands;
+
     /// @brief Cache of render commands being updated
     std::vector<std::shared_ptr<RenderCommand>> m_receivedCommands;
+
+    /// @brief Cache of commands to draw to shadow map
+    std::vector<std::shared_ptr<DrawCommand>> m_receivedShadowMapCommands;
 
     /// @brief Struct containing information about current rendering state
     RenderFrameState m_renderState;

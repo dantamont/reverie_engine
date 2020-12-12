@@ -54,7 +54,7 @@ void PhysicsGeometryWidget::initializeWidgets()
 {
     auto fab = prefab();
     if (!fab) return;
-    std::shared_ptr<PhysicsGeometry> geometry = fab->geometry();
+    const std::shared_ptr<PhysicsGeometry>& geometry = fab->geometry();
 
     // Create new geometry type widget
     PhysicsGeometry::GeometryType geometryType = geometry->getType();
@@ -139,7 +139,9 @@ void PhysicsGeometryWidget::initializeConnections()
         pauseSimulation();
 
         double width = text.toDouble();
-        std::static_pointer_cast<BoxGeometry>(prefab()->geometry())->setHx(width);
+        std::shared_ptr<PhysicsShapePrefab> fab = prefab();
+        std::static_pointer_cast<BoxGeometry>(fab->geometry())->setHx(width);
+        fab->updateInstances();
 
         resumeSimulation();
     }
@@ -150,7 +152,9 @@ void PhysicsGeometryWidget::initializeConnections()
         pauseSimulation();
 
         double width = text.toDouble();
+        std::shared_ptr<PhysicsShapePrefab> fab = prefab();
         std::static_pointer_cast<BoxGeometry>(prefab()->geometry())->setHy(width);
+        fab->updateInstances();
 
         resumeSimulation();
     }
@@ -161,7 +165,9 @@ void PhysicsGeometryWidget::initializeConnections()
         pauseSimulation();
 
         double width = text.toDouble();
+        std::shared_ptr<PhysicsShapePrefab> fab = prefab();
         std::static_pointer_cast<BoxGeometry>(prefab()->geometry())->setHz(width);
+        fab->updateInstances();
 
         resumeSimulation();
     }
@@ -173,7 +179,9 @@ void PhysicsGeometryWidget::initializeConnections()
         pauseSimulation();
 
         double width = text.toDouble();
+        std::shared_ptr<PhysicsShapePrefab> fab = prefab();
         std::static_pointer_cast<SphereGeometry>(prefab()->geometry())->setRadius(width);
+        fab->updateInstances();
 
         resumeSimulation();
     }
@@ -190,7 +198,7 @@ void PhysicsGeometryWidget::layoutWidgets()
     m_mainLayout->addWidget(m_typeWidget);
 
     // Box widget
-    m_boxWidget = new QWidget();
+    m_boxWidget = new QWidget(this);
     QHBoxLayout* boxLayout = new QHBoxLayout();
     boxLayout->addWidget(m_hxLabel);
     boxLayout->addWidget(m_hxLineEdit);
@@ -204,7 +212,7 @@ void PhysicsGeometryWidget::layoutWidgets()
     m_boxWidget->setLayout(boxLayout);
 
     // Sphere widget
-    m_sphereWidget = new QWidget();
+    m_sphereWidget = new QWidget(this);
     QHBoxLayout* sphereLayout = new QHBoxLayout();
     sphereLayout->addWidget(m_radLabel);
     sphereLayout->addWidget(m_radiusLineEdit);
@@ -215,7 +223,7 @@ void PhysicsGeometryWidget::layoutWidgets()
     m_stackedLayout = new QStackedLayout();
     m_stackedLayout->addWidget(m_boxWidget);
     m_stackedLayout->addWidget(m_sphereWidget);
-    m_stackedLayout->addWidget(new QWidget()); // For plane
+    m_stackedLayout->addWidget(new QWidget(this)); // For plane
 
     m_mainLayout->addLayout(m_stackedLayout);
     switchGeometry(prefab()->geometry()->getType());
@@ -354,7 +362,7 @@ void PhysicsShapeWidget::initializeConnections()
 
         // Set widget's current prefab
         const QString& prefabName = m_prefabs->itemText(index);
-        const auto& prefab = PhysicsManager::shapes().at(prefabName);
+        const auto& prefab = PhysicsManager::ShapePrefabs().at(prefabName);
 
         setCurrentPrefab(prefab);
 
@@ -368,13 +376,13 @@ void PhysicsShapeWidget::initializeConnections()
         [this]() {
         pauseSimulation();
 
-        const QString& text = m_prefabs->lineEdit()->text();
+        GString text = m_prefabs->lineEdit()->text();
         if (currentPrefab()->getName() == "defaultShape") {
             logInfo("Ignoring modification of default shape");
         }
         else {
             // Remove and re-add to static map
-            if (text != currentPrefab()->getName() && !Map::HasKey(PhysicsManager::shapes(), text)) {
+            if (text != currentPrefab()->getName() && !Map::HasKey(PhysicsManager::ShapePrefabs(), text)) {
                 PhysicsManager::RenameShape(currentPrefab(), text);
                 repopulatePrefabs();
             }
@@ -389,7 +397,7 @@ void PhysicsShapeWidget::initializeConnections()
         pauseSimulation();
 
         QJsonObject json = PhysicsManager::DefaultShape()->asJson().toObject();
-        json["name"] = Uuid::UniqueName();
+        json["name"] = Uuid::UniqueName().c_str();
         PhysicsShapePrefab::create(json);
         m_prefabs->addItem(SAIcon("cubes"), json["name"].toString());
 
@@ -461,7 +469,7 @@ void PhysicsShapeWidget::repopulatePrefabs(bool block)
     int count = 0;
     int index = 0;
     m_prefabs->clear();
-    for (const std::pair<QString, std::shared_ptr<PhysicsShapePrefab>>& prefabPair : PhysicsManager::shapes()) {
+    for (const std::pair<QString, std::shared_ptr<PhysicsShapePrefab>>& prefabPair : PhysicsManager::ShapePrefabs()) {
         m_prefabs->addItem(SAIcon("cubes"), prefabPair.second->getName());
         if (prefabPair.second->getUuid() == currentPrefab()->getUuid())
             index = count;
@@ -479,7 +487,7 @@ void PhysicsShapeWidget::repopulatePrefabs(bool block)
 void PhysicsShapeWidget::repopulateMaterials()
 {
     m_materialWidget->clear();
-    for (const auto& material : PhysicsManager::materials()) {
+    for (const auto& material : PhysicsManager::Materials()) {
         m_materialWidget->addItem(SAIcon("chess-board"), material.second->getName());
     }
 }

@@ -87,7 +87,6 @@ protected slots:
     void clearScene();
 
     /// @brief What to do on new scene object selection
-    void selectSceneObject(const Uuid& sceneID, const Uuid& sceneObjectID);
     void selectSceneObject(const Uuid& sceneObjectID);
 
     /// @brief Clear scene object and components
@@ -170,6 +169,8 @@ protected:
     QAction* m_addCanvasComponent;
     QAction* m_addCharControllerComponent;
     QAction* m_addCubeMapComponent;
+    QAction* m_addAudioSourceComponent;
+    QAction* m_addAudioListenerComponent;
 
     /// @brief Actions to add scene components
     QAction* m_addPhysicsSceneComponent;

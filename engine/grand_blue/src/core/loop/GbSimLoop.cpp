@@ -64,6 +64,7 @@ void SimulationLoop::update()
     QMutexLocker lock(&m_uiMutex);
 
     // Get delta time
+    // TODO: Support nSecs if necessary, times less than 1ms are not counted
     unsigned long deltaMs = m_updateTimer.restart();
     m_fixedDeltaTime += deltaMs;
     m_elapsedTime += deltaMs;
@@ -75,9 +76,6 @@ void SimulationLoop::update()
 
     // Update Input (polling)
     m_engine->widgetManager()->mainGLWidget()->inputHandler().update(deltaMs);
-
-    // Run processes, user scripts, e.g. update AI
-    m_processManager->updateProcesses(deltaMs);
 
     // Update debug manager
     if(m_playMode == kDebug) m_engine->debugManager()->step(deltaMs);
@@ -99,6 +97,9 @@ void SimulationLoop::update()
         m_fixedDeltaTime = 0;
         logWarning("Warning, loop took more than five seconds, skipping fixed update");
     }
+
+    // Run processes, user scripts, e.g. update AI
+    m_processManager->updateProcesses(deltaMs);
 
     // Perform late update 
     // Scripted processes know to perform lateUpdate the second time around

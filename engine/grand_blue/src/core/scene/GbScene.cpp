@@ -8,17 +8,17 @@
 #include "../containers/GbColor.h"
 #include "../resource/GbResourceCache.h"
 
-#include "../components/GbCamera.h"
+#include "../components/GbCameraComponent.h"
 #include "../components/GbCanvasComponent.h"
 #include "../components/GbLightComponent.h"
 #include "../components/GbShaderComponent.h"
 #include "../components/GbPhysicsSceneComponent.h"
 #include "../components/GbCubeMapComponent.h"
 
-#include "../rendering/renderer/GbRenderers.h"
 #include "../rendering/renderer/GbMainRenderer.h"
 #include "../rendering/renderer/GbRenderCommand.h"
 
+#include "../rendering/lighting/GbShadowMap.h"
 #include "../rendering/view/GbRenderProjection.h"
 #include "../rendering/shaders/GbShaders.h"
 
@@ -71,6 +71,29 @@ Scene::~Scene()
     clear();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+const AABB& Scene::getVisibleFrustumBounds() const
+{
+    return m_viewBounds;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Scene::updateVisibleFrustumBounds()
+{
+    AABBData& sceneFrustumBounds = m_viewBounds.boxData();
+    for (CameraComponent* camera : m_cameras) {
+        // Get camera info
+        const SceneCamera& sc = camera->camera();
+        const Matrix4x4g& cameraViewMatrix = sc.getViewMatrix();
+        const Matrix4x4g& cameraProjectionMatrix = sc.renderProjection().projectionMatrix();
+
+        // Get bounds of camera's view frustum
+        AABBData frustumBounds = Frustum::FrustomBoundingBox(cameraViewMatrix, cameraProjectionMatrix);
+        //std::vector<Vector3> points;
+        //frustumBounds.getPoints(points);
+        //sceneFrustumBounds.resize(points);
+        sceneFrustumBounds.resize(std::vector<Vector4>{frustumBounds.m_min, frustumBounds.m_max});
+    }
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Scene::createDrawCommands(MainRenderer & renderer)
 {
     SimulationLoop::PlayMode mode = m_engine->simulationLoop()->getPlayMode();
@@ -87,6 +110,12 @@ void Scene::createDrawCommands(MainRenderer & renderer)
         m_engine->debugManager()->camera()->createDebugDrawCommands(*this, renderer);
     }
 
+    // Create shadow map draw commands
+    std::vector<ShadowMap*>& shadowMaps = renderer.renderContext().lightingSettings().shadowMaps();
+    size_t numShadowMaps = renderer.renderContext().lightingSettings().shadowMaps().size();
+    for (size_t i = 0; i < numShadowMaps; i++) {
+        shadowMaps[i]->createDrawCommands(*this, renderer);
+    }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Scene::addCamera(CameraComponent * camera)
@@ -141,10 +170,12 @@ CubeMapComponent * Scene::getCubeMap(const Uuid & uuid)
         [&](CubeMapComponent* cubeMap) {
         return cubeMap->getUuid() == uuid;
     });
-    if (it == m_cubeMaps.end())
-        throw("Error, cubemap not found");
-    
-    return *it;
+    if (it == m_cubeMaps.end()) {
+        return nullptr;
+    }
+    else {
+        return *it;
+    }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 std::shared_ptr<PhysicsScene> Scene::physics()
@@ -171,6 +202,11 @@ Scenario * Scene::scenario() const
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 std::vector<CameraComponent*>& Scene::cameras()
+{
+    return m_cameras;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+const std::vector<CameraComponent*>& Scene::cameras() const
 {
     return m_cameras;
 }
@@ -254,7 +290,7 @@ std::shared_ptr<SceneObject> Scene::getSceneObject(const Uuid & uuid) const
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<SceneObject> Scene::getSceneObjectByName(const QString & name) const
+std::shared_ptr<SceneObject> Scene::getSceneObjectByName(const GString & name) const
 {
     // TODO: Maybe change this to use SceneObject::get static method instead
 
@@ -319,27 +355,27 @@ void Scene::removeObject(const std::shared_ptr<SceneObject>& object, bool eraseF
     }
 
     if (eraseFromNodeMap) {
-        DagNode::eraseFromNodeMap(object->getUuid());
+        SceneObject::EraseFromNodeMap(object->getUuid());
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Scene::clear()
 {
     // Clear scene objects
-    for (auto object : m_topLevelSceneObjects) {
+    for (const std::shared_ptr<SceneObject>& object : m_topLevelSceneObjects) {
         //logInfo("removing parent " + object->getName());
 
         // Remove all children
-        for (auto child : object->children()) {
+        for (const std::shared_ptr<SceneObject>& child : object->children()) {
             //logInfo("removing child " + object->getName());
 
             child->abortScriptedProcesses();
-            DagNode::eraseFromNodeMap(child->getUuid());
+            SceneObject::EraseFromNodeMap(child->getUuid());
         }
 
         // Remove scene object
         object->abortScriptedProcesses();
-        DagNode::eraseFromNodeMap(object->getUuid());
+        SceneObject::EraseFromNodeMap(object->getUuid());
     }
     m_topLevelSceneObjects.clear();
     m_cameras.clear();
@@ -359,8 +395,10 @@ void Scene::clear()
 void Scene::bindUniforms(DrawCommand& command)
 {
     // Set uniforms (just ambient color for now)
-    for (const auto& uniformPair : m_uniforms) {
-        command.setUniform(uniformPair.second);
+    for (const Uniform& uniform : m_uniforms) {
+        if (command.shaderProgram()->hasUniform(uniform.getName())) {
+            command.setUniform(uniform);
+        }
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -461,7 +499,7 @@ QJsonValue Scene::asJson() const
 {
     QJsonObject object = QJsonObject();
 
-    object.insert("name", m_name);
+    object.insert("name", m_name.c_str());
 
     // Serialize scene objects
     QJsonArray sceneObjects;
@@ -474,8 +512,8 @@ QJsonValue Scene::asJson() const
 
     // Serialize uniforms used by the scene
     QJsonObject uniforms;
-    for (const auto& uniformPair : m_uniforms) {
-        uniforms.insert(uniformPair.first, uniformPair.second.asJson());
+    for (const Uniform& uniform : m_uniforms) {
+        uniforms.insert(uniform.getName(), uniform.asJson());
     }
     object.insert("uniforms", uniforms);
 
@@ -494,13 +532,15 @@ QJsonValue Scene::asJson() const
 
     // Serialize default skybox
     if(m_defaultCubeMap)
-        object.insert("defaultSkybox", m_defaultCubeMap->getUuid().asString());
+        object.insert("defaultSkybox", m_defaultCubeMap->getUuid().asQString());
 
     return object;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void Scene::loadFromJson(const QJsonValue & json)
+void Scene::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
+
     // Clear any existing objects from scene
     clear();
 
@@ -519,7 +559,7 @@ void Scene::loadFromJson(const QJsonValue & json)
     const QJsonObject& uniforms = object["uniforms"].toObject();
     for (const auto& key : uniforms.keys()) {
         QJsonObject uniformObject = uniforms.value(key).toObject();
-        m_uniforms[key] = Uniform(uniformObject);
+        m_uniforms.push_back(Uniform(uniformObject));
     }
 
     // Add scene components
@@ -593,6 +633,10 @@ void Scene::initialize()
 {
     // Set unique name
     m_name = m_uuid.asString();
+
+    // Removed, not necessary when explicitly binding in GLSL
+    // Set shadow map uniform
+    //m_uniforms.push_back(Uniform("shadowMap", int(0)));
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Scene::postConstruction()

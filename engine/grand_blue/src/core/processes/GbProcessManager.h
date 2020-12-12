@@ -18,6 +18,8 @@
 // Internal
 #include "../../core/GbManager.h"
 #include "GbProcess.h"
+#include "GbProcessQueue.h"
+#include "GbProcessThread.h"
 #include "../containers/GbSortingLayer.h"
 
 namespace Gb {
@@ -31,20 +33,11 @@ class CoreEngine;
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Class definitions
 /////////////////////////////////////////////////////////////////////////////////////////////
-/// @struct CompareBySortingLayer
-/// @brief Struct containing a comparator for sorting scene objects list by sorting layer
-struct CompareBySortingLayer {
-    bool operator()(const StrongProcessPtr& a, const StrongProcessPtr& b) const;
-};
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////
 /// @brief ProcessManager class
-class ProcessManager: public Manager, public Serializable {
+class ProcessManager: public Manager, public ProcessQueue, public Serializable {
     Q_OBJECT
 public:
-    typedef std::multiset<StrongProcessPtr, CompareBySortingLayer> ProcessSet;
+    typedef std::vector<StrongProcessPtr> ProcessVec;
 
 	//--------------------------------------------------------------------------------------------
 	/// @name Constructors/Destructor
@@ -57,17 +50,6 @@ public:
     /// @name Properties
     /// @{
 
-    /// @property Sorting Layers
-    const std::unordered_map<QString, SortingLayer*>& sortingLayers() const { return m_sortingLayers; }
-
-    /// @property deltaMs
-    unsigned long getDeltaMs() const { 
-        return m_deltaMs;
-    }
-    void setDeltaMs(unsigned long delta) {
-        m_deltaMs = delta;
-    }
-
     /// @property ThreadCount
     int threadCount() const { return m_threadPool->activeThreadCount(); }
 
@@ -77,11 +59,10 @@ public:
     /// @property ThreadPool
     QThreadPool* getThreadPool() { return m_threadPool; }
 
-    /// @property ProcessCount
-    unsigned int getProcessCount() const { return m_processes.size(); }
-
     /// @property number of load processes
     unsigned int loadProcessCount();
+
+    ProcessThread& animationThread() { return m_dedicatedThreads[(int)DedicatedThreadType::kAnimation]; }
 
     /// @}
 
@@ -90,34 +71,16 @@ public:
 	/// @{
 
     /// @brief Called on destruction, clears all processes
-    void clearAllProcesses();
-
-    /// @brief Refresh order of processes to reflect sorting layer changes
-    void refreshProcessOrder();
-
-    /// @brief Add a new sorting layer
-    void addSortingLayer();
-
-    /// @brief Whether the sorting layer with the given label exists or not
-    bool hasSortingLayer(const QString& label) const;
-
-    /// @brief Remove a sorting layer
-    void removeSortingLayer(const QString& label);
-
-    /// @brief Updates all attached processes
-    void updateProcesses(unsigned long deltaMs);
-
-    /// @brief Fixed-updates all attached processes
-    void fixedUpdateProcesses(unsigned long deltaMs);
+    virtual void clearAllProcesses() override;
 
     /// @brief Attach a process to the process manager
-    WeakProcessPtr attachProcess(StrongProcessPtr process, bool initialize=false); 
+    virtual WeakProcessPtr attachProcess(StrongProcessPtr process, bool initialize=false); 
 
     /// @brief Reattach a process (e.g., when the run order has changed)
-    WeakProcessPtr reattachProcess(StrongProcessPtr process);
+    virtual WeakProcessPtr reattachProcess(StrongProcessPtr process);
     
     /// @brief Aborts all processes
-    void abortAllProcesses(bool immediate);
+    virtual void abortAllProcesses(bool immediate) override;
 
     /// @brief Called after construction
     virtual void postConstruction() override final;
@@ -143,7 +106,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -167,10 +130,10 @@ protected:
     void initializeThreads(unsigned int threadCount);
 
     /// @brief Send log event across threads
-    void logMessage(const QString& message, LogLevel logLevel = LogLevel::Info);
+    void logMessage(const GString& message, LogLevel logLevel = LogLevel::Info);
 
     /// @brief Abort a given process
-    void abortProcess(StrongProcessPtr process, bool immediate);
+    virtual void abortProcess(StrongProcessPtr process, bool immediate);
 
     /// @}
 
@@ -178,26 +141,14 @@ protected:
     /// @name Protected Members
     /// @{
 
-    /// @brief Map of sorting layers
-    std::unordered_map<QString, SortingLayer*> m_sortingLayers;
-
-    /// @brief Whether or not to run the process manager
-    bool m_runProcesses;
-
-    /// @brief Time since last update loop
-    unsigned long m_deltaMs;
-
     /// @brief Mutex for getting thread process queue
     QMutex m_threadedProcessMutex;
 
-    /// @brief Queue for temporarily staging processes to run
-    ProcessSet m_processQueue;
-
-    /// @brief All unthreaded processes, iterated over in simulation loop
-    ProcessSet m_processes;
-
     /// @brief All threaded processes
-    std::vector<StrongProcessPtr> m_threadedProcesses;
+    ProcessVec m_threadedProcesses;
+
+    /// @brief Dedicated process threads
+    std::array<ProcessThread, (size_t)DedicatedThreadType::kNUM_DEDICATED_THREADS> m_dedicatedThreads;
 
     /// @brief Threadpool for managing threads for any threaded processes
     QThreadPool* m_threadPool;

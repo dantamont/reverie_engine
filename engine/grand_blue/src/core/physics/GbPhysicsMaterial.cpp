@@ -42,11 +42,11 @@ PhysicsMaterial::PhysicsMaterial(const QString& name,
 void PhysicsMaterial::addToManager(std::shared_ptr<PhysicsMaterial> mtl)
 {
     // TODO: See where empty material is being added
-    const QString& name = mtl->getName();
-    if (Map::HasKey(PhysicsManager::materials(), name)) {
+    const GString& name = mtl->getName();
+    if (Map::HasKey(PhysicsManager::Materials(), name)) {
         throw("Error, a material with this name already exists");
     }
-    PhysicsManager::materials().emplace(name, mtl);
+    PhysicsManager::Materials().emplace(name, mtl);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
 PhysicsMaterial::~PhysicsMaterial()
@@ -64,8 +64,10 @@ QJsonValue PhysicsMaterial::asJson() const
     return object;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-void PhysicsMaterial::loadFromJson(const QJsonValue & json)
+void PhysicsMaterial::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context);
+
     PhysicsBase::loadFromJson(json);
     QJsonObject object = json.toObject();
     float staticFriction = object.value("static_friction").toDouble();

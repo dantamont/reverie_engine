@@ -53,6 +53,8 @@ public:
         kCharacterController,
         kBoneAnimation,
         kCubeMap,
+        kAudioSource,
+        kAudioListener,
         MAX_COMPONENT_TYPE_VALUE
     };
 
@@ -64,7 +66,7 @@ public:
     /// @brief The required component types to create this component, and those incompatible
     struct Constraints {
         bool isEmpty() const { return m_constraints.size() == 0; }
-        std::unordered_map<ComponentType, bool> m_constraints;
+        tsl::robin_map<ComponentType, bool> m_constraints; // TODO: Make this a vector
     };
 
     static Constraints GetRequirements(ComponentType type);
@@ -167,7 +169,7 @@ public:
     virtual QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -185,7 +187,7 @@ protected:
     /// @{
 
     /// @brief Map of component requirements, indexed by type
-    static std::unordered_map<ComponentType, Constraints> TypeConstraints;
+    static tsl::robin_map<ComponentType, Constraints> TypeConstraints;
 
     /// @brief If component is to be attached to a scene rather than a scene object
     bool m_isSceneComponent;

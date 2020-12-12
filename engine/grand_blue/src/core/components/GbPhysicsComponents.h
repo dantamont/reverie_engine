@@ -16,6 +16,15 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 namespace Gb {
 
+/////////////////////////////////////////////////////////////////////////////////////////////
+// Macros
+/////////////////////////////////////////////////////////////////////////////////////////////
+#ifdef GB_USE_DOUBLE
+typedef double real_g;
+#else
+typedef float real_g;
+#endif
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Forward declarations
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -98,7 +107,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -181,8 +190,8 @@ public:
 
     /// @brief Move the object
     /// @note Gravity needs to be applied manually, since character controllers are kinematic
-    void move(const Vector<double, 3>& disp);
-    void setGravity(const Vector<float, 3>& gravity);
+    void move(const Vector<real_g, 3>& disp);
+    void setGravity(const Vector<real_g, 3>& gravity);
 
     /// @brief Enable this component
     virtual void enable() override;
@@ -200,7 +209,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 

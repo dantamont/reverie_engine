@@ -135,7 +135,7 @@ void PhysicsScene::fetchResults(bool block)
 Vector3f PhysicsScene::getGravity() const
 {
     if (m_pxScene) {
-        return PhysicsManager::toVec3(m_pxScene->getGravity()).asFloat();
+        return PhysicsManager::toVector3d(m_pxScene->getGravity()).asFloat();
     }
     return Vector3f();
 }
@@ -165,7 +165,7 @@ void PhysicsScene::removeActor(PhysicsActor * act)
 QJsonValue PhysicsScene::asJson() const
 {
     QJsonObject object;
-    QJsonValue g = PhysicsManager::toVec3(m_pxScene->getGravity()).asJson();
+    QJsonValue g = PhysicsManager::toVector3d(m_pxScene->getGravity()).asJson();
     object.insert("g", g);
     if (m_cctManager) {
         object.insert("cct", m_cctManager->asJson());
@@ -173,8 +173,10 @@ QJsonValue PhysicsScene::asJson() const
     return object;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-void PhysicsScene::loadFromJson(const QJsonValue & json)
+void PhysicsScene::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context);
+
     QJsonObject object = json.toObject();
     auto gravity = Vector3f(object.value("g"));
     setGravity(gravity);
@@ -218,7 +220,7 @@ void PhysicsScene::onDelete()
     }   
 }
 
-std::unordered_map<physx::PxActor*, Uuid> PhysicsScene::ActorMap;
+tsl::robin_map<physx::PxActor*, Uuid> PhysicsScene::ActorMap;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////

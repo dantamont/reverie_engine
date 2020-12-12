@@ -4,6 +4,8 @@
 #include "../../core/readers/GbJsonReader.h"
 #include "../../core/resource/GbResourceCache.h"
 
+#include "../../core/scene/GbScenario.h"
+
 #include "../GbWidgetManager.h"
 #include "../../GbMainWindow.h"
 
@@ -159,8 +161,8 @@ void ShaderTreeWidget::repopulate()
     clear();
 
     // Add shader presets
-    for (const std::pair<Uuid, std::shared_ptr<ShaderPreset>>& shaderPair : m_engine->resourceCache()->shaderPresets()) {
-        addItem(shaderPair.second.get());
+    for (const std::shared_ptr<ShaderPreset>& shaderPreset : m_engine->scenario()->settings().shaderPresets()) {
+        addItem(shaderPreset.get());
     }
 
     // Resize columns
@@ -202,7 +204,7 @@ void ShaderTreeWidget::initializeWidget()
         "Add a shader preset to the scenario",
         [this] {
         bool created;
-        m_engine->resourceCache()->getShaderPreset(Uuid::UniqueName("preset_"), created);
+        m_engine->scenario()->settings().getShaderPreset(Uuid::UniqueName("preset_"), created);
         if (!created) throw("Error, resource not created");
         repopulate();
     });
@@ -212,7 +214,7 @@ void ShaderTreeWidget::initializeWidget()
         "Remove shader preset from the scenario",
         [this] {
         // Add sorting layer
-        m_engine->resourceCache()->removeShaderPreset(currentContextItem()->shaderPreset()->getName());
+        m_engine->scenario()->settings().removeShaderPreset(currentContextItem()->shaderPreset()->getName());
         repopulate();
     });
 }

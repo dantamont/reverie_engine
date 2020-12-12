@@ -7,9 +7,9 @@
 #include "../rendering/shaders/GbShaders.h"
 #include "../components/GbCanvasComponent.h"
 #include "../components/GbTransformComponent.h"
-#include "../components/GbCamera.h"
+#include "../components/GbCameraComponent.h"
 #include "../scene/GbSceneObject.h"
-#include "../rendering/shaders/GbUniformBufferObject.h"
+#include "../rendering/buffers/GbUniformBufferObject.h"
 
 #include "GbLabel.h"
 #include "GbIcon.h"
@@ -122,7 +122,7 @@ QJsonValue Glyph::asJson() const
 
     // Get transform or owner scene object
     if (trackedObject()) {
-        object.insert("sceneObject", trackedObject()->getName());
+        object.insert("sceneObject", trackedObject()->getName().c_str());
     }
     else {
         object.insert("transform", m_transform->asJson());
@@ -146,8 +146,10 @@ QJsonValue Glyph::asJson() const
     return object;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void Glyph::loadFromJson(const QJsonValue & json)
+void Glyph::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
+
     QJsonObject object = json.toObject();
     Renderable::loadFromJson(json);
 
@@ -176,7 +178,7 @@ void Glyph::loadFromJson(const QJsonValue & json)
 
     // Load coordinates
     if (object.contains("coordinates")) {
-        m_coordinates = Vector2g(object.value("coordinates"));
+        m_coordinates = Vector2(object.value("coordinates"));
     }
 
     // Load flags
@@ -222,8 +224,8 @@ void Glyph::bindUniforms(Gb::ShaderProgram& shaderProgram)
     case kGUI:
     {
         // Cache previous uniforms
-        Vec::EmplaceBack(m_uniformCache, std::move(cameraBuffer->getUniformValue("viewMatrix")));
-        Vec::EmplaceBack(m_uniformCache, std::move(cameraBuffer->getUniformValue("projectionMatrix")));
+        Vec::EmplaceBack(m_uniformCache, cameraBuffer->getUniformValue("viewMatrix"));
+        Vec::EmplaceBack(m_uniformCache, cameraBuffer->getUniformValue("projectionMatrix"));
 
         m_canvas->renderProjection().setProjectionType(RenderProjection::kOrthographic);
         shaderProgram.setUniformValue("perspectiveInverseScale", Matrix3x3g());
@@ -267,8 +269,9 @@ void Glyph::releaseUniforms(Gb::ShaderProgram& shaderProgram)
     auto cameraBuffer = UBO::getCameraBuffer();
     if (!cameraBuffer) return;
     bool updateShader = false;
+    ShaderProgram::UniformInfoIter iter;
     for (const Uniform& uniform : m_uniformCache) {
-        if (shaderProgram.hasUniform(uniform.getName())) {
+        if (shaderProgram.hasUniform(uniform.getName(), iter)) {
             updateShader = true;
             shaderProgram.setUniformValue(uniform);
         }

@@ -62,7 +62,7 @@ bool ScriptJsonWidget::isValidObject(const QJsonObject & object)
     // Check that this label is not in use already
     QString label = object["label"].toString();
     if (!m_engine->processManager()->hasSortingLayer(label)) return true;
-    if (m_engine->processManager()->sortingLayers().at(label)->getUuid() == sortingLayer()->getUuid())
+    if (m_engine->processManager()->getSortingLayer(label)->getUuid() == sortingLayer()->getUuid())
         return true;
     else
         return false;
@@ -175,8 +175,8 @@ void ScriptOrderTreeWidget::repopulate()
     // Reorder map of sorting layers
     //const std::map<QString, SortingLayer*>& sortingLayers = pm->sortingLayers();
     m_sortedLayers.clear();
-    for (const std::pair<QString, SortingLayer*>& sortPair : pm->sortingLayers()) {
-        m_sortedLayers.emplace(sortPair.second->getOrder(), sortPair.second);
+    for (SortingLayer* sortingLayer : pm->sortingLayers()) {
+        m_sortedLayers.emplace(sortingLayer->getOrder(), sortingLayer);
     }
 
     // Add sorting layers to widget
@@ -313,7 +313,36 @@ void ScriptOrderTreeWidget::initializeItem(QTreeWidgetItem * item)
 {
     static_cast<ScriptOrderItem*>(item)->setWidget();
 }
+#ifndef QT_NO_CONTEXTMENU
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void ScriptOrderTreeWidget::contextMenuEvent(QContextMenuEvent * event)
+{
+    m_currentItems[kContextClick] = itemAt(event->pos());
+    // Create menu
+    QMenu menu(this);
 
+    // Add actions to the menu
+    ScriptOrderItem* item = static_cast<ScriptOrderItem*>(itemAt(event->pos()));
+    if (item) {
+        // If sorting layer is default layer, do not allow deletion
+        if (item->sortingLayer()->getName() != "default") {
+            m_currentItems[kContextClick] = item;
+            for (QAction* action : m_actions[kItemSelected]) {
+                menu.addAction(action);
+            }
+        }
+    }
+    else {
+        m_currentItems[kContextClick] = nullptr;
+        for (QAction* action : m_actions[kNoItemSelected]) {
+            menu.addAction(action);
+        }
+    }
+
+    // Display menu at click location
+    menu.exec(event->globalPos());
+}
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 }

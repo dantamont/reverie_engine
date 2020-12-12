@@ -5,9 +5,8 @@
 #include "../../core/rendering/shaders/GbShaders.h"
 
 #include "../../core/scene/GbScenario.h"
-#include "../../core/components/GbCamera.h"
+#include "../../core/components/GbCameraComponent.h"
 #include "../../core/loop/GbSimLoop.h"
-#include "../../core/rendering/renderer/GbRenderers.h"
 #include "../../core/rendering/renderer/GbMainRenderer.h"
 
 namespace Gb { 
@@ -16,7 +15,8 @@ namespace View {
 /////////////////////////////////////////////////////////////////////////////////////////////
 GLWidget::GLWidget(const QString& name, CoreEngine* engine,
     QWidget * parent) :
-    AbstractService(name),
+    //AbstractService(name),
+    Object(name),
     QOpenGLWidget(parent),
     m_engine(engine),
     m_inputHandler(this)
@@ -42,7 +42,7 @@ GLWidget::~GLWidget()
 void GLWidget::addRenderProjection(RenderProjection * rp)
 {
     m_renderProjections.push_back(rp);
-    rp->updateAspectRatio(width(), height());
+    rp->resizeProjection(width(), height());
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 void GLWidget::clear()
@@ -79,6 +79,7 @@ void GLWidget::resizeGL(int w, int h)
 {
     Q_UNUSED(w);
     Q_UNUSED(h);
+    resizeProjections(w, h);
     if (m_engine->scenario()) {
         m_renderer->requestResize();
         m_renderer->render();
@@ -95,14 +96,14 @@ void GLWidget::paintGL()
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void GLWidget::updateAspectRatios(int width, int height) {
+void GLWidget::resizeProjections(int width, int height) {
     for (const auto& rp : m_renderProjections) {
-        rp->updateAspectRatio(width, height);
+        rp->resizeProjection(width, height);
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void GLWidget::updateAspectRatios() {
-    updateAspectRatios(width(), height());
+void GLWidget::resizeProjections() {
+    resizeProjections(width(), height());
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 void GLWidget::contextMenuEvent(QContextMenuEvent * event)
@@ -156,8 +157,9 @@ void GLWidget::mouseReleaseEvent(QMouseEvent * event)
 /////////////////////////////////////////////////////////////////////////////////////////////
 void GLWidget::initializeConnections()
 {
-    connect(this, &GLWidget::resized, this, static_cast<void (GLWidget::*)(int w, int h)>(&GLWidget::updateAspectRatios));
-    connect(m_engine, &CoreEngine::scenarioNeedsRedraw, this, static_cast<void (GLWidget::*)()>(&GLWidget::updateAspectRatios));
+    // Why wasn't I just doing this in onResize?
+    //connect(this, &GLWidget::resized, this, static_cast<void (GLWidget::*)(int w, int h)>(&GLWidget::resizeProjections));
+    connect(m_engine, &CoreEngine::scenarioNeedsRedraw, this, static_cast<void (GLWidget::*)()>(&GLWidget::resizeProjections));
 }
 
 

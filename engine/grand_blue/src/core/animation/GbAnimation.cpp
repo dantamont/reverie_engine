@@ -17,6 +17,7 @@
 #include "../rendering/shaders/GbShaders.h"
 #include "../rendering/renderer/GbRenderCommand.h"
 
+#include "../animation/GbBlendQueue.h"
 
 //#define NUMBER_OF_ANIMATION_THREADS 3
 #define NUMBER_OF_ANIMATION_THREADS std::thread::hardware_concurrency() - 2
@@ -35,58 +36,42 @@ QJsonValue AnimationSettings::asJson() const
     object["blendWeight"] = m_blendWeight;
     object["tickOffset"] = m_tickOffset;
     object["timeOffsetSec"] = m_timeOffsetSec;
+    object["numPlays"] = m_numPlays;
 
     return object;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void AnimationSettings::loadFromJson(const QJsonValue & json)
+void AnimationSettings::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
+
     QJsonObject object = json.toObject();
     m_speedFactor = object["speedFactor"].toDouble();
     m_blendWeight = object["blendWeight"].toDouble();
     m_tickOffset = object["tickOffset"].toInt();
     m_timeOffsetSec = object["timeOffsetSec"].toDouble();
+    m_numPlays = json["numPlays"].toInt(-1);
 }
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
-// BlendPose 
+// AnimationPlayData
 /////////////////////////////////////////////////////////////////////////////////////////////
-void BlendPose::blend()
+AnimationPlayData::AnimationPlayData(const std::shared_ptr<ResourceHandle>& animHandle,
+    const AnimationSettings & settings, const AnimationPlaybackMode & mode, const Timer& timer,
+    size_t statusFlags) :
+    m_animationHandle(animHandle),
+    m_settings(settings),
+    m_playbackMode(mode),
+    m_timer(timer),
+    m_statusFlags(statusFlags)
 {
-    if (m_transforms.size()) {
-        m_transforms.clear();
-    }
-
-    ParallelLoopGenerator loop(&Animation::ANIMATION_THREADPOOL, USE_THREADING);
-
-    //size_t mapSize = m_blendSets.size();
-    QReadWriteLock mutex;
-    //loop.parallelFor(mapSize, [&](int start, int end) {
-    //std::unordered_map<QString, BlendSet>::const_iterator it = std::next(m_blendSets.begin(), start);
-    //std::unordered_map<QString, BlendSet>::const_iterator endIt = std::next(m_blendSets.begin(), end);
-    //
-    for (size_t i = 0; i < m_blendSets.size(); i++) {
-        const BlendSet& blendSet = m_blendSets[i];
-        const std::vector<Vector3g>& translations = blendSet.m_translations;
-        const std::vector<Quaternion>& rotations = blendSet.m_rotations;
-        const std::vector<Vector3g>& scales = blendSet.m_scales;
-
-        mutex.lockForWrite();
-        // Necessary to avoid move and destruction
-        // C++17 - Try emplace
-        Vec::EmplaceBack(m_transforms,
-            Interpolation::lerp(translations, m_weights).asDouble(),
-            Quaternion::average(rotations, m_weights),
-            Interpolation::lerp(scales, m_weights).asDouble(),
-            false);
-        mutex.unlock();
-    }
-    //});
 }
-
-
-
+/////////////////////////////////////////////////////////////////////////////////////////////
+AnimationPlayData::~AnimationPlayData()
+{
+}
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -103,7 +88,7 @@ NodeAnimation::~NodeAnimation()
 void NodeAnimation::interpolate(size_t first, 
     size_t second,
     float weight, 
-    BlendSet & out) const
+    AnimationFrameData & out) const
 {
     Vec::EmplaceBack(out.m_translations,
             Interpolation::lerp(m_translations.at(first),
@@ -111,96 +96,12 @@ void NodeAnimation::interpolate(size_t first,
                 weight)
     );
     Vec::EmplaceBack(out.m_rotations, 
-        Quaternion::slerp(m_rotations.at(first), m_rotations.at(second), weight)
+        Quaternion::Slerp(m_rotations.at(first), m_rotations.at(second), weight)
     );
     Vec::EmplaceBack(out.m_scales, 
         Interpolation::lerp(m_scales.at(first), m_scales.at(second), weight)
     );
 }
-
-
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////
-// Skeleton Pose
-/////////////////////////////////////////////////////////////////////////////////////////////
-SkeletonPose::SkeletonPose()
-{
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-SkeletonPose::SkeletonPose(Model * model, BlendPose&& blendPose):
-    m_blendPose(blendPose),
-    m_model(model)
-{
-    m_blendPose.blend();
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-SkeletonPose::~SkeletonPose()
-{
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-void SkeletonPose::getBoneTransforms(std::vector<Matrix4x4g>& outBoneTransforms, 
-    bool forceBlend)
-{
-    // Blend if not blended
-    if (!m_blendPose.m_transforms.size() || forceBlend) {
-        m_blendPose.blend();
-    }
-
-    // Add transforms to vector to be used as a uniform
-    // Resizing instead of reserving, because (I think) a clear every step would be a bit more expensive
-    if (!outBoneTransforms.size()) {
-        size_t numBones = m_blendPose.size() - m_blendPose.m_numNonBones;
-        outBoneTransforms.resize(numBones);
-        //outBoneTransforms.reserve(numBones);
-    }
-
-    SkeletonJoint* root = m_model->skeleton()->root();
-    processNodeHierarchy(*root, IDENTITY, outBoneTransforms);
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-void SkeletonPose::processNodeHierarchy(SkeletonJoint& node, 
-    Transform & parentTransform,
-    std::vector<Matrix4x4g>& outBoneTransforms)
-{
-    // By default, use local node transform
-    Transform* localTransform = &node.transform();
-    std::vector<Transform>& blendedTransforms = m_blendPose.m_transforms;
-
-    // If node has an animation use that transform
-    //const QString& nodeName = node.getName();
-    if (node.isAnimated()) {
-        localTransform = &blendedTransforms[node.skeletonTransformIndex()];
-        localTransform->computeLocalMatrix();
-    }
-
-    // Get global transform of the node
-    localTransform->m_worldMatrix = 
-        std::move(parentTransform.worldMatrix() * 
-        localTransform->localMatrix());
-
-    // Only add to transforms list if this node has a bone
-    // Transforms of nodes without bones only affect the hierarchy of transforms, 
-    // they are not send to the animation shader
-    // See: https://www.youtube.com/watch?v=F-kcaonjHf8&list=PLRIWtICgwaX2tKWCxdeB7Wv_rTET9JtWW&index=2 (starting at ~3:00)
-    if (node.hasBone()) {
-        uint idx = node.bone().m_index;
-        //Vec::Replace<Matrix4x4g>(outBoneTransforms.begin() + idx, 
-        //    localTransform->m_worldMatrix);
-        outBoneTransforms[idx] = localTransform->worldMatrix();
-    }
-
-    for (SkeletonJoint* child : node.children()) {
-        processNodeHierarchy(*child, *localTransform, outBoneTransforms);
-    }
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-QMutex SkeletonPose::POSE_MUTEX;
-/////////////////////////////////////////////////////////////////////////////////////////////
-Transform SkeletonPose::IDENTITY = Transform();
 
 
 
@@ -214,8 +115,8 @@ ThreadPool Animation::ANIMATION_THREADPOOL(NUMBER_OF_ANIMATION_THREADS);
 //{
 //}
 /////////////////////////////////////////////////////////////////////////////////////////////
-Animation::Animation(const QString & uniqueName):
-    Resource(uniqueName, kAnimation)
+Animation::Animation(const GString & uniqueName):
+    Resource(uniqueName)
 {
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -240,20 +141,15 @@ float Animation::getRate() const
 void Animation::getAnimationFrame(float timeInSec,
     const AnimationSettings& settings,
     AnimationPlaybackMode mode,
-    int numPlays,
     bool& isDonePlaying,
-    BlendPose& outFrames)
+    BlendSet& outFrames,
+    size_t clipIndex)
 {
     // Get timing info
-    float animationTime = getAnimationTime(timeInSec, settings,
-        mode, numPlays, isDonePlaying);
+    float animationTime = getAnimationTime(timeInSec, settings, mode, isDonePlaying);
 
     // Interpolate to get skeletal pose
-    interpolatePose(animationTime, outFrames);
-
-    //// Process skeletal hierarchy to get world transforms
-    //Transform identity;
-    //pose.processNodeHierarchy(mesh->m_skeleton.m_root, identity);
+    getInterpolatedFrame(animationTime, outFrames, clipIndex);
 
     isDonePlaying = false;
 }
@@ -263,9 +159,7 @@ void Animation::onRemoval(ResourceCache * cache)
     Q_UNUSED(cache)
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-float Animation::getAnimationTime(float timeInSec,
-    const AnimationSettings & settings, AnimationPlaybackMode mode,
-    int numPlays, bool & isDonePlaying) const
+float Animation::getAnimationTime(float timeInSec, const AnimationSettings & settings, AnimationPlaybackMode mode, bool & isDonePlaying) const
 {
     // Get timing info
     float ticksPerSec = m_ticksPerSecond != 0 ? m_ticksPerSecond : 25.0f;
@@ -275,8 +169,8 @@ float Animation::getAnimationTime(float timeInSec,
     int playCount = int(timeInTicks / m_durationInTicks);
 
     // Determine whether or not play count has been reached
-    if (numPlays > 0) {
-        if (playCount >= numPlays) {
+    if (settings.m_numPlays > 0) {
+        if (playCount >= settings.m_numPlays) {
             // If played more than max num allowable times, stop animating
             isDonePlaying = true;
             return animationTime;
@@ -307,7 +201,7 @@ float Animation::getAnimationTime(float timeInSec,
     return animationTime;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Animation::interpolatePose(float animationTime, BlendPose& outPose) const
+void Animation::getInterpolatedFrame(float animationTime, BlendSet& outPose, size_t offset) const
 {
     // No keyFrames, so raise error
     if (m_nodeAnimations.size() == 0) {
@@ -328,67 +222,56 @@ void Animation::interpolatePose(float animationTime, BlendPose& outPose) const
     }
 
     // If there are no output frames generated
-    std::vector<BlendSet>& outFrames = outPose.m_blendSets;
+    //std::vector<AnimationFrameData>& outFrames = outPose.m_blendSets;
     const std::vector<NodeAnimation>& nodeAnimations = m_nodeAnimations;
-    if (!outFrames.size()) {
-        for (const NodeAnimation& nodeAnimationPair: nodeAnimations) {
-            Vec::EmplaceBack(outFrames, BlendSet());
-        }
-    }
 
-    //ParallelLoopGenerator loop(&Animation::ANIMATION_THREADPOOL, USE_THREADING);
-
-    //size_t mapSize = nodeAnimations.size();
-    //loop.parallelFor(mapSize, [&](int start, int end) {
-        //std::unordered_map<QString, NodeAnimation>::const_iterator it = std::next(nodeAnimations.begin(), start);
-        //std::unordered_map<QString, NodeAnimation>::const_iterator endIt = std::next(nodeAnimations.begin(), end);
+    // Perform interpolation
+    // Insert into blend set with appropriate stride
+    size_t stride = outPose.stride();
     for (size_t i = 0; i < nodeAnimations.size(); i++) {
+        // Index in blendset to add node animation
+        size_t idx = i * stride + offset;
 
         const NodeAnimation& nodeAnimation = nodeAnimations[i];
 
         float numFrames = nodeAnimation.size();
-        BlendSet& currentBlendSet = outFrames[i];
-        const std::vector<Vector3g>& nodeTranslations = nodeAnimation.translations();
+        const std::vector<Vector3>& nodeTranslations = nodeAnimation.translations();
         const std::vector<Quaternion>& nodeRotations = nodeAnimation.rotations();
-        const std::vector<Vector3g>& nodeScales = nodeAnimation.scales();
+        const std::vector<Vector3>& nodeScales = nodeAnimation.scales();
 
         // Only one value, so cannot interpolate
         if (numFrames == 1) {
-            Vec::EmplaceBack(currentBlendSet.m_translations, nodeTranslations[0]);
-            Vec::EmplaceBack(currentBlendSet.m_rotations, nodeRotations[0]);
-            Vec::EmplaceBack(currentBlendSet.m_scales, nodeScales[0]);
+            outPose.m_translations[idx] = nodeTranslations[0];
+            outPose.m_rotations[idx] = nodeRotations[0];
+            outPose.m_scales[idx] = nodeScales[0];
             continue;
         }
 
         if (nextIndex >= numFrames) {
             // Don't interpolate if at last frame
-            Vec::EmplaceBack(currentBlendSet.m_translations, nodeTranslations.back());
-            Vec::EmplaceBack(currentBlendSet.m_rotations, nodeRotations.back());
-            Vec::EmplaceBack(currentBlendSet.m_scales, nodeScales.back());
+            outPose.m_translations[idx] = nodeTranslations.back();
+            outPose.m_rotations[idx] = nodeRotations.back();
+            outPose.m_scales[idx] = nodeScales.back();
             continue;
         }
 
         // Get weight factor
         if (animationTime > finalTime) {
-            Vec::EmplaceBack(currentBlendSet.m_translations, nodeTranslations.back());
-            Vec::EmplaceBack(currentBlendSet.m_rotations, nodeRotations.back());
-            Vec::EmplaceBack(currentBlendSet.m_scales, nodeScales.back());
+            outPose.m_translations[idx] = nodeTranslations.back();
+            outPose.m_rotations[idx] = nodeRotations.back();
+            outPose.m_scales[idx] = nodeScales.back();
         }
         else {
             // Interpolate the frame
-            // TODO: Reserve space in blend set
-            BlendSet interpFrame;
+            AnimationFrameData interpFrame;
             nodeAnimation.interpolate(
                 frameIndex, nextIndex, weight, interpFrame);
-            Vec::EmplaceBack(currentBlendSet.m_translations, std::move(interpFrame.m_translations.back()));
-            Vec::EmplaceBack(currentBlendSet.m_rotations, std::move(interpFrame.m_rotations.back()));
-            Vec::EmplaceBack(currentBlendSet.m_scales, std::move(interpFrame.m_scales.back()));
+            outPose.m_translations[idx] = std::move(interpFrame.m_translations.back());
+            outPose.m_rotations[idx] = std::move(interpFrame.m_rotations.back());
+            outPose.m_scales[idx] = std::move(interpFrame.m_scales.back());
 
         }
     }
-
-    //});
-
 
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -418,16 +301,13 @@ size_t Animation::getFrameIndex(float time) const
 // Single Animation
 /////////////////////////////////////////////////////////////////////////////////////////////
 AnimationClip::AnimationClip(CoreEngine* engine, const QJsonValue & json):
-    Object(json.toObject()["name"].toString()),
-    m_engine(engine)
+    Object(json.toObject()["name"].toString())
 {
-    loadFromJson(json);
+    loadFromJson(json, { engine });
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-AnimationClip::AnimationClip(const QString& name, const std::shared_ptr<ResourceHandle>& animation,
-    CoreEngine* engine) :
+AnimationClip::AnimationClip(const GString& name, const std::shared_ptr<ResourceHandle>& animation) :
     Object(name),
-    m_engine(engine),
     m_animationHandle(animation)
 {
 }
@@ -441,35 +321,30 @@ void AnimationClip::setDuration(float secs)
     float dur = animation()->getTimeDuration();
     m_settings.m_speedFactor = dur / secs;
 }
-/////////////////////////////////////////////////////////////////////////////////////////////
-void AnimationClip::getAnimationFrame(float timeInSec, BlendPose& outFrames)
-{
-    if (!m_animationHandle) {
-        // If no animation handle, was not created at time of loadFromJson, so try to load again
-        m_animationHandle = m_engine->resourceCache()->getHandleWithName(m_animationHandleName,
-            Resource::kAnimation);
-    }
-
-    if (!animation()) return;
-
-    if (outFrames.m_numNonBones == 0) {
-        outFrames.m_numNonBones = numNonBones();
-    }
-
-    return animation()->getAnimationFrame(
-        timeInSec, 
-        m_settings,
-        m_playbackMode, 
-        m_numPlays, 
-        m_isDone,
-        outFrames);
-}
+///////////////////////////////////////////////////////////////////////////////////////////////
+//void AnimationClip::getAnimationFrame(float timeInSec, bool& isDone, BlendSet& outFrames,
+//    AnimationPlaybackMode playbackMode,
+//    size_t clipIndex) const
+//{
+//    if (!animation()) { 
+//        return; 
+//    }
+//
+//    // Get clip's animation frame, returning true if done playing
+//    animation()->getAnimationFrame(
+//        timeInSec, 
+//        m_settings,
+//        playbackMode,
+//        isDone,
+//        outFrames,
+//        clipIndex);
+//}
 /////////////////////////////////////////////////////////////////////////////////////////////
 QJsonValue AnimationClip::asJson() const
 {
     QJsonObject object;
     
-    const QString* animName;
+    const GString* animName;
     if (!m_animationHandle) {
         animName = &m_animationHandleName;
     }
@@ -478,24 +353,23 @@ QJsonValue AnimationClip::asJson() const
     }
 
     if (!m_name.isEmpty()) {
-        object["name"] = m_name;
+        object["name"] = m_name.c_str();
     }
     else {
-        object["name"] = *animName;
+        object["name"] = animName->c_str();
     }
-    object["animation"] = *animName;
+    object["animation"] = animName->c_str();
     object["settings"] = m_settings.asJson();
-    object["playbackMode"] = int(m_playbackMode);
-    object["numPlays"] = m_numPlays;
 
     return object;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void AnimationClip::loadFromJson(const QJsonValue & json)
+void AnimationClip::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
-    if (m_engine) {
+    if (context.m_engine) {
+        // FIXME: Causing a race condition, need thread-safe maps for retrieving handles
         QString animationHandleName = json["animation"].toString();
-        m_animationHandle = m_engine->resourceCache()->getHandleWithName(animationHandleName, 
+        m_animationHandle = context.m_engine->resourceCache()->getHandleWithName(animationHandleName,
             Resource::kAnimation);
         if (!m_animationHandle) {
             m_animationHandleName = animationHandleName;
@@ -506,8 +380,6 @@ void AnimationClip::loadFromJson(const QJsonValue & json)
     }
     m_name = json["name"].toString();
     m_settings.loadFromJson(json["settings"]);
-    m_playbackMode = AnimationPlaybackMode(json["playbackMode"].toInt());
-    m_numPlays = json["numPlays"].toInt();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 std::shared_ptr<Animation> AnimationClip::animation() const
@@ -522,336 +394,6 @@ std::shared_ptr<Animation> AnimationClip::animation() const
         return nullptr;
     }
 }
-
-
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////
-// Animation State
-/////////////////////////////////////////////////////////////////////////////////////////////
-AnimationState::AnimationState(const QString& name, CoreEngine* engine):
-    Object(name),
-    m_engine(engine)
-{
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-AnimationState::~AnimationState()
-{
-    // Delete all animation clips
-    for (const std::pair<QString, AnimationClip*>& animationPair : m_clips) {
-        delete animationPair.second;
-    }
-
-    // Delete all animation layers
-    for (const std::pair<QString, AnimationClip*>& layerPair : m_layers) {
-        delete layerPair.second;
-    }
-    
-    // Delete child
-    if (m_child) {
-        delete m_child;
-    }
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-void AnimationState::addClip(std::shared_ptr<ResourceHandle> animationHandle)
-{
-    m_clips.emplace(animationHandle->getName(), 
-        new AnimationClip(animationHandle->getName(), animationHandle, m_engine));
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-void AnimationState::addClip(AnimationClip * clip)
-{
-    m_clips.emplace(clip->getName(), clip);
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-void AnimationState::addLayer(AnimationClip * state)
-{
-    m_layers.emplace(state->getName(), state);
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-void AnimationState::getAnimationFrame(Model * model, 
-    float timeInSec, bool& isDone,
-    SkeletonPose& outSkeletalPose)
-{
-    // Set mesh
-    outSkeletalPose.m_model = model;
-
-    // Return if no clips
-    if (!m_clips.size()) return;
-
-    // Iterate through animations and blend if necessary
-    // TODO: Convert flat list into a blend tree hierarchy, to more easily generate weights
-    // See: https://www.gamasutra.com/view/feature/131863/animation_blending_achieving_.php
-    BlendPose& outPose = outSkeletalPose.m_blendPose;
-    std::vector<float>& normalizedBlendWeights = outPose.m_weights;
-    outPose.m_blendSets.clear();
-    normalizedBlendWeights.clear();
-    normalizedBlendWeights.reserve(m_clips.size());
-    for (const std::pair<QString, AnimationClip*>& clipPair : m_clips) {
-        // Get normalized blend weight for the clip
-        AnimationClip* clip = clipPair.second;
-        float clipWeight = clip->settings().m_blendWeight;
-
-        // Get the poses from the animation clip
-        clip->getAnimationFrame(timeInSec, outPose);
-
-        // Add weights to weight vector
-        Vec::EmplaceBack(normalizedBlendWeights, clipWeight);
-    }
-
-    // Normalize blend weights
-    float blendMag = std::accumulate(normalizedBlendWeights.begin(),
-        normalizedBlendWeights.end(), 0.0f);
-    float blendMagInv = 1.0 / blendMag;
-    for (size_t i = 0; i < normalizedBlendWeights.size(); i++) {
-        normalizedBlendWeights[i] = normalizedBlendWeights[i] * blendMagInv;
-    }
-
-    isDone = false;
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-QJsonValue AnimationState::asJson() const
-{
-    QJsonObject object;
-
-    // Save layers to json
-    QJsonObject layers;
-    for (const std::pair<QString, AnimationClip*>& layerPair : m_layers) {
-        layers.insert(layerPair.first, layerPair.second->asJson());
-    }
-    object.insert("layers", layers);
-
-    // Save clips to json
-    QJsonObject clips;
-    for (const std::pair<QString, AnimationClip*>& clipPair : m_clips) {
-        clips.insert(clipPair.first, clipPair.second->asJson());
-    }
-    object.insert("clips", clips);
-
-    // Save child to json
-    if (m_child) {
-        object.insert("child", m_child->asJson());
-    }
-
-
-    return object;
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-void AnimationState::loadFromJson(const QJsonValue & json)
-{
-    QJsonObject object = json.toObject();
-
-    // Load layers
-    QJsonObject layers = object["layers"].toObject();
-	const QStringList& layerKeys = layers.keys();
-    for (const QString& layerName: layerKeys) {
-        QJsonObject layer = layers[layerName].toObject();
-        addClip(new AnimationClip(m_engine, layer));
-    }
-
-    // Load clips
-    QJsonObject clips = object["clips"].toObject();
-    const QStringList& clipKeys = clips.keys();
-    for (const QString& clipName : clipKeys) {
-        QJsonObject clip = clips[clipName].toObject();
-        addClip(new AnimationClip(m_engine, clip));
-    }
-
-    // Load child
-    if (object.contains("child")) {
-        QJsonObject child = object["child"].toObject();
-        QString childName = child["name"].toString();
-        m_child = new AnimationState(childName, m_engine);
-        m_child->loadFromJson(child);
-    }
-}
-
-
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////
-// AnimationController
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-AnimationController::AnimationController(CoreEngine * engine, const QJsonValue & json):
-    m_engine(engine)
-{
-    loadFromJson(json);
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-AnimationController::AnimationController(CoreEngine * engine, const std::shared_ptr<ResourceHandle>& model):
-    m_engine(engine),
-    m_modelHandle(model)
-{
-    initializeProcess();
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-AnimationController::~AnimationController()
-{
-    for (const std::pair<QString, AnimationState*>& statePair : m_stateMap) {
-        delete statePair.second;
-    }
-
-    // Abort the process for this animation
-    if(!m_process->isAborted())
-        m_process->abort();
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<Model> AnimationController::getModel() const
-{
-    if (!m_modelHandle) {
-        throw("Error, no model handle found");
-    }
-    if (m_modelHandle->resource(false)) {
-        return m_modelHandle->resourceAs<Model>(false);
-    }
-    else {
-        return nullptr;
-    }
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-void AnimationController::addState(AnimationState * state)
-{
-    if (Map::HasKey(m_stateMap, state->getName())) {
-        logWarning("State map already had a state with name " + state->getName());
-        delete m_stateMap[state->getName()];
-    }
-    m_stateMap[state->getName()] = state;
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-void AnimationController::bindUniforms(DrawCommand& drawCommand)
-{
-    Uniform transformUniform = Uniform("boneTransforms", m_process->m_transforms);
-
-    std::shared_ptr<Model> model = getModel();
-    if (!model) return;
-
-    // Don't save this value to the shader's cached values 
-    // (this flag set may be unnecessary)
-    transformUniform.setPersistence(false);
-
-    // Set uniform that this model is animated
-    drawCommand.setUniform(Uniform("isAnimated", true));
-
-    // Set global inverse transform
-    drawCommand.setUniform(Uniform("globalInverseTransform", model->skeleton()->globalInverseTransform()));
-
-    // Set inverse bind poses
-    drawCommand.setUniform(Uniform("inverseBindPoseTransforms", model->skeleton()->inverseBindPose()));
-
-    // Set pose uniform value in the shader
-    drawCommand.setUniform(transformUniform);
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-void AnimationController::bindUniforms(ShaderProgram& shaderProgram)
-{
-    // TODO: Only used by debug manager right now, deprecate
-    Uniform transformUniform = Uniform("boneTransforms", m_process->m_transforms);
-
-    std::shared_ptr<Model> model = getModel();
-    if (!model) return;
-
-    // Don't save this value to the shader's cached values 
-    // (this flag set may be unnecessary)
-    transformUniform.setPersistence(false);
-
-    // Set uniform that this model is animated
-    shaderProgram.setUniformValue("isAnimated", true);
-
-    // Set global inverse transform
-    shaderProgram.setUniformValue("globalInverseTransform", model->skeleton()->globalInverseTransform());
-
-    // Set inverse bind poses
-    shaderProgram.setUniformValue("inverseBindPoseTransforms", model->skeleton()->inverseBindPose());
-
-    // Set pose uniform value in the shader
-    shaderProgram.setUniformValue(transformUniform, false);
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-QJsonValue AnimationController::asJson() const
-{
-    QJsonObject object;
-
-    // Add the mesh used by this controller to JSON
-    if (m_modelHandle) {
-        object.insert("model", m_modelHandle->getName());
-    }
-
-    // Add the current state of this controller to JSON
-    if (m_currentState) {
-        object.insert("currentState", m_currentState->getName());
-    }
-
-    object.insert("isPlaying", m_isPlaying);
-
-    // Add all states to json
-    QJsonObject animationStates;
-    for (const std::pair<QString, AnimationState*>& animPair : m_stateMap) {
-        animationStates.insert(animPair.first, animPair.second->asJson());
-    }
-    object.insert("animationStates", animationStates);
-
-
-    return object;
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-void AnimationController::loadFromJson(const QJsonValue & json)
-{
-    QJsonObject object = json.toObject();
-
-    // Set mesh from resource cache
-    if (object.contains("model")) {
-        QString modelName = object["model"].toString();
-        m_modelHandle = m_engine->resourceCache()->getHandleWithName(modelName, Resource::kModel);
-    }
-
-    // Load animation states from JSON
-    if (object.contains("animationStates")) {
-        QJsonObject animStates = object["animationStates"].toObject();
-        for (const QString& animName : animStates.keys()) {
-            AnimationState* state = new AnimationState(animName, m_engine);
-            state->loadFromJson(animStates[animName]);
-            addState(state);
-        }
-    }
-
-    // Set the current state
-    if (object.contains("currentState")) {
-        QString stateName = object["currentState"].toString();
-        m_currentState = m_stateMap[stateName];
-    }
-
-    m_isPlaying = object["isPlaying"].toBool();
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-void AnimationController::initializeProcess()
-{
-    m_process = std::make_shared<AnimationProcess>(m_engine, this, m_engine->processManager());
-
-    // Add process for this animation to the process manager queue
-    m_engine->processManager()->attachProcess(m_process);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 } // End namespaces

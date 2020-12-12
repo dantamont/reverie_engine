@@ -23,7 +23,7 @@ IKNode::IKNode(IKChain* chain, const SkeletonJoint & meshNode):
     m_name = meshNode.getName();
 
     // Set flags
-    if (!meshNode.parent()) {
+    if (!meshNode.parent(chain->m_skeleton)) {
         // If the node doesn't have a parent, it's the root node
         m_flags.setFlag(kRoot, true);
         m_flags.setFlag(kSubBase, true);
@@ -54,11 +54,8 @@ IKNode* IKNode::addChild(const SkeletonJoint& child)
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // IK Chain
 //////////////////////////////////////////////////////////////////////////////////////////////////
-IKChain::IKChain()
-{
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////
-IKChain::IKChain(const Skeleton & skeleton)
+IKChain::IKChain(const Skeleton & skeleton):
+    m_skeleton(skeleton)
 {
     initialize(skeleton);
 }
@@ -93,8 +90,8 @@ void IKChain::addNode(const SkeletonJoint & meshNode, IKNode* parent)
     m_nodes[thisNode->getName()] = thisNode;
 
     // Add children recursively
-    for (const SkeletonJoint* child: meshNode.children()) {
-        addNode(*child, thisNode);
+    for (const size_t& childIndex : meshNode.children()) {
+        addNode(m_skeleton.getNode(childIndex), thisNode);
     }
 }
 
@@ -104,15 +101,15 @@ void IKChain::addNode(const SkeletonJoint & meshNode, IKNode* parent)
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // IK
 //////////////////////////////////////////////////////////////////////////////////////////////////
-void IK::Solve(const Vector3 & target, 
-    std::vector<Vector3>& inOutJointPositions,
+void IK::Solve(const Vector3d & target, 
+    std::vector<Vector3d>& inOutJointPositions,
     const std::vector<double>& jointDistances,
     double tolerance,
     size_t maxNumIter)
 {
 
     // Get the distance between the root and the target
-    Vector3& root = inOutJointPositions[0];
+    Vector3d& root = inOutJointPositions[0];
     double dist = (root - target).length();
 
     // Check whether or not the target is within reach
@@ -122,7 +119,7 @@ void IK::Solve(const Vector3 & target,
         // The target is unreachable
         for (size_t i = 0; i < numJoints; i++) {
             // Find the distance r between the target and the joint position
-            const Vector3& currentPos = inOutJointPositions[i];
+            const Vector3d& currentPos = inOutJointPositions[i];
             double r = (target - currentPos).length();
             double factor = jointDistances[i] / r;
             inOutJointPositions[i + 1] = (1.0 - factor) * currentPos + factor * target;
@@ -130,10 +127,10 @@ void IK::Solve(const Vector3 & target,
     }
     else {
         // The target is reachable
-        Vector3 initialRootPosition = root;
+        Vector3d initialRootPosition = root;
 
         // Check whether the distance between the end effector and target is greater than a tolerance
-        const Vector3& effectorPos = inOutJointPositions.back();
+        const Vector3d& effectorPos = inOutJointPositions.back();
         double diffEffector = (effectorPos - target).length();
         size_t count = 0;
         while (diffEffector > tolerance && count < maxNumIter) {
@@ -144,8 +141,8 @@ void IK::Solve(const Vector3 & target,
                 double currentBoneLength = jointDistances[i];
 
                 // Find the distance between the new joint position and current joint
-                const Vector3& nextPos = inOutJointPositions[i + 1];
-                Vector3& pos = inOutJointPositions[i];
+                const Vector3d& nextPos = inOutJointPositions[i + 1];
+                Vector3d& pos = inOutJointPositions[i];
                 double r = (nextPos - pos).length();
                 double factor = currentBoneLength / r;
 
@@ -160,8 +157,8 @@ void IK::Solve(const Vector3 & target,
                 double currentBoneLength = jointDistances[i];
 
                 // Find the distance between the new joint position and current joint
-                Vector3& nextPos = inOutJointPositions[i + 1];
-                const Vector3& pos = inOutJointPositions[i];
+                Vector3d& nextPos = inOutJointPositions[i + 1];
+                const Vector3d& pos = inOutJointPositions[i];
                 double r = (nextPos - pos).length();
                 double factor = currentBoneLength / r;
 
@@ -177,15 +174,15 @@ void IK::Solve(const Vector3 & target,
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-void IK::SolveCGA(const Vector3 & target,
-    std::vector<Vector3>& inOutJointPositions,
+void IK::SolveCGA(const Vector3d & target,
+    std::vector<Vector3d>& inOutJointPositions,
     const std::vector<double>& jointDistances, 
     double tolerance,
     size_t maxNumIter)
 {
 
     // Get the distance between the root and the target
-    Vector3& root = inOutJointPositions[0];
+    Vector3d& root = inOutJointPositions[0];
     double dist = (root - target).length();
 
     // Check whether or not the target is within reach
@@ -197,17 +194,17 @@ void IK::SolveCGA(const Vector3 & target,
         for (size_t i = 0; i < numJoints; i++) {
             // Find the nearest point on sphere, with centre the joint position p_i and radius
             // the distance d_i , from a point is space, target
-            Vector3& p_i = inOutJointPositions[i];
+            Vector3d& p_i = inOutJointPositions[i];
             double d_i = jointDistances[i];
             NearestPointSphere(p_i, d_i, target, inOutJointPositions[i + 1]);
         }
     }
     else {
         // The target is reachable
-        Vector3 initialRootPosition = root;
+        Vector3d initialRootPosition = root;
 
         // Check whether the distance between the end effector and target is greater than a tolerance
-        const Vector3& effectorPos = inOutJointPositions.back();
+        const Vector3d& effectorPos = inOutJointPositions.back();
         double diffEffector = (effectorPos - target).length();
         size_t count = 0;
         while (diffEffector > tolerance && count < maxNumIter) {
@@ -217,8 +214,8 @@ void IK::SolveCGA(const Vector3 & target,
             for (size_t i = numJoints - 1; i > -1; i--) {
                 // Find the nearest point on sphere, with centre the joint position pi+1 and
                 // radius the distance di, from a point is space, pi
-                Vector3& p_i = inOutJointPositions[i];
-                const Vector3& p_next = inOutJointPositions[i+1];
+                Vector3d& p_i = inOutJointPositions[i];
+                const Vector3d& p_next = inOutJointPositions[i+1];
                 double d_i = jointDistances[i];
                 NearestPointSphere(p_next, d_i, p_i, p_i);
             }
@@ -229,8 +226,8 @@ void IK::SolveCGA(const Vector3 & target,
             for (size_t i = 0; i < numJoints; i++) {
                 // Find the nearest point on sphere, with centre the joint position pi and
                 // radius the distance di, from a point is space, pi + 1
-                Vector3& p_i = inOutJointPositions[i];
-                const Vector3& p_next = inOutJointPositions[i + 1];
+                Vector3d& p_i = inOutJointPositions[i];
+                const Vector3d& p_next = inOutJointPositions[i + 1];
                 double d_i = jointDistances[i];
                 NearestPointSphere(p_i, d_i, p_next, p_i);
             }
@@ -252,7 +249,7 @@ IK::~IK()
 {
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-void IK::NearestPointSphere(const Vector3 & center, double radius, const Vector3 & pointInSpace, Vector3 & outPointOnSphere)
+void IK::NearestPointSphere(const Vector3d & center, double radius, const Vector3d & pointInSpace, Vector3d & outPointOnSphere)
 {
     // Get a vector from the sphere center to the point
     outPointOnSphere = pointInSpace - center;
@@ -265,8 +262,8 @@ void IK::NearestPointSphere(const Vector3 & center, double radius, const Vector3
     outPointOnSphere += center;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-void IK::GetCentroid(const std::vector<Vector3>& points, Vector3 & outCentroid) {
-    outCentroid = std::accumulate(points.begin(), points.end(), Vector3(0.0, 0.0, 0.0)) / points.size();
+void IK::GetCentroid(const std::vector<Vector3d>& points, Vector3d & outCentroid) {
+    outCentroid = std::accumulate(points.begin(), points.end(), Vector3d(0.0, 0.0, 0.0)) / points.size();
 }
 
 

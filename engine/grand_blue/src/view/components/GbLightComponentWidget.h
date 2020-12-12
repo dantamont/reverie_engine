@@ -166,6 +166,11 @@ private:
     /// @brief Light type widget
     QComboBox* m_lightType;
     QLineEdit* m_lightIntensity;
+    QLineEdit* m_lightRange;
+    QLineEdit* m_minBias;
+    QLineEdit* m_maxBias;
+    QLineEdit* m_nearPlane;
+    QCheckBox* m_castShadows;
 
     LightDirectionWidget* m_lightDirection; // for directional and spot lights
     LightAttenuationWidget* m_lightAttenuation; // for point light

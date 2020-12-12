@@ -32,9 +32,9 @@ const int MIN_STACK_COUNT = 1;
 ///////////////////////////////////////////////////////////////////////////////
 // ctor
 ///////////////////////////////////////////////////////////////////////////////
-Cylinder::Cylinder(float baseRadius, float topRadius, float height, int sectors,
+Cylinder::Cylinder(VertexArrayData& outVertexData, float baseRadius, float topRadius, float height, int sectors,
     int stacks):
-    m_vertexData(std::make_shared<VertexArrayData>())
+    m_vertexData(outVertexData)
 {
     set(baseRadius, topRadius, height, sectors, stacks);
 }
@@ -100,8 +100,8 @@ void Cylinder::setStackCount(int stacks)
 ///////////////////////////////////////////////////////////////////////////////
 void Cylinder::clearArrays()
 {
-    m_vertexData->m_attributes.clear();
-    m_vertexData->m_indices.clear();
+    m_vertexData.m_attributes.clear();
+    m_vertexData.m_indices.clear();
     std::vector<unsigned int>().swap(m_lineIndices);
 }
 
@@ -121,7 +121,7 @@ void Cylinder::buildVerticesSmooth()
     float radius;                                   // radius for each stack
 
     // get normals for cylinder sides
-    std::vector<Vector3g> sideNormals = getSideNormals();
+    std::vector<Vector3> sideNormals = getSideNormals();
 
     // put vertices of side cylinder to array by scaling unit circle
     for (int i = 0; i <= m_stackCount; ++i)
@@ -141,7 +141,7 @@ void Cylinder::buildVerticesSmooth()
     }
 
     // remember where the base.top vertices start
-    unsigned int baseVertexIndex = (unsigned int)m_vertexData->m_attributes.m_vertices.size();
+    unsigned int baseVertexIndex = (unsigned int)m_vertexData.m_attributes.m_vertices.size();
 
     // put vertices of base of cylinder
     z = -m_height * 0.5f;
@@ -158,7 +158,7 @@ void Cylinder::buildVerticesSmooth()
     }
 
     // remember where the base vertices start
-    unsigned int topVertexIndex = (unsigned int)m_vertexData->m_attributes.m_vertices.size();
+    unsigned int topVertexIndex = (unsigned int)m_vertexData.m_attributes.m_vertices.size();
 
     // put vertices of top of cylinder
     z = m_height * 0.5f;
@@ -202,7 +202,7 @@ void Cylinder::buildVerticesSmooth()
     }
 
     // remember where the base indices start
-    m_baseIndex = (unsigned int)m_vertexData->m_indices.size();
+    m_baseIndex = (unsigned int)m_vertexData.m_indices.size();
 
     // put indices for base
     for (int i = 0, k = baseVertexIndex + 1; i < m_sectorCount; ++i, ++k)
@@ -214,7 +214,7 @@ void Cylinder::buildVerticesSmooth()
     }
 
     // remember where the base indices start
-    m_topIndex = (unsigned int)m_vertexData->m_indices.size();
+    m_topIndex = (unsigned int)m_vertexData.m_indices.size();
 
     for (int i = 0, k = topVertexIndex + 1; i < m_sectorCount; ++i, ++k)
     {
@@ -235,7 +235,7 @@ void Cylinder::buildUnitCircleVertices()
     float sectorStep = 2 * PI / m_sectorCount;
     float sectorAngle;  // radian
 
-    std::vector<Vector3g>().swap(m_unitCircleVertices);
+    std::vector<Vector3>().swap(m_unitCircleVertices);
     for (int i = 0; i <= m_sectorCount; ++i)
     {
         sectorAngle = i * sectorStep;
@@ -250,7 +250,7 @@ void Cylinder::buildUnitCircleVertices()
 ///////////////////////////////////////////////////////////////////////////////
 void Cylinder::addVertex(float x, float y, float z)
 {
-    Vec::EmplaceBack(m_vertexData->m_attributes.m_vertices, x, y, z);
+    Vec::EmplaceBack(m_vertexData.m_attributes.m_vertices, x, y, z);
 }
 
 
@@ -260,7 +260,7 @@ void Cylinder::addVertex(float x, float y, float z)
 ///////////////////////////////////////////////////////////////////////////////
 void Cylinder::addNormal(float nx, float ny, float nz)
 {
-    Vec::EmplaceBack(m_vertexData->m_attributes.m_normals, nx, ny, nz );
+    Vec::EmplaceBack(m_vertexData.m_attributes.m_normals, nx, ny, nz );
 }
 
 
@@ -270,7 +270,7 @@ void Cylinder::addNormal(float nx, float ny, float nz)
 ///////////////////////////////////////////////////////////////////////////////
 void Cylinder::addTexCoord(float s, float t)
 {
-    Vec::EmplaceBack(m_vertexData->m_attributes.m_texCoords, s, t);
+    Vec::EmplaceBack(m_vertexData.m_attributes.m_texCoords, s, t);
 }
 
 
@@ -280,9 +280,9 @@ void Cylinder::addTexCoord(float s, float t)
 ///////////////////////////////////////////////////////////////////////////////
 void Cylinder::addIndices(unsigned int i1, unsigned int i2, unsigned int i3)
 {
-    Vec::EmplaceBack(m_vertexData->m_indices, i1);
-    Vec::EmplaceBack(m_vertexData->m_indices, i2);
-    Vec::EmplaceBack(m_vertexData->m_indices, i3);
+    Vec::EmplaceBack(m_vertexData.m_indices, i1);
+    Vec::EmplaceBack(m_vertexData.m_indices, i2);
+    Vec::EmplaceBack(m_vertexData.m_indices, i3);
 }
 
 
@@ -290,7 +290,7 @@ void Cylinder::addIndices(unsigned int i1, unsigned int i2, unsigned int i3)
 ///////////////////////////////////////////////////////////////////////////////
 // generate shared normal vectors of the side of cylinder
 ///////////////////////////////////////////////////////////////////////////////
-std::vector<Vector3g> Cylinder::getSideNormals()
+std::vector<Vector3> Cylinder::getSideNormals()
 {
     const float PI = acos(-1);
     float sectorStep = 2 * PI / m_sectorCount;
@@ -304,7 +304,7 @@ std::vector<Vector3g> Cylinder::getSideNormals()
     float z0 = sin(zAngle);     // nz
 
     // rotate (x0,y0,z0) per sector angle
-    std::vector<Vector3g> normals;
+    std::vector<Vector3> normals;
     for (int i = 0; i <= m_sectorCount; ++i)
     {
         sectorAngle = i * sectorStep;
@@ -322,7 +322,7 @@ std::vector<Vector3g> Cylinder::getSideNormals()
 // return face normal of a triangle v1-v2-v3
 // if a triangle has no surface (normal length = 0), then return a zero vector
 ///////////////////////////////////////////////////////////////////////////////
-Vector3g Cylinder::computeFaceNormal(float x1, float y1, float z1,  // v1
+Vector3 Cylinder::computeFaceNormal(float x1, float y1, float z1,  // v1
     float x2, float y2, float z2,  // v2
     float x3, float y3, float z3)  // v3
 {

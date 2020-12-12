@@ -37,6 +37,7 @@ namespace Gb {
 RigidBodyComponent::RigidBodyComponent() :
     Component(ComponentType::kRigidBody)
 {
+    throw("should never be called, for Qt metatype registration");
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 RigidBodyComponent::RigidBodyComponent(const RigidBodyComponent & comp):
@@ -71,13 +72,19 @@ void RigidBodyComponent::updateTransformFromPhysics()
     // parent and child scene objects
 
     // Return if disabled
-    if (!m_isEnabled) return;
+    if (!m_isEnabled) { return; }
 
     // Update transform
-    Transform physicsTransform = m_rigidBody->getTransform();
-    sceneObject()->transform()->translation().setPosition(physicsTransform.translation().getPosition(), false);
-    sceneObject()->transform()->rotation().setRotation(physicsTransform.getRotationQuaternion());
+    if (!m_rigidBody->m_actor) {
+#ifdef DEBUG_MODE
+        throw("actor not found");
+#endif
+    }
 
+    physx::PxRigidActor* actor = m_rigidBody->getRigidActor();
+    physx::PxTransform physxTransform = actor->getGlobalPose();
+    sceneObject()->transform()->translation().setPosition(PhysicsManager::toVector3(physxTransform.p), false);
+    sceneObject()->transform()->rotation().setRotation(PhysicsManager::toQuaternion(physxTransform.q), true);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void RigidBodyComponent::refreshBody()
@@ -116,15 +123,15 @@ void RigidBodyComponent::disable()
 QJsonValue RigidBodyComponent::asJson() const
 {
     QJsonObject object = Component::asJson().toObject();
-    if (m_rigidBody) {
-        object.insert("body", m_rigidBody->asJson());
-    }
+    object.insert("body", m_rigidBody->asJson());
 
     return object;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void RigidBodyComponent::loadFromJson(const QJsonValue & json)
+void RigidBodyComponent::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
+
     const QJsonObject& object = json.toObject();
 
     //if (!sceneObject()->hasParents()) {
@@ -140,9 +147,9 @@ void RigidBodyComponent::loadFromJson(const QJsonValue & json)
 void RigidBodyComponent::initializeDefault()
 {
     std::shared_ptr<PhysicsShapePrefab> defaultShape = 
-        PhysicsManager::shapes().at(PhysicsManager::DefaultShapeKey());
+        PhysicsManager::ShapePrefabs().at(PhysicsManager::DefaultShapeKey());
     std::shared_ptr<PhysicsMaterial> defaultMaterial = 
-        PhysicsManager::materials().at(PhysicsManager::DefaultMaterialKey());
+        PhysicsManager::Materials().at(PhysicsManager::DefaultMaterialKey());
         
     // Load default parameters
     m_rigidBody->m_rigidType = RigidBody::kDynamic;
@@ -171,7 +178,7 @@ CharControlComponent::CharControlComponent(const std::shared_ptr<SceneObject>& o
 
     /// Create a basic capsule controller
     auto desc = std::make_shared<CapsuleControllerDescription>();
-    desc->m_material = PhysicsManager::materials()["defaultMaterial"];
+    desc->m_material = PhysicsManager::Materials()["defaultMaterial"];
     desc->m_radius = 1.0;
     desc->m_height = 1.0;
     m_controller = cctManager()->createController(desc, sceneObject());
@@ -186,7 +193,7 @@ void CharControlComponent::move(const Vector3 & disp)
     m_controller->move(disp);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void CharControlComponent::setGravity(const Vector3g& gravity)
+void CharControlComponent::setGravity(const Vector3& gravity)
 {
     m_controller->setGravity(gravity);
 }
@@ -211,8 +218,10 @@ QJsonValue CharControlComponent::asJson() const
     return object;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void CharControlComponent::loadFromJson(const QJsonValue & json)
+void CharControlComponent::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
+
     const QJsonObject& object = json.toObject();
 
     if (m_controller) {

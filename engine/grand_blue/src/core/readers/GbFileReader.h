@@ -13,8 +13,13 @@
 
 // Internal
 #include "../GbObject.h"
+#include "../containers/GbString.h"
 
 namespace Gb {  
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+// Defines
+/////////////////////////////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Forward Declarations
@@ -41,8 +46,11 @@ public:
     static QString createHexName(const QString& str);
 
     /// @brief Return filename from a path
-    static QString pathToName(const QString& path, bool extension=true, bool caseSensitive = false);
-    static QString dirFromPath(const QString& path);
+    static QString PathToName(const QString& path, bool extension=true, bool caseSensitive = false);
+    static QString DirFromPath(const QString& path);
+
+    /// @brief Return file extension
+    static QString FileExtension(const QString& filepath);
 
     /// @brief Search subdirectories and files in given directory recursively for a file
     static bool fileExists(const QString& directory, const QString& fileName, QString& outPath);
@@ -52,10 +60,6 @@ public:
 
     /// @brief Get contents of a file as a string
     static QString getContentsAsString(const QString& filepath);
-
-    /// @brief Alternative to string split than Qt, is slower
-    static std::vector<std::string> splitString(const std::string& str, const char* delimiter);
-    static std::vector<QString> splitString(const QString& str, const char* delimiter);
 
     // Constructor/Destructor ///////////////////////////////////////////////////////////////////////////////
     FileReader();
@@ -77,6 +81,7 @@ protected:
 
     QString m_filePath;
     QString m_fileExtension;
+
 };
 
         

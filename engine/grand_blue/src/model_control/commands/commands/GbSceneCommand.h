@@ -41,7 +41,7 @@ public:
     //--------------------------------------------------------------------------------------------
     /// @name Constructors/Destructor
     /// @{
-    SceneCommand(CoreEngine* core, const QString &text, QUndoCommand *parent = nullptr);
+    SceneCommand(CoreEngine* core, const GString &text, QUndoCommand *parent = nullptr);
     SceneCommand(CoreEngine* core, QUndoCommand *parent = nullptr);
     ~SceneCommand();
     /// @}
@@ -94,7 +94,7 @@ public:
     //--------------------------------------------------------------------------------------------
     /// @name Constructors/Destructor
     /// @{
-    AddScenarioCommand(CoreEngine* core, const QString &text, QUndoCommand *parent = nullptr);
+    AddScenarioCommand(CoreEngine* core, const GString &text, QUndoCommand *parent = nullptr);
     AddScenarioCommand(CoreEngine* core, QUndoCommand *parent = nullptr);
     ~AddScenarioCommand();
     /// @}
@@ -117,7 +117,7 @@ protected:
 
     /// @brief The JSON for the scenario overwritten by the newly created scenario
     QJsonObject m_lastScenario;
-    QString m_lastScenarioPath;
+    GString m_lastScenarioPath;
 
     /// @}
     
@@ -131,7 +131,7 @@ public:
     //--------------------------------------------------------------------------------------------
     /// @name Constructors/Destructor
     /// @{
-    AddSceneCommand(CoreEngine* core, const QString &text, QUndoCommand *parent = nullptr);
+    AddSceneCommand(CoreEngine* core, const GString &text, QUndoCommand *parent = nullptr);
     AddSceneCommand(CoreEngine* core, QUndoCommand *parent = nullptr);
     ~AddSceneCommand();
     /// @}
@@ -154,7 +154,7 @@ protected:
     /// @{
 
     /// @brief The name of the scene added by this command
-    QString m_sceneName;
+    GString m_sceneName;
 
     /// @}
 };
@@ -168,7 +168,7 @@ public:
     //--------------------------------------------------------------------------------------------
     /// @name Constructors/Destructor
     /// @{
-    RemoveSceneCommand(CoreEngine* core, const std::shared_ptr<Scene>& scene, const QString &text, QUndoCommand *parent = nullptr);
+    RemoveSceneCommand(CoreEngine* core, const std::shared_ptr<Scene>& scene, const GString &text, QUndoCommand *parent = nullptr);
     RemoveSceneCommand(CoreEngine* core, const std::shared_ptr<Scene>& scene, QUndoCommand *parent = nullptr);
     ~RemoveSceneCommand();
     /// @}
@@ -210,7 +210,7 @@ public:
     //--------------------------------------------------------------------------------------------
     /// @name Constructors/Destructor
     /// @{
-    AddSceneObjectCommand(CoreEngine* core, const std::shared_ptr<Scene>& scene, const QString &text, std::shared_ptr<SceneObject> parentObject = nullptr, QUndoCommand *parent = nullptr);
+    AddSceneObjectCommand(CoreEngine* core, const std::shared_ptr<Scene>& scene, const GString &text, std::shared_ptr<SceneObject> parentObject = nullptr, QUndoCommand *parent = nullptr);
     AddSceneObjectCommand(CoreEngine* core, const std::shared_ptr<Scene>& scene, std::shared_ptr<SceneObject> parentObject = nullptr, QUndoCommand *parent = nullptr);
     ~AddSceneObjectCommand();
     /// @}
@@ -253,7 +253,7 @@ public:
     //--------------------------------------------------------------------------------------------
     /// @name Constructors/Destructor
     /// @{
-    RemoveSceneObjectCommand(CoreEngine* core, const std::shared_ptr<SceneObject>& sceneObject, const QString &text);
+    RemoveSceneObjectCommand(CoreEngine* core, const std::shared_ptr<SceneObject>& sceneObject, const GString &text);
     RemoveSceneObjectCommand(CoreEngine* core, const std::shared_ptr<SceneObject>& sceneObject);
     ~RemoveSceneObjectCommand();
     /// @}
@@ -296,7 +296,7 @@ public:
     //--------------------------------------------------------------------------------------------
     /// @name Constructors/Destructor
     /// @{
-    ChangeNameCommand(const QString& name, CoreEngine* core, const std::shared_ptr<Object>& object);
+    ChangeNameCommand(const GString& name, CoreEngine* core, const std::shared_ptr<Object>& object);
     ~ChangeNameCommand();
     /// @}
 
@@ -336,10 +336,10 @@ protected:
     std::weak_ptr<Object> m_object;
 
     /// @brief Name to set for the object
-    QString m_name;
+    GString m_name;
 
     /// @brief Previous name of the object
-    QString m_previousName;
+    GString m_previousName;
 
     /// @}
 };

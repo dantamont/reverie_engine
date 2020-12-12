@@ -21,7 +21,7 @@ namespace Gb {
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////
-SceneCommand::SceneCommand(CoreEngine* core, const QString & text, QUndoCommand * parent):
+SceneCommand::SceneCommand(CoreEngine* core, const GString & text, QUndoCommand * parent):
     UndoCommand(core, text, parent)
 {
 }
@@ -101,7 +101,7 @@ std::shared_ptr<Scene> SceneCommand::createScene(const QJsonValue & sceneJson) c
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Add Scenario
-AddScenarioCommand::AddScenarioCommand(CoreEngine* core, const QString & text, QUndoCommand * parent) :
+AddScenarioCommand::AddScenarioCommand(CoreEngine* core, const GString & text, QUndoCommand * parent) :
     SceneCommand(core, text, parent)
 {
 }
@@ -137,7 +137,7 @@ void AddScenarioCommand::undo()
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 // AddSceneCommand
-AddSceneCommand::AddSceneCommand(CoreEngine* core, const QString & text, QUndoCommand * parent) :
+AddSceneCommand::AddSceneCommand(CoreEngine* core, const GString & text, QUndoCommand * parent) :
     SceneCommand(core, text, parent)
 {
 }
@@ -178,7 +178,7 @@ void AddSceneCommand::undo()
 /////////////////////////////////////////////////////////////////////////////////////////////
 // RemoveScene
 /////////////////////////////////////////////////////////////////////////////////////////////
-RemoveSceneCommand::RemoveSceneCommand(CoreEngine * core, const std::shared_ptr<Scene>& scene, const QString & text, QUndoCommand * parent) :
+RemoveSceneCommand::RemoveSceneCommand(CoreEngine * core, const std::shared_ptr<Scene>& scene, const GString & text, QUndoCommand * parent) :
     SceneCommand(core, text, parent),
     m_scene(scene)
 {
@@ -240,11 +240,11 @@ void RemoveSceneCommand::undo()
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 // AddSceneObject
-AddSceneObjectCommand::AddSceneObjectCommand(CoreEngine* core, const std::shared_ptr<Scene>& scene, const QString & text, std::shared_ptr<SceneObject> parentObject, QUndoCommand * parent) :
+AddSceneObjectCommand::AddSceneObjectCommand(CoreEngine* core, const std::shared_ptr<Scene>& scene, const GString & text, std::shared_ptr<SceneObject> parentObject, QUndoCommand * parent) :
     SceneCommand(core, text, parent)
 {
     if (scene) {
-        m_scene = scene->getName();
+        m_scene = scene->getName().c_str();
     }
     if (parentObject) {
         m_parentSceneObject = parentObject->asJson().toObject();
@@ -255,7 +255,7 @@ AddSceneObjectCommand::AddSceneObjectCommand(CoreEngine* core, const std::shared
     SceneCommand(core, parent)
 {
     if (scene) {
-        m_scene = scene->getName();
+        m_scene = scene->getName().c_str();
     }
     if (parentObject) {
         m_parentSceneObject = parentObject->asJson().toObject();
@@ -289,7 +289,7 @@ void AddSceneObjectCommand::undo()
         // Remove object from parent scene object
         auto parentSceneObject = getSceneObject(m_parentSceneObject);
         parentSceneObject->removeChild(sceneObject);
-        DagNode::eraseFromNodeMap(sceneObject->getUuid());
+        SceneObject::EraseFromNodeMap(sceneObject->getUuid());
     }
     else {
         // Remove object from the scene (and from the node map)
@@ -306,7 +306,7 @@ void AddSceneObjectCommand::undo()
 // RemoveSceneObjectCommand
 /////////////////////////////////////////////////////////////////////////////////////////////
 RemoveSceneObjectCommand::RemoveSceneObjectCommand(CoreEngine * core,
-    const std::shared_ptr<SceneObject>& sceneObject, const QString & text):
+    const std::shared_ptr<SceneObject>& sceneObject, const GString & text):
     SceneCommand(core, text, nullptr),
     m_sceneObject(sceneObject)
 {
@@ -354,7 +354,7 @@ void RemoveSceneObjectCommand::redo()
 
     // Get engine
     m_sceneObjectJson = m_sceneObject->asJson();
-    m_sceneObject->remove();
+    m_sceneObject->removeFromScene();
 
     // Remove tree widget item for scene object
     //m_engine->sceneTreeWidget()->removeTreeItem(m_sceneObject);
@@ -390,7 +390,7 @@ void RemoveSceneObjectCommand::undo()
 /////////////////////////////////////////////////////////////////////////////////////////////
 // ChangeNameCommand
 /////////////////////////////////////////////////////////////////////////////////////////////
-ChangeNameCommand::ChangeNameCommand(const QString& name, 
+ChangeNameCommand::ChangeNameCommand(const GString& name, 
     CoreEngine* core,
     const std::shared_ptr<Object>& object) :
     UndoCommand(core, nullptr),

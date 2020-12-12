@@ -12,12 +12,16 @@ namespace Gb {
 quint64 VertexAttributes::getSizeInBytes() const
 {
     quint64 len = 0;
-    len += m_vertices.size() * sizeof(Vector3g);
-    len += m_normals.size() * sizeof(Vector3g);
-    len += m_texCoords.size() * sizeof(Vector3g);
-    len += m_colors.size() * sizeof(Vector3g);
-    len += m_miscInt.size() * sizeof(uint);
-    len += m_miscReal.size() * sizeof(Vector4g);
+    len += m_texCoords.size() * sizeof(Vector2);
+
+    len += m_vertices.size() * sizeof(Vector3);
+    len += m_normals.size() * sizeof(Vector3);
+    len += m_tangents.size() * sizeof(Vector3);
+
+    len += m_colors.size() * sizeof(Vector4);
+    len += m_miscReal.size() * sizeof(Vector4);
+
+    len += m_miscInt.size() * sizeof(Vector4i);
 
     return len;
 }

@@ -11,7 +11,7 @@
 #include "../../readers/GbJsonReader.h"
 
 #include "../geometry/GbPolygon.h"
-#include "../../components/GbCamera.h"
+#include "../../components/GbCameraComponent.h"
 
 namespace Gb {
 
@@ -31,24 +31,26 @@ CubePaths::CubePaths(
     m_directoryPath(directoryPath)
 {
     // Assign images to image map
-    Map::Emplace(m_fileNames, Face::kRight, right);
-    Map::Emplace(m_fileNames, Face::kLeft, left);
-    Map::Emplace(m_fileNames, Face::kTop, top);
-    Map::Emplace(m_fileNames, Face::kBottom, bottom);
-    Map::Emplace(m_fileNames, Face::kFront, back);
-    Map::Emplace(m_fileNames, Face::kBack, front);
+    int offset = (int)CubeMapFace::kRight;
+    m_fileNames[(int)CubeMapFace::kRight - offset] = right;
+    m_fileNames[(int)CubeMapFace::kLeft - offset] = left;
+    m_fileNames[(int)CubeMapFace::kTop - offset] = top;
+    m_fileNames[(int)CubeMapFace::kBottom - offset] = bottom;
+    m_fileNames[(int)CubeMapFace::kFront - offset] = back;
+    m_fileNames[(int)CubeMapFace::kBack - offset] = front;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 CubePaths::~CubePaths()
 {
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-QString CubePaths::path(const Face & face) const
+QString CubePaths::path(const CubeMapFace & face) const
 {
-    return QDir::cleanPath(m_directoryPath + QDir::separator() + m_fileNames.at(face));
+    int offset = (int)CubeMapFace::kRight;
+    return QDir::cleanPath(m_directoryPath + QDir::separator() + m_fileNames.at((int)face - offset));
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-CubePaths CubeTexture::loadCubemapFile(const QString & filepath)
+CubePaths CubeTexture::loadPathsFromCubemapFile(const QString & filepath)
 {
     QString dirPath = QFileInfo(filepath).dir().path();
     QVariantMap filepaths = JsonReader(filepath).getContentsAsVariantMap();
@@ -74,123 +76,53 @@ std::shared_ptr<ResourceHandle> CubeTexture::createHandle(CoreEngine * engine, c
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 // Cube Texture
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-CubeTexture::CubeTexture(const CubePaths& imagePaths,
-    unsigned int texUnit):
-    Resource(kCubeTexture),
-    m_imagePaths(imagePaths),
-    m_textureUnit(texUnit),
-    m_gl(nullptr)
+CubeTexture::CubeTexture(const CubePaths& imagePaths) :
+    CubeTexture(1, 1, 1)
 {
+    m_imagePaths = imagePaths;
+    loadImages();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-CubeTexture::CubeTexture(const QString & cubemapFilePath,
-    unsigned int texUnit) :
-    Resource(kCubeTexture),
-    m_textureUnit(texUnit),
-    m_gl(nullptr)
+CubeTexture::CubeTexture(const QString & cubemapFilePath):
+    CubeTexture(1, 1, 1)
 {
-    m_imagePaths = loadCubemapFile(cubemapFilePath);
+    m_imagePaths = loadPathsFromCubemapFile(cubemapFilePath);
+    loadImages();
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+CubeTexture::CubeTexture(size_t width, size_t height, size_t depth, bool isArray, TextureFormat internalFormat):
+    Texture(
+    width,
+    height,
+    isArray ? TextureTargetType::kCubeMapArray : TextureTargetType::kCubeMap,
+    TextureUsageType::kNone,
+    TextureFilter::kLinear,
+    TextureFilter::kLinear,
+    TextureWrapMode::kClampToEdge,
+    internalFormat,
+    depth)
+{
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 CubeTexture::~CubeTexture()
 {
-    if (m_gl) {
-        delete m_gl;
-    }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-void CubeTexture::initializeTexture()
+void CubeTexture::loadImages()
 {
-    initializeTexture(m_imagePaths);
-}
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-void CubeTexture::initializeTexture(const CubePaths& imagePaths)
-{
-    m_gl = new GL::OpenGLFunctions();
-
-    // Create texture ID to reference
-    m_gl->glGenTextures(1, &m_textureID); // number of textures, texture ID
-
-    // Bind the cubemap texture
-    bind();
-
-    // Set wrapping and mipmap generation modes
-    initializeSettings();
-
-    // Iterate through faces and populate cubemap texture data
-    int width;
-    int height;
-    m_cost = 0;
     for (int faceInt = 0; faceInt < 6; ++faceInt) {
-        // Load image
-        Face face = Face(GL_TEXTURE_CUBE_MAP_POSITIVE_X + faceInt);
-        const QString& imagePath = imagePaths.path(face);
-        auto image = std::make_shared<Image>(
-            imagePath,
-            QImage::Format_RGBA8888);
-
+        // Load images into cubemap
+        CubeMapFace face = CubeMapFace(GL_TEXTURE_CUBE_MAP_POSITIVE_X + faceInt);
+        QString imagePath = m_imagePaths.path(face);
+        m_images.emplace_back(imagePath, QImage::Format_RGBA8888); // QImage is implicitly shared, so copy is cheap
+    
+        // Set cubemap dimensions
         if (faceInt == 0) {
-            // Get size of images (all should be same dimensions)
-            width = image->m_image.width();
-            height = image->m_image.height();
+            m_width = m_images.back().m_image.width();
+            m_height = m_images.back().m_image.height();
         }
-
-        // Load image into GL
-        glTexImage2D((int)face,  // Specify which cubemap face is texture target
-            0, // mipmap level
-            GL_RGBA8, // internal format to store texture in
-            width,  // resulting texture width
-            height, // resulting texture height
-            0,  // always 0, legacy
-            GL_RGBA, // format of source image (pixel data)
-            GL_UNSIGNED_BYTE, // data type of source image (affects resolution)
-            image->m_image.constBits()); // actual image data
-
-        m_cost += image->sizeInMegaBytes();
-#ifdef DEBUG_MODE
-        m_gl->printGLError("Failed to initialize cubemap texture " + QString::number(faceInt));
-#endif
     }
-	
-#ifdef DEBUG_MODE
-    m_gl->printGLError("Failed to initialize cubemap textures");
-#endif
-
-    // Unbind the cubemap texture
-    release();
-
 }
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-void CubeTexture::onRemoval(ResourceCache* cache)
-{
-    Q_UNUSED(cache);
-    remove();
-}
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-void CubeTexture::postConstruction()
-{
-    initializeTexture();
-
-    // Call parent class construction routine
-    Resource::postConstruction();
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-void CubeTexture::initializeSettings()
-{
-    // Set cubemap settings
-    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-    // May not be compatible with Open GL ES
-    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-#ifdef DEBUG_MODE
-    m_gl->printGLError("Failed to initialize cubemap texture settings");
-#endif
-}
-
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////

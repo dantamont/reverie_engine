@@ -4,6 +4,7 @@
 
 #include "../../core/resource/GbResourceCache.h"
 #include "../../core/resource/GbResource.h"
+#include "../../core/scene/GbScenario.h"
 #include "../../core/rendering/models/GbModel.h"
 #include "../../core/rendering/materials/GbCubeTexture.h"
 #include "../../core/rendering/materials/GbMaterial.h"
@@ -18,11 +19,12 @@
 #include "../../GbMainWindow.h"
 #include "../parameters/GbModelWidgets.h"
 #include "../parameters/GbMaterialWidgets.h"
+#include "../parameters/GbLoadAudioWidget.h"
 #include "../../core/containers/GbFlags.h"
 
 namespace Gb {
 
-#define FULL_DELETE_RESOURCE Flags::toFlags<ResourceHandle::DeleteFlag>(3)
+#define FULL_DELETE_RESOURCE Flags::toFlags<ResourceHandle::DeleteFlag>((int)ResourceHandle::kDeleteHandle | (int)ResourceHandle::kForce )
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -158,7 +160,7 @@ void CopyMaterialCommand::redo()
     // Add material to resource cache
     QString name = "material_" + Uuid().asString();
     auto matHandle = Material::createHandle(m_engine, name);
-    matHandle->resourceAs<Material>()->loadFromJson(m_materialJson);
+    matHandle->resourceAs<Material>()->loadFromJson(m_materialJson, { m_engine });
     m_materialUuid = matHandle->getUuid();
 
     // Emit signal that material was created
@@ -176,12 +178,12 @@ void CopyMaterialCommand::undo()
 QString CopyMaterialCommand::getUniqueName()
 {
     QString name = m_materialJson["name"].toString().toLower();
-    int count = 1;
-    QString newName = name;
-    while (m_engine->resourceCache()->materials().find(newName)
-        != m_engine->resourceCache()->materials().end()) {
-        newName = name + "_" + QString::number(count++);
-    }
+    //int count = 1;
+    //while (m_engine->resourceCache()->materials().find(Uuid(newName))
+    //    != m_engine->resourceCache()->materials().end()) {
+    //    newName = name + "_" + QString::number(count++);
+    //}
+    QString newName = name + "_" + Uuid::UniqueQName();
     return newName;
 }
 
@@ -353,16 +355,16 @@ void CopyModelCommand::undo()
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 QString CopyModelCommand::getUniqueName()
 {
-    QString name = m_modelJson["name"].toString().toLower();
+    GString name = GString(m_modelJson["name"].toString()).asLower();
     int count = 1;
-    QString newName = name;
+    GString newName = name;
     const ResourceCache::ResourceMap& models = m_engine->resourceCache()->models();
     auto iter = std::find_if(models.begin(), models.end(),
         [&](const auto& modelPair) {
         return modelPair.second->getName() == name;
     });
     while (iter != models.end()) {
-        newName = name + "_" + QString::number(count++);
+        newName = name + "_" + GString::FromNumber(count++);
 
         iter = std::find_if(models.begin(), models.end(),
             [&](const auto& modelPair) {
@@ -372,7 +374,48 @@ QString CopyModelCommand::getUniqueName()
     return newName;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// LoadAudioCommand
+///////////////////////////////////////////////////////////////////////////////////////////////////
+LoadAudioCommand::LoadAudioCommand(CoreEngine * core, 
+    const QString & text,
+    QUndoCommand * parent):
+    UndoCommand(core, text, parent),
+    m_audioWidget(nullptr)
+{
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+LoadAudioCommand::~LoadAudioCommand()
+{
+    delete m_audioWidget;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+void LoadAudioCommand::redo()
+{
+    // Create widget for loading in model
+    if (!m_audioWidget) {
+        createAudioWidget();
+    }
 
+    // Show add model dialog on redo
+    m_audioWidget->show();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+void LoadAudioCommand::undo()
+{
+    if (!m_audioWidget->m_audioHandleID.isNull()) {
+        auto handle = m_engine->resourceCache()->getHandle(m_audioWidget->m_audioHandleID);
+        m_engine->resourceCache()->remove(handle, FULL_DELETE_RESOURCE);
+        m_audioWidget->m_audioHandleID = Uuid(false);
+    }
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+void LoadAudioCommand::createAudioWidget()
+{
+    // Create widget to add audio to resource cache
+    m_audioWidget = new View::LoadAudioWidget(m_engine);
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -415,39 +458,115 @@ void AddShaderCommand::createShaderWidget()
     m_shaderWidget = new QWidget();
     QVBoxLayout* layout = new QVBoxLayout();
 
-    // Create new layouts
+    // Create new layouts -----------------------------------------------------
+
+    // Fragment shader
     QHBoxLayout* fragLayout = new QHBoxLayout();
     QLabel* fragLabel = new QLabel();
     fragLabel->setText("Fragment Shader: ");
-    View::FileLoadWidget* fragmentWidget = new View::FileLoadWidget(m_engine,
+    m_fragmentWidget = new View::FileLoadWidget(m_engine,
         "",
         "Open Fragment Shader",
-        "Fragment Shaders (*.frag)");
+        "Fragment Shaders (*.frag *.fsh *.glsl)");
     fragLayout->addWidget(fragLabel);
-    fragLayout->addWidget(fragmentWidget);
+    fragLayout->addWidget(m_fragmentWidget);
     fragLayout->setAlignment(Qt::AlignCenter);
-    fragmentWidget->connect(fragmentWidget->lineEdit(), &QLineEdit::textChanged,
+
+    // Vertex shader
+    QHBoxLayout* vertLayout = new QHBoxLayout();
+    QLabel* vertLabel = new QLabel();
+    vertLabel->setText("Vertex Shader: ");
+    m_vertexWidget = new View::FileLoadWidget(m_engine,
+        "",
+        "Open Vertex Shader",
+        "Vertex Shaders (*.vert *.vsh *.glsl)");
+    vertLayout->addWidget(vertLabel);
+    vertLayout->addWidget(m_vertexWidget);
+    vertLayout->setAlignment(Qt::AlignCenter);
+
+    // Geometry shader
+    QHBoxLayout* geometryLayout = new QHBoxLayout();
+    QLabel* geometryLabel = new QLabel();
+    geometryLabel->setText("Geometry Shader (Optional): ");
+    m_geometryWidget = new View::FileLoadWidget(m_engine,
+        "",
+        "Open Geometry Shader",
+        "Geometry Shaders (*.geom *.glsl)");
+    geometryLayout->addWidget(geometryLabel);
+    geometryLayout->addWidget(m_geometryWidget);
+    geometryLayout->setAlignment(Qt::AlignCenter);
+
+    // Compute shader
+    QHBoxLayout* computeLayout = new QHBoxLayout();
+    QLabel* computeLabel = new QLabel();
+    computeLabel->setText("Compute Shader (Optional): ");
+    m_computeWidget = new View::FileLoadWidget(m_engine,
+        "",
+        "Open Compute Shader",
+        "Compute Shaders (*.comp *.glsl)");
+    computeLayout->addWidget(computeLabel);
+    computeLayout->addWidget(m_computeWidget);
+    computeLayout->setAlignment(Qt::AlignCenter);
+
+    // Connect widgets ---------------------------------------------------
+
+    // Vert
+    m_vertexWidget->connect(m_vertexWidget->lineEdit(), &QLineEdit::textChanged,
+        m_shaderWidget,
+        [&](const QString& text) {
+        m_vertFile = text;
+
+        // Auto-complete other entries
+        QString fragPath = m_vertFile;
+        fragPath.replace(".vert", ".frag");
+        if (FileReader::fileExists(fragPath) && fragPath != m_vertFile) {
+            m_fragFile = fragPath;
+            m_fragmentWidget->lineEdit()->setText(m_fragFile);
+        }
+
+        QString geomPath = m_vertFile;
+        geomPath.replace(".vert", ".geom");
+        if (FileReader::fileExists(geomPath) && geomPath != m_vertFile) {
+            m_geomFile = geomPath;
+            m_geometryWidget->lineEdit()->setText(m_geomFile);
+        }
+
+        QString compPath = m_vertFile;
+        compPath.replace(".vert", ".comp");
+        if (FileReader::fileExists(compPath) && compPath != m_vertFile) {
+            m_compFile = compPath;
+            m_computeWidget->lineEdit()->setText(m_compFile);
+        }
+    });
+
+    // Frag
+    m_fragmentWidget->connect(m_fragmentWidget->lineEdit(), &QLineEdit::textChanged,
         m_shaderWidget,
         [&](const QString& text) {
         m_fragFile = text;
     });
 
-    QHBoxLayout* vertLayout = new QHBoxLayout();
-    QLabel* vertLabel = new QLabel();
-    vertLabel->setText("Vertex Shader: ");
-    View::FileLoadWidget*  vertexWidget = new View::FileLoadWidget(m_engine,
-        "",
-        "Open Vertex Shader",
-        "Vertex Shaders (*.vert)");
-    vertLayout->addWidget(vertLabel);
-    vertLayout->addWidget(vertexWidget);
-    vertLayout->setAlignment(Qt::AlignCenter);
-    vertexWidget->connect(vertexWidget->lineEdit(), &QLineEdit::textChanged,
+    // Geometry 
+    m_geometryWidget->connect(m_geometryWidget->lineEdit(), &QLineEdit::textChanged,
         m_shaderWidget,
         [&](const QString& text) {
-        m_vertFile = text;
+        m_geomFile = text;
     });
 
+    // Compute
+    m_computeWidget->connect(m_computeWidget->lineEdit(), &QLineEdit::textChanged,
+        m_shaderWidget,
+        [&](const QString& text) {
+        m_compFile = text;
+
+        // Clear other entries
+        m_fragmentWidget->lineEdit()->setText("");
+        m_vertexWidget->lineEdit()->setText("");
+        m_geometryWidget->lineEdit()->setText("");
+    });
+
+
+    // Dialog Buttons
     QDialogButtonBox::StandardButtons dialogButtons = QDialogButtonBox::Ok |
         QDialogButtonBox::Cancel;
     QDialogButtonBox* buttons = new QDialogButtonBox(dialogButtons);
@@ -458,8 +577,8 @@ void AddShaderCommand::createShaderWidget()
         //m_shaderProgram = std::make_shared<ShaderProgram>(m_vertFile, m_fragFile);
         //m_engine->resourceCache()->shaderPrograms().emplace(name, m_shaderProgram);
         auto handle = m_engine->resourceCache()->guaranteeHandleWithPath(
-            { m_vertFile, m_fragFile }, Resource::kShaderProgram);
-
+            { m_vertFile, m_fragFile, m_geomFile, m_compFile}, Resource::kShaderProgram);
+        handle->setName(handle->resourceAs<ShaderProgram>()->getName());
         m_shaderProgramID = handle->getUuid();
 
         // Repopulate resource widget
@@ -469,8 +588,10 @@ void AddShaderCommand::createShaderWidget()
     });
 
     // Add layouts to main layout
-    layout->addLayout(fragLayout);
     layout->addLayout(vertLayout);
+    layout->addLayout(fragLayout);
+    layout->addLayout(geometryLayout);
+    layout->addLayout(computeLayout);
     layout->addWidget(buttons);
 
     // Note, cannot call again without deleting previous layout
@@ -509,7 +630,7 @@ void DeleteMaterialCommand::redo()
 void DeleteMaterialCommand::undo()
 {
     auto handle = Material::createHandle(m_engine, m_materialName);
-    handle->resourceAs<Material>()->loadFromJson(m_materialJson);
+    handle->resourceAs<Material>()->loadFromJson(m_materialJson, { m_engine });
 
     // Repopulate resource widget
     emit m_engine->resourceCache()->resourceAdded(handle);
@@ -573,7 +694,7 @@ DeleteShaderCommand::~DeleteShaderCommand()
 void DeleteShaderCommand::redo()
 {
     auto handle = m_engine->resourceCache()->getHandleWithName(m_shaderName, Resource::kShaderProgram);
-    m_engine->resourceCache()->remove(handle);
+    m_engine->resourceCache()->remove(handle, FULL_DELETE_RESOURCE);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void DeleteShaderCommand::undo()
@@ -629,11 +750,14 @@ std::shared_ptr<ResourceHandle> ResourceJsonWidget::resourceHandle() const
 void ResourceJsonWidget::initializeWidgets()
 {
     auto handle = resourceHandle();
-    if (!handle) {
-        throw("Resource deleted");
+    while (!handle) {
+        // FIXME: See if this actually stops crash
+        //throw("No handle found");
+        logWarning("Resource deleted or not found, waiting to load");
+        handle = resourceHandle();
     }
     m_typeLabel = new QLabel(QString(handle->resource(false)->className()) + ": " +
-        handle->getName());
+        handle->getName().c_str());
     m_typeLabel->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
 
     m_textEdit = new QTextEdit();
@@ -647,9 +771,9 @@ void ResourceJsonWidget::initializeWidgets()
     }
     else {
         if (!handle->getName().isEmpty())
-            text = handle->getName();
+            text = handle->getName().c_str();
         else
-            text = handle->getUuid().asString();
+            text = handle->getUuid().asQString();
         m_textEdit->setEnabled(false);
     }
     m_textEdit->setText(text);
@@ -695,7 +819,13 @@ void ResourceJsonWidget::initializeConnections()
             QJsonDocument contents = JsonReader::ToJsonDocument(text);
             if (contents.isNull()) return;
 
-            QString name = resourceHandle()->getName();
+            std::shared_ptr<ResourceHandle> handle = resourceHandle();
+            if (!handle) {
+                throw("Error, somehow no handle found");
+            }
+
+            // Copy name prior to reload
+            GString name = handle->getName();
 
             // Pause scenario to edit resource
             SimulationLoop* simLoop = m_engine->simulationLoop();
@@ -706,11 +836,11 @@ void ResourceJsonWidget::initializeConnections()
             m_engine->simulationLoop()->pause();
 
             // Edit resource via JSON
-            resourceHandle()->resourceAs<Serializable>()->loadFromJson(contents.object());
+            handle->resourceAs<Serializable>()->loadFromJson(contents.object());
 
             // If object name has changed, emit signal to repopulate widget
-            if (name != resourceHandle()->getName()) {
-                emit m_engine->resourceCache()->resourceChanged(resourceHandle());
+            if (name != handle->getName()) {
+                emit m_engine->resourceCache()->resourceChanged(handle);
             }
 
             // Unpause scenario
@@ -861,7 +991,8 @@ ResourceTreeWidget::ResourceTreeWidget(CoreEngine* engine, const QString& name, 
     m_skeletonItem(nullptr),
     m_modelItem(nullptr),
     m_shaderItem(nullptr),
-    m_scriptItem(nullptr)
+    m_scriptItem(nullptr),
+    m_audioItem(nullptr)
 {
     initializeWidget();
 }
@@ -878,6 +1009,9 @@ void ResourceTreeWidget::repopulate()
     //if (loadProcessCount) return;
     if (m_engine->resourceCache()->isLoadingResources()) return;
 
+    // Disable repaint while big visual changes happening, slightly more performant
+    setUpdatesEnabled(false);
+
     // Clear the widget
     clear();
 
@@ -892,17 +1026,28 @@ void ResourceTreeWidget::repopulate()
     ResourceCache* cache = m_engine->resourceCache();
 
     // Add resources
-    for (const auto& resourcePair : cache->resources()) {
+    //for (const auto& resourcePair : cache->resources()) {
+    //    addItem(resourcePair.second);
+    //}
+    cache->resources().forEach(
+        [this](const std::pair<Uuid, std::shared_ptr<ResourceHandle>>& resourcePair)
+    {
         addItem(resourcePair.second);
-    }
-
-    //setUpdatesEnabled(true);
+    });
 
     resizeColumns();
+
+    // Disable repaint while big visual changes happening, slightly more performant
+    setUpdatesEnabled(true);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void ResourceTreeWidget::reloadItem(std::shared_ptr<ResourceHandle> handle)
 {
+    if (!handle) {
+        // FIXME: See what causes this
+        throw("Error, no handle passed through");
+    }
+
     if (getItem(handle)) {
         removeItem(handle);
     }
@@ -965,7 +1110,11 @@ void ResourceTreeWidget::addItem(View::ResourceItem * item)
     case Resource::kPythonScript:
         parent = m_scriptItem;
         break;
+    case Resource::kAudio:
+        parent = m_audioItem;
+        break;
     default:
+        throw("Error, item type not recognized");
         break;
     }
     if (parent)
@@ -991,6 +1140,11 @@ void ResourceTreeWidget::removeItem(std::shared_ptr<ResourceHandle> handle)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 View::ResourceItem * ResourceTreeWidget::getItem(std::shared_ptr<ResourceHandle> handle)
 {
+    if (!handle) {
+        logWarning("No handle specified");
+        return nullptr;
+    }
+
     QTreeWidgetItemIterator it(this);
     while (*it) {
         ResourceItem* item = static_cast<ResourceItem*>(*it);
@@ -1036,6 +1190,7 @@ void ResourceTreeWidget::initializeCategories()
     m_modelItem = new ResourceItem("Models");
     m_shaderItem = new ResourceItem("Shaders");
     m_scriptItem = new ResourceItem("Scripts");
+    m_audioItem = new ResourceItem("Audio");
 
     addTopLevelItem(m_imageItem);   
     addTopLevelItem(m_textureItem);
@@ -1047,6 +1202,7 @@ void ResourceTreeWidget::initializeCategories()
     addTopLevelItem(m_modelItem);
     addTopLevelItem(m_shaderItem);
     addTopLevelItem(m_scriptItem);
+    addTopLevelItem(m_audioItem);
     
     resizeColumns();
 }

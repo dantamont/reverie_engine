@@ -41,14 +41,14 @@ EulerAngles::~EulerAngles()
 {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Matrix4x4f EulerAngles::toRotationMatrixF() const
+Matrix4x4 EulerAngles::toRotationMatrixF() const
 {
     return toRotationMatrix().toFloatMatrix();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Matrix4x4 EulerAngles::toRotationMatrix() const
+Matrix4x4d EulerAngles::toRotationMatrix() const
 {
-    Matrix4x4 transformMatrix = Matrix4x4::EmptyMatrix();
+    Matrix4x4d transformMatrix = Matrix4x4d::EmptyMatrix();
     switch (m_rotationSpace) {
     case RotationSpace::kInertial:
         transformMatrix = std::move(computeExtrinsicRotationMatrix(m_angles, m_rotationOrder));
@@ -71,29 +71,29 @@ Quaternion EulerAngles::toQuaternion() const
     return Quaternion::fromEulerAngles(*this);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Matrix4x4 EulerAngles::computeExtrinsicRotationMatrix(const Vector3f & angles, const Axes & axisOrder)
+Matrix4x4d EulerAngles::computeExtrinsicRotationMatrix(const Vector3f & angles, const Axes & axisOrder)
 {
-    Matrix4x4 rotationMtx;
-    Matrix4x4 axisRotationMtx;
+    Matrix4x4d rotationMtx;
+    Matrix4x4d axisRotationMtx;
 
-    Vector3 axisVector;
+    Vector3d axisVector;
     for (size_t i = 0; i < axisOrder.size(); i++) {
         Axis axis = axisOrder.at(i);
         axisRotationMtx.setToIdentity();
         switch (axis) {
         case Axis::kAxisX:
-            axisVector = Vector3(1, 0, 0);
+            axisVector = Vector3d(1, 0, 0);
             axisRotationMtx.addRotate(axisVector, angles[i]);
             rotationMtx = axisRotationMtx * rotationMtx;
             break;
         case Axis::kAxisY:
-            axisVector = Vector3(0, 1, 0);
+            axisVector = Vector3d(0, 1, 0);
             axisRotationMtx.addRotate(axisVector, angles[i]);
             rotationMtx = axisRotationMtx * rotationMtx;
             break;
 
         case Axis::kAxisZ:
-            axisVector = Vector3(0, 0, 1);
+            axisVector = Vector3d(0, 0, 1);
             axisRotationMtx.addRotate(axisVector, angles[i]);
             rotationMtx = axisRotationMtx * rotationMtx;
             break;
@@ -104,31 +104,31 @@ Matrix4x4 EulerAngles::computeExtrinsicRotationMatrix(const Vector3f & angles, c
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Matrix4x4 EulerAngles::computeIntrinsicRotationMatrix(const Vector3f & angles, const Axes & axisOrder)
+Matrix4x4d EulerAngles::computeIntrinsicRotationMatrix(const Vector3f & angles, const Axes & axisOrder)
 {
-    Matrix4x4 rotationMtx;
-    Matrix4x4 axisRotationMtx;
+    Matrix4x4d rotationMtx;
+    Matrix4x4d axisRotationMtx;
 
     // See https://en.wikipedia.org/wiki/Davenport_chained_rotations,
     // Intrinsic rotations are (amazingly) somehow just the reverse application of extrinsic ones
-    Vector3 axisVector = Vector3::EmptyVector();
+    Vector3d axisVector = Vector3d::EmptyVector();
     for (int i = axisOrder.size() - 1; i >= 0; i--) {
         Axis axis = axisOrder.at(i);
         axisRotationMtx.setToIdentity();
         switch (axis) {
         case Axis::kAxisX:
-            axisVector = Vector3(1, 0, 0);
+            axisVector = Vector3d(1, 0, 0);
             axisRotationMtx.addRotate(axisVector, angles[i]);
             rotationMtx = axisRotationMtx * rotationMtx;
             break;
         case Axis::kAxisY:
-            axisVector = Vector3(0, 1, 0);
+            axisVector = Vector3d(0, 1, 0);
             axisRotationMtx.addRotate(axisVector, angles[i]);
             rotationMtx = axisRotationMtx * rotationMtx;
             break;
 
         case Axis::kAxisZ:
-            axisVector = Vector3(0, 0, 1);
+            axisVector = Vector3d(0, 0, 1);
             axisRotationMtx.addRotate(axisVector, angles[i]);
             rotationMtx = axisRotationMtx * rotationMtx;
             break;
@@ -173,7 +173,7 @@ EulerAngles EulerAngles::toAngles(EulerType type, RotationSpace space) const
         // Return this set of angles if it matches the input type
         return *this;
     }
-    Matrix3x3 matrix = toRotationMatrix();
+    Matrix3x3d matrix = toRotationMatrix();
     return EulerAngles::toAngles(std::move(matrix), type, space);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -352,7 +352,7 @@ EulerAngles::Axes EulerAngles::typeToAxes(const EulerType & type, RotationSpace 
     return Axes();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-EulerAngles EulerAngles::toAngles(const Matrix3x3 & m, EulerType type, RotationSpace space)
+EulerAngles EulerAngles::toAngles(const Matrix3x3d & m, EulerType type, RotationSpace space)
 {
     EulerAngles angles;
     angles.m_rotationOrder = typeToAxes(type, space);
@@ -360,130 +360,126 @@ EulerAngles EulerAngles::toAngles(const Matrix3x3 & m, EulerType type, RotationS
 
     // See: https://en.wikipedia.org/wiki/Euler_angles
     float angle1, angle2, angle3;
-    float s1, s2, s3, c2;
+    //float s1, s2, s3, c2;
 
+    // FIXME: May not be working properly, gimbal lock with 180deg
+    // See: https://ntrs.nasa.gov/api/citations/19770024290/downloads/19770024290.pdf
     switch (type) {
     // Proper Euler Angles
     case kZXZ:
-        angle2 = acos(m(2, 2));
-        s2 = sin(angle2);
-        s1 = m(0, 2) / s2;
-        angle1 = asin(s1);
-        s3 = m(2, 0) / s2;
-        angle3 = asin(s3);
+    {
+        double m22 = m(2, 2);
+        angle1 = atan2(m(0, 2), -m(1, 2));
+        angle2 = atan2(sqrt(1 - (m22 * m22)), m22);
+        angle3 = atan2(m(2, 0), m(2, 1));
         break;
+    }
     case kXYX:
-        angle2 = acos(m(0, 0));
-        s2 = sin(angle2);
-        s1 = m(1, 0) / s2;
-        angle1 = asin(s1);
-        s3 = m(0, 1) / s2;
-        angle3 = asin(s3);
+    {
+        double m00 = m(0, 0);
+        angle1 = atan2(m(1, 0), -m(2, 0));
+        angle2 = atan2(sqrt(1 - (m00 * m00)), m00);
+        angle3 = atan2(m(0, 1), m(0, 2));
         break;
+    }
     case kYZY:
-        angle2 = acos(m(1, 1));
-        s2 = sin(angle2);
-        s1 = m(2, 1) / s2;
-        angle1 = asin(s1);
-        s3 = m(1, 2) / s2;
-        angle3 = asin(s3);
+    {
+        double m11 = m(1, 1);
+        angle1 = atan2(m(2, 1), -m(0, 1));
+        angle2 = atan2(sqrt(1 - (m11 * m11)), m11);
+        angle3 = atan2(m(1, 2), m(1, 0));
         break;
+    }
     case kZYZ:
-        angle2 = acos(m(2, 2));
-        s2 = sin(angle2);
-        s1 = m(1, 2) / s2;
-        angle1 = asin(s1);
-        s3 = m(2, 1) / s2;
-        angle3 = asin(s3);
+    {
+        double m22 = m(1, 1);
+        angle1 = atan2(m(1, 2), m(0, 2));
+        angle2 = atan2(sqrt(1 - (m22 * m22)), m22);
+        angle3 = atan2(m(2, 1), -m(2, 0));
         break;
+    }
     case kXZX:
-        angle2 = acos(m(0, 0));
-        s2 = sin(angle2);
-        s1 = m(2, 0) / s2;
-        angle1 = asin(s1);
-        s3 = m(0, 2) / s2;
-        angle3 = asin(s3);
+    {
+        double m00 = m(0, 0);
+        angle1 = atan2(m(2, 0), m(1, 0));
+        angle2 = atan2(sqrt(1 - (m00 * m00)), m00);
+        angle3 = atan2(m(0, 2), -m(0, 1));
         break;
+    }
     case kYXY:
-        angle2 = acos(m(1, 1));
-        s2 = sin(angle2);
-        s1 = m(0, 1) / s2;
-        angle1 = asin(s1);
-        s3 = m(1, 0) / s2;
-        angle3 = asin(s3);
+    {
+        double m11 = m(1, 1);
+        angle1 = atan2(m(0, 1), m(2, 1));
+        angle2 = atan2(sqrt(1 - (m11 * m11)), m11);
+        angle3 = atan2(m(1, 0), -m(1, 2));
         break;
+    }
     // Tait-Bryan Angles
     case kXZY:
-        s2 = -m(0, 1);
-        angle2 = asin(s2);
-        c2 = cos(angle2);
-        s1 = m(2, 1) / c2;
-        angle1 = asin(s1);
-        s3 = m(0, 2) / c2;
-        angle3 = asin(s3);
+    {
+        double m01 = m(0, 1);
+        angle1 = atan2(m(2, 1), m(1, 1));
+        angle2 = atan2(-m01, sqrt(1 - (m01 * m01)));
+        angle3 = atan2(m(0, 2), m(0, 0));
         break;
+    }
     case kXYZ:
-        s2 = m(0, 2);
-        angle2 = asin(s2);
-        c2 = cos(angle2);
-        s1 = -m(1, 2) / c2;
-        angle1 = asin(s1);
-        s3 = -m(0, 1) / c2;
-        angle3 = asin(s3);
+    {
+        double m02 = m(0, 2);
+        angle1 = atan2(-m(1, 2), m(2, 2));
+        angle2 = atan2(m02, sqrt(1 - (m02 * m02)));
+        angle3 = atan2(-m(0, 1), m(0, 0));
         break;
+    }
     case kYXZ:
-        s2 = -m(1, 2);
-        angle2 = asin(s2);
-        c2 = cos(angle2);
-        s1 = m(0, 2) / c2;
-        angle1 = asin(s1);
-        s3 = m(1, 0) / c2;
-        angle3 = asin(s3);
+    {
+        double m12 = m(1, 2);
+        angle1 = atan2(m(0, 2), m(2, 2));
+        angle2 = atan2(-m12, sqrt(1 - (m12 * m12)));
+        angle3 = atan2(m(1, 0), m(1, 1));
         break;
+    }
     case kYZX:
-        s2 = m(1, 0);
-        angle2 = asin(s2);
-        c2 = cos(angle2);
-        s1 = -m(2, 0) / c2;
-        angle1 = asin(s1);
-        s3 = -m(1, 2) / c2;
-        angle3 = asin(s3);
+    {
+        double m10 = m(1, 0);
+        angle1 = atan2(-m(2, 0), m(0, 0));
+        angle2 = atan2(m10, sqrt(1 - (m10 * m10)));
+        angle3 = atan2(-m(1, 2), m(1, 1));
         break;
+    }
     case kZYX:
-        s2 = -m(2, 0);
-        angle2 = asin(s2);
-        c2 = cos(angle2);
-        s1 = m(1, 0) / c2;
-        angle1 = asin(s1);
-        s3 = m(2, 1) / c2;
-        angle3 = asin(s3);
+    {
+        double m20 = m(2, 0);
+        angle1 = atan2(m(1, 0), m(0, 0));
+        angle2 = atan2(-m20, sqrt(1 - (m20 * m20)));
+        angle3 = atan2(m(2, 1), m(2, 2));
         break;
+    }
     case kZXY:
-        s2 = m(2, 1);
-        angle2 = asin(s2);
-        c2 = cos(angle2);
-        s1 = -m(0, 1) / c2;
-        angle1 = asin(s1);
-        s3 = -m(2, 0) / c2;
-        angle3 = asin(s3);
+    {
+        double m21 = m(2, 1);
+        angle1 = atan2(-m(0, 1), m(1, 1));
+        angle2 = atan2(m21, sqrt(1 - (m21 * m21)));
+        angle3 = atan2(-m(2, 0), m(2, 2));
         break;
+    }
     default:
         throw("Type not recognized");
         break;
     }
 
-    if (isnan(angle1)) {
-        s1 = clamp(s1);
-        angle1 = asin(s1);
-    }
-    if (isnan(angle2)) {
-        s2 = clamp(s2);
-        angle2 = asin(s2);
-    }
-    if (isnan(angle3)) {
-        s3 = clamp(s3);
-        angle3 = asin(s3);
-    }
+    //if (isnan(angle1)) {
+    //    s1 = clamp(s1);
+    //    angle1 = asin(s1);
+    //}
+    //if (isnan(angle2)) {
+    //    s2 = clamp(s2);
+    //    angle2 = asin(s2);
+    //}
+    //if (isnan(angle3)) {
+    //    s3 = clamp(s3);
+    //    angle3 = asin(s3);
+    //}
 
     angles.m_angles = Vector3f(angle1, angle2, angle3);
     return angles;

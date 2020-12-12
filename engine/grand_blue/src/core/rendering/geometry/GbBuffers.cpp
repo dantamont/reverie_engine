@@ -8,8 +8,7 @@ namespace GL {
 // Vertex Array Object
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 VertexArrayObject::VertexArrayObject(bool create, bool bind):
-    QOpenGLVertexArrayObject(nullptr), // don't allow parenting for safe memory management
-    OpenGLFunctions()
+    QOpenGLVertexArrayObject(nullptr) // don't allow parenting for safe memory management
 {
     if (create) initialize(bind);
 }
@@ -21,18 +20,19 @@ VertexArrayObject::~VertexArrayObject()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 bool VertexArrayObject::bind()
 {
+    OpenGLFunctions& gl = *OpenGLFunctions::Functions();
     bool error = false;
 #ifdef DEBUG_MODE
-    error = printGLError("VAO::bind: Error before binding VAO");
+    error = OpenGLFunctions::printGLError("VAO::bind: Error before binding VAO");
     if (error) {
         if (!isCreated())
             logInfo("Error, VAO not created");
     }
 #endif
     //QOpenGLVertexArrayObject::bind();
-    glBindVertexArray(objectId());
+    gl.glBindVertexArray(objectId());
 #ifdef DEBUG_MODE
-    error = printGLError("VAO::bind: Error binding VAO");
+    error = OpenGLFunctions::printGLError("VAO::bind: Error binding VAO");
     if (error) {
         if (!isCreated()) {
             logError("VAO was not created");
@@ -47,8 +47,9 @@ bool VertexArrayObject::bind()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void VertexArrayObject::initialize(bool bind_)
 {
+
 #ifndef QT_NO_DEBUG_OUTPUT
-    printGLError("Error before VAO initialization");
+    OpenGLFunctions::printGLError("Error before VAO initialization");
 #endif
 
     // Destroy underlying VAO if it exists already
@@ -68,7 +69,7 @@ void VertexArrayObject::initialize(bool bind_)
     if (bind_) bind();
 	
 #ifndef QT_NO_DEBUG_OUTPUT
-    printGLError("Error initializing VAO");
+    OpenGLFunctions::printGLError("Error initializing VAO");
 #endif
 
 }
@@ -88,7 +89,7 @@ void VertexArrayObject::loadAttributeBuffer(BufferObject& buffer,
     int type = int(buffer.m_type);
     uint tupleSize = buffer.getTupleSize();
     switch (buffer.m_type) {
-    case BufferObject::kMiscInt:
+    case BufferAttributeType::kMiscInt:
         loadIntAttribute(type, tupleSize, 0, 0);
         break;
     default:
@@ -101,8 +102,9 @@ void VertexArrayObject::loadAttributeBuffer(BufferObject& buffer,
 void VertexArrayObject::loadIntAttribute(int attributeIndex, int tupleSize, int stride, int offset)
 {
     // Bind position attribute
-    glEnableVertexAttribArray(attributeIndex);
-    glVertexAttribIPointer(attributeIndex, // attribute number in VAO
+    OpenGLFunctions& gl = *OpenGLFunctions::Functions();
+    gl.glEnableVertexAttribArray(attributeIndex);
+    gl.glVertexAttribIPointer(attributeIndex, // attribute number in VAO
         tupleSize, // tuple size
         GL_INT, // data type
         stride, // if attributes are packed tightly into array w/ no bytes between them, then 0
@@ -117,8 +119,9 @@ void VertexArrayObject::loadFloatAttribute(int attributeIndex,
     int offset)
 {
     // Bind position attribute
-    glEnableVertexAttribArray(attributeIndex);
-    glVertexAttribPointer(attributeIndex, // attribute number in VAO
+    OpenGLFunctions& gl = *OpenGLFunctions::Functions();
+    gl.glEnableVertexAttribArray(attributeIndex);
+    gl.glVertexAttribPointer(attributeIndex, // attribute number in VAO
         tupleSize, // tuple size
         GL_FLOAT, // data type
         false, // data not normalized
@@ -130,43 +133,6 @@ void VertexArrayObject::loadFloatAttribute(int attributeIndex,
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Buffer Object
-
-std::shared_ptr<BufferObject> BufferObject::createAndBindAttributeVBO(
-    AttributeType type,
-    QOpenGLBuffer::UsagePattern usagePattern)
-{
-    std::shared_ptr<BufferObject> vbo = std::make_shared<BufferObject>(QOpenGLBuffer::VertexBuffer, type);
-    if (vbo->isCreated()) { 
-        vbo->destroy();
-    }
-    vbo->create();
-    vbo->bind();
-    vbo->setUsagePattern(usagePattern);
-#ifdef DEBUG_MODE
-    bool error = vbo->printGLError("Error creating and binding VBO");
-    if (error) {
-        qDebug() << QStringLiteral("DO NOT IGNORE ERROR");
-    }
-#endif
-
-    return vbo;
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<BufferObject> BufferObject::createAndBindIndexVBO(QOpenGLBuffer::UsagePattern usagePattern)
-{
-    std::shared_ptr<BufferObject> vbo = std::make_shared<BufferObject>(QOpenGLBuffer::IndexBuffer);
-    if (vbo->isCreated()) {
-        vbo->destroy();
-    }
-    vbo->create();
-    vbo->bind();
-    vbo->setUsagePattern(usagePattern);
-#ifdef DEBUG_MODE
-    vbo->printGLError("Error creating and binding VBO");
-#endif
-
-    return vbo;
-}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 BufferObject::BufferObject(const BufferObject & other) :
     QOpenGLBuffer(other),
@@ -175,15 +141,33 @@ BufferObject::BufferObject(const BufferObject & other) :
 {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-BufferObject::BufferObject(QOpenGLBuffer::Type bufferType, AttributeType attributeType) :
+BufferObject::BufferObject(QOpenGLBuffer::Type bufferType, BufferAttributeType attributeType, GL::UsagePattern pattern) :
     QOpenGLBuffer(bufferType),
     OpenGLFunctions(),
     m_type(attributeType)
 {
+    if (isCreated()) {
+        destroy();
+    }
+    create();
+    bind();
+    setUsagePattern((QOpenGLBuffer::UsagePattern)pattern);
+#ifdef DEBUG_MODE
+    bool error = printGLError("Error creating and binding VBO");
+    if (error) {
+        qDebug() << QStringLiteral("DO NOT IGNORE ERROR");
+    }
+#endif
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-BufferObject::BufferObject() : QOpenGLBuffer()
+BufferObject::BufferObject() : 
+    QOpenGLBuffer(),
+    m_type(BufferAttributeType::kNone),
+    OpenGLFunctions(false)
 {
+    if (!isNull()) {
+        initializeOpenGLFunctions();
+    }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 BufferObject::~BufferObject()
@@ -193,19 +177,19 @@ BufferObject::~BufferObject()
 unsigned int BufferObject::getTupleSize()
 {
     switch (m_type) {
-    case kPosition:
+    case BufferAttributeType::kPosition:
         return 3;
-    case kColor:
+    case BufferAttributeType::kColor:
         return 4;
-    case kTextureCoordinates:
+    case BufferAttributeType::kTextureCoordinates:
         return 2;
-    case kNormal:
+    case BufferAttributeType::kNormal:
         return 3;
-    case kTangent:
+    case BufferAttributeType::kTangent:
         return 3;
-    case kMiscInt:
+    case BufferAttributeType::kMiscInt:
         return 4;
-    case kMiscReal:
+    case BufferAttributeType::kMiscReal:
         return 4;
     default:
         throw("Error, type is not handled");

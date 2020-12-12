@@ -83,8 +83,8 @@ void SceneTreeWidget::setScenarioTreeItem(View::SceneRelatedItem * scenario)
     //resizeColumns();
 
     // Set scene tree items
-    for (const auto& scenePair : m_engine->scenario()->getScenes()) {
-        addSceneTreeItem(scenePair.second);
+    for (const std::shared_ptr<Scene>& scene : m_engine->scenario()->getScenes()) {
+        addSceneTreeItem(scene);
     }
 
     // Set debug items
@@ -262,7 +262,7 @@ void SceneTreeWidget::onItemClicked(QTreeWidgetItem * item, int column)
     {
         m_lastLeftClickedItem = static_cast<SceneRelatedItem*>(item);
         auto sceneObject = std::static_pointer_cast<SceneObject>(sceneItem->object());
-        emit selectedSceneObject(sceneObject->scene()->getUuid(), sceneObject->getUuid());
+        emit selectedSceneObject(sceneObject->getUuid());
         break;
     }
     case SceneRelatedItem::kScene:
@@ -437,7 +437,7 @@ void SceneTreeWidget::initializeTreeWidget()
             // There is a scene object selected, so add new object as a child
             action = new AddSceneObjectCommand(m_engine,
                 std::static_pointer_cast<Scene>(m_currentSceneItem->object()),
-                "Create New Scene Object",
+                "Add Child Object",
                 std::static_pointer_cast<SceneObject>(m_currentSceneObjectItem->object()));
         }
         else {

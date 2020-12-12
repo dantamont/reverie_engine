@@ -4,13 +4,16 @@
 
 #include "core/GbCoreEngine.h"
 #include "core/resource/GbResourceCache.h"
+#include "core/debugging/GbDebugManager.h"
 #include "model_control/commands/GbActionManager.h"
 #include "view/GbWidgetManager.h"
 #include "view/GL/GbGLWidget.h"
+#include "view/parameters/GbSerializableWidget.h"
 #include "view/tree/GbResourceWidgets.h"
 #include "view/tree/GbShaderTreeWidget.h"
 #include "view/tree/GbScriptOrder.h"
 #include "view/tree/GbRenderLayerWidget.h"
+#include "view/style/GbFontIcon.h"
 #include "core/loop/GbSimLoop.h"
 #include "core/scene/GbScenario.h"
 #include "core/processes/GbProcess.h"
@@ -48,7 +51,7 @@ MainWindow::MainWindow(QWidget *parent)
     // Initialize engine connections
     m_engine->initializeConnections();
 
-#ifdef DEBUG_MODE
+#ifdef DEVELOP_MODE
     // Initialize menu actions
     initializeActions();
 
@@ -58,6 +61,9 @@ MainWindow::MainWindow(QWidget *parent)
     // Display status message about context menu 
     displayStatusBar();
 #endif
+
+    // Set main window to track mouse
+    //setMouseTracking(true);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -98,7 +104,9 @@ void MainWindow::newScenario()
     disableScenarioActions();
 
 #ifdef DEBUG_MODE
-    m_infoLabel->setText(tr("Invoked <b>File|New Scenario</b>"));
+    if (m_infoLabel) {
+        m_infoLabel->setText(tr("Invoked <b>File|New Scenario</b>"));
+    }
 #endif
 
     // Clear the engine
@@ -117,7 +125,9 @@ void MainWindow::openScenario()
     disableScenarioActions();
 
 #ifdef DEBUG_MODE
-    m_infoLabel->setText(tr("Invoked <b>File|Open Scenario</b>"));
+    if (m_infoLabel) {
+        m_infoLabel->setText(tr("Invoked <b>File|Open Scenario</b>"));
+    }
 #endif
 
     // Launch file dialog
@@ -130,9 +140,9 @@ void MainWindow::openScenario()
     // Open scenario from a file
     if (!filepath.isEmpty()) {
         // Clear the engine
-        m_engine->clearEngine(true);
+        m_engine->clearEngine(true, true);
 
-        Scenario::loadFromFile(filepath, m_engine);
+        Scenario::LoadFromFile(filepath, m_engine);
         auto* settings = new Gb::Settings::INISettings();
         settings->setRecentProject(filepath);
 
@@ -151,7 +161,9 @@ void MainWindow::saveScenario()
     disableScenarioActions();
 
 #ifdef DEBUG_MODE
-    m_infoLabel->setText(tr("Invoked <b>File|Save Scenario</b>"));
+    if (m_infoLabel) {
+        m_infoLabel->setText(tr("Invoked <b>File|Save Scenario</b>"));
+    }
 #endif
     // Save scenario to a file
     const QString& filepath = m_engine->scenario()->getPath();
@@ -187,7 +199,9 @@ void MainWindow::saveScenarioAs()
     disableScenarioActions();
 
 #ifdef DEBUG_MODE
-    m_infoLabel->setText(tr("Invoked <b>File|Save Scenario As...</b>"));
+    if (m_infoLabel) {
+        m_infoLabel->setText(tr("Invoked <b>File|Save Scenario As...</b>"));
+    }
 #endif
     // Launch file dialog
     QString filter = "Scenarios (*.scn *.json)";
@@ -198,10 +212,11 @@ void MainWindow::saveScenarioAs()
 
     // Save scenario as...
     if (!filepath.isEmpty()) {
-        bool saved = m_engine->scenario()->save(filepath);
+        GString gFilePath(filepath);
+        bool saved = m_engine->scenario()->save(gFilePath);
 
         if (!saved) {
-            throw("Error, failed to save scenario file to " + filepath);
+            throw("Error, failed to save scenario file to " + gFilePath);
         }
 
         // Save recent project in settings
@@ -212,8 +227,8 @@ void MainWindow::saveScenarioAs()
         // Set window title
         setWindowTitle(m_defaultTitle + " " + filepath);
 
-        if (m_engine->scenario()->getPath() != filepath) {
-            throw("Error, scenario filepath " + m_engine->scenario()->getPath() + " is not equal to " + filepath);
+        if (m_engine->scenario()->getPath() != gFilePath) {
+            throw("Error, scenario filepath " + m_engine->scenario()->getPath() + " is not equal to " + gFilePath);
         }
     }
 
@@ -224,7 +239,9 @@ void MainWindow::saveScenarioAs()
 void MainWindow::showUndoView()
 {
 #ifdef DEBUG_MODE
-    m_infoLabel->setText(tr("Invoked <b>Edit|Show Undo View</b>"));
+    if (m_infoLabel) {
+        m_infoLabel->setText(tr("Invoked <b>Edit|Show Undo View</b>"));
+    }
 #endif
 
     m_engine->actionManager()->showUndoView();
@@ -286,14 +303,30 @@ void MainWindow::showShaderPresetsWidget()
 void MainWindow::viewPreferences()
 {
 #ifdef DEBUG_MODE
-    m_infoLabel->setText(tr("Invoked <b>Settings|Preferences</b>"));
+    if (m_infoLabel) {
+        m_infoLabel->setText(tr("Invoked <b>Settings|Preferences</b>"));
+    }
 #endif
+
+    QWidget* settingsWidget = new QWidget(this);
+    QTabWidget* tabWidget = new QTabWidget();
+    View::SerializableWidget*  debugWidget = new View::SerializableWidget(m_engine, &m_engine->debugManager()->debugSettings());
+
+    tabWidget->addTab(debugWidget, SAIcon("stethoscope"), "Debug Settings");
+
+    QVBoxLayout* layout = new QVBoxLayout();
+    layout->addWidget(tabWidget);
+    settingsWidget->setLayout(layout);
+    settingsWidget->setWindowFlags(Qt::Window);
+    settingsWidget->show();
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::aboutGrandBlue()
 {
 #ifdef DEBUG_MODE
-    m_infoLabel->setText(tr("Invoked <b>Help|About Grand Blue</b>"));
+    if (m_infoLabel) {
+        m_infoLabel->setText(tr("Invoked <b>Help|About Grand Blue</b>"));
+    }
 #endif
     QMessageBox::about(this, tr("About Grand Blue"), 
         tr("The <b>Grand Blue Engine</b> is a QT-based engine for modelling and simulation."));
@@ -308,7 +341,12 @@ void MainWindow::contextMenuEvent(QContextMenuEvent *event)
     menu.exec(event->globalPos());
 }
 #endif // QT_NO_CONTEXTMENU
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void MainWindow::mouseMoveEvent(QMouseEvent * event)
+{
+    //Object().logInfo("Moved mouse main window");
+    return QMainWindow::mouseMoveEvent(event);
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void MainWindow::initializeMenus()
 {
@@ -317,6 +355,7 @@ void MainWindow::initializeMenus()
    m_menuBar->show();
 
    // Create connections to disable menu bar
+   // Could have used setEnabled here as well
    connect(m_engine->resourceCache(), 
        &ResourceCache::startedLoadingResources, // disable on resource load
        m_menuBar,
@@ -358,6 +397,8 @@ void MainWindow::initializeMenus()
    m_insertMenu->addAction(m_loadModel);
    m_insertMenu->addSeparator();
    m_insertMenu->addAction(m_addShaderProgram);
+   m_insertMenu->addSeparator();
+   m_insertMenu->addAction(m_addAudioFile);
 
    // Create a resources menu
    m_resourcesMenu = m_menuBar->addMenu("&Resources");
@@ -460,6 +501,16 @@ void MainWindow::initializeActions()
         [this] {m_engine->actionManager()->performAction(
             new AddShaderCommand(m_engine,
                 "Load Shader Program"));
+    });
+
+    m_addAudioFile = new QAction(tr("&Load Audio File"), this);
+    m_addAudioFile->setStatusTip("Load an audio file into the scenario");
+    connect(m_addAudioFile,
+        &QAction::triggered,
+        m_engine->actionManager(),
+        [this] {m_engine->actionManager()->performAction(
+            new LoadAudioCommand(m_engine,
+                "Load Audio File"));
     });
 
     // Create undo action

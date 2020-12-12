@@ -14,6 +14,7 @@
 #include "test_GbQuaternion.h"
 #include "test_GbParallelization.h"
 #include "test_GbEulerAngle.h"
+#include "test_GbProtocol.h"
 
 // Main driver for running tests
 int main(int argc, char** argv)
@@ -35,6 +36,7 @@ int main(int argc, char** argv)
     ASSERT_TEST(new TestQuaternion());
     ASSERT_TEST(new TestEulerAngles());
     ASSERT_TEST(new TestParallelization());
+    ASSERT_TEST(new TestProtocol());
 
     // Pause Console until a key is pressed
     getch();

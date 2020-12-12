@@ -5,12 +5,13 @@
 #ifndef GB_EVENT_LISTENERS_H
 #define GB_EVENT_LISTENERS_H
 
+// Std
 #include <memory>
 #include <vector>
 #include <set>
-#include "../../third_party/pythonqt/PythonQt.h"
 
-// QT
+// External
+#include "../scripting/GbPythonWrapper.h"
 
 // Internal
 #include "GbEvent.h"
@@ -25,6 +26,7 @@ class EventListener;
 class PythonClassScript;
 class CoreEngine;
 class SceneObject;
+class ListenerComponent;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Globals
@@ -42,9 +44,20 @@ public:
     /// @name Constructors/Destructor
     /// @{
 
-    EventListener(CoreEngine* engine);
-    EventListener(CoreEngine* engine, const QJsonValue& json);
+    EventListener(ListenerComponent* engine);
+    EventListener(ListenerComponent* engine, const QJsonValue& json);
     ~EventListener();
+
+    /// @}
+
+    //-----------------------------------------------------------------------------------------------------------------
+    /// @name Properties
+    /// @{
+
+    /// @brief The script for this event listener
+    const std::shared_ptr<PythonClassScript>& script() { return m_script; }
+
+    const std::set<int>& eventTypes() { return m_eventTypes; }
 
     /// @}
 
@@ -52,7 +65,12 @@ public:
     /// @name Public methods
     /// @{
 
+    /// @brief Set event types to listen for
+    /// @note Should be using type that is registered to Qt event system
+    void setEventTypes(const std::vector<int> eventTypes);
+
     /// @brief Add an event type to listen for
+    /// @note Some built-in types: 2 is mouse press, 3 is release, 4 is double click, 5 is move
     void addEventType(int type);
 
     /// @brief Check if action should be performed
@@ -62,7 +80,7 @@ public:
     virtual void perform(CustomEvent* ev);
 
     /// @brief Initialize this listener in python from the given listener script
-    void initializeScript(const QString& filepath, const std::shared_ptr<SceneObject>& object);
+    void initializeScript(const QString& filepath);
 
     /// @}
 
@@ -74,7 +92,7 @@ public:
     virtual QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -94,36 +112,23 @@ private:
     /// @name Private Methods
     /// @{
 
-    /// @brief Obtain pointer to object
-    inline std::shared_ptr<SceneObject> sceneObject() const {
-        if (const std::shared_ptr<SceneObject>& object = m_sceneObject.lock()) {
-            return object;
-        }
-        else {
-            return nullptr;
-        }
-    }
-
     /// @}
 
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Private members
     /// @{
 
-    /// @brief Pointer to the core engine
-    CoreEngine* m_engine;
+    /// @brief Pointer to the listener component that this event listener belongs to
+    ListenerComponent* m_listenerComponent;
 
     /// @brief Path to the python script for this listener
-    QString m_path;
-
-    /// @brief Weak pointer to the scene object that owns this listener
-    std::weak_ptr<SceneObject> m_sceneObject;
+    GString m_path;
 
     /// @brief The python script for this listener
     std::shared_ptr<PythonClassScript> m_script;
 
     /// @brief The instantiation of the class from the script corresponding to this listener
-    PythonQtObjectPtr m_pythonListener;
+    py::object m_pythonListener;
 
     /// @brief Event types accepted by this listener
     std::set<int> m_eventTypes;

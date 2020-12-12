@@ -17,7 +17,7 @@
 #include "../components/GbComponent.h"
 #include "../components/GbScriptComponent.h"
 #include "../components/GbShaderComponent.h"
-#include "../components/GbCamera.h"
+#include "../components/GbCameraComponent.h"
 #include "../components/GbLightComponent.h"
 #include "../components/GbModelComponent.h"
 #include "../components/GbListenerComponent.h"
@@ -25,6 +25,8 @@
 #include "../components/GbCanvasComponent.h"
 #include "../components/GbAnimationComponent.h"
 #include "../components/GbCubeMapComponent.h"
+#include "../components/GbAudioSourceComponent.h"
+#include "../components/GbAudioListenerComponent.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Namespace Definitions
@@ -87,6 +89,16 @@ Component* Component::create(const std::shared_ptr<SceneObject>& object, Compone
     case ComponentType::kCubeMap:
     {
         component = new CubeMapComponent(object);
+        break;
+    }
+    case ComponentType::kAudioSource:
+    {
+        component = new AudioSourceComponent(object);
+        break;
+    }
+    case ComponentType::kAudioListener:
+    {
+        component = new AudioListenerComponent(object);
         break;
     }
     default:
@@ -213,8 +225,10 @@ QJsonValue Component::asJson() const
     return object;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void Component::loadFromJson(const QJsonValue & json)
+void Component::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
+
     QJsonObject object = json.toObject();
     if (object.contains("isEnabled")) {
         m_isEnabled = object["isEnabled"].toBool();
@@ -224,7 +238,7 @@ void Component::loadFromJson(const QJsonValue & json)
 
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::unordered_map<Component::ComponentType, Component::Constraints> Component::TypeConstraints =
+tsl::robin_map<Component::ComponentType, Component::Constraints> Component::TypeConstraints =
 { 
     // TODO: Enforce these in widget
     {ComponentType::kCanvas, {{ {ComponentType::kModel, false} }}}, // Only one material per object, so either have a canvas or model

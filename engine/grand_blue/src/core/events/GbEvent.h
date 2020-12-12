@@ -48,6 +48,7 @@ public:
     /// @{
 
     QJsonObject& data() { return m_data; }
+    const QJsonObject& data() const { return m_data; }
 
     /// @}
 
@@ -59,7 +60,7 @@ public:
     virtual QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -84,7 +85,8 @@ private:
     /// @details Index is the attempted event type, and the value is the event type that Qt
     /// assigned. These will usually be equivalent, but may not be if a type was already 
     /// registered
-    static std::unordered_map<int, QEvent::Type> REGISTERED_TYPES;
+    // TODO: Use index of type in this map as event type for Event Listeners, adds a layer of abstraction
+    static tsl::robin_map<int, QEvent::Type> s_registeredEventTypes;
 
     /// @}
 };

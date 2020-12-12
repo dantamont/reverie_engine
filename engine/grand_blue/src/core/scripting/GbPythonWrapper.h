@@ -5,13 +5,15 @@
 #ifndef GB_PYTHON_WRAPPER_H
 #define GB_PYTHON_WRAPPER_H
 
-//#include "../../third_party/PythonQt/src/PythonQtPythonInclude.h"
-#include "../pythonqt/PythonQtPythonInclude.h"
-
-//#pragma push_macro("slots")
-//#undef slots
+#pragma push_macro("slots")
+#undef slots
 //#define PY_SSIZE_T_CLEAN  /* Make "s#" use Py_ssize_t rather than int. */
 //#include <Python.h>
-//#pragma pop_macro("slots")
+#include <pybind11/embed.h> // everything needed for embedding (needs to be included before Qt stuff pollutes slots)
+#include <pybind11/pybind11.h> 
+#pragma pop_macro("slots")
+
+namespace py = pybind11;
+
 
 #endif

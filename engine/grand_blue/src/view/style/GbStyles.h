@@ -34,6 +34,7 @@ public:
         return styleBase();
     }
 
+    /// @brief Style overrides, called when setting application style
     void polish(QPalette &palette) override;
     void polish(QApplication *app) override;
 

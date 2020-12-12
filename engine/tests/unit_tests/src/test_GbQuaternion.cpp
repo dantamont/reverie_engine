@@ -55,7 +55,7 @@ void TestQuaternion::axisAngle()
     auto quaternion1 = Gb::Quaternion::fromAxisAngle({1, 0, 0}, 45 * Gb::Constants::DEG_TO_RAD);
     auto mtx1 = quaternion1.toRotationMatrix4x4();
 
-    auto mtx2 = Gb::Matrix4x4f();
+    auto mtx2 = Gb::Matrix4x4();
     mtx2.addRotateX(45 * Gb::Constants::DEG_TO_RAD);
 
     if (mtx1 != mtx2) {
@@ -72,13 +72,13 @@ void TestQuaternion::axisAngle()
     auto quaternion2 = Gb::Quaternion::fromAxisAngle({ 0, 1, 0 }, 45 * Gb::Constants::DEG_TO_RAD);
     auto mtx3 = quaternion2.toRotationMatrix4x4();
 
-    auto mtx4 = Gb::Matrix4x4f();
+    auto mtx4 = Gb::Matrix4x4();
     mtx4.addRotateY(45 * Gb::Constants::DEG_TO_RAD);
 
     auto quaternion3 = Gb::Quaternion::fromAxisAngle({ 0, 0, 1 }, 45 * Gb::Constants::DEG_TO_RAD);
     auto mtx5 = quaternion3.toRotationMatrix4x4();
 
-    auto mtx6 = Gb::Matrix4x4f();
+    auto mtx6 = Gb::Matrix4x4();
     mtx6.addRotateZ(45 * Gb::Constants::DEG_TO_RAD);
 
     QVERIFY(mtx1 == mtx2);
@@ -96,6 +96,6 @@ void TestQuaternion::slerp()
     std::vector<Gb::Quaternion> quats = { quat1, quat2 };
     std::vector<float> weights = { 1, 1 };
 
-    Gb::Quaternion::slerp(quats, weights);
+    Gb::Quaternion::Average(quats, weights);
 
 }

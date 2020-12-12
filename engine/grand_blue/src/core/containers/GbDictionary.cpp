@@ -37,11 +37,13 @@ QJsonValue Dictionary::asJson() const
     return object;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Dictionary::loadFromJson(const QJsonValue & json)
+void Dictionary::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context);
+    m_attributes.clear();
     QString jsonStr = JsonReader::ToQString(json);
     QVariantMap map = json.toObject().toVariantMap();
-    m_attributes = GVariant::toGVariantMap(map);
+    GVariant::toGVariantMap(map, m_attributes);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 GVariant Dictionary::s_invalidVariant = GVariant();

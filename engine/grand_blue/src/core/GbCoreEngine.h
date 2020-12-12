@@ -37,10 +37,12 @@ class ProcessManager;
 class PhysicsManager;
 class DebugManager;
 class FontManager;
+class SoundManager;
 class SimulationLoop;
 class Scenario;
 class ResourceCache;
 class ThreadPool;
+class AnimationManager;
 
 //////////////////////////////////////////////////////////////////////////////////
 // Class Definitions
@@ -60,6 +62,9 @@ public:
 
     /// @brief Threadpool for helping with miscellaneous engine tasks
     static ThreadPool HELPER_THREADPOOL;
+
+    /// @brief Get path to base Reverie directory
+    static QString GetRootPath();
 
     /// @}
 	//--------------------------------------------------------------------------------------------
@@ -114,6 +119,12 @@ public:
 
     /// @property UndoManager
     ActionManager* actionManager() const { return m_actionManager; }
+
+    /// @property SoundManager
+    SoundManager* soundManager() const { return m_soundManager; }
+
+    /// @property AnimationManager
+    AnimationManager* animationManager() const { return m_animationManager; }
 
     /// @property Scenario
     std::shared_ptr<Scenario> scenario() const { return m_scenario; }
@@ -221,6 +232,12 @@ protected:
 
     /// @brief Manages debugging functionality of the engine
     DebugManager* m_debugManager;
+
+    /// @brief Manages all audio capabilities for the engine
+    SoundManager* m_soundManager;
+
+    /// @brief Manages all animation state machines for the engine
+    AnimationManager* m_animationManager;
 
 	/// @}
 

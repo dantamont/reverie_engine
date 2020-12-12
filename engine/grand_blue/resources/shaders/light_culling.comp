@@ -1,0 +1,274 @@
+// See: http://www.aortiz.me/2018/12/21/CG.html#tiled-shading--forward
+// NOTE: Hanging on compute shader call glGetShaderiv(m_shaderID, GL_COMPILE_STATUS, &status) means that the compute shader is taking a long time to compile
+
+//  The shader is dispatched twelve times because each thread group contains two z slices (24/2=12)
+
+// Thread groups sizes are actually relevant in this compute shader since I’m using shared GPU memory to reduce the number of reads and writes by only loading each light once per thread group, instead of once per cluster
+
+
+// gl_NumWorkGroups - the number of work groups passed to the dispatch function
+// gl_WorkGroupID - the current work group for this shader invocation. Each of the XZ components will be in the half-open rnage [0, gl_NumWorkGroups.XYZ)
+// gl_WorkGroupSize -  local_size_x, local_size_y, and local_size_z 
+// gl_LocalInvocationID - the current invocation of the shader within the work group
+// gl_GlobalInvocationID - the current invocation of this shader within ALL work groups
+// gl_LocalInvocationIndex - 1D representation of the gl_LocalInvocationID(used for indexing into a shared array)
+
+// TODO: Figure out optimal tile size, currently using a 16x9x24 subdivision
+
+#define FLT_MAX 3.402823466e+38
+#define FLT_MIN 1.175494351e-38
+#define DBL_MAX 1.7976931348623158e+308
+#define DBL_MIN 2.2250738585072014e-308
+#define LOCAL_SIZE_X 16
+#define LOCAL_SIZE_Y 9
+#define LOCAL_SIZE_Z 2
+
+layout(local_size_x = LOCAL_SIZE_X, local_size_y = LOCAL_SIZE_Y, local_size_z = LOCAL_SIZE_Z) in;
+
+// Uniform block for light settings
+layout (std140) uniform LightSettingsBuffer
+{
+	int lightingModel;
+	int lightCount;
+};
+
+// Uniform block for projection and view matrices
+layout (std140) uniform CameraBuffer
+{
+	mat4 viewMatrix;
+	mat4 invViewMatrix;
+	mat4 projectionMatrix;
+	mat4 invProjectionMatrix;
+	float zNear;
+	float zFar;
+	uvec2 viewportDimensions;
+	vec4 screenPercentage; // Screen percentage of viewport
+};
+
+// uniform mat4 viewMatrix;
+
+// TODO: Pack this more efficiently
+struct Light {
+	vec4 position;
+	vec4 direction;
+	vec4 ambientColor;
+	vec4 diffuseColor;
+	vec4 specularColor;
+	vec4 attributes;
+	vec4 intensityRange;
+	ivec4 typeIndexAndFlags;
+	// uint flags;
+};
+
+// Array containing offset and number of lights in a cluster
+struct LightGrid{
+    uint offset;
+    uint count;
+};
+
+struct VolumeTileAABB{
+    vec4 minPoint;
+    vec4 maxPoint;
+};
+
+layout(std430, binding = 0) readonly buffer LightBuffer {
+	Light data[];
+} lightBuffer;
+
+
+layout (std430, binding = 1) buffer ClusterBoundsBuffer{
+    VolumeTileAABB cluster[ ];
+};
+
+// TODO: Remove screen dimensions and inverse projection, since camera has them
+layout (std430, binding = 2) buffer ScreenToViewBuffer{
+    mat4 inverseProjection;
+    uvec4 tileGridSizes;
+	uvec4 tilePixelSizes;
+    uvec2 screenDimensions;
+    float scale;
+    float bias;
+};
+
+// layout (std430, binding = 3) buffer lightSSBO{
+    // PointLight pointLight[];
+// };
+
+// SSBO of active light indices
+layout (std430, binding = 4) buffer LightIndexBuffer{
+    uint globalLightIndexList[];
+};
+
+layout (std430, binding = 5) buffer LightGridBuffer{
+    LightGrid lightGrid[];
+};
+
+layout (std430, binding = 6) buffer GlobalIndexCountBuffer{
+    uint globalIndexCount;
+	uint maxPerTile;
+};
+
+// struct TestStruct{
+    // mat4 mat;
+    // vec4 vec;
+// }; 
+
+// layout (std430, binding = 7) buffer TestBuffer{
+    // TestStruct testOutputs[];
+// };
+
+// Shared variables, shared between all invocations WITHIN A WORK GROUP
+// A grouped-shared array which contains all the lights being evaluated
+shared Light sharedLights[LOCAL_SIZE_X*LOCAL_SIZE_Y*LOCAL_SIZE_Z]; // A grouped-shared array which contains all the lights being evaluated, size is thread-count
+
+bool testSphereAABB(uint light, uint tile);
+float sqDistPointAABB(vec3 point, uint tile);
+bool testConeAABB(uint light, uint tile);
+bool isEnabled(uint lightIndex);
+
+// Runs in batches of multiple Z slices at once
+// In this implementation, 6 batches, since each thread group contains four z slices (24/4=6)
+// We begin by each thread representing a cluster
+// Then in the light traversal loop they change to representing lights
+// Then change again near the end to represent clusters
+// NOTE: Tiles actually mean clusters, it's just a legacy name from tiled shading
+void main(){
+	// Reset every frame
+    globalIndexCount = 0; // How many lights are active in this scene
+    uint threadCount = gl_WorkGroupSize.x * gl_WorkGroupSize.y * gl_WorkGroupSize.z; // Number of threads in a group, same as local_size_x, local_size_y, local_size_z
+    // uint lightCount  = lightBuffer.data.length(); // Number of total lights in the scene
+    uint numBatches = uint((lightCount + threadCount -1) / threadCount); // Number of groups of lights that will be completed, i.e., number of passes
+
+	// NOtE: This assumes that dispatch is one-dimensional (only dispatches in z dimension)
+	uint groupSize = gl_WorkGroupSize.x * gl_WorkGroupSize.y * gl_WorkGroupSize.z;
+    uint tileIndex = gl_LocalInvocationIndex + groupSize * gl_WorkGroupID.z;
+    // uint tileIndex = gl_GlobalInvocationID; // doesn't work, is uvec3
+	
+	// Local thread variables
+    uint visibleLightCount = 0;
+    uint visibleLightIndices[100]; // local light index list, to be transferred to global list
+	
+	// Every light is being checked against every cluster in the view frustum
+	// TODO: Perform active cluster determination
+	// Each individual thread will be responsible for loading a light and writing it to shared memory so other threads can read it
+    for( uint batch = 0; batch < numBatches; ++batch){
+        uint lightIndex = batch * threadCount + gl_LocalInvocationIndex;
+
+        //Prevent overflow by clamping to last light which is always null
+        lightIndex = min(lightIndex, lightCount);
+
+        //Populating shared light array
+		// NOTE: It is VERY important that lightBuffer.data not be referenced after this point,
+		// since that is not thread-safe
+        sharedLights[gl_LocalInvocationIndex] = lightBuffer.data[lightIndex];
+        barrier(); // Synchronize read/writes between invocations within a work group
+
+        //Iterating within the current batch of lights
+        for( uint light = 0; light < threadCount; ++light){
+			
+			// Stop iteration if hit lights per tile limit
+			if(visibleLightCount >= maxPerTile){
+				break;
+			}
+		
+            if( isEnabled(light)){
+				uint lightType = uint(sharedLights[light].typeIndexAndFlags[0]);
+				if(lightType == 0){
+					// Point light
+					if( testSphereAABB(light, tileIndex) ){
+						visibleLightIndices[visibleLightCount] = batch * threadCount + light;
+						visibleLightCount += 1;
+					}
+				}
+				else if(lightType == 1){
+					// Directional light
+					visibleLightIndices[visibleLightCount] = batch * threadCount + light;
+					visibleLightCount += 1;
+				}
+				else if(lightType == 2){
+					// Spot light
+					if( testConeAABB(light, tileIndex) ){
+						visibleLightIndices[visibleLightCount] = batch * threadCount + light;
+						visibleLightCount += 1;
+					}
+				}
+            }
+        }
+    }
+
+    // We want all thread groups to have completed the light tests before continuing
+    barrier();
+	
+	// Back to every thread representing a cluster
+
+	// Adding the light indices to the cluster light index list
+    uint offset = atomicAdd(globalIndexCount, visibleLightCount); // atomicAdd(mem, data) performs an atomic addition of data to the contents of mem and returns the original contents of mem from before the addition occurred
+    for(uint i = 0; i < visibleLightCount; ++i){
+        globalLightIndexList[offset + i] = visibleLightIndices[i];
+    }	
+	
+	// Updating the light grid for each cluster
+    lightGrid[tileIndex].offset = offset;
+    lightGrid[tileIndex].count = visibleLightCount;
+}
+
+// Return whether or not the specified light intersects with the specified tile (cluster)
+bool testSphereAABB(uint light, uint tile){
+    float radius = sharedLights[light].intensityRange[1];
+    vec3 center  = vec3(viewMatrix * sharedLights[light].position);
+    float squaredDistance = sqDistPointAABB(center, tile);
+		
+    return squaredDistance <= (radius * radius);
+}
+
+// TODO: Different test for spot-lights
+// Has been done by using several AABBs for spot-light cone, this could be a good approach, or even just use one to start.
+bool testConeAABB(uint light, uint tile){
+	// Light light = lightBuffer.data[lightIndex];
+	// float innerAngleCos = light.attributes[0];
+	// float outerAngleCos = light.attributes[1];
+	// float innerAngle = acos(innerAngleCos);
+	// float outerAngle = acos(outerAngleCos);
+	
+	// FIXME: Actually do something clever here, just uses sphere equation right now
+	float radius = sharedLights[light].intensityRange[1];
+	vec3 center  = vec3(viewMatrix * sharedLights[light].position);
+    float squaredDistance = sqDistPointAABB(center, tile);
+		
+    return squaredDistance <= (radius * radius);
+}
+
+// Whether the light at the specified index is enabled
+bool isEnabled(uint lightIdx){
+	uint flags = sharedLights[lightIdx].typeIndexAndFlags[2];
+	return (flags & 1) != 0;
+}
+
+// Get squared distance from a point to the AABB of the specified tile (cluster), in view space
+float sqDistPointAABB(vec3 point, uint tile){
+    VolumeTileAABB currentCell = cluster[tile];
+    cluster[tile].maxPoint[3] = tile; // Add tile index to cluster
+	vec3 minPoint = currentCell.minPoint.xyz;
+	vec3 maxPoint = currentCell.maxPoint.xyz;
+	vec3 t1 = vec3(lessThan(point, minPoint));
+	vec3 t2 = vec3(greaterThan(point, maxPoint));
+	vec3 sqDist = t1 * (minPoint - point) * (minPoint - point) + t2 * (maxPoint - point) * (maxPoint - point);
+	return sqDist.x + sqDist.y + sqDist.z;
+}
+
+// float sqDistPointAABB(vec3 point, uint tile){
+    // float sqDist = 0.0;
+    // VolumeTileAABB currentCell = cluster[tile];
+    // cluster[tile].maxPoint[3] = tile;
+    // for(int i = 0; i < 3; ++i){
+        // float v = point[i];
+        // if(v < currentCell.minPoint[i]){
+            // sqDist += (currentCell.minPoint[i] - v) * (currentCell.minPoint[i] - v);
+        // }
+        // if(v > currentCell.maxPoint[i]){
+            // sqDist += (v - currentCell.maxPoint[i]) * (v - currentCell.maxPoint[i]);
+        // }
+    // }
+
+    // return sqDist;
+// }

@@ -18,9 +18,8 @@
 #include "../../core/components/GbShaderComponent.h"
 #include "../../core/scripting/GbPythonScript.h"
 #include "../../core/components/GbLightComponent.h"
-#include "../../core/components/GbCamera.h"
+#include "../../core/components/GbCameraComponent.h"
 
-#include "../../core/rendering/renderer/GbRenderers.h"
 #include "../../core/components/GbShaderComponent.h"
 #include "../../core/components/GbTransformComponent.h"
 #include "../style/GbFontIcon.h"
@@ -127,7 +126,7 @@ void RigidBodyWidget::initializeConnections()
     // Geometry
     connect(m_shapeWidget->geometryWidget(), &PhysicsGeometryWidget::switchedGeometry,
         this, [this](const QString& prefabName) {
-        const auto& prefab = PhysicsManager::shapes().at(prefabName);
+        const auto& prefab = PhysicsManager::ShapePrefabs().at(prefabName);
         bool disabled = false;
         if (prefab->geometry()->getType() == PhysicsGeometry::kPlane) {
             disabled = true;
@@ -161,11 +160,11 @@ void RigidBodyWidget::layoutWidgets()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 std::shared_ptr<PhysicsShapePrefab> RigidBodyWidget::shapePrefab()
 {
-    std::vector<PhysicsShape>& shapes = rigidBodyComponent()->body()->shapes();
-    const QString& prefabName = shapes[0].prefab().getName();
-    if (!Map::HasKey(PhysicsManager::shapes(), prefabName))
+    std::vector<PhysicsShape*>& shapes = rigidBodyComponent()->body()->shapes();
+    const GString& prefabName = shapes[0]->prefab().getName();
+    if (!Map::HasKey(PhysicsManager::ShapePrefabs(), prefabName))
         throw("Error, no shape found with name " + prefabName);
-    return PhysicsManager::shapes().at(prefabName);
+    return PhysicsManager::ShapePrefabs().at(prefabName);
 }
 
 

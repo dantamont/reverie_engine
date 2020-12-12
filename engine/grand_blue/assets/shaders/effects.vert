@@ -31,10 +31,12 @@ uniform float diffuseColorScale;
 uniform mat4 worldMatrix;
 
 // Uniform block for projection and view matrices
-layout (std140) uniform CameraMatrices
+layout (std140) uniform CameraBuffer
 {
 	mat4 viewMatrix;
 	mat4 projectionMatrix;
+	float zNear;
+	float zFar;
 };
 
 layout (std140) uniform LightBuffer

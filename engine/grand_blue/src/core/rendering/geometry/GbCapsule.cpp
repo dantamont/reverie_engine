@@ -33,8 +33,8 @@ const int MIN_STACK_COUNT = 1;
 ///////////////////////////////////////////////////////////////////////////////
 // ctor
 ///////////////////////////////////////////////////////////////////////////////
-Capsule::Capsule(float radius, float halfHeight, int sectors, int stacks):
-    m_vertexData(std::make_shared<VertexArrayData>())
+Capsule::Capsule(VertexArrayData& outVertexData, float radius, float halfHeight, int sectors, int stacks):
+    m_vertexData(outVertexData)
 {
     set(radius, halfHeight, sectors, stacks);
 }
@@ -93,8 +93,8 @@ void Capsule::setStackCount(int stacks)
 ///////////////////////////////////////////////////////////////////////////////
 void Capsule::clearArrays()
 {
-    m_vertexData->m_attributes.clear();
-    m_vertexData->m_indices.clear();
+    m_vertexData.m_attributes.clear();
+    m_vertexData.m_indices.clear();
     std::vector<unsigned int>().swap(m_lineIndices);
 }
 
@@ -122,7 +122,7 @@ void Capsule::buildUnitCircleVertices()
     float sectorStep = 2 * PI / m_sectorCount;
     float sectorAngle;  // radian
 
-    std::vector<Vector3g>().swap(m_unitCircleVertices);
+    std::vector<Vector3>().swap(m_unitCircleVertices);
     for (int i = 0; i <= m_sectorCount; ++i)
     {
         sectorAngle = i * sectorStep;
@@ -133,7 +133,7 @@ void Capsule::buildUnitCircleVertices()
 ///////////////////////////////////////////////////////////////////////////////
 void Capsule::buildCaps()
 {
-    int startIndex = m_vertexData->m_attributes.m_vertices.size() - 1;
+    int startIndex = m_vertexData.m_attributes.m_vertices.size() - 1;
 
     float x, y, z, xy;                                // vertex position
     float nx, ny, nz, lengthInv = 1.0f / m_radius;      // vertex normal
@@ -243,7 +243,7 @@ void Capsule::buildCaps()
 ///////////////////////////////////////////////////////////////////////////////
 void Capsule::addVertex(float x, float y, float z)
 {
-    Vec::EmplaceBack(m_vertexData->m_attributes.m_vertices, x, y, z);
+    Vec::EmplaceBack(m_vertexData.m_attributes.m_vertices, x, y, z);
 }
 
 
@@ -253,7 +253,7 @@ void Capsule::addVertex(float x, float y, float z)
 ///////////////////////////////////////////////////////////////////////////////
 void Capsule::addNormal(float nx, float ny, float nz)
 {
-    Vec::EmplaceBack(m_vertexData->m_attributes.m_normals, nx, ny, nz);
+    Vec::EmplaceBack(m_vertexData.m_attributes.m_normals, nx, ny, nz);
 }
 
 
@@ -263,7 +263,7 @@ void Capsule::addNormal(float nx, float ny, float nz)
 ///////////////////////////////////////////////////////////////////////////////
 void Capsule::addTexCoord(float s, float t)
 {
-    Vec::EmplaceBack(m_vertexData->m_attributes.m_texCoords, s, t);
+    Vec::EmplaceBack(m_vertexData.m_attributes.m_texCoords, s, t);
 }
 
 
@@ -273,9 +273,9 @@ void Capsule::addTexCoord(float s, float t)
 ///////////////////////////////////////////////////////////////////////////////
 void Capsule::addIndices(unsigned int i1, unsigned int i2, unsigned int i3)
 {
-    Vec::EmplaceBack(m_vertexData->m_indices, i1);
-    Vec::EmplaceBack(m_vertexData->m_indices, i2);
-    Vec::EmplaceBack(m_vertexData->m_indices, i3);
+    Vec::EmplaceBack(m_vertexData.m_indices, i1);
+    Vec::EmplaceBack(m_vertexData.m_indices, i2);
+    Vec::EmplaceBack(m_vertexData.m_indices, i3);
 }
 
 
@@ -283,7 +283,7 @@ void Capsule::addIndices(unsigned int i1, unsigned int i2, unsigned int i3)
 ///////////////////////////////////////////////////////////////////////////////
 // generate shared normal vectors of the side of Capsule
 ///////////////////////////////////////////////////////////////////////////////
-std::vector<Vector3g> Capsule::getSideNormals()
+std::vector<Vector3> Capsule::getSideNormals()
 {
     const float PI = acos(-1);
     float sectorStep = 2 * PI / m_sectorCount;
@@ -297,7 +297,7 @@ std::vector<Vector3g> Capsule::getSideNormals()
     float z0 = sin(zAngle);     // nz
 
     // rotate (x0,y0,z0) per sector angle
-    std::vector<Vector3g> normals;
+    std::vector<Vector3> normals;
     for (int i = 0; i <= m_sectorCount; ++i)
     {
         sectorAngle = i * sectorStep;
@@ -315,7 +315,7 @@ std::vector<Vector3g> Capsule::getSideNormals()
 // return face normal of a triangle v1-v2-v3
 // if a triangle has no surface (normal length = 0), then return a zero vector
 ///////////////////////////////////////////////////////////////////////////////
-Vector3g Capsule::computeFaceNormal(float x1, float y1, float z1,  // v1
+Vector3 Capsule::computeFaceNormal(float x1, float y1, float z1,  // v1
     float x2, float y2, float z2,  // v2
     float x3, float y3, float z3)  // v3
 {

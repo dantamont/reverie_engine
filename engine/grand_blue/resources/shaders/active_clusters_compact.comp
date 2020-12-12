@@ -1,0 +1,56 @@
+// The buildCompactClusterList compute shader can be run as a separate shader 
+// invocation with threads representing clusters and dispatch size equal to
+// the total number of clusters in the scene. Once done, it will output a 
+// list of active clusters for us to cull against.
+// See: http://www.aortiz.me/2018/12/21/CG.html#tiled-shading--forward
+
+#define FLT_MAX 3.402823466e+38
+#define FLT_MIN 1.175494351e-38
+#define DBL_MAX 1.7976931348623158e+308
+#define DBL_MIN 2.2250738585072014e-308
+#define LOCAL_SIZE_X 16
+#define LOCAL_SIZE_Y 9
+#define LOCAL_SIZE_Z 4
+
+// One thread per pixel
+// Should be dispatched using dlDispatchCompute(screenWidth, screenHeight, 1)
+layout(local_size_x = LOCAL_SIZE_X, local_size_y = LOCAL_SIZE_Y, local_size_z = LOCAL_SIZE_Z) in;
+
+
+layout (std430, binding = 6) buffer GlobalIndexCountBuffer{
+    uint globalIndexCount;
+	uint maxPerTile;
+	uint globalActiveClusterCount;
+};
+
+layout (std430, binding = 7) buffer ActiveClusterBuffer{
+	uint activeClusters[];
+	// uint uniqueActiveClusters[];
+};
+
+// A grouped-shared array which contains all active clusters
+shared uint localActiveClusters[LOCAL_SIZE_X*LOCAL_SIZE_Y*LOCAL_SIZE_Z];
+
+// Build active cluster list
+void main(){
+	// globalActiveClusterCount = 0;
+	
+	// One cluster per thread
+	// Note: This assumes that dispatch is one-dimensional (only dispatches in z dimension)
+	uint groupSize = gl_WorkGroupSize.x * gl_WorkGroupSize.y * gl_WorkGroupSize.z;
+    uint clusterIndex = gl_LocalInvocationIndex + groupSize * gl_WorkGroupID.z;
+	// uint clusterIndex  = gl_GlobalInvocationID; // Doesn't work, is uvec3
+
+	localActiveClusters[gl_LocalInvocationIndex] = activeClusters[clusterIndex];
+	
+	// Use barrier to ensure that local active clusters list is populated by all threads before proceeding
+	barrier();
+
+	// Since barrier was called, can use localActiveClusters to replace entries in active clusters with less sparse entries
+    if(localActiveClusters[gl_LocalInvocationIndex] == 1){
+       uint offset = atomicAdd(globalActiveClusterCount, 1);
+       activeClusters[offset] = clusterIndex;
+    }
+}
+
+

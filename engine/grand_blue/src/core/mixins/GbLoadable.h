@@ -13,8 +13,10 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QString>
+#include <QJsonDocument>
 
 // Internal
+#include "../containers/GbString.h"
 
 namespace Gb {
 
@@ -68,6 +70,23 @@ protected:
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
+/// @struct SerializationContext
+/// @brief Contains applicationinformation required to serialize an object
+/// @note Exists for flexibility with dependency injection
+struct SerializationContext {
+    static const SerializationContext& Empty() { return s_emptyContext; }
+
+    CoreEngine* m_engine = nullptr;
+
+    /// @brief Generic data
+    char* m_data = nullptr;
+private:
+    static SerializationContext s_emptyContext;
+};
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
 /// @brief Class representing an object that can be serialized
 class Serializable {
 public:
@@ -79,6 +98,10 @@ public:
     enum Format {
         kJson
     };
+
+    static GString ToString(const QJsonObject& obj, QJsonDocument::JsonFormat fmt = QJsonDocument::Compact);
+    static QByteArray ToByteData(const QJsonObject& obj, QJsonDocument::JsonFormat fmt = QJsonDocument::Compact);
+    static QJsonObject ObjectFromString(const GString& str);
 
     /// @}
 
@@ -99,17 +122,9 @@ public:
     }
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) {
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) {
         Q_UNUSED(json);
-        throw("Error, called unimplemented loadFromJson routine");
-    }
-
-    /// @brief Populates this data using a valid json string
-    /// @details This option is useful for classes that don't otherwise need to store a pointer
-    /// to the core engine, but need it for serialization
-    virtual void loadFromJson(CoreEngine* engine, const QJsonValue& json) {
-        Q_UNUSED(engine);
-        Q_UNUSED(json);
+        Q_UNUSED(context);
         throw("Error, called unimplemented loadFromJson routine");
     }
 
@@ -128,7 +143,8 @@ public:
 
     /// @brief Formats that data can be loaded from
     enum Format {
-        kJson
+        kJson,
+        kBinary // Load directly into memory
     };
 
     /// @}
@@ -136,7 +152,7 @@ public:
 	//--------------------------------------------------------------------------------------------
 	/// @name Constructors/Destructor
 	/// @{
-    Loadable(const QString& filepath):
+    Loadable(const GString& filepath):
         Serializable(),
         m_path(filepath) {}
     Loadable() {}
@@ -148,8 +164,8 @@ public:
     /// @{
 
     /// @property File or directory path
-    const QString& getPath() const { return m_path; }
-    void setPath(const QString& path) { m_path = path; }
+    const GString& getPath() const { return m_path; }
+    void setPath(const GString& path) { m_path = path; }
 
     /// @}
 	//--------------------------------------------------------------------------------------------
@@ -157,16 +173,10 @@ public:
 	/// @{
 
     /// @brief Outputs this data as a valid json string
-    virtual QJsonValue asJson() const override{
-        QJsonObject jsonObject;
-        jsonObject.insert("filePath", m_path);
-        return jsonObject;
-    }
+    virtual QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override{
-        m_path = json.toObject().value("filePath").toString();
-    }
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
 	/// @}
 protected:
@@ -182,7 +192,7 @@ protected:
     /// @{
 
     /// @brief Filepath to the object
-    QString m_path;
+    GString m_path;
 
     /// @}
 
@@ -198,17 +208,12 @@ public:
     /// @name Static
     /// @{
 
-    /// @brief Formats that data can be loaded from
-    enum Format {
-        kJson
-    };
-
     /// @}
 
     //--------------------------------------------------------------------------------------------
     /// @name Constructors/Destructor
     /// @{
-    DistributedLoadable(const QString& filepath): Loadable(filepath){
+    DistributedLoadable(const GString& filepath): Loadable(filepath){
     }
     DistributedLoadable() {
     }
@@ -219,7 +224,7 @@ public:
     /// @name Properties
     /// @{
 
-    std::vector<QString>& additionalPaths() { return m_additionalPaths; }
+    std::vector<GString>& additionalPaths() { return m_additionalPaths; }
 
     /// @}
     //--------------------------------------------------------------------------------------------
@@ -232,8 +237,8 @@ public:
 
         if (m_additionalPaths.size()) {
             QJsonArray paths;
-            for (const QString& path : m_additionalPaths) {
-                paths.push_back(path);
+            for (const GString& path : m_additionalPaths) {
+                paths.push_back(path.c_str());
             }
             object.insert("additionalPaths", paths);
         }
@@ -242,17 +247,7 @@ public:
     }
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override {
-        Loadable::loadFromJson(json);
-        QJsonObject object = json.toObject();
-
-        if (object.contains("additionalPaths")) {
-            QJsonArray paths = object["additionalPaths"].toArray();
-            for (const auto& pathJson : paths) {
-                m_additionalPaths.push_back(pathJson.toString());
-            }
-        }
-    }
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 protected:
@@ -268,7 +263,7 @@ protected:
     /// @{
 
     /// @brief Additional paths for the loadable
-    std::vector<QString> m_additionalPaths;
+    std::vector<GString> m_additionalPaths;
 
     /// @}
 

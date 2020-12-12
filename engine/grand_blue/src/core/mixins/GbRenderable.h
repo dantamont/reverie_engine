@@ -15,6 +15,7 @@
 #include "GbLoadable.h"
 #include "../rendering/renderer/GbRenderSettings.h"
 #include "../containers/GbContainerExtensions.h"
+#include "../containers/GbStringView.h"
 #include "../geometry/GbCollisions.h"
 
 namespace Gb {
@@ -24,6 +25,7 @@ namespace Gb {
 //////////////////////////////////////////////////////////////////////////////////
 class ShaderProgram;
 struct Uniform;
+class RenderContext;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Class definitions
@@ -56,10 +58,11 @@ public:
     /// @name Properties
     /// @{
 
-    const std::unordered_map<QString, Uniform>& uniforms() const { return m_uniforms; }
-    std::unordered_map<QString, Uniform>& uniforms() { return m_uniforms; }
+    const std::vector<Uniform>& uniforms() const { return m_uniforms; }
+    std::vector<Uniform>& uniforms() { return m_uniforms; }
 
     RenderSettings& renderSettings() { return m_renderSettings; }
+    const RenderSettings& renderSettings() const { return m_renderSettings; }
 
     const TransparencyType& transparencyType() const { return m_transparencyType; }
     TransparencyType& transparencyType() { return m_transparencyType; }
@@ -75,6 +78,13 @@ public:
     /// @brief Add a uniform to the uniforms to be set
     void addUniform(const Uniform& uniform);
 
+    /// @brief Whether or not the command has the specified uniform
+    bool hasUniform(const GStringView& uniformName, int* outIndex = nullptr);
+    bool hasUniform(const Uniform& uniform, int* outIndex = nullptr);
+
+    /// @brief Clear all uniforms
+    inline void clearUniforms() { m_uniforms.clear(); }
+
     /// @}
 
     //-----------------------------------------------------------------------------------------------------------------
@@ -85,7 +95,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -101,7 +111,7 @@ protected:
     /// @{
 
     /// @brief Uniforms corresponding to this renderable
-    std::unordered_map<QString, Uniform> m_uniforms;
+    std::vector<Uniform> m_uniforms;
 
     /// @brief GL Render settings corresponding to this renderable
     RenderSettings m_renderSettings;
@@ -128,10 +138,11 @@ public:
         kIgnoreSettings = 1 << 0, // avoid binding render settings
         kIgnoreTextures = 1 << 1, // skip texture binding
         kIgnoreUniforms = 1 << 2, // skip uniform binding
+        kIgnoreUniformMismatch = 1 << 3, // ignore errors raised by unrecognized uniforms
     };
 
     static QSize screenDimensions();
-    static Vector2g screenDimensionsVec();
+    static Vector2 screenDimensionsVec();
 
     /// @brief Return screen width and height in pixels
     static float screenDPI();
@@ -162,7 +173,9 @@ public:
 	/// @{
 
     /// @brief Draw the renderable given a shader program
-    virtual void draw(ShaderProgram& shaderProgram, RenderSettings* settings = nullptr, size_t drawFlags = 0);
+    virtual void draw(ShaderProgram& shaderProgram, RenderContext* context = nullptr,
+        RenderSettings* settings = nullptr, 
+        size_t drawFlags = 0);
     //virtual void draw(RenderCommand& command);
 
     /// @brief Update any data needed for rendering, e.g. vertex data, render settings, etc.
@@ -181,7 +194,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -199,16 +212,10 @@ protected:
     virtual void releaseUniforms(ShaderProgram& shaderProgram);
 
     /// @brief Bind the textures used by this renderable
-    virtual void bindTextures(ShaderProgram* shaderProgram = nullptr) 
-    {
-        Q_UNUSED(shaderProgram);
-    }
+    virtual void bindTextures(ShaderProgram* shaderProgram = nullptr, RenderContext* context = nullptr);
 
     /// @brief Release the textures used by this renderable
-    virtual void releaseTextures(ShaderProgram* shaderProgram = nullptr)
-    {
-        Q_UNUSED(shaderProgram);
-    }
+    virtual void releaseTextures(ShaderProgram* shaderProgram = nullptr, RenderContext* context = nullptr);
 
     /// @brief Draw geometry associated with this renderable
     virtual void drawGeometry(ShaderProgram& shaderProgram, RenderSettings* settings = nullptr) 
@@ -218,7 +225,7 @@ protected:
     }
 
     /// @brief Print GL error
-    void printError(const QString& error);
+    void printError(const GStringView& error);
 
     /// @}
 

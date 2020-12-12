@@ -48,7 +48,7 @@ protected:
 
     std::vector<std::shared_ptr<SortingLayer>> renderLayers();
     bool addRenderLayer(const std::shared_ptr<SortingLayer>& layer);
-    bool removeRenderLayer(const QString& label);
+    bool removeRenderLayer(const GString& label);
 
     virtual void initializeWidgets() override;
     virtual void initializeConnections() override;

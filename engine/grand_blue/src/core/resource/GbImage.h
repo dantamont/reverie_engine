@@ -52,7 +52,7 @@ public:
     Image(const QString& filepath, QImage::Format format = QImage::Format_Invalid);
     Image(const Image& image);
     Image(const QImage& image);
-    ~Image() {}
+    ~Image();
 	/// @}
 
     //--------------------------------------------------------------------------------------------
@@ -66,12 +66,22 @@ public:
     /// @name Properties
     /// @{
 
+    /// @brief Get the type of resource stored by this handle
+    virtual Resource::ResourceType getResourceType() const override {
+        return Resource::kImage;
+    }
+
     QImage::Format format() const { return m_image.format(); }
 
     /// @}
 	//--------------------------------------------------------------------------------------------
 	/// @name Public Methods
 	/// @{
+
+    /// @brief Clear the image 
+    void clear() {
+        m_image = QImage();
+    }
 
     /// @brief Whether or not the image is valid
     bool isNull() const { return m_image.isNull(); }
@@ -82,11 +92,6 @@ public:
 
     /// @brief Return size of the image
     QSize size() const { return m_image.size(); }
-
-    /// @brief Load .tga image
-    /// See: https://forum.qt.io/topic/101971/qimage-and-tga-support-in-c
-    /// https://forum.qt.io/topic/74712/qimage-from-tga-with-alpha/11
-    QImage loadTga(const char* filePath, bool &success) const;
 
     /// @brief Perform on removal of this texture resource
     void onRemoval(ResourceCache* cache = nullptr) override;
@@ -113,6 +118,13 @@ protected:
     /// @name Private Methods
     /// @{
 
+    /// @brief Load .tga image
+    /// See: https://forum.qt.io/topic/101971/qimage-and-tga-support-in-c
+    /// https://forum.qt.io/topic/74712/qimage-from-tga-with-alpha/11
+    void loadImage(const GString& filePath, bool &success);
+
+    /// @brief Cleanup function to delete buffer when last QImage is out of scope
+    static void CleanUpHandler(void *imageBuffer);
 
     /// @}
 
@@ -122,6 +134,9 @@ protected:
 
     /// @brief The QImage used by this image
     QImage m_image;
+
+    /// @brief The image buffer, manually memory-managed since loaded through stbi
+    unsigned char* m_imageBuffer = nullptr;
 
     /// @}
 
