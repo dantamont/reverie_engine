@@ -6,6 +6,7 @@
 #define GB_RESOURCE_H
 // standard
 #include <tchar.h>
+#include <type_traits>
 
 // QT
 #include <QFile>
@@ -79,7 +80,8 @@ public:
         kModel,
         kShaderProgram,
         kPythonScript,
-        kSkeleton
+        kSkeleton,
+        kAudio
     };
 
     /// @}
@@ -87,8 +89,8 @@ public:
     //--------------------------------------------------------------------------------------------
     /// @name Constructors/Destructor
     /// @{
-    Resource(const QString& name, ResourceType type);
-    Resource(ResourceType type);
+    Resource(const GString& name);
+    Resource();
     virtual ~Resource() {}
     /// @}
 
@@ -99,7 +101,7 @@ public:
     ResourceHandle* handle() { return m_handle; }
 
     /// @brief Get the type of resource stored by this handle
-    Resource::ResourceType getResourceType() const { return m_type; }
+    virtual Resource::ResourceType getResourceType() const = 0;
 
     /// @brief Return the cost of the resource
     virtual size_t getCost() const { return m_cost; }
@@ -153,9 +155,6 @@ protected:
     /// @}
 
 private:
-
-    /// @brief Resource type
-    ResourceType m_type;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -172,7 +171,9 @@ public:
         kChild = (1 << 1), // Is a child resource, i.e., is loaded in along with a parent resource
         kParent = (1 << 2), // Is a parent resource, i.e., is loaded along with child resources
         kUserGenerated = (1 << 3), // The resource has no path associated with it, i.e., it is not loaded from a file
-        kCore = (1 << 4) // Is a core resource, will not be remove, no mater what. Overrrides removable flag
+        kCore = (1 << 4), // Is a core resource, will not be remove, no matter what, and won't save to file. Overrides removable flag
+        kUnsaved = (1 << 5), // If unsaved, will not be saved to file
+        kUsesJson = (1 << 6) // Whether or not the resource uses JSON for initialization
     };
     typedef QFlags<BehaviorFlag> BehaviorFlags;
 
@@ -190,14 +191,15 @@ public:
     typedef QFlags<DeleteFlag> DeleteFlags;
 
     /// @brief Get identifying name of resource from JSON representation
-    static QString getNameFromJson(const QJsonObject& json);
+    static GString getNameFromJson(const QJsonObject& json);
 
     /// @brief Create a resource handle
+    static std::shared_ptr<ResourceHandle> create(CoreEngine* engine, const QJsonObject& json);
     static std::shared_ptr<ResourceHandle> create(CoreEngine* engine, Resource::ResourceType type);
     static std::shared_ptr<ResourceHandle> create(CoreEngine* engine, Resource::ResourceType type,
         BehaviorFlags flags);
-    static std::shared_ptr<ResourceHandle> create(CoreEngine* engine, const QString& filepath, Resource::ResourceType type);
-    static std::shared_ptr<ResourceHandle> create(CoreEngine* engine, const QString& filepath, Resource::ResourceType type,
+    static std::shared_ptr<ResourceHandle> create(CoreEngine* engine, const GString& filepath, Resource::ResourceType type);
+    static std::shared_ptr<ResourceHandle> create(CoreEngine* engine, const GString& filepath, Resource::ResourceType type,
         BehaviorFlags flags);
 
     /// @}
@@ -228,6 +230,15 @@ public:
     void setUserGenerated(bool pathless) {
         m_behaviorFlags.setFlag(kUserGenerated, pathless);
     }
+
+    /// @brief Will use JSON if manually flagged to do so, or if user generated
+    bool usesJson() const {
+        return m_behaviorFlags.testFlag(kUsesJson) || isUserGenerated();
+    }
+    void setUsesJson(bool uses) {
+        m_behaviorFlags.setFlag(kUsesJson, uses);
+    }
+
     bool isCore() const {
         return m_behaviorFlags.testFlag(kCore);
     }
@@ -242,6 +253,13 @@ public:
     }
     void setRemovable(bool toggle) {
         m_behaviorFlags.setFlag(kRemovable, toggle);
+    }
+    bool isUnsaved() const {
+        // Won't be saved if core or if explicitly flagged unsaved
+        return m_behaviorFlags.testFlag(kUnsaved) || m_behaviorFlags.testFlag(kCore);
+    }
+    void setUnsaved(bool toggle) {
+        m_behaviorFlags.setFlag(kUnsaved, toggle);
     }
 
     /// @property IsLoading
@@ -273,13 +291,10 @@ public:
     /// @brief The resource needs a reload
     bool needsReload() const { return !m_resource && !isLoading(); }
 
-    /// @property Resource Attributes
-    const Dictionary& attributes() const { return m_attributes; };
-    Dictionary& attributes() { return m_attributes; };
-    void setAttributes(const Dictionary& attributes) { m_attributes = attributes; }
-
     /// @property Resource Json
+    // TODO: Deprecate, redundant with dictionary attributes
     const QJsonObject& resourceJson() const { return m_resourceJson; };
+    QJsonObject& resourceJson() { return m_resourceJson; };
     void setResourceJson(const QJsonObject& object) { m_resourceJson = object; }
 
     /// @brief Get the type of resource stored by this handle
@@ -300,6 +315,7 @@ public:
     ResourceHandle* parent() { return m_parent; }
 
     /// @brief The reader for this handle
+    // TODO: Deprecate, this is clunky
     const std::shared_ptr<Object>& reader() const { return m_reader; }
     void setReader(const std::shared_ptr<Object>& reader) { m_reader = reader; }
 
@@ -318,12 +334,16 @@ public:
 	/// @name Public Methods
 	/// @{
 
+    /// @brief Set child paths
+    /// @details Recursively set filepaths of all children to the specified path
+    void setChildPaths(const GString& filepath);
+
     /// @brief Get the child with the given UUID
-    std::shared_ptr<ResourceHandle> getChild(const Uuid& uuid);
+    const std::shared_ptr<ResourceHandle>& getChild(const Uuid& uuid);
+    const std::shared_ptr<ResourceHandle>& getChild(const GString& name, Resource::ResourceType type);
 
     /// @brief Get the resource children of a specified type
     void getChildren(Resource::ResourceType type, std::vector<std::shared_ptr<ResourceHandle>>& outChildren);
-
 
     /// @brief Add a child resource to this resource
     void addChild(const std::shared_ptr<ResourceHandle>& child);
@@ -334,14 +354,24 @@ public:
     /// @brief Load resource
     void loadResource();
 
-    /// @brief Remove resource
-    void removeResources(bool lockMutex);
+    /// @brief Unload resource and those of all children from memory
+    void unloadResource(bool lockMutex);
+
+    /// @brief Remove from resource cache structs
+    /// @details Must make sure to lock resource cache's resource mutex before calling this
+    void removeFromCache(bool removeFromTopLevel);
 
     /// @brief Return resource as the specified casted type
     template<typename T>
     std::shared_ptr<T> resourceAs(bool lockMutex = false) {
-        // Dynamic cast is necessary for properly verifying polymorphism (see how a reinterpret_cast breaks things)
-        return std::dynamic_pointer_cast<T>(resource(lockMutex));
+        if constexpr (std::is_base_of_v<Resource, T>) {
+            // Perform compile-time conversion if possible
+            return std::static_pointer_cast<T>(resource(lockMutex));
+        }
+        else {
+            // Dynamic cast is necessary for properly verifying polymorphism (see how a reinterpret_cast breaks things)
+            return std::dynamic_pointer_cast<T>(resource(lockMutex));
+        }
     }
 
     /// @brief Recursively post-construct the resource and all children
@@ -357,7 +387,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -377,6 +407,8 @@ protected:
     //--------------------------------------------------------------------------------------------
     /// @name Friends
 
+    friend class ModelReader;
+
     /// @}
 
 
@@ -386,8 +418,8 @@ protected:
     ResourceHandle(CoreEngine* engine);
     ResourceHandle(CoreEngine* engine, Resource::ResourceType type);
     ResourceHandle(CoreEngine* engine, const std::shared_ptr<Resource>& resource);
-    ResourceHandle(CoreEngine* engine, const QString& filepath, Resource::ResourceType type);
-    ResourceHandle(CoreEngine* engine, const QString& filepath, const QString& name, Resource::ResourceType type);
+    ResourceHandle(CoreEngine* engine, const GString& filepath, Resource::ResourceType type);
+    ResourceHandle(CoreEngine* engine, const GString& filepath, const GString& name, Resource::ResourceType type);
 
     /// @}
 
@@ -427,15 +459,15 @@ protected:
     /// @brief Parent resource handle
     ResourceHandle* m_parent = nullptr;
 
-    /// @brief Attributes for regenerating the resource
-    Dictionary m_attributes;
-
-    /// @brief (Optional) JSON representing additional resource info
+    /// @brief JSON representing additional resource info
     QJsonObject m_resourceJson;
 
     /// @brief (Optional) Reader object for parsing resource
     /// @details Saved here to reference in model post-construction
     std::shared_ptr<Object> m_reader = nullptr;
+
+    /// @brief Pointer to a null handle to pass children by reference
+    static std::shared_ptr<ResourceHandle> s_nullHandle;
 
     /// @}
 

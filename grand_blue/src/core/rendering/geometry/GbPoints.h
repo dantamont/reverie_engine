@@ -58,8 +58,8 @@ public:
     float pointSize() const { return m_pointSize; }
     void setPointSize(float size) { m_pointSize = size; }
 
-    const Vector4g& pointColor() const { return m_pointColor; }
-    void setPointColor(const Vector4g& color) { m_pointColor = color; }
+    const Vector4& pointColor() const { return m_pointColor; }
+    void setPointColor(const Vector4& color) { m_pointColor = color; }
 
     Transform& transform() { return *m_transform; }
 
@@ -93,7 +93,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -110,8 +110,8 @@ protected:
     virtual void drawGeometry(ShaderProgram& shaderProgram, RenderSettings* settings = nullptr) override;
 
     /// @brief Add point
-    void addPoint(const Vector3g& newPoint);
-    void addPoint(std::shared_ptr<VertexArrayData> vertexData, const Vector3g& newPoint);
+    void addPoint(const Vector3& newPoint);
+    void addPoint(std::shared_ptr<VertexArrayData> vertexData, const Vector3& newPoint);
 
     /// @brief Add a new line to the Points
     void addPointSet();
@@ -134,7 +134,7 @@ protected:
     //QFlags<EffectOptions> m_effectOptions;
 
     /// @brief Point color
-    Vector4g m_pointColor;
+    Vector4 m_pointColor;
 
     /// @}
 

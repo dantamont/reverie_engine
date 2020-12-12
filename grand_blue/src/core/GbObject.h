@@ -37,6 +37,9 @@ class QTreeWidgetItem;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 namespace Gb {
 
+class LogEvent;
+class CoreEngine;
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Class Definitions
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -56,7 +59,7 @@ public:
     Object() :
         m_uuid(true) {
     }
-    Object(const QString& name, NameMode mode = kCaseSensitive):
+    Object(const GString& name, NameMode mode = kCaseSensitive):
         Nameable(name, mode),
         m_uuid(true)
     {
@@ -102,7 +105,7 @@ public:
     */
 
     /// @brief Log message from any thread via a log event
-    void logThreadMessage(const QString& message, LogLevel logLevel = LogLevel::Info);
+    void logThreadMessage(CoreEngine* core, const char* message, LogLevel logLevel = LogLevel::Info);
 
     /** @brief Output a message to a log
         @param[in] level The numeric level for the message.  The higher the
@@ -119,7 +122,15 @@ public:
         @param[in] message The textual message for the log.
     */
     inline void logMessage(LogLevel level, std::string& category, std::string& message) const
-        { logMessage(level, category.c_str(), message.c_str()); }
+    { 
+        logMessage(level, category.c_str(), message.c_str()); 
+    }
+    inline void logMessage(LogLevel level, const GString& category, const GString& message) const
+    {
+        logMessage(level, category.c_str(), message.c_str());
+    }
+
+
 
     /** @brief Log a Critical message and terminate the app
         @param[in] message The textual message for the log.
@@ -241,6 +252,11 @@ public:
     */
     virtual std::string toStdString(bool include_type=true) const;
     virtual QString asQString(bool include_type = true) const;
+
+    static const char* GetThreadID();
+    static bool IsMainThread();
+
+
     /// @}
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Operators

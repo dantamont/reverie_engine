@@ -25,7 +25,7 @@ namespace Gb {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class TransformComponent;
 class CameraComponent;
-class Camera;
+class SceneCamera;
 class LightComponent;
 class Scene;
 class ModelComponent;
@@ -37,9 +37,12 @@ struct CompareByRenderLayer;
 class Renderable;
 class CharControlComponent;
 class BoneAnimationComponent;
+class AudioSourceComponent;
 class CubeMapComponent;
 class DrawCommand;
+class ShadowMap;
 class MainRenderer;
+class SceneObject;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Typedefs
@@ -54,7 +57,8 @@ class MainRenderer;
 */
 // TODO: Make scene objects toggleable
 // TODO: Make constructors protected
-class SceneObject: public DagNode, public Serializable, public Persistable {
+typedef DagNode<SceneObject> SceneObjectDagNode;
+class SceneObject: public SceneObjectDagNode, public Serializable, public Persistable {
 public:
     typedef std::shared_ptr<Scene> ScenePtr;
     //-----------------------------------------------------------------------------------------------------------------
@@ -72,22 +76,12 @@ public:
 
     /// @brief Get scene object by UUID
     static std::shared_ptr<SceneObject> get(const Uuid& uuid);
-    static std::shared_ptr<SceneObject> get(const QString& uuidStr);
+    static std::shared_ptr<SceneObject> get(const GString& uuidStr);
 
     /// @brief Get scene object by name
-    static std::shared_ptr<SceneObject> getByName(const QString& name);
+    static std::shared_ptr<SceneObject> getByName(const GString& name);
 
     /// @}
-
-    //-----------------------------------------------------------------------------------------------------------------    
-    /// @name DAG node overrides
-    /// @{
-
-    /// @property Node Type
-    /// @brief DAG node type
-    static inline NodeType type() { return NodeType::kSceneObject; }
-
-    /// @} 
 
     //-----------------------------------------------------------------------------------------------------------------    
     /// @name Destructor
@@ -113,38 +107,38 @@ public:
     CoreEngine* engine() const { return m_engine; }
 
     /// @brief Obtain pointer to scene containing this object
-    std::shared_ptr<Scene> scene() const;
-    void setScene(std::shared_ptr<Scene> scene) { m_scene = scene; }
+    const std::shared_ptr<Scene>& scene() const;
+    void setScene(const std::shared_ptr<Scene>& scene) { m_scene = scene; }
 
     /// @brief The transform component for this scene object
     const std::shared_ptr<TransformComponent>& transform() { return m_transformComponent; }
 
     /// @brief Access and set a shader for this scene object
-    ShaderComponent* shaderComponent();
+    ShaderComponent* shaderComponent() const;
 
     /// @property Camera
     /// @brief Access and set a camera to this scene object
-    CameraComponent* camera();
+    CameraComponent* camera() const;
     void setCamera(CameraComponent* camera);
 
     /// @property Character Controller
-    CharControlComponent* characterController();
+    CharControlComponent* characterController() const;
 
     /// @property Model Component
-    ModelComponent* modelComponent();
+    ModelComponent* modelComponent() const;
 
     /// @property Canvas Component
-    CanvasComponent* canvasComponent();
+    CanvasComponent* canvasComponent() const;
 
     /// @property Bone animation componnet
-    BoneAnimationComponent* boneAnimation();
+    BoneAnimationComponent* boneAnimationComponent() const;
 
     /// @property Light
     /// @brief Access a light for this scene object
-    LightComponent* light();
+    LightComponent* light() const;
 
     /// @property CubeMap
-    CubeMapComponent* cubeMap();
+    CubeMapComponent* cubeMap() const;
 
 
     /// @}
@@ -154,16 +148,19 @@ public:
     /// @{
 
     /// @brief Create the commands required to draw this scene object
-    void createDrawCommands(Camera& camera,
+    void createDrawCommands(SceneCamera& camera,
         MainRenderer& renderer,
         const SortingLayer& currentLayer,
         bool overrideLayer = false); // create draw command regardless of current layer
+    
+    /// @brief Create commands to draw into a shadow map
+    void createDrawCommands(ShadowMap& sm, MainRenderer& renderer); 
 
     std::vector<std::shared_ptr<SortingLayer>> renderLayers();
     std::vector<std::shared_ptr<SortingLayer>> getRenderLayers() const;
-    bool hasRenderLayer(const QString& label);
+    bool hasRenderLayer(const GString& label);
     bool addRenderLayer(const std::shared_ptr<SortingLayer>& layer);
-    bool removeRenderLayer(const QString& label);
+    bool removeRenderLayer(const GString& label);
 
     std::vector<std::weak_ptr<SortingLayer>>& _renderLayers() {
         return m_renderLayers;
@@ -196,12 +193,9 @@ public:
     /// @brief whether or not this scene object satisfies the given component requirements
     bool satisfiesConstraints(const Component::ComponentType& reqs) const;
 
-    /// @brief Obtain direct child scene objects
-    std::vector<std::shared_ptr<SceneObject>> children() const;
-
     /// @brief Search recursively through children for child with the given UUID
     std::shared_ptr<SceneObject> getChild(const Uuid& uuid) const;
-    std::shared_ptr<SceneObject> getChildByName(const QString& name) const;
+    std::shared_ptr<SceneObject> getChildByName(const GString& name) const;
 
     /// @brief Switch the scene of the object
     void switchScene(std::shared_ptr<Scene> newScene);
@@ -219,11 +213,11 @@ public:
     /// @brief Whether or not the object has a shader
     bool hasShaderComponent() const;
 
-    ///// @brief Method to render the scene object, given a renderable type
-    //void draw(RenderableType type);
-
     /// @brief Remove all shared_ptrs to this scene object so that it can be garbage collected
-    void remove();
+    void removeFromScene();
+
+    /// @brief Retrieve the audio source at the specified index
+    AudioSourceComponent * audioSource(size_t index) const;
 
     /// @}
 
@@ -246,7 +240,19 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
+
+    /// @}
+
+private:
+    //-----------------------------------------------------------------------------------------------------------------    
+    /// @name DagNode overrides
+    /// @{
+
+    virtual void onAddChild(const std::shared_ptr<SceneObject>& child) override;
+    virtual void onAddParent(const std::shared_ptr<SceneObject>& parent) override;
+    virtual void onRemoveChild(const std::shared_ptr<SceneObject>& child) override;
+    virtual void onRemoveParent(const std::shared_ptr<SceneObject>& parent) override;
 
     /// @}
 
@@ -312,8 +318,8 @@ protected:
     /// @}
 };
 typedef std::shared_ptr<SceneObject> SceneObjectPtr;
-Q_DECLARE_METATYPE(SceneObjectPtr)
-Q_DECLARE_METATYPE(SceneObject)
+//Q_DECLARE_METATYPE(SceneObjectPtr)
+//Q_DECLARE_METATYPE(SceneObject)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 } // end namespacing

@@ -1,5 +1,7 @@
 #include "GbShaderComponentWidget.h"
 
+#include "../../core/scene/GbScenario.h"
+
 #include "../../core/GbCoreEngine.h"
 #include "../../core/loop/GbSimLoop.h"
 #include "../tree/GbComponentWidget.h"
@@ -11,9 +13,8 @@
 #include "../../core/components/GbShaderComponent.h"
 #include "../../core/scripting/GbPythonScript.h"
 #include "../../core/components/GbLightComponent.h"
-#include "../../core/components/GbCamera.h"
+#include "../../core/components/GbCameraComponent.h"
 
-#include "../../core/rendering/renderer/GbRenderers.h"
 #include "../../core/components/GbShaderComponent.h"
 #include "../../core/components/GbTransformComponent.h"
 #include "../style/GbFontIcon.h"
@@ -50,9 +51,9 @@ void ShaderComponentWidget::initializeWidgets()
     // Presets
     m_presetSelectWidget = new QComboBox;
     m_presetSelectWidget->setMaximumWidth(3000);
-    std::unordered_map<Uuid, std::shared_ptr<ShaderPreset>>& presets = m_engine->resourceCache()->shaderPresets();
-    for (const auto& presetPair : m_engine->resourceCache()->shaderPresets()) {
-        m_presetSelectWidget->addItem(SAIcon("list-alt"), presetPair.second->getName());
+    std::vector<std::shared_ptr<ShaderPreset>>& presets = m_engine->scenario()->settings().shaderPresets();
+    for (const auto& preset : presets) {
+        m_presetSelectWidget->addItem(SAIcon("list-alt"), preset->getName());
     }
 
     std::shared_ptr<ShaderPreset> preset = shaderComponent()->shaderPreset();
@@ -63,8 +64,9 @@ void ShaderComponentWidget::initializeWidgets()
     }
     else {
         // Set preset if there are any in the list
-        if (presets.size()) 
-            shaderComponent()->setShaderPreset(presets.begin()->second);
+        if (presets.size()) {
+            shaderComponent()->setShaderPreset(presets[0]);
+        }
 ;    }
 
 }
@@ -82,7 +84,7 @@ void ShaderComponentWidget::initializeConnections()
 
         const QString& presetName = m_presetSelectWidget->currentText();
         bool wasCreated;
-        auto shaderPreset = m_engine->resourceCache()->getShaderPreset(presetName, wasCreated);
+        auto shaderPreset = m_engine->scenario()->settings().getShaderPreset(presetName, wasCreated);
         if (wasCreated) throw("Error, shader preset must exist");
         if (!shaderPreset) throw("Error, preset does not exist");
         shaderComponent()->setShaderPreset(shaderPreset);

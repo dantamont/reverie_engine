@@ -76,6 +76,9 @@ public:
     /// @brief Remove an event listener
     void removeListener(EventListener* listener);
 
+    /// @brief Whether or not there is an event listener with the specified UUID
+    bool hasListener(QEvent::Type type, EventListener* listener, size_t& iterPos);
+
     /// @}
 
     //---------------------------------------------------------------------------------------
@@ -100,6 +103,10 @@ signals:
     void deleteThreadedProcess(const Uuid& process);
     //void pythonBehaviorIsAwake(const Uuid& behaviorWrapperUuid);
 
+    // Animations
+    void addedMotion(const Uuid& motionID);
+    void removedMotion(const Uuid& motionID);
+
 protected:
     //--------------------------------------------------------------------------------------------
     /// @name Protected Methods
@@ -121,7 +128,7 @@ protected:
 
     /// @brief List of all event listeners
     /// @details Outer map is indexed by event type, and inner maps are indexed by the listener's UUID
-    std::unordered_map<QEvent::Type, std::unordered_map<Uuid, EventListener*>> m_eventListeners;
+    tsl::robin_map<QEvent::Type, std::vector<EventListener*>> m_eventListeners;
 
     /// @}
 };

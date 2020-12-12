@@ -8,6 +8,7 @@
 #include "../resource/GbResource.h"
 #include "../resource/GbResourceCache.h"
 
+#include "../sound/GbAudioResource.h"
 #include "../resource/GbImage.h"
 #include "../rendering/materials/GbMaterial.h"
 #include "../rendering/materials/GbCubeTexture.h"
@@ -79,6 +80,9 @@ void LoadProcess::onInit()
     case Resource::kCubeTexture:
         resource = loadCubeTexture();
         break;
+    case Resource::kAudio:
+        resource = loadAudio();
+        break;
     default:
 #ifdef DEBUG_MODE
         logError("This resource type is not implemented");
@@ -129,11 +133,8 @@ void LoadProcess::onAbort()
 /////////////////////////////////////////////////////////////////////////////////////////////
 std::shared_ptr<Image> LoadProcess::loadImage()
 {
-
-    QImage::Format format = QImage::Format_Invalid;
-    if (m_resourceHandle->attributes().hasAttribute("format")) {
-        format = QImage::Format(m_resourceHandle->attributes().at("format").get<int>());
-    }
+    // TODO: UNTESTED
+    QImage::Format format = QImage::Format(m_resourceHandle->resourceJson()["format"].toInt(0));
     std::shared_ptr<Image> image = std::make_shared<Image>(m_resourceHandle->getPath(), format);
 
     return image;
@@ -141,21 +142,15 @@ std::shared_ptr<Image> LoadProcess::loadImage()
 /////////////////////////////////////////////////////////////////////////////////////////////
 std::shared_ptr<Resource> LoadProcess::loadTexture()
 {
-    const QString& texPath = m_resourceHandle->getPath();
+    const GString& texPath = m_resourceHandle->getPath();
 
     std::shared_ptr<Texture> texture = prot_make_shared<Texture>(texPath);
-    int typeInt = 0;
-    if (m_resourceHandle->attributes().hasAttribute("type")) {
-        if (!m_resourceHandle->attributes().at("type").isValid()) {
-            typeInt = 0;
-            logError("Invalid texture type, setting to diffuse");
-        }
-        else {
-            typeInt = m_resourceHandle->attributes().at("type").get<int>();
-        }
-    }
-    Texture::TextureType type = Texture::TextureType(typeInt);
-    texture->setType(type);
+    int typeInt = m_resourceHandle->resourceJson()["texUsageType"].toInt(0);
+    TextureUsageType type = TextureUsageType(typeInt);
+    texture->setUsageType(type);
+
+    // TODO: Make this a flag
+    texture->generateMipMaps(true); // Set texture to generate mip maps
     return texture;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -185,7 +180,7 @@ std::shared_ptr<Resource> LoadProcess::loadModel()
 std::shared_ptr<Resource> LoadProcess::loadMesh()
 {
     // Create mesh if it is a polygon
-    const QString& name = m_resourceHandle->getName();
+    const GString& name = m_resourceHandle->getName();
     if (PolygonCache::isPolygonName(name)) {
         auto mesh = m_engine->resourceCache()->polygonCache()->createPolygon(name, m_resourceHandle);
         return mesh;
@@ -199,7 +194,10 @@ std::shared_ptr<Resource> LoadProcess::loadMesh()
 /////////////////////////////////////////////////////////////////////////////////////////////
 std::shared_ptr<Resource> LoadProcess::loadCubeTexture()
 {
-    const QString& filePath = m_resourceHandle->getPath();
+    //static QMutex cubeTextureMutex;
+    //QMutexLocker lock(&cubeTextureMutex);
+
+    const GString& filePath = m_resourceHandle->getPath();
     std::shared_ptr<CubeTexture> cubeTexture = std::make_shared<CubeTexture>(filePath);
     return cubeTexture;
 }
@@ -210,9 +208,9 @@ std::shared_ptr<Resource> LoadProcess::loadMaterial()
 
     // Read in from json if data provided
     if (!m_resourceHandle->resourceJson().isEmpty()) {
-        material = prot_make_shared<Material>(m_engine);
+        material = prot_make_shared<Material>();
         m_resourceHandle->setResource(material, false); // Need to set before loading from JSON
-        material->loadFromJson(m_resourceHandle->resourceJson());
+        material->loadFromJson(m_resourceHandle->resourceJson(), { m_engine });
     }
     else {
         throw("Material loading directly from file not implemented");
@@ -228,29 +226,68 @@ std::shared_ptr<Resource> LoadProcess::loadAnimation()
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 std::shared_ptr<Resource> LoadProcess::loadShaderProgram()
-{
-    const QString& vertPath = m_resourceHandle->getPath();
-    const QString& fragPath = m_resourceHandle->additionalPaths().front();
+{    
+    // Initialize path variables
+    GString vertPath, fragPath, geomPath, compPath;
+    if (m_resourceHandle->additionalPaths().size() == 2) {
+        vertPath = m_resourceHandle->getPath();
+        fragPath = m_resourceHandle->additionalPaths().front();
+        geomPath = m_resourceHandle->additionalPaths()[1];
+
 #ifdef DEBUG_MODE
-    if (m_engine->resourceCache()->getTopLevelHandleWithPath(vertPath)->isConstructed()) {
-        throw("Error, attempting to load a shader program that's already been loaded");
-    }
+        if (m_engine->resourceCache()->getTopLevelHandleWithPath(vertPath)->isConstructed()) {
+            throw("Error, attempting to load a shader program that's already been loaded");
+        }
 #endif
+    }
+    else if (m_resourceHandle->additionalPaths().size() == 1) {
+        vertPath = m_resourceHandle->getPath();
+        fragPath = m_resourceHandle->additionalPaths().front();
+
+#ifdef DEBUG_MODE
+        if (m_engine->resourceCache()->getTopLevelHandleWithPath(vertPath)->isConstructed()) {
+            throw("Error, attempting to load a shader program that's already been loaded");
+        }
+#endif
+    }
+    else if (m_resourceHandle->additionalPaths().size() == 0) {
+        compPath = m_resourceHandle->getPath();
+
+#ifdef DEBUG_MODE
+        if (m_engine->resourceCache()->getTopLevelHandleWithPath(compPath)->isConstructed()) {
+            throw("Error, attempting to load a shader program that's already been loaded");
+        }
+#endif
+    }
+    else {
+        throw("Unsupported number of paths");
+    }
 
     std::shared_ptr<ShaderProgram> shaderProgram;
-    if(!m_resourceHandle->resourceJson().isEmpty())
+    if (!m_resourceHandle->resourceJson().isEmpty()) {
         // Load from json if possible
         shaderProgram = std::make_shared<ShaderProgram>(m_resourceHandle->resourceJson());
-    else
-        shaderProgram = std::make_shared<ShaderProgram>(vertPath, fragPath);
+    }
+    else {
+        if (compPath.isEmpty()) {
+            // Is not a compute shader
+            shaderProgram = std::make_shared<ShaderProgram>(vertPath, fragPath, geomPath);
+        }
+        else {
+            // Is a compute shader
+            shaderProgram = std::make_shared<ShaderProgram>(compPath);
+        }
+    }
 
+    shaderProgram->release();
     return shaderProgram;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 std::shared_ptr<Resource> LoadProcess::loadPythonScript()
 {
+    // TODO: Search for file using a FileManager
     // Throw error if script already added
-    ResourceCache& cache = *m_engine->resourceCache();
+    //ResourceCache& cache = *m_engine->resourceCache();
 #ifdef DEBUG_MODE
     if (m_resourceHandle->isConstructed()) {
         throw("Error, attempting to reload a python script");
@@ -258,7 +295,7 @@ std::shared_ptr<Resource> LoadProcess::loadPythonScript()
 #endif
 
     // Check if filepath exists
-    const QString& filepath = m_resourceHandle->getPath();
+    const GString& filepath = m_resourceHandle->getPath();
     if (FileReader::fileExists(filepath)) {
         std::shared_ptr<PythonClassScript> script;
         if (!m_resourceHandle->resourceJson().isEmpty())
@@ -276,6 +313,27 @@ std::shared_ptr<Resource> LoadProcess::loadPythonScript()
 #endif
     return nullptr;
 
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+std::shared_ptr<Resource> LoadProcess::loadAudio()
+{
+    // TODO: Catch thread errors
+    // https://stackoverflow.com/questions/25282620/catching-exception-from-worker-thread-in-the-main-thread
+    const QJsonObject& resourceJson = m_resourceHandle->resourceJson();
+    if (!resourceJson.contains("sourceType")) {
+        throw("Error, no audio type specified");
+    }
+
+    const GString& audioPath = m_resourceHandle->getPath();
+    AudioResource::SourceType sourceType = AudioResource::SourceType(resourceJson["sourceType"].toInt());
+    std::shared_ptr<AudioResource> audio = prot_make_shared<AudioResource>(audioPath, sourceType);
+    audio->loadAudioSource(audioPath);
+
+    // Update source with JSON attributes
+    audio->audioSourceSettings().loadFromJson(resourceJson["sourceSettings"]);
+    audio->cacheSettings();
+
+    return audio;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////

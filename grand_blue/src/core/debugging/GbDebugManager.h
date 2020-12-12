@@ -42,6 +42,7 @@ class Raycast;
 struct SortingLayer;
 class AABB;
 class DrawCommand;
+class RenderContext;
 namespace View {
 class GLWidget;
 }
@@ -169,6 +170,26 @@ protected:
     /// @}
 };
 
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+/// @class DebugDrawSettings
+class DebugDrawSettings: public Serializable {
+public:
+    //-----------------------------------------------------------------------------------------------------------------
+    /// @name Serializable Overrides
+    /// @{
+
+    /// @brief Outputs this data as a valid json string
+    QJsonValue asJson() const override;
+
+    /// @brief Populates this data using a valid json string
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
+
+    /// @}
+
+    bool m_drawAxes;
+    bool m_drawGrid;
+};
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -223,13 +244,7 @@ public:
         }
 
         /// @brief Draw the debug renderable
-        void draw() {
-            m_renderable->draw(*m_shaderProgram);
-        }
-
-        inline void drawStatic()
-        {
-        }
+        void draw();
 
         /// @brief Obtain the object corresponding to the debug renderable
         std::shared_ptr<Object> object() const{
@@ -260,6 +275,8 @@ public:
 
         QElapsedTimer m_timer;
 
+        bool m_enabled;
+
         /// @}
     };
 
@@ -276,6 +293,8 @@ public:
     //--------------------------------------------------------------------------------------------
     /// @name Properties
     /// @{
+
+    DebugDrawSettings& debugSettings() { return m_settings; }
 
     const std::shared_ptr<SortingLayer>& debugRenderLayer() const { return m_debugRenderLayer; }
 
@@ -300,6 +319,7 @@ public:
     void draw(const std::shared_ptr<Scene>& scene);
     void drawStatic();
     void drawDynamic(const std::shared_ptr<Scene>& scene);
+    void drawDynamic(const std::shared_ptr<SceneObject>& so);
     void drawDoodads();
 
     /// @brief Creat deferred draw commands
@@ -335,7 +355,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -364,6 +384,8 @@ protected:
     void initializeCamera();
 
     InputHandler& inputHandler() const;
+
+    RenderContext& mainRenderContext();
 
 
     //void getGlyphs(const std::shared_ptr<SceneObject>& object);
@@ -404,10 +426,10 @@ protected:
     std::shared_ptr<Label> m_fpsCounter;
 
     /// @brief All renderables to be drawn for a given scene object or component type
-    std::unordered_map<QString, DebugRenderable> m_dynamicRenderables;
+    tsl::robin_map<QString, DebugRenderable> m_dynamicRenderables;
 
     /// @brief All default debug renderables to be drawn
-    std::unordered_map<QString, DebugRenderable> m_staticRenderables;
+    tsl::robin_map<QString, DebugRenderable> m_staticRenderables;
 
     /// @brief All user-defined renderables, with possible transience
     std::vector<DebugRenderable> m_doodads;
@@ -421,6 +443,12 @@ protected:
     std::shared_ptr<ShaderProgram> m_axisShaderProgram;
     std::shared_ptr<ShaderProgram> m_pointShaderProgram;
     std::shared_ptr<ShaderProgram> m_debugSkeletonProgram;
+
+    /// @brief Sphere mesh to avoid querying polygon cache every frame
+    std::shared_ptr<Mesh> m_sphereMesh = nullptr;
+
+    /// @brief Configuration settings
+    DebugDrawSettings m_settings;
 
     /// @brief List of recent frame deltas in seconds
     std::list<float> m_frameDeltas;

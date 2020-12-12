@@ -18,13 +18,15 @@ PhysicsBase::~PhysicsBase()
 QJsonValue PhysicsBase::asJson() const
 {
     QJsonObject object;
-    object.insert("name", m_name);
+    object.insert("name", m_name.c_str());
 
     return object;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-void PhysicsBase::loadFromJson(const QJsonValue & json)
+void PhysicsBase::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
+
     QJsonObject object = json.toObject();
     m_name = object.value("name").toString();
 }

@@ -6,7 +6,7 @@ namespace Gb {
 // Class Definitions
 /////////////////////////////////////////////////////////////////////////////////////////////
 SortingLayer::SortingLayer() :
-    Object("default")
+    Object(DEFAULT_SORTING_LAYER)
 {
     setOrder(m_order);
 }
@@ -16,7 +16,7 @@ SortingLayer::SortingLayer(const QJsonValue & json)
     loadFromJson(json);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-SortingLayer::SortingLayer(const QString & name, int order) :
+SortingLayer::SortingLayer(const GString & name, int order) :
     Object(name) {
     setOrder(order);
 }
@@ -37,12 +37,14 @@ QJsonValue SortingLayer::asJson() const
 {
     QJsonObject object;
     object.insert("order", m_order);
-    object.insert("label", m_name);
+    object.insert("label", m_name.c_str());
     return object;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void SortingLayer::loadFromJson(const QJsonValue & json)
+void SortingLayer::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context);
+
     const QJsonObject& object = json.toObject();
     setOrder(object.value("order").toInt());
     m_name = object.value("label").toString();

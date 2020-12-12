@@ -41,20 +41,22 @@ void ShaderComponent::disable()
 QJsonValue ShaderComponent::asJson() const
 {
     QJsonObject object = Component::asJson().toObject();
-    if(shaderPreset())
-        object.insert("shaderPreset", shaderPreset()->getName());
+    if (shaderPreset()) {
+        object.insert("shaderPreset", shaderPreset()->getName().c_str());
+    }
 
     return object;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void ShaderComponent::loadFromJson(const QJsonValue & json)
+void ShaderComponent::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
     Component::loadFromJson(json);
     const QJsonObject& object = json.toObject();
     bool wasCreated;
     if (object.contains("shaderPreset")) {
         QString mtlName = object["shaderPreset"].toString();
-        m_shaderPreset = m_engine->resourceCache()->getShaderPreset(mtlName, wasCreated);
+        m_shaderPreset = m_engine->scenario()->settings().getShaderPreset(mtlName, wasCreated);
 #ifdef DEBUG_MODE
         if (wasCreated) throw("Error, no shader preset found for the specified name");
 #endif

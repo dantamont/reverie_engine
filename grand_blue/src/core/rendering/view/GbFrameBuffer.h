@@ -8,115 +8,46 @@
 // QT
 
 // Internal
-#include "../../GbObject.h"
-#include "../GbGLFunctions.h"
+#include "GbRenderBufferObject.h"
 #include "../../geometry/GbVector.h"
+#include "../materials/GbTexture.h"
 
 namespace Gb {  
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+// Definitions
+/////////////////////////////////////////////////////////////////////////////////////////////
+#define FBO_DEFAULT_TEX_FORMAT          TextureFormat::kRGB8
+#define FBO_SSAO_TEX_FORMAT             TextureFormat::kR8
+#define FBO_FLOATING_POINT_TEX_FORMAT   TextureFormat::kRGB16F
+#define FBO_DEFAULT_DEPTH_PRECISION     TextureFormat::kDepth24Stencil8 //TextureFormat::kDepth32FStencil8X24
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Forward Declarations
 /////////////////////////////////////////////////////////////////////////////////////////////
 class Color;
+class Camera;
+class ShaderProgram;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // Class definitions
 //////////////////////////////////////////////////////////////////////////////////////////////////
-
-enum class InternalBufferFormat {
-    kDefault,
-    kMSAA
-};
-
-
-/// @class RenderBufferObject
-/// @brief An abstraction of an OpenGL RBO
-/// @details Render buffers are write-only, so are often used as depth and stencil 
-/// attachments, since values will often not be needed from them for SAMPLING. Values
-/// can still be used for depth and stencil testing
-class RenderBufferObject : public Object, private GL::OpenGLFunctions {
-public:
-    //--------------------------------------------------------------------------------------------
-    /// @name Static
-    /// @{
-
-    /// @}
-
-    //--------------------------------------------------------------------------------------------
-    /// @name Constructors/Destructor
-    /// @{
-    RenderBufferObject(InternalBufferFormat format, size_t numSamples);
-    ~RenderBufferObject();
-    /// @}
-
-    //--------------------------------------------------------------------------------------------
-    /// @name Properties
-    /// @{
-    unsigned int rboID() const {
-        return m_rboID;
-    }
-
-    /// @}
-
-    //--------------------------------------------------------------------------------------------
-    /// @name Public Methods
-    /// @{
-
-    /// @brief Bind the RBO for use
-    void bind();
-
-    /// @brief Release the RBO from use
-    void release();
-
-    /// @brief Attach to the currently bound FBO
-    void attach();
-
-    /// @brief Set as a color attachment
-    void setColor(size_t w, size_t h, size_t attachmentIndex);
-
-    /// @brief Set as a depth/stencil attachment
-    void setDepthStencil(size_t w, size_t h);
-
-    /// @}
-
-
-protected:
-    //--------------------------------------------------------------------------------------------
-    /// @name Protected Methods
-    /// @{
-
-    void initializeGL();
-
-    /// @}
-
-    //--------------------------------------------------------------------------------------------
-    /// @name Protected Members
-    /// @{
-
-    unsigned int m_rboID;
-    unsigned int m_attachmentType; // GL attachment type, e.g., GL_DEPTH_STENCIL_ATTACHMENT
-    bool m_isBound = false;
-
-    InternalBufferFormat m_internalFormat;
-    size_t m_numSamples;
-
-    /// @}
-};
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////
 /// @class FrameBuffer
 /// @brief An abstraction of an OpenGL framebuffer
-// TODO: Get MSAA textures working, doesn't seem supported by my hardware
-class FrameBuffer : public Object, private GL::OpenGLFunctions {
+class FrameBuffer : public Object {
 public:
     //--------------------------------------------------------------------------------------------
     /// @name Static
     /// @{
 
-    enum class BufferStorageType {
+    enum class BlitMask {
+        kColorBit = GL_COLOR_BUFFER_BIT,
+        kDepthBit = GL_DEPTH_BUFFER_BIT,
+        kStencilBit = GL_STENCIL_BUFFER_BIT,
+        kDepthStencilBit = kDepthBit | kStencilBit
+    };
+
+    enum class BufferAttachmentType {
         kTexture, // Use textures wherever possible
         kRBO // Use RBOs wherever possible
     };
@@ -126,24 +57,57 @@ public:
         kWrite = GL_DRAW_FRAMEBUFFER
     };
 
+    /// @brief Release current active FBO
+    static void Release();
+
     /// @}
 
     //--------------------------------------------------------------------------------------------
     /// @name Constructors/Destructor
     /// @{
+    FrameBuffer();
+    FrameBuffer(const FrameBuffer& other);
     FrameBuffer(QOpenGLContext* currentContext,
-        InternalBufferFormat internalFormat = InternalBufferFormat::kDefault,
-        BufferStorageType bufferType = BufferStorageType::kRBO,
-        size_t numSamples = 4);
+        AliasingType internalFormat = AliasingType::kDefault,
+        BufferAttachmentType bufferType = BufferAttachmentType::kRBO,
+        TextureFormat textureFormat = FBO_FLOATING_POINT_TEX_FORMAT,
+        size_t numSamples = 4,
+        size_t numColorAttachments = 1,
+        bool hasDepth = true);
     ~FrameBuffer();
+    /// @}
+
+    //--------------------------------------------------------------------------------------------
+    /// @name Operators
+    /// @{
+
+    FrameBuffer& operator=(const FrameBuffer& other);
+
     /// @}
 
     //--------------------------------------------------------------------------------------------
     /// @name Properties
     /// @{
 
-    std::vector<unsigned int>& colorTextures() {
+    FrameBuffer* blitBuffer() {
+        return m_blitBuffer;
+    }
+
+    bool hasSize() const {
+        return m_size.lengthSquared() > 0;
+    }
+
+    size_t width() const { return m_size.x(); }
+    size_t height() const { return m_size.y(); }
+
+    bool isBound() const { return m_isBound; }
+
+    std::vector<std::shared_ptr<Texture>>& colorTextures() {
         return m_colorTextures;
+    }
+
+    const std::shared_ptr<Texture>& depthTexture() {
+        return m_depthStencilTexture;
     }
 
     /// @}
@@ -152,13 +116,40 @@ public:
     /// @name Public Methods
     /// @{
 
-    /// @brief Returns color attachment at index
-    void bindColorAttachment(unsigned int idx = 0);
+    /// @brief Draw framebuffer quad
+    void drawQuad(Camera& camera, ShaderProgram& shaderProgram, size_t colorAttachmentIndex = 0);
+
+    /// @brief Save color attachment to a file
+    void saveColorToFile(size_t attachmentIndex, const GString& filepath, PixelType pixelType = PixelType::kByte8);
+    void saveDepthToFile(const GString& filepath);
+
+    /// @brief Read pixels from specified texture
+    void readColorPixels(size_t attachmentIndex, std::vector<int>& outColor, PixelFormat pixelFormat = PixelFormat::kRGB, PixelType pixelType = PixelType::kByte8);
+    void readDepthPixels(std::vector<float>& outDepths);
+
+    /// @brief Binds color texture at index
+    void bindColorTexture(unsigned int texUnit = 0, unsigned int attachmentIndex = 0);
+
+    /// @brief Binds depth texture to specified texture unit
+    void bindDepthTexture(unsigned int texUnit = 0);
+
+    /// @brief Release all bound textures
+    // REMOVED, unbind is unnecessary and cumbersome until a global list of bound textures is maintained
+    //void releaseTextures();
 
     /// @brief Initialize the FBO with the specified width and height
     /// @details Uses RBO by default
     // TODO: Add flags to control whether RBOs or textures are used
     void reinitialize(size_t w, size_t h);
+    void reinitialize(size_t w, size_t h, const std::vector<std::shared_ptr<Texture>>& colorAttachments,
+        const std::shared_ptr<Texture>& depthStencilAttachment,
+        size_t depthLayer);
+
+    void reinitialize(size_t w, size_t h, const std::vector<std::shared_ptr<Texture>>& colorAttachments);
+    void reinitialize(size_t w, size_t h, 
+        const std::shared_ptr<Texture>& depthStencilAttachment,
+        size_t depthLayer = 0
+    );
 
     /// @brief Bind the framebuffer for use
     void bind();
@@ -167,18 +158,25 @@ public:
     void bind(BindType type);
 
     /// @brief Clear the framebuffer, with an optional color
+    void clear();
     void clear(const Color& color);
 
     /// @brief blit with another framebuffer
-    void blit(unsigned int mask = GL_COLOR_BUFFER_BIT);
+    /// @details This follows OpenGL's API closely, so the framebuffers bound to GL_READ_FRAMEBUFFER
+    /// and GL_WRITE_FRAMEBUFFER are used
+    void blit(BlitMask blitMask, size_t readColorAttachmentIndex, const std::vector<size_t>& drawAttachmentIndices);
 
+    /// @brief Blit texture from this framebuffer to the specified framebuffer
+    /// @details This does not follow OpenGL's API as closely, but is a cleaner interface
+    void blit(BlitMask blitMask, FrameBuffer& other, size_t readAttachmentIndex = 0);
+    void blit(BlitMask blitMask, FrameBuffer& other, size_t readAttachmentIndex, const std::vector<size_t>& drawAttachmentIndices);
     /// @brief Release the framebuffer from use
     void release();
 
     /// @brief Check whether the framebuffer is complete
     bool isComplete();
 
-    void initializeGL();
+    void initializeGL(bool reinitialize = true);
 
     /// @}
 
@@ -190,17 +188,16 @@ protected:
 
     /// @brief Set the framebuffer's color attachment to a new texture
     /// @details w and h are in pixels
-    void setColorAttachment(size_t w, size_t h);
+    void setColorAttachments(size_t w, size_t h);
 
     /// @brief Set the framebuffer's depth/stencil attachment to a new texture
     void setDepthStencilAttachment(size_t w, size_t h);
 
     void createColorAttachment(size_t w, size_t h);
-    void createColorTexture(size_t w, size_t h, unsigned int & outIndex);
-    void createColorTextureMSAA(size_t w, size_t h, unsigned int & outIndex);
+    //void createColorTexture(size_t w, size_t h, unsigned int & outIndex);
+    //void createColorTextureMSAA(size_t w, size_t h, unsigned int & outIndex);
 
     void createDepthStencilAttachment(size_t w, size_t h);
-    void createDepthStencilTexture(size_t w, size_t h, unsigned int & outIndex);
 
     void clearColorAttachments();
     void clearDepthStencilAttachments();
@@ -218,16 +215,20 @@ protected:
     /// @brief Enforce the same size for all attachments
     Vector2i m_size = { 0, 0 };
 
+    /// @brief Number of color attachments to use
+    size_t m_numColorAttachments = 1;
+    bool m_hasDepth;
+
     unsigned int m_fboID = 0;
 
     bool m_isBound = false;
 
     /// @brief Textures on color attachments
-    std::vector<unsigned int> m_colorTextures;
+    std::vector<std::shared_ptr<Texture>> m_colorTextures;
 
-    /// @brief Depth/stencil attachments (may be same texture)
-    unsigned int m_depthTexture = 0;
-    unsigned int m_stencilTexture = 0;
+    /// @brief Depth/stencil attachment, assumed to share a texture
+    std::shared_ptr<Texture> m_depthStencilTexture = nullptr;
+    unsigned int m_depthStencilAttachmentLayer = 0;
 
     /// @brief Color RBOs, can be used instead of textures
     std::vector<std::shared_ptr<RenderBufferObject>> m_colorRBOs;
@@ -235,11 +236,18 @@ protected:
     /// @brief Depth/stencil RBO, can be used instead of textures (and is)
     std::shared_ptr<RenderBufferObject> m_depthStencilRBO = nullptr;
 
-    InternalBufferFormat m_internalFormat;
-    BufferStorageType m_bufferType;
+    AliasingType m_aliasingType;
+    BufferAttachmentType m_attachmentType;
     size_t m_numSamples;
 
+    TextureFormat m_textureFormat;
+
+    /// @brief A textured framebuffer, used to overcome:
+    /// Need to use a texture to render to a quad/post-process
+    /// Need to use a texture to read from depth buffer
     FrameBuffer* m_blitBuffer = nullptr;
+
+
 
     /// @}
 };

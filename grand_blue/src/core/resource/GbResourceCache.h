@@ -22,6 +22,8 @@
 #include "../rendering/geometry/GbPolygon.h"
 #include "GbResource.h"
 
+#include "../containers/GbThreadedMap.h"
+
 namespace Gb {
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -40,7 +42,6 @@ class CubeMap;
 class Animation;
 class CoreEngine;
 class ProcessManager;
-class ShaderPreset;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Type Definitions
@@ -57,7 +58,7 @@ class ResourceCache: public Manager, public Serializable{
     Q_OBJECT
 public:
     typedef std::list<std::shared_ptr<ResourceHandle>> ResourceList;
-    typedef std::unordered_map<Uuid, std::shared_ptr<ResourceHandle>> ResourceMap;
+    typedef ThreadedMap<Uuid, std::shared_ptr<ResourceHandle>> ResourceMap;
 
     //--------------------------------------------------------------------------------------------
     /// @name Static/Enums
@@ -80,7 +81,7 @@ public:
     /// @name Properties
     /// @{
 
-    QMutex& resourceMapMutex() { return m_resourceMutex; }
+    QMutex& resourceMapMutex() { return s_resourceMutex; }
 
     /// @brief Process manager for pushing load requests
     ProcessManager* processManager() { return m_processManager; }
@@ -100,11 +101,12 @@ public:
     /// @brief Map of all skeletons
     const ResourceMap& skeletons() { return m_skeletons; }
 
-    /// @brief Map of all shader presets
-    std::unordered_map<Uuid, std::shared_ptr<ShaderPreset>>& shaderPresets() { return m_shaderPresets; }
+    /// @brief Map of all audio
+    const ResourceMap& audio() { return m_audio; }
 
-    /// @property resourceCache
-    const ResourceMap& resources() {
+    /// @property Resources in the cache
+    /// @note To ensure thread safety, manually lock the mutex for the map when accessing
+    const ResourceMap& resources() const {
         return m_resources;
     }
 
@@ -129,9 +131,6 @@ public:
     void incrementLoadCount();
     void decrementLoadCount();
 
-    /// @brief Remove shader material from resource cache
-    bool removeShaderPreset(const QString& name);
-
     /// @brief Return true if all removable resources have been removed
     bool clearedRemovable() const;
 
@@ -140,16 +139,8 @@ public:
     bool insertHandle(const std::shared_ptr<ResourceHandle>& resource);
     bool insertHandle(const std::shared_ptr<ResourceHandle>& resource, bool* clearedResources);
 
-    /// @brief Whether the resource map has the specified shader preset
-    bool hasShaderPreset(const QString& name, 
-        std::unordered_map<Uuid, std::shared_ptr<ShaderPreset>>::const_iterator& iter) const;
-
     /// @brief Clears all resources
     void clear();
-
-    /// @brief Shader preset
-    std::shared_ptr<ShaderPreset> getShaderPreset(const QString& name, bool& created);
-    std::shared_ptr<ShaderPreset> getShaderPreset(const Uuid& uuid);
 
     /// @brief Return resource handle by UUID
     std::shared_ptr<ResourceHandle> getHandle(const Uuid& uuid) const;
@@ -158,23 +149,24 @@ public:
     std::shared_ptr<ResourceHandle> getHandle(const QJsonValue& handleJson) const;
 
     /// @brief Return a handle given it's name and type
-    std::shared_ptr<ResourceHandle> getHandleWithName(const QString& name, Resource::ResourceType type) const;
+    std::shared_ptr<ResourceHandle> getHandleWithName(const GString& name, Resource::ResourceType type) const;
 
     /// @brief This routine will only return top-level handles
-    std::shared_ptr<ResourceHandle> getTopLevelHandleWithPath(const QString& filepath) const;
+    std::shared_ptr<ResourceHandle> getTopLevelHandleWithPath(const GString& filepath) const;
 
     /// @brief Retrieve or create a top-level handle
-    std::shared_ptr<ResourceHandle> guaranteeHandleWithPath(const QString& filepath,
+    std::shared_ptr<ResourceHandle> guaranteeHandleWithPath(const GString& filepath,
         Resource::ResourceType type,
         ResourceHandle::BehaviorFlags flags=0);
-    std::shared_ptr<ResourceHandle> guaranteeHandleWithPath(const std::vector<QString>& filepaths,
+    std::shared_ptr<ResourceHandle> guaranteeHandleWithPath(const std::vector<GString>& filepaths,
         Resource::ResourceType type,
         ResourceHandle::BehaviorFlags flags=0);
 
     virtual void postConstruction() override;
 
     /// @brief Delete the given resource
-    bool remove(std::shared_ptr<ResourceHandle> resource, ResourceHandle::DeleteFlags deleteFlags = 0);
+    bool remove(const std::shared_ptr<ResourceHandle>& resourceHandle, ResourceHandle::DeleteFlags deleteFlags = 0);
+    bool remove(ResourceHandle* resourceHandle, ResourceHandle::DeleteFlags deleteFlags = 0);
 
 	/// @}
 
@@ -186,7 +178,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -217,8 +209,8 @@ public slots:
     void runPostConstruction(std::shared_ptr<ResourceHandle> resourceHandle);
 
     /// @brief Reload a resource handle's resource
-    void reloadResource(const Uuid& handleUuid);
-    void reloadResource(std::shared_ptr<ResourceHandle> handle);
+    //void reloadResource(const Uuid& handleUuid);
+    //void reloadResource(std::shared_ptr<ResourceHandle> handle);
 
 protected:
     //--------------------------------------------------------------------------------------------
@@ -233,8 +225,8 @@ protected:
     /// @{
 
     /// @brief Clear all resources that aren't core resources
-    void clearResources(ResourceMap& map);
-    void clearTopLevelResources();
+    //void clearResources(ResourceMap& map);
+    void clearResources();
 
     /// @brief Returns the oldest object
     const std::shared_ptr<ResourceHandle>& oldestResource() const {
@@ -250,7 +242,7 @@ protected:
     void initializeCoreResources();
 
     /// @brief Recursive routine for constructing a resource
-    void postConstructResource(const std::shared_ptr<ResourceHandle>& handle);
+    //void postConstructResource(const std::shared_ptr<ResourceHandle>& handle);
 
     /// @}
 
@@ -259,7 +251,7 @@ protected:
     /// @{
 
     /// @brief Mutex for managing resource map and list
-    QMutex m_resourceMutex;
+    static QMutex s_resourceMutex;
 
     /// @brief Mutex for managing count of loaded objects
     QMutex m_loadCountMutex;
@@ -294,8 +286,8 @@ protected:
     /// @brief Map of all skeletons
     ResourceMap m_skeletons;
 
-    /// @brief Map of all shader presets
-    std::unordered_map<Uuid, std::shared_ptr<ShaderPreset>> m_shaderPresets;
+    /// @brief Map of all audio
+    ResourceMap m_audio;
 
     /// @brief Max allowed cost in the cache
     size_t m_maxCost;

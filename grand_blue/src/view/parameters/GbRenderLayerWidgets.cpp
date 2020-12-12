@@ -66,7 +66,7 @@ bool RenderLayerInstanceWidget::addRenderLayer(const std::shared_ptr<SortingLaye
     return true;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-bool RenderLayerInstanceWidget::removeRenderLayer(const QString & label)
+bool RenderLayerInstanceWidget::removeRenderLayer(const GString & label)
 {
     auto iter = std::find_if(m_renderLayers.begin(), m_renderLayers.end(),
         [&](const auto& layer) {
@@ -140,6 +140,7 @@ void RenderLayerInstanceWidget::layoutWidgets()
 
     m_mainLayout = new QVBoxLayout();
     m_mainLayout->setSpacing(0);
+    m_mainLayout->setMargin(1);
     m_mainLayout->addWidget(m_checkBox);
 }
 
@@ -182,6 +183,7 @@ void RenderLayerSelectItem::setWidget()
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void RenderLayerSelectItem::removeWidget(int column)
 {
+    Q_UNUSED(column)
     // Only ever one column, so don't need to worry about indexing
     treeWidget()->removeItemWidget(this, 0);
     m_widget = nullptr;
@@ -224,6 +226,11 @@ void RenderLayerSelectWidget::repopulate()
     setHeaderItem(headerItem);
     resizeColumns();
 
+    // Found the magic ticket for adjusting the size of a tree widget! The scroll area
+    // apparently does not adjust to contents by default
+    setMinimumSize(0, 0);
+    setSizeAdjustPolicy(QAbstractScrollArea::SizeAdjustPolicy::AdjustToContents);
+
     // Get render layers
     //SortingLayers& layers = m_renderable.renderLayers();
     SortingLayers& layers = m_engine->scenario()->settings().renderLayers();
@@ -238,7 +245,6 @@ void RenderLayerSelectWidget::repopulate()
     for (const std::pair<int, SortingLayer*>& sortPair : m_sortedLayers) {
         addItem(sortPair.second);
     }
-
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 RenderLayerSelectItem * RenderLayerSelectWidget::currentContextItem() const
@@ -276,6 +282,7 @@ void RenderLayerSelectWidget::initializeWidget()
     TreeWidget::initializeWidget();
 
     //setMinimumSize(350, 350);
+    //setSizePolicy(QSizePolicy::Minimum, QSizePolicy::MinimumExpanding);
 
     initializeAsList();
     //enableDragAndDrop();

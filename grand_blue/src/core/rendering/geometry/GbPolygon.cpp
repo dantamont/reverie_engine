@@ -16,7 +16,7 @@ namespace Gb {
 // Using statements
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::unordered_map<PolygonCache::PolygonType, QString> PolygonCache::POLYGON_NAMES{
+tsl::robin_map<PolygonCache::PolygonType, QString> PolygonCache::POLYGON_NAMES{
     {kRectangle, "rectangle"},
     {kCube, "cube"},
     {kLatLonSphere, "latlonsphere"},
@@ -274,8 +274,9 @@ std::shared_ptr<Mesh> PolygonCache::createPolygon(const QString& polygonName,
     std::shared_ptr<ResourceHandle> handle)
 {
     // If the polygon exists already, throw an error
-    auto exists = getExistingPolygon(polygonName);
-    if (exists) throw("Error, polygon already exists");
+    // Commented out, since was causing race condition when loading resources
+    //auto exists = getExistingPolygon(polygonName);
+    //if (exists) throw("Error, polygon already exists");
 
     PolygonType type = typeFromName(polygonName);
     switch (type) {
@@ -783,9 +784,8 @@ std::shared_ptr<Mesh> PolygonCache::createCylinder(float baseRadius, float topRa
     int sectorCount, int stackCount)
 {
     QString cylinderStr = getCylinderName(baseRadius, topRadius, height, sectorCount, stackCount);
-    auto cylinder = Cylinder(baseRadius, topRadius, height, sectorCount, stackCount);
     auto mesh = std::make_shared<Mesh>(cylinderStr);
-    mesh->vertexData() = std::move(*cylinder.vertexData());
+    auto cylinder = Cylinder(mesh->vertexData(), baseRadius, topRadius, height, sectorCount, stackCount);
     return mesh;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -802,16 +802,15 @@ std::shared_ptr<Mesh> PolygonCache::createCapsule(const QString & name)
 std::shared_ptr<Mesh> PolygonCache::createCapsule(float radius, float halfHeight)
 {
     QString capsuleStr = getCapsuleName(radius, halfHeight);
-    auto capsule = Capsule(radius, halfHeight);
     auto mesh = std::make_shared<Mesh>(capsuleStr);
-    mesh->vertexData() = std::move(*capsule.vertexData());
+    auto capsule = Capsule(mesh->vertexData(), radius, halfHeight);
     return mesh;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-void PolygonCache::addTriangle(std::vector<Vector3g>& vertices,
+void PolygonCache::addTriangle(std::vector<Vector3>& vertices,
     std::vector<GLuint>& indices,
-    const Vector3g & v0, const Vector3g & v1, const Vector3g & v2, bool clockWise)
+    const Vector3 & v0, const Vector3 & v1, const Vector3 & v2, bool clockWise)
 {
     int base = vertices.size();
     Vec::EmplaceBack(vertices, v0);
@@ -830,9 +829,9 @@ void PolygonCache::addTriangle(std::vector<Vector3g>& vertices,
     }
 }
 
-void PolygonCache::addQuad(std::vector<Vector3g>& vertices, 
+void PolygonCache::addQuad(std::vector<Vector3>& vertices, 
     std::vector<GLuint>& indices, 
-    const Vector3g & v0, const Vector3g & v1, const Vector3g & v2, const Vector3g & v3)
+    const Vector3 & v0, const Vector3 & v1, const Vector3 & v2, const Vector3 & v3)
 {
     int base = vertices.size();
     Vec::EmplaceBack(vertices, v0);

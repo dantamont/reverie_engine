@@ -88,6 +88,7 @@ protected:
     std::shared_ptr<Resource> loadAnimation();
     std::shared_ptr<Resource> loadShaderProgram();
     std::shared_ptr<Resource> loadPythonScript();
+    std::shared_ptr<Resource> loadAudio();
 
     /// @}
 

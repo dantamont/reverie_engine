@@ -66,6 +66,7 @@ THE SOFTWARE.
 #include <map>
 #include <string>
 
+#include "../../core/containers/GbString.h"
 #include "../../core/geometry/GbVector.h"
 #include "../../core/rendering/geometry/GbVertexData.h"
 #include "../../core/rendering/materials/GbMaterial.h"
@@ -301,7 +302,7 @@ void loadMtl(std::map<std::string, int> *material_map,
 /// @param[out] texData Parsed texData
 /// @param[in] linebuf Input string
 ///
-bool parseTextureNameAndOption(std::string *texname, Gb::TextureData *texData,
+bool parseTextureNameAndOption(Gb::GString *texname, Gb::TextureData *texData,
     const char *linebuf);
 
 /// =<<========== Legacy v1 API =============================================
@@ -461,11 +462,11 @@ static inline bool fixIndex(int idx, int n, int *ret) {
     return false;  // never reach here.
 }
 
-static inline std::string parseString(const char **token) {
-    std::string s;
+static inline Gb::GString parseString(const char **token) {
+    Gb::GString s;
     (*token) += strspn((*token), " \t");
     size_t e = strcspn((*token), " \t\r");
-    s = std::string((*token), &(*token)[e]);
+    s = Gb::GString(std::string((*token), &(*token)[e]).c_str());
     (*token) += e;
     return s;
 }
@@ -868,11 +869,11 @@ static vertex_index_t parseRawTriple(const char **token) {
     return vi;
 }
 
-bool parseTextureNameAndOption(std::string *texname, Gb::TextureData *texData,
+bool parseTextureNameAndOption(Gb::GString *texname, Gb::TextureData *texData,
     const char *linebuf) {
     // @todo { write more robust lexer and parser. }
     bool found_texname = false;
-    std::string texture_name;
+    Gb::GString texture_name;
 
     const char *token = linebuf;  // Assume line ends with NULL
 
@@ -933,7 +934,8 @@ bool parseTextureNameAndOption(std::string *texname, Gb::TextureData *texData,
         else if ((0 == strncmp(token, "-colorspace", 11)) &&
             IS_SPACE((token[11]))) {
             token += 12;
-            texData->m_properties.m_colorSpace = parseString(&token);
+            // FIXME: Removed, due to laziness, and lack of desire to store a string
+            //texData->m_properties.m_colorSpace = parseString(&token);
         }
         else {
             // Assume texture filename
@@ -946,7 +948,7 @@ bool parseTextureNameAndOption(std::string *texname, Gb::TextureData *texData,
 #else
       // Read filename until line end to parse filename containing whitespace
       // TODO(syoyo): Support parsing texture option flag after the filename.
-            texture_name = std::string(token);
+            texture_name = Gb::GString(token);
             token += texture_name.length();
 #endif
 
@@ -983,7 +985,7 @@ static bool exportGroupsToShape(shape_t *shape, const PrimitiveGroup &prim_group
     const std::vector<tag_t> &tags,
     const int material_id, const std::string &name,
     bool triangulate,
-    const std::vector<Gb::Vector3g> &v) {
+    const std::vector<Gb::Vector3> &v) {
     if (prim_group.isEmpty()) {
         return false;
     }
@@ -1344,7 +1346,7 @@ void loadMtl(std::map<std::string, int> *material_map,
         // new mtl
         if ((0 == strncmp(token, "newmtl", 6)) && IS_SPACE((token[6]))) {
             // flush previous material.
-            if (!material.m_name.empty()) {
+            if (!material.m_name.isEmpty()) {
                 material_map->insert(std::pair<std::string, int>(
                     material.m_name, static_cast<int>(materials->size())));
                 material.m_id = static_cast<int>(materials->size());
@@ -1362,7 +1364,7 @@ void loadMtl(std::map<std::string, int> *material_map,
             {
                 std::stringstream sstr;
                 sstr << token;
-                material.m_name = sstr.str();
+                material.m_name = sstr.str().c_str();
             }
             continue;
         }
@@ -1526,140 +1528,142 @@ void loadMtl(std::map<std::string, int> *material_map,
             continue;
         }
 
-        // ambient texture
-        if ((0 == strncmp(token, "map_Ka", 6)) && IS_SPACE(token[6])) {
-            token += 7;
-            parseTextureNameAndOption(&(material.m_ambientTexture.m_textureFileName),
-                &(material.m_ambientTexture), token);
-            continue;
-        }
+        // FIXME: Commented out since incompatible with std::array member of texture data
+        //// ambient texture
+        //if ((0 == strncmp(token, "map_Ka", 6)) && IS_SPACE(token[6])) {
+        //    token += 7;
+        //    parseTextureNameAndOption(&(material.m_ambientTexture.m_textureFileName),
+        //        &(material.m_ambientTexture), token);
+        //    continue;
+        //}
 
-        // diffuse texture
-        if ((0 == strncmp(token, "map_Kd", 6)) && IS_SPACE(token[6])) {
-            token += 7;
-            parseTextureNameAndOption(&(material.m_diffuseTexture.m_textureFileName),
-                &(material.m_diffuseTexture), token);
-            continue;
-        }
+        //// diffuse texture
+        //if ((0 == strncmp(token, "map_Kd", 6)) && IS_SPACE(token[6])) {
+        //    token += 7;
+        //    parseTextureNameAndOption(&(material.m_diffuseTexture.m_textureFileName),
+        //        &(material.m_diffuseTexture), token);
+        //    continue;
+        //}
 
-        // specular texture
-        if ((0 == strncmp(token, "map_Ks", 6)) && IS_SPACE(token[6])) {
-            token += 7;
-            parseTextureNameAndOption(&(material.m_specularTexture.m_textureFileName),
-                &(material.m_specularTexture), token);
-            continue;
-        }
+        //// specular texture
+        //if ((0 == strncmp(token, "map_Ks", 6)) && IS_SPACE(token[6])) {
+        //    token += 7;
+        //    parseTextureNameAndOption(&(material.m_specularTexture.m_textureFileName),
+        //        &(material.m_specularTexture), token);
+        //    continue;
+        //}
 
-        // specular highlight texture
-        if ((0 == strncmp(token, "map_Ns", 6)) && IS_SPACE(token[6])) {
-            token += 7;
-            parseTextureNameAndOption(&(material.m_specularHighlightTexture.m_textureFileName),
-                &(material.m_specularHighlightTexture), token);
-            continue;
-        }
+        //// specular highlight texture
+        //if ((0 == strncmp(token, "map_Ns", 6)) && IS_SPACE(token[6])) {
+        //    token += 7;
+        //    parseTextureNameAndOption(&(material.m_specularHighlightTexture.m_textureFileName),
+        //        &(material.m_specularHighlightTexture), token);
+        //    continue;
+        //}
 
-        // bump texture
-        if ((0 == strncmp(token, "map_bump", 8)) && IS_SPACE(token[8])) {
-            token += 9;
-            parseTextureNameAndOption(&(material.m_bumpTexture.m_textureFileName),
-                &(material.m_bumpTexture), token);
-            continue;
-        }
+        //// bump texture
+        //if ((0 == strncmp(token, "map_bump", 8)) && IS_SPACE(token[8])) {
+        //    token += 9;
+        //    parseTextureNameAndOption(&(material.m_bumpTexture.m_textureFileName),
+        //        &(material.m_bumpTexture), token);
+        //    continue;
+        //}
 
-        // bump texture
-        if ((0 == strncmp(token, "map_Bump", 8)) && IS_SPACE(token[8])) {
-            token += 9;
-            parseTextureNameAndOption(&(material.m_bumpTexture.m_textureFileName),
-                &(material.m_bumpTexture), token);
-            continue;
-        }
+        //// bump texture
+        //if ((0 == strncmp(token, "map_Bump", 8)) && IS_SPACE(token[8])) {
+        //    token += 9;
+        //    parseTextureNameAndOption(&(material.m_bumpTexture.m_textureFileName),
+        //        &(material.m_bumpTexture), token);
+        //    continue;
+        //}
 
-        // bump texture
-        if ((0 == strncmp(token, "bump", 4)) && IS_SPACE(token[4])) {
-            token += 5;
-            parseTextureNameAndOption(&(material.m_bumpTexture.m_textureFileName),
-                &(material.m_bumpTexture), token);
-            continue;
-        }
+        //// bump texture
+        //if ((0 == strncmp(token, "bump", 4)) && IS_SPACE(token[4])) {
+        //    token += 5;
+        //    parseTextureNameAndOption(&(material.m_bumpTexture.m_textureFileName),
+        //        &(material.m_bumpTexture), token);
+        //    continue;
+        //}
 
-        // alpha texture
-        if ((0 == strncmp(token, "map_d", 5)) && IS_SPACE(token[5])) {
-            token += 6;
-            material.m_alphaTexture.m_textureFileName = token;
-            parseTextureNameAndOption(&(material.m_alphaTexture.m_textureFileName),
-                &(material.m_alphaTexture), token);
-            continue;
-        }
+        //// alpha texture
+        //if ((0 == strncmp(token, "map_d", 5)) && IS_SPACE(token[5])) {
+        //    token += 6;
+        //    material.m_alphaTexture.m_textureFileName = token;
+        //    parseTextureNameAndOption(&(material.m_alphaTexture.m_textureFileName),
+        //        &(material.m_alphaTexture), token);
+        //    continue;
+        //}
 
-        // displacement texture
-        if ((0 == strncmp(token, "disp", 4)) && IS_SPACE(token[4])) {
-            token += 5;
-            parseTextureNameAndOption(&(material.m_displacementTexture.m_textureFileName),
-                &(material.m_displacementTexture), token);
-            continue;
-        }
+        //// displacement texture
+        //if ((0 == strncmp(token, "disp", 4)) && IS_SPACE(token[4])) {
+        //    token += 5;
+        //    parseTextureNameAndOption(&(material.m_displacementTexture.m_textureFileName),
+        //        &(material.m_displacementTexture), token);
+        //    continue;
+        //}
 
-        // reflection map
-        if ((0 == strncmp(token, "refl", 4)) && IS_SPACE(token[4])) {
-            token += 5;
-            parseTextureNameAndOption(&(material.m_reflectionTexture.m_textureFileName),
-                &(material.m_reflectionTexture), token);
-            continue;
-        }
+        //// reflection map
+        //if ((0 == strncmp(token, "refl", 4)) && IS_SPACE(token[4])) {
+        //    token += 5;
+        //    parseTextureNameAndOption(&(material.m_reflectionTexture.m_textureFileName),
+        //        &(material.m_reflectionTexture), token);
+        //    continue;
+        //}
 
-        // PBR: roughness texture
-        if ((0 == strncmp(token, "map_Pr", 6)) && IS_SPACE(token[6])) {
-            token += 7;
-            parseTextureNameAndOption(&(material.m_roughnessTexture.m_textureFileName),
-                &(material.m_roughnessTexture), token);
-            continue;
-        }
+        //// PBR: roughness texture
+        //if ((0 == strncmp(token, "map_Pr", 6)) && IS_SPACE(token[6])) {
+        //    token += 7;
+        //    parseTextureNameAndOption(&(material.m_roughnessTexture.m_textureFileName),
+        //        &(material.m_roughnessTexture), token);
+        //    continue;
+        //}
 
-        // PBR: metallic texture
-        if ((0 == strncmp(token, "map_Pm", 6)) && IS_SPACE(token[6])) {
-            token += 7;
-            parseTextureNameAndOption(&(material.m_metallicTexture.m_textureFileName),
-                &(material.m_metallicTexture), token);
-            continue;
-        }
+        //// PBR: metallic texture
+        //if ((0 == strncmp(token, "map_Pm", 6)) && IS_SPACE(token[6])) {
+        //    token += 7;
+        //    parseTextureNameAndOption(&(material.m_metallicTexture.m_textureFileName),
+        //        &(material.m_metallicTexture), token);
+        //    continue;
+        //}
 
-        // PBR: sheen texture
-        // Rim lighting
-        if ((0 == strncmp(token, "map_Ps", 6)) && IS_SPACE(token[6])) {
-            token += 7;
-            parseTextureNameAndOption(&(material.m_sheenTexture.m_textureFileName),
-                &(material.m_sheenTexture), token);
-            continue;
-        }
+        //// PBR: sheen texture
+        //// Rim lighting
+        //if ((0 == strncmp(token, "map_Ps", 6)) && IS_SPACE(token[6])) {
+        //    token += 7;
+        //    parseTextureNameAndOption(&(material.m_sheenTexture.m_textureFileName),
+        //        &(material.m_sheenTexture), token);
+        //    continue;
+        //}
 
-        // PBR: emissive texture
-        if ((0 == strncmp(token, "map_Ke", 6)) && IS_SPACE(token[6])) {
-            token += 7;
-            parseTextureNameAndOption(&(material.m_emissiveTexture.m_textureFileName),
-                &(material.m_emissiveTexture), token);
-            continue;
-        }
+        //// PBR: emissive texture
+        //if ((0 == strncmp(token, "map_Ke", 6)) && IS_SPACE(token[6])) {
+        //    token += 7;
+        //    parseTextureNameAndOption(&(material.m_emissiveTexture.m_textureFileName),
+        //        &(material.m_emissiveTexture), token);
+        //    continue;
+        //}
 
-        // PBR: normal map texture
-        if ((0 == strncmp(token, "norm", 4)) && IS_SPACE(token[4])) {
-            token += 5;
-            parseTextureNameAndOption(&(material.m_normalTexture.m_textureFileName),
-                &(material.m_normalTexture), token);
-            continue;
-        }
+        //// PBR: normal map texture
+        //if ((0 == strncmp(token, "norm", 4)) && IS_SPACE(token[4])) {
+        //    token += 5;
+        //    parseTextureNameAndOption(&(material.m_normalTexture.m_textureFileName),
+        //        &(material.m_normalTexture), token);
+        //    continue;
+        //}
 
         // unknown parameter
         const char *_space = strchr(token, ' ');
         if (!_space) {
             _space = strchr(token, '\t');
         }
-        if (_space) {
-            std::ptrdiff_t len = _space - token;
-            std::string key(token, static_cast<size_t>(len));
-            std::string value = _space + 1;
-            material.m_properties.m_customParameters.insert(
-                std::pair<std::string, std::string>(key, value));
-        }
+        // Commented since custom parameters were removed
+        //if (_space) {
+        //    std::ptrdiff_t len = _space - token;
+        //    std::string key(token, static_cast<size_t>(len));
+        //    std::string value = _space + 1;
+        //    material.m_properties.m_customParameters.insert(
+        //        std::pair<std::string, std::string>(key, value));
+        //}
     }
     // flush last material.
     material_map->insert(std::pair<std::string, int>(
@@ -1702,7 +1706,7 @@ bool MaterialFileReader::operator()(const std::string &matId,
 
     // Set filepath for each material
     for (auto& mtl : *materials) {
-        mtl.m_path = filepath;
+        mtl.m_path = filepath.c_str();
     }
 
     return true;
@@ -1772,10 +1776,10 @@ bool loadObj(Gb::VertexAttributes *attrib, std::vector<shape_t> *shapes,
     bool default_vcols_fallback) {
     std::stringstream errss;
 
-    std::vector<Gb::Vector3g> vertices;
-    std::vector<Gb::Vector3g> normals;
-    std::vector<Gb::Vector2g> texCoords;
-    std::vector<Gb::Vector4g> colors;
+    std::vector<Gb::Vector3> vertices;
+    std::vector<Gb::Vector3> normals;
+    std::vector<Gb::Vector2> texCoords;
+    std::vector<Gb::Vector4> colors;
     std::vector<tag_t> tags;
     PrimitiveGroup prim_group;
     std::string name;
@@ -1831,7 +1835,7 @@ bool loadObj(Gb::VertexAttributes *attrib, std::vector<shape_t> *shapes,
         // vertex
         if (token[0] == 'v' && IS_SPACE((token[1]))) {
             token += 2;
-            Gb::Vector3g v;
+            Gb::Vector3 v;
             real_g r, g, b;
 
             found_all_colors &= parseVertexWithColor(&v[0], &v[1], &v[2], &r, &g, &b, &token);
@@ -1848,7 +1852,7 @@ bool loadObj(Gb::VertexAttributes *attrib, std::vector<shape_t> *shapes,
         // normal
         if (token[0] == 'v' && token[1] == 'n' && IS_SPACE((token[2]))) {
             token += 3;
-            Gb::Vector3g n;
+            Gb::Vector3 n;
             parseReal3(&n[0], &n[1], &n[2], &token);
             normals.push_back(n);
             continue;
@@ -1857,7 +1861,7 @@ bool loadObj(Gb::VertexAttributes *attrib, std::vector<shape_t> *shapes,
         // texcoord
         if (token[0] == 'v' && token[1] == 't' && IS_SPACE((token[2]))) {
             token += 3;
-            Gb::Vector2g tc;
+            Gb::Vector2 tc;
             parseReal2(&tc[0], &tc[1], &token);
             texCoords.push_back(tc);
             continue;

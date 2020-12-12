@@ -13,13 +13,23 @@ layout(location = 4) in vec3 tangent;
 layout(location = 5) in ivec4 boneIDs;
 layout(location = 6) in vec4 boneWeights;
 
+
+out	vec2 uvCoord;
+
+
 uniform mat4 worldMatrix;
 
 // Uniform block for projection and view matrices
-layout (std140) uniform CameraMatrices
+layout (std140) uniform CameraBuffer
 {
 	mat4 viewMatrix;
+	mat4 invViewMatrix;
 	mat4 projectionMatrix;
+	mat4 invProjectionMatrix;
+	float zNear;
+	float zFar;
+	uvec2 viewportDimensions;
+	vec4 screenPercentage; // Screen percentage of viewport
 };
 
 uniform mat4 boneTransforms[MAX_BONES];
@@ -39,8 +49,10 @@ void main()
 		boneTransform     += boneTransforms[boneIDs[3]] * inverseBindPoseTransforms[boneIDs[3]] * boneWeights[3];
 		posL = globalInverseTransform * boneTransform * posL;
 	}
-
+	
 	vec4 worldPosition = worldMatrix * posL;
+	
+	uvCoord = uv;
 
     gl_Position = projectionMatrix * viewMatrix * worldPosition;
 }

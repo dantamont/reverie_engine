@@ -39,16 +39,16 @@ class DeferredConnection {
 public:
     //-----------------------------------------------------------------------------------------------------------------
     // Constructors and Destructors
-    DeferredConnection(const QString& sender_name,
-        const QString& sender_signal,
-        const QString& receiver_name,
-        const QString& receiver_method);
+    DeferredConnection(const GString& sender_name,
+        const GString& sender_signal,
+        const GString& receiver_name,
+        const GString& receiver_method);
     //-----------------------------------------------------------------------------------------------------------------
     // Properties
-    inline const QString& senderName() const { return m_senderName; }
-    inline const QString& senderSignal() const { return m_senderSignal; }
-    inline const QString& receiverName() const { return m_receiverName; }
-    inline const QString& receiverMethod() const { return m_receiverMethod; }
+    inline const GString& senderName() const { return m_senderName; }
+    inline const GString& senderSignal() const { return m_senderSignal; }
+    inline const GString& receiverName() const { return m_receiverName; }
+    inline const GString& receiverMethod() const { return m_receiverMethod; }
 
     //-----------------------------------------------------------------------------------------------------------------
     /// @name GB Object overrides
@@ -58,10 +58,10 @@ public:
     /// @}
 
 private:
-    QString m_senderName;
-    QString m_senderSignal;
-    QString m_receiverName;
-    QString m_receiverMethod;
+    GString m_senderName;
+    GString m_senderSignal;
+    GString m_receiverName;
+    GString m_receiverMethod;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -172,7 +172,7 @@ private:
     /// @name Private Members
     /// @{
     QEvent::Type m_postConstructionEventType;
-    std::unordered_map<QString, AbstractService*> m_serviceMap;
+    tsl::robin_map<QString, AbstractService*> m_serviceMap;
     std::vector<DeferredConnection> m_deferredSenderConnections;
     /// @}
 };

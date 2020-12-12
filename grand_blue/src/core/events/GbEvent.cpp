@@ -26,9 +26,10 @@ QJsonValue CustomEvent::asJson() const
     return json;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void CustomEvent::loadFromJson(const QJsonValue & json)
+void CustomEvent::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
     // Type must be set on instantiation, so it is not used here
+    Q_UNUSED(context)
     const QJsonObject& object = json.toObject();
     if (object.contains("data")) {
         m_data = object.value("data").toObject();
@@ -38,17 +39,17 @@ void CustomEvent::loadFromJson(const QJsonValue & json)
 QEvent::Type CustomEvent::registeredType(int type)
 {
     QEvent::Type eventType;
-    if (!Map::HasKey(REGISTERED_TYPES, type)) {
+    if (!Map::HasKey(s_registeredEventTypes, type)) {
         int generatedType = QEvent::registerEventType(type);
         eventType = static_cast<QEvent::Type>(generatedType);
-        REGISTERED_TYPES[type] = eventType;
+        s_registeredEventTypes[type] = eventType;
     }
     else {
-        eventType = REGISTERED_TYPES[type];
+        eventType = s_registeredEventTypes[type];
     }
     return eventType;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-std::unordered_map<int, QEvent::Type> CustomEvent::REGISTERED_TYPES = {};
+tsl::robin_map<int, QEvent::Type> CustomEvent::s_registeredEventTypes = {};
 
 }

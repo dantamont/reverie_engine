@@ -15,10 +15,11 @@ namespace View {
 //Class Definitions
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-TreeWidget::TreeWidget(CoreEngine* engine, const QString & name, QWidget * parent) :
+TreeWidget::TreeWidget(CoreEngine* engine, const QString & name, QWidget * parent, size_t numColumns) :
     AbstractService(name),
     QTreeWidget(parent),
-    m_engine(engine)
+    m_engine(engine),
+    m_numColumns(numColumns)
 {
     m_currentItems.resize(kMAX_INTERACTION_TYPE);
     m_actions.resize(kMAX_NUM_CATEGORIES);
@@ -46,6 +47,11 @@ void TreeWidget::onItemExpanded(QTreeWidgetItem * item)
     m_currentItems[kExpanded] = item;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void TreeWidget::onItemDeselected(QTreeWidgetItem * item)
+{
+    m_currentItems[kDeselected] = item;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void TreeWidget::addItem(QTreeWidgetItem * item)
 {
     // Insert component item into the widget
@@ -70,7 +76,9 @@ void TreeWidget::removeItem(QTreeWidgetItem * item)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void TreeWidget::resizeColumns()
 {
-    resizeColumnToContents(0);
+    for (unsigned int i = 0; i < m_numColumns; i++) {
+        resizeColumnToContents(i);
+    }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void TreeWidget::initializeItem(QTreeWidgetItem * item)
@@ -182,6 +190,11 @@ void TreeWidget::onDropFromOtherWidget(QDropEvent* event, QTreeWidgetItem * sour
 void TreeWidget::initializeWidget()
 {
     //setMinimumWidth(350);
+    setColumnCount(m_numColumns);
+
+    // Connect signal for click events
+    connect(this, &TreeWidget::itemClicked,
+        this, &TreeWidget::onItemClicked);
 
     // Connect signal for double click events
     connect(this, &TreeWidget::itemDoubleClicked,
@@ -191,6 +204,17 @@ void TreeWidget::initializeWidget()
     connect(this, &TreeWidget::itemExpanded,
         this, &TreeWidget::onItemExpanded);
 
+    // Connect signal for deselecting item
+    connect(this, &TreeWidget::currentItemChanged,
+        this, [this](QTreeWidgetItem *current, QTreeWidgetItem *previous) {
+        Q_UNUSED(current);
+        if (previous) {
+            emit itemDeselected(previous);
+        }
+    });
+    connect(this, &TreeWidget::itemDeselected, this, &TreeWidget::onItemDeselected);
+
+
     // Connect signal for clearing on scenario load
     //connect(m_engine, &CoreEngine::scenarioChanged, this, &TreeWidget::clear);
 }
@@ -199,6 +223,7 @@ void TreeWidget::initializeAsList()
 {    
     // Set tree widget settings
     setColumnCount(0);
+    m_numColumns = 0;
     setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
     setHeaderLabels(QStringList({ "" }));
     setAlternatingRowColors(true);

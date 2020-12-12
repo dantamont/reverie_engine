@@ -9,13 +9,22 @@ HEADERS += src/GbMainWindow.h \
  	src/core/GbManager.h \ 
  	src/core/GbObject.h \ 
  	src/core/GbSettings.h \ 
+ 	src/core/animation/GbAnimMotion.h \ 
+ 	src/core/animation/GbAnimStateMachine.h \ 
+ 	src/core/animation/GbAnimTransition.h \ 
  	src/core/animation/GbAnimation.h \ 
+ 	src/core/animation/GbAnimationController.h \ 
+ 	src/core/animation/GbAnimationManager.h \ 
+ 	src/core/animation/GbAnimationState.h \ 
+ 	src/core/animation/GbBlendQueue.h \ 
  	src/core/canvas/GbFonts.h \ 
  	src/core/canvas/GbGlyph.h \ 
  	src/core/canvas/GbIcon.h \ 
  	src/core/canvas/GbLabel.h \ 
  	src/core/components/GbAnimationComponent.h \ 
- 	src/core/components/GbCamera.h \ 
+ 	src/core/components/GbAudioListenerComponent.h \ 
+ 	src/core/components/GbAudioSourceComponent.h \ 
+ 	src/core/components/GbCameraComponent.h \ 
  	src/core/components/GbCanvasComponent.h \ 
  	src/core/components/GbComponent.h \ 
  	src/core/components/GbCubemapComponent.h \ 
@@ -36,10 +45,17 @@ HEADERS += src/GbMainWindow.h \
  	src/core/containers/GbGVariant.h \ 
  	src/core/containers/GbRecursiveWrapper.h \ 
  	src/core/containers/GbSortingLayer.h \ 
+ 	src/core/containers/GbString.h \ 
+ 	src/core/containers/GbStringView.h \ 
+ 	src/core/containers/GbThreadedMap.h \ 
  	src/core/containers/GbVariant.h \ 
  	src/core/containers/GbVariantVisitor.h \ 
  	src/core/debugging/GbDebugManager.h \ 
+ 	src/core/encoding/GbProtocol.h \ 
+ 	src/core/encoding/GbProtocolField.h \ 
  	src/core/encoding/GbUUID.h \ 
+ 	src/core/encoding/xxhash/xxhash32.h \ 
+ 	src/core/encoding/xxhash/xxhash64.h \ 
  	src/core/events/GbEvent.h \ 
  	src/core/events/GbEventListener.h \ 
  	src/core/events/GbEventManager.h \ 
@@ -71,13 +87,20 @@ HEADERS += src/GbMainWindow.h \
  	src/core/processes/GbLoadProcess.h \ 
  	src/core/processes/GbProcess.h \ 
  	src/core/processes/GbProcessManager.h \ 
+ 	src/core/processes/GbProcessQueue.h \ 
+ 	src/core/processes/GbProcessThread.h \ 
  	src/core/processes/GbScriptedProcess.h \ 
  	src/core/processes/GbThreadedProcess.h \ 
  	src/core/readers/GbFileReader.h \ 
+ 	src/core/readers/GbFileStream.h \ 
  	src/core/readers/GbJsonReader.h \ 
  	src/core/readers/models/GbModelReader.h \ 
  	src/core/readers/models/GbOBJReader.h \ 
  	src/core/rendering/GbGLFunctions.h \ 
+ 	src/core/rendering/buffers/GbBufferQueue.h \ 
+ 	src/core/rendering/buffers/GbGLbuffer.h \ 
+ 	src/core/rendering/buffers/GbShaderStorageBuffer.h \ 
+ 	src/core/rendering/buffers/GbUniformBufferObject.h \ 
  	src/core/rendering/geometry/GbBuffers.h \ 
  	src/core/rendering/geometry/GbCapsule.h \ 
  	src/core/rendering/geometry/GbCylinder.h \ 
@@ -88,41 +111,63 @@ HEADERS += src/GbMainWindow.h \
  	src/core/rendering/geometry/GbSkeleton.h \ 
  	src/core/rendering/geometry/GbVertexData.h \ 
  	src/core/rendering/lighting/GbLight.h \ 
+ 	src/core/rendering/lighting/GbLightClusterGrid.h \ 
+ 	src/core/rendering/lighting/GbLightSettings.h \ 
+ 	src/core/rendering/lighting/GbShadowMap.h \ 
  	src/core/rendering/materials/GbCubeTexture.h \ 
  	src/core/rendering/materials/GbMaterial.h \ 
  	src/core/rendering/materials/GbTexture.h \ 
  	src/core/rendering/models/GbModel.h \ 
- 	src/core/rendering/postprocessing/GbPostProcessing.h \ 
+ 	src/core/rendering/postprocessing/GbPostProcessingChain.h \ 
+ 	src/core/rendering/postprocessing/GbPostProcessingEffect.h \ 
  	src/core/rendering/renderer/GbMainRenderer.h \ 
  	src/core/rendering/renderer/GbRenderCommand.h \ 
  	src/core/rendering/renderer/GbRenderContext.h \ 
  	src/core/rendering/renderer/GbRenderSettings.h \ 
- 	src/core/rendering/renderer/GbRenderers.h \ 
  	src/core/rendering/renderer/GbSortKey.h \ 
  	src/core/rendering/shaders/GbShaderPreset.h \ 
- 	src/core/rendering/shaders/GbShaderStorageBuffer.h \ 
  	src/core/rendering/shaders/GbShaders.h \ 
  	src/core/rendering/shaders/GbUniform.h \ 
- 	src/core/rendering/shaders/GbUniformBufferObject.h \ 
+ 	src/core/rendering/view/GbCamera.h \ 
  	src/core/rendering/view/GbFrameBuffer.h \ 
+ 	src/core/rendering/view/GbFrustum.h \ 
+ 	src/core/rendering/view/GbPointLightCamera.h \ 
+ 	src/core/rendering/view/GbRenderBufferObject.h \ 
  	src/core/rendering/view/GbRenderProjection.h \ 
+ 	src/core/rendering/view/GbSceneCamera.h \ 
+ 	src/core/rendering/view/GbViewport.h \ 
  	src/core/resource/GbImage.h \ 
  	src/core/resource/GbResource.h \ 
  	src/core/resource/GbResourceCache.h \ 
  	src/core/scene/GbScenario.h \ 
  	src/core/scene/GbScene.h \ 
  	src/core/scene/GbSceneObject.h \ 
- 	src/core/scripting/GbPyWrappers.h \ 
  	src/core/scripting/GbPythonAPI.h \ 
+ 	src/core/scripting/GbPythonModules.h \ 
  	src/core/scripting/GbPythonScript.h \ 
  	src/core/scripting/GbPythonWrapper.h \ 
+ 	src/core/scripting/GbScriptBehavior.h \ 
+ 	src/core/scripting/py_wrappers/GbPyCustomEvent.h \ 
+ 	src/core/scripting/py_wrappers/GbPyEngine.h \ 
+ 	src/core/scripting/py_wrappers/GbPyInputHandler.h \ 
+ 	src/core/scripting/py_wrappers/GbPyResourceCache.h \ 
+ 	src/core/scripting/py_wrappers/GbPyScene.h \ 
+ 	src/core/scripting/py_wrappers/GbPySceneObject.h \ 
+ 	src/core/scripting/py_wrappers/GbPyScriptBehavior.h \ 
+ 	src/core/scripting/py_wrappers/GbPyTransformComponent.h \ 
+ 	src/core/scripting/py_wrappers/GbPyWrappers.h \ 
  	src/core/service/GbService.h \ 
  	src/core/service/GbServiceManager.h \ 
- 	src/core/time/GbClock.h \ 
+ 	src/core/sound/GbAudioCommands.h \ 
+ 	src/core/sound/GbAudioResource.h \ 
+ 	src/core/sound/GbSoundManager.h \ 
  	src/core/time/GbDateTime.h \ 
+ 	src/core/time/GbTimer.h \ 
  	src/core/utils/GbInterpolation.h \ 
+ 	src/core/utils/GbMath.h \ 
  	src/core/utils/GbMemoryManager.h \ 
  	src/core/utils/GbParallelization.h \ 
+ 	src/core/utils/GbRandom.h \ 
  	src/core/utils/GbTexturePacker.h \ 
  	src/model_control/commands/GbActionManager.h \ 
  	src/model_control/commands/GbUndoCommand.h \ 
@@ -403,46 +448,29 @@ HEADERS += src/GbMainWindow.h \
  	src/third_party/eigen/Eigen/src/plugins/CommonCwiseUnaryOps.h \ 
  	src/third_party/eigen/Eigen/src/plugins/MatrixCwiseBinaryOps.h \ 
  	src/third_party/eigen/Eigen/src/plugins/MatrixCwiseUnaryOps.h \ 
- 	src/third_party/pythonqt/PythonQt.h \ 
- 	src/third_party/pythonqt/PythonQtBoolResult.h \ 
- 	src/third_party/pythonqt/PythonQtClassInfo.h \ 
- 	src/third_party/pythonqt/PythonQtClassWrapper.h \ 
- 	src/third_party/pythonqt/PythonQtConversion.h \ 
- 	src/third_party/pythonqt/PythonQtCppWrapperFactory.h \ 
- 	src/third_party/pythonqt/PythonQtDoc.h \ 
- 	src/third_party/pythonqt/PythonQtImportFileInterface.h \ 
- 	src/third_party/pythonqt/PythonQtImporter.h \ 
- 	src/third_party/pythonqt/PythonQtInstanceWrapper.h \ 
- 	src/third_party/pythonqt/PythonQtMethodInfo.h \ 
- 	src/third_party/pythonqt/PythonQtMisc.h \ 
- 	src/third_party/pythonqt/PythonQtObjectPtr.h \ 
- 	src/third_party/pythonqt/PythonQtProperty.h \ 
- 	src/third_party/pythonqt/PythonQtPythonInclude.h \ 
- 	src/third_party/pythonqt/PythonQtQFileImporter.h \ 
- 	src/third_party/pythonqt/PythonQtSignal.h \ 
- 	src/third_party/pythonqt/PythonQtSignalReceiver.h \ 
- 	src/third_party/pythonqt/PythonQtSlot.h \ 
- 	src/third_party/pythonqt/PythonQtSlotDecorator.h \ 
- 	src/third_party/pythonqt/PythonQtStdDecorators.h \ 
- 	src/third_party/pythonqt/PythonQtStdIn.h \ 
- 	src/third_party/pythonqt/PythonQtStdOut.h \ 
- 	src/third_party/pythonqt/PythonQtSystem.h \ 
- 	src/third_party/pythonqt/PythonQtThreadSupport.h \ 
- 	src/third_party/pythonqt/PythonQtUtils.h \ 
- 	src/third_party/pythonqt/PythonQtVariants.h \ 
- 	src/third_party/pythonqt/gui/PythonQtScriptingConsole.h \ 
  	src/third_party/stb/stb_image.h \ 
  	src/third_party/tiny_obj_loader/tiny_obj_loader.h \ 
+ 	src/third_party/tsl/ordered_hash.h \ 
+ 	src/third_party/tsl/ordered_map.h \ 
+ 	src/third_party/tsl/ordered_set.h \ 
+ 	src/third_party/tsl/robin_growth_policy.h \ 
+ 	src/third_party/tsl/robin_hash.h \ 
+ 	src/third_party/tsl/robin_map.h \ 
+ 	src/third_party/tsl/robin_set.h \ 
  	src/view/GL/GbGLWidget.h \ 
  	src/view/GbGroupBox.h \ 
  	src/view/GbWidgetManager.h \ 
  	src/view/base/GbTool.h \ 
+ 	src/view/components/GbAnimationComponentWidget.h \ 
+ 	src/view/components/GbAudioListenerComponentWidget.h \ 
+ 	src/view/components/GbAudioSourceComponentWidget.h \ 
  	src/view/components/GbCameraComponentWidget.h \ 
  	src/view/components/GbCanvasComponentWidget.h \ 
  	src/view/components/GbCharControlComponentWidget.h \ 
  	src/view/components/GbComponentWidgets.h \ 
  	src/view/components/GbCubeMapComponentWidget.h \ 
  	src/view/components/GbLightComponentWidget.h \ 
+ 	src/view/components/GbListenerComponentWidget.h \ 
  	src/view/components/GbModelComponentWidget.h \ 
  	src/view/components/GbPhysicsWidgets.h \ 
  	src/view/components/GbRigidBodyComponentWidget.h \ 
@@ -450,20 +478,36 @@ HEADERS += src/GbMainWindow.h \
  	src/view/components/GbShaderComponentWidget.h \ 
  	src/view/components/GbTransformComponentWidget.h \ 
  	src/view/logging/GbConsoleTool.h \ 
- 	src/view/nodes/GbGraphEdge.h \ 
- 	src/view/nodes/GbGraphNode.h \ 
- 	src/view/nodes/GbGraphWidget.h \ 
+ 	src/view/nodes/GbNodeViewBlock.h \ 
+ 	src/view/nodes/GbNodeViewCanvas.h \ 
+ 	src/view/nodes/GbNodeViewCommon.h \ 
+ 	src/view/nodes/GbNodeViewConnection.h \ 
+ 	src/view/nodes/GbNodeViewEditor.h \ 
+ 	src/view/nodes/GbNodeViewPort.h \ 
+ 	src/view/nodes/GbNodeViewScene.h \ 
+ 	src/view/nodes/animation/GbAnimationNodeWidget.h \ 
  	src/view/parameters/GbAngleWidgets.h \ 
  	src/view/parameters/GbColorWidget.h \ 
+ 	src/view/parameters/GbLoadAudioWidget.h \ 
  	src/view/parameters/GbMaterialWidgets.h \ 
  	src/view/parameters/GbModelWidgets.h \ 
  	src/view/parameters/GbParameterWidgets.h \ 
  	src/view/parameters/GbRenderLayerWidgets.h \ 
  	src/view/parameters/GbRenderableWidget.h \ 
+ 	src/view/parameters/GbSerializableWidget.h \ 
  	src/view/parameters/GbVectorWidget.h \ 
+ 	src/view/parameters/animation/GbAnimationClipWidget.h \ 
+ 	src/view/parameters/animation/GbAnimationMotionWidget.h \ 
+ 	src/view/parameters/animation/GbAnimationStateWidget.h \ 
  	src/view/players/GbPlayer.h \ 
  	src/view/style/GbFontIcon.h \ 
  	src/view/style/GbStyles.h \ 
+ 	src/view/timeline/GbTimeline.h \ 
+ 	src/view/timeline/GbTimelineIndicator.h \ 
+ 	src/view/timeline/GbTimelineMarker.h \ 
+ 	src/view/timeline/GbTimelineScene.h \ 
+ 	src/view/timeline/GbTimelineTrack.h \ 
+ 	src/view/timeline/GbTimelineView.h \ 
  	src/view/tree/GbCanvasGlyphWidget.h \ 
  	src/view/tree/GbComponentWidget.h \ 
  	src/view/tree/GbRenderLayerWidget.h \ 
@@ -471,7 +515,9 @@ HEADERS += src/GbMainWindow.h \
  	src/view/tree/GbSceneTreeWidget.h \ 
  	src/view/tree/GbScriptOrder.h \ 
  	src/view/tree/GbShaderTreeWidget.h \ 
- 	src/view/tree/GbTreeWidget.h 
+ 	src/view/tree/GbTreeWidget.h \ 
+ 	src/view/tree/animation/GbAnimationTreeWidget.h \ 
+ 	src/view/wrappers/GbComboBox.h 
  	
 SOURCES += src/GbMainWindow.cpp \ 
  	src/core/GbConstants.cpp \ 
@@ -480,13 +526,22 @@ SOURCES += src/GbMainWindow.cpp \
  	src/core/GbManager.cpp \ 
  	src/core/GbObject.cpp \ 
  	src/core/GbSettings.cpp \ 
+ 	src/core/animation/GbAnimMotion.cpp \ 
+ 	src/core/animation/GbAnimStateMachine.cpp \ 
+ 	src/core/animation/GbAnimTransition.cpp \ 
  	src/core/animation/GbAnimation.cpp \ 
+ 	src/core/animation/GbAnimationController.cpp \ 
+ 	src/core/animation/GbAnimationManager.cpp \ 
+ 	src/core/animation/GbAnimationState.cpp \ 
+ 	src/core/animation/GbBlendQueue.cpp \ 
  	src/core/canvas/GbFonts.cpp \ 
  	src/core/canvas/GbGlyph.cpp \ 
  	src/core/canvas/GbIcon.cpp \ 
  	src/core/canvas/GbLabel.cpp \ 
  	src/core/components/GbAnimationComponent.cpp \ 
- 	src/core/components/GbCamera.cpp \ 
+ 	src/core/components/GbAudioListenerComponent.cpp \ 
+ 	src/core/components/GbAudioSourceComponent.cpp \ 
+ 	src/core/components/GbCameraComponent.cpp \ 
  	src/core/components/GbCanvasComponent.cpp \ 
  	src/core/components/GbComponent.cpp \ 
  	src/core/components/GbCubemapComponent.cpp \ 
@@ -505,7 +560,12 @@ SOURCES += src/GbMainWindow.cpp \
  	src/core/containers/GbDictionary.cpp \ 
  	src/core/containers/GbGVariant.cpp \ 
  	src/core/containers/GbSortingLayer.cpp \ 
+ 	src/core/containers/GbString.cpp \ 
+ 	src/core/containers/GbStringView.cpp \ 
+ 	src/core/containers/GbThreadedMap.cpp \ 
  	src/core/debugging/GbDebugManager.cpp \ 
+ 	src/core/encoding/GbProtocol.cpp \ 
+ 	src/core/encoding/GbProtocolField.cpp \ 
  	src/core/encoding/GbUUID.cpp \ 
  	src/core/events/GbEvent.cpp \ 
  	src/core/events/GbEventListener.cpp \ 
@@ -521,6 +581,7 @@ SOURCES += src/GbMainWindow.cpp \
  	src/core/geometry/GbVector.cpp \ 
  	src/core/input/GbInputHandler.cpp \ 
  	src/core/loop/GbSimLoop.cpp \ 
+ 	src/core/mixins/GbLoadable.cpp \ 
  	src/core/mixins/GbNameable.cpp \ 
  	src/core/mixins/GbRenderable.cpp \ 
  	src/core/physics/GbCharacterController.cpp \ 
@@ -537,13 +598,20 @@ SOURCES += src/GbMainWindow.cpp \
  	src/core/processes/GbLoadProcess.cpp \ 
  	src/core/processes/GbProcess.cpp \ 
  	src/core/processes/GbProcessManager.cpp \ 
+ 	src/core/processes/GbProcessQueue.cpp \ 
+ 	src/core/processes/GbProcessThread.cpp \ 
  	src/core/processes/GbScriptedProcess.cpp \ 
  	src/core/processes/GbThreadedProcess.cpp \ 
  	src/core/readers/GbFileReader.cpp \ 
+ 	src/core/readers/GbFileStream.cpp \ 
  	src/core/readers/GbJsonReader.cpp \ 
  	src/core/readers/models/GbModelReader.cpp \ 
  	src/core/readers/models/GbOBJReader.cpp \ 
  	src/core/rendering/GbGLFunctions.cpp \ 
+ 	src/core/rendering/buffers/GbBufferQueue.cpp \ 
+ 	src/core/rendering/buffers/GbGLBuffer.cpp \ 
+ 	src/core/rendering/buffers/GbShaderStorageBuffer.cpp \ 
+ 	src/core/rendering/buffers/GbUniformBufferObject.cpp \ 
  	src/core/rendering/geometry/GbBuffers.cpp \ 
  	src/core/rendering/geometry/GbCapsule.cpp \ 
  	src/core/rendering/geometry/GbCylinder.cpp \ 
@@ -554,37 +622,57 @@ SOURCES += src/GbMainWindow.cpp \
  	src/core/rendering/geometry/GbSkeleton.cpp \ 
  	src/core/rendering/geometry/GbVertexData.cpp \ 
  	src/core/rendering/lighting/GbLight.cpp \ 
+ 	src/core/rendering/lighting/GbLightClusterGrid.cpp \ 
+ 	src/core/rendering/lighting/GbLightSettings.cpp \ 
+ 	src/core/rendering/lighting/GbShadowMap.cpp \ 
  	src/core/rendering/materials/GbCubeTexture.cpp \ 
  	src/core/rendering/materials/GbMaterial.cpp \ 
  	src/core/rendering/materials/GbTexture.cpp \ 
  	src/core/rendering/models/GbModel.cpp \ 
- 	src/core/rendering/postprocessing/GbPostProcessing.cpp \ 
+ 	src/core/rendering/postprocessing/GbPostProcessingChain.cpp \ 
+ 	src/core/rendering/postprocessing/GbPostProcessingEffect.cpp \ 
  	src/core/rendering/renderer/GbMainRenderer.cpp \ 
  	src/core/rendering/renderer/GbRenderCommand.cpp \ 
  	src/core/rendering/renderer/GbRenderContext.cpp \ 
  	src/core/rendering/renderer/GbRenderSettings.cpp \ 
- 	src/core/rendering/renderer/GbRenderers.cpp \ 
  	src/core/rendering/renderer/GbSortKey.cpp \ 
  	src/core/rendering/shaders/GbShaderPreset.cpp \ 
- 	src/core/rendering/shaders/GbShaderStorageBuffer.cpp \ 
  	src/core/rendering/shaders/GbShaders.cpp \ 
  	src/core/rendering/shaders/GbUniform.cpp \ 
- 	src/core/rendering/shaders/GbUniformBufferObject.cpp \ 
+ 	src/core/rendering/view/GbCamera.cpp \ 
  	src/core/rendering/view/GbFrameBuffer.cpp \ 
+ 	src/core/rendering/view/GbFrustum.cpp \ 
+ 	src/core/rendering/view/GbPointLightCamera.cpp \ 
+ 	src/core/rendering/view/GbRenderBufferObject.cpp \ 
  	src/core/rendering/view/GbRenderProjection.cpp \ 
+ 	src/core/rendering/view/GbSceneCamera.cpp \ 
+ 	src/core/rendering/view/GbViewport.cpp \ 
  	src/core/resource/GbImage.cpp \ 
  	src/core/resource/GbResource.cpp \ 
  	src/core/resource/GbResourceCache.cpp \ 
  	src/core/scene/GbScenario.cpp \ 
  	src/core/scene/GbScene.cpp \ 
  	src/core/scene/GbSceneObject.cpp \ 
- 	src/core/scripting/GbPyWrappers.cpp \ 
  	src/core/scripting/GbPythonAPI.cpp \ 
  	src/core/scripting/GbPythonScript.cpp \ 
+ 	src/core/scripting/GbScriptBehavior.cpp \ 
+ 	src/core/scripting/py_wrappers/GbPyCustomEvent.cpp \ 
+ 	src/core/scripting/py_wrappers/GbPyEngine.cpp \ 
+ 	src/core/scripting/py_wrappers/GbPyInputHandler.cpp \ 
+ 	src/core/scripting/py_wrappers/GbPyResourceCache.cpp \ 
+ 	src/core/scripting/py_wrappers/GbPyScene.cpp \ 
+ 	src/core/scripting/py_wrappers/GbPySceneObject.cpp \ 
+ 	src/core/scripting/py_wrappers/GbPyScriptBehavior.cpp \ 
+ 	src/core/scripting/py_wrappers/GbPyTransformComponent.cpp \ 
+ 	src/core/scripting/py_wrappers/GbPyWrappers.cpp \ 
  	src/core/service/GbService.cpp \ 
  	src/core/service/GbServiceManager.cpp \ 
- 	src/core/time/GbClock.cpp \ 
+ 	src/core/sound/GbAudioCommands.cpp \ 
+ 	src/core/sound/GbAudioResource.cpp \ 
+ 	src/core/sound/GbSoundManager.cpp \ 
  	src/core/time/GbDateTime.cpp \ 
+ 	src/core/time/GbTimer.cpp \ 
+ 	src/core/utils/GbInterpolation.cpp \ 
  	src/core/utils/GbTexturePacker.cpp \ 
  	src/main.cpp \ 
  	src/model_control/commands/GbActionManager.cpp \ 
@@ -594,37 +682,20 @@ SOURCES += src/GbMainWindow.cpp \
  	src/model_control/commands/commands/GbWidgetCommands.cpp \ 
  	src/model_control/models/GbComponentModels.cpp \ 
  	src/model_control/models/GbSceneModels.cpp \ 
- 	src/third_party/pythonqt/PythonQt.cpp \ 
- 	src/third_party/pythonqt/PythonQtBoolResult.cpp \ 
- 	src/third_party/pythonqt/PythonQtClassInfo.cpp \ 
- 	src/third_party/pythonqt/PythonQtClassWrapper.cpp \ 
- 	src/third_party/pythonqt/PythonQtConversion.cpp \ 
- 	src/third_party/pythonqt/PythonQtImporter.cpp \ 
- 	src/third_party/pythonqt/PythonQtInstanceWrapper.cpp \ 
- 	src/third_party/pythonqt/PythonQtMethodInfo.cpp \ 
- 	src/third_party/pythonqt/PythonQtMisc.cpp \ 
- 	src/third_party/pythonqt/PythonQtObjectPtr.cpp \ 
- 	src/third_party/pythonqt/PythonQtProperty.cpp \ 
- 	src/third_party/pythonqt/PythonQtQFileImporter.cpp \ 
- 	src/third_party/pythonqt/PythonQtSignal.cpp \ 
- 	src/third_party/pythonqt/PythonQtSignalReceiver.cpp \ 
- 	src/third_party/pythonqt/PythonQtSlot.cpp \ 
- 	src/third_party/pythonqt/PythonQtSlotDecorator.cpp \ 
- 	src/third_party/pythonqt/PythonQtStdDecorators.cpp \ 
- 	src/third_party/pythonqt/PythonQtStdIn.cpp \ 
- 	src/third_party/pythonqt/PythonQtStdOut.cpp \ 
- 	src/third_party/pythonqt/PythonQtThreadSupport.cpp \ 
- 	src/third_party/pythonqt/gui/PythonQtScriptingConsole.cpp \ 
  	src/view/GL/GbGLWidget.cpp \ 
  	src/view/GbGroupBox.cpp \ 
  	src/view/GbWidgetManager.cpp \ 
  	src/view/base/GbTool.cpp \ 
+ 	src/view/components/GbAnimationComponentWidget.cpp \ 
+ 	src/view/components/GbAudioListenerComponentWidget.cpp \ 
+ 	src/view/components/GbAudioSourceComponentWidget.cpp \ 
  	src/view/components/GbCameraComponentWidget.cpp \ 
  	src/view/components/GbCanvasComponentWidget.cpp \ 
  	src/view/components/GbCharControlComponentWidget.cpp \ 
  	src/view/components/GbComponentWidgets.cpp \ 
  	src/view/components/GbCubeMapComponentWidget.cpp \ 
  	src/view/components/GbLightComponentWidget.cpp \ 
+ 	src/view/components/GbListenerComponentWidget.cpp \ 
  	src/view/components/GbModelComponentWidget.cpp \ 
  	src/view/components/GbPhysicsWidgets.cpp \ 
  	src/view/components/GbRigidBodyComponentWidget.cpp \ 
@@ -632,18 +703,33 @@ SOURCES += src/GbMainWindow.cpp \
  	src/view/components/GbShaderComponentWidget.cpp \ 
  	src/view/components/GbTransformComponentWidget.cpp \ 
  	src/view/logging/GbConsoleTool.cpp \ 
- 	src/view/nodes/GbGraphEdge.cpp \ 
- 	src/view/nodes/GbGraphNode.cpp \ 
- 	src/view/nodes/GbGraphWidget.cpp \ 
+ 	src/view/nodes/GbNodeViewBlock.cpp \ 
+ 	src/view/nodes/GbNodeViewCanvas.cpp \ 
+ 	src/view/nodes/GbNodeViewConnection.cpp \ 
+ 	src/view/nodes/GbNodeViewEditor.cpp \ 
+ 	src/view/nodes/GbNodeViewPort.cpp \ 
+ 	src/view/nodes/GbNodeViewScene.cpp \ 
+ 	src/view/nodes/animation/GbAnimationNodeWidget.cpp \ 
  	src/view/parameters/GbColorWidget.cpp \ 
+ 	src/view/parameters/GbLoadAudioWidget.cpp \ 
  	src/view/parameters/GbMaterialWidgets.cpp \ 
  	src/view/parameters/GbModelWidgets.cpp \ 
  	src/view/parameters/GbParameterWidgets.cpp \ 
  	src/view/parameters/GbRenderLayerWidgets.cpp \ 
  	src/view/parameters/GbRenderableWidget.cpp \ 
+ 	src/view/parameters/GbSerializableWidget.cpp \ 
+ 	src/view/parameters/animation/GbAnimationClipWidget.cpp \ 
+ 	src/view/parameters/animation/GbAnimationMotionWidget.cpp \ 
+ 	src/view/parameters/animation/GbAnimationStateWidget.cpp \ 
  	src/view/players/GbPlayer.cpp \ 
  	src/view/style/GbFontIcon.cpp \ 
  	src/view/style/GbStyles.cpp \ 
+ 	src/view/timeline/GbTimeline.cpp \ 
+ 	src/view/timeline/GbTimelineIndicator.cpp \ 
+ 	src/view/timeline/GbTimelineMarker.cpp \ 
+ 	src/view/timeline/GbTimelineScene.cpp \ 
+ 	src/view/timeline/GbTimelineTrack.cpp \ 
+ 	src/view/timeline/GbTimelineView.cpp \ 
  	src/view/tree/GbCanvasGlyphWidget.cpp \ 
  	src/view/tree/GbComponentWidget.cpp \ 
  	src/view/tree/GbRenderLayerWidget.cpp \ 
@@ -651,7 +737,9 @@ SOURCES += src/GbMainWindow.cpp \
  	src/view/tree/GbSceneTreeWidget.cpp \ 
  	src/view/tree/GbScriptOrder.cpp \ 
  	src/view/tree/GbShaderTreeWidget.cpp \ 
- 	src/view/tree/GbTreeWidget.cpp 
+ 	src/view/tree/GbTreeWidget.cpp \ 
+ 	src/view/tree/animation/GbAnimationTreeWidget.cpp \ 
+ 	src/view/wrappers/GbComboBox.cpp 
  	
 FORMS += ui/GbBlankWindow.ui \ 
  	ui/GbMainWindow.ui 
@@ -660,5 +748,6 @@ RESOURCES += resources/fonts/fonts.qrc \
  	resources/images/images.qrc \ 
  	resources/scripts/scripts.qrc \ 
  	resources/shaders/shaders.qrc \ 
- 	resources/styles/styles.qrc 
+ 	resources/styles/styles.qrc \ 
+ 	resources/textures/textures.qrc 
  	

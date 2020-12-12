@@ -19,10 +19,12 @@ in vec3 toLightPositions[MAX_LIGHTS];
 in vec3 toCameraVector;
 
 // Uniform block for projection and view matrices
-layout (std140) uniform CameraMatrices
+layout (std140) uniform CameraBuffer
 {
 	mat4 viewMatrix;
 	mat4 projectionMatrix;
+	float zNear;
+	float zFar;
 };
 
 out vec4 fColor;

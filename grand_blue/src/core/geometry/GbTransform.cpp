@@ -11,7 +11,7 @@
 #include "../scene/GbSceneObject.h"
 //#include "../GbCoreEngine.h"
 //#include "../events/GbMessenger.h"
-#include "../components/GbCamera.h"
+#include "../components/GbCameraComponent.h"
 #include "../utils/GbInterpolation.h"
 #include "../physics/GbPhysicsManager.h"
 
@@ -27,9 +27,13 @@ namespace Gb {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Transform
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+Transform Transform::s_identity = Transform();
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Transform Transform::interpolate(const Transform & t1, const Transform & t2, float percentFactor, bool updateWorld)
 {
-    Quaternion quat = Quaternion::slerp(t1.m_rotation.getQuaternion(), 
+    Quaternion quat = Quaternion::Slerp(t1.m_rotation.getQuaternion(), 
         t2.m_rotation.getQuaternion(), percentFactor);
     Vector3 translation = Interpolation::lerp(t1.m_translation.getPosition(),
         t2.m_translation.getPosition(), percentFactor);
@@ -75,7 +79,7 @@ Transform Transform::interpolate(const std::vector<Transform>& transforms, const
 
     // Get interpolated transform
     Transform result(Interpolation::lerp(translations, weights), 
-        Quaternion::slerp(rotations, weights), 
+        Quaternion::EigenAverage(rotations.data(), weights), 
         Interpolation::lerp(scales, weights));
     //result.translation().setPosition(translation, false);
     //result.rotation().setRotation(rotation, false);
@@ -118,18 +122,23 @@ Transform& Transform::operator=(const Transform& other)
     Object::operator=(other);
     Serializable::operator=(other);
 
-    m_parent = other.m_parent;
-    for (const std::pair<Uuid, Transform*>& child: other.m_children) {
-        Transform* newChild = new Transform(*child.second);
-        addChild(newChild);
-    }
+    m_inheritanceType = other.m_inheritanceType;
     m_translation = other.m_translation;
     m_rotation = other.m_rotation;
     m_scale = other.m_scale;
-    m_inheritanceType = other.m_inheritanceType;
+    m_matrices = other.m_matrices;
 
     initialize();
-    computeWorldMatrix();
+
+    if (other.m_parent) {
+        m_parent = other.m_parent;
+    }
+
+    // Duplicate all children to avoid double deletion
+    for (Transform* child: other.m_children) {
+        Transform* newChild = new Transform(*child);
+        addChild(newChild);
+    }
 
     return *this;
 }
@@ -141,7 +150,7 @@ Transform::Transform(const physx::PxTransform & pxTransform) :
 
     const PxVec3& pos = pxTransform.p;
     const PxQuat& quat = pxTransform.q;
-    m_translation.setPosition(PhysicsManager::toVec3(pos), false);
+    m_translation.setPosition(PhysicsManager::toVector3(pos), false);
     m_rotation.setRotation(PhysicsManager::toQuaternion(quat), false);
 
     computeWorldMatrix();
@@ -173,8 +182,7 @@ Transform::Transform(const Transform & other):
     m_translation(other.m_translation),
     m_rotation(other.m_rotation),
     m_scale(other.m_scale),
-    m_localMatrix(other.m_localMatrix),
-    m_worldMatrix(other.m_worldMatrix)
+    m_matrices(other.m_matrices)
 {
     initialize();
 
@@ -183,8 +191,8 @@ Transform::Transform(const Transform & other):
     }
 
     // Need to duplicate all children to avoid double deletion
-    for (const std::pair<Uuid, Transform*>& child : other.m_children) {
-        Transform* newChild = new Transform(*child.second);
+    for (Transform* child : other.m_children) {
+        Transform* newChild = new Transform(*child);
         addChild(newChild);
     }
 }
@@ -193,25 +201,64 @@ Transform::Transform(const Transform & other):
 Transform::~Transform()
 {
     // Delete children 
-    for (const std::pair<Uuid, Transform*>& childPair : m_children) {
-        delete childPair.second;
+    for (Transform* child : m_children) {
+        delete child;
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Matrix4x4g Transform::rotationTranslationMatrix() const
 {
     // Remove scaling from rotational component of matrix
-    Vector3g scale = m_scale.getScale().asReal();
-    Matrix3x3g rotation(m_worldMatrix);
+    const Vector3& scale = m_scale.getScale();
+    Matrix3x3g rotation(m_matrices.m_worldMatrix);
     rotation.normalizeColumns();
 
     // Construct matrix without scaling, but with translation
     Matrix4x4g rotTrans(rotation);
-    rotTrans.setTranslation(m_translation.getPosition().asReal());
+    rotTrans.setTranslation(m_matrices.m_worldMatrix.getTranslationVector());
     return rotTrans;
 }
+/////////////////////////////////////////////////////////////////////////////////////////////
+Vector3 Transform::worldPosition() const
+{
+    return Vector3(m_matrices.m_worldMatrix.getColumn(3));
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+void Transform::setWorldPosition(const Vector3 & worldPos)
+{
+    if (!m_parent) {
+        // No parent, so world position is local position
+        m_translation.setPosition(worldPos, true);
+    }
+    else {
+        // Get world matrix that would give specified world position, and multiply by inverse of parent world matrix to get correct local matrix
+        Matrix4x4 desiredWorld = m_matrices.m_worldMatrix;
+        desiredWorld.column(3) = Vector4(worldPos, 1.0);
+        Matrix4x4 desiredLocal = m_parent->worldMatrix().inversed() * desiredWorld;
+        m_translation.setPosition(desiredLocal.getColumn(3));
+    }
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+bool Transform::hasChild(const Transform & child, size_t * idx)
+{
+    const Uuid& uuid = child.getUuid();
+    auto iter = std::find_if(m_children.begin(), m_children.end(),
+        [&](Transform* t) {
+        return t->getUuid() == uuid;
+    });
+
+    if (iter != m_children.end()) {
+        if (idx) {
+            *idx = iter - m_children.begin();
+        }
+        return true;
+    }
+    else {
+        return false;
+    }
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void Transform::rotateAboutAxis(const Vector3g & axis, float angle)
+void Transform::rotateAboutAxis(const Vector3 & axis, float angle)
 {
     Quaternion rotation = Quaternion::fromAxisAngle(axis, angle);
     m_rotation.setRotation(rotation * m_rotation.getQuaternion());
@@ -290,29 +337,26 @@ void Transform::clearParent()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Transform::addChild(Transform * c)
 {
-    const Uuid& id = c->getUuid();
 #ifdef DEBUG_MODE
-    if (Map::HasKey(m_children, id)) {
+    if (hasChild(*c)) {
         throw("Error, transform already has the given child");
     }
 #endif
-    m_children[id] = c;
+    m_children.push_back(c);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Transform::removeChild(Transform * c)
 {
-    const Uuid& id = c->getUuid();
-#ifdef DEBUG_MODE
-    if (!Map::HasKey(m_children, id)) {
+    size_t idx;
+    if (!hasChild(*c, &idx)) {
         throw("Error, transform does not have the specified child");
     }
-#endif
-    m_children.erase(id);
+    m_children.erase(m_children.begin() + idx);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 TranslationComponent Transform::worldTranslation() const
 {
-    return TranslationComponent(m_worldMatrix.getTranslationVector().asDouble());
+    return TranslationComponent(m_matrices.m_worldMatrix.getTranslationVector().asReal());
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 QJsonValue Transform::asJson() const
@@ -326,8 +370,10 @@ QJsonValue Transform::asJson() const
     return object;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void Transform::loadFromJson(const QJsonValue & json)
+void Transform::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
+
     const QJsonObject& object = json.toObject();
     m_translation.loadFromJson(object.value("translation"));
     m_rotation.loadFromJson(object.value("rotation"));
@@ -349,37 +395,37 @@ void Transform::computeLocalMatrix()
 {
     // Multiply by transformations in reverse of their application order
     // e.g.  Want to apply scaling, then rotation, then translation
-    m_localMatrix.setToIdentity();
+    m_matrices.m_localMatrix.setToIdentity();
 
     // Add rotations to the model matrix
     if(!m_rotation.getQuaternion().isIdentity())
-        m_localMatrix *= m_rotation.getMatrix();
+        m_matrices.m_localMatrix *= m_rotation.getMatrix();
 
     // Add scaling to model matrix
     if(!m_scale.isIdentity())
-        m_localMatrix *= m_scale.getMatrix();
+        m_matrices.m_localMatrix *= m_scale.getMatrix();
 
     // Add translation without full matrix multiplication
     if (!m_translation.isIdentity()) {
-        m_localMatrix.setTranslation(m_translation.getPosition().asReal());
+        m_matrices.m_localMatrix.setTranslation(m_translation.getPosition());
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Transform::decompose(const Matrix4x4g & mat)
 {
-    Vector3g translation = mat.getTranslationVector();
-    Vector3g scale = Vector3g(mat.getColumn(0).length(), mat.getColumn(1).length(), mat.getColumn(2).length());
-    Vector3g inverseScale = Vector3g(1.0 / scale.x(), 1.0 / scale.y(), 1.0 / scale.z());
+    Vector3 translation = mat.getTranslationVector();
+    Vector3 scale = Vector3(mat.getColumn(0).length(), mat.getColumn(1).length(), mat.getColumn(2).length());
+    Vector3 inverseScale = Vector3(1.0 / scale.x(), 1.0 / scale.y(), 1.0 / scale.z());
     Matrix4x4g matCopy(mat.getData());
     matCopy.addScale(inverseScale);
     Quaternion rotation = Quaternion::fromRotationMatrix(matCopy);
     
-    m_translation.setPosition(translation.asDouble(), false);
-    m_scale.setScale(scale.asDouble(), false);
+    m_translation.setPosition(translation, false);
+    m_scale.setScale(scale, false);
     m_rotation.setRotation(rotation, false);
-    m_localMatrix = Matrix4x4g(mat.getData());
+    m_matrices.m_localMatrix = Matrix4x4g(mat.getData());
     if (!m_parent) {
-        m_worldMatrix = Matrix4x4g(mat.getData());
+        m_matrices.m_worldMatrix = Matrix4x4g(mat.getData());
     }
     else {
         computeWorldMatrix();
@@ -396,19 +442,19 @@ void Transform::computeWorldMatrix()
 
     // Initialize model matrix using model matrices of parent as a base
     if (!m_parent) {
-        m_worldMatrix = m_localMatrix;
+        m_matrices.m_worldMatrix = m_matrices.m_localMatrix;
     }
     else {
-        m_worldMatrix.setToIdentity();
+        m_matrices.m_worldMatrix.setToIdentity();
         switch (m_inheritanceType) {
         case Transform::kTranslation:
-            m_worldMatrix.setTranslation(parentTransform()->worldTranslation().getPosition().asReal());
+            m_matrices.m_worldMatrix.setTranslation(parentTransform()->worldTranslation().getPosition());
             //m_worldMatrix = parentTransform()->worldTranslation().getMatrix();
             break;
         case Transform::kAll:
         case Transform::kPreserveOrientation:
         default:
-            m_worldMatrix = parentTransform()->worldMatrix();
+            m_matrices.m_worldMatrix = parentTransform()->worldMatrix();
             break;
         }
 
@@ -417,28 +463,28 @@ void Transform::computeWorldMatrix()
         case Transform::kPreserveOrientation:
         {
             // Obtain world translation by removing the rotation component of the world matrix
-            Matrix4x4f localTranslation;
-            localTranslation.setTranslation(m_translation.getPosition().asReal());
-            Matrix4x4f translation = m_worldMatrix * localTranslation;
+            Matrix4x4 localTranslation;
+            localTranslation.setTranslation(m_translation.getPosition());
+            Matrix4x4 translation = m_matrices.m_worldMatrix * localTranslation;
             translation = translation.getTranslationMatrix();
 
             // Compute world matrix that preserves original orientation of state w.r.t. inertial frame
-            m_worldMatrix = translation * m_rotation.getMatrix() * m_scale.getMatrix();
+            m_matrices.m_worldMatrix = translation * m_rotation.getMatrix() * m_scale.getMatrix();
         }
         case Transform::kTranslation:
         case Transform::kAll:
         default:
             // Compute world matrix
-            m_worldMatrix *= m_localMatrix;
+            m_matrices.m_worldMatrix *= m_matrices.m_localMatrix;
             break;
         }
     }
 
     // Update all child states
-    for (const std::pair<Uuid, Transform*>& childPair: m_children) {
+    for (const auto& child: m_children) {
         //auto childObject = std::static_pointer_cast<SceneObject>(childPair.second);
         //auto childTransform = childObject->transform();
-        childPair.second->computeWorldMatrix();
+        child->computeWorldMatrix();
     }
 }
 

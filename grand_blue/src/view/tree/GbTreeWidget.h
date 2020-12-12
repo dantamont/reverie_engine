@@ -95,10 +95,7 @@ protected:
     /// @{
 
     /// @brief Initialize the component tree item
-    void initializeItem() {
-        // Set column text
-        //refreshText();
-
+    virtual void initializeItem() {
         // Set default size of item
         //setSizeHint(0, QSize(200, 400));
 
@@ -145,6 +142,7 @@ public:
         kExpanded,
         kDrag,
         kDrop,
+        kDeselected,
         kMAX_INTERACTION_TYPE
     };
 
@@ -153,7 +151,7 @@ public:
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Constructors and Destructors
     /// @{
-    TreeWidget(CoreEngine* engine, const QString& name, QWidget* parent = nullptr);
+    TreeWidget(CoreEngine* engine, const QString& name, QWidget* parent = nullptr, size_t numColumns = 1);
     ~TreeWidget();
 
     /// @}
@@ -238,6 +236,9 @@ public:
     virtual bool isTool() const override { return false; };
 
     /// @}
+signals:
+
+    void itemDeselected(QTreeWidgetItem* item);
 
 protected slots:
     //-----------------------------------------------------------------------------------------------------------------
@@ -252,6 +253,9 @@ protected slots:
 
     /// @brief What to do on item expanded
     virtual void onItemExpanded(QTreeWidgetItem* item);
+
+    /// @brief What to do on item deselected
+    virtual void onItemDeselected(QTreeWidgetItem* item);
 
     /// @}
 
@@ -311,6 +315,8 @@ protected:
 
     /// @brief Core engine for the application
     CoreEngine* m_engine;
+
+    size_t m_numColumns;
 
     /// @}
 };

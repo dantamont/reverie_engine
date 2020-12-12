@@ -13,8 +13,10 @@
 
 // Internal
 #include "../GbGLFunctions.h"
+#include "../buffers/GbGLBuffer.h"
 #include "../../GbObject.h"
 #include "../../mixins/GbLoadable.h"
+#include "GbRenderSettings.h"
 
 namespace Gb {  
 
@@ -23,6 +25,7 @@ namespace Gb {
 /////////////////////////////////////////////////////////////////////////////////////////////
 class MainRenderer;
 class LightingSettings;
+class Texture;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // Class definitions
@@ -48,10 +51,22 @@ public:
     /// @name Properties
     /// @{
 
+    Texture& blankTexture() const { return *m_blankTexture; }
+
     LightingSettings& lightingSettings() { return *m_lightSettings; }
 
     /// @brief Obtain underlying context
     QOpenGLContext* context() { return m_context; }
+
+    int boundMaterial() const { return m_boundMaterial; }
+    void setBoundMaterial(int idx) { m_boundMaterial = idx; }
+
+    RenderSettings& renderSettings() { return m_renderSettings; }
+
+    /// @brief Get GL functions from current contect
+    inline QOpenGLFunctions* functions() {
+        return m_context->functions();
+    }
 
     /// @}
 
@@ -59,15 +74,38 @@ public:
     /// @name Public Methods
     /// @{
 
+    /// @brief Flush all buffer data into OpenGL
+    void flushBuffers();
+
+    /// @brief Swap all buffers for read/write
+    void swapBuffers();
+
+    /// @brief Method for configuring an OpenGL setting
+    template<typename T, typename ...Args>
+    inline void flushSetting(Args&&... args) {
+        // Create the setting, adding it to current settings
+        const T& setting = static_cast<const T&>(
+            m_renderSettings.addSetting<T>(std::forward<Args>(args)...));
+        //std::shared_ptr<RenderSetting> setting = std::make_shared<T> (std::forward<Args>(args)...);
+        
+        // Set the actual settings in OpenGL, without worrying about caching previous values
+        setting.set(*this);
+    }
+
     bool isCurrent() const;
 
     void makeCurrent();
 
-    const Uuid& boundBuffer() const {
-        return m_boundBuffer;
+    /// @brief Get the bound buffer of the given type
+    const Uuid& boundBuffer(GL::BufferType type) const {
+        size_t idx = bufferTypeIndex(type);
+        return m_boundBuffers[idx];
     }
-    void setBoundBuffer(const Uuid& uuid) {
-        m_boundBuffer = uuid;
+
+    /// @brief Set the bound buffer of the given type
+    void setBoundBuffer(GL::BufferType type, const Uuid& uuid) {
+        size_t idx = bufferTypeIndex(type);
+        m_boundBuffers[idx] = uuid;
     }
 
     /// @}
@@ -90,7 +128,7 @@ public:
     //virtual QJsonValue asJson() const override;
 
     ///// @brief Populates this data using a valid json string
-    //virtual void loadFromJson(const QJsonValue& json) override;
+    //virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -110,6 +148,14 @@ protected:
     /// @}
 
     //---------------------------------------------------------------------------------------
+    /// @name Static methods
+    /// @{
+
+    static size_t bufferTypeIndex(const GL::BufferType& type);
+
+    /// @}
+
+    //---------------------------------------------------------------------------------------
     /// @name Protected members
     /// @{
 
@@ -120,8 +166,27 @@ protected:
     /// @brief Light settings associated with this render context
     std::shared_ptr<LightingSettings> m_lightSettings;
 
-    /// @brief Currently bound buffer ID, can currently be an SSB
-    Uuid m_boundBuffer;
+    /// @brief The currently bound material's sort ID
+    int m_boundMaterial = -1;
+
+    /// @brief Currently bound buffer IDs, can currently be an SSB
+    /// @details Are indexed by their buffer target type, e.g. UBO, SSB, etc.
+    std::vector<Uuid> m_boundBuffers;
+
+    /// @brief The currently bound OpenGL settings
+    RenderSettings m_renderSettings;
+
+    /// @brief a blank (white) 1x1 texture belonging to this context
+    Texture* m_blankTexture;
+
+    /// @}
+
+    //---------------------------------------------------------------------------------------
+    /// @name Static members
+    /// @{
+
+    /// @brief Vector of types corresponding to indices of bound buffer
+    static std::vector<GL::BufferType> s_bufferTypes;
 
     /// @}
 };

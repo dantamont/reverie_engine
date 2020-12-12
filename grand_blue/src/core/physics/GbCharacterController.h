@@ -82,7 +82,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -104,7 +104,7 @@ public:
     /// @{
 
     Vector3 m_initialPosition = {0.0, 0.0, 0.0}; // The position of the character
-    Vector3g m_upDirection = {0.0f, 1.0f, 0.0f}; // Specifies the 'up' direction
+    Vector3 m_upDirection = {0.0f, 1.0f, 0.0f}; // Specifies the 'up' direction
     float m_slopeLimit= 0.707f; // The maximum slope which the character can walk up (in radians)
     float m_invisibleWallHeight = 0.0f; // Height of invisible walls created around non-walkable triangles, e.g. those defined by slope limit
     
@@ -192,7 +192,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -255,7 +255,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -330,13 +330,13 @@ public:
     void setHeightOffset(float offset) { m_heightOffset = offset; }
 
     /// @brief Optional value to set that enforces gravity on character controller
-    const Vector3g& getGravity() const { return m_gravity; }
-    void setGravity(const Vector3g& g) {
+    const Vector3& getGravity() const { return m_gravity; }
+    void setGravity(const Vector3& g) {
         m_gravity = g;
     }
 
-    const Vector3g& getFallVelocity() const { return m_fallVelocity; }
-    void setFallVelocity(const Vector3g& v) { m_fallVelocity = v; }
+    const Vector3& getFallVelocity() const { return m_fallVelocity; }
+    void setFallVelocity(const Vector3& v) { m_fallVelocity = v; }
 
     float getTerminalVelocity() const { return m_terminalVelocity; }
 
@@ -357,9 +357,9 @@ public:
     /// @brief Move the controller, while checking for collisions
     /// @details Elapsed time is time elapsed since the last move call
     // TODO: Implement obstacles
-    QFlags<CharacterController::CollisionType> move(const Vector3g& displacement);
     QFlags<CharacterController::CollisionType> move(const Vector3& displacement);
-    QFlags<CharacterController::CollisionType> move(const Vector3& displacement,
+    QFlags<CharacterController::CollisionType> move(const Vector3d& displacement);
+    QFlags<CharacterController::CollisionType> move(const Vector3d& displacement,
         const ControllerFilters& filters, const physx::PxObstacleContext* obstacles = nullptr);
 
     /// @brief Position of the centroid off the controller
@@ -383,12 +383,12 @@ public:
 
     /// @brief Get position at the bottom-center of the controller
     /// @details Note, takes the contact offset into account
-    Vector3 getFootPosition() const {
+    Vector3d getFootPosition() const {
         const physx::PxExtendedVec3& footPos = m_controller->getFootPosition();
-        return Vector3(footPos.x, footPos.y, footPos.z);
+        return Vector3d(footPos.x, footPos.y, footPos.z);
     }
 
-    bool setFootPosition(const Vector3& footPos) {
+    bool setFootPosition(const Vector3d& footPos) {
         return m_controller->setFootPosition({ footPos.x(), footPos.y(), footPos.z() });
     }
 
@@ -434,11 +434,11 @@ public:
 
     /// @brief Can be set every frame, allowing the character to navigate on spherical worlds
     /// @details Note that this effectively rotates the controller, which may cause it to clip through geometry
-    Vector3g getUpDirection() const {
+    Vector3 getUpDirection() const {
         physx::PxVec3 vec = m_controller->getUpDirection();
-        return Vector3g(vec.x, vec.y, vec.z);
+        return Vector3(vec.x, vec.y, vec.z);
     }
-    void setUpDirection(const Vector3g& vec) {
+    void setUpDirection(const Vector3& vec) {
         m_controller->setUpDirection({ vec.x(), vec.y(), vec.z() });
     }
 
@@ -459,7 +459,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -531,8 +531,8 @@ protected:
     float m_heightOffset = 0.0f;
 
     /// @brief Enforces gravitational acceleration on the controller
-    Vector3g m_gravity = { 0.0f, -9.81f, 0.0f };
-    Vector3g m_fallVelocity = { 0.0f, 0.0f, 0.0f };
+    Vector3 m_gravity = { 0.0f, -9.81f, 0.0f };
+    Vector3 m_fallVelocity = { 0.0f, 0.0f, 0.0f };
 
     /// @brief Terminal velocity
     float m_terminalVelocity = 55.0f; // m/s
@@ -728,7 +728,7 @@ public:
     /// @name Properties
     /// @{
 
-    std::unordered_map<physx::PxController*, std::shared_ptr<CharacterController>>& controllers() {
+    tsl::robin_map<physx::PxController*, std::shared_ptr<CharacterController>>& controllers() {
         return m_controllers;
     }
 
@@ -773,7 +773,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -818,7 +818,7 @@ protected:
     physx::PxControllerManager* m_controllerManager;
 
     /// @brief Map of physx controllers and their corresponding wrapped character controllers
-    std::unordered_map<physx::PxController*, std::shared_ptr<CharacterController>> m_controllers;
+    tsl::robin_map<physx::PxController*, std::shared_ptr<CharacterController>> m_controllers;
 
     /// @}
 

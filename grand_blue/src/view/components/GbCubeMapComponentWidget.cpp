@@ -11,9 +11,8 @@
 #include "../../core/scene/GbSceneObject.h"
 #include "../../core/readers/GbJsonReader.h"
 #include "../../core/components/GbScriptComponent.h"
-#include "../../core/components/GbCamera.h"
+#include "../../core/components/GbCameraComponent.h"
 
-#include "../../core/rendering/renderer/GbRenderers.h"
 #include "../style/GbFontIcon.h"
 #include "../../core/geometry/GbEulerAngles.h"
 #include "../../core/components/GbCubeMapComponent.h"

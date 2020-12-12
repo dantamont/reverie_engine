@@ -33,7 +33,7 @@ class Capsule
 {
 public:
     // ctor/dtor
-    Capsule(float radius = 1.0f, float halfHeight = 1.0f, int sectorCount = 36, int stackCount = 1);
+    Capsule(VertexArrayData& outVertexData, float radius = 1.0f, float halfHeight = 1.0f, int sectorCount = 36, int stackCount = 1);
     ~Capsule() {}
 
     // getters/setters
@@ -47,7 +47,7 @@ public:
     void setSectorCount(int sectorCount);
     void setStackCount(int stackCount);
 
-    std::shared_ptr<VertexArrayData> vertexData() { return m_vertexData; }
+    VertexArrayData& vertexData() { return m_vertexData; }
 
 protected:
 
@@ -61,8 +61,8 @@ private:
     void addNormal(float x, float y, float z);
     void addTexCoord(float s, float t);
     void addIndices(unsigned int i1, unsigned int i2, unsigned int i3);
-    std::vector<Vector3g> getSideNormals();
-    Vector3g computeFaceNormal(float x1, float y1, float z1,
+    std::vector<Vector3> getSideNormals();
+    Vector3 computeFaceNormal(float x1, float y1, float z1,
         float x2, float y2, float z2,
         float x3, float y3, float z3);
 
@@ -73,8 +73,8 @@ private:
     int m_stackCount;                         // # of stacks
     unsigned int m_baseIndex;                 // starting index of base
     unsigned int m_topIndex;                  // starting index of top
-    std::vector<Vector3g> m_unitCircleVertices;
-    std::shared_ptr<VertexArrayData> m_vertexData;
+    std::vector<Vector3> m_unitCircleVertices;
+    VertexArrayData& m_vertexData;
     std::vector<unsigned int> m_lineIndices;
 
 };

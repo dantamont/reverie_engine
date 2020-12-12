@@ -37,9 +37,7 @@ class RenderSettings;
 /// @brief Class representing a CubeMap 
 /// @details Sampled in shader as a 3D direction vector
 /// @note See: https://learnopengl.com/Advanced-OpenGL/Cubemaps
-class CubeMapComponent: public Component, 
-    public Renderable, 
-    protected GL::OpenGLFunctions {
+class CubeMapComponent: public Component, public Renderable {
 public:
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Static Methods
@@ -76,7 +74,7 @@ public:
     bool isDefault() const;
 
     /// @property geometry for this model
-    void draw(ShaderProgram& shaderProgram, RenderSettings* settings = nullptr, size_t drawFlags = 0) override;
+    void draw(ShaderProgram& shaderProgram, RenderContext* context, RenderSettings* settings = nullptr, size_t drawFlags = 0) override;
 
     /// @brief Set the cube texture at the given filepath, loading if required
     void setCubeTexture(const QString& filepath);
@@ -122,7 +120,7 @@ public:
     virtual QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 

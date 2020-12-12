@@ -17,10 +17,10 @@ namespace Gb {
 // Forward declarations
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 template<class D, size_t N> class SquareMatrix;
-typedef SquareMatrix<float, 3> Matrix3x3f;
-typedef SquareMatrix<float, 4> Matrix4x4f;
-typedef SquareMatrix<double, 3> Matrix3x3;
-typedef SquareMatrix<double, 4> Matrix4x4;
+typedef SquareMatrix<float, 3> Matrix3x3;
+typedef SquareMatrix<float, 4> Matrix4x4;
+typedef SquareMatrix<double, 3> Matrix3x3d;
+typedef SquareMatrix<double, 4> Matrix4x4d;
 class Quaternion;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -124,8 +124,8 @@ public:
     /// @{
 
     /// @brief Compute the rotation matrix corresponding to this set of Euler angles
-    Matrix4x4f toRotationMatrixF() const;
-    Matrix4x4 toRotationMatrix() const;
+    Matrix4x4 toRotationMatrixF() const;
+    Matrix4x4d toRotationMatrix() const;
 
     /// @brief Convert to another Euler Angle type
     EulerAngles toAngles(EulerType order, RotationSpace space) const;
@@ -143,13 +143,13 @@ protected:
     /// @{
 
     /// @brief Compute the extrinsic (inertial) rotation matrix corresponding to the given set of Euler angles
-    static Matrix4x4 computeExtrinsicRotationMatrix(const Vector3f & angles, const Axes& axisOrder);
+    static Matrix4x4d computeExtrinsicRotationMatrix(const Vector3f & angles, const Axes& axisOrder);
 
     /// @brief Compute the intrinsic (body) rotation matrix corresponding to the given set of Euler angles
-    static Matrix4x4 computeIntrinsicRotationMatrix(const Vector3f & angles, const Axes& axisOrder);
+    static Matrix4x4d computeIntrinsicRotationMatrix(const Vector3f & angles, const Axes& axisOrder);
 
     /// @brief Obtain a set of euler angles (in radians) of the given type from the given rotation matrix
-    static EulerAngles toAngles(const Matrix3x3& m, EulerType type, RotationSpace space);
+    static EulerAngles toAngles(const Matrix3x3d& m, EulerType type, RotationSpace space);
 
     /// @}
 

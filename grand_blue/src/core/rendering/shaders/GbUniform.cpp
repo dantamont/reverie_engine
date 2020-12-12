@@ -1,5 +1,5 @@
 #include "GbUniform.h"
-
+#include "GbShaders.h"
 // QT
 
 // Internal
@@ -8,59 +8,17 @@ namespace Gb {
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
-// ShaderInputInfo
-/////////////////////////////////////////////////////////////////////////////////////////////
-bool ShaderInputInfo::IsValidGLType(int typeInt)
-{
-    switch (ShaderInputType(typeInt)) {
-    case ShaderInputType::kBool:
-    case ShaderInputType::kInt:
-    case ShaderInputType::kFloat:
-    case ShaderInputType::kDouble:
-    case ShaderInputType::kVec2:
-    case ShaderInputType::kVec3:
-    case ShaderInputType::kVec4:
-    case ShaderInputType::kMat2:
-    case ShaderInputType::kMat3:
-    case ShaderInputType::kMat4:
-    case ShaderInputType::kSamplerCube:
-    case ShaderInputType::kSampler2D:
-        return true;
-    default:
-        throw("GL type is not valid, need to account for this type");
-        return false;
-    }
-
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-ShaderInputInfo::ShaderInputInfo()
-{
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-ShaderInputInfo::ShaderInputInfo(const QString & name, const ShaderInputType & type, bool isArray) :
-    m_name(name),
-    m_inputType(type)
-{
-    m_flags.setFlag(kIsArray, isArray);
-}
-
-ShaderInputInfo::ShaderInputInfo(const QString & name, const ShaderInputType & type, bool isArray, int id) :
-    m_name(name),
-    m_inputType(type),
-    m_uniformID(id)
-{
-    m_flags.setFlag(kIsArray, isArray);
-}
-
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////
 // Uniform
 /////////////////////////////////////////////////////////////////////////////////////////////
 Uniform::Uniform() :
-    Variant(),
-    m_name("")
+    Variant()
+{
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+Uniform::Uniform(const Uniform & other):
+    Variant(other),
+    m_name(other.m_name),
+    m_persistent(other.m_persistent)
 {
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -69,10 +27,15 @@ Uniform::Uniform(const QJsonValue & json)
     loadFromJson(json);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-Uniform::Uniform(const QString & name):
+Uniform::Uniform(const GStringView& name):
     m_name(name)
 {
 }
+///////////////////////////////////////////////////////////////////////////////////////////////
+//Uniform::Uniform(const QString & name):
+//    m_name(name)
+//{
+//}
 /////////////////////////////////////////////////////////////////////////////////////////////
 Uniform::~Uniform()
 {
@@ -90,14 +53,32 @@ Uniform::operator QString() const
     else if (is<real_g>()) {
         string = QString::number(get<real_g>());
     }
-    else if (is<Vector2g>()) {
-        string = QString(get<Vector2g>());
+    else if (is<Vector2>()) {
+        string = QString(get<Vector2>());
     }
-    else if (is<Vector3g>()) {
-        string = QString(get<Vector3g>());
+    else if (is<Vector3>()) {
+        string = QString(get<Vector3>());
     }
-    else if (is<Vector4g>()) {
-        string = QString(get<Vector4g>());
+    else if (is<Vector4>()) {
+        string = QString(get<Vector4>());
+    }
+    else if (is<Vector2i>()) {
+        string = QString(get<Vector2i>());
+    }
+    else if (is<Vector3i>()) {
+        string = QString(get<Vector3i>());
+    }
+    else if (is<Vector4i>()) {
+        string = QString(get<Vector4i>());
+    }
+    else if (is<Vector2u>()) {
+        string = QString(get<Vector2u>());
+    }
+    else if (is<Vector3u>()) {
+        string = QString(get<Vector3u>());
+    }
+    else if (is<Vector4u>()) {
+        string = QString(get<Vector4u>());
     }
     else if (is<Matrix2x2g>()) {
         string = QString(get<Matrix2x2g>());
@@ -109,9 +90,9 @@ Uniform::operator QString() const
         string = QString(get<Matrix4x4g>());
     }
     else if (is<std::vector<Matrix4x4g>>()) {
-        const std::vector<Matrix4x4f>& mats = get<std::vector<Matrix4x4g>>();
+        const std::vector<Matrix4x4>& mats = get<std::vector<Matrix4x4g>>();
         string += "{";
-        for (const Matrix4x4f& mat : mats) {
+        for (const Matrix4x4& mat : mats) {
             string += QString(mat) + ", \n";
         }
         string += "}";
@@ -127,7 +108,7 @@ Uniform::operator QString() const
     else if (is<Vec3List>()) {
         const Vec3List& vecs = get<Vec3List>();
         string += "{";
-        for (const Vector3g& vec : vecs) {
+        for (const Vector3& vec : vecs) {
             string += QString(vec) + ", \n";
         }
         string += "}";
@@ -135,7 +116,7 @@ Uniform::operator QString() const
     else if (is<Vec4List>()) {
         const Vec4List& vecs = get<Vec4List>();
         string += "{";
-        for (const Vector4g& vec : vecs) {
+        for (const Vector4& vec : vecs) {
             string += QString(vec) + ", \n";
         }
         string += "}";
@@ -149,18 +130,28 @@ Uniform::operator QString() const
         throw(err);
     }
 
-    return m_name + ": " + string;
+    return QString(m_name) + ": " + string;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+Uniform & Uniform::operator=(const Uniform & rhs)
+{
+    // TODO: insert return statement here
+    Variant::operator=(rhs);
+    m_name = rhs.m_name;
+    m_persistent = rhs.m_persistent;
+
+    return *this;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 bool Uniform::matchesInfo(const ShaderInputInfo& typeInfo) const
 {
-    int inputType = (int)typeInfo.m_inputType;
+    int inputType = (int)typeInfo.m_variableType;
     if (!ShaderInputInfo::IsValidGLType(inputType)) {
         return false;
     }
 
-    const std::type_index& type = UNIFORM_GL_TYPE_MAP.at(typeInfo.m_inputType);
-    if (type == Variant::typeInfo()) {
+    //const std::type_index& type = s_uniformGLTypeMap.at(typeInfo.m_variableType);
+    if (typeInfo.m_variableCType == Variant::typeInfo()) {
         return true;
     }
     else {
@@ -200,15 +191,33 @@ QVariant Uniform::asQVariant() const
     else if (is<real_g>()) {
         qv.setValue(get<real_g>());
     }
-    else if (is<Vector2g>()) {
-        qv.setValue(get<Vector2g>().asJson());
+    else if (is<Vector2>()) {
+        qv.setValue(get<Vector2>().asJson());
     }
-    else if (is<Vector3g>()) {
-        qv.setValue(get<Vector3g>().asJson());
+    else if (is<Vector3>()) {
+        qv.setValue(get<Vector3>().asJson());
     }
-    else if (is<Vector4g>()) {
-        qv.setValue(get<Vector4g>().asJson());
+    else if (is<Vector4>()) {
+        qv.setValue(get<Vector4>().asJson());
     }
+    //else if (is<Vector2i>()) {
+    //    qv.setValue(get<Vector2i>().asJson());
+    //}
+    //else if (is<Vector3i>()) {
+    //    qv.setValue(get<Vector3i>().asJson());
+    //}
+    //else if (is<Vector4i>()) {
+    //    qv.setValue(get<Vector4i>().asJson());
+    //}
+    //else if (is<Vector2u>()) {
+    //    qv.setValue(get<Vector2u>().asJson());
+    //}
+    //else if (is<Vector3u>()) {
+    //    qv.setValue(get<Vector3u>().asJson());
+    //}
+    //else if (is<Vector4u>()) {
+    //    qv.setValue(get<Vector4u>().asJson());
+    //}
     else if (is<Matrix2x2g>()) {
         qv.setValue(get<Matrix2x2g>().asJson());
     }
@@ -219,7 +228,7 @@ QVariant Uniform::asQVariant() const
         qv.setValue(get<Matrix4x4g>().asJson());
     }
     else if (is<std::vector<Matrix4x4g>>()) {
-        const std::vector<Matrix4x4f>& mat = get<std::vector<Matrix4x4g>>();
+        const std::vector<Matrix4x4>& mat = get<std::vector<Matrix4x4g>>();
         qv.setValue(matrixVecAsJson(mat));
     }
     else if (is<std::vector<real_g>>()) {
@@ -246,13 +255,17 @@ QVariant Uniform::asQVariant() const
 QJsonValue Uniform::asJson() const
 {
     QVariantMap map;
-    map.insert("name", m_name);
+    map.insert("name", m_name.c_str());
     map.insert("value", asQVariant());
     return QJsonObject::fromVariantMap(map);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Uniform::loadFromJson(const QJsonValue & json)
+void Uniform::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
+    
+    // Todo: Don't serialize uniforms, should always be a member or otherwise
+    // SEE: https://stackoverflow.com/questions/4484982/how-to-convert-typename-t-to-string-in-c
     const QJsonObject& object = json.toObject();
     if (object.contains("name")) {
         // Parse json if name and value are separate key-value pairs
@@ -278,6 +291,7 @@ void Uniform::loadFromJson(const QJsonValue & json)
 /////////////////////////////////////////////////////////////////////////////////////////////
 void Uniform::loadFromQVariant(const QVariant & qv)
 {
+    // FIXME: Do this more elegantly
     int type = qv.type();
     if (type == QMetaType::Int) {
         set<int>(qv.value<int>());
@@ -344,13 +358,13 @@ void Uniform::loadFromQVariant(const QVariant & qv)
                 set<std::vector<real_g>>(vectorFromJson<real_g>(json));
             }
             else if (array.size() == 4) {
-                set<Vector4g>(Vector4g(json));
+                set<Vector4>(Vector4(json));
             }
             else if (array.size() == 3) {
-                set<Vector3g>(Vector3g(json));
+                set<Vector3>(Vector3(json));
             }
             else if (array.size() == 2) {
-                set<Vector2g>(Vector2g(json));
+                set<Vector2>(Vector2(json));
             }
         }
     }
@@ -359,49 +373,101 @@ void Uniform::loadFromQVariant(const QVariant & qv)
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-std::unordered_map<QString, std::type_index> Uniform::UNIFORM_TYPE_MAP = {
+tsl::robin_map<QString, std::type_index> Uniform::s_uniformTypeMap = {
     {"bool", typeid(bool)},
     {"int", typeid(int)},
     {"float", typeid(float)},
     {"double", typeid(double)},
-    {"vec2", typeid(Vector2g)},
-    {"vec3", typeid(Vector3g)},
-    {"vec4", typeid(Vector4g)},
+    {"uvec2", typeid(Vector<unsigned int, 2>)},
+    {"uvec3", typeid(Vector<unsigned int, 3>)},
+    {"uvec4", typeid(Vector<unsigned int, 4>)},
+    {"ivec2", typeid(Vector<int, 2>)},
+    {"ivec3", typeid(Vector<int, 3>)},
+    {"ivec4", typeid(Vector<int, 4>)},
+    {"vec2", typeid(Vector2)},
+    {"vec3", typeid(Vector3)},
+    {"vec4", typeid(Vector4)},
     {"mat2", typeid(Matrix2x2g)},
     {"mat3", typeid(Matrix3x3g)},
     {"mat4", typeid(Matrix4x4g)},
     {"samplerCube", typeid(int)},
-    {"sampler2D", typeid(int)}
+    {"samplerCubeArray", typeid(int)},
+    {"sampler2D", typeid(int)},
+    {"sampler2DShadow", typeid(int)},
+    {"sampler2DArray", typeid(int)}
 };
 /////////////////////////////////////////////////////////////////////////////////////////////
-std::unordered_map<ShaderInputType, std::type_index> Uniform::UNIFORM_GL_TYPE_MAP = {
-    {ShaderInputType::kBool, typeid(bool)},
-    {ShaderInputType::kInt, typeid(int)},
-    {ShaderInputType::kFloat, typeid(float)},
-    {ShaderInputType::kDouble, typeid(double)},
-    {ShaderInputType::kVec2, typeid(Vector2g)},
-    {ShaderInputType::kVec3, typeid(Vector3g)},
-    {ShaderInputType::kVec4, typeid(Vector4g)},
-    {ShaderInputType::kMat2, typeid(Matrix2x2g)},
-    {ShaderInputType::kMat3, typeid(Matrix3x3g)},
-    {ShaderInputType::kMat4, typeid(Matrix4x4g)},
-    {ShaderInputType::kSamplerCube, typeid(int)},
-    {ShaderInputType::kSampler2D, typeid(int)}
+tsl::robin_map<ShaderVariableType, std::type_index> Uniform::s_uniformGLTypeMap = {
+    {ShaderVariableType::kBool, typeid(bool)},
+    {ShaderVariableType::kInt, typeid(int)},
+    {ShaderVariableType::kFloat, typeid(float)},
+    {ShaderVariableType::kDouble, typeid(double)},
+    {ShaderVariableType::kUVec2, typeid(Vector<unsigned int, 2>)},
+    {ShaderVariableType::kUVec3, typeid(Vector<unsigned int, 3>)},
+    {ShaderVariableType::kUVec4, typeid(Vector<unsigned int, 4>)},
+    {ShaderVariableType::kIVec2, typeid(Vector<int, 2>)},
+    {ShaderVariableType::kIVec3, typeid(Vector<int, 3>)},
+    {ShaderVariableType::kIVec4, typeid(Vector<int, 4>)},
+    {ShaderVariableType::kVec2, typeid(Vector2)},
+    {ShaderVariableType::kVec3, typeid(Vector3)},
+    {ShaderVariableType::kVec4, typeid(Vector4)},
+    {ShaderVariableType::kMat2, typeid(Matrix2x2g)},
+    {ShaderVariableType::kMat3, typeid(Matrix3x3g)},
+    {ShaderVariableType::kMat4, typeid(Matrix4x4g)},
+    {ShaderVariableType::kSamplerCube, typeid(int)},
+    {ShaderVariableType::kSamplerCubeArray, typeid(int)},
+    {ShaderVariableType::kSampler2D, typeid(int)},
+    {ShaderVariableType::kSampler2DShadow, typeid(int)},
+    {ShaderVariableType::kSampler2DArray, typeid(int)}
 };
 ///////////////////////////////////////////////////////////////////////////////////////////
-std::unordered_map<QString, ShaderInputType> Uniform::UNIFORM_TYPE_STR_MAP = {
-    {"bool",   ShaderInputType::kBool},
-    {"int",    ShaderInputType::kInt},
-    {"float",  ShaderInputType::kFloat},
-    {"double", ShaderInputType::kDouble},
-    {"vec2",   ShaderInputType::kVec2},
-    {"vec3",   ShaderInputType::kVec3},
-    {"vec4",   ShaderInputType::kVec4},
-    {"mat2",   ShaderInputType::kMat2},
-    {"mat3",   ShaderInputType::kMat3},
-    {"mat4",   ShaderInputType::kMat4},
-    {"samplerCube", ShaderInputType::kSamplerCube},
-    {"sampler2D", ShaderInputType::kSampler2D}
+tsl::robin_map<QString, ShaderVariableType> Uniform::s_uniformTypeStrMap = {
+    {"bool",   ShaderVariableType::kBool},
+    {"int",    ShaderVariableType::kInt},
+    {"float",  ShaderVariableType::kFloat},
+    {"double", ShaderVariableType::kDouble},
+    {"ivec2",   ShaderVariableType::kIVec2},
+    {"ivec3",   ShaderVariableType::kIVec3},
+    {"ivec4",   ShaderVariableType::kIVec4},
+    {"uvec2",   ShaderVariableType::kUVec2},
+    {"uvec3",   ShaderVariableType::kUVec3},
+    {"uvec4",   ShaderVariableType::kUVec4},
+    {"vec2",   ShaderVariableType::kVec2},
+    {"vec3",   ShaderVariableType::kVec3},
+    {"vec4",   ShaderVariableType::kVec4},
+    {"mat2",   ShaderVariableType::kMat2},
+    {"mat3",   ShaderVariableType::kMat3},
+    {"mat4",   ShaderVariableType::kMat4},
+    {"samplerCube", ShaderVariableType::kSamplerCube},
+    {"samplerCubeArray", ShaderVariableType::kSamplerCubeArray},
+    {"sampler2D", ShaderVariableType::kSampler2D},
+    {"sampler2DShadow", ShaderVariableType::kSampler2DShadow},
+    {"sampler2DArray", ShaderVariableType::kSampler2DArray}
+};
+
+///////////////////////////////////////////////////////////////////////////////////////////
+tsl::robin_map<ShaderVariableType, QString> Uniform::s_uniformStrTypeMap = {
+    {ShaderVariableType::kBool,   "bool"},
+    {ShaderVariableType::kInt,    "int"},
+    {ShaderVariableType::kFloat,  "float"},
+    {ShaderVariableType::kDouble, "double"},
+    {ShaderVariableType::kUVec2,   "uvec2"},
+    {ShaderVariableType::kUVec3,   "uvec3"},
+    {ShaderVariableType::kUVec4,   "uvec4"},
+    {ShaderVariableType::kIVec2,   "ivec2"},
+    {ShaderVariableType::kIVec3,   "ivec3"},
+    {ShaderVariableType::kIVec4,   "ivec4"},
+    {ShaderVariableType::kVec2,   "vec2"},
+    {ShaderVariableType::kVec3,   "vec3"},
+    {ShaderVariableType::kVec4,   "vec4"},
+    {ShaderVariableType::kMat2,   "mat2"},
+    {ShaderVariableType::kMat3,   "mat3"},
+    {ShaderVariableType::kMat4,   "mat4"},
+    {ShaderVariableType::kSamplerCube, "samplerCube"},
+    {ShaderVariableType::kSamplerCubeArray, "samplerCubeArray"},
+    {ShaderVariableType::kSampler2D,   "sampler2D"},
+    {ShaderVariableType::kSampler2DShadow,   "sampler2DShadow"},
+    {ShaderVariableType::kSampler2DArray,   "sampler2DArray"}
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////////

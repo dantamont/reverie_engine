@@ -1,0 +1,151 @@
+// This shader is run once per cluster and aims to obtain the min and max points of the AABB encompassing said cluster
+// See: http://www.aortiz.me/2018/12/21/CG.html#tiled-shading--forward
+
+// gl_NumWorkGroups - the number of work groups passed to the dispatch function
+// gl_WorkGroupID - the current work group for this shader invocation. Each of the XZ components will be in the half-open rnage [0, gl_NumWorkGroups.XYZ)
+// gl_LocalInvocationID - the current invocation of the shader within the work group
+// gl_GlobalInvocationID - the current invocation of this shader within ALL work groups
+// gl_LocalInvocationIndex - 1D representation of the gl_LocalInvocationID(used for indexing into a shared array)
+
+#define FLT_MAX 3.402823466e+38
+#define FLT_MIN 1.175494351e-38
+#define DBL_MAX 1.7976931348623158e+308
+#define DBL_MIN 2.2250738585072014e-308
+
+layout(local_size_x = 1, local_size_y = 1) in;
+
+//ssbo initialization
+struct VolumeTileAABB{
+    vec4 minPoint;
+    vec4 maxPoint;
+};
+
+// SSBO of all light clusters associated with the camera's projection
+layout (std430, binding = 1) buffer ClusterBoundsBuffer{
+    VolumeTileAABB cluster[ ];
+};
+
+// SSBO with inverse projection matrix, tile sizes, and screen dimensions
+layout (std430, binding = 2) buffer ScreenToViewBuffer{
+    mat4 inverseProjection;
+    uvec4 tileGridSizes;
+	uvec4 tilePixelSizes;
+    uvec2 screenDimensions;
+};
+
+//Shared between all clusters
+layout (std140) uniform CameraBuffer
+{
+	mat4 viewMatrix;
+	mat4 invViewMatrix;
+	mat4 projectionMatrix;
+	mat4 invProjectionMatrix;
+	float zNear;
+	float zFar;
+	uvec2 viewportDimensions;
+	vec4 screenPercentage; // Screen percentage of viewport
+};
+
+//Function prototypes
+vec4 clipToView(vec4 clip);
+vec4 screen2View(vec4 screen);
+vec3 lineIntersectionToZPlane(vec3 A, vec3 B, float zDistance);
+
+//Each cluster has it's own thread ID in x, y and z
+//We dispatch 16x9x24 threads, one thread per cluster
+void main(){
+    //Eye position is zero in view space
+    const vec3 eyePos = vec3(0.0);
+
+    //Per cluster variables
+    uint tileSizePxX = tilePixelSizes[0]; // How many pixels in x does a square tile use
+	uint tileSizePxY = tilePixelSizes[1];
+    uint tileIndex = gl_WorkGroupID.x +
+                     gl_WorkGroupID.y * gl_NumWorkGroups.x +
+                     gl_WorkGroupID.z * (gl_NumWorkGroups.x * gl_NumWorkGroups.y); // Linear ID of the thread/cluster
+
+    //Calculating the min and max point in screen space
+	// Is assuming the default [-1, 1] post-projection depth range, i.e., -1 is the depth at the near plane.
+	// This is not ideal, because it leads to depth precision loss. For alternatives, see:
+	// https://developer.nvidia.com/content/depth-precision-visualized
+	// And for an actual implementation: https://nlguillemot.wordpress.com/2016/12/07/reversed-z-in-opengl/
+	// GL_ARB_clip_control, glClipControl
+    vec4 maxPoint_sS = vec4(vec2(float(gl_WorkGroupID.x + 1)* tileSizePxX, 
+								 float(gl_WorkGroupID.y + 1)* tileSizePxY) , 
+								 -1.0, 1.0); // Top Right, assumes near depth range at -1.0
+    vec4 minPoint_sS = vec4(vec2(float(gl_WorkGroupID.x) * tileSizePxX,
+								 float(gl_WorkGroupID.y) * tileSizePxY), 
+							-1.0, 1.0); // Bottom left, assumes near depth range at -1.0
+    
+    //Pass min and max to view space
+    vec3 maxPoint_vS = screen2View(maxPoint_sS).xyz; // z should be - near plane value
+    vec3 minPoint_vS = screen2View(minPoint_sS).xyz; // z should be - near plane value
+
+    //Near and far values of the cluster in view space
+	//We use equation Z=Nearz(Farz / Nearz)^(slice/numSlices) directly to obtain the tile values
+    float tileNear  = -zNear * pow(zFar/ zNear, gl_WorkGroupID.z/float(gl_NumWorkGroups.z));
+    float tileFar   = -zNear * pow(zFar/ zNear, (gl_WorkGroupID.z + 1) /float(gl_NumWorkGroups.z));
+
+    //Finding the 4 intersection points made from the maxPoint to the cluster near/far plane
+    vec3 minPointNear = lineIntersectionToZPlane(eyePos, minPoint_vS, tileNear );
+    vec3 minPointFar  = lineIntersectionToZPlane(eyePos, minPoint_vS, tileFar );
+    vec3 maxPointNear = lineIntersectionToZPlane(eyePos, maxPoint_vS, tileNear );
+    vec3 maxPointFar  = lineIntersectionToZPlane(eyePos, maxPoint_vS, tileFar );
+
+    vec3 minPointAABB = min(min(minPointNear, minPointFar),min(maxPointNear, maxPointFar));
+    vec3 maxPointAABB = max(max(minPointNear, minPointFar),max(maxPointNear, maxPointFar));
+
+    //Saving the AABB at the tile linear index
+    //Cluster is just a SSBO made of a struct of 2 vec4's
+    cluster[tileIndex].minPoint  = vec4(minPointAABB, 0.0);
+    cluster[tileIndex].maxPoint  = vec4(maxPointAABB, 0.0);
+}
+
+// See: https://stackoverflow.com/questions/7168484/3d-line-segment-and-plane-intersection
+//Creates a line from the eye to the screenpoint, then finds its intersection
+//With a z oriented plane located at the given distance to the origin
+//Input:
+//float zDistance; // Normally the z-depth boundaries of a tile
+//vec3 A,B;        // Two points that are located along the same line, forming a ray
+vec3 lineIntersectionToZPlane(vec3 A, vec3 B, float zDistance){
+    //Because this is a Z based normal this is fixed
+    vec3 normal = vec3(0.0, 0.0, 1.0); // we are evaluating the points in view space and positive z points TOWARDS the camera from this frame of reference.
+
+    vec3 ab =  normalize(B - A);
+
+    //Computing the intersection length for the line and the plane
+    float t = (zDistance - dot(normal, A)) / dot(normal, ab);
+
+    //Computing the actual xyz position of the point along the line
+    vec3 contact = A + t * ab;
+
+    return contact;
+}
+
+vec4 clipToView(vec4 clip){
+    //View space transform
+	vec4 view = inverseProjection * clip;
+
+    //Perspective projection
+	view = view / view.w;
+    
+    return view;
+}
+
+//Converts a point's coordinate system from screen space to view space
+// See: https://stackoverflow.com/questions/26691029/glsl-compute-world-coordinate-from-eye-depth-and-screen-position
+vec4 screen2View(vec4 screen){
+    //Convert to NDC
+    vec2 texCoord = screen.xy / screenDimensions.xy;
+
+    //Convert to clipSpace
+	// vec4 clip = vec4(vec2(texCoord.x, 1.0 - texCoord.y)* 2.0 - 1.0, screen.z, screen.w);
+    vec4 clip = vec4(vec2(texCoord.x, texCoord.y)* 2.0 - 1.0, screen.z, screen.w);
+
+    return clipToView(clip);
+	
+	// https://www.khronos.org/opengl/wiki/Compute_eye_space_from_window_space
+	// float viewZ = (2.0 * screen.z - gl_DepthRange.near - gl_DepthRange.far) / (gl_DepthRange.far - gl_DepthRange.near);
+	// return vec4(vec2(texCoord.x, texCoord.y)* 2.0 - 1.0, viewZ, 1.0);
+	
+}

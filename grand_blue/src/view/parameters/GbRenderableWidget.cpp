@@ -2,6 +2,7 @@
 #include "../style/GbFontIcon.h"
 #include "../../core/readers/GbJsonReader.h"
 #include "../../core/components/GbModelComponent.h"
+#include "../../core/rendering/renderer/GbMainRenderer.h"
 #include "../../core/utils/GbMemoryManager.h"
 #include "../../core/scene/GbScenario.h"
 #include "../tree/GbRenderLayerWidget.h"
@@ -76,7 +77,7 @@ void UniformWidget::layoutWidgets()
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void UniformWidget::updateUniform()
 {
-    m_uniform = Uniform(m_uniformName->text());
+    m_uniform = Uniform(GString(m_uniformName->text()));
 
     QString valueStr = m_uniformValue->text();
     QRegularExpression intRegex("(\\d+)");
@@ -175,9 +176,9 @@ void RenderUniformsWidget::repopulateUniforms()
     clearUniforms();
 
     m_uniformWidgets.reserve(m_renderable.uniforms().size());
-    for (auto& uniformPair : m_renderable.uniforms()) {
+    for (Uniform& uniform : m_renderable.uniforms()) {
         m_uniformWidgets.push_back(new UniformWidget(m_engine,
-            uniformPair.second,
+            uniform,
             this));
     }
 
@@ -190,23 +191,22 @@ void RenderUniformsWidget::repopulateUniforms()
     m_areaWidget = new QWidget();
     m_areaWidget->setLayout(areaLayout);
     m_area->setWidget(m_areaWidget);
-    m_areaWidget->show();
-    m_area->show();
+    // m_areaWidget->show();
+    // m_area->show();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void RenderUniformsWidget::addUniform()
 {
-    QString tempName = QStringLiteral("temp_name");
+    const char* tempName = "temp_name";
     m_renderable.addUniform(Uniform(tempName, 0));
     repopulateUniforms();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void RenderUniformsWidget::removeCurrentUniform()
 {
-
     auto iter = std::find_if(m_renderable.uniforms().begin(), m_renderable.uniforms().end(),
-        [&](const std::pair<QString, Uniform>& uniformPair) {
-        return uniformPair.first == m_currentUniformWidget->uniform().getName();
+        [&](const Uniform& uniform) {
+        return uniform.getName() == m_currentUniformWidget->uniform().getName();
     });
 
     if (iter == m_renderable.uniforms().end()) {
@@ -269,17 +269,20 @@ void RenderSettingsWidget::initializeWidgets()
         "Render if more deep or equal",
         "Always pass depth test"
         });
-    std::shared_ptr<RenderSetting> depthSetting = m_renderSettings.setting(RenderSetting::SettingType::kDepth);
+
+    RenderSettings& settings = m_engine->mainRenderer()->renderContext().renderSettings();
+    const RenderSetting* depthSetting = m_renderSettings.setting(RenderSetting::SettingType::kDepth);
     if (!depthSetting) {
-        depthSetting = RenderSettings::CURRENT_SETTINGS[RenderSetting::kDepth];
+        m_renderSettings.addSetting<DepthSetting>();
+        depthSetting = m_renderSettings.setting(RenderSetting::kDepth);
     }
-    int index = S_CAST<DepthSetting>(depthSetting)->depthMode() - GL_NEVER;
+    int index = (int)static_cast<const DepthSetting*>(depthSetting)->depthPassMode() - GL_NEVER;
     m_depthMode->setCurrentIndex(index);
 
 
     m_depthTest = new QCheckBox("Test");
     m_depthTest->setToolTip("Enable/disable depth testing");
-    bool depthTestValue = S_CAST<DepthSetting>(depthSetting)->isEnabled();
+    bool depthTestValue = static_cast<const DepthSetting*>(depthSetting)->isTestEnabled();
     m_depthTest->setChecked(depthTestValue);
 
     m_culledFace = new QComboBox();
@@ -288,11 +291,11 @@ void RenderSettingsWidget::initializeWidgets()
         "Back",
         "Front and Back"
         });
-    std::shared_ptr<RenderSetting> cullSetting = m_renderSettings.setting(RenderSetting::SettingType::kCullFace);
+    const RenderSetting* cullSetting = m_renderSettings.setting(RenderSetting::SettingType::kCullFace);
     if (!cullSetting) {
-        cullSetting = RenderSettings::CURRENT_SETTINGS[RenderSetting::kCullFace];
+        cullSetting = settings.setting(RenderSetting::kCullFace);
     }
-    int culledFace = S_CAST<CullFaceSetting>(cullSetting)->culledFace();
+    int culledFace = (int)static_cast<const CullFaceSetting*>(cullSetting)->culledFace();
     int faceIndex;
     if (culledFace == GL_FRONT)
         faceIndex = 0;
@@ -303,7 +306,7 @@ void RenderSettingsWidget::initializeWidgets()
     m_culledFace->setCurrentIndex(faceIndex);
 
     m_cullFace = new QCheckBox(QStringLiteral("Cull Face"));
-    m_cullFace->setChecked(S_CAST<CullFaceSetting>(cullSetting)->cullFace());
+    m_cullFace->setChecked(static_cast<const CullFaceSetting*>(cullSetting)->cullFace());
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void RenderSettingsWidget::initializeConnections()
@@ -314,31 +317,34 @@ void RenderSettingsWidget::initializeConnections()
 
         int depthMode = getDepthMode(index);
 
-        m_renderSettings.addSetting(std::make_shared<DepthSetting>(
+        // TODO: Split testing from depth masking
+        m_renderSettings.addSetting<DepthSetting>(
             (bool)m_depthTest->isChecked(),
-            depthMode));
+            (DepthPassMode)depthMode,
+            (bool)m_depthTest->isChecked());
     });
 
     connect(m_depthTest, &QCheckBox::stateChanged,
         this,
         [this](int state) {
         Q_UNUSED(state);
+        //QMutexLocker lock(&m_engine->mainRenderer()->drawMutex());
         int depthMode = getDepthMode(m_depthMode->currentIndex());
-        m_renderSettings.addSetting(std::make_shared<DepthSetting>(
+        m_renderSettings.addSetting<DepthSetting>(
             (bool)m_depthTest->isChecked(),
-            depthMode));
+            (DepthPassMode)depthMode,
+            (bool)m_depthTest->isChecked());
     });
 
 
     connect(m_culledFace, qOverload<int>(&QComboBox::currentIndexChanged),
         this,
         [this](int index) {
-
         int culledFace = getCulledFace(index);
 
-        m_renderSettings.addSetting(std::make_shared<CullFaceSetting>(
+        m_renderSettings.addSetting<CullFaceSetting>(
             (bool)m_cullFace->isChecked(),
-            culledFace));
+            (CulledFace)culledFace);
     });
 
     connect(m_cullFace, &QCheckBox::stateChanged,
@@ -346,9 +352,9 @@ void RenderSettingsWidget::initializeConnections()
         [this](int state) {
         Q_UNUSED(state);
         int culledFace = getCulledFace(m_culledFace->currentIndex());
-        m_renderSettings.addSetting(std::make_shared<CullFaceSetting>(
+        m_renderSettings.addSetting<CullFaceSetting>(
             (bool)m_cullFace->isChecked(),
-            culledFace));
+            (CulledFace)culledFace);
     });
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -397,6 +403,7 @@ int RenderSettingsWidget::getCulledFace(int faceWidgetIndex) const
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void RenderSettingsWidget::contextMenuEvent(QContextMenuEvent * event)
 {
+    Q_UNUSED(event);
     logInfo("Context menu event");
 }
 

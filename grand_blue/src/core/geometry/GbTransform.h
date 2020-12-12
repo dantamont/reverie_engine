@@ -29,8 +29,16 @@ class SceneObject;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Class Definitions
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+struct TransformMatrices {
+    /// @brief Local model matrix
+    Matrix4x4g m_localMatrix;
 
+    /// @brief Global model matrix
+    Matrix4x4g m_worldMatrix;
+};
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /** @class Transform
     @brief A transform consisting of a translation, a rotation, and a scaling
 */
@@ -57,6 +65,8 @@ public:
     static Transform interpolate(const std::vector<Transform>& transforms,
         const std::vector<float>& weights,
         bool updateWorld);
+
+    static const Transform& Identity() { return s_identity; }
 
     /// @}
 
@@ -87,6 +97,9 @@ public:
     /// @name Properties
     /// @{    
 
+    /// @brief Matrices
+    const TransformMatrices& matrices() const { return m_matrices; }
+
     /// @brief Translation component
     TranslationComponent& translation() { return m_translation; }
     const Vector3& getPosition() const { return m_translation.getPosition(); }
@@ -101,10 +114,10 @@ public:
     const Vector3& getScaleVec() const { return m_scale.getScale(); }
 
     /// @brief Local model matrix
-    const Matrix4x4g& localMatrix() const { return m_localMatrix; }
+    const Matrix4x4g& localMatrix() const { return m_matrices.m_localMatrix; }
 
     /// @brief Global model matrix
-    const Matrix4x4g& worldMatrix() const { return m_worldMatrix; }
+    const Matrix4x4g& worldMatrix() const { return m_matrices.m_worldMatrix; }
 
     /// @brief Returns world matrix without scaling
     Matrix4x4g rotationTranslationMatrix() const;
@@ -118,8 +131,20 @@ public:
     /// @name Public methods
     /// @{    
 
+    /// @brief Return the world position of the transform
+    Vector3 worldPosition() const;
+
+    /// @brief Set the local transform such that it has the given world position
+    void setWorldPosition(const Vector3& worldPos);
+
+    /// @brief Whether the specified child is a child of this transform
+    /// \param[in] child    The candidate child transform
+    /// \param[out] idx     The index of the child transform, if it is a child
+    /// \return Whether or not the specified transform is a child
+    bool hasChild(const Transform& child, size_t* idx = nullptr);
+
     /// @brief Rotate about the given axis, in radians
-    void rotateAboutAxis(const Vector3g& axis, float angle);
+    void rotateAboutAxis(const Vector3& axis, float angle);
 
     /// @brief Return as a physX transform
     physx::PxTransform asPhysX() const;
@@ -128,7 +153,9 @@ public:
     /// @details Called to avoid redundant matrix multiplications on component modification
     void updateLocalMatrix();
     void updateWorldMatrix();
-    void updateWorldMatrix(const Matrix4x4g& matrix);
+
+    /// @brief Update the world matrix with a local matrix
+    void updateWorldMatrix(const Matrix4x4g& localMatrix);
 
     /// @brief Compute world matrix
     virtual void computeWorldMatrix();
@@ -151,7 +178,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -164,7 +191,7 @@ protected:
     friend class AffineComponent;
     friend class TranslationComponent;
     friend class SceneObject;
-    friend class SkeletonPose;
+    friend class BlendQueue;
 
     /// @}
 
@@ -199,7 +226,7 @@ protected:
     Transform* m_parent = nullptr;
 
     /// @brief Child transforms
-    std::unordered_map<Uuid, Transform*> m_children;
+    std::vector<Transform*> m_children;
 
     /// @brief Translation component
     TranslationComponent m_translation;
@@ -210,11 +237,10 @@ protected:
     /// @brief Scale component
     ScaleComponent m_scale;
 
-    /// @brief Local model matrix
-    Matrix4x4g m_localMatrix;
+    /// @brief Matrices
+    TransformMatrices m_matrices;
 
-    /// @brief Global model matrix
-    Matrix4x4g m_worldMatrix;
+    static Transform s_identity;
 
     /// @}
 

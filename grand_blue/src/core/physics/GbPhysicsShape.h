@@ -34,12 +34,12 @@ public:
     /// @name Statics
     /// @{
     static std::shared_ptr<PhysicsShapePrefab> get(const QJsonValue& json);
-    static std::shared_ptr<PhysicsShapePrefab> get(const QString& name);
-    static std::shared_ptr<PhysicsShapePrefab> get(const QString& name,
+    static std::shared_ptr<PhysicsShapePrefab> get(const GString& name);
+    static std::shared_ptr<PhysicsShapePrefab> get(const GString& name,
         const std::shared_ptr<PhysicsGeometry>& geometry,
         const std::shared_ptr<PhysicsMaterial>& material);
     static std::shared_ptr<PhysicsShapePrefab> create(const QJsonValue& json);
-    static std::shared_ptr<PhysicsShapePrefab> create(const QString& name,
+    static std::shared_ptr<PhysicsShapePrefab> create(const GString& name,
         const std::shared_ptr<PhysicsGeometry>& geometry,
         const std::shared_ptr<PhysicsMaterial>& material);
 
@@ -56,20 +56,25 @@ public:
     /// @{
 
     /// @brief Get the geometry of the shape
-    std::shared_ptr<PhysicsGeometry> geometry() { return m_geometry; }
     const std::shared_ptr<PhysicsGeometry>& geometry() const { return m_geometry; }
     void setGeometry(const std::shared_ptr<PhysicsGeometry>& geometry);
 
     /// @brief Get the material for the shape
     std::shared_ptr<PhysicsMaterial> material() {
         if (m_materials.size() == 1) {
-            return m_materials.begin()->second;
+            return m_materials[0];
+        }
+        else {
+            throw("Error, material is ambiguous");
         }
         return nullptr;
     };
     std::shared_ptr<PhysicsMaterial> getMaterial() const {
         if (m_materials.size() == 1) {
-            return m_materials.begin()->second;
+            return m_materials[0];
+        }
+        else {
+            throw("Error, material is ambiguous");
         }
         return nullptr;
     };
@@ -79,6 +84,9 @@ public:
     //--------------------------------------------------------------------------------------------
     /// @name Public methods
     /// @{
+
+    /// @brief Update all instances with new prefab parameters
+    void updateInstances();
 
     /// @brief Make an exclusive copy of this shape for the given rigid body
     physx::PxShape* createExclusive(RigidBody& rigidBody) const;
@@ -96,7 +104,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -113,6 +121,7 @@ public:
 
 protected:
     friend class PhysicsShape;
+    friend class RigidBody;
     friend class PhysicsManager;
 
     //--------------------------------------------------------------------------------------------
@@ -120,7 +129,7 @@ protected:
     /// @{
 
     PhysicsShapePrefab(const QJsonValue& json);
-    PhysicsShapePrefab(const QString& name,
+    PhysicsShapePrefab(const GString& name,
         const std::shared_ptr<PhysicsGeometry>& geometry,
         const std::shared_ptr<PhysicsMaterial>& material);
 
@@ -145,9 +154,9 @@ protected:
     std::shared_ptr<PhysicsGeometry> m_geometry;
 
     /// @brief The materials for this shape
-    std::unordered_map<QString, std::shared_ptr<PhysicsMaterial>> m_materials;
+    std::vector<std::shared_ptr<PhysicsMaterial>> m_materials;
 
-    std::unordered_map<Uuid, PhysicsShape*> m_instances;
+    std::vector<PhysicsShape*> m_instances;
 
     /// @}
 };
@@ -162,12 +171,28 @@ protected:
 class PhysicsShape: public Object {
 public:
 
-    PhysicsShape() : // Default constructor for container storage
-        m_pxShape(nullptr),
-        m_prefab(nullptr){
-    }
+    //-----------------------------------------------------------------------------------------------------------------    
+    /// @name Constructors/Destructors
+    /// @{
+
+    PhysicsShape();
     PhysicsShape(PhysicsShapePrefab& prefab, RigidBody* body);
     ~PhysicsShape();
+
+    /// @}
+
+    //-----------------------------------------------------------------------------------------------------------------    
+    /// @name Properties
+    /// @{
+
+    PhysicsShapePrefab& prefab() const { return *m_prefab; }
+    physx::PxShape* pxShape() { return m_pxShape; }
+
+    /// @}
+
+    //-----------------------------------------------------------------------------------------------------------------    
+    /// @name Public Methods
+    /// @{
 
     /// @brief Detach from the associated body
     void detach() const;
@@ -186,22 +211,41 @@ public:
     void reinitialize();
 
     bool isEmpty() const { return !m_pxShape && !m_prefab; }
-    PhysicsShapePrefab& prefab() const { return *m_prefab; }
-    
+
     void setPrefab(PhysicsShapePrefab& prefab, bool removeFromOldPrefab = true);
 
-    physx::PxShape* pxShape() { return m_pxShape; }
+    /// @}
+
 private:
+
+    //-----------------------------------------------------------------------------------------------------------------    
+    /// @name Friends
+    /// @{
+
     friend class Rigidbody;
     friend class PhysicsShapePrefab;
 
+    /// @}
+
+    //-----------------------------------------------------------------------------------------------------------------    
+    /// @name Private Methods
+    /// @{
+
     /// @brief Called from prefab destructor to ensure clean deletion
     void prepareForDelete();
+
+    /// @}
+
+    //-----------------------------------------------------------------------------------------------------------------    
+    /// @name Private Members
+    /// @{
 
     physx::PxShape* m_pxShape = nullptr;
     RigidBody* m_body = nullptr;
 
     PhysicsShapePrefab* m_prefab;
+
+    /// @}
 };
 
 

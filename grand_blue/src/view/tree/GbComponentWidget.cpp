@@ -98,42 +98,6 @@ void ComponentTreeWidget::clearScene()
     clear();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// TODO: Deprecate this function
-void ComponentTreeWidget::selectSceneObject(const Uuid& sceneID, const Uuid& sceneObjectID) {
-    // Clear the widget
-    clearScene();
-
-    // Set new scene object
-    std::shared_ptr<Scene> sc = m_engine->scenario()->getScene(sceneID);
-    if (!sc) {
-        // Scene belongs to debug manager if not in scenario
-        sc = m_engine->debugManager()->scene();
-    }
-    m_currentSceneObject = sc->getSceneObject(sceneObjectID);
-
-    // Return if no new scene object
-    if (!currentSceneObject()) {
-#ifdef DEBUG_MODE
-        logWarning("selectSceneObject::Warning, no scene object found");
-#endif
-        return;
-    }
-
-    // Add transform component
-    addItem((Component*)currentSceneObject()->transform().get());
-
-    // Add render layers widget
-    auto item = new View::ComponentItem(currentSceneObject().get());
-    addItem(item);
-
-    // Populate with components of new scene object
-    for (const auto& componentList: currentSceneObject()->components()) {
-        for (const auto& comp : componentList) {
-            addItem(comp);
-        }
-    }
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void ComponentTreeWidget::selectSceneObject(const Uuid & sceneObjectID)
 {
     // Clear the widget
@@ -143,10 +107,14 @@ void ComponentTreeWidget::selectSceneObject(const Uuid & sceneObjectID)
     // Return if no new scene object
     if (!currentSceneObject()) {
 #ifdef DEBUG_MODE
-        logWarning("selectSceneObject::Warning, no scene object found");
+        throw("selectSceneObject::Warning, no scene object found");
 #endif
         return;
     }
+
+    // Add render layers widget
+    auto item = new View::ComponentItem(currentSceneObject().get());
+    addItem(item);
 
     // Add transform component
     addItem((Component*)currentSceneObject()->transform().get());
@@ -374,9 +342,9 @@ void ComponentTreeWidget::initializeWidget()
             new AddSceneObjectComponent(m_engine, currentSceneObject(), "Instantiate Animation Component", (int)Component::ComponentType::kBoneAnimation));
     });
 
-    // Initialize create listener component action
-    m_addListenerComponent = new QAction(tr("&New Listener Component"), this);
-    m_addListenerComponent->setStatusTip("Create a new Listener component");
+    // Initialize create event listener component action
+    m_addListenerComponent = new QAction(tr("&New Event Listener Component"), this);
+    m_addListenerComponent->setStatusTip("Create a new Event Listener component");
     connect(m_addListenerComponent,
         &QAction::triggered,
         m_engine->actionManager(),
@@ -428,6 +396,31 @@ void ComponentTreeWidget::initializeWidget()
             new AddSceneObjectComponent(m_engine, so, "Instantiate Cube Map", (int)Component::ComponentType::kCubeMap));
     });
 
+    // Initialize create audio component action
+    m_addAudioSourceComponent = new QAction(tr("&New Audio Source Component"), this);
+    m_addAudioSourceComponent->setStatusTip("Create a new Audio Source component");
+    connect(m_addAudioSourceComponent,
+        &QAction::triggered,
+        m_engine->actionManager(),
+        [this] {
+        std::shared_ptr<SceneObject> so = currentSceneObject();
+        m_engine->actionManager()->performAction(
+            new AddSceneObjectComponent(m_engine, so, "Instantiate Audio Source", (int)Component::ComponentType::kAudioSource));
+    });
+
+    // Initialize create audio listener component action
+    m_addAudioListenerComponent = new QAction(tr("&New Audio Listener Component"), this);
+    m_addAudioListenerComponent->setStatusTip("Create a new Audio Listener component");
+    connect(m_addAudioListenerComponent,
+        &QAction::triggered,
+        m_engine->actionManager(),
+        [this] {
+        std::shared_ptr<SceneObject> so = currentSceneObject();
+        m_engine->actionManager()->performAction(
+            new AddSceneObjectComponent(m_engine, so, "Instantiate Audio Listener", (int)Component::ComponentType::kAudioListener));
+    });
+
+
     // Scene components ====================================================================
     // Initialize create physics scene component action
     m_addPhysicsSceneComponent = new QAction(tr("&New Physics Scene Component"), this);
@@ -465,7 +458,7 @@ void ComponentTreeWidget::initializeWidget()
     connect(m_engine->sceneTreeWidget(),
         &SceneTreeWidget::selectedSceneObject,
         this,
-        qOverload<const Uuid&, const Uuid&>(&ComponentTreeWidget::selectSceneObject));
+        qOverload<const Uuid&>(&ComponentTreeWidget::selectSceneObject));
 
     connect(m_engine->sceneTreeWidget(),
         &SceneTreeWidget::deselectedSceneObject,
@@ -548,6 +541,8 @@ void ComponentTreeWidget::contextMenuEvent(QContextMenuEvent * event)
             menu.addAction(m_addCanvasComponent);
             menu.addAction(m_addCharControllerComponent);
             menu.addAction(m_addCubeMapComponent);
+            menu.addAction(m_addAudioSourceComponent);
+            menu.addAction(m_addAudioListenerComponent);
         }
 
         // Display menu at click location

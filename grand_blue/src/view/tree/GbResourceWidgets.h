@@ -28,6 +28,7 @@ class Model;
 namespace View {
 class LoadModelWidget;
 class LoadTextureWidget;
+class LoadAudioWidget;
 class CreateMeshWidget;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -343,7 +344,6 @@ protected:
 
 };
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /// @class CopyModelCommand
@@ -397,6 +397,55 @@ protected:
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+/// @class LoadAudioCommand
+/// @brief Add audio
+class LoadAudioCommand : public UndoCommand {
+public:
+    //--------------------------------------------------------------------------------------------
+    /// @name Constructors/Destructor
+    /// @{
+    LoadAudioCommand(CoreEngine* core,
+        const QString &text,
+        QUndoCommand *parent = nullptr);
+    ~LoadAudioCommand();
+    /// @}
+
+    //--------------------------------------------------------------------------------------------
+    /// @name Public Methods
+    /// @{
+
+    /// @brief Redoes the command
+    virtual void redo() override;
+
+    /// @brief Undoes the command
+    virtual void undo() override;
+
+    /// @}
+protected:
+
+    //--------------------------------------------------------------------------------------------
+    /// @name Protected methods
+    /// @{
+
+    /// @brief Create audio widget
+    void createAudioWidget();
+
+    /// @}
+
+    //--------------------------------------------------------------------------------------------
+    /// @name Protected members
+    /// @{
+
+    /// @brief model widget
+    View::LoadAudioWidget* m_audioWidget;
+
+    /// @}
+
+};
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 /// @class AddShaderCommand
 /// @brief Add a shader program
 class AddShaderCommand : public UndoCommand {
@@ -437,9 +486,15 @@ protected:
 
     /// @brief shader widget
     QWidget* m_shaderWidget;
+    View::FileLoadWidget* m_vertexWidget;
+    View::FileLoadWidget* m_fragmentWidget;
+    View::FileLoadWidget* m_geometryWidget;
+    View::FileLoadWidget* m_computeWidget;
 
     QString m_fragFile;
     QString m_vertFile;
+    QString m_geomFile;
+    QString m_compFile;
 
     /// @brief The shader program added by this command
     Uuid m_shaderProgramID;
@@ -487,7 +542,7 @@ protected:
     QJsonValue m_materialJson;
 
     Uuid m_materialHandleID;
-    QString m_materialName;
+    GString m_materialName;
 
     /// @}
 
@@ -528,7 +583,7 @@ protected:
 
     /// @brief The JSON for the model removed by this command
     QJsonValue m_modelJson;
-    QString m_modelName;
+    GString m_modelName;
 
     /// @}
 
@@ -568,7 +623,7 @@ protected:
 
     /// @brief The JSON for the shader removed by this command
     QJsonValue m_shaderJson;
-    QString m_shaderName;
+    GString m_shaderName;
 
     /// @}
 
@@ -635,7 +690,7 @@ protected:
 
     /// @brief Serializable object
     Uuid m_resourceHandleID;
-    QString m_resourceName;
+    GString m_resourceName;
 
     QTextEdit* m_textEdit;
     QPushButton* m_confirmButton = nullptr;
@@ -858,6 +913,7 @@ protected:
     ResourceItem* m_modelItem;
     ResourceItem* m_shaderItem;
     ResourceItem* m_scriptItem;
+    ResourceItem* m_audioItem;
 
     /// @brief Actions performable in this widget
     QAction* m_addModel;

@@ -24,7 +24,7 @@ namespace View {
 // Classes
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /// @class TranslationWidget
-class TranslationWidget : public VectorWidget<double, 3> {
+class TranslationWidget : public VectorWidget<real_g, 3> {
 public:
     TranslationWidget(CoreEngine* core, Transform* transform, QWidget* parent = nullptr);
 
@@ -77,12 +77,15 @@ protected:
     QLineEdit* m_rotEdit3;
 
     Transform* m_transform;
+
+    // Last explicitly entered values
+    Vector3 m_lastDegreeAngles;
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /// @class ScaleWidget
-class ScaleWidget : public VectorWidget<double, 3> {
+class ScaleWidget : public VectorWidget<real_g, 3> {
 public:
     ScaleWidget(CoreEngine* core, Transform* transform, QWidget* parent = nullptr);
 

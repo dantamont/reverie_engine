@@ -84,7 +84,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -189,7 +189,7 @@ public:
     RigidType rigidType() const { return m_rigidType; }
     void setRigidType(RigidType type) { m_rigidType = type; }
 
-    std::vector<PhysicsShape>& shapes() { return m_shapes; }
+    std::vector<PhysicsShape*>& shapes() { return m_shapes; }
 
     /// @brief Whether the body is kinematic or not
     bool isKinematic() const { return m_isKinematic; }
@@ -251,7 +251,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -293,7 +293,7 @@ protected:
 
     /// @brief Shape instantiations
     /// @details Can also be obtained with PxRigidActor::getShapes
-    std::vector<PhysicsShape> m_shapes;
+    std::vector<PhysicsShape*> m_shapes;
 
     /// @brief The type of rigid body, e.g. static vs dynamic
     RigidType m_rigidType;

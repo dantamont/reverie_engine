@@ -14,6 +14,7 @@
 #include "../rendering/shaders/GbUniform.h"
 #include "../components/GbComponent.h"
 #include "../containers/GbContainerExtensions.h"
+#include "../geometry/GbCollisions.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Namespace Definitions
@@ -49,7 +50,7 @@ class MainRenderer;
 /** @class Scene
     @brief A scene consisting of Scene Objects
 */
-class Scene: public Object, public Loadable, std::enable_shared_from_this<Scene>{
+class Scene: public Object, public Loadable, public std::enable_shared_from_this<Scene>{
 public:
 
     //-----------------------------------------------------------------------------------------------------------------
@@ -86,7 +87,7 @@ public:
     /// @{    
 
     /// @brief The components for this scene
-    std::unordered_map<Component::ComponentType, std::vector<Component*>>& components() { return m_components; }
+    tsl::robin_map<Component::ComponentType, std::vector<Component*>>& components() { return m_components; }
 
     /// @property Scenario
     Scenario* scenario() const;
@@ -100,6 +101,7 @@ public:
 
     /// @brief Return cameras in the scene
     std::vector<CameraComponent*>& cameras();
+    const std::vector<CameraComponent*>& cameras() const;
 
     /// @brief Return all canvases in the scene
     std::vector<CanvasComponent*>& canvases();
@@ -111,11 +113,16 @@ public:
     CubeMapComponent* defaultCubeMap() { return m_defaultCubeMap; }
     void setDefaultCubeMap(CubeMapComponent* map) { m_defaultCubeMap = map; }
 
+
     /// @}
 
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Public methods
     /// @{    
+
+    /// @brief Get frustum containing all currently visible scene geometry
+    const AABB& getVisibleFrustumBounds() const;
+    void updateVisibleFrustumBounds();
 
     /// @brief Generate the draw commands for the scene
     void createDrawCommands(MainRenderer& renderer);
@@ -144,7 +151,7 @@ public:
 
     /// @brief Obtain scene object by UUID
     std::shared_ptr<SceneObject> getSceneObject(const Uuid& uuid) const;
-    std::shared_ptr<SceneObject> getSceneObjectByName(const QString& name) const;
+    std::shared_ptr<SceneObject> getSceneObjectByName(const GString& name) const;
 
     /// @brief Whether the scene has the object or not
     bool hasTopLevelObject(const std::shared_ptr<SceneObject>& object);
@@ -187,7 +194,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -241,19 +248,23 @@ protected:
     /// @brief Pointer to the engine
     CoreEngine* m_engine;
 
+    /// @brief The bounds encompassing all view frustums in the scene
+    AABB m_viewBounds;
+
     /// @brief The components attached to this scene
-    std::unordered_map<Component::ComponentType, std::vector<Component*>> m_components;
+    // TODO: Convert to vector
+    tsl::robin_map<Component::ComponentType, std::vector<Component*>> m_components;
 
     /// @brief Vector of top-level objects in this scene
     std::vector<std::shared_ptr<SceneObject>> m_topLevelSceneObjects;
 
-    /// @brief Map of uniforms for the scene
-    std::unordered_map<QString, Uniform> m_uniforms;
+    /// @brief Vector of uniforms for the scene
+    std::vector<Uniform> m_uniforms;
 
-    /// @brief Map of all canvas components, was storing scene objects, which was causing ownership issues
+    /// @brief Vector of all canvas components, was storing scene objects, which was causing ownership issues
     std::vector<CanvasComponent*> m_canvases;
 
-    /// @brief Map of all cameras in the scene
+    /// @brief Vector of all cameras in the scene
     std::vector<CameraComponent*> m_cameras;
 
     /// @brief Map of all cubemap in the scene

@@ -55,7 +55,10 @@ public:
         kCharacterController,
         kBoneAnimation,
         kCubeMap,
-        kSceneObjectSettings
+        kAudioSource,
+        kAudioListener,
+        kNUM_COMPONENT_TYPES,
+        kSceneObjectSettings,
     };
 
     /// @}

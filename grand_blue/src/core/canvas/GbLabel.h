@@ -86,7 +86,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -120,10 +120,10 @@ protected:
     virtual void bindUniforms(ShaderProgram& shaderProgram) override;
 
     /// @brief Bind the textures used by this renderable
-    virtual void bindTextures(ShaderProgram* shaderProgram) override;
+    virtual void bindTextures(ShaderProgram* shaderProgram, RenderContext* context) override;
 
     /// @brief Release the textures used by this renderable
-    virtual void releaseTextures(ShaderProgram* shaderProgram) override;
+    virtual void releaseTextures(ShaderProgram* shaderProgram, RenderContext* context) override;
 
     /// @brief Draw geometry associated with this renderable
     virtual void drawGeometry(ShaderProgram& shaderProgram, RenderSettings* settings = nullptr) override;

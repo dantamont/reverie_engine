@@ -3,7 +3,7 @@
 #include "../../resource/GbResourceCache.h"
 #include "../../rendering/geometry/GbPolygon.h"
 #include "../shaders/GbShaders.h"
-#include "../shaders/GbUniformBufferObject.h"
+#include "../buffers/GbUniformBufferObject.h"
 #include "../../resource/GbResource.h"
 #include "../geometry/GbMesh.h"
 #include "../geometry/GbPolygon.h"
@@ -151,8 +151,9 @@ QJsonValue Lines::asJson() const
     return object;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Lines::loadFromJson(const QJsonValue & json)
+void Lines::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
     QJsonObject object = json.toObject();
     Renderable::loadFromJson(json);
 }
@@ -201,17 +202,17 @@ void Lines::drawGeometry(ShaderProgram& shaderProgram,
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Lines::addPoint(const Vector3g & point)
+void Lines::addPoint(const Vector3 & point)
 {
     auto vertexData = m_vertexData.back();
     addPoint(vertexData, point);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Lines::addPoint(std::shared_ptr<VertexArrayData> vertexData, const Vector3g & point)
+void Lines::addPoint(std::shared_ptr<VertexArrayData> vertexData, const Vector3 & point)
 {
     // Set next point to this point for vertex attributes already stored
     int size = (int)vertexData->m_attributes.m_vertices.size();
-    Vector3g previousPoint = point;
+    Vector3 previousPoint = point;
     if (size) {
         // Tangent attr is used to store next point
         vertexData->m_attributes.m_tangents[size - 1] = point;
@@ -255,7 +256,7 @@ void Lines::addPoint(std::shared_ptr<VertexArrayData> vertexData, const Vector3g
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Lines::addTriangle(const Vector3g & p1, const Vector3g & p2, const Vector3g & p3)
+void Lines::addTriangle(const Vector3 & p1, const Vector3 & p2, const Vector3 & p3)
 {
     addPoint(p1);
     addPoint(p2);

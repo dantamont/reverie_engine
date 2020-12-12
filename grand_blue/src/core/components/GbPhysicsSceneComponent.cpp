@@ -62,9 +62,9 @@ QJsonValue PhysicsSceneComponent::asJson() const
     return object;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void PhysicsSceneComponent::loadFromJson(const QJsonValue & json)
+void PhysicsSceneComponent::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
-    Component::loadFromJson(json);
+    Component::loadFromJson(json, context);
     const QJsonObject& object = json.toObject();
 
     // Load physics scene from json

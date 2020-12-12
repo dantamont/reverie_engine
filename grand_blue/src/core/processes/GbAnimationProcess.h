@@ -4,8 +4,8 @@
 
 #ifndef GB_ANIMATION_PROCESS_H
 #define GB_ANIMATION_PROCESS_H
-// External
-//#include <PythonQt.h>
+// Standard
+#include <shared_mutex>
 
 // QT
 
@@ -20,7 +20,7 @@ namespace Gb {
 class CoreEngine;
 class ProcessManager;
 class AnimationController;
-class SkeletonPose;
+class Transform;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Typedefs
@@ -44,7 +44,7 @@ public:
 	/// @{
     AnimationProcess(CoreEngine* engine, 
         AnimationController* controller,
-        ProcessManager* manager);
+        const Transform* transform);
 	~AnimationProcess();
 	/// @}
 
@@ -52,7 +52,9 @@ public:
     /// @name Properties
     /// @{
 
-    const std::vector<Matrix4x4f>& transforms() const { return m_transforms; }
+    std::shared_mutex& mutex() { return m_mutex; }
+
+    const std::vector<Matrix4x4>& transforms() const { return m_transforms; }
 
     /// @}
 
@@ -89,10 +91,6 @@ protected:
     //--------------------------------------------------------------------------------------------
     /// @name Friends
     /// @{
-
-    friend class ProcessManager;
-    friend class AnimationController;
-
     /// @}
 
     //--------------------------------------------------------------------------------------------
@@ -105,12 +103,18 @@ protected:
     /// @name Protected Members
     /// @{
 
+    /// @brief Contol access to the process, since running on separate animation thread
+    std::shared_mutex m_mutex;
+
     AnimationController* m_controller;
+    const Transform* m_transform;
 
     /// @brief The set of transforms for the current animation pose
-    std::vector<Matrix4x4f> m_transforms;
+    std::vector<Matrix4x4> m_transforms;
 
-    std::shared_ptr<SkeletonPose> m_pose;
+    /// @brief The elapsed time (in seconds) since begining playback
+    double m_elapsedTimeSec = 0;
+
     /// @}
 };
 

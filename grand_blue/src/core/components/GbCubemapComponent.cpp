@@ -12,6 +12,7 @@
 
 #include "../rendering/models/GbModel.h"
 #include "../rendering/materials/GbCubeTexture.h"
+#include "../rendering/renderer/GbRenderContext.h"
 
 #include "../rendering/shaders/GbShaders.h"
 
@@ -76,8 +77,9 @@ void CubeMapComponent::disable()
 void CubeMapComponent::setDefault()
 {
     if (sceneObject()) {
-        if(sceneObject()->scene())
+        if (sceneObject()->scene()) {
             sceneObject()->scene()->setDefaultCubeMap(this);
+        }
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -90,10 +92,12 @@ bool CubeMapComponent::isDefault() const
         return m_uuid == sceneObject()->scene()->defaultCubeMap()->getUuid();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void CubeMapComponent::draw(ShaderProgram& shaderProgram, RenderSettings * settings, size_t drawFlags)
+void CubeMapComponent::draw(ShaderProgram& shaderProgram, RenderContext* context, RenderSettings * settings, size_t drawFlags)
 {
-    Q_UNUSED(drawFlags)
-    Q_UNUSED(settings)
+    Q_UNUSED(drawFlags);
+    Q_UNUSED(context);
+    Q_UNUSED(settings);
+    GL::OpenGLFunctions& functions = *GL::OpenGLFunctions::Functions();
 
     if (!m_cubeTextureHandle) return;
     if (m_cubeTextureHandle->isLoading()) {
@@ -128,9 +132,16 @@ void CubeMapComponent::draw(ShaderProgram& shaderProgram, RenderSettings * setti
 
     QMutexLocker texLocker(&m_cubeTextureHandle->mutex());
 
+    DepthSetting currentGLSetting = DepthSetting::Current(*context);
+
     // Turn off depth mask (stop writing to depth buffer)
-    glDepthMask(GL_FALSE);
-    glDepthFunc(GL_LEQUAL); //  The depth buffer will be filled with values of 1.0 for the skybox, so we need to make sure the skybox passes the depth tests with values less than or equal to the depth buffer instead of less than. 
+    // The depth buffer will be filled with values of 1.0 for the skybox, so we need to make sure the skybox passes the depth tests with values less than or equal to the depth buffer instead of less than. 
+    //functions.glDepthMask(GL_FALSE);
+    //functions.glDepthFunc(GL_LEQUAL); 
+    DepthSetting depthSetting(
+        DepthPassMode::kLessEqual,
+        false);
+	depthSetting.bind(*context);
 
     // Bind shader program
     shaderProgram.bind();
@@ -143,7 +154,7 @@ void CubeMapComponent::draw(ShaderProgram& shaderProgram, RenderSettings * setti
     cubeTexture->bind();
 
 #ifdef DEBUG_MODE
-    printGLError("Error binding cube texture");
+    functions.printGLError("Error binding cube texture");
 #endif
 
     // Draw geometry (is only one set of mesh data for a cubemap mesh)
@@ -153,7 +164,8 @@ void CubeMapComponent::draw(ShaderProgram& shaderProgram, RenderSettings * setti
     cubeTexture->release();
 
     // Turn depth mask (depth writing) back on
-    glDepthMask(GL_TRUE);
+    //functions.glDepthMask(GL_TRUE);
+	depthSetting.release(*context);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void CubeMapComponent::setCubeTexture(const QString & filepath)
@@ -174,9 +186,9 @@ std::shared_ptr<CubeTexture> CubeMapComponent::texture()
 QJsonValue CubeMapComponent::asJson() const
 {
     QJsonObject object = Component::asJson().toObject();
-    object.insert("uuid", m_uuid.asString());
+    object.insert("uuid", m_uuid.asQString());
     if(!m_name.isEmpty())
-        object.insert("name", m_name);
+        object.insert("name", m_name.c_str());
     if(m_cubeTextureHandle)
         object.insert("texture", m_cubeTextureHandle->asJson());
     object.insert("diffuseColor", m_color.toVector3g().asJson());
@@ -184,10 +196,10 @@ QJsonValue CubeMapComponent::asJson() const
     return object;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void CubeMapComponent::loadFromJson(const QJsonValue & json)
+void CubeMapComponent::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
-    Component::loadFromJson(json);
-    Renderable::loadFromJson(json);
+    Component::loadFromJson(json, context);
+    Renderable::loadFromJson(json, context);
     const QJsonObject& object = json.toObject();
     
     if(object.contains("name"))
@@ -209,8 +221,11 @@ void CubeMapComponent::initialize()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void CubeMapComponent::bindUniforms(ShaderProgram& shaderProgram, const std::shared_ptr<CubeTexture>& cubeTexture)
 {
+    Q_UNUSED(cubeTexture)
+
     // Set texture
-    shaderProgram.setUniformValue("cubeTexture", int(cubeTexture->m_textureUnit));
+    // Cubemap shader uses 0 texture unit by default
+    shaderProgram.setUniformValue("cubeTexture", 0);
 
     // Set diffuse color
     shaderProgram.setUniformValue("diffuseColor", m_color.toVector3g());

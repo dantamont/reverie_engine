@@ -17,7 +17,6 @@
 #include "../../core/components/GbShaderComponent.h"
 #include "../../core/scripting/GbPythonScript.h"
 
-#include "../../core/rendering/renderer/GbRenderers.h"
 #include "../style/GbFontIcon.h"
 #include "../../core/geometry/GbEulerAngles.h"
 

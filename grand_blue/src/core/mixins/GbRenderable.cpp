@@ -10,6 +10,7 @@
 
 #include "../rendering/shaders/GbShaders.h"
 #include "../rendering/renderer/GbRenderCommand.h"
+#include "../rendering/renderer/GbRenderContext.h"
 
 namespace Gb {
 
@@ -20,13 +21,6 @@ QJsonValue Shadable::asJson() const
 {
     QJsonObject object;
 
-    // Cache uniforms used by the renderable
-    QJsonObject uniforms;
-    for (const auto& uniformPair : m_uniforms) {
-        uniforms.insert(uniformPair.first, uniformPair.second.asJson());
-    }
-    object.insert("uniforms", uniforms);
-
     object.insert("renderSettings", m_renderSettings.asJson());
 
     object.insert("tranparency", (int)m_transparencyType);
@@ -34,18 +28,11 @@ QJsonValue Shadable::asJson() const
     return object;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Shadable::loadFromJson(const QJsonValue & json)
+void Shadable::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
-    // Load uniforms used by the renderable
+    Q_UNUSED(context)
+
     QJsonObject object = json.toObject();
-    const QJsonObject& uniforms = object["uniforms"].toObject();
-    for (const QString& key : uniforms.keys()) {
-        QJsonObject uniformObject = uniforms.value(key).toObject();
-        if (!Map::HasKey(m_uniforms, key))
-            Map::Emplace(m_uniforms, key, uniformObject);
-        else
-            m_uniforms[key] = std::move(Uniform(uniformObject));
-    }
 
     if (object.contains("renderSettings"))
         m_renderSettings.loadFromJson(object["renderSettings"]);
@@ -57,7 +44,40 @@ void Shadable::loadFromJson(const QJsonValue & json)
 /////////////////////////////////////////////////////////////////////////////////////////////
 void Shadable::addUniform(const Uniform & uniform)
 {
-    m_uniforms[uniform.getName()] = uniform;
+#ifdef DEBUG_MODE
+    if (uniform.getName().isEmpty()) {
+        throw("Error, uniform has no name");
+    }
+#endif
+    int idx = -1;
+    if (hasUniform(uniform, &idx)) {
+        m_uniforms[idx] = uniform;
+    }
+    else {
+        m_uniforms.push_back(uniform);
+    }
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+bool Shadable::hasUniform(const GStringView & uniformName, int * outIndex)
+{
+    auto iter = std::find_if(m_uniforms.begin(), m_uniforms.end(),
+        [&](const Uniform& u) {
+        return u.getName() == uniformName;
+    });
+
+    if (iter == m_uniforms.end()) {
+        return false;
+    }
+    else {
+        // Replace uniform if already set
+        *outIndex = iter - m_uniforms.begin();
+        return true;
+    }
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+bool Shadable::hasUniform(const Uniform & uniform, int * outIndex)
+{
+    return hasUniform(uniform.getName(), outIndex);
 }
 
 
@@ -72,10 +92,10 @@ QSize Renderable::screenDimensions()
     return screenGeometry.size();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Vector2g Renderable::screenDimensionsVec()
+Vector2 Renderable::screenDimensionsVec()
 {
     QSize size = screenDimensions();
-    return Vector2g(size.width(), size.height());
+    return Vector2(size.width(), size.height());
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 float Renderable::screenDPI()
@@ -100,7 +120,7 @@ Renderable::Renderable()
 {
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Renderable::draw(ShaderProgram& shaderProgram, RenderSettings* settings, size_t drawFlags)
+void Renderable::draw(ShaderProgram& shaderProgram, RenderContext* context, RenderSettings* settings, size_t drawFlags)
 {    
     if (!shaderProgram.handle()->isConstructed()) return;
 
@@ -114,9 +134,11 @@ void Renderable::draw(ShaderProgram& shaderProgram, RenderSettings* settings, si
     QFlags<RenderPassFlag> flags = Flags::toFlags<RenderPassFlag>(drawFlags);
     if (!flags.testFlag(RenderPassFlag::kIgnoreSettings)) {
         if (settings) {
-            settings->bind();
+            settings->bind(*context);
         }
-        m_renderSettings.bind();
+        else {
+            m_renderSettings.bind(*context);
+        }
     }
 #ifdef DEBUG_MODE
     else {
@@ -139,7 +161,7 @@ void Renderable::draw(ShaderProgram& shaderProgram, RenderSettings* settings, si
     if (!flags.testFlag(RenderPassFlag::kIgnoreTextures)) {
         // Bind texture (note that this doesn't need to come before uniforms are set)
         // See: https://computergraphics.stackexchange.com/questions/5063/send-texture-to-shader
-        bindTextures(&shaderProgram);
+        bindTextures(&shaderProgram, context);
     }
 
 #ifdef DEBUG_MODE
@@ -147,9 +169,10 @@ void Renderable::draw(ShaderProgram& shaderProgram, RenderSettings* settings, si
 #endif
 
     // Set uniforms
+    bool ignoreMismatch = flags.testFlag(RenderPassFlag::kIgnoreUniformMismatch);
     if (!flags.testFlag(RenderPassFlag::kIgnoreUniforms)) {
         bindUniforms(shaderProgram);
-        shaderProgram.updateUniforms();
+        shaderProgram.updateUniforms(ignoreMismatch);
     }
 
 #ifdef DEBUG_MODE
@@ -166,7 +189,7 @@ void Renderable::draw(ShaderProgram& shaderProgram, RenderSettings* settings, si
 
     // Release textures
     if (!flags.testFlag(RenderPassFlag::kIgnoreTextures)) {
-        releaseTextures(&shaderProgram);
+        releaseTextures(&shaderProgram, context);
     }
 
 #ifdef DEBUG_MODE
@@ -185,9 +208,11 @@ void Renderable::draw(ShaderProgram& shaderProgram, RenderSettings* settings, si
     // Restore render settings
     if (!flags.testFlag(RenderPassFlag::kIgnoreSettings)) {
         if (settings) {
-            settings->release();
+            settings->release(*context);
         }
-        m_renderSettings.release();
+        else {
+            m_renderSettings.release(*context);
+        }
     }
 
 #ifdef DEBUG_MODE
@@ -200,17 +225,17 @@ QJsonValue Renderable::asJson() const
     return Shadable::asJson();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Renderable::loadFromJson(const QJsonValue & json)
+void Renderable::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
-    Shadable::loadFromJson(json);
+    Shadable::loadFromJson(json, context);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 void Renderable::bindUniforms(ShaderProgram& shaderProgram)
 {
     // Iterate through uniforms to update in shader program class
-    for (const std::pair<QString, Uniform>& uniformPair : m_uniforms) {
-        shaderProgram.setUniformValue(uniformPair.second);
+    for (const Uniform& uniform : m_uniforms) {
+        shaderProgram.setUniformValue(uniform);
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -219,11 +244,26 @@ void Renderable::releaseUniforms(ShaderProgram& shaderProgram)
     Q_UNUSED(shaderProgram)
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Renderable::printError(const QString & errorStr)
+void Renderable::bindTextures(ShaderProgram * shaderProgram, RenderContext * context)
+{
+    Q_UNUSED(shaderProgram);
+    Q_UNUSED(context);
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+void Renderable::releaseTextures(ShaderProgram * shaderProgram, RenderContext * context)
+{
+    Q_UNUSED(shaderProgram);
+    Q_UNUSED(context);
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+void Renderable::printError(const GStringView & errorStr)
 {
     bool error = GL::OpenGLFunctions::printGLError(errorStr);
     if (error) {
         qDebug() << QStringLiteral("DO NOT IGNORE ERROR");
+#ifdef DEBUG_MODE
+        throw("Bad error time");
+#endif
     }
 }
 

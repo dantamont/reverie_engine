@@ -102,7 +102,7 @@ public:
     FT_Face m_face = nullptr;
 
 private:
-    typedef std::unordered_map<unsigned long, Character> CharacterMap;
+    typedef tsl::robin_map<unsigned long, Character> CharacterMap;
 
     static int pointToPixelSize(float pointSize);
     static float pixelToPointSize(size_t pixelSize);
@@ -169,16 +169,16 @@ private:
     float m_fontSize = -1;
 
     /// @brief Texture packers for the font, indexed by font pixel sizes
-    std::unordered_map<size_t, std::shared_ptr<TexturePacker>> m_bitmaps;
+    tsl::robin_map<size_t, std::shared_ptr<TexturePacker>> m_bitmaps;
 
     /// @brief Line heights (in pixels)
-    std::unordered_map<size_t, size_t> m_lineHeights;
+    tsl::robin_map<size_t, size_t> m_lineHeights;
 
     /// @brief Character set for the font, indexed by font pixel sizes
-    std::unordered_map<size_t, CharacterMap> m_characterMaps;
+    tsl::robin_map<size_t, CharacterMap> m_characterMaps;
 
     /// @brief The GL textures corresponding to the bitmaps for this font
-    std::unordered_map<size_t, std::shared_ptr<ResourceHandle>> m_textures;
+    tsl::robin_map<size_t, std::shared_ptr<ResourceHandle>> m_textures;
 
     /// @}
 };
@@ -195,7 +195,7 @@ public:
     /// @name Static
     /// @{
 
-    static std::unordered_map<QString, FontFace>& FontFaces() {
+    static tsl::robin_map<QString, FontFace>& FontFaces() {
         return s_faces;
     }
 
@@ -262,7 +262,7 @@ protected:
     static std::unique_ptr<FT_Library> s_freeType;
     
     /// @brief Map of fonts wrapping "faces", i.e. fonts loaded via freetype
-    static std::unordered_map<QString, FontFace> s_faces;
+    static tsl::robin_map<QString, FontFace> s_faces;
 
     /// @brief Font Awesome font family IDs
     static int s_faBrands;

@@ -11,6 +11,7 @@
 // Internal
 #include "GbEvent.h"
 #include "../GbLogger.h"
+#include "../containers/GbString.h"
 
 namespace Gb {
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -23,22 +24,22 @@ namespace Gb {
 
 class LogEvent : public Event<kLogEvent> {
 public:
-    LogEvent(const QString& namespaceName,
-        const QString& logMessage,
-        const QString& threadId = QString(),
+    LogEvent(const GString& namespaceName,
+        const GString& logMessage,
+        const GString& threadId,
         LogLevel messageLevel = LogLevel::Info);
     ~LogEvent();
 
     const LogLevel& getLogLevel() const { return m_logLevel; }
-    const QString& getNamespaceName() const { return m_namespaceName; }
-    const QString& getLogMessage() const { return m_logMessage; }
+    const GString& getNamespaceName() const { return m_namespaceName; }
+    const GString& getLogMessage() const { return m_logMessage; }
 
 protected:
 
     LogLevel m_logLevel;
 
-    QString m_namespaceName;
-    QString m_logMessage;
+    GString m_namespaceName;
+    GString m_logMessage;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////////

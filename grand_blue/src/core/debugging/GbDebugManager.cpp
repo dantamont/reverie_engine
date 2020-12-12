@@ -4,22 +4,22 @@
 #include "../scene/GbScenario.h"
 #include "../scene/GbScene.h"
 #include "../scene/GbSceneObject.h"
-#include "../components/GbCamera.h"
+#include "../components/GbCameraComponent.h"
 #include "../components/GbCanvasComponent.h"
 #include "../components/GbModelComponent.h"
 #include "../components/GbTransformComponent.h"
 #include "../canvas/GbLabel.h"
 
-#include "../resource/GbResourceCache.cpp"
+#include "../rendering/models/GbModel.h"
+#include "../resource/GbResourceCache.h"
 #include "../rendering/geometry/GbPolygon.h"
 #include "../rendering/geometry/GbLines.h"
 #include "../rendering/geometry/GbPoints.h"
 #include "../rendering/geometry/GbSkeleton.h"
-#include "../rendering/shaders/GbUniformBufferObject.h"
+#include "../rendering/buffers/GbUniformBufferObject.h"
 
 #include "../rendering/renderer/GbMainRenderer.h"
 #include "../rendering/renderer/GbRenderCommand.h"
-#include "../rendering/renderer/GbRenderers.h"
 
 #include "../../view/GbWidgetManager.h"
 #include "../../view/GL/GbGLWidget.h"
@@ -37,6 +37,7 @@
 
 #include "../components/GbAnimationComponent.h"
 #include "../processes/GbAnimationProcess.h"
+#include "../animation/GbAnimationController.h"
 #include "../physics/GbInverseKinematics.h"
 
 #include "../../view/GL/GbGLWidget.h"
@@ -67,7 +68,7 @@ DebugCoordinateAxes::DebugCoordinateAxes(CoreEngine* engine) :
 
     // Initialize GL draw settings
     m_renderSettings.setShapeMode(GL_TRIANGLES);
-    m_renderSettings.addSetting(std::make_shared<DepthSetting>(false));
+    m_renderSettings.addSetting<DepthSetting>(false, DepthPassMode::kLessEqual, false);
     //m_renderSettings.addDefaultBlend();
     setName("Coordinate Axes");
 
@@ -119,10 +120,6 @@ void DebugCoordinateAxes::releaseUniforms(ShaderProgram& shaderProgram)
 void DebugCoordinateAxes::drawGeometry(ShaderProgram& shaderProgram,
     RenderSettings * settings)
 {
-    Transform transform;
-    if (m_transform) {
-        transform = *m_transform;
-    }
     VertexArrayData& cylinderData = m_cylinder->vertexData();
     VertexArrayData& coneData = m_cone->vertexData();
 
@@ -137,10 +134,14 @@ void DebugCoordinateAxes::drawGeometry(ShaderProgram& shaderProgram,
         m_setUniforms = true;
     }
     // Set world matrix to rotation and translation of scene object
-    shaderProgram.setUniformValue("worldMatrix", transform.rotationTranslationMatrix());
+    Matrix4x4g worldMatrix;
+    if (m_transform) {
+        worldMatrix = m_transform->rotationTranslationMatrix();
+    }
+    shaderProgram.setUniformValue("worldMatrix", worldMatrix);
 
     // X-axis
-    Vector4g color = Vector4g(0.0f, 0.0f, 0.0f, 1.0f);
+    Vector4 color = Vector4(0.0f, 0.0f, 0.0f, 1.0f);
     for (size_t i = 0; i < 3; i++) {
         color[i] = 1.0f;
         if (i != 0) color[i - 1] = 0.0f;
@@ -170,7 +171,7 @@ DebugGrid::DebugGrid() :
 
     // Set GL draw settings
     m_renderSettings.setShapeMode(GL_TRIANGLES);
-    m_renderSettings.addSetting(std::make_shared<DepthSetting>(true, GL_LEQUAL));
+    m_renderSettings.addSetting<DepthSetting>(false, DepthPassMode::kLessEqual, false);
     m_renderSettings.addDefaultBlend();
     setName(m_grid->getName());
 }
@@ -181,7 +182,7 @@ DebugGrid::~DebugGrid()
 /////////////////////////////////////////////////////////////////////////////////////////////
 void DebugGrid::bindUniforms(ShaderProgram& shaderProgram)
 {
-    shaderProgram.setUniformValue("lineColor", Vector4g(1.0, 1.0, 1.0, 1.0));
+    shaderProgram.setUniformValue("lineColor", Vector4(1.0, 1.0, 1.0, 1.0));
 
 	if (!UBO::getCameraBuffer()) return;
     auto cameraBuffer = UBO::getCameraBuffer();
@@ -189,14 +190,14 @@ void DebugGrid::bindUniforms(ShaderProgram& shaderProgram)
     // Set world matrix uniform and update uniforms in shader queue
     Matrix3x3g worldMatrix3x3;
     const Matrix4x4g& viewMatrix = cameraBuffer->getUniformValue("viewMatrix").get<Matrix4x4g>();
-    Vector3g eye = viewMatrix.getColumn(3);
+    Vector3 eye = viewMatrix.getColumn(3);
     //real_g distance = eye.length();
     //float scale = (float)pow(4.0f, ceil(log10(distance) / log10(4.0)));
     float scale = 100;
     worldMatrix3x3 *= scale;
     Matrix4x4g worldMatrix(worldMatrix3x3);
 
-    m_grid->setLineColor(Vector4g(0.9f, 0.9f, 0.9f, 0.5f));
+    m_grid->setLineColor(Vector4(0.9f, 0.9f, 0.9f, 0.5f));
     m_grid->setLineThickness(1.25f);
     m_grid->setConstantScreenThickness(false);
     m_grid->setFadeWithDistance(true);
@@ -216,22 +217,47 @@ void DebugGrid::drawGeometry(ShaderProgram& shaderProgram, RenderSettings * sett
 {
     // Draw outer grid
     Q_UNUSED(settings);
-    m_grid->draw(shaderProgram);
+
+    RenderContext& context = CoreEngine::engines().begin()->second->mainRenderer()->renderContext();
+
+    m_grid->draw(shaderProgram, &context);
 
     // Draw inner grid
     Matrix3x3g worldMatrix3x3 = m_grid->transform().worldMatrix();
     worldMatrix3x3 *= (real_g)(1.0 / 10.0);
     Matrix4x4g worldMatrix(worldMatrix3x3);
     worldMatrix.setTranslation({ 0.0f, -0.05f, 0.0f });
-    m_grid->setLineColor(Vector4g((real_g)0.9, (real_g)0.9, (real_g)0.9, (real_g)0.5));
+    m_grid->setLineColor(Vector4((real_g)0.9, (real_g)0.9, (real_g)0.9, (real_g)0.5));
     m_grid->setLineThickness(0.5f);
     m_grid->transform().updateWorldMatrix(worldMatrix);
 
-    m_grid->draw(shaderProgram);
+    m_grid->draw(shaderProgram, &context);
 
 }
 
 
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+// DebugDrawSettings
+/////////////////////////////////////////////////////////////////////////////////////////////
+QJsonValue DebugDrawSettings::asJson() const
+{
+    QJsonObject object;
+    object.insert("drawAxes", m_drawAxes);
+    object.insert("drawGrid", m_drawGrid);
+    return object;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+void DebugDrawSettings::loadFromJson(const QJsonValue& json, const SerializationContext& context)
+{
+    Q_UNUSED(context);
+
+    QJsonObject object = json.toObject();
+    m_drawAxes = object["drawAxes"].toBool(true);
+    m_drawGrid = object["drawGrid"].toBool(true);
+}
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -248,7 +274,7 @@ DebugManager::DebugManager(CoreEngine* engine) :
 DebugManager::~DebugManager()
 {
     // Remove scene objects
-    DagNode::eraseFromNodeMap(m_cameraObject->getUuid());
+    SceneObject::EraseFromNodeMap(m_cameraObject->getUuid());
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 CameraComponent * DebugManager::camera()
@@ -259,7 +285,7 @@ CameraComponent * DebugManager::camera()
 void DebugManager::draw(const std::shared_ptr<Scene>& scene)
 {
     // Make sure to bind camera buffer uniforms!
-    camera()->camera().bindUniforms();
+    camera()->camera().bindUniforms(nullptr);
     drawStatic();
     if (scene != m_scene) {
         drawDynamic(scene);
@@ -269,61 +295,78 @@ void DebugManager::draw(const std::shared_ptr<Scene>& scene)
 void DebugManager::drawDynamic(const std::shared_ptr<Scene>& scene)
 {
     // Render component-specific renderables
+    // FIXME: Draw child scene objects
     for (const std::shared_ptr<SceneObject>& so : scene->topLevelSceneObjects()) {
 
-        const std::vector<std::vector<Component*>>& components = so->components();
-        size_t count = 0;
-        for (const auto& componentVec : components) {
-            // Iterate through scene object components
-            Component::ComponentType componentType = Component::ComponentType(count);
-            for (const auto& component : componentVec) {
-
-                // Draw debug renderable based on component type
-                DebugRenderable* renderable = nullptr;
-                switch (componentType) {
-                case Component::ComponentType::kTransform: {
-                    // Handled separately
-                    break;
-                }
-                case Component::ComponentType::kRigidBody: {
-                    RigidBodyComponent* rigidBodyComp = static_cast<RigidBodyComponent*>(component);
-                    // TODO: Draw if disabled, just grey
-                    for (const auto& shape : rigidBodyComp->body()->shapes()) {
-                        const PhysicsShapePrefab& prefab = shape.prefab();
-                        drawPhysicsShape(prefab, *so->transform(),
-                            rigidBodyComp->isEnabled());
-                    }
-                    break;
-                }
-                case Component::ComponentType::kBoneAnimation: {
-                    BoneAnimationComponent* comp = static_cast<BoneAnimationComponent*>(component);
-                    drawAnimation(comp);
-                    break;
-                }
-                case Component::ComponentType::kCharacterController: {
-                    CharControlComponent* comp = static_cast<CharControlComponent*>(component);
-                    drawCharacterController(comp);
-                    break;
-                }
-                case Component::ComponentType::kLight: {
-                    LightComponent* comp = static_cast<LightComponent*>(component);
-                    drawLight(comp);
-                    break;
-                }
-                default:
-                    continue;
-                }
-                if (renderable) {
-                    renderable->draw();
-                }
-            }
-
-            count++;
-        }
+        drawDynamic(so);
     }
 
-    // Render coordinate axes
-    for (const std::shared_ptr<SceneObject>& so : scene->topLevelSceneObjects()) {
+    // Draw raycast hit
+    drawRaycastContact();
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+void DebugManager::drawDynamic(const std::shared_ptr<SceneObject>& so) 
+{
+    // Check if in bounds
+    // TODO: Maybe ascribe bounds to scene objects at runtime from component AABBs
+    BoundingSphere sphere = BoundingSphere();
+    sphere.recalculateBounds(*so->transform(), sphere);
+    sphere.setRadius(4);
+
+    if (!camera()->camera().frustum().intersects(sphere)) {
+        return;
+    }
+
+    const std::vector<std::vector<Component*>>& components = so->components();
+    size_t count = 0;
+    for (const auto& componentVec : components) {
+        // Iterate through scene object components
+        Component::ComponentType componentType = Component::ComponentType(count);
+        for (const auto& component : componentVec) {
+
+            // Draw debug renderable based on component type
+            DebugRenderable* renderable = nullptr;
+            switch (componentType) {
+            case Component::ComponentType::kTransform: {
+                // Handled separately
+                break;
+            }
+            case Component::ComponentType::kRigidBody: {
+                RigidBodyComponent* rigidBodyComp = static_cast<RigidBodyComponent*>(component);
+                // TODO: Draw if disabled, just grey
+                for (const PhysicsShape* shape : rigidBodyComp->body()->shapes()) {
+                    const PhysicsShapePrefab& prefab = shape->prefab();
+                    drawPhysicsShape(prefab, *so->transform(), rigidBodyComp->isEnabled());
+                }
+                break;
+            }
+            case Component::ComponentType::kBoneAnimation: {
+                BoneAnimationComponent* comp = static_cast<BoneAnimationComponent*>(component);
+                drawAnimation(comp);
+                break;
+            }
+            case Component::ComponentType::kCharacterController: {
+                CharControlComponent* comp = static_cast<CharControlComponent*>(component);
+                drawCharacterController(comp);
+                break;
+            }
+            case Component::ComponentType::kLight: {
+                LightComponent* comp = static_cast<LightComponent*>(component);
+                drawLight(comp);
+                break;
+            }
+            default:
+                continue;
+            }
+            if (renderable) {
+                renderable->draw();
+            }
+        }
+
+        count++;
+    }
+
+    if (m_settings.m_drawAxes) {
         // Render transform component
         DebugRenderable* transformRenderable = &m_dynamicRenderables["coordinateAxes"];
         auto debugAxes = std::static_pointer_cast<DebugCoordinateAxes>(
@@ -341,8 +384,9 @@ void DebugManager::drawDynamic(const std::shared_ptr<Scene>& scene)
         transformRenderable->draw();
     }
 
-    // Draw raycast hit
-    drawRaycastContact();
+    for (const std::shared_ptr<SceneObject>& child : so->children()) {
+        drawDynamic(child);
+    }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 void DebugManager::drawStatic()
@@ -360,12 +404,18 @@ void DebugManager::drawStatic()
         }
         else
         {
+            if (it->first == QStringLiteral("grid")) {
+                // If draw grid is set to false, disable
+                it.value().m_enabled = m_settings.m_drawGrid;
+                //continue;
+            }
+
             // Set camera uniforms
             it->second.m_shaderProgram->bind();
             it->second.m_shaderProgram->updateUniforms();
 
             // Draw debug renderable
-            it->second.draw();
+            it.value().draw();
             ++it;
         }
     }
@@ -403,6 +453,57 @@ void DebugManager::createDrawCommands(Scene& scene, MainRenderer & renderer)
         camera()->camera(),
         *textProgram);
 
+    // Draw camera bounding boxes:
+    //{
+    //    std::vector<AABBData> aabbs;
+    //    camera()->camera().lightClusterGrid().getGridBoxes(aabbs);
+
+    //    Matrix4x4g inverseView = camera()->camera().getViewMatrix().inversed();
+    //    size_t numRows = 1;
+
+    //    std::shared_ptr<Lines> lineCube = S_CAST<Lines>(m_dynamicRenderables["cube"].m_renderable);
+
+    //    // FIXME: Set this during draw call
+    //    lineCube->drawFlags().setFlag(Lines::DrawFlag::kIgnoreWorldMatrix, true);
+    //    lineCube->setLineColor(Vector4g(1.0f, 0.0f, 0.5, 1.0f));
+    //    lineCube->setLineThickness(0.005f);
+    //    lineCube->setConstantScreenThickness(true);
+    //    lineCube->setFadeWithDistance(false);
+    //    lineCube->setUseMiter(false);
+
+    //    for (size_t j = 0; j < numRows; j++) {
+
+    //        for (size_t i = 0; i < 16 * 9; i++) {
+    //            const AABBData& box = aabbs[i + j * 16 * 9];
+
+    //            // Convert from view space to world space);
+    //            Matrix4x4g worldMatrix;
+    //            std::vector<Vector3g> points;
+    //            box.getPoints(points);
+
+    //            Vector3g scale = box.getDimensions();
+    //            worldMatrix(0, 0) = scale.x();
+    //            worldMatrix(1, 1) = scale.y();
+    //            worldMatrix(2, 2) = scale.z();
+
+    //            Vector3g origin = box.getOrigin();
+    //            worldMatrix.setTranslation(origin);
+    //            lineCube->transform().updateWorldMatrix(worldMatrix);
+
+    //            // box is in view space, so revert
+    //            worldMatrix = inverseView * worldMatrix;
+
+    //            auto command = std::make_shared<DrawCommand>(*lineCube,
+    //                *m_lineShaderProgram,
+    //                camera()->camera());
+    //            command->setUniform(Uniform("worldMatrix", worldMatrix));
+    //            //command->setUniform(Uniform("lineColor", Vector4g(0.5f, 0.0f, 1.0, 1.0f)));
+    //            drawCommands.push_back(command);
+    //        }
+    //    }
+    //}
+
+
     // For frustum culling, create bounding boxes
     //std::vector<std::shared_ptr<RenderCommand>>& sceneCommands = renderer.receivedCommands();
     //for (const auto& command : sceneCommands) {
@@ -412,6 +513,8 @@ void DebugManager::createDrawCommands(Scene& scene, MainRenderer & renderer)
     //        createDrawCommand(box, drawCommands);
     //    }
     //}
+
+
     for (const std::shared_ptr<SceneObject>& so : scene.topLevelSceneObjects()) {
         createDrawCommand(*so, drawCommands);
     }
@@ -441,18 +544,29 @@ void DebugManager::step(unsigned long deltaMs)
 
     // Set FPS counter
     if (m_fpsCounter) {
-        if (m_frameDeltas.size() > 10) {
+        if (m_frameDeltas.size() > 15) {
             m_frameDeltas.pop_front();
         }
         m_frameDeltas.push_back(1000.0 / double(deltaMs));
         float fps = getFps();
-        m_fpsCounter->setText(QString::number(fps, 'g', 3));
+        size_t numDigits = floor(log10(fps)) + 1; // One if less than 10, Two digits if less than 100, three if greater, etc.
+        m_fpsCounter->setText(QString::number(fps, 'g', numDigits));
     }
 
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 void DebugManager::postConstruction()
 {
+    // FIXME: Load and set cubemap for skybox
+    // Problematic, can't access via non-Qt load, 
+    // see: https://stackoverflow.com/questions/43880820/how-to-convert-qt-file-path-from-resource-to-absolute-path
+    //std::shared_ptr<ResourceHandle> cubemapHandle =
+    //    m_engine->resourceCache()->guaranteeHandleWithPath(
+    //        ":/textures/debug_skybox/debug.cubemap",
+    //        Resource::kCubeTexture
+    //    );
+    //cubemapHandle->setCore(true);
+
     // Set up scene
     m_scene = Scene::create(m_engine);
     m_scene->setName("Debug Objects");
@@ -476,7 +590,7 @@ void DebugManager::postConstruction()
     m_fpsCounter->setFaceCamera(true);
     m_fpsCounter->setOnTop(true);
     m_fpsCounter->setCoordinates({ -0.97f, 0.95f });
-    m_fpsCounter->setColor(Color(Vector3g(0.4f, 0.2f, 0.7f)));
+    m_fpsCounter->setColor(Color(Vector3(0.4f, 0.2f, 0.7f)));
     m_fpsCounter->setAlignment(Glyph::kMiddle, Glyph::kLeft);
     m_textCanvas->addGlyph(m_fpsCounter);
 
@@ -529,7 +643,7 @@ void DebugManager::postConstruction()
         Resource::kShaderProgram)->resourceAs<ShaderProgram>();
 
     auto skeletonPoints = std::make_shared<Points>(100);
-    skeletonPoints->renderSettings().addSetting(std::make_shared<DepthSetting>(false));
+    skeletonPoints->renderSettings().addSetting<DepthSetting>(false, DepthPassMode::kLessEqual, false);
     m_dynamicRenderables["skeletonPoints"] = { skeletonPoints, m_debugSkeletonProgram, skeletonPoints};
 
     // Set renderable for raycast hit
@@ -546,22 +660,35 @@ QJsonValue DebugManager::asJson() const
 {
     QJsonObject object;
     object.insert("debugScene", m_scene->asJson());
+    object.insert("debugSettings", m_settings.asJson());
 
     return object;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void DebugManager::loadFromJson(const QJsonValue & json)
+void DebugManager::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
+
     const QJsonObject& object = json.toObject();
     if (object.contains("debugScene")) {
         m_scene->loadFromJson(json["debugScene"]);
+        m_cameraObject = nullptr; // delete old camera object        
         m_cameraObject = m_scene->getSceneObjectByName("Debug Camera");
     }
     else {
         m_cameraObject->loadFromJson(object.value("cameraObject"));
-    }
+    } 
 
-    m_cameraObject->camera()->camera().cameraOptions().setFlag(Camera::kShowAllRenderLayers, true);
+    // TODO: Add debug cubemap
+
+    // Add object to debug render layer so that skybox renders
+    m_cameraObject->addRenderLayer(m_debugRenderLayer);
+
+    m_cameraObject->camera()->camera().cameraOptions().setFlag(CameraOption::kShowAllRenderLayers, true);
+
+    if (object.contains("debugSettings")) {
+        m_settings.loadFromJson(object["debugSettings"]);
+    }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 void DebugManager::processRaycasts() {
@@ -572,9 +699,8 @@ void DebugManager::processRaycasts() {
 
     if (!m_engine->scenario()) return;
 
-    for (const std::pair<Uuid, std::shared_ptr<Scene>>& scenePair : m_engine->scenario()->getScenes()) {
+    for (const std::shared_ptr<Scene>& scene : m_engine->scenario()->getScenes()) {
         // Skip if the scene has no physics
-        const std::shared_ptr<Scene>& scene = scenePair.second;
         if (!scene->physics()) continue;
     
         // Generate raycast
@@ -606,7 +732,8 @@ void DebugManager::initializeCamera()
     m_cameraObject->transform()->translation().setPosition({ 0.0, 0.0, 1.0 });
 
     new CameraComponent(m_cameraObject);
-    camera()->controller().profile().m_movementTypes = {
+    CameraController& controller = camera()->controller();
+    controller.profile().m_movementTypes = tsl::robin_map<CameraController::MovementType, bool>{
         {CameraController::kZoom, true},
         {CameraController::kPan, true},
         {CameraController::kTilt, true},
@@ -614,7 +741,7 @@ void DebugManager::initializeCamera()
         {CameraController::kRotate, true},
         {CameraController::kTilt, true}
     };
-    m_cameraObject->camera()->camera().cameraOptions().setFlag(Camera::kShowAllRenderLayers, true);
+    camera()->camera().cameraOptions().setFlag(CameraOption::kShowAllRenderLayers, true);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 InputHandler& DebugManager::inputHandler() const
@@ -646,20 +773,20 @@ void DebugManager::drawPhysicsShape(const PhysicsShapePrefab& shape,
     }
 
     // Set point/line color based on enabled status
-    Vector4g lineColor(0.85f, 0.8f, 0.0f, 0.9f);
-    Vector4g pointColor(0.9f, 0.25f, 0.2f, 0.9f);
+    Vector4 lineColor(0.85f, 0.8f, 0.0f, 0.9f);
+    Vector4 pointColor(0.9f, 0.25f, 0.2f, 0.9f);
     float pointSize = 0.006f;
     float lineThickness = 0.0075f;
     if (!isEnabled) {
         lineThickness = 0.005f;
-        lineColor = Vector4g(0.5f, 0.5f, 0.5f, 0.9f);
+        lineColor = Vector4(0.5f, 0.5f, 0.5f, 0.9f);
         pointColor = lineColor;
         pointSize = 0.004f;
     }
     else {
         if (wasHit) {
             lineThickness *= 1.25f;
-            lineColor = Vector4g(0.8f, 0.9f, 1.0f, 1.0f);
+            lineColor = Vector4(0.8f, 0.9f, 1.0f, 1.0f);
             pointColor = lineColor;
             pointSize *= 1.25f;
         }
@@ -677,7 +804,7 @@ void DebugManager::drawPhysicsShape(const PhysicsShapePrefab& shape,
     switch (shape.geometry()->getType()) {
     case PhysicsGeometry::kBox: {
         auto boxGeometry = std::static_pointer_cast<BoxGeometry>(shape.geometry());
-        Vector3g scale = {boxGeometry->hx() * 2.0f, boxGeometry->hy()* 2.0f,  boxGeometry->hz() * 2.0f };
+        Vector3 scale = {boxGeometry->hx() * 2.0f, boxGeometry->hy()* 2.0f,  boxGeometry->hz() * 2.0f };
         worldMatrix.addScale(scale);
 
         // Set line and world space uniforms
@@ -698,12 +825,12 @@ void DebugManager::drawPhysicsShape(const PhysicsShapePrefab& shape,
         points->setPointColor(pointColor);
         points->setPointSize(pointSize);
         points->transform().updateWorldMatrix(worldMatrix);
-        points->draw(*m_pointShaderProgram);
+        points->draw(*m_pointShaderProgram, &mainRenderContext());
         break;
     }
     case PhysicsGeometry::kSphere: {
         auto sphereGeometry = std::static_pointer_cast<SphereGeometry>(shape.geometry());
-        Vector3g scale = { sphereGeometry->radius(), sphereGeometry->radius(),  sphereGeometry->radius()};
+        Vector3 scale = { sphereGeometry->radius(), sphereGeometry->radius(),  sphereGeometry->radius()};
         worldMatrix.addScale(scale);
 
         // Set line and world space uniforms
@@ -723,7 +850,7 @@ void DebugManager::drawPhysicsShape(const PhysicsShapePrefab& shape,
         points->setPointColor(pointColor);
         points->setPointSize(pointSize);
         points->transform().updateWorldMatrix(worldMatrix);
-        points->draw(*m_pointShaderProgram);
+        points->draw(*m_pointShaderProgram, &mainRenderContext());
         break;
     }
     case PhysicsGeometry::kPlane: {
@@ -767,7 +894,7 @@ void DebugManager::drawRaycastContact()
     RaycastHit hit = m_raycast->firstHit();
 
     // Set point/line color based on enabled status
-    Vector4g lineColor(0.75f, 0.9f, 1.0f, 0.9f);
+    Vector4 lineColor(0.75f, 0.9f, 1.0f, 0.9f);
     float lineThickness = 0.1f;
 
     // Set camera uniforms
@@ -775,7 +902,7 @@ void DebugManager::drawRaycastContact()
     
     // Set world matrix uniform
     float prismLength = 1.0;
-    Quaternion rotation = Quaternion::rotationTo(Vector3g(0.0f, 0.0f, 1.0f), hit.normal());
+    Quaternion rotation = Quaternion::rotationTo(Vector3(0.0f, 0.0f, 1.0f), hit.normal());
     Matrix4x4g worldMatrix;
     worldMatrix.setTranslation(hit.position() + hit.normal() * prismLength);
     worldMatrix *= rotation.toRotationMatrix4x4();
@@ -817,8 +944,12 @@ void DebugManager::drawAnimation(BoneAnimationComponent * animComp)
     if (!m_debugSkeletonProgram) return;
     m_debugSkeletonProgram->bind();
 
-    auto model = animComp->animationController()->getModel();
+    auto model = animComp->animationController().getModel();
     if (!model) return;
+
+    if (!model->skeleton()->handle()) {
+        return;
+    }
 
     if (model->skeleton()->handle()->isLoading()) {
         return;
@@ -837,27 +968,25 @@ void DebugManager::drawAnimation(BoneAnimationComponent * animComp)
     // Get colors
     Skeleton skeleton = model->skeleton()->prunedBoneSkeleton();
     IKChain chain(skeleton);
-    std::vector<Vector4g> colors(points.numPoints());
+    std::vector<Vector4> colors(points.numPoints());
     size_t idx;
-    Vector4g color;
-    for (const auto& nodePair : skeleton.nodes()) {
-        SkeletonJoint* node = nodePair.second;
-        if (!node->hasBone()) continue;
-
-        idx = node->bone().m_index;
+    Vector4 color;
+    for (const size_t& nodeIndex : skeleton.boneNodes()) {
+        SkeletonJoint& node = skeleton.getNode(nodeIndex);
+        idx = node.bone().m_index;
        
-        IKNode* ikNode = chain.getNode(node->getName());
+        IKNode* ikNode = chain.getNode(node.getName());
         if (ikNode->isEndEffector()) {
-            color = Vector4g(0.85f, 0.5f, 0.1f, 1.0f);
+            color = Vector4(0.85f, 0.5f, 0.1f, 1.0f);
         }
         else if (ikNode->isRoot()) {
-            color = Vector4g(1.0f, 0.0f, 0.0f, 1.0f);
+            color = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
         }
         else if (ikNode->isSubBase()) {
-            color = Vector4g(1.0f, 1.0f, 0.2f, 1.0f);
+            color = Vector4(1.0f, 1.0f, 0.2f, 1.0f);
         }
         else {
-            color = Vector4g(0.75f, 0.5f, 1.0f, 1.0f);
+            color = Vector4(0.75f, 0.5f, 1.0f, 1.0f);
         }
         colors[idx] = color;
     }
@@ -865,7 +994,7 @@ void DebugManager::drawAnimation(BoneAnimationComponent * animComp)
     m_debugSkeletonProgram->setUniformValue("colors", colors);
 
     // Draw skeleton points
-    points.draw(*m_debugSkeletonProgram);
+    points.draw(*m_debugSkeletonProgram, &mainRenderContext());
 
     //auto boneTransforms = m_debugSkeletonProgram->getUniformValue("boneTransforms")->get<std::vector<Matrix4x4g>>();
     //for (const auto& t : boneTransforms) {
@@ -893,11 +1022,11 @@ void DebugManager::drawCharacterController(CharControlComponent * comp)
     //}
 
     // Set line color based on enabled status
-    Vector4g lineColor(0.85f, 0.8f, 0.0f, 0.9f);
+    Vector4 lineColor(0.85f, 0.8f, 0.0f, 0.9f);
     float lineThickness = 0.0075f;
     if (!comp->isEnabled()) {
         lineThickness = 0.005f;
-        lineColor = Vector4g(0.5f, 0.5f, 0.5f, 0.9f);
+        lineColor = Vector4(0.5f, 0.5f, 0.5f, 0.9f);
     }
     //else {
     //    if (wasHit) {
@@ -934,7 +1063,7 @@ void DebugManager::drawCharacterController(CharControlComponent * comp)
             lines->transform().updateWorldMatrix(worldMatrix);
 
             // Draw outer capsule (with contact offset)
-            lines->draw(*m_lineShaderProgram);
+            lines->draw(*m_lineShaderProgram, &mainRenderContext());
 
             //// Draw inner capsule
             //float offset = comp->controller()->getContactOffset();
@@ -948,7 +1077,7 @@ void DebugManager::drawCharacterController(CharControlComponent * comp)
             //scaled *= scale;
             //Matrix4x4g scaleMat(scaled);
             //lines->transform().updateWorldMatrix(worldMatrix * scaleMat);
-            //lines->draw(m_lineShaderProgram);
+            //lines->draw(m_lineShaderProgram, &mainRenderContext());
             break;
         }
         default:
@@ -963,29 +1092,36 @@ void DebugManager::drawLight(LightComponent * light)
     if (!m_simpleShaderProgram) return;
 
     // Get color and world matrix uniforms
-    Vector4g color = light->light().getDiffuseColor();
-    light->unbindLightBuffer();
+    Vector4 color = light->getDiffuseColor();
+    //light->cacheLight();
     if (!light->isEnabled()) {
-        color = Vector4g(0.5f, 0.5f, 0.5f, 0.75f);
+        color = Vector4(0.5f, 0.5f, 0.5f, 0.75f);
     }
-    Matrix4x4g worldMatrix = light->sceneObject()->transform()->rotationTranslationMatrix();
+
+    // Slow, and only necessary if you really want to ensure lights are all the same size
+    //Matrix4x4g worldMatrix = light->sceneObject()->transform()->rotationTranslationMatrix();
+    const Matrix4x4g& worldMatrix = light->sceneObject()->transform()->worldMatrix();
 
     // Set camera uniforms
     m_simpleShaderProgram->bind();
     
     // Get geometry and set uniforms
-    const auto& sphereMesh = m_engine->resourceCache()->polygonCache()->getSphere(20, 30);
+    if (!m_sphereMesh) {
+        m_sphereMesh = m_engine->resourceCache()->polygonCache()->getSphere(20, 30);
+    }
     
     m_simpleShaderProgram->setUniformValue("worldMatrix", worldMatrix);
     m_simpleShaderProgram->setUniformValue("color", color, true);
 
     // Draw outer capsule (with contact offset)
-    sphereMesh->vertexData().drawGeometry(GL_TRIANGLES);
+    m_sphereMesh->vertexData().drawGeometry(GL_TRIANGLES);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 void DebugManager::createDrawCommand(SceneObject& so, std::vector<std::shared_ptr<DrawCommand>>& outDrawCommands)
 {
+    Q_UNUSED(outDrawCommands)
+    Q_UNUSED(so)
     // Draw bounding boxes (slow, need to only draw for visible geometry)
     //if (so.hasComponent(Component::ComponentType::kModel)) {
     //    ModelComponent* modelComp = so.modelComponent();
@@ -1024,9 +1160,24 @@ void DebugManager::createDrawCommand(SceneObject& so, std::vector<std::shared_pt
     //    }
     //}
 }
+/////////////////////////////////////////////////////////////////////////////////////////////
+RenderContext& DebugManager::mainRenderContext() {
+    return m_engine->mainRenderer()->renderContext();
+}
 
+/////////////////////////////////////////////////////////////////////////////////////////////
+void DebugManager::DebugRenderable::draw()
+{
+    if (m_enabled) {
+        RenderContext& context = CoreEngine::engines().begin()->second->mainRenderer()->renderContext();
+        m_renderable->draw(*m_shaderProgram,
+            &context, 
+            nullptr
+            //Renderable::kIgnoreSettings
+        );
+    }
+}
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 } // End namespaces
-

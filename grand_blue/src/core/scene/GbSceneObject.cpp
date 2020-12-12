@@ -11,12 +11,15 @@
 #include "GbScene.h"
 #include "GbScenario.h"
 #include "../GbCoreEngine.h"
-#include "../scripting/GbPyWrappers.h"
+#include "../resource/GbResourceCache.h"
+
+#include "../rendering/view/GbPointLightCamera.h"
+
 #include "../components/GbTransformComponent.h"
 #include "../components/GbComponent.h"
 #include "../components/GbScriptComponent.h"
 #include "../components/GbShaderComponent.h"
-#include "../components/GbCamera.h"
+#include "../components/GbCameraComponent.h"
 #include "../components/GbLightComponent.h"
 #include "../components/GbModelComponent.h"
 #include "../components/GbListenerComponent.h"
@@ -24,11 +27,12 @@
 #include "../components/GbCanvasComponent.h"
 #include "../components/GbAnimationComponent.h"
 #include "../components/GbCubeMapComponent.h"
+#include "../components/GbAudioSourceComponent.h"
 #include "../processes/GbScriptedProcess.h"
 
-#include "../rendering/renderer/GbRenderers.h"
-#include "../rendering/renderer/GbRenderCommand.h"
 #include "../rendering/shaders/GbShaders.h"
+#include "../rendering/lighting/GbShadowMap.h"
+#include "../rendering/renderer/GbRenderCommand.h"
 #include "../rendering/renderer/GbMainRenderer.h"
 
 #include "../events/GbEventManager.h"
@@ -50,9 +54,6 @@ std::shared_ptr<SceneObject> SceneObject::create(std::shared_ptr<Scene> scene)
 {
     // Create scene object and add to node map
     std::shared_ptr<SceneObject> sceneObjectPtr = prot_make_shared<SceneObject>(scene);
-    if (sceneObjectPtr->type() == NodeType::kBase) {
-        throw("Error, an abstract DAG node cannot be instantiated");
-    }
     sceneObjectPtr->addToNodeMap();
 
     // Add to scene
@@ -63,7 +64,10 @@ std::shared_ptr<SceneObject> SceneObject::create(std::shared_ptr<Scene> scene)
     sceneObjectPtr->m_transformComponent = std::make_shared<TransformComponent>(sceneObjectPtr);
 
     // Set unique name
-    sceneObjectPtr->setName(std::move(sceneObjectPtr->getUuid().asString()));
+    static size_t count = 0;
+    static GString name("SceneObject_");
+    sceneObjectPtr->setName(name + GString::FromNumber(count));
+    count++;
 
     return sceneObjectPtr;
 }
@@ -78,7 +82,7 @@ std::shared_ptr<SceneObject> SceneObject::create(CoreEngine * core, const QJsonV
         scene = core->scenario()->getSceneByName(sceneName);
     }
     else if (core->scenario()->getScenes().size() == 1) {
-        scene = core->scenario()->getScenes().begin()->second;
+        scene = core->scenario()->getScenes().front();
     }
     else {
 #ifdef DEBUG_MODE
@@ -95,28 +99,28 @@ std::shared_ptr<SceneObject> SceneObject::create(CoreEngine * core, const QJsonV
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 std::shared_ptr<SceneObject> SceneObject::get(const Uuid & uuid)
 {
-    if (DagNode::getDagNodeMap().find(uuid) != DagNode::getDagNodeMap().end()) {
-        return std::static_pointer_cast<SceneObject>(DagNode::getDagNodeMap().at(uuid));
+    if (DagNode::DagNodeMap().find(uuid) != DagNode::DagNodeMap().end()) {
+        return std::static_pointer_cast<SceneObject>(DagNode::DagNodeMap().at(uuid));
     }
 
     return nullptr;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<SceneObject> SceneObject::get(const QString & uuidStr)
+std::shared_ptr<SceneObject> SceneObject::get(const GString & uuidStr)
 {
     Uuid uuid = Uuid(uuidStr);
-    if (DagNode::getDagNodeMap().find(uuid) != DagNode::getDagNodeMap().end()) {
-        return std::static_pointer_cast<SceneObject>(DagNode::getDagNodeMap().at(uuid));
+    if (DagNode::DagNodeMap().find(uuid) != DagNode::DagNodeMap().end()) {
+        return std::static_pointer_cast<SceneObject>(DagNode::DagNodeMap().at(uuid));
     }
 
     return nullptr;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<SceneObject> SceneObject::getByName(const QString & name)
+std::shared_ptr<SceneObject> SceneObject::getByName(const GString & name)
 {
     static QString soStr = QStringLiteral("SceneObject");
 
-    auto iter = std::find_if(DagNode::getDagNodeMap().begin(), DagNode::getDagNodeMap().end(),
+    auto iter = std::find_if(DagNode::DagNodeMap().begin(), DagNode::DagNodeMap().end(),
         [&](const std::pair<Uuid, std::shared_ptr<DagNode>>& dagPair) {
         if (dagPair.second->className() == soStr) {
             auto sceneObject = std::static_pointer_cast<SceneObject>(dagPair.second);
@@ -125,7 +129,7 @@ std::shared_ptr<SceneObject> SceneObject::getByName(const QString & name)
         return false;
     });
 
-    if (iter != DagNode::getDagNodeMap().end()) {
+    if (iter != DagNode::DagNodeMap().end()) {
         return std::static_pointer_cast<SceneObject>(iter->second);
     }
 
@@ -134,6 +138,9 @@ std::shared_ptr<SceneObject> SceneObject::getByName(const QString & name)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 SceneObject::~SceneObject()
 {
+    // Set scene to nullptr, so that components know the object is being deleted
+    m_scene = nullptr;
+
     // Delete all components
     for (const std::vector<Component*>& componentVec : m_components) {
         for (auto& component : componentVec) {
@@ -146,11 +153,11 @@ SceneObject::~SceneObject()
     emit m_engine->eventManager()->deletedSceneObject(m_uuid);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<Scene> SceneObject::scene() const {
+const std::shared_ptr<Scene> & SceneObject::scene() const {
     return m_scene;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-ShaderComponent* SceneObject::shaderComponent()
+ShaderComponent* SceneObject::shaderComponent() const
 {
     if (hasComponent(Component::ComponentType::kShader)) {
         ShaderComponent* renderComp = static_cast<ShaderComponent*>(m_components[(int)Component::ComponentType::kShader][0]);
@@ -159,7 +166,7 @@ ShaderComponent* SceneObject::shaderComponent()
     return nullptr;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-CameraComponent* SceneObject::camera()
+CameraComponent* SceneObject::camera() const
 {
     if (hasComponent(Component::ComponentType::kCamera)) {
         CameraComponent* camera = static_cast<CameraComponent*>(m_components[(int)Component::ComponentType::kCamera][0]);
@@ -168,7 +175,7 @@ CameraComponent* SceneObject::camera()
     return nullptr;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-LightComponent* SceneObject::light()
+LightComponent* SceneObject::light() const
 {
     if (hasComponent(Component::ComponentType::kLight)) {
         LightComponent* light = static_cast<LightComponent*>(m_components[(int)Component::ComponentType::kLight][0]);
@@ -177,7 +184,7 @@ LightComponent* SceneObject::light()
     return nullptr;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-CubeMapComponent * SceneObject::cubeMap()
+CubeMapComponent * SceneObject::cubeMap() const
 {
     if (hasComponent(Component::ComponentType::kCubeMap)) {
         CubeMapComponent* cubemap = static_cast<CubeMapComponent*>(m_components[(int)Component::ComponentType::kCubeMap][0]);
@@ -195,7 +202,7 @@ void SceneObject::setCamera(CameraComponent* camera)
     m_transformComponent->computeWorldMatrix();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-CharControlComponent * SceneObject::characterController()
+CharControlComponent * SceneObject::characterController() const
 {
     if (hasComponent(Component::ComponentType::kCharacterController)) {
         CharControlComponent* cc = static_cast<CharControlComponent*>(m_components[(int)Component::ComponentType::kCharacterController][0]);
@@ -204,7 +211,7 @@ CharControlComponent * SceneObject::characterController()
     return nullptr;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-ModelComponent * SceneObject::modelComponent()
+ModelComponent * SceneObject::modelComponent() const
 {
     if (hasComponent(Component::ComponentType::kModel)) {
         ModelComponent* m = static_cast<ModelComponent*>(m_components[(int)Component::ComponentType::kModel][0]);
@@ -213,7 +220,7 @@ ModelComponent * SceneObject::modelComponent()
     return nullptr;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-CanvasComponent * SceneObject::canvasComponent()
+CanvasComponent * SceneObject::canvasComponent() const
 {
     if (hasComponent(Component::ComponentType::kCanvas)) {
         CanvasComponent* c = static_cast<CanvasComponent*>(m_components[(int)Component::ComponentType::kCanvas][0]);
@@ -222,7 +229,7 @@ CanvasComponent * SceneObject::canvasComponent()
     return nullptr;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-BoneAnimationComponent * SceneObject::boneAnimation()
+BoneAnimationComponent * SceneObject::boneAnimationComponent() const
 {
     if (hasComponent(Component::ComponentType::kBoneAnimation)) {
         BoneAnimationComponent* ba = static_cast<BoneAnimationComponent*>(m_components[(int)Component::ComponentType::kBoneAnimation][0]);
@@ -231,7 +238,7 @@ BoneAnimationComponent * SceneObject::boneAnimation()
     return nullptr;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void SceneObject::createDrawCommands(Camera& camera, 
+void SceneObject::createDrawCommands(SceneCamera& camera, 
     MainRenderer& renderer, 
     const SortingLayer& currentLayer,
     bool overrideLayer)
@@ -245,9 +252,9 @@ void SceneObject::createDrawCommands(Camera& camera,
             std::shared_ptr<ShaderPreset> shaderPreset = sc->shaderPreset();
             if (shaderPreset) {
                 // Grab some settings from shader preset
-                Renderer& r = shaderPreset->renderer();
+                //Renderer& r = shaderPreset->renderer();
                 const std::shared_ptr<ShaderProgram>& shaderProgram = shaderPreset->shaderProgram();
-                RenderSettings& renderSettings = r.renderSettings();
+                RenderSettings& renderSettings = shaderPreset->renderSettings();
 
                 if (shaderProgram) {
                     // Create render commands
@@ -257,19 +264,23 @@ void SceneObject::createDrawCommands(Camera& camera,
                     if (modelComp) {
                         modelComp->createDrawCommands(renderCommands,
                             camera,
-                            *shaderProgram);
+                            *shaderProgram,
+                            shaderPreset->prepassShaderProgram().get());
                     }
                     if (canvasComp) {
                         canvasComp->createDrawCommands(renderCommands,
                             camera,
-                            *shaderProgram);
+                            *shaderProgram,
+                            shaderPreset->prepassShaderProgram().get());
                     }
 
                     // Set uniforms in render commands
+#ifdef DEBUG_MODE
                     if (!scene()) {
                         throw("Error, object must be in scene to be rendered");
                     }
-                    for (const auto& command : renderCommands) {
+#endif
+                    for (const std::shared_ptr<DrawCommand>& command : renderCommands) {
                         // Set uniforms for the scene
                         scene()->bindUniforms(*command);
 
@@ -277,14 +288,11 @@ void SceneObject::createDrawCommands(Camera& camera,
                         bindUniforms(*command);
 
                         // Set uniforms for shader preset
-                        for (const std::pair<QString, Uniform>& uniformPair : r.uniforms()) {
-                            command->setUniform(uniformPair.second);
-                        }
+                        command->addUniforms(shaderPreset->uniforms());
 
                         // Set render settings
-                        // Add to front of settings vector so that 
-                        // component settings override shader preset
-                        command->addRenderSettings(&renderSettings, true);
+                        // Note, shader preset overrides any sub-settings
+                        command->renderSettings().overrideSettings(renderSettings);
 
                         // Set render layer of command
                         command->setRenderLayer(&const_cast<SortingLayer&>(currentLayer));
@@ -299,7 +307,7 @@ void SceneObject::createDrawCommands(Camera& camera,
 
     // Generate commands for children
     for (const std::shared_ptr<SceneObject>& child : children()) {
-        child->createDrawCommands(camera, renderer, currentLayer);
+        child->createDrawCommands(camera, renderer, currentLayer, overrideLayer);
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -316,18 +324,87 @@ std::vector<std::shared_ptr<SortingLayer>> SceneObject::getRenderLayers() const
     return layers;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-bool SceneObject::hasRenderLayer(const QString & label)
+bool SceneObject::hasRenderLayer(const GString & label)
 {
-    auto layers = renderLayers();
-    auto iter = std::find_if(layers.begin(), layers.end(),
+    //auto layers = renderLayers();
+    auto iter = std::find_if(m_renderLayers.begin(), m_renderLayers.end(),
         [&](const auto& layer) {
-        return layer->getName() == label;
+        if (std::shared_ptr<SortingLayer> ptr = layer.lock()) {
+            return ptr->getName() == label;
+        }
+        else {
+            return false;
+        }
     });
-    if (iter == layers.end()) {
+    if (iter == m_renderLayers.end()) {
         return false;
     }
     else {
         return true;
+    }
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////
+void SceneObject::createDrawCommands(ShadowMap & sm, MainRenderer & renderer)
+{
+    // TODO: Clean this up with sub-routines
+    // Skip if no shader component or does not contain render layer
+    ShaderComponent* sc = shaderComponent();
+    if (sc) {
+        if (sc->isEnabled()) {
+            // If shader component is not enabled, don't need to draw anything!
+            std::shared_ptr<ShaderPreset> shaderPreset = sc->shaderPreset();
+            if (shaderPreset) {
+                // Grab some settings from shader preset
+                const std::shared_ptr<ShaderProgram>& shaderProgram = shaderPreset->shaderProgram();
+                RenderSettings& renderSettings = shaderPreset->renderSettings();
+
+                if (shaderProgram) {
+                    // Create render commands
+                    ModelComponent* modelComp = modelComponent();
+                    std::vector<std::shared_ptr<DrawCommand>> renderCommands;
+                    if (modelComp) {
+                        ShaderProgram* prepassShader;
+                        if (sm.lightComponent()->getLightType() != Light::kPoint) {
+                            // Directional and spot lights are relatively straightforward, just one camera
+                            prepassShader = shaderPreset->prepassShaderProgram().get();
+
+                        }
+                        else {
+                            // Get cubemap prepass shader for point lights
+                            prepassShader = m_engine->resourceCache()->getHandleWithName("prepass_shadowmap", 
+                                Resource::kShaderProgram)->resourceAs<ShaderProgram>(false).get();
+                        }
+                        modelComp->createDrawCommands(renderCommands,
+                            *sm.camera(),
+                            *shaderProgram,
+                            prepassShader);
+
+                        // Set uniforms in render commands and add to renderer
+                        for (const auto& command : renderCommands) {
+                            // Set uniforms for the scene
+                            scene()->bindUniforms(*command);
+
+                            // Set uniforms for scene object
+                            bindUniforms(*command);
+
+                            // Set uniforms for shader preset
+                            command->addUniforms(shaderPreset->uniforms());
+
+                            // Set render settings
+                            command->renderSettings().overrideSettings(renderSettings);
+
+                            // Add command to renderer
+                            renderer.addShadowMapCommand(command);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Generate commands for children
+    for (const std::shared_ptr<SceneObject>& child : children()) {
+        child->createDrawCommands(sm, renderer);
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -369,7 +446,7 @@ bool SceneObject::addRenderLayer(const std::shared_ptr<SortingLayer>& layer)
     return true;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-bool SceneObject::removeRenderLayer(const QString & label)
+bool SceneObject::removeRenderLayer(const GString & label)
 {
     auto iter = std::find_if(m_renderLayers.begin(), m_renderLayers.end(),
         [&](const auto& layer) {
@@ -405,7 +482,7 @@ void SceneObject::updatePhysics()
         }
     }
 
-    for (std::shared_ptr<SceneObject>& child : children()) {
+    for (const std::shared_ptr<SceneObject>& child : m_children) {
         child->updatePhysics();
     }
 }
@@ -521,6 +598,8 @@ bool SceneObject::canAdd(Component * component)
     case Component::ComponentType::kCharacterController:
     case Component::ComponentType::kBoneAnimation:
     case Component::ComponentType::kCubeMap:
+    case Component::ComponentType::kAudioSource:
+    case Component::ComponentType::kAudioListener:
         break;
     case Component::ComponentType::kTransform:
 #ifdef DEBUG_MODE
@@ -565,20 +644,10 @@ bool SceneObject::satisfiesConstraints(const Component::ComponentType & type) co
     return satisfies;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::vector<std::shared_ptr<SceneObject>> SceneObject::children() const
-{
-    std::vector<std::shared_ptr<SceneObject>> childVec;
-    for (const auto& dagNodePair : m_children) {
-        Vec::EmplaceBack(childVec, std::static_pointer_cast<SceneObject>(dagNodePair.second));
-    }
-    return childVec;
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 std::shared_ptr<SceneObject> SceneObject::getChild(const Uuid & uuid) const
 {
-    std::vector<std::shared_ptr<SceneObject>> kids = children();
     std::shared_ptr<SceneObject> chosenChild = nullptr;
-    for (const std::shared_ptr<SceneObject>& child : kids) {
+    for (const std::shared_ptr<SceneObject>& child : children()) {
         if (child->getUuid() == uuid) {
             chosenChild = child;
             break;
@@ -593,7 +662,7 @@ std::shared_ptr<SceneObject> SceneObject::getChild(const Uuid & uuid) const
     return chosenChild;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<SceneObject> SceneObject::getChildByName(const QString & name) const
+std::shared_ptr<SceneObject> SceneObject::getChildByName(const GString & name) const
 {
     std::vector<std::shared_ptr<SceneObject>> kids = children();
     std::shared_ptr<SceneObject> chosenChild = nullptr;
@@ -645,7 +714,6 @@ void SceneObject::setParent(const std::shared_ptr<SceneObject>& newParent)
 {
     if (parent()) {
         removeParent(parent()->getUuid());
-        m_transformComponent->clearParent();
     }
 
     if (hasParents()) {
@@ -653,16 +721,11 @@ void SceneObject::setParent(const std::shared_ptr<SceneObject>& newParent)
     }
 
     if (newParent) {
+        // The parent is being added
         addParent(newParent);
-        m_transformComponent->setParent(newParent->transform().get());
-
-        // Remove from top-level item list if present
-        auto thisShared = std::static_pointer_cast<SceneObject>(sharedPtr());
-        if (m_scene->hasTopLevelObject(thisShared)) {
-            m_scene->removeObject(thisShared);
-        }
     }
     else {
+        // The parent is being removed
         // Add to top-level item list if not present
         auto thisShared = std::static_pointer_cast<SceneObject>(sharedPtr());
         if (!m_scene->hasTopLevelObject(thisShared)) {
@@ -690,86 +753,35 @@ bool SceneObject::hasShaderComponent() const
 {
     return hasComponent(Component::ComponentType::kShader);
 }
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//void SceneObject::draw(RenderableType type)
-//{
-//    // Return if no renderer component (likely a child object without a renderer)
-//    ShaderComponent* sc = shaderComponent();
-//    if (sc) {
-//        if (sc->isEnabled()) {
-//            std::shared_ptr<ShaderPreset> shaderPreset = sc->shaderPreset();
-//            if (shaderPreset) {
-//                Renderer& r = shaderPreset->renderer();
-//                const std::shared_ptr<ShaderProgram>& shaderProgram = shaderPreset->shaderProgram();
-//                RenderSettings& renderSettings = r.renderSettings();
-//
-//                if (shaderProgram) {
-//
-//                    // Bind shader 
-//                    bool bindShader = renderSettings.hasShaderFlag(RenderSettings::kBind);
-//                    bool releaseShader = renderSettings.hasShaderFlag(RenderSettings::kRelease);
-//                    if (bindShader) {
-//                        shaderProgram->bind();
-//
-//                        // Set uniforms for the scene
-//                        // TODO: Set these at the scene level
-//                        if (!scene()) throw("Error, object must be in scene to be rendered");
-//                        scene()->bindUniforms(shaderProgram);
-//                    }
-//
-//                    // Set uniforms for scene object
-//                    bindUniforms(shaderProgram);
-//
-//                    // Toggle off bind/release shader settings for renderer
-//                    renderSettings.setShaderBind(false);
-//                    renderSettings.setShaderRelease(false);
-//
-//                    // Render
-//                    // Do not bind shader in this step, since current call handles that
-//                    std::vector<Renderable*> renderables;
-//                    switch (type) {
-//                    case kModel:
-//                    {
-//                        ModelComponent* model = modelComponent();
-//                        if (model) {
-//                            renderables.push_back(model);
-//                        }
-//                        break;
-//                    }
-//                    case kCanvas:
-//                        renderables = getCanvasComponents();
-//                        break;
-//                    default:
-//                        throw("Error, renderable type unrecognized");
-//                    }
-//                    r.draw(renderables, shaderProgram);
-//
-//                    // Release shader if mode specifies
-//                    if (renderSettings.hasShaderFlag(RenderSettings::kRelease)) {
-//                        shaderProgram->release();
-//                    }
-//
-//                    // Toggle render settings back
-//                    renderSettings.setShaderBind(bindShader);
-//                    renderSettings.setShaderRelease(releaseShader);
-//                }
-//            }
-//        }
-//    }
-//
-//    // Render children
-//    for (const std::shared_ptr<SceneObject>& child : children()) {
-//        child->draw(type);
-//    }
-//}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void SceneObject::remove()
+void SceneObject::removeFromScene()
 {
     // Abort all scripted processes before removal
     abortScriptedProcesses();
 
+    // Remove from parent, if there is one
+    if (parent()) {
+        parent()->removeChild(this);
+    }
+
     // Remove from static DAG node map
     scene()->removeObject(std::static_pointer_cast<SceneObject>(sharedPtr()), true);
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+AudioSourceComponent * SceneObject::audioSource(size_t index) const
+{
+    size_t audioIndex = (size_t)Component::ComponentType::kAudioSource;
+    const std::vector<Component*>& audioComps = m_components[audioIndex];
+    if (!audioComps.size()) {
+        return nullptr;
+    }
+
+    if (audioComps.size() - 1 < index) {
+        throw("Error, not enough audio components to retrieve at specified index");
+        return nullptr;
+    }
+
+    return static_cast<AudioSourceComponent*>(audioComps[index]);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 QJsonValue SceneObject::asJson() const
@@ -785,16 +797,16 @@ QJsonValue SceneObject::asJson() const
             components.append(component->asJson());
         }
     }
-    object.insert("name", m_name);
+    object.insert("name", m_name.c_str());
     object.insert("components", components);
     object.insert("transform", m_transformComponent->asJson());
     if(m_scene)
-        object.insert("scene", scene()->getName());
+        object.insert("scene", scene()->getName().c_str());
 
     // Render layers
     QJsonArray layers;
     for (const auto& layer : getRenderLayers()) {
-        layers.append(layer->getName());
+        layers.append(layer->getName().c_str());
     }
     object.insert("renderLayers", layers);
 
@@ -808,8 +820,10 @@ QJsonValue SceneObject::asJson() const
     return object;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void SceneObject::loadFromJson(const QJsonValue & json)
+void SceneObject::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context);
+
     // Set scene object name
     const QJsonObject& jsonObject = json.toObject();
     if (jsonObject.contains("name")) {
@@ -833,7 +847,7 @@ void SceneObject::loadFromJson(const QJsonValue & json)
             thisSceneObject = scene()->getSceneObject(getUuid());
         }
         else {
-            thisSceneObject = std::static_pointer_cast<SceneObject>(DagNode::getDagNodeMap().at(m_uuid));
+            thisSceneObject = std::static_pointer_cast<SceneObject>(DagNode::DagNodeMap().at(m_uuid));
         }
 
         // iterate over components to construct
@@ -882,6 +896,33 @@ void SceneObject::loadFromJson(const QJsonValue & json)
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void SceneObject::onAddChild(const std::shared_ptr<SceneObject>& child)
+{
+    // Don't need to do anything with transforms, since onAddParent covers it
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void SceneObject::onAddParent(const std::shared_ptr<SceneObject>& parent)
+{
+    // Set transform's parent
+    m_transformComponent->setParent(parent->transform().get());
+
+    // Remove from top-level item list if present
+    auto thisShared = std::static_pointer_cast<SceneObject>(sharedPtr());
+    if (m_scene->hasTopLevelObject(thisShared)) {
+        m_scene->removeObject(thisShared);
+    }
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void SceneObject::onRemoveChild(const std::shared_ptr<SceneObject>& child)
+{
+    // Don't need to do anything with transforms, since onRemoveParent covers it
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void SceneObject::onRemoveParent(const std::shared_ptr<SceneObject>& parent)
+{
+    m_transformComponent->clearParent();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void SceneObject::setComponent(Component * component)
 {
     // Delete all components of the given type
@@ -898,7 +939,7 @@ void SceneObject::setComponent(Component * component)
 void SceneObject::bindUniforms(DrawCommand& rendercommand)
 {
     // Set world matrix uniform 
-    rendercommand.setUniform(Uniform("worldMatrix", m_transformComponent->worldMatrix()));
+    rendercommand.setUniform(Shader::s_worldMatrixUniformName, m_transformComponent->worldMatrix());
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
 void SceneObject::setDefaultRenderLayers()
@@ -936,16 +977,6 @@ SceneObject::SceneObject(const std::shared_ptr<Scene>& scene):
     }
     m_components.resize((int)Component::ComponentType::MAX_COMPONENT_TYPE_VALUE);
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//SceneObject::SceneObject(CoreEngine* engine) :
-//    DagNode(),
-//    m_isEnabled(true)
-//{
-//    m_scene = nullptr;
-//    m_engine = engine;
-//
-//    m_components.resize((int)Component::ComponentType::MAX_COMPONENT_TYPE_VALUE);
-//}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 } // end namespacing

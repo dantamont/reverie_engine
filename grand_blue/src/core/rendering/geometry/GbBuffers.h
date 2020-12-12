@@ -35,8 +35,8 @@ class BufferObject;
 /// @brief Class wrapping a QOpenGLVertexArrayObject 
 class VertexArrayObject: 
     public QOpenGLVertexArrayObject,
-    public OpenGLFunctions,
-    public Gb::Object {
+    public Gb::Object
+{
     Q_OBJECT
 public:
     //---------------------------------------------------------------------------------------
@@ -47,7 +47,7 @@ public:
     //---------------------------------------------------------------------------------------
     /// @name Constructors and Destructors
     /// @{
-    VertexArrayObject(bool create = true, bool bind = true);
+    VertexArrayObject(bool create, bool bind);
     ~VertexArrayObject();
     /// @}
 
@@ -97,38 +97,17 @@ protected:
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 /// @brief Class wrapping a QOpenGLBuffer 
+// TODO: Replace with my own GLBuffer abstraction that doesn't rely on QOpenGlBuffer
 class BufferObject :
     public QOpenGLBuffer, 
-    public OpenGLFunctions,
-    public Gb::Object {
+    public Gb::Object,
+    private OpenGLFunctions
+{
 
 public:
     //---------------------------------------------------------------------------------------
     /// @name Static
     /// @{
-
-    /// @brief Enum of valid buffer data types
-    /// @details Enum value represents position in shader
-    enum AttributeType {
-        kNone=-1,
-        kPosition,
-        kColor,
-        kTextureCoordinates,
-        kNormal,
-        kTangent,
-        kMiscInt,
-        kMiscReal,
-        kMAX_ATTRIBUTE_TYPE
-    };
-
-    /// @brief Create and bind an attribute VBO
-    static std::shared_ptr<BufferObject> createAndBindAttributeVBO(
-        AttributeType type,
-        QOpenGLBuffer::UsagePattern usagePattern = QOpenGLBuffer::DynamicDraw);
-
-    /// @brief Create and bind an index VBO
-    static std::shared_ptr<BufferObject> createAndBindIndexVBO(
-        QOpenGLBuffer::UsagePattern usagePattern = QOpenGLBuffer::DynamicDraw);
 
     /// @}
 
@@ -136,15 +115,34 @@ public:
     /// @name Constructors and Destructors
     /// @{
     BufferObject(const BufferObject &other);
-    BufferObject(QOpenGLBuffer::Type bufferType, AttributeType attributeType = kNone);
+    BufferObject(QOpenGLBuffer::Type bufferType, 
+        BufferAttributeType attributeType,
+        GL::UsagePattern pattern = GL::UsagePattern::kDynamicDraw);
     BufferObject();
     ~BufferObject();;
 
     /// @}
 
     //---------------------------------------------------------------------------------------
+    /// @name Properties
+    /// @{
+
+    /// @brief Attribute type of buffer
+    const BufferAttributeType& attributeType() const {
+        return m_type;
+    }
+
+
+    /// @}
+
+    //---------------------------------------------------------------------------------------
     /// @name Public methods
     /// @{
+
+    /// @brief If this is a null buffer
+    bool isNull() const {
+        return m_type == BufferAttributeType::kNone;
+    }
     
     /// @brief Get contents
     /// @details Count is the number of elements to return
@@ -178,7 +176,7 @@ public:
     /// @}
 
     //---------------------------------------------------------------------------------------
-    /// @name Properties
+    /// @name Object overrides
     /// @{
     /** @property className
         @brief The name of this class
@@ -197,7 +195,7 @@ protected:
     unsigned int getTupleSize();
 
     /// @brief Type of buffer
-    AttributeType m_type;
+    BufferAttributeType m_type = BufferAttributeType::kNone;
 };
 
 

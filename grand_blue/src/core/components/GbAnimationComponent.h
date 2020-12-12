@@ -11,8 +11,10 @@
 
 // Project
 #include "GbComponent.h"
+#include "../geometry/GbCollisions.h"
 #include "../rendering/GbGLFunctions.h"
 #include "../mixins/GbRenderable.h"
+#include "../animation/GbAnimationController.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Namespace Definitions
@@ -26,8 +28,10 @@ class Model;
 class ShaderProgram;
 struct Uniform;
 class AnimationController;
+class AnimationProcess;
 class ResourceHandle;
 class DrawCommand;
+class Transform;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Class Definitions
@@ -56,6 +60,10 @@ public:
     /// @name Public Methods
     /// @{
 
+    /// @brief Animation bounds in world space
+    /// @details Bounds are calculated via updateBounds method by transforming skeleton's bounding box into world space
+    const AABB& bounds() const { return m_transformedBoundingBox; }
+
     /// @brief Set uniforms for the animation component, which are specific to only one instance of a model
     void bindUniforms(DrawCommand& drawCommand);
     void bindUniforms(ShaderProgram& shaderProgram);
@@ -69,16 +77,21 @@ public:
     /// @brief Max number of allowed components per scene object
     virtual int maxAllowed() const override { return 1; }
 
+    /// @brief Update bounds given a transform
+    void updateBounds(const Transform& transform);
+
     /// @}
 
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Properties
     /// @{
 
+    const std::shared_ptr<AnimationProcess>& process() { return m_process; }
+
     /// @property Model
     const std::shared_ptr<ResourceHandle>& modelHandle() const;
 
-    std::unique_ptr<AnimationController>& animationController() {
+    AnimationController& animationController() {
         return m_animationController;
     }
 
@@ -103,7 +116,7 @@ public:
     virtual QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -113,15 +126,26 @@ protected:
     /// @{
 
     /// @brief Initialize animation controller from model
-    void initializeAnimationController();
+    //void initializeAnimationController();
+
+    void initializeProcess();
+
        
     /// @}
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Protected Members
     /// @{
 
+    /// @brief the bounding box for the animation component
+    AABB m_transformedBoundingBox;
+
     /// @brief The animations used by this model component
-    std::unique_ptr<AnimationController> m_animationController = nullptr;
+    AnimationController m_animationController;
+
+
+    /// @brief The process for running the animation controller
+    std::shared_ptr<AnimationProcess> m_process = nullptr;
+
 
     /// @}
 

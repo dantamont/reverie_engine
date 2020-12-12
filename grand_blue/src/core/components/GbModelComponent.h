@@ -27,7 +27,8 @@ class ResourceHandle;
 class ShaderProgram;
 struct Uniform;
 class DrawCommand;
-class Camera;
+class AbstractCamera;
+class CollidingGeometry;
 struct SortingLayer;
 class MainRenderer;
 
@@ -61,10 +62,12 @@ public:
     void updateBounds(const Transform& transform);
 
     /// @brief Create the draw commands for the model component
+    /// @param[in] cullShape shape used for culling visible geometry (typically a camera frustum)
     void createDrawCommands(
         std::vector<std::shared_ptr<DrawCommand>>& outDrawCommands,
-        Camera& camera,
-        ShaderProgram& shaderProgram);
+        AbstractCamera& camera,
+        ShaderProgram& shaderProgram,
+        ShaderProgram* prepassProgram = nullptr);
 
     /// @brief Enable the behavior of this script component
     virtual void enable() override;
@@ -113,7 +116,7 @@ public:
     virtual QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 

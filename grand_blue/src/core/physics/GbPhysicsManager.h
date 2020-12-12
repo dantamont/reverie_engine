@@ -95,26 +95,26 @@ public:
         return s_shapes[DefaultShapeKey()];
     }
     static void RemoveShape(const std::shared_ptr<PhysicsShapePrefab>& prefab);
-    static void RenameShape(const std::shared_ptr<PhysicsShapePrefab>& prefab, const QString& name);
-    static const std::unordered_map<QString, std::shared_ptr<PhysicsShapePrefab>>& shapes() { return s_shapes; }
+    static void RenameShape(const std::shared_ptr<PhysicsShapePrefab>& prefab, const GString& name);
+    static const tsl::robin_map<GString, std::shared_ptr<PhysicsShapePrefab>>& ShapePrefabs() { return s_shapes; }
 
     /// @brief Pointers to all baked physics geometry
-    static std::unordered_map<QString, std::shared_ptr<PhysicsGeometry>>& geometry() { return s_geometry; }
+    static tsl::robin_map<GString, std::shared_ptr<PhysicsGeometry>>& geometry() { return s_geometry; }
 
     /// @brief Pointers to all physics materials
-    static std::unordered_map<QString, std::shared_ptr<PhysicsMaterial>>& materials() { return s_materials; }
+    static tsl::robin_map<GString, std::shared_ptr<PhysicsMaterial>>& Materials() { return s_materials; }
 
     /// @brief Clear all geometry and materials
     static void clear();
 
-    static Vector3 toVec3(const physx::PxVec3& vec3);
-    static Vector3g toVec3g(const physx::PxVec3& vec3);
-    static physx::PxVec3 toPhysX(const Vector3& vec3);
+    static Vector3d toVector3d(const physx::PxVec3& vec3);
+    static Vector3 toVector3(const physx::PxVec3& vec3);
+    static physx::PxVec3 toPhysX(const Vector3d& vec3);
     static physx::PxVec3 toPhysX(const Vector3f& vec3);
     static Quaternion toQuaternion(const physx::PxQuat& quat);
 
-    static const QString& DefaultShapeKey() { return s_defaultShapeKey; }
-    static const QString& DefaultMaterialKey() { return s_defaultMaterialKey; }
+    static const GString& DefaultShapeKey() { return s_defaultShapeKey; }
+    static const GString& DefaultMaterialKey() { return s_defaultMaterialKey; }
 
     //--------------------------------------------------------------------------------------------
     /// @name Constructors/Destructor
@@ -148,7 +148,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -215,18 +215,18 @@ protected:
 
     /// @brief Pointers to all physics shapes
     /// @details Shapes are indexed by name
-    static std::unordered_map<QString, std::shared_ptr<PhysicsShapePrefab>> s_shapes;
+    static tsl::robin_map<GString, std::shared_ptr<PhysicsShapePrefab>> s_shapes;
 
     /// @brief Pointers to all baked physics geometry
-    static std::unordered_map<QString, std::shared_ptr<PhysicsGeometry>> s_geometry;
+    static tsl::robin_map<GString, std::shared_ptr<PhysicsGeometry>> s_geometry;
 
     /// @brief Pointers to all physics materials
-    static std::unordered_map<QString, std::shared_ptr<PhysicsMaterial>> s_materials;
+    static tsl::robin_map<GString, std::shared_ptr<PhysicsMaterial>> s_materials;
 
     physx::PxPvd* m_pvd = nullptr;
 
-    static QString s_defaultShapeKey;
-    static QString s_defaultMaterialKey;
+    static GString s_defaultShapeKey;
+    static GString s_defaultMaterialKey;
 
     /// @}
 

@@ -22,6 +22,7 @@
 
 // Internal
 #include "../mixins/GbLoadable.h"
+#include "../utils/GbInterpolation.h"
 
 namespace Gb {
 
@@ -67,14 +68,53 @@ public:
         return Vector<D, N>(false);
     }
 
+    static const Vector<D, N>& Ones() {
+        static Vector<D, N> ones(D(1.0));
+        return ones;
+    }
+
+    static const Vector<D, N>& Right() {
+        static_assert(N >= 3, "Incorrect size");
+        static Vector<D, N> right(D(1.0), D(0.0), D(0.0));
+        return right;
+    }
+    static const Vector<D, N>& Left() {
+        static_assert(N >= 3, "Incorrect size");
+        static Vector<D, N> left(D(-1.0), D(0.0), D(0.0));
+        return left;
+    }
+    static const Vector<D, N>& Up() {
+        static_assert(N >= 3, "Incorrect size");
+        static Vector<D, N> up(D(0.0), D(1.0), D(0.0));
+        return up;
+    }
+    static const Vector<D, N>& Down() {
+        static_assert(N >= 3, "Incorrect size");
+        static Vector<D, N> down(D(0.0), D(-1.0), D(0.0));
+        return down;
+    }
+    static const Vector<D, N>& Forward(){
+        static_assert(N >= 3, "Incorrect size");
+        static Vector<D, N> forward(D(0.0), D(0.0), D(1.0));
+        return forward;
+    }
+    static const Vector<D, N>& Back() {
+        static_assert(N >= 3, "Incorrect size");
+        static Vector<D, N> back(D(0.0), D(0.0), D(-1.0));
+        return back;
+    }
+    static Vector<D, N>* EmptyVectorPointer() {
+        return new Vector<D, N>(false);
+    }
+
     /// @}
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// @name Constructors and Destructors
     /// @{
-    Vector() {
+    Vector(D fillValue = D(0)) {
         // Zero vector by default
-        std::fill(std::begin(m_array), std::end(m_array), D(0));
+        std::fill(std::begin(m_array), std::end(m_array), fillValue);
 	}
     
     Vector(const QJsonValue& json) {
@@ -106,17 +146,64 @@ public:
     {
         memcpy(m_array.data(), arrayPtr, sizeof(D)*N);
     }
-    //template <class D, size_t M> // Was causing accidental conversions between types
-    template <size_t M>
-    Vector(const Vector<D, M>& vec)
+
+    // TODO: Enforce type D in entries argument
+    // FIXME: Throws error when trying to assign from larger vector, e.g. new Vector3(Vector4(...))
+    template <size_t M, typename... T>
+    Vector(const Vector<D, M>& vec, T&&... entries)
     {
-        size_t size = std::min(N, M);
+        //constexpr size_t numArgs = entries.size();
+        std::vector<D> entryVec{ { static_cast<D>(entries)... } };
+        uint numArgs = entryVec.size();
+        constexpr size_t size = std::min(N, M);
         memcpy(m_array.data(), vec.m_array.data(), sizeof(D)*size);
-        if (M < N) {
+
+        // Populate from packed arguments
+        if (numArgs && M < N) {
+            constexpr int diff = std::max(int(N) - int(M), 0);
+            //memcpy(m_array.data() + M, entryVec.data(), sizeof(D)*numArgs);
+            memcpy(m_array.data() + M, entryVec.data(), sizeof(D)*diff);
+        }
+
+        if (M + numArgs < N) {
             // Fill remaining entries with zero
-            std::fill(std::begin(m_array) + M, std::end(m_array), D(0));
+            std::fill(std::begin(m_array) + M + numArgs, std::end(m_array), D(0));
         }
     }
+
+    template <size_t M, typename ... Entries>
+    Vector(D fillValue, const Vector<D, M>& vec, Entries... entries)
+    {
+        std::vector<D> entryVec{ { static_cast<D>(entries)... } };
+        uint numArgs = entryVec.size();
+        size_t size = std::min(N, M);
+        memcpy(m_array.data(), vec.m_array.data(), sizeof(D)*size);
+
+        // Populate from packed arguments
+        memcpy(m_array.data() + M, entryVec.data(), sizeof(D)*numArgs);
+
+        if (M + numArgs < N) {
+            // Fill remaining entries with zero
+            std::fill(std::begin(m_array) + M + numArgs, std::end(m_array), fillValue);
+        }
+    }
+
+    // Want to be explicit with conversions, so removed
+    //template <typename T, typename ... Entries>
+    //Vector(const Vector<T, N>& vec, Entries... entries)
+    //{
+    //    std::vector<D> entryVec{ { static_cast<D>(entries)... } };
+    //    uint numArgs = entryVec.size();
+    //    memcpy(m_array.data(), vec.m_array.data(), sizeof(D)*N);
+
+    //    // Populate from packed arguments
+    //    memcpy(m_array.data() + N, entryVec.data(), sizeof(D)*numArgs);
+
+    //    if (N + numArgs < N) {
+    //        // Fill remaining entries with zero
+    //        std::fill(std::begin(m_array) + N + numArgs, std::end(m_array), D(0));
+    //    }
+    //}
 
     ~Vector() {
 	}
@@ -125,6 +212,10 @@ public:
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /// @name Operators
     /// @{
+    //-----------------------------------------------------------------------------------------------------------------
+    inline bool operator< (const Vector<D, N>& other) const {
+        return lengthSquared() < other.lengthSquared();
+    }
     //-----------------------------------------------------------------------------------------------------------------
     inline D& operator[] (std::size_t i) {
 
@@ -150,6 +241,19 @@ public:
 #endif
 		return *this;
 	}
+
+    //-----------------------------------------------------------------------------------------------------------------
+    inline Vector<D, N>& operator+= (D factor) {
+#ifdef LINALG_USE_EIGEN
+        auto thisMap = map();
+        thisMap += factor;
+#else
+        for (size_t i = 0; i < N; i++) {
+            m_array[i] += D;
+        }
+#endif
+        return *this;
+    }
 
 	//-----------------------------------------------------------------------------------------------------------------
     inline const Vector<D, N> operator+ (const Vector<D, N> &other) const {
@@ -190,6 +294,19 @@ public:
 #endif
 		return *this;
 	}
+
+    //-----------------------------------------------------------------------------------------------------------------
+    inline Vector<D, N>& operator-= (D factor) {
+#ifdef LINALG_USE_EIGEN
+        auto thisMap = map();
+        thisMap -= factor;
+#else
+        for (size_t i = 0; i < N; i++) {
+            m_array[i] -= D;
+        }
+#endif
+        return *this;
+    }
 
 	//-----------------------------------------------------------------------------------------------------------------
     inline const Vector<D, N> operator- (const Vector<D, N> &other) const {
@@ -269,6 +386,26 @@ public:
 		result *= (1.0 / other);
 		return result;
 	}
+
+    //-----------------------------------------------------------------------------------------------------------------
+    inline Vector<D, N>& operator/= (D scale) {
+#ifdef LINALG_USE_EIGEN
+        auto thisMap = map();
+        thisMap /= scale;
+#else
+        std::vector<D> result;
+        result.reserve(size());
+
+        std::transform(m_array.begin(), m_array.end(), std::back_inserter(result),
+            [&](D& entry) {return entry / scale; }
+        );
+
+        //m_array = std::move(result.data());
+        std::move(result.begin(), result.begin() + result.size(), begin());
+
+#endif
+        return *this;
+    }
 
 	//-----------------------------------------------------------------------------------------------------------------
     inline bool operator== (const Vector<D, N> &other) const {
@@ -395,42 +532,61 @@ public:
     }
 
 	/// @brief return vector as a vector of doubles
-    inline Vector<double, N> asDouble() const{
-        //if (typeid(D).hash_code() == typeid(double).hash_code()) { return *this; }
+    typedef std::is_same<D, double> is_double;
+    typedef std::conditional_t<is_double::value, Vector<double, N>&, Vector<double, N>> DoubleVecType;
+    inline const DoubleVecType asDouble() const {
+        if constexpr (is_double::value) {
+            return const_cast<const DoubleVecType>(*this);
+        }
+        else {
 #ifdef LINALG_USE_EIGEN
-        auto thisMap = getMap();
-        Eigen::Array<double, N, 1> outVec = thisMap.cast<double>();
-        Vector<double, N> result(outVec.data());
+            auto thisMap = getMap();
+            Eigen::Array<double, N, 1> outVec = thisMap.cast<double>();
+            Vector<double, N> result(outVec.data());
 #else
-		std::vector<double> result(m_array.begin(), m_array.end());
+            std::vector<double> result(m_array.begin(), m_array.end());
 #endif
-		return result;
-	}
+            return result;
+    }
+    }
 
-    /// @brief return vector as a vector of floats
-    inline Vector<real_g, N> asReal() const {
-        //if (typeid(D).hash_code() == typeid(float).hash_code()) { return *this; }
+    /// @brief return vector as a vector of reals
+    /// @details Returns a reference to the vector if it is already real
+    typedef std::is_same<D, real_g> is_real;
+    typedef std::conditional_t<is_real::value, Vector<real_g, N>&, Vector<real_g, N>> RealVecType;
+    inline const RealVecType asReal() const {
+        if constexpr(is_real::value) {
+            return const_cast<const RealVecType>(*this);
+        }
+        else {
 #ifdef LINALG_USE_EIGEN
-        auto thisMap = getMap();
-        Eigen::Array<real_g, N, 1> outVec = thisMap.cast<real_g>();
-        Vector<real_g, N> result(outVec.data());
+            auto thisMap = getMap();
+            Eigen::Array<real_g, N, 1> outVec = thisMap.cast<real_g>();
+            Vector<real_g, N> result(outVec.data());
 #else
-        std::vector<real_g> result(m_array.begin(), m_array.end());
+            std::vector<real_g> result(m_array.begin(), m_array.end());
 #endif
-        return result;
+            return result;
+        }
     }
 
     /// @brief return vector as a vector of floats
-    inline Vector<float, N> asFloat() const{
-        //if (typeid(D).hash_code() == typeid(float).hash_code()) { return *this; }
+    typedef std::is_same<D, float> is_float;
+    typedef std::conditional_t<is_float::value, Vector<float, N>&, Vector<float, N>> FloatVecType;
+    inline const FloatVecType asFloat() const {
+        if constexpr (is_float::value) {
+            return const_cast<const FloatVecType>(*this);
+        }
+        else {
 #ifdef LINALG_USE_EIGEN
-        auto thisMap = getMap();
-        Eigen::Array<float, N, 1> outVec = thisMap.cast<float>();
-        Vector<float, N> result(outVec.data());
+            auto thisMap = getMap();
+            Eigen::Array<float, N, 1> outVec = thisMap.cast<float>();
+            Vector<float, N> result(outVec.data());
 #else
-        std::vector<float> result(m_array.begin(), m_array.end());
+            std::vector<float> result(m_array.begin(), m_array.end());
 #endif
-        return result;
+            return result;
+    }
     }
 
     /// @brief return vector sorted in descending order
@@ -449,9 +605,17 @@ public:
     /// @brief Perform a dot product with another vector
     inline D dot(const Vector<D, N>& other) const {
 #ifdef LINALG_USE_EIGEN
-        Eigen::Map<const Eigen::Matrix<D, N, 1>> thisMap = getMatrixMap();
-        Eigen::Map<const Eigen::Matrix<D, N, 1>> otherMap = other.getMatrixMap();
-        return thisMap.dot(otherMap);
+        //Eigen::Map<const Eigen::Matrix<D, N, 1>> thisMap = getMatrixMap();
+        //Eigen::Map<const Eigen::Matrix<D, N, 1>> otherMap = other.getMatrixMap();
+        //auto dot = thisMap.dot(otherMap);
+        auto dot = std::inner_product(m_array.begin(), m_array.end(), other.m_array.begin(), D(0));
+        return dot;
+
+        // Slower
+        //Eigen::Map<const Eigen::Array<D, N, 1>> thisMap2 = getMap();
+        //Eigen::Map<const Eigen::Array<D, N, 1>> otherMap2 = other.getMap();
+        //D res2 = (thisMap2.cwiseProduct(otherMap2)).rowwise().sum()(0);
+        //Q_UNUSED(res2);
 #else
 		Vector<D, N> product = *this * other;
 		D sum = std::accumulate(product.begin(), product.end(), 0.0);
@@ -512,7 +676,7 @@ public:
     inline Eigen::Map<Eigen::Array<D, N, 1>> map() {
         return Eigen::Map<Eigen::Array<D, N, 1>>(data());
     }
-    inline Eigen::Map<Eigen::Array<D, N, 1>> matrixMap() {
+    inline Eigen::Map<Eigen::Matrix<D, N, 1>> matrixMap() {
         return Eigen::Map<Eigen::Matrix<D, N, 1>>(data());
     }
 #endif
@@ -522,6 +686,11 @@ public:
     }
     inline D* data() {
         return m_array.data();
+    }
+
+    /// @brief Lerp with another vector
+    Vector<D, N> lerp(const Vector<D, N>& other, double f) {
+        return Interpolation::lerp(*this, other, f);
     }
 
     /// @}
@@ -588,15 +757,18 @@ protected:
 typedef Vector<int, 2> Vector2i;
 typedef Vector<int, 3> Vector3i;
 typedef Vector<int, 4> Vector4i;
+typedef Vector<unsigned int, 2> Vector2u;
+typedef Vector<unsigned int, 3> Vector3u;
+typedef Vector<unsigned int, 4> Vector4u;
 typedef Vector<float, 2> Vector2f;
 typedef Vector<float, 3> Vector3f;
 typedef Vector<float, 4> Vector4f;
-typedef Vector<double, 2> Vector2;
-typedef Vector<double, 3> Vector3;
-typedef Vector<double, 4> Vector4;
-typedef Vector<real_g, 2> Vector2g;
-typedef Vector<real_g, 3> Vector3g;
-typedef Vector<real_g, 4> Vector4g;
+typedef Vector<double, 2> Vector2d;
+typedef Vector<double, 3> Vector3d;
+typedef Vector<double, 4> Vector4d;
+typedef Vector<real_g, 2> Vector2;
+typedef Vector<real_g, 3> Vector3;
+typedef Vector<real_g, 4> Vector4;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Globals
@@ -651,14 +823,12 @@ std::vector<Vector<T, N>> vecOfVecFromJson(const QJsonValue& json) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Declare metatypes
-//Q_DECLARE_METATYPE(Gb::Vector3g)
-//Q_DECLARE_METATYPE(Gb::Vector4g)
 Q_DECLARE_METATYPE(Gb::Vector2f)
 Q_DECLARE_METATYPE(Gb::Vector3f)
 Q_DECLARE_METATYPE(Gb::Vector4f)
-Q_DECLARE_METATYPE(Gb::Vector2)
-Q_DECLARE_METATYPE(Gb::Vector3)
-Q_DECLARE_METATYPE(Gb::Vector4)
+Q_DECLARE_METATYPE(Gb::Vector2d)
+Q_DECLARE_METATYPE(Gb::Vector3d)
+Q_DECLARE_METATYPE(Gb::Vector4d)
 Q_DECLARE_METATYPE(std::vector<float>)
 
 #endif

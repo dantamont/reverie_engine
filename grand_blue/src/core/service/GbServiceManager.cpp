@@ -26,10 +26,10 @@ namespace Gb {
 // Class Implementations 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Deferred Connection
-DeferredConnection::DeferredConnection(const QString& sender_name,
-    const QString& sender_signal,
-    const QString& receiver_name,
-    const QString& receiver_method):
+DeferredConnection::DeferredConnection(const GString& sender_name,
+    const GString& sender_signal,
+    const GString& receiver_name,
+    const GString& receiver_method):
     m_senderName(sender_name),
     m_senderSignal(sender_signal),
     m_receiverName(receiver_name),
@@ -158,10 +158,10 @@ bool ServiceManager::addService(AbstractService* service)
 {
     bool result = false;
     if (m_serviceMap.count(service->getName())) {
-        QString msg(R"(addService: Service ")");
+        GString msg(R"(addService: Service ")");
         msg += service->getName();
         msg += R"(" already exists)";
-        logError(msg);
+        logError(msg.c_str());
     } else {
         m_serviceMap.emplace(service->getName(), service);
         result = true;
@@ -239,14 +239,14 @@ void ServiceManager::connectDeferred(AbstractService* sending_service)
         if (abstractReceiver->isTool()) {
             // Receiver is a Tool
             View::Tool* receiverTool = static_cast<View::Tool*>(abstractReceiver);
-            connected = receiverTool->connect(senderTool, connection.senderSignal().toStdString().c_str(),
-                connection.receiverMethod().toStdString().c_str());
+            connected = receiverTool->connect(senderTool, connection.senderSignal().c_str(),
+                connection.receiverMethod().c_str());
         } 
         else {
             // Receiver is a Service
             Service* receiverService = static_cast<Service*>(abstractReceiver);
-            connected = receiverService->connect(senderTool, connection.senderSignal().toStdString().c_str(),
-                connection.receiverMethod().toStdString().c_str());
+            connected = receiverService->connect(senderTool, connection.senderSignal().c_str(),
+                connection.receiverMethod().c_str());
         }
     } 
     else {
@@ -255,14 +255,14 @@ void ServiceManager::connectDeferred(AbstractService* sending_service)
         if (abstractReceiver->isTool()) {
             // Receiver is a Tool
             View::Tool* receiver_service_ui = static_cast<View::Tool*>(abstractReceiver);
-            connected = receiver_service_ui->connect(senderService, connection.senderSignal().toStdString().c_str(),
-                connection.receiverMethod().toStdString().c_str());
+            connected = receiver_service_ui->connect(senderService, connection.senderSignal().c_str(),
+                connection.receiverMethod().c_str());
         } 
         else {
             // Receiver is a Service
             Service* receiver_service = static_cast<Service*>(abstractReceiver);
-            connected = receiver_service->connect(senderService, connection.senderSignal().toStdString().c_str(),
-                connection.receiverMethod().toStdString().c_str());
+            connected = receiver_service->connect(senderService, connection.senderSignal().c_str(),
+                connection.receiverMethod().c_str());
         }
     }
 
@@ -277,7 +277,7 @@ void ServiceManager::connectDeferred(AbstractService* sending_service)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void ServiceManager::removeService(AbstractService* service)
 {
-    std::unordered_map<QString, AbstractService*>::iterator iVas;
+    tsl::robin_map<QString, AbstractService*>::iterator iVas;
     iVas = m_serviceMap.find(service->getName());
     if (iVas != m_serviceMap.end()) {
         m_serviceMap.erase(iVas);

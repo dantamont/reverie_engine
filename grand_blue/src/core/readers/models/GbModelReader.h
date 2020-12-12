@@ -39,9 +39,11 @@ class SkeletonJoint;
 /////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct ModelChunkData
 struct ModelChunkData {
-    Uuid m_meshHandleID;
-    Uuid m_matHandleID;
-    AABB m_boundingBox;
+    //Uuid m_meshHandleID;
+    //Uuid m_matHandleID;
+    size_t m_meshHandleIndex; // index in model reader's list of mesh handles
+    size_t m_matHandleIndex; // index in model reader's list oof material handles
+    AABBData m_boundingBox;
 };
 
 
@@ -73,12 +75,13 @@ public:
     /// @}
 
     //-----------------------------------------------------------------------------------------------------------------
-    /// @name Public methods
+    /// @name Properties
     /// @{ 
 
     const aiScene* scene() const { return m_scene; }
 
     std::vector<ModelChunkData>& chunks() { return m_chunks; }
+
 
     /// @}
 
@@ -92,11 +95,18 @@ public:
     /// @brief Retrieve a model at the given filepath (loading only if not loaded)
     std::shared_ptr<Model> loadModel();
 
+    /// @brief Save binary representaton of the model
+    void saveBinary(const GString& filepath);
+    void loadBinary(const GString& filepath);
+
     /// @}   
 
 signals:
 
 protected:
+
+    friend class Model;
+
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Private methods
     /// @{    
@@ -113,8 +123,11 @@ protected:
     /// @brief Process mesh data from a assimp mesh
     const Mesh& processMesh(aiMesh* mesh);
 
-    /// @brief Process material
+    /// @brief Process material from ASSIMP data
     MaterialData processMaterial(aiMaterial* mat);
+
+    /// @brief Create material from material data
+    std::shared_ptr<Material> createMaterial(const MaterialData& data);
 
     /// @brief Calculate the object-space transform of the node
     Matrix4x4g calculateGlobalNodeTransform(const aiNode* root);
@@ -126,11 +139,11 @@ protected:
     void processNodes(const aiNode* node);
 
     /// @brief Recursive method for walking aiMesh to construct output
-    void parseNodeHierarchy(aiNode* aiNode, SkeletonJoint* currentNode);
+    void parseNodeHierarchy(aiNode* aiNode, size_t currentNodeIndex);
 
     /// @brief Add animation data to skeleton if necessary
     void postProcessSkeleton();
-    void postProcessSkeleton(SkeletonJoint* joint);
+    void postProcessSkeleton(SkeletonJoint& joint);
 
     /// @brief Convert an assimp matrix to a custom matrix
     Matrix4x4g toMatrix(const aiMatrix4x4& mat);
@@ -156,16 +169,25 @@ protected:
     const aiScene* m_scene;
 
     /// @brief Vector of node names
-    std::vector<QString> m_nodeNames;
+    std::vector<GString> m_nodeNames;
 
     /// @brief Vector of model chunk data
     std::vector<ModelChunkData> m_chunks;
 
-    /// @brief Map of bones, according to node/bone name
-    std::unordered_map<QString, Bone*> m_boneMapping;
+    /// @brief Loaded mesh handles
+    std::vector<std::shared_ptr<ResourceHandle>> m_meshHandles;
 
-    /// @brief Map of meshes, by name and index in scene mesh list
-    std::unordered_map<uint, QString> m_meshNames;
+    /// @brief Loaded material handles
+    std::vector<std::shared_ptr<ResourceHandle>> m_matHandles;
+
+    /// @brief Map of bones, according to node/bone name
+    tsl::robin_map<GString, Bone*> m_boneMapping;
+
+    ///// @brief Vector of meshes, by name and index in scene mesh list
+    //std::vector<GString> m_meshNames;
+
+    /// @brief Vector of material data
+    std::vector<MaterialData> m_materialData;
 
     /// @brief Count of animated joints
     int m_animatedJointCount = 0;

@@ -11,7 +11,7 @@
 #include "../input/GbInputHandler.h"
 #include "../rendering/renderer/GbMainRenderer.h"
 #include "../debugging/GbDebugManager.h"
-#include "../components/GbCamera.h"
+#include "../components/GbCameraComponent.h"
 
 namespace Gb {
 
@@ -38,14 +38,15 @@ void EventManager::addEvent(QEvent* ev)
 /////////////////////////////////////////////////////////////////////////////////////////////
 void EventManager::processEvents()
 {
+    static std::vector<CustomEvent> events;
     m_queueMutex.lock();
-    std::vector<CustomEvent> events(m_eventQueue);
+    m_eventQueue.swap(events);
+    m_eventQueue.clear();
     m_queueMutex.unlock();
 
     for (CustomEvent& event : events) {
         processEvent(&event);
     }
-    m_eventQueue.clear();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 void EventManager::addListener(int eventType, EventListener * listener)
@@ -58,24 +59,45 @@ void EventManager::addListener(int eventType, EventListener * listener)
         m_eventListeners[type] = {};
     }
 
-    // Add listener
-    const Uuid& listenerHash = listener->getUuid();
-    if (Map::HasKey(m_eventListeners[type], listenerHash)) {
+    // Check if listener is already added
 #ifdef DEBUG_MODE
+    size_t idx;
+    if(hasListener(type, listener, idx)){
         throw("Error, listener is already added for this event type");
-#endif
     }
+#endif
 
-    m_eventListeners[type][listenerHash] = listener;
+    // Add listener
+    m_eventListeners[type].push_back(listener);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 void EventManager::removeListener(EventListener * listener)
 {
-    const Uuid& uuidStr = listener->getUuid();
-    for (std::pair<const QEvent::Type, std::unordered_map<Uuid, EventListener*>>& listenerMapPair : m_eventListeners) {
-        if (Map::HasKey(listenerMapPair.second, uuidStr)) {
-            listenerMapPair.second.erase(uuidStr);
+    //const Uuid& uuid = listener->getUuid();
+    for (auto it = m_eventListeners.begin(); it != m_eventListeners.end(); ++it) {
+        size_t idx;
+        if (hasListener(it->first, listener, idx)) {
+            std::vector<EventListener*>& listeners = it.value();
+            listeners.erase(listeners.begin() + idx);
         }
+    }
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+bool EventManager::hasListener(QEvent::Type type, EventListener * listener, size_t& iterPos)
+{
+    std::vector<EventListener*>& listeners = m_eventListeners[type];
+    const Uuid& uuid = listener->getUuid();
+    auto iter = std::find_if(listeners.begin(), listeners.end(),
+        [&](EventListener* l) {
+        return l->getUuid() == uuid;
+    });
+
+    if (iter != listeners.end()) {
+        iterPos = iter - listeners.begin();
+        return true;
+    }
+    else {
+        return false;
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -103,8 +125,8 @@ void EventManager::processEvent(CustomEvent* event)
     if (!Map::HasKey(m_eventListeners, eventType)) return;
 
     // Perform actions for all listeners corresponding to the event type
-    for (const std::pair<Uuid, EventListener*>& listenerPair : m_eventListeners.at(eventType)) {
-        listenerPair.second->perform(event);
+    for (const auto& listener : m_eventListeners.at(eventType)) {
+        listener->perform(event);
     }
 
     // Delete the custom event

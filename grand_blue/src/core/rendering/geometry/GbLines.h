@@ -88,8 +88,8 @@ public:
     float lineThickness() const { return m_lineThickness; }
     void setLineThickness(float thickness) { m_lineThickness = thickness; }
 
-    const Vector4g& lineColor() const { return m_lineColor; }
-    void setLineColor(const Vector4g& lineColor) { m_lineColor = lineColor; }
+    const Vector4& lineColor() const { return m_lineColor; }
+    void setLineColor(const Vector4& lineColor) { m_lineColor = lineColor; }
 
     Transform& transform() { return *m_transform; }
 
@@ -122,7 +122,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -141,11 +141,11 @@ protected:
     virtual void drawGeometry(ShaderProgram& shaderProgram, RenderSettings* settings = nullptr) override;
 
     /// @brief Add point
-    void addPoint(const Vector3g& newPoint);
-    void addPoint(std::shared_ptr<VertexArrayData> vertexData, const Vector3g& newPoint);
+    void addPoint(const Vector3& newPoint);
+    void addPoint(std::shared_ptr<VertexArrayData> vertexData, const Vector3& newPoint);
 
     /// @brief Add a triangle from three points
-    void addTriangle(const Vector3g& p1, const Vector3g& p2, const Vector3g& p3);
+    void addTriangle(const Vector3& p1, const Vector3& p2, const Vector3& p3);
 
     /// @brief Add a new line to the lines
     void addLine();
@@ -170,7 +170,7 @@ protected:
     QFlags<DrawFlag> m_drawFlags;
 
     /// @brief Line color
-    Vector4g m_lineColor;
+    Vector4 m_lineColor;
 
     /// @}
 

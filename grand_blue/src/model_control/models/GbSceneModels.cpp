@@ -94,10 +94,10 @@ void SceneRelatedItem::setWidget()
     case kSceneObject:
     {
         // Create widget
-        name = object()->getName();
+        name = QString(object()->getName().c_str());
         m_widget = new QLineEdit(name);
         m_widget->setFocusPolicy(Qt::StrongFocus);
-        m_widget->show();
+        //m_widget->show();
 
         // Set signal for widget value change
         QObject::connect(static_cast<QLineEdit*>(m_widget),
@@ -109,8 +109,9 @@ void SceneRelatedItem::setWidget()
             }
             SceneTreeWidget * parentWidget = static_cast<SceneTreeWidget*>(treeWidget());
             QString newName = static_cast<QLineEdit*>(m_widget)->text();
-            if (newName.isEmpty())
-                newName = object()->getName();
+            if (newName.isEmpty()) {
+                newName = object()->getName().c_str();
+            }
             performAction(new Gb::ChangeNameCommand(newName, parentWidget->m_engine, object()));
         
         }
@@ -176,7 +177,6 @@ void SceneRelatedItem::initializeItem()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void SceneRelatedItem::refreshText()
 {
-    QString text;
     auto obj = object();
     switch (sceneType()) {
     case kScenario:

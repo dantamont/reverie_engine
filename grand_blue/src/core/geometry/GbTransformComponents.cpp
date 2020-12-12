@@ -33,6 +33,11 @@ void AbstractTransformComponent::setTransform(Transform* transform)
 {
     m_transform = transform;
 }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void AbstractTransformComponent::loadFromJson(const QJsonValue & json, const SerializationContext& context)
+{
+    Serializable::loadFromJson(json, context);
+}
 
 
 
@@ -42,6 +47,11 @@ void AbstractTransformComponent::setTransform(Transform* transform)
 AffineComponent::AffineComponent(TransformComponentType type):
     AbstractTransformComponent(type)
 {
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void AffineComponent::loadFromJson(const QJsonValue & json, const SerializationContext & context)
+{
+    AbstractTransformComponent::loadFromJson(json, context);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void AffineComponent::computeTransformMatrix(bool updateTransform)
@@ -64,7 +74,7 @@ ScaleComponent::ScaleComponent():
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-ScaleComponent::ScaleComponent(const Gb::Matrix4x4f & scaling):
+ScaleComponent::ScaleComponent(const Gb::Matrix4x4 & scaling):
     AffineComponent(kScaleComponent)
 {
     m_transformMatrix = scaling;
@@ -104,8 +114,10 @@ QJsonValue ScaleComponent::asJson() const
     return object;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void ScaleComponent::loadFromJson(const QJsonValue & json)
+void ScaleComponent::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
+
     const QJsonObject & object = json.toObject();
     Vector3 scaling(object.value("scaling"));
     setScale(scaling);
@@ -114,8 +126,11 @@ void ScaleComponent::loadFromJson(const QJsonValue & json)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void ScaleComponent::computeTransformMatrix(bool updateTransform)
 {
-    m_transformMatrix.setToIdentity();
-    m_transformMatrix.addScale(m_scale.asFloat());
+    //m_transformMatrix.setToIdentity();
+    //m_transformMatrix.addScale(m_scale.asReal());
+    m_transformMatrix(0, 0) = m_scale[0];
+    m_transformMatrix(1, 1) = m_scale[1];
+    m_transformMatrix(2, 2) = m_scale[2];
 
     AffineComponent::computeTransformMatrix(updateTransform);
 }
@@ -148,7 +163,7 @@ RotationComponent::~RotationComponent()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void RotationComponent::addRotation(const EulerAngles & eulerAngles, bool updateTransform)
 {
-    Matrix4x4f addedRotation = eulerAngles.toRotationMatrixF();
+    Matrix4x4 addedRotation = eulerAngles.toRotationMatrixF();
     m_transformMatrix = addedRotation * m_transformMatrix;
     m_quaternion = Quaternion::fromRotationMatrix(m_transformMatrix);
     if(updateTransform) AffineComponent::computeTransformMatrix();
@@ -174,15 +189,17 @@ QJsonValue RotationComponent::asJson() const
     return object;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void RotationComponent::loadFromJson(const QJsonValue & json)
+void RotationComponent::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
+
     setRotation(Quaternion(json.toObject()["quaternion"]));
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void RotationComponent::computeTransformMatrix(bool updateTransform)
 {
-    m_transformMatrix = m_quaternion.toRotationMatrix4x4();
+    m_quaternion.toRotationMatrix(m_transformMatrix);
     AffineComponent::computeTransformMatrix(updateTransform);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -216,17 +233,17 @@ Translation::Translation(const Vector3 & position, CoordinateFrame frame ):
 {
     Q_UNUSED(frame);
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Translation::Translation(const Vector3 & position, const Vector3 & velocity, const Vector3 & acceleration, CoordinateFrame frame):
-    m_position(position)
-    //m_velocity(velocity),
-    //m_acceleration(acceleration),
-    //m_frame(frame)
-{
-    Q_UNUSED(frame);
-    Q_UNUSED(velocity);
-    Q_UNUSED(acceleration);
-}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Translation::Translation(const Vector3 & position, const Vector3 & velocity, const Vector3 & acceleration, CoordinateFrame frame):
+//    m_position(position)
+//    //m_velocity(velocity),
+//    //m_acceleration(acceleration),
+//    //m_frame(frame)
+//{
+//    Q_UNUSED(frame);
+//    Q_UNUSED(velocity);
+//    Q_UNUSED(acceleration);
+//}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Translation::Translation(const Translation & t):
     m_position(t.m_position)
@@ -282,8 +299,10 @@ QJsonValue Translation::asJson() const
     return object;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void Translation::loadFromJson(const QJsonValue & json)
+void Translation::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
+
     const QJsonObject& object = json.toObject();
     m_position = Vector3(object["position"]);
     //m_velocity = Vector3(object["velocity"]);
@@ -322,14 +341,14 @@ TranslationComponent::TranslationComponent(const Vector3 & translation) :
 TranslationComponent::~TranslationComponent()
 {
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void TranslationComponent::addTranslation(const Vector3 & position, bool updateTransform)
-{
-    m_translation.m_position += position;
-    if (m_transform && updateTransform) {
-        m_transform->computeWorldMatrix();
-    }
-}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//void TranslationComponent::addTranslation(const Vector3g & position, bool updateTransform)
+//{
+//    m_translation.m_position += position;
+//    if (m_transform && updateTransform) {
+//        m_transform->computeWorldMatrix();
+//    }
+//}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void TranslationComponent::setPosition(const Vector3 & p, bool updateTransform)
 {
@@ -362,8 +381,10 @@ QJsonValue TranslationComponent::asJson() const
     return object;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void TranslationComponent::loadFromJson(const QJsonValue & json)
+void TranslationComponent::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
+
     const QJsonObject& object = json.toObject();
     setTranslation(Translation(object.value("translation")));
 }

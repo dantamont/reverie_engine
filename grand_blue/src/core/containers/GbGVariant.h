@@ -30,7 +30,7 @@ namespace Gb {
 struct GVariant :
     public Serializable,
     public Variant<bool, int, float, QString,
-    Vector2f, Vector3f, Vector4f, Matrix4x4f,
+    Vector2f, Vector3f, Vector4f, Matrix4x4,
     std::vector<float>>
 {
 public:
@@ -40,7 +40,7 @@ public:
 
     /// @brief Convert QVariantMap to map of GVariants
     static QVariantMap toQVariantMap(const std::map<QString, GVariant>& map);
-    static std::map<QString, GVariant> toGVariantMap(const QVariantMap& map);
+    static void toGVariantMap(const QVariantMap& map, std::map<QString, GVariant>& outMap);
 
     /// @brief Convert Map of GVariants to QVariantMap
 
@@ -60,7 +60,7 @@ public:
     GVariant(const Vector2f& val);
     GVariant(const Vector3f& val);
     GVariant(const Vector4f& val);
-    GVariant(const Matrix4x4f& val);
+    GVariant(const Matrix4x4& val);
     GVariant(const std::vector<float>& val);
 
     ~GVariant();
@@ -88,7 +88,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 

@@ -10,10 +10,16 @@ layout(location = 5) in ivec4 pairDirAttr; // miscInt attr
 uniform mat4 worldMatrix;
 
 // Uniform block for projection and view matrices
-layout (std140) uniform CameraMatrices
+layout (std140) uniform CameraBuffer
 {
 	mat4 viewMatrix;
+	mat4 invViewMatrix;
 	mat4 projectionMatrix;
+	mat4 invProjectionMatrix;
+	float zNear;
+	float zFar;
+	uvec2 viewportDimensions;
+	vec4 screenPercentage; // Screen percentage of viewport
 };
 
 uniform float thickness;

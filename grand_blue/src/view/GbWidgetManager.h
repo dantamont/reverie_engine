@@ -27,7 +27,6 @@ namespace View {
 // Forward Declarations
 //////////////////////////////////////////////////////////////////////////////////
 class GLWidget;
-class GraphWidget;
 class ResourceTreeWidget;
 class SceneTreeWidget;
 class ComponentTreeWidget;
@@ -60,7 +59,7 @@ public:
     QMutex& updateMutex() { return m_updateLock; }
 
     /// @brief GL Widgets
-    std::unordered_map<QString, Gb::View::GLWidget*>& glWidgets() { return m_glWidgets; }
+    tsl::robin_map<QString, Gb::View::GLWidget*>& glWidgets() { return m_glWidgets; }
 
     /// @brief Returns the main window for the application
     MainWindow* mainWindow() { return m_mainWindow; }
@@ -135,14 +134,10 @@ protected:
 	Gb::MainWindow* m_mainWindow;
 
 	/// @brief Map of GL widgets
-	std::unordered_map<QString, Gb::View::GLWidget*> m_glWidgets;
+	tsl::robin_map<QString, Gb::View::GLWidget*> m_glWidgets;
 
     /// @brief Map of all parameter widgets
-    std::unordered_map<Uuid, View::ParameterWidget*> m_parameterWidgets;
-
-    /// @brief graph widget
-    // TODO: Replace with subclass
-    Gb::View::GraphWidget* m_graphWidget;
+    tsl::robin_map<Uuid, View::ParameterWidget*> m_parameterWidgets;
 
     /// @brief scene object tree widget
     Gb::View::ResourceTreeWidget* m_resourceTreeWidget;

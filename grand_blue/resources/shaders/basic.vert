@@ -30,10 +30,16 @@ uniform float diffuseColorScale;
 uniform mat4 worldMatrix;
 
 // Uniform block for projection and view matrices
-layout (std140) uniform CameraMatrices
+layout (std140) uniform CameraBuffer
 {
 	mat4 viewMatrix;
+	mat4 invViewMatrix;
 	mat4 projectionMatrix;
+	mat4 invProjectionMatrix;
+	float zNear;
+	float zFar;
+	uvec2 viewportDimensions;
+	vec4 screenPercentage; // Screen percentage of viewport
 };
 
 uniform mat4 boneTransforms[MAX_BONES];
@@ -55,7 +61,9 @@ struct Light {
 	vec4 diffuseColor;
 	vec4 specularColor;
 	vec4 attributes;
-	vec4 typeIntensityIndex;
+	vec4 intensity;
+	ivec4 typeIndexAndFlags;
+	// uint flags;
 };
 
 // struct VisibleIndex {
@@ -63,9 +71,9 @@ struct Light {
 // };
 
 // Shader storage buffer objects
-layout(std430, binding = 0) readonly buffer LightBuffer {
-	Light data[];
-} lightBuffer;
+// layout(std430, binding = 0) readonly buffer LightBuffer {
+	// Light data[];
+// } lightBuffer;
 
 // layout(std430, binding = 1) readonly buffer VisibleLightIndicesBuffer {
 	// VisibleIndex data[];
@@ -100,7 +108,7 @@ vec3 calcMapNormal()
 		vec3 bitangent = cross(unitTangent, unitNormal);
 
 		// obtain unitNormal from unitNormal map in range [0,1]
-		vec3 mapNormal = texture(material.normalMap, uvCoord.st).rgb;
+		vec3 mapNormal = texture(material.normalMap, uv.st).rgb;
 		// transform mapNormal vector to range [-1, 1]
 		mapNormal = normalize(2.0 * mapNormal - 1.0);
 

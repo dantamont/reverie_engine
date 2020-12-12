@@ -7,28 +7,13 @@
 
 namespace Gb {
 /////////////////////////////////////////////////////////////////////////////////////////////
-QString Process::getThreadID()
-{
-    if (isMainThread()) {
-        return "Main";
-    }
-    else {
-        return "Auxillary";
-    }
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-bool Process::isMainThread()
-{
-    return QApplication::instance()->thread() == QThread::currentThread();
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
 Process::Process(CoreEngine* engine, ProcessManager* manager) :
     m_child(nullptr),
     m_state(kUninitialized),
     m_engine(engine),
     m_processManager(manager)
 {
-    m_sortingLayer = m_processManager->sortingLayers().at("default");
+    m_sortingLayer = m_processManager->getSortingLayer(DEFAULT_SORTING_LAYER);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 Process::Process(CoreEngine * engine,
@@ -148,7 +133,7 @@ bool Process::checkFinished()
 void Process::logMessage(const QString & message, LogLevel logLevel)
 {
     QApplication::postEvent(m_engine, 
-        new LogEvent(namespaceName(), message, getThreadID(), logLevel));
+        new LogEvent(namespaceName(), message, GetThreadID(), logLevel));
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////

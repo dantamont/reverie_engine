@@ -11,7 +11,8 @@
 // QT
 
 // Internal
-#include "../renderer/GbRenderers.h"
+#include "../../GbObject.h"
+#include "../../mixins/GbRenderable.h"
 #include "../../containers/GbContainerExtensions.h"
 
 namespace Gb {  
@@ -22,14 +23,14 @@ namespace Gb {
 class CoreEngine;
 class ShaderProgram;
 class ShaderComponent;
+//class GLBuffer;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Class definitions
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 /// @class ShaderPreset
-class ShaderPreset: public Object, public Serializable{
-   
+class ShaderPreset: public Object, public Shadable{
 public:
     //---------------------------------------------------------------------------------------
     /// @name Constructors/Destructor
@@ -43,11 +44,12 @@ public:
     /// @name Properties
     /// @{
 
-    const Renderer& renderer() const { return m_renderer; }
-    Renderer& renderer() { return m_renderer; }
-
     const std::shared_ptr<ShaderProgram>& shaderProgram() const {
         return m_shaderProgram;
+    }
+    
+    const std::shared_ptr<ShaderProgram>& prepassShaderProgram() const {
+        return m_prepassShaderProgram;
     }
 
     void setShaderProgram(const std::shared_ptr<ShaderProgram>& sp) {
@@ -60,6 +62,9 @@ public:
 	/// @name Public Methods
 	/// @{
 
+    /// @brief Add uniforms from this preset to the shader member's queue
+    void queueUniforms();
+
 	/// @}
 
     //-----------------------------------------------------------------------------------------------------------------
@@ -70,7 +75,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -104,9 +109,15 @@ protected:
     /// @{
 
     CoreEngine* m_engine;
-    Renderer m_renderer;
 
     std::shared_ptr<ShaderProgram> m_shaderProgram;
+    std::shared_ptr<ShaderProgram> m_prepassShaderProgram = nullptr;
+
+    /// @brief Buffers associated with the preset
+    //std::vector<GLBuffer*> m_buffers;
+
+    /// @brief Vector of uniform names to preserve for GStringView
+    std::vector<GString> m_uniformNames;
 
     /// @}
 };

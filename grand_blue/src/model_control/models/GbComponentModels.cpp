@@ -21,6 +21,10 @@
 #include "../../view/components/GbModelComponentWidget.h"
 #include "../../view/components/GbCubeMapComponentWidget.h"
 #include "../../view/components/GbCanvasComponentWidget.h"
+#include "../../view/components/GbListenerComponentWidget.h"
+#include "../../view/components/GbAnimationComponentWidget.h"
+#include "../../view/components/GbAudioSourceComponentWidget.h"
+#include "../../view/components/GbAudioListenerComponentWidget.h"
 #include "../../view/tree/GbComponentWidget.h"
 
 #include "../../view/parameters/GbRenderLayerWidgets.h"
@@ -128,10 +132,32 @@ void ComponentItem::setWidget()
         m_widget = new CanvasComponentWidget(parentWidget->m_engine, component(), parentWidget);
         break;
     }
+    case kAudioSource:
+    {
+        // Create widget
+        m_widget = new AudioComponentWidget(parentWidget->m_engine, component(), parentWidget);
+        break;
+    }
     case kListener:
+    {
+        // Create widget
+        m_widget = new ListenerWidget(parentWidget->m_engine, component(), parentWidget);
+        break;
+    }
+    case kAudioListener:
+    {
+        // Create widget
+        m_widget = new AudioListenerWidget(parentWidget->m_engine, component(), parentWidget);
+        break;
+    }
+    case kBoneAnimation:
+    {
+        // Create widget
+        m_widget = new AnimationComponentWidget(parentWidget->m_engine, component(), parentWidget);
+        break;
+    }
     case kPhysicsScene:
     case kCharacterController:
-    case kBoneAnimation:
     {
         // Create widget
         m_widget = new GenericComponentWidget(parentWidget->m_engine, component(), parentWidget);

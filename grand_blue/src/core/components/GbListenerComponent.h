@@ -51,6 +51,9 @@ public:
     /// @brief Set the script file
     void initializeListener(const QString& filepath);
 
+    /// @brief Reset by reloading script
+    void reset();
+
     /// @brief Enable the behavior of this script component
     virtual void enable() override;
 
@@ -90,7 +93,7 @@ public:
     virtual QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -101,6 +104,7 @@ protected:
     /// @{
 
     /// @brief The listener for this component
+    // TODO: Make this a value-member that always exists, will simplify code
     EventListener* m_listener = nullptr;
 
 

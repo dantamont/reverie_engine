@@ -5,12 +5,14 @@
 #ifndef GB_SCRIPTED_PROCESS_H
 #define GB_SCRIPTED_PROCESS_H
 // External
-#include "../../third_party/pythonqt/PythonQt.h"
+#include "../scripting/GbPythonWrapper.h" // everything needed for embedding (needs to be included before Qt stuff pollutes slots)
 
 // QT
 
 // Internal
 #include "GbProcess.h"
+
+namespace py = pybind11;
 
 namespace Gb {
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -101,11 +103,6 @@ protected:
     /// @brief Check that the component is active
     bool componentIsActive() const;
 
-    /// @brief Return main python module
-    PythonQtObjectPtr mainContext() const {
-        return PythonQt::self()->getMainModule();
-    }
-
     /// @}
 
     //--------------------------------------------------------------------------------------------
@@ -120,8 +117,7 @@ protected:
     /// For importing modules, finding callables from C++:
     /// https://sourceforge.net/p/pythonqt/discussion/631393/thread/fe9f9001/
     /// https://sourceforge.net/p/pythonqt/discussion/631393/thread/6a851191/
-    PythonQtObjectPtr m_behavior;
-    //PythonBehaviorWrapper* m_behaviorWrapper;
+    py::object m_behavior;
 
     /// @brief Component corresponding to the Python script
     ScriptComponent* m_component;

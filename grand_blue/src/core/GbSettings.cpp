@@ -3,17 +3,20 @@
 #include <QGuiApplication>
 
 #include "../core/containers/GbSortingLayer.h"
+#include "../core/GbCoreEngine.h"
 
 namespace Gb { 
 namespace Settings { 
 
 /////////////////////////////////////////////////////////////////////////////////////////////
-
-const QString INISettings::INI_FILE(QDir::currentPath() + "/grand_blue.ini");
+const QString INISettings::GetINIFile() {
+    // FIXME: Use directory manager, if currentPath changes, this will be wonky
+    return CoreEngine::GetRootPath() + "/grand_blue.ini";
+}
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 INISettings::INISettings(QObject *parent):
-    QSettings(INI_FILE, QSettings::IniFormat, parent)
+    QSettings(GetINIFile(), QSettings::IniFormat, parent)
 {
 
 }
@@ -35,12 +38,12 @@ void INISettings::setRecentProject(const QString & filepath)
 /////////////////////////////////////////////////////////////////////////////////////////////
 int INISettings::getMajorVersion()
 {
-    return value("renderVersionMain", 3).toInt();
+    return value("renderVersionMain", OPENGL_MAJOR_VERSION).toInt();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 int INISettings::getMinorVersion()
 {
-    return value("renderVersionMinor", 2).toInt();
+    return value("renderVersionMinor", OPENGL_MINOR_VERSION).toInt();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 RenderingMode INISettings::getRenderingMode()
@@ -52,12 +55,12 @@ QSurfaceFormat INISettings::configOpenGLES()
 {
 	QGuiApplication::setAttribute(Qt::AA_UseOpenGLES);
 
-    setRenderingMode(Gb::Settings::kGL_ES, 3, 2);
+    setRenderingMode(Gb::Settings::kGL_ES, OPENGL_ES_MAJOR_VERSION, OPENGL_ES_MINOR_VERSION);
 
     // Set format, which specifies:
-    // GL Version
+
+    QSurfaceFormat format;    // GL Version
     // Minimum depth buffer size
-    QSurfaceFormat format;
     format.setVersion(getMajorVersion(), getMinorVersion());
     format.setSamples(4);
     format.setDepthBufferSize(24);
@@ -69,7 +72,7 @@ QSurfaceFormat INISettings::configOpenGLES()
 /////////////////////////////////////////////////////////////////////////////////////////////
 QSurfaceFormat INISettings::configOpenGLESAngle()
 {
-	setRenderingMode(Gb::Settings::kGL_ES, 3, 2);
+	setRenderingMode(Gb::Settings::kGL_ES, OPENGL_ES_MAJOR_VERSION, OPENGL_ES_MINOR_VERSION);
 
 	// Set format, which specifies:
 	// GL Version
@@ -86,7 +89,7 @@ QSurfaceFormat INISettings::configOpenGLESAngle()
 /////////////////////////////////////////////////////////////////////////////////////////////
 QSurfaceFormat INISettings::configOpenGL()
 {
-    setRenderingMode(Gb::Settings::kGL, 4, 3);
+    setRenderingMode(Gb::Settings::kGL, OPENGL_MAJOR_VERSION, OPENGL_MINOR_VERSION);
 
     // Set format, which specifies:
     // GL Version

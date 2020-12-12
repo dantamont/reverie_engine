@@ -18,7 +18,7 @@ QString FileReader::createHexName(const QString& str)
     return QString(QCryptographicHash::hash(QByteArray(str.toUtf8()), QCryptographicHash::Md5).toHex());
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-QString FileReader::pathToName(const QString& path, bool extension, bool caseSensitive)
+QString FileReader::PathToName(const QString& path, bool extension, bool caseSensitive)
 {
     // Convert filepath to a case-insensitive name
     QFile f(path);
@@ -41,10 +41,15 @@ QString FileReader::pathToName(const QString& path, bool extension, bool caseSen
     return filename;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-QString FileReader::dirFromPath(const QString & path)
+QString FileReader::DirFromPath(const QString & path)
 {
     QFileInfo info = QFileInfo(path);
     return info.absoluteDir().absolutePath();
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+QString FileReader::FileExtension(const QString & filepath)
+{
+    return filepath.split(".").back();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 bool FileReader::fileExists(const QString & directory, const QString & fileName, QString & outFilePath)
@@ -59,7 +64,8 @@ bool FileReader::fileExists(const QString & directory, const QString & fileName,
             outFilePath = it.filePath();
             break;
         }
-        Object().logInfo(it.next());
+        //Object().logInfo(it.next());
+        it.next();
     } while (it.hasNext());
 
     // Check for last iterator
@@ -98,31 +104,6 @@ QString FileReader::getContentsAsString(const QString & filepath)
     // Convert to a string and return
     QString content(bstream);
     return content;
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-std::vector<std::string> FileReader::splitString(const std::string & str, const char* delimiter)
-{
-    std::vector<std::string> results;
-    std::string::const_iterator start = str.begin();
-    std::string::const_iterator end = str.end();
-    std::string::const_iterator next = std::find(start, end, *delimiter);
-    while (next != end) {
-        Vec::EmplaceBack(results, std::string(start, next));
-        start = next + 1;
-        next = std::find(start, end, *delimiter);
-    }
-    Vec::EmplaceBack(results, std::string(start, next));
-    return results;
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-std::vector<QString> FileReader::splitString(const QString & str, const char* delimiter)
-{
-    std::vector<std::string> results = splitString(str.toStdString(), delimiter);
-    std::vector<QString> qResults;
-    for (const auto& str : results) {
-        Vec::EmplaceBack(qResults, QString::fromStdString(str));
-    }
-    return qResults;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////

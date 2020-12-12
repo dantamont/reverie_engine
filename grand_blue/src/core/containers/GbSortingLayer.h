@@ -14,6 +14,11 @@
 
 namespace Gb {  
 //////////////////////////////////////////////////////////////////////////////////////////////////
+// Defs
+//////////////////////////////////////////////////////////////////////////////////////////////////
+#define DEFAULT_SORTING_LAYER "default"
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
 // Forward Declarations
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -29,7 +34,7 @@ struct SortingLayer: public Serializable, public Object {
     /// @{
     SortingLayer();
     SortingLayer(const QJsonValue& json);
-    SortingLayer(const QString& name, int order);
+    SortingLayer(const GString& name, int order);
     ~SortingLayer(){}
 
     /// @}
@@ -74,7 +79,7 @@ struct SortingLayer: public Serializable, public Object {
     virtual QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 

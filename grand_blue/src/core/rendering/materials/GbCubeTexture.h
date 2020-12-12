@@ -10,6 +10,7 @@
 #include <QString>
 
 // Internal
+#include "./GbTexture.h"
 #include "../../containers/GbColor.h"
 #include "../models/GbModel.h"
 #include "../GbGLFunctions.h"
@@ -23,8 +24,6 @@ namespace Gb {
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Forward Declarations
 /////////////////////////////////////////////////////////////////////////////////////////////
-
-class Image;
 class CameraComponent;
 class CoreEngine;
 class ShaderProgram;
@@ -33,19 +32,6 @@ class CubeMap;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Class definitions
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-/// @enum Face
-/// @brief Faces of the cubemap
-enum Face : int {
-    kRight = GL_TEXTURE_CUBE_MAP_POSITIVE_X,
-    kLeft,
-    kTop,
-    kBottom,
-    kBack, // Cubemap uses Renderman convention, which is left-handed, so +z is back face
-    kFront // and -z is front-face
-};
-
 /////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct CubePaths
 /// @brief Struct representing filepaths to the cubemap textures
@@ -61,25 +47,25 @@ struct CubePaths {
         const QString& back);
     ~CubePaths();
 
-    QString path(const Face& face) const;
+    QString path(const CubeMapFace& face) const;
 
     /// @brief Directory path for cubemap files
     QString m_directoryPath;
 
-    /// @brief Names of each file at directory path
-    std::unordered_map<Face, QString> m_fileNames;
+    /// @brief Names of each file at directory path, indexed by face
+    std::array<GString, 6> m_fileNames;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /// @class CubeTexture
 /// @brief Class representing texture for cubemap faces
-class CubeTexture: public Resource{
+class CubeTexture: public Texture{
 public:
     //---------------------------------------------------------------------------------------
     /// @name Static
     /// @{
 
-    static CubePaths loadCubemapFile(const QString& filepath);
+    static CubePaths loadPathsFromCubemapFile(const QString& filepath);
     static std::shared_ptr<ResourceHandle> createHandle(CoreEngine* engine, const QString& filepath);
 
     /// @}
@@ -87,55 +73,42 @@ public:
     /// @name Constructors/Destructor
     /// @{
 
-    CubeTexture(const CubePaths& imagePaths, unsigned int texUnit = 0);
-    CubeTexture(const QString& cubemapFilePath, unsigned int texUnit = 0);
+    CubeTexture(const CubePaths& imagePaths);
+    CubeTexture(const QString& cubemapFilePath);
+
+    /// @param[in] width the width of each side of the cube map
+    /// @param[in] height the height of each side of the cube map
+    CubeTexture(size_t width, size_t height, size_t depth = 1, bool isArray = false, TextureFormat internalFormat = TextureFormat::kRGBA8);
     ~CubeTexture();
+
+    /// @}
+
+    //---------------------------------------------------------------------------------------
+    /// @name Properties
+    /// @{ 
+
+    /// @brief Get the type of resource stored by this handle
+    virtual Resource::ResourceType getResourceType() const override {
+        return Resource::kCubeTexture;
+    }
 
     /// @}
 
     //---------------------------------------------------------------------------------------
     /// @name Public Methods
     /// @{ 
-
-    /// @brief Bind this texture
-    inline void bind() {
-        m_gl->glActiveTexture(GL_TEXTURE0 + m_textureUnit); // Activate the texture unit of this texture
-        m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, m_textureID); // bind this texture
-    }
-
-    /// @brief unbind this texture
-    inline void release() {
-        m_gl->glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
-    }
-
-    /// @brief Delete this texture from GL
-    inline void remove() {
-        glDeleteTextures(1, &m_textureID);
-    }
-
-    /// @brief Initialize the texture in OpenGl
-    void initializeTexture();
-
-    /// @brief Perform on removal of this texture resource
-    void onRemoval(ResourceCache* cache = nullptr) override;
-
-    /// @brief What action to perform post-construction of the resource
-    /// @details For performing any actions that need to be done on the main thread
-    virtual void postConstruction() override;
-
     /// @}
 
     //---------------------------------------------------------------------------------------
-    /// @name GB Object Properties
+    /// @name Object Properties
     /// @{
-    /** @property className
-        @brief The name of this class
-    */
+
+    /// @property className
+    /// @brief The name of this class
     virtual const char* className() const { return "CubeTexture"; }
 
-    /** @property namespaceName
-        @brief The full namespace for this class
-    */
+    /// @property namespaceName
+    /// @brief The full namespace for this class
     virtual const char* namespaceName() const { return "Gb::GL::CubeTexture"; }
 
     /// @}
@@ -153,26 +126,14 @@ protected:
     /// @name Private Methods
     /// @{ 
 
-    /// @brief Initialize the cube texture
-    void initializeTexture(const CubePaths& imagePaths);
-
-    /// @brief Initialize texture settings
-    void initializeSettings();
+    /// @brief Load images from files
+    void loadImages();
 
     /// @}
 
     //---------------------------------------------------------------------------------------
     /// @name Private Members
     /// @{ 
-
-    /// @brief Pointer to OpenGLFunctions 
-    GL::OpenGLFunctions* m_gl;
-
-    /// @brief Texture unit of the cubemap
-    unsigned int m_textureUnit;
-
-    /// @brief Texture ID of the cubemap
-    unsigned int m_textureID;
 
     /// @brief Paths to texture images
     CubePaths m_imagePaths;

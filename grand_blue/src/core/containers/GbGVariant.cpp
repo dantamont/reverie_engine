@@ -15,16 +15,14 @@ QVariantMap GVariant::toQVariantMap(const std::map<QString, GVariant>& gMap)
     return map;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-std::map<QString, GVariant> GVariant::toGVariantMap(const QVariantMap & map)
+void GVariant::toGVariantMap(const QVariantMap & map, std::map<QString, GVariant>& outMap)
 {
     std::map<QString, GVariant> gMap;
     for (QVariantMap::const_iterator iter = map.begin(); iter != map.end(); ++iter) {
         QString key = iter.key();
         QVariant qVariant = iter.value();
-        Map::Emplace(gMap, key, qVariant);
+        Map::Emplace(outMap, key, qVariant);
     }
-
-    return gMap;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 GVariant::GVariant() :
@@ -79,10 +77,10 @@ GVariant::GVariant(const Vector4f & val) :
     set<Vector4f>(val);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-GVariant::GVariant(const Matrix4x4f & val) :
+GVariant::GVariant(const Matrix4x4 & val) :
     Variant()
 {
-    set<Matrix4x4f>(val);
+    set<Matrix4x4>(val);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 GVariant::GVariant(const std::vector<float>& val)
@@ -118,8 +116,8 @@ QVariant GVariant::asQVariant() const
     else if (is<Vector4f>()) {
         qv.setValue(get<Vector4f>().asJson());
     }
-    else if (is<Matrix4x4f>()) {
-        qv.setValue(get<Matrix4x4f>().asJson());
+    else if (is<Matrix4x4>()) {
+        qv.setValue(get<Matrix4x4>().asJson());
     }
     else if (is<std::vector<float>>()) {
         qv.setValue(vectorAsJson(get<std::vector<float>>()));
@@ -170,10 +168,10 @@ void GVariant::loadFromQVariant(const QVariant & qv)
             // Is a matrix type
             int columnSize = array.at(0).toArray().size();
             if (columnSize == 4) {
-                set<Matrix4x4f>(Matrix4x4f(json));
+                set<Matrix4x4>(Matrix4x4(json));
             }
             else if (columnSize == 3) {
-                set<Matrix3x3f>(Matrix3x3f(json));
+                set<Matrix3x3>(Matrix3x3(json));
             }
             else {
                 throw("Error, matrix of this size is not JSON serializable");
@@ -206,9 +204,10 @@ QJsonValue GVariant::asJson() const
     return QJsonValue();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void GVariant::loadFromJson(const QJsonValue & json)
+void GVariant::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
     Q_UNUSED(json)
+    Q_UNUSED(context)
     throw("Error, not implemented");
 }
 

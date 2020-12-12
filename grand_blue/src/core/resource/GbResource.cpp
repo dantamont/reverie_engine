@@ -20,15 +20,13 @@ namespace Gb {
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Resource
 /////////////////////////////////////////////////////////////////////////////////////////////
-Resource::Resource(const QString & name, ResourceType type) :
+Resource::Resource(const GString & name) :
     Object(name),
-    m_type(type),
     m_cost(1) // default cost
 {
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-Resource::Resource(ResourceType type) :
-    m_type(type),
+Resource::Resource() :
     m_cost(1) // default cost
 {
 }
@@ -36,7 +34,7 @@ Resource::Resource(ResourceType type) :
 bool Resource::isSerializable() const
 {
     bool serializable = false;
-    switch (m_type) {
+    switch (getResourceType()) {
     case kImage:
     case kTexture:
     case kMesh:
@@ -48,6 +46,7 @@ bool Resource::isSerializable() const
     case kModel:
     case kShaderProgram:
     case kPythonScript:
+    case kAudio:
         serializable = true;
         break;
     case kNullType:
@@ -62,7 +61,7 @@ bool Resource::isSerializable() const
 void Resource::postConstruction()
 {
 #ifdef DEBUG_MODE
-    logInfo("Running post-construction routine for resource: " + m_name);
+    //logInfo("Running post-construction routine for resource: " + m_name);
 
     //if (m_name.isEmpty()) throw("Error, resource has no name");
 #endif
@@ -76,11 +75,11 @@ void Resource::postConstruction()
 /////////////////////////////////////////////////////////////////////////////////////////////
 // ResourceHandle
 /////////////////////////////////////////////////////////////////////////////////////////////
-QString ResourceHandle::getNameFromJson(const QJsonObject & json)
+GString ResourceHandle::getNameFromJson(const QJsonObject & json)
 {
-    QString filepath = json["path"].toString();
+    GString filepath = json["path"].toString();
     Resource::ResourceType type = Resource::ResourceType(json["type"].toInt());
-    QString name;
+    GString name;
     switch (type) {
     case Resource::kAnimation:
         name = json["name"].toString();
@@ -90,10 +89,25 @@ QString ResourceHandle::getNameFromJson(const QJsonObject & json)
             name = json["name"].toString();
         }
         else {
-            name = FileReader::pathToName(filepath);
+            name = FileReader::PathToName(filepath);
         }
     }
     return name;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+std::shared_ptr<ResourceHandle> ResourceHandle::create(CoreEngine * engine, const QJsonObject& json)
+{
+    Resource::ResourceType type = Resource::ResourceType(json["type"].toInt());
+
+    // MUST set uuid before inserting into research cache, or else it will be indexed with the wrong UUID
+    Uuid uuid = Uuid(json["uuid"].toString());
+
+    auto handle = prot_make_shared<ResourceHandle>(engine, type);
+    handle->m_uuid = uuid;
+
+    engine->resourceCache()->insertHandle(handle);
+    handle->loadFromJson(json);
+    return handle;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 std::shared_ptr<ResourceHandle> ResourceHandle::create(CoreEngine * engine, Resource::ResourceType type)
@@ -111,14 +125,14 @@ std::shared_ptr<ResourceHandle> ResourceHandle::create(CoreEngine * engine, Reso
     return handle;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<ResourceHandle> ResourceHandle::create(CoreEngine * engine, const QString & filepath, Resource::ResourceType type)
+std::shared_ptr<ResourceHandle> ResourceHandle::create(CoreEngine * engine, const GString & filepath, Resource::ResourceType type)
 {
     auto handle = prot_make_shared<ResourceHandle>(engine, filepath, type);
     engine->resourceCache()->insertHandle(handle);
     return handle;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<ResourceHandle> ResourceHandle::create(CoreEngine * engine, const QString & filepath, Resource::ResourceType type, BehaviorFlags flags)
+std::shared_ptr<ResourceHandle> ResourceHandle::create(CoreEngine * engine, const GString & filepath, Resource::ResourceType type, BehaviorFlags flags)
 {
     auto handle = prot_make_shared<ResourceHandle>(engine, filepath, type);
     handle->setBehaviorFlags(flags);
@@ -151,8 +165,8 @@ ResourceHandle::ResourceHandle(CoreEngine* engine, const std::shared_ptr<Resourc
     setResource(resource, false);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-ResourceHandle::ResourceHandle(CoreEngine* engine, const QString & filepath, Resource::ResourceType type) :
-    Object(FileReader::pathToName(filepath), kCaseInsensitive),
+ResourceHandle::ResourceHandle(CoreEngine* engine, const GString & filepath, Resource::ResourceType type) :
+    Object(FileReader::PathToName(filepath), kCaseInsensitive),
     DistributedLoadable(filepath),
     m_type(type),
     m_resource(nullptr),
@@ -160,7 +174,7 @@ ResourceHandle::ResourceHandle(CoreEngine* engine, const QString & filepath, Res
 {
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-ResourceHandle::ResourceHandle(CoreEngine* engine, const QString& filepath, const QString& name, Resource::ResourceType type):
+ResourceHandle::ResourceHandle(CoreEngine* engine, const GString& filepath, const GString& name, Resource::ResourceType type):
     Object(name),
     DistributedLoadable(filepath),
     m_type(type),
@@ -171,6 +185,8 @@ ResourceHandle::ResourceHandle(CoreEngine* engine, const QString& filepath, cons
 /////////////////////////////////////////////////////////////////////////////////////////////
 ResourceHandle::~ResourceHandle()
 {
+    // Remove all resources on destruction
+    //unloadResource(false);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 const std::shared_ptr<Resource>& ResourceHandle::resource(bool lockMutex)
@@ -215,7 +231,15 @@ void ResourceHandle::setResource(const std::shared_ptr<Resource>& resource, bool
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<ResourceHandle> ResourceHandle::getChild(const Uuid & uuid)
+void ResourceHandle::setChildPaths(const GString & filepath)
+{
+    setPath(filepath);
+    for (const std::shared_ptr<ResourceHandle>& child : m_children) {
+        child->setChildPaths(filepath);
+    }
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+const std::shared_ptr<ResourceHandle>& ResourceHandle::getChild(const Uuid & uuid)
 {
     auto iter = std::find_if(m_children.begin(), m_children.end(),
         [&](const auto& child) {
@@ -225,8 +249,25 @@ std::shared_ptr<ResourceHandle> ResourceHandle::getChild(const Uuid & uuid)
         return *iter;
     }
     else {
-        return nullptr;
+        return s_nullHandle;
     }
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+const std::shared_ptr<ResourceHandle>& ResourceHandle::getChild(const GString & name, Resource::ResourceType type)
+{
+    for (size_t i = 0; i < m_children.size(); i++) {
+        const auto& childHandle = m_children[i];
+        if (childHandle->getResourceType() != type) {
+            continue;
+        }
+
+        if (childHandle->getName() == name) {
+            return childHandle;
+        }
+    }
+    
+    // No matching child found
+    return s_nullHandle;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 void ResourceHandle::getChildren(Resource::ResourceType type, std::vector<std::shared_ptr<ResourceHandle>>& outChildren)
@@ -310,10 +351,17 @@ void ResourceHandle::loadResource()
 #endif
     }
 
+    auto handlePtr = sharedPtr();
+    if (!handlePtr) {
+        // FIXME: This happens sometimes
+        throw("Error, threading issue, handle not yet added to cache, fix this");
+    }
+
     auto loadProcess = std::make_shared<LoadProcess>(m_engine, sharedPtr());
 
     // Use type to determine whether or not to run on another thread
     switch (m_type) {
+    // Types can be initialized on other threads
     case Resource::kModel:
     case Resource::kTexture:
     case Resource::kMaterial:
@@ -321,8 +369,10 @@ void ResourceHandle::loadResource()
     case Resource::kMesh:
     case Resource::kAnimation:
     case Resource::kCubeTexture:
+    case Resource::kAudio:
         m_engine->resourceCache()->processManager()->attachProcess(loadProcess);
         break;
+    // Types that need to be initialized on main GUI thread
     case Resource::kShaderProgram:
     case Resource::kPythonScript:
         loadProcess->onInit(); // Force initialization on this thread
@@ -335,7 +385,7 @@ void ResourceHandle::loadResource()
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
-void ResourceHandle::removeResources(bool lockMutex)
+void ResourceHandle::unloadResource(bool lockMutex)
 {
     if (lockMutex) {
         m_resourceMutex.lock();
@@ -347,6 +397,7 @@ void ResourceHandle::removeResources(bool lockMutex)
     // Removes resource
     m_resource = nullptr;
 
+
     if (lockMutex) {
         m_resourceMutex.unlock();
     }
@@ -354,10 +405,70 @@ void ResourceHandle::removeResources(bool lockMutex)
     // Remove resources from children 
     if(!isUserGenerated()){ // If user-generated, children are linked manually, and therefore not dependent on parent resource
         for (const auto& child : m_children) {
-            child->removeResources(lockMutex);
+            child->unloadResource(lockMutex);
 
-            // Emit signal for widgets to know that the handle was deleted
+            // Emit signal for widgets to know that the handle's resource was deleted
             emit m_engine->resourceCache()->resourceDeleted(child);
+        }
+    }
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+void ResourceHandle::removeFromCache(bool removeFromTopLevel)
+{
+    // Remove from map of all resources
+    int numErased; // Count to check whether erase was successful
+    ResourceCache& cache = *m_engine->resourceCache();
+    numErased = cache.m_resources.erase(m_uuid);
+    if (!numErased) {
+        logError("Error, failed to erase from map of all resources");
+    }
+
+    // Remove from top level resources if not a child
+    if (!isChild() && removeFromTopLevel) {
+        auto iter = std::find_if(cache.m_topLevelResources.begin(), cache.m_topLevelResources.end(),
+            [&](const auto& handle) {
+            return handle->getUuid() == m_uuid;
+        }
+        );
+        if (iter == cache.m_topLevelResources.end()) {
+            throw("Error, only top-level resources can be forcefully deleted");
+        }
+        cache.m_topLevelResources.erase(iter);
+    }
+
+    // Erase from type-specific maps if applicable
+    switch (getResourceType()) {
+    case Resource::kModel:
+        numErased = cache.m_models.erase(m_uuid);
+        break;
+    case Resource::kMaterial:
+        numErased = cache.m_materials.erase(m_uuid);
+        break;
+    case Resource::kShaderProgram:
+        numErased = cache.m_shaderPrograms.erase(m_uuid);
+        break;
+    case Resource::kPythonScript:
+        numErased = cache.m_pythonScripts.erase(m_uuid);
+        break;
+    case Resource::kSkeleton:
+        numErased = cache.m_skeletons.erase(m_uuid);
+        break;
+    case Resource::kAudio:
+        numErased = cache.m_audio.erase(m_uuid);
+    default:
+        numErased = -1;
+        break;
+    }
+
+    if (numErased == 0) {
+        throw("Error, failed to erase resource from cache");
+    }
+
+    // Remove child resources from cache
+    if (!isUserGenerated()) { 
+        // If user-generated, children are linked manually, and therefore not dependent on parent resource
+        for (const auto& child : m_children) {
+            child->removeFromCache(removeFromTopLevel);
         }
     }
 }
@@ -395,32 +506,45 @@ void ResourceHandle::postConstruct(ResourceHandle* handle, int level)
 
     // Emit signal that reloaded process (for widgets)
     std::shared_ptr<ResourceHandle> handlePtr = handle->sharedPtr();
+    if (!handlePtr) {
+        throw("Error, somehow no handle found");
+    }
+	
+	// FIXME: 9/21/2020: Was causing slow startup with ResourceTreeWidget, will uncomment if causes issues
     emit m_engine->resourceCache()->resourceAdded(handlePtr);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 QJsonValue ResourceHandle::asJson() const
 {
     QJsonObject object = DistributedLoadable::asJson().toObject();
-    object.insert("name", m_name);
+    object.insert("name", m_name.c_str());
     object.insert("type", int(m_type));
     object.insert("behaviorFlags", int(m_behaviorFlags));
-    object.insert("attributes", m_attributes.asJson());
-    object.insert("uuid", m_uuid.asString());
+    object.insert("uuid", m_uuid.asQString());
     if (!m_resource) {
         throw("Error, resource not loaded at serialization time");
     }
-    if (isUserGenerated()) {
-        // Need to cache resource JSON if user-generated
+
+    if (usesJson()) {
+        // Need to cache resource JSON if either user-generated or flagged to use JSON
         if (m_resource->isSerializable()) {
             // Polygons are not serializable, so don't cache
             object.insert("resourceJson", std::dynamic_pointer_cast<Serializable>(m_resource)->asJson());
+        }
+        else {
+            // If resource is not serializable, use most recently cached resource JSON
+            if (!m_resourceJson.isEmpty()) {
+                object.insert("resourceJson", m_resourceJson);
+            }
         }
     }
     return object;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////
-void ResourceHandle::loadFromJson(const QJsonValue & json)
+void ResourceHandle::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
+
     // Parse out JSON for resource
     QJsonObject object = json.toObject();
     DistributedLoadable::loadFromJson(json);
@@ -430,10 +554,12 @@ void ResourceHandle::loadFromJson(const QJsonValue & json)
     // Load attributes
     m_name = object["name"].toString();
     m_type = type;
-    m_attributes = Dictionary(object["attributes"]);
-    m_uuid = Uuid(object["uuid"].toString());
+    Uuid uuid = Uuid(object["uuid"].toString());
     if (m_uuid.isNull()) {
         throw("Error, UUID for resource handle is invalid");
+    }
+    if (m_uuid != uuid) {
+        throw("Error, UUID should have been set before loading handle, see ResourceHandle::create");
     }
     if (object.contains("resourceJson")) {
         m_resourceJson = object["resourceJson"].toObject();
@@ -441,7 +567,7 @@ void ResourceHandle::loadFromJson(const QJsonValue & json)
 
     // Clean up resource
     if (m_resource) {
-        removeResources(true);
+        unloadResource(true);
     }
 
     // Reload resource
@@ -465,6 +591,9 @@ bool operator==(const ResourceHandle & r1, const ResourceHandle & r2)
 
     return samePath && sameType && sameName && sameResource;
 }
+/////////////////////////////////////////////////////////////////////////////////////////////
+std::shared_ptr<ResourceHandle> ResourceHandle::s_nullHandle = nullptr;
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////

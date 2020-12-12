@@ -3,13 +3,13 @@
 # ------------------------------------------------------
 # See: https://www.toptal.com/qt/vital-guide-qmake
 # NOTE: Debug build should use /MDd runtime library, and release should use /MD (may be default for Qt)
+# TODO: Convert to cmake: https://www.executionunit.com/blog/2014/01/22/moving-from-qmake-to-cmake/
 
 message("Beginning qmake build of grand_blue.pro")
 
 TEMPLATE = app
 TARGET = grand_blue
 QT += core \
-	  core-private \
       opengl \ 
 	  gui \
 	  widgets \
@@ -22,9 +22,16 @@ QT += core \
 # Set compiler flags /////////////////////////////////////////////////////////////
 QMAKE_CXXFLAGS += /MP # Multiprocess compile, much faster
 
+# MSVC versions after 15.3 are fickle with the flags required to use more modern c++ variants
+QMAKE_CXXFLAGS *= /std:c++17 # Add if not there, this may be the ticket
+# QMAKE_CXXFLAGS += -std=c++17 # For GCC/Clang
+# QMAKE_CXXFLAGS += -std=c++1z
+
 # Set general configuration options /////////////////////////////////////////////////
 CONFIG += c++latest # Add support for c++17.
-CONFIG += qt thread # console 
+# CONFIG += c++1z # another attempt at C++17 support
+CONFIG += qt # console # The target is a Qt application or library and requires the Qt library and header files
+CONFIG += thread # Thread support is enabled. This is enabled when CONFIG includes qt, which is the default.
 CONFIG += debug_and_release # Creates additional debug and release folders, but need it for debug
 
 CONFIG(debug, debug|release){
@@ -53,7 +60,6 @@ CONFIG -= flat # flattens file hierarchy, subtract if this is not desired
 # Defines //////////////////////////////////////////////////////////////////////////
 DEFINES += _UNICODE _ENABLE_EXTENDED_ALIGNED_STORAGE WIN64 QT_DLL QT_OPENGL_LIB QT_OPENGLEXTENSIONS_LIB QT_WIDGETS_LIB
 DEFINES += DEVELOP_MODE
-#DEFINES += PYTHONQT_STATIC_LIB
 DEFINES += LINALG_USE_EIGEN
 INCLUDEPATH += ./qt_generated \
     . \
@@ -65,22 +71,73 @@ DEPENDPATH += .
 
 
 # Add Libraries ////////////////////////////////////////////////////////////////////
+# Don't forget to add to unit tests project as well, or else Intellisense errors will carry over
 # Include PythonQt and required libraries
 # Maybe not needed here, since python.prf is included when PythonQt is built?
 # Note that both windows and linux style library links work in windows
 # LIBS += -L$$(PYTHON_LIB)/ -lpython$$(PYTHON_VERSION) # L"PATH" adds PATH to library search directory list, and -lName loads library Name during linking
 
 # Enable import <PythonQt.h>
-INCLUDEPATH += $$PWD/src/third_party/pythonqt
+# INCLUDEPATH += $$PWD/src/third_party/pythonqt
 
-include ( ../third_party/PythonQt/build/python.prf )  
-#include ( ../third_party/PythonQt/build/common.prf )  
-#include ( ../third_party/PythonQt/build/PythonQt.prf )  
+# include ( ../third_party/PythonQt/build/python.prf )   #Was pulled from  PythonQt build
+# profile to include and link Python
+
+
+# Change this variable to your python version (2.6, 2.7, 3.3, ...)
+PYTHON_VERSION=$$(PYTHON_VERSION)
+isEmpty( PYTHON_VERSION ) {
+  win32:PYTHON_VERSION=38
+  unix:PYTHON_VERSION=3.8
+}
+
+
+macx {
+  # for macx you need to have the Python development kit installed as framework
+  INCLUDEPATH += /System/Library/Frameworks/Python.framework/Headers
+  LIBS += -F/System/Library/Frameworks -framework Python
+} else:win32 {
+  # for windows install a Python development kit or build Python yourself from the sources
+  # Make sure that you set the environment variable PYTHON_PATH to point to your
+  # python installation (or the python sources/header files when building from source).
+  # Make sure that you set the environment variable PYTHON_LIB to point to
+  # the directory where the python libs are located.
+  #
+  # When using the prebuild Python installer, this will be:
+  # set PYTHON_PATH = c:\Python26
+  # set PYTHON_LIB  = c:\Python26\libs
+  #
+  # When using the python sources, this will be something like:
+  # set PYTHON_PATH = c:\yourDir\Python-2.6.1\
+  # set PYTHON_LIB  = c:\yourDir\Python-2.6.1\PCbuild8\Win32
+
+  # check if debug or release
+  CONFIG(debug, debug|release) {
+    DEBUG_EXT = _d
+  } else {
+    DEBUG_EXT =
+  }
+
+# commented out for now because not working
+  #win32:INCLUDEPATH += $$absolute_path("include", $$(PYTHON_PATH))
+  win32:INCLUDEPATH += $$(PYTHON_PATH)\include
+  win32:LIBS += $$(PYTHON_LIB)\python$$(PYTHON_VERSION)$$(DEBUG_EXT).lib
+} else:unix {
+  # on linux, python-config is used to autodetect Python.
+  # make sure that you have installed a matching python-dev package.
+  
+  system(python$${PYTHON_VERSION}-config --embed --libs) {
+    unix:LIBS += $$system(python$${PYTHON_VERSION}-config --embed --libs)
+  } else: unix:LIBS += $$system(python$${PYTHON_VERSION}-config --libs)
+  unix:QMAKE_CXXFLAGS += $$system(python$${PYTHON_VERSION}-config --includes)
+}
+
+
+# include ( ../third_party/PythonQt/build/common.prf )  
+# include ( ../third_party/PythonQt/build/PythonQt.prf )  
 #include ( ../third_party/PythonQt/build/PythonQt_QtAll.prf )  
+INCLUDEPATH += ../third_party/pybind11/include
 
-# PYTHONQT_GENERATED_PATH comes from the common.prf
-#include($${PYTHONQT_GENERATED_PATH}/com_trolltech_qt_core_builtin/com_trolltech_qt_core_builtin.pri)
-#include($${PYTHONQT_GENERATED_PATH}/com_trolltech_qt_gui_builtin/com_trolltech_qt_gui_builtin.pri)
 
 # Compile against release version of python
 CONFIG(debug, debug|release) : DEFINES += PYTHONQT_USE_RELEASE_PYTHON_FALLBACK
@@ -134,7 +191,18 @@ CONFIG(release, debug|release) {
 INCLUDEPATH +=  ../third_party/freetype-2.10.1/include
 CONFIG(debug, debug|release) : LIBS += -L$$PWD/lib/freetype/debug -lfreetype
 CONFIG(release, debug|release) : LIBS += -L$$PWD/lib/freetype/release -lfreetype
-		
+
+# SoLoud
+INCLUDEPATH += ../third_party/soloud/include
+CONFIG(debug, debug|release) { 
+	LIBS += -L$$PWD/lib/soloud/debug -lsoloud_x86_d
+	LIBS += -L$$PWD/lib/soloud/debug -lsoloud_static_x86_d
+}
+CONFIG(release, debug|release) { 
+	LIBS += -L$$PWD/lib/soloud/release -lsoloud_x86
+	LIBS += -L$$PWD/lib/soloud/release -lsoloud_static_x86
+}
+
 
 # Include Visual Leak Detector //////////////////////////////////////////////////////////////////
 INCLUDEPATH += "../third_party/Visual Leak Detector/include/"

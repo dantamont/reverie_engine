@@ -16,12 +16,12 @@ Color::Color(const std::vector<int>& vec) :
 {
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-Color::Color(const Vector3g & vec): QColor()
+Color::Color(const Vector3 & vec): QColor()
 {
     *this = fromRgbF(vec[0], vec[1], vec[2], vec.size() > 3 ? vec[3] : 1.0f);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-Color::Color(const Vector4g & vec) :  QColor()
+Color::Color(const Vector4 & vec) :  QColor()
 {
     *this = fromRgbF(vec[0], vec[1], vec[2], vec.size() > 3 ? vec[3] : 1.0f);
 }
@@ -45,15 +45,15 @@ std::vector<int> Color::toVector4i() const
     return std::vector<int>({QColor::red(), QColor::green(), QColor::blue(), QColor::alpha()});
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-Vector4g Color::toVector4g() const
+Vector4 Color::toVector4g() const
 {
-    return Vector4g(QColor::redF(), greenF(), blueF(), alphaF());
+    return Vector4(QColor::redF(), greenF(), blueF(), alphaF());
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
-Vector3g Color::toVector3g() const
+Vector3 Color::toVector3g() const
 {
-    return Vector3g(QColor::redF(), greenF(), blueF());
+    return Vector3(QColor::redF(), greenF(), blueF());
 }
 
 

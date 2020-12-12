@@ -8,7 +8,6 @@
 #include "../../core/scene/GbSceneObject.h"
 #include "../../core/readers/GbJsonReader.h"
 
-#include "../../core/rendering/renderer/GbRenderers.h"
 #include "../../core/components/GbTransformComponent.h"
 #include "../style/GbFontIcon.h"
 #include "../../core/geometry/GbEulerAngles.h"
@@ -25,7 +24,7 @@ namespace View {
 TranslationWidget::TranslationWidget(CoreEngine * core,
     Transform * transform,
     QWidget * parent) :
-    VectorWidget<double, 3>(core, 
+    VectorWidget<real_g, 3>(core,
         transform->translation().position(),
         parent),
     m_transform(transform)
@@ -38,7 +37,7 @@ void TranslationWidget::update()
 
     //pauseSimulation();
 
-    VectorWidget<double, 3>::update();
+    VectorWidget<real_g, 3>::update();
 
     //resumeSimulation();
 }
@@ -53,7 +52,7 @@ void TranslationWidget::setTransform(Transform & transform)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void TranslationWidget::updateVector()
 {
-    VectorWidget<double, 3>::updateVector();
+    VectorWidget<real_g, 3>::updateVector();
     m_transform->translation().setPosition(m_vector, true);
 }
 
@@ -112,18 +111,19 @@ void RotationWidget::initializeWidgets()
     m_axisBox3->setToolTip("Third axis of rotation");
 
     EulerAngles rot = EulerAngles(m_transform->rotation().getQuaternion(), EulerAngles::kXYZ);
+    m_lastDegreeAngles = rot.angles()* Constants::RAD_TO_DEG;
 
-    m_rotEdit1 = new QLineEdit(QString::number(rot[0] * Constants::RAD_TO_DEG));
+    m_rotEdit1 = new QLineEdit(QString::number(m_lastDegreeAngles[0]));
     m_rotEdit1->setMaximumWidth(50);
     m_rotEdit1->setValidator(new QDoubleValidator(-180.0, 180.0, 10));
     m_rotEdit1->setToolTip("In degrees");
 
-    m_rotEdit2 = new QLineEdit(QString::number(rot[1] * Constants::RAD_TO_DEG));
+    m_rotEdit2 = new QLineEdit(QString::number(m_lastDegreeAngles[1]));
     m_rotEdit2->setMaximumWidth(50);
     m_rotEdit2->setValidator(new QDoubleValidator(-180.0, 180.0, 10));
     m_rotEdit2->setToolTip("In degrees");
 
-    m_rotEdit3 = new QLineEdit(QString::number(rot[2] * Constants::RAD_TO_DEG));
+    m_rotEdit3 = new QLineEdit(QString::number(m_lastDegreeAngles[2]));
     m_rotEdit3->setMaximumWidth(50);
     m_rotEdit3->setValidator(new QDoubleValidator(-180.0, 180.0, 10));
     m_rotEdit3->setToolTip("In degrees");
@@ -209,9 +209,10 @@ void RotationWidget::updateRotation()
         throw("Invalid type");
     }
     RotationSpace space = getRotationSpace();
-    EulerAngles eulerAngles = EulerAngles(m_rotEdit1->text().toDouble() * Constants::DEG_TO_RAD,
-        m_rotEdit2->text().toDouble() * Constants::DEG_TO_RAD,
-        m_rotEdit3->text().toDouble() * Constants::DEG_TO_RAD,
+    m_lastDegreeAngles = Vector3(m_rotEdit1->text().toDouble(), m_rotEdit2->text().toDouble(), m_rotEdit3->text().toDouble());
+    EulerAngles eulerAngles = EulerAngles(m_lastDegreeAngles[0] * Constants::DEG_TO_RAD,
+        m_lastDegreeAngles[1] * Constants::DEG_TO_RAD,
+        m_lastDegreeAngles[2] * Constants::DEG_TO_RAD,
         type,
         space);
     m_transform->rotation().setRotation(eulerAngles.toQuaternion(), true);
@@ -225,18 +226,40 @@ void RotationWidget::updateWidgetRotation()
     if (type == EulerAngles::kInvalid) {
         throw("Invalid type");
     }
+
     RotationSpace space = getRotationSpace();
+    RotationComponent& rot = m_transform->rotation();
     EulerAngles eulerAngles = EulerAngles(
-        m_transform->rotation().getQuaternion(),
+        rot.getQuaternion(),
         type,
         space);
 
-    if (!m_rotEdit1->hasFocus())
-        m_rotEdit1->setText(QString::number(eulerAngles[0] * Constants::RAD_TO_DEG));
-    if (!m_rotEdit2->hasFocus())
-        m_rotEdit2->setText(QString::number(eulerAngles[1] * Constants::RAD_TO_DEG));
-    if (!m_rotEdit3->hasFocus())
-        m_rotEdit3->setText(QString::number(eulerAngles[2] * Constants::RAD_TO_DEG));
+    // Check if euler angles have been shifted by 180 degrees, and correct back
+    Vector3 degAngles = eulerAngles.angles() * Constants::RAD_TO_DEG;
+    Vector3 upShiftDiff = degAngles + 180 - m_lastDegreeAngles;
+    for (size_t i = 0; i < 3; i++) {
+        upShiftDiff[i] = fmod(upShiftDiff[i], 360.0f);
+    }
+    Vector3 downShiftDiff = degAngles - 180 - m_lastDegreeAngles;
+    for (size_t i = 0; i < 3; i++) {
+        downShiftDiff[i] = fmod(downShiftDiff[i], 360.0f);
+    }
+
+    if (upShiftDiff.lengthSquared() < 1e-6) {
+        degAngles = m_lastDegreeAngles;
+    }
+    else if (downShiftDiff.lengthSquared() < 1e-6) {
+        degAngles = m_lastDegreeAngles;
+    }
+    if (!m_rotEdit1->hasFocus()) {
+        m_rotEdit1->setText(QString::number(degAngles[0]));
+    }
+    if (!m_rotEdit2->hasFocus()) {
+        m_rotEdit2->setText(QString::number(degAngles[1]));
+    }
+    if (!m_rotEdit3->hasFocus()) {
+        m_rotEdit3->setText(QString::number(degAngles[2]));
+    }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 int RotationWidget::getRotationType() const
@@ -280,7 +303,7 @@ int RotationWidget::ensureDifferentAxis(int index)
 ScaleWidget::ScaleWidget(CoreEngine * core, 
     Transform* transform,
     QWidget * parent) :
-    VectorWidget<double, 3>(core,
+    VectorWidget<real_g, 3>(core,
         transform->scale().scale(),
         parent),
     m_transform(transform)
@@ -294,7 +317,7 @@ void ScaleWidget::update()
 
     //pauseSimulation();
 
-    VectorWidget<double, 3>::update();
+    VectorWidget<real_g, 3>::update();
 
     //resumeSimulation();
 }
@@ -307,7 +330,7 @@ void ScaleWidget::setTransform(Transform & transform)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void ScaleWidget::updateVector()
 {
-    VectorWidget<double, 3>::updateVector();
+    VectorWidget<real_g, 3>::updateVector();
     m_transform->scale().setScale(m_vector, true);
 }
 

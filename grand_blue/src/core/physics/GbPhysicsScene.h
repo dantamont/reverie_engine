@@ -54,7 +54,7 @@ public:
     /// @brief Get a scene object for a given physx::RigidBody
     static std::shared_ptr<SceneObject> bodyObject(physx::PxActor* actor);
 
-    static std::unordered_map<physx::PxActor*, Uuid>& actorMap() { return ActorMap; }
+    static tsl::robin_map<physx::PxActor*, Uuid>& actorMap() { return ActorMap; }
 
     /// @}
 
@@ -124,7 +124,7 @@ public:
     QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -174,7 +174,7 @@ protected:
     /// @{
 
     /// @brief Map of rigid actors to scene objects
-    static std::unordered_map<physx::PxActor*, Uuid> ActorMap;
+    static tsl::robin_map<physx::PxActor*, Uuid> ActorMap;
 
     /// @brief The character controller manager for this scene
     std::shared_ptr<CCTManager> m_cctManager = nullptr;

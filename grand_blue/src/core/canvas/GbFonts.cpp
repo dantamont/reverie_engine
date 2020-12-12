@@ -8,6 +8,7 @@
 #include "../utils/GbParallelization.h"
 #include "../geometry/GbVector.h"
 #include "../../view/style/GbFontIcon.h"
+#include "../rendering/lighting/GbShadowMap.h"
 
 #define USE_THREADING false
 
@@ -70,19 +71,19 @@ void FontFace::bindTexture(float fontSize)
     //int h = texture->height();
     //int w = texture->width();
 
-    GL::OpenGLFunctions gl = GL::OpenGLFunctions();
-    int texUnit = 0;
-    gl.glActiveTexture(GL_TEXTURE0 + texUnit); // set active texture unit
     if (texture->handle()->isConstructed()) {
-        texture->bind(texUnit); // bind texture to this unit
+        // bind texture to first unreserved unit
+        //texture->bind(NUM_SHADOW_MAP_TEXTURES);
+        texture->bind(0);
     }
 }
 //////////////////////////////////////////////////////////////////////////////////
 void FontFace::releaseTexture(float fontSize)
 {
     size_t pixelSize = pointToPixelSize(fontSize);
-    if (m_textures.at(pixelSize)->isConstructed())
+    if (m_textures.at(pixelSize)->isConstructed()) {
         m_textures.at(pixelSize)->resourceAs<Texture>()->release(); // bind texture to this unit
+    }
 }
 //////////////////////////////////////////////////////////////////////////////////
 QSize FontFace::getBitmapSize(float height)
@@ -297,7 +298,7 @@ void FontFace::loadFont()
     }
 
     // Load font face from file
-    if (FT_New_Face(*FontManager::s_freeType, m_path.toStdString().c_str(), 0, &m_face))
+    if (FT_New_Face(*FontManager::s_freeType, m_path.c_str(), 0, &m_face))
         throw("ERROR::FREETYPE: Failed to load font");
 }
 //////////////////////////////////////////////////////////////////////////////////
@@ -344,15 +345,15 @@ void FontFace::loadGLTexture(size_t fontPixelSize)
 #endif
 
     // Create unique name for texture
-    QString uniqueName = "font_" + FileReader::pathToName(m_path, false) + "_" + m_uuid.asString() + "_" + QString::number(fontPixelSize);
+    GString uniqueName = "font_" + GString(FileReader::PathToName(m_path, false)) + "_" + m_uuid.asString() + "_" + GString::FromNumber(fontPixelSize);
 
     // Create OpenGL texture
     m_textures[fontPixelSize] = Texture::createHandle(m_engine,
         bitmap, 
-        Texture::kDiffuse,
-        QOpenGLTexture::Linear,
-        QOpenGLTexture::Linear,
-        QOpenGLTexture::ClampToEdge);
+        TextureUsageType::kDiffuse,
+        TextureFilter::kLinear,
+        TextureFilter::kLinear,
+        TextureWrapMode::kClampToEdge);
     m_textures[fontPixelSize]->setName(uniqueName);
     //m_textures[fontPixelSize]->postConstruct();
 
@@ -414,7 +415,7 @@ FontFace* FontManager::getFontFace(const QString & name)
 //////////////////////////////////////////////////////////////////////////////////
 void FontManager::loadFontFace(CoreEngine* engine, const QString & path, bool isCore, FontFace::FontEncoding encoding)
 {
-    QString fontName = FileReader::pathToName(path, false);
+    QString fontName = FileReader::PathToName(path, false);
 
     // Return if font already loaded
     if (Map::HasKey(s_faces, fontName)) return;
@@ -509,7 +510,7 @@ void FontManager::initializeWidgetFonts()
 std::unique_ptr<FT_Library>  FontManager::s_freeType = nullptr;
 
 //////////////////////////////////////////////////////////////////////////////////
-std::unordered_map<QString, FontFace> FontManager::s_faces = {};
+tsl::robin_map<QString, FontFace> FontManager::s_faces = {};
 
 //////////////////////////////////////////////////////////////////////////////////
 int FontManager::s_faBrands = -1;

@@ -41,7 +41,7 @@ class ShaderProgram;
     @note Uses std::move call to instantiate with a std::vector, so does not preserve input
 */
 template<class D, size_t R, size_t C>
-class Matrix: public Serializable {
+class Matrix {
 public:
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// @name Static
@@ -69,6 +69,10 @@ public:
 		checkValidity();
 		m_mtx = columns;
 	}
+    Matrix(const std::array<D, R*C>& data) {
+        checkValidity();
+        memcpy(m_mtx.data(), data.data(), sizeof(D)*R*C);
+    }
 	Matrix(const std::vector<Vector<D, R>>& columns) {
 		checkValidity();
 		std::copy(columns.begin(), columns.begin() + columns.size(), m_mtx.begin());
@@ -85,7 +89,7 @@ public:
 		}
 	}
 
-    virtual ~Matrix() {}
+    ~Matrix() {}
     /// @}
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -98,8 +102,12 @@ public:
 
 		return *this;
 	}
+    inline Matrix& operator= (const std::array<D, R*C> &source) {
+        memcpy(m_mtx.data(), source.data(), sizeof(D)*R*C);
+        return *this;
+    }
     //-----------------------------------------------------------------------------------------------------------------
-    inline const D operator()(int row, int column) const {
+    inline const D& operator()(int row, int column) const {
         assert(row >= 0 && row < R && column >= 0 && column < C);
         return m_mtx.at(column).at(row);
     }
@@ -120,8 +128,9 @@ public:
 	//-----------------------------------------------------------------------------------------------------------------
     inline const Vector<D, R> operator* (const Vector<D, C>& source) const {
 #ifdef LINALG_USE_EIGEN  
-        auto vec = Vector<D, R>::EmptyVector();
-        vec.map() = (*this * Matrix<D, C, 1>(source)).getMap();
+        Vector<D, R> vec = Vector<D, R>::EmptyVector();
+        //vec.map() = (*this * Matrix<D, C, 1>(source)).getMap();
+        vec.matrixMap() = getMap() * source.getMatrixMap();
         return vec;
 #else
 		Matrix<D, R, 1> product = *this * Matrix<D, C, 1>(source);
@@ -316,7 +325,7 @@ public:
     /// @{
 
     /// @brief Convert to and from Json:
-    QJsonValue asJson() const override{
+    QJsonValue asJson() const {
         QJsonArray matrixArray;
         matrixArray.append("m");
         for (const Vector<D, R>& col : m_mtx) {
@@ -324,7 +333,7 @@ public:
         }
         return matrixArray;
     }
-    void loadFromJson(const QJsonValue& json) override{
+    void loadFromJson(const QJsonValue& json) {
         const QJsonArray& array = json.toArray();
         int numCols = array.size(); 
         int numRows = array.at(1).toArray().size();
@@ -353,10 +362,18 @@ public:
     inline const Vector<D, R>& getColumn(int index) const { return m_mtx.at(index); }
     inline Vector<D, R>& column(int index) { return m_mtx.at(index); }
 
+    /// @brief Obtain row at the given index
+    inline Vector<D, C> getRow(int index) const { 
+        Vector<D, C> row = Vector<D, C>::EmptyVector();
+        for (size_t i = 0; i < C; i++) {
+            row[i] = m_mtx.at(i).at(index);
+        }
+        return row;
+    }
 
 	//-----------------------------------------------------------------------------------------------------------------
     /// @brief Return a transposed version of this matrix
-    virtual const Matrix<D, C, R> transposed() const {
+    const Matrix<D, C, R> transposed() const {
 #ifdef LINALG_USE_EIGEN
         Matrix<D, C, R> outMatrix;
         outMatrix.map() = getMap().transpose();
@@ -455,7 +472,7 @@ protected:
 	}
 	//-----------------------------------------------------------------------------------------------------------------
     /// @brief checkValidity matrix of the given dimensions
-    virtual void initialize() {
+    void initialize() {
 		checkValidity();
 
 		// Initialize to identity if square, otherwise zero-out
@@ -469,7 +486,7 @@ protected:
 	}
 	//-----------------------------------------------------------------------------------------------------------------
     /// @brief checkValidity matrix of the given dimensions with the given value for all elements
-    virtual void initialize(int defaultValue) {
+    void initialize(int defaultValue) {
 		checkValidity();
 
 		m_mtx = std::array<Vector<D, R>, C>();
@@ -498,6 +515,10 @@ public:
 
     static SquareMatrix<D, N> EmptyMatrix() {
         return SquareMatrix<D, N>(false);
+    }
+
+    static SquareMatrix<D, N>* EmptyMatrixPointer() {
+        return new SquareMatrix<D, N>(false);
     }
 
     /// @}
@@ -533,7 +554,7 @@ public:
     SquareMatrix(const Matrix<D, M, M>& mtx) : Matrix(){
         checkValidity();
         setToIdentity();
-        size_t size = std::min(M, N);
+        constexpr size_t size = std::min(M, N);
         for (unsigned int i = 0; i < size; i++) {
             m_mtx[i] = Vector<D, N>(mtx.getColumn(i));
         }
@@ -545,7 +566,17 @@ public:
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////-
     /// @name Operators
     /// @{
+    inline SquareMatrix<D, N>& operator= (const SquareMatrix<D, N> &source) {
+        if (this == &source) return *this;
 
+        m_mtx = source.m_mtx;
+
+        return *this;
+    }
+    inline SquareMatrix<D, N>& operator= (const std::array<D, N*N> &source) {
+        memcpy(m_mtx.data(), source.data(), sizeof(D)*N*N);
+        return *this;
+    }
     //-----------------------------------------------------------------------------------------------------------------
     inline SquareMatrix<D, N>& operator*= (D scale) {
         Matrix<D, N, N>::operator*=(scale);
@@ -600,11 +631,13 @@ public:
 
     /// @brief Primarily for multiplying Matrix4x4 by a point
     inline const Vector<D, N - 1> multPoint(const Vector<D, N - 1>& source) const {
-        Vector<D, N> sourceAppended;
-        sourceAppended[N - 1] = 1;
-        std::copy(source.begin(), source.begin() + source.size(), sourceAppended.begin());
-        Matrix<D, N, 1> product = *this * Matrix<D, N, 1>(sourceAppended);
-        return Vector<D, N - 1>(product.getColumn(0));
+        static_assert(N == 4, "Only valid for 4x4 Matrix");
+        Vector<D, N> sourceAppended(source, 1);
+        Vector<D, N> result = Vector<D, N>::EmptyVector();
+        result.matrixMap() = getMap() * sourceAppended.getMatrixMap();
+        //Matrix<D, N, 1> product = *this * Matrix<D, N, 1>(sourceAppended);
+        //return Vector<D, N - 1>(product.getColumn(0));
+        return Vector<D, N-1>(result);
     }
 
     //-----------------------------------------------------------------------------------------------------------------
@@ -624,10 +657,9 @@ public:
 	//-----------------------------------------------------------------------------------------------------------------
     /// @brief Return the diagonal of this matrix
     inline Vector<D, N> diagonal() const {
-		int size = numColumns();
-		auto diagonal = std::vector<D>();
-		for (int j = 0; j < size; j++) {
-			diagonal.push_back(at(j, j));
+        Vector<D, N> diagonal = Vector<D, N>::EmptyVector();
+		for (int j = 0; j < N; j++) {
+			diagonal[j] = at(j, j);
 		}
 
 		return diagonal;
@@ -667,7 +699,7 @@ public:
     /// @brief Adds a scale component to the matrix
     template<size_t NN>
     inline void addScale(const Vector<D, NN>& scale) {
-        size_t minDim = std::min(N, NN);
+        constexpr size_t minDim = std::min(N, NN);
         for (size_t i = 0; i < minDim; i++) {
             m_mtx[i] *= scale.at(i);
         }
@@ -781,7 +813,7 @@ public:
 
         const Vector<D, N>& translationColumn = m_mtx.at(3);
 
-        Vector<D, 3> translation;
+        Vector<D, 3> translation = Vector<D, 3>::EmptyVector();
         memcpy(translation.data(), translationColumn.getData(), sizeof(D)*3);
 
         return translation;
@@ -792,7 +824,7 @@ public:
     inline SquareMatrix<D, N> getTranslationMatrix() const {
         static_assert(N == 4, "Error, size of matrix is invalid to obtain translation");
 
-        SquareMatrix<D, N> translation;
+        SquareMatrix<D, N> translation = SquareMatrix<D, N>::EmptyMatrix();
         translation.setTranslation(getTranslationVector());
 
         return translation;
@@ -1122,8 +1154,9 @@ public:
 protected:
 
     explicit SquareMatrix(bool fill) : Matrix() {
-        if(fill)
+        if (fill) {
             setToIdentity();
+        }
     }
 
     //-----------------------------------------------------------------------------------------------------------------
@@ -1138,12 +1171,12 @@ protected:
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Typedefs based on generic matrix
-typedef SquareMatrix<float, 2> Matrix2x2f;
-typedef SquareMatrix<float, 3> Matrix3x3f;
-typedef SquareMatrix<float, 4> Matrix4x4f;
-typedef SquareMatrix<double, 2> Matrix2x2;
-typedef SquareMatrix<double, 3> Matrix3x3;
-typedef SquareMatrix<double, 4> Matrix4x4;
+typedef SquareMatrix<float, 2> Matrix2x2;
+typedef SquareMatrix<float, 3> Matrix3x3;
+typedef SquareMatrix<float, 4> Matrix4x4;
+typedef SquareMatrix<double, 2> Matrix2x2d;
+typedef SquareMatrix<double, 3> Matrix3x3d;
+typedef SquareMatrix<double, 4> Matrix4x4d;
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1151,8 +1184,8 @@ typedef SquareMatrix<double, 4> Matrix4x4;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /// @brief Convert standard vector of matrices to and from JSON
-QJsonValue matrixVecAsJson(const std::vector<Matrix4x4f>& vec);
-std::vector<Matrix4x4f> matrixVecFromJson(const QJsonValue& json);
+QJsonValue matrixVecAsJson(const std::vector<Matrix4x4>& vec);
+std::vector<Matrix4x4> matrixVecFromJson(const QJsonValue& json);
 
 
 
@@ -1163,11 +1196,11 @@ std::vector<Matrix4x4f> matrixVecFromJson(const QJsonValue& json);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Declare metatypes
-Q_DECLARE_METATYPE(Gb::Matrix2x2f)
-Q_DECLARE_METATYPE(Gb::Matrix3x3f)
-Q_DECLARE_METATYPE(Gb::Matrix4x4f)
 Q_DECLARE_METATYPE(Gb::Matrix2x2)
 Q_DECLARE_METATYPE(Gb::Matrix3x3)
 Q_DECLARE_METATYPE(Gb::Matrix4x4)
+Q_DECLARE_METATYPE(Gb::Matrix2x2d)
+Q_DECLARE_METATYPE(Gb::Matrix3x3d)
+Q_DECLARE_METATYPE(Gb::Matrix4x4d)
 
 #endif

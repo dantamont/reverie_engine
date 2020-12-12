@@ -93,9 +93,9 @@ QJsonValue ScriptComponent::asJson() const
     return object;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void ScriptComponent::loadFromJson(const QJsonValue & json)
+void ScriptComponent::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
-    Component::loadFromJson(json);
+    Component::loadFromJson(json, context);
     const QJsonObject& object = json.toObject();
     if (object.contains("path")) {
         m_path = object.value("path").toString();

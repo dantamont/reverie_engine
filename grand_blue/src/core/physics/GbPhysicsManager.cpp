@@ -103,8 +103,8 @@ void PhysicsManager::RemoveShape(const std::shared_ptr<PhysicsShapePrefab>& pref
         throw("Error, no prefab with given name found in map: " + prefab->getName());
 
     // Set instances of this shape to default shape
-    for (const auto& pair : prefab->m_instances) {
-        pair.second->setPrefab(*PhysicsManager::DefaultShape(), false);
+    for (PhysicsShape* shape : prefab->m_instances) {
+        shape->setPrefab(*PhysicsManager::DefaultShape(), false);
     }
     prefab->m_instances.clear();
 
@@ -112,7 +112,7 @@ void PhysicsManager::RemoveShape(const std::shared_ptr<PhysicsShapePrefab>& pref
     s_shapes.erase(prefab->getName());
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-void PhysicsManager::RenameShape(const std::shared_ptr<PhysicsShapePrefab>& prefab, const QString & name)
+void PhysicsManager::RenameShape(const std::shared_ptr<PhysicsShapePrefab>& prefab, const GString & name)
 {
     if (!Map::HasKey(s_shapes, prefab->getName()))
         throw("Error, no prefab with given name found in map: " + prefab->getName());
@@ -122,17 +122,17 @@ void PhysicsManager::RenameShape(const std::shared_ptr<PhysicsShapePrefab>& pref
     s_shapes[name] = prefab;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-Vector3 PhysicsManager::toVec3(const physx::PxVec3 & vec)
+Vector3d PhysicsManager::toVector3d(const physx::PxVec3 & vec)
+{
+    return Vector3d(vec.x, vec.y, vec.z);
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////
+Vector3 PhysicsManager::toVector3(const physx::PxVec3 & vec)
 {
     return Vector3(vec.x, vec.y, vec.z);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-Vector3g PhysicsManager::toVec3g(const physx::PxVec3 & vec)
-{
-    return Vector3g(vec.x, vec.y, vec.z);
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////
-physx::PxVec3 PhysicsManager::toPhysX(const Vector3 & vec3)
+physx::PxVec3 PhysicsManager::toPhysX(const Vector3d & vec3)
 {
     return physx::PxVec3(vec3.x(), vec3.y(), vec3.z());
 }
@@ -153,7 +153,7 @@ void PhysicsManager::clear()
     s_geometry.clear();
 
     // Clear materials
-    std::unordered_map<QString, std::shared_ptr<PhysicsMaterial>>::iterator mit;
+    tsl::robin_map<GString, std::shared_ptr<PhysicsMaterial>>::iterator mit;
     for (mit = s_materials.begin(); mit != s_materials.end();) {
         if (mit->first != s_defaultMaterialKey) {
             mit = s_materials.erase(mit);
@@ -164,7 +164,7 @@ void PhysicsManager::clear()
     }
 
     // Clear shapes
-    std::unordered_map<QString, std::shared_ptr<PhysicsShapePrefab>>::iterator sit;
+    tsl::robin_map<GString, std::shared_ptr<PhysicsShapePrefab>>::iterator sit;
     for (sit = s_shapes.begin(); sit != s_shapes.end();) {
         if (sit->first != s_defaultShapeKey) {
             sit = s_shapes.erase(sit);
@@ -217,8 +217,8 @@ void PhysicsManager::step(float dt)
                 float g = controller->getGravity().length();
                 if (g > 0) {
                     // Move controller with gravity
-                    const Vector3g& fallVel = controller->getFallVelocity();
-                    Vector3 delta = dt * fallVel.asDouble();
+                    const Vector3& fallVel = controller->getFallVelocity();
+                    Vector3d delta = dt * fallVel.asDouble();
                     controller->move(delta);
 
                     // Update fall velocity
@@ -228,7 +228,7 @@ void PhysicsManager::step(float dt)
             else {
                 // Controller is grounded
                 if (controller->getFallVelocity().length() > 0) {
-                    controller->setFallVelocity(Vector3g(0.0f, 0.0f, 0.0f));
+                    controller->setFallVelocity(Vector3(0.0f, 0.0f, 0.0f));
                 }
             }
         }
@@ -239,7 +239,6 @@ void PhysicsManager::step(float dt)
         // Fetch results of simulation, blocking until finished
         // I.e., even if simulation is done, queries won't be accurate until this is called
         scene->fetchResults(true);
-
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -270,8 +269,10 @@ QJsonValue PhysicsManager::asJson() const
     return object;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-void PhysicsManager::loadFromJson(const QJsonValue & json)
+void PhysicsManager::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context);
+
     QJsonObject object = json.toObject();
 
     QJsonObject geometry = object.value("geometry").toObject();
@@ -292,7 +293,7 @@ void PhysicsManager::loadFromJson(const QJsonValue & json)
     QStringList shapeKeys = shapes.keys();
     for (const QString& key : shapeKeys) {
         if (s_shapes.count(key) ) {
-            if(key != s_defaultShapeKey) throw("Error, reloading key");
+            if(GString(key) != s_defaultShapeKey) throw("Error, reloading key");
             continue;
         }
         PhysicsShapePrefab::create(shapes.value(key));
@@ -372,16 +373,16 @@ physx::PxDefaultCpuDispatcher* PhysicsManager::m_dispatcher = nullptr;
 
 std::vector<std::shared_ptr<PhysicsScene>> PhysicsManager::m_scenes;
 
-std::unordered_map<QString, std::shared_ptr<PhysicsShapePrefab>> PhysicsManager::s_shapes;
+tsl::robin_map<GString, std::shared_ptr<PhysicsShapePrefab>> PhysicsManager::s_shapes;
 
-std::unordered_map<QString, std::shared_ptr<PhysicsGeometry>> PhysicsManager::s_geometry;
+tsl::robin_map<GString, std::shared_ptr<PhysicsGeometry>> PhysicsManager::s_geometry;
 
-std::unordered_map<QString, std::shared_ptr<PhysicsMaterial>> PhysicsManager::s_materials;
+tsl::robin_map<GString, std::shared_ptr<PhysicsMaterial>> PhysicsManager::s_materials;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
-QString PhysicsManager::s_defaultShapeKey = "defaultShape";
+GString PhysicsManager::s_defaultShapeKey = "defaultShape";
 //////////////////////////////////////////////////////////////////////////////////////////////////
-QString PhysicsManager::s_defaultMaterialKey = "defaultMaterial";
+GString PhysicsManager::s_defaultMaterialKey = "defaultMaterial";
 
 
 

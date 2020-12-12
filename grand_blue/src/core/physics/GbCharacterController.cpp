@@ -77,7 +77,7 @@ QJsonValue ControllerDescription::asJson() const
         throw("JSON serialization not implemented");
     object.insert("registerDeletion", m_registerDeletionListener);
     if (m_material)
-        object.insert("mat", m_material->getName());
+        object.insert("mat", m_material->getName().c_str());
     object.insert("unwalkableMode", m_unwalkableMode);
     if (m_userData)
         throw("JSON serialization not implemented");
@@ -86,12 +86,14 @@ QJsonValue ControllerDescription::asJson() const
     return object;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-void ControllerDescription::loadFromJson(const QJsonValue & json)
+void ControllerDescription::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
+
     QJsonObject object = json.toObject();
 
     m_initialPosition = Vector3(object["initPos"]);
-    m_upDirection = Vector3g(object["up"]);
+    m_upDirection = Vector3(object["up"]);
     m_slopeLimit = (float)object["slopeLim"].toDouble();
     m_invisibleWallHeight = (float)object["invWallHeight"].toDouble();
     m_maxJumpHeight = (float)object["maxJumpHeight"].toDouble();
@@ -112,7 +114,7 @@ void ControllerDescription::loadFromJson(const QJsonValue & json)
     m_registerDeletionListener = object["registerDeletion"].toBool();
 
     if (object.contains("mat"))
-        m_material = PhysicsManager::materials()[object["mat"].toString()];
+        m_material = PhysicsManager::Materials()[object["mat"].toString()];
 
     m_unwalkableMode = object["unwalkableMode"].toInt();
     if (object.contains("userData"))
@@ -177,8 +179,10 @@ QJsonValue BoxControllerDescription::asJson() const
     return object;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-void BoxControllerDescription::loadFromJson(const QJsonValue & json)
+void BoxControllerDescription::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
+
     ControllerDescription::loadFromJson(json);
     QJsonObject object = json.toObject();
     m_halfHeight = (float)object["hh"].toDouble();
@@ -218,8 +222,10 @@ QJsonValue CapsuleControllerDescription::asJson() const
     return object;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-void CapsuleControllerDescription::loadFromJson(const QJsonValue & json)
+void CapsuleControllerDescription::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
+
     ControllerDescription::loadFromJson(json);
     QJsonObject object = json.toObject();
     m_radius = (float)object["r"].toDouble();
@@ -274,7 +280,7 @@ void CharacterController::initialize()
     }
 
     // Set initial position of the controller
-    Vector3 initPos = so->transform()->getPosition() + m_heightOffset * m_description->m_upDirection.asDouble();
+    Vector3 initPos = so->transform()->getPosition() + m_heightOffset * m_description->m_upDirection.asReal();
     setPosition(initPos);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -284,17 +290,17 @@ CharacterController::~CharacterController()
     PX_RELEASE(m_controller);
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-ControllerCollisionFlags CharacterController::move(const Vector3g & displacement)
+ControllerCollisionFlags CharacterController::move(const Vector3 & displacement)
 {
     return move(displacement.asDouble(), ControllerFilters());
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-ControllerCollisionFlags CharacterController::move(const Vector3 & displacement)
+ControllerCollisionFlags CharacterController::move(const Vector3d & displacement)
 {
     return move(displacement, ControllerFilters());
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-ControllerCollisionFlags CharacterController::move(const Vector3 & disp, 
+ControllerCollisionFlags CharacterController::move(const Vector3d & disp, 
     const ControllerFilters & filters,
     const physx::PxObstacleContext * obstacles)
 {
@@ -316,7 +322,7 @@ ControllerCollisionFlags CharacterController::move(const Vector3 & disp,
 
     // Move scene object with the controller
     sceneObject()->transform()->translation().setPosition(
-        getPosition() - m_description->m_upDirection.asDouble() * m_heightOffset
+        getPosition() - m_description->m_upDirection * m_heightOffset
     );
 
     return outFlags;
@@ -336,26 +342,28 @@ QJsonValue CharacterController::asJson() const
 {
     QJsonObject object = PhysicsBase::asJson().toObject();
     object.insert("description", m_description->asJson());
-    object.insert("sceneObject", sceneObject()->getName());
+    object.insert("sceneObject", sceneObject()->getName().c_str());
     object.insert("heightOffset", m_heightOffset);
     object.insert("gravity", m_gravity.asJson());
     object.insert("fallVelocity", m_fallVelocity.asJson());
     return object;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-void CharacterController::loadFromJson(const QJsonValue & json)
+void CharacterController::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
+
     PhysicsBase::loadFromJson(json);
     QJsonObject object = json.toObject();
     // Description and scene object are already constructed from JSON from all code paths leading to this function
     //m_description->loadFromJson(object["description"]);
     //m_sceneObject = SceneObject::getByName(object["sceneObject"].toString());
     m_heightOffset = (float)object["heightOffset"].toDouble();
-    m_gravity = Vector3g(object["gravity"]);
-    m_fallVelocity = Vector3g(object["fallVelocity"]);
+    m_gravity = Vector3(object["gravity"]);
+    m_fallVelocity = Vector3(object["fallVelocity"]);
 
     // Set initial position of the controller
-    Vector3 initPos = m_description->m_initialPosition + m_heightOffset * m_description->m_upDirection.asDouble();
+    Vector3 initPos = m_description->m_initialPosition + m_heightOffset * m_description->m_upDirection;
     setPosition(initPos);
     // initialize();
 }
@@ -462,8 +470,9 @@ QJsonValue CCTManager::asJson() const
     return object;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////
-void CCTManager::loadFromJson(const QJsonValue & json)
+void CCTManager::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
     PhysicsBase::loadFromJson(json);
     //QJsonObject object = json.toObject();
 }

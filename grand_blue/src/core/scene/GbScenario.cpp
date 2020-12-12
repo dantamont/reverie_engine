@@ -14,10 +14,17 @@
 #include "../processes/GbProcessManager.h"
 #include "../physics/GbPhysicsManager.h"
 #include "../../view/GbWidgetManager.h"
+#include "../sound/GbSoundManager.h"
+#include "../../view/GL/GbGLWidget.h"
 #include "../../GbMainWindow.h"
 #include "../scripting/GbPythonScript.h"
+#include "../animation/GbAnimationManager.h"
 
 #include "../debugging/GbDebugManager.h"
+#include "../rendering/shaders/GbShaderPreset.h"
+#include "../rendering/renderer/GbMainRenderer.h"
+#include "../components/GbCameraComponent.h"
+#include "../loop/GbSimLoop.h"
 
 namespace Gb{
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -41,12 +48,21 @@ QJsonValue ScenarioSettings::asJson() const
     }
     object.insert("renderLayers", renderLayers);
 
+    QJsonArray shaderPresets;
+    for (const auto& preset : m_shaderPresets) {
+        shaderPresets.append(preset->asJson());
+    }
+    object.insert("shaderPresets", shaderPresets);
+
     return object;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-void ScenarioSettings::loadFromJson(const QJsonValue & json)
+void ScenarioSettings::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context);
+
     m_renderLayers.clear();
+    m_shaderPresets.clear();
 
     QJsonObject object = json.toObject();
     if (object.contains("renderLayers")) {
@@ -62,6 +78,14 @@ void ScenarioSettings::loadFromJson(const QJsonValue & json)
     //    // Ensure that there is always the default render layer
     //    m_renderLayers.push_back(std::make_shared<SortingLayer>());
     //}
+
+    if (object.contains("shaderPresets")) { // legacy check
+        const QJsonArray& shaderPresets = object.value("shaderPresets").toArray();
+        for (const auto& shaderJson : shaderPresets) {
+            auto shaderPreset = std::make_shared<ShaderPreset>(m_scenario->engine(), shaderJson);
+            m_shaderPresets.push_back(shaderPreset);
+        }
+    }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 std::shared_ptr<SortingLayer> ScenarioSettings::addRenderLayer()
@@ -74,7 +98,7 @@ std::shared_ptr<SortingLayer> ScenarioSettings::addRenderLayer()
     return layer;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<SortingLayer> ScenarioSettings::addRenderLayer(const QString & name, int order)
+std::shared_ptr<SortingLayer> ScenarioSettings::addRenderLayer(const GString & name, int order)
 {
     auto layer = std::make_shared<SortingLayer>(name, order);
     m_renderLayers.push_back(layer);
@@ -82,7 +106,7 @@ std::shared_ptr<SortingLayer> ScenarioSettings::addRenderLayer(const QString & n
     return layer;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-bool ScenarioSettings::removeRenderLayer(const QString & label)
+bool ScenarioSettings::removeRenderLayer(const GString & label)
 {
     if (!renderLayer(label)) {
 #ifdef DEBUG_MODE
@@ -112,14 +136,15 @@ bool ScenarioSettings::SortRenderLayers(const std::shared_ptr<SortingLayer>& l1,
     return *l1 < *l2;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-void Scenario::loadFromFile(const QString& filepath, CoreEngine* core) {
+bool Scenario::LoadFromFile(const GString& filepath, CoreEngine* core) {
     auto reader = JsonReader(filepath);
-    if (reader.fileExists()) {
+    bool exists = reader.fileExists();
+    if (exists) {
         QJsonObject json = reader.getContentsAsJsonObject();
         if (!json.isEmpty()) {
             auto scenario = std::make_shared<Scenario>(core);
-            scenario->m_isLoading = true;
             core->setScenario(scenario);
+            scenario->m_isLoading = true;
             scenario->loadFromJson(json);
             scenario->setPath(filepath);
             scenario->m_isLoading = false;
@@ -128,8 +153,62 @@ void Scenario::loadFromFile(const QString& filepath, CoreEngine* core) {
             core->logError("Failed to load scenario from file, invalid JSON");
         }
     }
-}
 
+    return exists;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////s
+bool ScenarioSettings::removeShaderPreset(const GString & name)
+{
+    int idx;
+    if (hasShaderPreset(name, &idx)) {
+        m_shaderPresets.erase(idx + m_shaderPresets.begin());
+        return true;
+    }
+
+    throw("Error, shader material with the specified name not found");
+    return false;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+bool ScenarioSettings::hasShaderPreset(const GString & name, int* iterIndex) const
+{
+    auto iter = std::find_if(m_shaderPresets.begin(), m_shaderPresets.end(),
+        [&](const std::shared_ptr<ShaderPreset>& preset) {
+        return preset->getName() == name;
+    });
+
+    bool hasPreset = iter != m_shaderPresets.end();
+    if (hasPreset) {
+        *iterIndex = iter - m_shaderPresets.begin();
+    }
+
+    return hasPreset;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+std::shared_ptr<ShaderPreset> ScenarioSettings::getShaderPreset(const GString & name, bool & created)
+{
+    // Check if shader material is in the map 
+    int idx;
+    if (hasShaderPreset(name, &idx)) {
+        created = false;
+        return m_shaderPresets[idx];
+    }
+
+    // Create new shader preset if not in map
+    created = true;
+    auto preset = std::make_shared<ShaderPreset>(m_scenario->engine(), name);
+    m_shaderPresets.push_back(preset);
+    return preset;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//std::shared_ptr<ShaderPreset> ScenarioSettings::getShaderPreset(const Uuid & uuid)
+//{
+//    return m_shaderPresets[uuid];
+//}
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Scenario
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 Scenario::Scenario() :
     QObject(nullptr),
@@ -158,13 +237,45 @@ Scenario::~Scenario()
 {
     clear();
 }
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+//const AABB & Scenario::getVisibleFrustumBounds()
+//{
+//    return m_visibleBounds;
+//}
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+//void Scenario::updateVisibleFrustumBounds()
+//{
+//    m_visibleBounds = AABB();
+//    for (const std::shared_ptr<Scene>& scene : m_scenes) {
+//        scene->updateVisibleFrustumBounds();
+//        const AABBData& sceneViewBounds = scene->getVisibleFrustumBounds().boxData();
+//        m_visibleBounds.resize(std::vector<Vector4>{ sceneViewBounds.m_max, sceneViewBounds.m_min });
+//    }
+//}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+bool Scenario::isVisible(const AABB& boundingBox)
+{
+    if (m_engine->simulationLoop()->getPlayMode() == SimulationLoop::kDebug) {
+        return m_engine->debugManager()->camera()->camera().canSee(boundingBox);
+    }
+    else {
+        for (const std::shared_ptr<Scene>& scene : m_scenes) {
+            for (CameraComponent* camera : scene->cameras()) {
+                if (camera->camera().canSee(boundingBox)) {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 bool Scenario::save()
 {
     return save(m_path);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-bool Scenario::save(const QString & filepath)
+bool Scenario::save(const GString & filepath)
 {
     QJsonObject jsonScenario = asJson().toObject();
     QFile scenarioFile(filepath);
@@ -200,44 +311,50 @@ std::shared_ptr<Scene> Scenario::addScene()
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 void Scenario::addScene(const std::shared_ptr<Scene>& scene)
 {
-    m_scenes.emplace(scene->getUuid(), scene);
+    m_scenes.emplace_back(scene);
     emit addedScene(scene);
 }
-/////////////////////////////////////////////////////////////////////////////////////////////////////
-//std::shared_ptr<Scene> Scenario::addScene(const Uuid & uuid)
-//{
-//    auto scene = std::make_shared<Scene>(this);
-//    scene->m_uuid = uuid;
-//    m_scenes.emplace(uuid.asString(), scene);
-//    return scene;
-//}
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void Scenario::removeScene(const std::shared_ptr<Scene>& scene)
 {
-    if (m_scenes.find(scene->getUuid()) == m_scenes.end()) {
+    auto sceneIter = std::find_if(m_scenes.begin(), m_scenes.end(), 
+        [scene](const std::shared_ptr<Scene>& s) {
+        return s->getUuid() == scene->getUuid();
+    });
+
+    if (sceneIter == m_scenes.end()) {
         throw("Error, scene not found in scenario");
     }
-    else {
-        scene->clear();
-        m_scenes.erase(scene->getUuid());
-    }
+
+    scene->clear();
+    m_scenes.erase(sceneIter);
     emit removedScene(scene);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<Scene> Scenario::getScene(const Uuid & uuid)
+const std::shared_ptr<Scene>& Scenario::getScene(const Uuid & uuid)
 {
-    if (m_scenes.find(uuid) == m_scenes.end()) {
+    auto sceneIter = std::find_if(m_scenes.begin(), m_scenes.end(),
+        [uuid](const std::shared_ptr<Scene>& s) {
+        return s->getUuid() == uuid;
+    });
+
+    if (sceneIter == m_scenes.end()) {
+#ifdef DEBUG_MODE
+        logWarning("Warning, scene with the UUID " + uuid.asString() + " not found");
+#endif
         return nullptr;
     }
-    return m_scenes.at(uuid);
+    else {
+        return *sceneIter;
+    }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-std::shared_ptr<Scene> Scenario::getSceneByName(const QString & name)
+std::shared_ptr<Scene> Scenario::getSceneByName(const GString & name)
 {
     auto sceneIter = std::find_if(m_scenes.begin(),
         m_scenes.end(),
-        [&](const std::pair<Uuid, std::shared_ptr<Scene>>& scenePair) {
-        return scenePair.second->getName() == name;
+        [name](const std::shared_ptr<Scene>& scene) {
+        return scene->getName() == name;
     });
     if (sceneIter == m_scenes.end()) {
 #ifdef DEBUG_MODE
@@ -246,7 +363,7 @@ std::shared_ptr<Scene> Scenario::getSceneByName(const QString & name)
         return nullptr;
     }
     else {
-        return sceneIter->second;
+        return *sceneIter;
     }
 }
 
@@ -261,8 +378,8 @@ void Scenario::clear()
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void Scenario::clearSceneObjects()
 {
-    for (const auto& scenePair : m_scenes) {
-        scenePair.second->clear();
+    for (const auto& scene : m_scenes) {
+        scene->clear();
     }
     emit clearedSceneObjects();
 }
@@ -277,7 +394,7 @@ QJsonValue Scenario::asJson() const
     // Create JSON object
     //QJsonObject jsonObject = Loadable::asJson().toObject(); // don't need filepath
     QJsonObject jsonObject;
-    jsonObject.insert("name", m_name);
+    jsonObject.insert("name", m_name.c_str());
 
     // Add process sorting layers
     QJsonObject processManager = m_engine->processManager()->asJson().toObject();
@@ -289,8 +406,8 @@ QJsonValue Scenario::asJson() const
 
     // Add scenes
     QJsonArray scenes;
-    for (const auto& scenePair : m_scenes) {
-        QJsonObject sceneJson = scenePair.second->asJson().toObject();
+    for (const auto& scene: m_scenes) {
+        QJsonObject sceneJson = scene->asJson().toObject();
         scenes.append(sceneJson);
     }
     jsonObject.insert("scenes", scenes);
@@ -305,11 +422,19 @@ QJsonValue Scenario::asJson() const
     // Debug mangaer
     jsonObject.insert("debug", m_engine->debugManager()->asJson());
 
+    // Sound manager
+    jsonObject.insert("sound", m_engine->soundManager()->asJson());
+
+    // Animation manager
+    jsonObject.insert("animation", m_engine->animationManager()->asJson());
+
     return jsonObject;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-void Scenario::loadFromJson(const QJsonValue & json)
+void Scenario::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
+
     // Get JSON as object
     const QJsonObject& jsonObject = json.toObject();
 
@@ -355,11 +480,16 @@ void Scenario::loadFromJson(const QJsonValue & json)
         progress.setValue(count++);
     }
 
+    // Load animation manager
+    if (jsonObject.contains("animation")) {
+        m_engine->animationManager()->loadFromJson(jsonObject["animation"]);
+    }
+
     // Load scenes
     if (jsonObject.contains("scenes")) {
         // Add scenes to scenario
         for (const auto& sceneJson : jsonObject.value("scenes").toArray()) {
-            auto scene = addScene();
+            const std::shared_ptr<Scene>& scene = addScene();
             scene->loadFromJson(sceneJson);
         }        
         progress.setValue(count++);
@@ -369,11 +499,34 @@ void Scenario::loadFromJson(const QJsonValue & json)
     if (jsonObject.contains("debug")) {
         m_engine->debugManager()->loadFromJson(jsonObject.value("debug"));
     }
+
+    // Load sound manager
+    if (jsonObject.contains("sound")) {
+        m_engine->soundManager()->loadFromJson(jsonObject["sound"]);
+    }
     
     // Emit signal that scenario changed
     emit m_engine->scenarioChanged();
 	emit m_engine->scenarioLoaded();
     emit m_engine->scenarioNeedsRedraw();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+void Scenario::resizeCameras(size_t width, size_t height) {
+    // TODO: Use vector instead of map
+    for (const auto& scene : m_scenes) {
+        std::vector<CameraComponent*>& cameras = scene->cameras();
+        size_t numCameras = cameras.size();
+        for (size_t i = 0; i < numCameras; i++) {
+            // Update camera's framebuffer and light cluster grid sizes
+            SceneCamera& cam = cameras[i]->camera();
+            cam.resizeFrame(width, height);
+            cam.lightClusterGrid().onResize();
+        }
+    }
+
+    SceneCamera& debugCam = m_engine->debugManager()->camera()->camera();
+    debugCam.resizeFrame(width, height);
+    debugCam.lightClusterGrid().onResize();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void Scenario::initialize() {
@@ -383,6 +536,16 @@ void Scenario::initialize() {
     if (SCENARIO_COUNT > 0) {
         m_name += " " + QString::number(SCENARIO_COUNT);
     }
+
+    // Connect to widgets
+    connect(m_engine->mainRenderer()->widget(), &View::GLWidget::resized,
+        this, &Scenario::resizeCameras);
+
+    connect(m_engine, &CoreEngine::scenarioLoaded,
+        this, [this]() {
+        View::GLWidget* widget = m_engine->mainRenderer()->widget();
+        resizeCameras(widget->width(), widget->height());
+    });
 
     // Increment scenario count
     SCENARIO_COUNT++;

@@ -103,6 +103,8 @@ protected:
 	/// @name Protected Methods
 	/// @{
 
+    virtual void mouseMoveEvent(QMouseEvent* event) override;
+
     /// @brief checkValidity the menu bar
     /// @note See: https://doc.qt.io/qt-5/qtwidgets-mainwindows-menus-example.html
     void initializeMenus();
@@ -129,7 +131,7 @@ protected:
     Gb::CoreEngine* m_engine;
 
     /// @brief Label for displaying info across GL display
-    QLabel* m_infoLabel;
+    QLabel* m_infoLabel = nullptr;
 
     QString m_defaultTitle;
 
@@ -158,6 +160,7 @@ protected:
     QAction* m_addModel;
     QAction* m_loadModel;
     QAction* m_addMesh;
+    QAction* m_addAudioFile;
     QAction* m_addShaderProgram;
     //QAction* m_addScript;
     QAction* m_undo;

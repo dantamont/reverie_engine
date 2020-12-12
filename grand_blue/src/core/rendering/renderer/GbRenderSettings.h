@@ -24,6 +24,7 @@ namespace Gb {
 // Forward Declarationss
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class RenderSettings;
+class RenderContext;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Class Definitions
@@ -31,7 +32,7 @@ class RenderSettings;
 
 /// @class RenderSetting
 /// @brief Represents a single setting that can be bound and released in GL
-class RenderSetting: public Serializable, public std::enable_shared_from_this<RenderSetting> {
+class RenderSetting: public Serializable{
 public:
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Static
@@ -39,21 +40,21 @@ public:
 
     /// @brief Type of GL setting
     enum SettingType {
-        kCullFace,
+        kCullFace = 0,
         kBlend,
         kDepth,
         kMAX_SETTING_TYPE
     };
 
     /// @brief Creat a render setting from JSON
-    static std::shared_ptr<RenderSetting> create(const QJsonValue& json);
+    static std::shared_ptr<RenderSetting> Create(const QJsonValue& json);
 
     /// @}
 
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Constructors and Destructors
     /// @{
-    RenderSetting(SettingType type, int order);
+    RenderSetting();
     ~RenderSetting();
 
     /// @}
@@ -62,7 +63,7 @@ public:
     /// @name Properties
     /// @{
 
-    SettingType type() const { return m_settingType; }
+    virtual SettingType settingType() const = 0;
 
 
     /// @}
@@ -71,11 +72,14 @@ public:
     /// @name Public Methods
     /// @{
 
-    virtual void bind() = 0;
-    virtual void release();
+    void bind(RenderContext& context);
+    void release(RenderContext& context);
 
     /// @brief Whether this render setting has been set in GL
-    bool isSet() const;
+    bool isSet(RenderContext& context) const;
+
+    /// @brief Set settings in OpenGL
+    virtual void set(RenderContext& context) const = 0;
 
     /// @}
 
@@ -87,69 +91,64 @@ public:
     virtual QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
 protected:
     friend class RenderSettings;
+    friend class RenderContext;
 
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Protected methods
     /// @{
 
-    /// @brief Return shared pointer to this
-    std::shared_ptr<RenderSetting> sharedPtr() {
-        return shared_from_this();
-    }
-
     /// @brief Set this as the current setting in RenderSettings cache
-    void makeCurrent();
+    void makeCurrent(RenderContext& context) const;
 
     /// @brief Cache GL settings for use within application
-    virtual void cacheSettings() = 0;
-
-    /// @brief Get previousu GL settings
-    virtual void cachePreviousSettings();
-
-    /// @brief Get GL functions from current contect
-    QOpenGLFunctions* gl() {
-        return QOpenGLContext::currentContext()->functions();
-    }
+    virtual void cacheSettings(RenderContext& context) = 0;
 
     /// @}
 
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Protected members
     /// @{
-
-    /// @brief The order to render, lower means higher priority (sooner)
-    int m_order = 0;
-
-    /// @brief The type of setting
-    SettingType m_settingType;
-
-    /// @brief The previous setting
-    std::shared_ptr<RenderSetting> m_prevSetting = nullptr;
-
     /// @}
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+enum class CulledFace {
+    kFront = GL_FRONT,
+    kBack = GL_BACK,
+    kFrontAndBack = GL_FRONT_AND_BACK
+};
+
 /// @class CullFaceSetting
 class CullFaceSetting : public RenderSetting {
 public:
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Static
     /// @{
+
+    enum CullSettingFlag {
+        kModifyEnable = 1 << 0, // Whether or not to modify if culling is enabled
+        kModifyFace = 1 << 1 // Whether or not to modify the face that is culled
+    };
+    typedef QFlags<CullSettingFlag> CullFlags;
+
+    static CullFaceSetting Current(RenderContext& context);
+
     /// @}
 
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Constructors and Destructors
     /// @{
     CullFaceSetting();
-    CullFaceSetting(bool cull, int culledFace = GL_BACK);
+    explicit CullFaceSetting(CulledFace culledFace);
+    explicit CullFaceSetting(bool cull);
+    CullFaceSetting(bool cull, CulledFace culledFace);
     ~CullFaceSetting();
 
     /// @}
@@ -158,13 +157,21 @@ public:
     /// @name Properties
     /// @{
 
+    virtual SettingType settingType() const override {
+        return SettingType::kCullFace;
+    }
+
+
+    bool isSettingEnabled() const { return m_cullFlags & kModifyEnable; }
+    bool isSettingCullFace() const { return m_cullFlags & kModifyFace; }
+
     /// @property isCullFace
     bool cullFace() const { return m_cullFace; }
     void setIsCullFace(bool cull) { m_cullFace = cull; }
 
     /// @property culledFace
-    int culledFace() const { return m_culledFace; }
-    void setCulledFace(int culledFace) { m_culledFace = culledFace; }
+    CulledFace culledFace() const { return m_culledFace; }
+    void setCulledFace(CulledFace culledFace) { m_culledFace = culledFace; }
 
     /// @}
 
@@ -172,7 +179,16 @@ public:
     /// @name Public Methods
     /// @{
 
-    virtual void bind() override;
+    virtual void set(RenderContext& context) const override;
+
+    /// @}
+
+    //-----------------------------------------------------------------------------------------------------------------
+    /// @name Operators
+    /// @{
+
+    bool operator==(const CullFaceSetting& other) const;
+    bool operator!=(const CullFaceSetting& other) const;
 
     /// @}
 
@@ -184,7 +200,7 @@ public:
     virtual QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -196,7 +212,7 @@ protected:
     /// @{
 
     /// @brief Cache GL settings for use within application
-    virtual void cacheSettings() override;
+    virtual void cacheSettings(RenderContext& context) override;
 
     /// @}
 
@@ -204,11 +220,13 @@ protected:
     /// @name Protected members
     /// @{
 
+    size_t m_cullFlags;
+
     /// @brief Whether or not to cull face
     bool m_cullFace;
 
     /// @brief Face to cull
-    int m_culledFace;
+    CulledFace m_culledFace;
 
     /// @}
 };
@@ -244,7 +262,11 @@ public:
     /// @name Properties
     /// @{
 
-    void setBlendColor(const Vector4g& color) { m_blendColor = color; }
+    void setBlendColor(const Vector4& color) { m_blendColor = color; }
+
+    virtual SettingType settingType() const override {
+        return SettingType::kBlend;
+    }
 
     /// @}
 
@@ -252,7 +274,7 @@ public:
     /// @name Public Methods
     /// @{
 
-    virtual void bind() override;
+    virtual void set(RenderContext& context) const override;
 
     /// @}
 
@@ -264,7 +286,7 @@ public:
     virtual QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -276,7 +298,7 @@ protected:
     /// @{
 
     /// @brief Cache GL settings for use within application
-    virtual void cacheSettings() override;
+    virtual void cacheSettings(RenderContext& context) override;
 
     /// @}
 
@@ -304,27 +326,52 @@ protected:
     int m_blendEquationRGB;
 
     /// @brief Blend color (as floats from [0, 1]), GL default is (0, 0, 0, 0)
-    Vector4g m_blendColor;
+    Vector4 m_blendColor;
 
     /// @}
 };
 
 
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+enum class DepthPassMode {
+    kNever = GL_NEVER,
+    kLess = GL_LESS,
+    kEqual = GL_EQUAL,
+    kLessEqual = GL_LEQUAL,
+    kGreater = GL_GREATER,
+    kNotEqual = GL_NOTEQUAL,
+    kGreaterEqual = GL_GEQUAL,
+    kAlways = GL_ALWAYS
+};
+
 /// @class DepthSetting
 class DepthSetting : public RenderSetting {
 public:
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Static
     /// @{
+
+    enum DepthSettingFlag {
+        kModifyWrite = 1 << 0, // Whether or not to modify write value
+        kModifyTesting = 1 << 1, // Whether or not to toggle testing
+        kModifyPassMode = 1 << 2 // Whether or not to modify pass mode
+    };
+    typedef QFlags<DepthSettingFlag> DepthFlags;
+
+    static DepthSetting Current(RenderContext& context);
+
     /// @}
 
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Constructors and Destructors
     /// @{
     DepthSetting();
-    DepthSetting(bool enable, int mode = GL_LESS);
+    DepthSetting(bool enableTesting, DepthPassMode depthPassMode);
+    DepthSetting(bool enableTesting, DepthPassMode depthPassMode, bool writeToDepthBuffer);
+    DepthSetting(DepthPassMode depthPassMode, bool writeToDepthBuffer);
     ~DepthSetting();
 
     /// @}
@@ -333,11 +380,24 @@ public:
     /// @name Properties
     /// @{
 
-    bool isEnabled() const { return m_testEnabled; }
-    void setEnabled(bool enabled) { m_testEnabled = enabled; }
+    virtual SettingType settingType() const override {
+        return SettingType::kDepth;
+    }
 
-    int depthMode() const { return m_mode; }
-    void setDepthMode(int mode) { m_mode = mode; }
+    size_t depthFlags() { return m_depthFlags; }
+
+    bool isSettingDepthWrite() const { return m_depthFlags & size_t(kModifyWrite); }
+    bool isSettingTesting() const { return m_depthFlags & size_t(kModifyTesting); }
+    bool isSettingPassMode() const { return m_depthFlags & size_t(kModifyPassMode); }
+
+    bool isTestEnabled() const { return m_testEnabled; }
+    void setTestEnabled(bool enabled) { m_testEnabled = enabled; }
+
+    bool isWritingDepth() const { return m_writeToDepthBuffer; }
+    void setWriteDepth(bool write) { m_writeToDepthBuffer = write; }
+
+    DepthPassMode depthPassMode() const { return m_passMode; }
+    void setDepthPassMode(DepthPassMode mode) { m_passMode = mode; }
 
     /// @}
 
@@ -345,9 +405,19 @@ public:
     /// @name Public Methods
     /// @{
 
-    virtual void bind() override;
+    virtual void set(RenderContext& context) const override;
 
     /// @}
+
+    //-----------------------------------------------------------------------------------------------------------------
+    /// @name Operators
+    /// @{
+
+    bool operator==(const DepthSetting& other) const;
+    bool operator!=(const DepthSetting& other) const;
+
+    /// @}
+
 
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Serializable overrides
@@ -357,7 +427,7 @@ public:
     virtual QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -369,7 +439,7 @@ protected:
     /// @{
 
     /// @brief Cache GL settings for use within application
-    virtual void cacheSettings() override;
+    virtual void cacheSettings(RenderContext& context) override;
 
     /// @}
 
@@ -377,8 +447,13 @@ protected:
     /// @name Protected members
     /// @{
 
+    size_t m_depthFlags;
+
     /// @brief Whether or not depth testing is enabled
     bool m_testEnabled;
+
+    /// @brief Whether or not to write to depth buffer
+    bool m_writeToDepthBuffer;
 
     /// @brief The Depth Testing mode
     //  GL_ALWAYS 	The depth test always passes.
@@ -389,7 +464,7 @@ protected:
     //  GL_GREATER 	Passes if the fragment's depth value is greater than the stored depth value.
     //  GL_NOTEQUAL 	Passes if the fragment's depth value is not equal to the stored depth value.
     //  GL_GEQUAL 	Passes if the fragment's depth value is greater than or equal to the stored depth value.
-    int m_mode;
+    DepthPassMode m_passMode;
 
     /// @}
 };
@@ -400,40 +475,15 @@ protected:
 /// @class RenderSettings
 /// @brief Handles setting global GL settings when rendering
 // TODO: Add bind modes
-class RenderSettings : public Serializable, public GL::OpenGLFunctions  {
+class RenderSettings : public Serializable{
 public:
 
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Static
     /// @{
 
-    /// @brief Modes to control binding duringdrawing routines
-    /// @details Determines whether or not an element (e.g. shader, texture) is bound and released on draw
-    //enum BindMode {
-    //    kBind = 0x1,
-    //    kRelease = 0x2
-    //};
-
-    //struct BindSettings {
-    //    QFlags<BindMode> m_shaderBindMode;
-    //    QFlags<BindMode> m_materialBindMode;
-    //};
-
-    /// @brief Struct for handling sorting of settings
-    //struct LessOrder {
-    //    bool operator()(const std::shared_ptr<RenderSetting>& lhs, const std::shared_ptr<RenderSetting>& rhs) {
-    //        return lhs->m_order < rhs->m_order;
-    //    }
-    //};
-
-    /// @brief Get the setting of the given type
-    static std::shared_ptr<RenderSetting> current(RenderSetting::SettingType type);
-
-    /// @brief Map of GL settings (to avoid get calls to GL, which are slow)
-    static std::unordered_map<RenderSetting::SettingType, std::shared_ptr<RenderSetting>> CURRENT_SETTINGS;
-
     /// @brief Cache settings from OpenGL
-    static void cacheSettings();
+    static void CacheSettings(RenderContext& context);
 
     /// @}
 
@@ -460,7 +510,7 @@ public:
     /// @{
 
     /// @brief Return setting of the specified type
-    inline std::shared_ptr<RenderSetting> setting(RenderSetting::SettingType type) {
+    inline const RenderSetting* setting(RenderSetting::SettingType type) const {
         return m_settings[type];
     }
 
@@ -471,13 +521,26 @@ public:
     void addDefaultBlend();
 
     /// @brief Add a setting to toggle
-    void addSetting(std::shared_ptr<RenderSetting> setting);
+    void addSetting(const RenderSetting& setting);
+
+    template<typename T, typename ...Args>
+    RenderSetting& addSetting(Args&&... args) {
+        static_assert(std::is_base_of_v<RenderSetting, T>, "Error, T must be a RenderSetting subclass");
+        auto setting = new T(std::forward<Args>(args)...);
+
+        // Clear old setting, and set as new one
+        if (m_settings[(int)setting->settingType()]) {
+            delete m_settings[(int)setting->settingType()];
+        }
+        m_settings[(int)setting->settingType()] = setting;
+        return *m_settings[(int)setting->settingType()];
+    }
 
     /// @brief "Bind" the render settings, applying changes in openGL
-    void bind();
+    void bind(RenderContext& context);
 
     /// @brief "Release" the render settings, undoing changes to OpenGL
-    void release();
+    void release(RenderContext& context);
 
     /// @brief Clear all settings
     void clearSettings();
@@ -492,7 +555,7 @@ public:
     virtual QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -500,17 +563,6 @@ private:
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Private methods
     /// @{
-    
-    /// @brief Whether or not this object contains the given setting type
-    inline bool hasSetting(const std::shared_ptr<RenderSetting>& setting) {
-        const auto& mySetting = m_settings[setting->type()];
-        if (mySetting) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
 
     /// @}
 
@@ -518,14 +570,11 @@ private:
     /// @name Private members
     /// @{
 
-    /// @brief Ordered multi-set of settings to toggle in GL
-    std::vector<std::shared_ptr<RenderSetting>> m_settings;
+    /// @brief Vector of settings to toggle in GL
+    std::array<RenderSetting*, RenderSetting::kMAX_SETTING_TYPE> m_settings;
 
     /// @brief Draw mode
     size_t m_shapeMode;
-
-    ///// @brief Settings for binding materials, shaders, etc.
-    //BindSettings m_bindSettings;
 
     /// @}
 };

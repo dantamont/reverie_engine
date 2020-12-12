@@ -124,7 +124,8 @@ bool Service::event(QEvent* event)
             m_postConstructionDone = true;
         }
         event->accept();
-    } else {
+    } 
+    else {
         return QObject::event(event);
     }
     return true;

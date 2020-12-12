@@ -1,58 +1,18 @@
 #include "GbLight.h"
+#include "GbLightSettings.h"
 
 #include "../../geometry/GbMatrix.h"
 #include "../../components/GbTransformComponent.h"
 #include "../../scene/GbSceneObject.h"
 #include "../../rendering/shaders/GbShaders.h"
-#include "../../rendering/shaders/GbUniformBufferObject.h"
+#include "../../rendering/buffers/GbUniformBufferObject.h"
 #include "../../rendering/renderer/GbRenderContext.h"
 
 namespace Gb{
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // Light
 //////////////////////////////////////////////////////////////////////////////////////////////////
-int Light::CreateLight(RenderContext& context)
-{
-    // Don't initialize light, is used only for default light component
-    Light& light = AddLight(context);
-    int idx = light.m_typeIntensityAndIndex[2];
-    context.lightingSettings().unbindLightData();
-    return idx;
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////
-int Light::CreateLight(RenderContext& context, LightType type)
-{
-    // Set light attributes
-    Light& light = AddLight(context);
-    light.m_typeIntensityAndIndex[0] = (int)type;
-    light.m_typeIntensityAndIndex[1] = 1;
-
-    // Initialize light in GL
-    light.initializeLight(context);
-    int idx = light.m_typeIntensityAndIndex[2];
-    context.lightingSettings().unbindLightData();
-    return idx;
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////
-int Light::CreateLight(RenderContext& context, const Color & color, LightType type)
-{
-    // Set light attributes
-    Light& light = AddLight(context);
-    light.m_diffuseColor = color.toVector4g();
-    light.m_ambientColor = color.toVector4g();
-    light.m_specularColor = color.toVector4g();
-    light.m_typeIntensityAndIndex[0] = (int)type;
-    light.m_typeIntensityAndIndex[1] = 1;
-
-    // Initialize light in GL
-    light.initializeLight(context);
-    int idx = light.m_typeIntensityAndIndex[2];
-    context.lightingSettings().unbindLightData();
-    return idx;
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////
-Light::Light():
-    m_typeIntensityAndIndex({ (int)kPoint, 1, 0, 0 })
+Light::Light()
 {
     // Don't initialize, this is only for default light component
 }
@@ -61,50 +21,6 @@ Light::~Light()
 {
     //clearLight();
 }
-//////////////////////////////////////////////////////////////////////////////////////////////////
-Light & Light::AddLight(RenderContext& context)
-{
-    LightingSettings& ls = context.lightingSettings();
-
-    // Map light buffer
-    Light* lights = ls.lightData();
-
-    // Set index and increment light count
-    int index;
-    if (ls.m_deletedIndices.size() > 0) {
-        index = ls.m_deletedIndices.back();
-        ls.m_deletedIndices.pop_back();
-    }
-    else {
-        index = ls.m_lightCount;
-        ls.m_lightCount++;
-    }
-
-    // Add to context
-    lights[index] = Light();
-
-    lights[index].m_typeIntensityAndIndex[2] = index;
-
-    return lights[index];
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////
-void Light::clearLight(LightingSettings& ls)
-{
-    // Was never assigned, so return
-    if (m_typeIntensityAndIndex[2] < 0) return;
-
-    // Set intensity of light to zero
-    if (UBO::getLightBuffer()) {
-        setIntensity(0);
-    }
-
-    // Remove from global list of lights
-    //s_lights[m_index] = nullptr;
-
-    // Flag index for overwrite in static list
-    ls.m_deletedIndices.push_back(m_typeIntensityAndIndex[2]);
-}
-
 //////////////////////////////////////////////////////////////////////////////////////////////////
 void Light::initializeLight(RenderContext& context)
 {
@@ -127,13 +43,77 @@ void Light::initializeLight(RenderContext& context)
         break;
     }
 
+    // Set a default light range for directional and spot lights
+    if (getRange() < 0) {
+        setRange(100);
+    }
+
     // Throw error if there are too many lights
     ls.checkLights();
 
     // Initialize global UBO uniforms
-    UBO::getLightBuffer()->setUniformValue("lightCount", (int)ls.m_lightCount);
-    UBO::getLightBuffer()->setUniformValue("lightingModel", (int)ls.m_lightingModel);
+    UBO::getLightSettingsBuffer()->setUniformValue("lightCount", (int)ls.m_lightCount);
+    UBO::getLightSettingsBuffer()->setUniformValue("lightingModel", (int)ls.m_lightingModel);
 
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////
+void Light::setRangeFromCutoff(real_g brightnessCutoff)
+{
+    // Solving qx^2 + L*x + (c - 1/b) = 0
+    real_g b = brightnessCutoff;
+    switch (getType()) {
+    case LightType::kPoint:
+    {
+        // Use attenuations to fine range
+        real_g c = m_attributes.z();
+        real_g lin = m_attributes.y();
+        real_g quad = m_attributes.z();
+        real_g range;
+        if (quad == 0) {
+            if (lin == 0) {
+                range = 1e30f;
+            }
+            else {
+                range = (1 - b * c) / (b * lin);
+            }
+        }
+        else {
+            if (lin == 0) {
+                range = sqrt((1 - b * c) / (b * quad));
+            }
+            else {
+                real_g sqt = std::sqrt(lin*lin - 4.0 * quad * (c - (1.0 / b)));
+                range = (-lin + sqt) / (2.0 * quad);
+            }
+        }
+        setRange(range);
+        break;
+    }
+    // TODO: Implement manual range for directional and spot lights
+    case LightType::kDirectional:
+    case LightType::kSpot:
+        break;
+    }
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////
+void Light::setAttributes(const Vector4& attr) {
+    m_attributes = attr; 
+
+    // The brightness cutoff marking the end of a light's range
+    if (getType() == LightType::kPoint && getRange() < 0) {
+        static real_g brightnessCutoff = 0.01f;
+        setRangeFromCutoff(brightnessCutoff);
+    }
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////
+void Light::enable() 
+{
+    flags() |= (size_t)kEnabled;
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////
+void Light::disable()
+{
+    flags() &= ~(size_t)kEnabled; // Logical not, then and
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //void Light::updatePosition(const Vector3g& position) const
@@ -145,56 +125,6 @@ void Light::initializeLight(RenderContext& context)
 //
 //}
 
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-// Light Settings
-//////////////////////////////////////////////////////////////////////////////////////////////////
-LightingSettings::LightingSettings(RenderContext& context, size_t maxNumLights) :
-    m_context(context),
-    m_maxLights(maxNumLights),
-    m_lights(context, maxNumLights)
-{
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////
-LightingSettings::~LightingSettings()
-{
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////
-void LightingSettings::clearLights()
-{
-    m_lightCount = 0;
-    //m_lights.clear();
-    m_lights.bind();
-    m_lights.allocateMemory();
-    m_lights.release();
-    m_deletedIndices.clear();
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////
-Light * LightingSettings::lightData()
-{
-    return m_lights.map();
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////
-void LightingSettings::unbindLightData()
-{
-    m_lights.unmap(true);
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////
-void LightingSettings::clearLight(int lightIndex)
-{
-    Light& light = m_context.lightingSettings().lightData()[lightIndex];
-    light.clearLight(*this);
-    m_context.lightingSettings().unbindLightData();
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////
-void LightingSettings::checkLights() const
-{
-    if (m_lightCount > m_maxLights) {
-        throw("Error, exceeded max number of allowable lights");
-    }
-}
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////    

@@ -8,10 +8,10 @@
 // External
 #include <QUuid>
 #include <QByteArray>
-#include <QString>
 #include <QMetaType>
 
 // Project
+#include "../containers/GbString.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Namespace Definitions
@@ -33,8 +33,11 @@ public:
     /// @{
     
     /// @brief Generate a unique name
-    static QString UniqueName(const QString& prefix);
-    static QString UniqueName();
+    static GString UniqueName(const GString& prefix);
+    static GString UniqueName();
+    static QString UniqueQName();
+
+    static Uuid NullID();
 
     /// @}
 
@@ -42,7 +45,8 @@ public:
     /// @name Constructors and Destructors
     /// @{
     Uuid(const QUuid& uuid);
-    Uuid(const QString& str);
+    Uuid(const GString& str);
+    explicit Uuid(const QString& str);
     explicit Uuid(bool generate = true);
     ~Uuid();
     /// @}
@@ -58,10 +62,13 @@ public:
     /// @{
 
     /// @brief Obtain string representation of the UUID
-    QString asString() const;
+    GString asString() const;
+    QString asQString() const;
 
     /// @brief Generate a unique name from the UUID
-    QString createUniqueName(const QString& prefix = QString()) const;
+    GString createUniqueName(const GString& prefix) const;
+    GString createUniqueName() const;
+    QString createUniqueQName() const;
 
     /// @}
 

@@ -1,0 +1,101 @@
+// Determine active clusters
+// See: http://www.aortiz.me/2018/12/21/CG.html#tiled-shading--forward
+
+#define FLT_MAX 3.402823466e+38
+#define FLT_MIN 1.175494351e-38
+#define DBL_MAX 1.7976931348623158e+308
+#define DBL_MIN 2.2250738585072014e-308
+
+// One thread per pixel
+// Should be dispatched using dlDispatchCompute(screenWidth, screenHeight, 1)
+layout(local_size_x = 1, local_size_y = 1) in;
+
+// Set texture unit to 0 to avoid having to bind shader value (sampler2D is zero by default)
+// Binding is not really necessary, since default binding is also 0
+layout (binding=0)uniform sampler2D depthTexture;
+ 
+
+// Uniform block for projection and view matrices
+layout (std140) uniform CameraBuffer
+{
+	mat4 viewMatrix;
+	mat4 invViewMatrix;
+	mat4 projectionMatrix;
+	mat4 invProjectionMatrix;
+	float zNear;
+	float zFar;
+	uvec2 viewportDimensions;
+	vec4 screenPercentage; // Screen percentage of viewport
+};
+
+layout (std430, binding = 2) buffer ScreenToViewBuffer{
+    mat4 inverseProjection;
+    uvec4 tileGridSizes;
+	uvec4 tilePixelSizes;
+    uvec2 screenDimensions; // Note that this is framebuffer size
+	float scale;
+    float bias;
+};
+
+layout (std430, binding = 6) buffer GlobalIndexCountBuffer{
+    uint globalIndexCount;
+	uint maxPerTile;
+	uint globalActiveClusterCount;
+};
+
+layout (std430, binding = 7) buffer ActiveClusterBuffer{
+	uint activeClusters[];
+};
+
+
+// Pixel ID is then the global invocation ID
+// See: https://antongerdelan.net/opengl/compute.html
+// The thread x and y id corresponding to the pixel it is representing
+ivec2 pixelCoords = ivec2(gl_GlobalInvocationID.xy) ;
+
+
+// See: https://stackoverflow.com/questions/51108596/linearize-depth
+// https://stackoverflow.com/questions/6652253/getting-the-true-z-value-from-the-depth-buffer/6657284#6657284
+float linearDepth(float depthSample){
+	// Map depth back from [0, 1] to [-1, 1]
+    float depthRange = 2.0 * depthSample - 1.0;
+	
+    // Retrieve true depth value (distance from camera) from depth buffer value
+    float linear = 2.0 * zNear * zFar / (zFar + zNear - depthRange * (zFar - zNear)); 
+	return linear;
+}
+
+uint getDepthSlice(float linDepth){
+	return uint(max(log2(linDepth) * scale + bias, 0.0));
+}
+
+uint getClusterIndex(vec3 pixelCoord){
+
+	//Locating which cluster you are a part of (eq. 3)
+    uint zCluster     = getDepthSlice(linearDepth(pixelCoord.z));
+    uvec3 clusters    = uvec3( uvec2( vec2(pixelCoord.x / tilePixelSizes[0], pixelCoord.y / tilePixelSizes[1] )), zCluster);
+	
+    uint clusterIndex = clusters.x +
+                        tileGridSizes.x * clusters.y +
+                        (tileGridSizes.x * tileGridSizes.y) * clusters.z;
+    return clusterIndex;
+}
+
+// Mark active clusters
+// We will evaluate the whole screen in one compute shader so each thread is equivalent to a pixel
+void main(){
+    //Getting the depth value
+    vec2 screenCoord = vec2(pixelCoords) / vec2(screenDimensions);
+    float z = texture(depthTexture, screenCoord).r; //reading the depth buffer
+
+    //Getting the linear cluster index value
+    uint clusterID = getClusterIndex(vec3(pixelCoords, z));
+    activeClusters[clusterID] = 1;
+	
+	// uint zCluster     = getDepthSlice(linearDepth(z));
+	// uint linearDepthInt = uint(linearDepth(z));
+	// activeClusters[0] = zCluster;
+	// activeClusters[0] = clusterID;
+}
+
+

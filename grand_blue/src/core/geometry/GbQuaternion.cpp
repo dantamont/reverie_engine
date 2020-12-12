@@ -29,7 +29,15 @@ Quaternion::Quaternion(real_g x, real_g y, real_g z, real_g w):
 {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Quaternion::Quaternion(const Vector4g & vec) :
+Quaternion::Quaternion(const Vector3 & vec):
+    m_x(vec[0]),
+    m_y(vec[1]),
+    m_z(vec[2]),
+    m_w(0)
+{
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Quaternion::Quaternion(const Vector4 & vec) :
     m_x(vec[0]),
     m_y(vec[1]),
     m_z(vec[2]),
@@ -41,14 +49,15 @@ Quaternion::Quaternion(const Vector4g & vec) :
 //{
 //    *this = std::move(fromEulerAngles(pitch, yaw, roll));
 //}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Quaternion::Quaternion(const Vector3g & rotationAxis, real_g rotationAngleRad):
-    m_x(rotationAxis.x() * sin(rotationAngleRad / 2.0)),
-    m_y(rotationAxis.y() * sin(rotationAngleRad / 2.0)),
-    m_z(rotationAxis.z() * sin(rotationAngleRad / 2.0)),
-    m_w(cos(rotationAngleRad / 2.0))
-{
-}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Was being misused for a direct vector initialization, instead of assuming the input was an axis
+//Quaternion::Quaternion(const Vector3 & rotationAxis, real_g rotationAngleRad):
+//    m_x(rotationAxis.x() * sin(rotationAngleRad / 2.0)),
+//    m_y(rotationAxis.y() * sin(rotationAngleRad / 2.0)),
+//    m_z(rotationAxis.z() * sin(rotationAngleRad / 2.0)),
+//    m_w(cos(rotationAngleRad / 2.0))
+//{
+//}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Quaternion::~Quaternion()
@@ -104,6 +113,11 @@ const Quaternion operator*(const Quaternion & q1, const Quaternion & q2)
     real_g y = qq - yy + (q1.m_w - q1.m_x) * (q2.m_y + q2.m_z);
     real_g z = qq - zz + (q1.m_z + q1.m_y) * (q2.m_w - q2.m_x);
 
+    // Unoptimized
+    //real_g x = q1.m_x * q2.m_w + q1.m_y * q2.m_z - q1.m_z * q2.m_y + q1.m_w * q2.m_x;
+    //real_g y = -q1.m_x * q2.m_z + q1.m_y * q2.m_w + q1.m_z * q2.m_x + q1.m_w * q2.m_y;
+    //real_g z = q1.m_x * q2.m_y - q1.m_y * q2.m_x + q1.m_z * q2.m_w + q1.m_w * q2.m_z;
+    //real_g w = -q1.m_x * q2.m_x - q1.m_y * q2.m_y - q1.m_z * q2.m_z + q1.m_w * q2.m_w;
     return Quaternion(x, y, z, w);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -137,7 +151,7 @@ const Quaternion operator*(real_g factor, const Quaternion & quaternion)
     return Quaternion(quaternion.m_x * factor, quaternion.m_y * factor, quaternion.m_z * factor, quaternion.m_w * factor);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-const Vector3g operator*(const Quaternion & q, const Vector3g & vec)
+const Vector3 operator*(const Quaternion & q, const Vector3 & vec)
 {
     return q.rotatedVector(vec);
 }
@@ -194,13 +208,17 @@ void Quaternion::normalize()
         double(m_y) * double(m_y) +
         double(m_z) * double(m_z) +
         double(m_w) * double(m_w);
-    if (qFuzzyIsNull(len - 1.0f) || qFuzzyIsNull(len))
+
+    if (qFuzzyIsNull(len - 1.0f) || qFuzzyIsNull(len)) {
+        // Return if null length or if already normalized
         return;
-    len = sqrt(len);
-    m_x /= len;
-    m_y /= len;
-    m_z /= len;
-    m_w /= len;
+    }
+
+    double k = 1.0 / sqrt(len);
+    m_x *= k;
+    m_y *= k;
+    m_z *= k;
+    m_w *= k;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 bool Quaternion::isNull() const
@@ -235,7 +253,7 @@ Quaternion Quaternion::conjugated() const
     return Quaternion(-m_x, -m_y, -m_z, m_w);
 }
 
-void Quaternion::setVector(const Vector3g & vec)
+void Quaternion::setVector(const Vector3 & vec)
 {
     m_x = vec.x();
     m_y = vec.y();
@@ -250,12 +268,12 @@ void Quaternion::setVector(real_g aX, real_g aY, real_g aZ)
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Vector3g Quaternion::vector() const
+Vector3 Quaternion::vector() const
 {
-    return Vector3g(m_x, m_y, m_z);
+    return Vector3(m_x, m_y, m_z);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void Quaternion::getAxisAndAngle(Vector3g& axis, real_g& angleDeg) const
+void Quaternion::getAxisAndAngle(Vector3& axis, real_g& angleDeg) const
 {
     getAxisAndAngle(axis[0], axis[1], axis[2], angleDeg);
 }
@@ -284,7 +302,7 @@ void Quaternion::getAxisAndAngle(real_g& x, real_g& y, real_g& z, real_g& angle)
 
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Quaternion Quaternion::fromAxisAngle(const Vector3g & axis, real_g angle)
+Quaternion Quaternion::fromAxisAngle(const Vector3 & axis, real_g angle)
 {
     return fromAxisAngle(axis.x(), axis.y(), axis.z(), angle);
 }
@@ -302,18 +320,11 @@ Quaternion Quaternion::fromAxisAngle(real_g x, real_g y, real_g z, real_g angle)
     real_g c = std::cos(a);
     return Quaternion(x * s, y * s, z * s, c).normalized();
 }
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Vector3g Quaternion::toEulerAngles() const
-//{
-//    real_g pitch, yaw, roll;
-//    getEulerAngles(&pitch, &yaw, &roll);
-//    return Vector3g(pitch, yaw, roll);
-//}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void Quaternion::toAngularVelocity(Vector3g& vel) const
+void Quaternion::toAngularVelocity(Vector3& vel) const
 {
     if (abs(m_w) > 1023.5f / 1024.0f)
-        vel = Vector3g();
+        vel = Vector3();
     real_g angle = acos(abs(m_w));
     real_g sign_w = m_w / abs(m_w);
     real_g gain = sign_w *2.0f * angle / sin(angle);
@@ -321,104 +332,13 @@ void Quaternion::toAngularVelocity(Vector3g& vel) const
     vel[1] = m_y * gain;
     vel[2] = m_z * gain;
 }
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Quaternion Quaternion::fromEulerAngles(const Vector3g & eulerAngles)
-//{
-//    return Quaternion::fromEulerAngles(eulerAngles.x(), eulerAngles.y(), eulerAngles.z());
-//}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Quaternion Quaternion::fromEulerAngles(const EulerAngles & eulerAngles)
 {
-    return Quaternion::fromRotationMatrix(Matrix3x3(eulerAngles.toRotationMatrix()).toFloatMatrix());
-}
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Quaternion Quaternion::fromEulerAngles(real_g pitch, real_g yaw, real_g roll)
-//{
-//    // Algorithm from:
-//    // http://www.j3d.org/matrix_faq/matrfaq_latest.html#Q60
-//    pitch *= 0.5f;
-//    yaw *= 0.5f;
-//    roll *= 0.5f;
-//    const real_g cy = std::cos(yaw);
-//    const real_g sy = std::sin(yaw);
-//    const real_g cz = std::cos(roll);
-//    const real_g sz = std::sin(roll);
-//    const real_g cx = std::cos(pitch);
-//    const real_g sx = std::sin(pitch);
-//    const real_g cy_cz = cy * cz;
-//    const real_g sy_sz = sy * sz;
-//    const real_g w = cy_cz * cx + sy_sz * sx;
-//    const real_g x = cy_cz * sx + sy_sz * cx;
-//    const real_g y = sy * cz * cx - cy * sz * sx;
-//    const real_g z = cy * sz * cx - sy * cz * sx;
-//    return Quaternion(x, y, z, w);
-//}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Quaternion Quaternion::fromRotationMatrix(const Matrix3x3g& rot3x3)
-{
-    // Algorithm from:
-    // http://www.j3d.org/matrix_faq/matrfaq_latest.html#Q55
-    real_g scalar;
-    real_g axis[3];
-    const real_g trace = rot3x3(0, 0) + rot3x3(1, 1) + rot3x3(2, 2);
-    if (trace > 0.00000001f) {
-        const real_g s = 2.0f * std::sqrt(trace + 1.0f);
-        scalar = 0.25f * s;
-        axis[0] = (rot3x3(2, 1) - rot3x3(1, 2)) / s;
-        axis[1] = (rot3x3(0, 2) - rot3x3(2, 0)) / s;
-        axis[2] = (rot3x3(1, 0) - rot3x3(0, 1)) / s;
-    }
-    else {
-        static int s_next[3] = { 1, 2, 0 };
-        int i = 0;
-        if (rot3x3(1, 1) > rot3x3(0, 0))
-            i = 1;
-        if (rot3x3(2, 2) > rot3x3(i, i))
-            i = 2;
-        int j = s_next[i];
-        int k = s_next[j];
-        const real_g s = 2.0f * std::sqrt(rot3x3(i, i) - rot3x3(j, j) - rot3x3(k, k) + 1.0f);
-        axis[i] = 0.25f * s;
-        scalar = (rot3x3(k, j) - rot3x3(j, k)) / s;
-        axis[j] = (rot3x3(j, i) + rot3x3(i, j)) / s;
-        axis[k] = (rot3x3(k, i) + rot3x3(i, k)) / s;
-    }
-    return Quaternion(axis[0], axis[1], axis[2], scalar);
+    return Quaternion::fromRotationMatrix(eulerAngles.toRotationMatrix());
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Quaternion Quaternion::fromRotationMatrix(const Matrix4x4g& rot4x4)
-{
-    // Algorithm from:
-    // http://www.j3d.org/matrix_faq/matrfaq_latest.html#Q55
-    real_g scalar;
-    real_g axis[3];
-    const real_g trace = rot4x4(0, 0) + rot4x4(1, 1) + rot4x4(2, 2);
-    if (trace > 0.00000001f) {
-        const real_g s = 2.0f * std::sqrt(trace + 1.0f);
-        scalar = 0.25f * s;
-        axis[0] = (rot4x4(2, 1) - rot4x4(1, 2)) / s;
-        axis[1] = (rot4x4(0, 2) - rot4x4(2, 0)) / s;
-        axis[2] = (rot4x4(1, 0) - rot4x4(0, 1)) / s;
-    }
-    else {
-        static int s_next[3] = { 1, 2, 0 };
-        int i = 0;
-        if (rot4x4(1, 1) > rot4x4(0, 0))
-            i = 1;
-        if (rot4x4(2, 2) > rot4x4(i, i))
-            i = 2;
-        int j = s_next[i];
-        int k = s_next[j];
-        const real_g s = 2.0f * std::sqrt(rot4x4(i, i) - rot4x4(j, j) - rot4x4(k, k) + 1.0f);
-        axis[i] = 0.25f * s;
-        scalar = (rot4x4(k, j) - rot4x4(j, k)) / s;
-        axis[j] = (rot4x4(j, i) + rot4x4(i, j)) / s;
-        axis[k] = (rot4x4(k, i) + rot4x4(i, k)) / s;
-    }
-    return Quaternion(axis[0], axis[1], axis[2], scalar);
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Vector3g Quaternion::rotatePoint(const Vector3g & point, const Vector3g & origin, const Vector3g & vector, real_g angle)
+Vector3 Quaternion::rotatePoint(const Vector3 & point, const Vector3 & origin, const Vector3 & vector, real_g angle)
 {
     real_g vx = vector.x();
     real_g vy = vector.y();
@@ -427,50 +347,49 @@ Vector3g Quaternion::rotatePoint(const Vector3g & point, const Vector3g & origin
     real_g c = cos(angle);
     real_g s = sin(angle);
 
-    Matrix3x3g rotationMatrix = std::vector<Vector3g>{
+    Matrix3x3g rotationMatrix = std::vector<Vector3>{
         {vx * vx * C + c, vy * vx * C + vz * s, vz * vx * C - vy * s}, // first column
         {vx * vy * C - vz * s, vy * vy * C + c, vz * vy * C + vx * s}, // second column
         {vx * vz * C + vy * s, vy * vz * C - vx * s, vz * vz * C + c}  // third column
     };
-    Vector3g rotatedPoint = origin + rotationMatrix * (point - origin);
+    Vector3 rotatedPoint = origin + rotationMatrix * (point - origin);
 
     return rotatedPoint;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Quaternion Quaternion::fromAxes(const Vector3g & xAxis, const Vector3g & yAxis, const Vector3g & zAxis)
+Quaternion Quaternion::fromAxes(const Vector3 & xAxis, const Vector3 & yAxis, const Vector3 & zAxis)
 {
-    Matrix3x3g rot3x3;
-    rot3x3(0, 0) = xAxis.x();
-    rot3x3(1, 0) = xAxis.y();
-    rot3x3(2, 0) = xAxis.z();
-    rot3x3(0, 1) = yAxis.x();
-    rot3x3(1, 1) = yAxis.y();
-    rot3x3(2, 1) = yAxis.z();
-    rot3x3(0, 2) = zAxis.x();
-    rot3x3(1, 2) = zAxis.y();
-    rot3x3(2, 2) = zAxis.z();
+    // This was giving the transpose of what I want
+    Matrix3x3g rot3x3(std::array<float, 9>{
+        xAxis.x(), xAxis.y(), xAxis.z(),
+        yAxis.x(), yAxis.y(), yAxis.z(),
+        zAxis.x(), zAxis.y(), zAxis.z()});
     return Quaternion::fromRotationMatrix(rot3x3);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Quaternion Quaternion::fromDirection(const Vector3g & direction, const Vector3g & up)
+Quaternion Quaternion::fromDirection(const Vector3 & direction, const Vector3 & up)
 {
     // Return identity quaternion if direction is null
     if (qFuzzyIsNull(direction.x()) && qFuzzyIsNull(direction.y()) && qFuzzyIsNull(direction.z()))
         return Quaternion();
 
     // z-axis is normalized direction
-    const Vector3g zAxis(direction.normalized());
-    Vector3g xAxis(up.cross(zAxis));
+    Matrix3x3 axes = Matrix3x3::EmptyMatrix();
+    Vector3& xAxis = axes.column(0);
+    Vector3& yAxis = axes.column(1);
+    Vector3& zAxis = axes.column(2);
+    zAxis = direction.normalized();
+    xAxis = up.cross(zAxis);
     if (qFuzzyIsNull(xAxis.lengthSquared())) {
-        // collinear or invalid up vector; derive shortest arc to new direction
-        return Quaternion::rotationTo(Vector3g(0.0f, 0.0f, 1.0f), zAxis);
+        // Collinear or invalid up vector; derive shortest arc to new direction
+        return Quaternion::rotationTo(Vector3(0.0f, 0.0f, 1.0f), zAxis);
     }
     xAxis.normalize();
-    const Vector3g yAxis(zAxis.cross(xAxis));
-    return Quaternion::fromAxes(xAxis, yAxis, zAxis);
+    yAxis = zAxis.cross(xAxis);
+    return Quaternion::fromRotationMatrix(axes);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Quaternion Quaternion::fromAngularVelocity(const Vector3g & vel)
+Quaternion Quaternion::fromAngularVelocity(const Vector3 & vel)
 {
     real_g mag = vel.length();
     if (mag <= 0)
@@ -481,12 +400,12 @@ Quaternion Quaternion::fromAngularVelocity(const Vector3g & vel)
     return Quaternion(vel.x() * siGain, vel.y() * siGain, vel.z() * siGain, cs);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Quaternion Quaternion::rotationTo(const Vector3g & from, const Vector3g & to)
+Quaternion Quaternion::rotationTo(const Vector3 & from, const Vector3 & to)
 {
     // Based on Stan Melax's article in Game Programming Gems
-    const Vector3g v0(from.normalized());
-    const Vector3g v1(to.normalized());
-    real_g d = v0.dot(v1);
+    const Vector3d v0 = from.asDouble().normalized();
+    const Vector3d v1 = to.asDouble().normalized();
+    double d = v0.dot(v1);
     // If dot == 1, vectors are the same
     if (qFuzzyIsNull(d - 1.0f))
     {
@@ -501,42 +420,76 @@ Quaternion Quaternion::rotationTo(const Vector3g & from, const Vector3g & to)
             //return Quaternion::fromAxisAngle(fallbackAxis, Constants::PI_2);
         }
         else {
-            Vector3g axis = Vector3g(1.0f, 0.0f, 0.0f).cross(v0);
+            Vector3d axis = Vector3d(1.0, 0.0, 0.0).cross(v0);
             if (qFuzzyIsNull(axis.lengthSquared()))
-                axis = Vector3g(0.0f, 1.0f, 0.0f).cross(v0);
+                axis = Vector3d(0.0, 1.0, 0.0).cross(v0);
             axis.normalize();
             // same as Quaternion::fromAxisAndAngle(axis, Constants::PI_2)
-            return Quaternion(axis.x(), axis.y(), axis.z(), 0.0f);
+            return Quaternion(axis.x(), axis.y(), axis.z(), 0.0);
         }
     }
 
-    real_g s = (real_g)std::sqrt(2.0f * (d + 1.0f));
-    real_g invS = 1.0 / s;
-    Vector3g axis = v0.cross(v1) * invS;
+    double s = std::sqrt(2.0 * (d + 1.0));
+    double invS = 1.0 / s;
+    Vector3d axis = v0.cross(v1) * invS;
     return Quaternion(axis.x(), axis.y(), axis.z(), s * 0.5f).normalized();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Vector3g Quaternion::rotatedVector(const Vector3g & vector) const
+Vector3 Quaternion::rotatedVector(const Vector3 & v) const
 {
-    return (*this * Quaternion(vector, 0.0) * conjugated()).vector();
+    // Optimized
+    // See: https://gamedev.stackexchange.com/questions/28395/rotating-vector3-by-a-quaternion
+    //return (*this * Quaternion(v) * conjugated()).vector();
+    
+    // Extract the vector part of the quaternion
+    Vector3 u(m_x, m_y, m_z);
+
+    // Extract the scalar part of the quaternion
+    float s = m_w;
+
+    // Do the math
+    return 2.0f * u.dot(v) * u + (s*s - u.dot(u)) * v + 2.0f * s * u.cross(v);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Quaternion Quaternion::slerp(const std::vector<Quaternion>& quaternions, const std::vector<float>& weights)
+Quaternion Quaternion::Slerp(const Quaternion * quaternions, const std::vector<float>& weights)
+{
+    // NOTE: Weights are pre-normalized! See GbBlendQueue.cpp updateCurrentClips for an example
+    // TODO: Implement normalization
+    // Slerp weights scale each weight to account for successive slerping of multiple quaternions
+    //float denom = m_clipWeights[0];
+    //for (size_t i = 1; i < numClips; i++) {
+    //    float currentClipWeight = m_clipWeights[i];
+    //    denom += currentClipWeight;
+    //    m_slerpWeights.push_back(currentClipWeight / denom); // TODO: Don't have to do this for last iteration, since denom == 1
+    //}
+
+    size_t numSlerps = weights.size();
+    if (numSlerps == 0) {
+        // If there are no slerps to be done!
+        return quaternions[0];
+    }
+
+    Quaternion out = Slerp(quaternions[0], quaternions[1], weights[0]);
+    for (size_t i = 1; i < numSlerps; i++) {
+        out = Slerp(out, quaternions[i + 1], weights[i]);
+    }
+    out.normalize();
+    return out;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Quaternion Quaternion::EigenAverage(const Quaternion* quaternions, const std::vector<float>& weights)
 {
     // IS VERY SLOW, but accurate
     Quaternion average;
 
-    const int N = quaternions.size();
-    if(quaternions.size() != weights.size()){
-        throw("Error, inconsistent vector lengths when slerping quaternions");
-    }
+    const size_t N = weights.size();
 
-    if (quaternions.size() == 2) {
+    if (N == 2) {
         // If only two quaternions, use standard slerp
         float weight = weights[1]/(weights[0] + weights[1]);
-        return Quaternion::slerp(quaternions[0], quaternions[1], weight);
+        return Quaternion::Slerp(quaternions[0], quaternions[1], weight);
     }
-    else if (quaternions.size() == 1) {
+    else if (N == 1) {
         return quaternions[0];
     }
 
@@ -550,8 +503,9 @@ Quaternion Quaternion::slerp(const std::vector<Quaternion>& quaternions, const s
     // See: https://stackoverflow.com/questions/42935944/multiplication-of-each-matrix-column-by-each-vector-element-using-eigen-c-libr
     Eigen::Matrix<real_g, 4, -1> quatMat;
     std::vector<real_g> quatVecs;
-    quatVecs.reserve(quaternions.size());
-    for (const Quaternion& quat : quaternions) {
+    quatVecs.reserve(N);
+    for (size_t i = 0; i < N; i++){
+        const Quaternion& quat = quaternions[i];
         quatVecs.emplace_back(quat.m_x);
         quatVecs.emplace_back(quat.m_y);
         quatVecs.emplace_back(quat.m_z);
@@ -592,67 +546,71 @@ Quaternion Quaternion::slerp(const std::vector<Quaternion>& quaternions, const s
     return average;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Quaternion Quaternion::average(const std::vector<Quaternion>& quaternions, const std::vector<float>& weights)
+Quaternion Quaternion::Average(const std::vector<Quaternion>& quaternions, const std::vector<float>& weights)
 {
-    Quaternion average;
-
-    const size_t size = quaternions.size();
-    if (size != weights.size()) {
-        throw("Error, inconsistent vector lengths when slerping quaternions");
+#ifdef DEBUG_MODE
+    if (quaternions.size() != weights.size()) {
+        throw("Error, size mismatch");
     }
+#endif
+    return Average(quaternions.data(), weights);
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Quaternion Quaternion::Average(const Quaternion * quaternions, const std::vector<float>& weights)
+{
+    Quaternion average(0, 0, 0, 0);
 
-    if (size == 2) {
-        // If only two quaternions, use standard slerp
-        float weight = weights[1] / (weights[0] + weights[1]);
-        return Quaternion::slerp(quaternions[0], quaternions[1], weight);
+    // https://gamedev.stackexchange.com/questions/119688/calculate-average-of-arbitrary-amount-of-quaternions-recursion
+    size_t numQuaternions = weights.size();
+#ifdef DEBUG_MODE
+    if (!numQuaternions) {
+        throw("Error, no weights");
     }
-    else if (size == 1) {
-        return quaternions[0];
-    }
+#endif
 
-    // Convert to velocity
-    Vector3g result;
-    for(size_t i = 0; i < size; i++)
+    float weight;
+    for(size_t i = 0; i < numQuaternions; i++)
     {
-        const Quaternion& quat = quaternions.at(i);
-        float weight = weights[i];
-        Vector3g vel = Vector3g::EmptyVector();
-        quat.toAngularVelocity(vel);
-        result += vel * weight;
+        weight = weights[i];
+        const Quaternion& q = quaternions[i];
+        average.m_x += weight * q.m_x;
+        average.m_y += weight * q.m_y;
+        average.m_z += weight * q.m_z;
+        average.m_w += weight * q.m_w;
     }
 
-    average = fromAngularVelocity(result);
-
+    average.normalize();
     return average;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Quaternion Quaternion::average(const std::vector<Quaternion>& quaternions, const std::vector<float>& weights, size_t numIterations)
+Quaternion Quaternion::IterativeAverage(const Quaternion* quaternions, const std::vector<float>& weights, size_t numIterations)
 {
     Quaternion reference;
     for (size_t i = 0; i < numIterations; i++)
     {
-        reference = average(reference, quaternions, weights);
-
+        reference = AverageIteration(reference, quaternions, weights);
+        reference.normalize(); // Added to try to improve
     }
     return reference;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Quaternion Quaternion::average(const Quaternion & reference, const std::vector<Quaternion>& quaternions, const std::vector<float>& weights)
+Quaternion Quaternion::AverageIteration(const Quaternion & reference, const Quaternion* quaternions, const std::vector<float>& weights)
 {
     Quaternion referenceInverse = reference.inverted();
-    Vector3g result;
-    for (size_t i = 0; i < quaternions.size(); i++)
+    Vector3 result;
+    size_t numQuats = weights.size();
+    for (size_t i = 0; i < numQuats; i++)
     {
-        const Quaternion& quat = quaternions.at(i);
+        const Quaternion& quat = quaternions[i];
         float weight = weights[i];
-        Vector3g vel = Vector3g::EmptyVector();
+        Vector3 vel = Vector3::EmptyVector();
         (referenceInverse * quat).toAngularVelocity(vel);
         result += vel * weight;
     }
     return reference * fromAngularVelocity(result);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Quaternion Quaternion::slerp(const Quaternion & q1, const Quaternion & q2, real_g t)
+Quaternion Quaternion::Slerp(const Quaternion & q1, const Quaternion & q2, real_g t)
 {
     // Handle the easy cases first.
     if (t <= 0.0f)
@@ -685,7 +643,7 @@ Quaternion Quaternion::slerp(const Quaternion & q1, const Quaternion & q2, real_
     return q1 * factor1 + q2b * factor2;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Quaternion Quaternion::nlerp(const Quaternion & q1, const Quaternion & q2, real_g t)
+Quaternion Quaternion::Nlerp(const Quaternion & q1, const Quaternion & q2, real_g t)
 {
     // Handle the easy cases first.
     if (t <= 0.0f)
@@ -749,9 +707,9 @@ Quaternion Quaternion::nlerp(const Quaternion & q1, const Quaternion & q2, real_
 //    }
 //}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Vector4g Quaternion::toVector4() const
+Vector4 Quaternion::toVector4() const
 {
-    return Vector4g(m_x, m_y, m_z, m_w);
+    return Vector4(m_x, m_y, m_z, m_w);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Matrix3x3g Quaternion::toRotationMatrix() const
@@ -788,7 +746,11 @@ Matrix4x4g Quaternion::toRotationMatrix4x4() const
 {
     // Algorithm from:
     // http://www.j3d.org/matrix_faq/matrfaq_latest.html#Q54
-    Matrix4x4g rot4x4;
+    return Matrix4x4g(toRotationMatrix());
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void Quaternion::toRotationMatrix(Matrix4x4g & outMatrix) const
+{
     const real_g f2x = m_x + m_x;
     const real_g f2y = m_y + m_y;
     const real_g f2z = m_z + m_z;
@@ -801,35 +763,36 @@ Matrix4x4g Quaternion::toRotationMatrix4x4() const
     const real_g f2yy = f2y * m_y;
     const real_g f2yz = f2y * m_z;
     const real_g f2zz = f2z * m_z;
-    rot4x4(0, 0) = 1.0f - (f2yy + f2zz);
-    rot4x4(0, 1) = f2xy - f2zw;
-    rot4x4(0, 2) = f2xz + f2yw;
-    rot4x4(1, 0) = f2xy + f2zw;
-    rot4x4(1, 1) = 1.0f - (f2xx + f2zz);
-    rot4x4(1, 2) = f2yz - f2xw;
-    rot4x4(2, 0) = f2xz - f2yw;
-    rot4x4(2, 1) = f2yz + f2xw;
-    rot4x4(2, 2) = 1.0f - (f2xx + f2yy);
-    return rot4x4;
+    outMatrix(0, 0) = 1.0f - (f2yy + f2zz);
+    outMatrix(0, 1) = f2xy - f2zw;
+    outMatrix(0, 2) = f2xz + f2yw;
+    outMatrix(1, 0) = f2xy + f2zw;
+    outMatrix(1, 1) = 1.0f - (f2xx + f2zz);
+    outMatrix(1, 2) = f2yz - f2xw;
+    outMatrix(2, 0) = f2xz - f2yw;
+    outMatrix(2, 1) = f2yz + f2xw;
+    outMatrix(2, 2) = 1.0f - (f2xx + f2yy);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void Quaternion::getAxes(Vector3g * xAxis, Vector3g * yAxis, Vector3g * zAxis) const
+void Quaternion::getAxes(Vector3 * xAxis, Vector3 * yAxis, Vector3 * zAxis) const
 {
     assert(xAxis && yAxis && zAxis);
     const Matrix3x3g rot3x3(toRotationMatrix());
-    *xAxis = Vector3g(rot3x3(0, 0), rot3x3(1, 0), rot3x3(2, 0));
-    *yAxis = Vector3g(rot3x3(0, 1), rot3x3(1, 1), rot3x3(2, 1));
-    *zAxis = Vector3g(rot3x3(0, 2), rot3x3(1, 2), rot3x3(2, 2));
+    *xAxis = Vector3(rot3x3(0, 0), rot3x3(1, 0), rot3x3(2, 0));
+    *yAxis = Vector3(rot3x3(0, 1), rot3x3(1, 1), rot3x3(2, 1));
+    *zAxis = Vector3(rot3x3(0, 2), rot3x3(1, 2), rot3x3(2, 2));
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 QJsonValue Quaternion::asJson() const
 {
-    return Vector4g(m_x, m_y, m_z, m_w).asJson();
+    return Vector4(m_x, m_y, m_z, m_w).asJson();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void Quaternion::loadFromJson(const QJsonValue & json)
+void Quaternion::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context);
+
     QJsonArray jsonArray = json.toArray();
     m_x = (real_g)jsonArray[0].toDouble();
     m_y = (real_g)jsonArray[1].toDouble();

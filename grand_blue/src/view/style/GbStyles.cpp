@@ -25,6 +25,7 @@ DarkStyle::DarkStyle(QStyle *style) :
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 void DarkStyle::polish(QPalette &palette) {
+  // Called internally by Qt on setStyle
   // modify palette to dark
   palette.setColor(QPalette::Window, QColor(53, 53, 53));
   palette.setColor(QPalette::WindowText, Qt::white);
@@ -39,13 +40,16 @@ void DarkStyle::polish(QPalette &palette) {
   palette.setColor(QPalette::Dark, QColor(35, 35, 35));
   palette.setColor(QPalette::Shadow, QColor(20, 20, 20));
   palette.setColor(QPalette::Button, QColor(53, 53, 53));
+  palette.setColor(QPalette::Midlight, QColor(81, 81, 81)); // Added by Dante
+  palette.setColor(QPalette::Light, QColor(100, 100, 100)); // Added by Dante
   palette.setColor(QPalette::ButtonText, Qt::white);
   palette.setColor(QPalette::Disabled, QPalette::ButtonText,
                    QColor(127, 127, 127));
   palette.setColor(QPalette::BrightText, Qt::red);
   palette.setColor(QPalette::Link, QColor(42, 130, 218));
   //palette.setColor(QPalette::Highlight, QColor(42, 130, 218));
-  palette.setColor(QPalette::Highlight, QColor(22, 90, 158));
+  palette.setColor(QPalette::Highlight, QColor(32, 110, 188));
+  //palette.setColor(QPalette::Highlight, QColor(22, 90, 158));
   palette.setColor(QPalette::Disabled, QPalette::Highlight, QColor(80, 80, 80));
   palette.setColor(QPalette::HighlightedText, Qt::white);
   palette.setColor(QPalette::Disabled, QPalette::HighlightedText,
@@ -53,6 +57,7 @@ void DarkStyle::polish(QPalette &palette) {
 }
 
 void DarkStyle::polish(QApplication *app) {
+  // Called internally by Qt on setStyle
   if (!app) return;
 
   // increase font size for better reading,

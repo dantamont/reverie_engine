@@ -232,6 +232,15 @@ protected:
     /// @name Protected Methods
     /// @{
 
+
+#ifndef QT_NO_CONTEXTMENU
+    /// @brief Generates a context menu, overriding default implementation
+    /// @note Context menus can be executed either asynchronously using the popup() function or 
+    ///       synchronously using the exec() function
+    virtual void contextMenuEvent(QContextMenuEvent *event) override;
+#endif // QT_NO_CONTEXTMENU
+
+
     ScriptOrderItem* currentContextItem() const {
         return static_cast<ScriptOrderItem*>(m_currentItems[kContextClick]);
     }

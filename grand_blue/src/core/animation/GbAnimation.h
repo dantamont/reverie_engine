@@ -22,6 +22,7 @@
 
 // Internal
 #include "../GbObject.h"
+#include "../time/GbTimer.h"
 #include "../resource/GbResource.h"
 #include "../mixins/GbLoadable.h"
 #include "../geometry/GbTransform.h"
@@ -35,6 +36,7 @@ namespace Gb {
 /////////////////////////////////////////////////////////////////////////////////////////////
 class Model;
 class ResourceHandle;
+class ResourceCache;
 class SkeletonJoint;
 class CoreEngine;
 class Animation;
@@ -42,11 +44,8 @@ class Skeleton;
 struct AnimationSettings;
 class ThreadPool;
 class AnimationProcess;
-class SkeletonPose;
 class DrawCommand;
-template<class D, size_t N> class SquareMatrix;
-typedef SquareMatrix<real_g, 3> Matrix3x3g;
-typedef SquareMatrix<real_g, 4> Matrix4x4g;
+struct BlendSet;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Class definitions
@@ -60,21 +59,37 @@ struct VertexBoneData
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
+/// @brief Describes playback mode of an animation state
 enum class AnimationPlaybackMode {
-    kSingleShot,
+    kSingleShot = 0,
     kLoop,
     kPingPong
 };
 
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
 /// @struct AnimationSettings
 /// @brief Represents settings for animation playback
 struct AnimationSettings: public Serializable
 {
     /// @brief Multiplicative speed factor
     float m_speedFactor = 1.0;
+
+    /// @brief For blending the clip with others
+    // TODO: Make this a mask
     float m_blendWeight = 1.0;
+
+    /// @brief For offsetting playback by some number of ticks
     int m_tickOffset = 0;
+
+    /// @brief For offsetting playback by some number of seconds
     float m_timeOffsetSec = 0;
+
+    /// @brief The number of times to play the animation (for loop and ping-pong)
+    int m_numPlays = -1;
+
+    /// @brief Cached animation time, for use if animation is to be frozen (note, NOT in seconds)
+    int m_animationTime = -1;
 
     //-----------------------------------------------------------------------------------------------------------------
     /// @name Serializable overrides
@@ -84,66 +99,75 @@ struct AnimationSettings: public Serializable
     virtual QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 };
 
-
-/// @struct Transition Settings
-/// @brief Represents settings for an animation transition
-struct TransitionSettings
-{
-    /// @brief Transition settings
-    float m_fadeInTimeSec = 0;
-    float m_fadeInBlendWeight = 1.0;
-
-    float m_fadeOutTimeSec = 0;
-    float m_fadeOutBlendWeight = 1.0;
-};
-
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
-/// @struct BlendSet
+/// @struct AnimationFrameData
 /// @brief Structure for blending animations
-struct BlendSet {
+/// @details Represents a single frame of animation data for a skeleton
+struct AnimationFrameData {
     //---------------------------------------------------------------------------------------
-    /// @name Public Methods
+    /// @name Public Members
     /// @{
 
-    /// @}
-
-    std::vector<Vector3g> m_translations;
+    /// @brief Indexed by index of joint in skeleton
+    std::vector<Vector3> m_translations;
     std::vector<Quaternion> m_rotations;
-    std::vector<Vector3g> m_scales;
-};
-/////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////
-/// @struct BlendPose
-/// @brief Container for node blend sets
-struct BlendPose {
-    //---------------------------------------------------------------------------------------
-    /// @name Public Methods
-    /// @{
-
-    /// @brief Blend the blend sets for this pose to obtain a vector of final local transforms
-    void blend();
-
-    inline size_t size() const { return m_blendSets.size(); }
+    std::vector<Vector3> m_scales;
 
     /// @}
-
-    /// @brief Blend sets, indexed by order found in skeleton via breadth-first-search
-    std::vector<BlendSet> m_blendSets;
-
-    // TODO: Remove weights from the blend pose, this should be driven at a higher level 
-    std::vector<float> m_weights;
-
-    /// @brief Final vector of transforms, indexed by order found in skeleton via breadth-first-search
-    std::vector<Transform> m_transforms;
-
-    size_t m_numNonBones = 0;
 };
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+enum class AnimPlayStatusFlag {
+    kFadingOut = 1 << 0,
+    kFadingIn = 1 << 1
+};
+
+struct TransitionPlayData {
+    float m_totalTime;
+    float m_fadeInTime;
+    float m_fadeOutTime;
+};
+
+/// @brief Play data representing an animation that is to be blended
+struct AnimationPlayData {
+    AnimationPlayData(const std::shared_ptr<ResourceHandle>& animHandle, const AnimationSettings& settings,
+        const AnimationPlaybackMode& mode, const Timer& timer, size_t statusFlags);
+    ~AnimationPlayData();
+
+    bool isFadingIn() const {
+        return m_statusFlags & (size_t)AnimPlayStatusFlag::kFadingIn;
+    }
+
+    bool isFadingOut() const {
+        return m_statusFlags & (size_t)AnimPlayStatusFlag::kFadingOut;
+    }
+
+    std::shared_ptr<ResourceHandle> m_animationHandle;
+    AnimationSettings m_settings;
+    AnimationPlaybackMode m_playbackMode;
+
+    ///// @brief The motion associated with this animation
+    //Motion* m_motion = nullptr;
+
+    TransitionPlayData m_transitionData;
+
+    /// @brief Matches the timer of the motion that generated this play data
+    Timer m_timer;
+
+    /// @brief Transition timer, used when animation is fading in or out
+    Timer m_transitionTimer;
+
+    /// @brief Status flag to determine whether or not a clip is transitioning and needs to be weighted accordingly
+    size_t m_statusFlags = 0;
+};
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -164,14 +188,14 @@ public:
     /// @name Properties
     /// @{
 
-    inline std::vector<Vector3g>& translations() { return m_translations; }
-    inline const std::vector<Vector3g>& translations() const { return m_translations; }
+    inline std::vector<Vector3>& translations() { return m_translations; }
+    inline const std::vector<Vector3>& translations() const { return m_translations; }
 
     inline std::vector<Quaternion>& rotations() { return m_rotations; }
     inline const std::vector<Quaternion>& rotations() const { return m_rotations; }
 
-    inline std::vector<Vector3g>& scales() { return m_scales; }
-    inline const std::vector<Vector3g>& scales() const { return m_scales; }
+    inline std::vector<Vector3>& scales() { return m_scales; }
+    inline const std::vector<Vector3>& scales() const { return m_scales; }
 
     /// @}
 
@@ -187,7 +211,7 @@ public:
     inline size_t size() const { return m_translations.size(); }
 
     /// @brief Interpolate between the given two frame indices with the given weight
-    void interpolate(size_t first, size_t second, float weight, BlendSet& out) const;
+    void interpolate(size_t first, size_t second, float weight, AnimationFrameData& out) const;
 
     /// @}
 
@@ -197,61 +221,9 @@ private:
     /// @name Private Members
     /// @{
 
-    std::vector<Vector3g> m_translations;
+    std::vector<Vector3> m_translations;
     std::vector<Quaternion> m_rotations;
-    std::vector<Vector3g> m_scales;
-
-    /// @}
-};
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////
-/// @class SkeletonPose
-class SkeletonPose {
-public:
-    //--------------------------------------------------------------------------------------------
-    /// @name Static
-    /// @{
-
-    /// @}
-
-    //--------------------------------------------------------------------------------------------
-    /// @name Constructors/Destructor
-    /// @{
-
-    SkeletonPose();
-    SkeletonPose(Model* model, BlendPose&& frames);
-    ~SkeletonPose();
-
-    /// @}
-
-    //---------------------------------------------------------------------------------------
-    /// @name Public Methods
-    /// @{
-
-    /// @brief Iterate over node hierarchy to generate a skeletal pose for an animation frame
-    void getBoneTransforms(std::vector<Matrix4x4g>& outBoneTransforms, bool forceBlend = false);
-
-    /// @}
-
-private:
-    friend class AnimationState;
-
-    void processNodeHierarchy(SkeletonJoint& node, Transform& parentTransform,
-        std::vector<Matrix4x4g>& outBoneTransforms);
-
-
-    //---------------------------------------------------------------------------------------
-    /// @name Private Members
-    /// @{
-
-    BlendPose m_blendPose;
-
-    Model* m_model;
-
-    static QMutex POSE_MUTEX;
-
-    static Transform IDENTITY;
+    std::vector<Vector3> m_scales;
 
     /// @}
 };
@@ -259,19 +231,17 @@ private:
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 /// @class Animation
-class Animation : public Resource
-{
+class Animation : public Resource {
 public:
 
     static ThreadPool ANIMATION_THREADPOOL;
-
 
     //---------------------------------------------------------------------------------------
     /// @name Constructors/Destructorrs
 
     /// @{
     //Animation();
-    Animation(const QString& uniqueName);
+    Animation(const GString& uniqueName);
     ~Animation();
 
     /// @}
@@ -279,6 +249,14 @@ public:
     //---------------------------------------------------------------------------------------
     /// @name Public Methods
     /// @{
+
+    /// @brief The times for each animation frame, in number of ticks
+    const std::vector<float>& frameTimes() const { return m_times; }
+
+    /// @brief Get the type of resource stored by this handle
+    virtual Resource::ResourceType getResourceType() const override {
+        return Resource::kAnimation;
+    }
 
     /// @brief Return duration in seconds of the animation
     float getTimeDuration() const;
@@ -288,14 +266,22 @@ public:
 
     /// @brief Return map of bone transforms at the given animation time (in seconds)
     /// @details Transform vector is ordered by bone ID
+    /// @params[in] clipIndex the index of the clip in the blend queue for which the frame is being retrieved
     /// Speed factor is multiplicative
     /// Returns false if done playing
     void getAnimationFrame(float timeInSec, 
         const AnimationSettings& settings,
         AnimationPlaybackMode mode,
-        int numPlays,
         bool& isDonePlaying,
-        BlendPose& outFrames);
+        BlendSet& outFrames,
+        size_t clipIndex = 0);
+
+    /// @brief Get the animation time from the given inputs
+    float getAnimationTime(float timeInSec,
+        const AnimationSettings& settings,
+        AnimationPlaybackMode mode,
+        bool& isDonePlaying) const;
+
 
     /// @brief What to do on removal from resource cache
     void onRemoval(ResourceCache* cache = nullptr) override;
@@ -311,16 +297,13 @@ public:
     /// @note Animations may exist for nodes without bones, so a vector ordered by bones is not sufficient
     std::vector<NodeAnimation> m_nodeAnimations;
 
-    /// @brief Map of node names to their respective bone indices in each pose
-    std::unordered_map<QString, int> m_boneIndices;
-
     /// @brief Tick-rate of the animation
     double m_ticksPerSecond = 0;
 
     /// @brief Animation duration (in number of frames)
     double m_durationInTicks;
 
-    /// @brief Times for each frame of the animation (assumed to be the same for T, S, R
+    /// @brief Time in ticks for each frame of the animation (assumed to be the same for T, S, R)
     std::vector<float> m_times;
 
     /// @brief The number of animations that correspond to nodes without bones
@@ -333,15 +316,9 @@ private:
     /// @name Private Methods
     /// @{
 
-    /// @brief Get the animation time from the given inputs
-    float getAnimationTime(float timeInSec,
-        const AnimationSettings& settings,
-        AnimationPlaybackMode mode,
-        int numPlays,
-        bool& isDonePlaying) const;
-
     /// @brief Get neighboring frames
-    void interpolatePose(float animationTime, BlendPose& outFrames) const;
+    /// @param[in] offset The offset in outFrames at which to insert node animation attributes
+    void getInterpolatedFrame(float animationTime, BlendSet& outFrames, size_t offset = 0) const;
 
     /// @brief Return the index of the TRS prior to the given time
     size_t getFrameIndex(float time) const;
@@ -364,8 +341,7 @@ public:
     //---------------------------------------------------------------------------------------
     /// @name Constructors/Destructor
     AnimationClip(CoreEngine* engine, const QJsonValue& json);
-    AnimationClip(const QString& name, const std::shared_ptr<ResourceHandle>& animation,
-        CoreEngine* engine);
+    AnimationClip(const GString& name, const std::shared_ptr<ResourceHandle>& animation);
     ~AnimationClip();
 
     /// @}
@@ -373,8 +349,17 @@ public:
     //---------------------------------------------------------------------------------------
     /// @name Properties
 
+    const std::shared_ptr<ResourceHandle>& animationHandle() const {
+        return m_animationHandle;
+    }
+    void setAnimationHandle(const std::shared_ptr<ResourceHandle>& animationHandle) {
+        m_animationHandle = animationHandle;
+    }
+
     /// @property Settings
     AnimationSettings& settings() { return m_settings; }
+    const AnimationSettings& settings() const { return m_settings; }
+
 
     /// @brief Number of node animations that do not have corresponding bones
     size_t numNonBones() const { return animation()->m_numNonBones; }
@@ -388,8 +373,11 @@ public:
     /// @brief Set the duration of the clip in seconds
     void setDuration(float secs);
 
-    /// @brief Return skeletal pose at the given animation time (in seconds)
-    void getAnimationFrame(float timeInSec, BlendPose& outFrames);
+    ///// @brief Return skeletal pose at the given animation time (in seconds)
+    //void getAnimationFrame(float timeInSec, bool& isDonePlaying, 
+    //    BlendSet& outFrames, 
+    //    AnimationPlaybackMode mode,
+    //    size_t clipIndex) const;
 
     /// @}
 
@@ -401,7 +389,7 @@ public:
     virtual QJsonValue asJson() const override;
 
     /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
+    virtual void loadFromJson(const QJsonValue& json, const SerializationContext& context = SerializationContext::Empty()) override;
 
     /// @}
 
@@ -431,211 +419,19 @@ private:
     /// @{
 
     /// @brief Resource handle for the animation
-    std::shared_ptr<ResourceHandle> m_animationHandle = nullptr;
+    /// @details Made mutable so that animation can be loaded in during getAnimationFrame if not yet assigned
+    mutable std::shared_ptr<ResourceHandle> m_animationHandle = nullptr;
 
     /// @brief Cache animation handle name for deferred assignment
-    QString m_animationHandleName;
+    GString m_animationHandleName;
 
     AnimationSettings m_settings;
 
-    /// @brief Playback mode for the animation state
-    AnimationPlaybackMode m_playbackMode = AnimationPlaybackMode::kLoop;
-
     /// @brief Number of plays, used for Loop and PingPong modes
-    int m_numPlays = -1;
-
-    /// @brief Whether or not the clip is done playing
-    bool m_isDone;
-
-    /// @brief Pointer to the core engine
-    CoreEngine* m_engine;
-
+    //int m_numPlays = -1;
 
     /// @}
 };
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////
-/// @class AnimationState
-/// @brief Instantiation of an animation
-class AnimationState: public Object, public Serializable {
-public:
-    AnimationState(const QString& name, CoreEngine* engine);
-    ~AnimationState();
-
-    //---------------------------------------------------------------------------------------
-    /// @name Public Methods
-    /// @{
-
-    /// @brief Add an animation clip (base animation)
-    void addClip(std::shared_ptr<ResourceHandle> animation);
-    void addClip(AnimationClip* clip);
-
-    /// @brief Add a layer (parallel-playing state)
-    void addLayer(AnimationClip* state);
-
-    /// @brief Return skeletal pose at the given animation time (in seconds)
-    void getAnimationFrame(Model* model, float timeInSec, bool& isDone, 
-        SkeletonPose& outSkeletalPose);
-
-    /// @}
-
-    //-----------------------------------------------------------------------------------------------------------------
-    /// @name Serializable overrides
-    /// @{
-
-    /// @brief Outputs this data as a valid json string
-    virtual QJsonValue asJson() const override;
-
-    /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
-
-    /// @}
-
-    //---------------------------------------------------------------------------------------
-    /// @name GB Object Properties 
-    /// @{
-
-    /// @property className
-    virtual const char* className() const { return "AnimationState"; }
-
-    /// @property namespaceName
-    virtual const char* namespaceName() const { return "Gb::AnimationState"; }
-    /// @}
-
-private:
-    //---------------------------------------------------------------------------------------
-    /// @name Private Methods
-    /// @{
-
-    /// @}
-
-    //---------------------------------------------------------------------------------------
-    /// @name Private Members
-    /// @{
-
-    // TODO: Maybe 
-    // See: https://www.gamasutra.com/view/feature/131863/animation_blending_achieving_.php
-    /// @brief Animation layers to blend with this animation
-    /// @note Useful for things like injuries, carrying different weapons, etc.
-    std::unordered_map<QString, AnimationClip*> m_layers;
-
-    /// @brief Pointers to animations for this state may or may not be getting blended)
-    std::unordered_map<QString, AnimationClip*> m_clips;
-
-    /// @brief Child sub-state of the current state
-    //AnimationState* m_parent = nullptr;
-    AnimationState* m_child = nullptr;
-
-    //TransitionSettings m_transitionSettings;
-
-    /// @brief Pointer to the core engine
-    CoreEngine* m_engine;
-
-    /// @}
-};
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////
-/// @class AnimationController
-/// @brief Class representing a set of controllable animations
-class AnimationController : public Object, public Serializable {
-public:
-    //--------------------------------------------------------------------------------------------
-    /// @name Constructors/Destructor
-    /// @{
-
-    AnimationController(CoreEngine* engine, const QJsonValue& json);
-    AnimationController(CoreEngine* engine, const std::shared_ptr<ResourceHandle>& model);
-    ~AnimationController();
-
-    /// @}
-
-    //--------------------------------------------------------------------------------------------
-    /// @name Public Methods
-    /// @{
-
-    const std::shared_ptr<AnimationProcess>& process() { return m_process; }
-
-    /// @brief Get model for the animation controller
-    std::shared_ptr<Model> getModel() const;
-
-    /// @brief Add state to the controller
-    void addState(AnimationState* state);
-
-    /// @property isPlaying
-    bool isPlaying() const { return m_isPlaying; }
-    void setPlaying(bool play) { m_isPlaying = play; }
-
-    /// @brief Set uniforms in the given draw command
-    void bindUniforms(DrawCommand& drawCommand);
-    void bindUniforms(ShaderProgram& shaderProgram);
-
-    /// @}
-
-    //-----------------------------------------------------------------------------------------------------------------
-    /// @name Serializable overrides
-    /// @{
-
-    /// @brief Outputs this data as a valid json string
-    virtual QJsonValue asJson() const override;
-
-    /// @brief Populates this data using a valid json string
-    virtual void loadFromJson(const QJsonValue& json) override;
-
-    /// @}
-
-    //---------------------------------------------------------------------------------------
-    /// @name GB Object Properties 
-    /// @{
-
-    /// @property className
-    virtual const char* className() const { return "AnimationController"; }
-
-    /// @property namespaceName
-    virtual const char* namespaceName() const { return "Gb::AnimationController"; }
-    /// @}
-
-protected:
-
-    friend class AnimationProcess;
-
-
-    //--------------------------------------------------------------------------------------------
-    /// @name Private Methods
-    /// @
-
-    void initializeProcess();
-
-    /// @}
-
-    //--------------------------------------------------------------------------------------------
-    /// @name Private Members
-    /// @
-
-    /// @brief Whether or not the controller is playing
-    bool m_isPlaying = true;
-
-    /// @brief The model being used by the controller
-    std::shared_ptr<ResourceHandle> m_modelHandle;
-
-    /// @brief The current animation state
-    AnimationState* m_currentState = nullptr;
-
-    /// @brief The process for running the animation controller
-    std::shared_ptr<AnimationProcess> m_process;
-
-    /// @brief Pointer to the core engine
-    CoreEngine* m_engine;
-
-    /// @brief Map of all animation states in the controller
-    std::unordered_map<QString, AnimationState*> m_stateMap;
-
-    /// @}
-};
-
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 } // End namespaces

@@ -12,22 +12,14 @@
 
 namespace Gb {
 /////////////////////////////////////////////////////////////////////////////////////////////
-bool CompareBySortingLayer::operator()(const StrongProcessPtr& a,
-    const StrongProcessPtr& b) const
-{
-    return a->getSortingLayer() < b->getSortingLayer();
-}
+/////////////////////////////////////////////////////////////////////////////////////////////
+// ProcessManager
 /////////////////////////////////////////////////////////////////////////////////////////////
 ProcessManager::ProcessManager(CoreEngine* engine, size_t initialThreadCount):
     Manager(engine, "ProcessManager"),
-    m_runProcesses(false),
-    m_deltaMs(0),
+    ProcessQueue(),
     m_threadPool(new QThreadPool())
 {
-    // Initialize sorting layer list 
-    SortingLayer* defaultLayer = new SortingLayer();
-    m_sortingLayers.emplace(defaultLayer->getName(), defaultLayer);
-
     // Initialize threads
     initializeThreads(initialThreadCount);
 }
@@ -35,128 +27,17 @@ ProcessManager::ProcessManager(CoreEngine* engine, size_t initialThreadCount):
 ProcessManager::~ProcessManager()
 {
     // Delete all sorting layers
-    for (const std::pair<QString, SortingLayer*> layerPair : m_sortingLayers) {
-        delete layerPair.second;
-    }
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-void ProcessManager::refreshProcessOrder()
-{
-    // Reorder process sets
-    ProcessSet tempSet;
-    for (const auto& process : m_processes) {
-        tempSet.insert(process);
-    }
-    m_processes = tempSet;
-
-    tempSet.clear();
-    for (const auto& process : m_processQueue) {
-        tempSet.insert(process);
-    }
-    m_processQueue = tempSet;
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-void ProcessManager::addSortingLayer()
-{
-    SortingLayer* newLayer = new SortingLayer();
-    newLayer->setName(newLayer->getUuid().createUniqueName("layer_"));
-    m_sortingLayers[newLayer->getName()] = newLayer;
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-bool ProcessManager::hasSortingLayer(const QString& label) const
-{
-    bool hasLabel;
-    if (m_engine->processManager()->sortingLayers().find(label) !=
-        m_engine->processManager()->sortingLayers().end()) {
-        hasLabel = true;
-    }
-    else {
-        hasLabel = false;
+    for (SortingLayer* layer : m_sortingLayers) {
+        delete layer;
     }
 
-    return hasLabel;
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-void ProcessManager::removeSortingLayer(const QString& label)
-{
-    // Find all processes with sorting layer and set to default
-    for (const auto& process : m_processes) {
-        if (process->getSortingLayer().getName() == label) {
-            process->setSortingLayer(m_sortingLayers["default"]);
-        }
-    }
-    for (const auto& process : m_processQueue) {
-        if (process->getSortingLayer().getName() == label) {
-            process->setSortingLayer(m_sortingLayers["default"]);
-        }
-    }
+    // Delete all dedicated process threads
+    //for (ProcessThread* pt : m_dedicatedThreads) {
+    //    delete pt;
+    //}
 
-    refreshProcessOrder();
-
-    // Delete the sorting layer
-    SortingLayer* layer = m_sortingLayers[label];
-    m_sortingLayers.erase(label);
-    delete layer;
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-void ProcessManager::updateProcesses(unsigned long deltaMs)
-{
-    m_deltaMs = deltaMs;
-
-    ProcessSet::iterator it = m_processes.begin();
-    while (it != m_processes.end())
-    {
-        // Grab the next process
-        StrongProcessPtr currentProcess = (*it);
-
-        // Run process
-        bool isDead = currentProcess->runProcess(deltaMs);
-
-        // Only queue process to run again if it hasn't died
-        if (!isDead) {
-            m_processQueue.emplace(currentProcess);
-        }
-        // Process is destroyed if it is dead
-
-        // Increment iterator 
-        ++it;
-    }
-
-    // Swap process queue with iterable list
-    m_processes.swap(m_processQueue);
-    m_processQueue.clear();
-
-    return;
-}
-/////////////////////////////////////////////////////////////////////////////////////////////
-void ProcessManager::fixedUpdateProcesses(unsigned long deltaMs)
-{
-    m_deltaMs = deltaMs;
-
-    ProcessSet::iterator it = m_processes.begin();
-    while (it != m_processes.end())
-    {
-        // Grab the next process
-        StrongProcessPtr currentProcess = (*it);
-
-        // Run process fixed update for process
-        bool isDead = currentProcess->runFixed(deltaMs);
-
-        // Only queue process to run again if it hasn't died
-        if (!isDead) {
-            m_processQueue.emplace(currentProcess);
-        }
-        // Process is destroyed if it is dead
-
-        // Increment iterator 
-        ++it;
-    }
-
-    // Swap process queue with iterable list
-    m_processes.swap(m_processQueue);
-    m_processQueue.clear();
-
-    return;
+    // Delete thread pool
+    delete m_threadPool;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 WeakProcessPtr ProcessManager::attachProcess(StrongProcessPtr process, bool initialize)
@@ -164,9 +45,7 @@ WeakProcessPtr ProcessManager::attachProcess(StrongProcessPtr process, bool init
     // Handle threaded vs unthreaded processes
     if (!process->isThreaded()) {
         // Add unthreaded process to process list
-        m_processQueue.emplace(process);
-        if (initialize)
-            process->onInit();
+        ProcessQueue::attachProcess(process, initialize);
     }
     else {
         m_threadedProcessMutex.lock();
@@ -192,30 +71,25 @@ WeakProcessPtr ProcessManager::attachProcess(StrongProcessPtr process, bool init
 /////////////////////////////////////////////////////////////////////////////////////////////
 WeakProcessPtr ProcessManager::reattachProcess(StrongProcessPtr process)
 {
+    // UNTESTED
     // Return if threaded process
     if (process->isThreaded()) {
-#ifdef DEBUG_MODE
-        logError("Error, cannot safely reattach threaded process, nothing done");
-#endif
+        throw("Error, cannot safely reattach threaded process");
         return process;
     }
 
     // Find process in process set
-    ProcessSet::const_iterator iter =
+    ProcessVec::const_iterator iter =
         std::find_if(m_processes.begin(), m_processes.end(),
             [&](const StrongProcessPtr& process) {
         return process->getUuid() == process->getUuid();
     });
     if (iter == m_processes.end()) {
-//#ifdef DEBUG_MODE
         throw("Error, cannot reattach process that was never attached");
-//#else
-//        attachProcess(process);
-//#endif
     }
     else {
-        m_processQueue.erase(iter);
-        m_processQueue.emplace(process);
+        m_processes.erase(iter);
+        m_processQueue.emplace_back(process);
     }
 
     return process;
@@ -223,16 +97,10 @@ WeakProcessPtr ProcessManager::reattachProcess(StrongProcessPtr process)
 /////////////////////////////////////////////////////////////////////////////////////////////
 void ProcessManager::abortAllProcesses(bool immediate)
 {
-    if (m_processes.size()) {
-        auto processes = m_processes;
-        ProcessSet::iterator it = processes.begin();
-        while (it != processes.end())
-        {
-            abortProcess(*it, immediate);
-            ++it;
-        }
-    }
+    // Clear standard processes
+    ProcessQueue::abortAllProcesses(immediate);
 
+    // Clear threaded processes
     if (m_threadedProcesses.size()) {
         QMutexLocker locker(&m_threadedProcessMutex);
 
@@ -243,6 +111,16 @@ void ProcessManager::abortAllProcesses(bool immediate)
             abortProcess(*thrit, immediate);
             ++thrit;
         }
+    }
+
+    // Clear processes on dedicated threads
+    for (ProcessThread& thread : m_dedicatedThreads) {
+        if (!thread.isRunning()) {
+            continue;
+        }
+        thread.m_processMutex.lock();
+        thread.abortAllProcesses(true);
+        thread.m_processMutex.unlock();
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -260,22 +138,26 @@ QJsonValue ProcessManager::asJson() const
 
     // Add sorting layers to JSON
     QJsonArray sortingLayers;
-    for (const std::pair<QString, SortingLayer*> layerPair : m_sortingLayers) {
-        sortingLayers.append(layerPair.second->asJson());
+    for (const SortingLayer* layer : m_sortingLayers) {
+        if (layer->getName() != "default") {
+            // Don't save default layer
+            sortingLayers.append(layer->asJson());
+        }
     }
     json.insert("sortingLayers", sortingLayers);
 
     return json;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void ProcessManager::loadFromJson(const QJsonValue & json)
+void ProcessManager::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context);
     const QJsonObject& object = json.toObject();
     if (object.contains("sortingLayers")) {
         const QJsonArray& sortingLayers = object.value("sortingLayers").toArray();
         for (const auto& layerJson : sortingLayers) {
             SortingLayer* newLayer = new SortingLayer(layerJson);
-            m_sortingLayers.emplace(newLayer->getName(), newLayer);
+            m_sortingLayers.emplace_back(newLayer);
         }
     }
 }
@@ -300,6 +182,10 @@ void ProcessManager::initializeThreads(unsigned int threadCount)
 
     THREAD_COUNT += threadCount;
     m_engine->THREAD_COUNT += threadCount;
+
+    // Initialize dedicate threads
+    // TODO: Create threads for things other than animations
+    m_dedicatedThreads[(int)DedicatedThreadType::kAnimation].initialize();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 unsigned int ProcessManager::loadProcessCount()
@@ -350,10 +236,10 @@ void ProcessManager::deleteThreadedProcess(const Uuid& uuid){
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void ProcessManager::logMessage(const QString & message, LogLevel logLevel)
+void ProcessManager::logMessage(const GString & message, LogLevel logLevel)
 {
     QApplication::postEvent(m_engine,
-        new LogEvent(namespaceName(), message, Process::getThreadID(), logLevel));
+        new LogEvent(namespaceName(), message, Process::GetThreadID(), logLevel));
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 void ProcessManager::abortProcess(StrongProcessPtr process, bool immediate)
@@ -366,7 +252,7 @@ void ProcessManager::abortProcess(StrongProcessPtr process, bool immediate)
             process->onAbort();
 
             // Remove from process set if not a threaded process
-            ProcessSet::const_iterator iter = std::find_if(m_processes.begin(),
+            ProcessVec::const_iterator iter = std::find_if(m_processes.begin(),
                 m_processes.end(),
                 [&](StrongProcessPtr p) {
                 return p->getUuid() == process->getUuid();

@@ -83,8 +83,10 @@ QJsonValue Label::asJson() const
     return object;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Label::loadFromJson(const QJsonValue & json)
+void Label::loadFromJson(const QJsonValue& json, const SerializationContext& context)
 {
+    Q_UNUSED(context)
+
     Glyph::loadFromJson(json);
     QJsonObject object = json.toObject();
     m_text = object.value("text").toString("Default Text");
@@ -92,7 +94,7 @@ void Label::loadFromJson(const QJsonValue & json)
     m_fontFace = object.value("font").toString("arial");
 
     if (object.contains("color")) {
-        m_color = Color(Vector4g(object.value("color")));
+        m_color = Color(Vector4(object.value("color")));
     }
     
     populateVertexData();
@@ -113,8 +115,7 @@ Label::Label(CanvasComponent * canvas,
 {
     // Initialize render settings to enable blending and disable face culling
     m_renderSettings.addDefaultBlend();
-    auto cullFaceSetting = std::make_shared<CullFaceSetting>(false);
-    m_renderSettings.addSetting(cullFaceSetting);
+    m_renderSettings.addSetting<CullFaceSetting>(false);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 FontFace * Label::getFontFace()
@@ -136,8 +137,8 @@ void Label::populateVertexData()
     float x = 0.0f; // m_coordinates.x() * widgetSize.width();
     float y = 0.0f; // m_coordinates.y() * widgetSize.height();
     float startX = x;
-    std::vector<Vector3g> vertices;
-    std::vector<Vector2g> quadUVs{
+    std::array<Vector3, 6> vertices;
+    std::array<Vector2, 6> quadUVs{ {
             { 0.0, 0.0 },
             { 0.0, 1.0 },
             { 1.0, 1.0 },
@@ -145,8 +146,8 @@ void Label::populateVertexData()
             { 0.0, 0.0 },
             { 1.0, 1.0 },
             { 1.0, 0.0 }
-    };
-    std::vector<Vector2g> uvs;
+    } };
+    std::array<Vector2, 6> uvs;
     int count = 0;
 
     FontFace* face = getFontFace();
@@ -207,7 +208,7 @@ void Label::populateVertexData()
         float h = ch.m_size.y() * yScale;
 
         // Update VBO for each character
-        vertices = {
+        vertices = { {
             { xpos,     ypos + h,   0.0f },
             { xpos,     ypos,       0.0f },
             { xpos + w, ypos,       0.0f },
@@ -215,7 +216,7 @@ void Label::populateVertexData()
             { xpos,     ypos + h,   0.0f },
             { xpos + w, ypos,       0.0f },
             { xpos + w, ypos + h,   0.0f }
-        };
+        } };
 
         // Generate UVs (coordinates are (0, 0) in top-left of texture)
         uvs = quadUVs;
@@ -229,7 +230,7 @@ void Label::populateVertexData()
         for (size_t i = 0; i < uvs.size(); i++) {
             float uv_x = uvs[i].x();
             float uv_y = uvs[i].y();
-            uvs[i] = Vector2g(uv_x * uv_x_scale + uv_origin.x(),
+            uvs[i] = Vector2(uv_x * uv_x_scale + uv_origin.x(),
                 uv_y * uv_y_scale + uv_origin.y());
         }
 
@@ -244,7 +245,7 @@ void Label::populateVertexData()
             uvs.begin(),
             uvs.end());
 
-        vertices.clear();
+        //vertices.clear();
 
         for (int i = 0; i < 6; i++) {
             m_vertexData->m_indices.push_back(count++);
@@ -316,22 +317,24 @@ void Label::bindUniforms(ShaderProgram& shaderProgram)
     Glyph::bindUniforms(shaderProgram);
 
     // Set text color
-    Vector3g color = m_color.toVector3g();
-    shaderProgram.setUniformValue("textColor", std::move(color));
+    Vector3 color = m_color.toVector3g();
+    shaderProgram.setUniformValue("textColor", color);
 
     // Set texture uniform
     shaderProgram.setUniformValue("guiTexture", 0);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Label::bindTextures(ShaderProgram* shaderProgram)
+void Label::bindTextures(ShaderProgram* shaderProgram, RenderContext* context)
 {
     Q_UNUSED(shaderProgram);
+    Q_UNUSED(context);
     getFontFace()->bindTexture(m_fontSize);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
-void Label::releaseTextures(ShaderProgram* shaderProgram)
+void Label::releaseTextures(ShaderProgram* shaderProgram, RenderContext* context)
 {
     Q_UNUSED(shaderProgram);
+    Q_UNUSED(context);
     getFontFace()->releaseTexture(m_fontSize);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////

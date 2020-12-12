@@ -33,8 +33,8 @@ public:
     Color();
     Color(const std::vector<real_g>& vec);
     Color(const std::vector<int>& vec);
-    Color(const Vector3g& vec);
-    Color(const Vector4g& vec);
+    Color(const Vector3& vec);
+    Color(const Vector4& vec);
     Color(int r, int g, int b, int a = 255);
     Color(const QColor& color);
 	~Color();
@@ -46,9 +46,9 @@ public:
 
     std::vector<int> toVector4i() const;
 
-    Vector4g toVector4g() const;
+    Vector4 toVector4g() const;
 
-    Vector3g toVector3g() const;
+    Vector3 toVector3g() const;
 
 	/// @}
 protected:

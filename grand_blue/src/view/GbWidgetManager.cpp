@@ -2,13 +2,11 @@
 
 #include <QMenu>
 
-#include "../../third_party/pythonqt/gui/PythonQtScriptingConsole.h"
 
 #include "../GbMainWindow.h"
 
 #include "GL/GbGLWidget.h"
 #include "../core/rendering/renderer/GbMainRenderer.h"
-#include "nodes/GbGraphWidget.h"
 #include "tree/GbSceneTreeWidget.h"
 #include "tree/GbResourceWidgets.h"
 #include "tree/GbComponentWidget.h"
@@ -24,7 +22,6 @@ namespace View {
 WidgetManager::WidgetManager(Gb::CoreEngine* core, Gb::MainWindow* window) :
 	Manager(core, "WidgetManager"),
 	m_mainWindow(window),
-    m_graphWidget(nullptr),
     m_sceneTreeWidget(nullptr),
     m_componentWidget(nullptr)
 {
@@ -39,7 +36,6 @@ WidgetManager::WidgetManager(Gb::CoreEngine* core, Gb::MainWindow* window) :
 WidgetManager::~WidgetManager()
 {
     delete mainGLWidget();
-    delete m_graphWidget;
     delete m_sceneTreeWidget;
     delete m_componentWidget;
 }
@@ -108,6 +104,15 @@ void WidgetManager::initializeDefault()
     m_glWidgets[mainName] = new GLWidget(mainName, m_engine, m_mainWindow);
 
     m_mainWindow->setCentralWidget(m_glWidgets[mainName]);
+#ifdef DEBUG_MODE
+    bool hasMouseTracking = m_mainWindow->centralWidget()->hasMouseTracking();
+    if (!hasMouseTracking) {
+        throw("Error, GL Widget not tracking mouse");
+    }
+    //for (QWidget* child : m_mainWindow->findChildren<QWidget*>()) {
+    //    child->setMouseTracking(true);
+    //}
+#endif
 
 #ifdef DEVELOP_MODE
     // Initialize scene tree widget
@@ -148,13 +153,12 @@ void WidgetManager::initializeDefault()
     QWidget *topFiller = new QWidget;
     topFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    m_mainWindow->m_infoLabel = new QLabel(tr("<i>Running in debug mode</i>"));
-    m_mainWindow->m_infoLabel->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
-    m_mainWindow->m_infoLabel->setAlignment(Qt::AlignCenter);
+    //m_mainWindow->m_infoLabel = new QLabel(tr("<i>Running in debug mode</i>"));
+    //m_mainWindow->m_infoLabel->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
+    //m_mainWindow->m_infoLabel->setAlignment(Qt::AlignCenter);
 
     // Need to ignore mouse events
-    //m_mainWindow->m_infoLabel->setFocusPolicy(Qt::NoFocus);
-    m_mainWindow->m_infoLabel->setAttribute(Qt::WA_TransparentForMouseEvents);
+    //m_mainWindow->m_infoLabel->setAttribute(Qt::WA_TransparentForMouseEvents);
 
     QWidget *bottomFiller = new QWidget;
     bottomFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -162,7 +166,7 @@ void WidgetManager::initializeDefault()
     QVBoxLayout *layout = new QVBoxLayout;
     layout->setContentsMargins(5, 5, 5, 5);
     layout->addWidget(topFiller);
-    layout->addWidget(m_mainWindow->m_infoLabel);
+    //layout->addWidget(m_mainWindow->m_infoLabel);
     layout->addWidget(bottomFiller);
     mainGLWidget()->setLayout(layout);
 #endif

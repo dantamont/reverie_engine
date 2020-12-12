@@ -14,6 +14,8 @@
 #include "../../geometry/GbMatrix.h"
 #include "../../animation/GbAnimation.h"
 #include "../../containers/GbContainerExtensions.h"
+#include "../../containers/GbString.h"
+#include "../../geometry/GbCollisions.h"
 
 namespace Gb {
 class ObjReader;
@@ -33,18 +35,20 @@ class VertexArrayData;
 
 /// @class Bone
 /// See: https://gamedev.stackexchange.com/questions/26382/i-cant-figure-out-how-to-animate-my-loaded-model-with-assimp
-class Bone : public Object {
+class Bone {
 public:
     //---------------------------------------------------------------------------------------
     /// @name Constructors/Destructor
     /// @{
     Bone();
-    Bone(const QString& name, int index);
+    Bone(int index);
     /// @}
 
     //---------------------------------------------------------------------------------------
-    /// @name Methods
+    /// @name Operators
     /// @{
+
+    Bone& operator=(const Bone& other);
 
     /// @}
 
@@ -53,16 +57,19 @@ public:
     /// @{
     friend class Mesh;
 
+    /// @brief Index of the bone in skeleton's vector of bone nodes
     int m_index = -1;
 
     /// @brief the bone offset matrix (inverse bind pose transform), 
     /// @details defines conversion from mesh space to local bone space from mesh space
     // Local space (or bone space) is in relation to parent joint
     // Model space is in relation to model's origin
-    // The bind (pose) transform is the position and orientation of the joint in model space
+    // The bind (pose) transform is the position and orientation of the joint in model space, i.e.,
+    // the bind pose is the T-pose of the skeleton, and the bind pose matrix of a joint describes the joint
+    // transform in T-pose
     // The inverse bind pose transform is the inverse of this, so it brings the bone position and
     // orientation to the origin
-    Matrix4x4g m_offsetMatrix; 
+    Matrix4x4g m_invBindPose; 
 
     /// @}
 };
@@ -80,14 +87,15 @@ public:
     enum JointFlag {
         kIsAnimated = 1 << 0
     };
+    typedef QFlags<JointFlag> JointFlags;
 
     /// @}
 
     //---------------------------------------------------------------------------------------
     /// @name Constructors and Destructors
     /// @{
-    SkeletonJoint(const QString& uniqueName, Skeleton* skeleton);
-    SkeletonJoint(const SkeletonJoint& meshNode, Skeleton* skeleton, SkeletonJoint* parent, bool justBones = false);
+    SkeletonJoint(const GString& uniqueName);
+    SkeletonJoint();
     ~SkeletonJoint();
     /// @}
 
@@ -95,18 +103,29 @@ public:
     /// @name Methods
     /// @{
 
+    /// @brief Get index in parent skeleton
+    size_t getIndex(const Skeleton& skeleton) const;
+
+    /// @brief Whether the joint has the specified child index
+    bool hasChild(const size_t& child) const {
+        for (const size_t& c : m_children) {
+            if (c == child) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     /// @brief Whether or not the node has a bone or not
     bool hasBone() const { return m_bone.m_index >= 0; }
 
     /// @brief Whether or not the node is animated
-    bool isAnimated() const { return m_jointFlags.testFlag(kIsAnimated); }
-    void setAnimated(bool animated) { m_jointFlags.setFlag(kIsAnimated, animated); }
-
-    /// @brief Add a child node to this node
-    void addChild(const QString& uniqueName);
+    bool isAnimated() const;
+    void setAnimated(bool animated);
 
     /// @brief Siblings of this node, including this node
-    std::vector<SkeletonJoint*>& siblings() const { return m_parent->children(); }
+    const std::vector<size_t>& siblings(const Skeleton& skeleton) const { return parent(skeleton)->children(); }
 
     /// @}
 
@@ -114,6 +133,7 @@ public:
     /// @name Properties 
     /// @{
 
+    /// @brief The index associated with this joint in vector of skeletal animation transforms
     int skeletonTransformIndex() const {
         return m_skeletonTransformIndex;
     }
@@ -121,22 +141,20 @@ public:
         m_skeletonTransformIndex = idx;
     }
 
-    SkeletonJoint* parent() { return m_parent; }
-    const SkeletonJoint* parent() const { return m_parent; }
+    /// @brief Get parent joint, given the skeleton
+    SkeletonJoint* parent(Skeleton& skeleton);
+    const SkeletonJoint* parent(const Skeleton& skeleton) const;
 
-    const Skeleton& skeleton() const { return *m_skeleton; }
-    Skeleton& skeleton() { return *m_skeleton; }
-
-    const Transform& getTransform() const { return m_transform; }
-    Transform& transform() { return m_transform; }
+    const TransformMatrices& getTransform() const { return m_transform; }
+    TransformMatrices& transform() { return m_transform; }
 
     /// @brief The bone corresponding to this node
     const Bone& bone() const { return m_bone; }
     Bone& bone() { return m_bone; }
 
     /// @brief Children
-    std::vector<SkeletonJoint*>& children() { return m_children; }
-    const std::vector<SkeletonJoint*>& children() const { return m_children; }
+    std::vector<size_t>& children() { return m_children; }
+    const std::vector<size_t>& children() const { return m_children; }
 
     /// @}
 
@@ -166,6 +184,7 @@ private:
     friend class ModelReader;
     friend class Animation;
     friend class NodeAnimation;
+    friend class Skeleton;
 
     /// @}
 
@@ -173,16 +192,29 @@ private:
     /// @name Private methods 
     /// @{
 
-    void addChild(SkeletonJoint* node);
+    /// @brief Initialize the joint with the specified parameters
+    /// @note Included to avoid difficulties with recursive construction
+    /// @param[in] copyNode the node to copy attributes from onto this one
+    /// @param[in] otherSkeleton the skeleton that copyNode belongs to
+    /// @param[in] skeleton the skeleton that this node belongs to
+    /// @param[in] parentIndx the index of this node in its parent skeleton's m_nodes list
+    /// @param[in] uninitializedNodes a vector of nodes of the parent skeleton that have yet to be assigned
+    /// @param[in] justBones whether or not to limit child copy to those with bones
+    void initializeFromJoint(const SkeletonJoint& copyNode,
+        const Skeleton& otherSkeleton,
+        Skeleton& skeleton, 
+        size_t parentIndex, 
+        std::vector<size_t>& uninitializedNodes,
+        bool justBones = false);
+
+
+    //void addChild(SkeletonJoint* node);
 
     /// @}
 
     //---------------------------------------------------------------------------------------
     /// @name Private members 
     /// @{
-
-    /// @brief Pointer to the base skeleton
-    Skeleton* m_skeleton;
 
     /// @brief Bone corresponding to this mesh node
     Bone m_bone;
@@ -191,20 +223,18 @@ private:
     int m_skeletonTransformIndex;
 
     /// @brief Whether or not the joint has animation data associated with it
-    QFlags<JointFlag> m_jointFlags;
+    size_t m_jointFlags = 0;
 
     /// @brief Transform of the node
     /// FIXME: Actually implement this in rendering
-    Transform m_transform;
+    TransformMatrices m_transform;
 
-    /// @brief Direct children of this mesh node
-    std::vector<SkeletonJoint*> m_children;
+    /// @brief index of  the parent node in skeleton's node list
+    int m_parent = -1;
 
-    ///// @brief Map of mesh data
-    //std::unordered_map<QString, VertexArrayData*> m_meshData;
+    /// @brief Direct children of this mesh node, stored as indices in skeleton's node array
+    std::vector<size_t> m_children;
 
-    /// @brief Pointer to the parent mesh node
-    SkeletonJoint* m_parent = nullptr;
 
     /// @}
 };
@@ -220,7 +250,7 @@ public:
     /// @{
 
     /// @brief Skeleton name is name of root node
-    Skeleton(const QString& uniqueName);
+    Skeleton(const GString& uniqueName);
     Skeleton(const Skeleton& other);
     Skeleton(const Skeleton& other, bool justBones);
     ~Skeleton();
@@ -231,13 +261,24 @@ public:
     /// @name Public Methhods
     /// @{
 
+    const AABB& boundingBox() { return m_boundingBox; }
+
+    /// @brief Get the type of resource stored by this handle
+    virtual Resource::ResourceType getResourceType() const override {
+        return Resource::kSkeleton;
+    }
+
     void onRemoval(ResourceCache* cache = nullptr) override;
 
     /// @brief Whether or not the skeleton is malformed for inverse kinematics
     bool isMalformed() const;
 
-    const SkeletonJoint* root() const { return m_root; }
-    SkeletonJoint* root() { return m_root; }
+    const SkeletonJoint* root() const { 
+        return m_nodes.size() ? &m_nodes[0]: nullptr;
+    }
+    SkeletonJoint* root() { 
+        return m_nodes.size() ? &m_nodes[0] : nullptr;
+    }
 
     const std::vector<Matrix4x4g>& inverseBindPose() const { return m_inverseBindPose; }
 
@@ -245,25 +286,40 @@ public:
     void setGlobalInverseTransform(const Matrix4x4g& mat) { m_globalInverseTransform = mat; }
 
     /// @brief whether or not the skeleton has a root node
-    bool hasRoot() const { return m_root != nullptr; }
+    bool hasRoot() const { return m_nodes.size() > 0; }
 
     /// @brief Add root node if doesn't exist
-    void addRootNode(const QString& name);
+    void addRootNode(const GString& name);
 
     /// @brief Get the vector of nodes that have bones
-    const std::vector<SkeletonJoint*>& boneNodes() const { return m_boneNodes; }
+    const std::vector<size_t>& boneNodes() const { return m_boneNodes; }
 
-    const std::unordered_map<QString, SkeletonJoint*>& nodes() const { return m_nodes; }
+    /// @brief Get the number of bones in the skeleton
+    size_t numBones() const { return m_boneNodes.size(); }
+
+    /// @brief Get the vector of nodes in the skeleton
+    const std::vector<SkeletonJoint>& nodes() const { return m_nodes; }
 
     /// @brief Return hierarchy with just bones (root may not have a bone)
     Skeleton prunedBoneSkeleton() const;
 
     /// @brief Get the node with the given name
-    const SkeletonJoint* getNode(const QString& name) const { return m_nodes.at(name); }
-    SkeletonJoint* getNode(const QString& name) { return m_nodes.at(name); }
+    const SkeletonJoint& getNode(const GString& name) const;
+    SkeletonJoint& getNode(const GString& name);
+    SkeletonJoint& getNode(const size_t& idx);
+    const SkeletonJoint& getNode(const size_t& idx) const;
+
+    /// @brief Add a child node to the node at the specified index
+    /// @return Returns the index of the child node in m_nodes
+    size_t addChild(size_t parentIndex, const GString& uniqueName);
 
     /// @brief Return default pose of the skeleton
-    std::vector<Matrix4x4g> defaultPose() const;
+    /// @details This is just a list of identity matrices of the proper length.
+    /// @note To get the bind pose of the skeleton, inverse the inverseBindTransform for each bone in the vector
+    void identityPose(std::vector<Matrix4x4g>& outPose) const;
+
+    /// @brief Generate the bounding box for the skeleton
+    void generateBoundingBox();
 
     /// @}
 
@@ -282,10 +338,10 @@ private:
     
     /// @brief Recursive function to construct inverse bind pose
     void constructInverseBindPose();
-    void constructInverseBindPose(SkeletonJoint& node);
+    void constructInverseBindPose(const size_t& nodeIndex);
 
     /// @brief Recursive function for determining if skeleton is malformed
-    bool isMalformed(const SkeletonJoint* node) const;
+    bool isMalformed(const SkeletonJoint& node) const;
 
     /// @}
 
@@ -296,17 +352,17 @@ private:
     /// @brief global inverse transform of the skeleton
     Matrix4x4g m_globalInverseTransform;
 
-    /// @brief Pointer to the root joint
-    SkeletonJoint* m_root = nullptr;
-
     /// @brief Map of all joints
-    std::unordered_map<QString, SkeletonJoint*> m_nodes;
+    std::vector<SkeletonJoint> m_nodes;
 
-    /// @brief Vector of joints with bones
-    std::vector<SkeletonJoint*> m_boneNodes;
+    /// @brief Vector of joints with bones, stored as index in m_nodes vector
+    std::vector<size_t> m_boneNodes;
 
     /// @brief Inverse bind pose of the skeleton
     std::vector<Matrix4x4g> m_inverseBindPose;
+
+    /// @brief The AABB corresponding to the bind pose (t-pose) of the skeleton
+    AABB m_boundingBox;
 
     /// @}
 };

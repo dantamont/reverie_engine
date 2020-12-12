@@ -86,7 +86,7 @@ ConsoleTool::ConsoleTool(const QString& name, QWidget* parent) :
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void ConsoleTool::output(Gb::LogRecord& logRecord)
 {
-    if (Gb::Process::isMainThread()) {
+    if (Gb::Process::IsMainThread()) {
         // In the main thread, so output the record directly
         handleOutputRecord(logRecord);
     } 
@@ -148,7 +148,7 @@ void ConsoleTool::handleOutputRecord(const Gb::LogRecord& logRecord)
         textCursor.setCharFormat(charFormat);
 
         QString headerStr = QStringLiteral("%1  %2  %3");
-        const std::string* level_name = Gb::Logger::levelName(level);
+        const GString* level_name = Gb::Logger::levelName(level);
         if (level_name) {
             headerStr = headerStr.arg(level_name->c_str());
         } else {

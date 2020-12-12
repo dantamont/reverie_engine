@@ -265,7 +265,7 @@ void TestMatrix::square_addScale()
 {
     Gb::SquareMatrix<double, 3> A(std::vector<std::vector<double>>{ {1, 0, 0}, {0, 1, 0}, {0, 0, 1} });
 
-    Gb::Vector3 b(2, 3, 4);
+    Gb::Vector3d b(2, 3, 4);
     A.addScale(b);
 
     Gb::SquareMatrix<double, 3> C(std::vector<std::vector<double>>{ {2, 0, 0}, {0, 3, 0}, {0, 0, 4} });

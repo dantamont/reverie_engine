@@ -16,7 +16,7 @@ ColorWidget::ColorWidget(CoreEngine* core, Color& color, QWidget* parent):
     initialize();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-ColorWidget::ColorWidget(CoreEngine* core, Vector4g& color, QWidget* parent) :
+ColorWidget::ColorWidget(CoreEngine* core, Vector4& color, QWidget* parent) :
     ParameterWidget(core, parent),
     m_colorVector(&color)
 {

@@ -10,6 +10,7 @@
 #include <QJsonObject>
 
 // Internal
+#include "../containers/GbString.h"
 #include "GbFileReader.h"
 
 namespace Gb { 
@@ -32,6 +33,7 @@ public:
     /// @name Static
     /// @{   
 
+    static GString ToGString(const QJsonValue& json, bool verbose = false);
     static QString ToQString(const QJsonValue& json, bool verbose = false);
     static QJsonDocument ToJsonDocument(const QString& str);
     static QJsonObject ToJsonObject(const QString& str);

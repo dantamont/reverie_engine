@@ -16,10 +16,12 @@ namespace Gb {
 /////////////////////////////////////////////////////////////////////////////////////////////
 // VertexArrayData
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-VertexArrayData::VertexArrayData(const QString& filepath):
-    Object(filepath),
-    m_source(filepath)
+VertexArrayData::VertexArrayData():
+    Object(),
+    m_vao(false, false)
 {
+    // Make sure internal buffer vector can accomadate all types
+    m_attributeBuffers.resize((size_t)BufferAttributeType::kMAX_ATTRIBUTE_TYPE);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -43,35 +45,36 @@ unsigned int VertexArrayData::sizeInMegaBytes() const
     return ceil(sizeInBytes() / (1000.0 * 1000.0));
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-GL::BufferObject & VertexArrayData::getBuffer(GL::BufferObject::AttributeType type)
+GL::BufferObject & VertexArrayData::getBuffer(BufferAttributeType type)
 {
-    if (!Map::HasKey(m_attributeBuffers, (int)type))
+    if (m_attributeBuffers[(int)type].attributeType() == BufferAttributeType::kNone) {
         throw("Error, buffer object of the specified type not found");
+    }
     
-    return *m_attributeBuffers[(int)type];
+    return m_attributeBuffers[(int)type];
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void VertexArrayData::drawGeometry(int mode) const
+void VertexArrayData::drawGeometry(int mode)
 {
-    if (!m_vao) {
+    if (!m_vao.isCreated()) {
         // Don't render if vao not loaded yet
         logWarning("No vertex data found, returning");
         return;
     }
 
 #ifdef DEBUG_MODE
-    bool error = m_vao->printGLError("Shape::draw:: Error before binding VAO");
+    bool error = GL::OpenGLFunctions::printGLError("Shape::draw:: Error before binding VAO");
     if (error) {
         logInfo("Error in VAO::drawGeometry: " + m_name);
     }
 #endif
 
-    bool bound = m_vao->bind();
+    bool bound = m_vao.bind();
 
 #ifdef DEBUG_MODE
     if (bound) {
         // Get array size, used element array buffer because a VAO is essentially indices
-        GL::OpenGLFunctions functions;
+        GL::OpenGLFunctions& functions = *GL::OpenGLFunctions::Functions();
         int size;
         functions.glGetBufferParameteriv(GL_ELEMENT_ARRAY_BUFFER, GL_BUFFER_SIZE, &size);
         if (size > 1e8) {
@@ -85,7 +88,7 @@ void VertexArrayData::drawGeometry(int mode) const
 #endif
 
 #ifdef DEBUG_MODE
-    error = m_vao->printGLError("Shape::draw:: Error after binding VAO");
+    error = GL::OpenGLFunctions::printGLError("Shape::draw:: Error after binding VAO");
     if (error) {
         throw("Error, failed to vind VAO");
     }
@@ -96,18 +99,19 @@ void VertexArrayData::drawGeometry(int mode) const
         GL_UNSIGNED_INT,
         (GLvoid*)(sizeof(GLuint) * 0));
 
-    m_vao->release();
+    m_vao.release();
 
 #ifdef DEBUG_MODE
-    m_vao->printGLError("Shape::draw:: Error drawing geometry");
+    GL::OpenGLFunctions::printGLError("Shape::draw:: Error drawing geometry");
 #endif
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void VertexArrayData::loadAttributes()
 {
     // Load buffer attributes
-    for (const std::pair<int, std::shared_ptr<GL::BufferObject>>& bufferPair : m_attributeBuffers) {
-        m_vao->loadAttributeBuffer(*bufferPair.second);
+    for (GL::BufferObject& buffer : m_attributeBuffers) {
+        if (buffer.isNull()) continue;
+        m_vao.loadAttributeBuffer(buffer);
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -119,11 +123,11 @@ void VertexArrayData::loadIntoVAO()
     // If the mesh isn't missing data, initialize VAO and load buffer data
     if (!isMissingData()) {
         // Create Vertex Array Object (VAO)
-        if (!m_vao) { 
-            m_vao = std::make_shared<GL::VertexArrayObject>(true, true); 
+        if (!m_vao.isCreated()) { 
+            m_vao.initialize(true); 
         }
         else {
-            m_vao->bind();
+            m_vao.bind();
         }
 
         // Generate buffers and load data
@@ -145,18 +149,17 @@ void VertexArrayData::loadIntoVAO()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 bool VertexArrayData::hasBuffers() const
 {
-    return m_attributeBuffers.size() != 0 && m_indexBuffer;
+    return m_attributeBuffers.size() != 0 && m_indexBuffer.isCreated();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void VertexArrayData::destroyBuffers()
 {
-    for (const auto& bufferPair : m_attributeBuffers) {
-        bufferPair.second->destroy();
+    for (GL::BufferObject& buffer : m_attributeBuffers) {
+        buffer.destroy();
     }
     m_attributeBuffers.clear();
-    if (m_indexBuffer) {
-        m_indexBuffer->destroy();
-        m_indexBuffer = nullptr;
+    if (m_indexBuffer.isCreated()) {
+        m_indexBuffer.destroy();
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -176,64 +179,60 @@ void VertexArrayData::checkValidity()
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void VertexArrayData::release() {
-    m_vao->release();
+    m_vao.release();
 
-    for (const auto& bufferPair : m_attributeBuffers) {
-        bufferPair.second->release();
+    for (GL::BufferObject& buffer : m_attributeBuffers) {
+        buffer.release();
     }
 
-    m_indexBuffer->release();
+    m_indexBuffer.release();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void VertexArrayData::loadBufferData() {
     // Generate vertex attrib buffers
     Gb::VertexAttributes& attributes = m_attributes;
-    std::shared_ptr<GL::BufferObject> vertexBuffer = GL::BufferObject::createAndBindAttributeVBO(GL::BufferObject::kPosition, m_usagePattern);
-    vertexBuffer->allocate(&attributes.m_vertices[0], attributes.m_vertices.size() * sizeof(Vector3g));
-    m_attributeBuffers[GL::BufferObject::kPosition] = vertexBuffer;
+    m_attributeBuffers[(size_t)BufferAttributeType::kPosition] = GL::BufferObject(QOpenGLBuffer::VertexBuffer,
+        BufferAttributeType::kPosition, 
+        m_usagePattern);
+    GL::BufferObject& vertexBuffer = m_attributeBuffers[(size_t)BufferAttributeType::kPosition];
+    vertexBuffer.allocate(&attributes.m_vertices[0], attributes.m_vertices.size() * sizeof(Vector3));
 
     //std::vector<float> readData = positionBuffer()->getContents(0, attributes.m_vertices.size());
 
     if (attributes.m_normals.size()) {
-        auto normalBuffer = GL::BufferObject::createAndBindAttributeVBO(GL::BufferObject::kNormal, m_usagePattern);
-        normalBuffer->allocate(&attributes.m_normals[0], attributes.m_normals.size() * sizeof(Vector3g));
-        m_attributeBuffers[GL::BufferObject::kNormal] = normalBuffer;
+        m_attributeBuffers[(size_t)BufferAttributeType::kNormal] = GL::BufferObject(QOpenGLBuffer::VertexBuffer, BufferAttributeType::kNormal, m_usagePattern);
+        m_attributeBuffers[(size_t)BufferAttributeType::kNormal].allocate(&attributes.m_normals[0], attributes.m_normals.size() * sizeof(Vector3));
     }
     if (attributes.m_texCoords.size()) {
-        auto textureBuffer = GL::BufferObject::createAndBindAttributeVBO(GL::BufferObject::kTextureCoordinates, m_usagePattern);
-        textureBuffer->allocate(&attributes.m_texCoords[0], attributes.m_texCoords.size() * sizeof(Vector2g));
-        m_attributeBuffers[GL::BufferObject::kTextureCoordinates] = textureBuffer;
+        m_attributeBuffers[(size_t)BufferAttributeType::kTextureCoordinates] = GL::BufferObject(QOpenGLBuffer::VertexBuffer, BufferAttributeType::kTextureCoordinates, m_usagePattern);
+        m_attributeBuffers[(size_t)BufferAttributeType::kTextureCoordinates].allocate(&attributes.m_texCoords[0], attributes.m_texCoords.size() * sizeof(Vector2));
 #ifdef DEBUG_MODE
-        int size = textureBuffer->size();
+        int size = m_attributeBuffers[(size_t)BufferAttributeType::kTextureCoordinates].size();
         if (size < 0) throw("Error, texture buffer is empty");
         //logInfo("Texture buffer loaded with size: " + QString::number(size));
 #endif
     }
     if (attributes.m_colors.size()) {
-        auto colorBuffer = GL::BufferObject::createAndBindAttributeVBO(GL::BufferObject::kColor, m_usagePattern);
-        colorBuffer->allocate(&attributes.m_colors[0], attributes.m_colors.size() * sizeof(Vector4g));
-        m_attributeBuffers[GL::BufferObject::kColor] = colorBuffer;
+        m_attributeBuffers[(size_t)BufferAttributeType::kColor] = GL::BufferObject(QOpenGLBuffer::VertexBuffer, BufferAttributeType::kColor, m_usagePattern);
+        m_attributeBuffers[(size_t)BufferAttributeType::kColor].allocate(&attributes.m_colors[0], attributes.m_colors.size() * sizeof(Vector4));
     }
     if (attributes.m_tangents.size()) {
-        auto tangentBuffers = GL::BufferObject::createAndBindAttributeVBO(GL::BufferObject::kTangent, m_usagePattern);
-        tangentBuffers->allocate(&attributes.m_tangents[0], attributes.m_tangents.size() * sizeof(Vector3g));
-        m_attributeBuffers[GL::BufferObject::kTangent] = tangentBuffers;
+        m_attributeBuffers[(size_t)BufferAttributeType::kTangent] = GL::BufferObject(QOpenGLBuffer::VertexBuffer, BufferAttributeType::kTangent, m_usagePattern);
+        m_attributeBuffers[(size_t)BufferAttributeType::kTangent].allocate(&attributes.m_tangents[0], attributes.m_tangents.size() * sizeof(Vector3));
     }
     if (attributes.m_miscInt.size()) {
-        auto miscIntBuffer = GL::BufferObject::createAndBindAttributeVBO(GL::BufferObject::kMiscInt, m_usagePattern);
-        miscIntBuffer->allocate(&attributes.m_miscInt[0], attributes.m_miscInt.size() * sizeof(Vector<int, 4>));
-        m_attributeBuffers[GL::BufferObject::kMiscInt] = miscIntBuffer;
+        m_attributeBuffers[(size_t)BufferAttributeType::kMiscInt] = GL::BufferObject(QOpenGLBuffer::VertexBuffer, BufferAttributeType::kMiscInt, m_usagePattern);
+        m_attributeBuffers[(size_t)BufferAttributeType::kMiscInt].allocate(&attributes.m_miscInt[0], attributes.m_miscInt.size() * sizeof(Vector<int, 4>));
     }
     if (attributes.m_miscReal.size()) {
-        auto miscRealBuffer = GL::BufferObject::createAndBindAttributeVBO(GL::BufferObject::kMiscReal, m_usagePattern);
-        miscRealBuffer->allocate(&attributes.m_miscReal[0], attributes.m_miscReal.size() * sizeof(Vector4g));
-        m_attributeBuffers[GL::BufferObject::kMiscReal] = miscRealBuffer;
+        m_attributeBuffers[(size_t)BufferAttributeType::kMiscReal] = GL::BufferObject(QOpenGLBuffer::VertexBuffer, BufferAttributeType::kMiscReal, m_usagePattern);
+        m_attributeBuffers[(size_t)BufferAttributeType::kMiscReal].allocate(&attributes.m_miscReal[0], attributes.m_miscReal.size() * sizeof(Vector4));
     }
 
     // Generate index buffer
     std::vector<GLuint>& indices = m_indices;
-    m_indexBuffer = GL::BufferObject::createAndBindIndexVBO(m_usagePattern);
-    m_indexBuffer->allocate(&indices[0], indices.size() * sizeof(GLuint));
+    m_indexBuffer = GL::BufferObject(QOpenGLBuffer::IndexBuffer, BufferAttributeType::kNone, m_usagePattern);
+    m_indexBuffer.allocate(&indices[0], indices.size() * sizeof(GLuint));
 
 }
 
@@ -244,8 +243,8 @@ void VertexArrayData::loadBufferData() {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Mesh
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Mesh::Mesh(const QString& uniqueName) :
-    Resource(uniqueName, kMesh)
+Mesh::Mesh(const GString& uniqueName) :
+    Resource(uniqueName)
 {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -255,13 +254,14 @@ Mesh::~Mesh()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Mesh::onRemoval(ResourceCache* cache)
 {
-    Q_UNUSED(cache)
+    Q_UNUSED(cache);
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Mesh::postConstruction()
 {
-    if (!Process::isMainThread()) 
+    if (!Object::IsMainThread()) {
         throw("Error, must be called on main thread");
+    }
 
 #ifdef DEBUG_MODE
     GL::OpenGLFunctions functions;
