@@ -1,0 +1,24 @@
+#include "GBufferQueue.h"
+
+// QT
+
+// Internal
+#include "../renderer/GRenderContext.h"
+#include "../../utils/GMemoryManager.h"
+#include <QOpenGLFunctions_4_4_Core> 
+
+namespace rev {
+/////////////////////////////////////////////////////////////////////////////////////////////
+BufferCommand::BufferCommand(const void * data, unsigned long offset, unsigned long sizeInBytes):
+    m_data(data),
+    m_offset(offset),
+    m_sizeInBytes(sizeInBytes)
+{
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+BufferCommand::~BufferCommand()
+{
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+// End namespacing
+}

@@ -1,0 +1,1 @@
+Python distributions are obtained by installing with the windows installer for both 32 and 64 bit versions.
