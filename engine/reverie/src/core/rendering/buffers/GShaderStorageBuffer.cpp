@@ -1,0 +1,59 @@
+#include "GShaderStorageBuffer.h"
+#include "../renderer/GRenderContext.h"
+#include "../shaders/GUniform.h"
+
+// QT
+
+// Internal
+#include "../../utils/GMemoryManager.h"
+
+namespace rev {
+/////////////////////////////////////////////////////////////////////////////////////////////
+ShaderStorageBuffer::ShaderStorageBuffer()
+{
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+ShaderStorageBuffer::ShaderStorageBuffer(RenderContext & context, size_t size, GL::BufferStorageMode storageMode, size_t storageFlags):
+    GLBuffer(context, GL::BufferType::kShaderStorage, size, storageMode, storageFlags)
+{
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+ShaderStorageBuffer::~ShaderStorageBuffer()
+{
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+ShaderStorageBuffer & ShaderStorageBuffer::operator=(ShaderStorageBuffer && other)
+{
+    GLBuffer::operator=(std::move(other));
+    return *this;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+void ShaderStorageBuffer::bind()
+{
+#ifdef DEBUG_MODE
+    size_t ms = maxSize();
+    if (m_size > ms) {
+        throw("Error, size is greater than maximum allowed SSBO size");
+    }
+#endif
+
+    GLBuffer::bind();
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+void ShaderStorageBuffer::release()
+{
+    GLBuffer::release();
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+size_t ShaderStorageBuffer::maxSize()
+{
+    GLint max;
+    glGetIntegerv(GL_MAX_SHADER_STORAGE_BLOCK_SIZE, &max);
+
+    return (size_t)max;
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+// End namespacing
+}

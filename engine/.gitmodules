@@ -1,0 +1,12 @@
+[submodule "third_party/physx/physx.submodule"]
+	path = third_party/physx/physx.submodule
+	url = https://github.com/dantamont/PhysX.git
+	branch = 4.1
+[submodule "third_party/assimp/assimp.submodule"]
+	path = third_party/assimp/assimp.submodule
+	url = https://github.com/dantamont/assimp.git
+	branch = master
+[submodule "third_party/freetype/freetype.submodule"]
+	path = third_party/freetype/freetype.submodule
+	url = https://github.com/dantamont/freetype.git
+	branch = master

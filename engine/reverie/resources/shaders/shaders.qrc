@@ -1,0 +1,45 @@
+<RCC>
+    <qresource prefix="/shaders">
+		<file>basic.frag</file>
+		<file>basic.vert</file>
+		<file>basic_cluster.frag</file>
+		<file>basic_cluster.vert</file>
+		<file>canvas.frag</file>
+		<file>canvas_billboard.vert</file>
+		<file>canvas_gui.vert</file>
+		<file>cubemap.frag</file>
+		<file>cubemap.vert</file>
+		<file>lines.frag</file>
+		<file>lines.vert</file>
+		<file>points.frag</file>
+		<file>points.vert</file>
+		<file>simple.frag</file>
+		<file>simple.vert</file>
+		<file>axes.frag</file>
+		<file>axes.vert</file>
+		<file>debug_skeleton.frag</file>
+		<file>debug_skeleton.vert</file>
+		<file>quad.frag</file>
+		<file>quad.vert</file>
+		<file>prepass.frag</file>
+		<file>prepass.vert</file>
+		<file>prepass_deferred.vert</file>
+		<file>prepass_deferred.frag</file> 
+		<file>prepass_shadowmap.frag</file>
+		<file>prepass_shadowmap.geom</file>
+		<file>prepass_shadowmap.vert</file>
+		<file>active_clusters.comp</file>
+		<file>active_clusters_compact.comp</file>
+		<file>light_cluster_grid.comp</file>
+		<file>light_culling.comp</file>
+		<file>ssao.frag</file>		
+		<file>ssao_blur.frag</file>
+		
+		<file>hdr.frag</file>
+		<file>contrast.frag</file>
+		<file>depth_to_screen.frag</file>
+		<file>blur.frag</file> 
+		<file>luma.frag</file>
+		<file>bloom.frag</file>
+    </qresource>
+</RCC>

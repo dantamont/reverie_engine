@@ -1,0 +1,849 @@
+{
+    "debug": {
+        "debugScene": {
+            "components": [
+            ],
+            "name": "Debug Objects",
+            "sceneObjects": [
+                {
+                    "children": [
+                    ],
+                    "components": [
+                        {
+                            "camera": {
+                                "projection": {
+                                    "aspectRatio": 1.312910284463895,
+                                    "bottom": -0.5,
+                                    "fov": 70,
+                                    "left": -0.5,
+                                    "projType": 0,
+                                    "right": 0.5,
+                                    "top": 0.5,
+                                    "zFar": 1000,
+                                    "zNear": 0.01
+                                },
+                                "viewMatrix": [
+                                    "m",
+                                    [
+                                        0.9137989282608032,
+                                        -0.0993172824382782,
+                                        0.39383697509765625,
+                                        0
+                                    ],
+                                    [
+                                        -0.03640167415142059,
+                                        0.9457155466079712,
+                                        0.322950154542923,
+                                        0
+                                    ],
+                                    [
+                                        -0.4045323431491852,
+                                        -0.3094478249549866,
+                                        0.8605785965919495,
+                                        0
+                                    ],
+                                    [
+                                        -3.8146495819091797,
+                                        -1.752961277961731,
+                                        -23.202362060546875,
+                                        1
+                                    ]
+                                ],
+                                "viewport": {
+                                    "d": 0,
+                                    "h": 1,
+                                    "w": 1,
+                                    "x": 0,
+                                    "y": 0
+                                }
+                            },
+                            "controller": {
+                                "profile": {
+                                    "movementTypes": [
+                                        0,
+                                        1,
+                                        2,
+                                        3,
+                                        4
+                                    ],
+                                    "panScaling": [
+                                        -1,
+                                        1
+                                    ],
+                                    "rotateScaling": [
+                                        1,
+                                        -1
+                                    ],
+                                    "tiltScaling": [
+                                        -1,
+                                        1
+                                    ],
+                                    "translateScaling": [
+                                        1,
+                                        1
+                                    ],
+                                    "zoomScaling": -0.25
+                                },
+                                "target": [
+                                    3.5488176345825195,
+                                    1.7133632898330688,
+                                    -1.567522644996643
+                                ]
+                            },
+                            "isEnabled": true,
+                            "type": 2
+                        }
+                    ],
+                    "name": "Debug Camera",
+                    "scene": "Debug Objects",
+                    "transform": {
+                        "inheritanceType": 0,
+                        "isEnabled": true,
+                        "rotation": {
+                            "quaternion": [
+                                -0.16393950581550598,
+                                0.20696501433849335,
+                                0.016309911385178566,
+                                0.9643771648406982
+                            ]
+                        },
+                        "scale": {
+                            "scaling": [
+                                1.0000001192092896,
+                                1.0000001192092896,
+                                1
+                            ]
+                        },
+                        "translation": {
+                            "translation": {
+                                "position": [
+                                    12.44967269897461,
+                                    9.012151718139648,
+                                    17.881858825683594
+                                ]
+                            }
+                        },
+                        "type": 0
+                    }
+                }
+            ],
+            "uniforms": {
+            }
+        }
+    },
+    "name": "New Scenario",
+    "physicsManager": {
+        "geometry": {
+        },
+        "materials": {
+        },
+        "shapes": {
+        }
+    },
+    "processManager": {
+        "sortingLayers": [
+            {
+                "label": "default",
+                "order": 0
+            }
+        ]
+    },
+    "resourceCache": {
+        "maxCost": 4083,
+        "resources": [
+            {
+                "attributes": {
+                },
+                "behaviorFlags": 0,
+                "filePath": "C:/Users/dante/Documents/Projects/grand-blue-engine/reverie/resources/scripts/test_behavior.py",
+                "name": "test_behavior.py",
+                "type": 8,
+                "uuid": "70c2339a-f7a7-40c9-99b4-4e3b28840f70"
+            },
+            {
+                "attributes": {
+                },
+                "behaviorFlags": 0,
+                "filePath": "C:/Users/dante/Documents/Projects/grand-blue-engine/reverie/assets/models/maya_borderlands2/maya.obj",
+                "name": "maya.obj",
+                "type": 6,
+                "uuid": "b0775ff0-d296-45c8-a38e-699a89d30ee8"
+            },
+            {
+                "attributes": {
+                },
+                "behaviorFlags": 0,
+                "filePath": "C:/Users/dante/Documents/Projects/grand-blue-engine/reverie/assets/models/animated_human/FBX/Animated Human.fbx",
+                "name": "animated human.fbx",
+                "type": 6,
+                "uuid": "df353b3b-d5a5-45dd-81ef-e2d9a62c5bbd"
+            },
+            {
+                "attributes": {
+                },
+                "behaviorFlags": 0,
+                "filePath": "C:/Users/dante/Documents/Projects/grand-blue-engine/reverie/assets/textures/skyboxes/test_skybox/test.cubemap",
+                "name": "C:/Users/dante/Documents/Projects/grand-blue-engine/reverie/assets/textures/skyboxes/test_skybox/test.cubemap",
+                "type": 4,
+                "uuid": "6543e37e-57a6-43fe-add2-9c0e5a7e7cf8"
+            }
+        ],
+        "shaderPresets": [
+            {
+                "name": "basic_preset",
+                "renderer": {
+                    "renderFlags": 0,
+                    "renderLayers": [
+                    ],
+                    "renderSettings": {
+                        "settings": [
+                        ],
+                        "shapeMode": 4
+                    },
+                    "uniforms": {
+                        "shaderMode": {
+                            "name": "shaderMode",
+                            "value": 4
+                        }
+                    }
+                },
+                "shaderProgram": "basic"
+            }
+        ]
+    },
+    "scenes": [
+        {
+            "components": [
+            ],
+            "defaultSkybox": "924e2e77-9d75-4070-81fc-e532b02dbc55",
+            "name": "test_scene",
+            "sceneObjects": [
+                {
+                    "children": [
+                    ],
+                    "components": [
+                        {
+                            "isEnabled": true,
+                            "shaderPreset": "basic_preset",
+                            "type": 1
+                        },
+                        {
+                            "isEnabled": true,
+                            "model": "animated human.fbx",
+                            "renderable": {
+                                "renderFlags": 0,
+                                "renderLayers": [
+                                ],
+                                "renderSettings": {
+                                    "settings": [
+                                    ],
+                                    "shapeMode": 4
+                                },
+                                "uniforms": {
+                                }
+                            },
+                            "type": 6
+                        },
+                        {
+                            "animationController": {
+                                "animationStates": {
+                                    "human armature|armatureaction.001": {
+                                        "clips": {
+                                            "human armature|armatureaction.001": {
+                                                "animation": "human armature|armatureaction.001",
+                                                "name": "human armature|armatureaction.001",
+                                                "numPlays": -1,
+                                                "playbackMode": 1,
+                                                "settings": {
+                                                    "blendWeight": 1,
+                                                    "speedFactor": 1,
+                                                    "tickOffset": 0,
+                                                    "timeOffsetSec": 0
+                                                }
+                                            }
+                                        },
+                                        "layers": {
+                                        }
+                                    },
+                                    "human armature|armatureaction.002": {
+                                        "clips": {
+                                            "human armature|armatureaction.002": {
+                                                "animation": "human armature|armatureaction.002",
+                                                "name": "human armature|armatureaction.002",
+                                                "numPlays": -1,
+                                                "playbackMode": 1,
+                                                "settings": {
+                                                    "blendWeight": 1,
+                                                    "speedFactor": 1,
+                                                    "tickOffset": 0,
+                                                    "timeOffsetSec": 0
+                                                }
+                                            }
+                                        },
+                                        "layers": {
+                                        }
+                                    },
+                                    "human armature|death": {
+                                        "clips": {
+                                            "human armature|death": {
+                                                "animation": "human armature|death",
+                                                "name": "human armature|death",
+                                                "numPlays": -1,
+                                                "playbackMode": 1,
+                                                "settings": {
+                                                    "blendWeight": 1,
+                                                    "speedFactor": 1,
+                                                    "tickOffset": 0,
+                                                    "timeOffsetSec": 0
+                                                }
+                                            }
+                                        },
+                                        "layers": {
+                                        }
+                                    },
+                                    "human armature|idle": {
+                                        "clips": {
+                                            "human armature|idle": {
+                                                "animation": "human armature|idle",
+                                                "name": "human armature|idle",
+                                                "numPlays": -1,
+                                                "playbackMode": 1,
+                                                "settings": {
+                                                    "blendWeight": 1,
+                                                    "speedFactor": 1,
+                                                    "tickOffset": 0,
+                                                    "timeOffsetSec": 0
+                                                }
+                                            }
+                                        },
+                                        "layers": {
+                                        }
+                                    },
+                                    "human armature|jump": {
+                                        "clips": {
+                                            "human armature|jump": {
+                                                "animation": "human armature|jump",
+                                                "name": "human armature|jump",
+                                                "numPlays": -1,
+                                                "playbackMode": 1,
+                                                "settings": {
+                                                    "blendWeight": 1,
+                                                    "speedFactor": 1,
+                                                    "tickOffset": 0,
+                                                    "timeOffsetSec": 0
+                                                }
+                                            }
+                                        },
+                                        "layers": {
+                                        }
+                                    },
+                                    "human armature|punch": {
+                                        "clips": {
+                                            "human armature|punch": {
+                                                "animation": "human armature|punch",
+                                                "name": "human armature|punch",
+                                                "numPlays": -1,
+                                                "playbackMode": 1,
+                                                "settings": {
+                                                    "blendWeight": 1,
+                                                    "speedFactor": 1,
+                                                    "tickOffset": 0,
+                                                    "timeOffsetSec": 0
+                                                }
+                                            }
+                                        },
+                                        "layers": {
+                                        }
+                                    },
+                                    "human armature|run": {
+                                        "clips": {
+                                            "human armature|run": {
+                                                "animation": "human armature|run",
+                                                "name": "human armature|run",
+                                                "numPlays": -1,
+                                                "playbackMode": 1,
+                                                "settings": {
+                                                    "blendWeight": 1,
+                                                    "speedFactor": 1,
+                                                    "tickOffset": 0,
+                                                    "timeOffsetSec": 0
+                                                }
+                                            }
+                                        },
+                                        "layers": {
+                                        }
+                                    },
+                                    "human armature|walk": {
+                                        "clips": {
+                                            "human armature|walk": {
+                                                "animation": "human armature|walk",
+                                                "name": "human armature|walk",
+                                                "numPlays": -1,
+                                                "playbackMode": 1,
+                                                "settings": {
+                                                    "blendWeight": 1,
+                                                    "speedFactor": 1,
+                                                    "tickOffset": 0,
+                                                    "timeOffsetSec": 0
+                                                }
+                                            }
+                                        },
+                                        "layers": {
+                                        }
+                                    },
+                                    "human armature|working": {
+                                        "clips": {
+                                            "human armature|working": {
+                                                "animation": "human armature|working",
+                                                "name": "human armature|working",
+                                                "numPlays": -1,
+                                                "playbackMode": 1,
+                                                "settings": {
+                                                    "blendWeight": 1,
+                                                    "speedFactor": 1,
+                                                    "tickOffset": 0,
+                                                    "timeOffsetSec": 0
+                                                }
+                                            }
+                                        },
+                                        "layers": {
+                                        }
+                                    }
+                                },
+                                "currentState": "human armature|walk",
+                                "isPlaying": true,
+                                "model": "animated human.fbx"
+                            },
+                            "isEnabled": true,
+                            "type": 12
+                        }
+                    ],
+                    "name": "boi",
+                    "scene": "test_scene",
+                    "transform": {
+                        "inheritanceType": 0,
+                        "isEnabled": true,
+                        "rotation": {
+                            "quaternion": [
+                                0,
+                                0,
+                                0,
+                                1
+                            ]
+                        },
+                        "scale": {
+                            "scaling": [
+                                0.01,
+                                0.01,
+                                0.01
+                            ]
+                        },
+                        "translation": {
+                            "translation": {
+                                "position": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            }
+                        },
+                        "type": 0
+                    }
+                },
+                {
+                    "children": [
+                    ],
+                    "components": [
+                        {
+                            "camera": {
+                                "projection": {
+                                    "aspectRatio": 1.312910284463895,
+                                    "bottom": -0.5,
+                                    "fov": 70,
+                                    "left": -0.5,
+                                    "projType": 0,
+                                    "right": 0.5,
+                                    "top": 0.5,
+                                    "zFar": 1000,
+                                    "zNear": 0.01
+                                },
+                                "viewMatrix": [
+                                    "m",
+                                    [
+                                        1,
+                                        0,
+                                        0,
+                                        0
+                                    ],
+                                    [
+                                        0,
+                                        1,
+                                        0,
+                                        0
+                                    ],
+                                    [
+                                        0,
+                                        0,
+                                        1,
+                                        0
+                                    ],
+                                    [
+                                        0,
+                                        -5,
+                                        -15,
+                                        1
+                                    ]
+                                ],
+                                "viewport": {
+                                    "d": 0,
+                                    "h": 1,
+                                    "w": 1,
+                                    "x": 0,
+                                    "y": 0
+                                }
+                            },
+                            "controller": {
+                                "profile": {
+                                    "movementTypes": [
+                                    ],
+                                    "panScaling": [
+                                        -1,
+                                        1
+                                    ],
+                                    "rotateScaling": [
+                                        1,
+                                        -1
+                                    ],
+                                    "tiltScaling": [
+                                        -1,
+                                        1
+                                    ],
+                                    "translateScaling": [
+                                        1,
+                                        1
+                                    ],
+                                    "zoomScaling": -0.25
+                                },
+                                "target": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            },
+                            "isEnabled": true,
+                            "type": 2
+                        }
+                    ],
+                    "name": "camera",
+                    "scene": "test_scene",
+                    "transform": {
+                        "inheritanceType": 0,
+                        "isEnabled": true,
+                        "rotation": {
+                            "quaternion": [
+                                0,
+                                0,
+                                0,
+                                1
+                            ]
+                        },
+                        "scale": {
+                            "scaling": [
+                                1,
+                                1,
+                                1
+                            ]
+                        },
+                        "translation": {
+                            "translation": {
+                                "position": [
+                                    0,
+                                    5,
+                                    15
+                                ]
+                            }
+                        },
+                        "type": 0
+                    }
+                },
+                {
+                    "children": [
+                    ],
+                    "components": [
+                        {
+                            "ambientColor": [
+                                0.20001526176929474,
+                                0.20001526176929474,
+                                0.20001526176929474,
+                                1
+                            ],
+                            "attributes": [
+                                1,
+                                0.05000000074505806,
+                                0,
+                                0
+                            ],
+                            "diffuseColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "direction": [
+                                0,
+                                0,
+                                0,
+                                0
+                            ],
+                            "intensity": 2,
+                            "isEnabled": true,
+                            "lightType": 0,
+                            "specularColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "type": 3
+                        }
+                    ],
+                    "name": "ambient_point_light",
+                    "scene": "test_scene",
+                    "transform": {
+                        "inheritanceType": 0,
+                        "isEnabled": true,
+                        "rotation": {
+                            "quaternion": [
+                                0,
+                                0,
+                                0,
+                                1
+                            ]
+                        },
+                        "scale": {
+                            "scaling": [
+                                1,
+                                1,
+                                1
+                            ]
+                        },
+                        "translation": {
+                            "translation": {
+                                "position": [
+                                    0,
+                                    10,
+                                    -15
+                                ]
+                            }
+                        },
+                        "type": 0
+                    }
+                },
+                {
+                    "children": [
+                    ],
+                    "components": [
+                        {
+                            "isEnabled": true,
+                            "shaderPreset": "basic_preset",
+                            "type": 1
+                        },
+                        {
+                            "isEnabled": true,
+                            "path": "C:/Users/dante/Documents/Projects/grand-blue-engine/reverie/resources/scripts/test_behavior.py",
+                            "type": 4
+                        },
+                        {
+                            "isEnabled": true,
+                            "model": "maya.obj",
+                            "renderable": {
+                                "renderFlags": 0,
+                                "renderLayers": [
+                                ],
+                                "renderSettings": {
+                                    "settings": [
+                                    ],
+                                    "shapeMode": 4
+                                },
+                                "uniforms": {
+                                }
+                            },
+                            "type": 6
+                        }
+                    ],
+                    "name": "maya",
+                    "scene": "test_scene",
+                    "transform": {
+                        "inheritanceType": 0,
+                        "isEnabled": true,
+                        "rotation": {
+                            "quaternion": [
+                                0,
+                                0.9702310562133789,
+                                0,
+                                0.24236628413200378
+                            ]
+                        },
+                        "scale": {
+                            "scaling": [
+                                3,
+                                3,
+                                3
+                            ]
+                        },
+                        "translation": {
+                            "translation": {
+                                "position": [
+                                    5,
+                                    0,
+                                    0
+                                ]
+                            }
+                        },
+                        "type": 0
+                    }
+                },
+                {
+                    "children": [
+                    ],
+                    "components": [
+                        {
+                            "ambientColor": [
+                                0,
+                                0,
+                                0,
+                                1
+                            ],
+                            "attributes": [
+                                1,
+                                0.30000001192092896,
+                                0,
+                                0
+                            ],
+                            "diffuseColor": [
+                                1,
+                                0.019607843831181526,
+                                0.03529411926865578,
+                                1
+                            ],
+                            "direction": [
+                                0,
+                                0,
+                                -1,
+                                0
+                            ],
+                            "intensity": 1,
+                            "isEnabled": true,
+                            "lightType": 0,
+                            "specularColor": [
+                                0,
+                                0,
+                                0,
+                                1
+                            ],
+                            "type": 3
+                        }
+                    ],
+                    "name": "red light",
+                    "scene": "test_scene",
+                    "transform": {
+                        "inheritanceType": 0,
+                        "isEnabled": true,
+                        "rotation": {
+                            "quaternion": [
+                                0,
+                                0,
+                                0,
+                                1
+                            ]
+                        },
+                        "scale": {
+                            "scaling": [
+                                1,
+                                1,
+                                1
+                            ]
+                        },
+                        "translation": {
+                            "translation": {
+                                "position": [
+                                    0,
+                                    5,
+                                    5
+                                ]
+                            }
+                        },
+                        "type": 0
+                    }
+                },
+                {
+                    "children": [
+                    ],
+                    "components": [
+                        {
+                            "diffuseColor": [
+                                0.9333333373069763,
+                                0.42352941632270813,
+                                1
+                            ],
+                            "isEnabled": true,
+                            "name": "default_skybox",
+                            "texture": {
+                                "attributes": {
+                                },
+                                "behaviorFlags": 0,
+                                "filePath": "C:/Users/dante/Documents/Projects/grand-blue-engine/reverie/assets/textures/skyboxes/test_skybox/test.cubemap",
+                                "name": "C:/Users/dante/Documents/Projects/grand-blue-engine/reverie/assets/textures/skyboxes/test_skybox/test.cubemap",
+                                "type": 4,
+                                "uuid": "6543e37e-57a6-43fe-add2-9c0e5a7e7cf8"
+                            },
+                            "type": 13,
+                            "uuid": "924e2e77-9d75-4070-81fc-e532b02dbc55"
+                        }
+                    ],
+                    "name": "skybox",
+                    "scene": "test_scene",
+                    "transform": {
+                        "inheritanceType": 0,
+                        "isEnabled": true,
+                        "rotation": {
+                            "quaternion": [
+                                0,
+                                0,
+                                0,
+                                1
+                            ]
+                        },
+                        "scale": {
+                            "scaling": [
+                                1000,
+                                1000,
+                                1000
+                            ]
+                        },
+                        "translation": {
+                            "translation": {
+                                "position": [
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            }
+                        },
+                        "type": 0
+                    }
+                }
+            ],
+            "uniforms": {
+            }
+        }
+    ],
+    "settings": {
+        "renderLayers": [
+            {
+                "label": "default",
+                "order": 0
+            }
+        ]
+    }
+}
