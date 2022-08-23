@@ -1,0 +1,295 @@
+\hypertarget{classrev_1_1_frame_buffer}{}\section{rev\+::Frame\+Buffer Class Reference}
+\label{classrev_1_1_frame_buffer}\index{rev::FrameBuffer@{rev::FrameBuffer}}
+
+
+An abstraction of an Open\+GL framebuffer.  
+
+
+
+
+{\ttfamily \#include $<$G\+Frame\+Buffer.\+h$>$}
+
+Inheritance diagram for rev\+::Frame\+Buffer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_frame_buffer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_adcb1a0352f10ae5086411d0222216e6c}\label{classrev_1_1_frame_buffer_adcb1a0352f10ae5086411d0222216e6c}} 
+{\bfseries Frame\+Buffer} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_a0bf5be7b1798d2d9daade2792a60fa28}\label{classrev_1_1_frame_buffer_a0bf5be7b1798d2d9daade2792a60fa28}} 
+{\bfseries Frame\+Buffer} (const \mbox{\hyperlink{classrev_1_1_frame_buffer}{Frame\+Buffer}} \&other)
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_a03b2f6afff4ffeefdea3bcfc83482060}\label{classrev_1_1_frame_buffer_a03b2f6afff4ffeefdea3bcfc83482060}} 
+{\bfseries Frame\+Buffer} (Q\+Open\+G\+L\+Context $\ast$current\+Context, Aliasing\+Type internal\+Format=Aliasing\+Type\+::k\+Default, Buffer\+Attachment\+Type buffer\+Type=Buffer\+Attachment\+Type\+::k\+R\+BO, Texture\+Format texture\+Format=F\+B\+O\+\_\+\+F\+L\+O\+A\+T\+I\+N\+G\+\_\+\+P\+O\+I\+N\+T\+\_\+\+T\+E\+X\+\_\+\+F\+O\+R\+M\+AT, uint32\+\_\+t num\+Samples=4, uint32\+\_\+t num\+Color\+Attachments=1, bool has\+Depth=true)
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_afa775e3abaa15cc524eb9d52bb200aaf}\label{classrev_1_1_frame_buffer_afa775e3abaa15cc524eb9d52bb200aaf}} 
+{\bfseries $\sim$\+Frame\+Buffer} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Operators}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_acaef914428db4693e1945d4bb1bb1bdf}\label{classrev_1_1_frame_buffer_acaef914428db4693e1945d4bb1bb1bdf}} 
+\mbox{\hyperlink{classrev_1_1_frame_buffer}{Frame\+Buffer}} \& {\bfseries operator=} (const \mbox{\hyperlink{classrev_1_1_frame_buffer}{Frame\+Buffer}} \&other)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_a5830ada5ac4025237b528685e44f5848}\label{classrev_1_1_frame_buffer_a5830ada5ac4025237b528685e44f5848}} 
+\mbox{\hyperlink{classrev_1_1_frame_buffer}{Frame\+Buffer}} $\ast$ {\bfseries blit\+Buffer} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_ac693b942edc9dd93e918a9d4d0943f43}\label{classrev_1_1_frame_buffer_ac693b942edc9dd93e918a9d4d0943f43}} 
+bool {\bfseries has\+Size} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_aa343e13ce5f044957deb13539251d880}\label{classrev_1_1_frame_buffer_aa343e13ce5f044957deb13539251d880}} 
+uint32\+\_\+t {\bfseries width} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_a51c071059552fecc265b4c26837ad196}\label{classrev_1_1_frame_buffer_a51c071059552fecc265b4c26837ad196}} 
+uint32\+\_\+t {\bfseries height} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_a86a4da0164a1d9194bbf75fb89a087f9}\label{classrev_1_1_frame_buffer_a86a4da0164a1d9194bbf75fb89a087f9}} 
+bool {\bfseries is\+Bound} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_a96977fc36deb21556c571bcfe22be382}\label{classrev_1_1_frame_buffer_a96977fc36deb21556c571bcfe22be382}} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_texture}{Texture}} $>$ $>$ \& {\bfseries color\+Textures} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_a5e442f383d6349f166992dd6e77324f9}\label{classrev_1_1_frame_buffer_a5e442f383d6349f166992dd6e77324f9}} 
+const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_texture}{Texture}} $>$ \& {\bfseries depth\+Texture} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_a479b257f5ddbdafbc532b1c4322f965e}\label{classrev_1_1_frame_buffer_a479b257f5ddbdafbc532b1c4322f965e}} 
+void \mbox{\hyperlink{classrev_1_1_frame_buffer_a479b257f5ddbdafbc532b1c4322f965e}{draw\+Quad}} (\mbox{\hyperlink{classrev_1_1_camera}{Camera}} \&camera, \mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program, uint32\+\_\+t color\+Attachment\+Index=0)
+\begin{DoxyCompactList}\small\item\em Draw framebuffer quad. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_a79b6c304ccde1ea5c35dee38dc77d483}\label{classrev_1_1_frame_buffer_a79b6c304ccde1ea5c35dee38dc77d483}} 
+void \mbox{\hyperlink{classrev_1_1_frame_buffer_a79b6c304ccde1ea5c35dee38dc77d483}{save\+Color\+To\+File}} (uint32\+\_\+t attachment\+Index, const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&filepath, Pixel\+Type pixel\+Type=Pixel\+Type\+::k\+U\+Byte8)
+\begin{DoxyCompactList}\small\item\em Save color attachment to a file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_a09fa1bc5c40ba79cead2fa3539bb731c}\label{classrev_1_1_frame_buffer_a09fa1bc5c40ba79cead2fa3539bb731c}} 
+void {\bfseries save\+Depth\+To\+File} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&filepath)
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_a1bdfde536436ce5056b1972e9e65072e}\label{classrev_1_1_frame_buffer_a1bdfde536436ce5056b1972e9e65072e}} 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{classrev_1_1_frame_buffer_a1bdfde536436ce5056b1972e9e65072e}{read\+Color\+Pixels}} (uint32\+\_\+t attachment\+Index, std\+::vector$<$ T $>$ \&out\+Color, Pixel\+Format pixel\+Format=Pixel\+Format\+::k\+R\+GB, Pixel\+Type pixel\+Type=Pixel\+Type\+::k\+Byte8) const
+\begin{DoxyCompactList}\small\item\em Read pixels from specified texture. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_a7c8d0e6e1c8375b7ac4c2e4f60926a8e}\label{classrev_1_1_frame_buffer_a7c8d0e6e1c8375b7ac4c2e4f60926a8e}} 
+{\footnotesize template$<$typename T $>$ }\\void {\bfseries read\+Color\+Pixels} (uint32\+\_\+t attachment\+Index, std\+::vector$<$ T $>$ \&out\+Color, G\+Lint x, G\+Lint y, G\+Lsizei width, G\+Lsizei height, Pixel\+Format pixel\+Format=Pixel\+Format\+::k\+R\+GB, Pixel\+Type pixel\+Type=Pixel\+Type\+::k\+Byte8) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_af7dc6b25229f7efa4e4da4ce994edd3a}\label{classrev_1_1_frame_buffer_af7dc6b25229f7efa4e4da4ce994edd3a}} 
+{\footnotesize template$<$typename T $>$ }\\void {\bfseries read\+Color\+Pixels} (uint32\+\_\+t attachment\+Index, T $\ast$out\+Color, G\+Lint x, G\+Lint y, G\+Lsizei width, G\+Lsizei height, Pixel\+Format pixel\+Format=Pixel\+Format\+::k\+R\+GB, Pixel\+Type pixel\+Type=Pixel\+Type\+::k\+Byte8) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_ab1e11f8a2f18fa8cb1016b890966f339}\label{classrev_1_1_frame_buffer_ab1e11f8a2f18fa8cb1016b890966f339}} 
+void {\bfseries read\+Depth\+Pixels} (std\+::vector$<$ float $>$ \&out\+Depths) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_ab82a7e5f21e03ac98e9f17bf0bf59434}\label{classrev_1_1_frame_buffer_ab82a7e5f21e03ac98e9f17bf0bf59434}} 
+void \mbox{\hyperlink{classrev_1_1_frame_buffer_ab82a7e5f21e03ac98e9f17bf0bf59434}{bind\+Color\+Texture}} (unsigned int tex\+Unit=0, unsigned int attachment\+Index=0)
+\begin{DoxyCompactList}\small\item\em Binds color texture at index. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_afd3285a413be49fac978b1681914adbd}\label{classrev_1_1_frame_buffer_afd3285a413be49fac978b1681914adbd}} 
+void \mbox{\hyperlink{classrev_1_1_frame_buffer_afd3285a413be49fac978b1681914adbd}{bind\+Depth\+Texture}} (unsigned int tex\+Unit=0)
+\begin{DoxyCompactList}\small\item\em Binds depth texture to specified texture unit. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_frame_buffer_ab6415b100449eb4c2332a5a3e9f93d26}{reinitialize}} (uint32\+\_\+t w, uint32\+\_\+t h, bool ignore\+Incomplete=false)
+\begin{DoxyCompactList}\small\item\em Release all bound textures. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_a747a55f98abeab1977b3b53be04413e5}\label{classrev_1_1_frame_buffer_a747a55f98abeab1977b3b53be04413e5}} 
+void {\bfseries reinitialize} (uint32\+\_\+t w, uint32\+\_\+t h, const std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_texture}{Texture}} $>$$>$ \&color\+Attachments, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_texture}{Texture}} $>$ \&depth\+Stencil\+Attachment, uint32\+\_\+t depth\+Layer)
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_aada0aa1f32f340340682d8671826fd36}\label{classrev_1_1_frame_buffer_aada0aa1f32f340340682d8671826fd36}} 
+void {\bfseries reinitialize} (uint32\+\_\+t w, uint32\+\_\+t h, const std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_texture}{Texture}} $>$$>$ \&color\+Attachments)
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_a3b1ef6dcb06964641444fef874ed72f6}\label{classrev_1_1_frame_buffer_a3b1ef6dcb06964641444fef874ed72f6}} 
+void {\bfseries reinitialize} (uint32\+\_\+t w, uint32\+\_\+t h, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_texture}{Texture}} $>$ \&depth\+Stencil\+Attachment, uint32\+\_\+t depth\+Layer=0)
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_a689604d6989f03b29a92f9ddc90501cc}\label{classrev_1_1_frame_buffer_a689604d6989f03b29a92f9ddc90501cc}} 
+void \mbox{\hyperlink{classrev_1_1_frame_buffer_a689604d6989f03b29a92f9ddc90501cc}{bind}} () const
+\begin{DoxyCompactList}\small\item\em Bind the framebuffer for use. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_ad43a35f11c310167a81054eff41d90d6}\label{classrev_1_1_frame_buffer_ad43a35f11c310167a81054eff41d90d6}} 
+void \mbox{\hyperlink{classrev_1_1_frame_buffer_ad43a35f11c310167a81054eff41d90d6}{bind}} (Bind\+Type type) const
+\begin{DoxyCompactList}\small\item\em Bind framebuffer for read or write. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_abc81db9e2a49ae7c123ef325185e8920}\label{classrev_1_1_frame_buffer_abc81db9e2a49ae7c123ef325185e8920}} 
+void \mbox{\hyperlink{classrev_1_1_frame_buffer_abc81db9e2a49ae7c123ef325185e8920}{clear}} ()
+\begin{DoxyCompactList}\small\item\em Clear the framebuffer, with an optional color. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_ac746509fc1738a7ccaf5f20d3e2e001e}\label{classrev_1_1_frame_buffer_ac746509fc1738a7ccaf5f20d3e2e001e}} 
+void {\bfseries clear} (const \mbox{\hyperlink{classrev_1_1_color}{Color}} \&color)
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_af54bef01c95eb39aa843182c8afa0d8d}\label{classrev_1_1_frame_buffer_af54bef01c95eb39aa843182c8afa0d8d}} 
+void \mbox{\hyperlink{classrev_1_1_frame_buffer_af54bef01c95eb39aa843182c8afa0d8d}{clear}} (const \mbox{\hyperlink{classrev_1_1_color}{Color}} \&color, uint32\+\_\+t attachment\+Index)
+\begin{DoxyCompactList}\small\item\em Clear the specified attachment with the given color. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_frame_buffer_a6853bb65a669c0e263c359a01a32d678}{blit}} (Blit\+Mask blit\+Mask, \mbox{\hyperlink{classrev_1_1_frame_buffer}{Frame\+Buffer}} \&other, uint32\+\_\+t read\+Attachment\+Index=0) const
+\begin{DoxyCompactList}\small\item\em Blit texture from this framebuffer to the specified framebuffer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_a27c66f40109d2192b1db533e4f35500a}\label{classrev_1_1_frame_buffer_a27c66f40109d2192b1db533e4f35500a}} 
+void {\bfseries blit} (Blit\+Mask blit\+Mask, \mbox{\hyperlink{classrev_1_1_frame_buffer}{Frame\+Buffer}} \&other, uint32\+\_\+t read\+Attachment\+Index, const std\+::vector$<$ uint32\+\_\+t $>$ \&draw\+Attachment\+Indices) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_a49d6192ae4f96af83556c511ad01663c}\label{classrev_1_1_frame_buffer_a49d6192ae4f96af83556c511ad01663c}} 
+void \mbox{\hyperlink{classrev_1_1_frame_buffer_a49d6192ae4f96af83556c511ad01663c}{release}} () const
+\begin{DoxyCompactList}\small\item\em Release the framebuffer from use. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_abfa50d2613f78cc10fed665c2c507c72}\label{classrev_1_1_frame_buffer_abfa50d2613f78cc10fed665c2c507c72}} 
+bool \mbox{\hyperlink{classrev_1_1_frame_buffer_abfa50d2613f78cc10fed665c2c507c72}{is\+Complete}} ()
+\begin{DoxyCompactList}\small\item\em Check whether the framebuffer is complete. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_a3c8102f80462097bc0f6f7d9f2a7996c}\label{classrev_1_1_frame_buffer_a3c8102f80462097bc0f6f7d9f2a7996c}} 
+void {\bfseries initialize\+GL} (bool \mbox{\hyperlink{classrev_1_1_frame_buffer_ab6415b100449eb4c2332a5a3e9f93d26}{reinitialize}}=true)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classrev_1_1_frame_buffer_a03d7ca6784c7b4d277c47c29f81f631a}{blit}} (Blit\+Mask blit\+Mask, uint32\+\_\+t read\+Color\+Attachment\+Index, const std\+::vector$<$ uint32\+\_\+t $>$ \&draw\+Attachment\+Indices) const
+\begin{DoxyCompactList}\small\item\em blit with another framebuffer \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_frame_buffer_a477861e1360aa2ac238c36f7421faa1f}{set\+Color\+Attachments}} (uint32\+\_\+t w, uint32\+\_\+t h)
+\begin{DoxyCompactList}\small\item\em Set the framebuffer\textquotesingle{}s color attachment to a new texture. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_a5ad4390c6f3796325bdf18f3b13366f2}\label{classrev_1_1_frame_buffer_a5ad4390c6f3796325bdf18f3b13366f2}} 
+void \mbox{\hyperlink{classrev_1_1_frame_buffer_a5ad4390c6f3796325bdf18f3b13366f2}{set\+Depth\+Stencil\+Attachment}} (uint32\+\_\+t w, uint32\+\_\+t h)
+\begin{DoxyCompactList}\small\item\em Set the framebuffer\textquotesingle{}s depth/stencil attachment to a new texture. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_a8f4d5f8a74d7ca5a3f571d9769ef2fb7}\label{classrev_1_1_frame_buffer_a8f4d5f8a74d7ca5a3f571d9769ef2fb7}} 
+void {\bfseries create\+Color\+Attachment} (uint32\+\_\+t w, uint32\+\_\+t h)
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_a78f3e1425d94cfb28ee05c783c7f0318}\label{classrev_1_1_frame_buffer_a78f3e1425d94cfb28ee05c783c7f0318}} 
+void {\bfseries create\+Depth\+Stencil\+Attachment} (uint32\+\_\+t w, uint32\+\_\+t h)
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_a7fffc703da74c0be3dbe66499465bd83}\label{classrev_1_1_frame_buffer_a7fffc703da74c0be3dbe66499465bd83}} 
+void {\bfseries clear\+Color\+Attachments} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_ad049b939909e3ef87cc9a674ff071491}\label{classrev_1_1_frame_buffer_ad049b939909e3ef87cc9a674ff071491}} 
+void {\bfseries clear\+Depth\+Stencil\+Attachments} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_a1eb7b90799af4c9561cedb3afab696fa}\label{classrev_1_1_frame_buffer_a1eb7b90799af4c9561cedb3afab696fa}} 
+void {\bfseries clear\+Attachments} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_ab6890fe95669e335f576e0c32266d9b1}\label{classrev_1_1_frame_buffer_ab6890fe95669e335f576e0c32266d9b1}} 
+Q\+Open\+G\+L\+Context $\ast$ \mbox{\hyperlink{classrev_1_1_frame_buffer_ab6890fe95669e335f576e0c32266d9b1}{m\+\_\+current\+Context}}
+\begin{DoxyCompactList}\small\item\em Open\+GL context used by the framebuffer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_af679696c31241902e5b62a727d4026dd}\label{classrev_1_1_frame_buffer_af679696c31241902e5b62a727d4026dd}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector2u}} \mbox{\hyperlink{classrev_1_1_frame_buffer_af679696c31241902e5b62a727d4026dd}{m\+\_\+size}} = \{ 0, 0 \}
+\begin{DoxyCompactList}\small\item\em Enforce the same size for all attachments. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_acb1ff171cbcf3c41201aa3787167b572}\label{classrev_1_1_frame_buffer_acb1ff171cbcf3c41201aa3787167b572}} 
+uint32\+\_\+t \mbox{\hyperlink{classrev_1_1_frame_buffer_acb1ff171cbcf3c41201aa3787167b572}{m\+\_\+num\+Color\+Attachments}} = 1
+\begin{DoxyCompactList}\small\item\em Number of color attachments to use. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_ae80ca23d4a5ebedf4770f763f045408d}\label{classrev_1_1_frame_buffer_ae80ca23d4a5ebedf4770f763f045408d}} 
+bool {\bfseries m\+\_\+has\+Depth}
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_af43fe1509626fa37c38b284327ef8f92}\label{classrev_1_1_frame_buffer_af43fe1509626fa37c38b284327ef8f92}} 
+unsigned int {\bfseries m\+\_\+fbo\+ID} = 0
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_ae53f95b230b4bf363967c06a81354882}\label{classrev_1_1_frame_buffer_ae53f95b230b4bf363967c06a81354882}} 
+bool {\bfseries m\+\_\+is\+Bound} = false
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_a618d76c61c059b51b6379f6dcb317e56}\label{classrev_1_1_frame_buffer_a618d76c61c059b51b6379f6dcb317e56}} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_texture}{Texture}} $>$ $>$ \mbox{\hyperlink{classrev_1_1_frame_buffer_a618d76c61c059b51b6379f6dcb317e56}{m\+\_\+color\+Textures}}
+\begin{DoxyCompactList}\small\item\em Textures on color attachments. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_a7f2be4904c8d326debdb1d70b2092f0f}\label{classrev_1_1_frame_buffer_a7f2be4904c8d326debdb1d70b2092f0f}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_texture}{Texture}} $>$ \mbox{\hyperlink{classrev_1_1_frame_buffer_a7f2be4904c8d326debdb1d70b2092f0f}{m\+\_\+depth\+Stencil\+Texture}} = nullptr
+\begin{DoxyCompactList}\small\item\em Depth/stencil attachment, assumed to share a texture. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_a72410c5f71523322f8ace63ee2c12029}\label{classrev_1_1_frame_buffer_a72410c5f71523322f8ace63ee2c12029}} 
+unsigned int {\bfseries m\+\_\+depth\+Stencil\+Attachment\+Layer} = 0
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_aac482f00c751da9b159b1f5a02f01036}\label{classrev_1_1_frame_buffer_aac482f00c751da9b159b1f5a02f01036}} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_render_buffer_object}{Render\+Buffer\+Object}} $>$ $>$ \mbox{\hyperlink{classrev_1_1_frame_buffer_aac482f00c751da9b159b1f5a02f01036}{m\+\_\+color\+R\+B\+Os}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_color}{Color}} R\+B\+Os, can be used instead of textures. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_a1af06563ab01f65ce72413653fb2b5a0}\label{classrev_1_1_frame_buffer_a1af06563ab01f65ce72413653fb2b5a0}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_render_buffer_object}{Render\+Buffer\+Object}} $>$ \mbox{\hyperlink{classrev_1_1_frame_buffer_a1af06563ab01f65ce72413653fb2b5a0}{m\+\_\+depth\+Stencil\+R\+BO}} = nullptr
+\begin{DoxyCompactList}\small\item\em Depth/stencil R\+BO, can be used instead of textures (and is) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_ad2c765e67ee344c66966aafa6bf7caa9}\label{classrev_1_1_frame_buffer_ad2c765e67ee344c66966aafa6bf7caa9}} 
+Aliasing\+Type {\bfseries m\+\_\+aliasing\+Type}
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_acaf369b0ea5b4d5d42ea05c4d8e37856}\label{classrev_1_1_frame_buffer_acaf369b0ea5b4d5d42ea05c4d8e37856}} 
+Buffer\+Attachment\+Type {\bfseries m\+\_\+attachment\+Type}
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_a2fe5a026071db0dc259feeee4517ad43}\label{classrev_1_1_frame_buffer_a2fe5a026071db0dc259feeee4517ad43}} 
+uint32\+\_\+t {\bfseries m\+\_\+num\+Samples}
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_ae89cc9bf39bf08af5ff96e4cb2cbb116}\label{classrev_1_1_frame_buffer_ae89cc9bf39bf08af5ff96e4cb2cbb116}} 
+Texture\+Format {\bfseries m\+\_\+texture\+Format}
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_aa06074126d11c105fdf47d1a5645db7c}\label{classrev_1_1_frame_buffer_aa06074126d11c105fdf47d1a5645db7c}} 
+\mbox{\hyperlink{classrev_1_1_frame_buffer}{Frame\+Buffer}} $\ast$ \mbox{\hyperlink{classrev_1_1_frame_buffer_aa06074126d11c105fdf47d1a5645db7c}{m\+\_\+blit\+Buffer}} = nullptr
+\begin{DoxyCompactList}\small\item\em A textured framebuffer, used to overcome\+: Need to use a texture to render to a quad/post-\/process Need to use a texture to read from depth buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_aac3791e7ddbdff594eb71b708c6f557f}\label{classrev_1_1_frame_buffer_aac3791e7ddbdff594eb71b708c6f557f}} 
+enum {\bfseries Blit\+Mask} \{ {\bfseries k\+Color\+Bit} = G\+L\+\_\+\+C\+O\+L\+O\+R\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+B\+IT, 
+{\bfseries k\+Depth\+Bit} = G\+L\+\_\+\+D\+E\+P\+T\+H\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+B\+IT, 
+{\bfseries k\+Stencil\+Bit} = G\+L\+\_\+\+S\+T\+E\+N\+C\+I\+L\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+B\+IT, 
+{\bfseries k\+Depth\+Stencil\+Bit} = k\+Depth\+Bit $\vert$ k\+Stencil\+Bit
+ \}
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_accd1b171fd05c92f04fc38b41c337b0a}\label{classrev_1_1_frame_buffer_accd1b171fd05c92f04fc38b41c337b0a}} 
+enum {\bfseries Buffer\+Attachment\+Type} \{ {\bfseries k\+Texture}, 
+{\bfseries k\+R\+BO}
+ \}
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_af5069fcf7ffc5a3f10008a40982fbdf0}\label{classrev_1_1_frame_buffer_af5069fcf7ffc5a3f10008a40982fbdf0}} 
+enum {\bfseries Bind\+Type} \{ {\bfseries k\+Read} = G\+L\+\_\+\+R\+E\+A\+D\+\_\+\+F\+R\+A\+M\+E\+B\+U\+F\+F\+ER, 
+{\bfseries k\+Write} = G\+L\+\_\+\+D\+R\+A\+W\+\_\+\+F\+R\+A\+M\+E\+B\+U\+F\+F\+ER
+ \}
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_a7552663a1870ffa2bfa02be91a25ca31}\label{classrev_1_1_frame_buffer_a7552663a1870ffa2bfa02be91a25ca31}} 
+static void \mbox{\hyperlink{classrev_1_1_frame_buffer_a7552663a1870ffa2bfa02be91a25ca31}{Release}} ()
+\begin{DoxyCompactList}\small\item\em Release current active F\+BO. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+An abstraction of an Open\+GL framebuffer. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_a6853bb65a669c0e263c359a01a32d678}\label{classrev_1_1_frame_buffer_a6853bb65a669c0e263c359a01a32d678}} 
+\index{rev::FrameBuffer@{rev::FrameBuffer}!blit@{blit}}
+\index{blit@{blit}!rev::FrameBuffer@{rev::FrameBuffer}}
+\subsubsection{\texorpdfstring{blit()}{blit()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void rev\+::\+Frame\+Buffer\+::blit (\begin{DoxyParamCaption}\item[{Blit\+Mask}]{blit\+Mask,  }\item[{\mbox{\hyperlink{classrev_1_1_frame_buffer}{Frame\+Buffer}} \&}]{other,  }\item[{uint32\+\_\+t}]{read\+Attachment\+Index = {\ttfamily 0} }\end{DoxyParamCaption}) const}
+
+
+
+Blit texture from this framebuffer to the specified framebuffer. 
+
+This does not follow Open\+GL\textquotesingle{}s A\+PI as closely, but is a cleaner interface \mbox{\Hypertarget{classrev_1_1_frame_buffer_a03d7ca6784c7b4d277c47c29f81f631a}\label{classrev_1_1_frame_buffer_a03d7ca6784c7b4d277c47c29f81f631a}} 
+\index{rev::FrameBuffer@{rev::FrameBuffer}!blit@{blit}}
+\index{blit@{blit}!rev::FrameBuffer@{rev::FrameBuffer}}
+\subsubsection{\texorpdfstring{blit()}{blit()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void rev\+::\+Frame\+Buffer\+::blit (\begin{DoxyParamCaption}\item[{Blit\+Mask}]{blit\+Mask,  }\item[{uint32\+\_\+t}]{read\+Color\+Attachment\+Index,  }\item[{const std\+::vector$<$ uint32\+\_\+t $>$ \&}]{draw\+Attachment\+Indices }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+blit with another framebuffer 
+
+This follows Open\+GL\textquotesingle{}s A\+PI closely, so the framebuffers bound to G\+L\+\_\+\+R\+E\+A\+D\+\_\+\+F\+R\+A\+M\+E\+B\+U\+F\+F\+ER and G\+L\+\_\+\+W\+R\+I\+T\+E\+\_\+\+F\+R\+A\+M\+E\+B\+U\+F\+F\+ER are used \mbox{\Hypertarget{classrev_1_1_frame_buffer_ab6415b100449eb4c2332a5a3e9f93d26}\label{classrev_1_1_frame_buffer_ab6415b100449eb4c2332a5a3e9f93d26}} 
+\index{rev::FrameBuffer@{rev::FrameBuffer}!reinitialize@{reinitialize}}
+\index{reinitialize@{reinitialize}!rev::FrameBuffer@{rev::FrameBuffer}}
+\subsubsection{\texorpdfstring{reinitialize()}{reinitialize()}}
+{\footnotesize\ttfamily void rev\+::\+Frame\+Buffer\+::reinitialize (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{w,  }\item[{uint32\+\_\+t}]{h,  }\item[{bool}]{ignore\+Incomplete = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Release all bound textures. 
+
+Initialize the F\+BO with the specified width and height
+
+Uses R\+BO by default \mbox{\Hypertarget{classrev_1_1_frame_buffer_a477861e1360aa2ac238c36f7421faa1f}\label{classrev_1_1_frame_buffer_a477861e1360aa2ac238c36f7421faa1f}} 
+\index{rev::FrameBuffer@{rev::FrameBuffer}!setColorAttachments@{setColorAttachments}}
+\index{setColorAttachments@{setColorAttachments}!rev::FrameBuffer@{rev::FrameBuffer}}
+\subsubsection{\texorpdfstring{setColorAttachments()}{setColorAttachments()}}
+{\footnotesize\ttfamily void rev\+::\+Frame\+Buffer\+::set\+Color\+Attachments (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{w,  }\item[{uint32\+\_\+t}]{h }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Set the framebuffer\textquotesingle{}s color attachment to a new texture. 
+
+w and h are in pixels 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/view/G\+Frame\+Buffer.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/view/G\+Frame\+Buffer.\+cpp\end{DoxyCompactItemize}

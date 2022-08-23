@@ -1,0 +1,133 @@
+\hypertarget{classrev_1_1_abstract_service}{}\section{rev\+::Abstract\+Service Class Reference}
+\label{classrev_1_1_abstract_service}\index{rev::AbstractService@{rev::AbstractService}}
+
+
+An abstract base class for all services and tools.  
+
+
+
+
+{\ttfamily \#include $<$G\+Service.\+h$>$}
+
+Inheritance diagram for rev\+::Abstract\+Service\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.028515cm]{classrev_1_1_abstract_service}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+{\em Base class for all Services and Tools managed by the \mbox{\hyperlink{classrev_1_1_service_manager}{Service\+Manager}}. }\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_abstract_service_acc53309b0279a9f873c4bcaad1d90b7c}\label{classrev_1_1_abstract_service_acc53309b0279a9f873c4bcaad1d90b7c}} 
+{\bfseries Abstract\+Service} (const Q\+String \&name, bool defer\+Post\+Construction=false)
+\item 
+\mbox{\Hypertarget{classrev_1_1_abstract_service_a960cbb70c737f308c0011fded5eaf126}\label{classrev_1_1_abstract_service_a960cbb70c737f308c0011fded5eaf126}} 
+{\bfseries $\sim$\+Abstract\+Service} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_abstract_service_a0b64ee4651db7637a70265697ca62453}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_abstract_service_a062e932eaa2eab0109288f2b32e459f7}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_abstract_service_af069c97e599e0261ad8d4db9f7afc4cb}\label{classrev_1_1_abstract_service_af069c97e599e0261ad8d4db9f7afc4cb}} 
+bool \mbox{\hyperlink{classrev_1_1_abstract_service_af069c97e599e0261ad8d4db9f7afc4cb}{m\+\_\+post\+Construction\+Done}}
+\begin{DoxyCompactList}\small\item\em Flag that post-\/construction is done. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_abstract_service_a27d22c230f387fd5fe04b394ec430348}\label{classrev_1_1_abstract_service_a27d22c230f387fd5fe04b394ec430348}} 
+bool \mbox{\hyperlink{classrev_1_1_abstract_service_a27d22c230f387fd5fe04b394ec430348}{m\+\_\+defer\+Post\+Construction}}
+\begin{DoxyCompactList}\small\item\em Flag to defer post-\/construction (and perform manually) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Methods}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_abstract_service_acc4ccafd89c3d4d00a9838b6090ea72a}\label{classrev_1_1_abstract_service_acc4ccafd89c3d4d00a9838b6090ea72a}} 
+bool \mbox{\hyperlink{classrev_1_1_abstract_service_acc4ccafd89c3d4d00a9838b6090ea72a}{deferred\+Sender\+Connect}} (const char $\ast$sender\+\_\+name, const char $\ast$sender\+\_\+signal, const char $\ast$receiver\+\_\+slot)
+\begin{DoxyCompactList}\small\item\em Schedule a Qt Signal/\+Slot connection to a possibly unloaded sender. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_abstract_service_af59a2d40b323da43ad69ea9b1634a228}\label{classrev_1_1_abstract_service_af59a2d40b323da43ad69ea9b1634a228}} 
+bool {\bfseries deferred\+Sender\+Connect} (const Q\+String \&sender\+\_\+name, const char $\ast$sender\+\_\+signal, const char $\ast$receiver\+\_\+slot)
+\item 
+\mbox{\Hypertarget{classrev_1_1_abstract_service_a2ee1ad1b9d10a1d702d0a484e214b99d}\label{classrev_1_1_abstract_service_a2ee1ad1b9d10a1d702d0a484e214b99d}} 
+virtual bool \mbox{\hyperlink{classrev_1_1_abstract_service_a2ee1ad1b9d10a1d702d0a484e214b99d}{is\+Service}} () const =0
+\begin{DoxyCompactList}\small\item\em Returns True if this \mbox{\hyperlink{classrev_1_1_abstract_service}{Abstract\+Service}} represents a service. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_abstract_service_aeb245a6d33601ccb842f4c7c2a3dda7a}\label{classrev_1_1_abstract_service_aeb245a6d33601ccb842f4c7c2a3dda7a}} 
+virtual bool \mbox{\hyperlink{classrev_1_1_abstract_service_aeb245a6d33601ccb842f4c7c2a3dda7a}{is\+Tool}} () const =0
+\begin{DoxyCompactList}\small\item\em Returns True if this \mbox{\hyperlink{classrev_1_1_abstract_service}{Abstract\+Service}} represents a tool. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classrev_1_1_abstract_service_a23dfd75f11839483f0f75b08b2b3d502}{post\+Construction}} ()
+\begin{DoxyCompactList}\small\item\em Called after Constructor completed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_abstract_service_a9b3a0ed8e78827c7a0f74302a49e3dfa}\label{classrev_1_1_abstract_service_a9b3a0ed8e78827c7a0f74302a49e3dfa}} 
+static const \mbox{\hyperlink{classrev_1_1_abstract_service}{Abstract\+Service}} \& \mbox{\hyperlink{classrev_1_1_abstract_service_a9b3a0ed8e78827c7a0f74302a49e3dfa}{get\+Service}} (const Q\+String \&name)
+\begin{DoxyCompactList}\small\item\em Get the \mbox{\hyperlink{classrev_1_1_service}{Service}} with the given name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+An abstract base class for all services and tools. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_abstract_service_a0b64ee4651db7637a70265697ca62453}\label{classrev_1_1_abstract_service_a0b64ee4651db7637a70265697ca62453}} 
+\index{rev::AbstractService@{rev::AbstractService}!className@{className}}
+\index{className@{className}!rev::AbstractService@{rev::AbstractService}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Abstract\+Service\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_view_1_1_resource_tree_widget_ab15fda44cb0727f860a2d1071fefb104}{rev\+::\+View\+::\+Resource\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_view_1_1_canvas_glyph_widget_a2c05ba4850db7c75a954a4dcda3f980f}{rev\+::\+View\+::\+Canvas\+Glyph\+Widget}}, \mbox{\hyperlink{classrev_1_1_debug_manager_a5962e13755e5a3b902f2d3f71e5948cb}{rev\+::\+Debug\+Manager}}, \mbox{\hyperlink{classrev_1_1_view_1_1_tree_widget_aedde04f44badced7c60f0e1570e3d0b2}{rev\+::\+View\+::\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_view_1_1_mesh_tree_widget_a1fe0980bbddcafe4801991a0a70a8a3d}{rev\+::\+View\+::\+Mesh\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_view_1_1_script_order_tree_widget_ac1972eb933746c0f38059c8a78f4a36d}{rev\+::\+View\+::\+Script\+Order\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_view_1_1_shader_tree_widget_aac6c4858df27dfdf09a0694eeb5bccd4}{rev\+::\+View\+::\+Shader\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_af0acbcb9d6cb9b0b209d0a9e11f563f3}{rev\+::\+View\+::\+Scene\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_tree_widget_afa490edab7f0472cae72674be7b1462f}{rev\+::\+View\+::\+Render\+Layer\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_select_widget_af00c2a10bb0fafd2814b11a7abed74fc}{rev\+::\+View\+::\+Render\+Layer\+Select\+Widget}}, \mbox{\hyperlink{classrev_1_1_resource_cache_ac6abc543146d0f487cfffb79d33d35e0}{rev\+::\+Resource\+Cache}}, \mbox{\hyperlink{classrev_1_1_view_1_1_animation_tree_widget_aa2b7b831a03e3954d9e37ac361ee7385}{rev\+::\+View\+::\+Animation\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_physics_manager_a557872ba7a7c0fb2074b408f185aa789}{rev\+::\+Physics\+Manager}}, \mbox{\hyperlink{classrev_1_1_view_1_1_blueprint_list_view_ab64a820b0e1fff62711f536fc89bf832}{rev\+::\+View\+::\+Blueprint\+List\+View}}, \mbox{\hyperlink{classrev_1_1_view_1_1_resource_list_view_a2e12909ec3f4986fb0d2d3edd0987ba6}{rev\+::\+View\+::\+Resource\+List\+View}}, \mbox{\hyperlink{classrev_1_1_service_a484d71757ea6e8780488602cb421a4a5}{rev\+::\+Service}}, \mbox{\hyperlink{classrev_1_1_file_manager_abfb467bdcfbacd82f041139a15d73fa0}{rev\+::\+File\+Manager}}, \mbox{\hyperlink{classrev_1_1_event_manager_a3999d64126b1b5e0d8d4a47636bfe4c5}{rev\+::\+Event\+Manager}}, \mbox{\hyperlink{classrev_1_1_sound_manager_a1b4c69f6b4e31741ddf76595004fd0fe}{rev\+::\+Sound\+Manager}}, \mbox{\hyperlink{classrev_1_1_animation_manager_a75045d17ce187cc554ff1b2f12e2fea5}{rev\+::\+Animation\+Manager}}, \mbox{\hyperlink{classrev_1_1_view_1_1_component_tree_widget_a906360e88a18432b36c9d769a8e3886c}{rev\+::\+View\+::\+Component\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_view_1_1_console_tool_abffa7bd8ebee59a74578c046ded1fb70}{rev\+::\+View\+::\+Console\+Tool}}, and \mbox{\hyperlink{classrev_1_1_view_1_1_tool_acde27fd51c9e99e42da65703b496c080}{rev\+::\+View\+::\+Tool}}.
+
+\mbox{\Hypertarget{classrev_1_1_abstract_service_a062e932eaa2eab0109288f2b32e459f7}\label{classrev_1_1_abstract_service_a062e932eaa2eab0109288f2b32e459f7}} 
+\index{rev::AbstractService@{rev::AbstractService}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::AbstractService@{rev::AbstractService}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Abstract\+Service\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_view_1_1_resource_tree_widget_a4255d4ec5631ed643a2248c7ce6a109f}{rev\+::\+View\+::\+Resource\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_view_1_1_canvas_glyph_widget_ace5c69a8e1f338fc0571f98a7329a64d}{rev\+::\+View\+::\+Canvas\+Glyph\+Widget}}, \mbox{\hyperlink{classrev_1_1_debug_manager_a0f83cdbbd2ed91549fe2ae4fdf8809b6}{rev\+::\+Debug\+Manager}}, \mbox{\hyperlink{classrev_1_1_view_1_1_tree_widget_a09be824e34e50e9622c3dc333c9a3c07}{rev\+::\+View\+::\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_view_1_1_mesh_tree_widget_a9051050a76f3eb339fe8eacfac5806ca}{rev\+::\+View\+::\+Mesh\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_view_1_1_script_order_tree_widget_aeffcb37cdb2f9745d92b74c0ed73aebd}{rev\+::\+View\+::\+Script\+Order\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_view_1_1_shader_tree_widget_a34120d5ac0a72d1bc042f1933d11e984}{rev\+::\+View\+::\+Shader\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_a8d388e6e5f396f5641a92a29fb42bf6c}{rev\+::\+View\+::\+Scene\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_tree_widget_abf815dc334dc567b1d9defe2ed24efc6}{rev\+::\+View\+::\+Render\+Layer\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_select_widget_a3f7f6f78fbfdc91168b7d1c762ecb0af}{rev\+::\+View\+::\+Render\+Layer\+Select\+Widget}}, \mbox{\hyperlink{classrev_1_1_resource_cache_a4ed6a3f7ea5e8ea20287a5bce1fa05b9}{rev\+::\+Resource\+Cache}}, \mbox{\hyperlink{classrev_1_1_view_1_1_animation_tree_widget_a7e4693a9bee6d2ed28da121609ac82ec}{rev\+::\+View\+::\+Animation\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_physics_manager_ac541c7e0460d572c5bff2e4136c779e1}{rev\+::\+Physics\+Manager}}, \mbox{\hyperlink{classrev_1_1_view_1_1_blueprint_list_view_af706f0869b486cbe80ef9457723c9de6}{rev\+::\+View\+::\+Blueprint\+List\+View}}, \mbox{\hyperlink{classrev_1_1_view_1_1_resource_list_view_a58c6e30384ae07c1de6fe33efd9c0eb3}{rev\+::\+View\+::\+Resource\+List\+View}}, \mbox{\hyperlink{classrev_1_1_service_a831f5bf8c53584ec830aaee38ea58e7b}{rev\+::\+Service}}, \mbox{\hyperlink{classrev_1_1_file_manager_a57e18b80b80bde22fb0917daae4662bc}{rev\+::\+File\+Manager}}, \mbox{\hyperlink{classrev_1_1_event_manager_a5188a25a9b785d841c39aefafd5f391e}{rev\+::\+Event\+Manager}}, \mbox{\hyperlink{classrev_1_1_sound_manager_a00de07c95c3a3993ec7c2008cc2c0db3}{rev\+::\+Sound\+Manager}}, \mbox{\hyperlink{classrev_1_1_animation_manager_a7654304032196589413ddb5fec41981b}{rev\+::\+Animation\+Manager}}, \mbox{\hyperlink{classrev_1_1_view_1_1_component_tree_widget_aabf1838a1bf9240def872d8526b3aa4b}{rev\+::\+View\+::\+Component\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_view_1_1_console_tool_a8168c00a344099bff9626a775408aac4}{rev\+::\+View\+::\+Console\+Tool}}, and \mbox{\hyperlink{classrev_1_1_view_1_1_tool_ab5359d977478b9c3e30267bcc4e4a853}{rev\+::\+View\+::\+Tool}}.
+
+\mbox{\Hypertarget{classrev_1_1_abstract_service_a23dfd75f11839483f0f75b08b2b3d502}\label{classrev_1_1_abstract_service_a23dfd75f11839483f0f75b08b2b3d502}} 
+\index{rev::AbstractService@{rev::AbstractService}!postConstruction@{postConstruction}}
+\index{postConstruction@{postConstruction}!rev::AbstractService@{rev::AbstractService}}
+\subsubsection{\texorpdfstring{postConstruction()}{postConstruction()}}
+{\footnotesize\ttfamily virtual void rev\+::\+Abstract\+Service\+::post\+Construction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Called after Constructor completed. 
+
+\begin{DoxyNote}{Note}
+Make deferred connection calls here 
+\end{DoxyNote}
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_debug_manager_a5fae9fc663600b490c2bb640c57d5019}{rev\+::\+Debug\+Manager}}, \mbox{\hyperlink{classrev_1_1_resource_cache_ae947d8b31bcf5d4fd78bc302f87bd2d2}{rev\+::\+Resource\+Cache}}, \mbox{\hyperlink{classrev_1_1_view_1_1_widget_manager_a0e3c8b58975856e332fd82a32dd37880}{rev\+::\+View\+::\+Widget\+Manager}}, \mbox{\hyperlink{classrev_1_1_process_manager_ae6f8b3b37aed5d3f0653578c269536ee}{rev\+::\+Process\+Manager}}, \mbox{\hyperlink{classrev_1_1_font_manager_a6e27e37302ff3aba4515db4dbde904db}{rev\+::\+Font\+Manager}}, \mbox{\hyperlink{classrev_1_1_animation_manager_a13f4d23b154d3ad28022bdcc6f681a58}{rev\+::\+Animation\+Manager}}, and \mbox{\hyperlink{classrev_1_1_manager_ace17f455b4762c5a6b16092b43a939b8}{rev\+::\+Manager}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/service/G\+Service.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/service/G\+Service.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,201 @@
+\hypertarget{classrev_1_1_dag_node}{}\section{rev\+::Dag\+Node$<$ T $>$ Class Template Reference}
+\label{classrev_1_1_dag_node}\index{rev::DagNode$<$ T $>$@{rev::DagNode$<$ T $>$}}
+
+
+A node of a Directed Acyclic Graph (D\+AG)  
+
+
+
+
+{\ttfamily \#include $<$G\+Dag\+Node.\+h$>$}
+
+Inheritance diagram for rev\+::Dag\+Node$<$ T $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.876712cm]{classrev_1_1_dag_node}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_dag_node_acd8195e5da268318a0b4d34a8abe5948}\label{classrev_1_1_dag_node_acd8195e5da268318a0b4d34a8abe5948}} 
+typedef std\+::vector$<$ std\+::shared\+\_\+ptr$<$ T $>$ $>$ {\bfseries Node\+Vector}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_dag_node_ac24b2462775bf37e97070d9cd4dcd51f}\label{classrev_1_1_dag_node_ac24b2462775bf37e97070d9cd4dcd51f}} 
+virtual {\bfseries $\sim$\+Dag\+Node} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_dag_node_a0eeab3282b999e849d5d2382192a1e79}\label{classrev_1_1_dag_node_a0eeab3282b999e849d5d2382192a1e79}} 
+void \mbox{\hyperlink{classrev_1_1_dag_node_a0eeab3282b999e849d5d2382192a1e79}{get3\+Channel\+Id}} (uint32\+\_\+t $\ast$color\+Array)
+\begin{DoxyCompactList}\small\item\em Return the unique integer ID given an array buffer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_dag_node_affc1f6a97703f3187ad0159709bb0681}\label{classrev_1_1_dag_node_affc1f6a97703f3187ad0159709bb0681}} 
+uint32\+\_\+t \mbox{\hyperlink{classrev_1_1_dag_node_affc1f6a97703f3187ad0159709bb0681}{id}} () const
+\begin{DoxyCompactList}\small\item\em The unique integer ID of the D\+AG Node. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_dag_node_ad3ffe647fe4ebd01a43cd414717e5353}\label{classrev_1_1_dag_node_ad3ffe647fe4ebd01a43cd414717e5353}} 
+bool {\bfseries has\+Child} (uint32\+\_\+t \mbox{\hyperlink{classrev_1_1_dag_node_affc1f6a97703f3187ad0159709bb0681}{id}}, uint32\+\_\+t \&out\+Index)
+\item 
+\mbox{\Hypertarget{classrev_1_1_dag_node_ab6eb9cc62005adf59ac892bfb995b4fb}\label{classrev_1_1_dag_node_ab6eb9cc62005adf59ac892bfb995b4fb}} 
+void \mbox{\hyperlink{classrev_1_1_dag_node_ab6eb9cc62005adf59ac892bfb995b4fb}{add\+Parent}} (const std\+::shared\+\_\+ptr$<$ T $>$ \&parent)
+\begin{DoxyCompactList}\small\item\em Add a parent to the given node. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_dag_node_aff6a60114cf4ceb6066f5c01375a3d3c}\label{classrev_1_1_dag_node_aff6a60114cf4ceb6066f5c01375a3d3c}} 
+void \mbox{\hyperlink{classrev_1_1_dag_node_aff6a60114cf4ceb6066f5c01375a3d3c}{add\+Child}} (const std\+::shared\+\_\+ptr$<$ T $>$ \&child)
+\begin{DoxyCompactList}\small\item\em Add a child to the given node. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_dag_node_a64984b715042050e4b01a155ce3252d1}\label{classrev_1_1_dag_node_a64984b715042050e4b01a155ce3252d1}} 
+void \mbox{\hyperlink{classrev_1_1_dag_node_a64984b715042050e4b01a155ce3252d1}{remove\+Parent}} (uint32\+\_\+t parent\+Id)
+\begin{DoxyCompactList}\small\item\em Remove a parent from the given node. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_dag_node_aa35a36c80b9b35a95ec36d88b1722fd0}\label{classrev_1_1_dag_node_aa35a36c80b9b35a95ec36d88b1722fd0}} 
+void \mbox{\hyperlink{classrev_1_1_dag_node_aa35a36c80b9b35a95ec36d88b1722fd0}{remove\+Child}} (\mbox{\hyperlink{classrev_1_1_dag_node}{Dag\+Node}} $\ast$child)
+\begin{DoxyCompactList}\small\item\em Remove a child from the given node. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_dag_node_aebfc56762bc1b3b26d1c0842342c832a}\label{classrev_1_1_dag_node_aebfc56762bc1b3b26d1c0842342c832a}} 
+void {\bfseries remove\+Child} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_dag_node}{Dag\+Node}} $>$ \&child)
+\item 
+\mbox{\Hypertarget{classrev_1_1_dag_node_a57bd357a59e1afa0b766fedbfcadbfc5}\label{classrev_1_1_dag_node_a57bd357a59e1afa0b766fedbfcadbfc5}} 
+\mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \mbox{\hyperlink{classrev_1_1_dag_node_a57bd357a59e1afa0b766fedbfcadbfc5}{hierarchy\+Description}} (int level=0)
+\begin{DoxyCompactList}\small\item\em Outputs a string containing the hierarchy description of this node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_dag_node_a217e0cc1cf2cfad0dcf14e7569242ef9}\label{classrev_1_1_dag_node_a217e0cc1cf2cfad0dcf14e7569242ef9}} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ T $>$ $>$ \& {\bfseries children} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_dag_node_a5f9354c47c578479715698bb87bbca4d}\label{classrev_1_1_dag_node_a5f9354c47c578479715698bb87bbca4d}} 
+const std\+::vector$<$ std\+::shared\+\_\+ptr$<$ T $>$ $>$ \& {\bfseries children} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_dag_node_a2a9d170eeddde06012827de41c289e10}\label{classrev_1_1_dag_node_a2a9d170eeddde06012827de41c289e10}} 
+bool \mbox{\hyperlink{classrev_1_1_dag_node_a2a9d170eeddde06012827de41c289e10}{has\+Children}} () const
+\begin{DoxyCompactList}\small\item\em Whether or not the node has children. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_dag_node_a6e103169ef2a59a950e92633b6d8d464}\label{classrev_1_1_dag_node_a6e103169ef2a59a950e92633b6d8d464}} 
+bool \mbox{\hyperlink{classrev_1_1_dag_node_a6e103169ef2a59a950e92633b6d8d464}{has\+Parents}} () const
+\begin{DoxyCompactList}\small\item\em Whether or not the node has children. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_dag_node_a1a3f838d4135ba9e85a245c9645cde37}\label{classrev_1_1_dag_node_a1a3f838d4135ba9e85a245c9645cde37}} 
+uint32\+\_\+t \mbox{\hyperlink{classrev_1_1_dag_node_a1a3f838d4135ba9e85a245c9645cde37}{num\+Parents}} () const
+\begin{DoxyCompactList}\small\item\em Number of parent D\+AG nodes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_dag_node_a695b66b608ea619afed26a4dd964145b}\label{classrev_1_1_dag_node_a695b66b608ea619afed26a4dd964145b}} 
+uint32\+\_\+t \mbox{\hyperlink{classrev_1_1_dag_node_a695b66b608ea619afed26a4dd964145b}{num\+Children}} () const
+\begin{DoxyCompactList}\small\item\em Number of child D\+AG nodes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_dag_node_ab769f5f1cc1bdb1dde07c8d1466fad56}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_dag_node_a65d5289cdff9f83fde666474c33f4a5b}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{Indent}\textbf{ Static Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_dag_node_ae5c4ceca24c2e7d49666bd204b6df1ee}\label{classrev_1_1_dag_node_ae5c4ceca24c2e7d49666bd204b6df1ee}} 
+static void \mbox{\hyperlink{classrev_1_1_dag_node_ae5c4ceca24c2e7d49666bd204b6df1ee}{Erase\+From\+Node\+Vec}} (uint32\+\_\+t \mbox{\hyperlink{classrev_1_1_dag_node_affc1f6a97703f3187ad0159709bb0681}{id}})
+\begin{DoxyCompactList}\small\item\em Erases a node with the given ID from the static list. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_dag_node_a0e0ba53b2bb58c57e3dfbc3bc8203622}\label{classrev_1_1_dag_node_a0e0ba53b2bb58c57e3dfbc3bc8203622}} 
+static std\+::vector$<$ std\+::shared\+\_\+ptr$<$ T $>$ $>$ \& \mbox{\hyperlink{classrev_1_1_dag_node_a0e0ba53b2bb58c57e3dfbc3bc8203622}{Dag\+Nodes}} ()
+\begin{DoxyCompactList}\small\item\em Returns map of D\+AG nodes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_dag_node_af826eda4cef3c5bf895f4d0014198f37}\label{classrev_1_1_dag_node_af826eda4cef3c5bf895f4d0014198f37}} 
+static void \mbox{\hyperlink{classrev_1_1_dag_node_af826eda4cef3c5bf895f4d0014198f37}{Clear}} ()
+\begin{DoxyCompactList}\small\item\em Clear all Dag nodes of this type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_dag_node_ab2935df93974db3f0ae79bd97f7ff49a}\label{classrev_1_1_dag_node_ab2935df93974db3f0ae79bd97f7ff49a}} 
+Node\+Vector {\bfseries parents} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_dag_node_a033ee383e299d32bdc4ada1888e5945f}\label{classrev_1_1_dag_node_a033ee383e299d32bdc4ada1888e5945f}} 
+const std\+::shared\+\_\+ptr$<$ T $>$ \& \mbox{\hyperlink{classrev_1_1_dag_node_a033ee383e299d32bdc4ada1888e5945f}{shared\+Ptr}} ()
+\begin{DoxyCompactList}\small\item\em returns a shared pointer to this object from the static node map \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_dag_node_aed31306dd63371bfea15bba6d0f312b3}\label{classrev_1_1_dag_node_aed31306dd63371bfea15bba6d0f312b3}} 
+void \mbox{\hyperlink{classrev_1_1_dag_node_aed31306dd63371bfea15bba6d0f312b3}{add\+To\+Node\+Map}} ()
+\begin{DoxyCompactList}\small\item\em Adds to static list of nodes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Constructors/}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_dag_node_a31f36242bcb73469215278a5d0283b89}\label{classrev_1_1_dag_node_a31f36242bcb73469215278a5d0283b89}} 
+{\bfseries Dag\+Node} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_dag_node_afbd1e96015927229fc3b637553b65c5c}\label{classrev_1_1_dag_node_afbd1e96015927229fc3b637553b65c5c}} 
+Node\+Vector \mbox{\hyperlink{classrev_1_1_dag_node_afbd1e96015927229fc3b637553b65c5c}{m\+\_\+children}}
+\begin{DoxyCompactList}\small\item\em Child D\+AG nodes of this node. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_dag_node_a531899dc060b6ac184b00a853a1e0559}\label{classrev_1_1_dag_node_a531899dc060b6ac184b00a853a1e0559}} 
+\mbox{\hyperlink{classtsl_1_1robin__map}{tsl\+::robin\+\_\+map}}$<$ uint32\+\_\+t, std\+::weak\+\_\+ptr$<$ T $>$ $>$ \mbox{\hyperlink{classrev_1_1_dag_node_a531899dc060b6ac184b00a853a1e0559}{m\+\_\+parents}}
+\begin{DoxyCompactList}\small\item\em Parent D\+AG nodes of this node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_dag_node_a6dfbfaa4d50dc35d9c9491fd2b09ce23}\label{classrev_1_1_dag_node_a6dfbfaa4d50dc35d9c9491fd2b09ce23}} 
+class \mbox{\hyperlink{classrev_1_1_dag_node_a6dfbfaa4d50dc35d9c9491fd2b09ce23}{Add\+Scene\+Object\+Command}}
+\begin{DoxyCompactList}\small\item\em Commands that have access to D\+AG node private methods. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class rev\+::\+Dag\+Node$<$ T $>$}
+
+A node of a Directed Acyclic Graph (D\+AG) 
+
+A directed acyclic graph is more generalized notion of a tree structure, except that in a D\+AG, a child may have more than one parent, as opposed to in a tree, where each child may only have at most one parent.
+
+\begin{DoxyNote}{Note}
+To achieve functionality without memory leaks, all D\+AG nodes are cached in a static map.
+\end{DoxyNote}
+To completely delete a D\+AG node, they must be manually erased from this static map using the erase\+From\+Node\+Map method. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_dag_node_ab769f5f1cc1bdb1dde07c8d1466fad56}\label{classrev_1_1_dag_node_ab769f5f1cc1bdb1dde07c8d1466fad56}} 
+\index{rev::DagNode$<$ T $>$@{rev::DagNode$<$ T $>$}!className@{className}}
+\index{className@{className}!rev::DagNode$<$ T $>$@{rev::DagNode$<$ T $>$}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+const char$\ast$ \mbox{\hyperlink{classrev_1_1_dag_node}{rev\+::\+Dag\+Node}}$<$ T $>$\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_scene_object_a511357629f9d5957355f9a5cec239ec4}{rev\+::\+Scene\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_dag_node_a65d5289cdff9f83fde666474c33f4a5b}\label{classrev_1_1_dag_node_a65d5289cdff9f83fde666474c33f4a5b}} 
+\index{rev::DagNode$<$ T $>$@{rev::DagNode$<$ T $>$}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::DagNode$<$ T $>$@{rev::DagNode$<$ T $>$}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+const char$\ast$ \mbox{\hyperlink{classrev_1_1_dag_node}{rev\+::\+Dag\+Node}}$<$ T $>$\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_scene_object_a63816cdf271b38d1e058c2c2847a0f1e}{rev\+::\+Scene\+Object}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/containers/G\+Dag\+Node.\+h\end{DoxyCompactItemize}

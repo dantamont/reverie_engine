@@ -1,0 +1,136 @@
+\hypertarget{classrev_1_1_process_manager}{}\section{rev\+::Process\+Manager Class Reference}
+\label{classrev_1_1_process_manager}\index{rev::ProcessManager@{rev::ProcessManager}}
+
+
+\mbox{\hyperlink{classrev_1_1_process_manager}{Process\+Manager}} class.  
+
+
+
+
+{\ttfamily \#include $<$G\+Process\+Manager.\+h$>$}
+
+Inheritance diagram for rev\+::Process\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.929577cm]{classrev_1_1_process_manager}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_manager_a7313508170097ad275f4301bc3699b78}\label{classrev_1_1_process_manager_a7313508170097ad275f4301bc3699b78}} 
+typedef std\+::vector$<$ Strong\+Process\+Ptr $>$ {\bfseries Process\+Vec}
+\end{DoxyCompactItemize}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_manager_ac28646c11ecb84a0f6de4518a2d936af}\label{classrev_1_1_process_manager_ac28646c11ecb84a0f6de4518a2d936af}} 
+void \mbox{\hyperlink{classrev_1_1_process_manager_ac28646c11ecb84a0f6de4518a2d936af}{delete\+Threaded\+Process}} (const \mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \&uuid)
+\begin{DoxyCompactList}\small\item\em Delete the threaded process with the given U\+U\+ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_manager_a685929e3ecb58d4c40e33eb616249880}\label{classrev_1_1_process_manager_a685929e3ecb58d4c40e33eb616249880}} 
+{\bfseries Process\+Manager} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$\mbox{\hyperlink{classrev_1_1_manager_a0fbd0df6b4f3caf42b557f9702f48171}{engine}}, uint32\+\_\+t initial\+Thread\+Count=2)
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_manager_a333cbf8b0c0e4b227b610360488155f6}\label{classrev_1_1_process_manager_a333cbf8b0c0e4b227b610360488155f6}} 
+{\bfseries $\sim$\+Process\+Manager} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_manager_ac2e3b5e203125c34b1f860637badf2fd}\label{classrev_1_1_process_manager_ac2e3b5e203125c34b1f860637badf2fd}} 
+\mbox{\hyperlink{classrev_1_1_thread_pool}{Thread\+Pool}} \& {\bfseries thread\+Pool} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_manager_a6396c72e79f92f32a3cfd85f2cfa2036}\label{classrev_1_1_process_manager_a6396c72e79f92f32a3cfd85f2cfa2036}} 
+unsigned int {\bfseries load\+Process\+Count} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_manager_a22af8439e106920d799b87afb210ec6d}\label{classrev_1_1_process_manager_a22af8439e106920d799b87afb210ec6d}} 
+\mbox{\hyperlink{classrev_1_1_process_thread}{Process\+Thread}} \& {\bfseries animation\+Thread} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_manager_a382e755525970dd7cf42d6b8d7f1466d}\label{classrev_1_1_process_manager_a382e755525970dd7cf42d6b8d7f1466d}} 
+virtual void \mbox{\hyperlink{classrev_1_1_process_manager_a382e755525970dd7cf42d6b8d7f1466d}{update\+Processes}} (double delta\+Sec) override
+\begin{DoxyCompactList}\small\item\em Updates all attached processes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_manager_aea57cc88397e36253bf73cb1c340a8d6}\label{classrev_1_1_process_manager_aea57cc88397e36253bf73cb1c340a8d6}} 
+virtual void \mbox{\hyperlink{classrev_1_1_process_manager_aea57cc88397e36253bf73cb1c340a8d6}{clear\+All\+Processes}} () override
+\begin{DoxyCompactList}\small\item\em Called on destruction, clears all processes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_manager_a1ceecd83940cb6eb29120df0d8620733}\label{classrev_1_1_process_manager_a1ceecd83940cb6eb29120df0d8620733}} 
+virtual Weak\+Process\+Ptr \mbox{\hyperlink{classrev_1_1_process_manager_a1ceecd83940cb6eb29120df0d8620733}{attach\+Process}} (Strong\+Process\+Ptr process, bool initialize=false)
+\begin{DoxyCompactList}\small\item\em Attach a process to the process manager. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_manager_a42d8d7db107b2c0964b7a3e8e059992a}\label{classrev_1_1_process_manager_a42d8d7db107b2c0964b7a3e8e059992a}} 
+virtual Weak\+Process\+Ptr \mbox{\hyperlink{classrev_1_1_process_manager_a42d8d7db107b2c0964b7a3e8e059992a}{reattach\+Process}} (Strong\+Process\+Ptr process)
+\begin{DoxyCompactList}\small\item\em Reattach a process (e.\+g., when the run order has changed) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_manager_af27b555fa39d0b64fb0c467691084a6b}\label{classrev_1_1_process_manager_af27b555fa39d0b64fb0c467691084a6b}} 
+virtual void \mbox{\hyperlink{classrev_1_1_process_manager_af27b555fa39d0b64fb0c467691084a6b}{abort\+All\+Processes}} (bool immediate) override
+\begin{DoxyCompactList}\small\item\em Aborts all processes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_manager_ae6f8b3b37aed5d3f0653578c269536ee}\label{classrev_1_1_process_manager_ae6f8b3b37aed5d3f0653578c269536ee}} 
+virtual void \mbox{\hyperlink{classrev_1_1_process_manager_ae6f8b3b37aed5d3f0653578c269536ee}{post\+Construction}} () override final
+\begin{DoxyCompactList}\small\item\em Called after construction. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_manager_a4ba3092d7b9e917561cc74b31263bc61}\label{classrev_1_1_process_manager_a4ba3092d7b9e917561cc74b31263bc61}} 
+virtual const char $\ast$ {\bfseries class\+Name} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_manager_ab785606fd4122167704c0b80570350b1}\label{classrev_1_1_process_manager_ab785606fd4122167704c0b80570350b1}} 
+virtual const char $\ast$ {\bfseries namespace\+Name} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_manager_aa3e2e2eecd3c529d7c2ebf38d549b39a}\label{classrev_1_1_process_manager_aa3e2e2eecd3c529d7c2ebf38d549b39a}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_process_manager_aa3e2e2eecd3c529d7c2ebf38d549b39a}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_manager_abeed9865e4124008f1652ed7549faae5}\label{classrev_1_1_process_manager_abeed9865e4124008f1652ed7549faae5}} 
+virtual void \mbox{\hyperlink{classrev_1_1_process_manager_abeed9865e4124008f1652ed7549faae5}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_manager_ae93eb02df68e26d9685fbae93e06e026}\label{classrev_1_1_process_manager_ae93eb02df68e26d9685fbae93e06e026}} 
+void \mbox{\hyperlink{classrev_1_1_process_manager_ae93eb02df68e26d9685fbae93e06e026}{initialize\+Threads}} (unsigned int thread\+Count)
+\begin{DoxyCompactList}\small\item\em Initialize threads. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_manager_ace873e5a3643d742c3c4a53e0d268c9a}\label{classrev_1_1_process_manager_ace873e5a3643d742c3c4a53e0d268c9a}} 
+void \mbox{\hyperlink{classrev_1_1_process_manager_ace873e5a3643d742c3c4a53e0d268c9a}{log\+Message}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&message, Log\+Level log\+Level=Log\+Level\+::\+Info)
+\begin{DoxyCompactList}\small\item\em Send log event across threads. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_manager_a98affeb775af57b234a2a8871994d2f9}\label{classrev_1_1_process_manager_a98affeb775af57b234a2a8871994d2f9}} 
+virtual void \mbox{\hyperlink{classrev_1_1_process_manager_a98affeb775af57b234a2a8871994d2f9}{abort\+Process}} (Strong\+Process\+Ptr process, bool immediate)
+\begin{DoxyCompactList}\small\item\em Abort a given process. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_manager_aacdc7e8ea1314553882ac48e0f7d9b22}\label{classrev_1_1_process_manager_aacdc7e8ea1314553882ac48e0f7d9b22}} 
+std\+::mutex \mbox{\hyperlink{classrev_1_1_process_manager_aacdc7e8ea1314553882ac48e0f7d9b22}{m\+\_\+threaded\+Process\+Mutex}}
+\begin{DoxyCompactList}\small\item\em Mutex for getting thread process queue. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_manager_a7603796a61816f052467ee424a296edb}\label{classrev_1_1_process_manager_a7603796a61816f052467ee424a296edb}} 
+Process\+Vec \mbox{\hyperlink{classrev_1_1_process_manager_a7603796a61816f052467ee424a296edb}{m\+\_\+threaded\+Processes}}
+\begin{DoxyCompactList}\small\item\em All threaded processes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_manager_acd75643d4c8b301160af86ac7e95c422}\label{classrev_1_1_process_manager_acd75643d4c8b301160af86ac7e95c422}} 
+std\+::array$<$ \mbox{\hyperlink{classrev_1_1_process_thread}{Process\+Thread}},(size\+\_\+t) Dedicated\+Thread\+Type\+::k\+N\+U\+M\+\_\+\+D\+E\+D\+I\+C\+A\+T\+E\+D\+\_\+\+T\+H\+R\+E\+A\+DS $>$ \mbox{\hyperlink{classrev_1_1_process_manager_acd75643d4c8b301160af86ac7e95c422}{m\+\_\+dedicated\+Threads}}
+\begin{DoxyCompactList}\small\item\em Dedicated process threads. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_manager_a4233fda388fbc7b3cf4ec78c78d7af4e}\label{classrev_1_1_process_manager_a4233fda388fbc7b3cf4ec78c78d7af4e}} 
+\mbox{\hyperlink{classrev_1_1_thread_pool}{Thread\+Pool}} \mbox{\hyperlink{classrev_1_1_process_manager_a4233fda388fbc7b3cf4ec78c78d7af4e}{m\+\_\+thread\+Pool}}
+\begin{DoxyCompactList}\small\item\em Threadpool for managing threads for any threaded processes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{classrev_1_1_process_manager}{Process\+Manager}} class. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/processes/G\+Process\+Manager.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/processes/G\+Process\+Manager.\+cpp\end{DoxyCompactItemize}

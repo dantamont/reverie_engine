@@ -1,0 +1,118 @@
+\hypertarget{classrev_1_1_script_listener}{}\section{rev\+::Script\+Listener Class Reference}
+\label{classrev_1_1_script_listener}\index{rev::ScriptListener@{rev::ScriptListener}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} to get wrapped up by a script to be called via python or another scripting language.  
+
+
+
+
+{\ttfamily \#include $<$G\+Script\+Listener.\+h$>$}
+
+Inheritance diagram for rev\+::Script\+Listener\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_script_listener}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_listener_a8a354cfd0b62c9b7ebfd66a9c6c024ca}\label{classrev_1_1_script_listener_a8a354cfd0b62c9b7ebfd66a9c6c024ca}} 
+{\bfseries Script\+Listener} (\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} \&scene\+Object)
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_listener_a45f9a0c8f9fb22829d1c457e7a07be00}\label{classrev_1_1_script_listener_a45f9a0c8f9fb22829d1c457e7a07be00}} 
+virtual {\bfseries $\sim$\+Script\+Listener} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_listener_acc9e3a16fbb2a509eca35469f9140ba5}\label{classrev_1_1_script_listener_acc9e3a16fbb2a509eca35469f9140ba5}} 
+\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} \& {\bfseries scene\+Object} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_listener_ac0fd831d9545db3381ad6063c48210ae}\label{classrev_1_1_script_listener_ac0fd831d9545db3381ad6063c48210ae}} 
+void {\bfseries set\+Scene\+Object} (\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} \&so)
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_listener_a279bcc6e5c2f0ff186573a2873379005}\label{classrev_1_1_script_listener_a279bcc6e5c2f0ff186573a2873379005}} 
+\mbox{\hyperlink{classrev_1_1_input_handler}{Input\+Handler}} $\ast$ {\bfseries input\+Handler} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_listener_a3dd9293ba93fd5a7444deb00ab7094ff}\label{classrev_1_1_script_listener_a3dd9293ba93fd5a7444deb00ab7094ff}} 
+\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$ {\bfseries engine} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_listener_a3ade023750daf6ffa92af682f4cc0aa1}\label{classrev_1_1_script_listener_a3ade023750daf6ffa92af682f4cc0aa1}} 
+\mbox{\hyperlink{classrev_1_1_resource_cache}{Resource\+Cache}} $\ast$ {\bfseries resource\+Cache} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_listener_a04fc58563023fe49dbad15121f7d6e20}\label{classrev_1_1_script_listener_a04fc58563023fe49dbad15121f7d6e20}} 
+\mbox{\hyperlink{classrev_1_1_transform_component}{Transform\+Component}} $\ast$ {\bfseries transform} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_listener_ae8315305f7c75212c9203b0d74bc1257}\label{classrev_1_1_script_listener_ae8315305f7c75212c9203b0d74bc1257}} 
+\mbox{\hyperlink{classrev_1_1_scene}{Scene}} $\ast$ {\bfseries scene} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_listener_aacc675ce4b8f85db5e192a9c0078cd8a}\label{classrev_1_1_script_listener_aacc675ce4b8f85db5e192a9c0078cd8a}} 
+virtual bool {\bfseries event\+Test} (const \mbox{\hyperlink{classrev_1_1_custom_event}{Custom\+Event}} \&ev)
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_listener_a24251022b2a79d28bc843833e49fd58c}\label{classrev_1_1_script_listener_a24251022b2a79d28bc843833e49fd58c}} 
+virtual void {\bfseries perform} (const \mbox{\hyperlink{classrev_1_1_custom_event}{Custom\+Event}} \&ev)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_script_listener_aa9e78ea774509b6f67a4df258645c7bb}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_script_listener_aec59340a0007e966eb08f9fb28c0bdac}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_listener_a11cabc4a3f92e9c0c57fcbdfb58ca792}\label{classrev_1_1_script_listener_a11cabc4a3f92e9c0c57fcbdfb58ca792}} 
+class {\bfseries Py\+Script\+Listener}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} to get wrapped up by a script to be called via python or another scripting language. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_script_listener_aa9e78ea774509b6f67a4df258645c7bb}\label{classrev_1_1_script_listener_aa9e78ea774509b6f67a4df258645c7bb}} 
+\index{rev::ScriptListener@{rev::ScriptListener}!className@{className}}
+\index{className@{className}!rev::ScriptListener@{rev::ScriptListener}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Script\+Listener\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_script_listener_aec59340a0007e966eb08f9fb28c0bdac}\label{classrev_1_1_script_listener_aec59340a0007e966eb08f9fb28c0bdac}} 
+\index{rev::ScriptListener@{rev::ScriptListener}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::ScriptListener@{rev::ScriptListener}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Script\+Listener\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/scripting/G\+Script\+Listener.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/scripting/G\+Script\+Listener.\+cpp\end{DoxyCompactItemize}

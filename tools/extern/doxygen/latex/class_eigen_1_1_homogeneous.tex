@@ -1,0 +1,93 @@
+\hypertarget{class_eigen_1_1_homogeneous}{}\section{Eigen\+::Homogeneous$<$ Matrix\+Type, \+\_\+\+Direction $>$ Class Template Reference}
+\label{class_eigen_1_1_homogeneous}\index{Eigen::Homogeneous$<$ MatrixType, \_Direction $>$@{Eigen::Homogeneous$<$ MatrixType, \_Direction $>$}}
+
+
+Expression of one (or a set of) homogeneous vector(s)  
+
+
+
+
+{\ttfamily \#include $<$Homogeneous.\+h$>$}
+
+Inheritance diagram for Eigen\+::Homogeneous$<$ Matrix\+Type, \+\_\+\+Direction $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.947368cm]{class_eigen_1_1_homogeneous}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_homogeneous_a69455190f16dfd1a81adb89b47f848d4}\label{class_eigen_1_1_homogeneous_a69455190f16dfd1a81adb89b47f848d4}} 
+enum \{ {\bfseries Direction} = \+\_\+\+Direction
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_homogeneous_a357e2dc073a375bbdc8580b0b0aa4ad8}\label{class_eigen_1_1_homogeneous_a357e2dc073a375bbdc8580b0b0aa4ad8}} 
+typedef Matrix\+Type {\bfseries Nested\+Expression}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_homogeneous_a895b4459576a9dcab2228c7fe3c563af}\label{class_eigen_1_1_homogeneous_a895b4459576a9dcab2228c7fe3c563af}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ \mbox{\hyperlink{class_eigen_1_1_homogeneous}{Homogeneous}} $>$ {\bfseries Base}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_homogeneous_a6d7d4d6e3fd9c9092f3cdc7c7d730462}\label{class_eigen_1_1_homogeneous_a6d7d4d6e3fd9c9092f3cdc7c7d730462}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC {\bfseries Homogeneous} (const Matrix\+Type \&matrix)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_homogeneous_a585a4512c1b27905c801e2dc7140a71a}\label{class_eigen_1_1_homogeneous_a585a4512c1b27905c801e2dc7140a71a}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Index {\bfseries rows} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_homogeneous_aa9150d97385cc380135bafc2b6a0b6e6}\label{class_eigen_1_1_homogeneous_aa9150d97385cc380135bafc2b6a0b6e6}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Index {\bfseries cols} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_homogeneous_a4c1e03451bd7cdeb7a17163d034ba20a}\label{class_eigen_1_1_homogeneous_a4c1e03451bd7cdeb7a17163d034ba20a}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const Nested\+Expression \& {\bfseries nested\+Expression} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_homogeneous_a33d8ad852b7fe38c9cfd0e21e0344cd0}\label{class_eigen_1_1_homogeneous_a33d8ad852b7fe38c9cfd0e21e0344cd0}} 
+{\footnotesize template$<$typename Rhs $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_product}{Product}}$<$ \mbox{\hyperlink{class_eigen_1_1_homogeneous}{Homogeneous}}, Rhs $>$ {\bfseries operator $\ast$} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&rhs) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_homogeneous_a738cf70051ef5e5243e1d9b9f5251e49}\label{class_eigen_1_1_homogeneous_a738cf70051ef5e5243e1d9b9f5251e49}} 
+{\footnotesize template$<$typename Func $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{struct_eigen_1_1internal_1_1result__of}{internal\+::result\+\_\+of}}$<$ Func(\mbox{\hyperlink{class_eigen_1_1_dense_base_a5feed465b3a8e60c47e73ecce83e39a2}{Scalar}}, \mbox{\hyperlink{class_eigen_1_1_dense_base_a5feed465b3a8e60c47e73ecce83e39a2}{Scalar}})$>$\+::type {\bfseries redux} (const Func \&func) const
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_homogeneous_aa72c1376f811089b4074047fdce8b610}\label{class_eigen_1_1_homogeneous_aa72c1376f811089b4074047fdce8b610}} 
+Matrix\+Type\+::\+Nested {\bfseries m\+\_\+matrix}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_homogeneous_a4429c3413389a6cb348f8f9886745e50}\label{class_eigen_1_1_homogeneous_a4429c3413389a6cb348f8f9886745e50}} 
+{\footnotesize template$<$typename Lhs $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_product}{Product}}$<$ Lhs, \mbox{\hyperlink{class_eigen_1_1_homogeneous}{Homogeneous}} $>$ {\bfseries operator $\ast$} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Lhs $>$ \&lhs, const \mbox{\hyperlink{class_eigen_1_1_homogeneous}{Homogeneous}} \&rhs)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_homogeneous_a82f5feabe7717d8ed53566f15959a04d}\label{class_eigen_1_1_homogeneous_a82f5feabe7717d8ed53566f15959a04d}} 
+{\footnotesize template$<$typename Scalar , int Dim, int Mode, int Options$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_product}{Product}}$<$ \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_dense_base_a5feed465b3a8e60c47e73ecce83e39a2}{Scalar}}, Dim, \mbox{\hyperlink{struct_mode}{Mode}}, Options $>$, \mbox{\hyperlink{class_eigen_1_1_homogeneous}{Homogeneous}} $>$ {\bfseries operator $\ast$} (const \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_dense_base_a5feed465b3a8e60c47e73ecce83e39a2}{Scalar}}, Dim, \mbox{\hyperlink{struct_mode}{Mode}}, Options $>$ \&lhs, const \mbox{\hyperlink{class_eigen_1_1_homogeneous}{Homogeneous}} \&rhs)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename Matrix\+Type, int \+\_\+\+Direction$>$\newline
+class Eigen\+::\+Homogeneous$<$ Matrix\+Type, \+\_\+\+Direction $>$}
+
+Expression of one (or a set of) homogeneous vector(s) 
+
+\textbackslash{}geometry\+\_\+module
+
+
+\begin{DoxyParams}{Parameters}
+{\em Matrix\+Type} & the type of the object in which we are making homogeneous\\
+\hline
+\end{DoxyParams}
+This class represents an expression of one (or a set of) homogeneous vector(s). It is the return type of \mbox{\hyperlink{group___geometry___module_ga8cd24704519bf35e1724e1915d477a35}{Matrix\+Base\+::homogeneous()}} and most of the time this is the only way it is used.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group___geometry___module_ga8cd24704519bf35e1724e1915d477a35}{Matrix\+Base\+::homogeneous()}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Core/util/Forward\+Declarations.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Geometry/Homogeneous.\+h\end{DoxyCompactItemize}

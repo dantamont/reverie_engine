@@ -1,0 +1,123 @@
+\hypertarget{classrev_1_1_skeleton_joint}{}\section{rev\+::Skeleton\+Joint Class Reference}
+\label{classrev_1_1_skeleton_joint}\index{rev::SkeletonJoint@{rev::SkeletonJoint}}
+Inheritance diagram for rev\+::Skeleton\+Joint\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_skeleton_joint}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_joint_a6f55620dd88e9d5d8bbfe4b7b79795dd}\label{classrev_1_1_skeleton_joint_a6f55620dd88e9d5d8bbfe4b7b79795dd}} 
+enum {\bfseries Joint\+Flag} \{ {\bfseries k\+Is\+Animated} = 1 $<$$<$ 0
+ \}
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_joint_ad9097b57945cf4c8f42d9e8215774527}\label{classrev_1_1_skeleton_joint_ad9097b57945cf4c8f42d9e8215774527}} 
+typedef Q\+Flags$<$ Joint\+Flag $>$ {\bfseries Joint\+Flags}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_joint_a738ffb43ef5a8da6d0e7d966165d15f7}\label{classrev_1_1_skeleton_joint_a738ffb43ef5a8da6d0e7d966165d15f7}} 
+{\bfseries Skeleton\+Joint} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&unique\+Name)
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_joint_a4b0c82adfa28a59158f52b434f3d605d}\label{classrev_1_1_skeleton_joint_a4b0c82adfa28a59158f52b434f3d605d}} 
+{\bfseries Skeleton\+Joint} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_joint_a4aac6f7a99d234bf5f0bd8fa857750b4}\label{classrev_1_1_skeleton_joint_a4aac6f7a99d234bf5f0bd8fa857750b4}} 
+{\bfseries $\sim$\+Skeleton\+Joint} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_joint_ad916f2dbbbaabfc0f99c1f5fba25fcf3}\label{classrev_1_1_skeleton_joint_ad916f2dbbbaabfc0f99c1f5fba25fcf3}} 
+uint32\+\_\+t \mbox{\hyperlink{classrev_1_1_skeleton_joint_ad916f2dbbbaabfc0f99c1f5fba25fcf3}{get\+Index}} (const \mbox{\hyperlink{classrev_1_1_skeleton}{Skeleton}} \&skeleton) const
+\begin{DoxyCompactList}\small\item\em Get index in parent skeleton. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_joint_ad0c20bc1495e8baa40a767a5b5fecf96}\label{classrev_1_1_skeleton_joint_ad0c20bc1495e8baa40a767a5b5fecf96}} 
+bool \mbox{\hyperlink{classrev_1_1_skeleton_joint_ad0c20bc1495e8baa40a767a5b5fecf96}{has\+Child}} (const uint32\+\_\+t \&child) const
+\begin{DoxyCompactList}\small\item\em Whether the joint has the specified child index. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_joint_a82a29ae0fa5a5cf59450368d7ce8e154}\label{classrev_1_1_skeleton_joint_a82a29ae0fa5a5cf59450368d7ce8e154}} 
+bool \mbox{\hyperlink{classrev_1_1_skeleton_joint_a82a29ae0fa5a5cf59450368d7ce8e154}{has\+Bone}} () const
+\begin{DoxyCompactList}\small\item\em Whether or not the node has a bone or not. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_joint_ad3493ae55491ba2ebbe53cef96aa2be5}\label{classrev_1_1_skeleton_joint_ad3493ae55491ba2ebbe53cef96aa2be5}} 
+bool \mbox{\hyperlink{classrev_1_1_skeleton_joint_ad3493ae55491ba2ebbe53cef96aa2be5}{is\+Animated}} () const
+\begin{DoxyCompactList}\small\item\em Whether or not the node is animated. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_joint_a1d2597d28b3d5bf8b94916b93206ce41}\label{classrev_1_1_skeleton_joint_a1d2597d28b3d5bf8b94916b93206ce41}} 
+void {\bfseries set\+Animated} (bool animated)
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_joint_aedcbf9d3e112be4c21d6b9d8bbab4007}\label{classrev_1_1_skeleton_joint_aedcbf9d3e112be4c21d6b9d8bbab4007}} 
+const std\+::vector$<$ uint32\+\_\+t $>$ \& \mbox{\hyperlink{classrev_1_1_skeleton_joint_aedcbf9d3e112be4c21d6b9d8bbab4007}{siblings}} (const \mbox{\hyperlink{classrev_1_1_skeleton}{Skeleton}} \&skeleton) const
+\begin{DoxyCompactList}\small\item\em Siblings of this node, including this node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_joint_ab16d919cb01eeb789c4023dfb2e7733d}\label{classrev_1_1_skeleton_joint_ab16d919cb01eeb789c4023dfb2e7733d}} 
+int \mbox{\hyperlink{classrev_1_1_skeleton_joint_ab16d919cb01eeb789c4023dfb2e7733d}{skeleton\+Transform\+Index}} () const
+\begin{DoxyCompactList}\small\item\em The index associated with this joint in vector of skeletal animation transforms. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_joint_aaa4556516fdb8691eb3fdad98b00775a}\label{classrev_1_1_skeleton_joint_aaa4556516fdb8691eb3fdad98b00775a}} 
+void {\bfseries set\+Skeleton\+Transform\+Index} (int idx)
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_joint_a3042b0a8c17d44b804842dcde598605d}\label{classrev_1_1_skeleton_joint_a3042b0a8c17d44b804842dcde598605d}} 
+\mbox{\hyperlink{classrev_1_1_skeleton_joint}{Skeleton\+Joint}} $\ast$ \mbox{\hyperlink{classrev_1_1_skeleton_joint_a3042b0a8c17d44b804842dcde598605d}{parent}} (\mbox{\hyperlink{classrev_1_1_skeleton}{Skeleton}} \&skeleton)
+\begin{DoxyCompactList}\small\item\em Get parent joint, given the skeleton. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_joint_a9af9faac41437a839c8759c800d07bc7}\label{classrev_1_1_skeleton_joint_a9af9faac41437a839c8759c800d07bc7}} 
+const \mbox{\hyperlink{classrev_1_1_skeleton_joint}{Skeleton\+Joint}} $\ast$ {\bfseries parent} (const \mbox{\hyperlink{classrev_1_1_skeleton}{Skeleton}} \&skeleton) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_joint_a99f9a360ecb41067a477d695087420bc}\label{classrev_1_1_skeleton_joint_a99f9a360ecb41067a477d695087420bc}} 
+const \mbox{\hyperlink{structrev_1_1_transform_matrices}{Transform\+Matrices}} \& {\bfseries get\+Transform} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_joint_aa23655d48045b7b6d23e4eba48d755f9}\label{classrev_1_1_skeleton_joint_aa23655d48045b7b6d23e4eba48d755f9}} 
+\mbox{\hyperlink{structrev_1_1_transform_matrices}{Transform\+Matrices}} \& {\bfseries transform} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_joint_a1e957c2102f799d1643de53d11e1cffd}\label{classrev_1_1_skeleton_joint_a1e957c2102f799d1643de53d11e1cffd}} 
+const \mbox{\hyperlink{classrev_1_1_bone}{Bone}} \& \mbox{\hyperlink{classrev_1_1_skeleton_joint_a1e957c2102f799d1643de53d11e1cffd}{bone}} () const
+\begin{DoxyCompactList}\small\item\em The bone corresponding to this node. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_joint_a5302cad3faa4c8ab914d7aff98a0ae93}\label{classrev_1_1_skeleton_joint_a5302cad3faa4c8ab914d7aff98a0ae93}} 
+\mbox{\hyperlink{classrev_1_1_bone}{Bone}} \& {\bfseries bone} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_joint_aee535c57b7ed1208959f7a7e6b290797}\label{classrev_1_1_skeleton_joint_aee535c57b7ed1208959f7a7e6b290797}} 
+std\+::vector$<$ uint32\+\_\+t $>$ \& \mbox{\hyperlink{classrev_1_1_skeleton_joint_aee535c57b7ed1208959f7a7e6b290797}{children}} ()
+\begin{DoxyCompactList}\small\item\em Children. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_joint_a3454f8393b306fdb774e93e4fc188974}\label{classrev_1_1_skeleton_joint_a3454f8393b306fdb774e93e4fc188974}} 
+const std\+::vector$<$ uint32\+\_\+t $>$ \& {\bfseries children} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_joint_a83d06bada150194666fdc02c043d1080}\label{classrev_1_1_skeleton_joint_a83d06bada150194666fdc02c043d1080}} 
+class {\bfseries Cube\+Map}
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_joint_aa89c0df06f5945a12b1d029612d199cd}\label{classrev_1_1_skeleton_joint_aa89c0df06f5945a12b1d029612d199cd}} 
+class {\bfseries Obj\+Reader}
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_joint_ac3e0a085a76d6fcad904e95ebbe2c6a5}\label{classrev_1_1_skeleton_joint_ac3e0a085a76d6fcad904e95ebbe2c6a5}} 
+class {\bfseries Model\+Reader}
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_joint_af47625f50036c466946f960db7320bcf}\label{classrev_1_1_skeleton_joint_af47625f50036c466946f960db7320bcf}} 
+class {\bfseries Animation}
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_joint_a395c52c1b342efdb79f36b2d4b2f1565}\label{classrev_1_1_skeleton_joint_a395c52c1b342efdb79f36b2d4b2f1565}} 
+class {\bfseries Node\+Animation}
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_joint_a6a11291b70c2cbded85d321ce539c62f}\label{classrev_1_1_skeleton_joint_a6a11291b70c2cbded85d321ce539c62f}} 
+class {\bfseries Skeleton}
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_joint_a2bf2a0e9b454c55aa5dcb5aa4698697b}\label{classrev_1_1_skeleton_joint_a2bf2a0e9b454c55aa5dcb5aa4698697b}} 
+class {\bfseries Model}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/geometry/G\+Skeleton.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/geometry/G\+Skeleton.\+cpp\end{DoxyCompactItemize}

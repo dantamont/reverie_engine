@@ -1,0 +1,365 @@
+\hypertarget{class_t_e_d}{}\section{T\+ED Class Reference}
+\label{class_t_e_d}\index{TED@{TED}}
+Inheritance diagram for T\+ED\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_t_e_d}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a76620cc9fe3f0efff72d5045c0b5805f}\label{class_t_e_d_a76620cc9fe3f0efff72d5045c0b5805f}} 
+void {\bfseries enable\+Channel} (unsigned int channel, bool enable)
+\item 
+\mbox{\Hypertarget{class_t_e_d_a48913adcbe831734622577b731a17f20}\label{class_t_e_d_a48913adcbe831734622577b731a17f20}} 
+void {\bfseries set\+Freq} (unsigned int channel, int freq)
+\item 
+\mbox{\Hypertarget{class_t_e_d_a9a648c64eb948542eda1588027e10973}\label{class_t_e_d_a9a648c64eb948542eda1588027e10973}} 
+void {\bfseries oscillator\+Reset} ()
+\item 
+\mbox{\Hypertarget{class_t_e_d_aeb5e9b156c226c87914725bee45f6453}\label{class_t_e_d_aeb5e9b156c226c87914725bee45f6453}} 
+void {\bfseries oscillator\+Init} ()
+\item 
+\mbox{\Hypertarget{class_t_e_d_ada8e32e2b153ae86e66b4c7e23fda668}\label{class_t_e_d_ada8e32e2b153ae86e66b4c7e23fda668}} 
+void {\bfseries write\+Sound\+Reg} (unsigned int reg, unsigned char value)
+\item 
+\mbox{\Hypertarget{class_t_e_d_a03eaaed843f9f2c43e1b4df64ea66462}\label{class_t_e_d_a03eaaed843f9f2c43e1b4df64ea66462}} 
+void {\bfseries store\+To\+Buffer} (short $\ast$buffer, unsigned int count)
+\item 
+\mbox{\Hypertarget{class_t_e_d_ae0a48ef70bdaf38213d593104c0f0293}\label{class_t_e_d_ae0a48ef70bdaf38213d593104c0f0293}} 
+unsigned int {\bfseries wave\+Square} (unsigned int channel)
+\item 
+\mbox{\Hypertarget{class_t_e_d_a2cc3598759ada2d10a2812640c6b7304}\label{class_t_e_d_a2cc3598759ada2d10a2812640c6b7304}} 
+unsigned int {\bfseries wave\+Saw\+Tooth} (unsigned int channel)
+\item 
+\mbox{\Hypertarget{class_t_e_d_a5a3281608b37495d5b386e786a85096d}\label{class_t_e_d_a5a3281608b37495d5b386e786a85096d}} 
+unsigned int {\bfseries wave\+Triangle} (unsigned int channel)
+\item 
+\mbox{\Hypertarget{class_t_e_d_a3e685f8a8a8d00022f35289eb90344fb}\label{class_t_e_d_a3e685f8a8a8d00022f35289eb90344fb}} 
+unsigned int {\bfseries get\+Wave\+Sample} (unsigned int channel, unsigned int wave)
+\item 
+\mbox{\Hypertarget{class_t_e_d_a6284ec4a86ad8d8aed2f43314bbae12a}\label{class_t_e_d_a6284ec4a86ad8d8aed2f43314bbae12a}} 
+void {\bfseries render\+Sound} (unsigned int nrsamples, short $\ast$buffer)
+\item 
+\mbox{\Hypertarget{class_t_e_d_abb9b2cafe5ccf6a53882908ccc044366}\label{class_t_e_d_abb9b2cafe5ccf6a53882908ccc044366}} 
+void {\bfseries set\+Master\+Volume} (unsigned int shift)
+\item 
+\mbox{\Hypertarget{class_t_e_d_a44800d2bf26bff7492f609d231a61c47}\label{class_t_e_d_a44800d2bf26bff7492f609d231a61c47}} 
+void {\bfseries select\+Wave\+Form} (unsigned int channel, unsigned int wave)
+\item 
+\mbox{\Hypertarget{class_t_e_d_a494d1f807156122a0e9e3522d846a497}\label{class_t_e_d_a494d1f807156122a0e9e3522d846a497}} 
+void {\bfseries setplayback\+Speed} (unsigned int speed)
+\item 
+\mbox{\Hypertarget{class_t_e_d_ad2d01439e304042d6451281d94d72e1e}\label{class_t_e_d_ad2d01439e304042d6451281d94d72e1e}} 
+unsigned int {\bfseries get\+Time\+Since\+Last\+Reset} ()
+\item 
+\mbox{\Hypertarget{class_t_e_d_a208505f277f4bb5820c6f82b0122a626}\label{class_t_e_d_a208505f277f4bb5820c6f82b0122a626}} 
+void {\bfseries set\+Sample\+Rate} (unsigned int value)
+\item 
+\mbox{\Hypertarget{class_t_e_d_a2907986d292ea4b15d918846c0bb94ac}\label{class_t_e_d_a2907986d292ea4b15d918846c0bb94ac}} 
+void {\bfseries set\+Filter\+Order} (unsigned int value)
+\item 
+\mbox{\Hypertarget{class_t_e_d_a8ba4e20af70bdf0e8849bdb0efeb9255}\label{class_t_e_d_a8ba4e20af70bdf0e8849bdb0efeb9255}} 
+void {\bfseries init\+Filter} (unsigned int sample\+Rate\+\_\+, unsigned int filter\+Order\+\_\+)
+\item 
+\mbox{\Hypertarget{class_t_e_d_afec8864192337e4762d1197bbafb0ff1}\label{class_t_e_d_afec8864192337e4762d1197bbafb0ff1}} 
+virtual void {\bfseries Update\+Serial\+State} (unsigned char portval)
+\item 
+\mbox{\Hypertarget{class_t_e_d_acc0d5c1274fd60cfa2c75907fc721bae}\label{class_t_e_d_acc0d5c1274fd60cfa2c75907fc721bae}} 
+virtual void {\bfseries Reset} ()
+\item 
+virtual unsigned char \mbox{\hyperlink{class_t_e_d_a15d3c4cf86452dc0599d6dd504fa832f}{Read}} (unsigned int addr)
+\item 
+\mbox{\Hypertarget{class_t_e_d_aa9ec07973a4bffc506ffe46973de09eb}\label{class_t_e_d_aa9ec07973a4bffc506ffe46973de09eb}} 
+virtual void {\bfseries Write} (unsigned int addr, unsigned char value)
+\item 
+\mbox{\Hypertarget{class_t_e_d_a041d56e600f621990417ff7623a2a31a}\label{class_t_e_d_a041d56e600f621990417ff7623a2a31a}} 
+unsigned char {\bfseries read\+D\+MA} (unsigned int addr)
+\item 
+\mbox{\Hypertarget{class_t_e_d_af2fc691da5e806c89156a497ea3120b8}\label{class_t_e_d_af2fc691da5e806c89156a497ea3120b8}} 
+void {\bfseries wrt\+D\+MA} (unsigned int addr, unsigned char value)
+\item 
+\mbox{\Hypertarget{class_t_e_d_a58636c461d6855965eb142a434fa59ff}\label{class_t_e_d_a58636c461d6855965eb142a434fa59ff}} 
+void {\bfseries set\+Ram\+Mask} (unsigned int value)
+\item 
+\mbox{\Hypertarget{class_t_e_d_adb29efb36ce9f3f7e01ce300bc1e28f3}\label{class_t_e_d_adb29efb36ce9f3f7e01ce300bc1e28f3}} 
+unsigned int {\bfseries get\+Ram\+Mask} (void)
+\item 
+\mbox{\Hypertarget{class_t_e_d_a359f247473a89c759b759be2389d3213}\label{class_t_e_d_a359f247473a89c759b759be2389d3213}} 
+void {\bfseries loadroms} (void)
+\item 
+\mbox{\Hypertarget{class_t_e_d_a0d16e7acfbc7d84553d01c59f0c96279}\label{class_t_e_d_a0d16e7acfbc7d84553d01c59f0c96279}} 
+void {\bfseries loadloromfromfile} (int nr, char fname\mbox{[}256\mbox{]})
+\item 
+\mbox{\Hypertarget{class_t_e_d_aa4c964fcec4adc60f1faaa555b4fbb3b}\label{class_t_e_d_aa4c964fcec4adc60f1faaa555b4fbb3b}} 
+void {\bfseries loadhiromfromfile} (int nr, char fname\mbox{[}256\mbox{]})
+\item 
+\mbox{\Hypertarget{class_t_e_d_a5630d22f4ef9688ddcf642cb66785448}\label{class_t_e_d_a5630d22f4ef9688ddcf642cb66785448}} 
+void {\bfseries dump} (void $\ast$img)
+\item 
+\mbox{\Hypertarget{class_t_e_d_a11beb04499c077816dd4eb1e61dcd63a}\label{class_t_e_d_a11beb04499c077816dd4eb1e61dcd63a}} 
+void {\bfseries memin} (void $\ast$img)
+\item 
+\mbox{\Hypertarget{class_t_e_d_ab494462b45b5ae2cc1084dfea0bf87b0}\label{class_t_e_d_ab494462b45b5ae2cc1084dfea0bf87b0}} 
+void {\bfseries texttoscreen} (int x, int y, const char $\ast$scrtxt)
+\item 
+\mbox{\Hypertarget{class_t_e_d_a397d0ae398bb1d6bbb426a37bd309ede}\label{class_t_e_d_a397d0ae398bb1d6bbb426a37bd309ede}} 
+void {\bfseries chrtoscreen} (int x, int y, char scrchr)
+\item 
+\mbox{\Hypertarget{class_t_e_d_af4e6ff3aa8186aa67291268f401f8a47}\label{class_t_e_d_af4e6ff3aa8186aa67291268f401f8a47}} 
+void {\bfseries ted\+\_\+process} (unsigned int count)
+\item 
+\mbox{\Hypertarget{class_t_e_d_a29b0a06179c8d87e26f066f29138c294}\label{class_t_e_d_a29b0a06179c8d87e26f066f29138c294}} 
+void {\bfseries set\+DS} (void $\ast$ds)
+\item 
+\mbox{\Hypertarget{class_t_e_d_a86b356a15fc18d5e8023b1f917d60123}\label{class_t_e_d_a86b356a15fc18d5e8023b1f917d60123}} 
+void {\bfseries Change\+Mem\+Bank\+Setup} (bool romoff)
+\item 
+\mbox{\Hypertarget{class_t_e_d_ada6b14426fd4656909ffc18a8a423cb7}\label{class_t_e_d_ada6b14426fd4656909ffc18a8a423cb7}} 
+Clock\+Cycle {\bfseries Get\+Clock\+Count} ()
+\item 
+\mbox{\Hypertarget{class_t_e_d_ac4d074d94324ac93c2ccf73170d71952}\label{class_t_e_d_ac4d074d94324ac93c2ccf73170d71952}} 
+void {\bfseries forced\+Reset} ()
+\item 
+\mbox{\Hypertarget{class_t_e_d_abb9b2cafe5ccf6a53882908ccc044366}\label{class_t_e_d_abb9b2cafe5ccf6a53882908ccc044366}} 
+void {\bfseries set\+Master\+Volume} (unsigned int shift)
+\item 
+\mbox{\Hypertarget{class_t_e_d_a208505f277f4bb5820c6f82b0122a626}\label{class_t_e_d_a208505f277f4bb5820c6f82b0122a626}} 
+void {\bfseries set\+Sample\+Rate} (unsigned int value)
+\item 
+\mbox{\Hypertarget{class_t_e_d_a2907986d292ea4b15d918846c0bb94ac}\label{class_t_e_d_a2907986d292ea4b15d918846c0bb94ac}} 
+void {\bfseries set\+Filter\+Order} (unsigned int value)
+\item 
+\mbox{\Hypertarget{class_t_e_d_a8ba4e20af70bdf0e8849bdb0efeb9255}\label{class_t_e_d_a8ba4e20af70bdf0e8849bdb0efeb9255}} 
+void {\bfseries init\+Filter} (unsigned int sample\+Rate\+\_\+, unsigned int filter\+Order\+\_\+)
+\item 
+\mbox{\Hypertarget{class_t_e_d_adc254a1973c36c32b29569dc76003dd6}\label{class_t_e_d_adc254a1973c36c32b29569dc76003dd6}} 
+unsigned int {\bfseries get\+Sample\+Rate} ()
+\item 
+\mbox{\Hypertarget{class_t_e_d_a5b1de1e5351aa9213f4b3b03c95545ee}\label{class_t_e_d_a5b1de1e5351aa9213f4b3b03c95545ee}} 
+void {\bfseries inject\+Code\+To\+R\+AM} (unsigned int address, unsigned char $\ast$from, size\+\_\+t len)
+\item 
+\mbox{\Hypertarget{class_t_e_d_aeb5e9b156c226c87914725bee45f6453}\label{class_t_e_d_aeb5e9b156c226c87914725bee45f6453}} 
+void {\bfseries oscillator\+Init} ()
+\item 
+\mbox{\Hypertarget{class_t_e_d_a9a648c64eb948542eda1588027e10973}\label{class_t_e_d_a9a648c64eb948542eda1588027e10973}} 
+void {\bfseries oscillator\+Reset} ()
+\item 
+\mbox{\Hypertarget{class_t_e_d_a09cc2042ea17f8d7a10b71070ea3d63e}\label{class_t_e_d_a09cc2042ea17f8d7a10b71070ea3d63e}} 
+void {\bfseries set\+Psid\+Play\+Address} (unsigned int addr)
+\item 
+\mbox{\Hypertarget{class_t_e_d_abf4a153c0fe28c8cb1a05b09df7eb497}\label{class_t_e_d_abf4a153c0fe28c8cb1a05b09df7eb497}} 
+unsigned int {\bfseries get\+Psid\+Play\+Address} ()
+\item 
+\mbox{\Hypertarget{class_t_e_d_a013bed2d506539263c584bbacd909115}\label{class_t_e_d_a013bed2d506539263c584bbacd909115}} 
+void {\bfseries set\+Psid} (bool is\+Psid\+Format)
+\item 
+\mbox{\Hypertarget{class_t_e_d_aa8e03e2fea3a835214a40ddca87a6d57}\label{class_t_e_d_aa8e03e2fea3a835214a40ddca87a6d57}} 
+unsigned int {\bfseries is\+Psid} ()
+\item 
+\mbox{\Hypertarget{class_t_e_d_a44800d2bf26bff7492f609d231a61c47}\label{class_t_e_d_a44800d2bf26bff7492f609d231a61c47}} 
+void {\bfseries select\+Wave\+Form} (unsigned int channel, unsigned int wave)
+\item 
+\mbox{\Hypertarget{class_t_e_d_a576dd1ed791e35ba9adddfa3deb399e9}\label{class_t_e_d_a576dd1ed791e35ba9adddfa3deb399e9}} 
+unsigned int {\bfseries get\+Wave\+Form} (unsigned int channel)
+\item 
+\mbox{\Hypertarget{class_t_e_d_aeb8b70e00675627c24dd5b54b4604d37}\label{class_t_e_d_aeb8b70e00675627c24dd5b54b4604d37}} 
+void {\bfseries write\+Protected\+Player\+Memory} (unsigned int addr, unsigned char $\ast$byte, unsigned int len)
+\item 
+\mbox{\Hypertarget{class_t_e_d_a494d1f807156122a0e9e3522d846a497}\label{class_t_e_d_a494d1f807156122a0e9e3522d846a497}} 
+void {\bfseries setplayback\+Speed} (unsigned int speed)
+\item 
+\mbox{\Hypertarget{class_t_e_d_a76620cc9fe3f0efff72d5045c0b5805f}\label{class_t_e_d_a76620cc9fe3f0efff72d5045c0b5805f}} 
+void {\bfseries enable\+Channel} (unsigned int channel, bool enable)
+\item 
+\mbox{\Hypertarget{class_t_e_d_acadb9e08e7f20a346fb788762da2407f}\label{class_t_e_d_acadb9e08e7f20a346fb788762da2407f}} 
+bool {\bfseries is\+Channel\+Enabled} (unsigned int channel)
+\item 
+\mbox{\Hypertarget{class_t_e_d_a25cc445fd7cbb8e3d5985af84dae107e}\label{class_t_e_d_a25cc445fd7cbb8e3d5985af84dae107e}} 
+void {\bfseries store\+To\+Buffer} (short $\ast$buffer, unsigned int count=1)
+\item 
+\mbox{\Hypertarget{class_t_e_d_ab0f52bef5b93b4b15342cc8d4e5f44b0}\label{class_t_e_d_ab0f52bef5b93b4b15342cc8d4e5f44b0}} 
+void {\bfseries copy\+To\+Kb\+Buffer} (char $\ast$buffer\+String, unsigned int buffer\+Length=-\/1)
+\item 
+\mbox{\Hypertarget{class_t_e_d_ad2d01439e304042d6451281d94d72e1e}\label{class_t_e_d_ad2d01439e304042d6451281d94d72e1e}} 
+unsigned int {\bfseries get\+Time\+Since\+Last\+Reset} ()
+\item 
+\mbox{\Hypertarget{class_t_e_d_a9a57c04b09a629a23656628f294a59f5}\label{class_t_e_d_a9a57c04b09a629a23656628f294a59f5}} 
+void {\bfseries reset\+Cycle\+Counter} ()
+\item 
+\mbox{\Hypertarget{class_t_e_d_a5444899231eee40ba61cfbb64a03a740}\label{class_t_e_d_a5444899231eee40ba61cfbb64a03a740}} 
+\mbox{\hyperlink{class_s_i_dsound}{S\+I\+Dsound}} $\ast$ {\bfseries get\+Sid\+Card} ()
+\item 
+\mbox{\Hypertarget{class_t_e_d_aefd0ed19326901e05794db625f383ca4}\label{class_t_e_d_aefd0ed19326901e05794db625f383ca4}} 
+void {\bfseries enable\+Sid\+Card} (bool enable, unsigned int disable\+Mask)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a79b51d09ec4669a330f344e5d5ed69e7}\label{class_t_e_d_a79b51d09ec4669a330f344e5d5ed69e7}} 
+static \mbox{\hyperlink{class_t_e_d}{T\+ED}} $\ast$ {\bfseries instance} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a317c1e32175a7a66a1818a859e9b8cbc}\label{class_t_e_d_a317c1e32175a7a66a1818a859e9b8cbc}} 
+unsigned int {\bfseries master\+Volume}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a2123e43ce0cd33e1c859094250198cc9}\label{class_t_e_d_a2123e43ce0cd33e1c859094250198cc9}} 
+int {\bfseries Volume}
+\item 
+\mbox{\Hypertarget{class_t_e_d_aeb62ba703c9c5177237ab9acb68f8877}\label{class_t_e_d_aeb62ba703c9c5177237ab9acb68f8877}} 
+int {\bfseries Snd1\+Status}
+\item 
+\mbox{\Hypertarget{class_t_e_d_aad1c66cdae3558900f5561adb1f5a11d}\label{class_t_e_d_aad1c66cdae3558900f5561adb1f5a11d}} 
+int {\bfseries Snd2\+Status}
+\item 
+\mbox{\Hypertarget{class_t_e_d_acd717c7517128f9d7182a2be242d01e2}\label{class_t_e_d_acd717c7517128f9d7182a2be242d01e2}} 
+int {\bfseries Snd\+Noise\+Status}
+\item 
+\mbox{\Hypertarget{class_t_e_d_ab767e2ad0bef34d4472fa1d7e8c43b2b}\label{class_t_e_d_ab767e2ad0bef34d4472fa1d7e8c43b2b}} 
+int {\bfseries D\+A\+Status}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a8b71bc2b6d97c756ec52d5a5658339c5}\label{class_t_e_d_a8b71bc2b6d97c756ec52d5a5658339c5}} 
+unsigned short {\bfseries Freq1}
+\item 
+\mbox{\Hypertarget{class_t_e_d_aec0ee2445fbff92e1db84356516b5729}\label{class_t_e_d_aec0ee2445fbff92e1db84356516b5729}} 
+unsigned short {\bfseries Freq2}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a72e8bc9e973f999a3b2738e78e0649c2}\label{class_t_e_d_a72e8bc9e973f999a3b2738e78e0649c2}} 
+int {\bfseries Noise\+Counter}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a62a119bfb6b9f609b908f94647ebf8c4}\label{class_t_e_d_a62a119bfb6b9f609b908f94647ebf8c4}} 
+int {\bfseries Flip\+Flop} \mbox{[}2\mbox{]}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a09203548567ccc8de3c3aaa1741c53f7}\label{class_t_e_d_a09203548567ccc8de3c3aaa1741c53f7}} 
+int {\bfseries dc\+Output} \mbox{[}2\mbox{]}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a6d726fc2c80be7191c1b91f8657c1b0e}\label{class_t_e_d_a6d726fc2c80be7191c1b91f8657c1b0e}} 
+int {\bfseries osc\+Count} \mbox{[}2\mbox{]}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a7f43a078f8325d7918366eddbfcc6e40}\label{class_t_e_d_a7f43a078f8325d7918366eddbfcc6e40}} 
+int {\bfseries Osc\+Reload} \mbox{[}2\mbox{]}
+\item 
+\mbox{\Hypertarget{class_t_e_d_abdd2308a4ebb3672b05a2ad564ef462a}\label{class_t_e_d_abdd2308a4ebb3672b05a2ad564ef462a}} 
+int {\bfseries wave\+Form} \mbox{[}2\mbox{]}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a4e8d95a393679022241d729981d8b3b1}\label{class_t_e_d_a4e8d95a393679022241d729981d8b3b1}} 
+int {\bfseries osc\+Step}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a442bc6770de963c6c357bda4e7d59daa}\label{class_t_e_d_a442bc6770de963c6c357bda4e7d59daa}} 
+int {\bfseries sample\+Rate}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a8f82f7e110042cb0287d9101896dde1c}\label{class_t_e_d_a8f82f7e110042cb0287d9101896dde1c}} 
+unsigned char {\bfseries noise} \mbox{[}256\mbox{]}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a7bc8aa4c05b75e95168ad5b8021c6c2e}\label{class_t_e_d_a7bc8aa4c05b75e95168ad5b8021c6c2e}} 
+unsigned int {\bfseries channel\+Mask} \mbox{[}3\mbox{]}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a1921853e1c24f7b831a6f320276b8a4d}\label{class_t_e_d_a1921853e1c24f7b831a6f320276b8a4d}} 
+int {\bfseries vol}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a48731aa2faf5bb31b2662a72fd3a4aa5}\label{class_t_e_d_a48731aa2faf5bb31b2662a72fd3a4aa5}} 
+K\+E\+YS $\ast$ {\bfseries keys}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a9c1c9ed106da306812ae1b33f0dd6603}\label{class_t_e_d_a9c1c9ed106da306812ae1b33f0dd6603}} 
+T\+AP $\ast$ {\bfseries tap}
+\item 
+\mbox{\Hypertarget{class_t_e_d_af35485cd270e0e363acac2269903947c}\label{class_t_e_d_af35485cd270e0e363acac2269903947c}} 
+bool {\bfseries R\+A\+Menable}
+\item 
+\mbox{\Hypertarget{class_t_e_d_ad49aa29edc9a6c17a309464229b3766c}\label{class_t_e_d_ad49aa29edc9a6c17a309464229b3766c}} 
+bool {\bfseries bigram}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a2feefb1261f8b1598fa25b1d5faa81c8}\label{class_t_e_d_a2feefb1261f8b1598fa25b1d5faa81c8}} 
+bool {\bfseries bramsm}
+\item 
+\mbox{\Hypertarget{class_t_e_d_adb55974c6a46cedff0c4d121e67df31e}\label{class_t_e_d_adb55974c6a46cedff0c4d121e67df31e}} 
+char {\bfseries romlopath} \mbox{[}4\mbox{]}\mbox{[}256\mbox{]}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a5ea7311ec2e229ffb262557f8a5acc56}\label{class_t_e_d_a5ea7311ec2e229ffb262557f8a5acc56}} 
+char {\bfseries romhighpath} \mbox{[}4\mbox{]}\mbox{[}256\mbox{]}
+\item 
+\mbox{\Hypertarget{class_t_e_d_ad86cc2c96ac137dcf597a2f4c8a45f92}\label{class_t_e_d_ad86cc2c96ac137dcf597a2f4c8a45f92}} 
+unsigned int {\bfseries beamx}
+\item 
+\mbox{\Hypertarget{class_t_e_d_aac1147947450a54526680cce32ea0f22}\label{class_t_e_d_aac1147947450a54526680cce32ea0f22}} 
+unsigned int {\bfseries beamy}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a8e7031a33b32ea3791ffcfc7a8a4b5b0}\label{class_t_e_d_a8e7031a33b32ea3791ffcfc7a8a4b5b0}} 
+unsigned char {\bfseries screen} \mbox{[}S\+C\+R\+\_\+\+H\+S\+I\+ZE $\ast$(S\+C\+R\+\_\+\+V\+S\+I\+ZE $\ast$2)\mbox{]}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a48cc6d41168564e91fda266044c2bd1d}\label{class_t_e_d_a48cc6d41168564e91fda266044c2bd1d}} 
+bool {\bfseries render\+\_\+ok}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a41746d32cef983c2a90fffeacd83fc20}\label{class_t_e_d_a41746d32cef983c2a90fffeacd83fc20}} 
+unsigned int {\bfseries crsrpos}
+\item 
+\mbox{\Hypertarget{class_t_e_d_aea23dff26df046b051871a091aef0c2d}\label{class_t_e_d_aea23dff26df046b051871a091aef0c2d}} 
+int {\bfseries crsrphase}
+\item 
+\mbox{\Hypertarget{class_t_e_d_ad2af9be29d1750914a41fa62bfd53666}\label{class_t_e_d_ad2af9be29d1750914a41fa62bfd53666}} 
+bool {\bfseries crsrblinkon}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a55ea3eb83f6c08c51f1c1f6b3d160de4}\label{class_t_e_d_a55ea3eb83f6c08c51f1c1f6b3d160de4}} 
+bool {\bfseries joyemu}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a9a7a798ad6e77ca8b33c40818ea95dba}\label{class_t_e_d_a9a7a798ad6e77ca8b33c40818ea95dba}} 
+\mbox{\hyperlink{class_c_p_u}{C\+PU}} $\ast$ {\bfseries cpuptr}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a96c87558a260b302d1c4b7c98a94e75e}\label{class_t_e_d_a96c87558a260b302d1c4b7c98a94e75e}} 
+unsigned char {\bfseries Ram} \mbox{[}R\+A\+M\+S\+I\+ZE\mbox{]}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a838078f0762acc0a7f6db03454b46f33}\label{class_t_e_d_a838078f0762acc0a7f6db03454b46f33}} 
+unsigned char {\bfseries Rom\+Hi} \mbox{[}4\mbox{]}\mbox{[}R\+O\+M\+S\+I\+ZE\mbox{]}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a5cc45690ae8cb66632d1dd214371b912}\label{class_t_e_d_a5cc45690ae8cb66632d1dd214371b912}} 
+bool {\bfseries t1on}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a5970c346b3d7d52bde78a500f5aee1f4}\label{class_t_e_d_a5970c346b3d7d52bde78a500f5aee1f4}} 
+bool {\bfseries t2on}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a962fb4b04b46b48b5dd36c7a2bc7fb09}\label{class_t_e_d_a962fb4b04b46b48b5dd36c7a2bc7fb09}} 
+bool {\bfseries t3on}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a77293433aaf5e876b9b01a767e7e338f}\label{class_t_e_d_a77293433aaf5e876b9b01a767e7e338f}} 
+unsigned int {\bfseries timer1}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a43098e1aaf59e66098bbfc281e3a58a3}\label{class_t_e_d_a43098e1aaf59e66098bbfc281e3a58a3}} 
+unsigned int {\bfseries timer2}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a1c9b720fa1f57c6acbc6cf67b59b6d75}\label{class_t_e_d_a1c9b720fa1f57c6acbc6cf67b59b6d75}} 
+unsigned int {\bfseries timer3}
+\item 
+\mbox{\Hypertarget{class_t_e_d_ae07af33401c0df366547f7da11ca08ec}\label{class_t_e_d_ae07af33401c0df366547f7da11ca08ec}} 
+unsigned int {\bfseries t1start}
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_t_e_d_a317c1e32175a7a66a1818a859e9b8cbc}\label{class_t_e_d_a317c1e32175a7a66a1818a859e9b8cbc}} 
+static unsigned int {\bfseries master\+Volume}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_t_e_d_a15d3c4cf86452dc0599d6dd504fa832f}\label{class_t_e_d_a15d3c4cf86452dc0599d6dd504fa832f}} 
+\index{TED@{TED}!Read@{Read}}
+\index{Read@{Read}!TED@{TED}}
+\subsubsection{\texorpdfstring{Read()}{Read()}}
+{\footnotesize\ttfamily unsigned char T\+E\+D\+::\+Read (\begin{DoxyParamCaption}\item[{unsigned int}]{addr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+1-\/8. bit of the rasterline counter 
+
+Implements \mbox{\hyperlink{class_memory_handler}{Memory\+Handler}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/src/audiosource/tedsid/ted.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/src/tools/tedsid2dump/tedmem.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/src/audiosource/tedsid/ted.\+cpp\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/src/tools/tedsid2dump/tedmem.\+cpp\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/src/tools/tedsid2dump/tedsound.\+cpp\end{DoxyCompactItemize}

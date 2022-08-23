@@ -1,0 +1,103 @@
+\hypertarget{classrev_1_1_view_1_1_file_load_widget}{}\section{rev\+::View\+::File\+Load\+Widget Class Reference}
+\label{classrev_1_1_view_1_1_file_load_widget}\index{rev::View::FileLoadWidget@{rev::View::FileLoadWidget}}
+
+
+Wiget with interface for loading a file.  
+
+
+
+
+{\ttfamily \#include $<$G\+Parameter\+Widgets.\+h$>$}
+
+Inheritance diagram for rev\+::View\+::File\+Load\+Widget\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_view_1_1_file_load_widget}
+\end{center}
+\end{figure}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_file_load_widget_a8134c4578c2662bd60bf988ae38bc3e0}\label{classrev_1_1_view_1_1_file_load_widget_a8134c4578c2662bd60bf988ae38bc3e0}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_file_load_widget_a8134c4578c2662bd60bf988ae38bc3e0}{selected\+Files}} ()
+\begin{DoxyCompactList}\small\item\em Emitted when files are selected. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_file_load_widget_a4adf587aac591f95f8792021c710a37c}\label{classrev_1_1_view_1_1_file_load_widget_a4adf587aac591f95f8792021c710a37c}} 
+{\bfseries File\+Load\+Widget} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, const Q\+String \&default\+Text=Q\+String(), const Q\+String \&default\+Title\+Text=\char`\"{}Open \mbox{\hyperlink{class_file}{File}}\char`\"{}, const Q\+String \&selection\+Filter=Q\+String(), const Q\+String \&default\+Path=\char`\"{}.\char`\"{}, Path\+Access\+Mode load\+Mode=Path\+Access\+Mode\+::k\+Single\+File, Q\+Widget $\ast$parent=nullptr)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_file_load_widget_a52a6343e23c22ef4f70b6be16cdc4da9}\label{classrev_1_1_view_1_1_file_load_widget_a52a6343e23c22ef4f70b6be16cdc4da9}} 
+const std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} $>$ \& {\bfseries file\+Names} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_file_load_widget_a091ba1fd53e8168b4220f942c7452c3e}\label{classrev_1_1_view_1_1_file_load_widget_a091ba1fd53e8168b4220f942c7452c3e}} 
+Q\+Line\+Edit $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_file_load_widget_a091ba1fd53e8168b4220f942c7452c3e}{line\+Edit}} () const
+\begin{DoxyCompactList}\small\item\em Line edit widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_file_load_widget_ad06bd85f502dfb53a5229170ef65ebba}\label{classrev_1_1_view_1_1_file_load_widget_ad06bd85f502dfb53a5229170ef65ebba}} 
+Q\+String \mbox{\hyperlink{classrev_1_1_view_1_1_file_load_widget_ad06bd85f502dfb53a5229170ef65ebba}{get\+Path}} () const
+\begin{DoxyCompactList}\small\item\em Get the path string stored in the line edit widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_file_load_widget_a3976d8f513d6aabaa1f4a9d83b5e0ff2}\label{classrev_1_1_view_1_1_file_load_widget_a3976d8f513d6aabaa1f4a9d83b5e0ff2}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_file_load_widget_a3976d8f513d6aabaa1f4a9d83b5e0ff2}{set\+Path}} (const Q\+String \&dir)
+\begin{DoxyCompactList}\small\item\em Set the path in the line edit. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_file_load_widget_a9bd5e3cbba494dce4e0a2221c9d995c8}\label{classrev_1_1_view_1_1_file_load_widget_a9bd5e3cbba494dce4e0a2221c9d995c8}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_file_load_widget_a9bd5e3cbba494dce4e0a2221c9d995c8}{initialize\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to check\+Validity widgets. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_file_load_widget_a90a3d89a0bb5a24971b6326fafb020b5}\label{classrev_1_1_view_1_1_file_load_widget_a90a3d89a0bb5a24971b6326fafb020b5}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_file_load_widget_a90a3d89a0bb5a24971b6326fafb020b5}{initialize\+Connections}} () override
+\begin{DoxyCompactList}\small\item\em Methods to check\+Validity connections for this widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_file_load_widget_a2ac48b4bd1c2bcd87b341c8e37b1cc69}\label{classrev_1_1_view_1_1_file_load_widget_a2ac48b4bd1c2bcd87b341c8e37b1cc69}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_file_load_widget_a2ac48b4bd1c2bcd87b341c8e37b1cc69}{layout\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to ay out widgets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_file_load_widget_a6fa9c57e0a42c3af85e144043cae5556}\label{classrev_1_1_view_1_1_file_load_widget_a6fa9c57e0a42c3af85e144043cae5556}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} $>$ \mbox{\hyperlink{classrev_1_1_view_1_1_file_load_widget_a6fa9c57e0a42c3af85e144043cae5556}{m\+\_\+paths}}
+\begin{DoxyCompactList}\small\item\em Cache files selected by the widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_file_load_widget_ab9513c3485f93bc516e54bb9757cd402}\label{classrev_1_1_view_1_1_file_load_widget_ab9513c3485f93bc516e54bb9757cd402}} 
+Path\+Access\+Mode {\bfseries m\+\_\+load\+Mode}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_file_load_widget_a502ceb6dd3dc5f50bbc6569aec5691e5}\label{classrev_1_1_view_1_1_file_load_widget_a502ceb6dd3dc5f50bbc6569aec5691e5}} 
+Q\+Line\+Edit $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_file_load_widget_a502ceb6dd3dc5f50bbc6569aec5691e5}{m\+\_\+line\+Edit}}
+\begin{DoxyCompactList}\small\item\em Line Edit for file/directory path. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_file_load_widget_a05a626a1efc89ee2035f309551bca9f3}\label{classrev_1_1_view_1_1_file_load_widget_a05a626a1efc89ee2035f309551bca9f3}} 
+Q\+String {\bfseries m\+\_\+title\+Text}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_file_load_widget_a99f61e2b5685cd2d9e02e1a7be815a68}\label{classrev_1_1_view_1_1_file_load_widget_a99f61e2b5685cd2d9e02e1a7be815a68}} 
+Q\+String {\bfseries m\+\_\+selection\+Filter}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_file_load_widget_a6180716da5dd5b57de8da233c3103cd2}\label{classrev_1_1_view_1_1_file_load_widget_a6180716da5dd5b57de8da233c3103cd2}} 
+Q\+String {\bfseries m\+\_\+default\+Dir}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_file_load_widget_a51e11c68f105baafa41b2cf0b0953add}\label{classrev_1_1_view_1_1_file_load_widget_a51e11c68f105baafa41b2cf0b0953add}} 
+Q\+Push\+Button $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_file_load_widget_a51e11c68f105baafa41b2cf0b0953add}{m\+\_\+button}}
+\begin{DoxyCompactList}\small\item\em Button for selecting file/directory. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_file_load_widget_a01f948e3e23e1c0ba19e20a011f3839b}\label{classrev_1_1_view_1_1_file_load_widget_a01f948e3e23e1c0ba19e20a011f3839b}} 
+\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_file_load_widget_a01f948e3e23e1c0ba19e20a011f3839b}{m\+\_\+engine}}
+\begin{DoxyCompactList}\small\item\em Pointer to core engine. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_file_load_widget_a87d908a0084c937935d515255779263b}\label{classrev_1_1_view_1_1_file_load_widget_a87d908a0084c937935d515255779263b}} 
+Q\+String \mbox{\hyperlink{classrev_1_1_view_1_1_file_load_widget_a87d908a0084c937935d515255779263b}{m\+\_\+default\+Text}}
+\begin{DoxyCompactList}\small\item\em Default text for the widget. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Wiget with interface for loading a file. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/parameters/G\+Parameter\+Widgets.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/parameters/G\+Parameter\+Widgets.\+cpp\end{DoxyCompactItemize}

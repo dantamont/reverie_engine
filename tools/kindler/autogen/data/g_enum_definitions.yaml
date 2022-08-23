@@ -1,0 +1,271 @@
+# Note that if the schema version is not manually updated when changing
+# enums, the major version will be bumped automatically
+
+# When modifying this file, bump the schema major version when:
+#  - Modifying any existing enums
+# Bump the schema minor version when:
+#  - Adding any new enums
+---
+enums:
+  SimulationPlayState:
+    description: "The play state of the simulation loop"
+    members:
+      PlayedState:
+        description: "Simulation is playing"
+      PausedState:
+        description: "Simulation is paused"
+      StoppedState:
+        description: "Simulation is stopped"
+  
+  SimulationPlayMode:
+    description: "The play mode of the simulation loop"
+    members:
+      Standard:
+      Debug:
+        description: "Debug play mode"
+  
+  BasicPolygonType:
+    start_value: 0
+    description: "Types of built-in polygon meshes"
+    members:
+      Rectangle:
+      Cube:
+      LatLonSphere:
+        description: "@see http://www.songho.ca/opengl/gl_sphere.html"
+      GridPlane:
+      GridCube:
+      Cylinder:
+      Capsule:
+  
+  SceneObjectBehaviorFlag:
+    is_flag: true
+    description: "Flags representing the behavior of a scene object"
+    members:
+      Enabled:
+        description: Whether or not the object is enabled
+      Invisible:
+        description: "Whether or not the object is visible"
+      ScriptGenerated:
+        description: "Whether or not an object is generated via script, which is just python as of 2/6/22"
+  
+  SceneType:
+    description: "Represent the type of scene-related item"
+    members:
+      Scenario:
+        description: "A scenario, containing one or more scenes"
+      SceneObject:
+        description: "An object in a scene"
+      Scene:
+        description: "A scene, containing zero or more scene objects"
+
+  SceneObjectComponentType:
+    description: "Component types for a scene object"
+    members:
+      Transform:
+      Shader:
+      Camera:
+      Light:
+      Script:
+      StateMachine:
+      Model:
+      Listener:
+      RigidBody:
+      Unused0:
+      Canvas:
+      CharacterController:
+      BoneAnimation:
+      CubeMap:
+      AudioSource:
+      AudioListener:
+
+  SceneComponentType:
+    description: "Component types for a scene"
+    members:
+      PhysicsScene:
+
+  RigidBodyType:
+    description: "Types of rigid bodies"
+    members:
+      Static:
+      Dynamic:
+      ArticulationLink:
+
+  PhysicsGeometryType:
+    description: "The supported geometries for physics"
+    members:
+      Box:
+      Sphere:
+      Plane:
+
+  WidgetType:
+    description: "Represent a type of widget"
+    members:
+      SceneTree:
+        description: "A tree widget representing all scene objects and scenes for the current scenario"
+      ComponentTree:
+        description: "A tree widget representing a scene or scene object's components"
+      PhysicsShapePrefab:
+        description: "A widget representing a physics shape prefab"
+
+  WidgetActionType:
+    description: "Represent a type of widget action"
+    members:
+      SelectScene:
+        description: "Select a scene in the scene tree view"
+      SelectSceneObject:
+        description: "Select a scene object in the scene tree view"
+
+  # TODO: Remove AnimationStateType from GAnimationState.h
+  AnimationStateType:
+    description: "Represent a type of animation playback state"
+    start_value: 0
+    members:
+      Null:
+      Animation:
+      Transition:
+
+  CameraOption:
+    is_flag: true
+    description: "Flags representing camera options"
+    members:
+      FrustrumCulling:
+        description: "Flag to toggle frustum culling"
+      OcclusionCulling:
+        description: "Flag to toggle occlusion culling"
+      ShowAllRenderLayers:
+        description: "Flag to force rendering of all render layers, even those unassociated with the camera"
+      EnablePostProcessing:
+        description: "Flag to enable post-processing effects"
+      UseZBufferPass:
+        description: "Flag to make a zbuffer pass before rendering scene"
+
+  RenderLayerWidgetMode:
+    description: "Mode for a render layer widget"
+    members:
+      SceneObject:
+        description: "Modifying the render layers in a scene object"
+      Camera:
+        description: "Modifying the render layers in a camera"
+
+  RenderProjectionType:
+    description: "Type of render projection"
+    members:
+      Perspective:
+      Orthographic:
+
+  CanvasGlyphMode:
+    description: "The behavior of a canvas"
+    members:
+      Gui:
+        description: "2D elements on a menu, always in screen space"
+      Billboard:
+        description: "2D Element specified in world-space"
+
+  BillboardFlag:
+    is_flag: true
+    description: "Options for a billboard canvas"
+    members:
+      Scale:
+        description: "Scale with zoom, i.e. if on, glyph is constant screen size"
+      FaceCamera:
+        description: "If toggled on, always face camera"
+      AlwaysOnTop:
+        description: "Render on top of all other components"
+
+  GlyphType:
+    description: "Types of glyphs"
+    members:
+      Label:
+      Icon:
+      Sprite:
+
+  VoiceFlag:
+    is_flag: true
+    description: "Options for an audio voice"
+    members:
+      Protected:
+        description: "Whether or not the voices produced by the component are protected (safe from deletion)"
+      Paused:
+        description: "Whether or not the voices produced by the component are paused on play"
+      Background:
+        description: "Whether or not to play as background (for music)"
+      3d:
+        description: "Whether or not to use 3D play settings"
+
+  AudioSourceFlag:
+    is_flag: true
+    description: "Flags describing an audio source"
+    members:
+      Looping: 
+        description: "Whether or not the sound plays on repeat"
+      SingleInstance: 
+        description: "Whether or not the more than one instance of the sound can be played at once"
+      TickOnInaudible:
+        description: "Whether or not to keep ticking (playing) the sound when inaudible"
+      KillOnInaudible: 
+        description: "Whether or not to kill the sound once inaudible"
+      Unused: 
+        description: ""
+      ListenerRelative:
+        description: "Whether or not the sound coordinates are relative to a listener at (0, 0, 0)"
+      UseDistanceDelay:
+        description: "Whether or not to delay playback based on sound's distance from listener, off by default"
+
+  ResourceType:
+    description: "Types of resources"
+    members:
+      Unused:
+        description: "Replace this"
+      Texture:
+      Material:
+      Mesh:
+      CubeTexture:
+      Animation:
+      Model:
+      ShaderProgram:
+      PythonScript:
+      Skeleton:
+      Audio:
+      UserType:
+        description: "Unimplemented"
+
+  TextureUsageType:
+    description: "Types of textures"
+    members:
+      Diffuse:
+      NormalMap:
+      Ambient:
+      Specular:
+      SpecularHighlight:
+      Bump:
+      Displacement:
+      Opacity:
+      Reflection:
+      LightMap:
+      Albedo_PBR:
+      Bump_PBR:
+      AmbientOcclusion_PBR:
+      Roughness_PBR:
+      Metallic_PBR:
+      Shininess_PBR:
+      Emissive_PBR:
+
+  CameraBufferUniformName:
+    description: "Names for camera buffer uniforms"
+    members:
+      ProjectionMatrix:
+      ViewMatrix:
+      ZNear:
+      ZFar:
+      InvViewMatrix:
+      InvProjectionMatrix:
+      ViewportDimensions:
+      ScreenPercentage:
+
+  LightBufferUniformName:
+    description: "Names for the light buffer uniforms"
+    members:
+      LightCount:
+      LightingModel:
+
+...

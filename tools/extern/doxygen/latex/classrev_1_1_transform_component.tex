@@ -1,0 +1,140 @@
+\hypertarget{classrev_1_1_transform_component}{}\section{rev\+::Transform\+Component Class Reference}
+\label{classrev_1_1_transform_component}\index{rev::TransformComponent@{rev::TransformComponent}}
+
+
+A component representing a transform, consisting of a translation, a rotation, and a scaling.  
+
+
+
+
+{\ttfamily \#include $<$G\+Transform\+Component.\+h$>$}
+
+Inheritance diagram for rev\+::Transform\+Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.036364cm]{classrev_1_1_transform_component}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_component_acba932376224625d00acebea577a7a90}\label{classrev_1_1_transform_component_acba932376224625d00acebea577a7a90}} 
+enum \mbox{\hyperlink{classrev_1_1_transform_component_acba932376224625d00acebea577a7a90}{Inheritance\+Type}} \{ {\bfseries k\+All}, 
+{\bfseries k\+Translation}, 
+{\bfseries k\+Preserve\+Orientation}
+ \}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_enum}{Enum}} for which transforms to inherit from a parent state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_component_af63e8a246b8ad649019747af9f16ab9b}\label{classrev_1_1_transform_component_af63e8a246b8ad649019747af9f16ab9b}} 
+{\bfseries Transform\+Component} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_component_a7d0c316548c679262de60a770466d6d4}\label{classrev_1_1_transform_component_a7d0c316548c679262de60a770466d6d4}} 
+{\bfseries Transform\+Component} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \&object)
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_component_ad0045f03ad42194b4e9d4828ab25f70d}\label{classrev_1_1_transform_component_ad0045f03ad42194b4e9d4828ab25f70d}} 
+{\bfseries $\sim$\+Transform\+Component} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_transform_component_a04a11c6b0b9f124c53a84226a488a1e9}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_transform_component_a7dc2abcb1d759a29c28fc8ceb632a31d}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_component_aed45da6b047fa6615c1064ac8f23c8fb}\label{classrev_1_1_transform_component_aed45da6b047fa6615c1064ac8f23c8fb}} 
+virtual int \mbox{\hyperlink{classrev_1_1_transform_component_aed45da6b047fa6615c1064ac8f23c8fb}{max\+Allowed}} () const override
+\begin{DoxyCompactList}\small\item\em Max number of allowed components per scene object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_component_a6fe0e6e300d2764dacbb9ea8f80ccf0e}\label{classrev_1_1_transform_component_a6fe0e6e300d2764dacbb9ea8f80ccf0e}} 
+void \mbox{\hyperlink{classrev_1_1_transform_component_a6fe0e6e300d2764dacbb9ea8f80ccf0e}{set}} (const \mbox{\hyperlink{classrev_1_1_transform}{Transform}} \&transform)
+\begin{DoxyCompactList}\small\item\em Set value from a transform. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_component_afe660eead2c4c6194034b08030c4d675}\label{classrev_1_1_transform_component_afe660eead2c4c6194034b08030c4d675}} 
+void \mbox{\hyperlink{classrev_1_1_transform_component_afe660eead2c4c6194034b08030c4d675}{compute\+World\+Matrix}} () override
+\begin{DoxyCompactList}\small\item\em Compute world matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_component_a659d35fb65e846c12c9bda2c9c855add}\label{classrev_1_1_transform_component_a659d35fb65e846c12c9bda2c9c855add}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_transform_component_a659d35fb65e846c12c9bda2c9c855add}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_component_a76a1ae206e66ac0454eec2f7d7e0dfe8}\label{classrev_1_1_transform_component_a76a1ae206e66ac0454eec2f7d7e0dfe8}} 
+virtual void \mbox{\hyperlink{classrev_1_1_transform_component_a76a1ae206e66ac0454eec2f7d7e0dfe8}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_component_adb122fbec0ec50ca341d91f7a2c9d346}\label{classrev_1_1_transform_component_adb122fbec0ec50ca341d91f7a2c9d346}} 
+void \mbox{\hyperlink{classrev_1_1_transform_component_adb122fbec0ec50ca341d91f7a2c9d346}{initialize}} ()
+\begin{DoxyCompactList}\small\item\em Initialize this transform. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_component_adbc81f81baaebf537a269803f0abfa66}\label{classrev_1_1_transform_component_adbc81f81baaebf537a269803f0abfa66}} 
+class {\bfseries Abstract\+Transform\+Component}
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_component_a12e775e92a2c790f38385b72d54e402f}\label{classrev_1_1_transform_component_a12e775e92a2c790f38385b72d54e402f}} 
+class {\bfseries Affine\+Component}
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_component_a737b3cb474f324a74e7da2d3aeca10c9}\label{classrev_1_1_transform_component_a737b3cb474f324a74e7da2d3aeca10c9}} 
+class {\bfseries Scene\+Object}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A component representing a transform, consisting of a translation, a rotation, and a scaling. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_transform_component_a04a11c6b0b9f124c53a84226a488a1e9}\label{classrev_1_1_transform_component_a04a11c6b0b9f124c53a84226a488a1e9}} 
+\index{rev::TransformComponent@{rev::TransformComponent}!className@{className}}
+\index{className@{className}!rev::TransformComponent@{rev::TransformComponent}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Transform\+Component\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_component_a07619152d5acafe7a536df3a6a476349}{rev\+::\+Component}}.
+
+\mbox{\Hypertarget{classrev_1_1_transform_component_a7dc2abcb1d759a29c28fc8ceb632a31d}\label{classrev_1_1_transform_component_a7dc2abcb1d759a29c28fc8ceb632a31d}} 
+\index{rev::TransformComponent@{rev::TransformComponent}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::TransformComponent@{rev::TransformComponent}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Transform\+Component\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_component_ae2827b14c278588b95e01c4743fae674}{rev\+::\+Component}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+Transform\+Component.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+Transform\+Component.\+cpp\end{DoxyCompactItemize}

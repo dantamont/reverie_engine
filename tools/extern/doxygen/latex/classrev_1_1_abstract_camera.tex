@@ -1,0 +1,154 @@
+\hypertarget{classrev_1_1_abstract_camera}{}\section{rev\+::Abstract\+Camera Class Reference}
+\label{classrev_1_1_abstract_camera}\index{rev::AbstractCamera@{rev::AbstractCamera}}
+
+
+Uninstantiable camera class, to provide flexibility in render commands.  
+
+
+
+
+{\ttfamily \#include $<$G\+Camera.\+h$>$}
+
+Inheritance diagram for rev\+::Abstract\+Camera\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classrev_1_1_abstract_camera}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_abstract_camera_adb57a53813b8dd94c9c35b9e8839b018}\label{classrev_1_1_abstract_camera_adb57a53813b8dd94c9c35b9e8839b018}} 
+{\bfseries Abstract\+Camera} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_abstract_camera_a86720299e61fc58067a94168ff72163d}\label{classrev_1_1_abstract_camera_a86720299e61fc58067a94168ff72163d}} 
+virtual {\bfseries $\sim$\+Abstract\+Camera} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_abstract_camera_a71dbb1c655614e7ae08b08f09b4216b5}\label{classrev_1_1_abstract_camera_a71dbb1c655614e7ae08b08f09b4216b5}} 
+uint32\+\_\+t {\bfseries index} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_abstract_camera_ae96975e210972a64ec87f030cce3f6bd}\label{classrev_1_1_abstract_camera_ae96975e210972a64ec87f030cce3f6bd}} 
+virtual Camera\+Type {\bfseries camera\+Type} () const =0
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classrev_1_1_abstract_camera_aaa1843c3653515e93eecc2a255d32987}{resize\+Frame}} (uint32\+\_\+t width, uint32\+\_\+t height)=0
+\begin{DoxyCompactList}\small\item\em Resize the camera\textquotesingle{}s framebuffer to accomodate the given width and height. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classrev_1_1_abstract_camera_a6dceba3b328d5e9c3543975e3ae370c0}{bind\+Uniforms}} (const \mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} $\ast$renderer, \mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$shader\+Program)=0
+\begin{DoxyCompactList}\small\item\em Set uniforms related to the camera. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_abstract_camera_a27c02726ef16129f81c42b637859dcbd}\label{classrev_1_1_abstract_camera_a27c02726ef16129f81c42b637859dcbd}} 
+virtual void \mbox{\hyperlink{classrev_1_1_abstract_camera_a27c02726ef16129f81c42b637859dcbd}{bind\+Textures}} ()=0
+\begin{DoxyCompactList}\small\item\em Bind any textures needed for the camera. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_abstract_camera_a670e279bf3c32bd0b7ac8ab5f9bbf6f2}\label{classrev_1_1_abstract_camera_a670e279bf3c32bd0b7ac8ab5f9bbf6f2}} 
+virtual void \mbox{\hyperlink{classrev_1_1_abstract_camera_a670e279bf3c32bd0b7ac8ab5f9bbf6f2}{bind\+Buffers}} ()=0
+\begin{DoxyCompactList}\small\item\em Bind any buffers associated with the camera. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_abstract_camera_a996ec62c38c396b52c381034541e7958}\label{classrev_1_1_abstract_camera_a996ec62c38c396b52c381034541e7958}} 
+virtual void \mbox{\hyperlink{classrev_1_1_abstract_camera_a996ec62c38c396b52c381034541e7958}{bind\+Frame}} (Frame\+Buffer\+::\+Bind\+Type read\+Or\+Write, bool clear)=0
+\begin{DoxyCompactList}\small\item\em Bind for drawing. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_abstract_camera_a5e71dd0fd2d2dbf51086f2a29d02aad7}\label{classrev_1_1_abstract_camera_a5e71dd0fd2d2dbf51086f2a29d02aad7}} 
+virtual void \mbox{\hyperlink{classrev_1_1_abstract_camera_a5e71dd0fd2d2dbf51086f2a29d02aad7}{release\+Frame}} (Frame\+Buffer\+::\+Bind\+Type read\+Or\+Write)=0
+\begin{DoxyCompactList}\small\item\em Release from drawing. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_abstract_camera_a5c9b52f6030262bd0d90e62105798f5e}\label{classrev_1_1_abstract_camera_a5c9b52f6030262bd0d90e62105798f5e}} 
+virtual void \mbox{\hyperlink{classrev_1_1_abstract_camera_a5c9b52f6030262bd0d90e62105798f5e}{update\+Frustum}} (Camera\+Update\+Flags flags)=0
+\begin{DoxyCompactList}\small\item\em Update the camera\textquotesingle{}s frustum;. \end{DoxyCompactList}\item 
+virtual const \mbox{\hyperlink{classrev_1_1_colliding_geometry}{Colliding\+Geometry}} \& \mbox{\hyperlink{classrev_1_1_abstract_camera_a3bc8bb701690f7e67404a78cfb360708}{frustum}} () const =0
+\begin{DoxyCompactList}\small\item\em The view frustum for the camera. \end{DoxyCompactList}\item 
+virtual float \mbox{\hyperlink{classrev_1_1_abstract_camera_aad3a00ed805121a7915574b4125a343f}{get\+Depth}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&position)=0
+\begin{DoxyCompactList}\small\item\em Get depth of an object (world-\/space) given its position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_abstract_camera_a187f22c1339a7c14542f6f9b8d3554ef}\label{classrev_1_1_abstract_camera_a187f22c1339a7c14542f6f9b8d3554ef}} 
+void {\bfseries set\+Index} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_abstract_camera_a078fbfd582d21563610a1d9d51eee7b1}\label{classrev_1_1_abstract_camera_a078fbfd582d21563610a1d9d51eee7b1}} 
+uint32\+\_\+t \mbox{\hyperlink{classrev_1_1_abstract_camera_a078fbfd582d21563610a1d9d51eee7b1}{m\+\_\+index}}
+\begin{DoxyCompactList}\small\item\em The index of the camera for use in sort key. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_abstract_camera_ad8df466912bfcc99bf4f570547b701cd}\label{classrev_1_1_abstract_camera_ad8df466912bfcc99bf4f570547b701cd}} 
+static std\+::vector$<$ uint32\+\_\+t $>$ \mbox{\hyperlink{classrev_1_1_abstract_camera_ad8df466912bfcc99bf4f570547b701cd}{s\+\_\+deleted\+Indices}} = \{\}
+\begin{DoxyCompactList}\small\item\em I\+Ds to be used again. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_abstract_camera_a8b88ab6d260c5f6f489c549b54264e13}\label{classrev_1_1_abstract_camera_a8b88ab6d260c5f6f489c549b54264e13}} 
+static uint32\+\_\+t \mbox{\hyperlink{classrev_1_1_abstract_camera_a8b88ab6d260c5f6f489c549b54264e13}{s\+\_\+camera\+Count}} = 0
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_camera}{Camera}} count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Uninstantiable camera class, to provide flexibility in render commands. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_abstract_camera_a6dceba3b328d5e9c3543975e3ae370c0}\label{classrev_1_1_abstract_camera_a6dceba3b328d5e9c3543975e3ae370c0}} 
+\index{rev::AbstractCamera@{rev::AbstractCamera}!bindUniforms@{bindUniforms}}
+\index{bindUniforms@{bindUniforms}!rev::AbstractCamera@{rev::AbstractCamera}}
+\subsubsection{\texorpdfstring{bindUniforms()}{bindUniforms()}}
+{\footnotesize\ttfamily virtual void rev\+::\+Abstract\+Camera\+::bind\+Uniforms (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} $\ast$}]{renderer,  }\item[{\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$}]{shader\+Program }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Set uniforms related to the camera. 
+
+e.\+g. View matrix, projection matrix, etc. 
+
+Implemented in \mbox{\hyperlink{classrev_1_1_camera_aacdb899dc9745568b6c45240fd114e7d}{rev\+::\+Camera}}, and \mbox{\hyperlink{classrev_1_1_point_light_camera_a461e93ecc428b95ad7b7a244e143f924}{rev\+::\+Point\+Light\+Camera}}.
+
+\mbox{\Hypertarget{classrev_1_1_abstract_camera_a3bc8bb701690f7e67404a78cfb360708}\label{classrev_1_1_abstract_camera_a3bc8bb701690f7e67404a78cfb360708}} 
+\index{rev::AbstractCamera@{rev::AbstractCamera}!frustum@{frustum}}
+\index{frustum@{frustum}!rev::AbstractCamera@{rev::AbstractCamera}}
+\subsubsection{\texorpdfstring{frustum()}{frustum()}}
+{\footnotesize\ttfamily virtual const \mbox{\hyperlink{classrev_1_1_colliding_geometry}{Colliding\+Geometry}}\& rev\+::\+Abstract\+Camera\+::frustum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+The view frustum for the camera. 
+
+The geometry used for culling what is in the camera\textquotesingle{}s view 
+
+Implemented in \mbox{\hyperlink{classrev_1_1_camera_afc7ce1c13f50a84a2d858913a65b4cd8}{rev\+::\+Camera}}, and \mbox{\hyperlink{classrev_1_1_point_light_camera_a74ce57f46a3a367cc9b41a499b9996e5}{rev\+::\+Point\+Light\+Camera}}.
+
+\mbox{\Hypertarget{classrev_1_1_abstract_camera_aad3a00ed805121a7915574b4125a343f}\label{classrev_1_1_abstract_camera_aad3a00ed805121a7915574b4125a343f}} 
+\index{rev::AbstractCamera@{rev::AbstractCamera}!getDepth@{getDepth}}
+\index{getDepth@{getDepth}!rev::AbstractCamera@{rev::AbstractCamera}}
+\subsubsection{\texorpdfstring{getDepth()}{getDepth()}}
+{\footnotesize\ttfamily virtual float rev\+::\+Abstract\+Camera\+::get\+Depth (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get depth of an object (world-\/space) given its position. 
+
+Positive is behind camera 
+
+Implemented in \mbox{\hyperlink{classrev_1_1_camera_a3b0239e64437defa4469e3b914661ffc}{rev\+::\+Camera}}, and \mbox{\hyperlink{classrev_1_1_point_light_camera_adfa53b5dd87fb570e4d238ccafc7cd5d}{rev\+::\+Point\+Light\+Camera}}.
+
+\mbox{\Hypertarget{classrev_1_1_abstract_camera_aaa1843c3653515e93eecc2a255d32987}\label{classrev_1_1_abstract_camera_aaa1843c3653515e93eecc2a255d32987}} 
+\index{rev::AbstractCamera@{rev::AbstractCamera}!resizeFrame@{resizeFrame}}
+\index{resizeFrame@{resizeFrame}!rev::AbstractCamera@{rev::AbstractCamera}}
+\subsubsection{\texorpdfstring{resizeFrame()}{resizeFrame()}}
+{\footnotesize\ttfamily virtual void rev\+::\+Abstract\+Camera\+::resize\+Frame (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{width,  }\item[{uint32\+\_\+t}]{height }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Resize the camera\textquotesingle{}s framebuffer to accomodate the given width and height. 
+
+Width and height may be refer to either a widget or texture\textquotesingle{}s dimensions 
+
+Implemented in \mbox{\hyperlink{classrev_1_1_camera_a38127b7e39468bb9116f3bcc3b3bcb1f}{rev\+::\+Camera}}, \mbox{\hyperlink{classrev_1_1_scene_camera_a2cc00ef51c784af2cdf9fe9308177c1a}{rev\+::\+Scene\+Camera}}, and \mbox{\hyperlink{classrev_1_1_point_light_camera_afff4fe381e8872b5db8cbc7f573e3ca9}{rev\+::\+Point\+Light\+Camera}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/view/G\+Camera.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/view/G\+Camera.\+cpp\end{DoxyCompactItemize}

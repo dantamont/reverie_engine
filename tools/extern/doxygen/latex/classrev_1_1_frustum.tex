@@ -1,0 +1,110 @@
+\hypertarget{classrev_1_1_frustum}{}\section{rev\+::Frustum Class Reference}
+\label{classrev_1_1_frustum}\index{rev::Frustum@{rev::Frustum}}
+
+
+Describes the view frustum for a camera.  
+
+
+
+
+{\ttfamily \#include $<$G\+Frustum.\+h$>$}
+
+Inheritance diagram for rev\+::Frustum\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_frustum}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_frustum_a46036ed07cda5b0292b5e4ef1593d203}\label{classrev_1_1_frustum_a46036ed07cda5b0292b5e4ef1593d203}} 
+{\bfseries Frustum} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_frustum_a4acb13c8082523b3ff14f146adcaaa8e}\label{classrev_1_1_frustum_a4acb13c8082523b3ff14f146adcaaa8e}} 
+{\bfseries Frustum} (const \mbox{\hyperlink{classrev_1_1_frustum}{Frustum}} \&other)
+\item 
+\mbox{\Hypertarget{classrev_1_1_frustum_ae9068ded6e700185a3639db9c9355afb}\label{classrev_1_1_frustum_ae9068ded6e700185a3639db9c9355afb}} 
+{\bfseries Frustum} (const \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} \&view\+Matrix, const \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} \&projection\+Matrix)
+\item 
+\mbox{\Hypertarget{classrev_1_1_frustum_aaf7b4403910d50e5556ed145d35e6070}\label{classrev_1_1_frustum_aaf7b4403910d50e5556ed145d35e6070}} 
+{\bfseries $\sim$\+Frustum} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Operators}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_frustum_a1b446b0cf297dd57b4975f8dbbfe83aa}\label{classrev_1_1_frustum_a1b446b0cf297dd57b4975f8dbbfe83aa}} 
+\mbox{\hyperlink{classrev_1_1_frustum}{Frustum}} \& {\bfseries operator=} (const \mbox{\hyperlink{classrev_1_1_frustum}{Frustum}} \&other)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_frustum_abd23e75e47531b32e24eab0ac326d697}\label{classrev_1_1_frustum_abd23e75e47531b32e24eab0ac326d697}} 
+void \mbox{\hyperlink{classrev_1_1_frustum_abd23e75e47531b32e24eab0ac326d697}{initialize}} (const \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} \&view\+Matrix, const \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} \&projection\+Matrix)
+\begin{DoxyCompactList}\small\item\em Initialize the frustum. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_frustum_a3d0de4ef3e49887222e191eeba21adf9}\label{classrev_1_1_frustum_a3d0de4ef3e49887222e191eeba21adf9}} 
+void \mbox{\hyperlink{classrev_1_1_frustum_a3d0de4ef3e49887222e191eeba21adf9}{normalize\+Planes}} ()
+\begin{DoxyCompactList}\small\item\em Normalize the planes of the frustum. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_frustum_abc4c5c87c95bce36ad2e208c2feb72f3}\label{classrev_1_1_frustum_abc4c5c87c95bce36ad2e208c2feb72f3}} 
+virtual bool {\bfseries intersects} (const \mbox{\hyperlink{classrev_1_1_colliding_geometry}{Colliding\+Geometry}} \&other) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_frustum_acbe4e96f53a54bb47735670439b9ae0c}\label{classrev_1_1_frustum_acbe4e96f53a54bb47735670439b9ae0c}} 
+virtual void {\bfseries recalculate\+Bounds} (const \mbox{\hyperlink{classrev_1_1_transform}{Transform}} \&transform, \mbox{\hyperlink{classrev_1_1_colliding_geometry}{Colliding\+Geometry}} \&out) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_frustum_abffdd5f3bc5b723c616830e48bd01128}\label{classrev_1_1_frustum_abffdd5f3bc5b723c616830e48bd01128}} 
+bool \mbox{\hyperlink{classrev_1_1_frustum_abffdd5f3bc5b723c616830e48bd01128}{contains}} (const \mbox{\hyperlink{classrev_1_1_colliding_geometry}{Colliding\+Geometry}} \&geometry) const
+\begin{DoxyCompactList}\small\item\em Checks whether or not the given geometry is inside the frustum. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_frustum_a61813ac4cbc4bd9fcff29eee21736ece}\label{classrev_1_1_frustum_a61813ac4cbc4bd9fcff29eee21736ece}} 
+bool {\bfseries contains} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&point) const
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_frustum_a8a16c0398b66e0fb77f41e10da530138}\label{classrev_1_1_frustum_a8a16c0398b66e0fb77f41e10da530138}} 
+enum {\bfseries Plane} \{ \newline
+{\bfseries k\+Left}, 
+{\bfseries k\+Right}, 
+{\bfseries k\+Top}, 
+{\bfseries k\+Bottom}, 
+\newline
+{\bfseries k\+Near}, 
+{\bfseries k\+Far}
+ \}
+\item 
+static void \mbox{\hyperlink{classrev_1_1_frustum_a09e75a747ac79a6178db2d1dcf44ebc5}{Extract\+Frustum\+Points}} (const \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} \&view\+Matrix, const \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} \&projection\+Matrix, std\+::array$<$ \mbox{\hyperlink{classrev_1_1_vector}{Vector4}}, 8 $>$ \&out\+Points)
+\begin{DoxyCompactList}\small\item\em Get the points describing the corners of a frustum with the specified view and projection matrices. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_frustum_a00115c1058ea8bc514fcae4313cf802d}\label{classrev_1_1_frustum_a00115c1058ea8bc514fcae4313cf802d}} 
+static \mbox{\hyperlink{structrev_1_1_a_a_b_b_data}{A\+A\+B\+B\+Data}} {\bfseries Frustom\+Bounding\+Box} (const \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} \&view\+Matrix, const \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} \&projection\+Matrix)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Describes the view frustum for a camera. 
+
+Currently 36 bytes 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_frustum_a09e75a747ac79a6178db2d1dcf44ebc5}\label{classrev_1_1_frustum_a09e75a747ac79a6178db2d1dcf44ebc5}} 
+\index{rev::Frustum@{rev::Frustum}!ExtractFrustumPoints@{ExtractFrustumPoints}}
+\index{ExtractFrustumPoints@{ExtractFrustumPoints}!rev::Frustum@{rev::Frustum}}
+\subsubsection{\texorpdfstring{ExtractFrustumPoints()}{ExtractFrustumPoints()}}
+{\footnotesize\ttfamily void rev\+::\+Frustum\+::\+Extract\+Frustum\+Points (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} \&}]{view\+Matrix,  }\item[{const \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} \&}]{projection\+Matrix,  }\item[{std\+::array$<$ \mbox{\hyperlink{classrev_1_1_vector}{Vector4}}, 8 $>$ \&}]{out\+Points }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the points describing the corners of a frustum with the specified view and projection matrices. 
+
+\begin{DoxyNote}{Note}
+For other approaches, see\+: \href{http://donw.io/post/frustum-point-extraction/}{\texttt{ http\+://donw.\+io/post/frustum-\/point-\/extraction/}} 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/view/G\+Frustum.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/view/G\+Frustum.\+cpp\end{DoxyCompactItemize}

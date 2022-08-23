@@ -1,0 +1,120 @@
+\hypertarget{classrev_1_1_view_1_1_render_layer_select_widget}{}\section{rev\+::View\+::Render\+Layer\+Select\+Widget Class Reference}
+\label{classrev_1_1_view_1_1_render_layer_select_widget}\index{rev::View::RenderLayerSelectWidget@{rev::View::RenderLayerSelectWidget}}
+Inheritance diagram for rev\+::View\+::Render\+Layer\+Select\+Widget\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.303835cm]{classrev_1_1_view_1_1_render_layer_select_widget}
+\end{center}
+\end{figure}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_select_widget_a227692c51cb2bebb8121709d785c132c}\label{classrev_1_1_view_1_1_render_layer_select_widget_a227692c51cb2bebb8121709d785c132c}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_select_widget_a227692c51cb2bebb8121709d785c132c}{repopulate}} ()
+\begin{DoxyCompactList}\small\item\em Populate the widget. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_select_widget_ae9be87a93acbf14a92639bcaa950dad5}\label{classrev_1_1_view_1_1_render_layer_select_widget_ae9be87a93acbf14a92639bcaa950dad5}} 
+{\bfseries Render\+Layer\+Select\+Widget} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$engine, std\+::vector$<$ uint32\+\_\+t $>$ \&render\+Layer\+Ids, Q\+Widget $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_select_widget_af68a0b68ad8e603a5bc550caaa46c70c}\label{classrev_1_1_view_1_1_render_layer_select_widget_af68a0b68ad8e603a5bc550caaa46c70c}} 
+{\bfseries $\sim$\+Render\+Layer\+Select\+Widget} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_select_widget_a4ff34a1d4b9c7569362d0f44ef89f123}\label{classrev_1_1_view_1_1_render_layer_select_widget_a4ff34a1d4b9c7569362d0f44ef89f123}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_select_widget_a4ff34a1d4b9c7569362d0f44ef89f123}{add\+Item}} (\mbox{\hyperlink{structrev_1_1_sorting_layer}{Sorting\+Layer}} $\ast$sorting\+Layer)
+\begin{DoxyCompactList}\small\item\em Add sorting layer item to the widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_select_widget_afb5cf255a66a5baba66271aebc5bce63}\label{classrev_1_1_view_1_1_render_layer_select_widget_afb5cf255a66a5baba66271aebc5bce63}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_select_widget_afb5cf255a66a5baba66271aebc5bce63}{remove\+Item}} (\mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_select_item}{Render\+Layer\+Select\+Item}} $\ast$\mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_item}{Render\+Layer\+Item}})
+\begin{DoxyCompactList}\small\item\em Remove component item from the widget. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ rev\+::Object overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_select_widget_af00c2a10bb0fafd2814b11a7abed74fc}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_select_widget_a3f7f6f78fbfdc91168b7d1c762ecb0af}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_select_widget_a1d7df816add705eee20a799fbd99d23f}\label{classrev_1_1_view_1_1_render_layer_select_widget_a1d7df816add705eee20a799fbd99d23f}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_select_item}{Render\+Layer\+Select\+Item}} $\ast$ {\bfseries current\+Context\+Item} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_select_widget_afe1f8355d196dc8b8d780e0d16e7e8db}\label{classrev_1_1_view_1_1_render_layer_select_widget_afe1f8355d196dc8b8d780e0d16e7e8db}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_select_widget_afe1f8355d196dc8b8d780e0d16e7e8db}{initialize\+Item}} (Q\+Tree\+Widget\+Item $\ast$item) override
+\begin{DoxyCompactList}\small\item\em initialize an item added to the widget \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_select_widget_ad1bfd4fe65d33df03b75593c84436481}\label{classrev_1_1_view_1_1_render_layer_select_widget_ad1bfd4fe65d33df03b75593c84436481}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_select_widget_ad1bfd4fe65d33df03b75593c84436481}{remove\+Item}} (\mbox{\hyperlink{structrev_1_1_sorting_layer}{Sorting\+Layer}} $\ast$item\+Object)
+\begin{DoxyCompactList}\small\item\em Remove an item. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_select_widget_a956c80433c7758de915c24691fa1c3aa}\label{classrev_1_1_view_1_1_render_layer_select_widget_a956c80433c7758de915c24691fa1c3aa}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_select_widget_a956c80433c7758de915c24691fa1c3aa}{initialize\+Widget}} () override
+\begin{DoxyCompactList}\small\item\em Initialize the widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_select_widget_a17de24e015bbc888fa4961510efd54a8}\label{classrev_1_1_view_1_1_render_layer_select_widget_a17de24e015bbc888fa4961510efd54a8}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_select_widget_a17de24e015bbc888fa4961510efd54a8}{on\+Item\+Double\+Clicked}} (Q\+Tree\+Widget\+Item $\ast$item, int column) override
+\begin{DoxyCompactList}\small\item\em What to do on item double click. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_select_widget_aa7c405f85ad3bfb69bbbd9096c1beb65}\label{classrev_1_1_view_1_1_render_layer_select_widget_aa7c405f85ad3bfb69bbbd9096c1beb65}} 
+std\+::vector$<$ uint32\+\_\+t $>$ \& \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_select_widget_aa7c405f85ad3bfb69bbbd9096c1beb65}{m\+\_\+render\+Layers}}
+\begin{DoxyCompactList}\small\item\em Referenced render layers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_select_widget_a2491e17e92f37bb77363cb1c8784d8fb}\label{classrev_1_1_view_1_1_render_layer_select_widget_a2491e17e92f37bb77363cb1c8784d8fb}} 
+std\+::multimap$<$ int, \mbox{\hyperlink{structrev_1_1_sorting_layer}{Sorting\+Layer}} $\ast$ $>$ \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_select_widget_a2491e17e92f37bb77363cb1c8784d8fb}{m\+\_\+sorted\+Layers}}
+\begin{DoxyCompactList}\small\item\em Sorted render layers for internal use. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_select_widget_a2191aa3fe19cdcd8565c2a4cdaad5d89}\label{classrev_1_1_view_1_1_render_layer_select_widget_a2191aa3fe19cdcd8565c2a4cdaad5d89}} 
+class {\bfseries Render\+Layer\+Select\+Item}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_select_widget_af00c2a10bb0fafd2814b11a7abed74fc}\label{classrev_1_1_view_1_1_render_layer_select_widget_af00c2a10bb0fafd2814b11a7abed74fc}} 
+\index{rev::View::RenderLayerSelectWidget@{rev::View::RenderLayerSelectWidget}!className@{className}}
+\index{className@{className}!rev::View::RenderLayerSelectWidget@{rev::View::RenderLayerSelectWidget}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+View\+::\+Render\+Layer\+Select\+Widget\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_view_1_1_tree_widget_aedde04f44badced7c60f0e1570e3d0b2}{rev\+::\+View\+::\+Tree\+Widget}}.
+
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_select_widget_a3f7f6f78fbfdc91168b7d1c762ecb0af}\label{classrev_1_1_view_1_1_render_layer_select_widget_a3f7f6f78fbfdc91168b7d1c762ecb0af}} 
+\index{rev::View::RenderLayerSelectWidget@{rev::View::RenderLayerSelectWidget}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::View::RenderLayerSelectWidget@{rev::View::RenderLayerSelectWidget}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+View\+::\+Render\+Layer\+Select\+Widget\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_view_1_1_tree_widget_a09be824e34e50e9622c3dc333c9a3c07}{rev\+::\+View\+::\+Tree\+Widget}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/parameters/G\+Render\+Layer\+Widgets.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/parameters/G\+Render\+Layer\+Widgets.\+cpp\end{DoxyCompactItemize}

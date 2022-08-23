@@ -1,0 +1,193 @@
+\hypertarget{classrev_1_1_scene_camera}{}\section{rev\+::Scene\+Camera Class Reference}
+\label{classrev_1_1_scene_camera}\index{rev::SceneCamera@{rev::SceneCamera}}
+
+
+\mbox{\hyperlink{classrev_1_1_camera}{Camera}} to be attached to a scene object via a \mbox{\hyperlink{classrev_1_1_camera}{Camera}} \mbox{\hyperlink{classrev_1_1_component}{Component}}.  
+
+
+
+
+{\ttfamily \#include $<$G\+Scene\+Camera.\+h$>$}
+
+Inheritance diagram for rev\+::Scene\+Camera\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classrev_1_1_scene_camera}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_camera_aee99834c6a8bdc017a7905af8dddd7e6}\label{classrev_1_1_scene_camera_aee99834c6a8bdc017a7905af8dddd7e6}} 
+enum {\bfseries Color\+Attachment} \{ {\bfseries k\+Frag\+Color} = 0, 
+{\bfseries k\+Normals} = 1, 
+{\bfseries k\+Object\+I\+Ds} = 2
+ \}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_camera_af438f4b1e945cc544e26a84b2695be4d}\label{classrev_1_1_scene_camera_af438f4b1e945cc544e26a84b2695be4d}} 
+{\bfseries Scene\+Camera} (\mbox{\hyperlink{classrev_1_1_camera_component}{Camera\+Component}} $\ast$component)
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_camera_ae8153dcca8fa4341898cb0510c00c5a5}\label{classrev_1_1_scene_camera_ae8153dcca8fa4341898cb0510c00c5a5}} 
+{\bfseries $\sim$\+Scene\+Camera} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_camera_a13ac56f239e962a6f0368b57cd22bff1}\label{classrev_1_1_scene_camera_a13ac56f239e962a6f0368b57cd22bff1}} 
+\mbox{\hyperlink{classrev_1_1_frame_buffer}{Frame\+Buffer}} \& {\bfseries ssao\+Frame\+Buffer} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_camera_a872c3606a8196a1359c1470e6b2ce78c}\label{classrev_1_1_scene_camera_a872c3606a8196a1359c1470e6b2ce78c}} 
+\mbox{\hyperlink{classrev_1_1_frame_buffer}{Frame\+Buffer}} \& {\bfseries ssao\+Blur\+Frame\+Buffer} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_camera_a6fbc9aa70b33dfd1785779fa346e72cc}\label{classrev_1_1_scene_camera_a6fbc9aa70b33dfd1785779fa346e72cc}} 
+virtual Camera\+Type {\bfseries camera\+Type} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_camera_ae0aa73999ac259ea6a276f3e6e7963e0}\label{classrev_1_1_scene_camera_ae0aa73999ac259ea6a276f3e6e7963e0}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_post_processing_chain}{Post\+Processing\+Chain}} $>$ \& \mbox{\hyperlink{classrev_1_1_scene_camera_ae0aa73999ac259ea6a276f3e6e7963e0}{post\+Processing\+Chain}} ()
+\begin{DoxyCompactList}\small\item\em Chain of post-\/processing effects for this camera. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_camera_af849655f309b43dc6198edf0e1b36cdb}\label{classrev_1_1_scene_camera_af849655f309b43dc6198edf0e1b36cdb}} 
+\mbox{\hyperlink{classrev_1_1_light_cluster_grid}{Light\+Cluster\+Grid}} \& \mbox{\hyperlink{classrev_1_1_scene_camera_af849655f309b43dc6198edf0e1b36cdb}{light\+Cluster\+Grid}} ()
+\begin{DoxyCompactList}\small\item\em The grid used for light culling. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_camera_abd48f1055bd9980ceead2dd19080bcf4}\label{classrev_1_1_scene_camera_abd48f1055bd9980ceead2dd19080bcf4}} 
+Camera\+Options \& \mbox{\hyperlink{classrev_1_1_scene_camera_abd48f1055bd9980ceead2dd19080bcf4}{camera\+Options}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_camera}{Camera}} options (flags) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_camera_ab3d4030159cbb10e38c82ba821a3860e}\label{classrev_1_1_scene_camera_ab3d4030159cbb10e38c82ba821a3860e}} 
+std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_sorting_layer}{Sorting\+Layer}} $\ast$ $>$ {\bfseries render\+Layers} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_camera_a7c8f4d5a736d8526ce0d2622c5516e88}\label{classrev_1_1_scene_camera_a7c8f4d5a736d8526ce0d2622c5516e88}} 
+std\+::vector$<$ uint32\+\_\+t $>$ \& {\bfseries render\+Layer\+Ids} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_camera_ac9a9542fa339f851f58e3a602b46dee4}\label{classrev_1_1_scene_camera_ac9a9542fa339f851f58e3a602b46dee4}} 
+virtual void \mbox{\hyperlink{classrev_1_1_scene_camera_ac9a9542fa339f851f58e3a602b46dee4}{bind\+Textures}} () override
+\begin{DoxyCompactList}\small\item\em Bind any textures needed for the camera. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_camera_ad5be7476a8ef153776ed680d6ab048b9}\label{classrev_1_1_scene_camera_ad5be7476a8ef153776ed680d6ab048b9}} 
+virtual void \mbox{\hyperlink{classrev_1_1_scene_camera_ad5be7476a8ef153776ed680d6ab048b9}{draw\+Frame\+Buffer\+Quad}} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core) override
+\begin{DoxyCompactList}\small\item\em Render a framebuffer quad to screen. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_camera_a2cc00ef51c784af2cdf9fe9308177c1a}\label{classrev_1_1_scene_camera_a2cc00ef51c784af2cdf9fe9308177c1a}} 
+virtual void \mbox{\hyperlink{classrev_1_1_scene_camera_a2cc00ef51c784af2cdf9fe9308177c1a}{resize\+Frame}} (uint32\+\_\+t width, uint32\+\_\+t height) override
+\begin{DoxyCompactList}\small\item\em Resize the camera\textquotesingle{}s framebuffer to accomodate the given renderer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_camera_a37195b909b3b5454ea80bc12513ebfeb}\label{classrev_1_1_scene_camera_a37195b909b3b5454ea80bc12513ebfeb}} 
+virtual void \mbox{\hyperlink{classrev_1_1_scene_camera_a37195b909b3b5454ea80bc12513ebfeb}{bind\+Buffers}} () override
+\begin{DoxyCompactList}\small\item\em Bind any buffers associated with the camera. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_camera_adcb6e6ae90643f073288b03ffffc69a3}\label{classrev_1_1_scene_camera_adcb6e6ae90643f073288b03ffffc69a3}} 
+virtual void \mbox{\hyperlink{classrev_1_1_scene_camera_adcb6e6ae90643f073288b03ffffc69a3}{update\+Frustum}} (Camera\+Update\+Flags flags) override
+\begin{DoxyCompactList}\small\item\em Updates the frustum with the latest view/projection matrices from the camera. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_camera_a8b90c9be6ca0681b1aebd7dee779994b}\label{classrev_1_1_scene_camera_a8b90c9be6ca0681b1aebd7dee779994b}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_scene_camera_a8b90c9be6ca0681b1aebd7dee779994b}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_camera_a40fbb067991cc79da212e35a0f048fb7}\label{classrev_1_1_scene_camera_a40fbb067991cc79da212e35a0f048fb7}} 
+virtual void \mbox{\hyperlink{classrev_1_1_scene_camera_a40fbb067991cc79da212e35a0f048fb7}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_scene_camera_a4fd93186927c55d2c4d48ebf941e248d}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_scene_camera_a8d2a68f15a75323bd1d9a5d96c7a09bc}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_camera_ad72c0c48742afce947450dd362c522cd}\label{classrev_1_1_scene_camera_ad72c0c48742afce947450dd362c522cd}} 
+void {\bfseries set\+Default\+Render\+Layers} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_camera_ad2660944b619705a1b5c4f588f1d9de2}\label{classrev_1_1_scene_camera_ad2660944b619705a1b5c4f588f1d9de2}} 
+\mbox{\hyperlink{classrev_1_1_frame_buffer}{Frame\+Buffer}} {\bfseries m\+\_\+ssao\+Frame\+Buffer}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_camera_a0c760c8b5388a8b92d8768369fca9e47}\label{classrev_1_1_scene_camera_a0c760c8b5388a8b92d8768369fca9e47}} 
+\mbox{\hyperlink{classrev_1_1_frame_buffer}{Frame\+Buffer}} {\bfseries m\+\_\+ssao\+Blur\+Frame\+Buffer}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_camera_a8b9e5a4ddd3840fb490ce2bf9be301a1}\label{classrev_1_1_scene_camera_a8b9e5a4ddd3840fb490ce2bf9be301a1}} 
+Camera\+Options \mbox{\hyperlink{classrev_1_1_scene_camera_a8b9e5a4ddd3840fb490ce2bf9be301a1}{m\+\_\+camera\+Options}}
+\begin{DoxyCompactList}\small\item\em Miscellaneous options for the camera. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_camera_a9da2048809797bb1320cd8a801bf3378}\label{classrev_1_1_scene_camera_a9da2048809797bb1320cd8a801bf3378}} 
+\mbox{\hyperlink{classrev_1_1_camera_component}{Camera\+Component}} $\ast$ \mbox{\hyperlink{classrev_1_1_scene_camera_a9da2048809797bb1320cd8a801bf3378}{m\+\_\+component}}
+\begin{DoxyCompactList}\small\item\em The camera component that owns this camera. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_camera_ae5f3d7b7fc0c7c077f533d14b3ae9f8a}\label{classrev_1_1_scene_camera_ae5f3d7b7fc0c7c077f533d14b3ae9f8a}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_post_processing_chain}{Post\+Processing\+Chain}} $>$ \mbox{\hyperlink{classrev_1_1_scene_camera_ae5f3d7b7fc0c7c077f533d14b3ae9f8a}{m\+\_\+post\+Processing\+Chain}} = nullptr
+\begin{DoxyCompactList}\small\item\em The post-\/processing chain for this camera. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_camera_a0d65a676817f9ade4ecf0d2109a9a60b}\label{classrev_1_1_scene_camera_a0d65a676817f9ade4ecf0d2109a9a60b}} 
+\mbox{\hyperlink{classrev_1_1_light_cluster_grid}{Light\+Cluster\+Grid}} \mbox{\hyperlink{classrev_1_1_scene_camera_a0d65a676817f9ade4ecf0d2109a9a60b}{m\+\_\+light\+Cluster\+Grid}}
+\begin{DoxyCompactList}\small\item\em The grid used for light culling. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_camera_a43506e9f385ebf03d40c8986eda7b550}\label{classrev_1_1_scene_camera_a43506e9f385ebf03d40c8986eda7b550}} 
+std\+::vector$<$ uint32\+\_\+t $>$ \mbox{\hyperlink{classrev_1_1_scene_camera_a43506e9f385ebf03d40c8986eda7b550}{m\+\_\+render\+Layers}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_vector}{Vector}} of rendering layers drawn by this camera. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_camera_ae834a5e62eff7d0adb1092a0693388f7}\label{classrev_1_1_scene_camera_ae834a5e62eff7d0adb1092a0693388f7}} 
+class {\bfseries Camera\+Component}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_camera_ad7e660ab0b686532a561ff61bc55fa11}\label{classrev_1_1_scene_camera_ad7e660ab0b686532a561ff61bc55fa11}} 
+class {\bfseries Light\+Cluster\+Grid}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_camera_a1126a337e373c144dc36b23f4cac2d05}\label{classrev_1_1_scene_camera_a1126a337e373c144dc36b23f4cac2d05}} 
+class {\bfseries Post\+Processing\+Chain}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{classrev_1_1_camera}{Camera}} to be attached to a scene object via a \mbox{\hyperlink{classrev_1_1_camera}{Camera}} \mbox{\hyperlink{classrev_1_1_component}{Component}}. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_scene_camera_a4fd93186927c55d2c4d48ebf941e248d}\label{classrev_1_1_scene_camera_a4fd93186927c55d2c4d48ebf941e248d}} 
+\index{rev::SceneCamera@{rev::SceneCamera}!className@{className}}
+\index{className@{className}!rev::SceneCamera@{rev::SceneCamera}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Scene\+Camera\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_camera_afce9a32f0fcc9e0851d73aa37441c815}{rev\+::\+Camera}}.
+
+\mbox{\Hypertarget{classrev_1_1_scene_camera_a8d2a68f15a75323bd1d9a5d96c7a09bc}\label{classrev_1_1_scene_camera_a8d2a68f15a75323bd1d9a5d96c7a09bc}} 
+\index{rev::SceneCamera@{rev::SceneCamera}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::SceneCamera@{rev::SceneCamera}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Scene\+Camera\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_camera_afd16ba4c2ca04aa0a4945c9aca16606d}{rev\+::\+Camera}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/view/G\+Scene\+Camera.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/view/G\+Scene\+Camera.\+cpp\end{DoxyCompactItemize}

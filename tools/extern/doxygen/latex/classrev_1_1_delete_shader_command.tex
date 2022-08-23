@@ -1,0 +1,59 @@
+\hypertarget{classrev_1_1_delete_shader_command}{}\section{rev\+::Delete\+Shader\+Command Class Reference}
+\label{classrev_1_1_delete_shader_command}\index{rev::DeleteShaderCommand@{rev::DeleteShaderCommand}}
+
+
+Delete a shader program.  
+
+
+
+
+{\ttfamily \#include $<$G\+Resource\+Widgets.\+h$>$}
+
+Inheritance diagram for rev\+::Delete\+Shader\+Command\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_delete_shader_command}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_delete_shader_command_a6f2fd9c058b06f15d2e57dcc155df565}\label{classrev_1_1_delete_shader_command_a6f2fd9c058b06f15d2e57dcc155df565}} 
+{\bfseries Delete\+Shader\+Command} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, \mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$shader, const Q\+String \&text, Q\+Undo\+Command $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_delete_shader_command_a794a04b2a2530d42a5a97fe3de7584a6}\label{classrev_1_1_delete_shader_command_a794a04b2a2530d42a5a97fe3de7584a6}} 
+{\bfseries $\sim$\+Delete\+Shader\+Command} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_delete_shader_command_abb0d9c9b745bb02af8b833500b5a90a7}\label{classrev_1_1_delete_shader_command_abb0d9c9b745bb02af8b833500b5a90a7}} 
+virtual void \mbox{\hyperlink{classrev_1_1_delete_shader_command_abb0d9c9b745bb02af8b833500b5a90a7}{redo}} () override
+\begin{DoxyCompactList}\small\item\em Redoes the add command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_delete_shader_command_a719c2e6f2b29329bb880a12cd504a116}\label{classrev_1_1_delete_shader_command_a719c2e6f2b29329bb880a12cd504a116}} 
+virtual void \mbox{\hyperlink{classrev_1_1_delete_shader_command_a719c2e6f2b29329bb880a12cd504a116}{undo}} () override
+\begin{DoxyCompactList}\small\item\em Undoes the add command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_delete_shader_command_a36b355ea51bf12e7e2d5840a39b72816}\label{classrev_1_1_delete_shader_command_a36b355ea51bf12e7e2d5840a39b72816}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_delete_shader_command_a36b355ea51bf12e7e2d5840a39b72816}{m\+\_\+shader\+Json}}
+\begin{DoxyCompactList}\small\item\em The J\+S\+ON for the shader removed by this command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_delete_shader_command_a13051450ba78b8c0f7664fde953a2de8}\label{classrev_1_1_delete_shader_command_a13051450ba78b8c0f7664fde953a2de8}} 
+\mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} {\bfseries m\+\_\+shader\+Name}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Delete a shader program. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Resource\+Widgets.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Resource\+Widgets.\+cpp\end{DoxyCompactItemize}

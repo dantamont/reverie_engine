@@ -1,0 +1,91 @@
+\hypertarget{classrev_1_1_view_1_1_physics_shape_widget}{}\section{rev\+::View\+::Physics\+Shape\+Widget Class Reference}
+\label{classrev_1_1_view_1_1_physics_shape_widget}\index{rev::View::PhysicsShapeWidget@{rev::View::PhysicsShapeWidget}}
+Inheritance diagram for rev\+::View\+::Physics\+Shape\+Widget\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.842640cm]{classrev_1_1_view_1_1_physics_shape_widget}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_physics_shape_widget_a9bfed7480aa45c2e67077bd1eb062ed0}\label{classrev_1_1_view_1_1_physics_shape_widget_a9bfed7480aa45c2e67077bd1eb062ed0}} 
+{\bfseries Physics\+Shape\+Widget} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, \mbox{\hyperlink{classrev_1_1_physics_shape_prefab}{Physics\+Shape\+Prefab}} $\ast$prefab, Q\+Widget $\ast$parent=nullptr, \mbox{\hyperlink{classrev_1_1_rigid_body}{Rigid\+Body}} $\ast$body=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_physics_shape_widget_a49687797bb3ebb4d55b5a833ac9c61ab}\label{classrev_1_1_view_1_1_physics_shape_widget_a49687797bb3ebb4d55b5a833ac9c61ab}} 
+{\bfseries $\sim$\+Physics\+Shape\+Widget} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_physics_shape_widget_ae4a7dd504f79413589ed90e947b5e13e}\label{classrev_1_1_view_1_1_physics_shape_widget_ae4a7dd504f79413589ed90e947b5e13e}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_physics_shape_widget_ae4a7dd504f79413589ed90e947b5e13e}{update}} () override
+\begin{DoxyCompactList}\small\item\em Update the parameter widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_physics_shape_widget_adeee1c25c16591753e98a09210fcf792}\label{classrev_1_1_view_1_1_physics_shape_widget_adeee1c25c16591753e98a09210fcf792}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_physics_geometry_widget}{Physics\+Geometry\+Widget}} $\ast$ {\bfseries geometry\+Widget} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Slots}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_physics_shape_widget_a83d7e99279e5810ca03c74905ff8cd3b}\label{classrev_1_1_view_1_1_physics_shape_widget_a83d7e99279e5810ca03c74905ff8cd3b}} 
+void {\bfseries show\+Context\+Menu} (const Q\+Point \&)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_physics_shape_widget_a868aeb0547ecb3bff4fa7c677045c415}\label{classrev_1_1_view_1_1_physics_shape_widget_a868aeb0547ecb3bff4fa7c677045c415}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_physics_shape_widget_a868aeb0547ecb3bff4fa7c677045c415}{initialize\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to check\+Validity widgets. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_physics_shape_widget_ab3e4e7e57ad9ed3eac9dcd334d494acd}\label{classrev_1_1_view_1_1_physics_shape_widget_ab3e4e7e57ad9ed3eac9dcd334d494acd}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_physics_shape_widget_ab3e4e7e57ad9ed3eac9dcd334d494acd}{initialize\+Connections}} () override
+\begin{DoxyCompactList}\small\item\em Methods to check\+Validity connections for this widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_physics_shape_widget_aaa6a3d651b2e2ea8063c7d20893d0079}\label{classrev_1_1_view_1_1_physics_shape_widget_aaa6a3d651b2e2ea8063c7d20893d0079}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_physics_shape_widget_aaa6a3d651b2e2ea8063c7d20893d0079}{layout\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to ay out widgets. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_physics_shape_widget_a6d9c430c8d9d305997807721d58adb04}\label{classrev_1_1_view_1_1_physics_shape_widget_a6d9c430c8d9d305997807721d58adb04}} 
+void {\bfseries repopulate\+Prefabs} (bool block=true)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_physics_shape_widget_ad429cf63eacc268a8ece6820b20e3e1d}\label{classrev_1_1_view_1_1_physics_shape_widget_ad429cf63eacc268a8ece6820b20e3e1d}} 
+void {\bfseries repopulate\+Materials} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_physics_shape_widget_abd453acb8e2e420d22e2c63b86574942}\label{classrev_1_1_view_1_1_physics_shape_widget_abd453acb8e2e420d22e2c63b86574942}} 
+void {\bfseries set\+Current\+Prefab} (\mbox{\hyperlink{classrev_1_1_physics_shape_prefab}{Physics\+Shape\+Prefab}} $\ast$prefab)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_physics_shape_widget_a1eb52f74993102f9202c2ab94b7c21d2}\label{classrev_1_1_view_1_1_physics_shape_widget_a1eb52f74993102f9202c2ab94b7c21d2}} 
+\mbox{\hyperlink{classrev_1_1_rigid_body}{Rigid\+Body}} $\ast$ {\bfseries m\+\_\+body} = nullptr
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_physics_shape_widget_a47bbe1c71516593a0f3827cd6026d702}\label{classrev_1_1_view_1_1_physics_shape_widget_a47bbe1c71516593a0f3827cd6026d702}} 
+Q\+Combo\+Box $\ast$ {\bfseries m\+\_\+prefabs} = nullptr
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_physics_shape_widget_a2a4b4ab6927208cba53cc4f5f8de595f}\label{classrev_1_1_view_1_1_physics_shape_widget_a2a4b4ab6927208cba53cc4f5f8de595f}} 
+Q\+Push\+Button $\ast$ {\bfseries m\+\_\+add\+Prefab} = nullptr
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_physics_shape_widget_a9990e3e009c7252f911aa296778ee39b}\label{classrev_1_1_view_1_1_physics_shape_widget_a9990e3e009c7252f911aa296778ee39b}} 
+Q\+Push\+Button $\ast$ {\bfseries m\+\_\+remove\+Prefab} = nullptr
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_physics_shape_widget_a1418339f2de6bf7f6ff8049b78def751}\label{classrev_1_1_view_1_1_physics_shape_widget_a1418339f2de6bf7f6ff8049b78def751}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_physics_geometry_widget}{Physics\+Geometry\+Widget}} $\ast$ {\bfseries m\+\_\+geometry\+Widget} = nullptr
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_physics_shape_widget_a0d5dfd35e24a6e8c55e1235a897794a7}\label{classrev_1_1_view_1_1_physics_shape_widget_a0d5dfd35e24a6e8c55e1235a897794a7}} 
+Q\+Combo\+Box $\ast$ {\bfseries m\+\_\+material\+Widget} = nullptr
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_physics_shape_widget_a57f0def56ffcf721d540f61bfa2ee96b}\label{classrev_1_1_view_1_1_physics_shape_widget_a57f0def56ffcf721d540f61bfa2ee96b}} 
+\mbox{\hyperlink{classrev_1_1_physics_shape_prefab}{Physics\+Shape\+Prefab}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_physics_shape_widget_a57f0def56ffcf721d540f61bfa2ee96b}{m\+\_\+current\+Prefab}}
+\begin{DoxyCompactList}\small\item\em The prefab currently selected via combobox. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/components/G\+Physics\+Widgets.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/components/G\+Physics\+Widgets.\+cpp\end{DoxyCompactItemize}

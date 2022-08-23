@@ -1,0 +1,150 @@
+\hypertarget{classrev_1_1_physics_actor}{}\section{rev\+::Physics\+Actor Class Reference}
+\label{classrev_1_1_physics_actor}\index{rev::PhysicsActor@{rev::PhysicsActor}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing a base physics object See\+: \href{https://docs.nvidia.com/gameworks/content/gameworkslibrary/physx/apireference/files/classPxActor.html}{\texttt{ https\+://docs.\+nvidia.\+com/gameworks/content/gameworkslibrary/physx/apireference/files/class\+Px\+Actor.\+html}}.  
+
+
+
+
+{\ttfamily \#include $<$G\+Physics\+Actor.\+h$>$}
+
+Inheritance diagram for rev\+::Physics\+Actor\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classrev_1_1_physics_actor}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_actor_ac258e5649445393a856e9b114ee7f30f}\label{classrev_1_1_physics_actor_ac258e5649445393a856e9b114ee7f30f}} 
+enum {\bfseries Actor\+Type} \{ {\bfseries k\+Abstract}, 
+{\bfseries k\+Rigid\+Body}
+ \}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_actor_a27ac888969d9a98dfcfe4c5c2831e519}\label{classrev_1_1_physics_actor_a27ac888969d9a98dfcfe4c5c2831e519}} 
+{\bfseries Physics\+Actor} (Actor\+Type type=k\+Abstract)
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_actor_a6ab167549d7516a314c9276dc16e4b01}\label{classrev_1_1_physics_actor_a6ab167549d7516a314c9276dc16e4b01}} 
+virtual {\bfseries $\sim$\+Physics\+Actor} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_actor_a67f0180b75ff455b4e86ffe0e291a900}\label{classrev_1_1_physics_actor_a67f0180b75ff455b4e86ffe0e291a900}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_physics_scene}{Physics\+Scene}} $>$ \mbox{\hyperlink{classrev_1_1_physics_actor_a67f0180b75ff455b4e86ffe0e291a900}{physics\+Scene}} () const
+\begin{DoxyCompactList}\small\item\em Return the scene of this actor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_actor_a7cd4818364d95ad8824d18711708a2ab}\label{classrev_1_1_physics_actor_a7cd4818364d95ad8824d18711708a2ab}} 
+Actor\+Type \mbox{\hyperlink{classrev_1_1_physics_actor_a7cd4818364d95ad8824d18711708a2ab}{get\+Type}} () const
+\begin{DoxyCompactList}\small\item\em Return the type of actor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_actor_a2ac178323d0311b888367272ddf875c0}\label{classrev_1_1_physics_actor_a2ac178323d0311b888367272ddf875c0}} 
+physx\+::\+Px\+Actor $\ast$ \mbox{\hyperlink{classrev_1_1_physics_actor_a2ac178323d0311b888367272ddf875c0}{actor}} ()
+\begin{DoxyCompactList}\small\item\em Return actor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_actor_af5746fa465f9c7358f8058a7d245163a}\label{classrev_1_1_physics_actor_af5746fa465f9c7358f8058a7d245163a}} 
+{\footnotesize template$<$typename T $>$ }\\T $\ast$ \mbox{\hyperlink{classrev_1_1_physics_actor_af5746fa465f9c7358f8058a7d245163a}{as}} () const
+\begin{DoxyCompactList}\small\item\em Return the encapsulated actor as the specified type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_actor_a1d766330eff6282cf53b8528debd0f85}\label{classrev_1_1_physics_actor_a1d766330eff6282cf53b8528debd0f85}} 
+void {\bfseries enable\+Gravity} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_actor_a84b462f755534c6854e2098210a0b956}\label{classrev_1_1_physics_actor_a84b462f755534c6854e2098210a0b956}} 
+void {\bfseries disable\+Gravity} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_actor_a4c77ecf8b21ee91d2af3a51080f4bdae}\label{classrev_1_1_physics_actor_a4c77ecf8b21ee91d2af3a51080f4bdae}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_physics_actor_a4c77ecf8b21ee91d2af3a51080f4bdae}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_actor_a5ca2bbb7f0bb951958ab9b4d37daa885}\label{classrev_1_1_physics_actor_a5ca2bbb7f0bb951958ab9b4d37daa885}} 
+virtual void \mbox{\hyperlink{classrev_1_1_physics_actor_a5ca2bbb7f0bb951958ab9b4d37daa885}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_physics_actor_a5bc3e96948718546204f3201971e1914}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_physics_actor_ad212df8d7d61f9b855bc9d9ede2b437f}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_actor_ac9681230fc20c568eefd14cbfb22bb25}\label{classrev_1_1_physics_actor_ac9681230fc20c568eefd14cbfb22bb25}} 
+\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$ \mbox{\hyperlink{classrev_1_1_physics_actor_ac9681230fc20c568eefd14cbfb22bb25}{scene\+Object}} () const
+\begin{DoxyCompactList}\small\item\em Obtain pointer to this actor\textquotesingle{}s scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_actor_ae04430a104433e272f28c7de00e372b3}\label{classrev_1_1_physics_actor_ae04430a104433e272f28c7de00e372b3}} 
+physx\+::\+Px\+Actor $\ast$ \mbox{\hyperlink{classrev_1_1_physics_actor_ae04430a104433e272f28c7de00e372b3}{m\+\_\+actor}} = nullptr
+\begin{DoxyCompactList}\small\item\em Pointer to the actor wrpaped by this class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_actor_ac675c383b24ad585fc3230185a28d5a9}\label{classrev_1_1_physics_actor_ac675c383b24ad585fc3230185a28d5a9}} 
+Actor\+Type \mbox{\hyperlink{classrev_1_1_physics_actor_ac675c383b24ad585fc3230185a28d5a9}{m\+\_\+actor\+Type}}
+\begin{DoxyCompactList}\small\item\em Type of actor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing a base physics object See\+: \href{https://docs.nvidia.com/gameworks/content/gameworkslibrary/physx/apireference/files/classPxActor.html}{\texttt{ https\+://docs.\+nvidia.\+com/gameworks/content/gameworkslibrary/physx/apireference/files/class\+Px\+Actor.\+html}}. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_physics_actor_a5bc3e96948718546204f3201971e1914}\label{classrev_1_1_physics_actor_a5bc3e96948718546204f3201971e1914}} 
+\index{rev::PhysicsActor@{rev::PhysicsActor}!className@{className}}
+\index{className@{className}!rev::PhysicsActor@{rev::PhysicsActor}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Physics\+Actor\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_physics_base_ad997bc1504ff6dccccbc3d8d0ea6e6a5}{rev\+::\+Physics\+Base}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_rigid_body_a996230070162f743c3e87f5c20fd981e}{rev\+::\+Rigid\+Body}}.
+
+\mbox{\Hypertarget{classrev_1_1_physics_actor_ad212df8d7d61f9b855bc9d9ede2b437f}\label{classrev_1_1_physics_actor_ad212df8d7d61f9b855bc9d9ede2b437f}} 
+\index{rev::PhysicsActor@{rev::PhysicsActor}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::PhysicsActor@{rev::PhysicsActor}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Physics\+Actor\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_physics_base_acf58cc81cff2ca957dcc68fe9a9a84a1}{rev\+::\+Physics\+Base}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_rigid_body_ae8e178b51dbe0e61ad0674e039864a92}{rev\+::\+Rigid\+Body}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Physics\+Actor.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Physics\+Actor.\+cpp\end{DoxyCompactItemize}

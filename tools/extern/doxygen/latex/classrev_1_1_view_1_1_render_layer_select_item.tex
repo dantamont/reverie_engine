@@ -1,0 +1,117 @@
+\hypertarget{classrev_1_1_view_1_1_render_layer_select_item}{}\section{rev\+::View\+::Render\+Layer\+Select\+Item Class Reference}
+\label{classrev_1_1_view_1_1_render_layer_select_item}\index{rev::View::RenderLayerSelectItem@{rev::View::RenderLayerSelectItem}}
+Inheritance diagram for rev\+::View\+::Render\+Layer\+Select\+Item\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_view_1_1_render_layer_select_item}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_select_item_ace0cd747012c09765457a2336d714b02}\label{classrev_1_1_view_1_1_render_layer_select_item_ace0cd747012c09765457a2336d714b02}} 
+enum {\bfseries Render\+Layer\+Select\+Item\+Type} \{ {\bfseries k\+Sorting\+Layer} = 2000
+ \}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_select_item_a9a1cb64baf17cd638bd169ee5f6b283a}\label{classrev_1_1_view_1_1_render_layer_select_item_a9a1cb64baf17cd638bd169ee5f6b283a}} 
+{\bfseries Render\+Layer\+Select\+Item} (\mbox{\hyperlink{structrev_1_1_sorting_layer}{Sorting\+Layer}} $\ast$layer)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_select_item_a31bb781c8565aa31caafb63ada6ce089}\label{classrev_1_1_view_1_1_render_layer_select_item_a31bb781c8565aa31caafb63ada6ce089}} 
+{\bfseries $\sim$\+Render\+Layer\+Select\+Item} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_select_item_aa2dd6d026ec2c87552cb56d678e6975c}{set\+Widget}} () override
+\begin{DoxyCompactList}\small\item\em Set the widget for this item in the given tree widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_select_item_a177e51d972056792cc9194c0ab317d52}\label{classrev_1_1_view_1_1_render_layer_select_item_a177e51d972056792cc9194c0ab317d52}} 
+virtual void {\bfseries remove\+Widget} (int column=0) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_select_item_ad4aa8dffcf29b149a249d999ab7098b3}\label{classrev_1_1_view_1_1_render_layer_select_item_ad4aa8dffcf29b149a249d999ab7098b3}} 
+\mbox{\hyperlink{structrev_1_1_sorting_layer}{Sorting\+Layer}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_select_item_ad4aa8dffcf29b149a249d999ab7098b3}{sorting\+Layer}} ()
+\begin{DoxyCompactList}\small\item\em Return sorting layer represented by this tree item. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_select_item_a98eae7dafe710d7987109017c5e5cb96}\label{classrev_1_1_view_1_1_render_layer_select_item_a98eae7dafe710d7987109017c5e5cb96}} 
+Render\+Layer\+Select\+Item\+Type \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_select_item_a98eae7dafe710d7987109017c5e5cb96}{item\+Type}} () const
+\begin{DoxyCompactList}\small\item\em Get the resource item type of this tree item. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_select_item_ad2345aca3e394b40a7ae244dceabc69a}\label{classrev_1_1_view_1_1_render_layer_select_item_ad2345aca3e394b40a7ae244dceabc69a}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_select_widget}{View\+::\+Render\+Layer\+Select\+Widget}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_select_item_ad2345aca3e394b40a7ae244dceabc69a}{render\+Layer\+Tree\+Widget}} () const
+\begin{DoxyCompactList}\small\item\em Convenience method for retrieving casted inspector widget. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ rev\+::Object overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_select_item_a8f14c80f13b45c055eeab73af921535b}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_select_item_a2d8ca1314c2b66567c2e9de8bd717f4f}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_select_item_ada85eef2ccf0f12fefe62f37eb125cd0}\label{classrev_1_1_view_1_1_render_layer_select_item_ada85eef2ccf0f12fefe62f37eb125cd0}} 
+class {\bfseries Render\+Layer\+Select\+Widget}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_select_item_a8f14c80f13b45c055eeab73af921535b}\label{classrev_1_1_view_1_1_render_layer_select_item_a8f14c80f13b45c055eeab73af921535b}} 
+\index{rev::View::RenderLayerSelectItem@{rev::View::RenderLayerSelectItem}!className@{className}}
+\index{className@{className}!rev::View::RenderLayerSelectItem@{rev::View::RenderLayerSelectItem}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+View\+::\+Render\+Layer\+Select\+Item\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a8a12a6ceece6cab7a2299da2b5e6a54b}{rev\+::\+View\+::\+Tree\+Item$<$ Sorting\+Layer $>$}}.
+
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_select_item_a2d8ca1314c2b66567c2e9de8bd717f4f}\label{classrev_1_1_view_1_1_render_layer_select_item_a2d8ca1314c2b66567c2e9de8bd717f4f}} 
+\index{rev::View::RenderLayerSelectItem@{rev::View::RenderLayerSelectItem}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::View::RenderLayerSelectItem@{rev::View::RenderLayerSelectItem}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+View\+::\+Render\+Layer\+Select\+Item\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a3bb552a87176f4b12848e43dfdd287b2}{rev\+::\+View\+::\+Tree\+Item$<$ Sorting\+Layer $>$}}.
+
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_select_item_aa2dd6d026ec2c87552cb56d678e6975c}\label{classrev_1_1_view_1_1_render_layer_select_item_aa2dd6d026ec2c87552cb56d678e6975c}} 
+\index{rev::View::RenderLayerSelectItem@{rev::View::RenderLayerSelectItem}!setWidget@{setWidget}}
+\index{setWidget@{setWidget}!rev::View::RenderLayerSelectItem@{rev::View::RenderLayerSelectItem}}
+\subsubsection{\texorpdfstring{setWidget()}{setWidget()}}
+{\footnotesize\ttfamily void rev\+::\+View\+::\+Render\+Layer\+Select\+Item\+::set\+Widget (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Set the widget for this item in the given tree widget. 
+
+\begin{DoxyNote}{Note}
+This is only called on the double click event 
+\end{DoxyNote}
+
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a24faa4e374ec0728c7eda8f50ca575df}{rev\+::\+View\+::\+Tree\+Item$<$ Sorting\+Layer $>$}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/parameters/G\+Render\+Layer\+Widgets.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/parameters/G\+Render\+Layer\+Widgets.\+cpp\end{DoxyCompactItemize}

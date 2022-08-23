@@ -1,0 +1,229 @@
+\hypertarget{classrev_1_1_process}{}\section{rev\+::Process Class Reference}
+\label{classrev_1_1_process}\index{rev::Process@{rev::Process}}
+
+
+Represents a thread-\/friendly process.  
+
+
+
+
+{\ttfamily \#include $<$G\+Process.\+h$>$}
+
+Inheritance diagram for rev\+::Process\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.128492cm]{classrev_1_1_process}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_a58305ac8622e827e2169f774bbd15c88}\label{classrev_1_1_process_a58305ac8622e827e2169f774bbd15c88}} 
+{\bfseries Process} (\mbox{\hyperlink{classrev_1_1_process_queue}{Process\+Queue}} $\ast$queue)
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_ace369f45953beffdfc6593f3870f7ff9}\label{classrev_1_1_process_ace369f45953beffdfc6593f3870f7ff9}} 
+{\bfseries Process} (\mbox{\hyperlink{structrev_1_1_sorting_layer}{Sorting\+Layer}} $\ast$sort\+Layer, \mbox{\hyperlink{classrev_1_1_process_queue}{Process\+Queue}} $\ast$queue)
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_a84782b23e983d16486d683af0bbba0c6}\label{classrev_1_1_process_a84782b23e983d16486d683af0bbba0c6}} 
+virtual {\bfseries $\sim$\+Process} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_a710f0653e21979524a7b941ecfe252f7}\label{classrev_1_1_process_a710f0653e21979524a7b941ecfe252f7}} 
+const \mbox{\hyperlink{structrev_1_1_sorting_layer}{Sorting\+Layer}} \& \mbox{\hyperlink{classrev_1_1_process_a710f0653e21979524a7b941ecfe252f7}{get\+Sorting\+Layer}} () const
+\begin{DoxyCompactList}\small\item\em The order of the process. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_a4b667ae9debdfb5ab8eaba534fe647cc}\label{classrev_1_1_process_a4b667ae9debdfb5ab8eaba534fe647cc}} 
+void {\bfseries set\+Sorting\+Layer} (\mbox{\hyperlink{structrev_1_1_sorting_layer}{Sorting\+Layer}} $\ast$layer)
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_ae6eb4d34ab83c736370db47c549753cc}\label{classrev_1_1_process_ae6eb4d34ab83c736370db47c549753cc}} 
+Process\+State \mbox{\hyperlink{classrev_1_1_process_ae6eb4d34ab83c736370db47c549753cc}{get\+State}} (void) const
+\begin{DoxyCompactList}\small\item\em The state of the process. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_a999e48d11c6242bf53929aa0c3320a37}\label{classrev_1_1_process_a999e48d11c6242bf53929aa0c3320a37}} 
+void {\bfseries set\+State} (const Process\+State \&state)
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_abb8389abf2efd5e61c90800c92108913}\label{classrev_1_1_process_abb8389abf2efd5e61c90800c92108913}} 
+bool \mbox{\hyperlink{classrev_1_1_process_abb8389abf2efd5e61c90800c92108913}{is\+Alive}} (void) const
+\begin{DoxyCompactList}\small\item\em Wrappers on process state to get current status. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_a75d910c1570a43dd166b5c76a488f578}\label{classrev_1_1_process_a75d910c1570a43dd166b5c76a488f578}} 
+bool {\bfseries is\+Dead} (void) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_a1a17b3505d34cc3727c7a6a591c41ee5}\label{classrev_1_1_process_a1a17b3505d34cc3727c7a6a591c41ee5}} 
+bool {\bfseries is\+Removed} (void) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_a48b48f3685c279d1ef6eeff9f1b93222}\label{classrev_1_1_process_a48b48f3685c279d1ef6eeff9f1b93222}} 
+bool {\bfseries is\+Paused} (void) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_ac29a1ab984a0f5b7ddd963af730696ca}\label{classrev_1_1_process_ac29a1ab984a0f5b7ddd963af730696ca}} 
+bool {\bfseries is\+Aborted} (void) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_a73b0bc6a6621d30128620daaca15887a}\label{classrev_1_1_process_a73b0bc6a6621d30128620daaca15887a}} 
+{\footnotesize template$<$typename T $>$ }\\T $\ast$ {\bfseries as} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_ab34756394f7f443306f115aea56b32f5}\label{classrev_1_1_process_ab34756394f7f443306f115aea56b32f5}} 
+virtual void \mbox{\hyperlink{classrev_1_1_process_ab34756394f7f443306f115aea56b32f5}{on\+Init}} ()
+\begin{DoxyCompactList}\small\item\em Functions to be overriden by process subclasses as needed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_a84e919ccc7c9ed583e943da0e33c4932}\label{classrev_1_1_process_a84e919ccc7c9ed583e943da0e33c4932}} 
+virtual void {\bfseries on\+Update} (double delta\+Sec)=0
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_aeeb761e73c55d20e7346aaf676995830}\label{classrev_1_1_process_aeeb761e73c55d20e7346aaf676995830}} 
+virtual void {\bfseries on\+Fixed\+Update} (double delta\+Sec)
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_abe59546dd3b5a18093c8a867a87d2a33}\label{classrev_1_1_process_abe59546dd3b5a18093c8a867a87d2a33}} 
+virtual void {\bfseries on\+Late\+Update} (double delta\+Sec)=0
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_aa88c5e10cc54c8a6c767b4dcd5892c86}\label{classrev_1_1_process_aa88c5e10cc54c8a6c767b4dcd5892c86}} 
+virtual void {\bfseries on\+Success} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_a258feb00bf8a714778f40b2edb4a5c41}\label{classrev_1_1_process_a258feb00bf8a714778f40b2edb4a5c41}} 
+virtual void {\bfseries on\+Fail} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_af71697ced47f08f1a64ace99f7ff479c}\label{classrev_1_1_process_af71697ced47f08f1a64ace99f7ff479c}} 
+virtual void {\bfseries on\+Abort} ()
+\item 
+virtual bool \mbox{\hyperlink{classrev_1_1_process_a0773cd6049d050ebcf72cd1034929c9c}{run\+Process}} (double delta\+Sec)
+\begin{DoxyCompactList}\small\item\em Run the process update loop. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classrev_1_1_process_aedd5f4e2b9188fa376e36c3478db68a5}{run\+Fixed}} (double delta\+Sec)
+\begin{DoxyCompactList}\small\item\em Run the process fixed update loop. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_a3479df51a2922811dc5b6a5e7b6ef1e8}\label{classrev_1_1_process_a3479df51a2922811dc5b6a5e7b6ef1e8}} 
+void \mbox{\hyperlink{classrev_1_1_process_a3479df51a2922811dc5b6a5e7b6ef1e8}{succeed}} (void)
+\begin{DoxyCompactList}\small\item\em Functions for ending the process. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_aa35a58e836b315dc4b26728724af3cb1}\label{classrev_1_1_process_aa35a58e836b315dc4b26728724af3cb1}} 
+void {\bfseries fail} (void)
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_a02a1baf1129e86e9b0b0bd3cfa87e64d}\label{classrev_1_1_process_a02a1baf1129e86e9b0b0bd3cfa87e64d}} 
+void {\bfseries abort} (void)
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_a31a5075acd7bb3f96b25c95532054bed}\label{classrev_1_1_process_a31a5075acd7bb3f96b25c95532054bed}} 
+void \mbox{\hyperlink{classrev_1_1_process_a31a5075acd7bb3f96b25c95532054bed}{pause}} (void)
+\begin{DoxyCompactList}\small\item\em pause \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_aee68637d1d2d93e5842230ec1fdb1b39}\label{classrev_1_1_process_aee68637d1d2d93e5842230ec1fdb1b39}} 
+void {\bfseries un\+Pause} (void)
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_ad3abe3b70c6975fc107f3dd5b0bc0e05}\label{classrev_1_1_process_ad3abe3b70c6975fc107f3dd5b0bc0e05}} 
+void {\bfseries attach\+Child} (Strong\+Process\+Ptr p\+Child)
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_ab8f24f7f2013977d49bcdbf9b2ed6e09}\label{classrev_1_1_process_ab8f24f7f2013977d49bcdbf9b2ed6e09}} 
+Strong\+Process\+Ptr {\bfseries remove\+Child} (void)
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_ad5d95593ee0104de06251c3071914e81}\label{classrev_1_1_process_ad5d95593ee0104de06251c3071914e81}} 
+Strong\+Process\+Ptr {\bfseries peek\+Child} (void)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_process_adc27ddf4c0f44dab54a5f797c7135c44}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_process_a7f5a6ab8af65aec3132f6a072b9fcb87}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_acf8e5d96e12b3e108a64ba63e96de2b1}\label{classrev_1_1_process_acf8e5d96e12b3e108a64ba63e96de2b1}} 
+bool \mbox{\hyperlink{classrev_1_1_process_acf8e5d96e12b3e108a64ba63e96de2b1}{check\+Finished}} ()
+\begin{DoxyCompactList}\small\item\em Check if the process is finished. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+{\em Send log event across threads }\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_a62f250285ee09ca3854ad665232c1bb0}\label{classrev_1_1_process_a62f250285ee09ca3854ad665232c1bb0}} 
+std\+::atomic$<$ Process\+State $>$ \mbox{\hyperlink{classrev_1_1_process_a62f250285ee09ca3854ad665232c1bb0}{m\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em The current state of the process. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_a3981a9c113260e3a67ccaed3ce988ed9}\label{classrev_1_1_process_a3981a9c113260e3a67ccaed3ce988ed9}} 
+\mbox{\hyperlink{structrev_1_1_sorting_layer}{Sorting\+Layer}} $\ast$ \mbox{\hyperlink{classrev_1_1_process_a3981a9c113260e3a67ccaed3ce988ed9}{m\+\_\+sorting\+Layer}}
+\begin{DoxyCompactList}\small\item\em Sorting layer of the process. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_a2429e021e2c1cb32b894fb352ffe7428}\label{classrev_1_1_process_a2429e021e2c1cb32b894fb352ffe7428}} 
+Strong\+Process\+Ptr \mbox{\hyperlink{classrev_1_1_process_a2429e021e2c1cb32b894fb352ffe7428}{m\+\_\+child}}
+\begin{DoxyCompactList}\small\item\em The child process, if any. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_a039d10f94bb8040ac6fef16643853438}\label{classrev_1_1_process_a039d10f94bb8040ac6fef16643853438}} 
+\mbox{\hyperlink{classrev_1_1_process_queue}{Process\+Queue}} $\ast$ \mbox{\hyperlink{classrev_1_1_process_a039d10f94bb8040ac6fef16643853438}{m\+\_\+process\+Queue}}
+\begin{DoxyCompactList}\small\item\em Pointer to the queue for this process. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_a3df6823da0f8a126bbb94e8cfe9d99b5}\label{classrev_1_1_process_a3df6823da0f8a126bbb94e8cfe9d99b5}} 
+class {\bfseries Process\+Queue}
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_ae1701c7594fe2cf1c96b951a52eb0396}\label{classrev_1_1_process_ae1701c7594fe2cf1c96b951a52eb0396}} 
+class {\bfseries Process\+Manager}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Represents a thread-\/friendly process. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_process_adc27ddf4c0f44dab54a5f797c7135c44}\label{classrev_1_1_process_adc27ddf4c0f44dab54a5f797c7135c44}} 
+\index{rev::Process@{rev::Process}!className@{className}}
+\index{className@{className}!rev::Process@{rev::Process}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Process\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_animation_process_a1956615907f3d2d32318d91d21a0df80}{rev\+::\+Animation\+Process}}, \mbox{\hyperlink{classrev_1_1_threaded_process_a7b198a27cb18d6da765cef1ed66a169c}{rev\+::\+Threaded\+Process}}, \mbox{\hyperlink{classrev_1_1_scripted_process_acf76a8590e80b9cf16c155639d721065}{rev\+::\+Scripted\+Process}}, \mbox{\hyperlink{classrev_1_1_sprite_animation_process_ad475b084f8d64cfb7a06a0456b215dbb}{rev\+::\+Sprite\+Animation\+Process}}, and \mbox{\hyperlink{classrev_1_1_load_process_ad826a8b7aab260c491bcd4344564947d}{rev\+::\+Load\+Process}}.
+
+\mbox{\Hypertarget{classrev_1_1_process_a7f5a6ab8af65aec3132f6a072b9fcb87}\label{classrev_1_1_process_a7f5a6ab8af65aec3132f6a072b9fcb87}} 
+\index{rev::Process@{rev::Process}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::Process@{rev::Process}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Process\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_animation_process_acb6fc0ee2382f8e5b09fd2d3f4847b27}{rev\+::\+Animation\+Process}}, \mbox{\hyperlink{classrev_1_1_threaded_process_a102e7ef754f41bb16225c4207b6b3c58}{rev\+::\+Threaded\+Process}}, \mbox{\hyperlink{classrev_1_1_scripted_process_a160dbc327ce205f9999d8c5c276559a9}{rev\+::\+Scripted\+Process}}, \mbox{\hyperlink{classrev_1_1_sprite_animation_process_acf80fb6d112c6d00a00bfa9620247e53}{rev\+::\+Sprite\+Animation\+Process}}, and \mbox{\hyperlink{classrev_1_1_load_process_aadfe0ec547dbda51e60517691617e88b}{rev\+::\+Load\+Process}}.
+
+\mbox{\Hypertarget{classrev_1_1_process_aedd5f4e2b9188fa376e36c3478db68a5}\label{classrev_1_1_process_aedd5f4e2b9188fa376e36c3478db68a5}} 
+\index{rev::Process@{rev::Process}!runFixed@{runFixed}}
+\index{runFixed@{runFixed}!rev::Process@{rev::Process}}
+\subsubsection{\texorpdfstring{runFixed()}{runFixed()}}
+{\footnotesize\ttfamily bool rev\+::\+Process\+::run\+Fixed (\begin{DoxyParamCaption}\item[{double}]{delta\+Sec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Run the process fixed update loop. 
+
+Returns true if the process has died, else false \mbox{\Hypertarget{classrev_1_1_process_a0773cd6049d050ebcf72cd1034929c9c}\label{classrev_1_1_process_a0773cd6049d050ebcf72cd1034929c9c}} 
+\index{rev::Process@{rev::Process}!runProcess@{runProcess}}
+\index{runProcess@{runProcess}!rev::Process@{rev::Process}}
+\subsubsection{\texorpdfstring{runProcess()}{runProcess()}}
+{\footnotesize\ttfamily bool rev\+::\+Process\+::run\+Process (\begin{DoxyParamCaption}\item[{double}]{delta\+Sec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Run the process update loop. 
+
+Returns true if the process has died, else false 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/processes/G\+Process.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/processes/G\+Process.\+cpp\end{DoxyCompactItemize}

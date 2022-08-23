@@ -1,0 +1,95 @@
+\hypertarget{structma__device__config}{}\section{ma\+\_\+device\+\_\+config Struct Reference}
+\label{structma__device__config}\index{ma\_device\_config@{ma\_device\_config}}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structma__device__config_a176ed17b7a55d2df5bd4fc034332c204}\label{structma__device__config_a176ed17b7a55d2df5bd4fc034332c204}} 
+ma\+\_\+device\+\_\+type {\bfseries device\+Type}
+\item 
+\mbox{\Hypertarget{structma__device__config_a6aa474f1db915567f81c0151acdc3c6c}\label{structma__device__config_a6aa474f1db915567f81c0151acdc3c6c}} 
+ma\+\_\+uint32 {\bfseries sample\+Rate}
+\item 
+\mbox{\Hypertarget{structma__device__config_ada4d57bafcf150c3fed9285628efb366}\label{structma__device__config_ada4d57bafcf150c3fed9285628efb366}} 
+ma\+\_\+uint32 {\bfseries buffer\+Size\+In\+Frames}
+\item 
+\mbox{\Hypertarget{structma__device__config_a4ac4b547e03170ce5d785f1e55a7bb09}\label{structma__device__config_a4ac4b547e03170ce5d785f1e55a7bb09}} 
+ma\+\_\+uint32 {\bfseries buffer\+Size\+In\+Milliseconds}
+\item 
+\mbox{\Hypertarget{structma__device__config_aca9f945e436eceae921aef035e982ab7}\label{structma__device__config_aca9f945e436eceae921aef035e982ab7}} 
+ma\+\_\+uint32 {\bfseries periods}
+\item 
+\mbox{\Hypertarget{structma__device__config_a3e194444c1d0600e32a80956c975dda5}\label{structma__device__config_a3e194444c1d0600e32a80956c975dda5}} 
+ma\+\_\+performance\+\_\+profile {\bfseries performance\+Profile}
+\item 
+\mbox{\Hypertarget{structma__device__config_af998b66d159c1d2d357a9450eee47c34}\label{structma__device__config_af998b66d159c1d2d357a9450eee47c34}} 
+ma\+\_\+bool32 {\bfseries no\+Pre\+Zeroed\+Output\+Buffer}
+\item 
+\mbox{\Hypertarget{structma__device__config_af3d34ec045d53ad320c61b09e6d0a7bb}\label{structma__device__config_af3d34ec045d53ad320c61b09e6d0a7bb}} 
+ma\+\_\+bool32 {\bfseries no\+Clip}
+\item 
+\mbox{\Hypertarget{structma__device__config_a597c796c7dd59a40de250adb0fd5ed47}\label{structma__device__config_a597c796c7dd59a40de250adb0fd5ed47}} 
+ma\+\_\+device\+\_\+callback\+\_\+proc {\bfseries data\+Callback}
+\item 
+\mbox{\Hypertarget{structma__device__config_aa63a1fad8d16b162a01c502d0e755488}\label{structma__device__config_aa63a1fad8d16b162a01c502d0e755488}} 
+ma\+\_\+stop\+\_\+proc {\bfseries stop\+Callback}
+\item 
+\mbox{\Hypertarget{structma__device__config_a4c8e35691e3c777e6033c8d9e0dc8ed7}\label{structma__device__config_a4c8e35691e3c777e6033c8d9e0dc8ed7}} 
+void $\ast$ {\bfseries p\+User\+Data}
+\item 
+\mbox{\Hypertarget{structma__device__config_ae216bf0561e128c222417fd5e54d4105}\label{structma__device__config_ae216bf0561e128c222417fd5e54d4105}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>\mbox{\hyperlink{unionma__device__id}{ma\_device\_id}} $\ast$ {\bfseries pDeviceID}\\
+\>ma\_format {\bfseries format}\\
+\>ma\_uint32 {\bfseries channels}\\
+\>ma\_channel {\bfseries channelMap} \mbox{[}MA\_MAX\_CHANNELS\mbox{]}\\
+\>ma\_share\_mode {\bfseries shareMode}\\
+\} {\bfseries playback}\\
+
+\end{tabbing}\item 
+\mbox{\Hypertarget{structma__device__config_ab07399dfcacb0cf849e96a492b54f8ab}\label{structma__device__config_ab07399dfcacb0cf849e96a492b54f8ab}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>\mbox{\hyperlink{unionma__device__id}{ma\_device\_id}} $\ast$ {\bfseries pDeviceID}\\
+\>ma\_format {\bfseries format}\\
+\>ma\_uint32 {\bfseries channels}\\
+\>ma\_channel {\bfseries channelMap} \mbox{[}MA\_MAX\_CHANNELS\mbox{]}\\
+\>ma\_share\_mode {\bfseries shareMode}\\
+\} {\bfseries capture}\\
+
+\end{tabbing}\item 
+\mbox{\Hypertarget{structma__device__config_a064978b4a7152a136d8e269f27785108}\label{structma__device__config_a064978b4a7152a136d8e269f27785108}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>ma\_bool32 {\bfseries noAutoConvertSRC}\\
+\>ma\_bool32 {\bfseries noDefaultQualitySRC}\\
+\>ma\_bool32 {\bfseries noAutoStreamRouting}\\
+\>ma\_bool32 {\bfseries noHardwareOffloading}\\
+\} {\bfseries wasapi}\\
+
+\end{tabbing}\item 
+\mbox{\Hypertarget{structma__device__config_a551af13aeb4057b6280a55d0c4f6afff}\label{structma__device__config_a551af13aeb4057b6280a55d0c4f6afff}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>ma\_bool32 {\bfseries noMMap}\\
+\} {\bfseries alsa}\\
+
+\end{tabbing}\item 
+\mbox{\Hypertarget{structma__device__config_acbc7353c92ae35da1587e9433fbdc6a4}\label{structma__device__config_acbc7353c92ae35da1587e9433fbdc6a4}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>const char $\ast$ {\bfseries pStreamNamePlayback}\\
+\>const char $\ast$ {\bfseries pStreamNameCapture}\\
+\} {\bfseries pulse}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/src/backend/miniaudio/miniaudio.\+h\end{DoxyCompactItemize}

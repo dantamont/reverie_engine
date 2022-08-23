@@ -1,0 +1,256 @@
+\hypertarget{structrev_1_1_uniform}{}\section{rev\+::Uniform Struct Reference}
+\label{structrev_1_1_uniform}\index{rev::Uniform@{rev::Uniform}}
+
+
+struct representing a uniform for an open\+G\+L\+Shader  
+
+
+
+
+{\ttfamily \#include $<$G\+Uniform.\+h$>$}
+
+Inheritance diagram for rev\+::Uniform\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.422323cm]{structrev_1_1_uniform}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_uniform_a0256c5c4c6b2003b914aed6d104154cf}\label{structrev_1_1_uniform_a0256c5c4c6b2003b914aed6d104154cf}} 
+{\bfseries Uniform} (const \mbox{\hyperlink{structrev_1_1_uniform}{Uniform}} \&other)
+\item 
+\mbox{\Hypertarget{structrev_1_1_uniform_ad61b73d2b1d1fb31b894934a9c957254}\label{structrev_1_1_uniform_ad61b73d2b1d1fb31b894934a9c957254}} 
+{\bfseries Uniform} (const Q\+Json\+Value \&json)
+\item 
+\mbox{\Hypertarget{structrev_1_1_uniform_af24b08ef8b73f89d3d992a19306ad637}\label{structrev_1_1_uniform_af24b08ef8b73f89d3d992a19306ad637}} 
+{\bfseries Uniform} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&name)
+\item 
+\mbox{\Hypertarget{structrev_1_1_uniform_af43ffc8c2907c2131ef0dd3fee4c4812}\label{structrev_1_1_uniform_af43ffc8c2907c2131ef0dd3fee4c4812}} 
+{\footnotesize template$<$typename T $>$ }\\{\bfseries Uniform} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&name, const T \&val)
+\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Operators}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_uniform_a3c422cc8d638f6673587fd4949782db1}\label{structrev_1_1_uniform_a3c422cc8d638f6673587fd4949782db1}} 
+\mbox{\hyperlink{structrev_1_1_uniform_a3c422cc8d638f6673587fd4949782db1}{operator Q\+String}} () const
+\begin{DoxyCompactList}\small\item\em Conversion to Q\+String. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_uniform_a33feea609273ddb5627e5e73e6a0e970}\label{structrev_1_1_uniform_a33feea609273ddb5627e5e73e6a0e970}} 
+\mbox{\hyperlink{structrev_1_1_uniform}{Uniform}} \& {\bfseries operator=} (const \mbox{\hyperlink{structrev_1_1_uniform}{Uniform}} \&rhs)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_uniform_a13b20a0d409ec0f0722c918894c87831}\label{structrev_1_1_uniform_a13b20a0d409ec0f0722c918894c87831}} 
+const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \& {\bfseries get\+Name} () const
+\item 
+\mbox{\Hypertarget{structrev_1_1_uniform_a02dd8f7f816d24424dd42416cc138863}\label{structrev_1_1_uniform_a02dd8f7f816d24424dd42416cc138863}} 
+void {\bfseries set\+Name} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name)
+\item 
+\mbox{\Hypertarget{structrev_1_1_uniform_a2dcda323a79bf797e8c9b1030a587b4d}\label{structrev_1_1_uniform_a2dcda323a79bf797e8c9b1030a587b4d}} 
+bool {\bfseries is\+Persistent} () const
+\item 
+\mbox{\Hypertarget{structrev_1_1_uniform_a3f007b9e9666f1b0576d4d909c9a0448}\label{structrev_1_1_uniform_a3f007b9e9666f1b0576d4d909c9a0448}} 
+void {\bfseries set\+Persistence} (bool p)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_uniform_aa8afa2da0c03756578eaa9998df9bd9b}\label{structrev_1_1_uniform_aa8afa2da0c03756578eaa9998df9bd9b}} 
+bool \mbox{\hyperlink{structrev_1_1_uniform_aa8afa2da0c03756578eaa9998df9bd9b}{matches\+Info}} (const \mbox{\hyperlink{structrev_1_1_shader_input_info}{Shader\+Input\+Info}} \&type\+Info) const
+\begin{DoxyCompactList}\small\item\em Whether or not the uniform\textquotesingle{}s type ID matches the given uniform info struct. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_uniform_a7b18830f4fe6d96db5cd920bcba073fb}\label{structrev_1_1_uniform_a7b18830f4fe6d96db5cd920bcba073fb}} 
+Q\+Variant \mbox{\hyperlink{structrev_1_1_uniform_a7b18830f4fe6d96db5cd920bcba073fb}{as\+Q\+Variant}} () const
+\begin{DoxyCompactList}\small\item\em Convert to Q\+Variant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_uniform_a482af779d03eb38aa5b6cde788dd0e35}\label{structrev_1_1_uniform_a482af779d03eb38aa5b6cde788dd0e35}} 
+Q\+Json\+Value \mbox{\hyperlink{structrev_1_1_uniform_a482af779d03eb38aa5b6cde788dd0e35}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_uniform_a1be2b73e53c8745b7388d85235832369}\label{structrev_1_1_uniform_a1be2b73e53c8745b7388d85235832369}} 
+virtual void \mbox{\hyperlink{structrev_1_1_uniform_a1be2b73e53c8745b7388d85235832369}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_uniform_aea123281c5ef79f08d9da17fe6fdb79b}\label{structrev_1_1_uniform_aea123281c5ef79f08d9da17fe6fdb79b}} 
+void \mbox{\hyperlink{structrev_1_1_uniform_aea123281c5ef79f08d9da17fe6fdb79b}{load\+Value}} (const Q\+Json\+Value \&json)
+\begin{DoxyCompactList}\small\item\em Load from a Q\+Variant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_uniform_aeb272cc37f901317a58d64cec6611a5c}\label{structrev_1_1_uniform_aeb272cc37f901317a58d64cec6611a5c}} 
+\mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \mbox{\hyperlink{structrev_1_1_uniform_aeb272cc37f901317a58d64cec6611a5c}{m\+\_\+name}}
+\begin{DoxyCompactList}\small\item\em the name of the uniform in the GL shader \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_uniform_aeb2ec0811d1ae6744ca52c96bed8d01f}\label{structrev_1_1_uniform_aeb2ec0811d1ae6744ca52c96bed8d01f}} 
+bool \mbox{\hyperlink{structrev_1_1_uniform_aeb2ec0811d1ae6744ca52c96bed8d01f}{m\+\_\+persistent}} = true
+\begin{DoxyCompactList}\small\item\em Whether or not to save this uniform value on shader save. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classtsl_1_1robin__map}{tsl\+::robin\+\_\+map}}$<$ Q\+String, std\+::type\+\_\+index $>$ {\bfseries s\+\_\+uniform\+Type\+Map}
+\item 
+static \mbox{\hyperlink{classtsl_1_1robin__map}{tsl\+::robin\+\_\+map}}$<$ Shader\+Variable\+Type, std\+::type\+\_\+index $>$ {\bfseries s\+\_\+uniform\+G\+L\+Type\+Map}
+\item 
+static \mbox{\hyperlink{classtsl_1_1robin__map}{tsl\+::robin\+\_\+map}}$<$ Q\+String, Shader\+Variable\+Type $>$ {\bfseries s\+\_\+uniform\+Type\+Str\+Map}
+\item 
+static \mbox{\hyperlink{classtsl_1_1robin__map}{tsl\+::robin\+\_\+map}}$<$ Shader\+Variable\+Type, Q\+String $>$ {\bfseries s\+\_\+uniform\+Str\+Type\+Map}
+\item 
+\mbox{\Hypertarget{structrev_1_1_uniform_aef20119bde6aff11ffd23f3ea2131b86}\label{structrev_1_1_uniform_aef20119bde6aff11ffd23f3ea2131b86}} 
+class {\bfseries Shader\+Program}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+struct representing a uniform for an open\+G\+L\+Shader 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structrev_1_1_uniform_a7e15e4113de9b73438bcfd79272f9479}\label{structrev_1_1_uniform_a7e15e4113de9b73438bcfd79272f9479}} 
+\index{rev::Uniform@{rev::Uniform}!s\_uniformGLTypeMap@{s\_uniformGLTypeMap}}
+\index{s\_uniformGLTypeMap@{s\_uniformGLTypeMap}!rev::Uniform@{rev::Uniform}}
+\subsubsection{\texorpdfstring{s\_uniformGLTypeMap}{s\_uniformGLTypeMap}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classtsl_1_1robin__map}{tsl\+::robin\+\_\+map}}$<$ Shader\+Variable\+Type, std\+::type\+\_\+index $>$ rev\+::\+Uniform\+::s\+\_\+uniform\+G\+L\+Type\+Map\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \{ShaderVariableType::kBool, \textcolor{keyword}{typeid}(bool)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kInt, \textcolor{keyword}{typeid}(int)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kFloat, \textcolor{keyword}{typeid}(float)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kDouble, \textcolor{keyword}{typeid}(double)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kUVec2, \textcolor{keyword}{typeid}(Vector<unsigned int, 2>)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kUVec3, \textcolor{keyword}{typeid}(Vector<unsigned int, 3>)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kUVec4, \textcolor{keyword}{typeid}(Vector<unsigned int, 4>)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kIVec2, \textcolor{keyword}{typeid}(Vector<int, 2>)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kIVec3, \textcolor{keyword}{typeid}(Vector<int, 3>)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kIVec4, \textcolor{keyword}{typeid}(Vector<int, 4>)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kVec2, \textcolor{keyword}{typeid}(Vector2)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kVec3, \textcolor{keyword}{typeid}(Vector3)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kVec4, \textcolor{keyword}{typeid}(Vector4)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kMat2, \textcolor{keyword}{typeid}(Matrix2x2g)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kMat3, \textcolor{keyword}{typeid}(Matrix3x3g)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kMat4, \textcolor{keyword}{typeid}(Matrix4x4g)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kSamplerCube, \textcolor{keyword}{typeid}(int)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kSamplerCubeArray, \textcolor{keyword}{typeid}(int)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kSampler2D, \textcolor{keyword}{typeid}(int)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kSampler2DShadow, \textcolor{keyword}{typeid}(int)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kSampler2DArray, \textcolor{keyword}{typeid}(int)\}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{structrev_1_1_uniform_afffe2f5f51f3b9294a49ad70d08fa622}\label{structrev_1_1_uniform_afffe2f5f51f3b9294a49ad70d08fa622}} 
+\index{rev::Uniform@{rev::Uniform}!s\_uniformStrTypeMap@{s\_uniformStrTypeMap}}
+\index{s\_uniformStrTypeMap@{s\_uniformStrTypeMap}!rev::Uniform@{rev::Uniform}}
+\subsubsection{\texorpdfstring{s\_uniformStrTypeMap}{s\_uniformStrTypeMap}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classtsl_1_1robin__map}{tsl\+::robin\+\_\+map}}$<$ Shader\+Variable\+Type, Q\+String $>$ rev\+::\+Uniform\+::s\+\_\+uniform\+Str\+Type\+Map\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \{ShaderVariableType::kBool,   \textcolor{stringliteral}{"bool"}\},}
+\DoxyCodeLine{    \{ShaderVariableType::kInt,    \textcolor{stringliteral}{"int"}\},}
+\DoxyCodeLine{    \{ShaderVariableType::kFloat,  \textcolor{stringliteral}{"float"}\},}
+\DoxyCodeLine{    \{ShaderVariableType::kDouble, \textcolor{stringliteral}{"double"}\},}
+\DoxyCodeLine{    \{ShaderVariableType::kUVec2,   \textcolor{stringliteral}{"uvec2"}\},}
+\DoxyCodeLine{    \{ShaderVariableType::kUVec3,   \textcolor{stringliteral}{"uvec3"}\},}
+\DoxyCodeLine{    \{ShaderVariableType::kUVec4,   \textcolor{stringliteral}{"uvec4"}\},}
+\DoxyCodeLine{    \{ShaderVariableType::kIVec2,   \textcolor{stringliteral}{"ivec2"}\},}
+\DoxyCodeLine{    \{ShaderVariableType::kIVec3,   \textcolor{stringliteral}{"ivec3"}\},}
+\DoxyCodeLine{    \{ShaderVariableType::kIVec4,   \textcolor{stringliteral}{"ivec4"}\},}
+\DoxyCodeLine{    \{ShaderVariableType::kVec2,   \textcolor{stringliteral}{"vec2"}\},}
+\DoxyCodeLine{    \{ShaderVariableType::kVec3,   \textcolor{stringliteral}{"vec3"}\},}
+\DoxyCodeLine{    \{ShaderVariableType::kVec4,   \textcolor{stringliteral}{"vec4"}\},}
+\DoxyCodeLine{    \{ShaderVariableType::kMat2,   \textcolor{stringliteral}{"mat2"}\},}
+\DoxyCodeLine{    \{ShaderVariableType::kMat3,   \textcolor{stringliteral}{"mat3"}\},}
+\DoxyCodeLine{    \{ShaderVariableType::kMat4,   \textcolor{stringliteral}{"mat4"}\},}
+\DoxyCodeLine{    \{ShaderVariableType::kSamplerCube, \textcolor{stringliteral}{"samplerCube"}\},}
+\DoxyCodeLine{    \{ShaderVariableType::kSamplerCubeArray, \textcolor{stringliteral}{"samplerCubeArray"}\},}
+\DoxyCodeLine{    \{ShaderVariableType::kSampler2D,   \textcolor{stringliteral}{"sampler2D"}\},}
+\DoxyCodeLine{    \{ShaderVariableType::kSampler2DShadow,   \textcolor{stringliteral}{"sampler2DShadow"}\},}
+\DoxyCodeLine{    \{ShaderVariableType::kSampler2DArray,   \textcolor{stringliteral}{"sampler2DArray"}\}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{structrev_1_1_uniform_ad2b4d6040dedca24287a0437e141ec76}\label{structrev_1_1_uniform_ad2b4d6040dedca24287a0437e141ec76}} 
+\index{rev::Uniform@{rev::Uniform}!s\_uniformTypeMap@{s\_uniformTypeMap}}
+\index{s\_uniformTypeMap@{s\_uniformTypeMap}!rev::Uniform@{rev::Uniform}}
+\subsubsection{\texorpdfstring{s\_uniformTypeMap}{s\_uniformTypeMap}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classtsl_1_1robin__map}{tsl\+::robin\+\_\+map}}$<$ Q\+String, std\+::type\+\_\+index $>$ rev\+::\+Uniform\+::s\+\_\+uniform\+Type\+Map\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"bool"}, \textcolor{keyword}{typeid}(bool)\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"int"}, \textcolor{keyword}{typeid}(int)\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"float"}, \textcolor{keyword}{typeid}(float)\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"double"}, \textcolor{keyword}{typeid}(double)\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"uvec2"}, \textcolor{keyword}{typeid}(Vector<unsigned int, 2>)\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"uvec3"}, \textcolor{keyword}{typeid}(Vector<unsigned int, 3>)\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"uvec4"}, \textcolor{keyword}{typeid}(Vector<unsigned int, 4>)\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"ivec2"}, \textcolor{keyword}{typeid}(Vector<int, 2>)\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"ivec3"}, \textcolor{keyword}{typeid}(Vector<int, 3>)\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"ivec4"}, \textcolor{keyword}{typeid}(Vector<int, 4>)\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"vec2"}, \textcolor{keyword}{typeid}(Vector2)\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"vec3"}, \textcolor{keyword}{typeid}(Vector3)\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"vec4"}, \textcolor{keyword}{typeid}(Vector4)\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"mat2"}, \textcolor{keyword}{typeid}(Matrix2x2g)\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"mat3"}, \textcolor{keyword}{typeid}(Matrix3x3g)\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"mat4"}, \textcolor{keyword}{typeid}(Matrix4x4g)\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"samplerCube"}, \textcolor{keyword}{typeid}(int)\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"samplerCubeArray"}, \textcolor{keyword}{typeid}(int)\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"sampler2D"}, \textcolor{keyword}{typeid}(int)\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"sampler2DShadow"}, \textcolor{keyword}{typeid}(int)\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"sampler2DArray"}, \textcolor{keyword}{typeid}(int)\}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{structrev_1_1_uniform_afeee7c8d1bdeb511548f04735a44ca31}\label{structrev_1_1_uniform_afeee7c8d1bdeb511548f04735a44ca31}} 
+\index{rev::Uniform@{rev::Uniform}!s\_uniformTypeStrMap@{s\_uniformTypeStrMap}}
+\index{s\_uniformTypeStrMap@{s\_uniformTypeStrMap}!rev::Uniform@{rev::Uniform}}
+\subsubsection{\texorpdfstring{s\_uniformTypeStrMap}{s\_uniformTypeStrMap}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classtsl_1_1robin__map}{tsl\+::robin\+\_\+map}}$<$ Q\+String, Shader\+Variable\+Type $>$ rev\+::\+Uniform\+::s\+\_\+uniform\+Type\+Str\+Map\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"bool"},   ShaderVariableType::kBool\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"int"},    ShaderVariableType::kInt\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"float"},  ShaderVariableType::kFloat\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"double"}, ShaderVariableType::kDouble\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"ivec2"},   ShaderVariableType::kIVec2\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"ivec3"},   ShaderVariableType::kIVec3\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"ivec4"},   ShaderVariableType::kIVec4\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"uvec2"},   ShaderVariableType::kUVec2\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"uvec3"},   ShaderVariableType::kUVec3\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"uvec4"},   ShaderVariableType::kUVec4\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"vec2"},   ShaderVariableType::kVec2\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"vec3"},   ShaderVariableType::kVec3\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"vec4"},   ShaderVariableType::kVec4\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"mat2"},   ShaderVariableType::kMat2\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"mat3"},   ShaderVariableType::kMat3\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"mat4"},   ShaderVariableType::kMat4\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"samplerCube"}, ShaderVariableType::kSamplerCube\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"samplerCubeArray"}, ShaderVariableType::kSamplerCubeArray\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"sampler2D"}, ShaderVariableType::kSampler2D\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"sampler2DShadow"}, ShaderVariableType::kSampler2DShadow\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"sampler2DArray"}, ShaderVariableType::kSampler2DArray\}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/shaders/G\+Uniform.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/shaders/G\+Uniform.\+cpp\end{DoxyCompactItemize}

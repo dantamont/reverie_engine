@@ -1,0 +1,106 @@
+\hypertarget{structma__context}{}\section{ma\+\_\+context Struct Reference}
+\label{structma__context}\index{ma\_context@{ma\_context}}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structma__context_a84696d701b4be67f1b8c0a5e2aaceb31}\label{structma__context_a84696d701b4be67f1b8c0a5e2aaceb31}} 
+ma\+\_\+backend {\bfseries backend}
+\item 
+\mbox{\Hypertarget{structma__context_a7ef4389811a476363c473a720e83445a}\label{structma__context_a7ef4389811a476363c473a720e83445a}} 
+ma\+\_\+log\+\_\+proc {\bfseries log\+Callback}
+\item 
+\mbox{\Hypertarget{structma__context_a7ac85f1752ff0192281bc9cb47939e96}\label{structma__context_a7ac85f1752ff0192281bc9cb47939e96}} 
+ma\+\_\+thread\+\_\+priority {\bfseries thread\+Priority}
+\item 
+\mbox{\Hypertarget{structma__context_ae9bae94748afbb8d5ba99fbd2a3f1d0f}\label{structma__context_ae9bae94748afbb8d5ba99fbd2a3f1d0f}} 
+void $\ast$ {\bfseries p\+User\+Data}
+\item 
+\mbox{\Hypertarget{structma__context_a81091b9765634a551f84c35ca4d3ee59}\label{structma__context_a81091b9765634a551f84c35ca4d3ee59}} 
+\mbox{\hyperlink{structma__mutex}{ma\+\_\+mutex}} {\bfseries device\+Enum\+Lock}
+\item 
+\mbox{\Hypertarget{structma__context_ab9218f90d18b241cd3310764658ade8a}\label{structma__context_ab9218f90d18b241cd3310764658ade8a}} 
+\mbox{\hyperlink{structma__mutex}{ma\+\_\+mutex}} {\bfseries device\+Info\+Lock}
+\item 
+\mbox{\Hypertarget{structma__context_a4990c1e98a79c35bab953e5b76edc4d6}\label{structma__context_a4990c1e98a79c35bab953e5b76edc4d6}} 
+ma\+\_\+uint32 {\bfseries device\+Info\+Capacity}
+\item 
+\mbox{\Hypertarget{structma__context_a08c078117e8bd13cd6d50315bae9a02c}\label{structma__context_a08c078117e8bd13cd6d50315bae9a02c}} 
+ma\+\_\+uint32 {\bfseries playback\+Device\+Info\+Count}
+\item 
+\mbox{\Hypertarget{structma__context_aab349ac42cdf8349e1c6f2efc8567da2}\label{structma__context_aab349ac42cdf8349e1c6f2efc8567da2}} 
+ma\+\_\+uint32 {\bfseries capture\+Device\+Info\+Count}
+\item 
+\mbox{\Hypertarget{structma__context_a54823354a5ec90fa5991f5f2e67ff1f6}\label{structma__context_a54823354a5ec90fa5991f5f2e67ff1f6}} 
+\mbox{\hyperlink{structma__device__info}{ma\+\_\+device\+\_\+info}} $\ast$ {\bfseries p\+Device\+Infos}
+\item 
+\mbox{\Hypertarget{structma__context_a69bd00e692d0d19d679d41b822dfef52}\label{structma__context_a69bd00e692d0d19d679d41b822dfef52}} 
+ma\+\_\+bool32 {\bfseries is\+Backend\+Asynchronous}\+: 1
+\item 
+\mbox{\Hypertarget{structma__context_a3ccf63f362b13e9b4ec73215770c2e0e}\label{structma__context_a3ccf63f362b13e9b4ec73215770c2e0e}} 
+ma\+\_\+result($\ast$ {\bfseries on\+Uninit} )(\mbox{\hyperlink{structma__context}{ma\+\_\+context}} $\ast$p\+Context)
+\item 
+\mbox{\Hypertarget{structma__context_aaf555d51d3d2b6e5c554e7fea8766ca7}\label{structma__context_aaf555d51d3d2b6e5c554e7fea8766ca7}} 
+ma\+\_\+bool32($\ast$ {\bfseries on\+Device\+I\+D\+Equal} )(\mbox{\hyperlink{structma__context}{ma\+\_\+context}} $\ast$p\+Context, const \mbox{\hyperlink{unionma__device__id}{ma\+\_\+device\+\_\+id}} $\ast$p\+I\+D0, const \mbox{\hyperlink{unionma__device__id}{ma\+\_\+device\+\_\+id}} $\ast$p\+I\+D1)
+\item 
+\mbox{\Hypertarget{structma__context_aceaf4968176b5b14c1e95a014991f490}\label{structma__context_aceaf4968176b5b14c1e95a014991f490}} 
+ma\+\_\+result($\ast$ {\bfseries on\+Enum\+Devices} )(\mbox{\hyperlink{structma__context}{ma\+\_\+context}} $\ast$p\+Context, ma\+\_\+enum\+\_\+devices\+\_\+callback\+\_\+proc callback, void $\ast$p\+User\+Data)
+\item 
+\mbox{\Hypertarget{structma__context_a514793d989ea3fae4e676674363953fd}\label{structma__context_a514793d989ea3fae4e676674363953fd}} 
+ma\+\_\+result($\ast$ {\bfseries on\+Get\+Device\+Info} )(\mbox{\hyperlink{structma__context}{ma\+\_\+context}} $\ast$p\+Context, ma\+\_\+device\+\_\+type device\+Type, const \mbox{\hyperlink{unionma__device__id}{ma\+\_\+device\+\_\+id}} $\ast$p\+Device\+ID, ma\+\_\+share\+\_\+mode share\+Mode, \mbox{\hyperlink{structma__device__info}{ma\+\_\+device\+\_\+info}} $\ast$p\+Device\+Info)
+\item 
+\mbox{\Hypertarget{structma__context_a7d60f4f81b8e51bca2452fb2457e659b}\label{structma__context_a7d60f4f81b8e51bca2452fb2457e659b}} 
+ma\+\_\+result($\ast$ {\bfseries on\+Device\+Init} )(\mbox{\hyperlink{structma__context}{ma\+\_\+context}} $\ast$p\+Context, const \mbox{\hyperlink{structma__device__config}{ma\+\_\+device\+\_\+config}} $\ast$p\+Config, ma\+\_\+device $\ast$p\+Device)
+\item 
+\mbox{\Hypertarget{structma__context_a0a2fa822bab9b96821a9fba479d4e8e0}\label{structma__context_a0a2fa822bab9b96821a9fba479d4e8e0}} 
+void($\ast$ {\bfseries on\+Device\+Uninit} )(ma\+\_\+device $\ast$p\+Device)
+\item 
+\mbox{\Hypertarget{structma__context_a78c81bc4c94f6cb48a1b39aa4ebe1099}\label{structma__context_a78c81bc4c94f6cb48a1b39aa4ebe1099}} 
+ma\+\_\+result($\ast$ {\bfseries on\+Device\+Start} )(ma\+\_\+device $\ast$p\+Device)
+\item 
+\mbox{\Hypertarget{structma__context_a09f796458561e4409bacc62ad95456f2}\label{structma__context_a09f796458561e4409bacc62ad95456f2}} 
+ma\+\_\+result($\ast$ {\bfseries on\+Device\+Stop} )(ma\+\_\+device $\ast$p\+Device)
+\item 
+\mbox{\Hypertarget{structma__context_a5affd3f4739f819dea262d6b60d5e508}\label{structma__context_a5affd3f4739f819dea262d6b60d5e508}} 
+ma\+\_\+result($\ast$ {\bfseries on\+Device\+Main\+Loop} )(ma\+\_\+device $\ast$p\+Device)
+\item 
+\mbox{\Hypertarget{structma__context_a380aeca70b146225b70bc84c0424e181}\label{structma__context_a380aeca70b146225b70bc84c0424e181}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>struct \{\\
+\>\>int {\bfseries \_unused}\\
+\>\} {\bfseries null\_backend}\\
+\}; \\
+
+\end{tabbing}\item 
+\mbox{\Hypertarget{structma__context_af63fd02e2ae6f6eb12cacc4ff65f31c6}\label{structma__context_af63fd02e2ae6f6eb12cacc4ff65f31c6}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>struct \{\\
+\>\>ma\_handle {\bfseries pthreadSO}\\
+\>\>ma\_proc {\bfseries pthread\_create}\\
+\>\>ma\_proc {\bfseries pthread\_join}\\
+\>\>ma\_proc {\bfseries pthread\_mutex\_init}\\
+\>\>ma\_proc {\bfseries pthread\_mutex\_destroy}\\
+\>\>ma\_proc {\bfseries pthread\_mutex\_lock}\\
+\>\>ma\_proc {\bfseries pthread\_mutex\_unlock}\\
+\>\>ma\_proc {\bfseries pthread\_cond\_init}\\
+\>\>ma\_proc {\bfseries pthread\_cond\_destroy}\\
+\>\>ma\_proc {\bfseries pthread\_cond\_wait}\\
+\>\>ma\_proc {\bfseries pthread\_cond\_signal}\\
+\>\>ma\_proc {\bfseries pthread\_attr\_init}\\
+\>\>ma\_proc {\bfseries pthread\_attr\_destroy}\\
+\>\>ma\_proc {\bfseries pthread\_attr\_setschedpolicy}\\
+\>\>ma\_proc {\bfseries pthread\_attr\_getschedparam}\\
+\>\>ma\_proc {\bfseries pthread\_attr\_setschedparam}\\
+\>\} {\bfseries posix}\\
+\>int {\bfseries \_unused}\\
+\}; \\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/src/backend/miniaudio/miniaudio.\+h\end{DoxyCompactItemize}

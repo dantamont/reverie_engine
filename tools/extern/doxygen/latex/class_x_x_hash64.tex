@@ -1,0 +1,115 @@
+\hypertarget{class_x_x_hash64}{}\section{X\+X\+Hash64 Class Reference}
+\label{class_x_x_hash64}\index{XXHash64@{XXHash64}}
+
+
+X\+X\+Hash (64 bit), based on Yann Collet\textquotesingle{}s descriptions, see \href{http://cyan4973.github.io/xxHash/}{\texttt{ http\+://cyan4973.\+github.\+io/xx\+Hash/}}.  
+
+
+
+
+{\ttfamily \#include $<$xxhash64.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_x_x_hash64_a75750aa9da0608c510cb2770db35754b}{X\+X\+Hash64}} (uint64\+\_\+t seed)
+\begin{DoxyCompactList}\small\item\em create new X\+X\+Hash (64 bit) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_x_x_hash64_a150f41ac12eacc49e98b4847e70c871a}{add}} (const void $\ast$input, uint64\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em add a chunk of bytes \end{DoxyCompactList}\item 
+uint64\+\_\+t \mbox{\hyperlink{class_x_x_hash64_ad7666ede7a694debd1cc018bbd98d21b}{hash}} () const
+\begin{DoxyCompactList}\small\item\em get current hash \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static uint64\+\_\+t \mbox{\hyperlink{class_x_x_hash64_af555a886b8ae54d6d1a18ecd8e454c6d}{hash}} (const void $\ast$input, uint64\+\_\+t length, uint64\+\_\+t seed)
+\begin{DoxyCompactList}\small\item\em combine constructor, \mbox{\hyperlink{class_x_x_hash64_a150f41ac12eacc49e98b4847e70c871a}{add()}} and \mbox{\hyperlink{class_x_x_hash64_ad7666ede7a694debd1cc018bbd98d21b}{hash()}} in one static function (C style) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+X\+X\+Hash (64 bit), based on Yann Collet\textquotesingle{}s descriptions, see \href{http://cyan4973.github.io/xxHash/}{\texttt{ http\+://cyan4973.\+github.\+io/xx\+Hash/}}. 
+
+How to use\+: uint64\+\_\+t myseed = 0; \mbox{\hyperlink{class_x_x_hash64}{X\+X\+Hash64}} myhash(myseed); myhash.\+add(pointer\+To\+Some\+Bytes,     number\+Of\+Bytes); myhash.\+add(pointer\+To\+Some\+More\+Bytes, number\+Of\+More\+Bytes); // call \mbox{\hyperlink{class_x_x_hash64_a150f41ac12eacc49e98b4847e70c871a}{add()}} as often as you like to ... and compute hash\+: uint64\+\_\+t result = myhash.\+hash();
+
+or all of the above in one single line\+: uint64\+\_\+t result2 = X\+X\+Hash64\+::hash(mypointer, num\+Bytes, myseed);
+
+Note\+: my code is N\+OT endian-\/aware ! 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_x_x_hash64_a75750aa9da0608c510cb2770db35754b}\label{class_x_x_hash64_a75750aa9da0608c510cb2770db35754b}} 
+\index{XXHash64@{XXHash64}!XXHash64@{XXHash64}}
+\index{XXHash64@{XXHash64}!XXHash64@{XXHash64}}
+\subsubsection{\texorpdfstring{XXHash64()}{XXHash64()}}
+{\footnotesize\ttfamily X\+X\+Hash64\+::\+X\+X\+Hash64 (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{seed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+create new X\+X\+Hash (64 bit) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em seed} & your seed value, even zero is a valid seed \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_x_x_hash64_a150f41ac12eacc49e98b4847e70c871a}\label{class_x_x_hash64_a150f41ac12eacc49e98b4847e70c871a}} 
+\index{XXHash64@{XXHash64}!add@{add}}
+\index{add@{add}!XXHash64@{XXHash64}}
+\subsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily bool X\+X\+Hash64\+::add (\begin{DoxyParamCaption}\item[{const void $\ast$}]{input,  }\item[{uint64\+\_\+t}]{length }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+add a chunk of bytes 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & pointer to a continuous block of data \\
+\hline
+{\em length} & number of bytes \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+false if parameters are invalid / zero 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_x_x_hash64_ad7666ede7a694debd1cc018bbd98d21b}\label{class_x_x_hash64_ad7666ede7a694debd1cc018bbd98d21b}} 
+\index{XXHash64@{XXHash64}!hash@{hash}}
+\index{hash@{hash}!XXHash64@{XXHash64}}
+\subsubsection{\texorpdfstring{hash()}{hash()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily uint64\+\_\+t X\+X\+Hash64\+::hash (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+get current hash 
+
+\begin{DoxyReturn}{Returns}
+64 bit X\+X\+Hash 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_x_x_hash64_af555a886b8ae54d6d1a18ecd8e454c6d}\label{class_x_x_hash64_af555a886b8ae54d6d1a18ecd8e454c6d}} 
+\index{XXHash64@{XXHash64}!hash@{hash}}
+\index{hash@{hash}!XXHash64@{XXHash64}}
+\subsubsection{\texorpdfstring{hash()}{hash()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily static uint64\+\_\+t X\+X\+Hash64\+::hash (\begin{DoxyParamCaption}\item[{const void $\ast$}]{input,  }\item[{uint64\+\_\+t}]{length,  }\item[{uint64\+\_\+t}]{seed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+combine constructor, \mbox{\hyperlink{class_x_x_hash64_a150f41ac12eacc49e98b4847e70c871a}{add()}} and \mbox{\hyperlink{class_x_x_hash64_ad7666ede7a694debd1cc018bbd98d21b}{hash()}} in one static function (C style) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & pointer to a continuous block of data \\
+\hline
+{\em length} & number of bytes \\
+\hline
+{\em seed} & your seed value, e.\+g. zero is a valid seed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+64 bit X\+X\+Hash 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/encoding/xxhash/xxhash64.\+h\end{DoxyCompactItemize}

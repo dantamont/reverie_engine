@@ -1,0 +1,269 @@
+\hypertarget{classrev_1_1_debug_manager}{}\section{rev\+::Debug\+Manager Class Reference}
+\label{classrev_1_1_debug_manager}\index{rev::DebugManager@{rev::DebugManager}}
+Inheritance diagram for rev\+::Debug\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{classrev_1_1_debug_manager}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrev_1_1_debug_manager_1_1_debug_renderable}{Debug\+Renderable}}
+\begin{DoxyCompactList}\small\item\em Struct containing a debug renderable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_aaccae7629cefb73032f711757ea6c656}\label{classrev_1_1_debug_manager_aaccae7629cefb73032f711757ea6c656}} 
+void \mbox{\hyperlink{classrev_1_1_debug_manager_aaccae7629cefb73032f711757ea6c656}{selected\+Scene\+Object}} (size\+\_\+t scene\+Object\+ID)
+\begin{DoxyCompactList}\small\item\em Emit on selection of a scene object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a9fd04c1d74d1cc76077c07f142723009}\label{classrev_1_1_debug_manager_a9fd04c1d74d1cc76077c07f142723009}} 
+{\bfseries Debug\+Manager} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$\mbox{\hyperlink{classrev_1_1_manager_a0fbd0df6b4f3caf42b557f9702f48171}{engine}})
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a4a33b7cf142279ec82782c5e1896898f}\label{classrev_1_1_debug_manager_a4a33b7cf142279ec82782c5e1896898f}} 
+{\bfseries $\sim$\+Debug\+Manager} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a759c4f9e193f94a74523d155e5f8dc66}\label{classrev_1_1_debug_manager_a759c4f9e193f94a74523d155e5f8dc66}} 
+\mbox{\hyperlink{classrev_1_1_debug_draw_settings}{Debug\+Draw\+Settings}} \& {\bfseries debug\+Settings} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a3794b24a7c39f086a0a1c84c1f1c05ed}\label{classrev_1_1_debug_manager_a3794b24a7c39f086a0a1c84c1f1c05ed}} 
+const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structrev_1_1_sorting_layer}{Sorting\+Layer}} $>$ \& {\bfseries debug\+Render\+Layer} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a56e7b395a714219b8e57086871e99452}\label{classrev_1_1_debug_manager_a56e7b395a714219b8e57086871e99452}} 
+\mbox{\hyperlink{classrev_1_1_camera_component}{Camera\+Component}} $\ast$ {\bfseries camera} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a232ea27e16819306a83e3da9ad6646d1}\label{classrev_1_1_debug_manager_a232ea27e16819306a83e3da9ad6646d1}} 
+\mbox{\hyperlink{classrev_1_1_canvas_component}{Canvas\+Component}} $\ast$ {\bfseries text\+Canvas} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a4af83f2d3f6f2f320ad6f1030916213a}\label{classrev_1_1_debug_manager_a4af83f2d3f6f2f320ad6f1030916213a}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ {\bfseries camera\+Object} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a9c6708f36f5fb4a2fa233feb72fdb3aa}\label{classrev_1_1_debug_manager_a9c6708f36f5fb4a2fa233feb72fdb3aa}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene}{Scene}} $>$ {\bfseries scene} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_af3123f8d62ff3e8d155c4e7755f2bb56}\label{classrev_1_1_debug_manager_af3123f8d62ff3e8d155c4e7755f2bb56}} 
+void \mbox{\hyperlink{classrev_1_1_debug_manager_af3123f8d62ff3e8d155c4e7755f2bb56}{clear}} ()
+\begin{DoxyCompactList}\small\item\em Clear any data that needs to be reset on scenario load. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_debug_manager_aa7e0385a031c216c48f6bf1d9ca2a9da}{draw}} (\mbox{\hyperlink{classrev_1_1_scene}{Scene}} $\ast$scene)
+\begin{DoxyCompactList}\small\item\em Routines to add debug objects (doodads) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_aa76077af77acb77425f46380a73be7a1}\label{classrev_1_1_debug_manager_aa76077af77acb77425f46380a73be7a1}} 
+void {\bfseries draw\+Static} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_afb4b5bdfdabdbbaab06f1f3acd3c7b34}\label{classrev_1_1_debug_manager_afb4b5bdfdabdbbaab06f1f3acd3c7b34}} 
+void {\bfseries draw\+Dynamic} (\mbox{\hyperlink{classrev_1_1_scene}{Scene}} $\ast$scene)
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a3d1ed2038a3cc09312c8e1f4aaebfaf5}\label{classrev_1_1_debug_manager_a3d1ed2038a3cc09312c8e1f4aaebfaf5}} 
+void {\bfseries draw\+Dynamic} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \&so)
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a93627c1f6fa983668aa8666fbc6cbf94}\label{classrev_1_1_debug_manager_a93627c1f6fa983668aa8666fbc6cbf94}} 
+void {\bfseries draw\+Doodads} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a50a6bcd3a6a8f12d38b792ca64a31a63}\label{classrev_1_1_debug_manager_a50a6bcd3a6a8f12d38b792ca64a31a63}} 
+void \mbox{\hyperlink{classrev_1_1_debug_manager_a50a6bcd3a6a8f12d38b792ca64a31a63}{create\+Draw\+Commands}} (\mbox{\hyperlink{classrev_1_1_scene}{Scene}} \&, \mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} \&renderer)
+\begin{DoxyCompactList}\small\item\em Creat deferred draw commands. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a478ee51f66d371ac5b3afa81b814cdb9}\label{classrev_1_1_debug_manager_a478ee51f66d371ac5b3afa81b814cdb9}} 
+void \mbox{\hyperlink{classrev_1_1_debug_manager_a478ee51f66d371ac5b3afa81b814cdb9}{step}} (double delta\+Sec)
+\begin{DoxyCompactList}\small\item\em Step forward for debug functionality. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a5fae9fc663600b490c2bb640c57d5019}\label{classrev_1_1_debug_manager_a5fae9fc663600b490c2bb640c57d5019}} 
+virtual void \mbox{\hyperlink{classrev_1_1_debug_manager_a5fae9fc663600b490c2bb640c57d5019}{post\+Construction}} () override final
+\begin{DoxyCompactList}\small\item\em Called after construction. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+{\em Add grid See\+: \href{https://gamedev.stackexchange.com/questions/141916/antialiasing-shader-grid-lines}{\texttt{ https\+://gamedev.\+stackexchange.\+com/questions/141916/antialiasing-\/shader-\/grid-\/lines}} }\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_debug_manager_a5962e13755e5a3b902f2d3f71e5948cb}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_debug_manager_a0f83cdbbd2ed91549fe2ae4fdf8809b6}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_abd7ad699f1793a6206f021d6ff37e3b8}\label{classrev_1_1_debug_manager_abd7ad699f1793a6206f021d6ff37e3b8}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_debug_manager_abd7ad699f1793a6206f021d6ff37e3b8}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_ae6583feb91afc3284960abde5e56ed1e}\label{classrev_1_1_debug_manager_ae6583feb91afc3284960abde5e56ed1e}} 
+virtual void \mbox{\hyperlink{classrev_1_1_debug_manager_ae6583feb91afc3284960abde5e56ed1e}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a351e137f6e256aa31c464ab3fbcf9c03}\label{classrev_1_1_debug_manager_a351e137f6e256aa31c464ab3fbcf9c03}} 
+void \mbox{\hyperlink{classrev_1_1_debug_manager_a351e137f6e256aa31c464ab3fbcf9c03}{process\+Raycasts}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_process}{Process}} raycasts made between each frame. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a136436a40e38089d22441222628097d9}\label{classrev_1_1_debug_manager_a136436a40e38089d22441222628097d9}} 
+void {\bfseries process\+Inputs} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a39d32e7fc30f3624d11b1d5651997d7e}\label{classrev_1_1_debug_manager_a39d32e7fc30f3624d11b1d5651997d7e}} 
+void {\bfseries initialize\+Camera} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_ac3ff56893a0e07981046a4c120a944f6}\label{classrev_1_1_debug_manager_ac3ff56893a0e07981046a4c120a944f6}} 
+void {\bfseries initialize\+Canvas} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a13ae5b8f59248f3388ac02726b698ae2}\label{classrev_1_1_debug_manager_a13ae5b8f59248f3388ac02726b698ae2}} 
+\mbox{\hyperlink{classrev_1_1_input_handler}{Input\+Handler}} \& {\bfseries input\+Handler} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a7ce1d617e9db0f885ab5ef6f4fe25ce2}\label{classrev_1_1_debug_manager_a7ce1d617e9db0f885ab5ef6f4fe25ce2}} 
+\mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} \& {\bfseries main\+Render\+Context} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_aea0df3670afc004b6a40a00d0e6fe8aa}\label{classrev_1_1_debug_manager_aea0df3670afc004b6a40a00d0e6fe8aa}} 
+float {\bfseries get\+Fps} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_aa2adc0e645b79d022278e3a4f7641ae3}\label{classrev_1_1_debug_manager_aa2adc0e645b79d022278e3a4f7641ae3}} 
+void {\bfseries draw\+Physics\+Shape} (const \mbox{\hyperlink{classrev_1_1_physics_shape_prefab}{Physics\+Shape\+Prefab}} \&shape, const \mbox{\hyperlink{classrev_1_1_transform_component}{Transform\+Component}} \&translation, bool is\+Enabled, std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_draw_command}{Draw\+Command}} $>$$>$ \&out\+Draw\+Commands)
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a0d529a08564ab00ba9c92dfbfbabe6e1}\label{classrev_1_1_debug_manager_a0d529a08564ab00ba9c92dfbfbabe6e1}} 
+void {\bfseries draw\+Physics\+Raycast\+Contact} (std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_draw_command}{Draw\+Command}} $>$$>$ \&out\+Draw\+Commands)
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a9053aab968cb57ef0dbe0224c92375df}\label{classrev_1_1_debug_manager_a9053aab968cb57ef0dbe0224c92375df}} 
+void {\bfseries draw\+Raycast\+Contact} (std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_draw_command}{Draw\+Command}} $>$$>$ \&out\+Draw\+Commands)
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_ae21628e2de41f296de1d54623d60844d}\label{classrev_1_1_debug_manager_ae21628e2de41f296de1d54623d60844d}} 
+void {\bfseries draw\+Animation} (\mbox{\hyperlink{classrev_1_1_bone_animation_component}{Bone\+Animation\+Component}} $\ast$comp, std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_draw_command}{Draw\+Command}} $>$$>$ \&out\+Draw\+Commands)
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a52f9449dbcdb42ff6c5548db877fdb40}\label{classrev_1_1_debug_manager_a52f9449dbcdb42ff6c5548db877fdb40}} 
+void {\bfseries draw\+Character\+Controller} (\mbox{\hyperlink{classrev_1_1_char_control_component}{Char\+Control\+Component}} $\ast$comp, std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_draw_command}{Draw\+Command}} $>$$>$ \&out\+Draw\+Commands)
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_ac27787c522360fa1497a4e3f3e125970}\label{classrev_1_1_debug_manager_ac27787c522360fa1497a4e3f3e125970}} 
+void {\bfseries draw\+Light} (\mbox{\hyperlink{classrev_1_1_light_component}{Light\+Component}} $\ast$light)
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a0d858eae3357ff9782c06d76527aa1af}\label{classrev_1_1_debug_manager_a0d858eae3357ff9782c06d76527aa1af}} 
+void {\bfseries create\+Draw\+Command} (\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} \&so, std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_draw_command}{Draw\+Command}} $>$$>$ \&out\+Draw\+Commands)
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a3bbdc0f4ee467459fe3fe85e03951597}\label{classrev_1_1_debug_manager_a3bbdc0f4ee467459fe3fe85e03951597}} 
+void {\bfseries create\+Draw\+Box\+Command} (const \mbox{\hyperlink{classrev_1_1_a_a_b_b}{A\+A\+BB}} \&box, std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_draw_command}{Draw\+Command}} $>$$>$ \&out\+Draw\+Commands)
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a676f9165c2c273d13e996d8d408bd2f3}\label{classrev_1_1_debug_manager_a676f9165c2c273d13e996d8d408bd2f3}} 
+void {\bfseries create\+Draw\+Box\+Command} (const \mbox{\hyperlink{classrev_1_1_a_a_b_b}{A\+A\+BB}} \&box, std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_draw_command}{Draw\+Command}} $>$$>$ \&out\+Draw\+Commands, float line\+Thickness, const \mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \&color)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a392268a27e041f6de47cda7a96bc2d1a}\label{classrev_1_1_debug_manager_a392268a27e041f6de47cda7a96bc2d1a}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_g_l_widget}{View\+::\+G\+L\+Widget}} $\ast$ \mbox{\hyperlink{classrev_1_1_debug_manager_a392268a27e041f6de47cda7a96bc2d1a}{m\+\_\+gl\+Widget}}
+\begin{DoxyCompactList}\small\item\em Pointer to the main GL widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_ab9fbd0e71075af201439d152612d8ec7}\label{classrev_1_1_debug_manager_ab9fbd0e71075af201439d152612d8ec7}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene}{Scene}} $>$ \mbox{\hyperlink{classrev_1_1_debug_manager_ab9fbd0e71075af201439d152612d8ec7}{m\+\_\+scene}}
+\begin{DoxyCompactList}\small\item\em Debug scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_af930d540f640b16fd9a14a3e3ebf668f}\label{classrev_1_1_debug_manager_af930d540f640b16fd9a14a3e3ebf668f}} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ $>$ \mbox{\hyperlink{classrev_1_1_debug_manager_af930d540f640b16fd9a14a3e3ebf668f}{m\+\_\+selected\+Scene\+Objects}}
+\begin{DoxyCompactList}\small\item\em Selected scene objects. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_af648bde8cba1c2e5416f08afe187d3cc}\label{classrev_1_1_debug_manager_af648bde8cba1c2e5416f08afe187d3cc}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \mbox{\hyperlink{classrev_1_1_debug_manager_af648bde8cba1c2e5416f08afe187d3cc}{m\+\_\+camera\+Object}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_camera}{Camera}} object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a9e8ffe048c05dbaf7e948e89f4a5b40d}\label{classrev_1_1_debug_manager_a9e8ffe048c05dbaf7e948e89f4a5b40d}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \mbox{\hyperlink{classrev_1_1_debug_manager_a9e8ffe048c05dbaf7e948e89f4a5b40d}{m\+\_\+canvas\+Object}}
+\begin{DoxyCompactList}\small\item\em Canvas object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a2342abe017d88a47891c435ef6d8a05d}\label{classrev_1_1_debug_manager_a2342abe017d88a47891c435ef6d8a05d}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_label}{Label}} $>$ \mbox{\hyperlink{classrev_1_1_debug_manager_a2342abe017d88a47891c435ef6d8a05d}{m\+\_\+fps\+Counter}}
+\begin{DoxyCompactList}\small\item\em Canvas \mbox{\hyperlink{classrev_1_1_renderable}{Renderable}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a1edb55deaffdbb6518183cc0d89602fb}\label{classrev_1_1_debug_manager_a1edb55deaffdbb6518183cc0d89602fb}} 
+\mbox{\hyperlink{classtsl_1_1robin__map}{tsl\+::robin\+\_\+map}}$<$ Q\+String, \mbox{\hyperlink{structrev_1_1_debug_manager_1_1_debug_renderable}{Debug\+Renderable}} $>$ \mbox{\hyperlink{classrev_1_1_debug_manager_a1edb55deaffdbb6518183cc0d89602fb}{m\+\_\+dynamic\+Renderables}}
+\begin{DoxyCompactList}\small\item\em All renderables to be drawn for a given scene object or component type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a48fdd2491807a10634812299b8658d06}\label{classrev_1_1_debug_manager_a48fdd2491807a10634812299b8658d06}} 
+\mbox{\hyperlink{classtsl_1_1robin__map}{tsl\+::robin\+\_\+map}}$<$ Q\+String, \mbox{\hyperlink{structrev_1_1_debug_manager_1_1_debug_renderable}{Debug\+Renderable}} $>$ \mbox{\hyperlink{classrev_1_1_debug_manager_a48fdd2491807a10634812299b8658d06}{m\+\_\+static\+Renderables}}
+\begin{DoxyCompactList}\small\item\em All default debug renderables to be drawn. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a2645160b7c2a8672fd50f5d641193aeb}\label{classrev_1_1_debug_manager_a2645160b7c2a8672fd50f5d641193aeb}} 
+std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_debug_manager_1_1_debug_renderable}{Debug\+Renderable}} $>$ \mbox{\hyperlink{classrev_1_1_debug_manager_a2645160b7c2a8672fd50f5d641193aeb}{m\+\_\+doodads}}
+\begin{DoxyCompactList}\small\item\em All user-\/defined renderables, with possible transience. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a5fbc828e4a7dc27c218d8927470305c1}\label{classrev_1_1_debug_manager_a5fbc828e4a7dc27c218d8927470305c1}} 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_world_ray}{World\+Ray}} $>$ \mbox{\hyperlink{classrev_1_1_debug_manager_a5fbc828e4a7dc27c218d8927470305c1}{m\+\_\+raycast}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_raycast}{Raycast}} for the current frame. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a6267793937809af79a71ecc57666bd4e}\label{classrev_1_1_debug_manager_a6267793937809af79a71ecc57666bd4e}} 
+std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_world_ray_hit}{World\+Ray\+Hit}} $>$ {\bfseries m\+\_\+hits}
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a4e55663a146410d1b74b7dcaa90f979b}\label{classrev_1_1_debug_manager_a4e55663a146410d1b74b7dcaa90f979b}} 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_physics_raycast}{Physics\+Raycast}} $>$ \mbox{\hyperlink{classrev_1_1_debug_manager_a4e55663a146410d1b74b7dcaa90f979b}{m\+\_\+physics\+Raycast}}
+\begin{DoxyCompactList}\small\item\em Phys\+X-\/based raycast for the current frame. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a212ed5b90f2235c5a4cff32909e91bab}\label{classrev_1_1_debug_manager_a212ed5b90f2235c5a4cff32909e91bab}} 
+\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$ \mbox{\hyperlink{classrev_1_1_debug_manager_a212ed5b90f2235c5a4cff32909e91bab}{m\+\_\+line\+Shader\+Program}}
+\begin{DoxyCompactList}\small\item\em Line shader program. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a211ad3ace217044a89928864be6ce9e5}\label{classrev_1_1_debug_manager_a211ad3ace217044a89928864be6ce9e5}} 
+\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$ {\bfseries m\+\_\+simple\+Shader\+Program}
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a1dd2954ee3079bc85bc01c30618c1215}\label{classrev_1_1_debug_manager_a1dd2954ee3079bc85bc01c30618c1215}} 
+\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$ {\bfseries m\+\_\+axis\+Shader\+Program}
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a61011974f74c72d65c3c2e2b4b4cf211}\label{classrev_1_1_debug_manager_a61011974f74c72d65c3c2e2b4b4cf211}} 
+\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$ {\bfseries m\+\_\+point\+Shader\+Program}
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_aec59c1ba0550d054ba3cf33b0d358b00}\label{classrev_1_1_debug_manager_aec59c1ba0550d054ba3cf33b0d358b00}} 
+\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$ {\bfseries m\+\_\+debug\+Skeleton\+Program}
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a1ffa9e17d3fed23942d120682b1a8a91}\label{classrev_1_1_debug_manager_a1ffa9e17d3fed23942d120682b1a8a91}} 
+\mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $\ast$ \mbox{\hyperlink{classrev_1_1_debug_manager_a1ffa9e17d3fed23942d120682b1a8a91}{m\+\_\+sphere\+Mesh}} = nullptr
+\begin{DoxyCompactList}\small\item\em Sphere mesh to avoid querying polygon cache every frame. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_abc597939c6e05f946bf35e1dd9a20d36}\label{classrev_1_1_debug_manager_abc597939c6e05f946bf35e1dd9a20d36}} 
+\mbox{\hyperlink{classrev_1_1_debug_draw_settings}{Debug\+Draw\+Settings}} \mbox{\hyperlink{classrev_1_1_debug_manager_abc597939c6e05f946bf35e1dd9a20d36}{m\+\_\+settings}}
+\begin{DoxyCompactList}\small\item\em Configuration settings. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a74ba20b8daee41371c5b16f66d635412}\label{classrev_1_1_debug_manager_a74ba20b8daee41371c5b16f66d635412}} 
+std\+::list$<$ float $>$ \mbox{\hyperlink{classrev_1_1_debug_manager_a74ba20b8daee41371c5b16f66d635412}{m\+\_\+frame\+Deltas}}
+\begin{DoxyCompactList}\small\item\em List of recent frame deltas in seconds. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a6a1f6843ff2981ebc64a97dffcf0d815}\label{classrev_1_1_debug_manager_a6a1f6843ff2981ebc64a97dffcf0d815}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structrev_1_1_sorting_layer}{Sorting\+Layer}} $>$ {\bfseries m\+\_\+debug\+Render\+Layer}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_debug_manager_a5962e13755e5a3b902f2d3f71e5948cb}\label{classrev_1_1_debug_manager_a5962e13755e5a3b902f2d3f71e5948cb}} 
+\index{rev::DebugManager@{rev::DebugManager}!className@{className}}
+\index{className@{className}!rev::DebugManager@{rev::DebugManager}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Debug\+Manager\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_service_a484d71757ea6e8780488602cb421a4a5}{rev\+::\+Service}}.
+
+\mbox{\Hypertarget{classrev_1_1_debug_manager_aa7e0385a031c216c48f6bf1d9ca2a9da}\label{classrev_1_1_debug_manager_aa7e0385a031c216c48f6bf1d9ca2a9da}} 
+\index{rev::DebugManager@{rev::DebugManager}!draw@{draw}}
+\index{draw@{draw}!rev::DebugManager@{rev::DebugManager}}
+\subsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void rev\+::\+Debug\+Manager\+::draw (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classrev_1_1_scene}{Scene}} $\ast$}]{scene }\end{DoxyParamCaption})}
+
+
+
+Routines to add debug objects (doodads) 
+
+Rendering routines \mbox{\Hypertarget{classrev_1_1_debug_manager_a0f83cdbbd2ed91549fe2ae4fdf8809b6}\label{classrev_1_1_debug_manager_a0f83cdbbd2ed91549fe2ae4fdf8809b6}} 
+\index{rev::DebugManager@{rev::DebugManager}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::DebugManager@{rev::DebugManager}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Debug\+Manager\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_service_a831f5bf8c53584ec830aaee38ea58e7b}{rev\+::\+Service}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/debugging/G\+Debug\+Manager.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/debugging/G\+Debug\+Manager.\+cpp\end{DoxyCompactItemize}

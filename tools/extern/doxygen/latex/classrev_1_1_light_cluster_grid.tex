@@ -1,0 +1,162 @@
+\hypertarget{classrev_1_1_light_cluster_grid}{}\section{rev\+::Light\+Cluster\+Grid Class Reference}
+\label{classrev_1_1_light_cluster_grid}\index{rev::LightClusterGrid@{rev::LightClusterGrid}}
+Inheritance diagram for rev\+::Light\+Cluster\+Grid\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_light_cluster_grid}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrev_1_1_light_cluster_grid_1_1_screen_to_view}{Screen\+To\+View}}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_cluster_grid_a0f21ae78e37ad733721fd94d2ed5a432}\label{classrev_1_1_light_cluster_grid_a0f21ae78e37ad733721fd94d2ed5a432}} 
+{\bfseries Light\+Cluster\+Grid} (\mbox{\hyperlink{classrev_1_1_scene_camera}{Scene\+Camera}} $\ast$camera)
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_cluster_grid_a5e396dc26b0aabe9859a95a4f18a1700}\label{classrev_1_1_light_cluster_grid_a5e396dc26b0aabe9859a95a4f18a1700}} 
+{\bfseries $\sim$\+Light\+Cluster\+Grid} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_cluster_grid_a5c035e784eebf9c0d6d79e74454328a2}\label{classrev_1_1_light_cluster_grid_a5c035e784eebf9c0d6d79e74454328a2}} 
+const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_shader_storage_buffer}{Shader\+Storage\+Buffer}} $>$ \& {\bfseries screen\+To\+View\+Buffer} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_cluster_grid_adb3503497147a5e90e48c81d2d0fdb45}\label{classrev_1_1_light_cluster_grid_adb3503497147a5e90e48c81d2d0fdb45}} 
+void \mbox{\hyperlink{classrev_1_1_light_cluster_grid_adb3503497147a5e90e48c81d2d0fdb45}{bind\+Buffer\+Points}} ()
+\begin{DoxyCompactList}\small\item\em Bind buffers to binding points. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_light_cluster_grid_a519404d87d92f6249732305b14246408}\label{classrev_1_1_light_cluster_grid_a519404d87d92f6249732305b14246408}} 
+void \mbox{\hyperlink{classrev_1_1_light_cluster_grid_a519404d87d92f6249732305b14246408}{initialize\+Buffers}} (\mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} \&rc)
+\begin{DoxyCompactList}\small\item\em Initialize buffers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_light_cluster_grid_ae5d5bc6e6a59712c708e6bb4484c5b16}\label{classrev_1_1_light_cluster_grid_ae5d5bc6e6a59712c708e6bb4484c5b16}} 
+void \mbox{\hyperlink{classrev_1_1_light_cluster_grid_ae5d5bc6e6a59712c708e6bb4484c5b16}{cull\+Lights}} (\mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} \&renderer)
+\begin{DoxyCompactList}\small\item\em Cull lights for a render pass. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_light_cluster_grid_a81c0d8888ab1fd5fd0ba4a0fd598f8a4}\label{classrev_1_1_light_cluster_grid_a81c0d8888ab1fd5fd0ba4a0fd598f8a4}} 
+void \mbox{\hyperlink{classrev_1_1_light_cluster_grid_a81c0d8888ab1fd5fd0ba4a0fd598f8a4}{on\+Resize}} ()
+\begin{DoxyCompactList}\small\item\em Callback for screen resizing. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_light_cluster_grid_ad2baee2b0a8c8bc0a64a9c2cc40a5c13}\label{classrev_1_1_light_cluster_grid_ad2baee2b0a8c8bc0a64a9c2cc40a5c13}} 
+void \mbox{\hyperlink{classrev_1_1_light_cluster_grid_ad2baee2b0a8c8bc0a64a9c2cc40a5c13}{update\+Screen\+To\+View}} (unsigned int widget\+Width, unsigned int widget\+Height)
+\begin{DoxyCompactList}\small\item\em Callback for resizing screen to view. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_light_cluster_grid_ac62336ae11737a1a3244b6a786a999fb}\label{classrev_1_1_light_cluster_grid_ac62336ae11737a1a3244b6a786a999fb}} 
+void \mbox{\hyperlink{classrev_1_1_light_cluster_grid_ac62336ae11737a1a3244b6a786a999fb}{reconstruct\+Grid}} ()
+\begin{DoxyCompactList}\small\item\em Dispatch compute shader to reconstruct light cluster grid. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_light_cluster_grid_a18f0cce1bf198428b694c056a56fdcad}\label{classrev_1_1_light_cluster_grid_a18f0cce1bf198428b694c056a56fdcad}} 
+\mbox{\hyperlink{structrev_1_1_light_cluster_grid_1_1_screen_to_view}{Screen\+To\+View}} \mbox{\hyperlink{classrev_1_1_light_cluster_grid_a18f0cce1bf198428b694c056a56fdcad}{get\+Screen\+To\+View}} () const
+\begin{DoxyCompactList}\small\item\em Get underlying screen-\/to-\/view struct. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_light_cluster_grid_af4fbd09016c00c4d3502331417531215}\label{classrev_1_1_light_cluster_grid_af4fbd09016c00c4d3502331417531215}} 
+void \mbox{\hyperlink{classrev_1_1_light_cluster_grid_af4fbd09016c00c4d3502331417531215}{get\+Grid\+Boxes}} (std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_a_a_b_b_data}{A\+A\+B\+B\+Data}} $>$ \&out\+Boxes) const
+\begin{DoxyCompactList}\small\item\em Get grid boxes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_light_cluster_grid_ae6997baead0a18e803d84251788bd5cf}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_light_cluster_grid_a834907de0608ed380466df59dc981ff1}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_cluster_grid_a9e732ee3228905528a8a204b8497005f}\label{classrev_1_1_light_cluster_grid_a9e732ee3228905528a8a204b8497005f}} 
+\mbox{\hyperlink{classrev_1_1_scene_camera}{Scene\+Camera}} $\ast$ {\bfseries m\+\_\+camera}
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_cluster_grid_a09dfe93c0e65b80798079d632d2a6a9a}\label{classrev_1_1_light_cluster_grid_a09dfe93c0e65b80798079d632d2a6a9a}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_shader_storage_buffer}{Shader\+Storage\+Buffer}} $>$ \mbox{\hyperlink{classrev_1_1_light_cluster_grid_a09dfe93c0e65b80798079d632d2a6a9a}{m\+\_\+light\+Cluster\+Buffer}} = nullptr
+\begin{DoxyCompactList}\small\item\em Buffer containing cluster A\+A\+B\+Bs. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_light_cluster_grid_a79c04bb4ab38496e33df0767b51128a1}\label{classrev_1_1_light_cluster_grid_a79c04bb4ab38496e33df0767b51128a1}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_shader_storage_buffer}{Shader\+Storage\+Buffer}} $>$ \mbox{\hyperlink{classrev_1_1_light_cluster_grid_a79c04bb4ab38496e33df0767b51128a1}{m\+\_\+screen\+To\+View\+Buffer}} = nullptr
+\begin{DoxyCompactList}\small\item\em Buffer containing screen-\/to-\/view information. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_light_cluster_grid_af14741b7330c07cc2d38b641b91a7277}\label{classrev_1_1_light_cluster_grid_af14741b7330c07cc2d38b641b91a7277}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_shader_storage_buffer}{Shader\+Storage\+Buffer}} $>$ \mbox{\hyperlink{classrev_1_1_light_cluster_grid_af14741b7330c07cc2d38b641b91a7277}{m\+\_\+active\+Light\+Index\+Buffer}} = nullptr
+\begin{DoxyCompactList}\small\item\em Buffer of indices to lights that are active and intersect with a cluster. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_shader_storage_buffer}{Shader\+Storage\+Buffer}} $>$ \mbox{\hyperlink{classrev_1_1_light_cluster_grid_ab21de76d7e31d09537004b8cc41e1edc}{m\+\_\+light\+Cluster\+Grid\+Buffer}} = nullptr
+\begin{DoxyCompactList}\small\item\em Buffer for the light cluster grid. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_light_cluster_grid_a2e8226cf639539d07b495244fbdd757e}\label{classrev_1_1_light_cluster_grid_a2e8226cf639539d07b495244fbdd757e}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_shader_storage_buffer}{Shader\+Storage\+Buffer}} $>$ \mbox{\hyperlink{classrev_1_1_light_cluster_grid_a2e8226cf639539d07b495244fbdd757e}{m\+\_\+global\+Light\+Count\+Buffer}} = nullptr
+\begin{DoxyCompactList}\small\item\em Buffer with a single unsigned int of the count of active lights. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_light_cluster_grid_a53752b3ab51cd10141e3f925d9998ae7}\label{classrev_1_1_light_cluster_grid_a53752b3ab51cd10141e3f925d9998ae7}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_shader_storage_buffer}{Shader\+Storage\+Buffer}} $>$ \mbox{\hyperlink{classrev_1_1_light_cluster_grid_a53752b3ab51cd10141e3f925d9998ae7}{m\+\_\+active\+Cluster\+Buffer}} = nullptr
+\begin{DoxyCompactList}\small\item\em Buffer of active clusters for more efficient light rendering. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_light_cluster_grid_a077e9b9cb2830176131d2e61d369ab05}\label{classrev_1_1_light_cluster_grid_a077e9b9cb2830176131d2e61d369ab05}} 
+\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$ \mbox{\hyperlink{classrev_1_1_light_cluster_grid_a077e9b9cb2830176131d2e61d369ab05}{m\+\_\+cluster\+Grid\+Shader\+Program}} = nullptr
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_shader}{Shader}} program for the cluster grid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Static members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_cluster_grid_abe87904907755b380009cbcf19c52d84}\label{classrev_1_1_light_cluster_grid_abe87904907755b380009cbcf19c52d84}} 
+const unsigned int \mbox{\hyperlink{classrev_1_1_light_cluster_grid_abe87904907755b380009cbcf19c52d84}{m\+\_\+grid\+SizeX}} = 16
+\begin{DoxyCompactList}\small\item\em Cluster grid dimensions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_light_cluster_grid_abf98d7fa69078fc7e71d0366fe3358f4}\label{classrev_1_1_light_cluster_grid_abf98d7fa69078fc7e71d0366fe3358f4}} 
+const unsigned int {\bfseries m\+\_\+grid\+SizeY} = 9
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_cluster_grid_aed4eb2989d5a5368f5e04a7099d8a5b9}\label{classrev_1_1_light_cluster_grid_aed4eb2989d5a5368f5e04a7099d8a5b9}} 
+const unsigned int {\bfseries m\+\_\+grid\+SizeZ} = 24
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_cluster_grid_ad7c22f68ac71178f38f20d4339dcd02d}\label{classrev_1_1_light_cluster_grid_ad7c22f68ac71178f38f20d4339dcd02d}} 
+const unsigned int \mbox{\hyperlink{classrev_1_1_light_cluster_grid_ad7c22f68ac71178f38f20d4339dcd02d}{m\+\_\+max\+Lights\+Per\+Tile}}
+\begin{DoxyCompactList}\small\item\em Max number of lights per tile. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_light_cluster_grid_ae6997baead0a18e803d84251788bd5cf}\label{classrev_1_1_light_cluster_grid_ae6997baead0a18e803d84251788bd5cf}} 
+\index{rev::LightClusterGrid@{rev::LightClusterGrid}!className@{className}}
+\index{className@{className}!rev::LightClusterGrid@{rev::LightClusterGrid}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Light\+Cluster\+Grid\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_light_cluster_grid_a834907de0608ed380466df59dc981ff1}\label{classrev_1_1_light_cluster_grid_a834907de0608ed380466df59dc981ff1}} 
+\index{rev::LightClusterGrid@{rev::LightClusterGrid}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::LightClusterGrid@{rev::LightClusterGrid}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Light\+Cluster\+Grid\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_light_cluster_grid_ab21de76d7e31d09537004b8cc41e1edc}\label{classrev_1_1_light_cluster_grid_ab21de76d7e31d09537004b8cc41e1edc}} 
+\index{rev::LightClusterGrid@{rev::LightClusterGrid}!m\_lightClusterGridBuffer@{m\_lightClusterGridBuffer}}
+\index{m\_lightClusterGridBuffer@{m\_lightClusterGridBuffer}!rev::LightClusterGrid@{rev::LightClusterGrid}}
+\subsubsection{\texorpdfstring{m\_lightClusterGridBuffer}{m\_lightClusterGridBuffer}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classrev_1_1_shader_storage_buffer}{Shader\+Storage\+Buffer}}$>$ rev\+::\+Light\+Cluster\+Grid\+::m\+\_\+light\+Cluster\+Grid\+Buffer = nullptr\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Buffer for the light cluster grid. 
+
+Every tile takes two unsigned ints one to represent the number of lights in that grid Another to represent the offset to the light index list from where to begin reading light indexes from This implementation is straight up from Olsson paper 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/lighting/G\+Light\+Cluster\+Grid.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/lighting/G\+Light\+Cluster\+Grid.\+cpp\end{DoxyCompactItemize}

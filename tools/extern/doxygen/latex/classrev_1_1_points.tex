@@ -1,0 +1,139 @@
+\hypertarget{classrev_1_1_points}{}\section{rev\+::Points Class Reference}
+\label{classrev_1_1_points}\index{rev::Points@{rev::Points}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing set of point geometry.  
+
+
+
+
+{\ttfamily \#include $<$G\+Points.\+h$>$}
+
+Inheritance diagram for rev\+::Points\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classrev_1_1_points}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_points_a4846f3c99fa459ba9f2074e4f0960ee1}\label{classrev_1_1_points_a4846f3c99fa459ba9f2074e4f0960ee1}} 
+{\bfseries Points} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_points_a1daa812b67112b227ce7c0fe970a0be8}\label{classrev_1_1_points_a1daa812b67112b227ce7c0fe970a0be8}} 
+{\bfseries Points} (\mbox{\hyperlink{classrev_1_1_resource_cache}{Resource\+Cache}} \&cache, const \mbox{\hyperlink{classrev_1_1_skeleton}{Skeleton}} \&skeleton, \mbox{\hyperlink{classrev_1_1_flags}{Flags}}$<$ Resource\+Behavior\+Flag $>$ flags)
+\item 
+\mbox{\Hypertarget{classrev_1_1_points_af52e808ef122e63eb5453fb05464570e}\label{classrev_1_1_points_af52e808ef122e63eb5453fb05464570e}} 
+{\bfseries Points} (\mbox{\hyperlink{classrev_1_1_resource_cache}{Resource\+Cache}} \&cache, size\+\_\+t \mbox{\hyperlink{classrev_1_1_points_a4512153760c1a4f2d5b8b7dcaddec6de}{num\+Points}}, \mbox{\hyperlink{classrev_1_1_flags}{Flags}}$<$ Resource\+Behavior\+Flag $>$ flags)
+\item 
+\mbox{\Hypertarget{classrev_1_1_points_a7970bc35482da5b6cbbf9ae16675d0c3}\label{classrev_1_1_points_a7970bc35482da5b6cbbf9ae16675d0c3}} 
+{\bfseries Points} (const \mbox{\hyperlink{classrev_1_1_lines}{Lines}} \&lines)
+\item 
+\mbox{\Hypertarget{classrev_1_1_points_a192f203e2318478ed0d7dfc2c4cb5341}\label{classrev_1_1_points_a192f203e2318478ed0d7dfc2c4cb5341}} 
+virtual {\bfseries $\sim$\+Points} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_points_a1e14f7db4c7dea5c332575c0284e07e6}\label{classrev_1_1_points_a1e14f7db4c7dea5c332575c0284e07e6}} 
+float \mbox{\hyperlink{classrev_1_1_points_a1e14f7db4c7dea5c332575c0284e07e6}{point\+Size}} () const
+\begin{DoxyCompactList}\small\item\em Normalized screen-\/space point size. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_points_ad94fb3d768e290644051f8c69a048682}\label{classrev_1_1_points_ad94fb3d768e290644051f8c69a048682}} 
+void {\bfseries set\+Point\+Size} (float size)
+\item 
+\mbox{\Hypertarget{classrev_1_1_points_a18542dc462e870960b8319ea694b5666}\label{classrev_1_1_points_a18542dc462e870960b8319ea694b5666}} 
+const \mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \& {\bfseries point\+Color} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_points_a5e992ad23aa58455cf19d1893558fef5}\label{classrev_1_1_points_a5e992ad23aa58455cf19d1893558fef5}} 
+void {\bfseries set\+Point\+Color} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \&color)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classrev_1_1_points_a598b47126cab4485664cb83f07ba2651}{set\+Uniforms}} (\mbox{\hyperlink{classrev_1_1_draw_command}{Draw\+Command}} \&draw\+Command) const override
+\begin{DoxyCompactList}\small\item\em Set uniforms in the given draw command from this renderable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_points_a4512153760c1a4f2d5b8b7dcaddec6de}\label{classrev_1_1_points_a4512153760c1a4f2d5b8b7dcaddec6de}} 
+size\+\_\+t \mbox{\hyperlink{classrev_1_1_points_a4512153760c1a4f2d5b8b7dcaddec6de}{num\+Points}} () const
+\begin{DoxyCompactList}\small\item\em The number of points. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_points_a3eee4f7acc81c6fe9ee17230945d2f60}\label{classrev_1_1_points_a3eee4f7acc81c6fe9ee17230945d2f60}} 
+void \mbox{\hyperlink{classrev_1_1_points_a3eee4f7acc81c6fe9ee17230945d2f60}{load\+Vertex\+Array\+Data}} (\mbox{\hyperlink{classrev_1_1_resource_cache}{Resource\+Cache}} \&cache, const \mbox{\hyperlink{classrev_1_1_vertex_array_data}{Vertex\+Array\+Data}} \&data, \mbox{\hyperlink{classrev_1_1_flags}{Flags}}$<$ Resource\+Behavior\+Flag $>$ flags)
+\begin{DoxyCompactList}\small\item\em Load an existing vao as a \mbox{\hyperlink{classrev_1_1_points}{Points}} object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_points_a9053da710d5444f2f8b467ffc1c4ecfd}\label{classrev_1_1_points_a9053da710d5444f2f8b467ffc1c4ecfd}} 
+virtual void \mbox{\hyperlink{classrev_1_1_points_a9053da710d5444f2f8b467ffc1c4ecfd}{reload}} () override
+\begin{DoxyCompactList}\small\item\em Update any data needed for rendering, e.\+g. vertex data, render settings, etc. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_points_a3fc3d3cb063d8570058c7a47824ac1bb}\label{classrev_1_1_points_a3fc3d3cb063d8570058c7a47824ac1bb}} 
+virtual size\+\_\+t \mbox{\hyperlink{classrev_1_1_points_a3fc3d3cb063d8570058c7a47824ac1bb}{get\+Sort\+ID}} () override
+\begin{DoxyCompactList}\small\item\em Get ID to sort renderable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_points_a50ec28e38696f85b533cfc19cbb40bf5}\label{classrev_1_1_points_a50ec28e38696f85b533cfc19cbb40bf5}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_points_a50ec28e38696f85b533cfc19cbb40bf5}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_points_a5ad626313b767908705d18476a22ead1}\label{classrev_1_1_points_a5ad626313b767908705d18476a22ead1}} 
+virtual void \mbox{\hyperlink{classrev_1_1_points_a5ad626313b767908705d18476a22ead1}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_points_a512380981b62e1fc37551c59f34fdae8}\label{classrev_1_1_points_a512380981b62e1fc37551c59f34fdae8}} 
+virtual void \mbox{\hyperlink{classrev_1_1_points_a512380981b62e1fc37551c59f34fdae8}{bind\+Uniforms}} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program) override
+\begin{DoxyCompactList}\small\item\em Set uniforms for the \mbox{\hyperlink{classrev_1_1_points}{Points}} in the given shader. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_points_a7bdebd8d2ed8f2a89374fa4e973501f2}\label{classrev_1_1_points_a7bdebd8d2ed8f2a89374fa4e973501f2}} 
+virtual void {\bfseries release\+Uniforms} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_points_ac057f2e06f9ce2108fdb542c31010c58}\label{classrev_1_1_points_ac057f2e06f9ce2108fdb542c31010c58}} 
+virtual void \mbox{\hyperlink{classrev_1_1_points_ac057f2e06f9ce2108fdb542c31010c58}{draw\+Geometry}} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program, \mbox{\hyperlink{classrev_1_1_render_settings}{Render\+Settings}} $\ast$settings=nullptr) override
+\begin{DoxyCompactList}\small\item\em Draw geometry associated with this \mbox{\hyperlink{classrev_1_1_points}{Points}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_points_a4e603805a84a817b26e5d50794260e93}\label{classrev_1_1_points_a4e603805a84a817b26e5d50794260e93}} 
+void \mbox{\hyperlink{classrev_1_1_points_a4e603805a84a817b26e5d50794260e93}{add\+Point}} (\mbox{\hyperlink{classrev_1_1_vertex_array_data}{Vertex\+Array\+Data}} \&vertex\+Data, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&new\+Point)
+\begin{DoxyCompactList}\small\item\em Add point. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_points_ade2a8324f5776ee1076a08690d5d03ef}\label{classrev_1_1_points_ade2a8324f5776ee1076a08690d5d03ef}} 
+float \mbox{\hyperlink{classrev_1_1_points_ade2a8324f5776ee1076a08690d5d03ef}{m\+\_\+point\+Size}}
+\begin{DoxyCompactList}\small\item\em Point size. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_points_aee9aa325ddb46770d42449bb934d0d2b}\label{classrev_1_1_points_aee9aa325ddb46770d42449bb934d0d2b}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \mbox{\hyperlink{classrev_1_1_points_aee9aa325ddb46770d42449bb934d0d2b}{m\+\_\+point\+Color}}
+\begin{DoxyCompactList}\small\item\em Point color. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing set of point geometry. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_points_a598b47126cab4485664cb83f07ba2651}\label{classrev_1_1_points_a598b47126cab4485664cb83f07ba2651}} 
+\index{rev::Points@{rev::Points}!setUniforms@{setUniforms}}
+\index{setUniforms@{setUniforms}!rev::Points@{rev::Points}}
+\subsubsection{\texorpdfstring{setUniforms()}{setUniforms()}}
+{\footnotesize\ttfamily void rev\+::\+Points\+::set\+Uniforms (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classrev_1_1_draw_command}{Draw\+Command}} \&}]{draw\+Command }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Set uniforms in the given draw command from this renderable. 
+
+\begin{DoxyNote}{Note}
+This is used by the \mbox{\hyperlink{classrev_1_1_lines}{Lines}} and \mbox{\hyperlink{classrev_1_1_points}{Points}} renderables for debug rendering 
+\end{DoxyNote}
+
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_renderable_a4418624ac4442899026f95c20e065467}{rev\+::\+Renderable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/geometry/G\+Points.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/geometry/G\+Points.\+cpp\end{DoxyCompactItemize}

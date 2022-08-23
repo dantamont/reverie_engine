@@ -1,0 +1,154 @@
+\hypertarget{classrev_1_1_input_handler}{}\section{rev\+::Input\+Handler Class Reference}
+\label{classrev_1_1_input_handler}\index{rev::InputHandler@{rev::InputHandler}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} that handles polling-\/style inputs.  
+
+
+
+
+{\ttfamily \#include $<$G\+Input\+Handler.\+h$>$}
+
+Inheritance diagram for rev\+::Input\+Handler\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_input_handler}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_input_handler_a16810e5e27c6a88b14f2d4a65b17ea4f}\label{classrev_1_1_input_handler_a16810e5e27c6a88b14f2d4a65b17ea4f}} 
+{\bfseries Input\+Handler} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_input_handler_aaa1ce17789fae0036513649432d5a202}\label{classrev_1_1_input_handler_aaa1ce17789fae0036513649432d5a202}} 
+{\bfseries Input\+Handler} (\mbox{\hyperlink{classrev_1_1_view_1_1_g_l_widget}{View\+::\+G\+L\+Widget}} $\ast$widget)
+\item 
+\mbox{\Hypertarget{classrev_1_1_input_handler_a6b765dd5c270b5a5899b7c2570833bc7}\label{classrev_1_1_input_handler_a6b765dd5c270b5a5899b7c2570833bc7}} 
+{\bfseries $\sim$\+Input\+Handler} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Property}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_input_handler_a60d1ac8c81263c03bdd2983d7d69a7bc}\label{classrev_1_1_input_handler_a60d1ac8c81263c03bdd2983d7d69a7bc}} 
+\mbox{\hyperlink{classrev_1_1_key_handler}{Key\+Handler}} \& \mbox{\hyperlink{classrev_1_1_input_handler_a60d1ac8c81263c03bdd2983d7d69a7bc}{key\+Handler}} ()
+\begin{DoxyCompactList}\small\item\em Handle inputs from keyboard. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_input_handler_a745420012e8cb9d93352ef51cac594a2}\label{classrev_1_1_input_handler_a745420012e8cb9d93352ef51cac594a2}} 
+const \mbox{\hyperlink{classrev_1_1_key_handler}{Key\+Handler}} \& {\bfseries key\+Handler} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_input_handler_af8ea40be21d8ef691c10af5052ca17e5}\label{classrev_1_1_input_handler_af8ea40be21d8ef691c10af5052ca17e5}} 
+\mbox{\hyperlink{classrev_1_1_mouse_handler}{Mouse\+Handler}} \& \mbox{\hyperlink{classrev_1_1_input_handler_af8ea40be21d8ef691c10af5052ca17e5}{mouse\+Handler}} ()
+\begin{DoxyCompactList}\small\item\em Handle inputs from mouse. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_input_handler_ad18f0be51b19649fb45b6d552a067212}\label{classrev_1_1_input_handler_ad18f0be51b19649fb45b6d552a067212}} 
+const \mbox{\hyperlink{classrev_1_1_mouse_handler}{Mouse\+Handler}} \& {\bfseries mouse\+Handler} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_input_handler_aab80a8ccbdba8e58c62b325e78bebde9}\label{classrev_1_1_input_handler_aab80a8ccbdba8e58c62b325e78bebde9}} 
+void \mbox{\hyperlink{classrev_1_1_input_handler_aab80a8ccbdba8e58c62b325e78bebde9}{update}} (double delta\+Sec)
+\begin{DoxyCompactList}\small\item\em Cache all inputs since the last frame. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classrev_1_1_input_handler_a0bff1861df9e2f54f8d22ef3b3344009}{handle\+Event}} (Q\+Input\+Event $\ast$input\+Event)
+\begin{DoxyCompactList}\small\item\em Handle a Qt event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ rev\+::Object overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_input_handler_a2837ab4ed7b6ce53f6aea9faa669021f}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_input_handler_a99cee0c8e7aff8670751090873ad494b}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+{\em Callback for input listener thread }\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_input_handler_afd18a482da80957ec4931b8aeb6ea8aa}\label{classrev_1_1_input_handler_afd18a482da80957ec4931b8aeb6ea8aa}} 
+size\+\_\+t \mbox{\hyperlink{classrev_1_1_input_handler_afd18a482da80957ec4931b8aeb6ea8aa}{m\+\_\+hold\+Time}}
+\begin{DoxyCompactList}\small\item\em Time in ms for hold. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_input_handler_a70d1d4d6fbb97a16c5509d6e078258fa}\label{classrev_1_1_input_handler_a70d1d4d6fbb97a16c5509d6e078258fa}} 
+size\+\_\+t \mbox{\hyperlink{classrev_1_1_input_handler_a70d1d4d6fbb97a16c5509d6e078258fa}{m\+\_\+repeat\+Click\+Time}}
+\begin{DoxyCompactList}\small\item\em Time in ms for multi-\/click. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_input_handler_ad9f51e32bce0daa48f7fe3b0a1bc0848}\label{classrev_1_1_input_handler_ad9f51e32bce0daa48f7fe3b0a1bc0848}} 
+Q\+Elapsed\+Timer \mbox{\hyperlink{classrev_1_1_input_handler_ad9f51e32bce0daa48f7fe3b0a1bc0848}{m\+\_\+timer}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_timer}{Timer}} for input events. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_input_handler_a000803a41ced7ae61b39a979a90d8aec}\label{classrev_1_1_input_handler_a000803a41ced7ae61b39a979a90d8aec}} 
+\mbox{\hyperlink{classrev_1_1_key_handler}{Key\+Handler}} \mbox{\hyperlink{classrev_1_1_input_handler_a000803a41ced7ae61b39a979a90d8aec}{m\+\_\+key\+Handler}}
+\begin{DoxyCompactList}\small\item\em Handle inputs from keyboard. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_input_handler_a357a1640b6f9ef66fce524e63ae9e9e8}\label{classrev_1_1_input_handler_a357a1640b6f9ef66fce524e63ae9e9e8}} 
+\mbox{\hyperlink{classrev_1_1_mouse_handler}{Mouse\+Handler}} \mbox{\hyperlink{classrev_1_1_input_handler_a357a1640b6f9ef66fce524e63ae9e9e8}{m\+\_\+mouse\+Handler}}
+\begin{DoxyCompactList}\small\item\em Handle inputs from mouse. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_input_handler_a69547adc6e73a327bbbfd5d21e03a485}\label{classrev_1_1_input_handler_a69547adc6e73a327bbbfd5d21e03a485}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_g_l_widget}{View\+::\+G\+L\+Widget}} $\ast$ \mbox{\hyperlink{classrev_1_1_input_handler_a69547adc6e73a327bbbfd5d21e03a485}{m\+\_\+widget}}
+\begin{DoxyCompactList}\small\item\em Pointer to the core engine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_input_handler_a863e1587c956285777df79c7ae02f30f}\label{classrev_1_1_input_handler_a863e1587c956285777df79c7ae02f30f}} 
+class {\bfseries Mouse\+Handler}
+\item 
+\mbox{\Hypertarget{classrev_1_1_input_handler_a7ca490a21f71640112b19cba41fbb8db}\label{classrev_1_1_input_handler_a7ca490a21f71640112b19cba41fbb8db}} 
+class {\bfseries Key\+Handler}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} that handles polling-\/style inputs. 
+
+\begin{DoxyNote}{Note}
+See\+: \href{https://gamedev.stackexchange.com/questions/12146/polling-vs-event-driven-input}{\texttt{ https\+://gamedev.\+stackexchange.\+com/questions/12146/polling-\/vs-\/event-\/driven-\/input}} 
+\end{DoxyNote}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_input_handler_a2837ab4ed7b6ce53f6aea9faa669021f}\label{classrev_1_1_input_handler_a2837ab4ed7b6ce53f6aea9faa669021f}} 
+\index{rev::InputHandler@{rev::InputHandler}!className@{className}}
+\index{className@{className}!rev::InputHandler@{rev::InputHandler}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Input\+Handler\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_input_handler_a0bff1861df9e2f54f8d22ef3b3344009}\label{classrev_1_1_input_handler_a0bff1861df9e2f54f8d22ef3b3344009}} 
+\index{rev::InputHandler@{rev::InputHandler}!handleEvent@{handleEvent}}
+\index{handleEvent@{handleEvent}!rev::InputHandler@{rev::InputHandler}}
+\subsubsection{\texorpdfstring{handleEvent()}{handleEvent()}}
+{\footnotesize\ttfamily bool rev\+::\+Input\+Handler\+::handle\+Event (\begin{DoxyParamCaption}\item[{Q\+Input\+Event $\ast$}]{input\+Event }\end{DoxyParamCaption})}
+
+
+
+Handle a Qt event. 
+
+Returns true if handling an input event \mbox{\Hypertarget{classrev_1_1_input_handler_a99cee0c8e7aff8670751090873ad494b}\label{classrev_1_1_input_handler_a99cee0c8e7aff8670751090873ad494b}} 
+\index{rev::InputHandler@{rev::InputHandler}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::InputHandler@{rev::InputHandler}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Input\+Handler\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/input/G\+Input\+Handler.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/input/G\+Input\+Handler.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,153 @@
+\hypertarget{structrev_1_1_protocol_field_info}{}\section{rev\+::Protocol\+Field\+Info$<$ T $>$ Struct Template Reference}
+\label{structrev_1_1_protocol_field_info}\index{rev::ProtocolFieldInfo$<$ T $>$@{rev::ProtocolFieldInfo$<$ T $>$}}
+
+
+\mbox{\hyperlink{classrev_1_1_protocol}{Protocol}} for a field, representing the format of a set of data to be packetized.  
+
+
+
+
+{\ttfamily \#include $<$G\+Protocol\+Field.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_protocol_field_info_a8c2a6ebd05c54ababe4db4bea3469fdf}\label{structrev_1_1_protocol_field_info_a8c2a6ebd05c54ababe4db4bea3469fdf}} 
+\mbox{\hyperlink{structrev_1_1_protocol_field_info_a8c2a6ebd05c54ababe4db4bea3469fdf}{Protocol\+Field\+Info}} (const \mbox{\hyperlink{structrev_1_1_protocol_field_info}{Protocol\+Field\+Info}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy construction. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_protocol_field_info_a51fff7132b4a12bd36cb7b6d3837f37a}\label{structrev_1_1_protocol_field_info_a51fff7132b4a12bd36cb7b6d3837f37a}} 
+\mbox{\hyperlink{structrev_1_1_protocol_field_info_a51fff7132b4a12bd36cb7b6d3837f37a}{$\sim$\+Protocol\+Field\+Info}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Arrays}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_protocol_field_info_aa01ada16e78572972091121248743d85}\label{structrev_1_1_protocol_field_info_aa01ada16e78572972091121248743d85}} 
+{\footnotesize template$<$typename U  = T$>$ }\\\mbox{\hyperlink{structrev_1_1_protocol_field_info_aa01ada16e78572972091121248743d85}{Protocol\+Field\+Info}} (U \&field, typename std\+::enable\+\_\+if\+\_\+t$<$ std\+::is\+\_\+array$<$ U $>$\+::value $>$ $\ast$=nullptr)
+\begin{DoxyCompactList}\small\item\em Specialize for an array of bounded size. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_protocol_field_info_aab872f8de28c5ccad032a87b31ed96de}\label{structrev_1_1_protocol_field_info_aab872f8de28c5ccad032a87b31ed96de}} 
+{\footnotesize template$<$typename U  = T$>$ }\\\mbox{\hyperlink{structrev_1_1_protocol_field_info_aab872f8de28c5ccad032a87b31ed96de}{Protocol\+Field\+Info}} (U \&field, uint64 count, typename std\+::enable\+\_\+if\+\_\+t$<$ std\+::is\+\_\+pointer$<$ U $>$\+::value $>$ $\ast$=nullptr)
+\begin{DoxyCompactList}\small\item\em Specialize for a pointer array. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Vectors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_protocol_field_info_a4d5b3c8b49f2c47fbc1d6178f23ea507}\label{structrev_1_1_protocol_field_info_a4d5b3c8b49f2c47fbc1d6178f23ea507}} 
+{\footnotesize template$<$typename U  = T$>$ }\\\mbox{\hyperlink{structrev_1_1_protocol_field_info_a4d5b3c8b49f2c47fbc1d6178f23ea507}{Protocol\+Field\+Info}} (U \&field, typename std\+::enable\+\_\+if\+\_\+t$<$ \mbox{\hyperlink{structrev_1_1is__vector}{is\+\_\+vector}}$<$ U $>$\+::value $>$ $\ast$=nullptr)
+\begin{DoxyCompactList}\small\item\em Specialize for a vector with no count specified. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_protocol_field_info_af4d3fb4f0c83ddfcd7e4c6c9b1199c36}\label{structrev_1_1_protocol_field_info_af4d3fb4f0c83ddfcd7e4c6c9b1199c36}} 
+{\footnotesize template$<$typename U  = T$>$ }\\\mbox{\hyperlink{structrev_1_1_protocol_field_info_af4d3fb4f0c83ddfcd7e4c6c9b1199c36}{Protocol\+Field\+Info}} (U \&field, uint64 count, typename std\+::enable\+\_\+if\+\_\+t$<$ \mbox{\hyperlink{structrev_1_1is__vector}{is\+\_\+vector}}$<$ U $>$\+::value $>$ $\ast$=nullptr)
+\begin{DoxyCompactList}\small\item\em Specialize for a vector with a count specified. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Shared pointers}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_protocol_field_info_a65b4a990b270207f3af1e3cf8f85980e}\label{structrev_1_1_protocol_field_info_a65b4a990b270207f3af1e3cf8f85980e}} 
+{\footnotesize template$<$typename U  = T$>$ }\\\mbox{\hyperlink{structrev_1_1_protocol_field_info_a65b4a990b270207f3af1e3cf8f85980e}{Protocol\+Field\+Info}} (U \&field, typename std\+::enable\+\_\+if\+\_\+t$<$ \mbox{\hyperlink{structrev_1_1is__shared__ptr}{is\+\_\+shared\+\_\+ptr}}$<$ U $>$\+::value $>$ $\ast$=nullptr)
+\begin{DoxyCompactList}\small\item\em Specialize for a shared pointer as an argument. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Innermost value construction}\par
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename U  = T$>$ }\\\mbox{\hyperlink{structrev_1_1_protocol_field_info_aca2badda599387af7b120d02573f6b12}{Protocol\+Field\+Info}} (U \&field, uint64 count, typename std\+::enable\+\_\+if\+\_\+t$<$ is\+\_\+value\+\_\+type$<$ U $>$\+::value $>$ $\ast$=nullptr)
+\begin{DoxyCompactList}\small\item\em Specialize for construction via the innermost value. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename U  = T$>$ }\\\mbox{\hyperlink{structrev_1_1_protocol_field_info_ab793db9a16106b0f9dda3897d2205035}{Protocol\+Field\+Info}} (U field, uint64 count, bool dummy\+Ptr, typename std\+::enable\+\_\+if\+\_\+t$<$ std\+::is\+\_\+pointer\+\_\+v$<$ U $>$$>$ $\ast$=nullptr)
+\begin{DoxyCompactList}\small\item\em Specialize for innermost value as a temporary pointer. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename U  = T$>$ }\\\mbox{\hyperlink{structrev_1_1_protocol_field_info_a62761a3ce30a3596139c1bcffdc8d3c5}{Protocol\+Field\+Info}} (U \&field, typename std\+::enable\+\_\+if\+\_\+t$<$ is\+\_\+value\+\_\+type$<$ U $>$\+::value \&\&!std\+::is\+\_\+same$<$ U, \mbox{\hyperlink{structrev_1_1_protocol_field_info}{Protocol\+Field\+Info}} $>$\+::value $>$ $\ast$=nullptr)
+\begin{DoxyCompactList}\small\item\em Countless value construction. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Operators}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_protocol_field_info_a5ee8477d76b8f28c5b0c6745b4ea1369}\label{structrev_1_1_protocol_field_info_a5ee8477d76b8f28c5b0c6745b4ea1369}} 
+\mbox{\hyperlink{structrev_1_1_protocol_field_info}{Protocol\+Field\+Info}}$<$ T $>$ \& {\bfseries operator=} (const \mbox{\hyperlink{structrev_1_1_protocol_field_info}{Protocol\+Field\+Info}}$<$ T $>$ \&info)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static const size\+\_\+t \& \mbox{\hyperlink{structrev_1_1_protocol_field_info_a48e96e4c04c0a242bd87c5ef46f0b2b5}{Type\+Size}} ()
+\begin{DoxyCompactList}\small\item\em Return type size. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_protocol_field_info_ae1a334704618e6a2082afdea58600c3e}\label{structrev_1_1_protocol_field_info_ae1a334704618e6a2082afdea58600c3e}} 
+innermost\+\_\+pointer\+\_\+type$<$ T $>$ \mbox{\hyperlink{structrev_1_1_protocol_field_info_ae1a334704618e6a2082afdea58600c3e}{m\+\_\+field\+Data}}
+\begin{DoxyCompactList}\small\item\em A clever way of storing the innermost value\textquotesingle{}s pointer found via recursive conditional construction. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_protocol_field_info_afc64e3a35c5a0ca9076c9b5a9845c78b}\label{structrev_1_1_protocol_field_info_afc64e3a35c5a0ca9076c9b5a9845c78b}} 
+uint64 {\bfseries m\+\_\+count}
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_protocol_field_info_aabec183bc402f17c7f9c0375a5e331a6}\label{structrev_1_1_protocol_field_info_aabec183bc402f17c7f9c0375a5e331a6}} 
+static const size\+\_\+t {\bfseries s\+\_\+type\+Size} = sizeof(decltype($\ast$std\+::declval$<$innermost\+\_\+pointer\+\_\+type$<$T$>$$>$()))
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+struct rev\+::\+Protocol\+Field\+Info$<$ T $>$}
+
+\mbox{\hyperlink{classrev_1_1_protocol}{Protocol}} for a field, representing the format of a set of data to be packetized. 
+
+\begin{DoxyNote}{Note}
+Enable if can be given as a template argument, function argument, or as in this case, the return type. The compiled return type is specified in the second argument of enable\+\_\+if 
+\end{DoxyNote}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structrev_1_1_protocol_field_info_aca2badda599387af7b120d02573f6b12}\label{structrev_1_1_protocol_field_info_aca2badda599387af7b120d02573f6b12}} 
+\index{rev::ProtocolFieldInfo$<$ T $>$@{rev::ProtocolFieldInfo$<$ T $>$}!ProtocolFieldInfo@{ProtocolFieldInfo}}
+\index{ProtocolFieldInfo@{ProtocolFieldInfo}!rev::ProtocolFieldInfo$<$ T $>$@{rev::ProtocolFieldInfo$<$ T $>$}}
+\subsubsection{\texorpdfstring{ProtocolFieldInfo()}{ProtocolFieldInfo()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+template$<$typename U  = T$>$ \\
+\mbox{\hyperlink{structrev_1_1_protocol_field_info}{rev\+::\+Protocol\+Field\+Info}}$<$ T $>$\+::\mbox{\hyperlink{structrev_1_1_protocol_field_info}{Protocol\+Field\+Info}} (\begin{DoxyParamCaption}\item[{U \&}]{field,  }\item[{uint64}]{count,  }\item[{typename std\+::enable\+\_\+if\+\_\+t$<$ is\+\_\+value\+\_\+type$<$ U $>$\+::value $>$ $\ast$}]{ = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Specialize for construction via the innermost value. 
+
+Checks that argument is not a vector, array, pointer, or shared pointer \mbox{\Hypertarget{structrev_1_1_protocol_field_info_ab793db9a16106b0f9dda3897d2205035}\label{structrev_1_1_protocol_field_info_ab793db9a16106b0f9dda3897d2205035}} 
+\index{rev::ProtocolFieldInfo$<$ T $>$@{rev::ProtocolFieldInfo$<$ T $>$}!ProtocolFieldInfo@{ProtocolFieldInfo}}
+\index{ProtocolFieldInfo@{ProtocolFieldInfo}!rev::ProtocolFieldInfo$<$ T $>$@{rev::ProtocolFieldInfo$<$ T $>$}}
+\subsubsection{\texorpdfstring{ProtocolFieldInfo()}{ProtocolFieldInfo()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+template$<$typename U  = T$>$ \\
+\mbox{\hyperlink{structrev_1_1_protocol_field_info}{rev\+::\+Protocol\+Field\+Info}}$<$ T $>$\+::\mbox{\hyperlink{structrev_1_1_protocol_field_info}{Protocol\+Field\+Info}} (\begin{DoxyParamCaption}\item[{U}]{field,  }\item[{uint64}]{count,  }\item[{bool}]{dummy\+Ptr,  }\item[{typename std\+::enable\+\_\+if\+\_\+t$<$ std\+::is\+\_\+pointer\+\_\+v$<$ U $>$$>$ $\ast$}]{ = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Specialize for innermost value as a temporary pointer. 
+
+Checks that argument is not a vector, array, pointer, or shared pointer \mbox{\Hypertarget{structrev_1_1_protocol_field_info_a62761a3ce30a3596139c1bcffdc8d3c5}\label{structrev_1_1_protocol_field_info_a62761a3ce30a3596139c1bcffdc8d3c5}} 
+\index{rev::ProtocolFieldInfo$<$ T $>$@{rev::ProtocolFieldInfo$<$ T $>$}!ProtocolFieldInfo@{ProtocolFieldInfo}}
+\index{ProtocolFieldInfo@{ProtocolFieldInfo}!rev::ProtocolFieldInfo$<$ T $>$@{rev::ProtocolFieldInfo$<$ T $>$}}
+\subsubsection{\texorpdfstring{ProtocolFieldInfo()}{ProtocolFieldInfo()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+template$<$typename U  = T$>$ \\
+\mbox{\hyperlink{structrev_1_1_protocol_field_info}{rev\+::\+Protocol\+Field\+Info}}$<$ T $>$\+::\mbox{\hyperlink{structrev_1_1_protocol_field_info}{Protocol\+Field\+Info}} (\begin{DoxyParamCaption}\item[{U \&}]{field,  }\item[{typename std\+::enable\+\_\+if\+\_\+t$<$ is\+\_\+value\+\_\+type$<$ U $>$\+::value \&\&!std\+::is\+\_\+same$<$ U, \mbox{\hyperlink{structrev_1_1_protocol_field_info}{Protocol\+Field\+Info}}$<$ T $>$ $>$\+::value $>$ $\ast$}]{ = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Countless value construction. 
+
+S\+F\+I\+N\+AE conditions ensure that copy construction is actually called when appropriate 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{structrev_1_1_protocol_field_info_a48e96e4c04c0a242bd87c5ef46f0b2b5}\label{structrev_1_1_protocol_field_info_a48e96e4c04c0a242bd87c5ef46f0b2b5}} 
+\index{rev::ProtocolFieldInfo$<$ T $>$@{rev::ProtocolFieldInfo$<$ T $>$}!TypeSize@{TypeSize}}
+\index{TypeSize@{TypeSize}!rev::ProtocolFieldInfo$<$ T $>$@{rev::ProtocolFieldInfo$<$ T $>$}}
+\subsubsection{\texorpdfstring{TypeSize()}{TypeSize()}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+static const size\+\_\+t\& \mbox{\hyperlink{structrev_1_1_protocol_field_info}{rev\+::\+Protocol\+Field\+Info}}$<$ T $>$\+::Type\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Return type size. 
+
+Since the innermost\+\_\+pointer\+\_\+type will never be a pointer (thanks to recursive construction down to a value type), this should always return the correct size 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/encoding/G\+Protocol\+Field.\+h\end{DoxyCompactItemize}

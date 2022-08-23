@@ -1,5 +1,10 @@
+Nice visual studio extensions:
+https://www.syncfusion.com/blogs/post/15-must-have-visual-studio-extensions-for-developers.aspx#visual-studio-spell-checker
+
 For deployment info, see:
 https://doc.qt.io/qt-5/windows-deployment.html
+
+For PDBs (very annoying to find), see: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/qt5_5152/qt.qt5.5152.debug_info.win64_msvc2019_64/
 
 Resolutions to known issues:
 

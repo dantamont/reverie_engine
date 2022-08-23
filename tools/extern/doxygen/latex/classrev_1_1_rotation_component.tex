@@ -1,0 +1,102 @@
+\hypertarget{classrev_1_1_rotation_component}{}\section{rev\+::Rotation\+Component Class Reference}
+\label{classrev_1_1_rotation_component}\index{rev::RotationComponent@{rev::RotationComponent}}
+
+
+Represents a transform component that rotates an object.  
+
+
+
+
+{\ttfamily \#include $<$G\+Transform\+Components.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_rotation_component_a69a67934cd0a27b0b5d552526fbb8e89}\label{classrev_1_1_rotation_component_a69a67934cd0a27b0b5d552526fbb8e89}} 
+typedef \mbox{\hyperlink{classrev_1_1_vector}{Vector}}$<$ Axis, 3 $>$ {\bfseries Axes}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_rotation_component_aa8aa3d29182fcba325799333664fdd5f}\label{classrev_1_1_rotation_component_aa8aa3d29182fcba325799333664fdd5f}} 
+{\bfseries Rotation\+Component} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_rotation_component_a2fbdbe1ee2f9a191c4c19666b46c30d3}\label{classrev_1_1_rotation_component_a2fbdbe1ee2f9a191c4c19666b46c30d3}} 
+{\bfseries Rotation\+Component} (\mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$transform, const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&quaternion)
+\item 
+\mbox{\Hypertarget{classrev_1_1_rotation_component_a5fd93825650b271efcd9bd3501f3f340}\label{classrev_1_1_rotation_component_a5fd93825650b271efcd9bd3501f3f340}} 
+{\bfseries Rotation\+Component} (\mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$transform, const \mbox{\hyperlink{classrev_1_1_euler_angles}{Euler\+Angles}} \&euler\+Angles)
+\item 
+\mbox{\Hypertarget{classrev_1_1_rotation_component_a622943409b28e4f2454404e61090b70f}\label{classrev_1_1_rotation_component_a622943409b28e4f2454404e61090b70f}} 
+{\bfseries $\sim$\+Rotation\+Component} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_rotation_component_a3968e28d867dc9de0edcd0da3ae20885}\label{classrev_1_1_rotation_component_a3968e28d867dc9de0edcd0da3ae20885}} 
+void \mbox{\hyperlink{classrev_1_1_rotation_component_a3968e28d867dc9de0edcd0da3ae20885}{add\+Rotation}} (\mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$t, const \mbox{\hyperlink{classrev_1_1_euler_angles}{Euler\+Angles}} \&euler\+Angles, bool update\+Transform=true)
+\begin{DoxyCompactList}\small\item\em Add a rotation corresponding to the given euler angles to this component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_rotation_component_a059d7641b2cc743b4fa4186a3705f3b4}\label{classrev_1_1_rotation_component_a059d7641b2cc743b4fa4186a3705f3b4}} 
+void \mbox{\hyperlink{classrev_1_1_rotation_component_a059d7641b2cc743b4fa4186a3705f3b4}{set\+Rotation}} (\mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$t, const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&quaternion, bool update\+Transform=true)
+\begin{DoxyCompactList}\small\item\em Set rotation using quaternion and update rotation matrix. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_rotation_component_ad033419a98f8d6cd4dd4da0f3c758edb}\label{classrev_1_1_rotation_component_ad033419a98f8d6cd4dd4da0f3c758edb}} 
+void \mbox{\hyperlink{classrev_1_1_rotation_component_ad033419a98f8d6cd4dd4da0f3c758edb}{set\+Rotation}} (\mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$t, const \mbox{\hyperlink{classrev_1_1_euler_angles}{Euler\+Angles}} \&euler\+Angles, bool update\+Transform=true)
+\begin{DoxyCompactList}\small\item\em Set rotation using euler angles and update rotation matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_rotation_component_ab6e64a4db054aa2c85fc10393f68e38a}\label{classrev_1_1_rotation_component_ab6e64a4db054aa2c85fc10393f68e38a}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_rotation_component_ab6e64a4db054aa2c85fc10393f68e38a}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_rotation_component_aa607f698b0efe4033957a6863cd3177e}\label{classrev_1_1_rotation_component_aa607f698b0efe4033957a6863cd3177e}} 
+virtual void \mbox{\hyperlink{classrev_1_1_rotation_component_aa607f698b0efe4033957a6863cd3177e}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty())
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_rotation_component_a0e0b5aa37def5cab5e39175a1db16627}\label{classrev_1_1_rotation_component_a0e0b5aa37def5cab5e39175a1db16627}} 
+void \mbox{\hyperlink{classrev_1_1_rotation_component_a0e0b5aa37def5cab5e39175a1db16627}{compute\+Transform\+Matrix}} (\mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$transform, bool update\+Transform=true)
+\begin{DoxyCompactList}\small\item\em Compute scale matrix. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_rotation_component_afa850e3dbd804a54898bee5aae6845b6}\label{classrev_1_1_rotation_component_afa850e3dbd804a54898bee5aae6845b6}} 
+void {\bfseries compute\+Transform\+Matrix} (\mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$transform, const \mbox{\hyperlink{classrev_1_1_euler_angles}{Euler\+Angles}} \&euler\+Angles, bool update\+Transform=true)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_rotation_component_a8c0a14a0426b4b53447efb9c772c6ebc}\label{classrev_1_1_rotation_component_a8c0a14a0426b4b53447efb9c772c6ebc}} 
+\mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{classrev_1_1_rotation_component_a8c0a14a0426b4b53447efb9c772c6ebc}{m\+\_\+quaternion}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} representing this rotation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_rotation_component_abef60dc75cd471c446ef8d8d180fdeb5}\label{classrev_1_1_rotation_component_abef60dc75cd471c446ef8d8d180fdeb5}} 
+\mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} {\bfseries m\+\_\+transform\+Matrix}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_rotation_component_af851b4d9aacd1a871da33592334b8d72}\label{classrev_1_1_rotation_component_af851b4d9aacd1a871da33592334b8d72}} 
+class {\bfseries Transform}
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_rotation_component_a930d924911dedca160a3184004a486e0}\label{classrev_1_1_rotation_component_a930d924911dedca160a3184004a486e0}} 
+const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \& {\bfseries get\+Quaternion} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_rotation_component_af6a7c1c87ace34e093e14e386688fcde}\label{classrev_1_1_rotation_component_af6a7c1c87ace34e093e14e386688fcde}} 
+const \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4}} \& \mbox{\hyperlink{classrev_1_1_rotation_component_af6a7c1c87ace34e093e14e386688fcde}{get\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em get \mbox{\hyperlink{classrev_1_1_matrix}{Matrix}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_rotation_component_ae6f59528f1c5c52662460559ff61c71f}\label{classrev_1_1_rotation_component_ae6f59528f1c5c52662460559ff61c71f}} 
+static Transform\+Component\+Type \mbox{\hyperlink{classrev_1_1_rotation_component_ae6f59528f1c5c52662460559ff61c71f}{type}} ()
+\begin{DoxyCompactList}\small\item\em Get transform type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Represents a transform component that rotates an object. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/geometry/G\+Transform\+Components.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/geometry/G\+Transform\+Components.\+cpp\end{DoxyCompactItemize}

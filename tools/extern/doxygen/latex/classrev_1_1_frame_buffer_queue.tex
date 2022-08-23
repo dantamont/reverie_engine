@@ -1,0 +1,97 @@
+\hypertarget{classrev_1_1_frame_buffer_queue}{}\section{rev\+::Frame\+Buffer\+Queue$<$ N $>$ Class Template Reference}
+\label{classrev_1_1_frame_buffer_queue}\index{rev::FrameBufferQueue$<$ N $>$@{rev::FrameBufferQueue$<$ N $>$}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing a set of F\+B\+Os to be updated.  
+
+
+
+
+{\ttfamily \#include $<$G\+Frame\+Buffer\+Queue.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_queue_a0b59b9c571c7cc92fe3b28367c8782ef}\label{classrev_1_1_frame_buffer_queue_a0b59b9c571c7cc92fe3b28367c8782ef}} 
+{\bfseries Frame\+Buffer\+Queue} (const \mbox{\hyperlink{classrev_1_1_frame_buffer_queue}{Frame\+Buffer\+Queue}} \&other)
+\item 
+{\footnotesize template$<$typename ... Buffer\+Args$>$ }\\\mbox{\hyperlink{classrev_1_1_frame_buffer_queue_ad4427af30c73241dcf61d9a6f8adff3e}{Frame\+Buffer\+Queue}} (Buffer\+Args \&\&... args)
+\begin{DoxyCompactList}\small\item\em Initialize queue however one would a buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_queue_a63e1fae80fedf002e7f475a809e4ad35}\label{classrev_1_1_frame_buffer_queue_a63e1fae80fedf002e7f475a809e4ad35}} 
+\mbox{\hyperlink{classrev_1_1_frame_buffer}{Frame\+Buffer}} \& {\bfseries write\+Buffer} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_queue_a2198c23e3b732c7e6ba57b8b502f0bbc}\label{classrev_1_1_frame_buffer_queue_a2198c23e3b732c7e6ba57b8b502f0bbc}} 
+const \mbox{\hyperlink{classrev_1_1_frame_buffer}{Frame\+Buffer}} \& {\bfseries write\+Buffer} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_queue_a8dbafa162152de5da224997b8f3afa0d}\label{classrev_1_1_frame_buffer_queue_a8dbafa162152de5da224997b8f3afa0d}} 
+\mbox{\hyperlink{classrev_1_1_frame_buffer}{Frame\+Buffer}} \& {\bfseries read\+Buffer} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_queue_ac663c14477382200d62a4c3e4d71405e}\label{classrev_1_1_frame_buffer_queue_ac663c14477382200d62a4c3e4d71405e}} 
+const \mbox{\hyperlink{classrev_1_1_frame_buffer}{Frame\+Buffer}} \& {\bfseries read\+Buffer} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_queue_a3068a3f925b9e94b96ecb2f82ac8df27}\label{classrev_1_1_frame_buffer_queue_a3068a3f925b9e94b96ecb2f82ac8df27}} 
+std\+::array$<$ \mbox{\hyperlink{classrev_1_1_frame_buffer}{Frame\+Buffer}}, N $>$ \& {\bfseries frame\+Buffers} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Operators}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_queue_aa4286414d8aa798cb2a5c3afb96827a6}\label{classrev_1_1_frame_buffer_queue_aa4286414d8aa798cb2a5c3afb96827a6}} 
+\mbox{\hyperlink{classrev_1_1_frame_buffer_queue}{Frame\+Buffer\+Queue}} \& {\bfseries operator=} (const \mbox{\hyperlink{classrev_1_1_frame_buffer_queue}{Frame\+Buffer\+Queue}} \&other)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_queue_addbfe2127fb195899688b8cfc889aabf}\label{classrev_1_1_frame_buffer_queue_addbfe2127fb195899688b8cfc889aabf}} 
+void \mbox{\hyperlink{classrev_1_1_frame_buffer_queue_addbfe2127fb195899688b8cfc889aabf}{swap\+Buffers}} ()
+\begin{DoxyCompactList}\small\item\em Swap buffers for triple buffering. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_queue_a1281e0018321a3debda97aac189a2d61}\label{classrev_1_1_frame_buffer_queue_a1281e0018321a3debda97aac189a2d61}} 
+size\+\_\+t \mbox{\hyperlink{classrev_1_1_frame_buffer_queue_a1281e0018321a3debda97aac189a2d61}{m\+\_\+read\+Buffer}} = 0
+\begin{DoxyCompactList}\small\item\em the buffer currently being written into \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_queue_aeddf2a193d6dd9ef4810c74d7b1040d1}\label{classrev_1_1_frame_buffer_queue_aeddf2a193d6dd9ef4810c74d7b1040d1}} 
+size\+\_\+t {\bfseries m\+\_\+write\+Buffer} = 1
+\item 
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_queue_ac18becfd02895ec9cc3979d7b5d13bee}\label{classrev_1_1_frame_buffer_queue_ac18becfd02895ec9cc3979d7b5d13bee}} 
+std\+::array$<$ \mbox{\hyperlink{classrev_1_1_frame_buffer}{Frame\+Buffer}}, N $>$ \mbox{\hyperlink{classrev_1_1_frame_buffer_queue_ac18becfd02895ec9cc3979d7b5d13bee}{m\+\_\+frame\+Buffers}}
+\begin{DoxyCompactList}\small\item\em The framebuffers being updated and read from. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$size\+\_\+t N$>$\newline
+class rev\+::\+Frame\+Buffer\+Queue$<$ N $>$}
+
+\mbox{\hyperlink{struct_class}{Class}} representing a set of F\+B\+Os to be updated. 
+
+Used to implement double or triple buffering 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classrev_1_1_frame_buffer_queue_ad4427af30c73241dcf61d9a6f8adff3e}\label{classrev_1_1_frame_buffer_queue_ad4427af30c73241dcf61d9a6f8adff3e}} 
+\index{rev::FrameBufferQueue$<$ N $>$@{rev::FrameBufferQueue$<$ N $>$}!FrameBufferQueue@{FrameBufferQueue}}
+\index{FrameBufferQueue@{FrameBufferQueue}!rev::FrameBufferQueue$<$ N $>$@{rev::FrameBufferQueue$<$ N $>$}}
+\subsubsection{\texorpdfstring{FrameBufferQueue()}{FrameBufferQueue()}}
+{\footnotesize\ttfamily template$<$size\+\_\+t N$>$ \\
+template$<$typename ... Buffer\+Args$>$ \\
+\mbox{\hyperlink{classrev_1_1_frame_buffer_queue}{rev\+::\+Frame\+Buffer\+Queue}}$<$ N $>$\+::\mbox{\hyperlink{classrev_1_1_frame_buffer_queue}{Frame\+Buffer\+Queue}} (\begin{DoxyParamCaption}\item[{Buffer\+Args \&\&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Initialize queue however one would a buffer. 
+
+\begin{DoxyNote}{Note}
+Variadic template is used to avoid having to modify this if buffer initialization changes 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/view/G\+Frame\+Buffer\+Queue.\+h\end{DoxyCompactItemize}

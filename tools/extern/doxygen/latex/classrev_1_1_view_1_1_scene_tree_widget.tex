@@ -1,0 +1,270 @@
+\hypertarget{classrev_1_1_view_1_1_scene_tree_widget}{}\section{rev\+::View\+::Scene\+Tree\+Widget Class Reference}
+\label{classrev_1_1_view_1_1_scene_tree_widget}\index{rev::View::SceneTreeWidget@{rev::View::SceneTreeWidget}}
+Inheritance diagram for rev\+::View\+::Scene\+Tree\+Widget\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classrev_1_1_view_1_1_scene_tree_widget}
+\end{center}
+\end{figure}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_ac697e6b36d82d0687d13692a71240950}\label{classrev_1_1_view_1_1_scene_tree_widget_ac697e6b36d82d0687d13692a71240950}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_ac697e6b36d82d0687d13692a71240950}{selected\+Scene}} (const \mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \&scene\+ID)
+\begin{DoxyCompactList}\small\item\em Emit on selection of a scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_afd1a8d922eba4e88bf5455d3da843888}\label{classrev_1_1_view_1_1_scene_tree_widget_afd1a8d922eba4e88bf5455d3da843888}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_afd1a8d922eba4e88bf5455d3da843888}{selected\+Scene\+Object}} (uint32\+\_\+t scene\+Object\+ID)
+\begin{DoxyCompactList}\small\item\em Emit on selection of a scene object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_a7762f0622db396aa6197a364b5632939}\label{classrev_1_1_view_1_1_scene_tree_widget_a7762f0622db396aa6197a364b5632939}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_a7762f0622db396aa6197a364b5632939}{deselected\+Scene\+Object}} ()
+\begin{DoxyCompactList}\small\item\em Emit on deselection of any scene objects. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_a4bae70ed586546a7f7d616b91c784311}\label{classrev_1_1_view_1_1_scene_tree_widget_a4bae70ed586546a7f7d616b91c784311}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_a4bae70ed586546a7f7d616b91c784311}{deselected\+Scene}} ()
+\begin{DoxyCompactList}\small\item\em Emit on deselection of any scenes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_ae7e37ae420064fd1650997200aa5b687}\label{classrev_1_1_view_1_1_scene_tree_widget_ae7e37ae420064fd1650997200aa5b687}} 
+{\bfseries Scene\+Tree\+Widget} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, const Q\+String \&name, Q\+Widget $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_a2e114db798492687aa8a9d0f12745b34}\label{classrev_1_1_view_1_1_scene_tree_widget_a2e114db798492687aa8a9d0f12745b34}} 
+{\bfseries $\sim$\+Scene\+Tree\+Widget} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_a0276164c2bf59f8e7e39ed9a82ad7b09}\label{classrev_1_1_view_1_1_scene_tree_widget_a0276164c2bf59f8e7e39ed9a82ad7b09}} 
+\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_a0276164c2bf59f8e7e39ed9a82ad7b09}{engine}} () const
+\begin{DoxyCompactList}\small\item\em Return core engine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_a72ff111331de0055a5ce4c14168b9f1d}\label{classrev_1_1_view_1_1_scene_tree_widget_a72ff111331de0055a5ce4c14168b9f1d}} 
+\mbox{\hyperlink{classrev_1_1_scene}{Scene}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_a72ff111331de0055a5ce4c14168b9f1d}{get\+Current\+Scene}} ()
+\begin{DoxyCompactList}\small\item\em Get current scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_a41d50eb2f345d723c0443ae32d40fe35}\label{classrev_1_1_view_1_1_scene_tree_widget_a41d50eb2f345d723c0443ae32d40fe35}} 
+\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_a41d50eb2f345d723c0443ae32d40fe35}{get\+Current\+Scene\+Object}} ()
+\begin{DoxyCompactList}\small\item\em Get current scene object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_a309b552a8b0f2a36887d367bc073811c}\label{classrev_1_1_view_1_1_scene_tree_widget_a309b552a8b0f2a36887d367bc073811c}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_a309b552a8b0f2a36887d367bc073811c}{set\+Scenario\+Tree\+Item}} ()
+\begin{DoxyCompactList}\small\item\em Set the scenario tree item. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_ace3ae2d6297f12685c19b62e04a3ac1d}\label{classrev_1_1_view_1_1_scene_tree_widget_ace3ae2d6297f12685c19b62e04a3ac1d}} 
+void {\bfseries set\+Scenario\+Tree\+Item} (\mbox{\hyperlink{classrev_1_1_view_1_1_scene_related_item}{View\+::\+Scene\+Related\+Item}} $\ast$scenario)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_ac011ca4db0cd24a364bfc346774aad5e}\label{classrev_1_1_view_1_1_scene_tree_widget_ac011ca4db0cd24a364bfc346774aad5e}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_ac011ca4db0cd24a364bfc346774aad5e}{remove\+Scenario\+Tree\+Item}} ()
+\begin{DoxyCompactList}\small\item\em Clear the header item. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_af06f8970e9b94c301daa134f3ebc73f4}\label{classrev_1_1_view_1_1_scene_tree_widget_af06f8970e9b94c301daa134f3ebc73f4}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_af06f8970e9b94c301daa134f3ebc73f4}{add\+Scene\+Tree\+Item}} (\mbox{\hyperlink{classrev_1_1_scene}{Scene}} $\ast$scene)
+\begin{DoxyCompactList}\small\item\em Add/remove a scene tree item. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_a190aeb7f5ff71470360b8d6b744f4b88}\label{classrev_1_1_view_1_1_scene_tree_widget_a190aeb7f5ff71470360b8d6b744f4b88}} 
+void {\bfseries add\+Scene\+Tree\+Item} (\mbox{\hyperlink{classrev_1_1_view_1_1_scene_related_item}{View\+::\+Scene\+Related\+Item}} $\ast$scene)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_a7cab52cb0d64f90e1d45ebe098c8f8b7}\label{classrev_1_1_view_1_1_scene_tree_widget_a7cab52cb0d64f90e1d45ebe098c8f8b7}} 
+void {\bfseries remove\+Tree\+Item} (\mbox{\hyperlink{classrev_1_1_scene}{Scene}} $\ast$scene)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_af1ab90f77b35ebc5ea52849c9b719b6f}\label{classrev_1_1_view_1_1_scene_tree_widget_af1ab90f77b35ebc5ea52849c9b719b6f}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_af1ab90f77b35ebc5ea52849c9b719b6f}{add\+Scene\+Object\+Tree\+Item}} (\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$scene\+Object, int index=-\/1)
+\begin{DoxyCompactList}\small\item\em Add/remove a scene object tree item. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_a8c16cd57562988516df98a72a6f04716}\label{classrev_1_1_view_1_1_scene_tree_widget_a8c16cd57562988516df98a72a6f04716}} 
+void {\bfseries remove\+Tree\+Item} (\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$scene\+Object)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_aebc54daf5ba8d29af13186d02272ad18}\label{classrev_1_1_view_1_1_scene_tree_widget_aebc54daf5ba8d29af13186d02272ad18}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_scene_related_item}{View\+::\+Scene\+Related\+Item}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_aebc54daf5ba8d29af13186d02272ad18}{get\+Item}} (\mbox{\hyperlink{classrev_1_1_scene_object}{rev\+::\+Scene\+Object}} $\ast$object)
+\begin{DoxyCompactList}\small\item\em Get tree item corresponding to the given object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_a0727d97cca7a07f9cce81be92defdb05}\label{classrev_1_1_view_1_1_scene_tree_widget_a0727d97cca7a07f9cce81be92defdb05}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_scene_related_item}{View\+::\+Scene\+Related\+Item}} $\ast$ {\bfseries get\+Item} (\mbox{\hyperlink{classrev_1_1_scene}{rev\+::\+Scene}} $\ast$object)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_a040be9171b9e6183e5a3d180d1b7e37a}\label{classrev_1_1_view_1_1_scene_tree_widget_a040be9171b9e6183e5a3d180d1b7e37a}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_scene_related_item}{View\+::\+Scene\+Related\+Item}} $\ast$ {\bfseries get\+Item} (\mbox{\hyperlink{classrev_1_1_scenario}{rev\+::\+Scenario}} $\ast$object)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_a34848060dd8b518f855e1ed339c14beb}\label{classrev_1_1_view_1_1_scene_tree_widget_a34848060dd8b518f855e1ed339c14beb}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_a34848060dd8b518f855e1ed339c14beb}{clear\+Selected\+Items}} ()
+\begin{DoxyCompactList}\small\item\em Clear selected objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ rev\+::Object overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_af0acbcb9d6cb9b0b209d0a9e11f563f3}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_a8d388e6e5f396f5641a92a29fb42bf6c}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_aa9504c5744ff81177fdf79483a3e8dc5}{is\+Service}} () const override
+\begin{DoxyCompactList}\small\item\em Returns True if this \mbox{\hyperlink{classrev_1_1_abstract_service}{Abstract\+Service}} represents a service. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_a291ef1fb24cd270729d826099c730366}{is\+Tool}} () const override
+\begin{DoxyCompactList}\small\item\em Returns True if this \mbox{\hyperlink{classrev_1_1_abstract_service}{Abstract\+Service}} represents a tool. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Slots}
+\begin{Indent}\textbf{ Protected Slots}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_ae245301cca5b54639fb5849eee42c932}\label{classrev_1_1_view_1_1_scene_tree_widget_ae245301cca5b54639fb5849eee42c932}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_ae245301cca5b54639fb5849eee42c932}{on\+Item\+Double\+Clicked}} (Q\+Tree\+Widget\+Item $\ast$item, int column) override
+\begin{DoxyCompactList}\small\item\em What to do on item double click. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_a619be87616400d58992b943015d56486}\label{classrev_1_1_view_1_1_scene_tree_widget_a619be87616400d58992b943015d56486}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_a619be87616400d58992b943015d56486}{on\+Item\+Clicked}} (Q\+Tree\+Widget\+Item $\ast$item, int column) override
+\begin{DoxyCompactList}\small\item\em What to do on item clicked. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_aa8535dd4a9dc759961862717c3899b29}\label{classrev_1_1_view_1_1_scene_tree_widget_aa8535dd4a9dc759961862717c3899b29}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_aa8535dd4a9dc759961862717c3899b29}{on\+Item\+Expanded}} (Q\+Tree\+Widget\+Item $\ast$item) override
+\begin{DoxyCompactList}\small\item\em What to do on item expanded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_a2196310aa247159c4ee80ef4019f4d67}\label{classrev_1_1_view_1_1_scene_tree_widget_a2196310aa247159c4ee80ef4019f4d67}} 
+virtual Q\+Mime\+Data $\ast$ {\bfseries mime\+Data} (const Q\+List$<$ Q\+Tree\+Widget\+Item $\ast$ $>$ items) const override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_a3e76fca87090013b59abedbded50df0a}\label{classrev_1_1_view_1_1_scene_tree_widget_a3e76fca87090013b59abedbded50df0a}} 
+virtual Q\+String\+List {\bfseries mime\+Types} () const override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_a138f2dfd9dedbd88a866f71b78eede7a}\label{classrev_1_1_view_1_1_scene_tree_widget_a138f2dfd9dedbd88a866f71b78eede7a}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_a138f2dfd9dedbd88a866f71b78eede7a}{initialize\+Item}} (Q\+Tree\+Widget\+Item $\ast$item)
+\begin{DoxyCompactList}\small\item\em initialize an item added to the widget \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_aebea50c37d9b39321eba6477f895a6a8}\label{classrev_1_1_view_1_1_scene_tree_widget_aebea50c37d9b39321eba6477f895a6a8}} 
+virtual void {\bfseries on\+Drop\+On} (Q\+Drop\+Event $\ast$event, Q\+Tree\+Widget\+Item $\ast$source, Q\+Tree\+Widget\+Item $\ast$destination) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_a275b464861ac6c41c23e6b1f901afe3f}\label{classrev_1_1_view_1_1_scene_tree_widget_a275b464861ac6c41c23e6b1f901afe3f}} 
+virtual void {\bfseries on\+Drop\+Below} (Q\+Drop\+Event $\ast$event, Q\+Tree\+Widget\+Item $\ast$source, Q\+Tree\+Widget\+Item $\ast$destination) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_acaadcd306b95e0f6a09472b2a195863b}\label{classrev_1_1_view_1_1_scene_tree_widget_acaadcd306b95e0f6a09472b2a195863b}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_acaadcd306b95e0f6a09472b2a195863b}{on\+Drop\+Above}} (Q\+Drop\+Event $\ast$event, Q\+Tree\+Widget\+Item $\ast$source, Q\+Tree\+Widget\+Item $\ast$destination) override
+\begin{DoxyCompactList}\small\item\em Drop event callbacks. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_a4935254c32dbf371f1cf6c7dd464b512}\label{classrev_1_1_view_1_1_scene_tree_widget_a4935254c32dbf371f1cf6c7dd464b512}} 
+virtual void {\bfseries on\+Drop\+Viewport} (Q\+Drop\+Event $\ast$event, Q\+Tree\+Widget\+Item $\ast$source) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_a0dbd6a6ad1cab40f4d08fd00b3896b9d}\label{classrev_1_1_view_1_1_scene_tree_widget_a0dbd6a6ad1cab40f4d08fd00b3896b9d}} 
+virtual void {\bfseries on\+Drop\+From\+Other\+Widget} (Q\+Drop\+Event $\ast$event, Q\+Tree\+Widget\+Item $\ast$source, Q\+Widget $\ast$other\+Widget)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_acad4e7feada024a7dd726820c048da6c}\label{classrev_1_1_view_1_1_scene_tree_widget_acad4e7feada024a7dd726820c048da6c}} 
+virtual bool {\bfseries drop\+Mime\+Data} (Q\+Tree\+Widget\+Item $\ast$parent, int index, const Q\+Mime\+Data $\ast$data, Qt\+::\+Drop\+Action action)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_a2dd2428573329cb7a56a3b8e151cecc6}\label{classrev_1_1_view_1_1_scene_tree_widget_a2dd2428573329cb7a56a3b8e151cecc6}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_a2dd2428573329cb7a56a3b8e151cecc6}{remove\+Item}} (\mbox{\hyperlink{classrev_1_1_view_1_1_scene_related_item}{View\+::\+Scene\+Related\+Item}} $\ast$scene\+Item)
+\begin{DoxyCompactList}\small\item\em Remove an item. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_ae9b055e90b2f3163ff1b3552fc63b7e2}\label{classrev_1_1_view_1_1_scene_tree_widget_ae9b055e90b2f3163ff1b3552fc63b7e2}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_ae9b055e90b2f3163ff1b3552fc63b7e2}{initialize\+Widget}} ()
+\begin{DoxyCompactList}\small\item\em Initialize the tree widget. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_a262a8da9d0d6dd99cad8412030dfe1bb}{context\+Menu\+Event}} (Q\+Context\+Menu\+Event $\ast$event) override
+\begin{DoxyCompactList}\small\item\em Generates a context menu, overriding default implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_addfb16ae6e82db82fa0b73a7aa4fd3cc}\label{classrev_1_1_view_1_1_scene_tree_widget_addfb16ae6e82db82fa0b73a7aa4fd3cc}} 
+Q\+Action $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_addfb16ae6e82db82fa0b73a7aa4fd3cc}{m\+\_\+add\+Scenario}}
+\begin{DoxyCompactList}\small\item\em Actions performable in this widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_aca05fc393ef9f5d3c85c526e92fed63e}\label{classrev_1_1_view_1_1_scene_tree_widget_aca05fc393ef9f5d3c85c526e92fed63e}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+add\+Scene\+Object}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_a359939023ad5507c2be5d9d224334c80}\label{classrev_1_1_view_1_1_scene_tree_widget_a359939023ad5507c2be5d9d224334c80}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+copy\+Scene\+Object}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_a3d19994c463837b81af98fb478d98c4d}\label{classrev_1_1_view_1_1_scene_tree_widget_a3d19994c463837b81af98fb478d98c4d}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+remove\+Scene\+Object}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_af584fc58c5e89df5c10a2674fcf1f251}\label{classrev_1_1_view_1_1_scene_tree_widget_af584fc58c5e89df5c10a2674fcf1f251}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_scene_related_item}{Scene\+Related\+Item}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_af584fc58c5e89df5c10a2674fcf1f251}{m\+\_\+current\+Scene\+Item}}
+\begin{DoxyCompactList}\small\item\em The scene item clicked by a right-\/mouse operation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_a52af30ba4964f6893badfa4c042ab2b9}\label{classrev_1_1_view_1_1_scene_tree_widget_a52af30ba4964f6893badfa4c042ab2b9}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_scene_related_item}{Scene\+Related\+Item}} $\ast$ {\bfseries m\+\_\+current\+Scene\+Object\+Item}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_a8130da33127e5397085b028737d86f96}\label{classrev_1_1_view_1_1_scene_tree_widget_a8130da33127e5397085b028737d86f96}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_scene_related_item}{Scene\+Related\+Item}} $\ast$ {\bfseries m\+\_\+last\+Left\+Clicked\+Item}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+{\em What to do on current item change }\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_ad1c5573b96cfe6bdb3e25efd6b90c7a2}\label{classrev_1_1_view_1_1_scene_tree_widget_ad1c5573b96cfe6bdb3e25efd6b90c7a2}} 
+class {\bfseries Scene\+Related\+Item}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_af0acbcb9d6cb9b0b209d0a9e11f563f3}\label{classrev_1_1_view_1_1_scene_tree_widget_af0acbcb9d6cb9b0b209d0a9e11f563f3}} 
+\index{rev::View::SceneTreeWidget@{rev::View::SceneTreeWidget}!className@{className}}
+\index{className@{className}!rev::View::SceneTreeWidget@{rev::View::SceneTreeWidget}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+View\+::\+Scene\+Tree\+Widget\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_view_1_1_tree_widget_aedde04f44badced7c60f0e1570e3d0b2}{rev\+::\+View\+::\+Tree\+Widget}}.
+
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_a262a8da9d0d6dd99cad8412030dfe1bb}\label{classrev_1_1_view_1_1_scene_tree_widget_a262a8da9d0d6dd99cad8412030dfe1bb}} 
+\index{rev::View::SceneTreeWidget@{rev::View::SceneTreeWidget}!contextMenuEvent@{contextMenuEvent}}
+\index{contextMenuEvent@{contextMenuEvent}!rev::View::SceneTreeWidget@{rev::View::SceneTreeWidget}}
+\subsubsection{\texorpdfstring{contextMenuEvent()}{contextMenuEvent()}}
+{\footnotesize\ttfamily void rev\+::\+View\+::\+Scene\+Tree\+Widget\+::context\+Menu\+Event (\begin{DoxyParamCaption}\item[{Q\+Context\+Menu\+Event $\ast$}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Generates a context menu, overriding default implementation. 
+
+\begin{DoxyNote}{Note}
+Context menus can be executed either asynchronously using the popup() function or synchronously using the exec() function 
+\end{DoxyNote}
+
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_view_1_1_tree_widget_a47fe709b7b08a5d327a66d091e64820b}{rev\+::\+View\+::\+Tree\+Widget}}.
+
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_aa9504c5744ff81177fdf79483a3e8dc5}\label{classrev_1_1_view_1_1_scene_tree_widget_aa9504c5744ff81177fdf79483a3e8dc5}} 
+\index{rev::View::SceneTreeWidget@{rev::View::SceneTreeWidget}!isService@{isService}}
+\index{isService@{isService}!rev::View::SceneTreeWidget@{rev::View::SceneTreeWidget}}
+\subsubsection{\texorpdfstring{isService()}{isService()}}
+{\footnotesize\ttfamily virtual bool rev\+::\+View\+::\+Scene\+Tree\+Widget\+::is\+Service (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns True if this \mbox{\hyperlink{classrev_1_1_abstract_service}{Abstract\+Service}} represents a service. 
+
+This is not a service 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_view_1_1_tree_widget_a9f10e939850acf8fce1992b5b9b3fc24}{rev\+::\+View\+::\+Tree\+Widget}}.
+
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_a291ef1fb24cd270729d826099c730366}\label{classrev_1_1_view_1_1_scene_tree_widget_a291ef1fb24cd270729d826099c730366}} 
+\index{rev::View::SceneTreeWidget@{rev::View::SceneTreeWidget}!isTool@{isTool}}
+\index{isTool@{isTool}!rev::View::SceneTreeWidget@{rev::View::SceneTreeWidget}}
+\subsubsection{\texorpdfstring{isTool()}{isTool()}}
+{\footnotesize\ttfamily virtual bool rev\+::\+View\+::\+Scene\+Tree\+Widget\+::is\+Tool (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns True if this \mbox{\hyperlink{classrev_1_1_abstract_service}{Abstract\+Service}} represents a tool. 
+
+This is not a tool 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_view_1_1_tree_widget_a7ff55c9e8c83c70e9331a7fe7acafbb6}{rev\+::\+View\+::\+Tree\+Widget}}.
+
+\mbox{\Hypertarget{classrev_1_1_view_1_1_scene_tree_widget_a8d388e6e5f396f5641a92a29fb42bf6c}\label{classrev_1_1_view_1_1_scene_tree_widget_a8d388e6e5f396f5641a92a29fb42bf6c}} 
+\index{rev::View::SceneTreeWidget@{rev::View::SceneTreeWidget}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::View::SceneTreeWidget@{rev::View::SceneTreeWidget}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+View\+::\+Scene\+Tree\+Widget\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_view_1_1_tree_widget_a09be824e34e50e9622c3dc333c9a3c07}{rev\+::\+View\+::\+Tree\+Widget}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Scene\+Tree\+Widget.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Scene\+Tree\+Widget.\+cpp\end{DoxyCompactItemize}

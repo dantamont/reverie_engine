@@ -1,0 +1,136 @@
+\hypertarget{classrev_1_1_physics_hit}{}\section{rev\+::Physics\+Hit$<$ Hit\+Type $>$ Class Template Reference}
+\label{classrev_1_1_physics_hit}\index{rev::PhysicsHit$<$ HitType $>$@{rev::PhysicsHit$<$ HitType $>$}}
+
+
+Template class representing a hit.  
+
+
+
+
+{\ttfamily \#include $<$G\+Physics\+Query.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructor/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_hit_a16c204ebd87a4b0a247cb14f83b6b602}\label{classrev_1_1_physics_hit_a16c204ebd87a4b0a247cb14f83b6b602}} 
+{\bfseries Physics\+Hit} (const Hit\+Type \&hit)
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_hit_a35c33dd9496c4a0e20380245b6af1345}\label{classrev_1_1_physics_hit_a35c33dd9496c4a0e20380245b6af1345}} 
+{\bfseries $\sim$\+Physics\+Hit} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Px\+Actor\+Shape}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_hit_aef5816f3f23159fa3a50ecf139950842}\label{classrev_1_1_physics_hit_aef5816f3f23159fa3a50ecf139950842}} 
+physx\+::\+Px\+Rigid\+Actor $\ast$ {\bfseries actor} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_hit_afbc3ed96cadfd965baf7acaba09b2d68}\label{classrev_1_1_physics_hit_afbc3ed96cadfd965baf7acaba09b2d68}} 
+physx\+::\+Px\+Shape $\ast$ {\bfseries shape} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_hit_ae79f447effbf5be4b98feef4383ddf14}\label{classrev_1_1_physics_hit_ae79f447effbf5be4b98feef4383ddf14}} 
+\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$ {\bfseries scene\+Object} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Px\+Query\+Hit}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_hit_aad368c6a98e8011939ed9281f7df4528}\label{classrev_1_1_physics_hit_aad368c6a98e8011939ed9281f7df4528}} 
+int {\bfseries face\+Index} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Px\+Location\+Hit}\par
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classrev_1_1_physics_hit_a35a730fac78b7f3ced9731ce4ca77f67}{had\+Initial\+Overlap}} () const
+\begin{DoxyCompactList}\small\item\em Whether or not the shape that was hit overlaps the raycast/sweep origin. \end{DoxyCompactList}\item 
+Hit\+Flags \mbox{\hyperlink{classrev_1_1_physics_hit_a566ec817e8cc196b3c90436a26c92b65}{flags}} () const
+\item 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \mbox{\hyperlink{classrev_1_1_physics_hit_a8f76cef390749e030ba96acb1f85d6fd}{position}} () const
+\item 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \mbox{\hyperlink{classrev_1_1_physics_hit_a9c2fccb821c7e4e2e2bb42527e23e781}{normal}} () const
+\item 
+float \mbox{\hyperlink{classrev_1_1_physics_hit_a62d6dd0cd3715a1e6b0b028815c03074}{distance}} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_hit_a89ad2b34c4b530465191acd69b19539d}\label{classrev_1_1_physics_hit_a89ad2b34c4b530465191acd69b19539d}} 
+const Hit\+Type \& \mbox{\hyperlink{classrev_1_1_physics_hit_a89ad2b34c4b530465191acd69b19539d}{m\+\_\+hit}}
+\begin{DoxyCompactList}\small\item\em Reference to the wrapped physx hit. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_hit_ad2fea9ce328b08e6e82eb21fdddd36b9}\label{classrev_1_1_physics_hit_ad2fea9ce328b08e6e82eb21fdddd36b9}} 
+static bool constexpr {\bfseries Is\+Raycast\+Or\+Sweep} = std\+::is\+\_\+base\+\_\+of$<$physx\+::\+Px\+Raycast\+Hit, Hit\+Type$>$\+::value $\vert$$\vert$ std\+::is\+\_\+base\+\_\+of$<$physx\+::\+Px\+Sweep\+Hit, Hit\+Type$>$\+::value
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename Hit\+Type$>$\newline
+class rev\+::\+Physics\+Hit$<$ Hit\+Type $>$}
+
+Template class representing a hit. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_physics_hit_a62d6dd0cd3715a1e6b0b028815c03074}\label{classrev_1_1_physics_hit_a62d6dd0cd3715a1e6b0b028815c03074}} 
+\index{rev::PhysicsHit$<$ HitType $>$@{rev::PhysicsHit$<$ HitType $>$}!distance@{distance}}
+\index{distance@{distance}!rev::PhysicsHit$<$ HitType $>$@{rev::PhysicsHit$<$ HitType $>$}}
+\subsubsection{\texorpdfstring{distance()}{distance()}}
+{\footnotesize\ttfamily template$<$typename Hit\+Type $>$ \\
+float \mbox{\hyperlink{classrev_1_1_physics_hit}{rev\+::\+Physics\+Hit}}$<$ Hit\+Type $>$\+::distance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyNote}{Note}
+Only valid for raycasts and sweeps 
+\end{DoxyNote}
+\mbox{\Hypertarget{classrev_1_1_physics_hit_a566ec817e8cc196b3c90436a26c92b65}\label{classrev_1_1_physics_hit_a566ec817e8cc196b3c90436a26c92b65}} 
+\index{rev::PhysicsHit$<$ HitType $>$@{rev::PhysicsHit$<$ HitType $>$}!flags@{flags}}
+\index{flags@{flags}!rev::PhysicsHit$<$ HitType $>$@{rev::PhysicsHit$<$ HitType $>$}}
+\subsubsection{\texorpdfstring{flags()}{flags()}}
+{\footnotesize\ttfamily template$<$typename Hit\+Type $>$ \\
+Hit\+Flags \mbox{\hyperlink{classrev_1_1_physics_hit}{rev\+::\+Physics\+Hit}}$<$ Hit\+Type $>$\+::flags (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyNote}{Note}
+Only valid for raycasts and sweeps 
+\end{DoxyNote}
+\mbox{\Hypertarget{classrev_1_1_physics_hit_a35a730fac78b7f3ced9731ce4ca77f67}\label{classrev_1_1_physics_hit_a35a730fac78b7f3ced9731ce4ca77f67}} 
+\index{rev::PhysicsHit$<$ HitType $>$@{rev::PhysicsHit$<$ HitType $>$}!hadInitialOverlap@{hadInitialOverlap}}
+\index{hadInitialOverlap@{hadInitialOverlap}!rev::PhysicsHit$<$ HitType $>$@{rev::PhysicsHit$<$ HitType $>$}}
+\subsubsection{\texorpdfstring{hadInitialOverlap()}{hadInitialOverlap()}}
+{\footnotesize\ttfamily template$<$typename Hit\+Type $>$ \\
+bool \mbox{\hyperlink{classrev_1_1_physics_hit}{rev\+::\+Physics\+Hit}}$<$ Hit\+Type $>$\+::had\+Initial\+Overlap (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Whether or not the shape that was hit overlaps the raycast/sweep origin. 
+
+\begin{DoxyNote}{Note}
+Only valid for raycasts and sweeps 
+\end{DoxyNote}
+\mbox{\Hypertarget{classrev_1_1_physics_hit_a9c2fccb821c7e4e2e2bb42527e23e781}\label{classrev_1_1_physics_hit_a9c2fccb821c7e4e2e2bb42527e23e781}} 
+\index{rev::PhysicsHit$<$ HitType $>$@{rev::PhysicsHit$<$ HitType $>$}!normal@{normal}}
+\index{normal@{normal}!rev::PhysicsHit$<$ HitType $>$@{rev::PhysicsHit$<$ HitType $>$}}
+\subsubsection{\texorpdfstring{normal()}{normal()}}
+{\footnotesize\ttfamily template$<$typename Hit\+Type $>$ \\
+\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \mbox{\hyperlink{classrev_1_1_physics_hit}{rev\+::\+Physics\+Hit}}$<$ Hit\+Type $>$\+::normal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyNote}{Note}
+Only valid for raycasts and sweeps 
+\end{DoxyNote}
+\mbox{\Hypertarget{classrev_1_1_physics_hit_a8f76cef390749e030ba96acb1f85d6fd}\label{classrev_1_1_physics_hit_a8f76cef390749e030ba96acb1f85d6fd}} 
+\index{rev::PhysicsHit$<$ HitType $>$@{rev::PhysicsHit$<$ HitType $>$}!position@{position}}
+\index{position@{position}!rev::PhysicsHit$<$ HitType $>$@{rev::PhysicsHit$<$ HitType $>$}}
+\subsubsection{\texorpdfstring{position()}{position()}}
+{\footnotesize\ttfamily template$<$typename Hit\+Type $>$ \\
+\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \mbox{\hyperlink{classrev_1_1_physics_hit}{rev\+::\+Physics\+Hit}}$<$ Hit\+Type $>$\+::position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyNote}{Note}
+Only valid for raycasts and sweeps 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Physics\+Query.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,66 @@
+\hypertarget{class_eigen_1_1_transpose_3_01_transpositions_base_3_01_transpositions_derived_01_4_01_4}{}\section{Eigen\+::Transpose$<$ Transpositions\+Base$<$ Transpositions\+Derived $>$ $>$ Class Template Reference}
+\label{class_eigen_1_1_transpose_3_01_transpositions_base_3_01_transpositions_derived_01_4_01_4}\index{Eigen::Transpose$<$ TranspositionsBase$<$ TranspositionsDerived $>$ $>$@{Eigen::Transpose$<$ TranspositionsBase$<$ TranspositionsDerived $>$ $>$}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transpose_3_01_transpositions_base_3_01_transpositions_derived_01_4_01_4_a889982c74c9f28938fa03c82f7ff87d2}\label{class_eigen_1_1_transpose_3_01_transpositions_base_3_01_transpositions_derived_01_4_01_4_a889982c74c9f28938fa03c82f7ff87d2}} 
+{\bfseries Transpose} (const Transposition\+Type \&t)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transpose_3_01_transpositions_base_3_01_transpositions_derived_01_4_01_4_aac6ec07520b1bc9354a81e0aacffb39b}\label{class_eigen_1_1_transpose_3_01_transpositions_base_3_01_transpositions_derived_01_4_01_4_aac6ec07520b1bc9354a81e0aacffb39b}} 
+Index {\bfseries size} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transpose_3_01_transpositions_base_3_01_transpositions_derived_01_4_01_4_ac225e11ad1604cd750063aab9332e211}\label{class_eigen_1_1_transpose_3_01_transpositions_base_3_01_transpositions_derived_01_4_01_4_ac225e11ad1604cd750063aab9332e211}} 
+Index {\bfseries rows} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transpose_3_01_transpositions_base_3_01_transpositions_derived_01_4_01_4_a158f9b2ba450e4b2b5965e864b87c853}\label{class_eigen_1_1_transpose_3_01_transpositions_base_3_01_transpositions_derived_01_4_01_4_a158f9b2ba450e4b2b5965e864b87c853}} 
+Index {\bfseries cols} () const
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\const \mbox{\hyperlink{class_eigen_1_1_product}{Product}}$<$ \mbox{\hyperlink{class_eigen_1_1_transpose}{Transpose}}, Other\+Derived, Alias\+Free\+Product $>$ \mbox{\hyperlink{class_eigen_1_1_transpose_3_01_transpositions_base_3_01_transpositions_derived_01_4_01_4_a812f9c34b587a81b57b088d9828312db}{operator $\ast$}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Other\+Derived $>$ \&matrix) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transpose_3_01_transpositions_base_3_01_transpositions_derived_01_4_01_4_ae1561da690d9dc1133bcce0dba061910}\label{class_eigen_1_1_transpose_3_01_transpositions_base_3_01_transpositions_derived_01_4_01_4_ae1561da690d9dc1133bcce0dba061910}} 
+const Transposition\+Type \& {\bfseries nested\+Expression} () const
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_transpose_3_01_transpositions_base_3_01_transpositions_derived_01_4_01_4_a84eda9085d2aa8c4334dccc790f1afc9}\label{class_eigen_1_1_transpose_3_01_transpositions_base_3_01_transpositions_derived_01_4_01_4_a84eda9085d2aa8c4334dccc790f1afc9}} 
+const Transposition\+Type \& {\bfseries m\+\_\+transpositions}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\const \mbox{\hyperlink{class_eigen_1_1_product}{Product}}$<$ Other\+Derived, \mbox{\hyperlink{class_eigen_1_1_transpose}{Transpose}}, Alias\+Free\+Product $>$ \mbox{\hyperlink{class_eigen_1_1_transpose_3_01_transpositions_base_3_01_transpositions_derived_01_4_01_4_abad977a8ed63d154defc69a8b49015f1}{operator $\ast$}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Other\+Derived $>$ \&matrix, const \mbox{\hyperlink{class_eigen_1_1_transpose}{Transpose}} \&trt)
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_transpose_3_01_transpositions_base_3_01_transpositions_derived_01_4_01_4_a812f9c34b587a81b57b088d9828312db}\label{class_eigen_1_1_transpose_3_01_transpositions_base_3_01_transpositions_derived_01_4_01_4_a812f9c34b587a81b57b088d9828312db}} 
+\index{Eigen::Transpose$<$ TranspositionsBase$<$ TranspositionsDerived $>$ $>$@{Eigen::Transpose$<$ TranspositionsBase$<$ TranspositionsDerived $>$ $>$}!operator $\ast$@{operator $\ast$}}
+\index{operator $\ast$@{operator $\ast$}!Eigen::Transpose$<$ TranspositionsBase$<$ TranspositionsDerived $>$ $>$@{Eigen::Transpose$<$ TranspositionsBase$<$ TranspositionsDerived $>$ $>$}}
+\subsubsection{\texorpdfstring{operator $\ast$()}{operator *()}}
+{\footnotesize\ttfamily template$<$typename Transpositions\+Derived $>$ \\
+template$<$typename Other\+Derived $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_product}{Product}}$<$\mbox{\hyperlink{class_eigen_1_1_transpose}{Transpose}}, Other\+Derived, Alias\+Free\+Product$>$ \mbox{\hyperlink{class_eigen_1_1_transpose}{Eigen\+::\+Transpose}}$<$ \mbox{\hyperlink{class_eigen_1_1_transpositions_base}{Transpositions\+Base}}$<$ Transpositions\+Derived $>$ $>$\+::operator $\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Other\+Derived $>$ \&}]{matrix }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the {\itshape matrix} with the inverse transpositions applied to the rows. 
+\end{DoxyReturn}
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_transpose_3_01_transpositions_base_3_01_transpositions_derived_01_4_01_4_abad977a8ed63d154defc69a8b49015f1}\label{class_eigen_1_1_transpose_3_01_transpositions_base_3_01_transpositions_derived_01_4_01_4_abad977a8ed63d154defc69a8b49015f1}} 
+\index{Eigen::Transpose$<$ TranspositionsBase$<$ TranspositionsDerived $>$ $>$@{Eigen::Transpose$<$ TranspositionsBase$<$ TranspositionsDerived $>$ $>$}!operator $\ast$@{operator $\ast$}}
+\index{operator $\ast$@{operator $\ast$}!Eigen::Transpose$<$ TranspositionsBase$<$ TranspositionsDerived $>$ $>$@{Eigen::Transpose$<$ TranspositionsBase$<$ TranspositionsDerived $>$ $>$}}
+\subsubsection{\texorpdfstring{operator $\ast$}{operator *}}
+{\footnotesize\ttfamily template$<$typename Transpositions\+Derived $>$ \\
+template$<$typename Other\+Derived $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_product}{Product}}$<$Other\+Derived, \mbox{\hyperlink{class_eigen_1_1_transpose}{Transpose}}, Alias\+Free\+Product$>$ operator $\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Other\+Derived $>$ \&}]{matrix,  }\item[{const \mbox{\hyperlink{class_eigen_1_1_transpose}{Transpose}}$<$ \mbox{\hyperlink{class_eigen_1_1_transpositions_base}{Transpositions\+Base}}$<$ Transpositions\+Derived $>$ $>$ \&}]{trt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+\begin{DoxyReturn}{Returns}
+the {\itshape matrix} with the inverse transpositions applied to the columns. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Core/Transpositions.\+h\end{DoxyCompactItemize}

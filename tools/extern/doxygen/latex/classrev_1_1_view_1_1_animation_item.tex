@@ -1,0 +1,133 @@
+\hypertarget{classrev_1_1_view_1_1_animation_item}{}\section{rev\+::View\+::Animation\+Item Class Reference}
+\label{classrev_1_1_view_1_1_animation_item}\index{rev::View::AnimationItem@{rev::View::AnimationItem}}
+Inheritance diagram for rev\+::View\+::Animation\+Item\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_view_1_1_animation_item}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_item_a7b137ce077e3e66baa8c868e31232be4}\label{classrev_1_1_view_1_1_animation_item_a7b137ce077e3e66baa8c868e31232be4}} 
+enum {\bfseries Animation\+Item\+Type} \{ {\bfseries k\+Clip} = 2000, 
+{\bfseries k\+Motion}, 
+{\bfseries k\+State}
+ \}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_item_ab12f2ac735f265af085834561ff0fc87}\label{classrev_1_1_view_1_1_animation_item_ab12f2ac735f265af085834561ff0fc87}} 
+{\bfseries Animation\+Item} (\mbox{\hyperlink{classrev_1_1_object}{Object}} $\ast$item\+Source, Animation\+Item\+Type type)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_item_a40b1c5870d467937f6a8a494cde3bad6}\label{classrev_1_1_view_1_1_animation_item_a40b1c5870d467937f6a8a494cde3bad6}} 
+{\bfseries $\sim$\+Animation\+Item} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_animation_item_a20494b0ab95631fb2e2aec918952f0f4}{set\+Widget}} () override
+\begin{DoxyCompactList}\small\item\em Set the widget for this item in the given tree widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_item_acafd1d856ce7505f4e964dff84ec1024}\label{classrev_1_1_view_1_1_animation_item_acafd1d856ce7505f4e964dff84ec1024}} 
+virtual void {\bfseries remove\+Widget} (int column=0) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_item_acf676bee2e51dd909fd2ac2ae34f4c7b}\label{classrev_1_1_view_1_1_animation_item_acf676bee2e51dd909fd2ac2ae34f4c7b}} 
+{\footnotesize template$<$typename T $>$ }\\T $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_animation_item_acf676bee2e51dd909fd2ac2ae34f4c7b}{item\+Object}} ()
+\begin{DoxyCompactList}\small\item\em Return object represented by this tree item. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_item_a7f8cdc9a524128e1520e3d54291ca4a0}\label{classrev_1_1_view_1_1_animation_item_a7f8cdc9a524128e1520e3d54291ca4a0}} 
+Animation\+Item\+Type \mbox{\hyperlink{classrev_1_1_view_1_1_animation_item_a7f8cdc9a524128e1520e3d54291ca4a0}{item\+Type}} () const
+\begin{DoxyCompactList}\small\item\em Get the resource item type of this tree item. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_item_aca4538c6c57402168b4c17d431552db0}\label{classrev_1_1_view_1_1_animation_item_aca4538c6c57402168b4c17d431552db0}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_animation_tree_widget}{View\+::\+Animation\+Tree\+Widget}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_animation_item_aca4538c6c57402168b4c17d431552db0}{animation\+Tree\+Widget}} () const
+\begin{DoxyCompactList}\small\item\em Convenience method for retrieving casted inspector widget. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ rev\+::Object overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_animation_item_aa842daa5b936f8b12980b49505cba185}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_animation_item_a249007fb87aec92b8fc569d3bde45793}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_item_ac3566369e3554d2c9d190bed282bd280}\label{classrev_1_1_view_1_1_animation_item_ac3566369e3554d2c9d190bed282bd280}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_animation_item_ac3566369e3554d2c9d190bed282bd280}{initialize\+Item}} () override
+\begin{DoxyCompactList}\small\item\em Initialize the component tree item. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_item_a9fcdd3c08ac37a7befa88b0e77c1653a}\label{classrev_1_1_view_1_1_animation_item_a9fcdd3c08ac37a7befa88b0e77c1653a}} 
+void {\bfseries update\+Text} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_item_aa62a752db1edaf47e20e9e950179b14c}\label{classrev_1_1_view_1_1_animation_item_aa62a752db1edaf47e20e9e950179b14c}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_animation_item_aa62a752db1edaf47e20e9e950179b14c}{perform\+Action}} (\mbox{\hyperlink{classrev_1_1_undo_command}{Undo\+Command}} $\ast$command)
+\begin{DoxyCompactList}\small\item\em Perform an action from this item. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_item_a7ae3043e1d76d73e5f7e71df51bb5768}\label{classrev_1_1_view_1_1_animation_item_a7ae3043e1d76d73e5f7e71df51bb5768}} 
+class {\bfseries Animation\+Tree\+Widget}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_item_aa842daa5b936f8b12980b49505cba185}\label{classrev_1_1_view_1_1_animation_item_aa842daa5b936f8b12980b49505cba185}} 
+\index{rev::View::AnimationItem@{rev::View::AnimationItem}!className@{className}}
+\index{className@{className}!rev::View::AnimationItem@{rev::View::AnimationItem}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+View\+::\+Animation\+Item\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a8a12a6ceece6cab7a2299da2b5e6a54b}{rev\+::\+View\+::\+Tree\+Item$<$ Object $>$}}.
+
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_item_a249007fb87aec92b8fc569d3bde45793}\label{classrev_1_1_view_1_1_animation_item_a249007fb87aec92b8fc569d3bde45793}} 
+\index{rev::View::AnimationItem@{rev::View::AnimationItem}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::View::AnimationItem@{rev::View::AnimationItem}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+View\+::\+Animation\+Item\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a3bb552a87176f4b12848e43dfdd287b2}{rev\+::\+View\+::\+Tree\+Item$<$ Object $>$}}.
+
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_item_a20494b0ab95631fb2e2aec918952f0f4}\label{classrev_1_1_view_1_1_animation_item_a20494b0ab95631fb2e2aec918952f0f4}} 
+\index{rev::View::AnimationItem@{rev::View::AnimationItem}!setWidget@{setWidget}}
+\index{setWidget@{setWidget}!rev::View::AnimationItem@{rev::View::AnimationItem}}
+\subsubsection{\texorpdfstring{setWidget()}{setWidget()}}
+{\footnotesize\ttfamily void rev\+::\+View\+::\+Animation\+Item\+::set\+Widget (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Set the widget for this item in the given tree widget. 
+
+\begin{DoxyNote}{Note}
+This is only called on the double click event 
+\end{DoxyNote}
+
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a24faa4e374ec0728c7eda8f50ca575df}{rev\+::\+View\+::\+Tree\+Item$<$ Object $>$}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/animation/G\+Animation\+Tree\+Widget.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/animation/G\+Animation\+Tree\+Widget.\+cpp\end{DoxyCompactItemize}

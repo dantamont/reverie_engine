@@ -1,0 +1,143 @@
+\hypertarget{classrev_1_1_event_listener}{}\section{rev\+::Event\+Listener Class Reference}
+\label{classrev_1_1_event_listener}\index{rev::EventListener@{rev::EventListener}}
+
+
+Custom event listener for simulation loop.  
+
+
+
+
+{\ttfamily \#include $<$G\+Event\+Listener.\+h$>$}
+
+Inheritance diagram for rev\+::Event\+Listener\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_event_listener}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_event_listener_a8f026331faa8d20abad8afb712e62879}\label{classrev_1_1_event_listener_a8f026331faa8d20abad8afb712e62879}} 
+{\bfseries Event\+Listener} (\mbox{\hyperlink{classrev_1_1_listener_component}{Listener\+Component}} $\ast$engine)
+\item 
+\mbox{\Hypertarget{classrev_1_1_event_listener_ad98d4d0b094eeb0f6d3ff5ec29ba0b31}\label{classrev_1_1_event_listener_ad98d4d0b094eeb0f6d3ff5ec29ba0b31}} 
+{\bfseries Event\+Listener} (\mbox{\hyperlink{classrev_1_1_listener_component}{Listener\+Component}} $\ast$engine, const Q\+Json\+Value \&json)
+\item 
+\mbox{\Hypertarget{classrev_1_1_event_listener_ac8989cbb9ff5161b486b01680c0b71f6}\label{classrev_1_1_event_listener_ac8989cbb9ff5161b486b01680c0b71f6}} 
+{\bfseries $\sim$\+Event\+Listener} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_event_listener_a0dba0d1ed7453aafdb66896a9a7e1634}\label{classrev_1_1_event_listener_a0dba0d1ed7453aafdb66896a9a7e1634}} 
+\mbox{\hyperlink{classrev_1_1_python_class_script}{Python\+Class\+Script}} $\ast$ \mbox{\hyperlink{classrev_1_1_event_listener_a0dba0d1ed7453aafdb66896a9a7e1634}{script}} ()
+\begin{DoxyCompactList}\small\item\em The script for this event listener. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_event_listener_aa550f06e0fd69ee5f9ee2dda0c3ac609}\label{classrev_1_1_event_listener_aa550f06e0fd69ee5f9ee2dda0c3ac609}} 
+const std\+::set$<$ int $>$ \& {\bfseries event\+Types} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classrev_1_1_event_listener_a0f3261f5c3856571f3fc16ebee61b725}{set\+Event\+Types}} (const std\+::vector$<$ int $>$ event\+Types)
+\begin{DoxyCompactList}\small\item\em Set event types to listen for. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_event_listener_ac7d395e1e2f55c894b44c49bade80262}{add\+Event\+Type}} (int type)
+\begin{DoxyCompactList}\small\item\em Add an event type to listen for. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_event_listener_a663a82803af22a90ed8290e081e3f300}\label{classrev_1_1_event_listener_a663a82803af22a90ed8290e081e3f300}} 
+virtual bool \mbox{\hyperlink{classrev_1_1_event_listener_a663a82803af22a90ed8290e081e3f300}{test\+Event}} (\mbox{\hyperlink{classrev_1_1_custom_event}{Custom\+Event}} $\ast$ev)
+\begin{DoxyCompactList}\small\item\em Check if action should be performed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_event_listener_ae479e874dbdde605dcf1da01391cbf97}\label{classrev_1_1_event_listener_ae479e874dbdde605dcf1da01391cbf97}} 
+virtual void \mbox{\hyperlink{classrev_1_1_event_listener_ae479e874dbdde605dcf1da01391cbf97}{perform}} (\mbox{\hyperlink{classrev_1_1_custom_event}{Custom\+Event}} $\ast$ev)
+\begin{DoxyCompactList}\small\item\em Perform response to event. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_event_listener_ac33288305683b76e6559b743916410a0}\label{classrev_1_1_event_listener_ac33288305683b76e6559b743916410a0}} 
+void \mbox{\hyperlink{classrev_1_1_event_listener_ac33288305683b76e6559b743916410a0}{initialize\+Script}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&filepath)
+\begin{DoxyCompactList}\small\item\em Initialize this listener in python from the given listener script. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_event_listener_af51c55c5e1aab51630668caf7fc695dd}\label{classrev_1_1_event_listener_af51c55c5e1aab51630668caf7fc695dd}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_event_listener_af51c55c5e1aab51630668caf7fc695dd}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_event_listener_ac1ecf9e07cd797f9ec5b822b85ab2ae8}\label{classrev_1_1_event_listener_ac1ecf9e07cd797f9ec5b822b85ab2ae8}} 
+virtual void \mbox{\hyperlink{classrev_1_1_event_listener_ac1ecf9e07cd797f9ec5b822b85ab2ae8}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_event_listener_a769859dbbf444d1a029ac563ce63806c}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_event_listener_ada92683ca9340c93b2e6d84e9716fdcc}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Custom event listener for simulation loop. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_event_listener_ac7d395e1e2f55c894b44c49bade80262}\label{classrev_1_1_event_listener_ac7d395e1e2f55c894b44c49bade80262}} 
+\index{rev::EventListener@{rev::EventListener}!addEventType@{addEventType}}
+\index{addEventType@{addEventType}!rev::EventListener@{rev::EventListener}}
+\subsubsection{\texorpdfstring{addEventType()}{addEventType()}}
+{\footnotesize\ttfamily void rev\+::\+Event\+Listener\+::add\+Event\+Type (\begin{DoxyParamCaption}\item[{int}]{type }\end{DoxyParamCaption})}
+
+
+
+Add an event type to listen for. 
+
+\begin{DoxyNote}{Note}
+Some built-\/in types\+: 2 is mouse press, 3 is release, 4 is double click, 5 is move 
+\end{DoxyNote}
+\mbox{\Hypertarget{classrev_1_1_event_listener_a769859dbbf444d1a029ac563ce63806c}\label{classrev_1_1_event_listener_a769859dbbf444d1a029ac563ce63806c}} 
+\index{rev::EventListener@{rev::EventListener}!className@{className}}
+\index{className@{className}!rev::EventListener@{rev::EventListener}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Event\+Listener\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_event_listener_ada92683ca9340c93b2e6d84e9716fdcc}\label{classrev_1_1_event_listener_ada92683ca9340c93b2e6d84e9716fdcc}} 
+\index{rev::EventListener@{rev::EventListener}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::EventListener@{rev::EventListener}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Event\+Listener\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_event_listener_a0f3261f5c3856571f3fc16ebee61b725}\label{classrev_1_1_event_listener_a0f3261f5c3856571f3fc16ebee61b725}} 
+\index{rev::EventListener@{rev::EventListener}!setEventTypes@{setEventTypes}}
+\index{setEventTypes@{setEventTypes}!rev::EventListener@{rev::EventListener}}
+\subsubsection{\texorpdfstring{setEventTypes()}{setEventTypes()}}
+{\footnotesize\ttfamily void rev\+::\+Event\+Listener\+::set\+Event\+Types (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ int $>$}]{event\+Types }\end{DoxyParamCaption})}
+
+
+
+Set event types to listen for. 
+
+\begin{DoxyNote}{Note}
+Should be using type that is registered to Qt event system 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/events/G\+Event\+Listener.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/events/G\+Event\+Listener.\+cpp\end{DoxyCompactItemize}

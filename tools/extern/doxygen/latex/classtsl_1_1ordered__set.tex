@@ -1,0 +1,886 @@
+\hypertarget{classtsl_1_1ordered__set}{}\section{tsl\+::ordered\+\_\+set$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$ Class Template Reference}
+\label{classtsl_1_1ordered__set}\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+
+
+{\ttfamily \#include $<$ordered\+\_\+set.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a02fb4e2e15f314f6ac35c214d9df23ef}\label{classtsl_1_1ordered__set_a02fb4e2e15f314f6ac35c214d9df23ef}} 
+using {\bfseries key\+\_\+type} = typename ht\+::key\+\_\+type
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_aa3852aebb63dcde9d151859cb65f951e}\label{classtsl_1_1ordered__set_aa3852aebb63dcde9d151859cb65f951e}} 
+using {\bfseries value\+\_\+type} = typename ht\+::value\+\_\+type
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a2679e2e7b1ac5583afe30254f3fe2391}\label{classtsl_1_1ordered__set_a2679e2e7b1ac5583afe30254f3fe2391}} 
+using {\bfseries size\+\_\+type} = typename ht\+::size\+\_\+type
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a74aabf02f8feedcae29dc7486d764a9b}\label{classtsl_1_1ordered__set_a74aabf02f8feedcae29dc7486d764a9b}} 
+using {\bfseries difference\+\_\+type} = typename ht\+::difference\+\_\+type
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a5223d8468abce9948f98b3b95d1e982c}\label{classtsl_1_1ordered__set_a5223d8468abce9948f98b3b95d1e982c}} 
+using {\bfseries hasher} = typename ht\+::hasher
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a13c68662e5e311f48f70ace69759342f}\label{classtsl_1_1ordered__set_a13c68662e5e311f48f70ace69759342f}} 
+using {\bfseries key\+\_\+equal} = typename ht\+::key\+\_\+equal
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a8fbfaf193b1d445d0947dfc5678b6855}\label{classtsl_1_1ordered__set_a8fbfaf193b1d445d0947dfc5678b6855}} 
+using {\bfseries allocator\+\_\+type} = typename ht\+::allocator\+\_\+type
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a958a0120052bda326fb7bf72e9878a5c}\label{classtsl_1_1ordered__set_a958a0120052bda326fb7bf72e9878a5c}} 
+using {\bfseries reference} = typename ht\+::reference
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a213465f357963c30b084451ad61299ac}\label{classtsl_1_1ordered__set_a213465f357963c30b084451ad61299ac}} 
+using {\bfseries const\+\_\+reference} = typename ht\+::const\+\_\+reference
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a274eb7795de5ce31fa932e97ccb255cb}\label{classtsl_1_1ordered__set_a274eb7795de5ce31fa932e97ccb255cb}} 
+using {\bfseries pointer} = typename ht\+::pointer
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a3bd3a5ea8376cdc30c81eb93283b352b}\label{classtsl_1_1ordered__set_a3bd3a5ea8376cdc30c81eb93283b352b}} 
+using {\bfseries const\+\_\+pointer} = typename ht\+::const\+\_\+pointer
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a6b02aa2270e720edf5b8a30b106e7346}\label{classtsl_1_1ordered__set_a6b02aa2270e720edf5b8a30b106e7346}} 
+using {\bfseries iterator} = typename ht\+::iterator
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a3a1996923ed0d9b62d7d959af57a1be3}\label{classtsl_1_1ordered__set_a3a1996923ed0d9b62d7d959af57a1be3}} 
+using {\bfseries const\+\_\+iterator} = typename ht\+::const\+\_\+iterator
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a850e708a94572268b80d79d8238c74fd}\label{classtsl_1_1ordered__set_a850e708a94572268b80d79d8238c74fd}} 
+using {\bfseries reverse\+\_\+iterator} = typename ht\+::reverse\+\_\+iterator
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_ac4cdc912734a2b6757cbb816ab2657ea}\label{classtsl_1_1ordered__set_ac4cdc912734a2b6757cbb816ab2657ea}} 
+using {\bfseries const\+\_\+reverse\+\_\+iterator} = typename ht\+::const\+\_\+reverse\+\_\+iterator
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_af68942b7edb65da7c0ec756b7172f497}\label{classtsl_1_1ordered__set_af68942b7edb65da7c0ec756b7172f497}} 
+using {\bfseries values\+\_\+container\+\_\+type} = typename ht\+::values\+\_\+container\+\_\+type
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a4ec2418fd9c2d4ee6ee02f7b4fa0caa1}\label{classtsl_1_1ordered__set_a4ec2418fd9c2d4ee6ee02f7b4fa0caa1}} 
+{\bfseries ordered\+\_\+set} (size\+\_\+type bucket\+\_\+count, const Hash \&hash=Hash(), const Key\+Equal \&equal=Key\+Equal(), const Allocator \&alloc=Allocator())
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a0a2c776d606ff253b16ded3ebc50f081}\label{classtsl_1_1ordered__set_a0a2c776d606ff253b16ded3ebc50f081}} 
+{\bfseries ordered\+\_\+set} (size\+\_\+type bucket\+\_\+count, const Allocator \&alloc)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_ab684dbea1303cf3173ea839eee34fd44}\label{classtsl_1_1ordered__set_ab684dbea1303cf3173ea839eee34fd44}} 
+{\bfseries ordered\+\_\+set} (size\+\_\+type bucket\+\_\+count, const Hash \&hash, const Allocator \&alloc)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a721a7fcbb629b9c000c2e77925b4fa36}\label{classtsl_1_1ordered__set_a721a7fcbb629b9c000c2e77925b4fa36}} 
+{\bfseries ordered\+\_\+set} (const Allocator \&alloc)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_aad057518e7311f0437ec1f7b059525bd}\label{classtsl_1_1ordered__set_aad057518e7311f0437ec1f7b059525bd}} 
+{\footnotesize template$<$class Input\+It $>$ }\\{\bfseries ordered\+\_\+set} (Input\+It first, Input\+It last, size\+\_\+type bucket\+\_\+count=ht\+::\+D\+E\+F\+A\+U\+L\+T\+\_\+\+I\+N\+I\+T\+\_\+\+B\+U\+C\+K\+E\+T\+S\+\_\+\+S\+I\+ZE, const Hash \&hash=Hash(), const Key\+Equal \&equal=Key\+Equal(), const Allocator \&alloc=Allocator())
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a1925811490371805e060c1488063a545}\label{classtsl_1_1ordered__set_a1925811490371805e060c1488063a545}} 
+{\footnotesize template$<$class Input\+It $>$ }\\{\bfseries ordered\+\_\+set} (Input\+It first, Input\+It last, size\+\_\+type bucket\+\_\+count, const Allocator \&alloc)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a040a736e5534ba4a3c0467779df0b26b}\label{classtsl_1_1ordered__set_a040a736e5534ba4a3c0467779df0b26b}} 
+{\footnotesize template$<$class Input\+It $>$ }\\{\bfseries ordered\+\_\+set} (Input\+It first, Input\+It last, size\+\_\+type bucket\+\_\+count, const Hash \&hash, const Allocator \&alloc)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_af15847bafa2827f9558ff3113ce3c047}\label{classtsl_1_1ordered__set_af15847bafa2827f9558ff3113ce3c047}} 
+{\bfseries ordered\+\_\+set} (std\+::initializer\+\_\+list$<$ value\+\_\+type $>$ init, size\+\_\+type bucket\+\_\+count=ht\+::\+D\+E\+F\+A\+U\+L\+T\+\_\+\+I\+N\+I\+T\+\_\+\+B\+U\+C\+K\+E\+T\+S\+\_\+\+S\+I\+ZE, const Hash \&hash=Hash(), const Key\+Equal \&equal=Key\+Equal(), const Allocator \&alloc=Allocator())
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a3756674af513e07365ea58a4307ea068}\label{classtsl_1_1ordered__set_a3756674af513e07365ea58a4307ea068}} 
+{\bfseries ordered\+\_\+set} (std\+::initializer\+\_\+list$<$ value\+\_\+type $>$ init, size\+\_\+type bucket\+\_\+count, const Allocator \&alloc)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a4ada7c8348ee664b0c8d51c241ce3c82}\label{classtsl_1_1ordered__set_a4ada7c8348ee664b0c8d51c241ce3c82}} 
+{\bfseries ordered\+\_\+set} (std\+::initializer\+\_\+list$<$ value\+\_\+type $>$ init, size\+\_\+type bucket\+\_\+count, const Hash \&hash, const Allocator \&alloc)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a4e545a2e1c9252da9aafd3b8d9027996}\label{classtsl_1_1ordered__set_a4e545a2e1c9252da9aafd3b8d9027996}} 
+\mbox{\hyperlink{classtsl_1_1ordered__set}{ordered\+\_\+set}} \& {\bfseries operator=} (std\+::initializer\+\_\+list$<$ value\+\_\+type $>$ ilist)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a43ee92e0575ea5eda52000fa7359e19a}\label{classtsl_1_1ordered__set_a43ee92e0575ea5eda52000fa7359e19a}} 
+allocator\+\_\+type {\bfseries get\+\_\+allocator} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a13854981a0a6dcf3caa8681249c8a2a6}\label{classtsl_1_1ordered__set_a13854981a0a6dcf3caa8681249c8a2a6}} 
+iterator {\bfseries begin} () noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a8bcc4e4dd0290e5e95ac5581a90877d7}\label{classtsl_1_1ordered__set_a8bcc4e4dd0290e5e95ac5581a90877d7}} 
+const\+\_\+iterator {\bfseries begin} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a10355d72c3d4c1ab5c3995612239f40f}\label{classtsl_1_1ordered__set_a10355d72c3d4c1ab5c3995612239f40f}} 
+const\+\_\+iterator {\bfseries cbegin} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a5aa697b0fafb7028551f4d4f66381ca8}\label{classtsl_1_1ordered__set_a5aa697b0fafb7028551f4d4f66381ca8}} 
+iterator {\bfseries end} () noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_aa2eb040a0129c07e9735448b114ab5e8}\label{classtsl_1_1ordered__set_aa2eb040a0129c07e9735448b114ab5e8}} 
+const\+\_\+iterator {\bfseries end} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a54476254fe316471d65ff77a73941fb5}\label{classtsl_1_1ordered__set_a54476254fe316471d65ff77a73941fb5}} 
+const\+\_\+iterator {\bfseries cend} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a5e062f9c1505b58ad17726d9accdfa21}\label{classtsl_1_1ordered__set_a5e062f9c1505b58ad17726d9accdfa21}} 
+reverse\+\_\+iterator {\bfseries rbegin} () noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_ad2b6e77078a912cfaea9ebc45e876aea}\label{classtsl_1_1ordered__set_ad2b6e77078a912cfaea9ebc45e876aea}} 
+const\+\_\+reverse\+\_\+iterator {\bfseries rbegin} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_aa37e8d6244ab4f608e00b619e14433a5}\label{classtsl_1_1ordered__set_aa37e8d6244ab4f608e00b619e14433a5}} 
+const\+\_\+reverse\+\_\+iterator {\bfseries rcbegin} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_ae499a978d0a0aec34cdc37ade4137aff}\label{classtsl_1_1ordered__set_ae499a978d0a0aec34cdc37ade4137aff}} 
+reverse\+\_\+iterator {\bfseries rend} () noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_aa0d74ddd51e82e4b632057b69935b116}\label{classtsl_1_1ordered__set_aa0d74ddd51e82e4b632057b69935b116}} 
+const\+\_\+reverse\+\_\+iterator {\bfseries rend} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a4bad2ff2e0a44fc871f8350b44a40e16}\label{classtsl_1_1ordered__set_a4bad2ff2e0a44fc871f8350b44a40e16}} 
+const\+\_\+reverse\+\_\+iterator {\bfseries rcend} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a023ea62fd39e755099542ff6dda50d1e}\label{classtsl_1_1ordered__set_a023ea62fd39e755099542ff6dda50d1e}} 
+bool {\bfseries empty} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a1fa37a53d11a5076aaeb33353028f4d7}\label{classtsl_1_1ordered__set_a1fa37a53d11a5076aaeb33353028f4d7}} 
+size\+\_\+type {\bfseries size} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a32a7b4a8594e064e79b47fc6a502f436}\label{classtsl_1_1ordered__set_a32a7b4a8594e064e79b47fc6a502f436}} 
+size\+\_\+type {\bfseries max\+\_\+size} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_acbec08c6e8d45c108e5690bfffe12cd5}\label{classtsl_1_1ordered__set_acbec08c6e8d45c108e5690bfffe12cd5}} 
+void {\bfseries clear} () noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a328a20c731b0e04d44d494c5f43ef8de}\label{classtsl_1_1ordered__set_a328a20c731b0e04d44d494c5f43ef8de}} 
+std\+::pair$<$ iterator, bool $>$ {\bfseries insert} (const value\+\_\+type \&value)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_aa7b6e9cf63b58ec83966f5d97661583d}\label{classtsl_1_1ordered__set_aa7b6e9cf63b58ec83966f5d97661583d}} 
+std\+::pair$<$ iterator, bool $>$ {\bfseries insert} (value\+\_\+type \&\&value)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a2459ce77751afca0043efcce1eb09cd5}\label{classtsl_1_1ordered__set_a2459ce77751afca0043efcce1eb09cd5}} 
+iterator {\bfseries insert} (const\+\_\+iterator hint, const value\+\_\+type \&value)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_abbba255e05528bca39a13ae86b5035c6}\label{classtsl_1_1ordered__set_abbba255e05528bca39a13ae86b5035c6}} 
+iterator {\bfseries insert} (const\+\_\+iterator hint, value\+\_\+type \&\&value)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a9621d330cbf43fec798bc63d191ed034}\label{classtsl_1_1ordered__set_a9621d330cbf43fec798bc63d191ed034}} 
+{\footnotesize template$<$class Input\+It $>$ }\\void {\bfseries insert} (Input\+It first, Input\+It last)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a206421a6a18589f4bd7562c2db43d910}\label{classtsl_1_1ordered__set_a206421a6a18589f4bd7562c2db43d910}} 
+void {\bfseries insert} (std\+::initializer\+\_\+list$<$ value\+\_\+type $>$ ilist)
+\item 
+{\footnotesize template$<$class... Args$>$ }\\std\+::pair$<$ iterator, bool $>$ \mbox{\hyperlink{classtsl_1_1ordered__set_ad4a8ee2e57f3c30fe19b326a874f0bd5}{emplace}} (Args \&\&... args)
+\item 
+{\footnotesize template$<$class... Args$>$ }\\iterator \mbox{\hyperlink{classtsl_1_1ordered__set_ad266d5e2425b6af842790944fa75ef76}{emplace\+\_\+hint}} (const\+\_\+iterator hint, Args \&\&... args)
+\item 
+iterator \mbox{\hyperlink{classtsl_1_1ordered__set_a91cb7fc84c0bfab1c196109d416bad85}{erase}} (iterator pos)
+\item 
+iterator \mbox{\hyperlink{classtsl_1_1ordered__set_a05c3e96aba2834dcc28b22ee8699c914}{erase}} (const\+\_\+iterator pos)
+\item 
+iterator \mbox{\hyperlink{classtsl_1_1ordered__set_a318c0fb661e5e389f82bcb9f157db45d}{erase}} (const\+\_\+iterator first, const\+\_\+iterator last)
+\item 
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__set_a4a1e1054dd9e86fc0617070ad35f8d45}{erase}} (const key\+\_\+type \&key)
+\item 
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__set_a35895b2267b33386efdc0ccf2b262154}{erase}} (const key\+\_\+type \&key, std\+::size\+\_\+t precalculated\+\_\+hash)
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__set_aabc0464c0f492f1b411fcef7ac396936}{erase}} (const K \&key)
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__set_a7e0e6377f984cd852e8861174fc28786}{erase}} (const K \&key, std\+::size\+\_\+t precalculated\+\_\+hash)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_ac2982b9af31dc0cfc8a9eccd9fe325fc}\label{classtsl_1_1ordered__set_ac2982b9af31dc0cfc8a9eccd9fe325fc}} 
+void {\bfseries swap} (\mbox{\hyperlink{classtsl_1_1ordered__set}{ordered\+\_\+set}} \&other)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_aa5ec8f539f3a0dc869bd024bde891c8a}\label{classtsl_1_1ordered__set_aa5ec8f539f3a0dc869bd024bde891c8a}} 
+size\+\_\+type {\bfseries count} (const Key \&key) const
+\item 
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__set_a6671d647ef9402361c009af2f47e29ba}{count}} (const Key \&key, std\+::size\+\_\+t precalculated\+\_\+hash) const
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__set_a766cac50caed1afe6b1dbb2c6447a55b}{count}} (const K \&key) const
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__set_aced79117d7534ed3ab2d6a237a0058bc}{count}} (const K \&key, std\+::size\+\_\+t precalculated\+\_\+hash) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_aaa1bbc404cc363153b6eb7d505448427}\label{classtsl_1_1ordered__set_aaa1bbc404cc363153b6eb7d505448427}} 
+iterator {\bfseries find} (const Key \&key)
+\item 
+iterator \mbox{\hyperlink{classtsl_1_1ordered__set_abe63aacec0b31672f70753f20c7e0d8b}{find}} (const Key \&key, std\+::size\+\_\+t precalculated\+\_\+hash)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_ab49dd84b051493b6847f5ef7c7083d2b}\label{classtsl_1_1ordered__set_ab49dd84b051493b6847f5ef7c7083d2b}} 
+const\+\_\+iterator {\bfseries find} (const Key \&key) const
+\item 
+const\+\_\+iterator \mbox{\hyperlink{classtsl_1_1ordered__set_aaef6331a007f7a8848b5dabc89238946}{find}} (const Key \&key, std\+::size\+\_\+t precalculated\+\_\+hash) const
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\iterator \mbox{\hyperlink{classtsl_1_1ordered__set_a46c6728c8839d9bfcec8785a3a918d33}{find}} (const K \&key)
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\iterator \mbox{\hyperlink{classtsl_1_1ordered__set_aced9be09be40ecc1b2b53148fdbeae3c}{find}} (const K \&key, std\+::size\+\_\+t precalculated\+\_\+hash)
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\const\+\_\+iterator \mbox{\hyperlink{classtsl_1_1ordered__set_a32f4eb260419db865a600bb927fde308}{find}} (const K \&key) const
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\const\+\_\+iterator \mbox{\hyperlink{classtsl_1_1ordered__set_a9b56494c36c62b257971a5c89ce43ace}{find}} (const K \&key, std\+::size\+\_\+t precalculated\+\_\+hash) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a75f3c4a9c769412558086ce4b9646f79}\label{classtsl_1_1ordered__set_a75f3c4a9c769412558086ce4b9646f79}} 
+bool {\bfseries contains} (const Key \&key) const
+\item 
+bool \mbox{\hyperlink{classtsl_1_1ordered__set_a95347e23841cb607b1fe291da16a045a}{contains}} (const Key \&key, std\+::size\+\_\+t precalculated\+\_\+hash) const
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\bool \mbox{\hyperlink{classtsl_1_1ordered__set_a90f5653e37108274b91d34666a9ef7a9}{contains}} (const K \&key) const
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\bool \mbox{\hyperlink{classtsl_1_1ordered__set_a68862ad41770b6bf845c663fc119a340}{contains}} (const K \&key, std\+::size\+\_\+t precalculated\+\_\+hash) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_ae442941c8eb016435f66dded57c1fbc8}\label{classtsl_1_1ordered__set_ae442941c8eb016435f66dded57c1fbc8}} 
+std\+::pair$<$ iterator, iterator $>$ {\bfseries equal\+\_\+range} (const Key \&key)
+\item 
+std\+::pair$<$ iterator, iterator $>$ \mbox{\hyperlink{classtsl_1_1ordered__set_a75a3625f26abb12ef09c41e18a12bbef}{equal\+\_\+range}} (const Key \&key, std\+::size\+\_\+t precalculated\+\_\+hash)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_ae6ff69af2f016680ef22beb1d4e6c9a9}\label{classtsl_1_1ordered__set_ae6ff69af2f016680ef22beb1d4e6c9a9}} 
+std\+::pair$<$ const\+\_\+iterator, const\+\_\+iterator $>$ {\bfseries equal\+\_\+range} (const Key \&key) const
+\item 
+std\+::pair$<$ const\+\_\+iterator, const\+\_\+iterator $>$ \mbox{\hyperlink{classtsl_1_1ordered__set_a3c95b8ec1f1f4432b5b26ff5a83db5b0}{equal\+\_\+range}} (const Key \&key, std\+::size\+\_\+t precalculated\+\_\+hash) const
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\std\+::pair$<$ iterator, iterator $>$ \mbox{\hyperlink{classtsl_1_1ordered__set_a5a2a9aca80e60c35f6a876f87015c335}{equal\+\_\+range}} (const K \&key)
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\std\+::pair$<$ iterator, iterator $>$ \mbox{\hyperlink{classtsl_1_1ordered__set_a80cd49bbc9a568fe78c14e7d80b81c9c}{equal\+\_\+range}} (const K \&key, std\+::size\+\_\+t precalculated\+\_\+hash)
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\std\+::pair$<$ const\+\_\+iterator, const\+\_\+iterator $>$ \mbox{\hyperlink{classtsl_1_1ordered__set_ada7f0385f77d78519f0eb6270cb70d62}{equal\+\_\+range}} (const K \&key) const
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\std\+::pair$<$ const\+\_\+iterator, const\+\_\+iterator $>$ \mbox{\hyperlink{classtsl_1_1ordered__set_aa6f8c028631f989a0ba04df9a6e66a04}{equal\+\_\+range}} (const K \&key, std\+::size\+\_\+t precalculated\+\_\+hash) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_ad9889c1abde8a4980dcedca11a4da90a}\label{classtsl_1_1ordered__set_ad9889c1abde8a4980dcedca11a4da90a}} 
+size\+\_\+type {\bfseries bucket\+\_\+count} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_adbaddfe46e1e201edceb2f46d17cfafe}\label{classtsl_1_1ordered__set_adbaddfe46e1e201edceb2f46d17cfafe}} 
+size\+\_\+type {\bfseries max\+\_\+bucket\+\_\+count} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a7da7f251fd80a9091d334adcb5aeaede}\label{classtsl_1_1ordered__set_a7da7f251fd80a9091d334adcb5aeaede}} 
+float {\bfseries load\+\_\+factor} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_adba63be49c8de3e2d799b2118bad8f71}\label{classtsl_1_1ordered__set_adba63be49c8de3e2d799b2118bad8f71}} 
+float {\bfseries max\+\_\+load\+\_\+factor} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_abff78801e693da6fdbf73b617c16ec6e}\label{classtsl_1_1ordered__set_abff78801e693da6fdbf73b617c16ec6e}} 
+void {\bfseries max\+\_\+load\+\_\+factor} (float ml)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_acc309424677397325af4476ac31e1500}\label{classtsl_1_1ordered__set_acc309424677397325af4476ac31e1500}} 
+void {\bfseries rehash} (size\+\_\+type count)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_ab9a62a8db59d69fb9b6f930c15427a0e}\label{classtsl_1_1ordered__set_ab9a62a8db59d69fb9b6f930c15427a0e}} 
+void {\bfseries reserve} (size\+\_\+type count)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a7582155198c43ed0328394c589274a31}\label{classtsl_1_1ordered__set_a7582155198c43ed0328394c589274a31}} 
+hasher {\bfseries hash\+\_\+function} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a5efaa0821707a99f0601f59015e719ae}\label{classtsl_1_1ordered__set_a5efaa0821707a99f0601f59015e719ae}} 
+key\+\_\+equal {\bfseries key\+\_\+eq} () const
+\item 
+iterator \mbox{\hyperlink{classtsl_1_1ordered__set_a7866c9d599658f12dba6b17fed1b671d}{mutable\+\_\+iterator}} (const\+\_\+iterator pos)
+\item 
+iterator \mbox{\hyperlink{classtsl_1_1ordered__set_adc4c67f752a07ced3348b0bc9a5afa3a}{nth}} (size\+\_\+type index)
+\item 
+const\+\_\+iterator \mbox{\hyperlink{classtsl_1_1ordered__set_aba2011ea9a10cc9f3e51fea95580abe1}{nth}} (size\+\_\+type index) const
+\item 
+const\+\_\+reference \mbox{\hyperlink{classtsl_1_1ordered__set_a6601e0f32a8a36628753bfcbc096be0f}{front}} () const
+\item 
+const\+\_\+reference \mbox{\hyperlink{classtsl_1_1ordered__set_ac182e91cae21e14dc0c2913779cf5368}{back}} () const
+\item 
+{\footnotesize template$<$class U  = values\+\_\+container\+\_\+type, typename std\+::enable\+\_\+if$<$ tsl\+::detail\+\_\+ordered\+\_\+hash\+::is\+\_\+vector$<$ U $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\const values\+\_\+container\+\_\+type\+::value\+\_\+type $\ast$ \mbox{\hyperlink{classtsl_1_1ordered__set_a3ec9980b152c71a875fc4a4e1d7bb78c}{data}} () const noexcept
+\item 
+const values\+\_\+container\+\_\+type \& \mbox{\hyperlink{classtsl_1_1ordered__set_a1bc951514a5c4c29c14b6cf5177cf1ec}{values\+\_\+container}} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a6182f68f6d191ba2c957daea2fbe32dc}\label{classtsl_1_1ordered__set_a6182f68f6d191ba2c957daea2fbe32dc}} 
+{\footnotesize template$<$class U  = values\+\_\+container\+\_\+type, typename std\+::enable\+\_\+if$<$ tsl\+::detail\+\_\+ordered\+\_\+hash\+::is\+\_\+vector$<$ U $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\size\+\_\+type {\bfseries capacity} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_ad3f1cb2ec551059e1316532205c461a7}\label{classtsl_1_1ordered__set_ad3f1cb2ec551059e1316532205c461a7}} 
+void {\bfseries shrink\+\_\+to\+\_\+fit} ()
+\item 
+std\+::pair$<$ iterator, bool $>$ \mbox{\hyperlink{classtsl_1_1ordered__set_af03dd4f519aaaa11716a3eb3a7132446}{insert\+\_\+at\+\_\+position}} (const\+\_\+iterator pos, const value\+\_\+type \&value)
+\item 
+std\+::pair$<$ iterator, bool $>$ \mbox{\hyperlink{classtsl_1_1ordered__set_aae9f958a17a59a693569a0519685fc0a}{insert\+\_\+at\+\_\+position}} (const\+\_\+iterator pos, value\+\_\+type \&\&value)
+\item 
+{\footnotesize template$<$class... Args$>$ }\\std\+::pair$<$ iterator, bool $>$ \mbox{\hyperlink{classtsl_1_1ordered__set_a227c222d9754fccd991600f109b86aea}{emplace\+\_\+at\+\_\+position}} (const\+\_\+iterator pos, Args \&\&... args)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_ae440c07d0c3401bb8a1e672cda9d39d8}\label{classtsl_1_1ordered__set_ae440c07d0c3401bb8a1e672cda9d39d8}} 
+void {\bfseries pop\+\_\+back} ()
+\item 
+iterator \mbox{\hyperlink{classtsl_1_1ordered__set_a96fc16543a99e892512b9119375c0fe5}{unordered\+\_\+erase}} (iterator pos)
+\item 
+iterator \mbox{\hyperlink{classtsl_1_1ordered__set_a4c0e19fd5e5e8832c522b6f876d2a7f9}{unordered\+\_\+erase}} (const\+\_\+iterator pos)
+\item 
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__set_ae89a8c07da6b74f3dd737a77366d49cf}{unordered\+\_\+erase}} (const key\+\_\+type \&key)
+\item 
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__set_a9b291ce4c12967996a10646ded0d352c}{unordered\+\_\+erase}} (const key\+\_\+type \&key, std\+::size\+\_\+t precalculated\+\_\+hash)
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__set_a2b30fbcf395a674198bc7943bb04d756}{unordered\+\_\+erase}} (const K \&key)
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__set_a979b730573d4d61fd42df217b8bccd20}{unordered\+\_\+erase}} (const K \&key, std\+::size\+\_\+t precalculated\+\_\+hash)
+\item 
+{\footnotesize template$<$class Serializer $>$ }\\void \mbox{\hyperlink{classtsl_1_1ordered__set_a6a50408f6297bc6ecb05c7a0942bb581}{serialize}} (Serializer \&serializer) const
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class Deserializer $>$ }\\static \mbox{\hyperlink{classtsl_1_1ordered__set}{ordered\+\_\+set}} \mbox{\hyperlink{classtsl_1_1ordered__set_aaf995efb5c45de92a8ef1d35f6e7e28e}{deserialize}} (Deserializer \&deserializer, bool hash\+\_\+compatible=false)
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_aa58b43c0c001cea18c9b7d7714b9d85c}\label{classtsl_1_1ordered__set_aa58b43c0c001cea18c9b7d7714b9d85c}} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classtsl_1_1ordered__set}{ordered\+\_\+set}} \&lhs, const \mbox{\hyperlink{classtsl_1_1ordered__set}{ordered\+\_\+set}} \&rhs)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_aafca13b71af5e35082b3e22c01680844}\label{classtsl_1_1ordered__set_aafca13b71af5e35082b3e22c01680844}} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{classtsl_1_1ordered__set}{ordered\+\_\+set}} \&lhs, const \mbox{\hyperlink{classtsl_1_1ordered__set}{ordered\+\_\+set}} \&rhs)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_ad685a66cbb7c59a0923ca7d57a734c27}\label{classtsl_1_1ordered__set_ad685a66cbb7c59a0923ca7d57a734c27}} 
+bool {\bfseries operator$<$} (const \mbox{\hyperlink{classtsl_1_1ordered__set}{ordered\+\_\+set}} \&lhs, const \mbox{\hyperlink{classtsl_1_1ordered__set}{ordered\+\_\+set}} \&rhs)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a506164f732a96dfefef194dd47c5459d}\label{classtsl_1_1ordered__set_a506164f732a96dfefef194dd47c5459d}} 
+bool {\bfseries operator$<$=} (const \mbox{\hyperlink{classtsl_1_1ordered__set}{ordered\+\_\+set}} \&lhs, const \mbox{\hyperlink{classtsl_1_1ordered__set}{ordered\+\_\+set}} \&rhs)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a59796ffdc4400bdcb82073c952cdf451}\label{classtsl_1_1ordered__set_a59796ffdc4400bdcb82073c952cdf451}} 
+bool {\bfseries operator$>$} (const \mbox{\hyperlink{classtsl_1_1ordered__set}{ordered\+\_\+set}} \&lhs, const \mbox{\hyperlink{classtsl_1_1ordered__set}{ordered\+\_\+set}} \&rhs)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a94a17aeb7a1827b4f3cc26552ddb9db0}\label{classtsl_1_1ordered__set_a94a17aeb7a1827b4f3cc26552ddb9db0}} 
+bool {\bfseries operator$>$=} (const \mbox{\hyperlink{classtsl_1_1ordered__set}{ordered\+\_\+set}} \&lhs, const \mbox{\hyperlink{classtsl_1_1ordered__set}{ordered\+\_\+set}} \&rhs)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__set_a5fb2c2dd5207da0a8b606fc11fa6dba8}\label{classtsl_1_1ordered__set_a5fb2c2dd5207da0a8b606fc11fa6dba8}} 
+void {\bfseries swap} (\mbox{\hyperlink{classtsl_1_1ordered__set}{ordered\+\_\+set}} \&lhs, \mbox{\hyperlink{classtsl_1_1ordered__set}{ordered\+\_\+set}} \&rhs)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class Key, class Hash = std\+::hash$<$\+Key$>$, class Key\+Equal = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type = std\+::uint\+\_\+least32\+\_\+t$>$\newline
+class tsl\+::ordered\+\_\+set$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$}
+
+Implementation of an hash set using open addressing with robin hood with backshift delete to resolve collisions.
+
+The particularity of this hash set is that it remembers the order in which the elements were added and provide a way to access the structure which stores these values through the \textquotesingle{}\mbox{\hyperlink{classtsl_1_1ordered__set_a1bc951514a5c4c29c14b6cf5177cf1ec}{values\+\_\+container()}}\textquotesingle{} method. The used container is defined by Value\+Type\+Container, by default a std\+::deque is used (grows faster) but a std\+::vector may be used. In this case the set provides a \textquotesingle{}\mbox{\hyperlink{classtsl_1_1ordered__set_a3ec9980b152c71a875fc4a4e1d7bb78c}{data()}}\textquotesingle{} method which give a direct access to the memory used to store the values (which can be useful to communicate with C A\+PI\textquotesingle{}s).
+
+The Key must be copy constructible and/or move constructible. To use {\ttfamily unordered\+\_\+erase} it also must be swappable.
+
+The behaviour of the hash set is undefined if the destructor of Key throws an exception.
+
+By default the maximum size of a set is limited to 2$^\wedge$32 -\/ 1 values, if needed this can be changed through the Index\+Type template parameter. Using an {\ttfamily uint64\+\_\+t} will raise this limit to 2$^\wedge$64 -\/ 1 values but each bucket will use 16 bytes instead of 8 bytes in addition to the space needed to store the values.
+
+Iterators invalidation\+:
+\begin{DoxyItemize}
+\item clear, operator=, reserve, rehash\+: always invalidate the iterators (also invalidate end()).
+\item insert, emplace, emplace\+\_\+hint, operator\mbox{[}\mbox{]}\+: when a std\+::vector is used as Value\+Type\+Container and if size() $<$ capacity(), only end(). Otherwise all the iterators are invalidated if an insert occurs.
+\item erase, unordered\+\_\+erase\+: when a std\+::vector is used as Value\+Type\+Container invalidate the iterator of the erased element and all the ones after the erased element (including end()). Otherwise all the iterators are invalidated if an erase occurs. 
+\end{DoxyItemize}
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classtsl_1_1ordered__set_ac182e91cae21e14dc0c2913779cf5368}\label{classtsl_1_1ordered__set_ac182e91cae21e14dc0c2913779cf5368}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!back@{back}}
+\index{back@{back}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{back()}{back()}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+const\+\_\+reference \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::back (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return const\+\_\+reference to the last element. Requires the container to not be empty. \mbox{\Hypertarget{classtsl_1_1ordered__set_a95347e23841cb607b1fe291da16a045a}\label{classtsl_1_1ordered__set_a95347e23841cb607b1fe291da16a045a}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!contains@{contains}}
+\index{contains@{contains}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{contains()}{contains()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+bool \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::contains (\begin{DoxyParamCaption}\item[{const Key \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__set_a90f5653e37108274b91d34666a9ef7a9}\label{classtsl_1_1ordered__set_a90f5653e37108274b91d34666a9ef7a9}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!contains@{contains}}
+\index{contains@{contains}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{contains()}{contains()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+bool \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::contains (\begin{DoxyParamCaption}\item[{const K \&}]{key }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key. \mbox{\Hypertarget{classtsl_1_1ordered__set_a68862ad41770b6bf845c663fc119a340}\label{classtsl_1_1ordered__set_a68862ad41770b6bf845c663fc119a340}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!contains@{contains}}
+\index{contains@{contains}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{contains()}{contains()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+bool \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::contains (\begin{DoxyParamCaption}\item[{const K \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key.
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__set_a6671d647ef9402361c009af2f47e29ba}\label{classtsl_1_1ordered__set_a6671d647ef9402361c009af2f47e29ba}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!count@{count}}
+\index{count@{count}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{count()}{count()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::count (\begin{DoxyParamCaption}\item[{const Key \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__set_a766cac50caed1afe6b1dbb2c6447a55b}\label{classtsl_1_1ordered__set_a766cac50caed1afe6b1dbb2c6447a55b}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!count@{count}}
+\index{count@{count}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{count()}{count()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::count (\begin{DoxyParamCaption}\item[{const K \&}]{key }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key. \mbox{\Hypertarget{classtsl_1_1ordered__set_aced79117d7534ed3ab2d6a237a0058bc}\label{classtsl_1_1ordered__set_aced79117d7534ed3ab2d6a237a0058bc}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!count@{count}}
+\index{count@{count}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{count()}{count()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::count (\begin{DoxyParamCaption}\item[{const K \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key.
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__set_a3ec9980b152c71a875fc4a4e1d7bb78c}\label{classtsl_1_1ordered__set_a3ec9980b152c71a875fc4a4e1d7bb78c}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!data@{data}}
+\index{data@{data}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{data()}{data()}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class U  = values\+\_\+container\+\_\+type, typename std\+::enable\+\_\+if$<$ tsl\+::detail\+\_\+ordered\+\_\+hash\+::is\+\_\+vector$<$ U $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+const values\+\_\+container\+\_\+type\+::value\+\_\+type$\ast$ \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+Only available if Value\+Type\+Container is a std\+::vector. Same as calling \textquotesingle{}\mbox{\hyperlink{classtsl_1_1ordered__set_a1bc951514a5c4c29c14b6cf5177cf1ec}{values\+\_\+container()}}.\mbox{\hyperlink{classtsl_1_1ordered__set_a3ec9980b152c71a875fc4a4e1d7bb78c}{data()}}\textquotesingle{}. \mbox{\Hypertarget{classtsl_1_1ordered__set_aaf995efb5c45de92a8ef1d35f6e7e28e}\label{classtsl_1_1ordered__set_aaf995efb5c45de92a8ef1d35f6e7e28e}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class Deserializer $>$ \\
+static \mbox{\hyperlink{classtsl_1_1ordered__set}{ordered\+\_\+set}} \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::deserialize (\begin{DoxyParamCaption}\item[{Deserializer \&}]{deserializer,  }\item[{bool}]{hash\+\_\+compatible = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Deserialize a previously serialized set through the {\ttfamily deserializer} parameter.
+
+The {\ttfamily deserializer} parameter must be a function object that supports the following calls\+:
+\begin{DoxyItemize}
+\item {\ttfamily template$<$typename U$>$ U operator()();} where the types {\ttfamily std\+::uint64\+\_\+t}, {\ttfamily float} and {\ttfamily Key} must be supported for U.
+\end{DoxyItemize}
+
+If the deserialized hash set type is hash compatible with the serialized set, the deserialization process can be sped up by setting {\ttfamily hash\+\_\+compatible} to true. To be hash compatible, the Hash and Key\+Equal must behave the same way than the ones used on the serialized map. The {\ttfamily std\+::size\+\_\+t} must also be of the same size as the one on the platform used to serialize the map, the same apply for {\ttfamily Index\+Type}. If these criteria are not met, the behaviour is undefined with {\ttfamily hash\+\_\+compatible} sets to true.
+
+The behaviour is undefined if the type {\ttfamily Key} of the {\ttfamily \mbox{\hyperlink{classtsl_1_1ordered__set}{ordered\+\_\+set}}} is not the same as the type used during serialization.
+
+The implementation leaves binary compatibility (endianness, I\+E\+EE 754 for floats, size of int, ...) of the types it deserializes in the hands of the {\ttfamily Deserializer} function object if compatibility is required. \mbox{\Hypertarget{classtsl_1_1ordered__set_ad4a8ee2e57f3c30fe19b326a874f0bd5}\label{classtsl_1_1ordered__set_ad4a8ee2e57f3c30fe19b326a874f0bd5}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!emplace@{emplace}}
+\index{emplace@{emplace}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{emplace()}{emplace()}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class... Args$>$ \\
+std\+::pair$<$iterator, bool$>$ \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::emplace (\begin{DoxyParamCaption}\item[{Args \&\&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Due to the way elements are stored, emplace will need to move or copy the key-\/value once. The method is equivalent to insert(value\+\_\+type(std\+::forward$<$\+Args$>$(args)...));
+
+Mainly here for compatibility with the std\+::unordered\+\_\+map interface. \mbox{\Hypertarget{classtsl_1_1ordered__set_a227c222d9754fccd991600f109b86aea}\label{classtsl_1_1ordered__set_a227c222d9754fccd991600f109b86aea}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!emplace\_at\_position@{emplace\_at\_position}}
+\index{emplace\_at\_position@{emplace\_at\_position}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{emplace\_at\_position()}{emplace\_at\_position()}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class... Args$>$ \\
+std\+::pair$<$iterator, bool$>$ \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::emplace\+\_\+at\+\_\+position (\begin{DoxyParamCaption}\item[{const\+\_\+iterator}]{pos,  }\item[{Args \&\&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+Insert the value before pos shifting all the elements on the right of pos (including pos) one position to the right.
+
+Amortized linear time-\/complexity in the distance between pos and end().
+
+Same as insert\+\_\+at\+\_\+position(pos, value\+\_\+type(std\+::forward$<$\+Args$>$(args)...), mainly here for coherence. \mbox{\Hypertarget{classtsl_1_1ordered__set_ad266d5e2425b6af842790944fa75ef76}\label{classtsl_1_1ordered__set_ad266d5e2425b6af842790944fa75ef76}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!emplace\_hint@{emplace\_hint}}
+\index{emplace\_hint@{emplace\_hint}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{emplace\_hint()}{emplace\_hint()}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class... Args$>$ \\
+iterator \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::emplace\+\_\+hint (\begin{DoxyParamCaption}\item[{const\+\_\+iterator}]{hint,  }\item[{Args \&\&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Due to the way elements are stored, emplace\+\_\+hint will need to move or copy the key-\/value once. The method is equivalent to insert(hint, value\+\_\+type(std\+::forward$<$\+Args$>$(args)...));
+
+Mainly here for compatibility with the std\+::unordered\+\_\+map interface. \mbox{\Hypertarget{classtsl_1_1ordered__set_a75a3625f26abb12ef09c41e18a12bbef}\label{classtsl_1_1ordered__set_a75a3625f26abb12ef09c41e18a12bbef}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!equal\_range@{equal\_range}}
+\index{equal\_range@{equal\_range}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{equal\_range()}{equal\_range()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+std\+::pair$<$iterator, iterator$>$ \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::equal\+\_\+range (\begin{DoxyParamCaption}\item[{const Key \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__set_a3c95b8ec1f1f4432b5b26ff5a83db5b0}\label{classtsl_1_1ordered__set_a3c95b8ec1f1f4432b5b26ff5a83db5b0}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!equal\_range@{equal\_range}}
+\index{equal\_range@{equal\_range}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{equal\_range()}{equal\_range()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+std\+::pair$<$const\+\_\+iterator, const\+\_\+iterator$>$ \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::equal\+\_\+range (\begin{DoxyParamCaption}\item[{const Key \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__set_a5a2a9aca80e60c35f6a876f87015c335}\label{classtsl_1_1ordered__set_a5a2a9aca80e60c35f6a876f87015c335}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!equal\_range@{equal\_range}}
+\index{equal\_range@{equal\_range}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{equal\_range()}{equal\_range()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+std\+::pair$<$iterator, iterator$>$ \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::equal\+\_\+range (\begin{DoxyParamCaption}\item[{const K \&}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key. \mbox{\Hypertarget{classtsl_1_1ordered__set_a80cd49bbc9a568fe78c14e7d80b81c9c}\label{classtsl_1_1ordered__set_a80cd49bbc9a568fe78c14e7d80b81c9c}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!equal\_range@{equal\_range}}
+\index{equal\_range@{equal\_range}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{equal\_range()}{equal\_range()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+std\+::pair$<$iterator, iterator$>$ \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::equal\+\_\+range (\begin{DoxyParamCaption}\item[{const K \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key.
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__set_ada7f0385f77d78519f0eb6270cb70d62}\label{classtsl_1_1ordered__set_ada7f0385f77d78519f0eb6270cb70d62}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!equal\_range@{equal\_range}}
+\index{equal\_range@{equal\_range}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{equal\_range()}{equal\_range()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+std\+::pair$<$const\+\_\+iterator, const\+\_\+iterator$>$ \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::equal\+\_\+range (\begin{DoxyParamCaption}\item[{const K \&}]{key }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key. \mbox{\Hypertarget{classtsl_1_1ordered__set_aa6f8c028631f989a0ba04df9a6e66a04}\label{classtsl_1_1ordered__set_aa6f8c028631f989a0ba04df9a6e66a04}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!equal\_range@{equal\_range}}
+\index{equal\_range@{equal\_range}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{equal\_range()}{equal\_range()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+std\+::pair$<$const\+\_\+iterator, const\+\_\+iterator$>$ \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::equal\+\_\+range (\begin{DoxyParamCaption}\item[{const K \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key.
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__set_a91cb7fc84c0bfab1c196109d416bad85}\label{classtsl_1_1ordered__set_a91cb7fc84c0bfab1c196109d416bad85}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!erase@{erase}}
+\index{erase@{erase}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{erase()}{erase()}\hspace{0.1cm}{\footnotesize\ttfamily [1/7]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+iterator \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::erase (\begin{DoxyParamCaption}\item[{iterator}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+When erasing an element, the insert order will be preserved and no holes will be present in the container returned by \textquotesingle{}\mbox{\hyperlink{classtsl_1_1ordered__set_a1bc951514a5c4c29c14b6cf5177cf1ec}{values\+\_\+container()}}\textquotesingle{}.
+
+The method is in O(n), if the order is not important \textquotesingle{}unordered\+\_\+erase(...)\textquotesingle{} method is faster with an O(1) average complexity. \mbox{\Hypertarget{classtsl_1_1ordered__set_a05c3e96aba2834dcc28b22ee8699c914}\label{classtsl_1_1ordered__set_a05c3e96aba2834dcc28b22ee8699c914}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!erase@{erase}}
+\index{erase@{erase}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{erase()}{erase()}\hspace{0.1cm}{\footnotesize\ttfamily [2/7]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+iterator \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::erase (\begin{DoxyParamCaption}\item[{const\+\_\+iterator}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+When erasing an element, the insert order will be preserved and no holes will be present in the container returned by \textquotesingle{}\mbox{\hyperlink{classtsl_1_1ordered__set_a1bc951514a5c4c29c14b6cf5177cf1ec}{values\+\_\+container()}}\textquotesingle{}.
+
+The method is in O(n), if the order is not important \textquotesingle{}unordered\+\_\+erase(...)\textquotesingle{} method is faster with an O(1) average complexity. \mbox{\Hypertarget{classtsl_1_1ordered__set_a318c0fb661e5e389f82bcb9f157db45d}\label{classtsl_1_1ordered__set_a318c0fb661e5e389f82bcb9f157db45d}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!erase@{erase}}
+\index{erase@{erase}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{erase()}{erase()}\hspace{0.1cm}{\footnotesize\ttfamily [3/7]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+iterator \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::erase (\begin{DoxyParamCaption}\item[{const\+\_\+iterator}]{first,  }\item[{const\+\_\+iterator}]{last }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+When erasing an element, the insert order will be preserved and no holes will be present in the container returned by \textquotesingle{}\mbox{\hyperlink{classtsl_1_1ordered__set_a1bc951514a5c4c29c14b6cf5177cf1ec}{values\+\_\+container()}}\textquotesingle{}.
+
+The method is in O(n), if the order is not important \textquotesingle{}unordered\+\_\+erase(...)\textquotesingle{} method is faster with an O(1) average complexity. \mbox{\Hypertarget{classtsl_1_1ordered__set_a4a1e1054dd9e86fc0617070ad35f8d45}\label{classtsl_1_1ordered__set_a4a1e1054dd9e86fc0617070ad35f8d45}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!erase@{erase}}
+\index{erase@{erase}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{erase()}{erase()}\hspace{0.1cm}{\footnotesize\ttfamily [4/7]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::erase (\begin{DoxyParamCaption}\item[{const key\+\_\+type \&}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+When erasing an element, the insert order will be preserved and no holes will be present in the container returned by \textquotesingle{}\mbox{\hyperlink{classtsl_1_1ordered__set_a1bc951514a5c4c29c14b6cf5177cf1ec}{values\+\_\+container()}}\textquotesingle{}.
+
+The method is in O(n), if the order is not important \textquotesingle{}unordered\+\_\+erase(...)\textquotesingle{} method is faster with an O(1) average complexity. \mbox{\Hypertarget{classtsl_1_1ordered__set_a35895b2267b33386efdc0ccf2b262154}\label{classtsl_1_1ordered__set_a35895b2267b33386efdc0ccf2b262154}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!erase@{erase}}
+\index{erase@{erase}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{erase()}{erase()}\hspace{0.1cm}{\footnotesize\ttfamily [5/7]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::erase (\begin{DoxyParamCaption}\item[{const key\+\_\+type \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+When erasing an element, the insert order will be preserved and no holes will be present in the container returned by \textquotesingle{}\mbox{\hyperlink{classtsl_1_1ordered__set_a1bc951514a5c4c29c14b6cf5177cf1ec}{values\+\_\+container()}}\textquotesingle{}.
+
+The method is in O(n), if the order is not important \textquotesingle{}unordered\+\_\+erase(...)\textquotesingle{} method is faster with an O(1) average complexity.
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup to the value if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__set_aabc0464c0f492f1b411fcef7ac396936}\label{classtsl_1_1ordered__set_aabc0464c0f492f1b411fcef7ac396936}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!erase@{erase}}
+\index{erase@{erase}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{erase()}{erase()}\hspace{0.1cm}{\footnotesize\ttfamily [6/7]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::erase (\begin{DoxyParamCaption}\item[{const K \&}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+When erasing an element, the insert order will be preserved and no holes will be present in the container returned by \textquotesingle{}\mbox{\hyperlink{classtsl_1_1ordered__set_a1bc951514a5c4c29c14b6cf5177cf1ec}{values\+\_\+container()}}\textquotesingle{}.
+
+The method is in O(n), if the order is not important \textquotesingle{}unordered\+\_\+erase(...)\textquotesingle{} method is faster with an O(1) average complexity.
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key. \mbox{\Hypertarget{classtsl_1_1ordered__set_a7e0e6377f984cd852e8861174fc28786}\label{classtsl_1_1ordered__set_a7e0e6377f984cd852e8861174fc28786}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!erase@{erase}}
+\index{erase@{erase}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{erase()}{erase()}\hspace{0.1cm}{\footnotesize\ttfamily [7/7]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::erase (\begin{DoxyParamCaption}\item[{const K \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+When erasing an element, the insert order will be preserved and no holes will be present in the container returned by \textquotesingle{}\mbox{\hyperlink{classtsl_1_1ordered__set_a1bc951514a5c4c29c14b6cf5177cf1ec}{values\+\_\+container()}}\textquotesingle{}.
+
+The method is in O(n), if the order is not important \textquotesingle{}unordered\+\_\+erase(...)\textquotesingle{} method is faster with an O(1) average complexity.
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup to the value if you already have the hash.
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key. \mbox{\Hypertarget{classtsl_1_1ordered__set_abe63aacec0b31672f70753f20c7e0d8b}\label{classtsl_1_1ordered__set_abe63aacec0b31672f70753f20c7e0d8b}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!find@{find}}
+\index{find@{find}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{find()}{find()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+iterator \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::find (\begin{DoxyParamCaption}\item[{const Key \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__set_aaef6331a007f7a8848b5dabc89238946}\label{classtsl_1_1ordered__set_aaef6331a007f7a8848b5dabc89238946}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!find@{find}}
+\index{find@{find}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{find()}{find()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+const\+\_\+iterator \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::find (\begin{DoxyParamCaption}\item[{const Key \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__set_a46c6728c8839d9bfcec8785a3a918d33}\label{classtsl_1_1ordered__set_a46c6728c8839d9bfcec8785a3a918d33}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!find@{find}}
+\index{find@{find}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{find()}{find()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+iterator \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::find (\begin{DoxyParamCaption}\item[{const K \&}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key. \mbox{\Hypertarget{classtsl_1_1ordered__set_aced9be09be40ecc1b2b53148fdbeae3c}\label{classtsl_1_1ordered__set_aced9be09be40ecc1b2b53148fdbeae3c}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!find@{find}}
+\index{find@{find}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{find()}{find()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+iterator \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::find (\begin{DoxyParamCaption}\item[{const K \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key.
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__set_a32f4eb260419db865a600bb927fde308}\label{classtsl_1_1ordered__set_a32f4eb260419db865a600bb927fde308}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!find@{find}}
+\index{find@{find}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{find()}{find()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+const\+\_\+iterator \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::find (\begin{DoxyParamCaption}\item[{const K \&}]{key }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key. \mbox{\Hypertarget{classtsl_1_1ordered__set_a9b56494c36c62b257971a5c89ce43ace}\label{classtsl_1_1ordered__set_a9b56494c36c62b257971a5c89ce43ace}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!find@{find}}
+\index{find@{find}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{find()}{find()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+const\+\_\+iterator \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::find (\begin{DoxyParamCaption}\item[{const K \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key.
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__set_a6601e0f32a8a36628753bfcbc096be0f}\label{classtsl_1_1ordered__set_a6601e0f32a8a36628753bfcbc096be0f}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!front@{front}}
+\index{front@{front}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{front()}{front()}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+const\+\_\+reference \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::front (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return const\+\_\+reference to the first element. Requires the container to not be empty. \mbox{\Hypertarget{classtsl_1_1ordered__set_af03dd4f519aaaa11716a3eb3a7132446}\label{classtsl_1_1ordered__set_af03dd4f519aaaa11716a3eb3a7132446}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!insert\_at\_position@{insert\_at\_position}}
+\index{insert\_at\_position@{insert\_at\_position}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{insert\_at\_position()}{insert\_at\_position()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+std\+::pair$<$iterator, bool$>$ \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::insert\+\_\+at\+\_\+position (\begin{DoxyParamCaption}\item[{const\+\_\+iterator}]{pos,  }\item[{const value\+\_\+type \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Insert the value before pos shifting all the elements on the right of pos (including pos) one position to the right.
+
+Amortized linear time-\/complexity in the distance between pos and end(). \mbox{\Hypertarget{classtsl_1_1ordered__set_aae9f958a17a59a693569a0519685fc0a}\label{classtsl_1_1ordered__set_aae9f958a17a59a693569a0519685fc0a}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!insert\_at\_position@{insert\_at\_position}}
+\index{insert\_at\_position@{insert\_at\_position}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{insert\_at\_position()}{insert\_at\_position()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+std\+::pair$<$iterator, bool$>$ \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::insert\+\_\+at\+\_\+position (\begin{DoxyParamCaption}\item[{const\+\_\+iterator}]{pos,  }\item[{value\+\_\+type \&\&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+Insert the value before pos shifting all the elements on the right of pos (including pos) one position to the right.
+
+Amortized linear time-\/complexity in the distance between pos and end(). \mbox{\Hypertarget{classtsl_1_1ordered__set_a7866c9d599658f12dba6b17fed1b671d}\label{classtsl_1_1ordered__set_a7866c9d599658f12dba6b17fed1b671d}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!mutable\_iterator@{mutable\_iterator}}
+\index{mutable\_iterator@{mutable\_iterator}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{mutable\_iterator()}{mutable\_iterator()}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+iterator \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::mutable\+\_\+iterator (\begin{DoxyParamCaption}\item[{const\+\_\+iterator}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Convert a const\+\_\+iterator to an iterator. \mbox{\Hypertarget{classtsl_1_1ordered__set_adc4c67f752a07ced3348b0bc9a5afa3a}\label{classtsl_1_1ordered__set_adc4c67f752a07ced3348b0bc9a5afa3a}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!nth@{nth}}
+\index{nth@{nth}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{nth()}{nth()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+iterator \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::nth (\begin{DoxyParamCaption}\item[{size\+\_\+type}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Requires index $<$= size().
+
+Return an iterator to the element at index. Return end() if index == size(). \mbox{\Hypertarget{classtsl_1_1ordered__set_aba2011ea9a10cc9f3e51fea95580abe1}\label{classtsl_1_1ordered__set_aba2011ea9a10cc9f3e51fea95580abe1}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!nth@{nth}}
+\index{nth@{nth}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{nth()}{nth()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+const\+\_\+iterator \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::nth (\begin{DoxyParamCaption}\item[{size\+\_\+type}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+Requires index $<$= size().
+
+Return an iterator to the element at index. Return end() if index == size(). \mbox{\Hypertarget{classtsl_1_1ordered__set_a6a50408f6297bc6ecb05c7a0942bb581}\label{classtsl_1_1ordered__set_a6a50408f6297bc6ecb05c7a0942bb581}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!serialize@{serialize}}
+\index{serialize@{serialize}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class Serializer $>$ \\
+void \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::serialize (\begin{DoxyParamCaption}\item[{Serializer \&}]{serializer }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Serialize the set through the {\ttfamily serializer} parameter.
+
+The {\ttfamily serializer} parameter must be a function object that supports the following call\+:
+\begin{DoxyItemize}
+\item {\ttfamily void operator()(const U\& value);} where the types {\ttfamily std\+::uint64\+\_\+t}, {\ttfamily float} and {\ttfamily Key} must be supported for U.
+\end{DoxyItemize}
+
+The implementation leaves binary compatibility (endianness, I\+E\+EE 754 for floats, ...) of the types it serializes in the hands of the {\ttfamily Serializer} function object if compatibility is required. \mbox{\Hypertarget{classtsl_1_1ordered__set_a96fc16543a99e892512b9119375c0fe5}\label{classtsl_1_1ordered__set_a96fc16543a99e892512b9119375c0fe5}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!unordered\_erase@{unordered\_erase}}
+\index{unordered\_erase@{unordered\_erase}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{unordered\_erase()}{unordered\_erase()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+iterator \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::unordered\+\_\+erase (\begin{DoxyParamCaption}\item[{iterator}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Faster erase operation with an O(1) average complexity but it doesn\textquotesingle{}t preserve the insertion order.
+
+If an erasure occurs, the last element of the map will take the place of the erased element. \mbox{\Hypertarget{classtsl_1_1ordered__set_a4c0e19fd5e5e8832c522b6f876d2a7f9}\label{classtsl_1_1ordered__set_a4c0e19fd5e5e8832c522b6f876d2a7f9}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!unordered\_erase@{unordered\_erase}}
+\index{unordered\_erase@{unordered\_erase}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{unordered\_erase()}{unordered\_erase()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+iterator \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::unordered\+\_\+erase (\begin{DoxyParamCaption}\item[{const\+\_\+iterator}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+Faster erase operation with an O(1) average complexity but it doesn\textquotesingle{}t preserve the insertion order.
+
+If an erasure occurs, the last element of the map will take the place of the erased element. \mbox{\Hypertarget{classtsl_1_1ordered__set_ae89a8c07da6b74f3dd737a77366d49cf}\label{classtsl_1_1ordered__set_ae89a8c07da6b74f3dd737a77366d49cf}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!unordered\_erase@{unordered\_erase}}
+\index{unordered\_erase@{unordered\_erase}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{unordered\_erase()}{unordered\_erase()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::unordered\+\_\+erase (\begin{DoxyParamCaption}\item[{const key\+\_\+type \&}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+Faster erase operation with an O(1) average complexity but it doesn\textquotesingle{}t preserve the insertion order.
+
+If an erasure occurs, the last element of the map will take the place of the erased element. \mbox{\Hypertarget{classtsl_1_1ordered__set_a9b291ce4c12967996a10646ded0d352c}\label{classtsl_1_1ordered__set_a9b291ce4c12967996a10646ded0d352c}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!unordered\_erase@{unordered\_erase}}
+\index{unordered\_erase@{unordered\_erase}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{unordered\_erase()}{unordered\_erase()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::unordered\+\_\+erase (\begin{DoxyParamCaption}\item[{const key\+\_\+type \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+Faster erase operation with an O(1) average complexity but it doesn\textquotesingle{}t preserve the insertion order.
+
+If an erasure occurs, the last element of the map will take the place of the erased element.
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__set_a2b30fbcf395a674198bc7943bb04d756}\label{classtsl_1_1ordered__set_a2b30fbcf395a674198bc7943bb04d756}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!unordered\_erase@{unordered\_erase}}
+\index{unordered\_erase@{unordered\_erase}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{unordered\_erase()}{unordered\_erase()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::unordered\+\_\+erase (\begin{DoxyParamCaption}\item[{const K \&}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+Faster erase operation with an O(1) average complexity but it doesn\textquotesingle{}t preserve the insertion order.
+
+If an erasure occurs, the last element of the map will take the place of the erased element.
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key. \mbox{\Hypertarget{classtsl_1_1ordered__set_a979b730573d4d61fd42df217b8bccd20}\label{classtsl_1_1ordered__set_a979b730573d4d61fd42df217b8bccd20}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!unordered\_erase@{unordered\_erase}}
+\index{unordered\_erase@{unordered\_erase}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{unordered\_erase()}{unordered\_erase()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::unordered\+\_\+erase (\begin{DoxyParamCaption}\item[{const K \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+Faster erase operation with an O(1) average complexity but it doesn\textquotesingle{}t preserve the insertion order.
+
+If an erasure occurs, the last element of the map will take the place of the erased element.
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key.
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__set_a1bc951514a5c4c29c14b6cf5177cf1ec}\label{classtsl_1_1ordered__set_a1bc951514a5c4c29c14b6cf5177cf1ec}} 
+\index{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!values\_container@{values\_container}}
+\index{values\_container@{values\_container}!tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_set$<$ Key, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{values\_container()}{values\_container()}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, class Value\+Type\+Container  = std\+::deque$<$\+Key, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+const values\+\_\+container\+\_\+type\& \mbox{\hyperlink{classtsl_1_1ordered__set}{tsl\+::ordered\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::values\+\_\+container (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+Return the container in which the values are stored. The values are in the same order as the insertion order and are contiguous in the structure, no holes (size() == \mbox{\hyperlink{classtsl_1_1ordered__set_a1bc951514a5c4c29c14b6cf5177cf1ec}{values\+\_\+container()}}.size()). 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/tsl/ordered\+\_\+set.\+h\end{DoxyCompactItemize}

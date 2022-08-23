@@ -1,0 +1,182 @@
+\hypertarget{classrev_1_1_simulation_loop}{}\section{rev\+::Simulation\+Loop Class Reference}
+\label{classrev_1_1_simulation_loop}\index{rev::SimulationLoop@{rev::SimulationLoop}}
+
+
+\mbox{\hyperlink{classrev_1_1_manager}{Manager}} for handling all simulation loop logic.  
+
+
+
+
+{\ttfamily \#include $<$G\+Sim\+Loop.\+h$>$}
+
+Inheritance diagram for rev\+::Simulation\+Loop\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{classrev_1_1_simulation_loop}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_simulation_loop_aa4fcaf3050437919d06c0cad0d68fe8c}\label{classrev_1_1_simulation_loop_aa4fcaf3050437919d06c0cad0d68fe8c}} 
+enum {\bfseries Play\+State} \{ {\bfseries k\+Played\+State}, 
+{\bfseries k\+Paused\+State}, 
+{\bfseries k\+Stopped\+State}
+ \}
+\item 
+\mbox{\Hypertarget{classrev_1_1_simulation_loop_a9e706e784a6b16b0ac5a949460dbce63}\label{classrev_1_1_simulation_loop_a9e706e784a6b16b0ac5a949460dbce63}} 
+enum {\bfseries Play\+Mode} \{ {\bfseries k\+Standard}, 
+{\bfseries k\+Debug}
+ \}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_simulation_loop_a426bd25731cfb03492314822a041fb34}\label{classrev_1_1_simulation_loop_a426bd25731cfb03492314822a041fb34}} 
+void {\bfseries paused} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_simulation_loop_aea93a2f82d6cef4f367ef97abc7a875a}\label{classrev_1_1_simulation_loop_aea93a2f82d6cef4f367ef97abc7a875a}} 
+void {\bfseries unpaused} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_simulation_loop_a3caaaf354a409ca6eadb02a65c2c2fc4}\label{classrev_1_1_simulation_loop_a3caaaf354a409ca6eadb02a65c2c2fc4}} 
+{\bfseries Simulation\+Loop} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, double update\+Interval=0, double fixed\+Update\+Interval=0.\+016)
+\item 
+\mbox{\Hypertarget{classrev_1_1_simulation_loop_a25207c901ccb265e0cf919bdb0aae98c}\label{classrev_1_1_simulation_loop_a25207c901ccb265e0cf919bdb0aae98c}} 
+{\bfseries $\sim$\+Simulation\+Loop} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_simulation_loop_ac4108655a137163a511b76fc23bc5a60}\label{classrev_1_1_simulation_loop_ac4108655a137163a511b76fc23bc5a60}} 
+double {\bfseries elapsed\+Time} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_simulation_loop_a018b7dca1f7caf8ecccfa7c6791bf786}\label{classrev_1_1_simulation_loop_a018b7dca1f7caf8ecccfa7c6791bf786}} 
+double {\bfseries fixed\+Step} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_simulation_loop_abe5349983c46e815444bbb20e6f42f58}\label{classrev_1_1_simulation_loop_abe5349983c46e815444bbb20e6f42f58}} 
+Q\+Mutex \& {\bfseries update\+Mutex} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_simulation_loop_aa5efdf9bb8227f9f860aff3e2aadb065}\label{classrev_1_1_simulation_loop_aa5efdf9bb8227f9f860aff3e2aadb065}} 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_process_manager}{Process\+Manager}} $>$ \& {\bfseries process\+Manager} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_simulation_loop_ac387fed3fa28b48ef30627db2a573022}\label{classrev_1_1_simulation_loop_ac387fed3fa28b48ef30627db2a573022}} 
+bool {\bfseries is\+Playing} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_simulation_loop_a4363d198bffc56553b299e22573fe203}\label{classrev_1_1_simulation_loop_a4363d198bffc56553b299e22573fe203}} 
+bool {\bfseries is\+Paused} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_simulation_loop_aec6479b7f19f1812c27d3873c872a843}\label{classrev_1_1_simulation_loop_aec6479b7f19f1812c27d3873c872a843}} 
+bool {\bfseries is\+Stopped} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_simulation_loop_a48abb0b6c65ce5355440dbb1a83e6b91}\label{classrev_1_1_simulation_loop_a48abb0b6c65ce5355440dbb1a83e6b91}} 
+Play\+State {\bfseries get\+Play\+State} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_simulation_loop_a0e16c3e16d5bd6eb3a394584d53c59a4}\label{classrev_1_1_simulation_loop_a0e16c3e16d5bd6eb3a394584d53c59a4}} 
+void {\bfseries set\+Play\+State} (Play\+State play\+State)
+\item 
+\mbox{\Hypertarget{classrev_1_1_simulation_loop_a5828ec483ff0245839cd02475ed45c6e}\label{classrev_1_1_simulation_loop_a5828ec483ff0245839cd02475ed45c6e}} 
+Play\+Mode {\bfseries get\+Play\+Mode} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_simulation_loop_a8b86a6775a4a70a97d1332bc91899c0a}\label{classrev_1_1_simulation_loop_a8b86a6775a4a70a97d1332bc91899c0a}} 
+void {\bfseries set\+Play\+Mode} (Play\+Mode play\+Mode)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_simulation_loop_a706d9a0a41b42d9ff42458c82584527b}\label{classrev_1_1_simulation_loop_a706d9a0a41b42d9ff42458c82584527b}} 
+void \mbox{\hyperlink{classrev_1_1_simulation_loop_a706d9a0a41b42d9ff42458c82584527b}{play}} ()
+\begin{DoxyCompactList}\small\item\em Start the simulation loop. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_simulation_loop_a2b3db13b0584d6e136a4e0b15446eeea}\label{classrev_1_1_simulation_loop_a2b3db13b0584d6e136a4e0b15446eeea}} 
+void \mbox{\hyperlink{classrev_1_1_simulation_loop_a2b3db13b0584d6e136a4e0b15446eeea}{pause}} ()
+\begin{DoxyCompactList}\small\item\em Pause the simulation loop. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_simulation_loop_a87e3632b804f30e4524b927064de539b}\label{classrev_1_1_simulation_loop_a87e3632b804f30e4524b927064de539b}} 
+void \mbox{\hyperlink{classrev_1_1_simulation_loop_a87e3632b804f30e4524b927064de539b}{initialize\+Connections}} ()
+\begin{DoxyCompactList}\small\item\em Initialize connections. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Slots}
+\begin{Indent}\textbf{ Private Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_simulation_loop_afcb42eb0de8dbd79137dfac5d9df910c}\label{classrev_1_1_simulation_loop_afcb42eb0de8dbd79137dfac5d9df910c}} 
+void {\bfseries update} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Private Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_simulation_loop_a3b79f1ddf2e13eede925d3c893d00c87}\label{classrev_1_1_simulation_loop_a3b79f1ddf2e13eede925d3c893d00c87}} 
+Q\+Mutex \mbox{\hyperlink{classrev_1_1_simulation_loop_a3b79f1ddf2e13eede925d3c893d00c87}{m\+\_\+update\+Mutex}}
+\begin{DoxyCompactList}\small\item\em Mutex to protect update loop from G\+UI modifications. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_simulation_loop_aeb03cda745291f89f2737edcb911c94c}\label{classrev_1_1_simulation_loop_aeb03cda745291f89f2737edcb911c94c}} 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_process_manager}{Process\+Manager}} $>$ \mbox{\hyperlink{classrev_1_1_simulation_loop_aeb03cda745291f89f2737edcb911c94c}{m\+\_\+process\+Manager}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_manager}{Manager}} for handling processes. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classrev_1_1_simulation_loop_a3d754a1b34a79f17e9245a9d04442ff8}{m\+\_\+fixed\+Update\+Interval}}
+\begin{DoxyCompactList}\small\item\em Fixed update interval. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classrev_1_1_simulation_loop_aa74c432b0fd79e8d5b74c320fcae3906}{m\+\_\+minimum\+Update\+Interval}}
+\begin{DoxyCompactList}\small\item\em Minimum update interval. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_simulation_loop_a2212997700aeff7dbb94908b83ada68f}\label{classrev_1_1_simulation_loop_a2212997700aeff7dbb94908b83ada68f}} 
+Q\+Timer \mbox{\hyperlink{classrev_1_1_simulation_loop_a2212997700aeff7dbb94908b83ada68f}{m\+\_\+timer}}
+\begin{DoxyCompactList}\small\item\em Send time signal to drive simulation loop. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_simulation_loop_a02f1a2839740c10a3d751ba868da37da}\label{classrev_1_1_simulation_loop_a02f1a2839740c10a3d751ba868da37da}} 
+\mbox{\hyperlink{classrev_1_1_timer}{Timer}} \mbox{\hyperlink{classrev_1_1_simulation_loop_a02f1a2839740c10a3d751ba868da37da}{m\+\_\+update\+Timer}}
+\begin{DoxyCompactList}\small\item\em Time-\/keeping for updates. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_simulation_loop_a284e0aa33afb57d1f099363a8a9b93f3}\label{classrev_1_1_simulation_loop_a284e0aa33afb57d1f099363a8a9b93f3}} 
+double \mbox{\hyperlink{classrev_1_1_simulation_loop_a284e0aa33afb57d1f099363a8a9b93f3}{m\+\_\+accumulated\+Fixed\+Time}}
+\begin{DoxyCompactList}\small\item\em Time-\/keeping for fixed updates, in seconds. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_simulation_loop_af06d5d1c56df707130e0747ccd87a421}\label{classrev_1_1_simulation_loop_af06d5d1c56df707130e0747ccd87a421}} 
+Play\+State \mbox{\hyperlink{classrev_1_1_simulation_loop_af06d5d1c56df707130e0747ccd87a421}{m\+\_\+play\+State}}
+\begin{DoxyCompactList}\small\item\em Play state. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_simulation_loop_adfa6893595279e3dd172495e70decd22}\label{classrev_1_1_simulation_loop_adfa6893595279e3dd172495e70decd22}} 
+Play\+Mode \mbox{\hyperlink{classrev_1_1_simulation_loop_adfa6893595279e3dd172495e70decd22}{m\+\_\+play\+Mode}}
+\begin{DoxyCompactList}\small\item\em Play mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_simulation_loop_a7e7bd315086595dcbf3d7e324381323e}\label{classrev_1_1_simulation_loop_a7e7bd315086595dcbf3d7e324381323e}} 
+class {\bfseries Core\+Engine}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{classrev_1_1_manager}{Manager}} for handling all simulation loop logic. 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_simulation_loop_a3d754a1b34a79f17e9245a9d04442ff8}\label{classrev_1_1_simulation_loop_a3d754a1b34a79f17e9245a9d04442ff8}} 
+\index{rev::SimulationLoop@{rev::SimulationLoop}!m\_fixedUpdateInterval@{m\_fixedUpdateInterval}}
+\index{m\_fixedUpdateInterval@{m\_fixedUpdateInterval}!rev::SimulationLoop@{rev::SimulationLoop}}
+\subsubsection{\texorpdfstring{m\_fixedUpdateInterval}{m\_fixedUpdateInterval}}
+{\footnotesize\ttfamily double rev\+::\+Simulation\+Loop\+::m\+\_\+fixed\+Update\+Interval\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Fixed update interval. 
+
+How much time (s) must pass before a fixed update event is called \mbox{\Hypertarget{classrev_1_1_simulation_loop_aa74c432b0fd79e8d5b74c320fcae3906}\label{classrev_1_1_simulation_loop_aa74c432b0fd79e8d5b74c320fcae3906}} 
+\index{rev::SimulationLoop@{rev::SimulationLoop}!m\_minimumUpdateInterval@{m\_minimumUpdateInterval}}
+\index{m\_minimumUpdateInterval@{m\_minimumUpdateInterval}!rev::SimulationLoop@{rev::SimulationLoop}}
+\subsubsection{\texorpdfstring{m\_minimumUpdateInterval}{m\_minimumUpdateInterval}}
+{\footnotesize\ttfamily double rev\+::\+Simulation\+Loop\+::m\+\_\+minimum\+Update\+Interval\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Minimum update interval. 
+
+How much time (s) must pass before an update event is called 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/loop/G\+Sim\+Loop.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/loop/G\+Sim\+Loop.\+cpp\end{DoxyCompactItemize}

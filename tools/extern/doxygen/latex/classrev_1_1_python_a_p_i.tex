@@ -1,0 +1,375 @@
+\hypertarget{classrev_1_1_python_a_p_i}{}\section{rev\+::Python\+A\+PI Class Reference}
+\label{classrev_1_1_python_a_p_i}\index{rev::PythonAPI@{rev::PythonAPI}}
+
+
+Represents custom-\/built A\+PI for embedding Python into the application.  
+
+
+
+
+{\ttfamily \#include $<$G\+Python\+A\+P\+I.\+h$>$}
+
+Inheritance diagram for rev\+::Python\+A\+PI\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_python_a_p_i}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_ace26b2cca594494e55088481bd1be2c9}\label{classrev_1_1_python_a_p_i_ace26b2cca594494e55088481bd1be2c9}} 
+const py\+::module\+\_\+ \& \mbox{\hyperlink{classrev_1_1_python_a_p_i_ace26b2cca594494e55088481bd1be2c9}{main\+Module}} () const
+\begin{DoxyCompactList}\small\item\em Return main module. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a7ea522a6fed65841917af63c0628c1f6}\label{classrev_1_1_python_a_p_i_a7ea522a6fed65841917af63c0628c1f6}} 
+const py\+::module\+\_\+ \& {\bfseries reverie\+Module} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a054b7d77a3d16398e66e66f2c835ba59}\label{classrev_1_1_python_a_p_i_a054b7d77a3d16398e66e66f2c835ba59}} 
+const py\+::module\+\_\+ \& {\bfseries components\+Module} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a4be64e30a1a73337ec1a0732d482391d}\label{classrev_1_1_python_a_p_i_a4be64e30a1a73337ec1a0732d482391d}} 
+{\bfseries $\sim$\+Python\+A\+PI} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+py\+::module\+\_\+ \mbox{\hyperlink{classrev_1_1_python_a_p_i_a96781b2064238a48cd2e80da8a55cd36}{import\+Module}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&package\+Name) const
+\begin{DoxyCompactList}\small\item\em Import a Python script, using an absolute import. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a03f053f8bca2a05169bf33da15b3e3c1}\label{classrev_1_1_python_a_p_i_a03f053f8bca2a05169bf33da15b3e3c1}} 
+void \mbox{\hyperlink{classrev_1_1_python_a_p_i_a03f053f8bca2a05169bf33da15b3e3c1}{run\+Code}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&code) const
+\begin{DoxyCompactList}\small\item\em Run a simple python string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_ad3e4654c312adb2e1fb9412cfaf7e124}\label{classrev_1_1_python_a_p_i_ad3e4654c312adb2e1fb9412cfaf7e124}} 
+void {\bfseries run\+Code} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&code, py\+::object \&scope) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a3e8b5ffca057c12a26b356e55f9aa831}\label{classrev_1_1_python_a_p_i_a3e8b5ffca057c12a26b356e55f9aa831}} 
+void \mbox{\hyperlink{classrev_1_1_python_a_p_i_a3e8b5ffca057c12a26b356e55f9aa831}{run\+File}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&filepath) const
+\begin{DoxyCompactList}\small\item\em Run python code from a filepath. \end{DoxyCompactList}\item 
+py\+::object \mbox{\hyperlink{classrev_1_1_python_a_p_i_a5bf04b237b6638b2b8f64c2043efb287}{get\+Class}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&\mbox{\hyperlink{classrev_1_1_python_a_p_i_ab8d7ecd519d9d930bc7024a9e222218e}{class\+Name}}) const
+\begin{DoxyCompactList}\small\item\em Convert the given pyobject to a Q\+Variant type, if possible. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_abfc903dfc0cad41800bcd16f31053abf}\label{classrev_1_1_python_a_p_i_abfc903dfc0cad41800bcd16f31053abf}} 
+bool {\bfseries is\+Class} (const py\+::object \&class\+\_\+) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a0e85a137bdce3ada0d30712a0b98ab42}\label{classrev_1_1_python_a_p_i_a0e85a137bdce3ada0d30712a0b98ab42}} 
+\mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} {\bfseries get\+Class\+Name} (const py\+::object \&o) const
+\item 
+py\+::object \mbox{\hyperlink{classrev_1_1_python_a_p_i_a35a8574cc24babeadf94a62e720c0866}{instantiate}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&\mbox{\hyperlink{classrev_1_1_python_a_p_i_ab8d7ecd519d9d930bc7024a9e222218e}{class\+Name}}, const py\+::object \&args) const
+\begin{DoxyCompactList}\small\item\em Instantiate a class in python. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classrev_1_1_python_a_p_i_abf0f6260ad9e5676cbae1cee40f33430}{is\+Subclass}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&derived\+Name, const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&cls\+Name) const
+\begin{DoxyCompactList}\small\item\em Whether or not derived is a subclass of cls. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_ac423ce66f6dacf55f6e8866530acd58f}\label{classrev_1_1_python_a_p_i_ac423ce66f6dacf55f6e8866530acd58f}} 
+bool {\bfseries is\+Subclass} (const py\+::object \&derived, const py\+::object \&cls) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a446a468b0bd4304a3dab0a8028163892}\label{classrev_1_1_python_a_p_i_a446a468b0bd4304a3dab0a8028163892}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} $>$ \mbox{\hyperlink{classrev_1_1_python_a_p_i_a446a468b0bd4304a3dab0a8028163892}{get\+Info}} (Py\+Object $\ast$o) const
+\begin{DoxyCompactList}\small\item\em use dir to get info about python object \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a07a00036ee0daee74060b239be97c7a3}\label{classrev_1_1_python_a_p_i_a07a00036ee0daee74060b239be97c7a3}} 
+\mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \mbox{\hyperlink{classrev_1_1_python_a_p_i_a07a00036ee0daee74060b239be97c7a3}{get\+Dict\+Str}} (Py\+Object $\ast$o) const
+\begin{DoxyCompactList}\small\item\em Get info about the given Py\+Object via its {\bfseries{dict}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_ae5fbd8bbdb76278a45d4c46d97a60a17}\label{classrev_1_1_python_a_p_i_ae5fbd8bbdb76278a45d4c46d97a60a17}} 
+Py\+Object $\ast$ \mbox{\hyperlink{classrev_1_1_python_a_p_i_ae5fbd8bbdb76278a45d4c46d97a60a17}{get\+Dict}} (Py\+Object $\ast$o) const
+\begin{DoxyCompactList}\small\item\em Get the {\bfseries{dict}} attribute of the given Py\+Object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a59836cac65b32171eafbc994b1b358b7}\label{classrev_1_1_python_a_p_i_a59836cac65b32171eafbc994b1b358b7}} 
+Py\+Object $\ast$ \mbox{\hyperlink{classrev_1_1_python_a_p_i_a59836cac65b32171eafbc994b1b358b7}{get\+Function}} (Py\+Object $\ast$o, const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&attr\+Name) const
+\begin{DoxyCompactList}\small\item\em Get an attribute from a Py\+Object and ensure it is callable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a4732482778b88b4971a3abc32d2a3e2f}\label{classrev_1_1_python_a_p_i_a4732482778b88b4971a3abc32d2a3e2f}} 
+py\+::object \mbox{\hyperlink{classrev_1_1_python_a_p_i_a4732482778b88b4971a3abc32d2a3e2f}{get\+Variable}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&variable\+Name) const
+\begin{DoxyCompactList}\small\item\em Get a variable from the main module. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_aa7077afd2156959c9260263c7ab82594}\label{classrev_1_1_python_a_p_i_aa7077afd2156959c9260263c7ab82594}} 
+Py\+Object $\ast$ \mbox{\hyperlink{classrev_1_1_python_a_p_i_aa7077afd2156959c9260263c7ab82594}{get\+Attribute}} (Py\+Object $\ast$o, const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&attr\+Name) const
+\begin{DoxyCompactList}\small\item\em Get an attribute from a Py\+Object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a957cd0e8a8486bb77b2d7b1f2e1fdeb8}\label{classrev_1_1_python_a_p_i_a957cd0e8a8486bb77b2d7b1f2e1fdeb8}} 
+Py\+Object $\ast$ \mbox{\hyperlink{classrev_1_1_python_a_p_i_a957cd0e8a8486bb77b2d7b1f2e1fdeb8}{call}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&object\+Name, const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&method\+Name, Py\+Object $\ast$args) const
+\begin{DoxyCompactList}\small\item\em Call a method of a Py\+Object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a07a1d05621a2c9553126f1975f96c7f7}\label{classrev_1_1_python_a_p_i_a07a1d05621a2c9553126f1975f96c7f7}} 
+Py\+Object $\ast$ {\bfseries call} (Py\+Object $\ast$o, const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&method\+Name, Py\+Object $\ast$args=N\+U\+LL) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_abe9c910021bef8e881ff762fc52a1b91}\label{classrev_1_1_python_a_p_i_abe9c910021bef8e881ff762fc52a1b91}} 
+Py\+Object $\ast$ \mbox{\hyperlink{classrev_1_1_python_a_p_i_abe9c910021bef8e881ff762fc52a1b91}{call}} (Py\+Object $\ast$o) const
+\begin{DoxyCompactList}\small\item\em Call a callable object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a817ba2778f45b379a374b4b6cf22f062}\label{classrev_1_1_python_a_p_i_a817ba2778f45b379a374b4b6cf22f062}} 
+Py\+Object $\ast$ {\bfseries call} (Py\+Object $\ast$o, Py\+Object $\ast$args) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a7f98992ae4a9e03267eeed8feb3a7096}\label{classrev_1_1_python_a_p_i_a7f98992ae4a9e03267eeed8feb3a7096}} 
+bool \mbox{\hyperlink{classrev_1_1_python_a_p_i_a7f98992ae4a9e03267eeed8feb3a7096}{is\+Callable\+Attribute}} (Py\+Object $\ast$o) const
+\begin{DoxyCompactList}\small\item\em Check if an object is a callable attribute. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_ad5fc2be20494d42e234a4bfba2f60a88}\label{classrev_1_1_python_a_p_i_ad5fc2be20494d42e234a4bfba2f60a88}} 
+Py\+Object $\ast$ \mbox{\hyperlink{classrev_1_1_python_a_p_i_ad5fc2be20494d42e234a4bfba2f60a88}{to\+Py\+Tuple}} (size\+\_\+t len) const
+\begin{DoxyCompactList}\small\item\em Create a python tuple of length len. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_acc2944d149310a353b49fc4b5ba03713}\label{classrev_1_1_python_a_p_i_acc2944d149310a353b49fc4b5ba03713}} 
+Py\+Object $\ast$ {\bfseries to\+Py\+Tuple} (const std\+::vector$<$ int $>$ \&vec) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a97d4d8fdaba8f8c2935044d6785192f7}\label{classrev_1_1_python_a_p_i_a97d4d8fdaba8f8c2935044d6785192f7}} 
+Py\+Object $\ast$ {\bfseries to\+Py\+Tuple} (const std\+::vector$<$ double $>$ \&vec) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a5b46492a98d46b24acccfce45874c754}\label{classrev_1_1_python_a_p_i_a5b46492a98d46b24acccfce45874c754}} 
+Py\+Object $\ast$ {\bfseries to\+Py\+Tuple} (const std\+::vector$<$ float $>$ \&vec) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a1258d37754db827a8b4dbf166bdde7e8}\label{classrev_1_1_python_a_p_i_a1258d37754db827a8b4dbf166bdde7e8}} 
+Py\+Object $\ast$ {\bfseries to\+Py\+Tuple} (const std\+::vector$<$ std\+::vector$<$ float $>$$>$ \&vec) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_aa220eaf44dcc2dc18c6e2141d4ba528f}\label{classrev_1_1_python_a_p_i_aa220eaf44dcc2dc18c6e2141d4ba528f}} 
+Py\+Object $\ast$ {\bfseries to\+Py\+Tuple} (const std\+::vector$<$ std\+::vector$<$ double $>$$>$ \&vec) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_aba9fa2428e9da837e24913dd01fcea33}\label{classrev_1_1_python_a_p_i_aba9fa2428e9da837e24913dd01fcea33}} 
+{\footnotesize template$<$typename T , size\+\_\+t R, size\+\_\+t C$>$ }\\void {\bfseries to\+Matrix} (Py\+Object $\ast$incoming, \mbox{\hyperlink{classrev_1_1_matrix}{Matrix}}$<$ T, R, C $>$ \&out\+Matrix) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_abe3cecdfd0693a0263efd4464caa668f}\label{classrev_1_1_python_a_p_i_abe3cecdfd0693a0263efd4464caa668f}} 
+{\footnotesize template$<$typename T , size\+\_\+t N$>$ }\\void \mbox{\hyperlink{classrev_1_1_python_a_p_i_abe3cecdfd0693a0263efd4464caa668f}{to\+Vec}} (const py\+::object \&incoming, \mbox{\hyperlink{classrev_1_1_vector}{Vector}}$<$ T, N $>$ \&out\+Vec) const
+\begin{DoxyCompactList}\small\item\em Convert to vector. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a4adf04c19934a0e460ba3f07604d32d4}\label{classrev_1_1_python_a_p_i_a4adf04c19934a0e460ba3f07604d32d4}} 
+{\footnotesize template$<$typename T , size\+\_\+t N$>$ }\\void {\bfseries to\+Vec} (Py\+Object $\ast$incoming, \mbox{\hyperlink{classrev_1_1_vector}{Vector}}$<$ T, N $>$ \&out\+Vec) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a58814e5b51fbf63751c0d38f3c58d65a}\label{classrev_1_1_python_a_p_i_a58814e5b51fbf63751c0d38f3c58d65a}} 
+{\footnotesize template$<$typename T $>$ }\\std\+::vector$<$ std\+::vector$<$ T $>$ $>$ {\bfseries to\+Vec\+Of\+Vec} (Py\+Object $\ast$incoming) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a7fe313eb525dfd90e882bd0b162c1b97}\label{classrev_1_1_python_a_p_i_a7fe313eb525dfd90e882bd0b162c1b97}} 
+{\footnotesize template$<$typename T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{classrev_1_1_python_a_p_i_a7fe313eb525dfd90e882bd0b162c1b97}{to\+Vec}} (Py\+Object $\ast$incoming) const
+\begin{DoxyCompactList}\small\item\em Convert a Py\+Object to a std vector. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_ac347c100013cc94ab5481b4262467eb3}\label{classrev_1_1_python_a_p_i_ac347c100013cc94ab5481b4262467eb3}} 
+{\footnotesize template$<$typename T $>$ }\\std\+::vector$<$ T $>$ {\bfseries to\+Vec} (const py\+::object \&incoming) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_acf94a7f9f711c9d2c7fabc24958e376d}\label{classrev_1_1_python_a_p_i_acf94a7f9f711c9d2c7fabc24958e376d}} 
+bool \mbox{\hyperlink{classrev_1_1_python_a_p_i_acf94a7f9f711c9d2c7fabc24958e376d}{is\+Tuple}} (Py\+Object $\ast$o) const
+\begin{DoxyCompactList}\small\item\em Check if an object is a tuple. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_ab5939e273782b9b31a8f06d7dc8947a7}\label{classrev_1_1_python_a_p_i_ab5939e273782b9b31a8f06d7dc8947a7}} 
+bool {\bfseries is\+List} (Py\+Object $\ast$o) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_aa98c082604b3695ef282f13c3e3bebf8}\label{classrev_1_1_python_a_p_i_aa98c082604b3695ef282f13c3e3bebf8}} 
+bool {\bfseries is\+List\+Like} (Py\+Object $\ast$o) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a54ecb9c4a223acccb4b9839591539fe5}\label{classrev_1_1_python_a_p_i_a54ecb9c4a223acccb4b9839591539fe5}} 
+bool {\bfseries is\+Module} (Py\+Object $\ast$o) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a55047a604c01442f0c1145ae4bf207ec}\label{classrev_1_1_python_a_p_i_a55047a604c01442f0c1145ae4bf207ec}} 
+py\+::object \mbox{\hyperlink{classrev_1_1_python_a_p_i_a55047a604c01442f0c1145ae4bf207ec}{to\+Py\+Dict}} (const Q\+Json\+Value \&json) const
+\begin{DoxyCompactList}\small\item\em Create a python dict. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a6835c9d4b111afbf568c5cd275359cff}\label{classrev_1_1_python_a_p_i_a6835c9d4b111afbf568c5cd275359cff}} 
+Py\+Object $\ast$ \mbox{\hyperlink{classrev_1_1_python_a_p_i_a6835c9d4b111afbf568c5cd275359cff}{to\+Py\+Float}} (double d) const
+\begin{DoxyCompactList}\small\item\em Create a python double. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a8faa244ddbe6b61ac8d662dac8394665}\label{classrev_1_1_python_a_p_i_a8faa244ddbe6b61ac8d662dac8394665}} 
+Py\+Object $\ast$ \mbox{\hyperlink{classrev_1_1_python_a_p_i_a8faa244ddbe6b61ac8d662dac8394665}{to\+Py\+Lon}} (double d) const
+\begin{DoxyCompactList}\small\item\em Create a python long. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_ad9dbaec04f51f6342ef3172711aac53e}\label{classrev_1_1_python_a_p_i_ad9dbaec04f51f6342ef3172711aac53e}} 
+Py\+Object $\ast$ {\bfseries to\+Py\+Lon} (int i) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a361e7fe976f9789f4a4772620fb305d8}\label{classrev_1_1_python_a_p_i_a361e7fe976f9789f4a4772620fb305d8}} 
+Py\+Object $\ast$ \mbox{\hyperlink{classrev_1_1_python_a_p_i_a361e7fe976f9789f4a4772620fb305d8}{to\+Py\+Bool}} (bool b) const
+\begin{DoxyCompactList}\small\item\em Create a python bool object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a764e27351af8ba010227f9bf083b912b}\label{classrev_1_1_python_a_p_i_a764e27351af8ba010227f9bf083b912b}} 
+Py\+Object $\ast$ \mbox{\hyperlink{classrev_1_1_python_a_p_i_a764e27351af8ba010227f9bf083b912b}{to\+Py\+Str}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&s) const
+\begin{DoxyCompactList}\small\item\em Create a python string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a58ac67ba8e91e4e05fbb4c6de05e4a37}\label{classrev_1_1_python_a_p_i_a58ac67ba8e91e4e05fbb4c6de05e4a37}} 
+{\footnotesize template$<$typename T $>$ }\\T \mbox{\hyperlink{classrev_1_1_python_a_p_i_a58ac67ba8e91e4e05fbb4c6de05e4a37}{c\+Type}} (Py\+Object $\ast$o) const =delete
+\begin{DoxyCompactList}\small\item\em Convert to C type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_ade4097f34e5c6d757da2f67fe6b2c11f}\label{classrev_1_1_python_a_p_i_ade4097f34e5c6d757da2f67fe6b2c11f}} 
+{\footnotesize template$<$$>$ }\\\mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} {\bfseries c\+Type} (Py\+Object $\ast$o) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a5ebebcb83f7d0d3e9032dfbb6134ee17}\label{classrev_1_1_python_a_p_i_a5ebebcb83f7d0d3e9032dfbb6134ee17}} 
+{\footnotesize template$<$$>$ }\\double {\bfseries c\+Type} (Py\+Object $\ast$o) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a50ea09feeab94a9eb4849fdb0652d12b}\label{classrev_1_1_python_a_p_i_a50ea09feeab94a9eb4849fdb0652d12b}} 
+{\footnotesize template$<$$>$ }\\float {\bfseries c\+Type} (Py\+Object $\ast$o) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a101ee1dd7691666679565f6a2e90f6d1}\label{classrev_1_1_python_a_p_i_a101ee1dd7691666679565f6a2e90f6d1}} 
+{\footnotesize template$<$$>$ }\\int {\bfseries c\+Type} (Py\+Object $\ast$o) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_ad442ed1f865c4fb79c700e58b106d467}\label{classrev_1_1_python_a_p_i_ad442ed1f865c4fb79c700e58b106d467}} 
+Q\+String \mbox{\hyperlink{classrev_1_1_python_a_p_i_ad442ed1f865c4fb79c700e58b106d467}{print\+And\+Clear\+Errors}} () const
+\begin{DoxyCompactList}\small\item\em Print errors, returns true if errors were found. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classrev_1_1_python_a_p_i_ac2e3121630ff3d6cd2df2957958d25e2}{initialize\+Main\+Module}} ()
+\begin{DoxyCompactList}\small\item\em Instantiate main module if it doesn\textquotesingle{}t exist. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a32b760839b50a394e012bf81f3fd5dde}\label{classrev_1_1_python_a_p_i_a32b760839b50a394e012bf81f3fd5dde}} 
+void \mbox{\hyperlink{classrev_1_1_python_a_p_i_a32b760839b50a394e012bf81f3fd5dde}{clear\+Std\+Out}} () const
+\begin{DoxyCompactList}\small\item\em Clear std\+::out contents. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_ac6c9faa1932ba70ed1dbd48005660a73}\label{classrev_1_1_python_a_p_i_ac6c9faa1932ba70ed1dbd48005660a73}} 
+void \mbox{\hyperlink{classrev_1_1_python_a_p_i_ac6c9faa1932ba70ed1dbd48005660a73}{clear\+Std\+Err}} () const
+\begin{DoxyCompactList}\small\item\em Clear std\+::err contents. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_python_a_p_i_ab8d7ecd519d9d930bc7024a9e222218e}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_python_a_p_i_ae8df4c3f4f00912cd2c184d79bfb31da}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a53508f85369f93af3b18275a68a655c7}\label{classrev_1_1_python_a_p_i_a53508f85369f93af3b18275a68a655c7}} 
+static \mbox{\hyperlink{classrev_1_1_python_a_p_i}{Python\+A\+PI}} $\ast$ {\bfseries get} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_ab2b59c4df57ecd84ba944cf44f68cab1}\label{classrev_1_1_python_a_p_i_ab2b59c4df57ecd84ba944cf44f68cab1}} 
+static Q\+String \mbox{\hyperlink{classrev_1_1_python_a_p_i_ab2b59c4df57ecd84ba944cf44f68cab1}{Get\+Script\+Dir}} ()
+\begin{DoxyCompactList}\small\item\em Returns directory where scripts reside. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a98ae4fa6bcd9a989c958d40dba277a79}\label{classrev_1_1_python_a_p_i_a98ae4fa6bcd9a989c958d40dba277a79}} 
+static void \mbox{\hyperlink{classrev_1_1_python_a_p_i_a98ae4fa6bcd9a989c958d40dba277a79}{Clear}} ()
+\begin{DoxyCompactList}\small\item\em Clear the python interpreter and restart. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a75e8fccb8835ce2ef18bfcf54b2b23c9}\label{classrev_1_1_python_a_p_i_a75e8fccb8835ce2ef18bfcf54b2b23c9}} 
+{\bfseries Python\+A\+PI} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&program\+Name=\char`\"{}python\+\_\+gb\char`\"{})
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a15a99b5af9aae28bb4384d525feef31e}\label{classrev_1_1_python_a_p_i_a15a99b5af9aae28bb4384d525feef31e}} 
+void \mbox{\hyperlink{classrev_1_1_python_a_p_i_a15a99b5af9aae28bb4384d525feef31e}{initialize}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&program\+Name)
+\begin{DoxyCompactList}\small\item\em Initialize the Python interpreter with all required modules. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a9c429146bc6280a82c49122dc680c34c}\label{classrev_1_1_python_a_p_i_a9c429146bc6280a82c49122dc680c34c}} 
+void \mbox{\hyperlink{classrev_1_1_python_a_p_i_a9c429146bc6280a82c49122dc680c34c}{initialize\+Program}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&program\+Name)
+\begin{DoxyCompactList}\small\item\em Initialize python interpreter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a1c48922aa02f3502559f6c8e05299444}\label{classrev_1_1_python_a_p_i_a1c48922aa02f3502559f6c8e05299444}} 
+py\+::scoped\+\_\+interpreter \mbox{\hyperlink{classrev_1_1_python_a_p_i_a1c48922aa02f3502559f6c8e05299444}{m\+\_\+python\+Interpreter}}
+\begin{DoxyCompactList}\small\item\em The python interpreter being used. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_ad1fe49031ef8b8f69a4b8b0261004f93}\label{classrev_1_1_python_a_p_i_ad1fe49031ef8b8f69a4b8b0261004f93}} 
+wchar\+\_\+t $\ast$ \mbox{\hyperlink{classrev_1_1_python_a_p_i_ad1fe49031ef8b8f69a4b8b0261004f93}{m\+\_\+program\+Name}}
+\begin{DoxyCompactList}\small\item\em Q\+String representing the python program. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a2f47cff9f71897781a4cbc9dce665e10}\label{classrev_1_1_python_a_p_i_a2f47cff9f71897781a4cbc9dce665e10}} 
+py\+::module\+\_\+ \mbox{\hyperlink{classrev_1_1_python_a_p_i_a2f47cff9f71897781a4cbc9dce665e10}{m\+\_\+main}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_main}{Main}} module. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a53449686d1b8e6adba66685cf2e53d78}\label{classrev_1_1_python_a_p_i_a53449686d1b8e6adba66685cf2e53d78}} 
+py\+::module\+\_\+ \mbox{\hyperlink{classrev_1_1_python_a_p_i_a53449686d1b8e6adba66685cf2e53d78}{m\+\_\+sys}}
+\begin{DoxyCompactList}\small\item\em Sys module. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a484035971cf85ffe88ce5afe78f12a78}\label{classrev_1_1_python_a_p_i_a484035971cf85ffe88ce5afe78f12a78}} 
+py\+::module\+\_\+ \mbox{\hyperlink{classrev_1_1_python_a_p_i_a484035971cf85ffe88ce5afe78f12a78}{m\+\_\+reverie}}
+\begin{DoxyCompactList}\small\item\em Reverie module. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_ae5cd9b1b6c1252aedea6cd98fa4da9d3}\label{classrev_1_1_python_a_p_i_ae5cd9b1b6c1252aedea6cd98fa4da9d3}} 
+py\+::module\+\_\+ {\bfseries m\+\_\+json}
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a8d01ce6a5beb621b7789c66d8bc35ad9}\label{classrev_1_1_python_a_p_i_a8d01ce6a5beb621b7789c66d8bc35ad9}} 
+Py\+Object $\ast$ \mbox{\hyperlink{classrev_1_1_python_a_p_i_a8d01ce6a5beb621b7789c66d8bc35ad9}{m\+\_\+out\+Catcher}}
+\begin{DoxyCompactList}\small\item\em Pointers to the std\+::out and std\+::err catchers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a720d27e79ef093ed5baf33ad958ba19e}\label{classrev_1_1_python_a_p_i_a720d27e79ef093ed5baf33ad958ba19e}} 
+Py\+Object $\ast$ {\bfseries m\+\_\+err\+Catcher}
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_ab055292f48c720e655d00f6235d2184c}\label{classrev_1_1_python_a_p_i_ab055292f48c720e655d00f6235d2184c}} 
+\mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \mbox{\hyperlink{classrev_1_1_python_a_p_i_ab055292f48c720e655d00f6235d2184c}{m\+\_\+std\+Out}}
+\begin{DoxyCompactList}\small\item\em std\+::out and std\+::err messages to be logged \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_ac9bd68e21b62435e6bd8c216ecb1e2ae}\label{classrev_1_1_python_a_p_i_ac9bd68e21b62435e6bd8c216ecb1e2ae}} 
+Q\+Elapsed\+Timer \mbox{\hyperlink{classrev_1_1_python_a_p_i_ac9bd68e21b62435e6bd8c216ecb1e2ae}{m\+\_\+timer}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_timer}{Timer}} for logging. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_aa30594b61c3500a13cf21ff0a30c32d5}\label{classrev_1_1_python_a_p_i_aa30594b61c3500a13cf21ff0a30c32d5}} 
+static std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_python_a_p_i}{Python\+A\+PI}} $>$ \mbox{\hyperlink{classrev_1_1_python_a_p_i_aa30594b61c3500a13cf21ff0a30c32d5}{s\+\_\+instance}} = nullptr
+\begin{DoxyCompactList}\small\item\em Pointer to the only Singleton \mbox{\hyperlink{classrev_1_1_python_a_p_i}{Python\+A\+PI}} instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Represents custom-\/built A\+PI for embedding Python into the application. 
+
+See\+: \href{https://docs.python.org/3.8/extending/embedding.html}{\texttt{ https\+://docs.\+python.\+org/3.\+8/extending/embedding.\+html}} \href{https://stackoverflow.com/questions/1056051/how-do-you-call-python-code-from-c-code}{\texttt{ https\+://stackoverflow.\+com/questions/1056051/how-\/do-\/you-\/call-\/python-\/code-\/from-\/c-\/code}} \href{https://pybind11.readthedocs.io/en/stable/advanced/pycpp/object.html\#casting-back-and-forth}{\texttt{ https\+://pybind11.\+readthedocs.\+io/en/stable/advanced/pycpp/object.\+html\#casting-\/back-\/and-\/forth}} 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_ab8d7ecd519d9d930bc7024a9e222218e}\label{classrev_1_1_python_a_p_i_ab8d7ecd519d9d930bc7024a9e222218e}} 
+\index{rev::PythonAPI@{rev::PythonAPI}!className@{className}}
+\index{className@{className}!rev::PythonAPI@{rev::PythonAPI}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Python\+A\+P\+I\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a5bf04b237b6638b2b8f64c2043efb287}\label{classrev_1_1_python_a_p_i_a5bf04b237b6638b2b8f64c2043efb287}} 
+\index{rev::PythonAPI@{rev::PythonAPI}!getClass@{getClass}}
+\index{getClass@{getClass}!rev::PythonAPI@{rev::PythonAPI}}
+\subsubsection{\texorpdfstring{getClass()}{getClass()}}
+{\footnotesize\ttfamily py\+::object rev\+::\+Python\+A\+P\+I\+::get\+Class (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&}]{class\+Name }\end{DoxyParamCaption}) const}
+
+
+
+Convert the given pyobject to a Q\+Variant type, if possible. 
+
+Obtain a pointer to a class in python \begin{DoxyNote}{Note}
+See\+: \href{https://stackoverflow.com/questions/21929143/some-confustion-about-pyclass-check-and-pyclass-issubclass-functions}{\texttt{ https\+://stackoverflow.\+com/questions/21929143/some-\/confustion-\/about-\/pyclass-\/check-\/and-\/pyclass-\/issubclass-\/functions}} 
+\end{DoxyNote}
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_a96781b2064238a48cd2e80da8a55cd36}\label{classrev_1_1_python_a_p_i_a96781b2064238a48cd2e80da8a55cd36}} 
+\index{rev::PythonAPI@{rev::PythonAPI}!importModule@{importModule}}
+\index{importModule@{importModule}!rev::PythonAPI@{rev::PythonAPI}}
+\subsubsection{\texorpdfstring{importModule()}{importModule()}}
+{\footnotesize\ttfamily py\+::module\+\_\+ rev\+::\+Python\+A\+P\+I\+::import\+Module (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&}]{package\+Name }\end{DoxyParamCaption}) const}
+
+
+
+Import a Python script, using an absolute import. 
+
+\begin{DoxyNote}{Note}
+See\+: \href{https://stackoverflow.com/questions/878439/pyimport-import-vs-import/878790}{\texttt{ https\+://stackoverflow.\+com/questions/878439/pyimport-\/import-\/vs-\/import/878790}} 
+\end{DoxyNote}
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_ac2e3121630ff3d6cd2df2957958d25e2}\label{classrev_1_1_python_a_p_i_ac2e3121630ff3d6cd2df2957958d25e2}} 
+\index{rev::PythonAPI@{rev::PythonAPI}!initializeMainModule@{initializeMainModule}}
+\index{initializeMainModule@{initializeMainModule}!rev::PythonAPI@{rev::PythonAPI}}
+\subsubsection{\texorpdfstring{initializeMainModule()}{initializeMainModule()}}
+{\footnotesize\ttfamily bool rev\+::\+Python\+A\+P\+I\+::initialize\+Main\+Module (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Instantiate main module if it doesn\textquotesingle{}t exist. 
+
+Instantiate main module
+
+For importing packages, see\+: See\+: \href{https://stackoverflow.com/questions/28295674/define-python-class-from-c}{\texttt{ https\+://stackoverflow.\+com/questions/28295674/define-\/python-\/class-\/from-\/c}} \mbox{\Hypertarget{classrev_1_1_python_a_p_i_a35a8574cc24babeadf94a62e720c0866}\label{classrev_1_1_python_a_p_i_a35a8574cc24babeadf94a62e720c0866}} 
+\index{rev::PythonAPI@{rev::PythonAPI}!instantiate@{instantiate}}
+\index{instantiate@{instantiate}!rev::PythonAPI@{rev::PythonAPI}}
+\subsubsection{\texorpdfstring{instantiate()}{instantiate()}}
+{\footnotesize\ttfamily py\+::object rev\+::\+Python\+A\+P\+I\+::instantiate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&}]{class\+Name,  }\item[{const py\+::object \&}]{args }\end{DoxyParamCaption}) const}
+
+
+
+Instantiate a class in python. 
+
+\begin{DoxyNote}{Note}
+See\+: \href{https://stackoverflow.com/questions/40351244/create-an-instance-of-python-new-style-class-to-embed-in-c}{\texttt{ https\+://stackoverflow.\+com/questions/40351244/create-\/an-\/instance-\/of-\/python-\/new-\/style-\/class-\/to-\/embed-\/in-\/c}} \href{https://stackoverflow.com/questions/4163018/create-an-object-using-pythons-c-api}{\texttt{ https\+://stackoverflow.\+com/questions/4163018/create-\/an-\/object-\/using-\/pythons-\/c-\/api}} 
+\end{DoxyNote}
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_abf0f6260ad9e5676cbae1cee40f33430}\label{classrev_1_1_python_a_p_i_abf0f6260ad9e5676cbae1cee40f33430}} 
+\index{rev::PythonAPI@{rev::PythonAPI}!isSubclass@{isSubclass}}
+\index{isSubclass@{isSubclass}!rev::PythonAPI@{rev::PythonAPI}}
+\subsubsection{\texorpdfstring{isSubclass()}{isSubclass()}}
+{\footnotesize\ttfamily bool rev\+::\+Python\+A\+P\+I\+::is\+Subclass (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&}]{derived\+Name,  }\item[{const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&}]{cls\+Name }\end{DoxyParamCaption}) const}
+
+
+
+Whether or not derived is a subclass of cls. 
+
+\begin{DoxyNote}{Note}
+to get class of an instance, call instance-\/$>$ob\+\_\+type-\/$>$tp\+\_\+base 
+\end{DoxyNote}
+\mbox{\Hypertarget{classrev_1_1_python_a_p_i_ae8df4c3f4f00912cd2c184d79bfb31da}\label{classrev_1_1_python_a_p_i_ae8df4c3f4f00912cd2c184d79bfb31da}} 
+\index{rev::PythonAPI@{rev::PythonAPI}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::PythonAPI@{rev::PythonAPI}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Python\+A\+P\+I\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/scripting/G\+Python\+A\+P\+I.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/scripting/G\+Python\+A\+P\+I.\+cpp\end{DoxyCompactItemize}

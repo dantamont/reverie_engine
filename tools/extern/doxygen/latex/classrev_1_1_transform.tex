@@ -1,0 +1,296 @@
+\hypertarget{classrev_1_1_transform}{}\section{rev\+::Transform Class Reference}
+\label{classrev_1_1_transform}\index{rev::Transform@{rev::Transform}}
+
+
+A transform consisting of a translation, a rotation, and a scaling.  
+
+
+
+
+{\ttfamily \#include $<$G\+Transform.\+h$>$}
+
+Inheritance diagram for rev\+::Transform\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_transform}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_ac568f331c98bbb8b8710f692e708376a}\label{classrev_1_1_transform_ac568f331c98bbb8b8710f692e708376a}} 
+{\bfseries Transform} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_acb047fbca2651394c497623d24327ddc}\label{classrev_1_1_transform_acb047fbca2651394c497623d24327ddc}} 
+{\bfseries Transform} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&position, const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&\mbox{\hyperlink{classrev_1_1_transform_ab6f61407589970718fe582c2277e881b}{rotation}}, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&\mbox{\hyperlink{classrev_1_1_transform_ae79acfc2983211eb4c1208f825256d7a}{scale}}, bool update\+Local=false)
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a09861fa5669c6cff678ca5435af4ce5c}\label{classrev_1_1_transform_a09861fa5669c6cff678ca5435af4ce5c}} 
+{\bfseries Transform} (const Q\+Json\+Value \&json)
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a72eaa791a88758928f31b3b8db5f57d8}\label{classrev_1_1_transform_a72eaa791a88758928f31b3b8db5f57d8}} 
+{\bfseries Transform} (const physx\+::\+Px\+Transform \&px\+Transform)
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_ab8ef6f51f54ecfb2e346b810ff8148d3}\label{classrev_1_1_transform_ab8ef6f51f54ecfb2e346b810ff8148d3}} 
+{\bfseries Transform} (const \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} \&\mbox{\hyperlink{classrev_1_1_transform_a3ff4acf39a7481c0c1f3c0318738013f}{local\+Matrix}})
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a43ee36ee31ac531ba66768339dcba936}\label{classrev_1_1_transform_a43ee36ee31ac531ba66768339dcba936}} 
+{\bfseries Transform} (const \mbox{\hyperlink{classrev_1_1_transform}{Transform}} \&transform)
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a59f21f7628a49a90b5bbe1a5060118dd}\label{classrev_1_1_transform_a59f21f7628a49a90b5bbe1a5060118dd}} 
+virtual {\bfseries $\sim$\+Transform} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Operators}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_aa370e756e990730a662550f4dd23c1a7}\label{classrev_1_1_transform_aa370e756e990730a662550f4dd23c1a7}} 
+\mbox{\hyperlink{classrev_1_1_transform}{Transform}} \& {\bfseries operator=} (const \mbox{\hyperlink{classrev_1_1_transform}{Transform}} \&other)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_ab15216bacb8858f1e486d82f40593bcd}\label{classrev_1_1_transform_ab15216bacb8858f1e486d82f40593bcd}} 
+const \mbox{\hyperlink{structrev_1_1_transform_matrices}{Transform\+Matrices}} \& \mbox{\hyperlink{classrev_1_1_transform_ab15216bacb8858f1e486d82f40593bcd}{matrices}} () const
+\begin{DoxyCompactList}\small\item\em Matrices. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_aa304dd6ab90008e0c6fde46e263d3e93}\label{classrev_1_1_transform_aa304dd6ab90008e0c6fde46e263d3e93}} 
+\mbox{\hyperlink{classrev_1_1_translation_component}{Translation\+Component}} \& \mbox{\hyperlink{classrev_1_1_transform_aa304dd6ab90008e0c6fde46e263d3e93}{translation}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structrev_1_1_translation}{Translation}} component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a2de2301bef81ae67c0c420117271dd83}\label{classrev_1_1_transform_a2de2301bef81ae67c0c420117271dd83}} 
+const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \& {\bfseries get\+Position} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_ab6f61407589970718fe582c2277e881b}\label{classrev_1_1_transform_ab6f61407589970718fe582c2277e881b}} 
+\mbox{\hyperlink{classrev_1_1_rotation_component}{Rotation\+Component}} \& \mbox{\hyperlink{classrev_1_1_transform_ab6f61407589970718fe582c2277e881b}{rotation}} ()
+\begin{DoxyCompactList}\small\item\em Rotation component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_abb78789e3b77cd99e29e6db9ffcbcd6c}\label{classrev_1_1_transform_abb78789e3b77cd99e29e6db9ffcbcd6c}} 
+const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \& {\bfseries get\+Rotation\+Quaternion} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_ae79acfc2983211eb4c1208f825256d7a}\label{classrev_1_1_transform_ae79acfc2983211eb4c1208f825256d7a}} 
+\mbox{\hyperlink{classrev_1_1_scale_component}{Scale\+Component}} \& \mbox{\hyperlink{classrev_1_1_transform_ae79acfc2983211eb4c1208f825256d7a}{scale}} ()
+\begin{DoxyCompactList}\small\item\em Scale component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a7807bec1562a9634b4ddf0bbd013fea2}\label{classrev_1_1_transform_a7807bec1562a9634b4ddf0bbd013fea2}} 
+const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \& {\bfseries get\+Scale\+Vec} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a3ff4acf39a7481c0c1f3c0318738013f}\label{classrev_1_1_transform_a3ff4acf39a7481c0c1f3c0318738013f}} 
+const \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} \& \mbox{\hyperlink{classrev_1_1_transform_a3ff4acf39a7481c0c1f3c0318738013f}{local\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em Local model matrix. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_ae8c44d028e61c1151bc61fa4b25b458f}\label{classrev_1_1_transform_ae8c44d028e61c1151bc61fa4b25b458f}} 
+const \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} \& \mbox{\hyperlink{classrev_1_1_transform_ae8c44d028e61c1151bc61fa4b25b458f}{world\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em Global model matrix. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a6ee4c67ad1b8e16e56545abfab21dd59}\label{classrev_1_1_transform_a6ee4c67ad1b8e16e56545abfab21dd59}} 
+\mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} \mbox{\hyperlink{classrev_1_1_transform_a6ee4c67ad1b8e16e56545abfab21dd59}{rotation\+Translation\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em Returns world matrix without scaling. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_acc4daac8e005c383f14a659f43407435}\label{classrev_1_1_transform_acc4daac8e005c383f14a659f43407435}} 
+\mbox{\hyperlink{classrev_1_1_transform_a0945b935b8f5fbf95920720ac8874e93}{Transform\+::\+Inheritance\+Type}} {\bfseries inheritance\+Type} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a135dbf5a1e9ae57c86e5c8b9dd582056}\label{classrev_1_1_transform_a135dbf5a1e9ae57c86e5c8b9dd582056}} 
+void {\bfseries set\+Inheritance\+Type} (\mbox{\hyperlink{classrev_1_1_transform_a0945b935b8f5fbf95920720ac8874e93}{Transform\+::\+Inheritance\+Type}} type)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a362fc254a193d5f7480df8da0596d5d0}\label{classrev_1_1_transform_a362fc254a193d5f7480df8da0596d5d0}} 
+void \mbox{\hyperlink{classrev_1_1_transform_a362fc254a193d5f7480df8da0596d5d0}{set\+Scale}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&scaling, bool update\+Transform=true)
+\begin{DoxyCompactList}\small\item\em Set scaling vector and update transform matrix. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a41943382cb7c566808538d33df583174}\label{classrev_1_1_transform_a41943382cb7c566808538d33df583174}} 
+void {\bfseries set\+Scale} (double x, double y, double z, bool update\+Transform=true)
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_aced9893387f11ddbaa805881ac59fd59}\label{classrev_1_1_transform_aced9893387f11ddbaa805881ac59fd59}} 
+void {\bfseries set\+Scale} (double scaling, bool update\+Transform=true)
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a22f5f5e3fa00c1b143f351fb9a535df9}\label{classrev_1_1_transform_a22f5f5e3fa00c1b143f351fb9a535df9}} 
+void \mbox{\hyperlink{classrev_1_1_transform_a22f5f5e3fa00c1b143f351fb9a535df9}{add\+Rotation}} (const \mbox{\hyperlink{classrev_1_1_euler_angles}{Euler\+Angles}} \&euler\+Angles, bool update\+Transform=true)
+\begin{DoxyCompactList}\small\item\em Add a rotation corresponding to the given euler angles to this component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_ad4bbf4542422cc9d0cc1a521f48c913b}\label{classrev_1_1_transform_ad4bbf4542422cc9d0cc1a521f48c913b}} 
+void \mbox{\hyperlink{classrev_1_1_transform_ad4bbf4542422cc9d0cc1a521f48c913b}{set\+Rotation}} (const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&quaternion, bool update\+Transform=true)
+\begin{DoxyCompactList}\small\item\em Set rotation using quaternion and update rotation matrix. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a1ed5536a582b3aff028b7e57771a6360}\label{classrev_1_1_transform_a1ed5536a582b3aff028b7e57771a6360}} 
+void \mbox{\hyperlink{classrev_1_1_transform_a1ed5536a582b3aff028b7e57771a6360}{set\+Rotation}} (const \mbox{\hyperlink{classrev_1_1_euler_angles}{Euler\+Angles}} \&euler\+Angles, bool update\+Transform=true)
+\begin{DoxyCompactList}\small\item\em Set rotation using euler angles and update rotation matrix. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a27dcd1a011e0df1afb690bebd7cac4e3}\label{classrev_1_1_transform_a27dcd1a011e0df1afb690bebd7cac4e3}} 
+void \mbox{\hyperlink{classrev_1_1_transform_a27dcd1a011e0df1afb690bebd7cac4e3}{set\+Translation}} (const \mbox{\hyperlink{structrev_1_1_translation}{Translation}} \&position, bool update\+Transform=true)
+\begin{DoxyCompactList}\small\item\em Sets the translation and updates the translation matrix. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_ab7dd0ded29508d223d255116cbc7d272}\label{classrev_1_1_transform_ab7dd0ded29508d223d255116cbc7d272}} 
+void {\bfseries set\+Translation} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&position, bool update\+Transform=true)
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a302dc321858699647c7914d6ea026503}\label{classrev_1_1_transform_a302dc321858699647c7914d6ea026503}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \mbox{\hyperlink{classrev_1_1_transform_a302dc321858699647c7914d6ea026503}{world\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Return the world position of the transform. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a36256f60acb211eaaec1637ddeab9cac}\label{classrev_1_1_transform_a36256f60acb211eaaec1637ddeab9cac}} 
+void \mbox{\hyperlink{classrev_1_1_transform_a36256f60acb211eaaec1637ddeab9cac}{set\+World\+Position}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&world\+Pos)
+\begin{DoxyCompactList}\small\item\em Set the local transform such that it has the given world position. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a551158784f98bc730f94878142d81e42}\label{classrev_1_1_transform_a551158784f98bc730f94878142d81e42}} 
+void {\bfseries set\+Position} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&p, bool update\+Transform=true)
+\item 
+bool \mbox{\hyperlink{classrev_1_1_transform_a1d5fb768c903b76184a9f9e7aac4fc21}{has\+Child}} (const \mbox{\hyperlink{classrev_1_1_transform}{Transform}} \&child, size\+\_\+t $\ast$idx=nullptr)
+\begin{DoxyCompactList}\small\item\em Whether the specified child is a child of this transform. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a9f301db1c301a30fe0c769fe7a17add9}\label{classrev_1_1_transform_a9f301db1c301a30fe0c769fe7a17add9}} 
+void \mbox{\hyperlink{classrev_1_1_transform_a9f301db1c301a30fe0c769fe7a17add9}{rotate\+About\+Axis}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&axis, float angle)
+\begin{DoxyCompactList}\small\item\em Rotate about the given axis, in radians. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_aae9e11c38c39350a69f49f34d7a41ecd}\label{classrev_1_1_transform_aae9e11c38c39350a69f49f34d7a41ecd}} 
+physx\+::\+Px\+Transform \mbox{\hyperlink{classrev_1_1_transform_aae9e11c38c39350a69f49f34d7a41ecd}{as\+PhysX}} () const
+\begin{DoxyCompactList}\small\item\em Return as a physX transform. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_transform_ac866da54728977f841fd7536a2badc17}{update\+Local\+Matrix}} ()
+\begin{DoxyCompactList}\small\item\em Update the transform manually. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a7f8920a935a12e3002ad32779107d49e}\label{classrev_1_1_transform_a7f8920a935a12e3002ad32779107d49e}} 
+void {\bfseries update\+World\+Matrix} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_aeb3a1d98c804b628c9c43671a5be3722}\label{classrev_1_1_transform_aeb3a1d98c804b628c9c43671a5be3722}} 
+void \mbox{\hyperlink{classrev_1_1_transform_aeb3a1d98c804b628c9c43671a5be3722}{update\+World\+Matrix}} (const \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} \&\mbox{\hyperlink{classrev_1_1_transform_a3ff4acf39a7481c0c1f3c0318738013f}{local\+Matrix}})
+\begin{DoxyCompactList}\small\item\em Update the world matrix with a local matrix. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a8353e9298f7da7e20ea61de968de4ec7}\label{classrev_1_1_transform_a8353e9298f7da7e20ea61de968de4ec7}} 
+virtual void \mbox{\hyperlink{classrev_1_1_transform_a8353e9298f7da7e20ea61de968de4ec7}{compute\+World\+Matrix}} ()
+\begin{DoxyCompactList}\small\item\em Compute world matrix. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a2d3a482ab49f55ace80bcdc25fe70207}\label{classrev_1_1_transform_a2d3a482ab49f55ace80bcdc25fe70207}} 
+\mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$ \mbox{\hyperlink{classrev_1_1_transform_a2d3a482ab49f55ace80bcdc25fe70207}{parent\+Transform}} () const
+\begin{DoxyCompactList}\small\item\em Obtain the parent to this transform. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a8c96151774f4b113446eae5e18927d69}\label{classrev_1_1_transform_a8c96151774f4b113446eae5e18927d69}} 
+void {\bfseries set\+Parent} (\mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$p)
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a3682d8d1e3b7486a1c1049822f3ef31b}\label{classrev_1_1_transform_a3682d8d1e3b7486a1c1049822f3ef31b}} 
+void {\bfseries clear\+Parent} (bool recompute\+World)
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_ae3f63d30c7dbf8bc749b9fad194212f9}\label{classrev_1_1_transform_ae3f63d30c7dbf8bc749b9fad194212f9}} 
+\mbox{\hyperlink{classrev_1_1_translation_component}{Translation\+Component}} \mbox{\hyperlink{classrev_1_1_transform_ae3f63d30c7dbf8bc749b9fad194212f9}{world\+Translation}} () const
+\begin{DoxyCompactList}\small\item\em Obtain the translation of the parent in world space. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a23a217f56ef1914e09b757d07b8df4a6}\label{classrev_1_1_transform_a23a217f56ef1914e09b757d07b8df4a6}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_transform_a23a217f56ef1914e09b757d07b8df4a6}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a4b86b1db5aae1734127fb0c67bfab476}\label{classrev_1_1_transform_a4b86b1db5aae1734127fb0c67bfab476}} 
+virtual void \mbox{\hyperlink{classrev_1_1_transform_a4b86b1db5aae1734127fb0c67bfab476}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_aed118acd97b6507dc323e1b3e53122e9}\label{classrev_1_1_transform_aed118acd97b6507dc323e1b3e53122e9}} 
+void \mbox{\hyperlink{classrev_1_1_transform_aed118acd97b6507dc323e1b3e53122e9}{add\+Child}} (\mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$c)
+\begin{DoxyCompactList}\small\item\em Add and remove children from this transform. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_aa228447a4a469d5ae743521d98ac36ec}\label{classrev_1_1_transform_aa228447a4a469d5ae743521d98ac36ec}} 
+void {\bfseries remove\+Child} (\mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$c)
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_adc90d777796fc7ea57f62b160844161a}\label{classrev_1_1_transform_adc90d777796fc7ea57f62b160844161a}} 
+void \mbox{\hyperlink{classrev_1_1_transform_adc90d777796fc7ea57f62b160844161a}{compute\+Local\+Matrix}} ()
+\begin{DoxyCompactList}\small\item\em Compute local matrix. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_af868d0079b3bba70d4030eda58b97c2a}\label{classrev_1_1_transform_af868d0079b3bba70d4030eda58b97c2a}} 
+void \mbox{\hyperlink{classrev_1_1_transform_af868d0079b3bba70d4030eda58b97c2a}{compute\+This\+World\+Matrix}} ()
+\begin{DoxyCompactList}\small\item\em Compute the world matrix for this transform, without updating children. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a10b69acdc2ac20938dd53d1ba93e5fcd}\label{classrev_1_1_transform_a10b69acdc2ac20938dd53d1ba93e5fcd}} 
+void \mbox{\hyperlink{classrev_1_1_transform_a10b69acdc2ac20938dd53d1ba93e5fcd}{decompose}} (const \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} \&mat)
+\begin{DoxyCompactList}\small\item\em Decompose matrix into scale, rotation, translation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_adbc81f81baaebf537a269803f0abfa66}\label{classrev_1_1_transform_adbc81f81baaebf537a269803f0abfa66}} 
+class {\bfseries Abstract\+Transform\+Component}
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a12e775e92a2c790f38385b72d54e402f}\label{classrev_1_1_transform_a12e775e92a2c790f38385b72d54e402f}} 
+class {\bfseries Affine\+Component}
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a9e98b885d1d9807d050c2b5fa67f781c}\label{classrev_1_1_transform_a9e98b885d1d9807d050c2b5fa67f781c}} 
+class {\bfseries Translation\+Component}
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a737b3cb474f324a74e7da2d3aeca10c9}\label{classrev_1_1_transform_a737b3cb474f324a74e7da2d3aeca10c9}} 
+class {\bfseries Scene\+Object}
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_aacf451d09c33bff0c7868b019f411fe8}\label{classrev_1_1_transform_aacf451d09c33bff0c7868b019f411fe8}} 
+class {\bfseries Blend\+Queue}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a0945b935b8f5fbf95920720ac8874e93}\label{classrev_1_1_transform_a0945b935b8f5fbf95920720ac8874e93}} 
+enum \mbox{\hyperlink{classrev_1_1_transform_a0945b935b8f5fbf95920720ac8874e93}{Inheritance\+Type}} \{ {\bfseries k\+All}, 
+{\bfseries k\+Translation}, 
+{\bfseries k\+Preserve\+Orientation}
+ \}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_enum}{Enum}} for which transforms to inherit from a parent state. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a62b3c04f805cfdeed329ca3e1ac8c769}\label{classrev_1_1_transform_a62b3c04f805cfdeed329ca3e1ac8c769}} 
+static \mbox{\hyperlink{classrev_1_1_transform}{Transform}} \mbox{\hyperlink{classrev_1_1_transform_a62b3c04f805cfdeed329ca3e1ac8c769}{interpolate}} (const \mbox{\hyperlink{classrev_1_1_transform}{Transform}} \&t1, const \mbox{\hyperlink{classrev_1_1_transform}{Transform}} \&t2, float percent\+Factor, bool update\+World)
+\begin{DoxyCompactList}\small\item\em Interpolate between two transforms. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a870e146573e4327e664ca9bcc30e2716}\label{classrev_1_1_transform_a870e146573e4327e664ca9bcc30e2716}} 
+static \mbox{\hyperlink{classrev_1_1_transform}{Transform}} \mbox{\hyperlink{classrev_1_1_transform_a870e146573e4327e664ca9bcc30e2716}{interpolate}} (const std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_transform}{Transform}} $>$ \&transforms, const std\+::vector$<$ float $>$ \&weights, bool update\+World)
+\begin{DoxyCompactList}\small\item\em Interpolate between a bunch of transforms with weights. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_aecadfa9d2bd2065f82928ec6a90ecbe5}\label{classrev_1_1_transform_aecadfa9d2bd2065f82928ec6a90ecbe5}} 
+static const \mbox{\hyperlink{classrev_1_1_transform}{Transform}} \& {\bfseries Identity} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a90d5cb9ed1390f13279ce918f146b970}\label{classrev_1_1_transform_a90d5cb9ed1390f13279ce918f146b970}} 
+\mbox{\hyperlink{classrev_1_1_transform_a0945b935b8f5fbf95920720ac8874e93}{Transform\+::\+Inheritance\+Type}} \mbox{\hyperlink{classrev_1_1_transform_a90d5cb9ed1390f13279ce918f146b970}{m\+\_\+inheritance\+Type}}
+\begin{DoxyCompactList}\small\item\em Type of geometry inheritance for this transform. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a7cd5afa681ae54115efd969a4831a331}\label{classrev_1_1_transform_a7cd5afa681ae54115efd969a4831a331}} 
+\mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$ \mbox{\hyperlink{classrev_1_1_transform_a7cd5afa681ae54115efd969a4831a331}{m\+\_\+parent}} = nullptr
+\begin{DoxyCompactList}\small\item\em Parent transform. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a204bf0d45564bece70b3e2f832d5f3eb}\label{classrev_1_1_transform_a204bf0d45564bece70b3e2f832d5f3eb}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$ $>$ \mbox{\hyperlink{classrev_1_1_transform_a204bf0d45564bece70b3e2f832d5f3eb}{m\+\_\+children}}
+\begin{DoxyCompactList}\small\item\em Child transforms. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a2637245e67af8355d099b6daebf1ecd5}\label{classrev_1_1_transform_a2637245e67af8355d099b6daebf1ecd5}} 
+\mbox{\hyperlink{classrev_1_1_translation_component}{Translation\+Component}} \mbox{\hyperlink{classrev_1_1_transform_a2637245e67af8355d099b6daebf1ecd5}{m\+\_\+translation}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structrev_1_1_translation}{Translation}} component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_afc8621a7abbbb080b2acb7a879a2f44f}\label{classrev_1_1_transform_afc8621a7abbbb080b2acb7a879a2f44f}} 
+\mbox{\hyperlink{classrev_1_1_rotation_component}{Rotation\+Component}} \mbox{\hyperlink{classrev_1_1_transform_afc8621a7abbbb080b2acb7a879a2f44f}{m\+\_\+rotation}}
+\begin{DoxyCompactList}\small\item\em Rotation component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a90f96d16837c7094a07ced126a960b0a}\label{classrev_1_1_transform_a90f96d16837c7094a07ced126a960b0a}} 
+\mbox{\hyperlink{classrev_1_1_scale_component}{Scale\+Component}} \mbox{\hyperlink{classrev_1_1_transform_a90f96d16837c7094a07ced126a960b0a}{m\+\_\+scale}}
+\begin{DoxyCompactList}\small\item\em Scale component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_aad969ba4d89a84c637899666b94cdab9}\label{classrev_1_1_transform_aad969ba4d89a84c637899666b94cdab9}} 
+\mbox{\hyperlink{structrev_1_1_transform_matrices}{Transform\+Matrices}} \mbox{\hyperlink{classrev_1_1_transform_aad969ba4d89a84c637899666b94cdab9}{m\+\_\+matrices}}
+\begin{DoxyCompactList}\small\item\em Matrices. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_transform_a2a57ca9c503ea5805b13e06ec62aa9c9}\label{classrev_1_1_transform_a2a57ca9c503ea5805b13e06ec62aa9c9}} 
+static \mbox{\hyperlink{classrev_1_1_transform}{Transform}} {\bfseries s\+\_\+identity} = \mbox{\hyperlink{classrev_1_1_transform}{Transform}}()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A transform consisting of a translation, a rotation, and a scaling. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_transform_a1d5fb768c903b76184a9f9e7aac4fc21}\label{classrev_1_1_transform_a1d5fb768c903b76184a9f9e7aac4fc21}} 
+\index{rev::Transform@{rev::Transform}!hasChild@{hasChild}}
+\index{hasChild@{hasChild}!rev::Transform@{rev::Transform}}
+\subsubsection{\texorpdfstring{hasChild()}{hasChild()}}
+{\footnotesize\ttfamily bool rev\+::\+Transform\+::has\+Child (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_transform}{Transform}} \&}]{child,  }\item[{size\+\_\+t $\ast$}]{idx = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+Whether the specified child is a child of this transform. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em child} & The candidate child transform \\
+\hline
+\mbox{\texttt{ out}}  & {\em idx} & The index of the child transform, if it is a child \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Whether or not the specified transform is a child 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classrev_1_1_transform_ac866da54728977f841fd7536a2badc17}\label{classrev_1_1_transform_ac866da54728977f841fd7536a2badc17}} 
+\index{rev::Transform@{rev::Transform}!updateLocalMatrix@{updateLocalMatrix}}
+\index{updateLocalMatrix@{updateLocalMatrix}!rev::Transform@{rev::Transform}}
+\subsubsection{\texorpdfstring{updateLocalMatrix()}{updateLocalMatrix()}}
+{\footnotesize\ttfamily void rev\+::\+Transform\+::update\+Local\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Update the transform manually. 
+
+Called to avoid redundant matrix multiplications on component modification 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/geometry/G\+Transform.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/geometry/G\+Transform.\+cpp\end{DoxyCompactItemize}

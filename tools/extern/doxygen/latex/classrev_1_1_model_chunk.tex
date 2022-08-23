@@ -1,0 +1,110 @@
+\hypertarget{classrev_1_1_model_chunk}{}\section{rev\+::Model\+Chunk Class Reference}
+\label{classrev_1_1_model_chunk}\index{rev::ModelChunk@{rev::ModelChunk}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing a renderable chunk of geometry.  
+
+
+
+
+{\ttfamily \#include $<$G\+Model\+Chunk.\+h$>$}
+
+Inheritance diagram for rev\+::Model\+Chunk\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classrev_1_1_model_chunk}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_chunk_a7d5af1656a84709e4856dbc34475338e}\label{classrev_1_1_model_chunk_a7d5af1656a84709e4856dbc34475338e}} 
+{\bfseries Model\+Chunk} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \&\mbox{\hyperlink{classrev_1_1_renderable_a353c19ed75be285e098c03b75dc31b1f}{mesh}}, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \&mtl)
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_chunk_a47e8b27c58d7e33d568fa5da73565201}\label{classrev_1_1_model_chunk_a47e8b27c58d7e33d568fa5da73565201}} 
+{\bfseries $\sim$\+Model\+Chunk} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_chunk_acd2ece63e8e0dfeae0f10e49276413b9}\label{classrev_1_1_model_chunk_acd2ece63e8e0dfeae0f10e49276413b9}} 
+bool \mbox{\hyperlink{classrev_1_1_model_chunk_acd2ece63e8e0dfeae0f10e49276413b9}{is\+Loaded}} () const
+\begin{DoxyCompactList}\small\item\em Whether mesh and material are loaded. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_chunk_aa983ba8a7706dcda0afc07f05dd63fa7}\label{classrev_1_1_model_chunk_aa983ba8a7706dcda0afc07f05dd63fa7}} 
+virtual size\+\_\+t \mbox{\hyperlink{classrev_1_1_model_chunk_aa983ba8a7706dcda0afc07f05dd63fa7}{get\+Sort\+ID}} () override
+\begin{DoxyCompactList}\small\item\em Get ID to sort renderable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_chunk_a07e17d0504a0180d7775213ef62821fc}\label{classrev_1_1_model_chunk_a07e17d0504a0180d7775213ef62821fc}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_model_chunk_a07e17d0504a0180d7775213ef62821fc}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_chunk_a2ce423e2a31c1009c4dc1243e4c0b9ee}\label{classrev_1_1_model_chunk_a2ce423e2a31c1009c4dc1243e4c0b9ee}} 
+virtual void \mbox{\hyperlink{classrev_1_1_model_chunk_a2ce423e2a31c1009c4dc1243e4c0b9ee}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classrev_1_1_model_chunk_a59831075966c33b791a59ab6a5f29937}{pre\+Draw}} () override
+\begin{DoxyCompactList}\small\item\em Miscellaneous actions to be performed before drawing. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_model_chunk_a57d245e346f01286e07f87fe3e409495}{bind\+Uniforms}} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program) override
+\begin{DoxyCompactList}\small\item\em Set uniforms for the given shader program. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_chunk_a8e375c0783e6933bdcf228a30fa7a310}\label{classrev_1_1_model_chunk_a8e375c0783e6933bdcf228a30fa7a310}} 
+void \mbox{\hyperlink{classrev_1_1_model_chunk_a8e375c0783e6933bdcf228a30fa7a310}{bind\+Textures}} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$shader\+Program, \mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} $\ast$context) override
+\begin{DoxyCompactList}\small\item\em Bind the textures used by this renderable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_chunk_a30fb5bac24e02bb63f84a3d6a306a78b}\label{classrev_1_1_model_chunk_a30fb5bac24e02bb63f84a3d6a306a78b}} 
+void \mbox{\hyperlink{classrev_1_1_model_chunk_a30fb5bac24e02bb63f84a3d6a306a78b}{release\+Textures}} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$shader\+Program, \mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} $\ast$context) override
+\begin{DoxyCompactList}\small\item\em Release the textures used by this renderable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_chunk_a4c326ccd56cbdb5d70efd369283f35bf}\label{classrev_1_1_model_chunk_a4c326ccd56cbdb5d70efd369283f35bf}} 
+virtual void \mbox{\hyperlink{classrev_1_1_model_chunk_a4c326ccd56cbdb5d70efd369283f35bf}{draw\+Geometry}} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program, \mbox{\hyperlink{classrev_1_1_render_settings}{Render\+Settings}} $\ast$settings=nullptr)
+\begin{DoxyCompactList}\small\item\em Draw geometry associated with this renderable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_chunk_acdfdcda5ddf9c7ca4e1df2be585d28dd}\label{classrev_1_1_model_chunk_acdfdcda5ddf9c7ca4e1df2be585d28dd}} 
+\mbox{\hyperlink{classrev_1_1_material}{Material}} $\ast$ {\bfseries material\+Resource} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing a renderable chunk of geometry. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_model_chunk_a57d245e346f01286e07f87fe3e409495}\label{classrev_1_1_model_chunk_a57d245e346f01286e07f87fe3e409495}} 
+\index{rev::ModelChunk@{rev::ModelChunk}!bindUniforms@{bindUniforms}}
+\index{bindUniforms@{bindUniforms}!rev::ModelChunk@{rev::ModelChunk}}
+\subsubsection{\texorpdfstring{bindUniforms()}{bindUniforms()}}
+{\footnotesize\ttfamily void rev\+::\+Model\+Chunk\+::bind\+Uniforms (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&}]{shader\+Program }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Set uniforms for the given shader program. 
+
+Uniforms are pulled from the internal list, m\+\_\+uniforms 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_renderable_abb193adc67d748cdc82c92084d13589b}{rev\+::\+Renderable}}.
+
+\mbox{\Hypertarget{classrev_1_1_model_chunk_a59831075966c33b791a59ab6a5f29937}\label{classrev_1_1_model_chunk_a59831075966c33b791a59ab6a5f29937}} 
+\index{rev::ModelChunk@{rev::ModelChunk}!preDraw@{preDraw}}
+\index{preDraw@{preDraw}!rev::ModelChunk@{rev::ModelChunk}}
+\subsubsection{\texorpdfstring{preDraw()}{preDraw()}}
+{\footnotesize\ttfamily void rev\+::\+Model\+Chunk\+::pre\+Draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Miscellaneous actions to be performed before drawing. 
+
+Is a good place for any viewport changes to be made 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_renderable_ac1fe33dec408d65bbae10e24fbedc6bc}{rev\+::\+Renderable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/models/G\+Model\+Chunk.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/models/G\+Model\+Chunk.\+cpp\end{DoxyCompactItemize}

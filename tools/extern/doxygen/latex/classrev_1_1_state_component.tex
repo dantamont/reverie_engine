@@ -1,0 +1,99 @@
+\hypertarget{classrev_1_1_state_component}{}\section{rev\+::State\+Component Class Reference}
+\label{classrev_1_1_state_component}\index{rev::StateComponent@{rev::StateComponent}}
+Inheritance diagram for rev\+::State\+Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_state_component}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_state_component_ad2fcc1d196b282bcffbb72ef6159dbe2}\label{classrev_1_1_state_component_ad2fcc1d196b282bcffbb72ef6159dbe2}} 
+{\bfseries State\+Component} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_state_component_ad799a36240ac00983e9244ba4d632c1b}\label{classrev_1_1_state_component_ad799a36240ac00983e9244ba4d632c1b}} 
+{\bfseries State\+Component} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \&object)
+\item 
+\mbox{\Hypertarget{classrev_1_1_state_component_a3f00f0771f722d251ea0e63935135ae0}\label{classrev_1_1_state_component_a3f00f0771f722d251ea0e63935135ae0}} 
+{\bfseries $\sim$\+State\+Component} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_state_component_ad2be169668770795614e39b1bde925b0}\label{classrev_1_1_state_component_ad2be169668770795614e39b1bde925b0}} 
+virtual void \mbox{\hyperlink{classrev_1_1_state_component_ad2be169668770795614e39b1bde925b0}{enable}} () override
+\begin{DoxyCompactList}\small\item\em Enable the behavior of this script component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_state_component_a191b4c2bca45404783d7168f3a83b2be}\label{classrev_1_1_state_component_a191b4c2bca45404783d7168f3a83b2be}} 
+virtual void \mbox{\hyperlink{classrev_1_1_state_component_a191b4c2bca45404783d7168f3a83b2be}{disable}} () override
+\begin{DoxyCompactList}\small\item\em Disable the behavior of this script component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_state_component_a801025ae9c32d3b5eaa4d50c773e14c2}\label{classrev_1_1_state_component_a801025ae9c32d3b5eaa4d50c773e14c2}} 
+virtual int \mbox{\hyperlink{classrev_1_1_state_component_a801025ae9c32d3b5eaa4d50c773e14c2}{max\+Allowed}} () const override
+\begin{DoxyCompactList}\small\item\em Max number of allowed components per scene object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_state_component_a1f24f3bb3f13a85784d866fb9caaeabc}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_state_component_ae95ec4b4b31544c7b555ff80ac423162}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_state_component_a59408f78b12e0716bc9d60feb7b4091a}\label{classrev_1_1_state_component_a59408f78b12e0716bc9d60feb7b4091a}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_state_component_a59408f78b12e0716bc9d60feb7b4091a}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_state_component_a6dd4c50e5a52915105639997101a81c2}\label{classrev_1_1_state_component_a6dd4c50e5a52915105639997101a81c2}} 
+virtual void \mbox{\hyperlink{classrev_1_1_state_component_a6dd4c50e5a52915105639997101a81c2}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_state_component_a1dbb72daca679226b2a55e40f4c171e4}\label{classrev_1_1_state_component_a1dbb72daca679226b2a55e40f4c171e4}} 
+Q\+State\+Machine $\ast$ \mbox{\hyperlink{classrev_1_1_state_component_a1dbb72daca679226b2a55e40f4c171e4}{m\+\_\+state\+Machine}}
+\begin{DoxyCompactList}\small\item\em The state machine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_state_component_a1f24f3bb3f13a85784d866fb9caaeabc}\label{classrev_1_1_state_component_a1f24f3bb3f13a85784d866fb9caaeabc}} 
+\index{rev::StateComponent@{rev::StateComponent}!className@{className}}
+\index{className@{className}!rev::StateComponent@{rev::StateComponent}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+State\+Component\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_component_a07619152d5acafe7a536df3a6a476349}{rev\+::\+Component}}.
+
+\mbox{\Hypertarget{classrev_1_1_state_component_ae95ec4b4b31544c7b555ff80ac423162}\label{classrev_1_1_state_component_ae95ec4b4b31544c7b555ff80ac423162}} 
+\index{rev::StateComponent@{rev::StateComponent}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::StateComponent@{rev::StateComponent}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+State\+Component\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_component_ae2827b14c278588b95e01c4743fae674}{rev\+::\+Component}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+State\+Component.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+State\+Component.\+cpp\end{DoxyCompactItemize}

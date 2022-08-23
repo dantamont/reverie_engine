@@ -1,0 +1,148 @@
+\hypertarget{classrev_1_1_char_control_component}{}\section{rev\+::Char\+Control\+Component Class Reference}
+\label{classrev_1_1_char_control_component}\index{rev::CharControlComponent@{rev::CharControlComponent}}
+Inheritance diagram for rev\+::Char\+Control\+Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_char_control_component}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_char_control_component_aeae6070b8365b3a327613d7a209c8681}\label{classrev_1_1_char_control_component_aeae6070b8365b3a327613d7a209c8681}} 
+{\bfseries Char\+Control\+Component} ()
+\item 
+\mbox{\hyperlink{classrev_1_1_char_control_component_ac7a09ab9128f6d06c4126ef386d47165}{Char\+Control\+Component}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \&object)
+\item 
+\mbox{\Hypertarget{classrev_1_1_char_control_component_ae965fe837f47928e7547e7d01b40879f}\label{classrev_1_1_char_control_component_ae965fe837f47928e7547e7d01b40879f}} 
+{\bfseries $\sim$\+Char\+Control\+Component} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_char_control_component_ad48e482237a727ae8e07a3e2487a0fcb}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_char_control_component_a62ac7aa35e708a0f0fcde627bababfd9}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_char_control_component_a185676aa126e70a1a5f772ad210e04e5}\label{classrev_1_1_char_control_component_a185676aa126e70a1a5f772ad210e04e5}} 
+\mbox{\hyperlink{classrev_1_1_character_controller}{Character\+Controller}} $\ast$ {\bfseries controller} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_char_control_component_a0bbb105cdc5c80ed066045822a70dc3b}\label{classrev_1_1_char_control_component_a0bbb105cdc5c80ed066045822a70dc3b}} 
+virtual int \mbox{\hyperlink{classrev_1_1_char_control_component_a0bbb105cdc5c80ed066045822a70dc3b}{max\+Allowed}} () const override
+\begin{DoxyCompactList}\small\item\em Max number of allowed components per scene object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classrev_1_1_char_control_component_a7af709870507cde2ad2151c0e510e2c6}{move}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector}}$<$ real\+\_\+g, 3 $>$ \&disp)
+\begin{DoxyCompactList}\small\item\em Move the object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_char_control_component_ab2f59a7f357e71a5896c93d72b6652e0}\label{classrev_1_1_char_control_component_ab2f59a7f357e71a5896c93d72b6652e0}} 
+void {\bfseries set\+Gravity} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector}}$<$ real\+\_\+g, 3 $>$ \&gravity)
+\item 
+\mbox{\Hypertarget{classrev_1_1_char_control_component_a19f02b9c17cca9bce9ede1b03c5879c1}\label{classrev_1_1_char_control_component_a19f02b9c17cca9bce9ede1b03c5879c1}} 
+virtual void \mbox{\hyperlink{classrev_1_1_char_control_component_a19f02b9c17cca9bce9ede1b03c5879c1}{enable}} () override
+\begin{DoxyCompactList}\small\item\em Enable this component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_char_control_component_ad06fd72eb6af5d3a5c05df0d38e5264a}\label{classrev_1_1_char_control_component_ad06fd72eb6af5d3a5c05df0d38e5264a}} 
+virtual void \mbox{\hyperlink{classrev_1_1_char_control_component_ad06fd72eb6af5d3a5c05df0d38e5264a}{disable}} () override
+\begin{DoxyCompactList}\small\item\em Disable this component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_char_control_component_a9e32d95d8a97ca5b9b77fa502a18d5b8}\label{classrev_1_1_char_control_component_a9e32d95d8a97ca5b9b77fa502a18d5b8}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_char_control_component_a9e32d95d8a97ca5b9b77fa502a18d5b8}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_char_control_component_a8f4959d0b4a92bf578c303530eebda3b}\label{classrev_1_1_char_control_component_a8f4959d0b4a92bf578c303530eebda3b}} 
+virtual void \mbox{\hyperlink{classrev_1_1_char_control_component_a8f4959d0b4a92bf578c303530eebda3b}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_char_control_component_a109e767115774fb258bef94e4bea29c6}\label{classrev_1_1_char_control_component_a109e767115774fb258bef94e4bea29c6}} 
+const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_c_c_t_manager}{C\+C\+T\+Manager}} $>$ \& {\bfseries cct\+Manager} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_char_control_component_a99450be4d17432a79196f680a4535008}\label{classrev_1_1_char_control_component_a99450be4d17432a79196f680a4535008}} 
+\mbox{\hyperlink{classrev_1_1_character_controller}{Character\+Controller}} $\ast$ \mbox{\hyperlink{classrev_1_1_char_control_component_a99450be4d17432a79196f680a4535008}{m\+\_\+controller}} = nullptr
+\begin{DoxyCompactList}\small\item\em The controller for this component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_char_control_component_a737b3cb474f324a74e7da2d3aeca10c9}\label{classrev_1_1_char_control_component_a737b3cb474f324a74e7da2d3aeca10c9}} 
+class {\bfseries Scene\+Object}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classrev_1_1_char_control_component_ac7a09ab9128f6d06c4126ef386d47165}\label{classrev_1_1_char_control_component_ac7a09ab9128f6d06c4126ef386d47165}} 
+\index{rev::CharControlComponent@{rev::CharControlComponent}!CharControlComponent@{CharControlComponent}}
+\index{CharControlComponent@{CharControlComponent}!rev::CharControlComponent@{rev::CharControlComponent}}
+\subsubsection{\texorpdfstring{CharControlComponent()}{CharControlComponent()}}
+{\footnotesize\ttfamily Char\+Control\+Component\+::\+Char\+Control\+Component (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \&}]{object }\end{DoxyParamCaption})}
+
+Create a basic capsule controller 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_char_control_component_ad48e482237a727ae8e07a3e2487a0fcb}\label{classrev_1_1_char_control_component_ad48e482237a727ae8e07a3e2487a0fcb}} 
+\index{rev::CharControlComponent@{rev::CharControlComponent}!className@{className}}
+\index{className@{className}!rev::CharControlComponent@{rev::CharControlComponent}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Char\+Control\+Component\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_char_control_component_a7af709870507cde2ad2151c0e510e2c6}\label{classrev_1_1_char_control_component_a7af709870507cde2ad2151c0e510e2c6}} 
+\index{rev::CharControlComponent@{rev::CharControlComponent}!move@{move}}
+\index{move@{move}!rev::CharControlComponent@{rev::CharControlComponent}}
+\subsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily void Char\+Control\+Component\+::move (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector}}$<$ real\+\_\+g, 3 $>$ \&}]{disp }\end{DoxyParamCaption})}
+
+
+
+Move the object. 
+
+\begin{DoxyNote}{Note}
+Gravity needs to be applied manually, since character controllers are kinematic 
+\end{DoxyNote}
+\mbox{\Hypertarget{classrev_1_1_char_control_component_a62ac7aa35e708a0f0fcde627bababfd9}\label{classrev_1_1_char_control_component_a62ac7aa35e708a0f0fcde627bababfd9}} 
+\index{rev::CharControlComponent@{rev::CharControlComponent}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::CharControlComponent@{rev::CharControlComponent}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Char\+Control\+Component\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+Char\+Control\+Component.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+Char\+Control\+Component.\+cpp\end{DoxyCompactItemize}

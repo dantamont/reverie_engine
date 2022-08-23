@@ -1,0 +1,53 @@
+\hypertarget{structrev_1_1_render_frame_state}{}\section{rev\+::Render\+Frame\+State Struct Reference}
+\label{structrev_1_1_render_frame_state}\index{rev::RenderFrameState@{rev::RenderFrameState}}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_render_frame_state_a71b3a015217f4c0b5ec39e30c89e02dd}\label{structrev_1_1_render_frame_state_a71b3a015217f4c0b5ec39e30c89e02dd}} 
+enum {\bfseries Render\+Stage} \{ {\bfseries k\+Depth\+Prepass}, 
+{\bfseries k\+Shadow\+Mapping}, 
+{\bfseries k\+Render}
+ \}
+\item 
+\mbox{\Hypertarget{structrev_1_1_render_frame_state_a6e82946c19a8083326bbf53d0b30f9de}\label{structrev_1_1_render_frame_state_a6e82946c19a8083326bbf53d0b30f9de}} 
+enum {\bfseries Render\+Action\+Flag} \{ {\bfseries k\+Resize} = 1 $<$$<$ 0
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_render_frame_state_af36a8d4bfc8e8bc447fead1b9fe776fa}\label{structrev_1_1_render_frame_state_af36a8d4bfc8e8bc447fead1b9fe776fa}} 
+bool {\bfseries play\+Mode\+Changed} () const
+\item 
+\mbox{\Hypertarget{structrev_1_1_render_frame_state_ae350660edc6e8d08c34acf7c65f2b404}\label{structrev_1_1_render_frame_state_ae350660edc6e8d08c34acf7c65f2b404}} 
+bool {\bfseries resized} () const
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_render_frame_state_ab75a65fcc6b6c37dce59c39460a6be9c}\label{structrev_1_1_render_frame_state_ab75a65fcc6b6c37dce59c39460a6be9c}} 
+\mbox{\hyperlink{classrev_1_1_sort_key}{Sort\+Key}} {\bfseries m\+\_\+last\+Rendered\+Key}
+\item 
+\mbox{\Hypertarget{structrev_1_1_render_frame_state_a185200023618a601664f4cebd25cc60a}\label{structrev_1_1_render_frame_state_a185200023618a601664f4cebd25cc60a}} 
+\mbox{\hyperlink{classrev_1_1_abstract_camera}{Abstract\+Camera}} $\ast$ {\bfseries m\+\_\+camera} = nullptr
+\item 
+\mbox{\Hypertarget{structrev_1_1_render_frame_state_a90169f7fa86e9618e1dbc53a02244b36}\label{structrev_1_1_render_frame_state_a90169f7fa86e9618e1dbc53a02244b36}} 
+\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$ {\bfseries m\+\_\+shader\+Program} = nullptr
+\item 
+\mbox{\Hypertarget{structrev_1_1_render_frame_state_a855fa1d8acafaa53f24fbdf7a19ae287}\label{structrev_1_1_render_frame_state_a855fa1d8acafaa53f24fbdf7a19ae287}} 
+Render\+Stage {\bfseries m\+\_\+stage} = k\+Depth\+Prepass
+\item 
+\mbox{\Hypertarget{structrev_1_1_render_frame_state_a9386aa0b10dc4be49629d70893dd9b06}\label{structrev_1_1_render_frame_state_a9386aa0b10dc4be49629d70893dd9b06}} 
+Q\+Flags$<$ Render\+Action\+Flag $>$ {\bfseries m\+\_\+action\+Flags}
+\item 
+\mbox{\Hypertarget{structrev_1_1_render_frame_state_a4127209e8b1b79b08dbff5c79d23cbf4}\label{structrev_1_1_render_frame_state_a4127209e8b1b79b08dbff5c79d23cbf4}} 
+int {\bfseries m\+\_\+previous\+Play\+Mode} = -\/1
+\item 
+\mbox{\Hypertarget{structrev_1_1_render_frame_state_a98056eaae89b4f585b7957450fc171ce}\label{structrev_1_1_render_frame_state_a98056eaae89b4f585b7957450fc171ce}} 
+int {\bfseries m\+\_\+play\+Mode} = -\/2
+\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/renderer/G\+Main\+Renderer.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,455 @@
+\hypertarget{classrev_1_1_shader_program}{}\section{rev\+::Shader\+Program Class Reference}
+\label{classrev_1_1_shader_program}\index{rev::ShaderProgram@{rev::ShaderProgram}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing an open\+GL shader program @detailed Note that QT\textquotesingle{}s abstraction of the shader program is bizarre... \char`\"{}\+I can\textquotesingle{}t tell what\textquotesingle{}s worse\+: 
+that they made set\+Attribute\+Buffer a member of a type that has absolutely nothing to do with vertex state\char`\"{}.  
+
+
+
+
+{\ttfamily \#include $<$G\+Shader\+Program.\+h$>$}
+
+Inheritance diagram for rev\+::Shader\+Program\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_shader_program}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_abfe751df10679c4a94544c3acd7b4b19}\label{classrev_1_1_shader_program_abfe751df10679c4a94544c3acd7b4b19}} 
+{\bfseries Shader\+Program} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a722771d542ddb41aa183999fb1251baa}\label{classrev_1_1_shader_program_a722771d542ddb41aa183999fb1251baa}} 
+{\bfseries Shader\+Program} (const \mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program)
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a711c9be547d9a273512b5f2f3c15d384}\label{classrev_1_1_shader_program_a711c9be547d9a273512b5f2f3c15d384}} 
+{\bfseries Shader\+Program} (const Q\+String \&vertfile, const Q\+String \&fragfile)
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a270e918ae8a4e594257d460b638c7c44}\label{classrev_1_1_shader_program_a270e918ae8a4e594257d460b638c7c44}} 
+{\bfseries Shader\+Program} (const Q\+String \&vert\+Source, const Q\+String \&frag\+Source, double dummy)
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a365cb8355df4eebe3034ec8f6a523f0b}\label{classrev_1_1_shader_program_a365cb8355df4eebe3034ec8f6a523f0b}} 
+{\bfseries Shader\+Program} (const Q\+String \&vertfile, const Q\+String \&fragfile, const Q\+String \&geometry\+File)
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a1b68724bd7cb29c022c7f7b595f747ca}\label{classrev_1_1_shader_program_a1b68724bd7cb29c022c7f7b595f747ca}} 
+{\bfseries Shader\+Program} (const Q\+String \&comp\+File)
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a118fef10434438276fd03858d15c1083}\label{classrev_1_1_shader_program_a118fef10434438276fd03858d15c1083}} 
+virtual {\bfseries $\sim$\+Shader\+Program} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_af0766282d3272419d04f83e1a60e2553}\label{classrev_1_1_shader_program_af0766282d3272419d04f83e1a60e2553}} 
+virtual Resource\+Type \mbox{\hyperlink{classrev_1_1_shader_program_af0766282d3272419d04f83e1a60e2553}{get\+Resource\+Type}} () const override
+\begin{DoxyCompactList}\small\item\em Get the type of resource stored by this handle. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_abc56bc121418a497d2a4d6b16f8b9a5d}\label{classrev_1_1_shader_program_abc56bc121418a497d2a4d6b16f8b9a5d}} 
+size\+\_\+t {\bfseries get\+Program\+ID} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_abee07f3196597b4d13910ca13d475137}\label{classrev_1_1_shader_program_abee07f3196597b4d13910ca13d475137}} 
+const std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_uniform}{Uniform}} $>$ \& {\bfseries uniforms} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a608666e133268230db42d64fb8b3f9ec}\label{classrev_1_1_shader_program_a608666e133268230db42d64fb8b3f9ec}} 
+bool {\bfseries is\+Valid} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a02b1e092c2929a72ece758239d769a16}\label{classrev_1_1_shader_program_a02b1e092c2929a72ece758239d769a16}} 
+bool \mbox{\hyperlink{classrev_1_1_shader_program_a02b1e092c2929a72ece758239d769a16}{is\+Bound}} () const
+\begin{DoxyCompactList}\small\item\em Whether or not the shader is bound to a context. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_ac97b6fca77f1133567fedff8f8aa73f2}\label{classrev_1_1_shader_program_ac97b6fca77f1133567fedff8f8aa73f2}} 
+const \mbox{\hyperlink{classrev_1_1_shader}{Shader}} $\ast$ \mbox{\hyperlink{classrev_1_1_shader_program_ac97b6fca77f1133567fedff8f8aa73f2}{get\+Frag\+Shader}} () const
+\begin{DoxyCompactList}\small\item\em Return the fragment shader. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_aba43a7e9632afaf583241db5e7fed7a0}\label{classrev_1_1_shader_program_aba43a7e9632afaf583241db5e7fed7a0}} 
+const \mbox{\hyperlink{classrev_1_1_shader}{Shader}} $\ast$ \mbox{\hyperlink{classrev_1_1_shader_program_aba43a7e9632afaf583241db5e7fed7a0}{get\+Vert\+Shader}} () const
+\begin{DoxyCompactList}\small\item\em Return the vertex shader. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_ad8969cca780f6d098c492d08249ca106}\label{classrev_1_1_shader_program_ad8969cca780f6d098c492d08249ca106}} 
+const \mbox{\hyperlink{classrev_1_1_shader}{Shader}} $\ast$ \mbox{\hyperlink{classrev_1_1_shader_program_ad8969cca780f6d098c492d08249ca106}{get\+Geometry\+Shader}} () const
+\begin{DoxyCompactList}\small\item\em Return the geometry shader. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_ab1a938094a7d84eef5cac303ccd3060a}\label{classrev_1_1_shader_program_ab1a938094a7d84eef5cac303ccd3060a}} 
+const \mbox{\hyperlink{classrev_1_1_shader}{Shader}} $\ast$ \mbox{\hyperlink{classrev_1_1_shader_program_ab1a938094a7d84eef5cac303ccd3060a}{get\+Compute\+Shader}} () const
+\begin{DoxyCompactList}\small\item\em Return the compute shader. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a5e1a63c6d678cc91983304b4a307a276}\label{classrev_1_1_shader_program_a5e1a63c6d678cc91983304b4a307a276}} 
+const \mbox{\hyperlink{classrev_1_1_shader}{Shader}} $\ast$ \mbox{\hyperlink{classrev_1_1_shader_program_a5e1a63c6d678cc91983304b4a307a276}{get\+Shader}} (Shader\+::\+Shader\+Type type) const
+\begin{DoxyCompactList}\small\item\em Return the shader of the given type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ rev\+::Object Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_shader_program_a7400b2b50638b1d150bc339ecd360c4c}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_shader_program_a7e4e75492bd44ea8e9350cd720698e3e}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classrev_1_1_shader_program_aa7b7f1acfd59f0fdb168c2643d8654c2}{dispatch\+Compute}} (uint32\+\_\+t num\+GroupsX, uint32\+\_\+t num\+GroupsY, uint32\+\_\+t num\+GroupsZ)
+\begin{DoxyCompactList}\small\item\em Add buffer to the shader program. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a93bdc31db991a99df89ce30cd7a11c8b}\label{classrev_1_1_shader_program_a93bdc31db991a99df89ce30cd7a11c8b}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector3i}} \mbox{\hyperlink{classrev_1_1_shader_program_a93bdc31db991a99df89ce30cd7a11c8b}{get\+Max\+Work\+Group\+Counts}} ()
+\begin{DoxyCompactList}\small\item\em Get max work group counts in x, y, z dimensions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a40640813f20216787e159609c274061c}\label{classrev_1_1_shader_program_a40640813f20216787e159609c274061c}} 
+bool \mbox{\hyperlink{classrev_1_1_shader_program_a40640813f20216787e159609c274061c}{has\+Buffer\+Info}} (const Q\+String \&name, G\+L\+::\+Buffer\+Block\+Type type, int $\ast$out\+Index=nullptr)
+\begin{DoxyCompactList}\small\item\em Whether the shader has the buffer with the given name and type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_ad48c1c3ccf8fe60f7dd36abde11ee793}\label{classrev_1_1_shader_program_ad48c1c3ccf8fe60f7dd36abde11ee793}} 
+void \mbox{\hyperlink{classrev_1_1_shader_program_ad48c1c3ccf8fe60f7dd36abde11ee793}{update\+Uniforms}} (bool ignore\+Mismatch=false)
+\begin{DoxyCompactList}\small\item\em updates uniforms that are present in the queue \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \mbox{\hyperlink{classrev_1_1_shader_program_ae594fae38b27c8ee8cc2d78ef418db8c}{create\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Copy uniforms from specified shader program to this one. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a61c730fa4c430837d01f097520fa367e}\label{classrev_1_1_shader_program_a61c730fa4c430837d01f097520fa367e}} 
+bool \mbox{\hyperlink{classrev_1_1_shader_program_a61c730fa4c430837d01f097520fa367e}{has\+Uniform}} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&uniform\+Name) const
+\begin{DoxyCompactList}\small\item\em Whether or not the given string is a valid uniform in the shader. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a25b5e8b84b1ec86ca019c365a896ccd5}\label{classrev_1_1_shader_program_a25b5e8b84b1ec86ca019c365a896ccd5}} 
+bool {\bfseries has\+Uniform} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&uniform\+Name, Uniform\+Info\+Iter \&out\+Iter, int $\ast$local\+Index=nullptr) const
+\item 
+void \mbox{\hyperlink{classrev_1_1_shader_program_adbb68e6df7d72ffd81faac60f8f4ff05}{bind}} ()
+\begin{DoxyCompactList}\small\item\em Get the the given uniform. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a1d8673e0b5df6522c6c18e66d915e215}\label{classrev_1_1_shader_program_a1d8673e0b5df6522c6c18e66d915e215}} 
+void \mbox{\hyperlink{classrev_1_1_shader_program_a1d8673e0b5df6522c6c18e66d915e215}{release}} ()
+\begin{DoxyCompactList}\small\item\em releases the program \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_aac93904eac71eac6d9d22493c8ace569}\label{classrev_1_1_shader_program_aac93904eac71eac6d9d22493c8ace569}} 
+{\footnotesize template$<$class Variant\+Type $>$ }\\void \mbox{\hyperlink{classrev_1_1_shader_program_aac93904eac71eac6d9d22493c8ace569}{set\+Uniform\+Value}} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&uniform\+Name, const Variant\+Type \&value, bool update\+GL=false)
+\begin{DoxyCompactList}\small\item\em Adds uniform value to be set on next \mbox{\hyperlink{classrev_1_1_shader_program_ad48c1c3ccf8fe60f7dd36abde11ee793}{update\+Uniforms()}} call, given the string @detailed Valid for any type that can be be converted to a \mbox{\hyperlink{structrev_1_1_uniform}{Uniform}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_ad8ed946cde7fbae434bf678bd4454d77}\label{classrev_1_1_shader_program_ad8ed946cde7fbae434bf678bd4454d77}} 
+void {\bfseries set\+Uniform\+Value} (const \mbox{\hyperlink{structrev_1_1_uniform}{Uniform}} \&uniform, bool update\+GL=false)
+\item 
+virtual void \mbox{\hyperlink{classrev_1_1_shader_program_a1b08ee659241ede0227457821a4971a2}{post\+Construction}} () override
+\begin{DoxyCompactList}\small\item\em Sets the value of the given uniform in GL, given the uniform ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a59637a18de57dd5eb81854ac535220eb}\label{classrev_1_1_shader_program_a59637a18de57dd5eb81854ac535220eb}} 
+virtual void \mbox{\hyperlink{classrev_1_1_shader_program_a59637a18de57dd5eb81854ac535220eb}{on\+Removal}} (\mbox{\hyperlink{classrev_1_1_resource_cache}{Resource\+Cache}} $\ast$cache=nullptr) override
+\begin{DoxyCompactList}\small\item\em What action to perform on removal of the resource. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_addf0a00bf95f047f3714ac711a10e57e}\label{classrev_1_1_shader_program_addf0a00bf95f047f3714ac711a10e57e}} 
+void {\bfseries clear\+Uniforms} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a8b52e46c41e6aaa12c4807c9ac04a6f9}\label{classrev_1_1_shader_program_a8b52e46c41e6aaa12c4807c9ac04a6f9}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_shader_program_a8b52e46c41e6aaa12c4807c9ac04a6f9}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_aa261bcc062afd7aa3c68b57b089c10d0}\label{classrev_1_1_shader_program_aa261bcc062afd7aa3c68b57b089c10d0}} 
+virtual void \mbox{\hyperlink{classrev_1_1_shader_program_aa261bcc062afd7aa3c68b57b089c10d0}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_aee5cee27b1538dc05ea437641d462135}\label{classrev_1_1_shader_program_aee5cee27b1538dc05ea437641d462135}} 
+G\+Luint \mbox{\hyperlink{classrev_1_1_shader_program_aee5cee27b1538dc05ea437641d462135}{get\+Uniform\+ID}} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&uniform\+Name)
+\begin{DoxyCompactList}\small\item\em Obtain the ID of the uniform corresponding to the given string See\+: \href{https://www.khronos.org/registry/OpenGL-Refpages/es2.0/xhtml/glUniform.xml}{\texttt{ https\+://www.\+khronos.\+org/registry/\+Open\+G\+L-\/\+Refpages/es2.\+0/xhtml/gl\+Uniform.\+xml}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_ad42a2a63e9d9778b495c08deb27ebfc1}\label{classrev_1_1_shader_program_ad42a2a63e9d9778b495c08deb27ebfc1}} 
+G\+Luint \mbox{\hyperlink{classrev_1_1_shader_program_ad42a2a63e9d9778b495c08deb27ebfc1}{get\+Uniform\+I\+D\+GL}} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&uniform\+Name)
+\begin{DoxyCompactList}\small\item\em Obtain the ID of the uniform corresponding to the given string See\+: \href{https://www.khronos.org/registry/OpenGL-Refpages/es2.0/xhtml/glUniform.xml}{\texttt{ https\+://www.\+khronos.\+org/registry/\+Open\+G\+L-\/\+Refpages/es2.\+0/xhtml/gl\+Uniform.\+xml}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a5b5daf795ba8813468ba4ed7a27b8da6}\label{classrev_1_1_shader_program_a5b5daf795ba8813468ba4ed7a27b8da6}} 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{classrev_1_1_shader_program_a5b5daf795ba8813468ba4ed7a27b8da6}{set\+Uniform\+Value\+GL}} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&uniform\+Name, const T \&value)=delete
+\begin{DoxyCompactList}\small\item\em Sets the value of the given uniform in GL, given the string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a9ff33fd58ec6d5f195af533eda3ee82c}\label{classrev_1_1_shader_program_a9ff33fd58ec6d5f195af533eda3ee82c}} 
+{\footnotesize template$<$$>$ }\\void {\bfseries set\+Uniform\+Value\+GL} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&uniform\+Name, const unsigned int \&value)
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_ac111854bfc2cb309cf311f69be411585}\label{classrev_1_1_shader_program_ac111854bfc2cb309cf311f69be411585}} 
+{\footnotesize template$<$$>$ }\\void {\bfseries set\+Uniform\+Value\+GL} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&uniform\+Name, const int \&value)
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a936bed778bccbe7979125cba7b8651f2}\label{classrev_1_1_shader_program_a936bed778bccbe7979125cba7b8651f2}} 
+{\footnotesize template$<$$>$ }\\void {\bfseries set\+Uniform\+Value\+GL} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&uniform\+Name, const float \&value)
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a582be41b6af55bc5bf7b7fbb677ac1c5}\label{classrev_1_1_shader_program_a582be41b6af55bc5bf7b7fbb677ac1c5}} 
+{\footnotesize template$<$$>$ }\\void {\bfseries set\+Uniform\+Value\+GL} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&uniform\+Name, const \mbox{\hyperlink{classrev_1_1_vector}{Vector2f}} \&value)
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a0f670b702f05b894188d04df331706ff}\label{classrev_1_1_shader_program_a0f670b702f05b894188d04df331706ff}} 
+{\footnotesize template$<$$>$ }\\void {\bfseries set\+Uniform\+Value\+GL} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&uniform\+Name, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3f}} \&value)
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a55b73ae9e2f5b8a83256bfaa9a37b065}\label{classrev_1_1_shader_program_a55b73ae9e2f5b8a83256bfaa9a37b065}} 
+{\footnotesize template$<$$>$ }\\void {\bfseries set\+Uniform\+Value\+GL} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&uniform\+Name, const \mbox{\hyperlink{classrev_1_1_vector}{Vector4f}} \&value)
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a0e0089754f59ab65f9a2deef96e44602}\label{classrev_1_1_shader_program_a0e0089754f59ab65f9a2deef96e44602}} 
+{\footnotesize template$<$$>$ }\\void {\bfseries set\+Uniform\+Value\+GL} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&uniform\+Name, const \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix2x2}} \&value)
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a507260e825e13652164141fc66b260e7}\label{classrev_1_1_shader_program_a507260e825e13652164141fc66b260e7}} 
+{\footnotesize template$<$$>$ }\\void {\bfseries set\+Uniform\+Value\+GL} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&uniform\+Name, const \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix3x3}} \&value)
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a1e4289f8284c6fb8e88ec5975aa33f1a}\label{classrev_1_1_shader_program_a1e4289f8284c6fb8e88ec5975aa33f1a}} 
+{\footnotesize template$<$$>$ }\\void {\bfseries set\+Uniform\+Value\+GL} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&uniform\+Name, const \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4}} \&value)
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_aebe5863305f175627f40ad1d82b6712a}\label{classrev_1_1_shader_program_aebe5863305f175627f40ad1d82b6712a}} 
+{\footnotesize template$<$$>$ }\\void {\bfseries set\+Uniform\+Value\+GL} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&uniform\+Name, const std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4}} $>$ \&value)
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a4697961ddb120f0ee609cda258544ad7}\label{classrev_1_1_shader_program_a4697961ddb120f0ee609cda258544ad7}} 
+{\footnotesize template$<$$>$ }\\void {\bfseries set\+Uniform\+Value\+GL} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&uniform\+Name, const std\+::vector$<$ float $>$ \&value)
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_aba8ec9888a6152dbf5727bef73c35fcc}\label{classrev_1_1_shader_program_aba8ec9888a6152dbf5727bef73c35fcc}} 
+{\footnotesize template$<$$>$ }\\void {\bfseries set\+Uniform\+Value\+GL} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&uniform\+Name, const Vec3\+List \&value)
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_ae6f8027a753d56658cacea49c066414d}\label{classrev_1_1_shader_program_ae6f8027a753d56658cacea49c066414d}} 
+{\footnotesize template$<$$>$ }\\void {\bfseries set\+Uniform\+Value\+GL} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&uniform\+Name, const Vec4\+List \&value)
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a5f483b57db3e2a77290ecb4892c47ead}\label{classrev_1_1_shader_program_a5f483b57db3e2a77290ecb4892c47ead}} 
+virtual void \mbox{\hyperlink{classrev_1_1_shader_program_a5f483b57db3e2a77290ecb4892c47ead}{bind\+Attributes}} ()
+\begin{DoxyCompactList}\small\item\em links inputs to the shader program to the attributes of a V\+AO \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a3956d9621c0075306c3a139a2dca27ff}\label{classrev_1_1_shader_program_a3956d9621c0075306c3a139a2dca27ff}} 
+void \mbox{\hyperlink{classrev_1_1_shader_program_a3956d9621c0075306c3a139a2dca27ff}{bind\+Attribute}} (int attribute, const Q\+String \&variable\+Name)
+\begin{DoxyCompactList}\small\item\em links an input to the shader program to the attributes of a V\+AO \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a398000adb24c89c164d8c3a66968f2f7}\label{classrev_1_1_shader_program_a398000adb24c89c164d8c3a66968f2f7}} 
+bool \mbox{\hyperlink{classrev_1_1_shader_program_a398000adb24c89c164d8c3a66968f2f7}{initialize\+Shader\+Program}} ()
+\begin{DoxyCompactList}\small\item\em initializes shader program from the given shaders \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_aa4653fe37071ac78790325b458108202}\label{classrev_1_1_shader_program_aa4653fe37071ac78790325b458108202}} 
+void \mbox{\hyperlink{classrev_1_1_shader_program_aa4653fe37071ac78790325b458108202}{attach\+Shader}} (const \mbox{\hyperlink{classrev_1_1_shader}{Shader}} \&shader)
+\begin{DoxyCompactList}\small\item\em attach the given shader to the shader program \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a8305b76cf9bd54bfc99813aac95e18e2}\label{classrev_1_1_shader_program_a8305b76cf9bd54bfc99813aac95e18e2}} 
+void \mbox{\hyperlink{classrev_1_1_shader_program_a8305b76cf9bd54bfc99813aac95e18e2}{detach\+Shader}} (const \mbox{\hyperlink{classrev_1_1_shader}{Shader}} \&shader)
+\begin{DoxyCompactList}\small\item\em Detach shader from the shader program (can do once link is done) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a5c0ffcb817cdc2c2f14c94cc85b0913d}\label{classrev_1_1_shader_program_a5c0ffcb817cdc2c2f14c94cc85b0913d}} 
+void \mbox{\hyperlink{classrev_1_1_shader_program_a5c0ffcb817cdc2c2f14c94cc85b0913d}{populate\+Uniforms}} ()
+\begin{DoxyCompactList}\small\item\em Parses shader code to obtain valid map of uniforms. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a926e54a9c78ded30f5b657ed730158c8}\label{classrev_1_1_shader_program_a926e54a9c78ded30f5b657ed730158c8}} 
+void \mbox{\hyperlink{classrev_1_1_shader_program_a926e54a9c78ded30f5b657ed730158c8}{populate\+Uniform\+Buffers}} ()
+\begin{DoxyCompactList}\small\item\em Parses shader code to obtain valid map of uniform buffer objects. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{classrev_1_1_shader_program_a9d5620c172452745135a331b901a25f6}{get\+Uniform\+Block\+Index}} (const Q\+String \&block\+Name)
+\begin{DoxyCompactList}\small\item\em Get the uniform block index of the specified \mbox{\hyperlink{classrev_1_1_u_b_o}{U\+BO}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_shader_program_a4c0b3cf05a3c12e8314fe4c6c11fd0b9}{bind\+Uniform\+Block}} (const Q\+String \&block\+Name)
+\begin{DoxyCompactList}\small\item\em Bind the specified shader uniform block to the specified binding point. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_aa7a7e11942edde1adc5f36f07780621f}\label{classrev_1_1_shader_program_aa7a7e11942edde1adc5f36f07780621f}} 
+void \mbox{\hyperlink{classrev_1_1_shader_program_aa7a7e11942edde1adc5f36f07780621f}{get\+Active\+Uniforms}} (std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_shader_input_info}{Shader\+Input\+Info}} $>$ \&out\+Info)
+\begin{DoxyCompactList}\small\item\em Get uniform info. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a242223b130b40342206f04023675249c}\label{classrev_1_1_shader_program_a242223b130b40342206f04023675249c}} 
+void \mbox{\hyperlink{classrev_1_1_shader_program_a242223b130b40342206f04023675249c}{get\+Active\+S\+S\+Bs}} (std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_shader_buffer_info}{Shader\+Buffer\+Info}} $>$ \&out\+Info)
+\begin{DoxyCompactList}\small\item\em Get active shader storage blocks. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_ab245e3add4c5c2e4e63b6464f85aab1e}\label{classrev_1_1_shader_program_ab245e3add4c5c2e4e63b6464f85aab1e}} 
+void \mbox{\hyperlink{classrev_1_1_shader_program_ab245e3add4c5c2e4e63b6464f85aab1e}{get\+Active\+Attributes}} (std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_shader_input_info}{Shader\+Input\+Info}} $>$ \&out\+Info)
+\begin{DoxyCompactList}\small\item\em Get attribute info. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_ab42c439f086659cee123aff552616d8d}\label{classrev_1_1_shader_program_ab42c439f086659cee123aff552616d8d}} 
+G\+Lint \mbox{\hyperlink{classrev_1_1_shader_program_ab42c439f086659cee123aff552616d8d}{get\+Num\+Active\+Uniforms}} ()
+\begin{DoxyCompactList}\small\item\em Get number of active uniforms. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_aa57bf89f6d03e8798b9873e82ef42162}\label{classrev_1_1_shader_program_aa57bf89f6d03e8798b9873e82ef42162}} 
+G\+Lint \mbox{\hyperlink{classrev_1_1_shader_program_aa57bf89f6d03e8798b9873e82ef42162}{get\+Num\+Active\+Buffers}} (G\+L\+::\+Buffer\+Block\+Type type)
+\begin{DoxyCompactList}\small\item\em Get number of active buffers of the specified type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a5d75bd8ae1db91e629b096cfbd7cde32}\label{classrev_1_1_shader_program_a5d75bd8ae1db91e629b096cfbd7cde32}} 
+G\+Lint \mbox{\hyperlink{classrev_1_1_shader_program_a5d75bd8ae1db91e629b096cfbd7cde32}{get\+Num\+Active\+Attributes}} ()
+\begin{DoxyCompactList}\small\item\em Get number of active attributes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a70538530bc36e033e360880ef311df61}\label{classrev_1_1_shader_program_a70538530bc36e033e360880ef311df61}} 
+class {\bfseries Renderer}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a737b3cb474f324a74e7da2d3aeca10c9}\label{classrev_1_1_shader_program_a737b3cb474f324a74e7da2d3aeca10c9}} 
+class {\bfseries Scene\+Object}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a2bf2a0e9b454c55aa5dcb5aa4698697b}\label{classrev_1_1_shader_program_a2bf2a0e9b454c55aa5dcb5aa4698697b}} 
+class {\bfseries Model}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_aa1212b6e372a0f45d2c01f3cd203af77}\label{classrev_1_1_shader_program_aa1212b6e372a0f45d2c01f3cd203af77}} 
+class {\bfseries Material}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a83d06bada150194666fdc02c043d1080}\label{classrev_1_1_shader_program_a83d06bada150194666fdc02c043d1080}} 
+class {\bfseries Cube\+Map}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_aeb45b48c2af0875a63f6d247e0eb5334}\label{classrev_1_1_shader_program_aeb45b48c2af0875a63f6d247e0eb5334}} 
+class {\bfseries U\+BO}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_af08a66cdff89abe314f17f213ef57b66}\label{classrev_1_1_shader_program_af08a66cdff89abe314f17f213ef57b66}} 
+class {\bfseries Load\+Process}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a309a88107637acf027e7b995c25a4bff}\label{classrev_1_1_shader_program_a309a88107637acf027e7b995c25a4bff}} 
+class {\bfseries Post\+Processing\+Effect}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a4ee618c46bc807822429a59aa11dfa63}\label{classrev_1_1_shader_program_a4ee618c46bc807822429a59aa11dfa63}} 
+enum \mbox{\hyperlink{classrev_1_1_shader_program_a4ee618c46bc807822429a59aa11dfa63}{Buffer\+Usage\+Flag}} \{ {\bfseries k\+Light\+Buffer} = 1 $<$$<$ 0, 
+{\bfseries k\+Shadow\+Buffer} = 1 $<$$<$ 1
+ \}
+\begin{DoxyCompactList}\small\item\em Whether or not the shader program uses any of the built-\/in buffers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_ad387bf22d3c44c8864acadc8a5c671e8}\label{classrev_1_1_shader_program_ad387bf22d3c44c8864acadc8a5c671e8}} 
+typedef \mbox{\hyperlink{classtsl_1_1robin__map}{tsl\+::robin\+\_\+map}}$<$ \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}}, \mbox{\hyperlink{structrev_1_1_shader_input_info}{Shader\+Input\+Info}} $>$\+::const\+\_\+iterator {\bfseries Uniform\+Info\+Iter}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a9700792334a949387a74c1801be2e746}\label{classrev_1_1_shader_program_a9700792334a949387a74c1801be2e746}} 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \mbox{\hyperlink{classrev_1_1_shader_program_a9700792334a949387a74c1801be2e746}{Create\+Handle}} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$engine, const Q\+Json\+Value \&json, const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&shader\+Name)
+\begin{DoxyCompactList}\small\item\em Create a handle to a shader resource. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_ab443109faca272067f3577b561aecc9c}\label{classrev_1_1_shader_program_ab443109faca272067f3577b561aecc9c}} 
+static \mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$ {\bfseries Currently\+Bound} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a9fb09af1c3867c41b10edddcd3cc3088}\label{classrev_1_1_shader_program_a9fb09af1c3867c41b10edddcd3cc3088}} 
+static bool \mbox{\hyperlink{classrev_1_1_shader_program_a9fb09af1c3867c41b10edddcd3cc3088}{is\+Built\+In}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name)
+\begin{DoxyCompactList}\small\item\em Whether or not a shader is built-\/in, given a shader name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_af6ad65584c7968bd49b6b905ee795eb0}\label{classrev_1_1_shader_program_af6ad65584c7968bd49b6b905ee795eb0}} 
+{\bfseries M\+A\+K\+E\+\_\+\+F\+L\+A\+GS} (\mbox{\hyperlink{classrev_1_1_shader_program_a4ee618c46bc807822429a59aa11dfa63}{Buffer\+Usage\+Flag}}, Buffer\+Usage\+Flags)
+\end{DoxyCompactItemize}
+\subsection*{Protected members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_af39f9e267f4d22a150f741e623b2d226}\label{classrev_1_1_shader_program_af39f9e267f4d22a150f741e623b2d226}} 
+unsigned int \mbox{\hyperlink{classrev_1_1_shader_program_af39f9e267f4d22a150f741e623b2d226}{m\+\_\+program\+ID}}
+\begin{DoxyCompactList}\small\item\em GL ID of the shader program. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a6d613a53edd27eb503722f080bffdbe2}\label{classrev_1_1_shader_program_a6d613a53edd27eb503722f080bffdbe2}} 
+unsigned int \mbox{\hyperlink{classrev_1_1_shader_program_a6d613a53edd27eb503722f080bffdbe2}{m\+\_\+new\+Uniform\+Count}} = 0
+\begin{DoxyCompactList}\small\item\em Number of uniforms in queue to actually use for update. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a8854efa5e272052609f9bedc1db74aa8}\label{classrev_1_1_shader_program_a8854efa5e272052609f9bedc1db74aa8}} 
+Q\+Mutex \mbox{\hyperlink{classrev_1_1_shader_program_a8854efa5e272052609f9bedc1db74aa8}{m\+\_\+mutex}}
+\begin{DoxyCompactList}\small\item\em Lock data for multithreading. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a80bf75cf281f480736ad65be6e25444b}\label{classrev_1_1_shader_program_a80bf75cf281f480736ad65be6e25444b}} 
+Buffer\+Usage\+Flags {\bfseries m\+\_\+buffer\+Usage\+Flags}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_shader}{Shader}} $>$ \mbox{\hyperlink{classrev_1_1_shader_program_a3618ab938eba35717c2f2f1f95ab3763}{m\+\_\+shaders}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_map}{Map}} of all shaders associated with the shader program. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a3a2ff90e8bb2a553d28329f425c58824}\label{classrev_1_1_shader_program_a3a2ff90e8bb2a553d28329f425c58824}} 
+std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_uniform}{Uniform}} $>$ \mbox{\hyperlink{classrev_1_1_shader_program_a3a2ff90e8bb2a553d28329f425c58824}{m\+\_\+uniform\+Queue}}
+\begin{DoxyCompactList}\small\item\em Queue for uniforms that need to be updated in GL. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a54877f3e0735020837f3d86e679f3634}\label{classrev_1_1_shader_program_a54877f3e0735020837f3d86e679f3634}} 
+std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_uniform}{Uniform}} $>$ \mbox{\hyperlink{classrev_1_1_shader_program_a54877f3e0735020837f3d86e679f3634}{m\+\_\+uniforms}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_vector}{Vector}} of uniforms names and their values. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a2b9b163e17ced4e707f3579e4b6d1bc6}\label{classrev_1_1_shader_program_a2b9b163e17ced4e707f3579e4b6d1bc6}} 
+\mbox{\hyperlink{classtsl_1_1robin__map}{tsl\+::robin\+\_\+map}}$<$ \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}}, \mbox{\hyperlink{structrev_1_1_shader_input_info}{Shader\+Input\+Info}} $>$ \mbox{\hyperlink{classrev_1_1_shader_program_a2b9b163e17ced4e707f3579e4b6d1bc6}{m\+\_\+uniform\+Info}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_map}{Map}} of uniform names with corresponding G\+L\+SL info. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_ad239001f261f877a82ffc2a1558758ac}\label{classrev_1_1_shader_program_ad239001f261f877a82ffc2a1558758ac}} 
+std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_shader_input_info}{Shader\+Input\+Info}} $>$ {\bfseries m\+\_\+uniform\+Info\+Vec}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_a4ba4e15fe4284b7e4a5117c5721efa53}\label{classrev_1_1_shader_program_a4ba4e15fe4284b7e4a5117c5721efa53}} 
+std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_shader_buffer_info}{Shader\+Buffer\+Info}} $>$ \mbox{\hyperlink{classrev_1_1_shader_program_a4ba4e15fe4284b7e4a5117c5721efa53}{m\+\_\+buffer\+Info}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_vector}{Vector}} of buffer info. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classtsl_1_1robin__map}{tsl\+::robin\+\_\+map}}$<$ Q\+String, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_u_b_o}{U\+BO}} $>$ $>$ \mbox{\hyperlink{classrev_1_1_shader_program_aa642643963ce7fd924d9bceb2a8991c7}{m\+\_\+uniform\+Buffers}}
+\begin{DoxyCompactList}\small\item\em Buffers associated with the shader. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_program_aa5b39ed5e011f555f4a9d73bcd5f3ad9}\label{classrev_1_1_shader_program_aa5b39ed5e011f555f4a9d73bcd5f3ad9}} 
+static \mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$ \mbox{\hyperlink{classrev_1_1_shader_program_aa5b39ed5e011f555f4a9d73bcd5f3ad9}{s\+\_\+bound\+Shader}} = nullptr
+\begin{DoxyCompactList}\small\item\em The currently bound shader program. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing an open\+GL shader program @detailed Note that QT\textquotesingle{}s abstraction of the shader program is bizarre... \char`\"{}\+I can\textquotesingle{}t tell what\textquotesingle{}s worse\+: 
+that they made set\+Attribute\+Buffer a member of a type that has absolutely nothing to do with vertex state\char`\"{}. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_shader_program_adbb68e6df7d72ffd81faac60f8f4ff05}\label{classrev_1_1_shader_program_adbb68e6df7d72ffd81faac60f8f4ff05}} 
+\index{rev::ShaderProgram@{rev::ShaderProgram}!bind@{bind}}
+\index{bind@{bind}!rev::ShaderProgram@{rev::ShaderProgram}}
+\subsubsection{\texorpdfstring{bind()}{bind()}}
+{\footnotesize\ttfamily void rev\+::\+Shader\+Program\+::bind (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the the given uniform. 
+
+starts the program @detailed upon binding, any uniforms in the queue will be updated \mbox{\Hypertarget{classrev_1_1_shader_program_a4c0b3cf05a3c12e8314fe4c6c11fd0b9}\label{classrev_1_1_shader_program_a4c0b3cf05a3c12e8314fe4c6c11fd0b9}} 
+\index{rev::ShaderProgram@{rev::ShaderProgram}!bindUniformBlock@{bindUniformBlock}}
+\index{bindUniformBlock@{bindUniformBlock}!rev::ShaderProgram@{rev::ShaderProgram}}
+\subsubsection{\texorpdfstring{bindUniformBlock()}{bindUniformBlock()}}
+{\footnotesize\ttfamily void rev\+::\+Shader\+Program\+::bind\+Uniform\+Block (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{block\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Bind the specified shader uniform block to the specified binding point. 
+
+See\+: \href{https://learnopengl.com/Advanced-OpenGL/Advanced-GLSL}{\texttt{ https\+://learnopengl.\+com/\+Advanced-\/\+Open\+G\+L/\+Advanced-\/\+G\+L\+SL}} \mbox{\Hypertarget{classrev_1_1_shader_program_a7400b2b50638b1d150bc339ecd360c4c}\label{classrev_1_1_shader_program_a7400b2b50638b1d150bc339ecd360c4c}} 
+\index{rev::ShaderProgram@{rev::ShaderProgram}!className@{className}}
+\index{className@{className}!rev::ShaderProgram@{rev::ShaderProgram}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Shader\+Program\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_shader_program_ae594fae38b27c8ee8cc2d78ef418db8c}\label{classrev_1_1_shader_program_ae594fae38b27c8ee8cc2d78ef418db8c}} 
+\index{rev::ShaderProgram@{rev::ShaderProgram}!createName@{createName}}
+\index{createName@{createName}!rev::ShaderProgram@{rev::ShaderProgram}}
+\subsubsection{\texorpdfstring{createName()}{createName()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} rev\+::\+Shader\+Program\+::create\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Copy uniforms from specified shader program to this one. 
+
+Generate the name of the shader program given it\textquotesingle{}s subshaders \mbox{\Hypertarget{classrev_1_1_shader_program_aa7b7f1acfd59f0fdb168c2643d8654c2}\label{classrev_1_1_shader_program_aa7b7f1acfd59f0fdb168c2643d8654c2}} 
+\index{rev::ShaderProgram@{rev::ShaderProgram}!dispatchCompute@{dispatchCompute}}
+\index{dispatchCompute@{dispatchCompute}!rev::ShaderProgram@{rev::ShaderProgram}}
+\subsubsection{\texorpdfstring{dispatchCompute()}{dispatchCompute()}}
+{\footnotesize\ttfamily void rev\+::\+Shader\+Program\+::dispatch\+Compute (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{num\+GroupsX,  }\item[{uint32\+\_\+t}]{num\+GroupsY,  }\item[{uint32\+\_\+t}]{num\+GroupsZ }\end{DoxyParamCaption})}
+
+
+
+Add buffer to the shader program. 
+
+For compute shader only, dispatch compute \mbox{\Hypertarget{classrev_1_1_shader_program_a9d5620c172452745135a331b901a25f6}\label{classrev_1_1_shader_program_a9d5620c172452745135a331b901a25f6}} 
+\index{rev::ShaderProgram@{rev::ShaderProgram}!getUniformBlockIndex@{getUniformBlockIndex}}
+\index{getUniformBlockIndex@{getUniformBlockIndex}!rev::ShaderProgram@{rev::ShaderProgram}}
+\subsubsection{\texorpdfstring{getUniformBlockIndex()}{getUniformBlockIndex()}}
+{\footnotesize\ttfamily uint32\+\_\+t rev\+::\+Shader\+Program\+::get\+Uniform\+Block\+Index (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{block\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Get the uniform block index of the specified \mbox{\hyperlink{classrev_1_1_u_b_o}{U\+BO}}. 
+
+See\+: \href{https://learnopengl.com/Advanced-OpenGL/Advanced-GLSL}{\texttt{ https\+://learnopengl.\+com/\+Advanced-\/\+Open\+G\+L/\+Advanced-\/\+G\+L\+SL}} \begin{DoxyNote}{Note}
+It is assumed that uniform block names are consistent across all shaders and U\+B\+Os 
+\end{DoxyNote}
+\mbox{\Hypertarget{classrev_1_1_shader_program_a7e4e75492bd44ea8e9350cd720698e3e}\label{classrev_1_1_shader_program_a7e4e75492bd44ea8e9350cd720698e3e}} 
+\index{rev::ShaderProgram@{rev::ShaderProgram}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::ShaderProgram@{rev::ShaderProgram}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Shader\+Program\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_shader_program_a1b08ee659241ede0227457821a4971a2}\label{classrev_1_1_shader_program_a1b08ee659241ede0227457821a4971a2}} 
+\index{rev::ShaderProgram@{rev::ShaderProgram}!postConstruction@{postConstruction}}
+\index{postConstruction@{postConstruction}!rev::ShaderProgram@{rev::ShaderProgram}}
+\subsubsection{\texorpdfstring{postConstruction()}{postConstruction()}}
+{\footnotesize\ttfamily void rev\+::\+Shader\+Program\+::post\+Construction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Sets the value of the given uniform in GL, given the uniform ID. 
+
+Override resource\textquotesingle{}s post-\/construction routine 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_resource_a8a6daa71820d88c86bc6c0aa474d1af7}{rev\+::\+Resource}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_shader_program_a3618ab938eba35717c2f2f1f95ab3763}\label{classrev_1_1_shader_program_a3618ab938eba35717c2f2f1f95ab3763}} 
+\index{rev::ShaderProgram@{rev::ShaderProgram}!m\_shaders@{m\_shaders}}
+\index{m\_shaders@{m\_shaders}!rev::ShaderProgram@{rev::ShaderProgram}}
+\subsubsection{\texorpdfstring{m\_shaders}{m\_shaders}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classrev_1_1_shader}{Shader}}$>$ rev\+::\+Shader\+Program\+::m\+\_\+shaders\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\mbox{\hyperlink{classrev_1_1_map}{Map}} of all shaders associated with the shader program. 
+
+Typically is just a vertex and a fragment shader \mbox{\Hypertarget{classrev_1_1_shader_program_aa642643963ce7fd924d9bceb2a8991c7}\label{classrev_1_1_shader_program_aa642643963ce7fd924d9bceb2a8991c7}} 
+\index{rev::ShaderProgram@{rev::ShaderProgram}!m\_uniformBuffers@{m\_uniformBuffers}}
+\index{m\_uniformBuffers@{m\_uniformBuffers}!rev::ShaderProgram@{rev::ShaderProgram}}
+\subsubsection{\texorpdfstring{m\_uniformBuffers}{m\_uniformBuffers}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classtsl_1_1robin__map}{tsl\+::robin\+\_\+map}}$<$Q\+String, std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classrev_1_1_u_b_o}{U\+BO}}$>$ $>$ rev\+::\+Shader\+Program\+::m\+\_\+uniform\+Buffers\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Buffers associated with the shader. 
+
+Currently unused, no custom buffer capability \mbox{\hyperlink{classrev_1_1_map}{Map}} of uniform buffers associated with this shader program 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/shaders/G\+Shader\+Program.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/shaders/G\+Shader\+Program.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,98 @@
+\hypertarget{classrev_1_1_physics_base}{}\section{rev\+::Physics\+Base Class Reference}
+\label{classrev_1_1_physics_base}\index{rev::PhysicsBase@{rev::PhysicsBase}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing a base physics object For linking errors, see\+: \href{https://github.com/NVIDIAGameWorks/PhysX/issues/31}{\texttt{ https\+://github.\+com/\+N\+V\+I\+D\+I\+A\+Game\+Works/\+Phys\+X/issues/31}}.  
+
+
+
+
+{\ttfamily \#include $<$G\+Physics.\+h$>$}
+
+Inheritance diagram for rev\+::Physics\+Base\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.327014cm]{classrev_1_1_physics_base}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_base_a00b7a64a9121b869682b7dea4b03b280}\label{classrev_1_1_physics_base_a00b7a64a9121b869682b7dea4b03b280}} 
+{\bfseries Physics\+Base} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_base_a1eaa0d593d7b752018ed86d2b35ce0ee}\label{classrev_1_1_physics_base_a1eaa0d593d7b752018ed86d2b35ce0ee}} 
+{\bfseries Physics\+Base} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name)
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_base_abdf3dc537fd2b10be679ffbef45e0d40}\label{classrev_1_1_physics_base_abdf3dc537fd2b10be679ffbef45e0d40}} 
+virtual {\bfseries $\sim$\+Physics\+Base} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_base_a1167d8881c13d17bf6eb2b9e151fff2e}\label{classrev_1_1_physics_base_a1167d8881c13d17bf6eb2b9e151fff2e}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_physics_base_a1167d8881c13d17bf6eb2b9e151fff2e}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_base_aa2ae8e658872d77f671777537602d3cd}\label{classrev_1_1_physics_base_aa2ae8e658872d77f671777537602d3cd}} 
+virtual void \mbox{\hyperlink{classrev_1_1_physics_base_aa2ae8e658872d77f671777537602d3cd}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_physics_base_ad997bc1504ff6dccccbc3d8d0ea6e6a5}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_physics_base_acf58cc81cff2ca957dcc68fe9a9a84a1}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing a base physics object For linking errors, see\+: \href{https://github.com/NVIDIAGameWorks/PhysX/issues/31}{\texttt{ https\+://github.\+com/\+N\+V\+I\+D\+I\+A\+Game\+Works/\+Phys\+X/issues/31}}. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_physics_base_ad997bc1504ff6dccccbc3d8d0ea6e6a5}\label{classrev_1_1_physics_base_ad997bc1504ff6dccccbc3d8d0ea6e6a5}} 
+\index{rev::PhysicsBase@{rev::PhysicsBase}!className@{className}}
+\index{className@{className}!rev::PhysicsBase@{rev::PhysicsBase}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Physics\+Base\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_rigid_body_a996230070162f743c3e87f5c20fd981e}{rev\+::\+Rigid\+Body}}, \mbox{\hyperlink{classrev_1_1_physics_actor_a5bc3e96948718546204f3201971e1914}{rev\+::\+Physics\+Actor}}, \mbox{\hyperlink{classrev_1_1_physics_shape_prefab_a674652fd1f620a4b987f86e2fc2d8f74}{rev\+::\+Physics\+Shape\+Prefab}}, and \mbox{\hyperlink{classrev_1_1_physics_material_ad5c1131d40a32771183345da25d1a38c}{rev\+::\+Physics\+Material}}.
+
+\mbox{\Hypertarget{classrev_1_1_physics_base_acf58cc81cff2ca957dcc68fe9a9a84a1}\label{classrev_1_1_physics_base_acf58cc81cff2ca957dcc68fe9a9a84a1}} 
+\index{rev::PhysicsBase@{rev::PhysicsBase}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::PhysicsBase@{rev::PhysicsBase}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Physics\+Base\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_rigid_body_ae8e178b51dbe0e61ad0674e039864a92}{rev\+::\+Rigid\+Body}}, \mbox{\hyperlink{classrev_1_1_physics_actor_ad212df8d7d61f9b855bc9d9ede2b437f}{rev\+::\+Physics\+Actor}}, \mbox{\hyperlink{classrev_1_1_physics_shape_prefab_a2b7e566022a8f94246d92e392ebb2079}{rev\+::\+Physics\+Shape\+Prefab}}, and \mbox{\hyperlink{classrev_1_1_physics_material_a6f593676796ebfff0aec28984f7b34b0}{rev\+::\+Physics\+Material}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Physics.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Physics.\+cpp\end{DoxyCompactItemize}

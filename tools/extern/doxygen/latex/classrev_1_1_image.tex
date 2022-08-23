@@ -1,0 +1,162 @@
+\hypertarget{classrev_1_1_image}{}\section{rev\+::Image Class Reference}
+\label{classrev_1_1_image}\index{rev::Image@{rev::Image}}
+Inheritance diagram for rev\+::Image\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_image}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_image_a6594cee102cd4e573fc3424a69b440cc}\label{classrev_1_1_image_a6594cee102cd4e573fc3424a69b440cc}} 
+{\bfseries Image} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_image_ae22b1c1eba7acea201926f9dffbb6ad9}\label{classrev_1_1_image_ae22b1c1eba7acea201926f9dffbb6ad9}} 
+{\bfseries Image} (const uchar $\ast$data, int width, int height, int bytes\+Per\+Line, Q\+Image\+::\+Format format)
+\item 
+\mbox{\Hypertarget{classrev_1_1_image_a13a49ade53e4afea9fed2c1a51671e30}\label{classrev_1_1_image_a13a49ade53e4afea9fed2c1a51671e30}} 
+{\bfseries Image} (const uchar $\ast$data, int width, int height, Q\+Image\+::\+Format format)
+\item 
+\mbox{\Hypertarget{classrev_1_1_image_a1e25db3d2c1be3a86ed074db01bbf20c}\label{classrev_1_1_image_a1e25db3d2c1be3a86ed074db01bbf20c}} 
+{\bfseries Image} (const Q\+String \&filepath, Q\+Image\+::\+Format format=Q\+Image\+::\+Format\+\_\+\+Invalid)
+\item 
+\mbox{\Hypertarget{classrev_1_1_image_a3de025fb584d43b0f7617dc7581a3be5}\label{classrev_1_1_image_a3de025fb584d43b0f7617dc7581a3be5}} 
+{\bfseries Image} (const \mbox{\hyperlink{classrev_1_1_image}{Image}} \&image)
+\item 
+\mbox{\Hypertarget{classrev_1_1_image_a98054e452c3a44855ead3578abc47f47}\label{classrev_1_1_image_a98054e452c3a44855ead3578abc47f47}} 
+{\bfseries Image} (const Q\+Image \&image)
+\item 
+\mbox{\Hypertarget{classrev_1_1_image_a08c43251c1897d30adcd27da8d4373e9}\label{classrev_1_1_image_a08c43251c1897d30adcd27da8d4373e9}} 
+{\bfseries $\sim$\+Image} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Operators}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_image_aa10f6c2e394107d0c13abb2bbe65b8b8}\label{classrev_1_1_image_aa10f6c2e394107d0c13abb2bbe65b8b8}} 
+\mbox{\hyperlink{classrev_1_1_image}{Image}} \& {\bfseries operator=} (const \mbox{\hyperlink{classrev_1_1_image}{Image}} \&image)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_image_ac862538a9de9b2b280c4c56addb2ea39}\label{classrev_1_1_image_ac862538a9de9b2b280c4c56addb2ea39}} 
+virtual Resource\+Type \mbox{\hyperlink{classrev_1_1_image_ac862538a9de9b2b280c4c56addb2ea39}{get\+Resource\+Type}} () const override
+\begin{DoxyCompactList}\small\item\em Get the type of resource stored by this handle. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_image_a5ff82c259a7db3f8d2cf98a023c50801}\label{classrev_1_1_image_a5ff82c259a7db3f8d2cf98a023c50801}} 
+Q\+Image\+::\+Format {\bfseries format} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_image_aa6e7a87af848858b08f8ac34af6fc008}\label{classrev_1_1_image_aa6e7a87af848858b08f8ac34af6fc008}} 
+const Q\+Image \& {\bfseries image} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_image_acc1a30925c1cb02caa7c104cc0f033d8}\label{classrev_1_1_image_acc1a30925c1cb02caa7c104cc0f033d8}} 
+void \mbox{\hyperlink{classrev_1_1_image_acc1a30925c1cb02caa7c104cc0f033d8}{clear}} ()
+\begin{DoxyCompactList}\small\item\em Clear the image. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_image_a8844295b2d39f8a5661eef27b4294c3c}\label{classrev_1_1_image_a8844295b2d39f8a5661eef27b4294c3c}} 
+bool \mbox{\hyperlink{classrev_1_1_image_a8844295b2d39f8a5661eef27b4294c3c}{is\+Null}} () const
+\begin{DoxyCompactList}\small\item\em Whether or not the image is valid. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_image_ab1890367c76d68d14dd812d27ab8a9e0}\label{classrev_1_1_image_ab1890367c76d68d14dd812d27ab8a9e0}} 
+uchar $\ast$ \mbox{\hyperlink{classrev_1_1_image_ab1890367c76d68d14dd812d27ab8a9e0}{buffer}} ()
+\begin{DoxyCompactList}\small\item\em Return bits of the image. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_image_ae188294710d432c0f0d1df9392b4af3b}\label{classrev_1_1_image_ae188294710d432c0f0d1df9392b4af3b}} 
+const uchar $\ast$ {\bfseries buffer} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_image_ad8f9e8078550c29cb0562c93b2525af0}\label{classrev_1_1_image_ad8f9e8078550c29cb0562c93b2525af0}} 
+Q\+Size \mbox{\hyperlink{classrev_1_1_image_ad8f9e8078550c29cb0562c93b2525af0}{size}} () const
+\begin{DoxyCompactList}\small\item\em Return size of the image. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_image_acdd5536fcfa40e25af05c7834ad6d274}\label{classrev_1_1_image_acdd5536fcfa40e25af05c7834ad6d274}} 
+void \mbox{\hyperlink{classrev_1_1_image_acdd5536fcfa40e25af05c7834ad6d274}{on\+Removal}} (\mbox{\hyperlink{classrev_1_1_resource_cache}{Resource\+Cache}} $\ast$cache=nullptr) override
+\begin{DoxyCompactList}\small\item\em Perform on removal of this texture resource. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_image_a56adf168d25ea86be91e23f529f25a3c}\label{classrev_1_1_image_a56adf168d25ea86be91e23f529f25a3c}} 
+size\+\_\+t \mbox{\hyperlink{classrev_1_1_image_a56adf168d25ea86be91e23f529f25a3c}{size\+In\+Mega\+Bytes}} () const
+\begin{DoxyCompactList}\small\item\em Size of the image in megabytes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_image_a72a64ed07207d0eaace235011953a2f6}\label{classrev_1_1_image_a72a64ed07207d0eaace235011953a2f6}} 
+size\+\_\+t {\bfseries size\+In\+Bytes} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_image_adb7895716b3ef9363d0be9cefbadf059}\label{classrev_1_1_image_adb7895716b3ef9363d0be9cefbadf059}} 
+int {\bfseries bytes\+Per\+Line} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_image_abcfedf165ff7295ce9f2ba61a612f7f5}\label{classrev_1_1_image_abcfedf165ff7295ce9f2ba61a612f7f5}} 
+int \mbox{\hyperlink{classrev_1_1_image_abcfedf165ff7295ce9f2ba61a612f7f5}{pixel\+Size}} () const
+\begin{DoxyCompactList}\small\item\em Get the size (in bytes) of each pixel in the image. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_image_aebca2923a28065a849f6368fa722692c}\label{classrev_1_1_image_aebca2923a28065a849f6368fa722692c}} 
+bool \mbox{\hyperlink{classrev_1_1_image_aebca2923a28065a849f6368fa722692c}{save}} (const Q\+String \&filename, const char $\ast$format=0, int quality=-\/1)
+\begin{DoxyCompactList}\small\item\em Save the image to a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_image_a02db303149ab1912909620178e86c128}\label{classrev_1_1_image_a02db303149ab1912909620178e86c128}} 
+static Q\+Pixmap \mbox{\hyperlink{classrev_1_1_image_a02db303149ab1912909620178e86c128}{Set\+Pixmap\+Color}} (const Q\+Pixmap \&pixmap, const \mbox{\hyperlink{classrev_1_1_color}{Color}} \&color)
+\begin{DoxyCompactList}\small\item\em Set pixmap to a given color. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_image_a2733b33e4e569a9fceefe7cb04e6f92d}\label{classrev_1_1_image_a2733b33e4e569a9fceefe7cb04e6f92d}} 
+static uint32\+\_\+t \mbox{\hyperlink{classrev_1_1_image_a2733b33e4e569a9fceefe7cb04e6f92d}{Get\+Pixel\+Bit\+Count}} (Q\+Image\+::\+Format fmt)
+\begin{DoxyCompactList}\small\item\em Get the pixel byte count of the specified format. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_image_ace7e0ff50197a787d94f2d743c42d80e}\label{classrev_1_1_image_ace7e0ff50197a787d94f2d743c42d80e}} 
+static void {\bfseries Image\+::\+Convert32bit\+A\+R\+G\+Bto\+R\+G\+BA} (\mbox{\hyperlink{classrev_1_1_image}{Image}} \&image)
+\item 
+\mbox{\Hypertarget{classrev_1_1_image_a5c6b35b6289431bb09c1594df962e3e3}\label{classrev_1_1_image_a5c6b35b6289431bb09c1594df962e3e3}} 
+static void {\bfseries Image\+::\+Convert32bit\+R\+G\+B\+Ato\+A\+R\+GB} (\mbox{\hyperlink{classrev_1_1_image}{Image}} \&image)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_image_af7f909106d08e36cd50aa58e36f9bf47}\label{classrev_1_1_image_af7f909106d08e36cd50aa58e36f9bf47}} 
+class {\bfseries Texture}
+\item 
+\mbox{\Hypertarget{classrev_1_1_image_a79d71cc40420e3caed0020dbbeda75e0}\label{classrev_1_1_image_a79d71cc40420e3caed0020dbbeda75e0}} 
+class {\bfseries Cube\+Texture}
+\item 
+\mbox{\Hypertarget{classrev_1_1_image_a56e8a483ca41b93ad56ef41fd78c6398}\label{classrev_1_1_image_a56e8a483ca41b93ad56ef41fd78c6398}} 
+class {\bfseries Resource\+Cache}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Private Methods}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_image_a25544240ae630de872c3d906025d783c}\label{classrev_1_1_image_a25544240ae630de872c3d906025d783c}} 
+void \mbox{\hyperlink{classrev_1_1_image_a25544240ae630de872c3d906025d783c}{load\+Image}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&file\+Path, bool \&success)
+\begin{DoxyCompactList}\small\item\em Load .tga image See\+: \href{https://forum.qt.io/topic/101971/qimage-and-tga-support-in-c}{\texttt{ https\+://forum.\+qt.\+io/topic/101971/qimage-\/and-\/tga-\/support-\/in-\/c}} \href{https://forum.qt.io/topic/74712/qimage-from-tga-with-alpha/11}{\texttt{ https\+://forum.\+qt.\+io/topic/74712/qimage-\/from-\/tga-\/with-\/alpha/11}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_image_aed8d64926a7e519304bd9539ebaa9aa9}\label{classrev_1_1_image_aed8d64926a7e519304bd9539ebaa9aa9}} 
+static void \mbox{\hyperlink{classrev_1_1_image_aed8d64926a7e519304bd9539ebaa9aa9}{Clean\+Up\+Handler}} (void $\ast$image\+Buffer)
+\begin{DoxyCompactList}\small\item\em Cleanup function to delete buffer when last Q\+Image is out of scope. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_image_a5d4ed99f0fbaf43ad92a2b7b68bb9ed8}\label{classrev_1_1_image_a5d4ed99f0fbaf43ad92a2b7b68bb9ed8}} 
+Q\+Image \mbox{\hyperlink{classrev_1_1_image_a5d4ed99f0fbaf43ad92a2b7b68bb9ed8}{m\+\_\+image}}
+\begin{DoxyCompactList}\small\item\em The Q\+Image used by this image. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_image_adfb66725c0ab6d7dc5daa5854e0f3153}\label{classrev_1_1_image_adfb66725c0ab6d7dc5daa5854e0f3153}} 
+unsigned char $\ast$ \mbox{\hyperlink{classrev_1_1_image_adfb66725c0ab6d7dc5daa5854e0f3153}{m\+\_\+image\+Buffer}} = nullptr
+\begin{DoxyCompactList}\small\item\em The image buffer, manually memory-\/managed since loaded through stbi. \end{DoxyCompactList}\item 
+static std\+::vector$<$ uint8\+\_\+t $>$ \mbox{\hyperlink{classrev_1_1_image_a9bfca25daba8f98bada09ae16baaa5f7}{s\+\_\+pixel\+Byte\+Counts}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_vector}{Vector}} of Qt \mbox{\hyperlink{classrev_1_1_image}{Image}} formats and the pixel byte count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_image_a9bfca25daba8f98bada09ae16baaa5f7}\label{classrev_1_1_image_a9bfca25daba8f98bada09ae16baaa5f7}} 
+\index{rev::Image@{rev::Image}!s\_pixelByteCounts@{s\_pixelByteCounts}}
+\index{s\_pixelByteCounts@{s\_pixelByteCounts}!rev::Image@{rev::Image}}
+\subsubsection{\texorpdfstring{s\_pixelByteCounts}{s\_pixelByteCounts}}
+{\footnotesize\ttfamily std\+::vector$<$ uint8\+\_\+t $>$ rev\+::\+Image\+::s\+\_\+pixel\+Byte\+Counts\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+\mbox{\hyperlink{classrev_1_1_vector}{Vector}} of Qt \mbox{\hyperlink{classrev_1_1_image}{Image}} formats and the pixel byte count. 
+
+Index is Q\+Image\+::\+Format 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/resource/G\+Image.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/resource/G\+Image.\+cpp\end{DoxyCompactItemize}

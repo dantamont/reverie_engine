@@ -1,0 +1,277 @@
+\hypertarget{classrev_1_1_logger}{}\section{rev\+::Logger Class Reference}
+\label{classrev_1_1_logger}\index{rev::Logger@{rev::Logger}}
+
+
+Singleton class for managing multi-\/level logging of messages.  
+
+
+
+
+{\ttfamily \#include $<$G\+Logger.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+Log\+Level \mbox{\hyperlink{classrev_1_1_logger_a9fb93878a5b8e3e9367078a1446128b2}{level}} () const
+\begin{DoxyCompactList}\small\item\em The logging level applied to all messages. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_logger_a142e9c560c576f0fe3146db86a458a17}{set\+Level}} (Log\+Level \mbox{\hyperlink{classrev_1_1_logger_a9fb93878a5b8e3e9367078a1446128b2}{level}})
+\begin{DoxyCompactList}\small\item\em Set the logging level applied to all messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classrev_1_1_logger_a3079f8111b72c4104c9fd23761515646}{add\+Handler}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name, \mbox{\hyperlink{classrev_1_1_abstract_log_handler}{Abstract\+Log\+Handler}} $\ast$handler)
+\begin{DoxyCompactList}\small\item\em Add log handler to the logging system. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classrev_1_1_abstract_log_handler}{Abstract\+Log\+Handler}} $\ast$ \mbox{\hyperlink{classrev_1_1_logger_a2434316a6f883204891525ea7cdfa769}{handler\+With\+Name}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name)
+\begin{DoxyCompactList}\small\item\em Get the log handler with the given name. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_logger_a4d30225c80b39e4ff5e9e77640994e1c}{log\+Message}} (Log\+Level \mbox{\hyperlink{classrev_1_1_logger_a9fb93878a5b8e3e9367078a1446128b2}{level}}, const char $\ast$category, const char $\ast$message)
+\begin{DoxyCompactList}\small\item\em Output a log message to associated handlers. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_logger_a2bfdc837fa2305ec8c795d31d5e7426f}{log\+Message}} (Log\+Level \mbox{\hyperlink{classrev_1_1_logger_a9fb93878a5b8e3e9367078a1446128b2}{level}}, std\+::string \&category, std\+::string \&message)
+\begin{DoxyCompactList}\small\item\em Output a log message to associated handlers. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classrev_1_1_logger_aae9cb77b07f27359538ababa7719f42d}{remove\+Handler}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name)
+\begin{DoxyCompactList}\small\item\em Remove the named handler from the logging system. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classrev_1_1_logger_aa04bfef6e956c16509a726acfa392882}{remove\+Handler}} (const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Remove the named handler from the logging system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{Indent}\textbf{ Static Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_logger_ab435f37bb27892955d5968c247338756}\label{classrev_1_1_logger_ab435f37bb27892955d5968c247338756}} 
+static \mbox{\hyperlink{classrev_1_1_logger}{Logger}} \& \mbox{\hyperlink{classrev_1_1_logger_ab435f37bb27892955d5968c247338756}{get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em Get the singleton instance of \mbox{\hyperlink{classrev_1_1_logger}{Logger}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_logger_a5b2ee87f9a21e7819496300d29355132}\label{classrev_1_1_logger_a5b2ee87f9a21e7819496300d29355132}} 
+static void {\bfseries Log\+Debug} (const char $\ast$msg, const char $\ast$cat=\char`\"{}message\char`\"{})
+\item 
+\mbox{\Hypertarget{classrev_1_1_logger_a8a6f65f7ff0bb5ba371588660f7235a1}\label{classrev_1_1_logger_a8a6f65f7ff0bb5ba371588660f7235a1}} 
+static void {\bfseries Log\+Debug} (const std\+::string \&msg, const char $\ast$cat=\char`\"{}message\char`\"{})
+\item 
+\mbox{\Hypertarget{classrev_1_1_logger_a5e2c8039c79c0d734ac9413040b0509e}\label{classrev_1_1_logger_a5e2c8039c79c0d734ac9413040b0509e}} 
+static void {\bfseries Log\+Debug} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&msg, const char $\ast$cat=\char`\"{}message\char`\"{})
+\item 
+\mbox{\Hypertarget{classrev_1_1_logger_a999a136d847d78eb2ef64f12beb1fa49}\label{classrev_1_1_logger_a999a136d847d78eb2ef64f12beb1fa49}} 
+static void {\bfseries Log\+Info} (const char $\ast$msg, const char $\ast$cat=\char`\"{}message\char`\"{})
+\item 
+\mbox{\Hypertarget{classrev_1_1_logger_a7d856af1c2c59d1700589538a1027d2f}\label{classrev_1_1_logger_a7d856af1c2c59d1700589538a1027d2f}} 
+static void {\bfseries Log\+Info} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&msg, const char $\ast$cat=\char`\"{}message\char`\"{})
+\item 
+\mbox{\Hypertarget{classrev_1_1_logger_a2d183278fda95700e54ba8c7feedcc10}\label{classrev_1_1_logger_a2d183278fda95700e54ba8c7feedcc10}} 
+static void {\bfseries Log\+Warning} (const char $\ast$msg, const char $\ast$cat=\char`\"{}message\char`\"{})
+\item 
+\mbox{\Hypertarget{classrev_1_1_logger_a61d374ce7fb67b311364d4f594d17de0}\label{classrev_1_1_logger_a61d374ce7fb67b311364d4f594d17de0}} 
+static void {\bfseries Log\+Warning} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&msg, const char $\ast$cat=\char`\"{}message\char`\"{})
+\item 
+\mbox{\Hypertarget{classrev_1_1_logger_af360e9c9027c1bbd6526477a249b9b0c}\label{classrev_1_1_logger_af360e9c9027c1bbd6526477a249b9b0c}} 
+static void {\bfseries Log\+Error} (const char $\ast$msg, const char $\ast$cat=\char`\"{}message\char`\"{})
+\item 
+\mbox{\Hypertarget{classrev_1_1_logger_a9141b483abb4c7acd0690fd27ac3a9a9}\label{classrev_1_1_logger_a9141b483abb4c7acd0690fd27ac3a9a9}} 
+static void {\bfseries Log\+Error} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&msg, const char $\ast$cat=\char`\"{}message\char`\"{})
+\item 
+\mbox{\Hypertarget{classrev_1_1_logger_a88832774ccfc74dd83a928be65530e09}\label{classrev_1_1_logger_a88832774ccfc74dd83a928be65530e09}} 
+static void {\bfseries Log\+Critical} (const char $\ast$msg, const char $\ast$cat=\char`\"{}message\char`\"{})
+\item 
+\mbox{\Hypertarget{classrev_1_1_logger_a14bfd9194e96ac1a59af1bbe998c2c08}\label{classrev_1_1_logger_a14bfd9194e96ac1a59af1bbe998c2c08}} 
+static void {\bfseries Log\+Critical} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&msg, const char $\ast$cat=\char`\"{}message\char`\"{})
+\item 
+\mbox{\Hypertarget{classrev_1_1_logger_aec00e0d8e0d76dd5d0178bdfa1fc348a}\label{classrev_1_1_logger_aec00e0d8e0d76dd5d0178bdfa1fc348a}} 
+static \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} {\bfseries Last\+Exception} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_logger_af6e8ae2e82df64a3a874604ae0254c62}\label{classrev_1_1_logger_af6e8ae2e82df64a3a874604ae0254c62}} 
+static void {\bfseries Throw} (const char $\ast$err)
+\item 
+\mbox{\Hypertarget{classrev_1_1_logger_abc250d5efb5727ae05dbdcadfdb806c3}\label{classrev_1_1_logger_abc250d5efb5727ae05dbdcadfdb806c3}} 
+static void {\bfseries Throw} (const std\+::string \&err)
+\item 
+\mbox{\Hypertarget{classrev_1_1_logger_a2abd8d150544bbde0227fe5c1f8bd8eb}\label{classrev_1_1_logger_a2abd8d150544bbde0227fe5c1f8bd8eb}} 
+static void {\bfseries Throw} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&err)
+\item 
+\mbox{\Hypertarget{classrev_1_1_logger_aab3d3bc741fc53e3c67c18df2d344e03}\label{classrev_1_1_logger_aab3d3bc741fc53e3c67c18df2d344e03}} 
+static void {\bfseries Throw} (const std\+::exception \&err)
+\item 
+\mbox{\Hypertarget{classrev_1_1_logger_af529a84d7994acfc55b78a69b5a0081c}\label{classrev_1_1_logger_af529a84d7994acfc55b78a69b5a0081c}} 
+static \mbox{\hyperlink{classrev_1_1_file_log_handler}{rev\+::\+File\+Log\+Handler}} $\ast$ \mbox{\hyperlink{classrev_1_1_logger_af529a84d7994acfc55b78a69b5a0081c}{get\+File\+Logger}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&log\+File\+Name, const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&logger\+Name, Log\+Level log\+Level=Log\+Level\+::\+Debug)
+\begin{DoxyCompactList}\small\item\em Create instance of file logger. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_logger_ae3b818c5cb3f83a604989a7ce82a1ede}\label{classrev_1_1_logger_ae3b818c5cb3f83a604989a7ce82a1ede}} 
+static \mbox{\hyperlink{classrev_1_1_v_s_console_log_handler}{rev\+::\+V\+S\+Console\+Log\+Handler}} $\ast$ \mbox{\hyperlink{classrev_1_1_logger_ae3b818c5cb3f83a604989a7ce82a1ede}{get\+V\+S\+Logger}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&logger\+Name, Log\+Level log\+Level=Log\+Level\+::\+Debug)
+\begin{DoxyCompactList}\small\item\em Create instance of VS logger. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_logger_aece1131f1b5468ed095de26f62329c8b}\label{classrev_1_1_logger_aece1131f1b5468ed095de26f62329c8b}} 
+static \mbox{\hyperlink{classrev_1_1_view_1_1_console_tool}{rev\+::\+View\+::\+Console\+Tool}} $\ast$ \mbox{\hyperlink{classrev_1_1_logger_aece1131f1b5468ed095de26f62329c8b}{get\+Console\+Tool}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&logger\+Name, Log\+Level log\+Level=Log\+Level\+::\+Debug)
+\begin{DoxyCompactList}\small\item\em Create instance of console tool logger. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_logger_a99e447e259c0a0c97d98f7c2275ab4ae}\label{classrev_1_1_logger_a99e447e259c0a0c97d98f7c2275ab4ae}} 
+static \mbox{\hyperlink{classrev_1_1_standard_out_handler}{rev\+::\+Standard\+Out\+Handler}} $\ast$ \mbox{\hyperlink{classrev_1_1_logger_a99e447e259c0a0c97d98f7c2275ab4ae}{get\+Std\+Out\+Handler}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&logger\+Name, Log\+Level log\+Level=Log\+Level\+::\+Debug)
+\begin{DoxyCompactList}\small\item\em Create instance of std\+::out logger. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_logger_a5967576165b2e3046a1eb9e5e611384b}\label{classrev_1_1_logger_a5967576165b2e3046a1eb9e5e611384b}} 
+static const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} $\ast$ {\bfseries level\+Name} (Log\+Level \mbox{\hyperlink{classrev_1_1_logger_a9fb93878a5b8e3e9367078a1446128b2}{level}})
+\item 
+\mbox{\Hypertarget{classrev_1_1_logger_a3a3e4838f47d516d0e1391f999b7ecfb}\label{classrev_1_1_logger_a3a3e4838f47d516d0e1391f999b7ecfb}} 
+static void {\bfseries add\+Level\+Name} (Log\+Level \mbox{\hyperlink{classrev_1_1_logger_a9fb93878a5b8e3e9367078a1446128b2}{level}}, const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&level\+\_\+name)
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+Singleton class for managing multi-\/level logging of messages. 
+
+A general purpose logging system for applications. The singleton \mbox{\hyperlink{classrev_1_1_logger}{Logger}} manages a set of \mbox{\hyperlink{classrev_1_1_abstract_log_handler}{Abstract\+Log\+Handler}} subclasses that route messages to one or more output locations\+: file, standard out, Visual Studio, etc. Included handlers are\+:
+
+
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{classrev_1_1_file_log_handler}{File\+Log\+Handler}}\+: Outputs to a file
+\item \mbox{\hyperlink{classrev_1_1_standard_out_handler}{Standard\+Out\+Handler}}\+: Outputs to the process Standard Out.
+\item \mbox{\hyperlink{classrev_1_1_v_s_console_log_handler}{V\+S\+Console\+Log\+Handler}}\+: Outputs to the Visual Studio Console
+\end{DoxyItemize}
+
+Use the \mbox{\hyperlink{classrev_1_1_logger_a3079f8111b72c4104c9fd23761515646}{Logger\+::add\+Handler}} methods to register/add a handler.
+
+Outputting messages to the logging system can be done in multiple ways\+:
+
+
+\begin{DoxyItemize}
+\item Subclass from handler\+: The kernel handler class has built in logging methods and are the easiest way to to implement message logging. These methods\+: log\+Critical, log\+Debug, log\+Error, log\+Info and log\+Warning will automatically timestamp and categorize log messages.
+\item \mbox{\hyperlink{classrev_1_1_logger_a4d30225c80b39e4ff5e9e77640994e1c}{Logger\+::log\+Message}}\+: The \mbox{\hyperlink{classrev_1_1_logger_a4d30225c80b39e4ff5e9e77640994e1c}{Logger\+::log\+Message}} methods.
+\item q\+Debug\+: Generic use of the q\+Debug macro can also be used for logging, although no timestamp or category information is included.
+\end{DoxyItemize}
+
+Setting up logging is easy\+: 
+\begin{DoxyCode}{0}
+\end{DoxyCode}
+ 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_logger_a3079f8111b72c4104c9fd23761515646}\label{classrev_1_1_logger_a3079f8111b72c4104c9fd23761515646}} 
+\index{rev::Logger@{rev::Logger}!addHandler@{addHandler}}
+\index{addHandler@{addHandler}!rev::Logger@{rev::Logger}}
+\subsubsection{\texorpdfstring{addHandler()}{addHandler()}}
+{\footnotesize\ttfamily void rev\+::\+Logger\+::add\+Handler (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&}]{name,  }\item[{\mbox{\hyperlink{classrev_1_1_abstract_log_handler}{Abstract\+Log\+Handler}} $\ast$}]{handler }\end{DoxyParamCaption})}
+
+
+
+Add log handler to the logging system. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em name} & The unique name of the handler \\
+\hline
+\mbox{\texttt{ in}}  & {\em handler} & The subclass of \mbox{\hyperlink{classrev_1_1_abstract_log_handler}{Abstract\+Log\+Handler}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrev_1_1_logger_a2434316a6f883204891525ea7cdfa769}\label{classrev_1_1_logger_a2434316a6f883204891525ea7cdfa769}} 
+\index{rev::Logger@{rev::Logger}!handlerWithName@{handlerWithName}}
+\index{handlerWithName@{handlerWithName}!rev::Logger@{rev::Logger}}
+\subsubsection{\texorpdfstring{handlerWithName()}{handlerWithName()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_abstract_log_handler}{Abstract\+Log\+Handler}} $\ast$ rev\+::\+Logger\+::handler\+With\+Name (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&}]{name }\end{DoxyParamCaption})}
+
+
+
+Get the log handler with the given name. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em name} & The name of the desired handler \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrev_1_1_logger_a9fb93878a5b8e3e9367078a1446128b2}\label{classrev_1_1_logger_a9fb93878a5b8e3e9367078a1446128b2}} 
+\index{rev::Logger@{rev::Logger}!level@{level}}
+\index{level@{level}!rev::Logger@{rev::Logger}}
+\subsubsection{\texorpdfstring{level()}{level()}}
+{\footnotesize\ttfamily Log\+Level rev\+::\+Logger\+::level (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The logging level applied to all messages. 
+
+Lower numbers mean more messages. \mbox{\Hypertarget{classrev_1_1_logger_a4d30225c80b39e4ff5e9e77640994e1c}\label{classrev_1_1_logger_a4d30225c80b39e4ff5e9e77640994e1c}} 
+\index{rev::Logger@{rev::Logger}!logMessage@{logMessage}}
+\index{logMessage@{logMessage}!rev::Logger@{rev::Logger}}
+\subsubsection{\texorpdfstring{logMessage()}{logMessage()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void rev\+::\+Logger\+::log\+Message (\begin{DoxyParamCaption}\item[{Log\+Level}]{level,  }\item[{const char $\ast$}]{category,  }\item[{const char $\ast$}]{message }\end{DoxyParamCaption})}
+
+
+
+Output a log message to associated handlers. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em level} & The level for the message. The higher the value, the more severe the issue. \\
+\hline
+\mbox{\texttt{ in}}  & {\em category} & Category helps define where the message comes from. \\
+\hline
+\mbox{\texttt{ in}}  & {\em message} & Message is the descriptive message of log. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrev_1_1_logger_a2bfdc837fa2305ec8c795d31d5e7426f}\label{classrev_1_1_logger_a2bfdc837fa2305ec8c795d31d5e7426f}} 
+\index{rev::Logger@{rev::Logger}!logMessage@{logMessage}}
+\index{logMessage@{logMessage}!rev::Logger@{rev::Logger}}
+\subsubsection{\texorpdfstring{logMessage()}{logMessage()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void rev\+::\+Logger\+::log\+Message (\begin{DoxyParamCaption}\item[{Log\+Level}]{level,  }\item[{std\+::string \&}]{category,  }\item[{std\+::string \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Output a log message to associated handlers. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em level} & The numeric level for the message. The higher the value, the more severe the issue. \\
+\hline
+\mbox{\texttt{ in}}  & {\em category} & Category helps define where the message comes from. \\
+\hline
+\mbox{\texttt{ in}}  & {\em message} & Message is the descriptive message of log. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrev_1_1_logger_aae9cb77b07f27359538ababa7719f42d}\label{classrev_1_1_logger_aae9cb77b07f27359538ababa7719f42d}} 
+\index{rev::Logger@{rev::Logger}!removeHandler@{removeHandler}}
+\index{removeHandler@{removeHandler}!rev::Logger@{rev::Logger}}
+\subsubsection{\texorpdfstring{removeHandler()}{removeHandler()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool rev\+::\+Logger\+::remove\+Handler (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&}]{name }\end{DoxyParamCaption})}
+
+
+
+Remove the named handler from the logging system. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em name} & The name of the log handler to remove \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em bool} & True if the named handler was successfully removed, False if the named handler was not found. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{classrev_1_1_logger_aa04bfef6e956c16509a726acfa392882}\label{classrev_1_1_logger_aa04bfef6e956c16509a726acfa392882}} 
+\index{rev::Logger@{rev::Logger}!removeHandler@{removeHandler}}
+\index{removeHandler@{removeHandler}!rev::Logger@{rev::Logger}}
+\subsubsection{\texorpdfstring{removeHandler()}{removeHandler()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool rev\+::\+Logger\+::remove\+Handler (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Remove the named handler from the logging system. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em name} & The name of the log handler to remove \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em bool} & True if the named handler was successfully removed, False if the named handler was not found. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{classrev_1_1_logger_a142e9c560c576f0fe3146db86a458a17}\label{classrev_1_1_logger_a142e9c560c576f0fe3146db86a458a17}} 
+\index{rev::Logger@{rev::Logger}!setLevel@{setLevel}}
+\index{setLevel@{setLevel}!rev::Logger@{rev::Logger}}
+\subsubsection{\texorpdfstring{setLevel()}{setLevel()}}
+{\footnotesize\ttfamily void rev\+::\+Logger\+::set\+Level (\begin{DoxyParamCaption}\item[{Log\+Level}]{level }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the logging level applied to all messages. 
+
+Lower numbers mean more messages. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/G\+Logger.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/G\+Logger.\+cpp\end{DoxyCompactItemize}

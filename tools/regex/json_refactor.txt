@@ -1,0 +1,21 @@
+https://www.xlayer.co.za/forum/viewtopic.php?id=105
+
+$1 $2$3{$4 /// @name Friend methods\n    /// @{\n    \n    /// @brief Convert from the given class type to JSON\n    /// @note Actually defined in namespace outside of class, so this should be recognized by nlohmann JSON\n    /// @param orJson \n    /// @param korObject\n    friend void to_json(json& orJson, const $2& korObject);\n    \n    /// @brief Convert from JSON to the given class type\n    /// @param korJson \n    /// @param orObject \n    friend void from_json(const json& korJson, $2& orObject);
+
+(?<!enum\s)(class|struct)\s+(\w+)(\n*\s*.*\n*.*)\{((.|\n)*)(\s+\/+\s+.*Friend\sFunctions((.|\n)*)asJson(.|\n)*loadFromJson\(.*\);)
+
+// Find friend function block
+(Friend\sFunctions\s*\n+\s*\/+\s*\@\{\s*\s*\/+.*\n+\s*virtual\s+QJsonValue\s+asJson\(.*\)\s+const\s*\;\s*\/+.*\n+\s*virtual\s+void\s+loadFromJson\(.*\)\s*\;)
+
+// Find between class and friend function block
+(?<=class)(((?!class)(.|\n))*)(?=Friend )
+
+void\s+(\w+)::loadFromJson\(const\s+QJsonValue\s*\&\s+json,\s*const\s+SerializationContext\s*\&\s+\w+\)
+
+void from_json(const json& korJson, $1& orObject)
+
+
+QJsonValue\s+(\w+)::asJson\(const\s+SerializationContext\s*\& \w+\)\s+const
+
+void to_json(json& orJson, const $1& korObject)
+

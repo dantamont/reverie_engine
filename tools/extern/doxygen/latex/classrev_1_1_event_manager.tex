@@ -1,0 +1,148 @@
+\hypertarget{classrev_1_1_event_manager}{}\section{rev\+::Event\+Manager Class Reference}
+\label{classrev_1_1_event_manager}\index{rev::EventManager@{rev::EventManager}}
+Inheritance diagram for rev\+::Event\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{classrev_1_1_event_manager}
+\end{center}
+\end{figure}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_event_manager_a01ee937e8aa46c20322cf4004cc278c4}\label{classrev_1_1_event_manager_a01ee937e8aa46c20322cf4004cc278c4}} 
+void {\bfseries deleted\+Scene\+Object} (uint32\+\_\+t id)
+\item 
+\mbox{\Hypertarget{classrev_1_1_event_manager_ac93a622f86dc385fef13e4ac27a82e70}\label{classrev_1_1_event_manager_ac93a622f86dc385fef13e4ac27a82e70}} 
+void {\bfseries added\+Component} (\mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} uuid, int component\+Type, uint32\+\_\+t scene\+Object\+ID)
+\item 
+\mbox{\Hypertarget{classrev_1_1_event_manager_a7ea1955ed861798451e7061b0abb6719}\label{classrev_1_1_event_manager_a7ea1955ed861798451e7061b0abb6719}} 
+void {\bfseries deleted\+Scene\+Object\+Component} (uint32\+\_\+t scene\+Object\+Id)
+\item 
+\mbox{\Hypertarget{classrev_1_1_event_manager_a422141daf352d29411bfe516723719cb}\label{classrev_1_1_event_manager_a422141daf352d29411bfe516723719cb}} 
+void {\bfseries deleted\+Scene\+Component} (\mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} scene\+Id)
+\item 
+\mbox{\Hypertarget{classrev_1_1_event_manager_a19ffa58f09be060e52ed279f2b5ebfdb}\label{classrev_1_1_event_manager_a19ffa58f09be060e52ed279f2b5ebfdb}} 
+void {\bfseries delete\+Threaded\+Process} (const \mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \&process)
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_event_manager_ab65b6c6f75cacb2ffd59f246e44171d1}\label{classrev_1_1_event_manager_ab65b6c6f75cacb2ffd59f246e44171d1}} 
+{\bfseries Event\+Manager} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$\mbox{\hyperlink{classrev_1_1_manager_a0fbd0df6b4f3caf42b557f9702f48171}{engine}})
+\item 
+\mbox{\Hypertarget{classrev_1_1_event_manager_ad7bb200a6230619b2adc0b3f70898e86}\label{classrev_1_1_event_manager_ad7bb200a6230619b2adc0b3f70898e86}} 
+{\bfseries $\sim$\+Event\+Manager} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_event_manager_afc28f0f7fc5b3e34836001a1f2fb0148}\label{classrev_1_1_event_manager_afc28f0f7fc5b3e34836001a1f2fb0148}} 
+virtual bool \mbox{\hyperlink{classrev_1_1_event_manager_afc28f0f7fc5b3e34836001a1f2fb0148}{event}} (Q\+Event $\ast$ev) override
+\begin{DoxyCompactList}\small\item\em Override QT event handling. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_event_manager_a1684fbb76a6934fa31eea43b4ed83199}\label{classrev_1_1_event_manager_a1684fbb76a6934fa31eea43b4ed83199}} 
+void \mbox{\hyperlink{classrev_1_1_event_manager_a1684fbb76a6934fa31eea43b4ed83199}{add\+Event}} (Q\+Event $\ast$ev)
+\begin{DoxyCompactList}\small\item\em Add an event to the event queue. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_event_manager_aacda306e667873700e0a882f62c5925d}\label{classrev_1_1_event_manager_aacda306e667873700e0a882f62c5925d}} 
+void \mbox{\hyperlink{classrev_1_1_event_manager_aacda306e667873700e0a882f62c5925d}{process\+Events}} ()
+\begin{DoxyCompactList}\small\item\em Processes all events in the event queue. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_event_manager_aa272ec4b1963d76f4215361b54377b5d}{add\+Listener}} (int event\+Type, \mbox{\hyperlink{classrev_1_1_event_listener}{Event\+Listener}} $\ast$listener)
+\begin{DoxyCompactList}\small\item\em Add an event listener for the given type of event. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_event_manager_ae198dd87a7842e194df6c132f96bcccf}\label{classrev_1_1_event_manager_ae198dd87a7842e194df6c132f96bcccf}} 
+void \mbox{\hyperlink{classrev_1_1_event_manager_ae198dd87a7842e194df6c132f96bcccf}{remove\+Listener}} (\mbox{\hyperlink{classrev_1_1_event_listener}{Event\+Listener}} $\ast$listener)
+\begin{DoxyCompactList}\small\item\em Remove an event listener. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_event_manager_a83f5c7765f8186474bb5f934406e0417}\label{classrev_1_1_event_manager_a83f5c7765f8186474bb5f934406e0417}} 
+bool \mbox{\hyperlink{classrev_1_1_event_manager_a83f5c7765f8186474bb5f934406e0417}{has\+Listener}} (Q\+Event\+::\+Type type, \mbox{\hyperlink{classrev_1_1_event_listener}{Event\+Listener}} $\ast$listener, size\+\_\+t \&iter\+Pos)
+\begin{DoxyCompactList}\small\item\em Whether or not there is an event listener with the specified U\+U\+ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_event_manager_a3999d64126b1b5e0d8d4a47636bfe4c5}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_event_manager_a5188a25a9b785d841c39aefafd5f391e}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_event_manager_a07e6e5ffacb36df9d774e3416630d190}\label{classrev_1_1_event_manager_a07e6e5ffacb36df9d774e3416630d190}} 
+void \mbox{\hyperlink{classrev_1_1_event_manager_a07e6e5ffacb36df9d774e3416630d190}{process\+Event}} (\mbox{\hyperlink{classrev_1_1_custom_event}{Custom\+Event}} $\ast$\mbox{\hyperlink{classrev_1_1_event_manager_afc28f0f7fc5b3e34836001a1f2fb0148}{event}})
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_process}{Process}} an event sent to the event manager. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_event_manager_a44a7b8806aae072dde217f3f53364e4c}\label{classrev_1_1_event_manager_a44a7b8806aae072dde217f3f53364e4c}} 
+Q\+Mutex {\bfseries m\+\_\+queue\+Mutex}
+\item 
+\mbox{\Hypertarget{classrev_1_1_event_manager_a9010bbea1212f1b8e487a4d37748e661}\label{classrev_1_1_event_manager_a9010bbea1212f1b8e487a4d37748e661}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_custom_event}{Custom\+Event}} $>$ \mbox{\hyperlink{classrev_1_1_event_manager_a9010bbea1212f1b8e487a4d37748e661}{m\+\_\+event\+Queue}}
+\begin{DoxyCompactList}\small\item\em List of events to be handled in the current loop. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classtsl_1_1robin__map}{tsl\+::robin\+\_\+map}}$<$ Q\+Event\+::\+Type, std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_event_listener}{Event\+Listener}} $\ast$ $>$ $>$ \mbox{\hyperlink{classrev_1_1_event_manager_a379251942134025a1c87bc801951fed5}{m\+\_\+event\+Listeners}}
+\begin{DoxyCompactList}\small\item\em List of all event listeners. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_event_manager_aa272ec4b1963d76f4215361b54377b5d}\label{classrev_1_1_event_manager_aa272ec4b1963d76f4215361b54377b5d}} 
+\index{rev::EventManager@{rev::EventManager}!addListener@{addListener}}
+\index{addListener@{addListener}!rev::EventManager@{rev::EventManager}}
+\subsubsection{\texorpdfstring{addListener()}{addListener()}}
+{\footnotesize\ttfamily void rev\+::\+Event\+Manager\+::add\+Listener (\begin{DoxyParamCaption}\item[{int}]{event\+Type,  }\item[{\mbox{\hyperlink{classrev_1_1_event_listener}{Event\+Listener}} $\ast$}]{listener }\end{DoxyParamCaption})}
+
+
+
+Add an event listener for the given type of event. 
+
+Type of event is specified because listener pointer is duplicated in the listener map for every type of event that it listens to \mbox{\Hypertarget{classrev_1_1_event_manager_a3999d64126b1b5e0d8d4a47636bfe4c5}\label{classrev_1_1_event_manager_a3999d64126b1b5e0d8d4a47636bfe4c5}} 
+\index{rev::EventManager@{rev::EventManager}!className@{className}}
+\index{className@{className}!rev::EventManager@{rev::EventManager}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Event\+Manager\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_service_a484d71757ea6e8780488602cb421a4a5}{rev\+::\+Service}}.
+
+\mbox{\Hypertarget{classrev_1_1_event_manager_a5188a25a9b785d841c39aefafd5f391e}\label{classrev_1_1_event_manager_a5188a25a9b785d841c39aefafd5f391e}} 
+\index{rev::EventManager@{rev::EventManager}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::EventManager@{rev::EventManager}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Event\+Manager\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_service_a831f5bf8c53584ec830aaee38ea58e7b}{rev\+::\+Service}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_event_manager_a379251942134025a1c87bc801951fed5}\label{classrev_1_1_event_manager_a379251942134025a1c87bc801951fed5}} 
+\index{rev::EventManager@{rev::EventManager}!m\_eventListeners@{m\_eventListeners}}
+\index{m\_eventListeners@{m\_eventListeners}!rev::EventManager@{rev::EventManager}}
+\subsubsection{\texorpdfstring{m\_eventListeners}{m\_eventListeners}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classtsl_1_1robin__map}{tsl\+::robin\+\_\+map}}$<$Q\+Event\+::\+Type, std\+::vector$<$\mbox{\hyperlink{classrev_1_1_event_listener}{Event\+Listener}}$\ast$$>$ $>$ rev\+::\+Event\+Manager\+::m\+\_\+event\+Listeners\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+List of all event listeners. 
+
+Outer map is indexed by event type, and inner maps are indexed by the listener\textquotesingle{}s U\+U\+ID 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/events/G\+Event\+Manager.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/events/G\+Event\+Manager.\+cpp\end{DoxyCompactItemize}

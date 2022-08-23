@@ -1,0 +1,81 @@
+\hypertarget{classtsl_1_1rh_1_1power__of__two__growth__policy}{}\section{tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy$<$ Growth\+Factor $>$ Class Template Reference}
+\label{classtsl_1_1rh_1_1power__of__two__growth__policy}\index{tsl::rh::power\_of\_two\_growth\_policy$<$ GrowthFactor $>$@{tsl::rh::power\_of\_two\_growth\_policy$<$ GrowthFactor $>$}}
+
+
+{\ttfamily \#include $<$robin\+\_\+growth\+\_\+policy.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classtsl_1_1rh_1_1power__of__two__growth__policy_a8b66b984743a4ba03c6b5862920b38b8}{power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy}} (std\+::size\+\_\+t \&min\+\_\+bucket\+\_\+count\+\_\+in\+\_\+out)
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classtsl_1_1rh_1_1power__of__two__growth__policy_ae9f7810f6786c7ead8f3da64b0d1a719}{bucket\+\_\+for\+\_\+hash}} (std\+::size\+\_\+t hash) const noexcept
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classtsl_1_1rh_1_1power__of__two__growth__policy_ab6ff2bc13c9a3c87cc8c90469e4191a3}{next\+\_\+bucket\+\_\+count}} () const
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classtsl_1_1rh_1_1power__of__two__growth__policy_a837ee1d15d9f44004f8acbb5df116939}{max\+\_\+bucket\+\_\+count}} () const
+\item 
+void \mbox{\hyperlink{classtsl_1_1rh_1_1power__of__two__growth__policy_aff6441091ef925c6d669c69d9ccbcbbc}{clear}} () noexcept
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtsl_1_1rh_1_1power__of__two__growth__policy_a9702dee7851d32c1b839346f781e3f42}\label{classtsl_1_1rh_1_1power__of__two__growth__policy_a9702dee7851d32c1b839346f781e3f42}} 
+std\+::size\+\_\+t {\bfseries m\+\_\+mask}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$std\+::size\+\_\+t Growth\+Factor$>$\newline
+class tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy$<$ Growth\+Factor $>$}
+
+Grow the hash table by a factor of Growth\+Factor keeping the bucket count to a power of two. It allows the table to use a mask operation instead of a modulo operation to map a hash to a bucket.
+
+Growth\+Factor must be a power of two $>$= 2. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classtsl_1_1rh_1_1power__of__two__growth__policy_a8b66b984743a4ba03c6b5862920b38b8}\label{classtsl_1_1rh_1_1power__of__two__growth__policy_a8b66b984743a4ba03c6b5862920b38b8}} 
+\index{tsl::rh::power\_of\_two\_growth\_policy$<$ GrowthFactor $>$@{tsl::rh::power\_of\_two\_growth\_policy$<$ GrowthFactor $>$}!power\_of\_two\_growth\_policy@{power\_of\_two\_growth\_policy}}
+\index{power\_of\_two\_growth\_policy@{power\_of\_two\_growth\_policy}!tsl::rh::power\_of\_two\_growth\_policy$<$ GrowthFactor $>$@{tsl::rh::power\_of\_two\_growth\_policy$<$ GrowthFactor $>$}}
+\subsubsection{\texorpdfstring{power\_of\_two\_growth\_policy()}{power\_of\_two\_growth\_policy()}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t Growth\+Factor$>$ \\
+\mbox{\hyperlink{classtsl_1_1rh_1_1power__of__two__growth__policy}{tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy}}$<$ Growth\+Factor $>$\+::\mbox{\hyperlink{classtsl_1_1rh_1_1power__of__two__growth__policy}{power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy}} (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t \&}]{min\+\_\+bucket\+\_\+count\+\_\+in\+\_\+out }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Called on the hash table creation and on rehash. The number of buckets for the table is passed in parameter. This number is a minimum, the policy may update this value with a higher value if needed (but not lower).
+
+If 0 is given, min\+\_\+bucket\+\_\+count\+\_\+in\+\_\+out must still be 0 after the policy creation and bucket\+\_\+for\+\_\+hash must always return 0 in this case. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classtsl_1_1rh_1_1power__of__two__growth__policy_ae9f7810f6786c7ead8f3da64b0d1a719}\label{classtsl_1_1rh_1_1power__of__two__growth__policy_ae9f7810f6786c7ead8f3da64b0d1a719}} 
+\index{tsl::rh::power\_of\_two\_growth\_policy$<$ GrowthFactor $>$@{tsl::rh::power\_of\_two\_growth\_policy$<$ GrowthFactor $>$}!bucket\_for\_hash@{bucket\_for\_hash}}
+\index{bucket\_for\_hash@{bucket\_for\_hash}!tsl::rh::power\_of\_two\_growth\_policy$<$ GrowthFactor $>$@{tsl::rh::power\_of\_two\_growth\_policy$<$ GrowthFactor $>$}}
+\subsubsection{\texorpdfstring{bucket\_for\_hash()}{bucket\_for\_hash()}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t Growth\+Factor$>$ \\
+std\+::size\+\_\+t \mbox{\hyperlink{classtsl_1_1rh_1_1power__of__two__growth__policy}{tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy}}$<$ Growth\+Factor $>$\+::bucket\+\_\+for\+\_\+hash (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{hash }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+Return the bucket \mbox{[}0, bucket\+\_\+count()) to which the hash belongs. If bucket\+\_\+count() is 0, it must always return 0. \mbox{\Hypertarget{classtsl_1_1rh_1_1power__of__two__growth__policy_aff6441091ef925c6d669c69d9ccbcbbc}\label{classtsl_1_1rh_1_1power__of__two__growth__policy_aff6441091ef925c6d669c69d9ccbcbbc}} 
+\index{tsl::rh::power\_of\_two\_growth\_policy$<$ GrowthFactor $>$@{tsl::rh::power\_of\_two\_growth\_policy$<$ GrowthFactor $>$}!clear@{clear}}
+\index{clear@{clear}!tsl::rh::power\_of\_two\_growth\_policy$<$ GrowthFactor $>$@{tsl::rh::power\_of\_two\_growth\_policy$<$ GrowthFactor $>$}}
+\subsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t Growth\+Factor$>$ \\
+void \mbox{\hyperlink{classtsl_1_1rh_1_1power__of__two__growth__policy}{tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy}}$<$ Growth\+Factor $>$\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+Reset the growth policy as if it was created with a bucket count of 0. After a clear, the policy must always return 0 when bucket\+\_\+for\+\_\+hash is called. \mbox{\Hypertarget{classtsl_1_1rh_1_1power__of__two__growth__policy_a837ee1d15d9f44004f8acbb5df116939}\label{classtsl_1_1rh_1_1power__of__two__growth__policy_a837ee1d15d9f44004f8acbb5df116939}} 
+\index{tsl::rh::power\_of\_two\_growth\_policy$<$ GrowthFactor $>$@{tsl::rh::power\_of\_two\_growth\_policy$<$ GrowthFactor $>$}!max\_bucket\_count@{max\_bucket\_count}}
+\index{max\_bucket\_count@{max\_bucket\_count}!tsl::rh::power\_of\_two\_growth\_policy$<$ GrowthFactor $>$@{tsl::rh::power\_of\_two\_growth\_policy$<$ GrowthFactor $>$}}
+\subsubsection{\texorpdfstring{max\_bucket\_count()}{max\_bucket\_count()}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t Growth\+Factor$>$ \\
+std\+::size\+\_\+t \mbox{\hyperlink{classtsl_1_1rh_1_1power__of__two__growth__policy}{tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy}}$<$ Growth\+Factor $>$\+::max\+\_\+bucket\+\_\+count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return the maximum number of buckets supported by the policy. \mbox{\Hypertarget{classtsl_1_1rh_1_1power__of__two__growth__policy_ab6ff2bc13c9a3c87cc8c90469e4191a3}\label{classtsl_1_1rh_1_1power__of__two__growth__policy_ab6ff2bc13c9a3c87cc8c90469e4191a3}} 
+\index{tsl::rh::power\_of\_two\_growth\_policy$<$ GrowthFactor $>$@{tsl::rh::power\_of\_two\_growth\_policy$<$ GrowthFactor $>$}!next\_bucket\_count@{next\_bucket\_count}}
+\index{next\_bucket\_count@{next\_bucket\_count}!tsl::rh::power\_of\_two\_growth\_policy$<$ GrowthFactor $>$@{tsl::rh::power\_of\_two\_growth\_policy$<$ GrowthFactor $>$}}
+\subsubsection{\texorpdfstring{next\_bucket\_count()}{next\_bucket\_count()}}
+{\footnotesize\ttfamily template$<$std\+::size\+\_\+t Growth\+Factor$>$ \\
+std\+::size\+\_\+t \mbox{\hyperlink{classtsl_1_1rh_1_1power__of__two__growth__policy}{tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy}}$<$ Growth\+Factor $>$\+::next\+\_\+bucket\+\_\+count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return the number of buckets that should be used on next growth. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/tsl/robin\+\_\+growth\+\_\+policy.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,105 @@
+\hypertarget{classtsl_1_1detail__robin__hash_1_1bucket__entry}{}\section{tsl\+::detail\+\_\+robin\+\_\+hash\+::bucket\+\_\+entry$<$ Value\+Type, Store\+Hash $>$ Class Template Reference}
+\label{classtsl_1_1detail__robin__hash_1_1bucket__entry}\index{tsl::detail\_robin\_hash::bucket\_entry$<$ ValueType, StoreHash $>$@{tsl::detail\_robin\_hash::bucket\_entry$<$ ValueType, StoreHash $>$}}
+
+
+{\ttfamily \#include $<$robin\+\_\+hash.\+h$>$}
+
+Inheritance diagram for tsl\+::detail\+\_\+robin\+\_\+hash\+::bucket\+\_\+entry$<$ Value\+Type, Store\+Hash $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classtsl_1_1detail__robin__hash_1_1bucket__entry}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1bucket__entry_a47ea807152a9961777b99cb42513935b}\label{classtsl_1_1detail__robin__hash_1_1bucket__entry_a47ea807152a9961777b99cb42513935b}} 
+using {\bfseries value\+\_\+type} = Value\+Type
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1bucket__entry_ad7620035b0efafd864a9627a9e610e8a}\label{classtsl_1_1detail__robin__hash_1_1bucket__entry_ad7620035b0efafd864a9627a9e610e8a}} 
+using {\bfseries distance\+\_\+type} = std\+::int\+\_\+least16\+\_\+t
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1bucket__entry_a02b183ad60395bb88562e8166d153759}\label{classtsl_1_1detail__robin__hash_1_1bucket__entry_a02b183ad60395bb88562e8166d153759}} 
+{\bfseries bucket\+\_\+entry} (bool last\+\_\+bucket) noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1bucket__entry_a3df7516de58606a8c581da4b0551a1fa}\label{classtsl_1_1detail__robin__hash_1_1bucket__entry_a3df7516de58606a8c581da4b0551a1fa}} 
+{\bfseries bucket\+\_\+entry} (const \mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1bucket__entry}{bucket\+\_\+entry}} \&other) noexcept(std\+::is\+\_\+nothrow\+\_\+copy\+\_\+constructible$<$ value\+\_\+type $>$\+::value)
+\item 
+\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1bucket__entry_aef8661319886dd65cb3c50b3b7e2202d}{bucket\+\_\+entry}} (\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1bucket__entry}{bucket\+\_\+entry}} \&\&other) noexcept(std\+::is\+\_\+nothrow\+\_\+move\+\_\+constructible$<$ value\+\_\+type $>$\+::value)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1bucket__entry_afb375cd59ca6f2d3c0c57136c57b5a23}\label{classtsl_1_1detail__robin__hash_1_1bucket__entry_afb375cd59ca6f2d3c0c57136c57b5a23}} 
+\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1bucket__entry}{bucket\+\_\+entry}} \& {\bfseries operator=} (const \mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1bucket__entry}{bucket\+\_\+entry}} \&other) noexcept(std\+::is\+\_\+nothrow\+\_\+copy\+\_\+constructible$<$ value\+\_\+type $>$\+::value)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1bucket__entry_a439eb2cc9a2fd3121de320f1230c4904}\label{classtsl_1_1detail__robin__hash_1_1bucket__entry_a439eb2cc9a2fd3121de320f1230c4904}} 
+\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1bucket__entry}{bucket\+\_\+entry}} \& {\bfseries operator=} (\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1bucket__entry}{bucket\+\_\+entry}} \&\&)=delete
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1bucket__entry_a18a6d71a3aebccb487aa897064bdbf66}\label{classtsl_1_1detail__robin__hash_1_1bucket__entry_a18a6d71a3aebccb487aa897064bdbf66}} 
+void {\bfseries clear} () noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1bucket__entry_a340ef1dd98ee7dc8cd302f6dab921d2a}\label{classtsl_1_1detail__robin__hash_1_1bucket__entry_a340ef1dd98ee7dc8cd302f6dab921d2a}} 
+bool {\bfseries empty} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1bucket__entry_a8e20ad6cf768b8d9e5c3791e9a251a20}\label{classtsl_1_1detail__robin__hash_1_1bucket__entry_a8e20ad6cf768b8d9e5c3791e9a251a20}} 
+value\+\_\+type \& {\bfseries value} () noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1bucket__entry_ab9f9982a0d36165c9062401800eccb0a}\label{classtsl_1_1detail__robin__hash_1_1bucket__entry_ab9f9982a0d36165c9062401800eccb0a}} 
+const value\+\_\+type \& {\bfseries value} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1bucket__entry_a9bea1736cfcae38d3e5a623e65d2ca74}\label{classtsl_1_1detail__robin__hash_1_1bucket__entry_a9bea1736cfcae38d3e5a623e65d2ca74}} 
+distance\+\_\+type {\bfseries dist\+\_\+from\+\_\+ideal\+\_\+bucket} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1bucket__entry_a8ce2ff4b1c6c36aff7d7d535d4db738a}\label{classtsl_1_1detail__robin__hash_1_1bucket__entry_a8ce2ff4b1c6c36aff7d7d535d4db738a}} 
+bool {\bfseries last\+\_\+bucket} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1bucket__entry_afb0ee5976a76914648f8238fe76a0741}\label{classtsl_1_1detail__robin__hash_1_1bucket__entry_afb0ee5976a76914648f8238fe76a0741}} 
+void {\bfseries set\+\_\+as\+\_\+last\+\_\+bucket} () noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1bucket__entry_ac04faad1279a09d6f335c21172798d3a}\label{classtsl_1_1detail__robin__hash_1_1bucket__entry_ac04faad1279a09d6f335c21172798d3a}} 
+{\footnotesize template$<$typename... Args$>$ }\\void {\bfseries set\+\_\+value\+\_\+of\+\_\+empty\+\_\+bucket} (distance\+\_\+type dist\+\_\+from\+\_\+ideal\+\_\+bucket, truncated\+\_\+hash\+\_\+type hash, Args \&\&... value\+\_\+type\+\_\+args)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1bucket__entry_a1648ffc6d624f42fda266f2ad00c2956}\label{classtsl_1_1detail__robin__hash_1_1bucket__entry_a1648ffc6d624f42fda266f2ad00c2956}} 
+void {\bfseries swap\+\_\+with\+\_\+value\+\_\+in\+\_\+bucket} (distance\+\_\+type \&dist\+\_\+from\+\_\+ideal\+\_\+bucket, truncated\+\_\+hash\+\_\+type \&hash, value\+\_\+type \&value)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1bucket__entry_a827cd16b440c902d67cc275513fc7d50}\label{classtsl_1_1detail__robin__hash_1_1bucket__entry_a827cd16b440c902d67cc275513fc7d50}} 
+static truncated\+\_\+hash\+\_\+type {\bfseries truncate\+\_\+hash} (std\+::size\+\_\+t hash) noexcept
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1bucket__entry_af58b4cdc47b342af0afa91a9f36b4d27}\label{classtsl_1_1detail__robin__hash_1_1bucket__entry_af58b4cdc47b342af0afa91a9f36b4d27}} 
+static const distance\+\_\+type {\bfseries D\+I\+S\+T\+\_\+\+F\+R\+O\+M\+\_\+\+I\+D\+E\+A\+L\+\_\+\+B\+U\+C\+K\+E\+T\+\_\+\+L\+I\+M\+IT} = 4096
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename Value\+Type, bool Store\+Hash$>$\newline
+class tsl\+::detail\+\_\+robin\+\_\+hash\+::bucket\+\_\+entry$<$ Value\+Type, Store\+Hash $>$}
+
+Each bucket entry has\+:
+\begin{DoxyItemize}
+\item A value of type {\ttfamily Value\+Type}.
+\item An integer to store how far the value of the bucket, if any, is from its ideal bucket (ex\+: if the current bucket 5 has the value \textquotesingle{}foo\textquotesingle{} and `hash(\textquotesingle{}foo') \% nb\+\_\+buckets{\ttfamily == 3, }dist\+\_\+from\+\_\+ideal\+\_\+bucket()\`{} will return 2 as the current value of the bucket is two buckets away from its ideal bucket) If there is no value in the bucket (i.\+e. {\ttfamily empty()} is true) {\ttfamily dist\+\_\+from\+\_\+ideal\+\_\+bucket()} will be $<$ 0.
+\item A marker which tells us if the bucket is the last bucket of the bucket array (useful for the iterator of the hash table).
+\item If {\ttfamily Store\+Hash} is true, 32 bits of the hash of the value, if any, are also stored in the bucket. If the size of the hash is more than 32 bits, it is truncated. We don\textquotesingle{}t store the full hash as storing the hash is a potential opportunity to use the unused space due to the alignment of the \mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1bucket__entry}{bucket\+\_\+entry}} structure. We can thus potentially store the hash without any extra space (which would not be possible with 64 bits of the hash). 
+\end{DoxyItemize}
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1bucket__entry_aef8661319886dd65cb3c50b3b7e2202d}\label{classtsl_1_1detail__robin__hash_1_1bucket__entry_aef8661319886dd65cb3c50b3b7e2202d}} 
+\index{tsl::detail\_robin\_hash::bucket\_entry$<$ ValueType, StoreHash $>$@{tsl::detail\_robin\_hash::bucket\_entry$<$ ValueType, StoreHash $>$}!bucket\_entry@{bucket\_entry}}
+\index{bucket\_entry@{bucket\_entry}!tsl::detail\_robin\_hash::bucket\_entry$<$ ValueType, StoreHash $>$@{tsl::detail\_robin\_hash::bucket\_entry$<$ ValueType, StoreHash $>$}}
+\subsubsection{\texorpdfstring{bucket\_entry()}{bucket\_entry()}}
+{\footnotesize\ttfamily template$<$typename Value\+Type , bool Store\+Hash$>$ \\
+\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1bucket__entry}{tsl\+::detail\+\_\+robin\+\_\+hash\+::bucket\+\_\+entry}}$<$ Value\+Type, Store\+Hash $>$\+::\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1bucket__entry}{bucket\+\_\+entry}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1bucket__entry}{bucket\+\_\+entry}}$<$ Value\+Type, Store\+Hash $>$ \&\&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+Never really used, but still necessary as we must call resize on an empty {\ttfamily std\+::vector$<$\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1bucket__entry}{bucket\+\_\+entry}}$>$}. and we need to support move-\/only types. See \mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash}{robin\+\_\+hash}} constructor for details. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/tsl/robin\+\_\+hash.\+h\end{DoxyCompactItemize}

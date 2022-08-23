@@ -1,0 +1,357 @@
+\hypertarget{classrev_1_1_object}{}\section{rev\+::Object Class Reference}
+\label{classrev_1_1_object}\index{rev::Object@{rev::Object}}
+
+
+A base class for most classes.  
+
+
+
+
+{\ttfamily \#include $<$G\+Object.\+h$>$}
+
+Inheritance diagram for rev\+::Object\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=12.000000cm]{classrev_1_1_object}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_object_a6fa47dc284dd28320dec49ae18986c8e}\label{classrev_1_1_object_a6fa47dc284dd28320dec49ae18986c8e}} 
+{\bfseries Object} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_object_ac534ed7c635fe95fc2de6c7e215b3312}\label{classrev_1_1_object_ac534ed7c635fe95fc2de6c7e215b3312}} 
+virtual {\bfseries $\sim$\+Object} ()=default
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Viewing methods}\par
+{\em Methods for creating the visual representation of this object }\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_object_a277188e64a9cf9e2d7364966b3c55266}\label{classrev_1_1_object_a277188e64a9cf9e2d7364966b3c55266}} 
+virtual Q\+Tree\+Widget\+Item $\ast$ {\bfseries as\+Tree\+Widget\+Item} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Operators}\par
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \mbox{\hyperlink{classrev_1_1_object_a9f6a5f5e48e10f088c819edd560f530f}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{classrev_1_1_object}{Object}} \&object)
+\begin{DoxyCompactList}\small\item\em Output debug information for the class instance via std\+::ostream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Logging Methods}
+\label{_amgrpef874cc21cf638ab7bb558a628e3450c}%
+Convenience methods to send log messages to the \mbox{\hyperlink{classrev_1_1_logger}{Logger}} \begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_object_a01101d7b1f4b4e69487a97428902a8f6}\label{classrev_1_1_object_a01101d7b1f4b4e69487a97428902a8f6}} 
+void \mbox{\hyperlink{classrev_1_1_object_a01101d7b1f4b4e69487a97428902a8f6}{log\+Thread\+Message}} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, const char $\ast$message, Log\+Level log\+Level=Log\+Level\+::\+Info)
+\begin{DoxyCompactList}\small\item\em Log message from any thread via a log event. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_object_a763fca366d830bfdab969e164420d7ed}{log\+Message}} (Log\+Level level, const char $\ast$category, const char $\ast$message) const
+\begin{DoxyCompactList}\small\item\em Output a message to a log. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_object_a9cd310753468f0e7e971931bc0bda991}{log\+Message}} (Log\+Level level, std\+::string \&category, std\+::string \&message) const
+\begin{DoxyCompactList}\small\item\em Output a message to a log. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_object_a8c037633e41daed16dc3d7d24d7f2977}\label{classrev_1_1_object_a8c037633e41daed16dc3d7d24d7f2977}} 
+void {\bfseries log\+Message} (Log\+Level level, const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&category, const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&message) const
+\item 
+void \mbox{\hyperlink{classrev_1_1_object_a6dc5b38567e6a0b21617a3951ebcc228}{log\+Critical}} (const std\+::string \&message) const
+\begin{DoxyCompactList}\small\item\em Log a Critical message and terminate the app. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_object_a12b1396b74c4c4c1ff2f25935977937f}{log\+Critical}} (const char $\ast$message) const
+\begin{DoxyCompactList}\small\item\em Log a Critical message and terminate the app. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_object_a3435060b2a2904fef41e9ee50144d076}{log\+Debug}} (const std\+::string \&message) const
+\begin{DoxyCompactList}\small\item\em Log a Debugging message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_object_a5b0b84e3b2afd5ecd44bb6c78859e38b}{log\+Debug}} (const char $\ast$message) const
+\begin{DoxyCompactList}\small\item\em Log a Debugging message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_object_a4559ef458b76ee917de6112f5a9dfdca}{log\+Error}} (const char $\ast$message) const
+\begin{DoxyCompactList}\small\item\em Log a \mbox{\hyperlink{class_error}{Error}} message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_object_a773c27fc0e8e9c911021763c6dba144d}{log\+Error}} (const std\+::string \&message) const
+\begin{DoxyCompactList}\small\item\em Log a \mbox{\hyperlink{class_error}{Error}} message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_object_a6dd4b6c7863018562f5820bdcac3612c}{log\+Info}} (const char $\ast$message) const
+\begin{DoxyCompactList}\small\item\em Log an Informational message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_object_ae75e2d9d3dc2c7ff4407d5be4075b348}{log\+Info}} (const std\+::string \&message) const
+\begin{DoxyCompactList}\small\item\em Log an Informational message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_object_aade231ca725d4b022a99c045bac03256}{log\+Warning}} (const char $\ast$message) const
+\begin{DoxyCompactList}\small\item\em Log a Warning message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_object_a7360cf1180eaa4a71dc0d76d77b266a9}{log\+Warning}} (const std\+::string \&message) const
+\begin{DoxyCompactList}\small\item\em Log a Warning message. \end{DoxyCompactList}\item 
+virtual std\+::string \mbox{\hyperlink{classrev_1_1_object_a825ec2ff288b47272e733b1500c2798a}{to\+Std\+String}} (bool include\+\_\+type=true) const
+\begin{DoxyCompactList}\small\item\em Create a string representation of this \mbox{\hyperlink{classrev_1_1_object}{Object}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_object_ab60baae84703ab1526cc05513edd93f8}\label{classrev_1_1_object_ab60baae84703ab1526cc05513edd93f8}} 
+virtual Q\+String {\bfseries as\+Q\+String} (bool include\+\_\+type=true) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_object_a8c2cef80f2b00275d34d8df98c0120f8}\label{classrev_1_1_object_a8c2cef80f2b00275d34d8df98c0120f8}} 
+static const char $\ast$ {\bfseries Get\+Thread\+ID} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_object_adce3b08bbedbee210d1f4b05c8e3a441}\label{classrev_1_1_object_adce3b08bbedbee210d1f4b05c8e3a441}} 
+static bool {\bfseries Is\+Main\+Thread} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A base class for most classes. 
+
+Provides methods to query class name and namespace, logging methods for errors, warnings, info and debug messages. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}\label{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}} 
+\index{rev::Object@{rev::Object}!className@{className}}
+\index{className@{className}!rev::Object@{rev::Object}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily rev\+::\+Object\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_view_1_1_resource_tree_widget_ab15fda44cb0727f860a2d1071fefb104}{rev\+::\+View\+::\+Resource\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_c_c_t_manager_aef919c90f9877381d2f2c1ef24839741}{rev\+::\+C\+C\+T\+Manager}}, \mbox{\hyperlink{classrev_1_1_view_1_1_resource_item_ab53eb0848ac7e530ad5dc8220bf8609a}{rev\+::\+View\+::\+Resource\+Item}}, \mbox{\hyperlink{classrev_1_1_texture_a7f05304af91d3ea7ab923c43d9ad75d1}{rev\+::\+Texture}}, \mbox{\hyperlink{classrev_1_1_input_handler_a2837ab4ed7b6ce53f6aea9faa669021f}{rev\+::\+Input\+Handler}}, \mbox{\hyperlink{classrev_1_1_character_controller_a208a1325eb383cce3defc1badb5e53c4}{rev\+::\+Character\+Controller}}, \mbox{\hyperlink{classrev_1_1_resource_handle_a757714ddb5816e77198aceab2f4f0e1e}{rev\+::\+Resource\+Handle}}, \mbox{\hyperlink{classrev_1_1_key_handler_ae65760c99f0973da1d1290b35dfed051}{rev\+::\+Key\+Handler}}, \mbox{\hyperlink{classrev_1_1_animation_clip_a9bc0588a19cccdc1bc70ce7e58cb7ccd}{rev\+::\+Animation\+Clip}}, \mbox{\hyperlink{classrev_1_1_view_1_1_canvas_glyph_widget_a2c05ba4850db7c75a954a4dcda3f980f}{rev\+::\+View\+::\+Canvas\+Glyph\+Widget}}, \mbox{\hyperlink{classrev_1_1_debug_manager_a5962e13755e5a3b902f2d3f71e5948cb}{rev\+::\+Debug\+Manager}}, \mbox{\hyperlink{classrev_1_1_python_a_p_i_ab8d7ecd519d9d930bc7024a9e222218e}{rev\+::\+Python\+A\+PI}}, \mbox{\hyperlink{classrev_1_1_camera_afce9a32f0fcc9e0851d73aa37441c815}{rev\+::\+Camera}}, \mbox{\hyperlink{classrev_1_1_plane_geometry_a20bc1985065668b3e9716c8252d6b070}{rev\+::\+Plane\+Geometry}}, \mbox{\hyperlink{classrev_1_1_view_1_1_glyph_item_aeae051c75cc6ac7cccf256041721e840}{rev\+::\+View\+::\+Glyph\+Item}}, \mbox{\hyperlink{classrev_1_1_mouse_handler_ace8eaee7d8e16bfe3636c7d85615c075}{rev\+::\+Mouse\+Handler}}, \mbox{\hyperlink{classrev_1_1_rigid_body_a996230070162f743c3e87f5c20fd981e}{rev\+::\+Rigid\+Body}}, \mbox{\hyperlink{classrev_1_1_capsule_controller_description_aca7d4aff153f3db30084d730966ceb05}{rev\+::\+Capsule\+Controller\+Description}}, \mbox{\hyperlink{classrev_1_1_view_1_1_tree_widget_aedde04f44badced7c60f0e1570e3d0b2}{rev\+::\+View\+::\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_scene_object_a511357629f9d5957355f9a5cec239ec4}{rev\+::\+Scene\+Object}}, \mbox{\hyperlink{classrev_1_1_shader_a8f2c067bfde4f711b2851a070c23c231}{rev\+::\+Shader}}, \mbox{\hyperlink{classrev_1_1_view_1_1_mesh_tree_widget_a1fe0980bbddcafe4801991a0a70a8a3d}{rev\+::\+View\+::\+Mesh\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_fixed_physics_joint_a50a695b0b2cb3cb212ee03d38db3d981}{rev\+::\+Fixed\+Physics\+Joint}}, \mbox{\hyperlink{classrev_1_1_material_a353022875d44b057bf6de6c3c95fd5b9}{rev\+::\+Material}}, \mbox{\hyperlink{classrev_1_1_sphere_geometry_ac7447dddbb37769070e302792ced7ac2}{rev\+::\+Sphere\+Geometry}}, \mbox{\hyperlink{classrev_1_1_camera_component_a3461de347041bf3376283e4f66914d8b}{rev\+::\+Camera\+Component}}, \mbox{\hyperlink{classrev_1_1_mesh_a4c3c8a3358e75a1821ab11be746a891c}{rev\+::\+Mesh}}, \mbox{\hyperlink{classrev_1_1_animation_state_a4d204d9ea91c34e1a546421dcc80f0e5}{rev\+::\+Animation\+State}}, \mbox{\hyperlink{classrev_1_1_box_controller_description_a88d4d2d35a8f8d38b1dd90f33dba96bd}{rev\+::\+Box\+Controller\+Description}}, \mbox{\hyperlink{classrev_1_1_view_1_1_script_order_tree_widget_ac1972eb933746c0f38059c8a78f4a36d}{rev\+::\+View\+::\+Script\+Order\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_view_1_1_shader_tree_widget_aac6c4858df27dfdf09a0694eeb5bccd4}{rev\+::\+View\+::\+Shader\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_audio_resource_aef383525478a6a648fbddc068941dbea}{rev\+::\+Audio\+Resource}}, \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_af0acbcb9d6cb9b0b209d0a9e11f563f3}{rev\+::\+View\+::\+Scene\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_python_class_script_adbdcf0106db89f58196a253e5d3b6831}{rev\+::\+Python\+Class\+Script}}, \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_tree_widget_afa490edab7f0472cae72674be7b1462f}{rev\+::\+View\+::\+Render\+Layer\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_component_a07619152d5acafe7a536df3a6a476349}{rev\+::\+Component}}, \mbox{\hyperlink{classrev_1_1_g_l_1_1_buffer_object_a0f1a209cd0a7c2d95e91ac458cd6c2aa}{rev\+::\+G\+L\+::\+Buffer\+Object}}, \mbox{\hyperlink{classrev_1_1_dag_node_ab769f5f1cc1bdb1dde07c8d1466fad56}{rev\+::\+Dag\+Node$<$ T $>$}}, \mbox{\hyperlink{classrev_1_1_audio_source_component_a71a45fbf39573c2d903ad4454ec3d658}{rev\+::\+Audio\+Source\+Component}}, \mbox{\hyperlink{classrev_1_1_view_1_1_component_blueprint_item_a735f5d6800e98b51ec826fd4ca05dd91}{rev\+::\+View\+::\+Component\+Blueprint\+Item}}, \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_select_widget_af00c2a10bb0fafd2814b11a7abed74fc}{rev\+::\+View\+::\+Render\+Layer\+Select\+Widget}}, \mbox{\hyperlink{classrev_1_1_resource_cache_ac6abc543146d0f487cfffb79d33d35e0}{rev\+::\+Resource\+Cache}}, \mbox{\hyperlink{classrev_1_1_view_1_1_animation_tree_widget_aa2b7b831a03e3954d9e37ac361ee7385}{rev\+::\+View\+::\+Animation\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_core_engine_a2ae64bfe54f092fe37b4415ca56df1b5}{rev\+::\+Core\+Engine}}, \mbox{\hyperlink{classrev_1_1_canvas_component_a922be6d092caa93f116babd47dd6343a}{rev\+::\+Canvas\+Component}}, \mbox{\hyperlink{classrev_1_1_box_geometry_a2e815ff8c55805fdbb74eedf7b2c16c5}{rev\+::\+Box\+Geometry}}, \mbox{\hyperlink{classrev_1_1_physics_manager_a557872ba7a7c0fb2074b408f185aa789}{rev\+::\+Physics\+Manager}}, \mbox{\hyperlink{classrev_1_1_view_1_1_script_order_item_a80f36f0f815218dd2ea9ffb2b145d440}{rev\+::\+View\+::\+Script\+Order\+Item}}, \mbox{\hyperlink{classrev_1_1_light_component_a627371d0bebc32f2eb91e6e5b95f81d0}{rev\+::\+Light\+Component}}, \mbox{\hyperlink{classrev_1_1_view_1_1_blueprint_list_view_ab64a820b0e1fff62711f536fc89bf832}{rev\+::\+View\+::\+Blueprint\+List\+View}}, \mbox{\hyperlink{classrev_1_1_model_a5294b11c432c67e5e89b76af767d9305}{rev\+::\+Model}}, \mbox{\hyperlink{classrev_1_1_view_1_1_shader_tree_item_aa343381f05afa92936c6ffbbe106b2b6}{rev\+::\+View\+::\+Shader\+Tree\+Item}}, \mbox{\hyperlink{classrev_1_1_process_adc27ddf4c0f44dab54a5f797c7135c44}{rev\+::\+Process}}, \mbox{\hyperlink{classrev_1_1_physics_scene_a7ea458478b0e1e2db563854807a66f8b}{rev\+::\+Physics\+Scene}}, \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_item_ab7fbeef972e54db445d57f71e3ec1ef5}{rev\+::\+View\+::\+Render\+Layer\+Item}}, \mbox{\hyperlink{classrev_1_1_view_1_1_resource_list_view_a2e12909ec3f4986fb0d2d3edd0987ba6}{rev\+::\+View\+::\+Resource\+List\+View}}, \mbox{\hyperlink{classrev_1_1_service_a484d71757ea6e8780488602cb421a4a5}{rev\+::\+Service}}, \mbox{\hyperlink{classrev_1_1_animation_controller_a242d8be4d5939baeda4cde95c13cd1ef}{rev\+::\+Animation\+Controller}}, \mbox{\hyperlink{classrev_1_1_physics_joint_aef7f21c8a657ce02326b965af8835517}{rev\+::\+Physics\+Joint}}, \mbox{\hyperlink{classrev_1_1_render_context_aabbf2a2fa99c196ee07208eb52b7f208}{rev\+::\+Render\+Context}}, \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_select_item_a8f14c80f13b45c055eeab73af921535b}{rev\+::\+View\+::\+Render\+Layer\+Select\+Item}}, \mbox{\hyperlink{classrev_1_1_light_cluster_grid_ae6997baead0a18e803d84251788bd5cf}{rev\+::\+Light\+Cluster\+Grid}}, \mbox{\hyperlink{classrev_1_1_shader_program_a7400b2b50638b1d150bc339ecd360c4c}{rev\+::\+Shader\+Program}}, \mbox{\hyperlink{classrev_1_1_scene_camera_a4fd93186927c55d2c4d48ebf941e248d}{rev\+::\+Scene\+Camera}}, \mbox{\hyperlink{classrev_1_1_base_animation_state_a40d8ab21aeed4a7d7e0f88004c08d060}{rev\+::\+Base\+Animation\+State}}, \mbox{\hyperlink{classrev_1_1_physics_actor_a5bc3e96948718546204f3201971e1914}{rev\+::\+Physics\+Actor}}, \mbox{\hyperlink{classrev_1_1_scenario_afa03a3ce5517737e32cd0dcd2828b2fa}{rev\+::\+Scenario}}, \mbox{\hyperlink{classrev_1_1_physics_shape_prefab_a674652fd1f620a4b987f86e2fc2d8f74}{rev\+::\+Physics\+Shape\+Prefab}}, \mbox{\hyperlink{classrev_1_1_cube_map_component_a09be93995cb43696c7f7644a224b59e4}{rev\+::\+Cube\+Map\+Component}}, \mbox{\hyperlink{classrev_1_1_cube_texture_a7ec1956c0d81071b9f129ddb08725734}{rev\+::\+Cube\+Texture}}, \mbox{\hyperlink{classrev_1_1_post_processing_chain_a500b7e99127d6a31215edf1b14fdd7ee}{rev\+::\+Post\+Processing\+Chain}}, \mbox{\hyperlink{classrev_1_1_model_component_a31298d9d0fb5d7e43cbe6de3050d4f6a}{rev\+::\+Model\+Component}}, \mbox{\hyperlink{classrev_1_1_event_listener_a769859dbbf444d1a029ac563ce63806c}{rev\+::\+Event\+Listener}}, \mbox{\hyperlink{classrev_1_1_view_1_1_component_item_ab841f5681c0a147d32680d0f3a1f62e7}{rev\+::\+View\+::\+Component\+Item}}, \mbox{\hyperlink{classrev_1_1_audio_listener_component_a1e982f3e707ee7d961b581d112768ac4}{rev\+::\+Audio\+Listener\+Component}}, \mbox{\hyperlink{classrev_1_1_shader_preset_a169c46262d1da9bfb67b26f2cf44e04e}{rev\+::\+Shader\+Preset}}, \mbox{\hyperlink{classrev_1_1_file_manager_abfb467bdcfbacd82f041139a15d73fa0}{rev\+::\+File\+Manager}}, \mbox{\hyperlink{classrev_1_1_i_k_node_a2105ed436df5a05daa873cfa83ca42d4}{rev\+::\+I\+K\+Node}}, \mbox{\hyperlink{classrev_1_1_process_thread_a61ecc9b8d9234f25418adee22c062874}{rev\+::\+Process\+Thread}}, \mbox{\hyperlink{classrev_1_1_bone_animation_component_a3eaa61a98c682a9b0f5aa804b448380b}{rev\+::\+Bone\+Animation\+Component}}, \mbox{\hyperlink{classrev_1_1_controller_description_a8170f2acabf587228bae29aba6c1a90b}{rev\+::\+Controller\+Description}}, \mbox{\hyperlink{classrev_1_1_physics_base_ad997bc1504ff6dccccbc3d8d0ea6e6a5}{rev\+::\+Physics\+Base}}, \mbox{\hyperlink{classrev_1_1_view_1_1_scene_related_item_ae2eff65bbbea3332ccdc41fb85a1f270}{rev\+::\+View\+::\+Scene\+Related\+Item}}, \mbox{\hyperlink{classrev_1_1_physics_material_ad5c1131d40a32771183345da25d1a38c}{rev\+::\+Physics\+Material}}, \mbox{\hyperlink{classrev_1_1_event_manager_a3999d64126b1b5e0d8d4a47636bfe4c5}{rev\+::\+Event\+Manager}}, \mbox{\hyperlink{classrev_1_1_view_1_1_animation_item_aa842daa5b936f8b12980b49505cba185}{rev\+::\+View\+::\+Animation\+Item}}, \mbox{\hyperlink{classrev_1_1_shader_component_a62ddc1d5981e4952890a628ca5b6d12a}{rev\+::\+Shader\+Component}}, \mbox{\hyperlink{classrev_1_1_python_script_ac593ea8f3beeb031d81837b1306bf6ba}{rev\+::\+Python\+Script}}, \mbox{\hyperlink{classrev_1_1_listener_component_ab25dc63421b42bf388e9b1e57e635661}{rev\+::\+Listener\+Component}}, \mbox{\hyperlink{classrev_1_1_script_component_a2665164dc38caad07e5759aec4563dee}{rev\+::\+Script\+Component}}, \mbox{\hyperlink{classrev_1_1_sound_manager_a1b4c69f6b4e31741ddf76595004fd0fe}{rev\+::\+Sound\+Manager}}, \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a8a12a6ceece6cab7a2299da2b5e6a54b}{rev\+::\+View\+::\+Tree\+Item$<$ T $>$}}, \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a8a12a6ceece6cab7a2299da2b5e6a54b}{rev\+::\+View\+::\+Tree\+Item$<$ Shader\+Preset $>$}}, \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a8a12a6ceece6cab7a2299da2b5e6a54b}{rev\+::\+View\+::\+Tree\+Item$<$ Component $>$}}, \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a8a12a6ceece6cab7a2299da2b5e6a54b}{rev\+::\+View\+::\+Tree\+Item$<$ rev\+::\+Object $>$}}, \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a8a12a6ceece6cab7a2299da2b5e6a54b}{rev\+::\+View\+::\+Tree\+Item$<$ Object $>$}}, \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a8a12a6ceece6cab7a2299da2b5e6a54b}{rev\+::\+View\+::\+Tree\+Item$<$ Blueprint $>$}}, \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a8a12a6ceece6cab7a2299da2b5e6a54b}{rev\+::\+View\+::\+Tree\+Item$<$ Sorting\+Layer $>$}}, \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a8a12a6ceece6cab7a2299da2b5e6a54b}{rev\+::\+View\+::\+Tree\+Item$<$ Glyph $>$}}, \mbox{\hyperlink{classrev_1_1_physics_geometry_afc74d4c03367f3bc83595acaeca7d9a8}{rev\+::\+Physics\+Geometry}}, \mbox{\hyperlink{classrev_1_1_animation_process_a1956615907f3d2d32318d91d21a0df80}{rev\+::\+Animation\+Process}}, \mbox{\hyperlink{classrev_1_1_threaded_process_a7b198a27cb18d6da765cef1ed66a169c}{rev\+::\+Threaded\+Process}}, \mbox{\hyperlink{classrev_1_1_scripted_process_acf76a8590e80b9cf16c155639d721065}{rev\+::\+Scripted\+Process}}, \mbox{\hyperlink{classrev_1_1_scene_a6130a8500e3106d944072ba309339e82}{rev\+::\+Scene}}, \mbox{\hyperlink{classrev_1_1_physics_scene_component_a03e184a92a2fb3ed39f730e51c347cd4}{rev\+::\+Physics\+Scene\+Component}}, \mbox{\hyperlink{classrev_1_1_state_component_a1f24f3bb3f13a85784d866fb9caaeabc}{rev\+::\+State\+Component}}, \mbox{\hyperlink{classrev_1_1_sprite_animation_process_ad475b084f8d64cfb7a06a0456b215dbb}{rev\+::\+Sprite\+Animation\+Process}}, \mbox{\hyperlink{classrev_1_1_script_behavior_abb2e3df30c7fdb8ad6b81459b14c4906}{rev\+::\+Script\+Behavior}}, \mbox{\hyperlink{classrev_1_1_component_command_a9fa769c52b149facb70c80bbc03a2be0}{rev\+::\+Component\+Command}}, \mbox{\hyperlink{classrev_1_1_view_1_1_g_l_widget_a223f5d2a14ae6e2d3c988d008710e5fc}{rev\+::\+View\+::\+G\+L\+Widget}}, \mbox{\hyperlink{classrev_1_1_script_listener_aa9e78ea774509b6f67a4df258645c7bb}{rev\+::\+Script\+Listener}}, \mbox{\hyperlink{structrev_1_1_sorting_layer_a40a55ae51e2a1e38aeb01eea9acc9bfb}{rev\+::\+Sorting\+Layer}}, \mbox{\hyperlink{classrev_1_1_abstract_service_a0b64ee4651db7637a70265697ca62453}{rev\+::\+Abstract\+Service}}, \mbox{\hyperlink{classrev_1_1_load_process_ad826a8b7aab260c491bcd4344564947d}{rev\+::\+Load\+Process}}, \mbox{\hyperlink{classrev_1_1_animation_manager_a75045d17ce187cc554ff1b2f12e2fea5}{rev\+::\+Animation\+Manager}}, \mbox{\hyperlink{classrev_1_1_scene_command_a9b9126f306b1775c4f74ffb8b1a49dc5}{rev\+::\+Scene\+Command}}, \mbox{\hyperlink{classrev_1_1_view_1_1_component_tree_widget_a906360e88a18432b36c9d769a8e3886c}{rev\+::\+View\+::\+Component\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_rigid_body_component_aac4681f78e6e53a6fceae27502b08bc5}{rev\+::\+Rigid\+Body\+Component}}, \mbox{\hyperlink{classrev_1_1_char_control_component_ad48e482237a727ae8e07a3e2487a0fcb}{rev\+::\+Char\+Control\+Component}}, \mbox{\hyperlink{classrev_1_1_transform_component_a04a11c6b0b9f124c53a84226a488a1e9}{rev\+::\+Transform\+Component}}, \mbox{\hyperlink{classrev_1_1_main_window_a3b8a0c921c8413553567f87a23861ad9}{rev\+::\+Main\+Window}}, \mbox{\hyperlink{classrev_1_1_edit_line_edit_command_a08cedca4363770f54736cec4f35db942}{rev\+::\+Edit\+Line\+Edit\+Command}}, \mbox{\hyperlink{classrev_1_1_g_l_1_1_vertex_array_object_a84ed3eee60de547f6e35118b00f802ff}{rev\+::\+G\+L\+::\+Vertex\+Array\+Object}}, \mbox{\hyperlink{classrev_1_1_undo_command_ab30f020732532e7cfd5472bdee65dcdb}{rev\+::\+Undo\+Command}}, \mbox{\hyperlink{classrev_1_1_view_1_1_console_tool_abffa7bd8ebee59a74578c046ded1fb70}{rev\+::\+View\+::\+Console\+Tool}}, and \mbox{\hyperlink{classrev_1_1_view_1_1_tool_acde27fd51c9e99e42da65703b496c080}{rev\+::\+View\+::\+Tool}}.
+
+\mbox{\Hypertarget{classrev_1_1_object_a6dc5b38567e6a0b21617a3951ebcc228}\label{classrev_1_1_object_a6dc5b38567e6a0b21617a3951ebcc228}} 
+\index{rev::Object@{rev::Object}!logCritical@{logCritical}}
+\index{logCritical@{logCritical}!rev::Object@{rev::Object}}
+\subsubsection{\texorpdfstring{logCritical()}{logCritical()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void rev\+::\+Object\+::log\+Critical (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{message }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Log a Critical message and terminate the app. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em message} & The textual message for the log. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrev_1_1_object_a12b1396b74c4c4c1ff2f25935977937f}\label{classrev_1_1_object_a12b1396b74c4c4c1ff2f25935977937f}} 
+\index{rev::Object@{rev::Object}!logCritical@{logCritical}}
+\index{logCritical@{logCritical}!rev::Object@{rev::Object}}
+\subsubsection{\texorpdfstring{logCritical()}{logCritical()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void rev\+::\+Object\+::log\+Critical (\begin{DoxyParamCaption}\item[{const char $\ast$}]{message }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Log a Critical message and terminate the app. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em message} & The textual message for the log. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrev_1_1_object_a3435060b2a2904fef41e9ee50144d076}\label{classrev_1_1_object_a3435060b2a2904fef41e9ee50144d076}} 
+\index{rev::Object@{rev::Object}!logDebug@{logDebug}}
+\index{logDebug@{logDebug}!rev::Object@{rev::Object}}
+\subsubsection{\texorpdfstring{logDebug()}{logDebug()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void rev\+::\+Object\+::log\+Debug (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{message }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Log a Debugging message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em message} & The textual message for the log. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrev_1_1_object_a5b0b84e3b2afd5ecd44bb6c78859e38b}\label{classrev_1_1_object_a5b0b84e3b2afd5ecd44bb6c78859e38b}} 
+\index{rev::Object@{rev::Object}!logDebug@{logDebug}}
+\index{logDebug@{logDebug}!rev::Object@{rev::Object}}
+\subsubsection{\texorpdfstring{logDebug()}{logDebug()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void rev\+::\+Object\+::log\+Debug (\begin{DoxyParamCaption}\item[{const char $\ast$}]{message }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Log a Debugging message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em message} & The textual message for the log. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrev_1_1_object_a4559ef458b76ee917de6112f5a9dfdca}\label{classrev_1_1_object_a4559ef458b76ee917de6112f5a9dfdca}} 
+\index{rev::Object@{rev::Object}!logError@{logError}}
+\index{logError@{logError}!rev::Object@{rev::Object}}
+\subsubsection{\texorpdfstring{logError()}{logError()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void rev\+::\+Object\+::log\+Error (\begin{DoxyParamCaption}\item[{const char $\ast$}]{message }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Log a \mbox{\hyperlink{class_error}{Error}} message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em message} & The textual message for the log. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrev_1_1_object_a773c27fc0e8e9c911021763c6dba144d}\label{classrev_1_1_object_a773c27fc0e8e9c911021763c6dba144d}} 
+\index{rev::Object@{rev::Object}!logError@{logError}}
+\index{logError@{logError}!rev::Object@{rev::Object}}
+\subsubsection{\texorpdfstring{logError()}{logError()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void rev\+::\+Object\+::log\+Error (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{message }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Log a \mbox{\hyperlink{class_error}{Error}} message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em message} & The textual message for the log. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrev_1_1_object_a6dd4b6c7863018562f5820bdcac3612c}\label{classrev_1_1_object_a6dd4b6c7863018562f5820bdcac3612c}} 
+\index{rev::Object@{rev::Object}!logInfo@{logInfo}}
+\index{logInfo@{logInfo}!rev::Object@{rev::Object}}
+\subsubsection{\texorpdfstring{logInfo()}{logInfo()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void rev\+::\+Object\+::log\+Info (\begin{DoxyParamCaption}\item[{const char $\ast$}]{message }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Log an Informational message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em message} & The textual message for the log. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrev_1_1_object_ae75e2d9d3dc2c7ff4407d5be4075b348}\label{classrev_1_1_object_ae75e2d9d3dc2c7ff4407d5be4075b348}} 
+\index{rev::Object@{rev::Object}!logInfo@{logInfo}}
+\index{logInfo@{logInfo}!rev::Object@{rev::Object}}
+\subsubsection{\texorpdfstring{logInfo()}{logInfo()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void rev\+::\+Object\+::log\+Info (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{message }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Log an Informational message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em message} & The textual message for the log. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrev_1_1_object_a763fca366d830bfdab969e164420d7ed}\label{classrev_1_1_object_a763fca366d830bfdab969e164420d7ed}} 
+\index{rev::Object@{rev::Object}!logMessage@{logMessage}}
+\index{logMessage@{logMessage}!rev::Object@{rev::Object}}
+\subsubsection{\texorpdfstring{logMessage()}{logMessage()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void rev\+::\+Object\+::log\+Message (\begin{DoxyParamCaption}\item[{Log\+Level}]{level,  }\item[{const char $\ast$}]{category,  }\item[{const char $\ast$}]{message }\end{DoxyParamCaption}) const}
+
+
+
+Output a message to a log. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em level} & The numeric level for the message. The higher the value, the more severe the issue. \\
+\hline
+\mbox{\texttt{ in}}  & {\em category} & Helps define where the message comes from. \\
+\hline
+\mbox{\texttt{ in}}  & {\em message} & The textual message for the log. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrev_1_1_object_a9cd310753468f0e7e971931bc0bda991}\label{classrev_1_1_object_a9cd310753468f0e7e971931bc0bda991}} 
+\index{rev::Object@{rev::Object}!logMessage@{logMessage}}
+\index{logMessage@{logMessage}!rev::Object@{rev::Object}}
+\subsubsection{\texorpdfstring{logMessage()}{logMessage()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void rev\+::\+Object\+::log\+Message (\begin{DoxyParamCaption}\item[{Log\+Level}]{level,  }\item[{std\+::string \&}]{category,  }\item[{std\+::string \&}]{message }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Output a message to a log. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em level} & The numeric level for the message. The higher the value, the more severe the issue. \\
+\hline
+\mbox{\texttt{ in}}  & {\em category} & Helps define where the message comes from. \\
+\hline
+\mbox{\texttt{ in}}  & {\em message} & The textual message for the log. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrev_1_1_object_aade231ca725d4b022a99c045bac03256}\label{classrev_1_1_object_aade231ca725d4b022a99c045bac03256}} 
+\index{rev::Object@{rev::Object}!logWarning@{logWarning}}
+\index{logWarning@{logWarning}!rev::Object@{rev::Object}}
+\subsubsection{\texorpdfstring{logWarning()}{logWarning()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void rev\+::\+Object\+::log\+Warning (\begin{DoxyParamCaption}\item[{const char $\ast$}]{message }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Log a Warning message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em message} & The textual message for the log. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrev_1_1_object_a7360cf1180eaa4a71dc0d76d77b266a9}\label{classrev_1_1_object_a7360cf1180eaa4a71dc0d76d77b266a9}} 
+\index{rev::Object@{rev::Object}!logWarning@{logWarning}}
+\index{logWarning@{logWarning}!rev::Object@{rev::Object}}
+\subsubsection{\texorpdfstring{logWarning()}{logWarning()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void rev\+::\+Object\+::log\+Warning (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{message }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Log a Warning message. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em message} & The textual message for the log. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}\label{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}} 
+\index{rev::Object@{rev::Object}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::Object@{rev::Object}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily rev\+::\+Object\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_view_1_1_resource_tree_widget_a4255d4ec5631ed643a2248c7ce6a109f}{rev\+::\+View\+::\+Resource\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_c_c_t_manager_af40188f0c27823159bf272a0d867892b}{rev\+::\+C\+C\+T\+Manager}}, \mbox{\hyperlink{classrev_1_1_view_1_1_resource_item_a15af214f49adc7e9e793a0a1d43a4e60}{rev\+::\+View\+::\+Resource\+Item}}, \mbox{\hyperlink{classrev_1_1_texture_ad26e3169ee1055c346487f0db2f4ce94}{rev\+::\+Texture}}, \mbox{\hyperlink{classrev_1_1_input_handler_a99cee0c8e7aff8670751090873ad494b}{rev\+::\+Input\+Handler}}, \mbox{\hyperlink{classrev_1_1_character_controller_ae897d2d65e41a9dea75dc32e69577b8e}{rev\+::\+Character\+Controller}}, \mbox{\hyperlink{classrev_1_1_resource_handle_a99e4445225c5e56d17b1ecf7041b800c}{rev\+::\+Resource\+Handle}}, \mbox{\hyperlink{classrev_1_1_key_handler_aa60d20ac34cf06508ce06102491a13ce}{rev\+::\+Key\+Handler}}, \mbox{\hyperlink{classrev_1_1_animation_clip_aa6b49559406127733a258a373ce49694}{rev\+::\+Animation\+Clip}}, \mbox{\hyperlink{classrev_1_1_view_1_1_canvas_glyph_widget_ace5c69a8e1f338fc0571f98a7329a64d}{rev\+::\+View\+::\+Canvas\+Glyph\+Widget}}, \mbox{\hyperlink{classrev_1_1_debug_manager_a0f83cdbbd2ed91549fe2ae4fdf8809b6}{rev\+::\+Debug\+Manager}}, \mbox{\hyperlink{classrev_1_1_python_a_p_i_ae8df4c3f4f00912cd2c184d79bfb31da}{rev\+::\+Python\+A\+PI}}, \mbox{\hyperlink{classrev_1_1_camera_afd16ba4c2ca04aa0a4945c9aca16606d}{rev\+::\+Camera}}, \mbox{\hyperlink{classrev_1_1_plane_geometry_aafaa3b1c3f1e103cf4aa2d9a2ce9feb1}{rev\+::\+Plane\+Geometry}}, \mbox{\hyperlink{classrev_1_1_view_1_1_glyph_item_a8fa3b57d04a71e8d5f9eb7593c7d2f0f}{rev\+::\+View\+::\+Glyph\+Item}}, \mbox{\hyperlink{classrev_1_1_mouse_handler_ad140db2a92a48fa1b1f70f0823a5ea16}{rev\+::\+Mouse\+Handler}}, \mbox{\hyperlink{classrev_1_1_rigid_body_ae8e178b51dbe0e61ad0674e039864a92}{rev\+::\+Rigid\+Body}}, \mbox{\hyperlink{classrev_1_1_capsule_controller_description_adb2e0dbf5b569df3b0536b888b0af21c}{rev\+::\+Capsule\+Controller\+Description}}, \mbox{\hyperlink{classrev_1_1_view_1_1_tree_widget_a09be824e34e50e9622c3dc333c9a3c07}{rev\+::\+View\+::\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_scene_object_a63816cdf271b38d1e058c2c2847a0f1e}{rev\+::\+Scene\+Object}}, \mbox{\hyperlink{classrev_1_1_shader_a38e06c7925f4626625efe972298988c1}{rev\+::\+Shader}}, \mbox{\hyperlink{classrev_1_1_view_1_1_mesh_tree_widget_a9051050a76f3eb339fe8eacfac5806ca}{rev\+::\+View\+::\+Mesh\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_fixed_physics_joint_ae0bb4a64e824f0cc378b9e00be7ab469}{rev\+::\+Fixed\+Physics\+Joint}}, \mbox{\hyperlink{classrev_1_1_material_abfa4020a52b5d7c82cc285f58a1fb0c5}{rev\+::\+Material}}, \mbox{\hyperlink{classrev_1_1_sphere_geometry_aef6068a1ad9dc22c0ae744898923b7a2}{rev\+::\+Sphere\+Geometry}}, \mbox{\hyperlink{classrev_1_1_camera_component_a9e26b2321133fabca2583eaf5cae00e4}{rev\+::\+Camera\+Component}}, \mbox{\hyperlink{classrev_1_1_mesh_a38ad31454bc3e4e1d7d4d10b4cf36f83}{rev\+::\+Mesh}}, \mbox{\hyperlink{classrev_1_1_animation_state_abaccd2a331d4b77be5942e5e907be3dc}{rev\+::\+Animation\+State}}, \mbox{\hyperlink{classrev_1_1_box_controller_description_adb539380f3f2033d6d6fbfe1b36a69c8}{rev\+::\+Box\+Controller\+Description}}, \mbox{\hyperlink{classrev_1_1_view_1_1_script_order_tree_widget_aeffcb37cdb2f9745d92b74c0ed73aebd}{rev\+::\+View\+::\+Script\+Order\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_view_1_1_shader_tree_widget_a34120d5ac0a72d1bc042f1933d11e984}{rev\+::\+View\+::\+Shader\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_audio_resource_a56de5461f5fa79c4af7c6ff2d3fdfeed}{rev\+::\+Audio\+Resource}}, \mbox{\hyperlink{classrev_1_1_python_class_script_a3e596d1eec111c02d431496f6a750701}{rev\+::\+Python\+Class\+Script}}, \mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget_a8d388e6e5f396f5641a92a29fb42bf6c}{rev\+::\+View\+::\+Scene\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_tree_widget_abf815dc334dc567b1d9defe2ed24efc6}{rev\+::\+View\+::\+Render\+Layer\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_component_ae2827b14c278588b95e01c4743fae674}{rev\+::\+Component}}, \mbox{\hyperlink{classrev_1_1_g_l_1_1_buffer_object_a5f40094443e3a7b57c4227d5affa72d1}{rev\+::\+G\+L\+::\+Buffer\+Object}}, \mbox{\hyperlink{classrev_1_1_dag_node_a65d5289cdff9f83fde666474c33f4a5b}{rev\+::\+Dag\+Node$<$ T $>$}}, \mbox{\hyperlink{classrev_1_1_audio_source_component_ae94612b38966493a4680deea4ba58792}{rev\+::\+Audio\+Source\+Component}}, \mbox{\hyperlink{classrev_1_1_view_1_1_component_blueprint_item_a0b0ed2cacce8cc3e1d7cc7ac14ca3c6f}{rev\+::\+View\+::\+Component\+Blueprint\+Item}}, \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_select_widget_a3f7f6f78fbfdc91168b7d1c762ecb0af}{rev\+::\+View\+::\+Render\+Layer\+Select\+Widget}}, \mbox{\hyperlink{classrev_1_1_resource_cache_a4ed6a3f7ea5e8ea20287a5bce1fa05b9}{rev\+::\+Resource\+Cache}}, \mbox{\hyperlink{classrev_1_1_view_1_1_animation_tree_widget_a7e4693a9bee6d2ed28da121609ac82ec}{rev\+::\+View\+::\+Animation\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_core_engine_aa45b34f7023b9f0e3b30f8b1259aa389}{rev\+::\+Core\+Engine}}, \mbox{\hyperlink{classrev_1_1_canvas_component_aecd2d20165561426ae2eb73226626945}{rev\+::\+Canvas\+Component}}, \mbox{\hyperlink{classrev_1_1_box_geometry_a2a3b42da46821366322cfecf569e2b5f}{rev\+::\+Box\+Geometry}}, \mbox{\hyperlink{classrev_1_1_physics_manager_ac541c7e0460d572c5bff2e4136c779e1}{rev\+::\+Physics\+Manager}}, \mbox{\hyperlink{classrev_1_1_view_1_1_script_order_item_a1ac64a1d792c531644e8acea2385effd}{rev\+::\+View\+::\+Script\+Order\+Item}}, \mbox{\hyperlink{classrev_1_1_light_component_a517a3334919e5cd1aeacdd52c65c90c1}{rev\+::\+Light\+Component}}, \mbox{\hyperlink{classrev_1_1_model_ab005d0b8d9815c0cfa80a01f46fb8a38}{rev\+::\+Model}}, \mbox{\hyperlink{classrev_1_1_view_1_1_blueprint_list_view_af706f0869b486cbe80ef9457723c9de6}{rev\+::\+View\+::\+Blueprint\+List\+View}}, \mbox{\hyperlink{classrev_1_1_view_1_1_shader_tree_item_a684fab698c34ef0456cb86ec590b6385}{rev\+::\+View\+::\+Shader\+Tree\+Item}}, \mbox{\hyperlink{classrev_1_1_process_a7f5a6ab8af65aec3132f6a072b9fcb87}{rev\+::\+Process}}, \mbox{\hyperlink{classrev_1_1_physics_scene_ab8d105fd9f30fa787cf4776afcd3a864}{rev\+::\+Physics\+Scene}}, \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_item_a2b0a9658af4c9bcd14703e39d3917813}{rev\+::\+View\+::\+Render\+Layer\+Item}}, \mbox{\hyperlink{classrev_1_1_view_1_1_resource_list_view_a58c6e30384ae07c1de6fe33efd9c0eb3}{rev\+::\+View\+::\+Resource\+List\+View}}, \mbox{\hyperlink{classrev_1_1_service_a831f5bf8c53584ec830aaee38ea58e7b}{rev\+::\+Service}}, \mbox{\hyperlink{classrev_1_1_animation_controller_aa20837e4b8c3730c3a66bc84e2524b02}{rev\+::\+Animation\+Controller}}, \mbox{\hyperlink{classrev_1_1_physics_joint_a312be29fc0f85bacb01952c63e985096}{rev\+::\+Physics\+Joint}}, \mbox{\hyperlink{classrev_1_1_render_context_a07d4f4c563a4bc001f83a6f657221c9d}{rev\+::\+Render\+Context}}, \mbox{\hyperlink{classrev_1_1_light_cluster_grid_a834907de0608ed380466df59dc981ff1}{rev\+::\+Light\+Cluster\+Grid}}, \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_select_item_a2d8ca1314c2b66567c2e9de8bd717f4f}{rev\+::\+View\+::\+Render\+Layer\+Select\+Item}}, \mbox{\hyperlink{classrev_1_1_shader_program_a7e4e75492bd44ea8e9350cd720698e3e}{rev\+::\+Shader\+Program}}, \mbox{\hyperlink{classrev_1_1_scene_camera_a8d2a68f15a75323bd1d9a5d96c7a09bc}{rev\+::\+Scene\+Camera}}, \mbox{\hyperlink{classrev_1_1_base_animation_state_a97dd6a934ca133d2024b1db68dd3316d}{rev\+::\+Base\+Animation\+State}}, \mbox{\hyperlink{classrev_1_1_physics_actor_ad212df8d7d61f9b855bc9d9ede2b437f}{rev\+::\+Physics\+Actor}}, \mbox{\hyperlink{classrev_1_1_scenario_aefcedb913f38e8f183c20476e62b194d}{rev\+::\+Scenario}}, \mbox{\hyperlink{classrev_1_1_physics_shape_prefab_a2b7e566022a8f94246d92e392ebb2079}{rev\+::\+Physics\+Shape\+Prefab}}, \mbox{\hyperlink{classrev_1_1_cube_texture_af6794b135f279b1b011d47f9a7f9d10b}{rev\+::\+Cube\+Texture}}, \mbox{\hyperlink{classrev_1_1_cube_map_component_a5fd0d5b47d8ba3594d4daf0ed8135b83}{rev\+::\+Cube\+Map\+Component}}, \mbox{\hyperlink{classrev_1_1_post_processing_chain_a8fc3834c337ee526386f622ef314cae6}{rev\+::\+Post\+Processing\+Chain}}, \mbox{\hyperlink{classrev_1_1_model_component_ad55fe767e54742f08b338f0f13498cf8}{rev\+::\+Model\+Component}}, \mbox{\hyperlink{classrev_1_1_event_listener_ada92683ca9340c93b2e6d84e9716fdcc}{rev\+::\+Event\+Listener}}, \mbox{\hyperlink{classrev_1_1_view_1_1_component_item_a75651a2035c376c2fa679eb614b430a3}{rev\+::\+View\+::\+Component\+Item}}, \mbox{\hyperlink{classrev_1_1_audio_listener_component_a465f4278108070ac4027d15a0efea0ea}{rev\+::\+Audio\+Listener\+Component}}, \mbox{\hyperlink{classrev_1_1_shader_preset_acd4d41f0101552e7512714eb307e24a8}{rev\+::\+Shader\+Preset}}, \mbox{\hyperlink{classrev_1_1_file_manager_a57e18b80b80bde22fb0917daae4662bc}{rev\+::\+File\+Manager}}, \mbox{\hyperlink{classrev_1_1_i_k_node_a0673db5b3a78a10ce70a7575f82fbc19}{rev\+::\+I\+K\+Node}}, \mbox{\hyperlink{classrev_1_1_process_thread_a9a5cd59371fc8c768364dc355b6351d0}{rev\+::\+Process\+Thread}}, \mbox{\hyperlink{classrev_1_1_bone_animation_component_af7df4b639ac2c3e9048f44c159d0dcda}{rev\+::\+Bone\+Animation\+Component}}, \mbox{\hyperlink{classrev_1_1_controller_description_a95ae000783dd5460060582a129c9251d}{rev\+::\+Controller\+Description}}, \mbox{\hyperlink{classrev_1_1_physics_base_acf58cc81cff2ca957dcc68fe9a9a84a1}{rev\+::\+Physics\+Base}}, \mbox{\hyperlink{classrev_1_1_physics_material_a6f593676796ebfff0aec28984f7b34b0}{rev\+::\+Physics\+Material}}, \mbox{\hyperlink{classrev_1_1_event_manager_a5188a25a9b785d841c39aefafd5f391e}{rev\+::\+Event\+Manager}}, \mbox{\hyperlink{classrev_1_1_view_1_1_scene_related_item_a627f509d311402581f9fafadd2e7e014}{rev\+::\+View\+::\+Scene\+Related\+Item}}, \mbox{\hyperlink{classrev_1_1_shader_component_ac052c16eed35e22f62df1d06cf346d55}{rev\+::\+Shader\+Component}}, \mbox{\hyperlink{classrev_1_1_view_1_1_animation_item_a249007fb87aec92b8fc569d3bde45793}{rev\+::\+View\+::\+Animation\+Item}}, \mbox{\hyperlink{classrev_1_1_python_script_ad8a903fd2749527913565f640e5239d6}{rev\+::\+Python\+Script}}, \mbox{\hyperlink{classrev_1_1_listener_component_a83f62effee9c503dd7ee0b0322b0057e}{rev\+::\+Listener\+Component}}, \mbox{\hyperlink{classrev_1_1_script_component_a469f8cd22b928cef2b98297b3b0285dd}{rev\+::\+Script\+Component}}, \mbox{\hyperlink{classrev_1_1_sound_manager_a00de07c95c3a3993ec7c2008cc2c0db3}{rev\+::\+Sound\+Manager}}, \mbox{\hyperlink{classrev_1_1_physics_geometry_ad4311205e1a6eabeeb7773a01d11add5}{rev\+::\+Physics\+Geometry}}, \mbox{\hyperlink{classrev_1_1_animation_process_acb6fc0ee2382f8e5b09fd2d3f4847b27}{rev\+::\+Animation\+Process}}, \mbox{\hyperlink{classrev_1_1_threaded_process_a102e7ef754f41bb16225c4207b6b3c58}{rev\+::\+Threaded\+Process}}, \mbox{\hyperlink{classrev_1_1_scene_adce7b89900d921df3df9b4f6136fda83}{rev\+::\+Scene}}, \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a3bb552a87176f4b12848e43dfdd287b2}{rev\+::\+View\+::\+Tree\+Item$<$ T $>$}}, \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a3bb552a87176f4b12848e43dfdd287b2}{rev\+::\+View\+::\+Tree\+Item$<$ Shader\+Preset $>$}}, \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a3bb552a87176f4b12848e43dfdd287b2}{rev\+::\+View\+::\+Tree\+Item$<$ Component $>$}}, \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a3bb552a87176f4b12848e43dfdd287b2}{rev\+::\+View\+::\+Tree\+Item$<$ rev\+::\+Object $>$}}, \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a3bb552a87176f4b12848e43dfdd287b2}{rev\+::\+View\+::\+Tree\+Item$<$ Object $>$}}, \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a3bb552a87176f4b12848e43dfdd287b2}{rev\+::\+View\+::\+Tree\+Item$<$ Blueprint $>$}}, \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a3bb552a87176f4b12848e43dfdd287b2}{rev\+::\+View\+::\+Tree\+Item$<$ Sorting\+Layer $>$}}, \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a3bb552a87176f4b12848e43dfdd287b2}{rev\+::\+View\+::\+Tree\+Item$<$ Glyph $>$}}, \mbox{\hyperlink{classrev_1_1_scripted_process_a160dbc327ce205f9999d8c5c276559a9}{rev\+::\+Scripted\+Process}}, \mbox{\hyperlink{classrev_1_1_physics_scene_component_addd583a06c948a96f86d90937a3c4c8d}{rev\+::\+Physics\+Scene\+Component}}, \mbox{\hyperlink{classrev_1_1_state_component_ae95ec4b4b31544c7b555ff80ac423162}{rev\+::\+State\+Component}}, \mbox{\hyperlink{classrev_1_1_sprite_animation_process_acf80fb6d112c6d00a00bfa9620247e53}{rev\+::\+Sprite\+Animation\+Process}}, \mbox{\hyperlink{classrev_1_1_script_behavior_a5296bd41ce1593182019f8be6628eada}{rev\+::\+Script\+Behavior}}, \mbox{\hyperlink{classrev_1_1_component_command_a7b4e11189228c9d9e5ff81598cb325f6}{rev\+::\+Component\+Command}}, \mbox{\hyperlink{classrev_1_1_view_1_1_g_l_widget_aee5ce763da9236cf4b2a707df9f93c3b}{rev\+::\+View\+::\+G\+L\+Widget}}, \mbox{\hyperlink{classrev_1_1_script_listener_aec59340a0007e966eb08f9fb28c0bdac}{rev\+::\+Script\+Listener}}, \mbox{\hyperlink{structrev_1_1_sorting_layer_a5923e5133aac7e650a6b4e711d5883d1}{rev\+::\+Sorting\+Layer}}, \mbox{\hyperlink{classrev_1_1_load_process_aadfe0ec547dbda51e60517691617e88b}{rev\+::\+Load\+Process}}, \mbox{\hyperlink{classrev_1_1_abstract_service_a062e932eaa2eab0109288f2b32e459f7}{rev\+::\+Abstract\+Service}}, \mbox{\hyperlink{classrev_1_1_animation_manager_a7654304032196589413ddb5fec41981b}{rev\+::\+Animation\+Manager}}, \mbox{\hyperlink{classrev_1_1_scene_command_a8914ef927fc5bcf9071ab857c4c636a4}{rev\+::\+Scene\+Command}}, \mbox{\hyperlink{classrev_1_1_rigid_body_component_ae206ce233b7fffd3781cc37bbfc6e17d}{rev\+::\+Rigid\+Body\+Component}}, \mbox{\hyperlink{classrev_1_1_view_1_1_component_tree_widget_aabf1838a1bf9240def872d8526b3aa4b}{rev\+::\+View\+::\+Component\+Tree\+Widget}}, \mbox{\hyperlink{classrev_1_1_char_control_component_a62ac7aa35e708a0f0fcde627bababfd9}{rev\+::\+Char\+Control\+Component}}, \mbox{\hyperlink{classrev_1_1_g_l_1_1_vertex_array_object_a98604a2e7bba755dbedf60a4bf1ddfbb}{rev\+::\+G\+L\+::\+Vertex\+Array\+Object}}, \mbox{\hyperlink{classrev_1_1_transform_component_a7dc2abcb1d759a29c28fc8ceb632a31d}{rev\+::\+Transform\+Component}}, \mbox{\hyperlink{classrev_1_1_main_window_a3d38cd81c10da2fcb09922c9d4dfd990}{rev\+::\+Main\+Window}}, \mbox{\hyperlink{classrev_1_1_edit_line_edit_command_a5289fd61a70c28475698a5f4cf30753b}{rev\+::\+Edit\+Line\+Edit\+Command}}, \mbox{\hyperlink{classrev_1_1_undo_command_aea7ceb3f5ea266e697f01a65da7afec5}{rev\+::\+Undo\+Command}}, \mbox{\hyperlink{classrev_1_1_view_1_1_console_tool_a8168c00a344099bff9626a775408aac4}{rev\+::\+View\+::\+Console\+Tool}}, and \mbox{\hyperlink{classrev_1_1_view_1_1_tool_ab5359d977478b9c3e30267bcc4e4a853}{rev\+::\+View\+::\+Tool}}.
+
+\mbox{\Hypertarget{classrev_1_1_object_a825ec2ff288b47272e733b1500c2798a}\label{classrev_1_1_object_a825ec2ff288b47272e733b1500c2798a}} 
+\index{rev::Object@{rev::Object}!toStdString@{toStdString}}
+\index{toStdString@{toStdString}!rev::Object@{rev::Object}}
+\subsubsection{\texorpdfstring{toStdString()}{toStdString()}}
+{\footnotesize\ttfamily std\+::string rev\+::\+Object\+::to\+Std\+String (\begin{DoxyParamCaption}\item[{bool}]{include\+\_\+type = {\ttfamily true} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Create a string representation of this \mbox{\hyperlink{classrev_1_1_object}{Object}}. 
+
+Return a brief string description of the class instance that is useful for debugging purposes. The default implementation, where include\+\_\+type is set to true, outputs the class name of the object and its address\+: Object(0x00012345). When the include\+\_\+type is false, the output is just the address\+: 0x00012345.
+
+This method supports the operator$<$$<$ methods for ostream and Q\+Debug. Subclasses should override to output custom information.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em include\+\_\+type} & Optional flag indicating whether the class name should be included in the returned string. Default is true. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_object_a9f6a5f5e48e10f088c819edd560f530f}\label{classrev_1_1_object_a9f6a5f5e48e10f088c819edd560f530f}} 
+\index{rev::Object@{rev::Object}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!rev::Object@{rev::Object}}
+\subsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{classrev_1_1_object}{Object}} \&}]{object }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Output debug information for the class instance via std\+::ostream. 
+
+This will call to\+Std\+String for the subclass to add to the std\+::ostream. There should be no need for subclasses to override this method as most everything needed to be done can be accomplished by overriding to\+Std\+String. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/G\+Object.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/G\+Object.\+cpp\end{DoxyCompactItemize}

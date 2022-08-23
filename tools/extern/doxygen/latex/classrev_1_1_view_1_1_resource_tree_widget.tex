@@ -1,0 +1,262 @@
+\hypertarget{classrev_1_1_view_1_1_resource_tree_widget}{}\section{rev\+::View\+::Resource\+Tree\+Widget Class Reference}
+\label{classrev_1_1_view_1_1_resource_tree_widget}\index{rev::View::ResourceTreeWidget@{rev::View::ResourceTreeWidget}}
+Inheritance diagram for rev\+::View\+::Resource\+Tree\+Widget\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.842640cm]{classrev_1_1_view_1_1_resource_tree_widget}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_af61029727eabccd3a7c3e69688ae99b7}\label{classrev_1_1_view_1_1_resource_tree_widget_af61029727eabccd3a7c3e69688ae99b7}} 
+{\bfseries Resource\+Tree\+Widget} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$engine, const Q\+String \&name, Q\+Widget $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_aac37880ff9f438fa42ca943b5af817d5}\label{classrev_1_1_view_1_1_resource_tree_widget_aac37880ff9f438fa42ca943b5af817d5}} 
+{\bfseries $\sim$\+Resource\+Tree\+Widget} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_a8adc0512c3890f451f4445486049ad89}\label{classrev_1_1_view_1_1_resource_tree_widget_a8adc0512c3890f451f4445486049ad89}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_resource_tree_widget_a8adc0512c3890f451f4445486049ad89}{repopulate}} ()
+\begin{DoxyCompactList}\small\item\em Populate the resource widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_a9be40bd5cc5f664fa8a5deb9d9011301}\label{classrev_1_1_view_1_1_resource_tree_widget_a9be40bd5cc5f664fa8a5deb9d9011301}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_resource_tree_widget_a9be40bd5cc5f664fa8a5deb9d9011301}{reload\+Item}} (const \mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \&handle\+Id)
+\begin{DoxyCompactList}\small\item\em Reload the given resource widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_a9247d4b0d7141b7656ea8329690b9dec}\label{classrev_1_1_view_1_1_resource_tree_widget_a9247d4b0d7141b7656ea8329690b9dec}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_resource_tree_widget_a9247d4b0d7141b7656ea8329690b9dec}{add\+Item}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ handle)
+\begin{DoxyCompactList}\small\item\em Add component item to the widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_ac20525161f482cb38b024a7be8fd3fdf}\label{classrev_1_1_view_1_1_resource_tree_widget_ac20525161f482cb38b024a7be8fd3fdf}} 
+void {\bfseries add\+Item} (\mbox{\hyperlink{classrev_1_1_view_1_1_resource_item}{View\+::\+Resource\+Item}} $\ast$item)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_a8e2d79e22e92526fb7e25e2d75547b61}\label{classrev_1_1_view_1_1_resource_tree_widget_a8e2d79e22e92526fb7e25e2d75547b61}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_resource_tree_widget_a8e2d79e22e92526fb7e25e2d75547b61}{remove\+Item}} (\mbox{\hyperlink{classrev_1_1_view_1_1_resource_item}{Resource\+Item}} $\ast$resource\+Item)
+\begin{DoxyCompactList}\small\item\em Remove component item from the widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_a6c17cbf1c043369e4ccf33acb2a97048}\label{classrev_1_1_view_1_1_resource_tree_widget_a6c17cbf1c043369e4ccf33acb2a97048}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_resource_item}{View\+::\+Resource\+Item}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_resource_tree_widget_a6c17cbf1c043369e4ccf33acb2a97048}{get\+Item}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ handle)
+\begin{DoxyCompactList}\small\item\em Get tree item corresponding to the given component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_adffa4a345886d2cbb67f60155dcc26ca}\label{classrev_1_1_view_1_1_resource_tree_widget_adffa4a345886d2cbb67f60155dcc26ca}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_resource_tree_widget_adffa4a345886d2cbb67f60155dcc26ca}{resize\+Columns}} ()
+\begin{DoxyCompactList}\small\item\em Resize columns to fit content. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ rev\+::Object overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_resource_tree_widget_ab15fda44cb0727f860a2d1071fefb104}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_resource_tree_widget_a4255d4ec5631ed643a2248c7ce6a109f}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classrev_1_1_view_1_1_resource_tree_widget_ac26fb5177b9370d3ba293ad75bf28bee}{is\+Service}} () const override
+\begin{DoxyCompactList}\small\item\em Returns True if this \mbox{\hyperlink{classrev_1_1_abstract_service}{Abstract\+Service}} represents a service. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classrev_1_1_view_1_1_resource_tree_widget_a22ed2556068aa97cf838094d5e2fb7e1}{is\+Tool}} () const override
+\begin{DoxyCompactList}\small\item\em Returns True if this \mbox{\hyperlink{classrev_1_1_abstract_service}{Abstract\+Service}} represents a tool. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Slots}
+\begin{Indent}\textbf{ Protected Slots}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_ad378b7e63b35f38160dd7e377ec765b4}\label{classrev_1_1_view_1_1_resource_tree_widget_ad378b7e63b35f38160dd7e377ec765b4}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_resource_tree_widget_ad378b7e63b35f38160dd7e377ec765b4}{on\+Item\+Double\+Clicked}} (Q\+Tree\+Widget\+Item $\ast$item, int column)
+\begin{DoxyCompactList}\small\item\em What to do on item double click. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_a5cda2e4b5d22c7cd1aad9fe29e340198}\label{classrev_1_1_view_1_1_resource_tree_widget_a5cda2e4b5d22c7cd1aad9fe29e340198}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_resource_tree_widget_a5cda2e4b5d22c7cd1aad9fe29e340198}{on\+Item\+Expanded}} (Q\+Tree\+Widget\+Item $\ast$item)
+\begin{DoxyCompactList}\small\item\em What to do on item expanded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_af24ca63859481039e2b44aa357d37d45}\label{classrev_1_1_view_1_1_resource_tree_widget_af24ca63859481039e2b44aa357d37d45}} 
+void {\bfseries initialize\+Categories} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_ac4288d34f59d4e5382771123f779daab}\label{classrev_1_1_view_1_1_resource_tree_widget_ac4288d34f59d4e5382771123f779daab}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_resource_tree_widget_ac4288d34f59d4e5382771123f779daab}{mouse\+Release\+Event}} (Q\+Mouse\+Event $\ast$event) override
+\begin{DoxyCompactList}\small\item\em Override default mouse release event. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_adc7dbe5133e9b8859c51d6bd362ee050}\label{classrev_1_1_view_1_1_resource_tree_widget_adc7dbe5133e9b8859c51d6bd362ee050}} 
+void {\bfseries drop\+Event} (Q\+Drop\+Event $\ast$event) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_aed106d79962ce1da519d7f09a4b832ba}\label{classrev_1_1_view_1_1_resource_tree_widget_aed106d79962ce1da519d7f09a4b832ba}} 
+void {\bfseries drag\+Enter\+Event} (Q\+Drag\+Enter\+Event $\ast$event) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_a60e29e10374ebfea3ae93a97bf9d2ee9}\label{classrev_1_1_view_1_1_resource_tree_widget_a60e29e10374ebfea3ae93a97bf9d2ee9}} 
+void {\bfseries drag\+Leave\+Event} (Q\+Drag\+Leave\+Event $\ast$event) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_af1c5ab1d984ba2057cf6b274b5476c95}\label{classrev_1_1_view_1_1_resource_tree_widget_af1c5ab1d984ba2057cf6b274b5476c95}} 
+void {\bfseries drag\+Move\+Event} (Q\+Drag\+Move\+Event $\ast$event) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_a7a2a954ca8d729857a65839ce2102483}\label{classrev_1_1_view_1_1_resource_tree_widget_a7a2a954ca8d729857a65839ce2102483}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_resource_tree_widget_a7a2a954ca8d729857a65839ce2102483}{remove\+Item}} (const \mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \&handle\+Id)
+\begin{DoxyCompactList}\small\item\em Remove an item. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_afd3949a1c53ac10d3ea0f7ec0502b805}\label{classrev_1_1_view_1_1_resource_tree_widget_afd3949a1c53ac10d3ea0f7ec0502b805}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_resource_tree_widget_afd3949a1c53ac10d3ea0f7ec0502b805}{initialize\+Widget}} ()
+\begin{DoxyCompactList}\small\item\em Initialize the widget. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_resource_tree_widget_ac565478e3b3f618414c7a1762bfd86c7}{context\+Menu\+Event}} (Q\+Context\+Menu\+Event $\ast$event) override
+\begin{DoxyCompactList}\small\item\em Generates a context menu, overriding default implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_af84ef231b34aac684e6294ea4978be70}\label{classrev_1_1_view_1_1_resource_tree_widget_af84ef231b34aac684e6294ea4978be70}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_resource_item}{Resource\+Item}} $\ast$ {\bfseries m\+\_\+image\+Item}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_a2df37da7246288f66e5c5c52f8784080}\label{classrev_1_1_view_1_1_resource_tree_widget_a2df37da7246288f66e5c5c52f8784080}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_resource_item}{Resource\+Item}} $\ast$ {\bfseries m\+\_\+texture\+Item}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_aef6ae2400e7cf5805c625aebcd14120c}\label{classrev_1_1_view_1_1_resource_tree_widget_aef6ae2400e7cf5805c625aebcd14120c}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_resource_item}{Resource\+Item}} $\ast$ {\bfseries m\+\_\+material\+Item}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_a720a046d375813c91ebc58547e6620b9}\label{classrev_1_1_view_1_1_resource_tree_widget_a720a046d375813c91ebc58547e6620b9}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_resource_item}{Resource\+Item}} $\ast$ {\bfseries m\+\_\+mesh\+Item}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_a2107f6d02026240c068aef0bd7a52380}\label{classrev_1_1_view_1_1_resource_tree_widget_a2107f6d02026240c068aef0bd7a52380}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_resource_item}{Resource\+Item}} $\ast$ {\bfseries m\+\_\+cube\+Texture\+Item}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_ae6c6399bb378c47d0ae194a767b33714}\label{classrev_1_1_view_1_1_resource_tree_widget_ae6c6399bb378c47d0ae194a767b33714}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_resource_item}{Resource\+Item}} $\ast$ {\bfseries m\+\_\+animation\+Item}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_a8a3cb7382c64f3c9e3ec00f65e8c803e}\label{classrev_1_1_view_1_1_resource_tree_widget_a8a3cb7382c64f3c9e3ec00f65e8c803e}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_resource_item}{Resource\+Item}} $\ast$ {\bfseries m\+\_\+skeleton\+Item}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_ad1f0851b737bb52f0284b9395fa7bbef}\label{classrev_1_1_view_1_1_resource_tree_widget_ad1f0851b737bb52f0284b9395fa7bbef}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_resource_item}{Resource\+Item}} $\ast$ {\bfseries m\+\_\+model\+Item}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_ac3ba37d2b0b39be05ba10ceac0e49663}\label{classrev_1_1_view_1_1_resource_tree_widget_ac3ba37d2b0b39be05ba10ceac0e49663}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_resource_item}{Resource\+Item}} $\ast$ {\bfseries m\+\_\+shader\+Item}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_a3464fa95e37c27025c85d719e9693b58}\label{classrev_1_1_view_1_1_resource_tree_widget_a3464fa95e37c27025c85d719e9693b58}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_resource_item}{Resource\+Item}} $\ast$ {\bfseries m\+\_\+script\+Item}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_a915f2b1ed8d886e8179bd79ddad0b030}\label{classrev_1_1_view_1_1_resource_tree_widget_a915f2b1ed8d886e8179bd79ddad0b030}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_resource_item}{Resource\+Item}} $\ast$ {\bfseries m\+\_\+audio\+Item}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_aa36c932138d82859d98892f943c6e662}\label{classrev_1_1_view_1_1_resource_tree_widget_aa36c932138d82859d98892f943c6e662}} 
+Q\+Action $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_resource_tree_widget_aa36c932138d82859d98892f943c6e662}{m\+\_\+add\+Model}}
+\begin{DoxyCompactList}\small\item\em Actions performable in this widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_a2ab48e17c2c127e2535cfeca942118c6}\label{classrev_1_1_view_1_1_resource_tree_widget_a2ab48e17c2c127e2535cfeca942118c6}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+load\+Model}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_a2eb884db22267dc7a58c6133a2735dad}\label{classrev_1_1_view_1_1_resource_tree_widget_a2eb884db22267dc7a58c6133a2735dad}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+copy\+Model}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_a971f7e1c8903be3735a991b38e070481}\label{classrev_1_1_view_1_1_resource_tree_widget_a971f7e1c8903be3735a991b38e070481}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+add\+Shader\+Program}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_ab6dd4dc16c172cb55fbafbbc5fdd4906}\label{classrev_1_1_view_1_1_resource_tree_widget_ab6dd4dc16c172cb55fbafbbc5fdd4906}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+add\+Texture}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_a590e6666275bb04f644e61e666ae8b3a}\label{classrev_1_1_view_1_1_resource_tree_widget_a590e6666275bb04f644e61e666ae8b3a}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+add\+Material}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_ad3a6efe36e2feb664dda8d25350da2b6}\label{classrev_1_1_view_1_1_resource_tree_widget_ad3a6efe36e2feb664dda8d25350da2b6}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+copy\+Material}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_a96ac4d4b96989befe81ecca1e64e77a4}\label{classrev_1_1_view_1_1_resource_tree_widget_a96ac4d4b96989befe81ecca1e64e77a4}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+add\+Mesh}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_aa5b97f9e0b8688188b8ef5cab59394ac}\label{classrev_1_1_view_1_1_resource_tree_widget_aa5b97f9e0b8688188b8ef5cab59394ac}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+delete\+Model}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_ad524503d0a50379a40623dd7555dea34}\label{classrev_1_1_view_1_1_resource_tree_widget_ad524503d0a50379a40623dd7555dea34}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+delete\+Material}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_a0f1baf7982f03594471b0eb8bffd79e0}\label{classrev_1_1_view_1_1_resource_tree_widget_a0f1baf7982f03594471b0eb8bffd79e0}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+delete\+Shader\+Program}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_aa3cfd0f6e01bc2fa1fb802ffb77ad91c}\label{classrev_1_1_view_1_1_resource_tree_widget_aa3cfd0f6e01bc2fa1fb802ffb77ad91c}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_resource_item}{Resource\+Item}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_resource_tree_widget_aa3cfd0f6e01bc2fa1fb802ffb77ad91c}{m\+\_\+current\+Resource\+Item}}
+\begin{DoxyCompactList}\small\item\em The resource clicked by a right-\/mouse operation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_a1b7f486d8462504533b8171b878fdcb5}\label{classrev_1_1_view_1_1_resource_tree_widget_a1b7f486d8462504533b8171b878fdcb5}} 
+\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_resource_tree_widget_a1b7f486d8462504533b8171b878fdcb5}{m\+\_\+engine}}
+\begin{DoxyCompactList}\small\item\em Core engine for the application. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+{\em What to do on current item change }\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_a1039607958f9e5946cdd576632f23fa9}\label{classrev_1_1_view_1_1_resource_tree_widget_a1039607958f9e5946cdd576632f23fa9}} 
+class {\bfseries Resource\+Item}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_ab15fda44cb0727f860a2d1071fefb104}\label{classrev_1_1_view_1_1_resource_tree_widget_ab15fda44cb0727f860a2d1071fefb104}} 
+\index{rev::View::ResourceTreeWidget@{rev::View::ResourceTreeWidget}!className@{className}}
+\index{className@{className}!rev::View::ResourceTreeWidget@{rev::View::ResourceTreeWidget}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+View\+::\+Resource\+Tree\+Widget\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_abstract_service_a0b64ee4651db7637a70265697ca62453}{rev\+::\+Abstract\+Service}}.
+
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_ac565478e3b3f618414c7a1762bfd86c7}\label{classrev_1_1_view_1_1_resource_tree_widget_ac565478e3b3f618414c7a1762bfd86c7}} 
+\index{rev::View::ResourceTreeWidget@{rev::View::ResourceTreeWidget}!contextMenuEvent@{contextMenuEvent}}
+\index{contextMenuEvent@{contextMenuEvent}!rev::View::ResourceTreeWidget@{rev::View::ResourceTreeWidget}}
+\subsubsection{\texorpdfstring{contextMenuEvent()}{contextMenuEvent()}}
+{\footnotesize\ttfamily void rev\+::\+View\+::\+Resource\+Tree\+Widget\+::context\+Menu\+Event (\begin{DoxyParamCaption}\item[{Q\+Context\+Menu\+Event $\ast$}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}}
+
+
+
+Generates a context menu, overriding default implementation. 
+
+\begin{DoxyNote}{Note}
+Context menus can be executed either asynchronously using the popup() function or synchronously using the exec() function 
+\end{DoxyNote}
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_ac26fb5177b9370d3ba293ad75bf28bee}\label{classrev_1_1_view_1_1_resource_tree_widget_ac26fb5177b9370d3ba293ad75bf28bee}} 
+\index{rev::View::ResourceTreeWidget@{rev::View::ResourceTreeWidget}!isService@{isService}}
+\index{isService@{isService}!rev::View::ResourceTreeWidget@{rev::View::ResourceTreeWidget}}
+\subsubsection{\texorpdfstring{isService()}{isService()}}
+{\footnotesize\ttfamily virtual bool rev\+::\+View\+::\+Resource\+Tree\+Widget\+::is\+Service (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns True if this \mbox{\hyperlink{classrev_1_1_abstract_service}{Abstract\+Service}} represents a service. 
+
+This is not a service 
+
+Implements \mbox{\hyperlink{classrev_1_1_abstract_service_a2ee1ad1b9d10a1d702d0a484e214b99d}{rev\+::\+Abstract\+Service}}.
+
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_a22ed2556068aa97cf838094d5e2fb7e1}\label{classrev_1_1_view_1_1_resource_tree_widget_a22ed2556068aa97cf838094d5e2fb7e1}} 
+\index{rev::View::ResourceTreeWidget@{rev::View::ResourceTreeWidget}!isTool@{isTool}}
+\index{isTool@{isTool}!rev::View::ResourceTreeWidget@{rev::View::ResourceTreeWidget}}
+\subsubsection{\texorpdfstring{isTool()}{isTool()}}
+{\footnotesize\ttfamily virtual bool rev\+::\+View\+::\+Resource\+Tree\+Widget\+::is\+Tool (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns True if this \mbox{\hyperlink{classrev_1_1_abstract_service}{Abstract\+Service}} represents a tool. 
+
+This is not a tool 
+
+Implements \mbox{\hyperlink{classrev_1_1_abstract_service_aeb245a6d33601ccb842f4c7c2a3dda7a}{rev\+::\+Abstract\+Service}}.
+
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_tree_widget_a4255d4ec5631ed643a2248c7ce6a109f}\label{classrev_1_1_view_1_1_resource_tree_widget_a4255d4ec5631ed643a2248c7ce6a109f}} 
+\index{rev::View::ResourceTreeWidget@{rev::View::ResourceTreeWidget}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::View::ResourceTreeWidget@{rev::View::ResourceTreeWidget}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+View\+::\+Resource\+Tree\+Widget\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_abstract_service_a062e932eaa2eab0109288f2b32e459f7}{rev\+::\+Abstract\+Service}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Resource\+Widgets.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Resource\+Widgets.\+cpp\end{DoxyCompactItemize}

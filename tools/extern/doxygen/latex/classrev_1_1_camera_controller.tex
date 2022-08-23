@@ -1,0 +1,96 @@
+\hypertarget{classrev_1_1_camera_controller}{}\section{rev\+::Camera\+Controller Class Reference}
+\label{classrev_1_1_camera_controller}\index{rev::CameraController@{rev::CameraController}}
+
+
+Wrapper to control camera movement.  
+
+
+
+
+{\ttfamily \#include $<$G\+Camera\+Component.\+h$>$}
+
+Inheritance diagram for rev\+::Camera\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_camera_controller}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrev_1_1_camera_controller_1_1_controller_profile}{Controller\+Profile}}
+\begin{DoxyCompactList}\small\item\em Profile for the controller\textquotesingle{}s behavior. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_controller_aa9e6df05f604325e6844cc37f5ec711c}\label{classrev_1_1_camera_controller_aa9e6df05f604325e6844cc37f5ec711c}} 
+enum \mbox{\hyperlink{classrev_1_1_camera_controller_aa9e6df05f604325e6844cc37f5ec711c}{Movement\+Type}} \{ \newline
+{\bfseries k\+Zoom}, 
+{\bfseries k\+Pan}, 
+{\bfseries k\+Tilt}, 
+{\bfseries k\+Translate}, 
+\newline
+{\bfseries k\+Rotate}
+ \}
+\begin{DoxyCompactList}\small\item\em Movement types. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_controller_a73ea4ffe0de90a59a762316ccfdfed7c}\label{classrev_1_1_camera_controller_a73ea4ffe0de90a59a762316ccfdfed7c}} 
+enum \mbox{\hyperlink{classrev_1_1_camera_controller_a73ea4ffe0de90a59a762316ccfdfed7c}{Direction}} \{ \newline
+{\bfseries k\+Left}, 
+{\bfseries k\+Right}, 
+{\bfseries k\+Up}, 
+{\bfseries k\+Down}, 
+\newline
+{\bfseries k\+Forward}, 
+{\bfseries k\+Backwards}
+ \}
+\begin{DoxyCompactList}\small\item\em Movement directions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_controller_a06b17ff4c8a7b0d2bfe3d2ab91c007d8}\label{classrev_1_1_camera_controller_a06b17ff4c8a7b0d2bfe3d2ab91c007d8}} 
+{\bfseries Camera\+Controller} (\mbox{\hyperlink{classrev_1_1_camera_component}{Camera\+Component}} $\ast$camera)
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_controller_afaa3e72079cdd626ecf8f653db017d8b}\label{classrev_1_1_camera_controller_afaa3e72079cdd626ecf8f653db017d8b}} 
+{\bfseries $\sim$\+Camera\+Controller} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_controller_ae47aa8ef49755565492ca02779715492}\label{classrev_1_1_camera_controller_ae47aa8ef49755565492ca02779715492}} 
+\mbox{\hyperlink{structrev_1_1_camera_controller_1_1_controller_profile}{Controller\+Profile}} \& {\bfseries profile} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_controller_a39eb3a1cdf7be438532017f2eb2c0790}\label{classrev_1_1_camera_controller_a39eb3a1cdf7be438532017f2eb2c0790}} 
+void \mbox{\hyperlink{classrev_1_1_camera_controller_a39eb3a1cdf7be438532017f2eb2c0790}{step}} (double delta\+Sec)
+\begin{DoxyCompactList}\small\item\em Step the camera controller forward in time. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_controller_a4657274a783679a0cedc4df9303603df}\label{classrev_1_1_camera_controller_a4657274a783679a0cedc4df9303603df}} 
+void \mbox{\hyperlink{classrev_1_1_camera_controller_a4657274a783679a0cedc4df9303603df}{step}} (double delta\+Sec, const \mbox{\hyperlink{structrev_1_1_camera_controller_1_1_controller_profile}{Controller\+Profile}} \&profile)
+\begin{DoxyCompactList}\small\item\em Step the camera controller forward in time, using the given profile. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_controller_a937dce77826f5c7adc4e12d396103289}\label{classrev_1_1_camera_controller_a937dce77826f5c7adc4e12d396103289}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_camera_controller_a937dce77826f5c7adc4e12d396103289}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_controller_a021696f71e422c17d3cee2466c986427}\label{classrev_1_1_camera_controller_a021696f71e422c17d3cee2466c986427}} 
+virtual void \mbox{\hyperlink{classrev_1_1_camera_controller_a021696f71e422c17d3cee2466c986427}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Wrapper to control camera movement. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+Camera\+Component.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+Camera\+Component.\+cpp\end{DoxyCompactItemize}

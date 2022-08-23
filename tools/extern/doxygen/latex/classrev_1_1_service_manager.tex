@@ -1,0 +1,163 @@
+\hypertarget{classrev_1_1_service_manager}{}\section{rev\+::Service\+Manager Class Reference}
+\label{classrev_1_1_service_manager}\index{rev::ServiceManager@{rev::ServiceManager}}
+
+
+Singleton that manages \mbox{\hyperlink{classrev_1_1_service}{Service}} and Tool instances.  
+
+
+
+
+{\ttfamily \#include $<$G\+Service\+Manager.\+h$>$}
+
+Inheritance diagram for rev\+::Service\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_service_manager}
+\end{center}
+\end{figure}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_service_manager_a32c957d349480d9faa79939b24a3f30e}\label{classrev_1_1_service_manager_a32c957d349480d9faa79939b24a3f30e}} 
+void {\bfseries prepare\+To\+Exit} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_service_manager_a79e6402440decc8eebed1fb1fcbb7bd9}\label{classrev_1_1_service_manager_a79e6402440decc8eebed1fb1fcbb7bd9}} 
+void {\bfseries service\+Added} (const \mbox{\hyperlink{classrev_1_1_abstract_service}{Abstract\+Service}} \&)
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Class Name and Namespace}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_service_manager_a06a13a7f32f50ada990875ee3ec08a9e}\label{classrev_1_1_service_manager_a06a13a7f32f50ada990875ee3ec08a9e}} 
+const char $\ast$ {\bfseries class\+Name} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_service_manager_aa77d66aeb43b2e551dc04cbff711d410}\label{classrev_1_1_service_manager_aa77d66aeb43b2e551dc04cbff711d410}} 
+const char $\ast$ {\bfseries namespace\+Name} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+Q\+Event\+::\+Type \mbox{\hyperlink{classrev_1_1_service_manager_a46b5559f5355323714bb47b632d3bc31}{post\+Construction\+Event\+Type}} ()
+\begin{DoxyCompactList}\small\item\em Get the custom Q\+Event Type for post construction. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classrev_1_1_service_manager_af74579fd1a460c2caf521f9363f03ab1}{add\+Deferred\+Sender\+Connection}} (const Q\+String \&sender\+\_\+name, const Q\+String \&sender\+\_\+signal, const Q\+String \&receiver\+\_\+name, const Q\+String \&receiver\+\_\+method)
+\begin{DoxyCompactList}\small\item\em Schedule a Qt Signal/\+Slot connection to a possibly unloaded sender. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classrev_1_1_service_manager_a0c881de30ce94451c102e41b456ea8c7}{has\+Service}} (const Q\+String \&name) const
+\begin{DoxyCompactList}\small\item\em Returns True if a service or tool of the given name is managed by the \mbox{\hyperlink{classrev_1_1_service}{Service}} \mbox{\hyperlink{classrev_1_1_manager}{Manager}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classrev_1_1_abstract_service}{Abstract\+Service}} \& \mbox{\hyperlink{classrev_1_1_service_manager_a88bf7de4e527f12bd2df851b7867b433}{get\+Service}} (const Q\+String \&name)
+\begin{DoxyCompactList}\small\item\em Get a reference to an existing \mbox{\hyperlink{classrev_1_1_abstract_service}{Abstract\+Service}} with the given name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{Indent}\textbf{ Static Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classrev_1_1_service_manager}{Service\+Manager}} \& \mbox{\hyperlink{classrev_1_1_service_manager_acb0c624f49261719e00e9ae99b383548}{get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em Get the one and only instance of the \mbox{\hyperlink{classrev_1_1_service_manager}{Service\+Manager}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classrev_1_1_service_manager_ab8c309682969b2cb25bf900f31505bb0}{add\+Service}} (\mbox{\hyperlink{classrev_1_1_abstract_service}{Abstract\+Service}} $\ast$service)
+\begin{DoxyCompactList}\small\item\em Add a service subclass of \mbox{\hyperlink{classrev_1_1_abstract_service}{Abstract\+Service}} to be managed by the \mbox{\hyperlink{classrev_1_1_service}{Service}} \mbox{\hyperlink{classrev_1_1_manager}{Manager}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_service_manager_ae0d55af2e9eb676a521779bfea8c53e3}\label{classrev_1_1_service_manager_ae0d55af2e9eb676a521779bfea8c53e3}} 
+class {\bfseries Abstract\+Service}
+\item 
+\mbox{\Hypertarget{classrev_1_1_service_manager_a6474ceb8669761e879329b39c3afb899}\label{classrev_1_1_service_manager_a6474ceb8669761e879329b39c3afb899}} 
+class {\bfseries Service}
+\item 
+\mbox{\Hypertarget{classrev_1_1_service_manager_a0bfd88a9f0c9df0ad8791e2103f1ea94}\label{classrev_1_1_service_manager_a0bfd88a9f0c9df0ad8791e2103f1ea94}} 
+class {\bfseries View\+::\+Tool}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Singleton that manages \mbox{\hyperlink{classrev_1_1_service}{Service}} and Tool instances. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_service_manager_af74579fd1a460c2caf521f9363f03ab1}\label{classrev_1_1_service_manager_af74579fd1a460c2caf521f9363f03ab1}} 
+\index{rev::ServiceManager@{rev::ServiceManager}!addDeferredSenderConnection@{addDeferredSenderConnection}}
+\index{addDeferredSenderConnection@{addDeferredSenderConnection}!rev::ServiceManager@{rev::ServiceManager}}
+\subsubsection{\texorpdfstring{addDeferredSenderConnection()}{addDeferredSenderConnection()}}
+{\footnotesize\ttfamily bool rev\+::\+Service\+Manager\+::add\+Deferred\+Sender\+Connection (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{sender\+\_\+name,  }\item[{const Q\+String \&}]{sender\+\_\+signal,  }\item[{const Q\+String \&}]{receiver\+\_\+name,  }\item[{const Q\+String \&}]{receiver\+\_\+method }\end{DoxyParamCaption})}
+
+
+
+Schedule a Qt Signal/\+Slot connection to a possibly unloaded sender. 
+
+Used when a service, the receiver, desires to connect to a signal of a sender and the sender may not be available. When the sender becomes available, the senders signal will be automatically connected to the receiving slot/signal. \mbox{\Hypertarget{classrev_1_1_service_manager_ab8c309682969b2cb25bf900f31505bb0}\label{classrev_1_1_service_manager_ab8c309682969b2cb25bf900f31505bb0}} 
+\index{rev::ServiceManager@{rev::ServiceManager}!addService@{addService}}
+\index{addService@{addService}!rev::ServiceManager@{rev::ServiceManager}}
+\subsubsection{\texorpdfstring{addService()}{addService()}}
+{\footnotesize\ttfamily bool rev\+::\+Service\+Manager\+::add\+Service (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classrev_1_1_abstract_service}{Abstract\+Service}} $\ast$}]{service }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Add a service subclass of \mbox{\hyperlink{classrev_1_1_abstract_service}{Abstract\+Service}} to be managed by the \mbox{\hyperlink{classrev_1_1_service}{Service}} \mbox{\hyperlink{classrev_1_1_manager}{Manager}}. 
+
+This method is automatically called in Service\+::event just before the post\+Construction call is made. The \mbox{\hyperlink{classrev_1_1_service}{Service}} \mbox{\hyperlink{classrev_1_1_manager}{Manager}} will take ownership of the given \mbox{\hyperlink{classrev_1_1_abstract_service}{Abstract\+Service}} pointer. \mbox{\Hypertarget{classrev_1_1_service_manager_acb0c624f49261719e00e9ae99b383548}\label{classrev_1_1_service_manager_acb0c624f49261719e00e9ae99b383548}} 
+\index{rev::ServiceManager@{rev::ServiceManager}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!rev::ServiceManager@{rev::ServiceManager}}
+\subsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_service_manager}{Service\+Manager}} \& rev\+::\+Service\+Manager\+::get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the one and only instance of the \mbox{\hyperlink{classrev_1_1_service_manager}{Service\+Manager}}. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the singleton \mbox{\hyperlink{classrev_1_1_service_manager}{Service\+Manager}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classrev_1_1_service_manager_a88bf7de4e527f12bd2df851b7867b433}\label{classrev_1_1_service_manager_a88bf7de4e527f12bd2df851b7867b433}} 
+\index{rev::ServiceManager@{rev::ServiceManager}!getService@{getService}}
+\index{getService@{getService}!rev::ServiceManager@{rev::ServiceManager}}
+\subsubsection{\texorpdfstring{getService()}{getService()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_abstract_service}{Abstract\+Service}} \& rev\+::\+Service\+Manager\+::get\+Service (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{name }\end{DoxyParamCaption})}
+
+
+
+Get a reference to an existing \mbox{\hyperlink{classrev_1_1_abstract_service}{Abstract\+Service}} with the given name. 
+
+Use the has\+Service\+Or\+Tool method to check if an service or tool exists. \mbox{\Hypertarget{classrev_1_1_service_manager_a0c881de30ce94451c102e41b456ea8c7}\label{classrev_1_1_service_manager_a0c881de30ce94451c102e41b456ea8c7}} 
+\index{rev::ServiceManager@{rev::ServiceManager}!hasService@{hasService}}
+\index{hasService@{hasService}!rev::ServiceManager@{rev::ServiceManager}}
+\subsubsection{\texorpdfstring{hasService()}{hasService()}}
+{\footnotesize\ttfamily bool rev\+::\+Service\+Manager\+::has\+Service (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{name }\end{DoxyParamCaption}) const}
+
+
+
+Returns True if a service or tool of the given name is managed by the \mbox{\hyperlink{classrev_1_1_service}{Service}} \mbox{\hyperlink{classrev_1_1_manager}{Manager}}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em name} & The name of the desired service. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the service or tool is known to the service manater 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classrev_1_1_service_manager_a46b5559f5355323714bb47b632d3bc31}\label{classrev_1_1_service_manager_a46b5559f5355323714bb47b632d3bc31}} 
+\index{rev::ServiceManager@{rev::ServiceManager}!postConstructionEventType@{postConstructionEventType}}
+\index{postConstructionEventType@{postConstructionEventType}!rev::ServiceManager@{rev::ServiceManager}}
+\subsubsection{\texorpdfstring{postConstructionEventType()}{postConstructionEventType()}}
+{\footnotesize\ttfamily Q\+Event\+::\+Type rev\+::\+Service\+Manager\+::post\+Construction\+Event\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the custom Q\+Event Type for post construction. 
+
+This custom event is posted during construction of \mbox{\hyperlink{classrev_1_1_service}{Service}} and Service\+Ui. The event is automatically handled by these classes to call the post\+Construction allowing developers to do any additional initialization after the \mbox{\hyperlink{classrev_1_1_service}{Service}} or Service\+UI has been constructed. \begin{DoxyReturn}{Returns}
+The custom Q\+Event type 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/service/G\+Service\+Manager.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/service/G\+Service\+Manager.\+cpp\end{DoxyCompactItemize}

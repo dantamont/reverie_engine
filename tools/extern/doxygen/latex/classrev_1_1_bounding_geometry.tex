@@ -1,0 +1,73 @@
+\hypertarget{classrev_1_1_bounding_geometry}{}\section{rev\+::Bounding\+Geometry$<$ G $>$ Class Template Reference}
+\label{classrev_1_1_bounding_geometry}\index{rev::BoundingGeometry$<$ G $>$@{rev::BoundingGeometry$<$ G $>$}}
+
+
+An aggregate class that includes one or more types of collision geometry.  
+
+
+
+
+{\ttfamily \#include $<$G\+Collisions.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_geometry_a082dee48d337860df9680a4317aef810}\label{classrev_1_1_bounding_geometry_a082dee48d337860df9680a4317aef810}} 
+{\bfseries Bounding\+Geometry} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_geometry_a86b10806030016c42fcd44f2047d821b}\label{classrev_1_1_bounding_geometry_a86b10806030016c42fcd44f2047d821b}} 
+{\bfseries $\sim$\+Bounding\+Geometry} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_geometry_a011b9e5cd68ab5625764c35f3479ccf5}\label{classrev_1_1_bounding_geometry_a011b9e5cd68ab5625764c35f3479ccf5}} 
+size\+\_\+t {\bfseries count} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_geometry_a1126d51f2566007f0627eda48af8206a}\label{classrev_1_1_bounding_geometry_a1126d51f2566007f0627eda48af8206a}} 
+std\+::vector$<$ G $>$ \& {\bfseries geometry} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_geometry_a8db4e3161699ee49e74d6e1391d65812}\label{classrev_1_1_bounding_geometry_a8db4e3161699ee49e74d6e1391d65812}} 
+const std\+::vector$<$ G $>$ \& {\bfseries geometry} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_geometry_ad0883bd4d3a842b5f1d3b1b3593fd0c3}\label{classrev_1_1_bounding_geometry_ad0883bd4d3a842b5f1d3b1b3593fd0c3}} 
+void \mbox{\hyperlink{classrev_1_1_bounding_geometry_ad0883bd4d3a842b5f1d3b1b3593fd0c3}{transform\+Bounds}} (const \mbox{\hyperlink{classrev_1_1_transform}{Transform}} \&transform, \mbox{\hyperlink{classrev_1_1_bounding_geometry}{Bounding\+Geometry}}$<$ G $>$ \&transformed\+Geomtry) const
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_transform}{Transform}} the bounding geometry. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_geometry_a5677c130bf9778b78468ce307d01983e}\label{classrev_1_1_bounding_geometry_a5677c130bf9778b78468ce307d01983e}} 
+void \mbox{\hyperlink{classrev_1_1_bounding_geometry_a5677c130bf9778b78468ce307d01983e}{add\+Transformed\+Bounds}} (const \mbox{\hyperlink{classrev_1_1_transform}{Transform}} \&transform, \mbox{\hyperlink{classrev_1_1_bounding_geometry}{Bounding\+Geometry}}$<$ G $>$ \&transformed\+Geometry) const
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_transform}{Transform}} the bounding geometry, and append to specified geometry. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_geometry_a6896f545f872ab5c66a8653d7d68bd8e}\label{classrev_1_1_bounding_geometry_a6896f545f872ab5c66a8653d7d68bd8e}} 
+bool \mbox{\hyperlink{classrev_1_1_bounding_geometry_a6896f545f872ab5c66a8653d7d68bd8e}{in\+Shape}} (const \mbox{\hyperlink{classrev_1_1_colliding_geometry}{Colliding\+Geometry}} \&shape) const
+\begin{DoxyCompactList}\small\item\em Check whether or not the bounding geometry intersects the given piece of geometry. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_geometry_a3b91ed09857844e5b56a59e3b2f79e51}\label{classrev_1_1_bounding_geometry_a3b91ed09857844e5b56a59e3b2f79e51}} 
+bool {\bfseries in\+Shape} (const \mbox{\hyperlink{classrev_1_1_colliding_geometry}{Colliding\+Geometry}} \&shape, size\+\_\+t start\+Index, size\+\_\+t num\+Checks) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_geometry_a1e3465733d76d44453e9e1f3aa4b5176}\label{classrev_1_1_bounding_geometry_a1e3465733d76d44453e9e1f3aa4b5176}} 
+bool \mbox{\hyperlink{classrev_1_1_bounding_geometry_a1e3465733d76d44453e9e1f3aa4b5176}{is\+Empty}} () const
+\begin{DoxyCompactList}\small\item\em Whether or not the bounds are empty. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_geometry_a92cbfed6b4a48c14dd0dbbb32dd2c23c}\label{classrev_1_1_bounding_geometry_a92cbfed6b4a48c14dd0dbbb32dd2c23c}} 
+std\+::vector$<$ G $>$ \mbox{\hyperlink{classrev_1_1_bounding_geometry_a92cbfed6b4a48c14dd0dbbb32dd2c23c}{m\+\_\+geometry}}
+\begin{DoxyCompactList}\small\item\em Base geometry. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename G$>$\newline
+class rev\+::\+Bounding\+Geometry$<$ G $>$}
+
+An aggregate class that includes one or more types of collision geometry. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/geometry/G\+Collisions.\+h\end{DoxyCompactItemize}

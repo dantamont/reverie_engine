@@ -1,0 +1,112 @@
+\hypertarget{classrev_1_1_sprite}{}\section{rev\+::Sprite Class Reference}
+\label{classrev_1_1_sprite}\index{rev::Sprite@{rev::Sprite}}
+
+
+\mbox{\hyperlink{classrev_1_1_sprite}{Sprite}} class.  
+
+
+
+
+{\ttfamily \#include $<$G\+Sprite.\+h$>$}
+
+Inheritance diagram for rev\+::Sprite\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{classrev_1_1_sprite}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_a4ef1a1d1c1b3630459b6f6415b6cb541}\label{classrev_1_1_sprite_a4ef1a1d1c1b3630459b6f6415b6cb541}} 
+{\bfseries Sprite} (\mbox{\hyperlink{classrev_1_1_canvas_component}{Canvas\+Component}} $\ast$canvas)
+\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_a5d78acfb1a7978506c9c1971cb15b878}\label{classrev_1_1_sprite_a5d78acfb1a7978506c9c1971cb15b878}} 
+{\bfseries $\sim$\+Sprite} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_a338ebaa5968f232f09f0b7306f46ccf5}\label{classrev_1_1_sprite_a338ebaa5968f232f09f0b7306f46ccf5}} 
+virtual Glyph\+Type {\bfseries glyph\+Type} () const override
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_a202531da8f848f3218a08e78d811f5eb}\label{classrev_1_1_sprite_a202531da8f848f3218a08e78d811f5eb}} 
+virtual size\+\_\+t \mbox{\hyperlink{classrev_1_1_sprite_a202531da8f848f3218a08e78d811f5eb}{get\+Sort\+ID}} () override
+\begin{DoxyCompactList}\small\item\em Get ID to sort renderable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_a5c3e1d06233ed3f7216c58ce77545ee2}\label{classrev_1_1_sprite_a5c3e1d06233ed3f7216c58ce77545ee2}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_sprite_a5c3e1d06233ed3f7216c58ce77545ee2}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_ad5784a10692a9155e8af3c390ebe8b42}\label{classrev_1_1_sprite_ad5784a10692a9155e8af3c390ebe8b42}} 
+virtual void \mbox{\hyperlink{classrev_1_1_sprite_ad5784a10692a9155e8af3c390ebe8b42}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_a4a0441daea9d7c8e1528d66a1a95687f}\label{classrev_1_1_sprite_a4a0441daea9d7c8e1528d66a1a95687f}} 
+Sprite\+Flags {\bfseries m\+\_\+flags}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_a26c075897574adf84709887c62b8d5f8}\label{classrev_1_1_sprite_a26c075897574adf84709887c62b8d5f8}} 
+\mbox{\hyperlink{classrev_1_1_sprite_animation}{Sprite\+Animation}} {\bfseries m\+\_\+animation}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_a9f111a4c75796f8924b027a379178a62}\label{classrev_1_1_sprite_a9f111a4c75796f8924b027a379178a62}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_sprite_animation_process}{Sprite\+Animation\+Process}} $>$ {\bfseries m\+\_\+animation\+Process}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_a36813ef14ebcebceb6fa4a20542b10b6}\label{classrev_1_1_sprite_a36813ef14ebcebceb6fa4a20542b10b6}} 
+\mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \mbox{\hyperlink{classrev_1_1_sprite_a36813ef14ebcebceb6fa4a20542b10b6}{m\+\_\+material\+Name}}
+\begin{DoxyCompactList}\small\item\em String for the material name, if waiting for resource to load. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_ab1f4b01fea79917db66bb60788092f31}\label{classrev_1_1_sprite_ab1f4b01fea79917db66bb60788092f31}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector2u}} \mbox{\hyperlink{classrev_1_1_sprite_ab1f4b01fea79917db66bb60788092f31}{m\+\_\+tex\+Coords}}
+\begin{DoxyCompactList}\small\item\em The current coordinates of the sprite in its texture atlas. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_adcfa736d8828c6b75e445313768915bd}\label{classrev_1_1_sprite_adcfa736d8828c6b75e445313768915bd}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector2u}} \mbox{\hyperlink{classrev_1_1_sprite_adcfa736d8828c6b75e445313768915bd}{m\+\_\+tex\+Dimensions}}
+\begin{DoxyCompactList}\small\item\em The dimensions of this sprite in its texture atlas. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Methods}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_af92e138d12047b922ceef546a7a75e87}\label{classrev_1_1_sprite_af92e138d12047b922ceef546a7a75e87}} 
+class {\bfseries Sprite\+Animation\+Process}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_a44f5fac62095914e4a73496891d3213f}\label{classrev_1_1_sprite_a44f5fac62095914e4a73496891d3213f}} 
+void \mbox{\hyperlink{classrev_1_1_sprite_a44f5fac62095914e4a73496891d3213f}{add\+Animation}} ()
+\begin{DoxyCompactList}\small\item\em Create the animation process for the sprite. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_ac884cb593e970aca9165bc027b1bf169}\label{classrev_1_1_sprite_ac884cb593e970aca9165bc027b1bf169}} 
+void {\bfseries remove\+Animation} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_ae57b7c8a1746fd2a22feae930ae594de}\label{classrev_1_1_sprite_ae57b7c8a1746fd2a22feae930ae594de}} 
+void \mbox{\hyperlink{classrev_1_1_sprite_ae57b7c8a1746fd2a22feae930ae594de}{initialize\+Mesh}} (\mbox{\hyperlink{classrev_1_1_resource_cache}{Resource\+Cache}} $\ast$cache)
+\begin{DoxyCompactList}\small\item\em Set mesh handle to a quad. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_aba856cad240a9bbdd0946de25ff89c36}\label{classrev_1_1_sprite_aba856cad240a9bbdd0946de25ff89c36}} 
+virtual void \mbox{\hyperlink{classrev_1_1_sprite_aba856cad240a9bbdd0946de25ff89c36}{bind\+Uniforms}} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program) override
+\begin{DoxyCompactList}\small\item\em Set uniforms for the sprite. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_aadafbcedc4b5ddccf9c2683f97382413}\label{classrev_1_1_sprite_aadafbcedc4b5ddccf9c2683f97382413}} 
+virtual void \mbox{\hyperlink{classrev_1_1_sprite_aadafbcedc4b5ddccf9c2683f97382413}{bind\+Textures}} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$shader\+Program, \mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} $\ast$context) override
+\begin{DoxyCompactList}\small\item\em Bind the textures used by this renderable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_abfd09a69f6420fb965037adcf805fb45}\label{classrev_1_1_sprite_abfd09a69f6420fb965037adcf805fb45}} 
+virtual void \mbox{\hyperlink{classrev_1_1_sprite_abfd09a69f6420fb965037adcf805fb45}{release\+Textures}} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$shader\+Program, \mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} $\ast$context) override
+\begin{DoxyCompactList}\small\item\em Release the textures used by this renderable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_a1831d4fa071c7bc1caf43375d5374cdf}\label{classrev_1_1_sprite_a1831d4fa071c7bc1caf43375d5374cdf}} 
+virtual void \mbox{\hyperlink{classrev_1_1_sprite_a1831d4fa071c7bc1caf43375d5374cdf}{draw\+Geometry}} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program, \mbox{\hyperlink{classrev_1_1_render_settings}{Render\+Settings}} $\ast$settings=nullptr) override
+\begin{DoxyCompactList}\small\item\em Draw geometry associated with this renderable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{classrev_1_1_sprite}{Sprite}} class. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/canvas/G\+Sprite.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/canvas/G\+Sprite.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,91 @@
+\hypertarget{structrev_1_1_audio_source_settings}{}\section{rev\+::Audio\+Source\+Settings Struct Reference}
+\label{structrev_1_1_audio_source_settings}\index{rev::AudioSourceSettings@{rev::AudioSourceSettings}}
+
+
+The properties associated with an audio source.  
+
+
+
+
+{\ttfamily \#include $<$G\+Audio\+Resource.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_audio_source_settings_a94535e586b2581c216c8ad7e9f41ef89}\label{structrev_1_1_audio_source_settings_a94535e586b2581c216c8ad7e9f41ef89}} 
+bool {\bfseries test\+Flag} (Audio\+Source\+Flag flag) const
+\item 
+\mbox{\Hypertarget{structrev_1_1_audio_source_settings_a36457d90f64c0f4051f0c9ca476312be}\label{structrev_1_1_audio_source_settings_a36457d90f64c0f4051f0c9ca476312be}} 
+void {\bfseries set\+Flag} (Audio\+Source\+Flag flag, bool value)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_audio_source_settings_a2741a75ff3cbaa0298bdd7665a8a12f6}\label{structrev_1_1_audio_source_settings_a2741a75ff3cbaa0298bdd7665a8a12f6}} 
+Q\+Json\+Value \mbox{\hyperlink{structrev_1_1_audio_source_settings_a2741a75ff3cbaa0298bdd7665a8a12f6}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_audio_source_settings_a206f5f0936d0210fe6a1807b5ebca885}\label{structrev_1_1_audio_source_settings_a206f5f0936d0210fe6a1807b5ebca885}} 
+void \mbox{\hyperlink{structrev_1_1_audio_source_settings_a206f5f0936d0210fe6a1807b5ebca885}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty())
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Attributes}
+\begin{Indent}\textbf{ Public Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_audio_source_settings_acf4d2364ddadc2b30ea09021c337e475}\label{structrev_1_1_audio_source_settings_acf4d2364ddadc2b30ea09021c337e475}} 
+size\+\_\+t {\bfseries m\+\_\+audio\+Source\+Flags} = 0
+\item 
+\mbox{\Hypertarget{structrev_1_1_audio_source_settings_adab5aa20e9aea522d0e85515aef60c52}\label{structrev_1_1_audio_source_settings_adab5aa20e9aea522d0e85515aef60c52}} 
+int {\bfseries m\+\_\+filter\+ID} = -\/1
+\item 
+float \mbox{\hyperlink{structrev_1_1_audio_source_settings_ab5ecfddf3e20a49f72d98a79eb2048ad}{m\+\_\+min\+Distance}} = 1
+\begin{DoxyCompactList}\small\item\em min/max 3D distances for the audio source \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_audio_source_settings_a530fba25c40690ea6d0c423f1c4f945d}\label{structrev_1_1_audio_source_settings_a530fba25c40690ea6d0c423f1c4f945d}} 
+float {\bfseries m\+\_\+max\+Distance} = 1e6
+\item 
+int \mbox{\hyperlink{structrev_1_1_audio_source_settings_a3a69739a104b204a4836b60f5c71b9ea}{m\+\_\+attenuation\+Model}} = 0
+\begin{DoxyCompactList}\small\item\em The attenuation model used by the sound. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_audio_source_settings_aceaf6614f2469fed19bc1fdba36870bb}\label{structrev_1_1_audio_source_settings_aceaf6614f2469fed19bc1fdba36870bb}} 
+float \mbox{\hyperlink{structrev_1_1_audio_source_settings_aceaf6614f2469fed19bc1fdba36870bb}{m\+\_\+rolloff}} = 1.\+0f
+\begin{DoxyCompactList}\small\item\em How strongly sound drops off based on attenuation model, larger means stronger drop-\/off. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_audio_source_settings_a7324f9abd18468709c256db8935a1f91}\label{structrev_1_1_audio_source_settings_a7324f9abd18468709c256db8935a1f91}} 
+float \mbox{\hyperlink{structrev_1_1_audio_source_settings_a7324f9abd18468709c256db8935a1f91}{m\+\_\+doppler\+Factor}} = 1.\+0f
+\begin{DoxyCompactList}\small\item\em Doppler factor for the sound. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_audio_source_settings_a89a0fc4826a2147ef752a14a0603dbfc}\label{structrev_1_1_audio_source_settings_a89a0fc4826a2147ef752a14a0603dbfc}} 
+float \mbox{\hyperlink{structrev_1_1_audio_source_settings_a89a0fc4826a2147ef752a14a0603dbfc}{m\+\_\+default\+Volume}} = 1.\+0f
+\begin{DoxyCompactList}\small\item\em The default volume of the instances created from this source. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+The properties associated with an audio source. 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structrev_1_1_audio_source_settings_a3a69739a104b204a4836b60f5c71b9ea}\label{structrev_1_1_audio_source_settings_a3a69739a104b204a4836b60f5c71b9ea}} 
+\index{rev::AudioSourceSettings@{rev::AudioSourceSettings}!m\_attenuationModel@{m\_attenuationModel}}
+\index{m\_attenuationModel@{m\_attenuationModel}!rev::AudioSourceSettings@{rev::AudioSourceSettings}}
+\subsubsection{\texorpdfstring{m\_attenuationModel}{m\_attenuationModel}}
+{\footnotesize\ttfamily int rev\+::\+Audio\+Source\+Settings\+::m\+\_\+attenuation\+Model = 0}
+
+
+
+The attenuation model used by the sound. 
+
+See So\+Loud\+::\+Audio\+Source\+::\+A\+T\+T\+E\+N\+U\+A\+T\+I\+O\+N\+\_\+\+M\+O\+D\+E\+LS \mbox{\Hypertarget{structrev_1_1_audio_source_settings_ab5ecfddf3e20a49f72d98a79eb2048ad}\label{structrev_1_1_audio_source_settings_ab5ecfddf3e20a49f72d98a79eb2048ad}} 
+\index{rev::AudioSourceSettings@{rev::AudioSourceSettings}!m\_minDistance@{m\_minDistance}}
+\index{m\_minDistance@{m\_minDistance}!rev::AudioSourceSettings@{rev::AudioSourceSettings}}
+\subsubsection{\texorpdfstring{m\_minDistance}{m\_minDistance}}
+{\footnotesize\ttfamily float rev\+::\+Audio\+Source\+Settings\+::m\+\_\+min\+Distance = 1}
+
+
+
+min/max 3D distances for the audio source 
+
+Designate where attenuation model begins and ends for the audio source 
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/sound/G\+Audio\+Resource.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/sound/G\+Audio\+Resource.\+cpp\end{DoxyCompactItemize}

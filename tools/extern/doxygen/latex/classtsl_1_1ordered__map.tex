@@ -1,0 +1,1041 @@
+\hypertarget{classtsl_1_1ordered__map}{}\section{tsl\+::ordered\+\_\+map$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$ Class Template Reference}
+\label{classtsl_1_1ordered__map}\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+
+
+{\ttfamily \#include $<$ordered\+\_\+map.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_acbf1805d8d77d895b4e42e2056355476}\label{classtsl_1_1ordered__map_acbf1805d8d77d895b4e42e2056355476}} 
+using {\bfseries key\+\_\+type} = typename ht\+::key\+\_\+type
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a79ebeb9c609724f908bfc82166f78f78}\label{classtsl_1_1ordered__map_a79ebeb9c609724f908bfc82166f78f78}} 
+using {\bfseries mapped\+\_\+type} = T
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a63a7e2f0a5c74c685ad76b8143e77a7d}\label{classtsl_1_1ordered__map_a63a7e2f0a5c74c685ad76b8143e77a7d}} 
+using {\bfseries value\+\_\+type} = typename ht\+::value\+\_\+type
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_abbe25131fe5f8312af7f92987e9e422b}\label{classtsl_1_1ordered__map_abbe25131fe5f8312af7f92987e9e422b}} 
+using {\bfseries size\+\_\+type} = typename ht\+::size\+\_\+type
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a721ca5867ac5b24689d03e43680e8df4}\label{classtsl_1_1ordered__map_a721ca5867ac5b24689d03e43680e8df4}} 
+using {\bfseries difference\+\_\+type} = typename ht\+::difference\+\_\+type
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a4de3942f0f1c0f210d0098b7dddd7dbf}\label{classtsl_1_1ordered__map_a4de3942f0f1c0f210d0098b7dddd7dbf}} 
+using {\bfseries hasher} = typename ht\+::hasher
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_aa1cbeb5130c1f920c9822d9d4587062b}\label{classtsl_1_1ordered__map_aa1cbeb5130c1f920c9822d9d4587062b}} 
+using {\bfseries key\+\_\+equal} = typename ht\+::key\+\_\+equal
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_ae8ec7527e0cf6db5031a4ff20b241188}\label{classtsl_1_1ordered__map_ae8ec7527e0cf6db5031a4ff20b241188}} 
+using {\bfseries allocator\+\_\+type} = typename ht\+::allocator\+\_\+type
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_ad7daea3199663779fb505f1b1de7cbd5}\label{classtsl_1_1ordered__map_ad7daea3199663779fb505f1b1de7cbd5}} 
+using {\bfseries reference} = typename ht\+::reference
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a785afe51569fac2305cfb837043a5ccc}\label{classtsl_1_1ordered__map_a785afe51569fac2305cfb837043a5ccc}} 
+using {\bfseries const\+\_\+reference} = typename ht\+::const\+\_\+reference
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a47c4eb1cf96a469fe6dd84f1b1532e60}\label{classtsl_1_1ordered__map_a47c4eb1cf96a469fe6dd84f1b1532e60}} 
+using {\bfseries pointer} = typename ht\+::pointer
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a7e875a642a3edcfbf4509889d8dd39d3}\label{classtsl_1_1ordered__map_a7e875a642a3edcfbf4509889d8dd39d3}} 
+using {\bfseries const\+\_\+pointer} = typename ht\+::const\+\_\+pointer
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_af5648c7b681eaf8338d23803f4874a7f}\label{classtsl_1_1ordered__map_af5648c7b681eaf8338d23803f4874a7f}} 
+using {\bfseries iterator} = typename ht\+::iterator
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_abfaaac0f3ad0356f4acd87b8fc8dd745}\label{classtsl_1_1ordered__map_abfaaac0f3ad0356f4acd87b8fc8dd745}} 
+using {\bfseries const\+\_\+iterator} = typename ht\+::const\+\_\+iterator
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a2b2b346f9c6631253092e51393da02e1}\label{classtsl_1_1ordered__map_a2b2b346f9c6631253092e51393da02e1}} 
+using {\bfseries reverse\+\_\+iterator} = typename ht\+::reverse\+\_\+iterator
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a2d62e5945a651a842ec352674c567cc3}\label{classtsl_1_1ordered__map_a2d62e5945a651a842ec352674c567cc3}} 
+using {\bfseries const\+\_\+reverse\+\_\+iterator} = typename ht\+::const\+\_\+reverse\+\_\+iterator
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a5063454dcaf9f1f9bb0cfcc4591bed37}\label{classtsl_1_1ordered__map_a5063454dcaf9f1f9bb0cfcc4591bed37}} 
+using {\bfseries values\+\_\+container\+\_\+type} = typename ht\+::values\+\_\+container\+\_\+type
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a1b87622b39c868572dfde6fa12f3f348}\label{classtsl_1_1ordered__map_a1b87622b39c868572dfde6fa12f3f348}} 
+{\bfseries ordered\+\_\+map} (size\+\_\+type bucket\+\_\+count, const Hash \&hash=Hash(), const Key\+Equal \&equal=Key\+Equal(), const Allocator \&alloc=Allocator())
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a77eec0507216eef1e262992cb84973a3}\label{classtsl_1_1ordered__map_a77eec0507216eef1e262992cb84973a3}} 
+{\bfseries ordered\+\_\+map} (size\+\_\+type bucket\+\_\+count, const Allocator \&alloc)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a1ec2667585dca1ba0ba4916cc3d1edf0}\label{classtsl_1_1ordered__map_a1ec2667585dca1ba0ba4916cc3d1edf0}} 
+{\bfseries ordered\+\_\+map} (size\+\_\+type bucket\+\_\+count, const Hash \&hash, const Allocator \&alloc)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a470f37c5a73a8114571950a64c1f55d9}\label{classtsl_1_1ordered__map_a470f37c5a73a8114571950a64c1f55d9}} 
+{\bfseries ordered\+\_\+map} (const Allocator \&alloc)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a66887549acf70ef5c24ddf721fc2b275}\label{classtsl_1_1ordered__map_a66887549acf70ef5c24ddf721fc2b275}} 
+{\footnotesize template$<$class Input\+It $>$ }\\{\bfseries ordered\+\_\+map} (Input\+It first, Input\+It last, size\+\_\+type bucket\+\_\+count=ht\+::\+D\+E\+F\+A\+U\+L\+T\+\_\+\+I\+N\+I\+T\+\_\+\+B\+U\+C\+K\+E\+T\+S\+\_\+\+S\+I\+ZE, const Hash \&hash=Hash(), const Key\+Equal \&equal=Key\+Equal(), const Allocator \&alloc=Allocator())
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_aa41bd70f142dec33865bd88419d40b18}\label{classtsl_1_1ordered__map_aa41bd70f142dec33865bd88419d40b18}} 
+{\footnotesize template$<$class Input\+It $>$ }\\{\bfseries ordered\+\_\+map} (Input\+It first, Input\+It last, size\+\_\+type bucket\+\_\+count, const Allocator \&alloc)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_ab8d0a2cf6f184c786f7693a969607324}\label{classtsl_1_1ordered__map_ab8d0a2cf6f184c786f7693a969607324}} 
+{\footnotesize template$<$class Input\+It $>$ }\\{\bfseries ordered\+\_\+map} (Input\+It first, Input\+It last, size\+\_\+type bucket\+\_\+count, const Hash \&hash, const Allocator \&alloc)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a3b62cd4ee69c7fbe3f5bf875f49cec9b}\label{classtsl_1_1ordered__map_a3b62cd4ee69c7fbe3f5bf875f49cec9b}} 
+{\bfseries ordered\+\_\+map} (std\+::initializer\+\_\+list$<$ value\+\_\+type $>$ init, size\+\_\+type bucket\+\_\+count=ht\+::\+D\+E\+F\+A\+U\+L\+T\+\_\+\+I\+N\+I\+T\+\_\+\+B\+U\+C\+K\+E\+T\+S\+\_\+\+S\+I\+ZE, const Hash \&hash=Hash(), const Key\+Equal \&equal=Key\+Equal(), const Allocator \&alloc=Allocator())
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_ac54d2eb64f77000f6d6e98f44b69f76b}\label{classtsl_1_1ordered__map_ac54d2eb64f77000f6d6e98f44b69f76b}} 
+{\bfseries ordered\+\_\+map} (std\+::initializer\+\_\+list$<$ value\+\_\+type $>$ init, size\+\_\+type bucket\+\_\+count, const Allocator \&alloc)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a76800b448b7e9a0d15adb897186460fb}\label{classtsl_1_1ordered__map_a76800b448b7e9a0d15adb897186460fb}} 
+{\bfseries ordered\+\_\+map} (std\+::initializer\+\_\+list$<$ value\+\_\+type $>$ init, size\+\_\+type bucket\+\_\+count, const Hash \&hash, const Allocator \&alloc)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a3ccb595b5ddb9b138d71960a0219f9cd}\label{classtsl_1_1ordered__map_a3ccb595b5ddb9b138d71960a0219f9cd}} 
+\mbox{\hyperlink{classtsl_1_1ordered__map}{ordered\+\_\+map}} \& {\bfseries operator=} (std\+::initializer\+\_\+list$<$ value\+\_\+type $>$ ilist)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_af41bedbb69e9d311f851a84617ef68d1}\label{classtsl_1_1ordered__map_af41bedbb69e9d311f851a84617ef68d1}} 
+allocator\+\_\+type {\bfseries get\+\_\+allocator} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_adf30999e92ec34f19826ad229e651928}\label{classtsl_1_1ordered__map_adf30999e92ec34f19826ad229e651928}} 
+iterator {\bfseries begin} () noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a49bc2b1dbdd38a9edf539a3d5312e3b3}\label{classtsl_1_1ordered__map_a49bc2b1dbdd38a9edf539a3d5312e3b3}} 
+const\+\_\+iterator {\bfseries begin} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_af14b3649e0ba95aa514a4e571d0b5ca6}\label{classtsl_1_1ordered__map_af14b3649e0ba95aa514a4e571d0b5ca6}} 
+const\+\_\+iterator {\bfseries cbegin} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_ac2d65a18a511916935054f255716df15}\label{classtsl_1_1ordered__map_ac2d65a18a511916935054f255716df15}} 
+iterator {\bfseries end} () noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a0bafdbbda5413f9eaba0c851d16c933d}\label{classtsl_1_1ordered__map_a0bafdbbda5413f9eaba0c851d16c933d}} 
+const\+\_\+iterator {\bfseries end} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a4feacd4d503959dab61cbc4b50d0e3a4}\label{classtsl_1_1ordered__map_a4feacd4d503959dab61cbc4b50d0e3a4}} 
+const\+\_\+iterator {\bfseries cend} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a8ab19cbd249cce737cffa61f4116458e}\label{classtsl_1_1ordered__map_a8ab19cbd249cce737cffa61f4116458e}} 
+reverse\+\_\+iterator {\bfseries rbegin} () noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_ad4f075fd471b1e180ed09a37c23f7fd7}\label{classtsl_1_1ordered__map_ad4f075fd471b1e180ed09a37c23f7fd7}} 
+const\+\_\+reverse\+\_\+iterator {\bfseries rbegin} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a9cfe9c75011564558c611c52d1151349}\label{classtsl_1_1ordered__map_a9cfe9c75011564558c611c52d1151349}} 
+const\+\_\+reverse\+\_\+iterator {\bfseries rcbegin} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a56af63a4b10d1d1a55696bdf48890d71}\label{classtsl_1_1ordered__map_a56af63a4b10d1d1a55696bdf48890d71}} 
+reverse\+\_\+iterator {\bfseries rend} () noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_add2bdaf336764b61ca1e15f562bc5b5a}\label{classtsl_1_1ordered__map_add2bdaf336764b61ca1e15f562bc5b5a}} 
+const\+\_\+reverse\+\_\+iterator {\bfseries rend} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a65d582aafd7ec1c757c600027eccc3c0}\label{classtsl_1_1ordered__map_a65d582aafd7ec1c757c600027eccc3c0}} 
+const\+\_\+reverse\+\_\+iterator {\bfseries rcend} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_ac7a08803cdc5f6fa7b752a1959c4434f}\label{classtsl_1_1ordered__map_ac7a08803cdc5f6fa7b752a1959c4434f}} 
+bool {\bfseries empty} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_afa5e8225aa168f0a9ca98d3469cb259a}\label{classtsl_1_1ordered__map_afa5e8225aa168f0a9ca98d3469cb259a}} 
+size\+\_\+type {\bfseries size} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_ae2c8e9613ce6b87afa3b404bc426c673}\label{classtsl_1_1ordered__map_ae2c8e9613ce6b87afa3b404bc426c673}} 
+size\+\_\+type {\bfseries max\+\_\+size} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_ac758eed79d23f37b0e5590bff5f8053d}\label{classtsl_1_1ordered__map_ac758eed79d23f37b0e5590bff5f8053d}} 
+void {\bfseries clear} () noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a4e3c1f96bb1e90009899bfa316aac374}\label{classtsl_1_1ordered__map_a4e3c1f96bb1e90009899bfa316aac374}} 
+std\+::pair$<$ iterator, bool $>$ {\bfseries insert} (const value\+\_\+type \&value)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a78dca6b0002ee5aee50c1814eade374b}\label{classtsl_1_1ordered__map_a78dca6b0002ee5aee50c1814eade374b}} 
+{\footnotesize template$<$class P , typename std\+::enable\+\_\+if$<$ std\+::is\+\_\+constructible$<$ value\+\_\+type, P \&\& $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\std\+::pair$<$ iterator, bool $>$ {\bfseries insert} (P \&\&value)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_af26932f1e49de4500bf55fb06b861e71}\label{classtsl_1_1ordered__map_af26932f1e49de4500bf55fb06b861e71}} 
+std\+::pair$<$ iterator, bool $>$ {\bfseries insert} (value\+\_\+type \&\&value)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a314ade9cf907575464ec85a0b001c04a}\label{classtsl_1_1ordered__map_a314ade9cf907575464ec85a0b001c04a}} 
+iterator {\bfseries insert} (const\+\_\+iterator hint, const value\+\_\+type \&value)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_ad4c70f8df8e406b4e930a24cd740ca65}\label{classtsl_1_1ordered__map_ad4c70f8df8e406b4e930a24cd740ca65}} 
+{\footnotesize template$<$class P , typename std\+::enable\+\_\+if$<$ std\+::is\+\_\+constructible$<$ value\+\_\+type, P \&\& $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\iterator {\bfseries insert} (const\+\_\+iterator hint, P \&\&value)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a8aec833e24e030b6c1bd5fd8056bab52}\label{classtsl_1_1ordered__map_a8aec833e24e030b6c1bd5fd8056bab52}} 
+iterator {\bfseries insert} (const\+\_\+iterator hint, value\+\_\+type \&\&value)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a3fb00b8a1c1438b57b584ea130ea5802}\label{classtsl_1_1ordered__map_a3fb00b8a1c1438b57b584ea130ea5802}} 
+{\footnotesize template$<$class Input\+It $>$ }\\void {\bfseries insert} (Input\+It first, Input\+It last)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a619a7ff2c2b7099493e7648280c908d1}\label{classtsl_1_1ordered__map_a619a7ff2c2b7099493e7648280c908d1}} 
+void {\bfseries insert} (std\+::initializer\+\_\+list$<$ value\+\_\+type $>$ ilist)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a91e27302fd65fda6dcb0c564d0970439}\label{classtsl_1_1ordered__map_a91e27302fd65fda6dcb0c564d0970439}} 
+{\footnotesize template$<$class M $>$ }\\std\+::pair$<$ iterator, bool $>$ {\bfseries insert\+\_\+or\+\_\+assign} (const key\+\_\+type \&k, M \&\&obj)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_aa6e370fea27f1ede81ca8a5e72935033}\label{classtsl_1_1ordered__map_aa6e370fea27f1ede81ca8a5e72935033}} 
+{\footnotesize template$<$class M $>$ }\\std\+::pair$<$ iterator, bool $>$ {\bfseries insert\+\_\+or\+\_\+assign} (key\+\_\+type \&\&k, M \&\&obj)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_afd5ff2209a6eb47f55099cc63fe28a46}\label{classtsl_1_1ordered__map_afd5ff2209a6eb47f55099cc63fe28a46}} 
+{\footnotesize template$<$class M $>$ }\\iterator {\bfseries insert\+\_\+or\+\_\+assign} (const\+\_\+iterator hint, const key\+\_\+type \&k, M \&\&obj)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_afb704714d98192790f9fa175838a6dee}\label{classtsl_1_1ordered__map_afb704714d98192790f9fa175838a6dee}} 
+{\footnotesize template$<$class M $>$ }\\iterator {\bfseries insert\+\_\+or\+\_\+assign} (const\+\_\+iterator hint, key\+\_\+type \&\&k, M \&\&obj)
+\item 
+{\footnotesize template$<$class... Args$>$ }\\std\+::pair$<$ iterator, bool $>$ \mbox{\hyperlink{classtsl_1_1ordered__map_a817ba103f9be8980eed8da481902c144}{emplace}} (Args \&\&... args)
+\item 
+{\footnotesize template$<$class... Args$>$ }\\iterator \mbox{\hyperlink{classtsl_1_1ordered__map_a731379d1d7ea46787e4dc5c7a35d9d76}{emplace\+\_\+hint}} (const\+\_\+iterator hint, Args \&\&... args)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a8b418ae075582f9008508b13f5870de2}\label{classtsl_1_1ordered__map_a8b418ae075582f9008508b13f5870de2}} 
+{\footnotesize template$<$class... Args$>$ }\\std\+::pair$<$ iterator, bool $>$ {\bfseries try\+\_\+emplace} (const key\+\_\+type \&k, Args \&\&... args)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a847454d4a4ed684da4a7578335d2f4b1}\label{classtsl_1_1ordered__map_a847454d4a4ed684da4a7578335d2f4b1}} 
+{\footnotesize template$<$class... Args$>$ }\\std\+::pair$<$ iterator, bool $>$ {\bfseries try\+\_\+emplace} (key\+\_\+type \&\&k, Args \&\&... args)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a6aabcb4a022aba655f9565dce3ca4019}\label{classtsl_1_1ordered__map_a6aabcb4a022aba655f9565dce3ca4019}} 
+{\footnotesize template$<$class... Args$>$ }\\iterator {\bfseries try\+\_\+emplace} (const\+\_\+iterator hint, const key\+\_\+type \&k, Args \&\&... args)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_abca491f89bceca755a5acd027ee2d272}\label{classtsl_1_1ordered__map_abca491f89bceca755a5acd027ee2d272}} 
+{\footnotesize template$<$class... Args$>$ }\\iterator {\bfseries try\+\_\+emplace} (const\+\_\+iterator hint, key\+\_\+type \&\&k, Args \&\&... args)
+\item 
+iterator \mbox{\hyperlink{classtsl_1_1ordered__map_aaf51b608561995a094a8b6ae4c5e5086}{erase}} (iterator pos)
+\item 
+iterator \mbox{\hyperlink{classtsl_1_1ordered__map_ac680d06a37e264ed8ee8ff656ff2d373}{erase}} (const\+\_\+iterator pos)
+\item 
+iterator \mbox{\hyperlink{classtsl_1_1ordered__map_ae9a48c374849dba7c402f33b39c538b6}{erase}} (const\+\_\+iterator first, const\+\_\+iterator last)
+\item 
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__map_a6bf7811b4bfc892388dfc2b5b0c0c8b9}{erase}} (const key\+\_\+type \&key)
+\item 
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__map_af18a8b5ef294c869de50d133c2086072}{erase}} (const key\+\_\+type \&key, std\+::size\+\_\+t precalculated\+\_\+hash)
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__map_aad75297e1383569fbf7b6288ed9ebe4d}{erase}} (const K \&key)
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__map_a11b416d92cc924f0ad6c07b308914543}{erase}} (const K \&key, std\+::size\+\_\+t precalculated\+\_\+hash)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a1257d7d1d3ae9d3da2c5e7d84f369b3f}\label{classtsl_1_1ordered__map_a1257d7d1d3ae9d3da2c5e7d84f369b3f}} 
+void {\bfseries swap} (\mbox{\hyperlink{classtsl_1_1ordered__map}{ordered\+\_\+map}} \&other)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a6773df9df89f4c559ee99b3fff11b15a}\label{classtsl_1_1ordered__map_a6773df9df89f4c559ee99b3fff11b15a}} 
+T \& {\bfseries at} (const Key \&key)
+\item 
+T \& \mbox{\hyperlink{classtsl_1_1ordered__map_a7154dccbdf1947e72fa56072e0155f81}{at}} (const Key \&key, std\+::size\+\_\+t precalculated\+\_\+hash)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_ad98755d2787336d3a144ddab445c4395}\label{classtsl_1_1ordered__map_ad98755d2787336d3a144ddab445c4395}} 
+const T \& {\bfseries at} (const Key \&key) const
+\item 
+const T \& \mbox{\hyperlink{classtsl_1_1ordered__map_a678118593d6aba4f173a65c83859d8f6}{at}} (const Key \&key, std\+::size\+\_\+t precalculated\+\_\+hash) const
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\T \& \mbox{\hyperlink{classtsl_1_1ordered__map_a9ac22985f53d62c53617932cd54493cf}{at}} (const K \&key)
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\T \& \mbox{\hyperlink{classtsl_1_1ordered__map_a478220509105133bdf3829887a16ea96}{at}} (const K \&key, std\+::size\+\_\+t precalculated\+\_\+hash)
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\const T \& \mbox{\hyperlink{classtsl_1_1ordered__map_a023f7b34ab4b27c444a03fa0a41abfa6}{at}} (const K \&key) const
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\const T \& \mbox{\hyperlink{classtsl_1_1ordered__map_a94ca924689a733f0f2b2d958013c6ef9}{at}} (const K \&key, std\+::size\+\_\+t precalculated\+\_\+hash) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_abafea05d216c6cad6042815a9870104d}\label{classtsl_1_1ordered__map_abafea05d216c6cad6042815a9870104d}} 
+T \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (const Key \&key)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a7f9cc68fb60259cb3433df62f51c286a}\label{classtsl_1_1ordered__map_a7f9cc68fb60259cb3433df62f51c286a}} 
+T \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (Key \&\&key)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a245ef29c90f1803698d948b087f8fb6b}\label{classtsl_1_1ordered__map_a245ef29c90f1803698d948b087f8fb6b}} 
+size\+\_\+type {\bfseries count} (const Key \&key) const
+\item 
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__map_a85c73fa60dbccb5f638892ee0b745566}{count}} (const Key \&key, std\+::size\+\_\+t precalculated\+\_\+hash) const
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__map_a358979029b18f3000ad61fc329cdeab1}{count}} (const K \&key) const
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__map_a7c474b66697735313d9da8f5b238f6da}{count}} (const K \&key, std\+::size\+\_\+t precalculated\+\_\+hash) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a136482294dacdf7ffa5095feb88756a0}\label{classtsl_1_1ordered__map_a136482294dacdf7ffa5095feb88756a0}} 
+iterator {\bfseries find} (const Key \&key)
+\item 
+iterator \mbox{\hyperlink{classtsl_1_1ordered__map_acf83c071d5e48bd5322ce39fcd2e2359}{find}} (const Key \&key, std\+::size\+\_\+t precalculated\+\_\+hash)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a934d6606c3e6c182605547de94e2535c}\label{classtsl_1_1ordered__map_a934d6606c3e6c182605547de94e2535c}} 
+const\+\_\+iterator {\bfseries find} (const Key \&key) const
+\item 
+const\+\_\+iterator \mbox{\hyperlink{classtsl_1_1ordered__map_a817dd3a88ebcf2199e46606fd7925c5f}{find}} (const Key \&key, std\+::size\+\_\+t precalculated\+\_\+hash) const
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\iterator \mbox{\hyperlink{classtsl_1_1ordered__map_a077b9b318cb7e846455f030602561b3f}{find}} (const K \&key)
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\iterator \mbox{\hyperlink{classtsl_1_1ordered__map_a98ecf180c88d8cc7a71573607d86b50f}{find}} (const K \&key, std\+::size\+\_\+t precalculated\+\_\+hash)
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\const\+\_\+iterator \mbox{\hyperlink{classtsl_1_1ordered__map_acc1fb65ec2b2b8680393044a811cfbd2}{find}} (const K \&key) const
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\const\+\_\+iterator \mbox{\hyperlink{classtsl_1_1ordered__map_a1499b8cd1f9ab16341ac65008a26aad8}{find}} (const K \&key, std\+::size\+\_\+t precalculated\+\_\+hash) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a7e8f0bf2927011a11e66140e5ec9ff1b}\label{classtsl_1_1ordered__map_a7e8f0bf2927011a11e66140e5ec9ff1b}} 
+bool {\bfseries contains} (const Key \&key) const
+\item 
+bool \mbox{\hyperlink{classtsl_1_1ordered__map_a5b0dd1e82f8c3c905ea62542f6f374c9}{contains}} (const Key \&key, std\+::size\+\_\+t precalculated\+\_\+hash) const
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\bool \mbox{\hyperlink{classtsl_1_1ordered__map_a62b1a90a19ebdacd4a69c64b38d0ad97}{contains}} (const K \&key) const
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\bool \mbox{\hyperlink{classtsl_1_1ordered__map_a0f9c85b500e88728e72e5a12f9a18fdc}{contains}} (const K \&key, std\+::size\+\_\+t precalculated\+\_\+hash) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_ac21e4c55711af0f75449253a56c6a870}\label{classtsl_1_1ordered__map_ac21e4c55711af0f75449253a56c6a870}} 
+std\+::pair$<$ iterator, iterator $>$ {\bfseries equal\+\_\+range} (const Key \&key)
+\item 
+std\+::pair$<$ iterator, iterator $>$ \mbox{\hyperlink{classtsl_1_1ordered__map_afcf5604ae7a129818d0da106492d0593}{equal\+\_\+range}} (const Key \&key, std\+::size\+\_\+t precalculated\+\_\+hash)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a849a8a4c784c518eb3bf54973debc74b}\label{classtsl_1_1ordered__map_a849a8a4c784c518eb3bf54973debc74b}} 
+std\+::pair$<$ const\+\_\+iterator, const\+\_\+iterator $>$ {\bfseries equal\+\_\+range} (const Key \&key) const
+\item 
+std\+::pair$<$ const\+\_\+iterator, const\+\_\+iterator $>$ \mbox{\hyperlink{classtsl_1_1ordered__map_a14b67de05a0a1d3e59468a0d64a0bc89}{equal\+\_\+range}} (const Key \&key, std\+::size\+\_\+t precalculated\+\_\+hash) const
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\std\+::pair$<$ iterator, iterator $>$ \mbox{\hyperlink{classtsl_1_1ordered__map_ab168835676d025a969129df68922ed64}{equal\+\_\+range}} (const K \&key)
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\std\+::pair$<$ iterator, iterator $>$ \mbox{\hyperlink{classtsl_1_1ordered__map_aa7adb3e162ace9638429c88321d7d1df}{equal\+\_\+range}} (const K \&key, std\+::size\+\_\+t precalculated\+\_\+hash)
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\std\+::pair$<$ const\+\_\+iterator, const\+\_\+iterator $>$ \mbox{\hyperlink{classtsl_1_1ordered__map_aa9692eec4de167529fa5e5f2b04ea18d}{equal\+\_\+range}} (const K \&key) const
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\std\+::pair$<$ const\+\_\+iterator, const\+\_\+iterator $>$ \mbox{\hyperlink{classtsl_1_1ordered__map_a385534c97891dda963deb464945b71d1}{equal\+\_\+range}} (const K \&key, std\+::size\+\_\+t precalculated\+\_\+hash) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_aecbc9eb61fa66c9e6332bda2e436c9bb}\label{classtsl_1_1ordered__map_aecbc9eb61fa66c9e6332bda2e436c9bb}} 
+size\+\_\+type {\bfseries bucket\+\_\+count} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a88cc4ff4c7375a0addf84053c7ee0afe}\label{classtsl_1_1ordered__map_a88cc4ff4c7375a0addf84053c7ee0afe}} 
+size\+\_\+type {\bfseries max\+\_\+bucket\+\_\+count} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a490d277f44174087c2c19e641b2c3a68}\label{classtsl_1_1ordered__map_a490d277f44174087c2c19e641b2c3a68}} 
+float {\bfseries load\+\_\+factor} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a71e07f51d03bbe75d0f4ea35e535900d}\label{classtsl_1_1ordered__map_a71e07f51d03bbe75d0f4ea35e535900d}} 
+float {\bfseries max\+\_\+load\+\_\+factor} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_abd6e8eb2b46a8d68d8daa0a982956cc2}\label{classtsl_1_1ordered__map_abd6e8eb2b46a8d68d8daa0a982956cc2}} 
+void {\bfseries max\+\_\+load\+\_\+factor} (float ml)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a50d0bd47263204cb68d8e843573e01a5}\label{classtsl_1_1ordered__map_a50d0bd47263204cb68d8e843573e01a5}} 
+void {\bfseries rehash} (size\+\_\+type count)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a7b42ce87034fb5ce42f49a5127053d4c}\label{classtsl_1_1ordered__map_a7b42ce87034fb5ce42f49a5127053d4c}} 
+void {\bfseries reserve} (size\+\_\+type count)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a2495ecd43d3bde3f4c9d64d6cbe3c1cb}\label{classtsl_1_1ordered__map_a2495ecd43d3bde3f4c9d64d6cbe3c1cb}} 
+hasher {\bfseries hash\+\_\+function} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_aef74f290cfd0c4ba12a74134b20e0345}\label{classtsl_1_1ordered__map_aef74f290cfd0c4ba12a74134b20e0345}} 
+key\+\_\+equal {\bfseries key\+\_\+eq} () const
+\item 
+iterator \mbox{\hyperlink{classtsl_1_1ordered__map_a6c8a42673fdc00829cde071eb1c5792d}{mutable\+\_\+iterator}} (const\+\_\+iterator pos)
+\item 
+iterator \mbox{\hyperlink{classtsl_1_1ordered__map_a93bb4548ff4b0fd8dddfc5d7e3da6095}{nth}} (size\+\_\+type index)
+\item 
+const\+\_\+iterator \mbox{\hyperlink{classtsl_1_1ordered__map_a093e3023c3c0b025bf2c94d418d6d9b4}{nth}} (size\+\_\+type index) const
+\item 
+const\+\_\+reference \mbox{\hyperlink{classtsl_1_1ordered__map_afc365c7b0c083992f03f05a168f9d1e4}{front}} () const
+\item 
+const\+\_\+reference \mbox{\hyperlink{classtsl_1_1ordered__map_a872ba5948f124a365dac691057c344d4}{back}} () const
+\item 
+{\footnotesize template$<$class U  = values\+\_\+container\+\_\+type, typename std\+::enable\+\_\+if$<$ tsl\+::detail\+\_\+ordered\+\_\+hash\+::is\+\_\+vector$<$ U $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\const values\+\_\+container\+\_\+type\+::value\+\_\+type $\ast$ \mbox{\hyperlink{classtsl_1_1ordered__map_aad8598e2f2dfeed429cfe80a1884ba20}{data}} () const noexcept
+\item 
+const values\+\_\+container\+\_\+type \& \mbox{\hyperlink{classtsl_1_1ordered__map_abb69bca0a80def48ae806078d77175cb}{values\+\_\+container}} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a57e1ef580fa53df3ebf1c5926662981e}\label{classtsl_1_1ordered__map_a57e1ef580fa53df3ebf1c5926662981e}} 
+{\footnotesize template$<$class U  = values\+\_\+container\+\_\+type, typename std\+::enable\+\_\+if$<$ tsl\+::detail\+\_\+ordered\+\_\+hash\+::is\+\_\+vector$<$ U $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\size\+\_\+type {\bfseries capacity} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a61d75f9d672a31209e45ee2d8e449b36}\label{classtsl_1_1ordered__map_a61d75f9d672a31209e45ee2d8e449b36}} 
+void {\bfseries shrink\+\_\+to\+\_\+fit} ()
+\item 
+std\+::pair$<$ iterator, bool $>$ \mbox{\hyperlink{classtsl_1_1ordered__map_a1d8e2e86cb1443f623f8476eb2300129}{insert\+\_\+at\+\_\+position}} (const\+\_\+iterator pos, const value\+\_\+type \&value)
+\item 
+std\+::pair$<$ iterator, bool $>$ \mbox{\hyperlink{classtsl_1_1ordered__map_a9e0dd9d497c03c763f2b5776d35f9f9f}{insert\+\_\+at\+\_\+position}} (const\+\_\+iterator pos, value\+\_\+type \&\&value)
+\item 
+{\footnotesize template$<$class... Args$>$ }\\std\+::pair$<$ iterator, bool $>$ \mbox{\hyperlink{classtsl_1_1ordered__map_aef1892adae2cbc052239c3580ba004c5}{emplace\+\_\+at\+\_\+position}} (const\+\_\+iterator pos, Args \&\&... args)
+\item 
+{\footnotesize template$<$class... Args$>$ }\\std\+::pair$<$ iterator, bool $>$ \mbox{\hyperlink{classtsl_1_1ordered__map_a73b41d7b710c3986cdf34a21863dbfb2}{try\+\_\+emplace\+\_\+at\+\_\+position}} (const\+\_\+iterator pos, const key\+\_\+type \&k, Args \&\&... args)
+\item 
+{\footnotesize template$<$class... Args$>$ }\\std\+::pair$<$ iterator, bool $>$ \mbox{\hyperlink{classtsl_1_1ordered__map_a21068919c8666ee5c4e5b1f0d199b63c}{try\+\_\+emplace\+\_\+at\+\_\+position}} (const\+\_\+iterator pos, key\+\_\+type \&\&k, Args \&\&... args)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_ad7af97045dc7f44709fc1fb696774705}\label{classtsl_1_1ordered__map_ad7af97045dc7f44709fc1fb696774705}} 
+void {\bfseries pop\+\_\+back} ()
+\item 
+iterator \mbox{\hyperlink{classtsl_1_1ordered__map_a53ec4038c6c279995e3ce96414b959a8}{unordered\+\_\+erase}} (iterator pos)
+\item 
+iterator \mbox{\hyperlink{classtsl_1_1ordered__map_a9c6f37116d357f665108c43c67b4d0df}{unordered\+\_\+erase}} (const\+\_\+iterator pos)
+\item 
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__map_a1f070a35cdd7c62946f24d2fc122db35}{unordered\+\_\+erase}} (const key\+\_\+type \&key)
+\item 
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__map_a482e931c4125adb155005ee38b0ceda4}{unordered\+\_\+erase}} (const key\+\_\+type \&key, std\+::size\+\_\+t precalculated\+\_\+hash)
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__map_aac95431ce5de6d457355292a8230eb98}{unordered\+\_\+erase}} (const K \&key)
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__map_ac13787e3ff3e2c7ffbdd7f4f7b8ce081}{unordered\+\_\+erase}} (const K \&key, std\+::size\+\_\+t precalculated\+\_\+hash)
+\item 
+{\footnotesize template$<$class Serializer $>$ }\\void \mbox{\hyperlink{classtsl_1_1ordered__map_a1abbf43a96014093fbd80a2f55b87a30}{serialize}} (Serializer \&serializer) const
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class Deserializer $>$ }\\static \mbox{\hyperlink{classtsl_1_1ordered__map}{ordered\+\_\+map}} \mbox{\hyperlink{classtsl_1_1ordered__map_a29bb8bff9283ad24501b9b3fbdeeb478}{deserialize}} (Deserializer \&deserializer, bool hash\+\_\+compatible=false)
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a51ff4fbe32e2c20ab5b1a3c71d4bbeb0}\label{classtsl_1_1ordered__map_a51ff4fbe32e2c20ab5b1a3c71d4bbeb0}} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classtsl_1_1ordered__map}{ordered\+\_\+map}} \&lhs, const \mbox{\hyperlink{classtsl_1_1ordered__map}{ordered\+\_\+map}} \&rhs)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_af6b31b30b4fafcb7435ea60bb8e93ecc}\label{classtsl_1_1ordered__map_af6b31b30b4fafcb7435ea60bb8e93ecc}} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{classtsl_1_1ordered__map}{ordered\+\_\+map}} \&lhs, const \mbox{\hyperlink{classtsl_1_1ordered__map}{ordered\+\_\+map}} \&rhs)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a392306a40715aeccf7dd93165d8e30fe}\label{classtsl_1_1ordered__map_a392306a40715aeccf7dd93165d8e30fe}} 
+bool {\bfseries operator$<$} (const \mbox{\hyperlink{classtsl_1_1ordered__map}{ordered\+\_\+map}} \&lhs, const \mbox{\hyperlink{classtsl_1_1ordered__map}{ordered\+\_\+map}} \&rhs)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_aee64ddd869e544e3fcd602ac5836b897}\label{classtsl_1_1ordered__map_aee64ddd869e544e3fcd602ac5836b897}} 
+bool {\bfseries operator$<$=} (const \mbox{\hyperlink{classtsl_1_1ordered__map}{ordered\+\_\+map}} \&lhs, const \mbox{\hyperlink{classtsl_1_1ordered__map}{ordered\+\_\+map}} \&rhs)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a37031e5a5f0ff63f489c52bf624b67c0}\label{classtsl_1_1ordered__map_a37031e5a5f0ff63f489c52bf624b67c0}} 
+bool {\bfseries operator$>$} (const \mbox{\hyperlink{classtsl_1_1ordered__map}{ordered\+\_\+map}} \&lhs, const \mbox{\hyperlink{classtsl_1_1ordered__map}{ordered\+\_\+map}} \&rhs)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a63d63cc7fb50a3afd7d25bd2abd4206d}\label{classtsl_1_1ordered__map_a63d63cc7fb50a3afd7d25bd2abd4206d}} 
+bool {\bfseries operator$>$=} (const \mbox{\hyperlink{classtsl_1_1ordered__map}{ordered\+\_\+map}} \&lhs, const \mbox{\hyperlink{classtsl_1_1ordered__map}{ordered\+\_\+map}} \&rhs)
+\item 
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a9513dc1efafa0d61570a1416201f5984}\label{classtsl_1_1ordered__map_a9513dc1efafa0d61570a1416201f5984}} 
+void {\bfseries swap} (\mbox{\hyperlink{classtsl_1_1ordered__map}{ordered\+\_\+map}} \&lhs, \mbox{\hyperlink{classtsl_1_1ordered__map}{ordered\+\_\+map}} \&rhs)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class Key, class T, class Hash = std\+::hash$<$\+Key$>$, class Key\+Equal = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type = std\+::uint\+\_\+least32\+\_\+t$>$\newline
+class tsl\+::ordered\+\_\+map$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$}
+
+Implementation of an hash map using open addressing with robin hood with backshift delete to resolve collisions.
+
+The particularity of this hash map is that it remembers the order in which the elements were added and provide a way to access the structure which stores these values through the \textquotesingle{}\mbox{\hyperlink{classtsl_1_1ordered__map_abb69bca0a80def48ae806078d77175cb}{values\+\_\+container()}}\textquotesingle{} method. The used container is defined by Value\+Type\+Container, by default a std\+::deque is used (grows faster) but a std\+::vector may be used. In this case the map provides a \textquotesingle{}\mbox{\hyperlink{classtsl_1_1ordered__map_aad8598e2f2dfeed429cfe80a1884ba20}{data()}}\textquotesingle{} method which give a direct access to the memory used to store the values (which can be useful to communicate with C A\+PI\textquotesingle{}s).
+
+The Key and T must be copy constructible and/or move constructible. To use {\ttfamily unordered\+\_\+erase} they both must be swappable.
+
+The behaviour of the hash map is undefined if the destructor of Key or T throws an exception.
+
+By default the maximum size of a map is limited to 2$^\wedge$32 -\/ 1 values, if needed this can be changed through the Index\+Type template parameter. Using an {\ttfamily uint64\+\_\+t} will raise this limit to 2$^\wedge$64 -\/ 1 values but each bucket will use 16 bytes instead of 8 bytes in addition to the space needed to store the values.
+
+Iterators invalidation\+:
+\begin{DoxyItemize}
+\item clear, operator=, reserve, rehash\+: always invalidate the iterators (also invalidate end()).
+\item insert, emplace, emplace\+\_\+hint, operator\mbox{[}\mbox{]}\+: when a std\+::vector is used as Value\+Type\+Container and if size() $<$ capacity(), only end(). Otherwise all the iterators are invalidated if an insert occurs.
+\item erase, unordered\+\_\+erase\+: when a std\+::vector is used as Value\+Type\+Container invalidate the iterator of the erased element and all the ones after the erased element (including end()). Otherwise all the iterators are invalidated if an erase occurs. 
+\end{DoxyItemize}
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classtsl_1_1ordered__map_a7154dccbdf1947e72fa56072e0155f81}\label{classtsl_1_1ordered__map_a7154dccbdf1947e72fa56072e0155f81}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!at@{at}}
+\index{at@{at}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{at()}{at()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+T\& \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::at (\begin{DoxyParamCaption}\item[{const Key \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__map_a678118593d6aba4f173a65c83859d8f6}\label{classtsl_1_1ordered__map_a678118593d6aba4f173a65c83859d8f6}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!at@{at}}
+\index{at@{at}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{at()}{at()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+const T\& \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::at (\begin{DoxyParamCaption}\item[{const Key \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__map_a9ac22985f53d62c53617932cd54493cf}\label{classtsl_1_1ordered__map_a9ac22985f53d62c53617932cd54493cf}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!at@{at}}
+\index{at@{at}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{at()}{at()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+T\& \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::at (\begin{DoxyParamCaption}\item[{const K \&}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key. \mbox{\Hypertarget{classtsl_1_1ordered__map_a478220509105133bdf3829887a16ea96}\label{classtsl_1_1ordered__map_a478220509105133bdf3829887a16ea96}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!at@{at}}
+\index{at@{at}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{at()}{at()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+T\& \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::at (\begin{DoxyParamCaption}\item[{const K \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key.
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__map_a023f7b34ab4b27c444a03fa0a41abfa6}\label{classtsl_1_1ordered__map_a023f7b34ab4b27c444a03fa0a41abfa6}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!at@{at}}
+\index{at@{at}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{at()}{at()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+const T\& \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::at (\begin{DoxyParamCaption}\item[{const K \&}]{key }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key. \mbox{\Hypertarget{classtsl_1_1ordered__map_a94ca924689a733f0f2b2d958013c6ef9}\label{classtsl_1_1ordered__map_a94ca924689a733f0f2b2d958013c6ef9}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!at@{at}}
+\index{at@{at}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{at()}{at()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+const T\& \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::at (\begin{DoxyParamCaption}\item[{const K \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key.
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__map_a872ba5948f124a365dac691057c344d4}\label{classtsl_1_1ordered__map_a872ba5948f124a365dac691057c344d4}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!back@{back}}
+\index{back@{back}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{back()}{back()}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+const\+\_\+reference \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::back (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return const\+\_\+reference to the last element. Requires the container to not be empty. \mbox{\Hypertarget{classtsl_1_1ordered__map_a5b0dd1e82f8c3c905ea62542f6f374c9}\label{classtsl_1_1ordered__map_a5b0dd1e82f8c3c905ea62542f6f374c9}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!contains@{contains}}
+\index{contains@{contains}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{contains()}{contains()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+bool \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::contains (\begin{DoxyParamCaption}\item[{const Key \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__map_a62b1a90a19ebdacd4a69c64b38d0ad97}\label{classtsl_1_1ordered__map_a62b1a90a19ebdacd4a69c64b38d0ad97}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!contains@{contains}}
+\index{contains@{contains}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{contains()}{contains()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+bool \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::contains (\begin{DoxyParamCaption}\item[{const K \&}]{key }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key. \mbox{\Hypertarget{classtsl_1_1ordered__map_a0f9c85b500e88728e72e5a12f9a18fdc}\label{classtsl_1_1ordered__map_a0f9c85b500e88728e72e5a12f9a18fdc}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!contains@{contains}}
+\index{contains@{contains}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{contains()}{contains()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+bool \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::contains (\begin{DoxyParamCaption}\item[{const K \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key.
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__map_a85c73fa60dbccb5f638892ee0b745566}\label{classtsl_1_1ordered__map_a85c73fa60dbccb5f638892ee0b745566}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!count@{count}}
+\index{count@{count}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{count()}{count()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::count (\begin{DoxyParamCaption}\item[{const Key \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__map_a358979029b18f3000ad61fc329cdeab1}\label{classtsl_1_1ordered__map_a358979029b18f3000ad61fc329cdeab1}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!count@{count}}
+\index{count@{count}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{count()}{count()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::count (\begin{DoxyParamCaption}\item[{const K \&}]{key }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key. \mbox{\Hypertarget{classtsl_1_1ordered__map_a7c474b66697735313d9da8f5b238f6da}\label{classtsl_1_1ordered__map_a7c474b66697735313d9da8f5b238f6da}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!count@{count}}
+\index{count@{count}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{count()}{count()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::count (\begin{DoxyParamCaption}\item[{const K \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key.
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__map_aad8598e2f2dfeed429cfe80a1884ba20}\label{classtsl_1_1ordered__map_aad8598e2f2dfeed429cfe80a1884ba20}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!data@{data}}
+\index{data@{data}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{data()}{data()}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class U  = values\+\_\+container\+\_\+type, typename std\+::enable\+\_\+if$<$ tsl\+::detail\+\_\+ordered\+\_\+hash\+::is\+\_\+vector$<$ U $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+const values\+\_\+container\+\_\+type\+::value\+\_\+type$\ast$ \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+Only available if Value\+Type\+Container is a std\+::vector. Same as calling \textquotesingle{}\mbox{\hyperlink{classtsl_1_1ordered__map_abb69bca0a80def48ae806078d77175cb}{values\+\_\+container()}}.\mbox{\hyperlink{classtsl_1_1ordered__map_aad8598e2f2dfeed429cfe80a1884ba20}{data()}}\textquotesingle{}. \mbox{\Hypertarget{classtsl_1_1ordered__map_a29bb8bff9283ad24501b9b3fbdeeb478}\label{classtsl_1_1ordered__map_a29bb8bff9283ad24501b9b3fbdeeb478}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class Deserializer $>$ \\
+static \mbox{\hyperlink{classtsl_1_1ordered__map}{ordered\+\_\+map}} \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::deserialize (\begin{DoxyParamCaption}\item[{Deserializer \&}]{deserializer,  }\item[{bool}]{hash\+\_\+compatible = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Deserialize a previously serialized map through the {\ttfamily deserializer} parameter.
+
+The {\ttfamily deserializer} parameter must be a function object that supports the following calls\+:
+\begin{DoxyItemize}
+\item {\ttfamily template$<$typename U$>$ U operator()();} where the types {\ttfamily std\+::uint64\+\_\+t}, {\ttfamily float} and {\ttfamily std\+::pair$<$Key, T$>$} must be supported for U.
+\end{DoxyItemize}
+
+If the deserialized hash map type is hash compatible with the serialized map, the deserialization process can be sped up by setting {\ttfamily hash\+\_\+compatible} to true. To be hash compatible, the Hash and Key\+Equal must behave the same way than the ones used on the serialized map. The {\ttfamily std\+::size\+\_\+t} must also be of the same size as the one on the platform used to serialize the map, the same apply for {\ttfamily Index\+Type}. If these criteria are not met, the behaviour is undefined with {\ttfamily hash\+\_\+compatible} sets to true.
+
+The behaviour is undefined if the type {\ttfamily Key} and {\ttfamily T} of the {\ttfamily \mbox{\hyperlink{classtsl_1_1ordered__map}{ordered\+\_\+map}}} are not the same as the types used during serialization.
+
+The implementation leaves binary compatibility (endianness, I\+E\+EE 754 for floats, size of int, ...) of the types it deserializes in the hands of the {\ttfamily Deserializer} function object if compatibility is required. \mbox{\Hypertarget{classtsl_1_1ordered__map_a817ba103f9be8980eed8da481902c144}\label{classtsl_1_1ordered__map_a817ba103f9be8980eed8da481902c144}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!emplace@{emplace}}
+\index{emplace@{emplace}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{emplace()}{emplace()}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class... Args$>$ \\
+std\+::pair$<$iterator, bool$>$ \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::emplace (\begin{DoxyParamCaption}\item[{Args \&\&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Due to the way elements are stored, emplace will need to move or copy the key-\/value once. The method is equivalent to insert(value\+\_\+type(std\+::forward$<$\+Args$>$(args)...));
+
+Mainly here for compatibility with the std\+::unordered\+\_\+map interface. \mbox{\Hypertarget{classtsl_1_1ordered__map_aef1892adae2cbc052239c3580ba004c5}\label{classtsl_1_1ordered__map_aef1892adae2cbc052239c3580ba004c5}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!emplace\_at\_position@{emplace\_at\_position}}
+\index{emplace\_at\_position@{emplace\_at\_position}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{emplace\_at\_position()}{emplace\_at\_position()}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class... Args$>$ \\
+std\+::pair$<$iterator, bool$>$ \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::emplace\+\_\+at\+\_\+position (\begin{DoxyParamCaption}\item[{const\+\_\+iterator}]{pos,  }\item[{Args \&\&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+Insert the value before pos shifting all the elements on the right of pos (including pos) one position to the right.
+
+Amortized linear time-\/complexity in the distance between pos and end().
+
+Same as insert\+\_\+at\+\_\+position(pos, value\+\_\+type(std\+::forward$<$\+Args$>$(args)...), mainly here for coherence. \mbox{\Hypertarget{classtsl_1_1ordered__map_a731379d1d7ea46787e4dc5c7a35d9d76}\label{classtsl_1_1ordered__map_a731379d1d7ea46787e4dc5c7a35d9d76}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!emplace\_hint@{emplace\_hint}}
+\index{emplace\_hint@{emplace\_hint}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{emplace\_hint()}{emplace\_hint()}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class... Args$>$ \\
+iterator \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::emplace\+\_\+hint (\begin{DoxyParamCaption}\item[{const\+\_\+iterator}]{hint,  }\item[{Args \&\&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Due to the way elements are stored, emplace\+\_\+hint will need to move or copy the key-\/value once. The method is equivalent to insert(hint, value\+\_\+type(std\+::forward$<$\+Args$>$(args)...));
+
+Mainly here for compatibility with the std\+::unordered\+\_\+map interface. \mbox{\Hypertarget{classtsl_1_1ordered__map_afcf5604ae7a129818d0da106492d0593}\label{classtsl_1_1ordered__map_afcf5604ae7a129818d0da106492d0593}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!equal\_range@{equal\_range}}
+\index{equal\_range@{equal\_range}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{equal\_range()}{equal\_range()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+std\+::pair$<$iterator, iterator$>$ \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::equal\+\_\+range (\begin{DoxyParamCaption}\item[{const Key \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__map_a14b67de05a0a1d3e59468a0d64a0bc89}\label{classtsl_1_1ordered__map_a14b67de05a0a1d3e59468a0d64a0bc89}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!equal\_range@{equal\_range}}
+\index{equal\_range@{equal\_range}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{equal\_range()}{equal\_range()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+std\+::pair$<$const\+\_\+iterator, const\+\_\+iterator$>$ \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::equal\+\_\+range (\begin{DoxyParamCaption}\item[{const Key \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__map_ab168835676d025a969129df68922ed64}\label{classtsl_1_1ordered__map_ab168835676d025a969129df68922ed64}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!equal\_range@{equal\_range}}
+\index{equal\_range@{equal\_range}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{equal\_range()}{equal\_range()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+std\+::pair$<$iterator, iterator$>$ \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::equal\+\_\+range (\begin{DoxyParamCaption}\item[{const K \&}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key. \mbox{\Hypertarget{classtsl_1_1ordered__map_aa7adb3e162ace9638429c88321d7d1df}\label{classtsl_1_1ordered__map_aa7adb3e162ace9638429c88321d7d1df}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!equal\_range@{equal\_range}}
+\index{equal\_range@{equal\_range}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{equal\_range()}{equal\_range()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+std\+::pair$<$iterator, iterator$>$ \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::equal\+\_\+range (\begin{DoxyParamCaption}\item[{const K \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key.
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__map_aa9692eec4de167529fa5e5f2b04ea18d}\label{classtsl_1_1ordered__map_aa9692eec4de167529fa5e5f2b04ea18d}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!equal\_range@{equal\_range}}
+\index{equal\_range@{equal\_range}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{equal\_range()}{equal\_range()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+std\+::pair$<$const\+\_\+iterator, const\+\_\+iterator$>$ \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::equal\+\_\+range (\begin{DoxyParamCaption}\item[{const K \&}]{key }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key. \mbox{\Hypertarget{classtsl_1_1ordered__map_a385534c97891dda963deb464945b71d1}\label{classtsl_1_1ordered__map_a385534c97891dda963deb464945b71d1}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!equal\_range@{equal\_range}}
+\index{equal\_range@{equal\_range}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{equal\_range()}{equal\_range()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+std\+::pair$<$const\+\_\+iterator, const\+\_\+iterator$>$ \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::equal\+\_\+range (\begin{DoxyParamCaption}\item[{const K \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key.
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__map_aaf51b608561995a094a8b6ae4c5e5086}\label{classtsl_1_1ordered__map_aaf51b608561995a094a8b6ae4c5e5086}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!erase@{erase}}
+\index{erase@{erase}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{erase()}{erase()}\hspace{0.1cm}{\footnotesize\ttfamily [1/7]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+iterator \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::erase (\begin{DoxyParamCaption}\item[{iterator}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+When erasing an element, the insert order will be preserved and no holes will be present in the container returned by \textquotesingle{}\mbox{\hyperlink{classtsl_1_1ordered__map_abb69bca0a80def48ae806078d77175cb}{values\+\_\+container()}}\textquotesingle{}.
+
+The method is in O(n), if the order is not important \textquotesingle{}unordered\+\_\+erase(...)\textquotesingle{} method is faster with an O(1) average complexity. \mbox{\Hypertarget{classtsl_1_1ordered__map_ac680d06a37e264ed8ee8ff656ff2d373}\label{classtsl_1_1ordered__map_ac680d06a37e264ed8ee8ff656ff2d373}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!erase@{erase}}
+\index{erase@{erase}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{erase()}{erase()}\hspace{0.1cm}{\footnotesize\ttfamily [2/7]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+iterator \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::erase (\begin{DoxyParamCaption}\item[{const\+\_\+iterator}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+When erasing an element, the insert order will be preserved and no holes will be present in the container returned by \textquotesingle{}\mbox{\hyperlink{classtsl_1_1ordered__map_abb69bca0a80def48ae806078d77175cb}{values\+\_\+container()}}\textquotesingle{}.
+
+The method is in O(n), if the order is not important \textquotesingle{}unordered\+\_\+erase(...)\textquotesingle{} method is faster with an O(1) average complexity. \mbox{\Hypertarget{classtsl_1_1ordered__map_ae9a48c374849dba7c402f33b39c538b6}\label{classtsl_1_1ordered__map_ae9a48c374849dba7c402f33b39c538b6}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!erase@{erase}}
+\index{erase@{erase}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{erase()}{erase()}\hspace{0.1cm}{\footnotesize\ttfamily [3/7]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+iterator \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::erase (\begin{DoxyParamCaption}\item[{const\+\_\+iterator}]{first,  }\item[{const\+\_\+iterator}]{last }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+When erasing an element, the insert order will be preserved and no holes will be present in the container returned by \textquotesingle{}\mbox{\hyperlink{classtsl_1_1ordered__map_abb69bca0a80def48ae806078d77175cb}{values\+\_\+container()}}\textquotesingle{}.
+
+The method is in O(n), if the order is not important \textquotesingle{}unordered\+\_\+erase(...)\textquotesingle{} method is faster with an O(1) average complexity. \mbox{\Hypertarget{classtsl_1_1ordered__map_a6bf7811b4bfc892388dfc2b5b0c0c8b9}\label{classtsl_1_1ordered__map_a6bf7811b4bfc892388dfc2b5b0c0c8b9}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!erase@{erase}}
+\index{erase@{erase}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{erase()}{erase()}\hspace{0.1cm}{\footnotesize\ttfamily [4/7]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::erase (\begin{DoxyParamCaption}\item[{const key\+\_\+type \&}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+When erasing an element, the insert order will be preserved and no holes will be present in the container returned by \textquotesingle{}\mbox{\hyperlink{classtsl_1_1ordered__map_abb69bca0a80def48ae806078d77175cb}{values\+\_\+container()}}\textquotesingle{}.
+
+The method is in O(n), if the order is not important \textquotesingle{}unordered\+\_\+erase(...)\textquotesingle{} method is faster with an O(1) average complexity. \mbox{\Hypertarget{classtsl_1_1ordered__map_af18a8b5ef294c869de50d133c2086072}\label{classtsl_1_1ordered__map_af18a8b5ef294c869de50d133c2086072}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!erase@{erase}}
+\index{erase@{erase}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{erase()}{erase()}\hspace{0.1cm}{\footnotesize\ttfamily [5/7]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::erase (\begin{DoxyParamCaption}\item[{const key\+\_\+type \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+When erasing an element, the insert order will be preserved and no holes will be present in the container returned by \textquotesingle{}\mbox{\hyperlink{classtsl_1_1ordered__map_abb69bca0a80def48ae806078d77175cb}{values\+\_\+container()}}\textquotesingle{}.
+
+The method is in O(n), if the order is not important \textquotesingle{}unordered\+\_\+erase(...)\textquotesingle{} method is faster with an O(1) average complexity.
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup to the value if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__map_aad75297e1383569fbf7b6288ed9ebe4d}\label{classtsl_1_1ordered__map_aad75297e1383569fbf7b6288ed9ebe4d}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!erase@{erase}}
+\index{erase@{erase}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{erase()}{erase()}\hspace{0.1cm}{\footnotesize\ttfamily [6/7]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::erase (\begin{DoxyParamCaption}\item[{const K \&}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+When erasing an element, the insert order will be preserved and no holes will be present in the container returned by \textquotesingle{}\mbox{\hyperlink{classtsl_1_1ordered__map_abb69bca0a80def48ae806078d77175cb}{values\+\_\+container()}}\textquotesingle{}.
+
+The method is in O(n), if the order is not important \textquotesingle{}unordered\+\_\+erase(...)\textquotesingle{} method is faster with an O(1) average complexity.
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key. \mbox{\Hypertarget{classtsl_1_1ordered__map_a11b416d92cc924f0ad6c07b308914543}\label{classtsl_1_1ordered__map_a11b416d92cc924f0ad6c07b308914543}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!erase@{erase}}
+\index{erase@{erase}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{erase()}{erase()}\hspace{0.1cm}{\footnotesize\ttfamily [7/7]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::erase (\begin{DoxyParamCaption}\item[{const K \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+When erasing an element, the insert order will be preserved and no holes will be present in the container returned by \textquotesingle{}\mbox{\hyperlink{classtsl_1_1ordered__map_abb69bca0a80def48ae806078d77175cb}{values\+\_\+container()}}\textquotesingle{}.
+
+The method is in O(n), if the order is not important \textquotesingle{}unordered\+\_\+erase(...)\textquotesingle{} method is faster with an O(1) average complexity.
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup to the value if you already have the hash.
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key. \mbox{\Hypertarget{classtsl_1_1ordered__map_acf83c071d5e48bd5322ce39fcd2e2359}\label{classtsl_1_1ordered__map_acf83c071d5e48bd5322ce39fcd2e2359}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!find@{find}}
+\index{find@{find}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{find()}{find()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+iterator \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::find (\begin{DoxyParamCaption}\item[{const Key \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__map_a817dd3a88ebcf2199e46606fd7925c5f}\label{classtsl_1_1ordered__map_a817dd3a88ebcf2199e46606fd7925c5f}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!find@{find}}
+\index{find@{find}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{find()}{find()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+const\+\_\+iterator \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::find (\begin{DoxyParamCaption}\item[{const Key \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__map_a077b9b318cb7e846455f030602561b3f}\label{classtsl_1_1ordered__map_a077b9b318cb7e846455f030602561b3f}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!find@{find}}
+\index{find@{find}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{find()}{find()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+iterator \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::find (\begin{DoxyParamCaption}\item[{const K \&}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key. \mbox{\Hypertarget{classtsl_1_1ordered__map_a98ecf180c88d8cc7a71573607d86b50f}\label{classtsl_1_1ordered__map_a98ecf180c88d8cc7a71573607d86b50f}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!find@{find}}
+\index{find@{find}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{find()}{find()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+iterator \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::find (\begin{DoxyParamCaption}\item[{const K \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key.
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__map_acc1fb65ec2b2b8680393044a811cfbd2}\label{classtsl_1_1ordered__map_acc1fb65ec2b2b8680393044a811cfbd2}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!find@{find}}
+\index{find@{find}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{find()}{find()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+const\+\_\+iterator \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::find (\begin{DoxyParamCaption}\item[{const K \&}]{key }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key. \mbox{\Hypertarget{classtsl_1_1ordered__map_a1499b8cd1f9ab16341ac65008a26aad8}\label{classtsl_1_1ordered__map_a1499b8cd1f9ab16341ac65008a26aad8}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!find@{find}}
+\index{find@{find}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{find()}{find()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+const\+\_\+iterator \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::find (\begin{DoxyParamCaption}\item[{const K \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key.
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__map_afc365c7b0c083992f03f05a168f9d1e4}\label{classtsl_1_1ordered__map_afc365c7b0c083992f03f05a168f9d1e4}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!front@{front}}
+\index{front@{front}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{front()}{front()}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+const\+\_\+reference \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::front (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return const\+\_\+reference to the first element. Requires the container to not be empty. \mbox{\Hypertarget{classtsl_1_1ordered__map_a1d8e2e86cb1443f623f8476eb2300129}\label{classtsl_1_1ordered__map_a1d8e2e86cb1443f623f8476eb2300129}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!insert\_at\_position@{insert\_at\_position}}
+\index{insert\_at\_position@{insert\_at\_position}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{insert\_at\_position()}{insert\_at\_position()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+std\+::pair$<$iterator, bool$>$ \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::insert\+\_\+at\+\_\+position (\begin{DoxyParamCaption}\item[{const\+\_\+iterator}]{pos,  }\item[{const value\+\_\+type \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Insert the value before pos shifting all the elements on the right of pos (including pos) one position to the right.
+
+Amortized linear time-\/complexity in the distance between pos and end(). \mbox{\Hypertarget{classtsl_1_1ordered__map_a9e0dd9d497c03c763f2b5776d35f9f9f}\label{classtsl_1_1ordered__map_a9e0dd9d497c03c763f2b5776d35f9f9f}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!insert\_at\_position@{insert\_at\_position}}
+\index{insert\_at\_position@{insert\_at\_position}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{insert\_at\_position()}{insert\_at\_position()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+std\+::pair$<$iterator, bool$>$ \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::insert\+\_\+at\+\_\+position (\begin{DoxyParamCaption}\item[{const\+\_\+iterator}]{pos,  }\item[{value\+\_\+type \&\&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+Insert the value before pos shifting all the elements on the right of pos (including pos) one position to the right.
+
+Amortized linear time-\/complexity in the distance between pos and end(). \mbox{\Hypertarget{classtsl_1_1ordered__map_a6c8a42673fdc00829cde071eb1c5792d}\label{classtsl_1_1ordered__map_a6c8a42673fdc00829cde071eb1c5792d}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!mutable\_iterator@{mutable\_iterator}}
+\index{mutable\_iterator@{mutable\_iterator}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{mutable\_iterator()}{mutable\_iterator()}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+iterator \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::mutable\+\_\+iterator (\begin{DoxyParamCaption}\item[{const\+\_\+iterator}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Convert a const\+\_\+iterator to an iterator. \mbox{\Hypertarget{classtsl_1_1ordered__map_a93bb4548ff4b0fd8dddfc5d7e3da6095}\label{classtsl_1_1ordered__map_a93bb4548ff4b0fd8dddfc5d7e3da6095}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!nth@{nth}}
+\index{nth@{nth}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{nth()}{nth()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+iterator \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::nth (\begin{DoxyParamCaption}\item[{size\+\_\+type}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Requires index $<$= size().
+
+Return an iterator to the element at index. Return end() if index == size(). \mbox{\Hypertarget{classtsl_1_1ordered__map_a093e3023c3c0b025bf2c94d418d6d9b4}\label{classtsl_1_1ordered__map_a093e3023c3c0b025bf2c94d418d6d9b4}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!nth@{nth}}
+\index{nth@{nth}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{nth()}{nth()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+const\+\_\+iterator \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::nth (\begin{DoxyParamCaption}\item[{size\+\_\+type}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+Requires index $<$= size().
+
+Return an iterator to the element at index. Return end() if index == size(). \mbox{\Hypertarget{classtsl_1_1ordered__map_a1abbf43a96014093fbd80a2f55b87a30}\label{classtsl_1_1ordered__map_a1abbf43a96014093fbd80a2f55b87a30}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!serialize@{serialize}}
+\index{serialize@{serialize}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class Serializer $>$ \\
+void \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::serialize (\begin{DoxyParamCaption}\item[{Serializer \&}]{serializer }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Serialize the map through the {\ttfamily serializer} parameter.
+
+The {\ttfamily serializer} parameter must be a function object that supports the following call\+:
+\begin{DoxyItemize}
+\item {\ttfamily template$<$typename U$>$ void operator()(const U\& value);} where the types {\ttfamily std\+::uint64\+\_\+t}, {\ttfamily float} and {\ttfamily std\+::pair$<$Key, T$>$} must be supported for U.
+\end{DoxyItemize}
+
+The implementation leaves binary compatibility (endianness, I\+E\+EE 754 for floats, ...) of the types it serializes in the hands of the {\ttfamily Serializer} function object if compatibility is required. \mbox{\Hypertarget{classtsl_1_1ordered__map_a73b41d7b710c3986cdf34a21863dbfb2}\label{classtsl_1_1ordered__map_a73b41d7b710c3986cdf34a21863dbfb2}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!try\_emplace\_at\_position@{try\_emplace\_at\_position}}
+\index{try\_emplace\_at\_position@{try\_emplace\_at\_position}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{try\_emplace\_at\_position()}{try\_emplace\_at\_position()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class... Args$>$ \\
+std\+::pair$<$iterator, bool$>$ \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::try\+\_\+emplace\+\_\+at\+\_\+position (\begin{DoxyParamCaption}\item[{const\+\_\+iterator}]{pos,  }\item[{const key\+\_\+type \&}]{k,  }\item[{Args \&\&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+Insert the value before pos shifting all the elements on the right of pos (including pos) one position to the right.
+
+Amortized linear time-\/complexity in the distance between pos and end(). \mbox{\Hypertarget{classtsl_1_1ordered__map_a21068919c8666ee5c4e5b1f0d199b63c}\label{classtsl_1_1ordered__map_a21068919c8666ee5c4e5b1f0d199b63c}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!try\_emplace\_at\_position@{try\_emplace\_at\_position}}
+\index{try\_emplace\_at\_position@{try\_emplace\_at\_position}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{try\_emplace\_at\_position()}{try\_emplace\_at\_position()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class... Args$>$ \\
+std\+::pair$<$iterator, bool$>$ \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::try\+\_\+emplace\+\_\+at\+\_\+position (\begin{DoxyParamCaption}\item[{const\+\_\+iterator}]{pos,  }\item[{key\+\_\+type \&\&}]{k,  }\item[{Args \&\&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+Insert the value before pos shifting all the elements on the right of pos (including pos) one position to the right.
+
+Amortized linear time-\/complexity in the distance between pos and end(). \mbox{\Hypertarget{classtsl_1_1ordered__map_a53ec4038c6c279995e3ce96414b959a8}\label{classtsl_1_1ordered__map_a53ec4038c6c279995e3ce96414b959a8}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!unordered\_erase@{unordered\_erase}}
+\index{unordered\_erase@{unordered\_erase}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{unordered\_erase()}{unordered\_erase()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+iterator \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::unordered\+\_\+erase (\begin{DoxyParamCaption}\item[{iterator}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Faster erase operation with an O(1) average complexity but it doesn\textquotesingle{}t preserve the insertion order.
+
+If an erasure occurs, the last element of the map will take the place of the erased element. \mbox{\Hypertarget{classtsl_1_1ordered__map_a9c6f37116d357f665108c43c67b4d0df}\label{classtsl_1_1ordered__map_a9c6f37116d357f665108c43c67b4d0df}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!unordered\_erase@{unordered\_erase}}
+\index{unordered\_erase@{unordered\_erase}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{unordered\_erase()}{unordered\_erase()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+iterator \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::unordered\+\_\+erase (\begin{DoxyParamCaption}\item[{const\+\_\+iterator}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+Faster erase operation with an O(1) average complexity but it doesn\textquotesingle{}t preserve the insertion order.
+
+If an erasure occurs, the last element of the map will take the place of the erased element. \mbox{\Hypertarget{classtsl_1_1ordered__map_a1f070a35cdd7c62946f24d2fc122db35}\label{classtsl_1_1ordered__map_a1f070a35cdd7c62946f24d2fc122db35}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!unordered\_erase@{unordered\_erase}}
+\index{unordered\_erase@{unordered\_erase}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{unordered\_erase()}{unordered\_erase()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::unordered\+\_\+erase (\begin{DoxyParamCaption}\item[{const key\+\_\+type \&}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+Faster erase operation with an O(1) average complexity but it doesn\textquotesingle{}t preserve the insertion order.
+
+If an erasure occurs, the last element of the map will take the place of the erased element. \mbox{\Hypertarget{classtsl_1_1ordered__map_a482e931c4125adb155005ee38b0ceda4}\label{classtsl_1_1ordered__map_a482e931c4125adb155005ee38b0ceda4}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!unordered\_erase@{unordered\_erase}}
+\index{unordered\_erase@{unordered\_erase}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{unordered\_erase()}{unordered\_erase()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::unordered\+\_\+erase (\begin{DoxyParamCaption}\item[{const key\+\_\+type \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+Faster erase operation with an O(1) average complexity but it doesn\textquotesingle{}t preserve the insertion order.
+
+If an erasure occurs, the last element of the map will take the place of the erased element.
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__map_aac95431ce5de6d457355292a8230eb98}\label{classtsl_1_1ordered__map_aac95431ce5de6d457355292a8230eb98}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!unordered\_erase@{unordered\_erase}}
+\index{unordered\_erase@{unordered\_erase}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{unordered\_erase()}{unordered\_erase()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::unordered\+\_\+erase (\begin{DoxyParamCaption}\item[{const K \&}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+Faster erase operation with an O(1) average complexity but it doesn\textquotesingle{}t preserve the insertion order.
+
+If an erasure occurs, the last element of the map will take the place of the erased element.
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key. \mbox{\Hypertarget{classtsl_1_1ordered__map_ac13787e3ff3e2c7ffbdd7f4f7b8ce081}\label{classtsl_1_1ordered__map_ac13787e3ff3e2c7ffbdd7f4f7b8ce081}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!unordered\_erase@{unordered\_erase}}
+\index{unordered\_erase@{unordered\_erase}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{unordered\_erase()}{unordered\_erase()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::unordered\+\_\+erase (\begin{DoxyParamCaption}\item[{const K \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+Faster erase operation with an O(1) average complexity but it doesn\textquotesingle{}t preserve the insertion order.
+
+If an erasure occurs, the last element of the map will take the place of the erased element.
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key.
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1ordered__map_abb69bca0a80def48ae806078d77175cb}\label{classtsl_1_1ordered__map_abb69bca0a80def48ae806078d77175cb}} 
+\index{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!values\_container@{values\_container}}
+\index{values\_container@{values\_container}!tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::ordered\_map$<$ Key, T, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{values\_container()}{values\_container()}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$std\+::pair$<$\+Key, T$>$$>$, class Value\+Type\+Container  = std\+::deque$<$std\+::pair$<$\+Key, T$>$, Allocator$>$, class Index\+Type  = std\+::uint\+\_\+least32\+\_\+t$>$ \\
+const values\+\_\+container\+\_\+type\& \mbox{\hyperlink{classtsl_1_1ordered__map}{tsl\+::ordered\+\_\+map}}$<$ Key, T, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::values\+\_\+container (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+Return the container in which the values are stored. The values are in the same order as the insertion order and are contiguous in the structure, no holes (size() == \mbox{\hyperlink{classtsl_1_1ordered__map_abb69bca0a80def48ae806078d77175cb}{values\+\_\+container()}}.size()). 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/tsl/ordered\+\_\+map.\+h\end{DoxyCompactItemize}

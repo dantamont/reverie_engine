@@ -1,0 +1,66 @@
+\hypertarget{classrev_1_1_distributed_loadable}{}\section{rev\+::Distributed\+Loadable Class Reference}
+\label{classrev_1_1_distributed_loadable}\index{rev::DistributedLoadable@{rev::DistributedLoadable}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing an object that can be loaded and saved from/to multiple files.  
+
+
+
+
+{\ttfamily \#include $<$G\+Loadable.\+h$>$}
+
+Inheritance diagram for rev\+::Distributed\+Loadable\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classrev_1_1_distributed_loadable}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_distributed_loadable_a2d1a80416e4054333645423f429faa61}\label{classrev_1_1_distributed_loadable_a2d1a80416e4054333645423f429faa61}} 
+{\bfseries Distributed\+Loadable} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&filepath)
+\item 
+\mbox{\Hypertarget{classrev_1_1_distributed_loadable_a3af98c470f08888b34d0157076177d3b}\label{classrev_1_1_distributed_loadable_a3af98c470f08888b34d0157076177d3b}} 
+{\bfseries Distributed\+Loadable} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_distributed_loadable_a0a900e9b00114313b7524d200b20f547}\label{classrev_1_1_distributed_loadable_a0a900e9b00114313b7524d200b20f547}} 
+virtual {\bfseries $\sim$\+Distributed\+Loadable} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_distributed_loadable_a821e7f2973a7e9257a6c957c98bf0f4e}\label{classrev_1_1_distributed_loadable_a821e7f2973a7e9257a6c957c98bf0f4e}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} $>$ \& {\bfseries additional\+Paths} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_distributed_loadable_a1805ff34c7befcb7901960e02a08d419}\label{classrev_1_1_distributed_loadable_a1805ff34c7befcb7901960e02a08d419}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_distributed_loadable_a1805ff34c7befcb7901960e02a08d419}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_distributed_loadable_ad28d3797cafde5545c65eb3c0d3b88c4}\label{classrev_1_1_distributed_loadable_ad28d3797cafde5545c65eb3c0d3b88c4}} 
+virtual void \mbox{\hyperlink{classrev_1_1_distributed_loadable_ad28d3797cafde5545c65eb3c0d3b88c4}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Private Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_distributed_loadable_a5ec0b8ab995283937fcf03eda39010c6}\label{classrev_1_1_distributed_loadable_a5ec0b8ab995283937fcf03eda39010c6}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} $>$ \mbox{\hyperlink{classrev_1_1_distributed_loadable_a5ec0b8ab995283937fcf03eda39010c6}{m\+\_\+additional\+Paths}}
+\begin{DoxyCompactList}\small\item\em Additional paths for the loadable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing an object that can be loaded and saved from/to multiple files. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/mixins/G\+Loadable.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/mixins/G\+Loadable.\+cpp\end{DoxyCompactItemize}

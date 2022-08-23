@@ -1,0 +1,156 @@
+\hypertarget{classrev_1_1_audio_listener_component}{}\section{rev\+::Audio\+Listener\+Component Class Reference}
+\label{classrev_1_1_audio_listener_component}\index{rev::AudioListenerComponent@{rev::AudioListenerComponent}}
+Inheritance diagram for rev\+::Audio\+Listener\+Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_audio_listener_component}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_listener_component_a312d45120e132e5c27de760aaf0abe9b}\label{classrev_1_1_audio_listener_component_a312d45120e132e5c27de760aaf0abe9b}} 
+{\bfseries Audio\+Listener\+Component} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_listener_component_ab7229c39e1cce4f30fb5fbbcfb53d4a9}\label{classrev_1_1_audio_listener_component_ab7229c39e1cce4f30fb5fbbcfb53d4a9}} 
+{\bfseries Audio\+Listener\+Component} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \&object)
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_listener_component_ac85b8d15e8a67878eff00674fb26a39a}\label{classrev_1_1_audio_listener_component_ac85b8d15e8a67878eff00674fb26a39a}} 
+{\bfseries $\sim$\+Audio\+Listener\+Component} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_listener_component_a38b977ad6aedbbc5e13a517a9a956dce}\label{classrev_1_1_audio_listener_component_a38b977ad6aedbbc5e13a517a9a956dce}} 
+void \mbox{\hyperlink{classrev_1_1_audio_listener_component_a38b977ad6aedbbc5e13a517a9a956dce}{set\+Velocity}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&\mbox{\hyperlink{classrev_1_1_audio_listener_component_a8f590b05fd17edbeb83494b5e7458f7f}{velocity}})
+\begin{DoxyCompactList}\small\item\em Set velocity in settings/\+So\+Loud. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_audio_listener_component_a8a47dd43d295e34e3e5e93597afe546f}{set\+Speed\+Of\+Sound}} (float sos)
+\begin{DoxyCompactList}\small\item\em Set speed of sound in settings/\+So\+Loud. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_audio_listener_component_a480424b8eb2c87e42d6b1b1e3700cfe7}\label{classrev_1_1_audio_listener_component_a480424b8eb2c87e42d6b1b1e3700cfe7}} 
+void \mbox{\hyperlink{classrev_1_1_audio_listener_component_a480424b8eb2c87e42d6b1b1e3700cfe7}{queue\+Update3d}} ()
+\begin{DoxyCompactList}\small\item\em Queue a move in the sound manager (updates all 3D sound settings) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_audio_listener_component_a8facc61284d885010254c7a357bc0c85}\label{classrev_1_1_audio_listener_component_a8facc61284d885010254c7a357bc0c85}} 
+virtual void \mbox{\hyperlink{classrev_1_1_audio_listener_component_a8facc61284d885010254c7a357bc0c85}{enable}} () override
+\begin{DoxyCompactList}\small\item\em Enable the behavior of this script component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_audio_listener_component_a3809571f948758cb566a3c34f3523009}\label{classrev_1_1_audio_listener_component_a3809571f948758cb566a3c34f3523009}} 
+virtual void \mbox{\hyperlink{classrev_1_1_audio_listener_component_a3809571f948758cb566a3c34f3523009}{disable}} () override
+\begin{DoxyCompactList}\small\item\em Disable the behavior of this script component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_audio_listener_component_afb4f9251d5de8ff5e320aec4aa68bc57}\label{classrev_1_1_audio_listener_component_afb4f9251d5de8ff5e320aec4aa68bc57}} 
+virtual int \mbox{\hyperlink{classrev_1_1_audio_listener_component_afb4f9251d5de8ff5e320aec4aa68bc57}{max\+Allowed}} () const override
+\begin{DoxyCompactList}\small\item\em Max number of allowed components per scene object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_audio_listener_component_a5b4919733772856c7fe2b8184b57fb52}\label{classrev_1_1_audio_listener_component_a5b4919733772856c7fe2b8184b57fb52}} 
+virtual void \mbox{\hyperlink{classrev_1_1_audio_listener_component_a5b4919733772856c7fe2b8184b57fb52}{pre\+Destruction}} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core) override
+\begin{DoxyCompactList}\small\item\em What to do prior to destruction of the component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_listener_component_a8f590b05fd17edbeb83494b5e7458f7f}\label{classrev_1_1_audio_listener_component_a8f590b05fd17edbeb83494b5e7458f7f}} 
+const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \& \mbox{\hyperlink{classrev_1_1_audio_listener_component_a8f590b05fd17edbeb83494b5e7458f7f}{velocity}} () const
+\begin{DoxyCompactList}\small\item\em the velocity of the object, in world units \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_audio_listener_component_a90355885465613387f9befdc24834939}\label{classrev_1_1_audio_listener_component_a90355885465613387f9befdc24834939}} 
+float \mbox{\hyperlink{classrev_1_1_audio_listener_component_a90355885465613387f9befdc24834939}{speed\+Of\+Sound}} () const
+\begin{DoxyCompactList}\small\item\em The speed of sound, in world units. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_audio_listener_component_a1e982f3e707ee7d961b581d112768ac4}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_audio_listener_component_a465f4278108070ac4027d15a0efea0ea}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_listener_component_a7c7375f75e4aabd910d711f27a6cf398}\label{classrev_1_1_audio_listener_component_a7c7375f75e4aabd910d711f27a6cf398}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_audio_listener_component_a7c7375f75e4aabd910d711f27a6cf398}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_audio_listener_component_a97512626e5af8c489d27adfda8070e82}\label{classrev_1_1_audio_listener_component_a97512626e5af8c489d27adfda8070e82}} 
+virtual void \mbox{\hyperlink{classrev_1_1_audio_listener_component_a97512626e5af8c489d27adfda8070e82}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_listener_component_a91da244fde04a60734fb0646785d573a}\label{classrev_1_1_audio_listener_component_a91da244fde04a60734fb0646785d573a}} 
+\mbox{\hyperlink{classrev_1_1_sound_manager}{Sound\+Manager}} $\ast$ \mbox{\hyperlink{classrev_1_1_audio_listener_component_a91da244fde04a60734fb0646785d573a}{sound\+Manager}} () const
+\begin{DoxyCompactList}\small\item\em Get sound manager. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_audio_listener_component_a1874d366bcf120fe0088e0936dda63a7}\label{classrev_1_1_audio_listener_component_a1874d366bcf120fe0088e0936dda63a7}} 
+void \mbox{\hyperlink{classrev_1_1_audio_listener_component_a1874d366bcf120fe0088e0936dda63a7}{update3d\+Attributes}} ()
+\begin{DoxyCompactList}\small\item\em Set listener position in So\+Loud. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_listener_component_a833bfdf2c3435f29115e6a51dfbde74c}\label{classrev_1_1_audio_listener_component_a833bfdf2c3435f29115e6a51dfbde74c}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \mbox{\hyperlink{classrev_1_1_audio_listener_component_a833bfdf2c3435f29115e6a51dfbde74c}{m\+\_\+velocity}}
+\begin{DoxyCompactList}\small\item\em the velocity of the object, in world units \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_audio_listener_component_aff1d8fcf22e4ac0729be321a1746a34a}\label{classrev_1_1_audio_listener_component_aff1d8fcf22e4ac0729be321a1746a34a}} 
+float \mbox{\hyperlink{classrev_1_1_audio_listener_component_aff1d8fcf22e4ac0729be321a1746a34a}{m\+\_\+speed\+Of\+Sound}}
+\begin{DoxyCompactList}\small\item\em The speed of sound, in world units. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_listener_component_aee940642f2974e262db9284c0b1d9766}\label{classrev_1_1_audio_listener_component_aee940642f2974e262db9284c0b1d9766}} 
+class {\bfseries Sound\+Manager}
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_listener_component_a6a755815108517ad8f4f6afabb704d30}\label{classrev_1_1_audio_listener_component_a6a755815108517ad8f4f6afabb704d30}} 
+class {\bfseries Update\+Listener3d\+Command}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_audio_listener_component_a1e982f3e707ee7d961b581d112768ac4}\label{classrev_1_1_audio_listener_component_a1e982f3e707ee7d961b581d112768ac4}} 
+\index{rev::AudioListenerComponent@{rev::AudioListenerComponent}!className@{className}}
+\index{className@{className}!rev::AudioListenerComponent@{rev::AudioListenerComponent}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Audio\+Listener\+Component\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_audio_listener_component_a465f4278108070ac4027d15a0efea0ea}\label{classrev_1_1_audio_listener_component_a465f4278108070ac4027d15a0efea0ea}} 
+\index{rev::AudioListenerComponent@{rev::AudioListenerComponent}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::AudioListenerComponent@{rev::AudioListenerComponent}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Audio\+Listener\+Component\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_audio_listener_component_a8a47dd43d295e34e3e5e93597afe546f}\label{classrev_1_1_audio_listener_component_a8a47dd43d295e34e3e5e93597afe546f}} 
+\index{rev::AudioListenerComponent@{rev::AudioListenerComponent}!setSpeedOfSound@{setSpeedOfSound}}
+\index{setSpeedOfSound@{setSpeedOfSound}!rev::AudioListenerComponent@{rev::AudioListenerComponent}}
+\subsubsection{\texorpdfstring{setSpeedOfSound()}{setSpeedOfSound()}}
+{\footnotesize\ttfamily void rev\+::\+Audio\+Listener\+Component\+::set\+Speed\+Of\+Sound (\begin{DoxyParamCaption}\item[{float}]{sos }\end{DoxyParamCaption})}
+
+
+
+Set speed of sound in settings/\+So\+Loud. 
+
+\begin{DoxyNote}{Note}
+default is 343 (assuming m/s) 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+Audio\+Listener\+Component.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+Audio\+Listener\+Component.\+cpp\end{DoxyCompactItemize}

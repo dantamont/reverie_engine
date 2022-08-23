@@ -1,0 +1,111 @@
+\hypertarget{classrev_1_1_cube_texture}{}\section{rev\+::Cube\+Texture Class Reference}
+\label{classrev_1_1_cube_texture}\index{rev::CubeTexture@{rev::CubeTexture}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing texture for cubemap faces.  
+
+
+
+
+{\ttfamily \#include $<$G\+Cube\+Texture.\+h$>$}
+
+Inheritance diagram for rev\+::Cube\+Texture\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classrev_1_1_cube_texture}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_cube_texture_a14e3ef96773f4b4a011cff22dce3e16a}\label{classrev_1_1_cube_texture_a14e3ef96773f4b4a011cff22dce3e16a}} 
+{\bfseries Cube\+Texture} (const \mbox{\hyperlink{structrev_1_1_cube_paths}{Cube\+Paths}} \&image\+Paths)
+\item 
+\mbox{\Hypertarget{classrev_1_1_cube_texture_a6f15945904cb7920a0706c7ce066f88d}\label{classrev_1_1_cube_texture_a6f15945904cb7920a0706c7ce066f88d}} 
+{\bfseries Cube\+Texture} (const Q\+String \&cubemap\+File\+Path)
+\item 
+\mbox{\hyperlink{classrev_1_1_cube_texture_a5fa7f0aa9331e10423399ac941f5c4ff}{Cube\+Texture}} (uint32\+\_\+t width, uint32\+\_\+t height, uint32\+\_\+t depth=1, bool is\+Array=false, Texture\+Format internal\+Format=Texture\+Format\+::k\+R\+G\+B\+A8)
+\item 
+\mbox{\Hypertarget{classrev_1_1_cube_texture_a01e170f42e5607e373684451ae415b0d}\label{classrev_1_1_cube_texture_a01e170f42e5607e373684451ae415b0d}} 
+{\bfseries $\sim$\+Cube\+Texture} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_cube_texture_af09c740b6e9e103c074e312a8c26e4c7}\label{classrev_1_1_cube_texture_af09c740b6e9e103c074e312a8c26e4c7}} 
+virtual Resource\+Type \mbox{\hyperlink{classrev_1_1_cube_texture_af09c740b6e9e103c074e312a8c26e4c7}{get\+Resource\+Type}} () const override
+\begin{DoxyCompactList}\small\item\em Get the type of resource stored by this handle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_cube_texture_a7ec1956c0d81071b9f129ddb08725734}\label{classrev_1_1_cube_texture_a7ec1956c0d81071b9f129ddb08725734}} 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_cube_texture_a7ec1956c0d81071b9f129ddb08725734}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_cube_texture_af6794b135f279b1b011d47f9a7f9d10b}\label{classrev_1_1_cube_texture_af6794b135f279b1b011d47f9a7f9d10b}} 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_cube_texture_af6794b135f279b1b011d47f9a7f9d10b}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_cube_texture_aadb1550b28b64fe20d8c4ec54d61b678}\label{classrev_1_1_cube_texture_aadb1550b28b64fe20d8c4ec54d61b678}} 
+static \mbox{\hyperlink{structrev_1_1_cube_paths}{Cube\+Paths}} {\bfseries load\+Paths\+From\+Cubemap\+File} (const Q\+String \&filepath)
+\item 
+\mbox{\Hypertarget{classrev_1_1_cube_texture_a64f22eecda79f6531adfadeb0392d369}\label{classrev_1_1_cube_texture_a64f22eecda79f6531adfadeb0392d369}} 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ {\bfseries Create\+Handle} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$engine, const Q\+String \&filepath)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Private Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_cube_texture_a5317d3aaf79818b7a93eb3de12459ee8}\label{classrev_1_1_cube_texture_a5317d3aaf79818b7a93eb3de12459ee8}} 
+void \mbox{\hyperlink{classrev_1_1_cube_texture_a5317d3aaf79818b7a93eb3de12459ee8}{load\+Images}} ()
+\begin{DoxyCompactList}\small\item\em Load images from files. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Private Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_cube_texture_a3233732514d341c1889f2f88914c261d}\label{classrev_1_1_cube_texture_a3233732514d341c1889f2f88914c261d}} 
+\mbox{\hyperlink{structrev_1_1_cube_paths}{Cube\+Paths}} \mbox{\hyperlink{classrev_1_1_cube_texture_a3233732514d341c1889f2f88914c261d}{m\+\_\+image\+Paths}}
+\begin{DoxyCompactList}\small\item\em Paths to texture images. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_cube_texture_afdc96aa9d22ba862b8fd719efa8bc777}\label{classrev_1_1_cube_texture_afdc96aa9d22ba862b8fd719efa8bc777}} 
+class {\bfseries Cube\+Map\+Component}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing texture for cubemap faces. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classrev_1_1_cube_texture_a5fa7f0aa9331e10423399ac941f5c4ff}\label{classrev_1_1_cube_texture_a5fa7f0aa9331e10423399ac941f5c4ff}} 
+\index{rev::CubeTexture@{rev::CubeTexture}!CubeTexture@{CubeTexture}}
+\index{CubeTexture@{CubeTexture}!rev::CubeTexture@{rev::CubeTexture}}
+\subsubsection{\texorpdfstring{CubeTexture()}{CubeTexture()}}
+{\footnotesize\ttfamily rev\+::\+Cube\+Texture\+::\+Cube\+Texture (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{width,  }\item[{uint32\+\_\+t}]{height,  }\item[{uint32\+\_\+t}]{depth = {\ttfamily 1},  }\item[{bool}]{is\+Array = {\ttfamily false},  }\item[{Texture\+Format}]{internal\+Format = {\ttfamily TextureFormat\+:\+:kRGBA8} }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em width} & the width of each side of the cube map \\
+\hline
+\mbox{\texttt{ in}}  & {\em height} & the height of each side of the cube map \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/materials/G\+Cube\+Texture.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/materials/G\+Cube\+Texture.\+cpp\end{DoxyCompactItemize}

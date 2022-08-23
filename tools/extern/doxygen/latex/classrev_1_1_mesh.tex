@@ -1,0 +1,142 @@
+\hypertarget{classrev_1_1_mesh}{}\section{rev\+::Mesh Class Reference}
+\label{classrev_1_1_mesh}\index{rev::Mesh@{rev::Mesh}}
+
+
+Encapsulates a V\+AO as a resource.  
+
+
+
+
+{\ttfamily \#include $<$G\+Mesh.\+h$>$}
+
+Inheritance diagram for rev\+::Mesh\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_mesh}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_mesh_acac6a7fc23011a53fbdf39b87117ad6a}\label{classrev_1_1_mesh_acac6a7fc23011a53fbdf39b87117ad6a}} 
+{\bfseries Mesh} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_mesh_a1790734797f93144dcc9486f4bd76471}\label{classrev_1_1_mesh_a1790734797f93144dcc9486f4bd76471}} 
+{\bfseries $\sim$\+Mesh} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_mesh_aabc0548279ad78b7657b488ff86add75}\label{classrev_1_1_mesh_aabc0548279ad78b7657b488ff86add75}} 
+\mbox{\hyperlink{classrev_1_1_vertex_array_data}{rev\+::\+Vertex\+Array\+Data}} \& \mbox{\hyperlink{classrev_1_1_mesh_aabc0548279ad78b7657b488ff86add75}{vertex\+Data}} ()
+\begin{DoxyCompactList}\small\item\em Return map of mesh data. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mesh_afc0bc775f68bbd2c27d9f865f804a81d}\label{classrev_1_1_mesh_afc0bc775f68bbd2c27d9f865f804a81d}} 
+const \mbox{\hyperlink{classrev_1_1_vertex_array_data}{rev\+::\+Vertex\+Array\+Data}} \& {\bfseries vertex\+Data} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_mesh_a6122b212526a881e9b083a6e86553b99}\label{classrev_1_1_mesh_a6122b212526a881e9b083a6e86553b99}} 
+const \mbox{\hyperlink{classrev_1_1_a_a_b_b}{A\+A\+BB}} \& \mbox{\hyperlink{classrev_1_1_mesh_a6122b212526a881e9b083a6e86553b99}{object\+Bounds}} () const
+\begin{DoxyCompactList}\small\item\em Return bounding box for the mesh. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mesh_a9ef4862bb5c7f8146dd7e4dab63451a2}\label{classrev_1_1_mesh_a9ef4862bb5c7f8146dd7e4dab63451a2}} 
+\mbox{\hyperlink{classrev_1_1_a_a_b_b}{A\+A\+BB}} \& {\bfseries object\+Bounds} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_mesh_a60c101411966a7c260ba2a0df7bff140}\label{classrev_1_1_mesh_a60c101411966a7c260ba2a0df7bff140}} 
+virtual Resource\+Type \mbox{\hyperlink{classrev_1_1_mesh_a60c101411966a7c260ba2a0df7bff140}{get\+Resource\+Type}} () const override
+\begin{DoxyCompactList}\small\item\em Get the type of resource stored by this handle. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mesh_a24c34ee9cd39bec2a8a3eb965b620dc8}\label{classrev_1_1_mesh_a24c34ee9cd39bec2a8a3eb965b620dc8}} 
+void \mbox{\hyperlink{classrev_1_1_mesh_a24c34ee9cd39bec2a8a3eb965b620dc8}{on\+Removal}} (\mbox{\hyperlink{classrev_1_1_resource_cache}{Resource\+Cache}} $\ast$cache=nullptr) override
+\begin{DoxyCompactList}\small\item\em What to do on removal from resource cache. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classrev_1_1_mesh_a66d46be8133030a0a02911d9def03f47}{post\+Construction}} () override
+\begin{DoxyCompactList}\small\item\em What action to perform post-\/construction of the resource. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mesh_af865ad5c68dc36fd79a5e077366a7d32}\label{classrev_1_1_mesh_af865ad5c68dc36fd79a5e077366a7d32}} 
+void \mbox{\hyperlink{classrev_1_1_mesh_af865ad5c68dc36fd79a5e077366a7d32}{generate\+Bounds}} ()
+\begin{DoxyCompactList}\small\item\em Generate object bounds for the mesh. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_mesh_a4c3c8a3358e75a1821ab11be746a891c}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_mesh_a38ad31454bc3e4e1d7d4d10b4cf36f83}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_mesh_a83d06bada150194666fdc02c043d1080}\label{classrev_1_1_mesh_a83d06bada150194666fdc02c043d1080}} 
+class {\bfseries Cube\+Map}
+\item 
+\mbox{\Hypertarget{classrev_1_1_mesh_aa89c0df06f5945a12b1d029612d199cd}\label{classrev_1_1_mesh_aa89c0df06f5945a12b1d029612d199cd}} 
+class {\bfseries Obj\+Reader}
+\item 
+\mbox{\Hypertarget{classrev_1_1_mesh_ac3e0a085a76d6fcad904e95ebbe2c6a5}\label{classrev_1_1_mesh_ac3e0a085a76d6fcad904e95ebbe2c6a5}} 
+class {\bfseries Model\+Reader}
+\item 
+\mbox{\Hypertarget{classrev_1_1_mesh_af47625f50036c466946f960db7320bcf}\label{classrev_1_1_mesh_af47625f50036c466946f960db7320bcf}} 
+class {\bfseries Animation}
+\item 
+\mbox{\Hypertarget{classrev_1_1_mesh_a395c52c1b342efdb79f36b2d4b2f1565}\label{classrev_1_1_mesh_a395c52c1b342efdb79f36b2d4b2f1565}} 
+class {\bfseries Node\+Animation}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Encapsulates a V\+AO as a resource. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_mesh_a4c3c8a3358e75a1821ab11be746a891c}\label{classrev_1_1_mesh_a4c3c8a3358e75a1821ab11be746a891c}} 
+\index{rev::Mesh@{rev::Mesh}!className@{className}}
+\index{className@{className}!rev::Mesh@{rev::Mesh}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Mesh\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_mesh_a38ad31454bc3e4e1d7d4d10b4cf36f83}\label{classrev_1_1_mesh_a38ad31454bc3e4e1d7d4d10b4cf36f83}} 
+\index{rev::Mesh@{rev::Mesh}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::Mesh@{rev::Mesh}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Mesh\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_mesh_a66d46be8133030a0a02911d9def03f47}\label{classrev_1_1_mesh_a66d46be8133030a0a02911d9def03f47}} 
+\index{rev::Mesh@{rev::Mesh}!postConstruction@{postConstruction}}
+\index{postConstruction@{postConstruction}!rev::Mesh@{rev::Mesh}}
+\subsubsection{\texorpdfstring{postConstruction()}{postConstruction()}}
+{\footnotesize\ttfamily void rev\+::\+Mesh\+::post\+Construction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+What action to perform post-\/construction of the resource. 
+
+For performing any actions that need to be done on the main thread 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_resource_a8a6daa71820d88c86bc6c0aa474d1af7}{rev\+::\+Resource}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/geometry/G\+Mesh.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/geometry/G\+Mesh.\+cpp\end{DoxyCompactItemize}

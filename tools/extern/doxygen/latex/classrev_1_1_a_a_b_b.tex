@@ -1,0 +1,85 @@
+\hypertarget{classrev_1_1_a_a_b_b}{}\section{rev\+::A\+A\+BB Class Reference}
+\label{classrev_1_1_a_a_b_b}\index{rev::AABB@{rev::AABB}}
+
+
+Axis-\/\+Aligned Bounding Box.  
+
+
+
+
+{\ttfamily \#include $<$G\+Collisions.\+h$>$}
+
+Inheritance diagram for rev\+::A\+A\+BB\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_a_a_b_b}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructor/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_a_a_b_b_af6d1b7b30f9e4819516a85304154b750}\label{classrev_1_1_a_a_b_b_af6d1b7b30f9e4819516a85304154b750}} 
+{\bfseries A\+A\+BB} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_a_a_b_b_a95e12b578b39a73a071e171ac9451629}\label{classrev_1_1_a_a_b_b_a95e12b578b39a73a071e171ac9451629}} 
+{\bfseries A\+A\+BB} (const \mbox{\hyperlink{structrev_1_1_a_a_b_b_data}{A\+A\+B\+B\+Data}} \&data)
+\item 
+\mbox{\Hypertarget{classrev_1_1_a_a_b_b_a1f73abf7cfc9afcb73af4302b376f88b}\label{classrev_1_1_a_a_b_b_a1f73abf7cfc9afcb73af4302b376f88b}} 
+{\footnotesize template$<$typename D $>$ }\\{\bfseries A\+A\+BB} (const std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_vector}{Vector}}$<$ D, 3 $>$$>$ \&points)
+\item 
+\mbox{\Hypertarget{classrev_1_1_a_a_b_b_a616548d31fcc98dd3a871ed4395f1a86}\label{classrev_1_1_a_a_b_b_a616548d31fcc98dd3a871ed4395f1a86}} 
+{\bfseries $\sim$\+A\+A\+BB} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Operators}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_a_a_b_b_acaaeff41894979b3b8e8758fd5bbc49e}\label{classrev_1_1_a_a_b_b_acaaeff41894979b3b8e8758fd5bbc49e}} 
+\mbox{\hyperlink{classrev_1_1_a_a_b_b}{A\+A\+BB}} \& {\bfseries operator=} (const \mbox{\hyperlink{classrev_1_1_a_a_b_b}{A\+A\+BB}} \&other)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_a_a_b_b_a81474c8dd61c5e2a00bddfa3b802c530}\label{classrev_1_1_a_a_b_b_a81474c8dd61c5e2a00bddfa3b802c530}} 
+\mbox{\hyperlink{structrev_1_1_a_a_b_b_data}{A\+A\+B\+B\+Data}} \& {\bfseries box\+Data} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_a_a_b_b_a21d9eb0d9d90994045d6a99e38597fbb}\label{classrev_1_1_a_a_b_b_a21d9eb0d9d90994045d6a99e38597fbb}} 
+const \mbox{\hyperlink{structrev_1_1_a_a_b_b_data}{A\+A\+B\+B\+Data}} \& {\bfseries box\+Data} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_a_a_b_b_a57fdf4612f24334c72f21dd35bd02341}\label{classrev_1_1_a_a_b_b_a57fdf4612f24334c72f21dd35bd02341}} 
+{\footnotesize template$<$typename D , size\+\_\+t N$>$ }\\void \mbox{\hyperlink{classrev_1_1_a_a_b_b_a57fdf4612f24334c72f21dd35bd02341}{resize}} (const std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_vector}{Vector}}$<$ D, N $>$$>$ \&points)
+\begin{DoxyCompactList}\small\item\em Resize given a set of points. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_a_a_b_b_a2abbc3a91cce49b6c24775885e1d0dcb}\label{classrev_1_1_a_a_b_b_a2abbc3a91cce49b6c24775885e1d0dcb}} 
+virtual bool {\bfseries intersects} (const \mbox{\hyperlink{classrev_1_1_colliding_geometry}{Colliding\+Geometry}} \&other) const override
+\item 
+\mbox{\Hypertarget{classrev_1_1_a_a_b_b_a85187a35b47fea0b7b70275765f4b3dc}\label{classrev_1_1_a_a_b_b_a85187a35b47fea0b7b70275765f4b3dc}} 
+virtual void {\bfseries recalculate\+Bounds} (const \mbox{\hyperlink{classrev_1_1_transform}{Transform}} \&transform, \mbox{\hyperlink{classrev_1_1_colliding_geometry}{Colliding\+Geometry}} \&out) const override
+\item 
+\mbox{\Hypertarget{classrev_1_1_a_a_b_b_a4736a71bd5ff0bd106371ce59c2e1756}\label{classrev_1_1_a_a_b_b_a4736a71bd5ff0bd106371ce59c2e1756}} 
+void {\bfseries recalculate\+Bounds} (const \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} \&transform, \mbox{\hyperlink{classrev_1_1_colliding_geometry}{Colliding\+Geometry}} \&out) const
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_a_a_b_b_a717938f5a1239f68332a3aaf6f3159c6}\label{classrev_1_1_a_a_b_b_a717938f5a1239f68332a3aaf6f3159c6}} 
+\mbox{\hyperlink{structrev_1_1_a_a_b_b_data}{A\+A\+B\+B\+Data}} {\bfseries m\+\_\+box\+Data}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Axis-\/\+Aligned Bounding Box. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/geometry/G\+Collisions.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/geometry/G\+Collisions.\+cpp\end{DoxyCompactItemize}

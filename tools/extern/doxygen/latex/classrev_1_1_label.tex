@@ -1,0 +1,161 @@
+\hypertarget{classrev_1_1_label}{}\section{rev\+::Label Class Reference}
+\label{classrev_1_1_label}\index{rev::Label@{rev::Label}}
+
+
+\mbox{\hyperlink{classrev_1_1_label}{Label}} class.  
+
+
+
+
+{\ttfamily \#include $<$G\+Label.\+h$>$}
+
+Inheritance diagram for rev\+::Label\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=6.000000cm]{classrev_1_1_label}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrev_1_1_label_1_1_text_metrics}{Text\+Metrics}}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_label_a5c762da81162fbefc4395e04a03ec3e9}\label{classrev_1_1_label_a5c762da81162fbefc4395e04a03ec3e9}} 
+{\bfseries Label} (\mbox{\hyperlink{classrev_1_1_canvas_component}{Canvas\+Component}} $\ast$canvas)
+\item 
+\mbox{\Hypertarget{classrev_1_1_label_a370385f5d1b1a4972c58f38db95c773f}\label{classrev_1_1_label_a370385f5d1b1a4972c58f38db95c773f}} 
+{\bfseries Label} (\mbox{\hyperlink{classrev_1_1_canvas_component}{Canvas\+Component}} $\ast$canvas, const Q\+String \&text, const Q\+String \&font=\char`\"{}arial\char`\"{}, float font\+Size=40, Resource\+Behavior\+Flags r\+Flags=Resource\+Behavior\+Flag\+::k\+Runtime\+Generated)
+\item 
+\mbox{\Hypertarget{classrev_1_1_label_a3341f11a0f7139289f096667fc1c198b}\label{classrev_1_1_label_a3341f11a0f7139289f096667fc1c198b}} 
+{\bfseries $\sim$\+Label} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_label_a4bb69fa071efabb38ce425bcd926a7da}\label{classrev_1_1_label_a4bb69fa071efabb38ce425bcd926a7da}} 
+virtual Glyph\+Type {\bfseries glyph\+Type} () const override
+\item 
+\mbox{\Hypertarget{classrev_1_1_label_ab365e33d687d4bfb53389c923cb071bc}\label{classrev_1_1_label_ab365e33d687d4bfb53389c923cb071bc}} 
+\mbox{\hyperlink{classrev_1_1_color}{Color}} \& {\bfseries color} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_label_ae86c0817bd10c465de6c939129460412}\label{classrev_1_1_label_ae86c0817bd10c465de6c939129460412}} 
+float \mbox{\hyperlink{classrev_1_1_label_ae86c0817bd10c465de6c939129460412}{get\+Font\+Size}} () const
+\begin{DoxyCompactList}\small\item\em The font size for this label (in points) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_label_a11612c13fef4053fd18ddfb6c7c003f3}\label{classrev_1_1_label_a11612c13fef4053fd18ddfb6c7c003f3}} 
+const Q\+String \& {\bfseries text} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_label_a319d11f22b012fad36344f15a329f140}\label{classrev_1_1_label_a319d11f22b012fad36344f15a329f140}} 
+const Q\+String \& \mbox{\hyperlink{classrev_1_1_label_a319d11f22b012fad36344f15a329f140}{get\+Font\+Face\+Name}} () const
+\begin{DoxyCompactList}\small\item\em the name of the font face used by this label \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_label_a836ec436ac9d05ce68b3d68920b15c6f}\label{classrev_1_1_label_a836ec436ac9d05ce68b3d68920b15c6f}} 
+float {\bfseries line\+Max\+Width} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_label_a454b640beb96f41d441798d029cff72a}\label{classrev_1_1_label_a454b640beb96f41d441798d029cff72a}} 
+float {\bfseries line\+Spacing} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_label_a6f013b10f0fc0d9d38c97293392e498e}\label{classrev_1_1_label_a6f013b10f0fc0d9d38c97293392e498e}} 
+void {\bfseries set\+Color} (const \mbox{\hyperlink{classrev_1_1_color}{Color}} \&color)
+\item 
+\mbox{\Hypertarget{classrev_1_1_label_a24518623c5b47e013fcb6b1f1ebe3cc4}\label{classrev_1_1_label_a24518623c5b47e013fcb6b1f1ebe3cc4}} 
+void \mbox{\hyperlink{classrev_1_1_label_a24518623c5b47e013fcb6b1f1ebe3cc4}{set\+Text}} (const Q\+String \&text)
+\begin{DoxyCompactList}\small\item\em Set the label text. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_label_a16e88a8662254c6886b96100d5ed314e}\label{classrev_1_1_label_a16e88a8662254c6886b96100d5ed314e}} 
+void {\bfseries set\+Font\+Size} (float point\+Size)
+\item 
+\mbox{\Hypertarget{classrev_1_1_label_a4290de4c901db0f440c6f9050fb9332f}\label{classrev_1_1_label_a4290de4c901db0f440c6f9050fb9332f}} 
+void {\bfseries set\+Font\+Face} (const Q\+String \&face\+Name)
+\item 
+\mbox{\Hypertarget{classrev_1_1_label_a95ce6c76e0f876a359245f7a23c0594f}\label{classrev_1_1_label_a95ce6c76e0f876a359245f7a23c0594f}} 
+void {\bfseries set\+Line\+Max\+Size} (float width)
+\item 
+\mbox{\Hypertarget{classrev_1_1_label_a9bf7a176b7a5dda177000a1c15a297b4}\label{classrev_1_1_label_a9bf7a176b7a5dda177000a1c15a297b4}} 
+void {\bfseries set\+Line\+Spacing} (float spacing)
+\item 
+\mbox{\Hypertarget{classrev_1_1_label_ab32773f4ee881a3041bfbc0ba36137d7}\label{classrev_1_1_label_ab32773f4ee881a3041bfbc0ba36137d7}} 
+virtual void \mbox{\hyperlink{classrev_1_1_label_ab32773f4ee881a3041bfbc0ba36137d7}{reload}} () override
+\begin{DoxyCompactList}\small\item\em Update the glyph data. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_label_a5f92c283900aa5b274fdcb25f5fd8f84}\label{classrev_1_1_label_a5f92c283900aa5b274fdcb25f5fd8f84}} 
+virtual size\+\_\+t \mbox{\hyperlink{classrev_1_1_label_a5f92c283900aa5b274fdcb25f5fd8f84}{get\+Sort\+ID}} () override
+\begin{DoxyCompactList}\small\item\em Get ID to sort renderable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_label_a9d376faa3e90ef59bcdeb92c1a7d1a11}\label{classrev_1_1_label_a9d376faa3e90ef59bcdeb92c1a7d1a11}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_label_a9d376faa3e90ef59bcdeb92c1a7d1a11}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_label_a62dfe07a59f4ffd57a31bc03fb133a4c}\label{classrev_1_1_label_a62dfe07a59f4ffd57a31bc03fb133a4c}} 
+virtual void \mbox{\hyperlink{classrev_1_1_label_a62dfe07a59f4ffd57a31bc03fb133a4c}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_label_a4d778a4986f4b02bbb4f99deb87e543d}\label{classrev_1_1_label_a4d778a4986f4b02bbb4f99deb87e543d}} 
+{\bfseries Label} (\mbox{\hyperlink{classrev_1_1_canvas_component}{Canvas\+Component}} $\ast$canvas, Glyph\+Type type, float font\+Size, const Q\+String \&font\+Face, const Q\+String \&text, Resource\+Behavior\+Flags resource\+Flags)
+\item 
+\mbox{\Hypertarget{classrev_1_1_label_a483c7b4092b87fb8b34923730e92cee0}\label{classrev_1_1_label_a483c7b4092b87fb8b34923730e92cee0}} 
+\mbox{\hyperlink{classrev_1_1_font_face}{Font\+Face}} $\ast$ {\bfseries get\+Font\+Face} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_label_a69140aba47da9a663804e03ab1e43b73}\label{classrev_1_1_label_a69140aba47da9a663804e03ab1e43b73}} 
+void \mbox{\hyperlink{classrev_1_1_label_a69140aba47da9a663804e03ab1e43b73}{populate\+Vertex\+Data}} ()
+\begin{DoxyCompactList}\small\item\em Create actual text objects. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_label_abba32137dd0229b860053cd28740b3fc}\label{classrev_1_1_label_abba32137dd0229b860053cd28740b3fc}} 
+\mbox{\hyperlink{structrev_1_1_label_1_1_text_metrics}{Text\+Metrics}} \mbox{\hyperlink{classrev_1_1_label_abba32137dd0229b860053cd28740b3fc}{get\+Text\+Metrics}} ()
+\begin{DoxyCompactList}\small\item\em Get metrics for the text. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_label_a367f275d61fa940760fe254a526ecc7b}\label{classrev_1_1_label_a367f275d61fa940760fe254a526ecc7b}} 
+virtual void \mbox{\hyperlink{classrev_1_1_label_a367f275d61fa940760fe254a526ecc7b}{bind\+Uniforms}} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program) override
+\begin{DoxyCompactList}\small\item\em Set uniforms for the label. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_label_a011b2eee8123ce24b2483dde4c17dbbf}\label{classrev_1_1_label_a011b2eee8123ce24b2483dde4c17dbbf}} 
+virtual void \mbox{\hyperlink{classrev_1_1_label_a011b2eee8123ce24b2483dde4c17dbbf}{bind\+Textures}} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$shader\+Program, \mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} $\ast$context) override
+\begin{DoxyCompactList}\small\item\em Bind the textures used by this renderable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_label_a73390345a3488441a25b5d5a7e59b8e3}\label{classrev_1_1_label_a73390345a3488441a25b5d5a7e59b8e3}} 
+virtual void \mbox{\hyperlink{classrev_1_1_label_a73390345a3488441a25b5d5a7e59b8e3}{release\+Textures}} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$shader\+Program, \mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} $\ast$context) override
+\begin{DoxyCompactList}\small\item\em Release the textures used by this renderable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_label_aab4ade6ebc4914f6d825a4f56989e6a9}\label{classrev_1_1_label_aab4ade6ebc4914f6d825a4f56989e6a9}} 
+virtual void \mbox{\hyperlink{classrev_1_1_label_aab4ade6ebc4914f6d825a4f56989e6a9}{draw\+Geometry}} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program, \mbox{\hyperlink{classrev_1_1_render_settings}{Render\+Settings}} $\ast$settings=nullptr) override
+\begin{DoxyCompactList}\small\item\em Draw geometry associated with this renderable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_label_a06fed49151f92bd214c3fdf62f71a75b}\label{classrev_1_1_label_a06fed49151f92bd214c3fdf62f71a75b}} 
+Q\+String \mbox{\hyperlink{classrev_1_1_label_a06fed49151f92bd214c3fdf62f71a75b}{m\+\_\+text}}
+\begin{DoxyCompactList}\small\item\em The text for this label. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_label_a9295c4e08af0e14380ec4469b4bbbcf6}\label{classrev_1_1_label_a9295c4e08af0e14380ec4469b4bbbcf6}} 
+float \mbox{\hyperlink{classrev_1_1_label_a9295c4e08af0e14380ec4469b4bbbcf6}{m\+\_\+font\+Size}}
+\begin{DoxyCompactList}\small\item\em The font size for this label (in points) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_label_a8cd71c4fb1994714958f856153b3aff3}\label{classrev_1_1_label_a8cd71c4fb1994714958f856153b3aff3}} 
+Q\+String \mbox{\hyperlink{classrev_1_1_label_a8cd71c4fb1994714958f856153b3aff3}{m\+\_\+font\+Face}}
+\begin{DoxyCompactList}\small\item\em The name of the font face used by this label. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_label_a41d56ca6baeb0bfbb6eeec79d0c5aa21}\label{classrev_1_1_label_a41d56ca6baeb0bfbb6eeec79d0c5aa21}} 
+float \mbox{\hyperlink{classrev_1_1_label_a41d56ca6baeb0bfbb6eeec79d0c5aa21}{m\+\_\+line\+Max\+Width}}
+\begin{DoxyCompactList}\small\item\em Max length of the line in N\+DC space. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_label_ae6cd152b5002a6c960796e985f23bdea}\label{classrev_1_1_label_ae6cd152b5002a6c960796e985f23bdea}} 
+float {\bfseries m\+\_\+line\+Spacing}
+\item 
+\mbox{\Hypertarget{classrev_1_1_label_ab37c3250d338852a6f1428fffaa48689}\label{classrev_1_1_label_ab37c3250d338852a6f1428fffaa48689}} 
+\mbox{\hyperlink{classrev_1_1_color}{Color}} {\bfseries m\+\_\+color}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{classrev_1_1_label}{Label}} class. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/canvas/G\+Label.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/canvas/G\+Label.\+cpp\end{DoxyCompactItemize}

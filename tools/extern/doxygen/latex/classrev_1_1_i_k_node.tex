@@ -1,0 +1,139 @@
+\hypertarget{classrev_1_1_i_k_node}{}\section{rev\+::I\+K\+Node Class Reference}
+\label{classrev_1_1_i_k_node}\index{rev::IKNode@{rev::IKNode}}
+
+
+A kinematic node.  
+
+
+
+
+{\ttfamily \#include $<$G\+Inverse\+Kinematics.\+h$>$}
+
+Inheritance diagram for rev\+::I\+K\+Node\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_i_k_node}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_node_ae2d0a53065d744c0a1fe7e4b2701b233}\label{classrev_1_1_i_k_node_ae2d0a53065d744c0a1fe7e4b2701b233}} 
+enum {\bfseries Node\+Type} \{ {\bfseries k\+End\+Effector} = (1 $<$$<$ 0), 
+{\bfseries k\+Sub\+Base} = (1 $<$$<$ 1), 
+{\bfseries k\+Root} = (1 $<$$<$ 2)
+ \}
+\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_node_ac7c38c2ecf92387670e9375d58de4a96}\label{classrev_1_1_i_k_node_ac7c38c2ecf92387670e9375d58de4a96}} 
+typedef Q\+Flags$<$ Node\+Type $>$ {\bfseries Node\+Type\+Flags}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_node_aa0b117b0f27696e2a7c6dd25913df1d1}\label{classrev_1_1_i_k_node_aa0b117b0f27696e2a7c6dd25913df1d1}} 
+{\bfseries I\+K\+Node} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_node_a69dcb2be6557c668ea1cf85c368fe544}\label{classrev_1_1_i_k_node_a69dcb2be6557c668ea1cf85c368fe544}} 
+{\bfseries I\+K\+Node} (\mbox{\hyperlink{classrev_1_1_i_k_chain}{I\+K\+Chain}} $\ast$chain)
+\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_node_a6c0c60377160e8a17e08ea6d8059c274}\label{classrev_1_1_i_k_node_a6c0c60377160e8a17e08ea6d8059c274}} 
+{\bfseries I\+K\+Node} (\mbox{\hyperlink{classrev_1_1_i_k_chain}{I\+K\+Chain}} $\ast$chain, const \mbox{\hyperlink{classrev_1_1_skeleton_joint}{Skeleton\+Joint}} \&mesh\+Node)
+\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_node_ab41db4d42b219bb8effcdcc6ec5d221d}\label{classrev_1_1_i_k_node_ab41db4d42b219bb8effcdcc6ec5d221d}} 
+virtual {\bfseries $\sim$\+I\+K\+Node} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_node_a37bd15e2a39b3c69e6476b180f9a950d}\label{classrev_1_1_i_k_node_a37bd15e2a39b3c69e6476b180f9a950d}} 
+bool {\bfseries is\+Root} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_node_a9dc4dca22b9711cdfb54cea4589c0dfc}\label{classrev_1_1_i_k_node_a9dc4dca22b9711cdfb54cea4589c0dfc}} 
+bool {\bfseries is\+Sub\+Base} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_node_a66cf5dfbb63852d6ca29a52ba4fb3190}\label{classrev_1_1_i_k_node_a66cf5dfbb63852d6ca29a52ba4fb3190}} 
+bool {\bfseries is\+End\+Effector} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_node_a69e4665f930376282d251cc59a7643fb}\label{classrev_1_1_i_k_node_a69e4665f930376282d251cc59a7643fb}} 
+\mbox{\hyperlink{classrev_1_1_i_k_node}{I\+K\+Node}} $\ast$ \mbox{\hyperlink{classrev_1_1_i_k_node_a69e4665f930376282d251cc59a7643fb}{add\+Child}} (const \mbox{\hyperlink{classrev_1_1_skeleton_joint}{Skeleton\+Joint}} \&child)
+\begin{DoxyCompactList}\small\item\em Add a child to this node, returning the child. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_i_k_node_a2105ed436df5a05daa873cfa83ca42d4}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_i_k_node_a0673db5b3a78a10ce70a7575f82fbc19}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_node_a7af376fcff80e78841a0ba43c7785fbe}\label{classrev_1_1_i_k_node_a7af376fcff80e78841a0ba43c7785fbe}} 
+size\+\_\+t {\bfseries m\+\_\+node\+ID}
+\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_node_a5f5329fa2f0eff637a715cf58b655965}\label{classrev_1_1_i_k_node_a5f5329fa2f0eff637a715cf58b655965}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_i_k_node}{I\+K\+Node}} $\ast$ $>$ \mbox{\hyperlink{classrev_1_1_i_k_node_a5f5329fa2f0eff637a715cf58b655965}{m\+\_\+children}}
+\begin{DoxyCompactList}\small\item\em Direct children of this node. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_node_a4d493413aa36793ef0b9cfff76406d33}\label{classrev_1_1_i_k_node_a4d493413aa36793ef0b9cfff76406d33}} 
+\mbox{\hyperlink{classrev_1_1_i_k_chain}{I\+K\+Chain}} $\ast$ {\bfseries m\+\_\+chain} = nullptr
+\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_node_ace38a77f392e6da56e52992def8c25e8}\label{classrev_1_1_i_k_node_ace38a77f392e6da56e52992def8c25e8}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector3d}} {\bfseries m\+\_\+position}
+\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_node_ad2e88c78609037bf706aa201d541b3a0}\label{classrev_1_1_i_k_node_ad2e88c78609037bf706aa201d541b3a0}} 
+Node\+Type\+Flags \mbox{\hyperlink{classrev_1_1_i_k_node_ad2e88c78609037bf706aa201d541b3a0}{m\+\_\+flags}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_flags}{Flags}} denoting the type of node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_node_ab21a07a6c2b1768e215d54d1738eeaf5}\label{classrev_1_1_i_k_node_ab21a07a6c2b1768e215d54d1738eeaf5}} 
+class {\bfseries I\+K\+Chain}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A kinematic node. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_i_k_node_a2105ed436df5a05daa873cfa83ca42d4}\label{classrev_1_1_i_k_node_a2105ed436df5a05daa873cfa83ca42d4}} 
+\index{rev::IKNode@{rev::IKNode}!className@{className}}
+\index{className@{className}!rev::IKNode@{rev::IKNode}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+I\+K\+Node\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_i_k_node_a0673db5b3a78a10ce70a7575f82fbc19}\label{classrev_1_1_i_k_node_a0673db5b3a78a10ce70a7575f82fbc19}} 
+\index{rev::IKNode@{rev::IKNode}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::IKNode@{rev::IKNode}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+I\+K\+Node\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Inverse\+Kinematics.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Inverse\+Kinematics.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,99 @@
+/// This file is auto-generated from {{ template_file_name }}
+/// Do not modify! It will be overwritten
+
+#include "{{ library_name }}/network/messages/GMessage.h"
+#include "fortress/encoding/binary/GSerializationProtocol.h"
+#include "fortress/time/GSystemClock.h"
+{%- for type in message_types %}
+#include "{{ library_name }}/network/messages/G{{ type }}.h"
+{%- endfor %}
+
+namespace rev {
+
+GMessage* GMessage::Unpack(const Uint8_t* buffer, Uint32_t index){
+    // Deserialize header
+    Uint64_t nextIndex = index;
+    GMessageHeader header;
+    SerializationProtocol<GMessageHeader> headerDeserializer(header);
+    headerDeserializer.read(buffer, index);
+
+    // Create message of correct type, re-reading from start index
+    GMessage* message;
+    switch(static_cast<MessageType>(header.m_messageType))
+    {
+{%- for type in message_types %}
+    case MessageType::e{{ type }}:
+    {
+        G{{ type }}* tMessage = new G{{ type }}();
+        tMessage->unpack(buffer, index);
+        message = tMessage;
+        break;
+    } 
+{%- endfor %}
+    default:
+        throw("Invalid message type");
+    }
+
+    return message;
+}
+
+GMessage* GMessage::FromJson(const nlohmann::json& json){
+    MessageType messageType = json["messageType"];
+    GMessage* message;
+    switch(messageType)
+    {
+{%- for type in message_types %}
+    case MessageType::e{{ type }}:
+    {
+        G{{ type }}* tMessage = new G{{ type }}();
+        from_json(json, *tMessage);
+        message = tMessage;
+        break;
+    }
+{%- endfor %}
+    default:
+        throw("Invalid message type");
+    }
+
+    return message;
+}
+
+GMessage::GMessage(){
+    static std::atomic<Uint64_t> s_messageCount = 0;
+    m_header.m_uniqueId = s_messageCount;
+    s_messageCount++;
+}
+
+GMessage::~GMessage(){}
+
+void GMessage::postConstruction()
+{
+    m_header.m_messageType = static_cast<Int32_t>(messageType());
+}
+
+Uint32_t GMessage::getSerializedSizeInBytes() const {
+    // Return serialized size of the header
+    return TransportMessage::getSerializedSizeInBytes();
+}
+
+Uint32_t GMessage::pack(Uint8_t* buffer, Uint32_t index) const {
+    static std::atomic<Uint64_t> s_messageCount = 0;
+    m_header.m_index = s_messageCount;
+    m_header.m_sendTimeUtcMicroseconds = SystemClock::GetUtcTimeMicroseconds();
+    s_messageCount++;
+    return TransportMessage::pack(buffer, index);
+}
+
+Uint32_t GMessage::unpack(const Uint8_t* buffer, Uint32_t index){
+    // Increment bytes read by the size of the header.
+    return TransportMessage::unpack(buffer, index);
+}
+
+void to_json(nlohmann::json& orJson, const GMessage& korObject){
+    orJson["messageType"] = (Uint32_t)korObject.messageType();
+}
+
+void from_json(const nlohmann::json& korJson, GMessage& orObject){
+}
+
+} // End namespace

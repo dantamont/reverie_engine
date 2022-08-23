@@ -1,0 +1,149 @@
+\hypertarget{classrev_1_1_file_stream}{}\section{rev\+::File\+Stream Class Reference}
+\label{classrev_1_1_file_stream}\index{rev::FileStream@{rev::FileStream}}
+
+
+Encapsulates a file stream.  
+
+
+
+
+{\ttfamily \#include $<$G\+File\+Stream.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_file_stream_a5f1187a3b5af811ac41c84f0a25d98fd}\label{classrev_1_1_file_stream_a5f1187a3b5af811ac41c84f0a25d98fd}} 
+{\bfseries File\+Stream} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&file\+Path)
+\item 
+\mbox{\Hypertarget{classrev_1_1_file_stream_add625071489ee07ae0af570a5c7a4ef6}\label{classrev_1_1_file_stream_add625071489ee07ae0af570a5c7a4ef6}} 
+{\bfseries $\sim$\+File\+Stream} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classrev_1_1_file_stream_a22ec65604c81039f7cb6564fe08f7cee}{open}} (File\+Access\+Modes mode)
+\begin{DoxyCompactList}\small\item\em Open the file represented by the stream. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classrev_1_1_file_stream_a699b309e32c3aa9a0e1842b4fe7c810f}{close}} ()
+\begin{DoxyCompactList}\small\item\em close the file represented by the stream \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\bool \mbox{\hyperlink{classrev_1_1_file_stream_a288b87bc6513a66186f7e1d66ad01e40}{write}} (const std\+::vector$<$ T $>$ \&vec) const
+\begin{DoxyCompactList}\small\item\em Binary write to file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_stream_a66a9dea6e1e71e4caef8753c2e1b5b82}\label{classrev_1_1_file_stream_a66a9dea6e1e71e4caef8753c2e1b5b82}} 
+{\footnotesize template$<$typename T $>$ }\\bool {\bfseries write} (const T $\ast$data, const uint64 \&count) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_file_stream_a69ab95af89ea8c717e0c058079b9a9f9}\label{classrev_1_1_file_stream_a69ab95af89ea8c717e0c058079b9a9f9}} 
+{\footnotesize template$<$typename T $>$ }\\bool \mbox{\hyperlink{classrev_1_1_file_stream_a69ab95af89ea8c717e0c058079b9a9f9}{read}} (std\+::vector$<$ T $>$ \&out\+Vec) const
+\begin{DoxyCompactList}\small\item\em Read from file stream. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\bool \mbox{\hyperlink{classrev_1_1_file_stream_a3de51c1f2aebcb45600b5bd9eb5e48ed}{read}} (T $\ast$out\+Data, uint64 \&out\+Count) const
+\begin{DoxyCompactList}\small\item\em Read from file stream. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_stream_a0bb933c74bcb8ed33c9ff9f13f6de504}\label{classrev_1_1_file_stream_a0bb933c74bcb8ed33c9ff9f13f6de504}} 
+bool \mbox{\hyperlink{classrev_1_1_file_stream_a0bb933c74bcb8ed33c9ff9f13f6de504}{read\+Count}} (uint64 \&out\+Count) const
+\begin{DoxyCompactList}\small\item\em Reads a llong from the file stream, assuming it represents a count. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_stream_a1d862d8c69b2a5f8b33d3d771eb4cf1c}\label{classrev_1_1_file_stream_a1d862d8c69b2a5f8b33d3d771eb4cf1c}} 
+{\footnotesize template$<$typename T $>$ }\\bool \mbox{\hyperlink{classrev_1_1_file_stream_a1d862d8c69b2a5f8b33d3d771eb4cf1c}{read\+Data}} (T $\ast$out\+Data, uint64 count) const
+\begin{DoxyCompactList}\small\item\em Reads a set of data from the file stream. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_stream_ae70abc0e36a176e041481a6902c0823e}\label{classrev_1_1_file_stream_ae70abc0e36a176e041481a6902c0823e}} 
+bool \mbox{\hyperlink{classrev_1_1_file_stream_ae70abc0e36a176e041481a6902c0823e}{has\+Error}} () const
+\begin{DoxyCompactList}\small\item\em Checks whether or not the stream has an error. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_stream_a1e337153ff7f63da1e15c437e7c7acbd}\label{classrev_1_1_file_stream_a1e337153ff7f63da1e15c437e7c7acbd}} 
+bool \mbox{\hyperlink{classrev_1_1_file_stream_a1e337153ff7f63da1e15c437e7c7acbd}{reached\+E\+OF}} () const
+\begin{DoxyCompactList}\small\item\em Checks whether or not the stream has reached end of file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_file_stream_ab5f6a6e097046cb5344e46b51e962d29}\label{classrev_1_1_file_stream_ab5f6a6e097046cb5344e46b51e962d29}} 
+F\+I\+LE $\ast$ \mbox{\hyperlink{classrev_1_1_file_stream_ab5f6a6e097046cb5344e46b51e962d29}{m\+\_\+file\+Stream}} = nullptr
+\begin{DoxyCompactList}\small\item\em Pointer to the internal C-\/style file stream. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_stream_abd6b4a7f67f804ecd878d41530ce650b}\label{classrev_1_1_file_stream_abd6b4a7f67f804ecd878d41530ce650b}} 
+\mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \mbox{\hyperlink{classrev_1_1_file_stream_abd6b4a7f67f804ecd878d41530ce650b}{m\+\_\+file\+Path}}
+\begin{DoxyCompactList}\small\item\em Filepath for the stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Methods}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_file_stream_a9c531c864515737ea0e4d11820896d69}\label{classrev_1_1_file_stream_a9c531c864515737ea0e4d11820896d69}} 
+\mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \mbox{\hyperlink{classrev_1_1_file_stream_a9c531c864515737ea0e4d11820896d69}{get\+Access\+Mode\+Str}} (File\+Access\+Modes modes)
+\begin{DoxyCompactList}\small\item\em Replicate fstream behavior. \end{DoxyCompactList}\item 
+static uint64 \mbox{\hyperlink{classrev_1_1_file_stream_a482c8ed3834230ebe085b12396286a3a}{lendian\+\_\+write}} (const void $\ast$ptr, size\+\_\+t size, const uint64 \&count, F\+I\+LE $\ast$stream)
+\begin{DoxyCompactList}\small\item\em Write to file, independent of system endianness. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_stream_a8ec1f0e9db50f479e2312616ab0ef0dc}\label{classrev_1_1_file_stream_a8ec1f0e9db50f479e2312616ab0ef0dc}} 
+static uint64 \mbox{\hyperlink{classrev_1_1_file_stream_a8ec1f0e9db50f479e2312616ab0ef0dc}{endian\+\_\+swap\+\_\+fwrite}} (const void $\ast$ptr, size\+\_\+t size, const uint64 \&count, F\+I\+LE $\ast$stream)
+\begin{DoxyCompactList}\small\item\em Swaps between endianness to perform fwrite. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Encapsulates a file stream. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_file_stream_a699b309e32c3aa9a0e1842b4fe7c810f}\label{classrev_1_1_file_stream_a699b309e32c3aa9a0e1842b4fe7c810f}} 
+\index{rev::FileStream@{rev::FileStream}!close@{close}}
+\index{close@{close}!rev::FileStream@{rev::FileStream}}
+\subsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily bool rev\+::\+File\+Stream\+::close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+close the file represented by the stream 
+
+\begin{DoxyReturn}{Returns}
+Whether or not the file stream was successfully closed 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classrev_1_1_file_stream_a482c8ed3834230ebe085b12396286a3a}\label{classrev_1_1_file_stream_a482c8ed3834230ebe085b12396286a3a}} 
+\index{rev::FileStream@{rev::FileStream}!lendian\_write@{lendian\_write}}
+\index{lendian\_write@{lendian\_write}!rev::FileStream@{rev::FileStream}}
+\subsubsection{\texorpdfstring{lendian\_write()}{lendian\_write()}}
+{\footnotesize\ttfamily uint64 rev\+::\+File\+Stream\+::lendian\+\_\+write (\begin{DoxyParamCaption}\item[{const void $\ast$}]{ptr,  }\item[{size\+\_\+t}]{size,  }\item[{const uint64 \&}]{count,  }\item[{F\+I\+LE $\ast$}]{stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+Write to file, independent of system endianness. 
+
+Stores data in little endian format \mbox{\Hypertarget{classrev_1_1_file_stream_a22ec65604c81039f7cb6564fe08f7cee}\label{classrev_1_1_file_stream_a22ec65604c81039f7cb6564fe08f7cee}} 
+\index{rev::FileStream@{rev::FileStream}!open@{open}}
+\index{open@{open}!rev::FileStream@{rev::FileStream}}
+\subsubsection{\texorpdfstring{open()}{open()}}
+{\footnotesize\ttfamily bool rev\+::\+File\+Stream\+::open (\begin{DoxyParamCaption}\item[{File\+Access\+Modes}]{mode }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Open the file represented by the stream. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em mode} & to open filepath with. Maps to \char`\"{}wb\char`\"{} for write binary, \char`\"{}rb\char`\"{} for read binary \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrev_1_1_file_stream_a3de51c1f2aebcb45600b5bd9eb5e48ed}\label{classrev_1_1_file_stream_a3de51c1f2aebcb45600b5bd9eb5e48ed}} 
+\index{rev::FileStream@{rev::FileStream}!read@{read}}
+\index{read@{read}!rev::FileStream@{rev::FileStream}}
+\subsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool rev\+::\+File\+Stream\+::read (\begin{DoxyParamCaption}\item[{T $\ast$}]{out\+Data,  }\item[{uint64 \&}]{out\+Count }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Read from file stream. 
+
+Assumes that data is prepended by a count \mbox{\Hypertarget{classrev_1_1_file_stream_a288b87bc6513a66186f7e1d66ad01e40}\label{classrev_1_1_file_stream_a288b87bc6513a66186f7e1d66ad01e40}} 
+\index{rev::FileStream@{rev::FileStream}!write@{write}}
+\index{write@{write}!rev::FileStream@{rev::FileStream}}
+\subsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool rev\+::\+File\+Stream\+::write (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{vec }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Binary write to file. 
+
+\begin{DoxyReturn}{Returns}
+Whether the operation was a success or not 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/readers/G\+File\+Stream.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/readers/G\+File\+Stream.\+cpp\end{DoxyCompactItemize}

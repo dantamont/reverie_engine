@@ -1,0 +1,70 @@
+\hypertarget{classrev_1_1_view_1_1_shader_json_widget}{}\section{rev\+::View\+::Shader\+Json\+Widget Class Reference}
+\label{classrev_1_1_view_1_1_shader_json_widget}\index{rev::View::ShaderJsonWidget@{rev::View::ShaderJsonWidget}}
+Inheritance diagram for rev\+::View\+::Shader\+Json\+Widget\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classrev_1_1_view_1_1_shader_json_widget}
+\end{center}
+\end{figure}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_shader_json_widget_a746ffd16071ffd58bc4fb4527d027afa}\label{classrev_1_1_view_1_1_shader_json_widget_a746ffd16071ffd58bc4fb4527d027afa}} 
+void {\bfseries edited\+Shader\+Preset} (const \mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \&uuid)
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_shader_json_widget_a7ac3d3aba1c5309d479bf70abce553fd}\label{classrev_1_1_view_1_1_shader_json_widget_a7ac3d3aba1c5309d479bf70abce553fd}} 
+{\bfseries Shader\+Json\+Widget} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, \mbox{\hyperlink{classrev_1_1_shader_preset}{Shader\+Preset}} $\ast$preset, Q\+Widget $\ast$parent=0)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_shader_json_widget_aaea6e83899c693cedf239e0389c8aecc}\label{classrev_1_1_view_1_1_shader_json_widget_aaea6e83899c693cedf239e0389c8aecc}} 
+{\bfseries $\sim$\+Shader\+Json\+Widget} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Events}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_shader_json_widget_adadc478eca6880512ac4c4247abac05f}\label{classrev_1_1_view_1_1_shader_json_widget_adadc478eca6880512ac4c4247abac05f}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_shader_json_widget_adadc478eca6880512ac4c4247abac05f}{wheel\+Event}} (Q\+Wheel\+Event $\ast$event) override
+\begin{DoxyCompactList}\small\item\em Scroll event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_shader_json_widget_a0641f1abe402b99d7527ac208cb6cfac}\label{classrev_1_1_view_1_1_shader_json_widget_a0641f1abe402b99d7527ac208cb6cfac}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_shader_json_widget_a0641f1abe402b99d7527ac208cb6cfac}{initialize\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to check\+Validity widgets. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_shader_json_widget_a8d98916365a06fee085dfaab07ce85b3}\label{classrev_1_1_view_1_1_shader_json_widget_a8d98916365a06fee085dfaab07ce85b3}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_shader_json_widget_a8d98916365a06fee085dfaab07ce85b3}{layout\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to ay out widgets. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_shader_json_widget_adc50ec4c1130d02ebe34fa49e7f569c4}\label{classrev_1_1_view_1_1_shader_json_widget_adc50ec4c1130d02ebe34fa49e7f569c4}} 
+virtual bool \mbox{\hyperlink{classrev_1_1_view_1_1_shader_json_widget_adc50ec4c1130d02ebe34fa49e7f569c4}{is\+Valid\+Object}} (const Q\+Json\+Object \&object) override
+\begin{DoxyCompactList}\small\item\em Whether or not the specified object is valid. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_shader_json_widget_a902f70f4926eae5c9cb202b72b67670d}\label{classrev_1_1_view_1_1_shader_json_widget_a902f70f4926eae5c9cb202b72b67670d}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_shader_json_widget_a902f70f4926eae5c9cb202b72b67670d}{pre\+Load}} () override
+\begin{DoxyCompactList}\small\item\em What to do prior to reloading serializable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_shader_json_widget_acba25c1212da65c20cbbed98d57474e1}\label{classrev_1_1_view_1_1_shader_json_widget_acba25c1212da65c20cbbed98d57474e1}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_shader_json_widget_acba25c1212da65c20cbbed98d57474e1}{post\+Load}} () override
+\begin{DoxyCompactList}\small\item\em What do do after reloading serializable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_shader_json_widget_a51b1a7cab021b62756950d4ea2d808f2}\label{classrev_1_1_view_1_1_shader_json_widget_a51b1a7cab021b62756950d4ea2d808f2}} 
+\mbox{\hyperlink{classrev_1_1_shader_preset}{Shader\+Preset}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_shader_json_widget_a51b1a7cab021b62756950d4ea2d808f2}{shader\+Preset}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_serializable}{Serializable}} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_shader_json_widget_a960a64e375153b8e8116f3594c5279e5}\label{classrev_1_1_view_1_1_shader_json_widget_a960a64e375153b8e8116f3594c5279e5}} 
+bool {\bfseries m\+\_\+was\+Playing} = true
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Shader\+Tree\+Widget.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Shader\+Tree\+Widget.\+cpp\end{DoxyCompactItemize}

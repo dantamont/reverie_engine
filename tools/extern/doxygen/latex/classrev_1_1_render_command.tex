@@ -1,0 +1,85 @@
+\hypertarget{classrev_1_1_render_command}{}\section{rev\+::Render\+Command Class Reference}
+\label{classrev_1_1_render_command}\index{rev::RenderCommand@{rev::RenderCommand}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing an abstract render command.  
+
+
+
+
+{\ttfamily \#include $<$G\+Render\+Command.\+h$>$}
+
+Inheritance diagram for rev\+::Render\+Command\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_render_command}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_command_a31291c7ec9a003f4821c6f8a2adc91ab}\label{classrev_1_1_render_command_a31291c7ec9a003f4821c6f8a2adc91ab}} 
+enum {\bfseries Command\+Type} \{ {\bfseries k\+None} = -\/1, 
+{\bfseries k\+Draw} = 0
+ \}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_command_ac30c43c45b2338c4b1d638cfcd995e20}\label{classrev_1_1_render_command_ac30c43c45b2338c4b1d638cfcd995e20}} 
+{\bfseries Render\+Command} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_command_a3b5f97d991ad39a2e545227a0c66c16a}\label{classrev_1_1_render_command_a3b5f97d991ad39a2e545227a0c66c16a}} 
+virtual {\bfseries $\sim$\+Render\+Command} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_command_a4108d4bfbafa55fa03e820913d50bb15}\label{classrev_1_1_render_command_a4108d4bfbafa55fa03e820913d50bb15}} 
+\mbox{\hyperlink{classrev_1_1_sort_key}{Sort\+Key}} \& {\bfseries sort\+Key} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_command_a185a01fefd3dc7c855df0d636d89d181}\label{classrev_1_1_render_command_a185a01fefd3dc7c855df0d636d89d181}} 
+const \mbox{\hyperlink{classrev_1_1_sort_key}{Sort\+Key}} \& {\bfseries sort\+Key} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_command_a4f835dba0b25d2332f1acb20ea3d6deb}\label{classrev_1_1_render_command_a4f835dba0b25d2332f1acb20ea3d6deb}} 
+virtual Command\+Type {\bfseries command\+Type} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_command_a5c840fe6d9a87abaea65e93e42c78db3}\label{classrev_1_1_render_command_a5c840fe6d9a87abaea65e93e42c78db3}} 
+virtual void \mbox{\hyperlink{classrev_1_1_render_command_a5c840fe6d9a87abaea65e93e42c78db3}{depth\+Pre\+Pass}} (\mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} \&renderer)=0
+\begin{DoxyCompactList}\small\item\em Perform depth prepass for the render command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_command_a2bc0f51854baf56605d0e79f66053565}\label{classrev_1_1_render_command_a2bc0f51854baf56605d0e79f66053565}} 
+virtual void \mbox{\hyperlink{classrev_1_1_render_command_a2bc0f51854baf56605d0e79f66053565}{shadow\+Pass}} (\mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} \&renderer)=0
+\begin{DoxyCompactList}\small\item\em Perform shadow map pass. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_command_a9a4221b6535367f3a9907b28e93b033c}\label{classrev_1_1_render_command_a9a4221b6535367f3a9907b28e93b033c}} 
+virtual void \mbox{\hyperlink{classrev_1_1_render_command_a9a4221b6535367f3a9907b28e93b033c}{perform}} (\mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} \&renderer, uint32\+\_\+t command\+Index)=0
+\begin{DoxyCompactList}\small\item\em Perform the render command. Could be a draw, or a settings change. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_command_add03631d0f9b6bbf742355b0fd53f769}\label{classrev_1_1_render_command_add03631d0f9b6bbf742355b0fd53f769}} 
+virtual void {\bfseries on\+Add\+To\+Queue} ()=0
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_command_a64f689717624b99485e0267af282314a}\label{classrev_1_1_render_command_a64f689717624b99485e0267af282314a}} 
+virtual void \mbox{\hyperlink{classrev_1_1_render_command_a64f689717624b99485e0267af282314a}{pre\+Sort}} ()=0
+\begin{DoxyCompactList}\small\item\em Performed directly prior to sort of all commands. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_command_a9c71d781e931b70aa460aea1646216a7}\label{classrev_1_1_render_command_a9c71d781e931b70aa460aea1646216a7}} 
+\mbox{\hyperlink{classrev_1_1_sort_key}{Sort\+Key}} \mbox{\hyperlink{classrev_1_1_render_command_a9c71d781e931b70aa460aea1646216a7}{m\+\_\+sort\+Key}}
+\begin{DoxyCompactList}\small\item\em The sort key for this command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing an abstract render command. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/renderer/G\+Render\+Command.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/renderer/G\+Render\+Command.\+cpp\end{DoxyCompactItemize}

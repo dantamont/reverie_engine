@@ -1,0 +1,127 @@
+/// This file is auto-generated from {{ template_file_name }}
+/// Do not modify! It will be overwritten
+
+#pragma once
+
+#include <type_traits>
+#include "fortress/containers/extern/tsl/robin_map.h"
+#include "fortress/types/GSizedTypes.h"
+#include "fortress/types/GString.h"
+{%- if enum_definitions.enums[enum_type].is_flag %}
+#include "fortress/layer/framework/GFlags.h"
+{% endif %}
+
+namespace rev {
+
+{% if enum_definitions.enums[enum_type].brief_description %}
+/// @brief {{ enum_definitions.enums[enum_type].brief_description }}
+/// @details {{ enum_definitions.enums[enum_type].description }}
+{%- elif enum_definitions.enums[enum_type].description %}
+/// @brief {{ enum_definitions.enums[enum_type].description }}
+{%- endif %}
+{%- if enum_definitions.enums[enum_type].note %}
+/// @note {{ enum_definitions.enums[enum_type].note }}
+{% endif %}
+enum class E{{ enum_type }}: {{enum_definitions.enums[enum_type].type}} { 
+    eINVALID = {{ enum_definitions.enums[enum_type].start_value - 1 }}, {% for enum_name, enum_info in enum_definitions.enums[enum_type].members.items() %}
+    e{{ enum_name }} = {{'1 <<' if enum_definitions.enums[enum_type].is_flag else ''}} {{ loop.index0 + enum_definitions.enums[enum_type].start_value}}{{ "," if not loop.last else "," }}{% if enum_info.description%} /// {{enum_info.description}}{% endif %}
+{%- endfor %}
+    eCOUNT
+};
+{%- if enum_definitions.enums[enum_type].is_flag %}
+MAKE_BITWISE(E{{ enum_type }});
+MAKE_FLAGS(E{{ enum_type }}, E{{ enum_type }}s);
+{% endif %}
+
+/// @class G{{ enum_type }}
+/// @brief Class representing a {{ enum_type }}
+class G{{ enum_type }} {
+public:
+    /// @brief Return whether or not the given name is valid
+    /// @note Is case-sensitive
+    static bool IsValidName(const GString& enumString){
+        return s_stringEnums.contains(enumString.c_str());
+    }    
+
+    /// @brief Convert from string to enum
+    /// @note Is case-sensitive
+    static G{{ enum_type }} FromString(const GString& enumString){
+        if (s_stringEnums.contains(enumString.c_str())) {
+            return G{{ enum_type }}(s_stringEnums.at(enumString.c_str()));
+        }
+        else{
+            return G{{ enum_type }}(E{{ enum_type }}::eINVALID);
+        }
+    }
+
+    /// @brief Convert from enum to string
+    /// @note Is case-sensitive
+    static const GString& ToString(const E{{ enum_type }}& enumValue){
+        static const GString s_nullString;
+        if (s_enumStrings.contains(enumValue)) {
+            return s_enumStrings.at(enumValue);
+        }
+        else{
+            return s_nullString;
+        }    
+    }
+
+    /// @brief Convert from internal type
+    static G{{ enum_type }} ToEnum(const {{enum_definitions.enums[enum_type].type}}& enumValue){
+        return static_cast<G{{ enum_type }}>(enumValue);
+    }
+
+    G{{ enum_type }}() = default;
+    explicit G{{ enum_type }}(const {{enum_definitions.enums[enum_type].type}}& enumValue);
+    G{{ enum_type }}(const E{{ enum_type }}& enumValue);
+    ~G{{ enum_type }}();
+
+    operator E{{ enum_type }}() const {
+        return m_value;
+    }
+
+    G{{ enum_type }}& operator=(const E{{ enum_type }}& enumValue) {
+        m_value = enumValue;
+        return *this;
+    }
+
+    operator {{enum_definitions.enums[enum_type].type}}() const {
+        return static_cast<{{enum_definitions.enums[enum_type].type}}>(m_value);
+    }
+
+    inline friend bool operator==(const G{{ enum_type }}& v1, const G{{ enum_type }}& v2) {
+        return v1.m_value == v2.m_value;
+    }
+
+    inline friend bool operator==(const E{{ enum_type }}& enumValue, const G{{ enum_type }}& enumClassValue) {
+        return enumValue == enumClassValue.m_value;
+    }
+
+    inline friend bool operator==(const G{{ enum_type }}& enumClassValue, const E{{ enum_type }}& enumValue) {
+        return enumValue == enumClassValue.m_value;
+    }
+
+    inline friend bool operator!=(const G{{ enum_type }}& v1, const G{{ enum_type }}& v2) {
+        return v1.m_value != v2.m_value;
+    }
+
+    inline friend bool operator!=(const E{{ enum_type }}& enumValue, const G{{ enum_type }}& enumClassValue) {
+        return enumValue != enumClassValue.m_value;
+    }
+
+    inline friend bool operator!=(const G{{ enum_type }}& enumClassValue, const E{{ enum_type }}& enumValue) {
+        return enumValue != enumClassValue.m_value;
+    }
+
+private:
+    
+    E{{ enum_type }} m_value{ E{{ enum_type }}::e{{enum_definitions.enums[enum_type].members.keys()|first}} }; ///< The value held by the enum type
+
+
+    static const tsl::robin_map<E{{ enum_type }}, GString> s_enumStrings; ///< Map of enum values to their string representations
+    static const tsl::robin_map<GString, E{{ enum_type }}> s_stringEnums; ///< Map of string representations to their respective enum values
+
+};
+
+
+} /// End namespace

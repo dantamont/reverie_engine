@@ -1,0 +1,39 @@
+\hypertarget{classrev_1_1_blend_queue}{}\section{rev\+::Blend\+Queue Class Reference}
+\label{classrev_1_1_blend_queue}\index{rev::BlendQueue@{rev::BlendQueue}}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_blend_queue_a0e7746dfe67c7131ce729cf96297e0ca}\label{classrev_1_1_blend_queue_a0e7746dfe67c7131ce729cf96297e0ca}} 
+{\bfseries Blend\+Queue} (\mbox{\hyperlink{classrev_1_1_animation_controller}{Animation\+Controller}} $\ast$controller)
+\item 
+\mbox{\Hypertarget{classrev_1_1_blend_queue_a0eaf86679bcc68c264b250eb9f499cdf}\label{classrev_1_1_blend_queue_a0eaf86679bcc68c264b250eb9f499cdf}} 
+{\bfseries $\sim$\+Blend\+Queue} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_blend_queue_a2a2500d3700ca474c7b32d3b6b05a2f5}\label{classrev_1_1_blend_queue_a2a2500d3700ca474c7b32d3b6b05a2f5}} 
+const std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_animation_play_data}{Animation\+Play\+Data}} $>$ \& {\bfseries current\+Play\+Data} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_blend_queue_aa06c35e28ab17cd33a09433d37343f00}\label{classrev_1_1_blend_queue_aa06c35e28ab17cd33a09433d37343f00}} 
+void \mbox{\hyperlink{classrev_1_1_blend_queue_aa06c35e28ab17cd33a09433d37343f00}{update\+Current\+Clips}} (double process\+Time\+Sec, \mbox{\hyperlink{classrev_1_1_skeleton}{Skeleton}} $\ast$skeleton)
+\begin{DoxyCompactList}\small\item\em Update list of currently playing animations from active motions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_blend_queue_ae0857a69ff1dda27abb4e52ece6541da}\label{classrev_1_1_blend_queue_ae0857a69ff1dda27abb4e52ece6541da}} 
+void \mbox{\hyperlink{classrev_1_1_blend_queue_ae0857a69ff1dda27abb4e52ece6541da}{update\+Animation\+Frame}} (float time\+In\+Sec, \mbox{\hyperlink{classrev_1_1_skeleton}{Skeleton}} $\ast$skeleton, std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} $>$ \&out\+Transforms)
+\begin{DoxyCompactList}\small\item\em Obtain the transforms for the current frame of the animation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_blend_queue_ac9f8fce7996800d26a1f29d6a272bebe}\label{classrev_1_1_blend_queue_ac9f8fce7996800d26a1f29d6a272bebe}} 
+void \mbox{\hyperlink{classrev_1_1_blend_queue_ac9f8fce7996800d26a1f29d6a272bebe}{update\+Clip\+Weights}} ()
+\begin{DoxyCompactList}\small\item\em Update weights for currently playing clips based on transitions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/animation/G\+Blend\+Queue.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/animation/G\+Blend\+Queue.\+cpp\end{DoxyCompactItemize}

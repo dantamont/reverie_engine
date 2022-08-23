@@ -1,0 +1,46 @@
+\hypertarget{structrev_1_1_sorting_layers}{}\section{rev\+::Sorting\+Layers Struct Reference}
+\label{structrev_1_1_sorting_layers}\index{rev::SortingLayers@{rev::SortingLayers}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_sorting_layers_a97f14ab1284c9522b76b0c566a923cfe}\label{structrev_1_1_sorting_layers_a97f14ab1284c9522b76b0c566a923cfe}} 
+\mbox{\hyperlink{structrev_1_1_sorting_layer}{Sorting\+Layer}} $\ast$ {\bfseries get\+Layer} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&label) const
+\item 
+\mbox{\Hypertarget{structrev_1_1_sorting_layers_aa7e392d5267e1fcd8fa6482fad2346ff}\label{structrev_1_1_sorting_layers_aa7e392d5267e1fcd8fa6482fad2346ff}} 
+\mbox{\hyperlink{structrev_1_1_sorting_layer}{Sorting\+Layer}} $\ast$ {\bfseries get\+Layer\+From\+Id} (uint32\+\_\+t id) const
+\item 
+\mbox{\Hypertarget{structrev_1_1_sorting_layers_a62124f27902a14e9d8491dc9a95548ca}\label{structrev_1_1_sorting_layers_a62124f27902a14e9d8491dc9a95548ca}} 
+\mbox{\hyperlink{structrev_1_1_sorting_layer}{Sorting\+Layer}} $\ast$ {\bfseries add\+Layer} ()
+\item 
+\mbox{\Hypertarget{structrev_1_1_sorting_layers_a960f15159157f8ce072b4e6ba9e9a51e}\label{structrev_1_1_sorting_layers_a960f15159157f8ce072b4e6ba9e9a51e}} 
+\mbox{\hyperlink{structrev_1_1_sorting_layer}{Sorting\+Layer}} $\ast$ {\bfseries add\+Layer} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name, int order)
+\item 
+\mbox{\Hypertarget{structrev_1_1_sorting_layers_aab133691a73bf845c9d7a1d000603b5d}\label{structrev_1_1_sorting_layers_aab133691a73bf845c9d7a1d000603b5d}} 
+bool \mbox{\hyperlink{structrev_1_1_sorting_layers_aab133691a73bf845c9d7a1d000603b5d}{remove\+Layer}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&label, std\+::function$<$ void(uint32\+\_\+t)$>$ on\+Removal)
+\begin{DoxyCompactList}\small\item\em Remove a render layer, calling the specified callback on removal. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_sorting_layers_ad21276d3f1bbfc243c28c5a69580fe5d}\label{structrev_1_1_sorting_layers_ad21276d3f1bbfc243c28c5a69580fe5d}} 
+bool {\bfseries remove\+Layer} (uint32\+\_\+t layer\+Id, std\+::function$<$ void(uint32\+\_\+t)$>$ on\+Removal)
+\item 
+\mbox{\Hypertarget{structrev_1_1_sorting_layers_a1a3e2f464d22ad1096144b57239e0ac3}\label{structrev_1_1_sorting_layers_a1a3e2f464d22ad1096144b57239e0ac3}} 
+void \mbox{\hyperlink{structrev_1_1_sorting_layers_a1a3e2f464d22ad1096144b57239e0ac3}{sort}} ()
+\begin{DoxyCompactList}\small\item\em Sort the vector of render layers to reflect any modifications. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_sorting_layers_a49f65706af0d9bc9be933516f9cce5f9}\label{structrev_1_1_sorting_layers_a49f65706af0d9bc9be933516f9cce5f9}} 
+std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structrev_1_1_sorting_layer}{Sorting\+Layer}} $>$ $>$ {\bfseries m\+\_\+layers}
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_sorting_layers_a2fcc51b616004d857c8cf8a3638d1f7f}\label{structrev_1_1_sorting_layers_a2fcc51b616004d857c8cf8a3638d1f7f}} 
+static bool {\bfseries Sort\+Render\+Layers} (const std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structrev_1_1_sorting_layer}{Sorting\+Layer}} $>$ \&l1, const std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{structrev_1_1_sorting_layer}{Sorting\+Layer}} $>$ \&l2)
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/containers/G\+Sorting\+Layer.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/containers/G\+Sorting\+Layer.\+cpp\end{DoxyCompactItemize}

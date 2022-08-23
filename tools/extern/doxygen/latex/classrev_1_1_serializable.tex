@@ -1,0 +1,63 @@
+\hypertarget{classrev_1_1_serializable}{}\section{rev\+::Serializable Class Reference}
+\label{classrev_1_1_serializable}\index{rev::Serializable@{rev::Serializable}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing an object that can be serialized.  
+
+
+
+
+{\ttfamily \#include $<$G\+Loadable.\+h$>$}
+
+Inheritance diagram for rev\+::Serializable\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=12.000000cm]{classrev_1_1_serializable}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_serializable_afd95beffb0785162421c04034372b161}\label{classrev_1_1_serializable_afd95beffb0785162421c04034372b161}} 
+{\bfseries Serializable} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_serializable_a48737a4d5df365ec741a5a304d6990d9}\label{classrev_1_1_serializable_a48737a4d5df365ec741a5a304d6990d9}} 
+virtual {\bfseries $\sim$\+Serializable} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_serializable_a4da225872e71a667236cc83d35e66b70}\label{classrev_1_1_serializable_a4da225872e71a667236cc83d35e66b70}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_serializable_a4da225872e71a667236cc83d35e66b70}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const =0
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_serializable_a12908f551d59c1a752d5a30c906c4891}\label{classrev_1_1_serializable_a12908f551d59c1a752d5a30c906c4891}} 
+virtual void \mbox{\hyperlink{classrev_1_1_serializable_a12908f551d59c1a752d5a30c906c4891}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty())=0
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_serializable_ac2279bc0fd05f9c2459a6b7258e43fa8}\label{classrev_1_1_serializable_ac2279bc0fd05f9c2459a6b7258e43fa8}} 
+enum \mbox{\hyperlink{classrev_1_1_serializable_ac2279bc0fd05f9c2459a6b7258e43fa8}{Format}} \{ {\bfseries k\+Json}
+ \}
+\begin{DoxyCompactList}\small\item\em Formats that data can be loaded from. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_serializable_a03c1bd7fec1d4b61454047cf9f30969a}\label{classrev_1_1_serializable_a03c1bd7fec1d4b61454047cf9f30969a}} 
+static \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} {\bfseries To\+String} (const Q\+Json\+Object \&obj, Q\+Json\+Document\+::\+Json\+Format fmt=Q\+Json\+Document\+::\+Compact)
+\item 
+\mbox{\Hypertarget{classrev_1_1_serializable_a8a92217fefe852855da51ea0afbf98ad}\label{classrev_1_1_serializable_a8a92217fefe852855da51ea0afbf98ad}} 
+static Q\+Byte\+Array {\bfseries To\+Byte\+Data} (const Q\+Json\+Object \&obj, Q\+Json\+Document\+::\+Json\+Format fmt=Q\+Json\+Document\+::\+Compact)
+\item 
+\mbox{\Hypertarget{classrev_1_1_serializable_a7f70ac17716e66e914eeb6a811a8405c}\label{classrev_1_1_serializable_a7f70ac17716e66e914eeb6a811a8405c}} 
+static Q\+Json\+Object {\bfseries Object\+From\+String} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&str)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing an object that can be serialized. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/mixins/G\+Loadable.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/mixins/G\+Loadable.\+cpp\end{DoxyCompactItemize}

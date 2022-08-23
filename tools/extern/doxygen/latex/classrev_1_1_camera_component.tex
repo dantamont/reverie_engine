@@ -1,0 +1,142 @@
+\hypertarget{classrev_1_1_camera_component}{}\section{rev\+::Camera\+Component Class Reference}
+\label{classrev_1_1_camera_component}\index{rev::CameraComponent@{rev::CameraComponent}}
+
+
+\mbox{\hyperlink{classrev_1_1_camera}{Camera}} view in GL.  
+
+
+
+
+{\ttfamily \#include $<$G\+Camera\+Component.\+h$>$}
+
+Inheritance diagram for rev\+::Camera\+Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_camera_component}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_component_aa303631b7fb2af3b61a0f29a6f3ac2fa}\label{classrev_1_1_camera_component_aa303631b7fb2af3b61a0f29a6f3ac2fa}} 
+{\bfseries Camera\+Component} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_component_accd6718f6bc02f486ae92bdc83e8e3a6}\label{classrev_1_1_camera_component_accd6718f6bc02f486ae92bdc83e8e3a6}} 
+{\bfseries Camera\+Component} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \&object)
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_component_a245e8b9d46b7de70ae51557bbd66af3c}\label{classrev_1_1_camera_component_a245e8b9d46b7de70ae51557bbd66af3c}} 
+{\bfseries $\sim$\+Camera\+Component} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_component_a9ba773af7eb20b50267c16dea76ed1a3}\label{classrev_1_1_camera_component_a9ba773af7eb20b50267c16dea76ed1a3}} 
+\mbox{\hyperlink{classrev_1_1_scene_camera}{Scene\+Camera}} \& \mbox{\hyperlink{classrev_1_1_camera_component_a9ba773af7eb20b50267c16dea76ed1a3}{camera}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_camera}{Camera}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_component_a9580eace705212b2f3938a1017c802cf}\label{classrev_1_1_camera_component_a9580eace705212b2f3938a1017c802cf}} 
+const \mbox{\hyperlink{classrev_1_1_scene_camera}{Scene\+Camera}} \& {\bfseries camera} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_component_a06adc305237c9086cc33e124baa25090}\label{classrev_1_1_camera_component_a06adc305237c9086cc33e124baa25090}} 
+\mbox{\hyperlink{classrev_1_1_camera_controller}{Camera\+Controller}} \& \mbox{\hyperlink{classrev_1_1_camera_component_a06adc305237c9086cc33e124baa25090}{controller}} ()
+\begin{DoxyCompactList}\small\item\em Controller. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_component_a07103046e8db3a1a5c6a6684016df0ea}\label{classrev_1_1_camera_component_a07103046e8db3a1a5c6a6684016df0ea}} 
+virtual int \mbox{\hyperlink{classrev_1_1_camera_component_a07103046e8db3a1a5c6a6684016df0ea}{max\+Allowed}} () const override
+\begin{DoxyCompactList}\small\item\em Max number of allowed components per scene object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_component_a2d05bd87de8e5ad7cc9028fcc1b07dec}\label{classrev_1_1_camera_component_a2d05bd87de8e5ad7cc9028fcc1b07dec}} 
+const \mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \& {\bfseries cube\+Map\+ID} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_component_a9cba1cda81cf15a3fe6b6a1d562b5a0f}\label{classrev_1_1_camera_component_a9cba1cda81cf15a3fe6b6a1d562b5a0f}} 
+void {\bfseries set\+Cube\+Map\+ID} (const \mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \&cm)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_component_a78529bf392900846390200bf520468ab}\label{classrev_1_1_camera_component_a78529bf392900846390200bf520468ab}} 
+void \mbox{\hyperlink{classrev_1_1_camera_component_a78529bf392900846390200bf520468ab}{create\+Draw\+Commands}} (\mbox{\hyperlink{classrev_1_1_scene}{Scene}} \&\mbox{\hyperlink{classrev_1_1_component_a76bcbb43342679d7b693eef48546854b}{scene}}, \mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} \&renderer)
+\begin{DoxyCompactList}\small\item\em Draw scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_component_a8ad67e89410a8e93bf0a98dc485c7409}\label{classrev_1_1_camera_component_a8ad67e89410a8e93bf0a98dc485c7409}} 
+void {\bfseries create\+Debug\+Draw\+Commands} (\mbox{\hyperlink{classrev_1_1_scene}{Scene}} \&\mbox{\hyperlink{classrev_1_1_component_a76bcbb43342679d7b693eef48546854b}{scene}}, \mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} \&renderer)
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_component_a1c26fe3bcac9257f5690b90f316f6571}\label{classrev_1_1_camera_component_a1c26fe3bcac9257f5690b90f316f6571}} 
+virtual void \mbox{\hyperlink{classrev_1_1_camera_component_a1c26fe3bcac9257f5690b90f316f6571}{enable}} () override
+\begin{DoxyCompactList}\small\item\em Enable this component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_component_ac469cca55c2874b4e8fd86c69af1b03d}\label{classrev_1_1_camera_component_ac469cca55c2874b4e8fd86c69af1b03d}} 
+virtual void \mbox{\hyperlink{classrev_1_1_camera_component_ac469cca55c2874b4e8fd86c69af1b03d}{disable}} () override
+\begin{DoxyCompactList}\small\item\em Disable this component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_component_a58719f4aa8f1d7e675c32593954aef55}\label{classrev_1_1_camera_component_a58719f4aa8f1d7e675c32593954aef55}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_camera_component_a58719f4aa8f1d7e675c32593954aef55}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_component_ac976f1d6eedd07fee6970a00b559e34c}\label{classrev_1_1_camera_component_ac976f1d6eedd07fee6970a00b559e34c}} 
+virtual void \mbox{\hyperlink{classrev_1_1_camera_component_ac976f1d6eedd07fee6970a00b559e34c}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_camera_component_a3461de347041bf3376283e4f66914d8b}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_camera_component_a9e26b2321133fabca2583eaf5cae00e4}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_component_a8ef7e22582a8eceb47f30a8e95028170}\label{classrev_1_1_camera_component_a8ef7e22582a8eceb47f30a8e95028170}} 
+\mbox{\hyperlink{classrev_1_1_scene_camera}{Scene\+Camera}} {\bfseries m\+\_\+camera}
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_component_a7addff08a97ec31b0704921f0374cae5}\label{classrev_1_1_camera_component_a7addff08a97ec31b0704921f0374cae5}} 
+\mbox{\hyperlink{classrev_1_1_camera_controller}{Camera\+Controller}} {\bfseries m\+\_\+controller}
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_component_a6518d01b22c07d2d564ce15607cba45c}\label{classrev_1_1_camera_component_a6518d01b22c07d2d564ce15607cba45c}} 
+\mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} {\bfseries m\+\_\+cube\+Map\+ID} = \mbox{\hyperlink{classrev_1_1_uuid}{Uuid}}(false)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{classrev_1_1_camera}{Camera}} view in GL. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_camera_component_a3461de347041bf3376283e4f66914d8b}\label{classrev_1_1_camera_component_a3461de347041bf3376283e4f66914d8b}} 
+\index{rev::CameraComponent@{rev::CameraComponent}!className@{className}}
+\index{className@{className}!rev::CameraComponent@{rev::CameraComponent}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Camera\+Component\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_camera_component_a9e26b2321133fabca2583eaf5cae00e4}\label{classrev_1_1_camera_component_a9e26b2321133fabca2583eaf5cae00e4}} 
+\index{rev::CameraComponent@{rev::CameraComponent}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::CameraComponent@{rev::CameraComponent}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Camera\+Component\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+Camera\+Component.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+Camera\+Component.\+cpp\end{DoxyCompactItemize}

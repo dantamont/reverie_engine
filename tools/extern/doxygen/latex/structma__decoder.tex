@@ -1,0 +1,71 @@
+\hypertarget{structma__decoder}{}\section{ma\+\_\+decoder Struct Reference}
+\label{structma__decoder}\index{ma\_decoder@{ma\_decoder}}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structma__decoder_ad14a7f9e20dfd46e238f96d51d46f18f}\label{structma__decoder_ad14a7f9e20dfd46e238f96d51d46f18f}} 
+ma\+\_\+decoder\+\_\+read\+\_\+proc {\bfseries on\+Read}
+\item 
+\mbox{\Hypertarget{structma__decoder_ae6cd5588325e161775a5456ff66cf302}\label{structma__decoder_ae6cd5588325e161775a5456ff66cf302}} 
+ma\+\_\+decoder\+\_\+seek\+\_\+proc {\bfseries on\+Seek}
+\item 
+\mbox{\Hypertarget{structma__decoder_ade170d8580cf3f2ce9b1fa00076fd183}\label{structma__decoder_ade170d8580cf3f2ce9b1fa00076fd183}} 
+void $\ast$ {\bfseries p\+User\+Data}
+\item 
+\mbox{\Hypertarget{structma__decoder_ae759dd3df6434fbce1f825f1d1d0645b}\label{structma__decoder_ae759dd3df6434fbce1f825f1d1d0645b}} 
+ma\+\_\+uint64 {\bfseries read\+Pointer}
+\item 
+\mbox{\Hypertarget{structma__decoder_a5466df02457a80e3b953d0cb513d37b2}\label{structma__decoder_a5466df02457a80e3b953d0cb513d37b2}} 
+ma\+\_\+format {\bfseries internal\+Format}
+\item 
+\mbox{\Hypertarget{structma__decoder_a07cee2126f985e9327dd89c1e875c397}\label{structma__decoder_a07cee2126f985e9327dd89c1e875c397}} 
+ma\+\_\+uint32 {\bfseries internal\+Channels}
+\item 
+\mbox{\Hypertarget{structma__decoder_aa60216630d76d02900cacb9f2032ec03}\label{structma__decoder_aa60216630d76d02900cacb9f2032ec03}} 
+ma\+\_\+uint32 {\bfseries internal\+Sample\+Rate}
+\item 
+\mbox{\Hypertarget{structma__decoder_a17f74f19b961fcefbc681731c6e2225b}\label{structma__decoder_a17f74f19b961fcefbc681731c6e2225b}} 
+ma\+\_\+channel {\bfseries internal\+Channel\+Map} \mbox{[}M\+A\+\_\+\+M\+A\+X\+\_\+\+C\+H\+A\+N\+N\+E\+LS\mbox{]}
+\item 
+\mbox{\Hypertarget{structma__decoder_a99e75664cebea3a92fc07d2458fb4bbf}\label{structma__decoder_a99e75664cebea3a92fc07d2458fb4bbf}} 
+ma\+\_\+format {\bfseries output\+Format}
+\item 
+\mbox{\Hypertarget{structma__decoder_a66e891518697e7226936c04cce589a8c}\label{structma__decoder_a66e891518697e7226936c04cce589a8c}} 
+ma\+\_\+uint32 {\bfseries output\+Channels}
+\item 
+\mbox{\Hypertarget{structma__decoder_a9d4f0e1242f5faf1fb1614c619fbd6f0}\label{structma__decoder_a9d4f0e1242f5faf1fb1614c619fbd6f0}} 
+ma\+\_\+uint32 {\bfseries output\+Sample\+Rate}
+\item 
+\mbox{\Hypertarget{structma__decoder_ac15e3aa7a88adc712435543c51bf50dc}\label{structma__decoder_ac15e3aa7a88adc712435543c51bf50dc}} 
+ma\+\_\+channel {\bfseries output\+Channel\+Map} \mbox{[}M\+A\+\_\+\+M\+A\+X\+\_\+\+C\+H\+A\+N\+N\+E\+LS\mbox{]}
+\item 
+\mbox{\Hypertarget{structma__decoder_ac956e824411663c4d7e36d6531dffdd6}\label{structma__decoder_ac956e824411663c4d7e36d6531dffdd6}} 
+ma\+\_\+pcm\+\_\+converter {\bfseries dsp}
+\item 
+\mbox{\Hypertarget{structma__decoder_a3e6d2e701b2ebc204e31364919e7f93a}\label{structma__decoder_a3e6d2e701b2ebc204e31364919e7f93a}} 
+ma\+\_\+decoder\+\_\+seek\+\_\+to\+\_\+pcm\+\_\+frame\+\_\+proc {\bfseries on\+Seek\+To\+P\+C\+M\+Frame}
+\item 
+\mbox{\Hypertarget{structma__decoder_ac2484c604c1583b697665bd409789f6e}\label{structma__decoder_ac2484c604c1583b697665bd409789f6e}} 
+ma\+\_\+decoder\+\_\+uninit\+\_\+proc {\bfseries on\+Uninit}
+\item 
+\mbox{\Hypertarget{structma__decoder_a434c381c2f896b8319955f683f1b88f9}\label{structma__decoder_a434c381c2f896b8319955f683f1b88f9}} 
+ma\+\_\+decoder\+\_\+get\+\_\+length\+\_\+in\+\_\+pcm\+\_\+frames\+\_\+proc {\bfseries on\+Get\+Length\+In\+P\+C\+M\+Frames}
+\item 
+\mbox{\Hypertarget{structma__decoder_af19fbbb327dc5d617a04a060d6ded1ac}\label{structma__decoder_af19fbbb327dc5d617a04a060d6ded1ac}} 
+void $\ast$ {\bfseries p\+Internal\+Decoder}
+\item 
+\mbox{\Hypertarget{structma__decoder_a2852bba60f5c0e3e549a5d2966c9a475}\label{structma__decoder_a2852bba60f5c0e3e549a5d2966c9a475}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>const ma\_uint8 $\ast$ {\bfseries pData}\\
+\>size\_t {\bfseries dataSize}\\
+\>size\_t {\bfseries currentReadPos}\\
+\} {\bfseries memory}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/src/backend/miniaudio/miniaudio.\+h\end{DoxyCompactItemize}

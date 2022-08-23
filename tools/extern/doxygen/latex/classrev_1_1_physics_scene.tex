@@ -1,0 +1,189 @@
+\hypertarget{classrev_1_1_physics_scene}{}\section{rev\+::Physics\+Scene Class Reference}
+\label{classrev_1_1_physics_scene}\index{rev::PhysicsScene@{rev::PhysicsScene}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing a physics scene.  
+
+
+
+
+{\ttfamily \#include $<$G\+Physics\+Scene.\+h$>$}
+
+Inheritance diagram for rev\+::Physics\+Scene\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_physics_scene}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_scene_ae4d2a39a0131c56136c250b899b9e802}\label{classrev_1_1_physics_scene_ae4d2a39a0131c56136c250b899b9e802}} 
+{\bfseries $\sim$\+Physics\+Scene} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_scene_a10c8c055b5ef00c47a3a07ad27844188}\label{classrev_1_1_physics_scene_a10c8c055b5ef00c47a3a07ad27844188}} 
+\mbox{\hyperlink{classrev_1_1_scene}{Scene}} $\ast$ {\bfseries scene} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_scene_a1cb7f4fb4ed653d94d9fa7a5c79ce6de}\label{classrev_1_1_physics_scene_a1cb7f4fb4ed653d94d9fa7a5c79ce6de}} 
+physx\+::\+Px\+Scene $\ast$ {\bfseries px\+Scene} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_scene_a4e02fbabd0a5733db4eabd607dda9ed4}\label{classrev_1_1_physics_scene_a4e02fbabd0a5733db4eabd607dda9ed4}} 
+const physx\+::\+Px\+Scene $\ast$ {\bfseries px\+Scene} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_scene_a88e3b98d0b922cf1acfc9a9a28b57abd}\label{classrev_1_1_physics_scene_a88e3b98d0b922cf1acfc9a9a28b57abd}} 
+const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_c_c_t_manager}{C\+C\+T\+Manager}} $>$ \& \mbox{\hyperlink{classrev_1_1_physics_scene_a88e3b98d0b922cf1acfc9a9a28b57abd}{cct\+Manager}} () const
+\begin{DoxyCompactList}\small\item\em Return character controller manager. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_scene_a5477c555e20a63d7b0dc6496c0fa4ea1}\label{classrev_1_1_physics_scene_a5477c555e20a63d7b0dc6496c0fa4ea1}} 
+void {\bfseries create\+Cct\+Manager} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_scene_a95a1eacb09e601d5b23173abb09ba1a5}\label{classrev_1_1_physics_scene_a95a1eacb09e601d5b23173abb09ba1a5}} 
+bool \mbox{\hyperlink{classrev_1_1_physics_scene_a95a1eacb09e601d5b23173abb09ba1a5}{raycast}} (\mbox{\hyperlink{classrev_1_1_physics_raycast}{Physics\+Raycast}} \&cast) const
+\begin{DoxyCompactList}\small\item\em Perform a raycast for this scene, returning true if at least one hit was obtained. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_scene_a852a127982ff857ae8153e0f3f19b435}\label{classrev_1_1_physics_scene_a852a127982ff857ae8153e0f3f19b435}} 
+std\+::vector$<$ physx\+::\+Px\+Actor $\ast$ $>$ \mbox{\hyperlink{classrev_1_1_physics_scene_a852a127982ff857ae8153e0f3f19b435}{actors}} ()
+\begin{DoxyCompactList}\small\item\em Get actors. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_scene_a5795d429c97b3c0248244c4fee3e7425}\label{classrev_1_1_physics_scene_a5795d429c97b3c0248244c4fee3e7425}} 
+std\+::vector$<$ physx\+::\+Px\+Actor $\ast$ $>$ {\bfseries dynamic\+Actors} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_scene_a1e2bb7bf3dd586ed32138d50b5c9a782}\label{classrev_1_1_physics_scene_a1e2bb7bf3dd586ed32138d50b5c9a782}} 
+std\+::vector$<$ physx\+::\+Px\+Actor $\ast$ $>$ \mbox{\hyperlink{classrev_1_1_physics_scene_a1e2bb7bf3dd586ed32138d50b5c9a782}{active\+Actors}} ()
+\begin{DoxyCompactList}\small\item\em Get active actors. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_scene_a729e6f99fe77acf5dff7425a7d89752e}\label{classrev_1_1_physics_scene_a729e6f99fe77acf5dff7425a7d89752e}} 
+void \mbox{\hyperlink{classrev_1_1_physics_scene_a729e6f99fe77acf5dff7425a7d89752e}{simulate}} (float dt)
+\begin{DoxyCompactList}\small\item\em Step forward in the simulation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_scene_ad2625ecb82a94c29649553fea6f06984}\label{classrev_1_1_physics_scene_ad2625ecb82a94c29649553fea6f06984}} 
+void \mbox{\hyperlink{classrev_1_1_physics_scene_ad2625ecb82a94c29649553fea6f06984}{fetch\+Results}} (bool block)
+\begin{DoxyCompactList}\small\item\em Fetch results from the most recent simulation step. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_scene_a3ca30f34297ce07f161365b325d9fc5b}\label{classrev_1_1_physics_scene_a3ca30f34297ce07f161365b325d9fc5b}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector3f}} \mbox{\hyperlink{classrev_1_1_physics_scene_a3ca30f34297ce07f161365b325d9fc5b}{get\+Gravity}} () const
+\begin{DoxyCompactList}\small\item\em Set gravity. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_scene_a61ce56ac575f7d2be0873050c65ff0ee}\label{classrev_1_1_physics_scene_a61ce56ac575f7d2be0873050c65ff0ee}} 
+void {\bfseries set\+Gravity} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3f}} \&gravity)
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_scene_ab31bfb085b751eba92c1ce979303c06e}\label{classrev_1_1_physics_scene_ab31bfb085b751eba92c1ce979303c06e}} 
+void \mbox{\hyperlink{classrev_1_1_physics_scene_ab31bfb085b751eba92c1ce979303c06e}{add\+Actor}} (\mbox{\hyperlink{classrev_1_1_physics_actor}{Physics\+Actor}} $\ast$actor)
+\begin{DoxyCompactList}\small\item\em Add actor to the scene. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_physics_scene_a899ac2eb1fa688ad99042406ec105688}{remove\+Actor}} (\mbox{\hyperlink{classrev_1_1_physics_actor}{Physics\+Actor}} $\ast$actor)
+\begin{DoxyCompactList}\small\item\em Remove an actor from the scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_scene_aff9e4c7ccb2500d3202c9f61de23a25e}\label{classrev_1_1_physics_scene_aff9e4c7ccb2500d3202c9f61de23a25e}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_physics_scene_aff9e4c7ccb2500d3202c9f61de23a25e}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_scene_a440b7496f3890ce184172bb9a5e29180}\label{classrev_1_1_physics_scene_a440b7496f3890ce184172bb9a5e29180}} 
+virtual void \mbox{\hyperlink{classrev_1_1_physics_scene_a440b7496f3890ce184172bb9a5e29180}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_physics_scene_a7ea458478b0e1e2db563854807a66f8b}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_physics_scene_ab8d105fd9f30fa787cf4776afcd3a864}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_scene_ac69cb117fae4f72be26da17fe52ca7f4}\label{classrev_1_1_physics_scene_ac69cb117fae4f72be26da17fe52ca7f4}} 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_physics_scene}{Physics\+Scene}} $>$ {\bfseries Physics\+Scene\+::create} (\mbox{\hyperlink{classrev_1_1_scene}{Scene}} $\ast$scene)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Constructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_scene_a6c40d2f023047568123322a51c86f8e8}\label{classrev_1_1_physics_scene_a6c40d2f023047568123322a51c86f8e8}} 
+{\bfseries Physics\+Scene} (\mbox{\hyperlink{classrev_1_1_scene}{Scene}} $\ast$scene)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_scene_adff43e54b6e4f510dc76478e74abedbe}\label{classrev_1_1_physics_scene_adff43e54b6e4f510dc76478e74abedbe}} 
+void \mbox{\hyperlink{classrev_1_1_physics_scene_adff43e54b6e4f510dc76478e74abedbe}{initialize}} (\mbox{\hyperlink{classrev_1_1_scene}{Scene}} $\ast$scene)
+\begin{DoxyCompactList}\small\item\em Initialize the scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_scene_a9c455866a0e6759abe45a34c120072e1}\label{classrev_1_1_physics_scene_a9c455866a0e6759abe45a34c120072e1}} 
+void \mbox{\hyperlink{classrev_1_1_physics_scene_a9c455866a0e6759abe45a34c120072e1}{initialize\+Description}} ()
+\begin{DoxyCompactList}\small\item\em Initialize the scene description. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_scene_a0bd646e5b9227f17a9e4bf057cec7d5a}\label{classrev_1_1_physics_scene_a0bd646e5b9227f17a9e4bf057cec7d5a}} 
+void \mbox{\hyperlink{classrev_1_1_physics_scene_a0bd646e5b9227f17a9e4bf057cec7d5a}{on\+Delete}} ()
+\begin{DoxyCompactList}\small\item\em Delete the scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_scene_af56ce7f9509731e72f114af2d35f0350}\label{classrev_1_1_physics_scene_af56ce7f9509731e72f114af2d35f0350}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_c_c_t_manager}{C\+C\+T\+Manager}} $>$ \mbox{\hyperlink{classrev_1_1_physics_scene_af56ce7f9509731e72f114af2d35f0350}{m\+\_\+cct\+Manager}} = nullptr
+\begin{DoxyCompactList}\small\item\em The character controller manager for this scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_scene_aedad70bf0da88420d5ced3102e4c9025}\label{classrev_1_1_physics_scene_aedad70bf0da88420d5ced3102e4c9025}} 
+physx\+::\+Px\+Scene $\ast$ \mbox{\hyperlink{classrev_1_1_physics_scene_aedad70bf0da88420d5ced3102e4c9025}{m\+\_\+px\+Scene}}
+\begin{DoxyCompactList}\small\item\em PhysX scene wrapped by this physics scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_scene_aa49475a30b1bd8e1590789e67d4739fb}\label{classrev_1_1_physics_scene_aa49475a30b1bd8e1590789e67d4739fb}} 
+physx\+::\+Px\+Scene\+Desc \mbox{\hyperlink{classrev_1_1_physics_scene_aa49475a30b1bd8e1590789e67d4739fb}{m\+\_\+description}}
+\begin{DoxyCompactList}\small\item\em Description of the physx scene, used for initialization. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing a physics scene. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_physics_scene_a7ea458478b0e1e2db563854807a66f8b}\label{classrev_1_1_physics_scene_a7ea458478b0e1e2db563854807a66f8b}} 
+\index{rev::PhysicsScene@{rev::PhysicsScene}!className@{className}}
+\index{className@{className}!rev::PhysicsScene@{rev::PhysicsScene}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Physics\+Scene\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_physics_scene_ab8d105fd9f30fa787cf4776afcd3a864}\label{classrev_1_1_physics_scene_ab8d105fd9f30fa787cf4776afcd3a864}} 
+\index{rev::PhysicsScene@{rev::PhysicsScene}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::PhysicsScene@{rev::PhysicsScene}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Physics\+Scene\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_physics_scene_a899ac2eb1fa688ad99042406ec105688}\label{classrev_1_1_physics_scene_a899ac2eb1fa688ad99042406ec105688}} 
+\index{rev::PhysicsScene@{rev::PhysicsScene}!removeActor@{removeActor}}
+\index{removeActor@{removeActor}!rev::PhysicsScene@{rev::PhysicsScene}}
+\subsubsection{\texorpdfstring{removeActor()}{removeActor()}}
+{\footnotesize\ttfamily void rev\+::\+Physics\+Scene\+::remove\+Actor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classrev_1_1_physics_actor}{Physics\+Actor}} $\ast$}]{actor }\end{DoxyParamCaption})}
+
+
+
+Remove an actor from the scene. 
+
+If the actor is not part of this scene (see Px\+Actor\+::get\+Scene), the call is ignored and an error is issued. You can not remove individual articulation links(see Px\+Articulation\+Link) from the scene.\+Use remove\+Articulation() instead. If the actor is a Px\+Rigid\+Actor then all assigned Px\+Constraint objects will get removed from the scene automatically. If the actor is in an aggregate it will be removed from the aggregate. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Physics\+Scene.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Physics\+Scene.\+cpp\end{DoxyCompactItemize}

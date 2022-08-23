@@ -1,0 +1,183 @@
+\hypertarget{classrev_1_1_cube_map_component}{}\section{rev\+::Cube\+Map\+Component Class Reference}
+\label{classrev_1_1_cube_map_component}\index{rev::CubeMapComponent@{rev::CubeMapComponent}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing a Cube\+Map.  
+
+
+
+
+{\ttfamily \#include $<$G\+Cubemap\+Component.\+h$>$}
+
+Inheritance diagram for rev\+::Cube\+Map\+Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.435583cm]{classrev_1_1_cube_map_component}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_cube_map_component_a3280f5294ae1925876b1fc6ea898767b}\label{classrev_1_1_cube_map_component_a3280f5294ae1925876b1fc6ea898767b}} 
+{\bfseries Cube\+Map\+Component} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_cube_map_component_aa1f0233043f6892e8d4ba9091bc16d81}\label{classrev_1_1_cube_map_component_aa1f0233043f6892e8d4ba9091bc16d81}} 
+{\bfseries Cube\+Map\+Component} (const \mbox{\hyperlink{classrev_1_1_cube_map_component}{Cube\+Map\+Component}} \&component)
+\item 
+\mbox{\Hypertarget{classrev_1_1_cube_map_component_a35910960d32eef622a763d3cc8b80fc1}\label{classrev_1_1_cube_map_component_a35910960d32eef622a763d3cc8b80fc1}} 
+{\bfseries Cube\+Map\+Component} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \&object, const Q\+Json\+Value \&json)
+\item 
+\mbox{\Hypertarget{classrev_1_1_cube_map_component_a28459894aef35a4b2bd134a420fb074b}\label{classrev_1_1_cube_map_component_a28459894aef35a4b2bd134a420fb074b}} 
+{\bfseries Cube\+Map\+Component} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \&object)
+\item 
+\mbox{\Hypertarget{classrev_1_1_cube_map_component_a9b5ebcce520ac7aa9573caab2af05f10}\label{classrev_1_1_cube_map_component_a9b5ebcce520ac7aa9573caab2af05f10}} 
+{\bfseries $\sim$\+Cube\+Map\+Component} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_cube_map_component_ab221b2927cdd6f7a8a23e8a84d2452d3}\label{classrev_1_1_cube_map_component_ab221b2927cdd6f7a8a23e8a84d2452d3}} 
+virtual void \mbox{\hyperlink{classrev_1_1_cube_map_component_ab221b2927cdd6f7a8a23e8a84d2452d3}{enable}} () override
+\begin{DoxyCompactList}\small\item\em Enable the behavior of this script component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_cube_map_component_ad96023b168ef5657d6df4ea0dba6d46a}\label{classrev_1_1_cube_map_component_ad96023b168ef5657d6df4ea0dba6d46a}} 
+virtual void \mbox{\hyperlink{classrev_1_1_cube_map_component_ad96023b168ef5657d6df4ea0dba6d46a}{disable}} () override
+\begin{DoxyCompactList}\small\item\em Disable the behavior of this script component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_cube_map_component_a6270b3cb1d7252ff9f7542d5479edb5b}\label{classrev_1_1_cube_map_component_a6270b3cb1d7252ff9f7542d5479edb5b}} 
+virtual int \mbox{\hyperlink{classrev_1_1_cube_map_component_a6270b3cb1d7252ff9f7542d5479edb5b}{max\+Allowed}} () const override
+\begin{DoxyCompactList}\small\item\em Max number of allowed components per scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_cube_map_component_aa2bd32ddaddbc14d8576b03c62ecd2a2}\label{classrev_1_1_cube_map_component_aa2bd32ddaddbc14d8576b03c62ecd2a2}} 
+void \mbox{\hyperlink{classrev_1_1_cube_map_component_aa2bd32ddaddbc14d8576b03c62ecd2a2}{set\+Default}} ()
+\begin{DoxyCompactList}\small\item\em Set as default cubemap for the scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_cube_map_component_a9a41d565eac220baa0abfe0fa9ff9733}\label{classrev_1_1_cube_map_component_a9a41d565eac220baa0abfe0fa9ff9733}} 
+bool {\bfseries is\+Default} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_cube_map_component_aab4902e9d1aed79cc37c1def2131718a}\label{classrev_1_1_cube_map_component_aab4902e9d1aed79cc37c1def2131718a}} 
+void \mbox{\hyperlink{classrev_1_1_cube_map_component_aab4902e9d1aed79cc37c1def2131718a}{draw}} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program, \mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} $\ast$context, \mbox{\hyperlink{classrev_1_1_render_settings}{Render\+Settings}} $\ast$settings=nullptr, size\+\_\+t draw\+Flags=0) override
+\begin{DoxyCompactList}\small\item\em Draw the renderable given a shader program. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_cube_map_component_aeeb572c3ac6423496a3adf253c3bc0c6}\label{classrev_1_1_cube_map_component_aeeb572c3ac6423496a3adf253c3bc0c6}} 
+void \mbox{\hyperlink{classrev_1_1_cube_map_component_aeeb572c3ac6423496a3adf253c3bc0c6}{set\+Cube\+Texture}} (const Q\+String \&filepath)
+\begin{DoxyCompactList}\small\item\em Set the cube texture at the given filepath, loading if required. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classrev_1_1_cube_map_component_ace8f36c985acb2621b2c11b8c05b514e}{reload}} () override
+\begin{DoxyCompactList}\small\item\em Update any data needed for rendering, e.\+g. vertex data, render settings, etc. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_cube_map_component_a12bae9c000dc757b7254e9fa0e8fa51e}\label{classrev_1_1_cube_map_component_a12bae9c000dc757b7254e9fa0e8fa51e}} 
+\mbox{\hyperlink{classrev_1_1_cube_texture}{Cube\+Texture}} $\ast$ {\bfseries texture} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_cube_map_component_a2cdc28c911f0bc89c4258fe98a9d0382}\label{classrev_1_1_cube_map_component_a2cdc28c911f0bc89c4258fe98a9d0382}} 
+virtual size\+\_\+t \mbox{\hyperlink{classrev_1_1_cube_map_component_a2cdc28c911f0bc89c4258fe98a9d0382}{get\+Sort\+ID}} () override
+\begin{DoxyCompactList}\small\item\em Get ID to sort renderable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_cube_map_component_a5e8163a9264a412a53f5bf65583bc320}\label{classrev_1_1_cube_map_component_a5e8163a9264a412a53f5bf65583bc320}} 
+\mbox{\hyperlink{classrev_1_1_color}{Color}} \& \mbox{\hyperlink{classrev_1_1_cube_map_component_a5e8163a9264a412a53f5bf65583bc320}{diffuse\+Color}} ()
+\begin{DoxyCompactList}\small\item\em Diffuse color. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_cube_map_component_af259a84d039ac304b7f5ed0de8df1798}\label{classrev_1_1_cube_map_component_af259a84d039ac304b7f5ed0de8df1798}} 
+void {\bfseries set\+Diffuse\+Color} (const \mbox{\hyperlink{classrev_1_1_color}{Color}} \&color)
+\item 
+\mbox{\Hypertarget{classrev_1_1_cube_map_component_a69c45ca899a3cf4497c244f60038bb1c}\label{classrev_1_1_cube_map_component_a69c45ca899a3cf4497c244f60038bb1c}} 
+const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \& {\bfseries texture\+Handle} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_cube_map_component_a09be93995cb43696c7f7644a224b59e4}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_cube_map_component_a5fd0d5b47d8ba3594d4daf0ed8135b83}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_cube_map_component_a5ec533f5c69ea578d9b7ad9aed1dfbf9}\label{classrev_1_1_cube_map_component_a5ec533f5c69ea578d9b7ad9aed1dfbf9}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_cube_map_component_a5ec533f5c69ea578d9b7ad9aed1dfbf9}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_cube_map_component_a6f1eaa5942b5d5b9c9758c218b6dc74d}\label{classrev_1_1_cube_map_component_a6f1eaa5942b5d5b9c9758c218b6dc74d}} 
+virtual void \mbox{\hyperlink{classrev_1_1_cube_map_component_a6f1eaa5942b5d5b9c9758c218b6dc74d}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_cube_map_component_ace60fbcef3079dc4db83dda4f673f6ba}\label{classrev_1_1_cube_map_component_ace60fbcef3079dc4db83dda4f673f6ba}} 
+void \mbox{\hyperlink{classrev_1_1_cube_map_component_ace60fbcef3079dc4db83dda4f673f6ba}{initialize}} ()
+\begin{DoxyCompactList}\small\item\em check\+Validity the cubemap \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_cube_map_component_af23896ca51c1a73afb7a16e2156d5ba0}\label{classrev_1_1_cube_map_component_af23896ca51c1a73afb7a16e2156d5ba0}} 
+void \mbox{\hyperlink{classrev_1_1_cube_map_component_af23896ca51c1a73afb7a16e2156d5ba0}{bind\+Uniforms}} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program, \mbox{\hyperlink{classrev_1_1_cube_texture}{Cube\+Texture}} \&cube\+Texture)
+\begin{DoxyCompactList}\small\item\em Set uniforms in the shader being used for rendering. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_cube_map_component_a949e692068c92b65b241546047904e89}\label{classrev_1_1_cube_map_component_a949e692068c92b65b241546047904e89}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \mbox{\hyperlink{classrev_1_1_cube_map_component_a949e692068c92b65b241546047904e89}{m\+\_\+cube\+Texture\+Handle}}
+\begin{DoxyCompactList}\small\item\em The texture corresponding to this cubemap. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_cube_map_component_a57eaee9f14afa2d3e1a46949864be9f0}\label{classrev_1_1_cube_map_component_a57eaee9f14afa2d3e1a46949864be9f0}} 
+\mbox{\hyperlink{classrev_1_1_color}{Color}} \mbox{\hyperlink{classrev_1_1_cube_map_component_a57eaee9f14afa2d3e1a46949864be9f0}{m\+\_\+color}}
+\begin{DoxyCompactList}\small\item\em The diffuse color of the cubemap. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing a Cube\+Map. 
+
+Sampled in shader as a 3D direction vector \begin{DoxyNote}{Note}
+See\+: \href{https://learnopengl.com/Advanced-OpenGL/Cubemaps}{\texttt{ https\+://learnopengl.\+com/\+Advanced-\/\+Open\+G\+L/\+Cubemaps}} 
+\end{DoxyNote}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_cube_map_component_a09be93995cb43696c7f7644a224b59e4}\label{classrev_1_1_cube_map_component_a09be93995cb43696c7f7644a224b59e4}} 
+\index{rev::CubeMapComponent@{rev::CubeMapComponent}!className@{className}}
+\index{className@{className}!rev::CubeMapComponent@{rev::CubeMapComponent}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Cube\+Map\+Component\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_component_a07619152d5acafe7a536df3a6a476349}{rev\+::\+Component}}.
+
+\mbox{\Hypertarget{classrev_1_1_cube_map_component_a5fd0d5b47d8ba3594d4daf0ed8135b83}\label{classrev_1_1_cube_map_component_a5fd0d5b47d8ba3594d4daf0ed8135b83}} 
+\index{rev::CubeMapComponent@{rev::CubeMapComponent}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::CubeMapComponent@{rev::CubeMapComponent}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Cube\+Map\+Component\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_component_ae2827b14c278588b95e01c4743fae674}{rev\+::\+Component}}.
+
+\mbox{\Hypertarget{classrev_1_1_cube_map_component_ace8f36c985acb2621b2c11b8c05b514e}\label{classrev_1_1_cube_map_component_ace8f36c985acb2621b2c11b8c05b514e}} 
+\index{rev::CubeMapComponent@{rev::CubeMapComponent}!reload@{reload}}
+\index{reload@{reload}!rev::CubeMapComponent@{rev::CubeMapComponent}}
+\subsubsection{\texorpdfstring{reload()}{reload()}}
+{\footnotesize\ttfamily virtual void rev\+::\+Cube\+Map\+Component\+::reload (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Update any data needed for rendering, e.\+g. vertex data, render settings, etc. 
+
+Should generate bounding boxes in this routine 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_renderable_a5acb035c13043156c23602406f1c8819}{rev\+::\+Renderable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+Cubemap\+Component.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+Cubemap\+Component.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,190 @@
+\hypertarget{class_eigen_1_1_simplicial_l_l_t}{}\section{Eigen\+::Simplicial\+L\+LT$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Ordering $>$ Class Template Reference}
+\label{class_eigen_1_1_simplicial_l_l_t}\index{Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$@{Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$}}
+
+
+A direct sparse \mbox{\hyperlink{class_eigen_1_1_l_l_t}{L\+LT}} Cholesky factorizations.  
+
+
+
+
+{\ttfamily \#include $<$Simplicial\+Cholesky.\+h$>$}
+
+Inheritance diagram for Eigen\+::Simplicial\+L\+LT$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Ordering $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_eigen_1_1_simplicial_l_l_t}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_a98e97cb46ffd44308bab939b67cd6b0e}\label{class_eigen_1_1_simplicial_l_l_t_a98e97cb46ffd44308bab939b67cd6b0e}} 
+enum \{ {\bfseries Up\+Lo} = \+\_\+\+Up\+Lo
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_ae8b3a9509f9141d13419b8442f878688}\label{class_eigen_1_1_simplicial_l_l_t_ae8b3a9509f9141d13419b8442f878688}} 
+typedef \+\_\+\+Matrix\+Type {\bfseries Matrix\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_a97bc8661414c73c1a4da984466238741}\label{class_eigen_1_1_simplicial_l_l_t_a97bc8661414c73c1a4da984466238741}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_simplicial_cholesky_base}{Simplicial\+Cholesky\+Base}}$<$ \mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t}{Simplicial\+L\+LT}} $>$ {\bfseries Base}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_ac01f03cb8ea25d9a4620c23ef1596c38}\label{class_eigen_1_1_simplicial_l_l_t_ac01f03cb8ea25d9a4620c23ef1596c38}} 
+typedef Matrix\+Type\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_ad3b3cf7792b2e63ecaf2f5b10831bc10}\label{class_eigen_1_1_simplicial_l_l_t_ad3b3cf7792b2e63ecaf2f5b10831bc10}} 
+typedef Matrix\+Type\+::\+Real\+Scalar {\bfseries Real\+Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_a3ab91aa2067c30dc716b1216902da13d}\label{class_eigen_1_1_simplicial_l_l_t_a3ab91aa2067c30dc716b1216902da13d}} 
+typedef Matrix\+Type\+::\+Storage\+Index {\bfseries Storage\+Index}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_ac222849c2fc32aba42173375b4aa550f}\label{class_eigen_1_1_simplicial_l_l_t_ac222849c2fc32aba42173375b4aa550f}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ Scalar, Col\+Major, Index $>$ {\bfseries Chol\+Matrix\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_ad9d8071e153d554fcb8e8e65ad7fee74}\label{class_eigen_1_1_simplicial_l_l_t_ad9d8071e153d554fcb8e8e65ad7fee74}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, Dynamic, 1 $>$ {\bfseries Vector\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_ae947a7ed7abfda636d0832d12d874bdb}\label{class_eigen_1_1_simplicial_l_l_t_ae947a7ed7abfda636d0832d12d874bdb}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t}{Simplicial\+L\+LT}} $>$ {\bfseries Traits}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_a17d6da2a481c7eb265499e3c5f96cc7c}\label{class_eigen_1_1_simplicial_l_l_t_a17d6da2a481c7eb265499e3c5f96cc7c}} 
+typedef Traits\+::\+MatrixL {\bfseries MatrixL}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_abd9cf7233a689d90e574d3f1c96f3fac}\label{class_eigen_1_1_simplicial_l_l_t_abd9cf7233a689d90e574d3f1c96f3fac}} 
+typedef Traits\+::\+MatrixU {\bfseries MatrixU}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t_ad25633e34d7c21b77fe05c873ffbe416}{Simplicial\+L\+LT}} ()
+\item 
+\mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t_a342735f17d0306aa5581e91010091427}{Simplicial\+L\+LT}} (const Matrix\+Type \&matrix)
+\item 
+const MatrixL \mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t_ae2b24f8f6d62a8444193904988374299}{matrixL}} () const
+\item 
+const MatrixU \mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t_a23522d6444c344ddb14e48dbfac128ed}{matrixU}} () const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t}{Simplicial\+L\+LT}} \& \mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t_a24ffa253377a1cec7a44b856fae1f71a}{compute}} (const Matrix\+Type \&matrix)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t_ad6e49b1c0d2ec5c8e118538260f3002c}{analyze\+Pattern}} (const Matrix\+Type \&a)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t_a8a140b34b08df74c7426ee29b986b228}{factorize}} (const Matrix\+Type \&a)
+\item 
+Scalar \mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t_a956595848e6fac7a389d091b3fdc9567}{determinant}} () const
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Matrix\+Type, int \+\_\+\+Up\+Lo, typename \+\_\+\+Ordering$>$\newline
+class Eigen\+::\+Simplicial\+L\+L\+T$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Ordering $>$}
+
+A direct sparse \mbox{\hyperlink{class_eigen_1_1_l_l_t}{L\+LT}} Cholesky factorizations. 
+
+This class provides a L\+L$^\wedge$T Cholesky factorizations of sparse matrices that are selfadjoint and positive definite. The factorization allows for solving A.\+X = B where X and B can be either dense or sparse.
+
+In order to reduce the fill-\/in, a symmetric permutation P is applied prior to the factorization such that the factorized matrix is P A P$^\wedge$-\/1.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Matrix\+Type} & the type of the sparse matrix A, it must be a Sparse\+Matrix$<$$>$ \\
+\hline
+{\em \+\_\+\+Up\+Lo} & the triangular part that will be used for the computations. It can be Lower or Upper. Default is Lower. \\
+\hline
+{\em \+\_\+\+Ordering} & The ordering method to use, either A\+M\+D\+Ordering$<$$>$ or Natural\+Ordering$<$$>$. Default is A\+M\+D\+Ordering$<$$>$\\
+\hline
+\end{DoxyTemplParams}
+\textbackslash{}implsparsesolverconcept
+
+\begin{DoxySeeAlso}{See also}
+class \mbox{\hyperlink{class_eigen_1_1_simplicial_l_d_l_t}{Simplicial\+L\+D\+LT}}, class \mbox{\hyperlink{class_eigen_1_1_a_m_d_ordering}{A\+M\+D\+Ordering}}, class \mbox{\hyperlink{class_eigen_1_1_natural_ordering}{Natural\+Ordering}} 
+\end{DoxySeeAlso}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_ad25633e34d7c21b77fe05c873ffbe416}\label{class_eigen_1_1_simplicial_l_l_t_ad25633e34d7c21b77fe05c873ffbe416}} 
+\index{Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$@{Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$}!SimplicialLLT@{SimplicialLLT}}
+\index{SimplicialLLT@{SimplicialLLT}!Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$@{Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$}}
+\subsubsection{\texorpdfstring{SimplicialLLT()}{SimplicialLLT()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , int \+\_\+\+Up\+Lo, typename \+\_\+\+Ordering $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t}{Eigen\+::\+Simplicial\+L\+LT}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Ordering $>$\+::\mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t}{Simplicial\+L\+LT}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default constructor \mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_a342735f17d0306aa5581e91010091427}\label{class_eigen_1_1_simplicial_l_l_t_a342735f17d0306aa5581e91010091427}} 
+\index{Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$@{Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$}!SimplicialLLT@{SimplicialLLT}}
+\index{SimplicialLLT@{SimplicialLLT}!Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$@{Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$}}
+\subsubsection{\texorpdfstring{SimplicialLLT()}{SimplicialLLT()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , int \+\_\+\+Up\+Lo, typename \+\_\+\+Ordering $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t}{Eigen\+::\+Simplicial\+L\+LT}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Ordering $>$\+::\mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t}{Simplicial\+L\+LT}} (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Constructs and performs the \mbox{\hyperlink{class_eigen_1_1_l_l_t}{L\+LT}} factorization of {\itshape matrix} 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_ad6e49b1c0d2ec5c8e118538260f3002c}\label{class_eigen_1_1_simplicial_l_l_t_ad6e49b1c0d2ec5c8e118538260f3002c}} 
+\index{Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$@{Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$}!analyzePattern@{analyzePattern}}
+\index{analyzePattern@{analyzePattern}!Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$@{Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$}}
+\subsubsection{\texorpdfstring{analyzePattern()}{analyzePattern()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , int \+\_\+\+Up\+Lo, typename \+\_\+\+Ordering $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t}{Eigen\+::\+Simplicial\+L\+LT}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Ordering $>$\+::analyze\+Pattern (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Performs a symbolic decomposition on the sparcity of {\itshape matrix}.
+
+This function is particularly useful when solving for several problems having the same structure.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t_a8a140b34b08df74c7426ee29b986b228}{factorize()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_a24ffa253377a1cec7a44b856fae1f71a}\label{class_eigen_1_1_simplicial_l_l_t_a24ffa253377a1cec7a44b856fae1f71a}} 
+\index{Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$@{Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$}!compute@{compute}}
+\index{compute@{compute}!Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$@{Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$}}
+\subsubsection{\texorpdfstring{compute()}{compute()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , int \+\_\+\+Up\+Lo, typename \+\_\+\+Ordering $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t}{Simplicial\+L\+LT}}\& \mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t}{Eigen\+::\+Simplicial\+L\+LT}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Ordering $>$\+::compute (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Computes the sparse Cholesky decomposition of {\itshape matrix} \mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_a956595848e6fac7a389d091b3fdc9567}\label{class_eigen_1_1_simplicial_l_l_t_a956595848e6fac7a389d091b3fdc9567}} 
+\index{Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$@{Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$}!determinant@{determinant}}
+\index{determinant@{determinant}!Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$@{Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$}}
+\subsubsection{\texorpdfstring{determinant()}{determinant()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , int \+\_\+\+Up\+Lo, typename \+\_\+\+Ordering $>$ \\
+Scalar \mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t}{Eigen\+::\+Simplicial\+L\+LT}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Ordering $>$\+::determinant (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the determinant of the underlying matrix from the current factorization 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_a8a140b34b08df74c7426ee29b986b228}\label{class_eigen_1_1_simplicial_l_l_t_a8a140b34b08df74c7426ee29b986b228}} 
+\index{Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$@{Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$}!factorize@{factorize}}
+\index{factorize@{factorize}!Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$@{Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$}}
+\subsubsection{\texorpdfstring{factorize()}{factorize()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , int \+\_\+\+Up\+Lo, typename \+\_\+\+Ordering $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t}{Eigen\+::\+Simplicial\+L\+LT}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Ordering $>$\+::factorize (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Performs a numeric decomposition of {\itshape matrix} 
+
+The given matrix must has the same sparcity than the matrix on which the symbolic decomposition has been performed.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t_ad6e49b1c0d2ec5c8e118538260f3002c}{analyze\+Pattern()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_ae2b24f8f6d62a8444193904988374299}\label{class_eigen_1_1_simplicial_l_l_t_ae2b24f8f6d62a8444193904988374299}} 
+\index{Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$@{Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$}!matrixL@{matrixL}}
+\index{matrixL@{matrixL}!Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$@{Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$}}
+\subsubsection{\texorpdfstring{matrixL()}{matrixL()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , int \+\_\+\+Up\+Lo, typename \+\_\+\+Ordering $>$ \\
+const MatrixL \mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t}{Eigen\+::\+Simplicial\+L\+LT}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Ordering $>$\+::matrixL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+an expression of the factor L 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_simplicial_l_l_t_a23522d6444c344ddb14e48dbfac128ed}\label{class_eigen_1_1_simplicial_l_l_t_a23522d6444c344ddb14e48dbfac128ed}} 
+\index{Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$@{Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$}!matrixU@{matrixU}}
+\index{matrixU@{matrixU}!Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$@{Eigen::SimplicialLLT$<$ \_MatrixType, \_UpLo, \_Ordering $>$}}
+\subsubsection{\texorpdfstring{matrixU()}{matrixU()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , int \+\_\+\+Up\+Lo, typename \+\_\+\+Ordering $>$ \\
+const MatrixU \mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t}{Eigen\+::\+Simplicial\+L\+LT}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo, \+\_\+\+Ordering $>$\+::matrixU (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+an expression of the factor U (= L$^\wedge$$\ast$) 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Sparse\+Cholesky/Simplicial\+Cholesky.\+h\end{DoxyCompactItemize}

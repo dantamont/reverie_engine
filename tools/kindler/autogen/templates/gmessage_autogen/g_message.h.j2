@@ -1,0 +1,99 @@
+/// This file is auto-generated from {{ template_file_name }} 
+/// Do not modify! It will be overwritten
+
+#pragma once
+
+#include <type_traits>
+#include "fortress/containers/GColor.h"
+#include "fortress/encoding/uuid/GUuid.h"
+#include "fortress/json/GJson.h"
+#include "fortress/types/GString.h"
+#include "fortress/types/GStringFixedSize.h"
+#include "fortress/types/GSizedTypes.h"
+#include "layline/transport/messages/GTransportMessage.h"
+
+namespace rev {
+
+/// @brief The header used to send GMessages
+/// @todo Implement a fixed-size string
+/// @todo Register valid senders from a YAML file
+struct GMessageHeader {
+    static constexpr Uint32_t s_senderByteCount = 16; ///< 16 bytes might be overkill, but better too many than too few
+
+    inline void getSender(GString& outSender) const {
+        outSender = GString(m_sender);
+    }
+    inline void setSender(const GString& str) {
+        str.copyInto(m_sender, s_senderByteCount);
+    }
+
+    Uint8_t m_sender[s_senderByteCount]; ///< Identifier for the sender application. Should be null terminated
+    Uint64_t m_uniqueId{ 0 }; ///< Each message gets a unique ID, irrespective of when it was sent
+    mutable Int64_t m_index{ -1 }; ///< The index of the message, for ignoring duplicates
+    mutable Uint64_t m_sendTimeUtcMicroseconds{ 0 }; ///< The time since Utc when the message was sent, in microseconds
+    Int32_t m_messageType{ -1 };
+    Uint32_t m_serializedBodySizeBytes{0}; ///< The number of bytes in the serialized message body
+};
+
+/// @class GMessage
+/// @brief Class representing a basic message
+class GMessage: public TransportMessage<GMessageHeader> {
+public:
+
+    /// @brief Enum containing all message types
+    enum class MessageType: Int32_t {
+        eInvalid = -1,
+{%- for type in message_types %}
+        e{{ type }},
+{%- endfor %}
+        eEnd
+    };
+
+    /// @brief Unpack a message of the correct type from the given buffer
+    static GMessage* Unpack(const Uint8_t* buffer, Uint32_t index);
+
+    /// @brief Create a message subclass from JSON
+    /// @return A pointer to the created message, which must be explicitly destructed
+    GMessage* FromJson(const nlohmann::json& json);
+
+    GMessage();
+    virtual ~GMessage();
+
+    /// @brief The message type
+    virtual const MessageType messageType() const = 0;
+
+    /// @brief For construction with any virtual function calls
+    virtual void postConstruction();
+
+    /// @brief Retrieve the message as an child type
+    template<typename T>
+    T& as() const {
+        static_assert(std::is_base_of_v<GMessage, T>, "Output type must inherit from GMessage");
+        return static_cast<T&>(const_cast<GMessage&>(*this));
+    }
+
+    /// @brief Return the size of the message
+    virtual Uint32_t getSerializedSizeInBytes() const override;
+     
+    /// @brief Pack the message into a buffer
+    /// @details Returns the number of bytes written
+    virtual Uint32_t pack(Uint8_t* buffer, Uint32_t index = 0) const override;
+
+    /// @brief Unpack the message from a buffer
+    virtual Uint32_t unpack(const Uint8_t* buffer, Uint32_t index = 0) override;
+
+    /// @brief Convert from the given class type to JSON
+    /// @note Actually defined in namespace outside of class, so this should be recognized by nlohmann JSON
+    /// @param orJson 
+    /// @param korObject
+    friend void to_json(nlohmann::json& orJson, const GMessage& korObject);
+
+    /// @brief Convert from JSON to the given class type
+    /// @param korJson 
+    /// @param orObject 
+    friend void from_json(const nlohmann::json& korJson, GMessage& orObject);
+
+};
+
+
+} /// End namespace

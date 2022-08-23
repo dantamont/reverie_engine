@@ -1,0 +1,158 @@
+\hypertarget{classrev_1_1_resource}{}\section{rev\+::Resource Class Reference}
+\label{classrev_1_1_resource}\index{rev::Resource@{rev::Resource}}
+Inheritance diagram for rev\+::Resource\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=12.000000cm]{classrev_1_1_resource}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_a721cacb4fd2c9093218d72dc9c291fd5}\label{classrev_1_1_resource_a721cacb4fd2c9093218d72dc9c291fd5}} 
+const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \& \mbox{\hyperlink{classrev_1_1_resource_a721cacb4fd2c9093218d72dc9c291fd5}{Resource\+Type\+Dir\+Name}} (Resource\+Type type)
+\begin{DoxyCompactList}\small\item\em Get folder name that will house the specified resource type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_a692070ef1e352379f443854fd3a25615}\label{classrev_1_1_resource_a692070ef1e352379f443854fd3a25615}} 
+{\bfseries Resource} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_a7a3eaf66bb28c498a32b2689f6527ca5}\label{classrev_1_1_resource_a7a3eaf66bb28c498a32b2689f6527ca5}} 
+virtual {\bfseries $\sim$\+Resource} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_a9626b8a269c246efb5cfac390612ca19}\label{classrev_1_1_resource_a9626b8a269c246efb5cfac390612ca19}} 
+\mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $\ast$ {\bfseries handle} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_afd812ae242d83743aaedffa26fac5cb9}\label{classrev_1_1_resource_afd812ae242d83743aaedffa26fac5cb9}} 
+virtual Resource\+Type \mbox{\hyperlink{classrev_1_1_resource_afd812ae242d83743aaedffa26fac5cb9}{get\+Resource\+Type}} () const =0
+\begin{DoxyCompactList}\small\item\em Get the type of resource stored by this handle. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_resource_ab36fc3bac40c057a682cd1ee083ebeee}\label{classrev_1_1_resource_ab36fc3bac40c057a682cd1ee083ebeee}} 
+virtual size\+\_\+t \mbox{\hyperlink{classrev_1_1_resource_ab36fc3bac40c057a682cd1ee083ebeee}{get\+Cost}} () const
+\begin{DoxyCompactList}\small\item\em Return the cost of the resource. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classrev_1_1_resource_aad752eceda9dab7ea282fb50b894ad4c}{load\+Binary}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&filepath)
+\begin{DoxyCompactList}\small\item\em Load the resource from its binary representation. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classrev_1_1_resource_afbd64f3d18060ce32a995dbfb5472f91}{save\+Binary}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&filepath) const
+\begin{DoxyCompactList}\small\item\em Save the resource to its binary representation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_resource_a0601134f219b9f9a5987b945e215f62f}\label{classrev_1_1_resource_a0601134f219b9f9a5987b945e215f62f}} 
+virtual void \mbox{\hyperlink{classrev_1_1_resource_a0601134f219b9f9a5987b945e215f62f}{on\+Removal}} (\mbox{\hyperlink{classrev_1_1_resource_cache}{Resource\+Cache}} $\ast$cache=nullptr)=0
+\begin{DoxyCompactList}\small\item\em What action to perform on removal of the resource. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classrev_1_1_resource_a8a6daa71820d88c86bc6c0aa474d1af7}{post\+Construction}} ()
+\begin{DoxyCompactList}\small\item\em What action to perform post-\/construction of the resource. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_a057b608b4c5af1ff11a81128f106fa9a}\label{classrev_1_1_resource_a057b608b4c5af1ff11a81128f106fa9a}} 
+class {\bfseries Resource\+Handle}
+\end{DoxyCompactItemize}
+\subsection*{Private Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_aae19e1a9916de55285623173adc70e0d}\label{classrev_1_1_resource_aae19e1a9916de55285623173adc70e0d}} 
+\mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $\ast$ \mbox{\hyperlink{classrev_1_1_resource_aae19e1a9916de55285623173adc70e0d}{m\+\_\+handle}} = nullptr
+\begin{DoxyCompactList}\small\item\em the handle for this resource \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_resource_ad61690905d0d542e2f3dec2cc3440f83}\label{classrev_1_1_resource_ad61690905d0d542e2f3dec2cc3440f83}} 
+size\+\_\+t \mbox{\hyperlink{classrev_1_1_resource_ad61690905d0d542e2f3dec2cc3440f83}{m\+\_\+cost}}
+\begin{DoxyCompactList}\small\item\em The cost of the resource. \end{DoxyCompactList}\item 
+static std\+::array$<$ \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}},(size\+\_\+t) Resource\+Type\+::k\+User\+Type+1 $>$ \mbox{\hyperlink{classrev_1_1_resource_afff0a0a41f7c96949c1d0bdd5f8d0380}{s\+\_\+resource\+Dir\+Names}}
+\begin{DoxyCompactList}\small\item\em Folder names for each resource type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_resource_aad752eceda9dab7ea282fb50b894ad4c}\label{classrev_1_1_resource_aad752eceda9dab7ea282fb50b894ad4c}} 
+\index{rev::Resource@{rev::Resource}!loadBinary@{loadBinary}}
+\index{loadBinary@{loadBinary}!rev::Resource@{rev::Resource}}
+\subsubsection{\texorpdfstring{loadBinary()}{loadBinary()}}
+{\footnotesize\ttfamily bool rev\+::\+Resource\+::load\+Binary (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&}]{filepath }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Load the resource from its binary representation. 
+
+\begin{DoxyReturn}{Returns}
+False if unimplemented, or failed to load 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_model_aa61390d068bc81cd1d28c8bf44c88008}{rev\+::\+Model}}.
+
+\mbox{\Hypertarget{classrev_1_1_resource_a8a6daa71820d88c86bc6c0aa474d1af7}\label{classrev_1_1_resource_a8a6daa71820d88c86bc6c0aa474d1af7}} 
+\index{rev::Resource@{rev::Resource}!postConstruction@{postConstruction}}
+\index{postConstruction@{postConstruction}!rev::Resource@{rev::Resource}}
+\subsubsection{\texorpdfstring{postConstruction()}{postConstruction()}}
+{\footnotesize\ttfamily void rev\+::\+Resource\+::post\+Construction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+What action to perform post-\/construction of the resource. 
+
+For performing any actions that need to be done on the main thread 
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_texture_aaa505679ad69f466e6aa9027e0419684}{rev\+::\+Texture}}, \mbox{\hyperlink{classrev_1_1_mesh_a66d46be8133030a0a02911d9def03f47}{rev\+::\+Mesh}}, \mbox{\hyperlink{classrev_1_1_shader_program_a1b08ee659241ede0227457821a4971a2}{rev\+::\+Shader\+Program}}, \mbox{\hyperlink{classrev_1_1_audio_resource_a485cda6016a1dc52310239fb6c58e8cd}{rev\+::\+Audio\+Resource}}, and \mbox{\hyperlink{classrev_1_1_model_a30a84dac2ff91c87bf920dd3a68411e5}{rev\+::\+Model}}.
+
+\mbox{\Hypertarget{classrev_1_1_resource_afbd64f3d18060ce32a995dbfb5472f91}\label{classrev_1_1_resource_afbd64f3d18060ce32a995dbfb5472f91}} 
+\index{rev::Resource@{rev::Resource}!saveBinary@{saveBinary}}
+\index{saveBinary@{saveBinary}!rev::Resource@{rev::Resource}}
+\subsubsection{\texorpdfstring{saveBinary()}{saveBinary()}}
+{\footnotesize\ttfamily bool rev\+::\+Resource\+::save\+Binary (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&}]{filepath }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Save the resource to its binary representation. 
+
+\begin{DoxyReturn}{Returns}
+False if unimplemented, or failed to save 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_model_a2ca39792d2c6fbd73ca726a6145041ad}{rev\+::\+Model}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_resource_afff0a0a41f7c96949c1d0bdd5f8d0380}\label{classrev_1_1_resource_afff0a0a41f7c96949c1d0bdd5f8d0380}} 
+\index{rev::Resource@{rev::Resource}!s\_resourceDirNames@{s\_resourceDirNames}}
+\index{s\_resourceDirNames@{s\_resourceDirNames}!rev::Resource@{rev::Resource}}
+\subsubsection{\texorpdfstring{s\_resourceDirNames}{s\_resourceDirNames}}
+{\footnotesize\ttfamily std\+::array$<$ \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}},(size\+\_\+t) Resource\+Type\+::k\+User\+Type+1 $>$ rev\+::\+Resource\+::s\+\_\+resource\+Dir\+Names\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{ \{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"images"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"textures"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"materials"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"meshes"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"cube\_textures"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"animations"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"models"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"shaders"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"scripts"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"skeletons"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"audio"}}
+\DoxyCodeLine{\} \}}
+
+\end{DoxyCode}
+
+
+Folder names for each resource type. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/resource/G\+Resource.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/resource/G\+Resource.\+cpp\end{DoxyCompactItemize}

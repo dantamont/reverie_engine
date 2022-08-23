@@ -1,0 +1,991 @@
+# Note that if the schema version is not manually updated when changing
+# messages, the major version will be bumped automatically
+
+# When modifying this file, bump the schema major version when:
+#  - Modifying any existing messages
+#  - Adding any messages to a place not at the end of the file
+# Bump the schema minor version when:
+#  - Adding any new messages to the end of the file
+---
+messages:
+  SignalMessage:
+    description: "This is an empty message, purely signal that something has happened"
+  JsonMessage:
+    description: "A message for sending JSON-serialized data via CBOR"
+    members:
+      jsonBytes: { type: std::vector<Uint8_t>, default_value: "", description: "The JSON value, serialized using CBOR", deserialize_function: ".get_binary()" }
+  JsonWithMetadataMessage:
+    description: "A message for sending JSON-serialized data via CBOR"
+    parent: JsonMessage
+    members:
+      metadataJsonBytes: { type: std::vector<Uint8_t>, default_value: "", description: "The JSON metadata, serialized using CBOR", deserialize_function: ".get_binary()" }
+  FloatValueMessage:
+    description: "This is the class from which all messages containing a single float value inherit"
+    members: 
+      value: 
+        type: Float32_t
+        default_value: 0
+        description: "The floating point value stored by the message"
+  DoubleValueMessage:
+    description: "This is the class from which all messages containing a single double value inherit"
+    members: 
+      value: 
+        type: Float64_t
+        default_value: 0
+        description: "The double value stored by the message"
+  DoubleMeasurementMessage:
+    parent: DoubleValueMessage
+    description: "This is the class from which all messages containing a single double value inherit"
+    members: 
+      units:
+        type: Int32_t
+        default_value: 0
+        description: "The units of the measurement"
+  FilePathMessage:
+    description: "Message containing a file path"
+    members:
+      filePath: {type: GStringFixedSize<>, default_value: "", description: "The path to the file" }
+  
+  # Playback messages
+  RequestPlaybackDataMessage:
+    parent: SignalMessage
+    description: "Request playback data from the main application"
+  PlaybackDataMessage:
+    description: "Playback data from the main application"
+    members:
+      playbackState: { type: GSimulationPlayState, default_value: "ESimulationPlayState::ePlayedState", description: "The playback state" }
+      playbackMode: { type: GSimulationPlayMode, default_value: "ESimulationPlayMode::eStandard", description: "The playback mode" }
+  TogglePlaybackMessage:
+    description: "Toggles whether or not the simulation is playing"
+  TogglePlaybackModeMessage:
+    description: "Toggles the simulation mode"
+    members: 
+      playbackMode: { type: GSimulationPlayMode, default_value: "ESimulationPlayMode::eStandard", description: "The playback mode" }
+
+  # Geometry messages
+  CreatePolygonMeshMessage:
+    description: "Message to create a polygon mesh"
+    members: 
+      uuid: { type: Uuid, default_value: "false", description: "The UUID of the created mesh" }
+      polygonType: { type: GBasicPolygonType, default_value: "EBasicPolygonType::eINVALID", description: "The type of polygon" }
+      stackCount: {type: Uint32_t, default_value: 0, description: The number of stacks if the polygon is a sphere or cylinder"}
+      sectorCount: {type: Uint32_t, default_value: 0, description: The number of sectors if the polygon is a sphere or cylinder"}
+      gridSpacing: {type: Float64_t, default_value: 0, description: "Grid spacing for grid plane or cube" }
+      numHalfSpaces: {type: Uint32_t, default_value: 0, description: "Number of half spaces for grid plane or cube" }
+      height: {type: Float64_t, default_value: 0, description: "Height, used for cylinder" }
+      topRadius: {type: Float64_t, default_value: 0, description: "Top radius, used for cylinder" }
+      baseRadius: {type: Float64_t, default_value: 0, description: "Base radius, used for cylinder" }
+      halfHeight: {type: Float64_t, default_value: 0, description: "Half height, used for capsule" }
+      radius: {type: Float64_t, default_value: 0, description: "Radius, used for capsule" }
+  UpdatedMeshesMessage:
+    parent: SignalMessage
+    description: "Message to signal that the meshes have been updated"
+
+  # Scene messages
+  AddScenarioMessage:
+    description: "Add a new scenario"
+  ScenarioAddedMessage:
+    parent: JsonMessage
+    description: "Message response after a scenario has been added"
+  ScenarioModifiedMessage:
+    parent: JsonMessage
+    description: "Message response after a scenario has been modified in some way"
+  RestorePreviousScenarioMessage:
+    description: "Restore previous scenario"
+  PreviousScenarioRestoredMessage:
+    parent: JsonMessage
+    description: "Message response after a scenario has been restored"
+
+  AddSceneObjectMessage:
+    parent: JsonMessage
+    description: "Add a new scene object"
+    members:
+      commandId: {type: Int32_t, default_value: -1, description: "The ID of the command that sent this message"}
+      loadFromJson: {type: bool, default_value: "false", description: "Whether or not to load the scene object from JSON"}
+      parentId: {type: Int32_t, default_value: -1, description: "ID of the parent object, -1 means no parent" }
+  SceneObjectSelectedMessage:
+    description: "Sent from DebugManager when a scene object is selected in 3D view"
+    members:
+        sceneObjectId: {type: Int32_t, default_value: -1, description: "ID of the parent object, -1 means no parent" }
+  SceneObjectAddedMessage:
+    parent: JsonMessage
+    description: "Response after a scene object has been added"
+    members:
+      commandId: {type: Int32_t, default_value: -1, description: "The ID of the command that sent this message"}
+  RemoveSceneObjectMessage:
+    description: "Remove a scene object"
+    members:
+      commandId: {type: Int32_t, default_value: -1, description: "The ID of the command that sent this message"}
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "ID of the parent object, -1 means no parent" }
+  SceneObjectRemovedMessage:
+    parent: JsonMessage
+    description: "Response after a scene object has been removed"
+    members:
+      commandId: {type: Int32_t, default_value: -1, description: "The ID of the command that sent this message"}
+  
+  ReparentSceneObjectMessage:
+    description: "Reparent a scene object"
+    members:
+      sceneObjectId: {type: Uint32_t, default_value: 0}
+      previousParentId: {type: Int32_t, default_value: -1}
+      newParentId: {type: Int32_t, default_value: -1}
+
+  CopySceneObjectMessage:
+    description: "Copy a scene object"
+    members:
+      sceneObjectId: {type: Uint32_t, default_value: 0}
+  SceneObjectCopiedMessage:
+    parent: JsonMessage
+    description: "Response after a scene object has been copied"
+    members:
+      commandId: {type: Int32_t, default_value: -1, description: "The ID of the command that sent this message"}
+
+  RenameMessage:
+    members: 
+      previousName: {type: GStringFixedSize<>, default_value: "", description: "The previous name" }
+      newName: {type: GStringFixedSize<>, default_value: "", description: "The new name" }
+  RenameScenarioMessage:
+    parent: RenameMessage
+    description: "Rename scenario"
+  RenameSceneMessage:
+    parent: RenameMessage
+    description: "Rename scene"
+  RenameSceneObjectMessage:
+    parent: RenameMessage
+    description: "Rename scene object"
+
+  # Component messages
+  AddSceneComponentMessage:
+    parent: JsonMessage
+    description: "Add a new scene component"
+    members:
+      commandId: {type: Int32_t, default_value: -1, description: "The ID of the command that sent this message"}
+      sceneType: { type: GSceneType, default_value: "ESceneType::eINVALID", description: "The type of scene-related construct" }
+      componentType: { type: Int32_t, default_value: -1, description: "The type of component. Either a scene object component or a scene component" }
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component, if applicable"}
+      addComponentDependencies: {type: bool, default_value: "false", description: "Whether or not to add dependencies of this component"}
+      loadFromJson: {type: bool, default_value: "false", description: "Whether or not to load the component from JSON"}
+
+  OnSceneComponentAddedMessage:
+    parent: JsonMessage
+    description: "Add a new scene object"
+    members:
+      commandId: {type: Int32_t, default_value: -1, description: "The ID of the command that sent this message"}
+      sceneType: { type: GSceneType, default_value: "ESceneType::eINVALID", description: "The type of scene-related construct" }
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component, if applicable"}
+      componentId: {type: Uuid, description: "The ID of the added component"}
+      componentDependencyIds: { type: std::vector<Uuid>, default_value: "", description: "The IDs of any components added with the primary one as dependencies" }
+      componentDependencies: { type: std::vector<json>, default_value: "", description: "The JSON of any components added with the primary one as dependencies" }
+
+  RemoveSceneComponentMessage:
+    parent: JsonMessage
+    description: "Add a new scene object"
+    members:
+      commandId: {type: Int32_t, default_value: -1, description: "The ID of the command that sent this message"}
+      sceneType: { type: GSceneType, default_value: "ESceneType::eINVALID", description: "The type of scene-related construct" }
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component, if applicable"}
+      componentDependencyIds: { type: std::vector<Uuid>, default_value: "", description: "The IDs of any components added with the primary one as dependencies" }
+      componentDependencies: { type: std::vector<json>, default_value: "", description: "The JSON of any components added with the primary one as dependencies" }
+
+  OnSceneComponentRemovedMessage:
+    parent: JsonMessage
+    description: "Add a new scene object"
+    members:
+      commandId: {type: Int32_t, default_value: -1, description: "The ID of the command that sent this message"}
+      sceneType: { type: GSceneType, default_value: "ESceneType::eINVALID", description: "The type of scene-related construct" }
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component, if applicable"}
+
+  UpdateJsonMessage:
+    parent: JsonMessage
+    description: "Message sent, typically by a JSON widget, to update an item"
+  OnUpdateJsonMessage:
+    parent: JsonMessage
+    description: "Message response sent after updating an item via JSON"
+
+  GetScenarioJsonMessage:
+    parent: JsonMessage
+    description: "Message sent to retrieve scenario JSON. JSON can be used to house any metadata"
+  ScenarioJsonMessage:
+    parent: JsonWithMetadataMessage
+    description: "Message response sent after a request for scenario JSON is sent"
+
+  ModifyComponentMessage:
+    description: "Superclass for modifying components"
+    members:
+      componentId: {type: Uuid, description: "The ID of the added component"}
+      sceneOrObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene or scene object for the component"}
+
+  ToggleComponentMessage:
+    parent: ModifyComponentMessage
+    description: "Toggle a component"
+    members:
+      componentType: { type: Int32_t, default_value: -1, description: "The type of component. Either a scene object component or a scene component" }
+      sceneType: { type: GSceneType, default_value: "ESceneType::eINVALID", description: "The type of scene-related construct" }
+      toggleState: {type: bool, default_value: "false", description: "The state to toggle for the component"}
+
+  ResetPythonScriptMessage:
+    parent: ModifyComponentMessage
+    description: "Modify a python script"
+    members:
+      newFilePath: {type: GStringFixedSize<>, default_value: "", description: "The new file path, if there is one" }    
+
+  RequestTransformMessage:
+    parent: ModifyComponentMessage
+    description: "Request a transform"
+    members:
+      metadataJsonBytes: { type: std::vector<Uint8_t>, default_value: "", description: "The JSON value for any metadata, serialized using CBOR", deserialize_function: ".get_binary()" }
+
+  TransformMessage:
+    parent: ModifyComponentMessage
+    description: "Send a transform."
+    members:
+      transformJsonBytes: { type: std::vector<Uint8_t>, default_value: "", description: "The JSON value, serialized using CBOR", deserialize_function: ".get_binary()" }
+      metadataJsonBytes: { type: std::vector<Uint8_t>, default_value: "", description: "The JSON value for any metadata, serialized using CBOR", deserialize_function: ".get_binary()" }
+
+  TransformUpdateMessage:
+    parent: TransformMessage
+    description: "Send an updated transform, with metadata regarding more specific information, such as for use with glyphs"
+
+  SelectSceneObjectShaderPresetMessage:
+    description: "Message for when a shader preset is selected for a scene object"
+    members:
+      shaderPresetName: {type: GStringFixedSize<>, default_value: "", description: "The name of the preset" }
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+
+  UpdatePhysicsShapePrefabMessage:
+    parent: JsonMessage
+    description: "Update a physics shape prefab. The JSON represents the prefab"
+    members:
+      updateGeometryOnly: {type: bool, default_value: "false", description: "Whether or not to update only the geometry"}
+
+  CreatePhysicsShapePrefabMessage:
+    description: "Create a physics shape prefab."
+    members:
+      name: {type: GStringFixedSize<>, default_value: "", description: "The name of the prefab" }
+
+  DeletePhysicsShapePrefabMessage:
+    description: "Delete a physics shape prefab."
+    members:
+      name: {type: GStringFixedSize<>, default_value: "", description: "The name of the prefab" }
+
+  UpdateRigidBodyComponentMessage:
+    description: "Update a rigid body component."
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+      componentId: {type: Uuid, description: "The ID of the rigid body component"}
+      bodyJsonBytes: { type: std::vector<Uint8_t>, default_value: "", description: "The JSON representing the rigid body, serialized using CBOR", deserialize_function: ".get_binary()" }
+
+  AddSceneObjectRenderLayerMessage:
+    description: "Message to add a sorting layer to a scene object"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object"}
+      renderLayerId: {type: Int32_t, default_value: -1, description: "The ID of the render layer"}
+
+  RemoveSceneObjectRenderLayerMessage:
+    description: "Message to remove a sorting layer from a scene object"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object"}
+      renderLayerId: {type: Int32_t, default_value: -1, description: "The ID of the render layer"}
+
+  AddCameraRenderLayerMessage:
+    description: "Message to add a sorting layer to a camera on a scene object"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object"}
+      renderLayerId: {type: Int32_t, default_value: -1, description: "The ID of the render layer"}
+
+  RemoveCameraRenderLayerMessage:
+    description: "Message to remove a sorting layer from a camera on a scene object"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object"}
+      renderLayerId: {type: Int32_t, default_value: -1, description: "The ID of the render layer"}
+
+  UpdateLightComponentMessage:
+    description: "Message to update a light component"
+    parent: JsonMessage
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object"}
+      componentIndex: {type: Int32_t, default_value: 0, description: "The index of the light component in the scene object, out of all the light components"}
+      updateShadows: {type: bool, default_value: "false", description: "Whether or not to update the shadow info for the light"}
+
+  SetLightComponentTypeMessage:
+    description: "Message to set the light type of a light component"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object"}
+      componentIndex: {type: Int32_t, default_value: 0, description: "The index of the light component in the scene object, out of all the light components"}
+      lightType: {type: Int32_t, default_value: -1, description: "The ID of the scene object"}
+
+  ToggleLightComponentShadowsMessage:
+    description: "Message to update a light component"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object"}
+      componentIndex: {type: Int32_t, default_value: 0, description: "The index of the light component in the scene object, out of all the light components"}
+      enable: {type: bool, default_value: "false", description: "If true, enable shadows. Otherwise, disable them"}
+
+  RequestRenderSettingsInfoMessage:
+    description: "Message to request render settings info"
+
+  RenderSettingsInfoMessage:
+    description: "Message containing render settings info"
+    members:
+      canAddPointLightShadow: { type: bool, default_value: "", description: "Whether or not a shadow for the light type can be added" }
+      canAddDirectionalLightShadow: { type: bool, default_value: "", description: "Whether or not a shadow for the light type can be added" }
+      canAddSpotLightShadow: { type: bool, default_value: "", description: "Whether or not a shadow for the light type can be added" }
+
+  RequestAnimationStateMachinesMessage:
+    description: "Requests a JSON array of animation state machines from the main application"
+
+  AnimationStateMachinesMessage:
+    description: "Return a JSON array of animation state machines from the main application"
+    parent: JsonMessage
+
+  SetAnimationComponentStateMachineMessage:
+    description: "Switch the state machine used by an animation component"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+      newStateMachineId: {type: Uuid, description: "The ID of the new state machine"}
+      
+  RenameAnimationStateMachineMessage:
+    description: "Rename a state machine"
+    members:
+      stateMachineId: {type: Uuid, description: "The ID of the state machine"}
+      newName: {type: GStringFixedSize<>, default_value: "", description: "The new name of the state machine" }
+
+  AddAnimationStateMachineMessage:
+    description: "Adds a state machine to the animation manager"
+
+  AddAnimationStateMachineConnectionMessage:
+    description: "Add a connection to an animation state machine"
+    members:
+      stateMachineId: {type: Uuid, description: "The ID of the state machine"}
+      startStateId: {type: Uuid, description: "The ID of the state at which the connection starts"}
+      endStateId: {type: Uuid, description: "The ID of the state at which the connection ends"}
+      connectionId: {type: Uuid, description: "The ID of the connection being added, to be set manually"}
+
+  RemoveAnimationStateMachineConnectionMessage:
+    description: "Remove a connection from an animation state machine"
+    members:
+      stateMachineId: {type: Uuid, description: "The ID of the state machine"}
+      connectionId: {type: Uuid, description: "The ID of the connection"}
+
+  RequestAnimationComponentDataMessage:
+    description: "Requests JSON of animations, motions, and states belonging to the animation component"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+      stateMachineId: {type: Uuid, description: "The ID of the state machine"}
+
+  AnimationComponentDataMessage:
+    description: "Returns JSON objects, indexed by id, of animations, motions, and states belonging to the animation component"
+    members:
+      animationsJsonBytes: { type: std::vector<Uint8_t>, default_value: "", description: "The JSON value representing animations in a controller, serialized using CBOR", deserialize_function: ".get_binary()" }
+      motionsJsonBytes: { type: std::vector<Uint8_t>, default_value: "", description: "The JSON value representing the motions in a controller, serialized using CBOR", deserialize_function: ".get_binary()" }
+      statesJsonBytes: { type: std::vector<Uint8_t>, default_value: "", description: "The JSON value representing the states in a state machine, serialized using CBOR", deserialize_function: ".get_binary()" }
+      transitionsJsonBytes: { type: std::vector<Uint8_t>, default_value: "", description: "The JSON value representing transitions in a state machine, serialized using CBOR", deserialize_function: ".get_binary()" }
+      connectionsJsonBytes: { type: std::vector<Uint8_t>, default_value: "", description: "The JSON value representing connections in a state machine, serialized using CBOR", deserialize_function: ".get_binary()" }
+
+  AddAnimationComponentMotionMessage:
+    description: "Add a motion to an animation component's controller"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+      animationStateId: {type: Uuid, description: "The ID of the state at which to add the motion"}
+
+  AddAnimationStateMachineStateMessage:
+    description: "Add a state to an animation state machine"
+    members:
+      stateMachineId: {type: Uuid, description: "The ID of the state machine"}
+
+  AddAnimationStateMachineTransitionMessage:
+    description: "Add a transition to an animation state machine"
+    members:
+      stateMachineId: {type: Uuid, description: "The ID of the state machine"}
+      connectionId: {type: Uuid, description: "The ID of the connection to which the transition is being added"}
+
+  ModifyAnimationStateMachineTransitionMessage:
+    description: "Add a transition to an animation state machine"
+    members:
+      stateMachineId: {type: Uuid, description: "The ID of the state machine"}
+      transitionId: {type: Uuid, description: "The ID of the transition being modified"}
+      settingsJsonBytes: { type: std::vector<Uint8_t>, default_value: "", description: "The JSON value representing transition settings, serialized using CBOR", deserialize_function: ".get_binary()" }
+
+  ModifyAnimationComponentMotionMessage:
+    description: "Add a motion to an animation component's controller"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+      motionName: {type: GStringFixedSize<>, default_value: "", description: "The current name of the motion" }
+      newMotionName: {type: GStringFixedSize<>, default_value: "", description: "The new name of the motion" }
+
+  RemoveAnimationComponentMotionMessage:
+    description: "Remove a motion from an animation component's controller"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+      motionName: {type: GStringFixedSize<>, default_value: "", description: "The current name of the motion" }   
+
+  RemoveAnimationStateMachineTransitionMessage:
+    description: "Remove a transition from an animation state machine"
+    members:
+      stateMachineId: {type: Uuid, description: "The ID of the state machine"}
+      transitionId: {type: Uuid, description: "The ID of the transition being removed"}
+
+  RemoveAnimationStateMachineStateMessage:
+    description: "Remove a state from an animation state machine"
+    members:
+      stateMachineId: {type: Uuid, description: "The ID of the state machine"}
+      stateId: {type: Uuid, description: "The ID of the state being removed"}
+
+  AddAnimationClipToStateMessage:
+    description: "Add a clip to an animation state"
+    members:
+      stateMachineId: {type: Uuid, description: "The ID of the state machine"}
+      stateId: {type: Uuid, description: "The ID of the state"}
+
+  RemoveAnimationClipFromStateMessage:
+    description: "Remove a clip from an animation state"
+    members:
+      stateMachineId: {type: Uuid, description: "The ID of the state machine"}
+      stateId: {type: Uuid, description: "The ID of the state being removed"}
+      clipId: {type: Uuid, description: "The ID of the clip being removed"}
+  
+  AddedAnimationMotionMessage:
+    description: "Signal that a motion was added"
+    members:
+      stateMachineId: {type: Uuid, description: "The ID of the state machine"}
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object"}
+
+  RemovedAnimationMotionMessage:
+    description: "Signal that a motion was removed"
+    members:
+      stateMachineId: {type: Uuid, description: "The ID of the state machine"}
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object"}
+
+  ModifyAnimationClipMessage:
+    description: "Modify an animation clip"
+    parent: JsonMessage
+    members:
+      stateMachineId: {type: Uuid, description: "The ID of the state machine"}
+      stateId: {type: Uuid, description: "The ID of the state"}
+      clipId: {type: Uuid, description: "The ID of the clip"}
+
+  RequestAnimationDataMessage:
+    description: "Signal to request data about an animation"
+    members:
+      stateMachineId: {type: Uuid, description: "The ID of the state machine"}
+      stateId: {type: Uuid, description: "The ID of the state"}
+      clipId: {type: Uuid, description: "The ID of the clip"}
+
+  AnimationDataMessage:
+    description: "Data for an animation"
+    members:
+      animationName: {type: GStringFixedSize<>, default_value: "", description: "The name of the animation" }
+      animationDurationSec: {type: Float32_t, default_value: -1, description: "The time duration of the animation in seconds"}
+
+  ModifyCameraClearColorMessage:
+    description: "Change the clear color of a camera"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+      color: {type: Color, default_value: "", description: "The new clear color"}
+
+  ModifyCameraOptionFlagsMessage:
+    description: "Change the options for a camera"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+      options: {type: Uint32_t, default_value: 0, description: "The option flags for the camera"}
+
+  ModifyCameraViewportMessage:
+    description: "Change the options for a camera"
+    parent: JsonMessage
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+
+  ModifyCameraRenderProjectionMessage:
+    description: "Change the options for a camera"
+    parent: JsonMessage
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+
+  ModifyCameraCubemapMessage:
+    description: "Change the cubemap for a camera"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+      cubemapId: {type: Uuid, description: "The ID of the cubemap. Can be null, which means no cubemap"}
+
+  RequestCubemapsDataMessage:
+    description: "Request cubemap data for the widget manager"
+
+  CubemapsDataMessage:
+    description: "For sending cubemap data to the widget manager"
+    members:
+      cubemapIds: { type: std::vector<Uuid>, default_value: "", description: "The IDs of any cubemaps in the scene" }
+      cubemapNames: { type: std::vector<GStringFixedSize<>>, default_value: "", description: "The names of any cubemaps in the scene" }
+
+  SetSceneObjectModelMessage:
+    description: "Set the model for a scene object"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+      modelId: {type: Uuid, description: "The ID of the model resource handle"}
+
+  RequestModelDataMessage:
+    description: "Request data about models in the scenario"
+
+  ModelDataMessage:
+    description: "Message containing model data"
+    members:
+      modelIds: { type: std::vector<Uuid>, default_value: "", description: "The IDs of any models in the scene" }
+      modelNames: { type: std::vector<GStringFixedSize<>>, default_value: "", description: "The names of any models in the scene" }
+
+  UpdateUniformMessage:
+    description: "Update a uniform for a scene object"
+    parent: JsonMessage
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object"}
+
+  RequestUniformValueMessage:
+    description: "Request data about a uniform"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object"}
+      uniformName: {type: GStringFixedSize<>, default_value: "", description: "The name of the uniform" }
+
+  UniformValueMessage:
+    description: "Contains value of a uniform"
+    parent: JsonMessage
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object"}
+
+  UpdateRenderSettingsMessage:
+    description: "Message to update render settings"
+    parent: JsonMessage
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object"}
+      updatingModel: {type: bool, default_value: "true", description: "Whether or not the model component's settings are being updated"}
+
+  ModifyCubemapColorMessage:
+    description: "Message to update the color of a cubemap"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object"}
+      diffuseColor: {type: Color, default_value: "", description: "The cubemap color"}
+     
+  ModifyCubemapNameMessage:
+    description: "Message to update render settings"
+    parent: JsonMessage
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object"}
+      cubemapName: {type: GStringFixedSize<>, default_value: "", description: "The new name of the cubemap" }
+     
+  ModifyCubemapTextureMessage:
+    description: "Message to update render settings"
+    parent: JsonMessage
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object"}
+      textureFilePath: {type: GStringFixedSize<>, default_value: "", description: "The path to the texture file" }
+     
+  ModifyDefaultCubemapMessage:
+    description: "Message to update render settings"
+    parent: JsonMessage
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object"}
+      setDefault: {type: bool, default_value: "true", description: "Whether or not to set the cubemap to be a default cubemap"}
+     
+  ModifyCanvasBillboardFlagsMessage:
+    description: "Message to update canvas component flags"
+    parent: JsonMessage
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object"}
+      billboardFlags: {type: Uint32_t, default_value: 0, description: "The billboard flags"}
+
+  ModifyCanvasGlyphModeMessage:
+    description: "Message to update canvas glyph mode"
+    parent: JsonMessage
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object"}
+      glyphMode: {type: Int32_t, default_value: -1, description: "The glyph mode"}
+     
+  ModifyGlyphAlignmentMessage:
+    description: "Change a glyph's alignment"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+      glyphId: {type: Uuid, description: "The ID of the glyph"}
+      verticalAlignment: {type: Int32_t, default_value: -1, description: "The vertical alignment enum value"}
+      horizontalAlignment: {type: Int32_t, default_value: -1, description: "The horizontal alignment enum value"}
+
+  ModifyLabelTextMessage:
+    description: "Change a glyph's alignment"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+      glyphId: {type: Uuid, description: "The ID of the glyph"}
+      text: {type: std::vector<Uint8_t>, default_value: "", description: "The text to populate the label with. Must be null-delimited"}
+
+  ModifyLabelFontMessage:
+    description: "Change a glyph's alignment"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+      glyphId: {type: Uuid, description: "The ID of the glyph"}
+      fontSize: {type: Float32_t, default_value: -1, description: "The font size to set"}
+      fontName: {type: GStringFixedSize<>, default_value: "", description: "The font name"}
+
+  ModifyLabelSpacingMessage:
+    description: "Change a glyph's alignment"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+      glyphId: {type: Uuid, description: "The ID of the glyph"}
+      maxLineWidth: {type: Float32_t, default_value: -1, description: "The maximum allowed width of a line in NDC"}
+      verticalLineSpacing: {type: Float32_t, default_value: -1, description: "The vertical line spacing in NDC"}
+
+  ModifyLabelColorMessage:
+    description: "Change a label's color"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+      glyphId: {type: Uuid, description: "The ID of the glyph"}
+      color: {type: Color, default_value: "", description: "The new color"}
+
+  ModifyIconFontSizeMessage:
+    description: "Change an icon's color"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+      glyphId: {type: Uuid, description: "The ID of the glyph"}
+      fontSize: {type: Float32_t, default_value: -1, description: "The font size to set"}
+
+  ModifyIconNameMessage:
+    description: "Change an icon, via the name of the new font awesome icon to display"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+      glyphId: {type: Uuid, description: "The ID of the glyph"}
+      iconName: {type: GStringFixedSize<>, default_value: "", description: "The name of the new font-awesome icon"}
+
+  ModifyIconColorMessage:
+    description: "Change an icon's color"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+      glyphId: {type: Uuid, description: "The ID of the glyph"}
+      color: {type: Color, default_value: "", description: "The new color"}
+
+  AddGlyphMessage:
+    description: "Add a glyph"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+      glyphType: {type: Int32_t, description: "The type of glyph"}
+
+  ReparentGlyphMessage:
+    description: "Add a glyph"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+      glyphId: {type: Uuid, description: "The ID of the glyph"}
+      parentGlyphId: {type: Uuid, description: "The ID of the new parent. Null if no parent"}
+ 
+  RemoveGlyphMessage:
+    description: "Delete a glyph"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+      glyphId: {type: Uuid, description: "The ID of the glyph"}
+
+  CanvasComponentDataMessage:
+    description: "Contains JSON For a canvas component. Used to repopulate canvas widgets"
+    parent: JsonMessage
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+
+  ModifyAudioComponentResourceMessage:
+    description: "Switch the audio resource used by an audio component"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+      resourcePath: {type: GStringFixedSize<>, default_value: "", description: "The path to the new audio resource"}
+
+  ModifyAudioComponentSourceFlagsMessage:
+    description: "Change the flags associated with an audio component's resource"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+      audioSourceFlags: {type: Uint32_t, default_value: 0, description: "The audio source flags"}
+
+  ModifyAudioComponentSourceAttenuationMessage:
+    description: "Change the attenuation model an audio component's resource"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+      minDistance: {type: Float32_t, default_value: 0, description: "The minimum distance for attenuation"}
+      maxDistance: {type: Float32_t, default_value: 0, description: "The maximum distnace for attenuation"}
+      attenuationModel: {type: Int32_t, default_value: -1, description: "The attenuation model"}
+      attenuationRolloff: {type: Float32_t, default_value: 0, description: "The attenuation rolloff"}
+
+  ModifyAudioComponentSourceVolumeMessage:
+    description: "Change the volume of an audio component's resource"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+      volume: {type: Float32_t, default_value: 0, description: "The source volume"}
+
+  ModifyAudioComponentSettingsMessage:
+    description: "Modify the voice flags, volume, pan, and other settings associated with the component"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+      voiceFlags: {type: Uint32_t, default_value: 0, description: "The flags for the audio source component"}
+      volume: {type: Float32_t, default_value: -1, description: "The volume of the audio source"}
+      pan: {type: Int32_t, default_value: -1, description: "The panning of the audio source"}
+      relativePlaySpeed: {type: Int32_t, default_value: -1, description: "The relative playback speed of the audio source"}
+
+  RequestAudioResourceDataMessage:
+    description: "Request info regarding the audio resource used by an audio component"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+
+  AudioResourceDataMessage:
+    description: "Contains data describing an audio resource handle"
+    parent: JsonMessage
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+
+  RequestAudioResourcesDataMessage:
+    description: "Request info regarding all audio resources"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+
+  AudioResourcesDataMessage:
+    description: "Contains data describing all audio resources"
+    parent: JsonMessage
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+
+  RequestResourcesDataMessage:
+    description: "Request info regarding all resources"
+
+  ResourcesDataMessage:
+    description: "Contains data describing all resources"
+    members:
+      resourcesJsonBytes: { type: std::vector<Uint8_t>, default_value: "", description: "The JSON array for the resources" }
+
+  ResourceAddedMessage:
+    description: "Message that a resource was added"
+    members:
+      uuid: {type: Uuid, default_value: "false", description: "The UUID of the resource"}
+      resourceType: {type: Int32_t, default_value: -1, description: "The type of resource"}
+      resourcePath: {type: GStringFixedSize<>, default_value: "", description: "The path to the new resource"}
+      resourceName: {type: GStringFixedSize<>, default_value: "", description: "The name of the new resource"}
+      resourceJsonBytes: { type: std::vector<Uint8_t>, default_value: "", description: "The JSON for the resource" }
+
+  ResourceModifiedMessage:
+    description: "Message that a resource was modified"
+    members:
+      uuid: {type: Uuid, default_value: "false", description: "The UUID of the modified resource"}
+      resourceJsonBytes: { type: std::vector<Uint8_t>, default_value: "", description: "The JSON for the resource" }
+
+  ResourceRemovedMessage:
+    description: "Message that a resource was removed"
+    members:
+      uuid: {type: Uuid, default_value: "false", description: "The UUID of the removed resource"}
+      resourceJsonBytes: { type: std::vector<Uint8_t>, default_value: "", description: "The JSON for the resource" }
+
+  ModifyResourceMessage:
+    description: "Message to modify a resource"
+    members:
+      uuid: {type: Uuid, default_value: "false", description: "The UUID of the modified resource"}
+      newUuid: {type: Uuid, default_value: "false", description: "The new UUID of the modified resource"}
+      newName: {type: GStringFixedSize<>, default_value: "", description: "The new name of the resource"}
+
+  ModifyListenerScriptMessage:
+    description: "Modify event types for a listener component"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+      scriptPath: {type: GStringFixedSize<>, default_value: "", description: "The path to the new script"}
+      eventTypes: { type: std::vector<Int32_t>, default_value: "", description: "The event types" }
+
+  ModifyAudioListenerMessage:
+    description: "Modify event types for a listener component"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: -1, description: "The ID of the scene object for the component"}
+      velocityX: {type: Float32_t, default_value: -1, description: "The x component of the velocity, in world space"}
+      velocityY: {type: Float32_t, default_value: -1, description: "The y component of the velocity, in world space"}
+      velocityZ: {type: Float32_t, default_value: -1, description: "The z component of the velocity, in world space"}
+      speedofSound: {type: Float32_t, default_value: -1, description: "The speed of sound at the listener's location"}
+
+  LoadTextureResourceMessage:
+    description: "Load a texture from a file"
+    parent: FilePathMessage
+    members:
+      uuid: {type: Uuid, default_value: "false", description: "The ID of the new texture resource"}
+
+  UnloadTextureResourceMessage:
+    description: "Unload a texture from a file"
+    members:
+      uuid: {type: Uuid, default_value: "false", description: "The ID of the new texture resource"}
+
+  AddMaterialResourceMessage:
+    description: "Create a material"
+    members:
+      name: {type: GStringFixedSize<>, default_value: "", description: "The name of the new material"}
+      uuid: {type: Uuid, default_value: "false", description: "The ID of the new material"}
+      materialJsonBytes: {type: std::vector<Uint8_t>, default_value: "", description: "The JSON of the material itself"}
+      spriteSheetInfoJsonBytes: {type: std::vector<Uint8_t>, default_value: "", description: "JSON representing sprite sheet info for the material"}
+      filePath: {type: GStringFixedSize<>, default_value: "", description: "Optional filepath for the new material"}
+
+  AddTextureToMaterialMessage:
+    description: "Add one or more textures to a material"
+    members:
+      materialUuid: {type: Uuid, default_value: "false", description: "The ID of the material to add the texture to"}
+      imageFilePaths: {type: std::vector<GStringFixedSize<>>, default_value: "", description: "The filepaths to the images used by the textures"}
+      textureTypes: { type: std::vector<Int32_t>, default_value: "", description: "The texture usage types" }
+
+  RemoveMaterialResourceMessage:
+    description: "Destroy a material"
+    members:
+      uuid: {type: Uuid, default_value: "false", description: "The ID of the material to delete"}
+
+  CopyMaterialResourceMessage:
+    description: "Copy a material"
+    parent: JsonMessage
+    members:
+      uuid: {type: Uuid, default_value: "false", description: "The ID of the new material"}
+
+  RemoveMeshResourceMessage:
+    description: "Remove a mesh"
+    members:
+      uuid: {type: Uuid, default_value: "false", description: "The ID of the mesh to remove"}
+
+  AddModelResourceMessage:
+    description: "Add a model"
+    members:
+      uuid: {type: Uuid, default_value: "false", description: "The ID of the model added"}
+      name: {type: GStringFixedSize<>, default_value: "", description: "The name of the new model, if specified"}
+      modelJsonBytes: {type: std::vector<Uint8_t>, default_value: "", description: "The JSON of the model itself, if specified"}
+
+  RemoveModelResourceMessage:
+    description: "Remove a model"
+    members:
+      uuid: {type: Uuid, default_value: "false", description: "The ID of the model to remove"}
+
+  RenameModelMessage:
+    description: "Message to rename a model"
+    members:
+      uuid: {type: Uuid, description: "The UUID of the model to be renamed"}
+      filePath: {type: GStringFixedSize<>, default_value: "", description: "The new model name" }
+  
+  LoadModelMessage:
+    parent: FilePathMessage
+    description: "Message to load a model file"
+
+  CopyModelResourceMessage:
+    description: "Copy a model"
+    parent: JsonMessage
+    members:
+      uuid: {type: Uuid, default_value: "false", description: "The ID of the new model"}
+
+  LoadAudioResourceMessage:
+    parent: FilePathMessage
+    description: "Message to load an audio file"
+    members:
+      uuid: {type: Uuid, default_value: "false", description: "The ID of the new audio resource"}
+      streamAudio: {type: bool, default_value: "false", description: "Whether or not to stream audio"}
+
+  RemoveAudioResourceMessage:
+    description: "Remove an audio resource"
+    members:
+      uuid: {type: Uuid, default_value: "false", description: "The ID of the audio to remove"}
+
+  DisplayWarningMessage:
+    description: "Message to display a warning"
+    members:
+      title: {type: std::vector<Uint8_t>, default_value: "", description: "The title to populate the warning with. Must be null-delimited"}
+      text: {type: std::vector<Uint8_t>, default_value: "", description: "The text to populate the warning with. Must be null-delimited"}
+
+  AddShaderResourceMessage:
+    description: "Create a shader resource"
+    members:
+      name: {type: GStringFixedSize<>, default_value: "", description: "The name of the new shader"}
+      uuid: {type: Uuid, default_value: "false", description: "The ID of the new shader"}
+      shaderJsonBytes: {type: std::vector<Uint8_t>, default_value: "", description: "The JSON of the shader itself"}
+ 
+  LoadShaderResourceMessage:
+    parent: FilePathMessage
+    description: "Message to load a shader program"
+    members:
+      uuid: {type: Uuid, default_value: "false", description: "The ID of the new shader resource"}
+      vertexFilePath: {type: GStringFixedSize<>, default_value: "", description: "The path to the vertex shader" }
+      fragmentFilePath: {type: GStringFixedSize<>, default_value: "", description: "The path to the fragment shader" }
+      computeFilePath: {type: GStringFixedSize<>, default_value: "", description: "The path to the compute shader" }
+
+  RemoveShaderResourceMessage:
+    parent: FilePathMessage
+    description: "Message to remove a shader program"
+    members:
+      uuid: {type: Uuid, default_value: "false", description: "The ID of the shader resource to remove"}
+
+  ReloadResourceMessage:
+    description: "Message to reload a resource"
+    members:
+      uuid: {type: Uuid, default_value: "false", description: "The ID of the resource to reload"}
+      name: {type: GStringFixedSize<>, default_value: "", description: "The (potentially new) name of the resource"}
+      resourceJsonBytes: {type: std::vector<Uint8_t>, default_value: "", description: "The JSON of the resource itself"}
+
+  GetResourceDataMessage:
+    description: "Message to get data for a resource"
+    members:
+      uuid: {type: Uuid, default_value: "false", description: "The ID of the resource"}
+
+  ResourceDataMessage:
+    description: "Message containing data for a resource. JSON is of resource itself, not the handle"
+    members:
+      uuid: {type: Uuid, default_value: "false", description: "The ID of the resource"}
+      name: {type: GStringFixedSize<>, default_value: "", description: "The name of the resource"}
+      resourceJsonBytes: {type: std::vector<Uint8_t>, default_value: "", description: "The JSON of the resource handle, with additional resource JSON if applicable"}
+
+  CreateBlueprintMessage:
+    description: "Message to create a blueprint"
+    members:
+      sceneObjectId: {type: Int32_t, default_value: "-1", description: "The ID of the scene object for which to create a blueprint"}
+
+  ModifyBlueprintMessage:
+    description: "Message to modify a blueprint"
+    members:
+      uuid: {type: Uuid, default_value: "false", description: "The UUID of the modified blueprint"}
+      newUuid: {type: Uuid, default_value: "false", description: "The new UUID of the modified blueprint"}
+      newName: {type: GStringFixedSize<>, default_value: "", description: "The new name of the blueprint"}
+
+  RequestBlueprintsDataMessage:
+    description: "Request info regarding all blueprints"
+
+  BlueprintsDataMessage:
+    description: "Contains data describing all blueprints"
+    members:
+      blueprintsJsonBytes: { type: std::vector<Uint8_t>, default_value: "", description: "The JSON array for the blueprints" }
+
+  RequestAddTexturesToMaterialMessage:
+    description: "Calls routine to add textures to created material"
+
+  AdvanceProgressWidgetMessage:
+    description: "Advances progress in any active progress widgets"
+    members:
+      close: {type: bool, default_value: "false", description: "Whether or not to close the dialog"}
+
+  AddShaderPresetMessage:
+    description: "Add a shader preset to the current scenario"
+
+  RemoveShaderPresetMessage:
+    description: "Remove a shader preset"
+    members:
+      name: {type: GStringFixedSize<>, default_value: "", description: "The name of the preset to remove"}
+
+  ReorderRenderLayersMessage:
+    description: "Move a render layer within the render layers list"
+    members:
+      id: {type: Int32_t, default_value: "-1", description: "The ID of the render layer being moved"}
+      newOrder: {type: Int32_t, default_value: "0", description: "The new order"}
+
+  AddRenderLayerMessage:
+    description: "Add a render layer to the scenario"
+
+  RemoveRenderLayerMessage:
+    description: "Remove a render layer from the scenario"
+    members:
+      id: {type: Int32_t, default_value: "-1", description: "The ID of the render layer being moved"}
+
+  ReorderScriptProcessesMessage:
+    description: "Move a script process within the script process list"
+    members:
+      id: {type: Int32_t, default_value: "-1", description: "The ID of the script process layer being moved"}
+      newOrder: {type: Int32_t, default_value: "0", description: "The new order"}
+
+  AddScriptProcessLayerMessage:
+    description: "Add a script process sorting layer to the scenario"
+
+  RemoveScriptProcessLayerMessage:
+    description: "Remove a script process sorting layer from the scenario"
+    members:
+      id: {type: Int32_t, default_value: "-1", description: "The ID of the script process layer being moved"}
+
+  ConnectionAliveMessage:
+    description: "This signals that a network connection is still alive"
+    
+...

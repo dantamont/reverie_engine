@@ -1,0 +1,117 @@
+\hypertarget{classrev_1_1_font_manager}{}\section{rev\+::Font\+Manager Class Reference}
+\label{classrev_1_1_font_manager}\index{rev::FontManager@{rev::FontManager}}
+
+
+Manages fonts See\+: \href{https://www.freetype.org/freetype2/docs/tutorial/step1.html}{\texttt{ https\+://www.\+freetype.\+org/freetype2/docs/tutorial/step1.\+html}}.  
+
+
+
+
+{\ttfamily \#include $<$G\+Font\+Manager.\+h$>$}
+
+Inheritance diagram for rev\+::Font\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{classrev_1_1_font_manager}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_font_manager_a96ee88f9dd01c910842436b8fa798e2d}\label{classrev_1_1_font_manager_a96ee88f9dd01c910842436b8fa798e2d}} 
+{\bfseries Font\+Manager} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$\mbox{\hyperlink{classrev_1_1_manager_a0fbd0df6b4f3caf42b557f9702f48171}{engine}})
+\item 
+\mbox{\Hypertarget{classrev_1_1_font_manager_a4b9035da7a5eaae37bd3b5a07cd10bd0}\label{classrev_1_1_font_manager_a4b9035da7a5eaae37bd3b5a07cd10bd0}} 
+{\bfseries $\sim$\+Font\+Manager} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_font_manager_a368b940b9ad9756a10a5d0de9022c65b}\label{classrev_1_1_font_manager_a368b940b9ad9756a10a5d0de9022c65b}} 
+static std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_font_face}{Font\+Face}} $>$ \& {\bfseries Font\+Faces} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_font_manager_a8752a2da7c737a473d25b6d7a15887e6}\label{classrev_1_1_font_manager_a8752a2da7c737a473d25b6d7a15887e6}} 
+static \mbox{\hyperlink{classrev_1_1_font_face}{Font\+Face}} $\ast$ {\bfseries Get\+Font\+Face} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&font\+Name)
+\item 
+\mbox{\Hypertarget{classrev_1_1_font_manager_a74da1f046298ddf7af77e0f4dc8f1d87}\label{classrev_1_1_font_manager_a74da1f046298ddf7af77e0f4dc8f1d87}} 
+static const Q\+Json\+Object \& {\bfseries Font\+Awesome\+Info} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_font_manager_a9ccba052584ceb2f9acec9bb58e97f91}\label{classrev_1_1_font_manager_a9ccba052584ceb2f9acec9bb58e97f91}} 
+static Q\+String {\bfseries Fa\+Unicode\+Character} (const Q\+String \&font\+Awesome\+Icon)
+\item 
+\mbox{\Hypertarget{classrev_1_1_font_manager_a97e6e0201434a3d22ed8f05e5456a9bd}\label{classrev_1_1_font_manager_a97e6e0201434a3d22ed8f05e5456a9bd}} 
+static void \mbox{\hyperlink{classrev_1_1_font_manager_a97e6e0201434a3d22ed8f05e5456a9bd}{Load\+Font\+Face}} (const Q\+String \&path, bool is\+Core, Font\+Encoding encoding=Font\+Encoding\+::k\+A\+S\+C\+II)
+\begin{DoxyCompactList}\small\item\em Load a font from a given file, with the specified encoding, and generates bitmap. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Protected Attributes}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_font_manager_a648a2697270594f09fb118bd78807096}\label{classrev_1_1_font_manager_a648a2697270594f09fb118bd78807096}} 
+static std\+::unique\+\_\+ptr$<$ F\+T\+\_\+\+Library $>$ \mbox{\hyperlink{classrev_1_1_font_manager_a648a2697270594f09fb118bd78807096}{s\+\_\+free\+Type}} = nullptr
+\begin{DoxyCompactList}\small\item\em The wrapped freetype library. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_font_manager_a031fd1b52dc0e848770ea7c7d3621d93}\label{classrev_1_1_font_manager_a031fd1b52dc0e848770ea7c7d3621d93}} 
+static std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_font_face}{Font\+Face}} $>$ \mbox{\hyperlink{classrev_1_1_font_manager_a031fd1b52dc0e848770ea7c7d3621d93}{s\+\_\+faces}} = \{\}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_map}{Map}} of fonts wrapping \char`\"{}faces\char`\"{}, i.\+e. fonts loaded via freetype. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_font_manager_a8ec9ffc0f00a46a44eea23d56bc14ac2}\label{classrev_1_1_font_manager_a8ec9ffc0f00a46a44eea23d56bc14ac2}} 
+static int \mbox{\hyperlink{classrev_1_1_font_manager_a8ec9ffc0f00a46a44eea23d56bc14ac2}{s\+\_\+fa\+Brands}} = -\/1
+\begin{DoxyCompactList}\small\item\em Font Awesome font family I\+Ds. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_font_manager_a1e8c7432983b8ea6d432cafc34ff444a}\label{classrev_1_1_font_manager_a1e8c7432983b8ea6d432cafc34ff444a}} 
+static int {\bfseries s\+\_\+fa\+Regular} = -\/1
+\item 
+\mbox{\Hypertarget{classrev_1_1_font_manager_ac6262d59cda13bafc96e5fa463c239f1}\label{classrev_1_1_font_manager_ac6262d59cda13bafc96e5fa463c239f1}} 
+static int {\bfseries s\+\_\+fa\+Solid} = -\/1
+\item 
+\mbox{\Hypertarget{classrev_1_1_font_manager_abc1449bc1afb6447b449024ac9fad7af}\label{classrev_1_1_font_manager_abc1449bc1afb6447b449024ac9fad7af}} 
+static Q\+Json\+Object \mbox{\hyperlink{classrev_1_1_font_manager_abc1449bc1afb6447b449024ac9fad7af}{s\+\_\+fa\+Info}} = Q\+Json\+Object()
+\begin{DoxyCompactList}\small\item\em J\+S\+ON document containing font-\/awesome icon metadata. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_font_manager_a74b0083ac0ac6b3e797aa115d23e5e93}\label{classrev_1_1_font_manager_a74b0083ac0ac6b3e797aa115d23e5e93}} 
+class {\bfseries Label}
+\item 
+\mbox{\Hypertarget{classrev_1_1_font_manager_aa9627c9772feb41db6450011b1efdb92}\label{classrev_1_1_font_manager_aa9627c9772feb41db6450011b1efdb92}} 
+class {\bfseries Font\+Face}
+\end{DoxyCompactItemize}
+\subsection*{Public Methods}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_font_manager_a0ac647b2ac0597cb23a53fbf65374996}\label{classrev_1_1_font_manager_a0ac647b2ac0597cb23a53fbf65374996}} 
+static Q\+String \mbox{\hyperlink{classrev_1_1_font_manager_a0ac647b2ac0597cb23a53fbf65374996}{Regular\+Font\+Awesome\+Family}} ()
+\begin{DoxyCompactList}\small\item\em Font awesome font families. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_font_manager_acd6abe1c1100a9004e3df007f5537107}\label{classrev_1_1_font_manager_acd6abe1c1100a9004e3df007f5537107}} 
+static Q\+String {\bfseries Brand\+Font\+Awesome\+Family} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_font_manager_a6edbfc440f7c1a0bb5af753f0ae8b38d}\label{classrev_1_1_font_manager_a6edbfc440f7c1a0bb5af753f0ae8b38d}} 
+static Q\+String {\bfseries Solid\+Font\+Awesome\+Family} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_font_manager_a6e27e37302ff3aba4515db4dbde904db}\label{classrev_1_1_font_manager_a6e27e37302ff3aba4515db4dbde904db}} 
+virtual void \mbox{\hyperlink{classrev_1_1_font_manager_a6e27e37302ff3aba4515db4dbde904db}{post\+Construction}} () override
+\begin{DoxyCompactList}\small\item\em Called after construction of the manager. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Methods}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_font_manager_a919ca1f4388a574bc4a4c14eece4a163}\label{classrev_1_1_font_manager_a919ca1f4388a574bc4a4c14eece4a163}} 
+static void {\bfseries initialize\+Free\+Type} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_font_manager_a06dc9d399372c907e1acd668f7adc778}\label{classrev_1_1_font_manager_a06dc9d399372c907e1acd668f7adc778}} 
+void \mbox{\hyperlink{classrev_1_1_font_manager_a06dc9d399372c907e1acd668f7adc778}{initialize\+G\+L\+Fonts}} ()
+\begin{DoxyCompactList}\small\item\em Initialize fonts to use in GL. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_font_manager_ae584306758b0e69007dc152064368ba0}\label{classrev_1_1_font_manager_ae584306758b0e69007dc152064368ba0}} 
+void \mbox{\hyperlink{classrev_1_1_font_manager_ae584306758b0e69007dc152064368ba0}{initialize\+Widget\+Fonts}} ()
+\begin{DoxyCompactList}\small\item\em Initialize font awesome for application. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Manages fonts See\+: \href{https://www.freetype.org/freetype2/docs/tutorial/step1.html}{\texttt{ https\+://www.\+freetype.\+org/freetype2/docs/tutorial/step1.\+html}}. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/canvas/G\+Font\+Manager.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/canvas/G\+Font\+Manager.\+cpp\end{DoxyCompactItemize}

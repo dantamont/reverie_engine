@@ -1,0 +1,106 @@
+\hypertarget{classrev_1_1_scenario_settings}{}\section{rev\+::Scenario\+Settings Class Reference}
+\label{classrev_1_1_scenario_settings}\index{rev::ScenarioSettings@{rev::ScenarioSettings}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} for managing scenario settings.  
+
+
+
+
+{\ttfamily \#include $<$G\+Scenario\+Settings.\+h$>$}
+
+Inheritance diagram for rev\+::Scenario\+Settings\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_scenario_settings}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_settings_a4e1c7098beaa9d6431dd39b2bc94e403}\label{classrev_1_1_scenario_settings_a4e1c7098beaa9d6431dd39b2bc94e403}} 
+{\bfseries Scenario\+Settings} (\mbox{\hyperlink{classrev_1_1_scenario}{Scenario}} $\ast$scenario)
+\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_settings_aefb6d8617bde0ffc08b8c501430450a5}\label{classrev_1_1_scenario_settings_aefb6d8617bde0ffc08b8c501430450a5}} 
+{\bfseries $\sim$\+Scenario\+Settings} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_settings_ae14a7517b873af766cec2263a52462cd}\label{classrev_1_1_scenario_settings_ae14a7517b873af766cec2263a52462cd}} 
+\mbox{\hyperlink{structrev_1_1_sorting_layers}{Sorting\+Layers}} \& {\bfseries render\+Layers} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_settings_a2ce0288eae4021928c2f3c5d0ff3dc32}\label{classrev_1_1_scenario_settings_a2ce0288eae4021928c2f3c5d0ff3dc32}} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_shader_preset}{Shader\+Preset}} $>$ $>$ \& \mbox{\hyperlink{classrev_1_1_scenario_settings_a2ce0288eae4021928c2f3c5d0ff3dc32}{shader\+Presets}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_map}{Map}} of all shader presets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_settings_adde9fc0e663100860da295c73a8a3743}\label{classrev_1_1_scenario_settings_adde9fc0e663100860da295c73a8a3743}} 
+void \mbox{\hyperlink{classrev_1_1_scenario_settings_adde9fc0e663100860da295c73a8a3743}{on\+Remove\+Render\+Layer}} (uint32\+\_\+t layer\+Id)
+\begin{DoxyCompactList}\small\item\em Remove a given render layer from all scene objects in the scenario. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_settings_aae67bfa68cb12440eaa473f7a482b3b8}\label{classrev_1_1_scenario_settings_aae67bfa68cb12440eaa473f7a482b3b8}} 
+bool \mbox{\hyperlink{classrev_1_1_scenario_settings_aae67bfa68cb12440eaa473f7a482b3b8}{remove\+Shader\+Preset}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name)
+\begin{DoxyCompactList}\small\item\em Remove shader material from resource cache. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_settings_a7b34ac614b6ab3a712678c2c9583f4af}\label{classrev_1_1_scenario_settings_a7b34ac614b6ab3a712678c2c9583f4af}} 
+bool \mbox{\hyperlink{classrev_1_1_scenario_settings_a7b34ac614b6ab3a712678c2c9583f4af}{has\+Shader\+Preset}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name, int $\ast$iter\+Index=nullptr) const
+\begin{DoxyCompactList}\small\item\em Whether the resource map has the specified shader preset. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_settings_a4178b90ee5015105e241ce215c03d686}\label{classrev_1_1_scenario_settings_a4178b90ee5015105e241ce215c03d686}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_shader_preset}{Shader\+Preset}} $>$ \mbox{\hyperlink{classrev_1_1_scenario_settings_a4178b90ee5015105e241ce215c03d686}{get\+Shader\+Preset}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name, bool \&created)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_shader}{Shader}} preset. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Loadable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_settings_a284196483c8ef954925aad3250ed5ee9}\label{classrev_1_1_scenario_settings_a284196483c8ef954925aad3250ed5ee9}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_scenario_settings_a284196483c8ef954925aad3250ed5ee9}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_settings_a291ffa550a427c78524353bf31655ee2}\label{classrev_1_1_scenario_settings_a291ffa550a427c78524353bf31655ee2}} 
+virtual void \mbox{\hyperlink{classrev_1_1_scenario_settings_a291ffa550a427c78524353bf31655ee2}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_settings_a273db85fc0a569bf201c87f54397d5c5}\label{classrev_1_1_scenario_settings_a273db85fc0a569bf201c87f54397d5c5}} 
+\mbox{\hyperlink{classrev_1_1_scenario}{Scenario}} $\ast$ {\bfseries m\+\_\+scenario}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_settings_a508ea3ec4eaf25b55e8558d9c73840b1}\label{classrev_1_1_scenario_settings_a508ea3ec4eaf25b55e8558d9c73840b1}} 
+\mbox{\hyperlink{structrev_1_1_sorting_layers}{Sorting\+Layers}} \mbox{\hyperlink{classrev_1_1_scenario_settings_a508ea3ec4eaf25b55e8558d9c73840b1}{m\+\_\+render\+Layers}}
+\begin{DoxyCompactList}\small\item\em All of the layers for rendering available for the scene. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_shader_preset}{Shader\+Preset}} $>$ $>$ \mbox{\hyperlink{classrev_1_1_scenario_settings_a19886b9bd70d7a9fa470b90ef2d53ada}{m\+\_\+shader\+Presets}}
+\begin{DoxyCompactList}\small\item\em The default render order for the scenario. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_settings_a8aa97ba078be6635ba5a8b6c7a3b66a4}\label{classrev_1_1_scenario_settings_a8aa97ba078be6635ba5a8b6c7a3b66a4}} 
+class {\bfseries Scenario}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} for managing scenario settings. 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_scenario_settings_a19886b9bd70d7a9fa470b90ef2d53ada}\label{classrev_1_1_scenario_settings_a19886b9bd70d7a9fa470b90ef2d53ada}} 
+\index{rev::ScenarioSettings@{rev::ScenarioSettings}!m\_shaderPresets@{m\_shaderPresets}}
+\index{m\_shaderPresets@{m\_shaderPresets}!rev::ScenarioSettings@{rev::ScenarioSettings}}
+\subsubsection{\texorpdfstring{m\_shaderPresets}{m\_shaderPresets}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classrev_1_1_shader_preset}{Shader\+Preset}}$>$ $>$ rev\+::\+Scenario\+Settings\+::m\+\_\+shader\+Presets\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The default render order for the scenario. 
+
+\mbox{\hyperlink{classrev_1_1_map}{Map}} of all shader presets 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/scene/G\+Scenario\+Settings.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/scene/G\+Scenario\+Settings.\+cpp\end{DoxyCompactItemize}

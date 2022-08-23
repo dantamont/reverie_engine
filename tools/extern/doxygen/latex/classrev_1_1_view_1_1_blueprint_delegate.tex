@@ -1,0 +1,47 @@
+\hypertarget{classrev_1_1_view_1_1_blueprint_delegate}{}\section{rev\+::View\+::Blueprint\+Delegate Class Reference}
+\label{classrev_1_1_view_1_1_blueprint_delegate}\index{rev::View::BlueprintDelegate@{rev::View::BlueprintDelegate}}
+Inheritance diagram for rev\+::View\+::Blueprint\+Delegate\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_view_1_1_blueprint_delegate}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_blueprint_delegate_a1fa3801da83fd392a2c16dec968759f6}\label{classrev_1_1_view_1_1_blueprint_delegate_a1fa3801da83fd392a2c16dec968759f6}} 
+void {\bfseries paint} (Q\+Painter $\ast$painter, const Q\+Style\+Option\+View\+Item \&option, const Q\+Model\+Index \&index) const override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_blueprint_delegate_ade2ca53b91e59075aa45903e70c62b88}\label{classrev_1_1_view_1_1_blueprint_delegate_ade2ca53b91e59075aa45903e70c62b88}} 
+Q\+Size {\bfseries size\+Hint} (const Q\+Style\+Option\+View\+Item \&option, const Q\+Model\+Index \&index) const override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_blueprint_delegate_a478649e1f46178761d1dbe019ed22393}\label{classrev_1_1_view_1_1_blueprint_delegate_a478649e1f46178761d1dbe019ed22393}} 
+Q\+Widget $\ast$ {\bfseries create\+Editor} (Q\+Widget $\ast$parent, const Q\+Style\+Option\+View\+Item \&option, const Q\+Model\+Index \&index) const override
+\item 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_blueprint_delegate_a2b9b9f5e05003be17cd3aa34202b20cf}{set\+Editor\+Data}} (Q\+Widget $\ast$editor, const Q\+Model\+Index \&index) const override
+\begin{DoxyCompactList}\small\item\em Sets the contents of the editor to the data for the item. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_blueprint_delegate_ac1af608a5f40061435b3f377c29f5f71}\label{classrev_1_1_view_1_1_blueprint_delegate_ac1af608a5f40061435b3f377c29f5f71}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_blueprint_delegate_ac1af608a5f40061435b3f377c29f5f71}{set\+Model\+Data}} (Q\+Widget $\ast$editor, Q\+Abstract\+Item\+Model $\ast$model, const Q\+Model\+Index \&index) const override
+\begin{DoxyCompactList}\small\item\em Gets data from the editor widget and stores it in the specified model at the item index. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_view_1_1_blueprint_delegate_a2b9b9f5e05003be17cd3aa34202b20cf}\label{classrev_1_1_view_1_1_blueprint_delegate_a2b9b9f5e05003be17cd3aa34202b20cf}} 
+\index{rev::View::BlueprintDelegate@{rev::View::BlueprintDelegate}!setEditorData@{setEditorData}}
+\index{setEditorData@{setEditorData}!rev::View::BlueprintDelegate@{rev::View::BlueprintDelegate}}
+\subsubsection{\texorpdfstring{setEditorData()}{setEditorData()}}
+{\footnotesize\ttfamily void rev\+::\+View\+::\+Blueprint\+Delegate\+::set\+Editor\+Data (\begin{DoxyParamCaption}\item[{Q\+Widget $\ast$}]{editor,  }\item[{const Q\+Model\+Index \&}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Sets the contents of the editor to the data for the item. 
+
+\begin{DoxyNote}{Note}
+The index contains information about the model being used 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/list/G\+Blueprint\+View.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/list/G\+Blueprint\+View.\+cpp\end{DoxyCompactItemize}

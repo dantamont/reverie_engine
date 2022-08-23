@@ -1,0 +1,69 @@
+\hypertarget{classrev_1_1_view_1_1_label_widget}{}\section{rev\+::View\+::Label\+Widget Class Reference}
+\label{classrev_1_1_view_1_1_label_widget}\index{rev::View::LabelWidget@{rev::View::LabelWidget}}
+Inheritance diagram for rev\+::View\+::Label\+Widget\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{classrev_1_1_view_1_1_label_widget}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_label_widget_afa41a8abe10827835c6a59732ad4feac}\label{classrev_1_1_view_1_1_label_widget_afa41a8abe10827835c6a59732ad4feac}} 
+{\bfseries Label\+Widget} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, \mbox{\hyperlink{classrev_1_1_label}{Label}} $\ast$\mbox{\hyperlink{classrev_1_1_view_1_1_label_widget_a59b1e1dc09ff7193011213917a0f60d4}{label}}, Q\+Widget $\ast$parent=0)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_label_widget_a19b50f1ef0fe5c7cdc1a33b355daed7d}\label{classrev_1_1_view_1_1_label_widget_a19b50f1ef0fe5c7cdc1a33b355daed7d}} 
+{\bfseries $\sim$\+Label\+Widget} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_label_widget_a5bd023a9f964d92c308ef9e702ce8bf3}\label{classrev_1_1_view_1_1_label_widget_a5bd023a9f964d92c308ef9e702ce8bf3}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_label_widget_a5bd023a9f964d92c308ef9e702ce8bf3}{initialize\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to check\+Validity widgets. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_label_widget_a00240665be6f0b40254eba8ef165caf1}\label{classrev_1_1_view_1_1_label_widget_a00240665be6f0b40254eba8ef165caf1}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_label_widget_a00240665be6f0b40254eba8ef165caf1}{initialize\+Connections}} () override
+\begin{DoxyCompactList}\small\item\em Methods to check\+Validity connections for this widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_label_widget_a1433282412ba816aab84bb8fe5f0ee11}\label{classrev_1_1_view_1_1_label_widget_a1433282412ba816aab84bb8fe5f0ee11}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_label_widget_a1433282412ba816aab84bb8fe5f0ee11}{layout\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to ay out widgets. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_label_widget_a7a14d1a21a9be1da831f3fab4a726e5f}\label{classrev_1_1_view_1_1_label_widget_a7a14d1a21a9be1da831f3fab4a726e5f}} 
+virtual bool \mbox{\hyperlink{classrev_1_1_view_1_1_label_widget_a7a14d1a21a9be1da831f3fab4a726e5f}{is\+Valid\+Object}} (const Q\+Json\+Object \&object) override
+\begin{DoxyCompactList}\small\item\em Whether or not the specified object is valid. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_label_widget_a59b1e1dc09ff7193011213917a0f60d4}\label{classrev_1_1_view_1_1_label_widget_a59b1e1dc09ff7193011213917a0f60d4}} 
+\mbox{\hyperlink{classrev_1_1_label}{Label}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_label_widget_a59b1e1dc09ff7193011213917a0f60d4}{label}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_serializable}{Serializable}} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_label_widget_a36b16ac123365ba7b23364e905a847a7}\label{classrev_1_1_view_1_1_label_widget_a36b16ac123365ba7b23364e905a847a7}} 
+Q\+Text\+Edit $\ast$ {\bfseries m\+\_\+text}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_label_widget_abea35c837ddf70b914abd3c22647c839}\label{classrev_1_1_view_1_1_label_widget_abea35c837ddf70b914abd3c22647c839}} 
+Q\+Line\+Edit $\ast$ {\bfseries m\+\_\+font\+Size}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_label_widget_aaa75f9905952037c5811c0cb6044edf5}\label{classrev_1_1_view_1_1_label_widget_aaa75f9905952037c5811c0cb6044edf5}} 
+Q\+Combo\+Box $\ast$ {\bfseries m\+\_\+font\+Face}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_label_widget_ab675e4827e586d5d9e292e4d5d061889}\label{classrev_1_1_view_1_1_label_widget_ab675e4827e586d5d9e292e4d5d061889}} 
+Q\+Line\+Edit $\ast$ {\bfseries m\+\_\+line\+Max\+Size}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_label_widget_aa07a05abd2d7b55c009b0dfce290cb57}\label{classrev_1_1_view_1_1_label_widget_aa07a05abd2d7b55c009b0dfce290cb57}} 
+Q\+Line\+Edit $\ast$ {\bfseries m\+\_\+line\+Spacing}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_label_widget_a8d6ccf4618b8bea2b8b847efee53a99a}\label{classrev_1_1_view_1_1_label_widget_a8d6ccf4618b8bea2b8b847efee53a99a}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_color_widget}{Color\+Widget}} $\ast$ {\bfseries m\+\_\+color}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Canvas\+Glyph\+Widget.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Canvas\+Glyph\+Widget.\+cpp\end{DoxyCompactItemize}

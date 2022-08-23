@@ -1,0 +1,37 @@
+\hypertarget{classrev_1_1_parallel_loop_generator}{}\section{rev\+::Parallel\+Loop\+Generator Class Reference}
+\label{classrev_1_1_parallel_loop_generator}\index{rev::ParallelLoopGenerator@{rev::ParallelLoopGenerator}}
+
+
+{\ttfamily \#include $<$G\+Parallel\+Loop.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_parallel_loop_generator_a1e42c1e4cbfedcd321200a2b9c9d2c3d}\label{classrev_1_1_parallel_loop_generator_a1e42c1e4cbfedcd321200a2b9c9d2c3d}} 
+{\bfseries Parallel\+Loop\+Generator} (\mbox{\hyperlink{classrev_1_1_thread_pool}{Thread\+Pool}} $\ast$pool=nullptr, bool use\+\_\+threads=true)
+\item 
+\mbox{\Hypertarget{classrev_1_1_parallel_loop_generator_a886b7742a4937dbb4b5c76f0e7a70b39}\label{classrev_1_1_parallel_loop_generator_a886b7742a4937dbb4b5c76f0e7a70b39}} 
+void {\bfseries parallel\+For} (unsigned num\+\_\+elements, std\+::function$<$ void(int start, int end)$>$ functor)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em num\+\_\+elements} & \+: size of your for loop \\
+\hline
+\mbox{\texttt{ in}}  & {\em functor(start,end)} & \+: your function processing a sub chunk of the for loop. \char`\"{}start\char`\"{} is the first index to process (included) until the index \char`\"{}end\char`\"{} (excluded) 
+\begin{DoxyCode}{1}
+\DoxyCodeLine{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i = start; i < end; ++i)}
+\DoxyCodeLine{    computation(i);}
+\end{DoxyCode}
+ \\
+\hline
+ & {\em use\+\_\+threads} & \+: enable / disable threads. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/threading/G\+Parallel\+Loop.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,63 @@
+\hypertarget{classrev_1_1_node_animation}{}\section{rev\+::Node\+Animation Class Reference}
+\label{classrev_1_1_node_animation}\index{rev::NodeAnimation@{rev::NodeAnimation}}
+
+
+Essentially an animation track, represents the animation history of a single joint.  
+
+
+
+
+{\ttfamily \#include $<$G\+Animation.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_node_animation_a1981693dafe835f9a485e697a4c7d961}\label{classrev_1_1_node_animation_a1981693dafe835f9a485e697a4c7d961}} 
+{\bfseries Node\+Animation} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_node_animation_a576b2d69298c736ef65f9b6431fcd5e4}\label{classrev_1_1_node_animation_a576b2d69298c736ef65f9b6431fcd5e4}} 
+{\bfseries $\sim$\+Node\+Animation} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_node_animation_ac38c1813303ee55a7a48d9a92caf2c6c}\label{classrev_1_1_node_animation_ac38c1813303ee55a7a48d9a92caf2c6c}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} $>$ \& {\bfseries translations} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_node_animation_a3b211217add519f977ddd9eed4a1974c}\label{classrev_1_1_node_animation_a3b211217add519f977ddd9eed4a1974c}} 
+const std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} $>$ \& {\bfseries translations} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_node_animation_a9147e7d25cfe87d5997d1d5de127df39}\label{classrev_1_1_node_animation_a9147e7d25cfe87d5997d1d5de127df39}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} $>$ \& {\bfseries rotations} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_node_animation_aaee9f57b7aee594f2337dc92bfb676c6}\label{classrev_1_1_node_animation_aaee9f57b7aee594f2337dc92bfb676c6}} 
+const std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} $>$ \& {\bfseries rotations} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_node_animation_abd44d2591067fd41ad7f36efc6b49f3f}\label{classrev_1_1_node_animation_abd44d2591067fd41ad7f36efc6b49f3f}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} $>$ \& {\bfseries scales} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_node_animation_a18337f455e086a100f3a10d63e0eb701}\label{classrev_1_1_node_animation_a18337f455e086a100f3a10d63e0eb701}} 
+const std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} $>$ \& {\bfseries scales} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_node_animation_ac31961cd0dce64ffaf02299367affafe}\label{classrev_1_1_node_animation_ac31961cd0dce64ffaf02299367affafe}} 
+size\+\_\+t {\bfseries size} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_node_animation_a891bb079cd99970a9d6ce0c865b1646d}\label{classrev_1_1_node_animation_a891bb079cd99970a9d6ce0c865b1646d}} 
+void \mbox{\hyperlink{classrev_1_1_node_animation_a891bb079cd99970a9d6ce0c865b1646d}{interpolate}} (uint32\+\_\+t first, uint32\+\_\+t second, float weight, \mbox{\hyperlink{structrev_1_1_animation_frame_data}{Animation\+Frame\+Data}} \&out) const
+\begin{DoxyCompactList}\small\item\em Interpolate between the given two frame indices with the given weight. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+Essentially an animation track, represents the animation history of a single joint. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/animation/G\+Animation.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/animation/G\+Animation.\+cpp\end{DoxyCompactItemize}

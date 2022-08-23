@@ -1,0 +1,82 @@
+\hypertarget{classrev_1_1_i_k_chain}{}\section{rev\+::I\+K\+Chain Class Reference}
+\label{classrev_1_1_i_k_chain}\index{rev::IKChain@{rev::IKChain}}
+
+
+A chain of kinematic nodes.  
+
+
+
+
+{\ttfamily \#include $<$G\+Inverse\+Kinematics.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_chain_a0e074088ed47dcb3044c3f011eaf8bd8}\label{classrev_1_1_i_k_chain_a0e074088ed47dcb3044c3f011eaf8bd8}} 
+{\bfseries I\+K\+Chain} (const \mbox{\hyperlink{classrev_1_1_skeleton}{Skeleton}} \&skeleton)
+\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_chain_a2ac0db1a59bcdec5c8ae35559eabd70c}\label{classrev_1_1_i_k_chain_a2ac0db1a59bcdec5c8ae35559eabd70c}} 
+virtual {\bfseries $\sim$\+I\+K\+Chain} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_chain_a5293e0103295cdc867fab2fc13a1382a}\label{classrev_1_1_i_k_chain_a5293e0103295cdc867fab2fc13a1382a}} 
+\mbox{\hyperlink{classrev_1_1_i_k_node}{I\+K\+Node}} $\ast$ {\bfseries get\+Node} (int id) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_chain_a555098857a8170fb54bf090c92f58306}\label{classrev_1_1_i_k_chain_a555098857a8170fb54bf090c92f58306}} 
+\mbox{\hyperlink{classrev_1_1_i_k_node}{I\+K\+Node}} $\ast$ {\bfseries get\+Node} (const \mbox{\hyperlink{classrev_1_1_skeleton_joint}{Skeleton\+Joint}} \&joint) const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_chain_abe01ba38ded2dd08bf03a1f7a915d908}\label{classrev_1_1_i_k_chain_abe01ba38ded2dd08bf03a1f7a915d908}} 
+virtual const char $\ast$ {\bfseries class\+Name} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_chain_a3a5c03ae801e396bd620fef84082f6c7}\label{classrev_1_1_i_k_chain_a3a5c03ae801e396bd620fef84082f6c7}} 
+virtual const char $\ast$ {\bfseries namespace\+Name} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_chain_af1e451156f52fdbe44fe67ecd7279f70}\label{classrev_1_1_i_k_chain_af1e451156f52fdbe44fe67ecd7279f70}} 
+void {\bfseries initialize} (const \mbox{\hyperlink{classrev_1_1_skeleton}{Skeleton}} \&skeleton)
+\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_chain_a8d8bac983e5c6d3f5b7c52a3953864f8}\label{classrev_1_1_i_k_chain_a8d8bac983e5c6d3f5b7c52a3953864f8}} 
+void {\bfseries add\+Node} (const \mbox{\hyperlink{classrev_1_1_skeleton_joint}{Skeleton\+Joint}} \&child, \mbox{\hyperlink{classrev_1_1_i_k_node}{I\+K\+Node}} $\ast$parent=nullptr)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_chain_a5a33e5d0c62395ce9d766e3ddef666e3}\label{classrev_1_1_i_k_chain_a5a33e5d0c62395ce9d766e3ddef666e3}} 
+const \mbox{\hyperlink{classrev_1_1_skeleton}{Skeleton}} \& \mbox{\hyperlink{classrev_1_1_i_k_chain_a5a33e5d0c62395ce9d766e3ddef666e3}{m\+\_\+skeleton}}
+\begin{DoxyCompactList}\small\item\em The skeleton associated with this \mbox{\hyperlink{classrev_1_1_i_k}{IK}} chain. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_chain_ae725da930ef29c3a5deed34cd80dd933}\label{classrev_1_1_i_k_chain_ae725da930ef29c3a5deed34cd80dd933}} 
+\mbox{\hyperlink{classrev_1_1_i_k_node}{I\+K\+Node}} \mbox{\hyperlink{classrev_1_1_i_k_chain_ae725da930ef29c3a5deed34cd80dd933}{m\+\_\+root}}
+\begin{DoxyCompactList}\small\item\em The root of the \mbox{\hyperlink{classrev_1_1_i_k}{IK}} chain. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_chain_a7e13ab4d8aaedc241ba739a55255a2ba}\label{classrev_1_1_i_k_chain_a7e13ab4d8aaedc241ba739a55255a2ba}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_i_k_node}{I\+K\+Node}} $\ast$ $>$ \mbox{\hyperlink{classrev_1_1_i_k_chain_a7e13ab4d8aaedc241ba739a55255a2ba}{m\+\_\+nodes}}
+\begin{DoxyCompactList}\small\item\em Flat vector of nodes for quick access by unique ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_chain_ae5889d88e5cbb223df47f108754dc548}\label{classrev_1_1_i_k_chain_ae5889d88e5cbb223df47f108754dc548}} 
+class {\bfseries I\+K\+Node}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A chain of kinematic nodes. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Inverse\+Kinematics.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Inverse\+Kinematics.\+cpp\end{DoxyCompactItemize}

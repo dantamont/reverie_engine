@@ -1,0 +1,173 @@
+\hypertarget{classrev_1_1_physics_shape_prefab}{}\section{rev\+::Physics\+Shape\+Prefab Class Reference}
+\label{classrev_1_1_physics_shape_prefab}\index{rev::PhysicsShapePrefab@{rev::PhysicsShapePrefab}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing physics geometry.  
+
+
+
+
+{\ttfamily \#include $<$G\+Physics\+Shape\+Prefab.\+h$>$}
+
+Inheritance diagram for rev\+::Physics\+Shape\+Prefab\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.576687cm]{classrev_1_1_physics_shape_prefab}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_prefab_ad745a75813e9574868c1bed29d0ddaeb}\label{classrev_1_1_physics_shape_prefab_ad745a75813e9574868c1bed29d0ddaeb}} 
+{\bfseries $\sim$\+Physics\+Shape\+Prefab} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_prefab_af8ec025e86caef3a7ab7bcfae5254aef}\label{classrev_1_1_physics_shape_prefab_af8ec025e86caef3a7ab7bcfae5254aef}} 
+\mbox{\hyperlink{classrev_1_1_physics_geometry}{Physics\+Geometry}} $\ast$ \mbox{\hyperlink{classrev_1_1_physics_shape_prefab_af8ec025e86caef3a7ab7bcfae5254aef}{geometry}} () const
+\begin{DoxyCompactList}\small\item\em Get the geometry of the shape. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_prefab_adc7e4e30d814c1501f33097496939b73}\label{classrev_1_1_physics_shape_prefab_adc7e4e30d814c1501f33097496939b73}} 
+void {\bfseries set\+Geometry} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_physics_geometry}{Physics\+Geometry}} $>$ \mbox{\hyperlink{classrev_1_1_physics_shape_prefab_af8ec025e86caef3a7ab7bcfae5254aef}{geometry}})
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_prefab_ae547f85cd93185ef6701d08ef978bd4e}\label{classrev_1_1_physics_shape_prefab_ae547f85cd93185ef6701d08ef978bd4e}} 
+\mbox{\hyperlink{classrev_1_1_physics_material}{Physics\+Material}} $\ast$ \mbox{\hyperlink{classrev_1_1_physics_shape_prefab_ae547f85cd93185ef6701d08ef978bd4e}{material}} ()
+\begin{DoxyCompactList}\small\item\em Get the material for the shape. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_prefab_a2d566261e6c2f92bc4a4c44914bbad37}\label{classrev_1_1_physics_shape_prefab_a2d566261e6c2f92bc4a4c44914bbad37}} 
+\mbox{\hyperlink{classrev_1_1_physics_material}{Physics\+Material}} $\ast$ {\bfseries get\+Material} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_prefab_a5470417c197ffb57d0882dbcbdbb2071}\label{classrev_1_1_physics_shape_prefab_a5470417c197ffb57d0882dbcbdbb2071}} 
+void \mbox{\hyperlink{classrev_1_1_physics_shape_prefab_a5470417c197ffb57d0882dbcbdbb2071}{update\+Instances}} ()
+\begin{DoxyCompactList}\small\item\em Update all instances with new prefab parameters. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_prefab_a384a7f6830058ef53dc9a20c78609e2b}\label{classrev_1_1_physics_shape_prefab_a384a7f6830058ef53dc9a20c78609e2b}} 
+physx\+::\+Px\+Shape $\ast$ \mbox{\hyperlink{classrev_1_1_physics_shape_prefab_a384a7f6830058ef53dc9a20c78609e2b}{create\+Exclusive}} (\mbox{\hyperlink{classrev_1_1_rigid_body}{Rigid\+Body}} \&rigid\+Body) const
+\begin{DoxyCompactList}\small\item\em Make an exclusive copy of this shape for the given rigid body. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_prefab_a2ace480396213886b7e2523adea65f70}\label{classrev_1_1_physics_shape_prefab_a2ace480396213886b7e2523adea65f70}} 
+void \mbox{\hyperlink{classrev_1_1_physics_shape_prefab_a2ace480396213886b7e2523adea65f70}{add\+Material}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_physics_material}{Physics\+Material}} $>$ \&mtl)
+\begin{DoxyCompactList}\small\item\em Set the material for the shape. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_prefab_a93284981d5e22ce6e74246ccf9cb83bb}\label{classrev_1_1_physics_shape_prefab_a93284981d5e22ce6e74246ccf9cb83bb}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_physics_shape_prefab_a93284981d5e22ce6e74246ccf9cb83bb}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_prefab_ad915ef303362385b92c4738ffa37f4cc}\label{classrev_1_1_physics_shape_prefab_ad915ef303362385b92c4738ffa37f4cc}} 
+virtual void \mbox{\hyperlink{classrev_1_1_physics_shape_prefab_ad915ef303362385b92c4738ffa37f4cc}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_physics_shape_prefab_a674652fd1f620a4b987f86e2fc2d8f74}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_physics_shape_prefab_a2b7e566022a8f94246d92e392ebb2079}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{Indent}\textbf{ Statics}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_prefab_ac806b1224fe2b4ac76ad32cbdb31549c}\label{classrev_1_1_physics_shape_prefab_ac806b1224fe2b4ac76ad32cbdb31549c}} 
+static \mbox{\hyperlink{classrev_1_1_physics_shape_prefab}{Physics\+Shape\+Prefab}} $\ast$ {\bfseries Create} (const Q\+Json\+Value \&json)
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_prefab_a65350db76dbcd0dc75d2b269c094e2c7}\label{classrev_1_1_physics_shape_prefab_a65350db76dbcd0dc75d2b269c094e2c7}} 
+static \mbox{\hyperlink{classrev_1_1_physics_shape_prefab}{Physics\+Shape\+Prefab}} $\ast$ {\bfseries Create} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_physics_geometry}{Physics\+Geometry}} $>$ \mbox{\hyperlink{classrev_1_1_physics_shape_prefab_af8ec025e86caef3a7ab7bcfae5254aef}{geometry}}, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_physics_material}{Physics\+Material}} $>$ \&\mbox{\hyperlink{classrev_1_1_physics_shape_prefab_ae547f85cd93185ef6701d08ef978bd4e}{material}})
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_prefab_ab51375b826f11aa2c527bc697db725ca}\label{classrev_1_1_physics_shape_prefab_ab51375b826f11aa2c527bc697db725ca}} 
+{\bfseries Physics\+Shape\+Prefab} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_prefab_ad0a5861d956982c79945a85b38978a97}\label{classrev_1_1_physics_shape_prefab_ad0a5861d956982c79945a85b38978a97}} 
+{\bfseries Physics\+Shape\+Prefab} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Private Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_prefab_adda5b759248b960c2d78f1bbee776482}\label{classrev_1_1_physics_shape_prefab_adda5b759248b960c2d78f1bbee776482}} 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_physics_geometry}{Physics\+Geometry}} $>$ \mbox{\hyperlink{classrev_1_1_physics_shape_prefab_adda5b759248b960c2d78f1bbee776482}{m\+\_\+geometry}}
+\begin{DoxyCompactList}\small\item\em The geometry for this shape. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_prefab_a0e7f2bc6dbbb90b01111ae36bbf1327c}\label{classrev_1_1_physics_shape_prefab_a0e7f2bc6dbbb90b01111ae36bbf1327c}} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_physics_material}{Physics\+Material}} $>$ $>$ \mbox{\hyperlink{classrev_1_1_physics_shape_prefab_a0e7f2bc6dbbb90b01111ae36bbf1327c}{m\+\_\+materials}}
+\begin{DoxyCompactList}\small\item\em The materials for this shape. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_prefab_af2681d74146998a3872e94a41f5da651}\label{classrev_1_1_physics_shape_prefab_af2681d74146998a3872e94a41f5da651}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_physics_shape}{Physics\+Shape}} $\ast$ $>$ {\bfseries m\+\_\+instances}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_prefab_a726223aef7972f289c4a01ccfd23d5ee}\label{classrev_1_1_physics_shape_prefab_a726223aef7972f289c4a01ccfd23d5ee}} 
+class {\bfseries Physics\+Shape}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_prefab_abb8b03bec6b0a8e0834c8358c93039d2}\label{classrev_1_1_physics_shape_prefab_abb8b03bec6b0a8e0834c8358c93039d2}} 
+class {\bfseries Rigid\+Body}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_prefab_a139cf05ac01161b7071c8a037c841683}\label{classrev_1_1_physics_shape_prefab_a139cf05ac01161b7071c8a037c841683}} 
+class {\bfseries Physics\+Manager}
+\end{DoxyCompactItemize}
+\subsection*{Private Methods}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_prefab_aaf6283d17b08b35538d2982facecf868}\label{classrev_1_1_physics_shape_prefab_aaf6283d17b08b35538d2982facecf868}} 
+void {\bfseries add\+Instance} (\mbox{\hyperlink{classrev_1_1_physics_shape}{Physics\+Shape}} $\ast$instance)
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_prefab_a8c901cb6098d3dbc90c9481566f59f91}\label{classrev_1_1_physics_shape_prefab_a8c901cb6098d3dbc90c9481566f59f91}} 
+void {\bfseries remove\+Instance} (\mbox{\hyperlink{classrev_1_1_physics_shape}{Physics\+Shape}} $\ast$instance)
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_prefab_abfd9431e496d6c378ce1bb720c587ec8}\label{classrev_1_1_physics_shape_prefab_abfd9431e496d6c378ce1bb720c587ec8}} 
+static \mbox{\hyperlink{classrev_1_1_physics_shape_prefab}{Physics\+Shape\+Prefab}} $\ast$ \mbox{\hyperlink{classrev_1_1_physics_shape_prefab_abfd9431e496d6c378ce1bb720c587ec8}{Add\+To\+Manager}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_physics_shape_prefab}{Physics\+Shape\+Prefab}} $>$ shape)
+\begin{DoxyCompactList}\small\item\em Add this material to the physics manager static map. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing physics geometry. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_physics_shape_prefab_a674652fd1f620a4b987f86e2fc2d8f74}\label{classrev_1_1_physics_shape_prefab_a674652fd1f620a4b987f86e2fc2d8f74}} 
+\index{rev::PhysicsShapePrefab@{rev::PhysicsShapePrefab}!className@{className}}
+\index{className@{className}!rev::PhysicsShapePrefab@{rev::PhysicsShapePrefab}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Physics\+Shape\+Prefab\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_physics_base_ad997bc1504ff6dccccbc3d8d0ea6e6a5}{rev\+::\+Physics\+Base}}.
+
+\mbox{\Hypertarget{classrev_1_1_physics_shape_prefab_a2b7e566022a8f94246d92e392ebb2079}\label{classrev_1_1_physics_shape_prefab_a2b7e566022a8f94246d92e392ebb2079}} 
+\index{rev::PhysicsShapePrefab@{rev::PhysicsShapePrefab}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::PhysicsShapePrefab@{rev::PhysicsShapePrefab}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Physics\+Shape\+Prefab\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_physics_base_acf58cc81cff2ca957dcc68fe9a9a84a1}{rev\+::\+Physics\+Base}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Physics\+Shape\+Prefab.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Physics\+Shape\+Prefab.\+cpp\end{DoxyCompactItemize}

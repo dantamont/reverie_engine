@@ -1,0 +1,95 @@
+\hypertarget{classrev_1_1_post_processing_effect_stage}{}\section{rev\+::Post\+Processing\+Effect\+Stage Class Reference}
+\label{classrev_1_1_post_processing_effect_stage}\index{rev::PostProcessingEffectStage@{rev::PostProcessingEffectStage}}
+
+
+Represents a single stage of a post-\/processing effect.  
+
+
+
+
+{\ttfamily \#include $<$G\+Post\+Processing\+Effect.\+h$>$}
+
+Inheritance diagram for rev\+::Post\+Processing\+Effect\+Stage\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_post_processing_effect_stage}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_post_processing_effect_stage_a3010fcfb68f513599f67f75f361e6116}\label{classrev_1_1_post_processing_effect_stage_a3010fcfb68f513599f67f75f361e6116}} 
+enum {\bfseries Effect\+Type} \{ \newline
+{\bfseries k\+Reinhard\+Tone\+Mapping}, 
+{\bfseries k\+Exposure\+H\+DR}, 
+{\bfseries k\+Contrast}, 
+{\bfseries k\+Horizontal\+Blur}, 
+\newline
+{\bfseries k\+Vertical\+Blur}, 
+{\bfseries k\+Brightness\+Filter}, 
+{\bfseries k\+Bloom}, 
+{\bfseries k\+Depth\+To\+Screen}, 
+\newline
+{\bfseries B\+U\+I\+L\+T\+I\+N\+\_\+\+T\+Y\+P\+E\+S\+\_\+\+C\+O\+U\+NT}
+ \}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_post_processing_effect_stage_a583b58e24d4515015a543a68e0d54cea}\label{classrev_1_1_post_processing_effect_stage_a583b58e24d4515015a543a68e0d54cea}} 
+{\bfseries Post\+Processing\+Effect\+Stage} (size\+\_\+t type)
+\item 
+\mbox{\Hypertarget{classrev_1_1_post_processing_effect_stage_a4ceb9f977eb732a8d541050c10b7799a}\label{classrev_1_1_post_processing_effect_stage_a4ceb9f977eb732a8d541050c10b7799a}} 
+virtual {\bfseries $\sim$\+Post\+Processing\+Effect\+Stage} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_post_processing_effect_stage_ae2bca5c63be0d5ece5f122dfacd43ed2}\label{classrev_1_1_post_processing_effect_stage_ae2bca5c63be0d5ece5f122dfacd43ed2}} 
+const \mbox{\hyperlink{classrev_1_1_shader}{Shader}} \& {\bfseries vertex\+Shader} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_post_processing_effect_stage_ac23bd1397aef3dcdd166058174700c2d}\label{classrev_1_1_post_processing_effect_stage_ac23bd1397aef3dcdd166058174700c2d}} 
+const \mbox{\hyperlink{classrev_1_1_shader}{Shader}} \& {\bfseries fragment\+Shader} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_post_processing_effect_stage_a62d087afa89104bd6224534f62b2cb3b}\label{classrev_1_1_post_processing_effect_stage_a62d087afa89104bd6224534f62b2cb3b}} 
+size\+\_\+t \mbox{\hyperlink{classrev_1_1_post_processing_effect_stage_a62d087afa89104bd6224534f62b2cb3b}{get\+Type}} ()
+\begin{DoxyCompactList}\small\item\em The effect type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_post_processing_effect_stage_a967c95cb2ec3659ff8cf8795124b481f}\label{classrev_1_1_post_processing_effect_stage_a967c95cb2ec3659ff8cf8795124b481f}} 
+void {\bfseries load\+Vertex\+Shader} (const Q\+String \&file\+Path)
+\item 
+\mbox{\Hypertarget{classrev_1_1_post_processing_effect_stage_a73f99900a0ebd2970d1dd6e778ccffd6}\label{classrev_1_1_post_processing_effect_stage_a73f99900a0ebd2970d1dd6e778ccffd6}} 
+void {\bfseries load\+Fragment\+Shader} (const Q\+String \&file\+Path)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_post_processing_effect_stage_a2e730864f523832b6086e71bd24f9528}\label{classrev_1_1_post_processing_effect_stage_a2e730864f523832b6086e71bd24f9528}} 
+\mbox{\hyperlink{classrev_1_1_shader}{Shader}} \mbox{\hyperlink{classrev_1_1_post_processing_effect_stage_a2e730864f523832b6086e71bd24f9528}{m\+\_\+vertex\+Shader}}
+\begin{DoxyCompactList}\small\item\em Vertex \mbox{\hyperlink{classrev_1_1_shader}{Shader}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_post_processing_effect_stage_adf09204c3b63c1fe3b0d8ece01e3e324}\label{classrev_1_1_post_processing_effect_stage_adf09204c3b63c1fe3b0d8ece01e3e324}} 
+\mbox{\hyperlink{classrev_1_1_shader}{Shader}} \mbox{\hyperlink{classrev_1_1_post_processing_effect_stage_adf09204c3b63c1fe3b0d8ece01e3e324}{m\+\_\+fragment\+Shader}}
+\begin{DoxyCompactList}\small\item\em Fragment shader. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_post_processing_effect_stage_a539db6339a34770a7c3bb8e6b51cdade}\label{classrev_1_1_post_processing_effect_stage_a539db6339a34770a7c3bb8e6b51cdade}} 
+size\+\_\+t \mbox{\hyperlink{classrev_1_1_post_processing_effect_stage_a539db6339a34770a7c3bb8e6b51cdade}{m\+\_\+type}}
+\begin{DoxyCompactList}\small\item\em Effect type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Represents a single stage of a post-\/processing effect. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/postprocessing/G\+Post\+Processing\+Effect.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/postprocessing/G\+Post\+Processing\+Effect.\+cpp\end{DoxyCompactItemize}

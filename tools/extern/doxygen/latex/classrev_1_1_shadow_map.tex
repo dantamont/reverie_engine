@@ -1,0 +1,70 @@
+\hypertarget{classrev_1_1_shadow_map}{}\section{rev\+::Shadow\+Map Class Reference}
+\label{classrev_1_1_shadow_map}\index{rev::ShadowMap@{rev::ShadowMap}}
+Inheritance diagram for rev\+::Shadow\+Map\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_shadow_map}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shadow_map_a562504741082b7e3d2da96643d5c1edd}\label{classrev_1_1_shadow_map_a562504741082b7e3d2da96643d5c1edd}} 
+{\bfseries Shadow\+Map} (\mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} \&context, \mbox{\hyperlink{classrev_1_1_light_component}{Light\+Component}} $\ast$light\+Component, size\+\_\+t map\+Index)
+\item 
+\mbox{\Hypertarget{classrev_1_1_shadow_map_a19ee20cb48e44b9e99a63e1190d8ae1d}\label{classrev_1_1_shadow_map_a19ee20cb48e44b9e99a63e1190d8ae1d}} 
+{\bfseries $\sim$\+Shadow\+Map} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shadow_map_ae2b430097b8dd79e6dedbc03640c5a47}\label{classrev_1_1_shadow_map_ae2b430097b8dd79e6dedbc03640c5a47}} 
+\mbox{\hyperlink{classrev_1_1_abstract_camera}{Abstract\+Camera}} $\ast$ \mbox{\hyperlink{classrev_1_1_shadow_map_ae2b430097b8dd79e6dedbc03640c5a47}{camera}} ()
+\begin{DoxyCompactList}\small\item\em The camera representing the view from the light\textquotesingle{}s perspective. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shadow_map_a8e443bdbc2064278a1dd02f7fc81313d}\label{classrev_1_1_shadow_map_a8e443bdbc2064278a1dd02f7fc81313d}} 
+const \mbox{\hyperlink{classrev_1_1_abstract_camera}{Abstract\+Camera}} $\ast$ {\bfseries camera} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_shadow_map_a60d9ce367402d061207823913d7ab535}\label{classrev_1_1_shadow_map_a60d9ce367402d061207823913d7ab535}} 
+const \mbox{\hyperlink{classrev_1_1_light_component}{Light\+Component}} $\ast$ {\bfseries light\+Component} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shadow_map_ae7e904ea50e634f634a63779e4889b68}\label{classrev_1_1_shadow_map_ae7e904ea50e634f634a63779e4889b68}} 
+void {\bfseries create\+Draw\+Commands} (\mbox{\hyperlink{classrev_1_1_scene}{Scene}} \&scene, \mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} \&renderer)
+\item 
+\mbox{\Hypertarget{classrev_1_1_shadow_map_a4b7e86f89174d7b30b2753bd2244b22e}\label{classrev_1_1_shadow_map_a4b7e86f89174d7b30b2753bd2244b22e}} 
+void \mbox{\hyperlink{classrev_1_1_shadow_map_a4b7e86f89174d7b30b2753bd2244b22e}{resize}} (size\+\_\+t width, size\+\_\+t height)
+\begin{DoxyCompactList}\small\item\em Resize the shadow map to the specified resolution. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shadow_map_aa24b85e077db6eed5f7db075ff4fd076}\label{classrev_1_1_shadow_map_aa24b85e077db6eed5f7db075ff4fd076}} 
+void \mbox{\hyperlink{classrev_1_1_shadow_map_aa24b85e077db6eed5f7db075ff4fd076}{update\+Shadow\+Attributes}} (const \mbox{\hyperlink{classrev_1_1_scene}{Scene}} \&sc)
+\begin{DoxyCompactList}\small\item\em Update light matrix. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shadow_map_a123bdfc85aa14bfbf66220fcb448dfd8}\label{classrev_1_1_shadow_map_a123bdfc85aa14bfbf66220fcb448dfd8}} 
+void \mbox{\hyperlink{classrev_1_1_shadow_map_a123bdfc85aa14bfbf66220fcb448dfd8}{set\+View}} (const \mbox{\hyperlink{classrev_1_1_scene}{Scene}} \&sc)
+\begin{DoxyCompactList}\small\item\em Set view matrix, given a scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shadow_map_a04f1aa3499b2694e7a75e5ef44604706}\label{classrev_1_1_shadow_map_a04f1aa3499b2694e7a75e5ef44604706}} 
+void \mbox{\hyperlink{classrev_1_1_shadow_map_a04f1aa3499b2694e7a75e5ef44604706}{set\+Projection}} (const \mbox{\hyperlink{classrev_1_1_scene}{Scene}} \&sc)
+\begin{DoxyCompactList}\small\item\em Set projection matrix, given a scene\textquotesingle{}s camera. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shadow_map_a758aedd2c4743714b91800ec80d58619}\label{classrev_1_1_shadow_map_a758aedd2c4743714b91800ec80d58619}} 
+\mbox{\hyperlink{classrev_1_1_light_component}{Light\+Component}} $\ast$ \mbox{\hyperlink{classrev_1_1_shadow_map_a758aedd2c4743714b91800ec80d58619}{m\+\_\+light\+Component}}
+\begin{DoxyCompactList}\small\item\em The light component for the shadow map. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shadow_map_a1fbebbc9dc135135163ad5166031be5f}\label{classrev_1_1_shadow_map_a1fbebbc9dc135135163ad5166031be5f}} 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_abstract_camera}{Abstract\+Camera}} $>$ \mbox{\hyperlink{classrev_1_1_shadow_map_a1fbebbc9dc135135163ad5166031be5f}{m\+\_\+camera}} = nullptr
+\begin{DoxyCompactList}\small\item\em The camera for the shadow map. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shadow_map_aa2dca4bf73aafda76332806e0b822474}\label{classrev_1_1_shadow_map_aa2dca4bf73aafda76332806e0b822474}} 
+void \mbox{\hyperlink{classrev_1_1_shadow_map_aa2dca4bf73aafda76332806e0b822474}{initialize\+Camera}} (\mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} \&context, size\+\_\+t map\+Index)
+\begin{DoxyCompactList}\small\item\em Initialize camera based on light type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/lighting/G\+Shadow\+Map.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/lighting/G\+Shadow\+Map.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,70 @@
+\hypertarget{classrev_1_1_debug_grid}{}\section{rev\+::Debug\+Grid Class Reference}
+\label{classrev_1_1_debug_grid}\index{rev::DebugGrid@{rev::DebugGrid}}
+
+
+Represents a 2-\/dimensional entity to display on a canvas.  
+
+
+
+
+{\ttfamily \#include $<$G\+Debug\+Manager.\+h$>$}
+
+Inheritance diagram for rev\+::Debug\+Grid\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classrev_1_1_debug_grid}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_grid_a05e4a9dd4dbb315d91216cbc92d2b8c9}\label{classrev_1_1_debug_grid_a05e4a9dd4dbb315d91216cbc92d2b8c9}} 
+{\bfseries Debug\+Grid} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core)
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_grid_a7d12070ee6b905a9b959bef8ecc41455}\label{classrev_1_1_debug_grid_a7d12070ee6b905a9b959bef8ecc41455}} 
+virtual {\bfseries $\sim$\+Debug\+Grid} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_grid_a547dab00cca0b83656de852f0b4fcfe9}\label{classrev_1_1_debug_grid_a547dab00cca0b83656de852f0b4fcfe9}} 
+virtual size\+\_\+t \mbox{\hyperlink{classrev_1_1_debug_grid_a547dab00cca0b83656de852f0b4fcfe9}{get\+Sort\+ID}} () override
+\begin{DoxyCompactList}\small\item\em Get ID to sort renderable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_grid_a106613ad8d2f1bd832088ba91eb2c703}\label{classrev_1_1_debug_grid_a106613ad8d2f1bd832088ba91eb2c703}} 
+virtual void \mbox{\hyperlink{classrev_1_1_debug_grid_a106613ad8d2f1bd832088ba91eb2c703}{bind\+Uniforms}} (\mbox{\hyperlink{classrev_1_1_shader_program}{rev\+::\+Shader\+Program}} \&shader\+Program) override
+\begin{DoxyCompactList}\small\item\em Set uniforms for the glyph. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_debug_grid_a5a7148ba3a08893f524008022ee3316a}\label{classrev_1_1_debug_grid_a5a7148ba3a08893f524008022ee3316a}} 
+virtual void {\bfseries release\+Uniforms} (\mbox{\hyperlink{classrev_1_1_shader_program}{rev\+::\+Shader\+Program}} \&shader\+Program) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_grid_aa0c8086875438adcf3099e0c50c43a4b}\label{classrev_1_1_debug_grid_aa0c8086875438adcf3099e0c50c43a4b}} 
+virtual void \mbox{\hyperlink{classrev_1_1_debug_grid_aa0c8086875438adcf3099e0c50c43a4b}{draw\+Geometry}} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program, \mbox{\hyperlink{classrev_1_1_render_settings}{Render\+Settings}} $\ast$settings=nullptr) override
+\begin{DoxyCompactList}\small\item\em Draw geometry. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_grid_afad9ad4446335f4e839f3e4776887b89}\label{classrev_1_1_debug_grid_afad9ad4446335f4e839f3e4776887b89}} 
+\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$ {\bfseries m\+\_\+engine}
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_grid_acf0e16a60e97ece56ec2d3202e294057}\label{classrev_1_1_debug_grid_acf0e16a60e97ece56ec2d3202e294057}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_lines}{Lines}} $>$ \mbox{\hyperlink{classrev_1_1_debug_grid_acf0e16a60e97ece56ec2d3202e294057}{m\+\_\+grid}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_lines}{Lines}} object for a single grid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Represents a 2-\/dimensional entity to display on a canvas. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/debugging/G\+Debug\+Manager.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/debugging/G\+Debug\+Manager.\+cpp\end{DoxyCompactItemize}

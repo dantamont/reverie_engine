@@ -1,0 +1,11 @@
+# When modifying this file, bump the schema major version when:
+#  - Modifying any existing messages
+#  - Adding any messages to a place not at the end of the file
+# Bump the schema minor version when:
+#  - Adding any new messages to the end of the file
+---
+schema_version:
+  major: 178
+  minor: 0
+  patch: 0
+...

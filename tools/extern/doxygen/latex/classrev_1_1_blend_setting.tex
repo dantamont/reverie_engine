@@ -1,0 +1,99 @@
+\hypertarget{classrev_1_1_blend_setting}{}\section{rev\+::Blend\+Setting Class Reference}
+\label{classrev_1_1_blend_setting}\index{rev::BlendSetting@{rev::BlendSetting}}
+Inheritance diagram for rev\+::Blend\+Setting\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_blend_setting}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_blend_setting_ad9305a08cf93b3deec62c774ed97c2d9}\label{classrev_1_1_blend_setting_ad9305a08cf93b3deec62c774ed97c2d9}} 
+{\bfseries Blend\+Setting} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_blend_setting_a3f43efedea13f3a8f6195a8fd9efa5bf}\label{classrev_1_1_blend_setting_a3f43efedea13f3a8f6195a8fd9efa5bf}} 
+{\bfseries Blend\+Setting} (bool blend\+Enabled, int source\+Alpha\+Factor=G\+L\+\_\+\+S\+R\+C\+\_\+\+A\+L\+P\+HA, int dest\+Alpha\+Factor=G\+L\+\_\+\+O\+N\+E\+\_\+\+M\+I\+N\+U\+S\+\_\+\+S\+R\+C\+\_\+\+A\+L\+P\+HA, int source\+R\+G\+B\+Factor=G\+L\+\_\+\+O\+NE, int dest\+R\+G\+B\+Factor=G\+L\+\_\+\+Z\+E\+RO, int blend\+Equation\+Alpha=G\+L\+\_\+\+F\+U\+N\+C\+\_\+\+A\+DD, int blend\+Equation\+R\+GB=G\+L\+\_\+\+F\+U\+N\+C\+\_\+\+A\+DD)
+\item 
+\mbox{\Hypertarget{classrev_1_1_blend_setting_ab9646d1af35a669cf1b8643d66af087b}\label{classrev_1_1_blend_setting_ab9646d1af35a669cf1b8643d66af087b}} 
+{\bfseries $\sim$\+Blend\+Setting} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_blend_setting_ad28d923f052c3a69f13c5e8102caaa16}\label{classrev_1_1_blend_setting_ad28d923f052c3a69f13c5e8102caaa16}} 
+void {\bfseries set\+Blend\+Color} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \&color)
+\item 
+\mbox{\Hypertarget{classrev_1_1_blend_setting_ae40fd98d6258cbc744de8f5103e6c4eb}\label{classrev_1_1_blend_setting_ae40fd98d6258cbc744de8f5103e6c4eb}} 
+virtual Render\+Setting\+Type {\bfseries setting\+Type} () const override
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_blend_setting_ad1d5eba7678c837c60db60f369e2018b}\label{classrev_1_1_blend_setting_ad1d5eba7678c837c60db60f369e2018b}} 
+virtual void \mbox{\hyperlink{classrev_1_1_blend_setting_ad1d5eba7678c837c60db60f369e2018b}{set}} (\mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} \&context) const override
+\begin{DoxyCompactList}\small\item\em Set settings in Open\+GL. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_blend_setting_a7749aaa1b7460bb8900c13069146a983}\label{classrev_1_1_blend_setting_a7749aaa1b7460bb8900c13069146a983}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_blend_setting_a7749aaa1b7460bb8900c13069146a983}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_blend_setting_ae3497507b81f741afca843989cd38057}\label{classrev_1_1_blend_setting_ae3497507b81f741afca843989cd38057}} 
+virtual void \mbox{\hyperlink{classrev_1_1_blend_setting_ae3497507b81f741afca843989cd38057}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_blend_setting_a4df004aebf18082077de192cf811811f}\label{classrev_1_1_blend_setting_a4df004aebf18082077de192cf811811f}} 
+virtual void \mbox{\hyperlink{classrev_1_1_blend_setting_a4df004aebf18082077de192cf811811f}{cache\+Settings}} (\mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} \&context) override
+\begin{DoxyCompactList}\small\item\em Cache GL settings for use within application. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_blend_setting_a500f2fd75e6767501b38260e6b4a4fe5}\label{classrev_1_1_blend_setting_a500f2fd75e6767501b38260e6b4a4fe5}} 
+bool \mbox{\hyperlink{classrev_1_1_blend_setting_a500f2fd75e6767501b38260e6b4a4fe5}{m\+\_\+blend\+Enabled}}
+\begin{DoxyCompactList}\small\item\em Whether or not blending is enabled. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_blend_setting_af6176728f0a23c17fd6b77d4e78cf785}\label{classrev_1_1_blend_setting_af6176728f0a23c17fd6b77d4e78cf785}} 
+int \mbox{\hyperlink{classrev_1_1_blend_setting_af6176728f0a23c17fd6b77d4e78cf785}{m\+\_\+source\+R\+GB}}
+\begin{DoxyCompactList}\small\item\em Source R\+GB factor (factor for what is currently stored in the shader) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_blend_setting_a9ab0602195c21cf0c3d8572437a56803}\label{classrev_1_1_blend_setting_a9ab0602195c21cf0c3d8572437a56803}} 
+int \mbox{\hyperlink{classrev_1_1_blend_setting_a9ab0602195c21cf0c3d8572437a56803}{m\+\_\+source\+Alpha}}
+\begin{DoxyCompactList}\small\item\em Source Alpha (factor for what is currently stored in the shader) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_blend_setting_af70032e8c9b779129e41a73a2dd72b2d}\label{classrev_1_1_blend_setting_af70032e8c9b779129e41a73a2dd72b2d}} 
+int \mbox{\hyperlink{classrev_1_1_blend_setting_af70032e8c9b779129e41a73a2dd72b2d}{m\+\_\+destination\+R\+GB}}
+\begin{DoxyCompactList}\small\item\em Destination R\+GB (factor for what is currently stored in the color buffer) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_blend_setting_ae928cc65912bbbf16813301464e2ce3d}\label{classrev_1_1_blend_setting_ae928cc65912bbbf16813301464e2ce3d}} 
+int \mbox{\hyperlink{classrev_1_1_blend_setting_ae928cc65912bbbf16813301464e2ce3d}{m\+\_\+destination\+Alpha}}
+\begin{DoxyCompactList}\small\item\em Destination Alpha(factor for what is currently stored in the color buffer) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_blend_setting_a398eb520ce54f9644d3cf218afa08108}\label{classrev_1_1_blend_setting_a398eb520ce54f9644d3cf218afa08108}} 
+int \mbox{\hyperlink{classrev_1_1_blend_setting_a398eb520ce54f9644d3cf218afa08108}{m\+\_\+blend\+Equation\+Alpha}}
+\begin{DoxyCompactList}\small\item\em The blend equations. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_blend_setting_ae28c2f1e84fb477076d46e46a08de741}\label{classrev_1_1_blend_setting_ae28c2f1e84fb477076d46e46a08de741}} 
+int {\bfseries m\+\_\+blend\+Equation\+R\+GB}
+\item 
+\mbox{\Hypertarget{classrev_1_1_blend_setting_a59c18cb6b10f1dacb0284d1f747d8856}\label{classrev_1_1_blend_setting_a59c18cb6b10f1dacb0284d1f747d8856}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \mbox{\hyperlink{classrev_1_1_blend_setting_a59c18cb6b10f1dacb0284d1f747d8856}{m\+\_\+blend\+Color}}
+\begin{DoxyCompactList}\small\item\em Blend color (as floats from \mbox{[}0, 1\mbox{]}), GL default is (0, 0, 0, 0) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_blend_setting_abf433a9c39697ef25510a90f4cf565b0}\label{classrev_1_1_blend_setting_abf433a9c39697ef25510a90f4cf565b0}} 
+class {\bfseries Render\+Settings}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/renderer/G\+Render\+Settings.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/renderer/G\+Render\+Settings.\+cpp\end{DoxyCompactItemize}

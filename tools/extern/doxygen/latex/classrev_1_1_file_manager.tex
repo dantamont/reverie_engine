@@ -1,0 +1,167 @@
+\hypertarget{classrev_1_1_file_manager}{}\section{rev\+::File\+Manager Class Reference}
+\label{classrev_1_1_file_manager}\index{rev::FileManager@{rev::FileManager}}
+Inheritance diagram for rev\+::File\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{classrev_1_1_file_manager}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_file_manager_ad827da7c48e0439e61e3d7d900a60d57}\label{classrev_1_1_file_manager_ad827da7c48e0439e61e3d7d900a60d57}} 
+{\bfseries File\+Manager} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$\mbox{\hyperlink{classrev_1_1_manager_a0fbd0df6b4f3caf42b557f9702f48171}{engine}}, int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\Hypertarget{classrev_1_1_file_manager_a417917f3c4e94c52ff655d6b30bceb3d}\label{classrev_1_1_file_manager_a417917f3c4e94c52ff655d6b30bceb3d}} 
+{\bfseries $\sim$\+File\+Manager} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_file_manager_a0080565309419d2d5efceb3a89bd8b99}\label{classrev_1_1_file_manager_a0080565309419d2d5efceb3a89bd8b99}} 
+const std\+::vector$<$ std\+::filesystem\+::path $>$ \& \mbox{\hyperlink{classrev_1_1_file_manager_a0080565309419d2d5efceb3a89bd8b99}{search\+Paths}} () const
+\begin{DoxyCompactList}\small\item\em The search paths used to located resources. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_manager_a0c7e7c95ae5cae1a08cf4b79f1872e7d}\label{classrev_1_1_file_manager_a0c7e7c95ae5cae1a08cf4b79f1872e7d}} 
+\mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} {\bfseries search\+Path\+String} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_file_manager_a490c81fd47e254ec496985fcc077176c}\label{classrev_1_1_file_manager_a490c81fd47e254ec496985fcc077176c}} 
+\mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \mbox{\hyperlink{classrev_1_1_file_manager_a490c81fd47e254ec496985fcc077176c}{get\+Scenario\+Dir\+Path}} () const
+\begin{DoxyCompactList}\small\item\em Get path to the scenario location. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_manager_ab80990c7c8bd85afa72573fca43be5bb}\label{classrev_1_1_file_manager_ab80990c7c8bd85afa72573fca43be5bb}} 
+bool \mbox{\hyperlink{classrev_1_1_file_manager_ab80990c7c8bd85afa72573fca43be5bb}{search\+For}} (const char $\ast$file\+Name, Q\+String \&out\+File\+Path)
+\begin{DoxyCompactList}\small\item\em Search for the given file in all search directories. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_manager_ab4cff4e339651e1c40cb098c897f6fc6}\label{classrev_1_1_file_manager_ab4cff4e339651e1c40cb098c897f6fc6}} 
+void \mbox{\hyperlink{classrev_1_1_file_manager_ab4cff4e339651e1c40cb098c897f6fc6}{add\+Search\+Path}} (const char $\ast$path)
+\begin{DoxyCompactList}\small\item\em Add a search path, may be multiple paths delimited by semi-\/colons. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_manager_a4fdc564131597e45289c1c96b882f477}\label{classrev_1_1_file_manager_a4fdc564131597e45289c1c96b882f477}} 
+void \mbox{\hyperlink{classrev_1_1_file_manager_a4fdc564131597e45289c1c96b882f477}{clear}} (bool add\+Root\+Dir=true)
+\begin{DoxyCompactList}\small\item\em For clearing file manager on scenario switch. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_file_manager_abfb467bdcfbacd82f041139a15d73fa0}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_file_manager_a57e18b80b80bde22fb0917daae4662bc}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_file_manager_ae06482002349343102be11d7f914dc86}\label{classrev_1_1_file_manager_ae06482002349343102be11d7f914dc86}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_file_manager_ae06482002349343102be11d7f914dc86}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_manager_ada557ded1dd5e49a848e2c9c60402271}\label{classrev_1_1_file_manager_ada557ded1dd5e49a848e2c9c60402271}} 
+virtual void \mbox{\hyperlink{classrev_1_1_file_manager_ada557ded1dd5e49a848e2c9c60402271}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty())
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_file_manager_ad47b0ba0a8bbc9e335a9f2cd045498af}\label{classrev_1_1_file_manager_ad47b0ba0a8bbc9e335a9f2cd045498af}} 
+static const std\+::filesystem\+::path \mbox{\hyperlink{classrev_1_1_file_manager_ad47b0ba0a8bbc9e335a9f2cd045498af}{Current\+Directory}} ()
+\begin{DoxyCompactList}\small\item\em Get the current working directory. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_manager_a520551ab305847a5ba831609ba647aaa}\label{classrev_1_1_file_manager_a520551ab305847a5ba831609ba647aaa}} 
+static void \mbox{\hyperlink{classrev_1_1_file_manager_a520551ab305847a5ba831609ba647aaa}{Set\+Current\+Dir}} (const char $\ast$dir)
+\begin{DoxyCompactList}\small\item\em Set the current working directory. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_manager_ac0e816c27d416878126b59a61f784a71}\label{classrev_1_1_file_manager_ac0e816c27d416878126b59a61f784a71}} 
+static const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \& \mbox{\hyperlink{classrev_1_1_file_manager_ac0e816c27d416878126b59a61f784a71}{Get\+Root\+Path}} ()
+\begin{DoxyCompactList}\small\item\em Get path to base Reverie directory. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_manager_abf583b5a91ecdb080ea76ecbbbc630e1}\label{classrev_1_1_file_manager_abf583b5a91ecdb080ea76ecbbbc630e1}} 
+static const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \& \mbox{\hyperlink{classrev_1_1_file_manager_abf583b5a91ecdb080ea76ecbbbc630e1}{Get\+Application\+Path}} ()
+\begin{DoxyCompactList}\small\item\em Get path to the application exe. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_manager_a57dd0931cdb0f9d440f20ee328ccd5da}\label{classrev_1_1_file_manager_a57dd0931cdb0f9d440f20ee328ccd5da}} 
+static const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \& \mbox{\hyperlink{classrev_1_1_file_manager_a57dd0931cdb0f9d440f20ee328ccd5da}{Get\+I\+N\+I\+Path}} ()
+\begin{DoxyCompactList}\small\item\em Get path to I\+NI file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classrev_1_1_file_manager_a71446f681e447ad0193860643fabf15c}{initialize}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Members}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::filesystem\+::path $>$ \mbox{\hyperlink{classrev_1_1_file_manager_aa73611e8b6e1c939e656ec13dcd6cbe3}{m\+\_\+search\+Paths}}
+\begin{DoxyCompactList}\small\item\em the search paths used to locate scenario files \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_manager_ac953e90e3625e5f8809d6ef229aec429}\label{classrev_1_1_file_manager_ac953e90e3625e5f8809d6ef229aec429}} 
+static \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \mbox{\hyperlink{classrev_1_1_file_manager_ac953e90e3625e5f8809d6ef229aec429}{s\+\_\+root\+Path}}
+\begin{DoxyCompactList}\small\item\em The root/working directory. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_manager_a394681beab945fff9b69077d3f608ae2}\label{classrev_1_1_file_manager_a394681beab945fff9b69077d3f608ae2}} 
+static \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \mbox{\hyperlink{classrev_1_1_file_manager_a394681beab945fff9b69077d3f608ae2}{s\+\_\+ini\+Path}}
+\begin{DoxyCompactList}\small\item\em The path to look for the I\+NI file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_manager_a36271cf1d18e96a3c655e77da0f98065}\label{classrev_1_1_file_manager_a36271cf1d18e96a3c655e77da0f98065}} 
+static \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \mbox{\hyperlink{classrev_1_1_file_manager_a36271cf1d18e96a3c655e77da0f98065}{s\+\_\+exe\+Path}}
+\begin{DoxyCompactList}\small\item\em the directory of the application exe \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_manager_a678c00748066c324d3558beb6edad73f}\label{classrev_1_1_file_manager_a678c00748066c324d3558beb6edad73f}} 
+static \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} {\bfseries s\+\_\+exe\+Name}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_file_manager_abfb467bdcfbacd82f041139a15d73fa0}\label{classrev_1_1_file_manager_abfb467bdcfbacd82f041139a15d73fa0}} 
+\index{rev::FileManager@{rev::FileManager}!className@{className}}
+\index{className@{className}!rev::FileManager@{rev::FileManager}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+File\+Manager\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_service_a484d71757ea6e8780488602cb421a4a5}{rev\+::\+Service}}.
+
+\mbox{\Hypertarget{classrev_1_1_file_manager_a71446f681e447ad0193860643fabf15c}\label{classrev_1_1_file_manager_a71446f681e447ad0193860643fabf15c}} 
+\index{rev::FileManager@{rev::FileManager}!initialize@{initialize}}
+\index{initialize@{initialize}!rev::FileManager@{rev::FileManager}}
+\subsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily void rev\+::\+File\+Manager\+::initialize (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Set current directory to the root directory of the application \mbox{\Hypertarget{classrev_1_1_file_manager_a57e18b80b80bde22fb0917daae4662bc}\label{classrev_1_1_file_manager_a57e18b80b80bde22fb0917daae4662bc}} 
+\index{rev::FileManager@{rev::FileManager}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::FileManager@{rev::FileManager}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+File\+Manager\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_service_a831f5bf8c53584ec830aaee38ea58e7b}{rev\+::\+Service}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_file_manager_aa73611e8b6e1c939e656ec13dcd6cbe3}\label{classrev_1_1_file_manager_aa73611e8b6e1c939e656ec13dcd6cbe3}} 
+\index{rev::FileManager@{rev::FileManager}!m\_searchPaths@{m\_searchPaths}}
+\index{m\_searchPaths@{m\_searchPaths}!rev::FileManager@{rev::FileManager}}
+\subsubsection{\texorpdfstring{m\_searchPaths}{m\_searchPaths}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::filesystem\+::path$>$ rev\+::\+File\+Manager\+::m\+\_\+search\+Paths\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+the search paths used to locate scenario files 
+
+\begin{DoxyNote}{Note}
+Relative paths are relative to the root directory 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/resource/G\+File\+Manager.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/resource/G\+File\+Manager.\+cpp\end{DoxyCompactItemize}

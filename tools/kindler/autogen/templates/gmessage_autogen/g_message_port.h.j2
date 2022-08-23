@@ -1,0 +1,37 @@
+/// This file is auto-generated from {{ template_file_name }} 
+/// Do not modify! It will be overwritten
+
+#pragma once
+
+#include <type_traits>
+#include "fortress/json/GJson.h"
+#include "fortress/types/GSizedTypes.h"
+
+namespace rev {
+
+/// Forward declarations
+class GMessage;
+{% for type in message_types %}
+class G{{ type }};
+{%- endfor %}
+
+/// @class GMessagePort
+/// @brief Class representing a receiver of messages
+class GMessagePort {
+public:
+
+    GMessagePort() = default;
+    ~GMessagePort() = default;
+
+protected:
+
+    /// @brief Process a generic GMessage
+    virtual void processMessage(GMessage* message);
+{% for type in message_types %}
+    /// @brief Process a G{{ type }}
+    virtual void processMessage(G{{ type }}* message);
+{% endfor %}
+};
+
+
+} /// End namespace

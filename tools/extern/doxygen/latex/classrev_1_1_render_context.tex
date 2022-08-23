@@ -1,0 +1,209 @@
+\hypertarget{classrev_1_1_render_context}{}\section{rev\+::Render\+Context Class Reference}
+\label{classrev_1_1_render_context}\index{rev::RenderContext@{rev::RenderContext}}
+
+
+Context associated with a renderer.  
+
+
+
+
+{\ttfamily \#include $<$G\+Render\+Context.\+h$>$}
+
+Inheritance diagram for rev\+::Render\+Context\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_render_context}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_context_a410668b7278c707fabeca2cb45aa4325}\label{classrev_1_1_render_context_a410668b7278c707fabeca2cb45aa4325}} 
+{\bfseries Render\+Context} (\mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} $\ast$renderer)
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_context_a23318071b0388176f055352fc2780340}\label{classrev_1_1_render_context_a23318071b0388176f055352fc2780340}} 
+{\bfseries $\sim$\+Render\+Context} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_context_a7a2306b15acf7faf0a988291a1ac0806}\label{classrev_1_1_render_context_a7a2306b15acf7faf0a988291a1ac0806}} 
+\mbox{\hyperlink{classrev_1_1_texture}{Texture}} \& {\bfseries blank\+Texture} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_context_a9bf5d2ff10a2550d484f0f3cc330036b}\label{classrev_1_1_render_context_a9bf5d2ff10a2550d484f0f3cc330036b}} 
+\mbox{\hyperlink{classrev_1_1_lighting_settings}{Lighting\+Settings}} \& {\bfseries lighting\+Settings} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_context_a21ce65b2254f564969e33677bac50a8e}\label{classrev_1_1_render_context_a21ce65b2254f564969e33677bac50a8e}} 
+Q\+Open\+G\+L\+Context $\ast$ \mbox{\hyperlink{classrev_1_1_render_context_a21ce65b2254f564969e33677bac50a8e}{context}} ()
+\begin{DoxyCompactList}\small\item\em Obtain underlying context. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_context_a30a68ca63e3826d059a56b5c422e50b6}\label{classrev_1_1_render_context_a30a68ca63e3826d059a56b5c422e50b6}} 
+int {\bfseries bound\+Material} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_context_af7243c1cad99118c4c3e0c5eed8eb181}\label{classrev_1_1_render_context_af7243c1cad99118c4c3e0c5eed8eb181}} 
+void {\bfseries set\+Bound\+Material} (int idx)
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_context_a4c51a8d7dafb8563549e2987094289db}\label{classrev_1_1_render_context_a4c51a8d7dafb8563549e2987094289db}} 
+\mbox{\hyperlink{classrev_1_1_render_settings}{Render\+Settings}} \& {\bfseries render\+Settings} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_context_a91bae02734f0d836404f775aa9079526}\label{classrev_1_1_render_context_a91bae02734f0d836404f775aa9079526}} 
+Q\+Open\+G\+L\+Functions $\ast$ \mbox{\hyperlink{classrev_1_1_render_context_a91bae02734f0d836404f775aa9079526}{functions}} ()
+\begin{DoxyCompactList}\small\item\em Get GL functions from current contect. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_context_a174d0b52c13b5a85474d054120bc8915}\label{classrev_1_1_render_context_a174d0b52c13b5a85474d054120bc8915}} 
+void \mbox{\hyperlink{classrev_1_1_render_context_a174d0b52c13b5a85474d054120bc8915}{reset}} ()
+\begin{DoxyCompactList}\small\item\em Reset settings for a new scenario load. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_context_a2e9ecc8a856e686427dee70bb5ae3e40}\label{classrev_1_1_render_context_a2e9ecc8a856e686427dee70bb5ae3e40}} 
+void \mbox{\hyperlink{classrev_1_1_render_context_a2e9ecc8a856e686427dee70bb5ae3e40}{flush\+Buffers}} ()
+\begin{DoxyCompactList}\small\item\em Flush all buffer data into Open\+GL. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_context_a19ed5da725ad2ffdbbfc1cad8d289b24}\label{classrev_1_1_render_context_a19ed5da725ad2ffdbbfc1cad8d289b24}} 
+void \mbox{\hyperlink{classrev_1_1_render_context_a19ed5da725ad2ffdbbfc1cad8d289b24}{swap\+Buffers}} ()
+\begin{DoxyCompactList}\small\item\em Swap all buffers for read/write. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_context_acf8bc4525ddb9b23634eef647d5197bf}\label{classrev_1_1_render_context_acf8bc4525ddb9b23634eef647d5197bf}} 
+{\footnotesize template$<$typename T , typename ... Args$>$ }\\void \mbox{\hyperlink{classrev_1_1_render_context_acf8bc4525ddb9b23634eef647d5197bf}{flush\+Setting}} (Args \&\&... args)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} for configuring an Open\+GL setting. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_context_a949819b497a7c0527c69c0873ab0b455}\label{classrev_1_1_render_context_a949819b497a7c0527c69c0873ab0b455}} 
+bool {\bfseries is\+Current} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_context_a76846d20393eb2c1246f31cf084a1f72}\label{classrev_1_1_render_context_a76846d20393eb2c1246f31cf084a1f72}} 
+void {\bfseries make\+Current} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_context_a2628ead4b6adce98d597522d38554e3a}\label{classrev_1_1_render_context_a2628ead4b6adce98d597522d38554e3a}} 
+const \mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \& \mbox{\hyperlink{classrev_1_1_render_context_a2628ead4b6adce98d597522d38554e3a}{bound\+Buffer}} (G\+L\+::\+Buffer\+Type type) const
+\begin{DoxyCompactList}\small\item\em Get the bound buffer of the given type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_context_aa817e311494d01746f1547cd6e6baa1b}\label{classrev_1_1_render_context_aa817e311494d01746f1547cd6e6baa1b}} 
+void \mbox{\hyperlink{classrev_1_1_render_context_aa817e311494d01746f1547cd6e6baa1b}{set\+Bound\+Buffer}} (G\+L\+::\+Buffer\+Type type, const \mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \&uuid)
+\begin{DoxyCompactList}\small\item\em Set the bound buffer of the given type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_render_context_aabbf2a2fa99c196ee07208eb52b7f208}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_render_context_a07d4f4c563a4bc001f83a6f657221c9d}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Protected Member Functions}
+\begin{Indent}\textbf{ Static methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_context_acec3f0cc88ad074544f89782882a31c9}\label{classrev_1_1_render_context_acec3f0cc88ad074544f89782882a31c9}} 
+static size\+\_\+t {\bfseries buffer\+Type\+Index} (const G\+L\+::\+Buffer\+Type \&type)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_context_a6547fd79c1d2829377aa5d87afb0e14d}\label{classrev_1_1_render_context_a6547fd79c1d2829377aa5d87afb0e14d}} 
+Q\+Open\+G\+L\+Context $\ast$ \mbox{\hyperlink{classrev_1_1_render_context_a6547fd79c1d2829377aa5d87afb0e14d}{m\+\_\+context}}
+\begin{DoxyCompactList}\small\item\em The Open\+GL context encapsulated by this object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_context_aeafa61565fc85198b2f66711b7c1f669}\label{classrev_1_1_render_context_aeafa61565fc85198b2f66711b7c1f669}} 
+Q\+Surface $\ast$ {\bfseries m\+\_\+surface}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_context_a77267323952ee2aecf4787a9276b463f}\label{classrev_1_1_render_context_a77267323952ee2aecf4787a9276b463f}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_lighting_settings}{Lighting\+Settings}} $>$ \mbox{\hyperlink{classrev_1_1_render_context_a77267323952ee2aecf4787a9276b463f}{m\+\_\+light\+Settings}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_light}{Light}} settings associated with this render context. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_context_a3ce20fedf38832a647a26ff7e2e8f140}\label{classrev_1_1_render_context_a3ce20fedf38832a647a26ff7e2e8f140}} 
+int \mbox{\hyperlink{classrev_1_1_render_context_a3ce20fedf38832a647a26ff7e2e8f140}{m\+\_\+bound\+Material}} = -\/1
+\begin{DoxyCompactList}\small\item\em The currently bound material\textquotesingle{}s sort ID. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} $>$ \mbox{\hyperlink{classrev_1_1_render_context_aff265253ee2e10e55fabb1124945ff0d}{m\+\_\+bound\+Buffers}}
+\begin{DoxyCompactList}\small\item\em Currently bound buffer I\+Ds, can currently be an S\+SB. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_context_a373fe9b252ab9eb497199e1955930ce7}\label{classrev_1_1_render_context_a373fe9b252ab9eb497199e1955930ce7}} 
+\mbox{\hyperlink{classrev_1_1_render_settings}{Render\+Settings}} \mbox{\hyperlink{classrev_1_1_render_context_a373fe9b252ab9eb497199e1955930ce7}{m\+\_\+render\+Settings}}
+\begin{DoxyCompactList}\small\item\em The currently bound Open\+GL settings. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_context_abd8047095cfcace632812f03f6f14317}\label{classrev_1_1_render_context_abd8047095cfcace632812f03f6f14317}} 
+\mbox{\hyperlink{classrev_1_1_texture}{Texture}} $\ast$ \mbox{\hyperlink{classrev_1_1_render_context_abd8047095cfcace632812f03f6f14317}{m\+\_\+blank\+Texture}}
+\begin{DoxyCompactList}\small\item\em a blank (white) 1x1 texture belonging to this context \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Protected Attributes}
+\begin{Indent}\textbf{ Static members}\par
+\begin{DoxyCompactItemize}
+\item 
+static std\+::vector$<$ G\+L\+::\+Buffer\+Type $>$ \mbox{\hyperlink{classrev_1_1_render_context_a160e6d33ab3e3adf518931355dd638aa}{s\+\_\+buffer\+Types}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_vector}{Vector}} of types corresponding to indices of bound buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_context_a3560f203ce16e7bc5e59e376a5eab798}\label{classrev_1_1_render_context_a3560f203ce16e7bc5e59e376a5eab798}} 
+class {\bfseries Main\+Renderer}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Context associated with a renderer. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_render_context_aabbf2a2fa99c196ee07208eb52b7f208}\label{classrev_1_1_render_context_aabbf2a2fa99c196ee07208eb52b7f208}} 
+\index{rev::RenderContext@{rev::RenderContext}!className@{className}}
+\index{className@{className}!rev::RenderContext@{rev::RenderContext}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Render\+Context\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_render_context_a07d4f4c563a4bc001f83a6f657221c9d}\label{classrev_1_1_render_context_a07d4f4c563a4bc001f83a6f657221c9d}} 
+\index{rev::RenderContext@{rev::RenderContext}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::RenderContext@{rev::RenderContext}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Render\+Context\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_render_context_aff265253ee2e10e55fabb1124945ff0d}\label{classrev_1_1_render_context_aff265253ee2e10e55fabb1124945ff0d}} 
+\index{rev::RenderContext@{rev::RenderContext}!m\_boundBuffers@{m\_boundBuffers}}
+\index{m\_boundBuffers@{m\_boundBuffers}!rev::RenderContext@{rev::RenderContext}}
+\subsubsection{\texorpdfstring{m\_boundBuffers}{m\_boundBuffers}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classrev_1_1_uuid}{Uuid}}$>$ rev\+::\+Render\+Context\+::m\+\_\+bound\+Buffers\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Currently bound buffer I\+Ds, can currently be an S\+SB. 
+
+Are indexed by their buffer target type, e.\+g. \mbox{\hyperlink{classrev_1_1_u_b_o}{U\+BO}}, S\+SB, etc. \mbox{\Hypertarget{classrev_1_1_render_context_a160e6d33ab3e3adf518931355dd638aa}\label{classrev_1_1_render_context_a160e6d33ab3e3adf518931355dd638aa}} 
+\index{rev::RenderContext@{rev::RenderContext}!s\_bufferTypes@{s\_bufferTypes}}
+\index{s\_bufferTypes@{s\_bufferTypes}!rev::RenderContext@{rev::RenderContext}}
+\subsubsection{\texorpdfstring{s\_bufferTypes}{s\_bufferTypes}}
+{\footnotesize\ttfamily std\+::vector$<$ G\+L\+::\+Buffer\+Type $>$ rev\+::\+Render\+Context\+::s\+\_\+buffer\+Types\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    GL::BufferType::kUniformBuffer,}
+\DoxyCodeLine{    GL::BufferType::kShaderStorage}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\mbox{\hyperlink{classrev_1_1_vector}{Vector}} of types corresponding to indices of bound buffer. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/renderer/G\+Render\+Context.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/renderer/G\+Render\+Context.\+cpp\end{DoxyCompactItemize}

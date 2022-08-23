@@ -1,0 +1,76 @@
+\hypertarget{classrev_1_1_action_manager}{}\section{rev\+::Action\+Manager Class Reference}
+\label{classrev_1_1_action_manager}\index{rev::ActionManager@{rev::ActionManager}}
+
+
+\mbox{\hyperlink{classrev_1_1_manager}{Manager}} for handling all undo and redo actions.  
+
+
+
+
+{\ttfamily \#include $<$G\+Action\+Manager.\+h$>$}
+
+Inheritance diagram for rev\+::Action\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{classrev_1_1_action_manager}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_action_manager_aaae707ce7f626828ee5c00439cd55b72}\label{classrev_1_1_action_manager_aaae707ce7f626828ee5c00439cd55b72}} 
+{\bfseries Action\+Manager} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core)
+\item 
+\mbox{\Hypertarget{classrev_1_1_action_manager_a42098be3e7c3015a0c76088a39449cd2}\label{classrev_1_1_action_manager_a42098be3e7c3015a0c76088a39449cd2}} 
+{\bfseries $\sim$\+Action\+Manager} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_action_manager_aead613a664753a42f7206acd4c7df46e}\label{classrev_1_1_action_manager_aead613a664753a42f7206acd4c7df46e}} 
+Q\+Undo\+Stack $\ast$ \mbox{\hyperlink{classrev_1_1_action_manager_aead613a664753a42f7206acd4c7df46e}{undo\+Stack}} ()
+\begin{DoxyCompactList}\small\item\em Returns the undo stack for the action manager. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_action_manager_a9c1ebb83e954c9ec83eebb2f5b0f3f95}\label{classrev_1_1_action_manager_a9c1ebb83e954c9ec83eebb2f5b0f3f95}} 
+void \mbox{\hyperlink{classrev_1_1_action_manager_a9c1ebb83e954c9ec83eebb2f5b0f3f95}{redo}} ()
+\begin{DoxyCompactList}\small\item\em Redoes the last undone action. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_action_manager_afa766c6ae2a62c27e4edbb846174611c}\label{classrev_1_1_action_manager_afa766c6ae2a62c27e4edbb846174611c}} 
+void \mbox{\hyperlink{classrev_1_1_action_manager_afa766c6ae2a62c27e4edbb846174611c}{undo}} ()
+\begin{DoxyCompactList}\small\item\em Undoes the last action. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_action_manager_ac2713f8a36a46842c1d12b7869f5be1f}\label{classrev_1_1_action_manager_ac2713f8a36a46842c1d12b7869f5be1f}} 
+void \mbox{\hyperlink{classrev_1_1_action_manager_ac2713f8a36a46842c1d12b7869f5be1f}{perform\+Action}} (\mbox{\hyperlink{classrev_1_1_undo_command}{Undo\+Command}} $\ast$command)
+\begin{DoxyCompactList}\small\item\em Performs the given command (by adding to undo stack) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_action_manager_a13d452d317e0b2c3eea8ea03f4b89eee}\label{classrev_1_1_action_manager_a13d452d317e0b2c3eea8ea03f4b89eee}} 
+void \mbox{\hyperlink{classrev_1_1_action_manager_a13d452d317e0b2c3eea8ea03f4b89eee}{show\+Undo\+View}} ()
+\begin{DoxyCompactList}\small\item\em Toggles on undo view. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Private Methods}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_action_manager_a471d6215b5c43daaa75ce0f191aa4d7a}\label{classrev_1_1_action_manager_a471d6215b5c43daaa75ce0f191aa4d7a}} 
+Q\+Mutex \mbox{\hyperlink{classrev_1_1_action_manager_a471d6215b5c43daaa75ce0f191aa4d7a}{m\+\_\+mutex}}
+\begin{DoxyCompactList}\small\item\em Mutex for actions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_action_manager_a5f69bc6d5593624e65381f76612d4b75}\label{classrev_1_1_action_manager_a5f69bc6d5593624e65381f76612d4b75}} 
+Q\+Undo\+Stack $\ast$ \mbox{\hyperlink{classrev_1_1_action_manager_a5f69bc6d5593624e65381f76612d4b75}{m\+\_\+undo\+Stack}}
+\begin{DoxyCompactList}\small\item\em Undo stack. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_action_manager_a635e38273923694915b220dd918184cc}\label{classrev_1_1_action_manager_a635e38273923694915b220dd918184cc}} 
+Q\+Undo\+View $\ast$ \mbox{\hyperlink{classrev_1_1_action_manager_a635e38273923694915b220dd918184cc}{m\+\_\+undo\+View}}
+\begin{DoxyCompactList}\small\item\em widget for viewing undo stack, inherits from Q\+List\+View \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_action_manager_a9b32bb0adb6de7fb87114d47b0ee41c4}\label{classrev_1_1_action_manager_a9b32bb0adb6de7fb87114d47b0ee41c4}} 
+void \mbox{\hyperlink{classrev_1_1_action_manager_a9b32bb0adb6de7fb87114d47b0ee41c4}{initialize\+Undo\+View}} ()
+\begin{DoxyCompactList}\small\item\em Create undo view. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{classrev_1_1_manager}{Manager}} for handling all undo and redo actions. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/model\+\_\+control/commands/G\+Action\+Manager.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/model\+\_\+control/commands/G\+Action\+Manager.\+cpp\end{DoxyCompactItemize}

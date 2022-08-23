@@ -1,0 +1,107 @@
+\hypertarget{classrev_1_1_motion}{}\section{rev\+::Motion Class Reference}
+\label{classrev_1_1_motion}\index{rev::Motion@{rev::Motion}}
+
+
+Represents an entity traversing the animation state machine.  
+
+
+
+
+{\ttfamily \#include $<$G\+Anim\+Motion.\+h$>$}
+
+Inheritance diagram for rev\+::Motion\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_motion}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_motion_a80934e636e60f14ce1947740431d2fb3}\label{classrev_1_1_motion_a80934e636e60f14ce1947740431d2fb3}} 
+{\bfseries Motion} (\mbox{\hyperlink{classrev_1_1_animation_controller}{Animation\+Controller}} $\ast$controller)
+\item 
+\mbox{\Hypertarget{classrev_1_1_motion_a852eb25f10dbe12cce810baf20384808}\label{classrev_1_1_motion_a852eb25f10dbe12cce810baf20384808}} 
+{\bfseries $\sim$\+Motion} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_motion_aa10976a85c3a9f96abe1f0f18780cdad}\label{classrev_1_1_motion_aa10976a85c3a9f96abe1f0f18780cdad}} 
+\mbox{\hyperlink{classrev_1_1_base_animation_state}{Base\+Animation\+State}} $\ast$ {\bfseries current\+State} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_motion_a8424b615747ffeb4d9ff0176215c5640}\label{classrev_1_1_motion_a8424b615747ffeb4d9ff0176215c5640}} 
+float \mbox{\hyperlink{classrev_1_1_motion_a8424b615747ffeb4d9ff0176215c5640}{elapsed\+Time}} () const
+\begin{DoxyCompactList}\small\item\em The time elapsed since timer started (in sec) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_motion_a1791892b7566cf600976a60f1ea5462c}\label{classrev_1_1_motion_a1791892b7566cf600976a60f1ea5462c}} 
+const \mbox{\hyperlink{classrev_1_1_timer}{Timer}} \& {\bfseries timer} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_motion_a6aa77808cbe0821d36fe000823dd3204}\label{classrev_1_1_motion_a6aa77808cbe0821d36fe000823dd3204}} 
+void {\bfseries set\+Timer} (const \mbox{\hyperlink{classrev_1_1_timer}{Timer}} \&timer)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classrev_1_1_motion_acae849c523058ac301f3964c132e7629}{queue\+Move}} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&state\+Name)
+\begin{DoxyCompactList}\small\item\em Queue motion to move to the state with the given name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_motion_aa16b4701cde3207b62ac0a703d7bddf3}\label{classrev_1_1_motion_aa16b4701cde3207b62ac0a703d7bddf3}} 
+bool \mbox{\hyperlink{classrev_1_1_motion_aa16b4701cde3207b62ac0a703d7bddf3}{is\+Auto\+Playing}} () const
+\begin{DoxyCompactList}\small\item\em Whether or not the motion is autoplaying. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_motion_aeca0bcc0b2aaf0e869b4ac66631da5e6}\label{classrev_1_1_motion_aeca0bcc0b2aaf0e869b4ac66631da5e6}} 
+bool \mbox{\hyperlink{classrev_1_1_motion_aeca0bcc0b2aaf0e869b4ac66631da5e6}{is\+Done}} () const
+\begin{DoxyCompactList}\small\item\em Whether or not the motion\textquotesingle{}s state is still playing any clips. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_motion_a37d1e01c9f039638b6f5ce7df3bad067}\label{classrev_1_1_motion_a37d1e01c9f039638b6f5ce7df3bad067}} 
+bool \mbox{\hyperlink{classrev_1_1_motion_a37d1e01c9f039638b6f5ce7df3bad067}{is\+Playing}} () const
+\begin{DoxyCompactList}\small\item\em Whether or not the motion is paused. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_motion_a5e0405408c3f202936443aace0b5dcbd}\label{classrev_1_1_motion_a5e0405408c3f202936443aace0b5dcbd}} 
+void \mbox{\hyperlink{classrev_1_1_motion_a5e0405408c3f202936443aace0b5dcbd}{pause}} ()
+\begin{DoxyCompactList}\small\item\em Pause the motion, or play it. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_motion_a7ccafdbc20144deb6a48028c35fe32cc}\label{classrev_1_1_motion_a7ccafdbc20144deb6a48028c35fe32cc}} 
+void {\bfseries play} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_motion_a6a1f77ee268b6c23b7e95bf846b8fa60}\label{classrev_1_1_motion_a6a1f77ee268b6c23b7e95bf846b8fa60}} 
+void \mbox{\hyperlink{classrev_1_1_motion_a6a1f77ee268b6c23b7e95bf846b8fa60}{move}} (const \mbox{\hyperlink{classrev_1_1_base_animation_state}{Base\+Animation\+State}} $\ast$state)
+\begin{DoxyCompactList}\small\item\em Move to the specified state states. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_motion_af75d90915331e71d3ac6bc6a2cdfe9d6}\label{classrev_1_1_motion_af75d90915331e71d3ac6bc6a2cdfe9d6}} 
+void \mbox{\hyperlink{classrev_1_1_motion_af75d90915331e71d3ac6bc6a2cdfe9d6}{auto\+Move}} ()
+\begin{DoxyCompactList}\small\item\em Move to the next available state, based on first valid connection found. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_motion_aede527fde69ccf762d8ff69eb884e490}\label{classrev_1_1_motion_aede527fde69ccf762d8ff69eb884e490}} 
+void \mbox{\hyperlink{classrev_1_1_motion_aede527fde69ccf762d8ff69eb884e490}{restart\+Timer}} ()
+\begin{DoxyCompactList}\small\item\em Start and stop timer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_motion_ab55bc771e5bcdcfdf7e34bf10210ec16}\label{classrev_1_1_motion_ab55bc771e5bcdcfdf7e34bf10210ec16}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_motion_ab55bc771e5bcdcfdf7e34bf10210ec16}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_motion_ab0c31b0cc22f4670de0e5b7421ca2f91}\label{classrev_1_1_motion_ab0c31b0cc22f4670de0e5b7421ca2f91}} 
+virtual void \mbox{\hyperlink{classrev_1_1_motion_ab0c31b0cc22f4670de0e5b7421ca2f91}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Represents an entity traversing the animation state machine. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_motion_acae849c523058ac301f3964c132e7629}\label{classrev_1_1_motion_acae849c523058ac301f3964c132e7629}} 
+\index{rev::Motion@{rev::Motion}!queueMove@{queueMove}}
+\index{queueMove@{queueMove}!rev::Motion@{rev::Motion}}
+\subsubsection{\texorpdfstring{queueMove()}{queueMove()}}
+{\footnotesize\ttfamily bool rev\+::\+Motion\+::queue\+Move (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&}]{state\+Name }\end{DoxyParamCaption})}
+
+
+
+Queue motion to move to the state with the given name. 
+
+Queued moves must specify a destination state that is a neighber of the current state, with allowing for one transition in between 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/animation/G\+Anim\+Motion.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/animation/G\+Anim\+Motion.\+cpp\end{DoxyCompactItemize}

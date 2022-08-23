@@ -1,0 +1,99 @@
+\hypertarget{class_eigen_1_1_sparse_view}{}\section{Eigen\+::Sparse\+View$<$ Matrix\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_sparse_view}\index{Eigen::SparseView$<$ MatrixType $>$@{Eigen::SparseView$<$ MatrixType $>$}}
+
+
+Expression of a dense or sparse matrix with zero or too small values removed.  
+
+
+
+
+{\ttfamily \#include $<$Sparse\+View.\+h$>$}
+
+Inheritance diagram for Eigen\+::Sparse\+View$<$ Matrix\+Type $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_eigen_1_1_sparse_view}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_view_a5ea0cd9b743ad42a749ca83409ca0f97}\label{class_eigen_1_1_sparse_view_a5ea0cd9b743ad42a749ca83409ca0f97}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ Matrix\+Type $>$\+::type {\bfseries Nested\+Expression}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_view_a3999bdfde1e4e35c3a60e33f190257c0}\label{class_eigen_1_1_sparse_view_a3999bdfde1e4e35c3a60e33f190257c0}} 
+{\bfseries Sparse\+View} (const Matrix\+Type \&mat, const Scalar \&reference=Scalar(0), const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_aaec8ace6efb785c81d442931c3248d88}{Real\+Scalar}} \&epsilon=\mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ Scalar $>$\+::dummy\+\_\+precision())
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_view_af6b051d0399363f5b73a316964ee4e12}\label{class_eigen_1_1_sparse_view_af6b051d0399363f5b73a316964ee4e12}} 
+\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} {\bfseries rows} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_view_aea18dd1a3f1e8adef8daa7c12b40354e}\label{class_eigen_1_1_sparse_view_aea18dd1a3f1e8adef8daa7c12b40354e}} 
+\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} {\bfseries cols} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_view_ad1436b70d5f02ab8f9c3d350471f0fda}\label{class_eigen_1_1_sparse_view_ad1436b70d5f02ab8f9c3d350471f0fda}} 
+\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} {\bfseries inner\+Size} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_view_ac40f96dad4dfd0c1da388fb358dcbdea}\label{class_eigen_1_1_sparse_view_ac40f96dad4dfd0c1da388fb358dcbdea}} 
+\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} {\bfseries outer\+Size} () const
+\item 
+const \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ Matrix\+Type\+Nested $>$\+::type \& \mbox{\hyperlink{class_eigen_1_1_sparse_view_a50f53a9405017012077ae907959aca14}{nested\+Expression}} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_view_a797256d1cc36d3f4c3c20e0cfd4f2103}\label{class_eigen_1_1_sparse_view_a797256d1cc36d3f4c3c20e0cfd4f2103}} 
+Scalar {\bfseries reference} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_view_afb19356d22b6e402c5d8a5adda3e4eda}\label{class_eigen_1_1_sparse_view_afb19356d22b6e402c5d8a5adda3e4eda}} 
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_aaec8ace6efb785c81d442931c3248d88}{Real\+Scalar}} {\bfseries epsilon} () const
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_view_af7f373fad8b84ee90fbef68ae958284e}\label{class_eigen_1_1_sparse_view_af7f373fad8b84ee90fbef68ae958284e}} 
+Matrix\+Type\+Nested {\bfseries m\+\_\+matrix}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_view_a98dd015bea709637b3175729c68bdd39}\label{class_eigen_1_1_sparse_view_a98dd015bea709637b3175729c68bdd39}} 
+Scalar {\bfseries m\+\_\+reference}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_view_adf9350e7fd2a4452fb2a02b2498f3bde}\label{class_eigen_1_1_sparse_view_adf9350e7fd2a4452fb2a02b2498f3bde}} 
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_aaec8ace6efb785c81d442931c3248d88}{Real\+Scalar}} {\bfseries m\+\_\+epsilon}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename Matrix\+Type$>$\newline
+class Eigen\+::\+Sparse\+View$<$ Matrix\+Type $>$}
+
+Expression of a dense or sparse matrix with zero or too small values removed. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Matrix\+Type} & the type of the object of which we are removing the small entries\\
+\hline
+\end{DoxyTemplParams}
+This class represents an expression of a given dense or sparse matrix with entries smaller than {\ttfamily reference} $\ast$ {\ttfamily epsilon} are removed. It is the return type of \mbox{\hyperlink{class_eigen_1_1_matrix_base_a320dd291cbf4339c6118c41521b75350}{Matrix\+Base\+::sparse\+View()}} and \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_ac8d0414b56d9d620ce9a698c1b281e5d}{Sparse\+Matrix\+Base\+::pruned()}} and most of the time this is the only way it is used.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_matrix_base_a320dd291cbf4339c6118c41521b75350}{Matrix\+Base\+::sparse\+View()}}, \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_ac8d0414b56d9d620ce9a698c1b281e5d}{Sparse\+Matrix\+Base\+::pruned()}} 
+\end{DoxySeeAlso}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_view_a50f53a9405017012077ae907959aca14}\label{class_eigen_1_1_sparse_view_a50f53a9405017012077ae907959aca14}} 
+\index{Eigen::SparseView$<$ MatrixType $>$@{Eigen::SparseView$<$ MatrixType $>$}!nestedExpression@{nestedExpression}}
+\index{nestedExpression@{nestedExpression}!Eigen::SparseView$<$ MatrixType $>$@{Eigen::SparseView$<$ MatrixType $>$}}
+\subsubsection{\texorpdfstring{nestedExpression()}{nestedExpression()}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type$>$ \\
+const \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$Matrix\+Type\+Nested$>$\+::type\& \mbox{\hyperlink{class_eigen_1_1_sparse_view}{Eigen\+::\+Sparse\+View}}$<$ Matrix\+Type $>$\+::nested\+Expression (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the nested expression 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Core/util/Forward\+Declarations.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Sparse\+Core/Sparse\+View.\+h\end{DoxyCompactItemize}

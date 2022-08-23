@@ -1,0 +1,104 @@
+\hypertarget{structrev_1_1_protocol_field}{}\section{rev\+::Protocol\+Field$<$ T $>$ Struct Template Reference}
+\label{structrev_1_1_protocol_field}\index{rev::ProtocolField$<$ T $>$@{rev::ProtocolField$<$ T $>$}}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_protocol_field_a436682a8f16f7e0f851668d2598c08eb}\label{structrev_1_1_protocol_field_a436682a8f16f7e0f851668d2598c08eb}} 
+{\bfseries Protocol\+Field} (T \&field)
+\item 
+\mbox{\Hypertarget{structrev_1_1_protocol_field_a6b369ffa16782aa23ddc6ca6f5a39560}\label{structrev_1_1_protocol_field_a6b369ffa16782aa23ddc6ca6f5a39560}} 
+{\bfseries Protocol\+Field} (\mbox{\hyperlink{structrev_1_1_protocol_field}{Protocol\+Field}} \&p\+Field)
+\item 
+\mbox{\Hypertarget{structrev_1_1_protocol_field_a8182d223c939a67463e98fc988ac728f}\label{structrev_1_1_protocol_field_a8182d223c939a67463e98fc988ac728f}} 
+{\bfseries Protocol\+Field} (\mbox{\hyperlink{structrev_1_1_protocol_field}{Protocol\+Field}} \&\&p\+Field)
+\item 
+\mbox{\Hypertarget{structrev_1_1_protocol_field_a6a0646261cf97050d02887254f19375f}\label{structrev_1_1_protocol_field_a6a0646261cf97050d02887254f19375f}} 
+{\bfseries Protocol\+Field} (T \&field, const long \&count)
+\item 
+{\footnotesize template$<$typename U  = T$>$ }\\\mbox{\hyperlink{structrev_1_1_protocol_field_a06790796f00e203909e4134eb9a9a0a4}{Protocol\+Field}} (U field, const long \&count, typename std\+::enable\+\_\+if\+\_\+t$<$ std\+::is\+\_\+pointer$<$ U $>$\+::value $>$ $\ast$=nullptr)
+\begin{DoxyCompactList}\small\item\em Special pass by value construction for pointer arguments. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_protocol_field_a8538c2d79254bb678a2b6d664a1f38d4}\label{structrev_1_1_protocol_field_a8538c2d79254bb678a2b6d664a1f38d4}} 
+{\bfseries $\sim$\+Protocol\+Field} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{structrev_1_1_protocol_field_a39549ff49ab211a50e5f6a9cc61ecfa0}{write}} (const \mbox{\hyperlink{classrev_1_1_file_stream}{File\+Stream}} \&stream) const
+\begin{DoxyCompactList}\small\item\em Write the data represented by this protocol field (vector version) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structrev_1_1_protocol_field_adce4cb535c5fcd3aaeac1c0c0f5fda71}{read}} (const \mbox{\hyperlink{classrev_1_1_file_stream}{File\+Stream}} \&stream)
+\begin{DoxyCompactList}\small\item\em Write the data represented by this protocol field. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Operators}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_protocol_field_a9c10b88653dd6af564d3535629e74a8a}\label{structrev_1_1_protocol_field_a9c10b88653dd6af564d3535629e74a8a}} 
+\mbox{\hyperlink{structrev_1_1_protocol_field}{Protocol\+Field}}$<$ T $>$ \& {\bfseries operator=} (const \mbox{\hyperlink{structrev_1_1_protocol_field}{Protocol\+Field}}$<$ T $>$ \&field)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_protocol_field_ac97f716faa6c9f39728735cf2835e98a}\label{structrev_1_1_protocol_field_ac97f716faa6c9f39728735cf2835e98a}} 
+\mbox{\hyperlink{structrev_1_1_protocol_field_info}{Protocol\+Field\+Info}}$<$ T $>$ \mbox{\hyperlink{structrev_1_1_protocol_field_ac97f716faa6c9f39728735cf2835e98a}{m\+\_\+info}}
+\begin{DoxyCompactList}\small\item\em Metadata relating to the field encapsulated by this \mbox{\hyperlink{classrev_1_1_protocol}{Protocol}} Field. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_protocol_field_a70b18ac77914282a626cbbf7693493c7}\label{structrev_1_1_protocol_field_a70b18ac77914282a626cbbf7693493c7}} 
+reference\+\_\+type$<$ T $>$ \mbox{\hyperlink{structrev_1_1_protocol_field_a70b18ac77914282a626cbbf7693493c7}{m\+\_\+field}}
+\begin{DoxyCompactList}\small\item\em The field represented by the \mbox{\hyperlink{structrev_1_1_protocol_field}{Protocol\+Field}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structrev_1_1_protocol_field_a06790796f00e203909e4134eb9a9a0a4}\label{structrev_1_1_protocol_field_a06790796f00e203909e4134eb9a9a0a4}} 
+\index{rev::ProtocolField$<$ T $>$@{rev::ProtocolField$<$ T $>$}!ProtocolField@{ProtocolField}}
+\index{ProtocolField@{ProtocolField}!rev::ProtocolField$<$ T $>$@{rev::ProtocolField$<$ T $>$}}
+\subsubsection{\texorpdfstring{ProtocolField()}{ProtocolField()}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+template$<$typename U  = T$>$ \\
+\mbox{\hyperlink{structrev_1_1_protocol_field}{rev\+::\+Protocol\+Field}}$<$ T $>$\+::\mbox{\hyperlink{structrev_1_1_protocol_field}{Protocol\+Field}} (\begin{DoxyParamCaption}\item[{U}]{field,  }\item[{const long \&}]{count,  }\item[{typename std\+::enable\+\_\+if\+\_\+t$<$ std\+::is\+\_\+pointer$<$ U $>$\+::value $>$ $\ast$}]{ = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Special pass by value construction for pointer arguments. 
+
+Temporary pointers were not being treated kindly, such as those returned from functions, e.\+g., \mbox{\hyperlink{structrev_1_1_protocol_field}{Protocol\+Field}}(foo.\+c\+\_\+str()) 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{structrev_1_1_protocol_field_adce4cb535c5fcd3aaeac1c0c0f5fda71}\label{structrev_1_1_protocol_field_adce4cb535c5fcd3aaeac1c0c0f5fda71}} 
+\index{rev::ProtocolField$<$ T $>$@{rev::ProtocolField$<$ T $>$}!read@{read}}
+\index{read@{read}!rev::ProtocolField$<$ T $>$@{rev::ProtocolField$<$ T $>$}}
+\subsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+bool \mbox{\hyperlink{structrev_1_1_protocol_field}{rev\+::\+Protocol\+Field}}$<$ T $>$\+::read (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_file_stream}{File\+Stream}} \&}]{stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Write the data represented by this protocol field. 
+
+Read the data represented by this protocol field 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em stream} & the input stream \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{structrev_1_1_protocol_field_a39549ff49ab211a50e5f6a9cc61ecfa0}\label{structrev_1_1_protocol_field_a39549ff49ab211a50e5f6a9cc61ecfa0}} 
+\index{rev::ProtocolField$<$ T $>$@{rev::ProtocolField$<$ T $>$}!write@{write}}
+\index{write@{write}!rev::ProtocolField$<$ T $>$@{rev::ProtocolField$<$ T $>$}}
+\subsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily template$<$typename T$>$ \\
+bool \mbox{\hyperlink{structrev_1_1_protocol_field}{rev\+::\+Protocol\+Field}}$<$ T $>$\+::write (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_file_stream}{File\+Stream}} \&}]{stream }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Write the data represented by this protocol field (vector version) 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em stream} & the input stream \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/containers/G\+String.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/encoding/G\+Protocol\+Field.\+h\end{DoxyCompactItemize}

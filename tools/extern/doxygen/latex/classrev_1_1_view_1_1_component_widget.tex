@@ -1,0 +1,72 @@
+\hypertarget{classrev_1_1_view_1_1_component_widget}{}\section{rev\+::View\+::Component\+Widget Class Reference}
+\label{classrev_1_1_view_1_1_component_widget}\index{rev::View::ComponentWidget@{rev::View::ComponentWidget}}
+
+
+Base class for all component widgets.  
+
+
+
+
+{\ttfamily \#include $<$G\+Component\+Widgets.\+h$>$}
+
+Inheritance diagram for rev\+::View\+::Component\+Widget\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=12.000000cm]{classrev_1_1_view_1_1_component_widget}
+\end{center}
+\end{figure}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_component_widget_a755d3f13873abc23fadfb0cf5ecd2e22}\label{classrev_1_1_view_1_1_component_widget_a755d3f13873abc23fadfb0cf5ecd2e22}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_component_widget_a755d3f13873abc23fadfb0cf5ecd2e22}{toggled}} (int state)
+\begin{DoxyCompactList}\small\item\em Toggled component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_component_widget_a3feeb51a8a9c254378bf12695ad18716}\label{classrev_1_1_view_1_1_component_widget_a3feeb51a8a9c254378bf12695ad18716}} 
+{\bfseries Component\+Widget} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, \mbox{\hyperlink{classrev_1_1_component}{Component}} $\ast$component, Q\+Widget $\ast$parent=0)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_component_widget_a6336bf50dceb12a4d88dd38800496746}\label{classrev_1_1_view_1_1_component_widget_a6336bf50dceb12a4d88dd38800496746}} 
+{\bfseries $\sim$\+Component\+Widget} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Private Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_component_widget_aa42cb25b210e22f04afd7b9acaea55ae}\label{classrev_1_1_view_1_1_component_widget_aa42cb25b210e22f04afd7b9acaea55ae}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_component_widget_aa42cb25b210e22f04afd7b9acaea55ae}{initialize\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to check\+Validity widgets. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_component_widget_a36295605699a0f1290a88a00bb1332fe}\label{classrev_1_1_view_1_1_component_widget_a36295605699a0f1290a88a00bb1332fe}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_component_widget_a36295605699a0f1290a88a00bb1332fe}{initialize\+Connections}} () override
+\begin{DoxyCompactList}\small\item\em Methods to check\+Validity connections for this widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_component_widget_a35035871e2bbd461b4a6a0542b8b27fc}\label{classrev_1_1_view_1_1_component_widget_a35035871e2bbd461b4a6a0542b8b27fc}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_component_widget_a35035871e2bbd461b4a6a0542b8b27fc}{layout\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to ay out widgets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Private Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_component_widget_ac82a6c68513798d434a16b9cb74c0321}\label{classrev_1_1_view_1_1_component_widget_ac82a6c68513798d434a16b9cb74c0321}} 
+Q\+Check\+Box $\ast$ {\bfseries m\+\_\+toggle}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_component_widget_ad9ee29ee48f84d1156ae64dc9a5c5be9}\label{classrev_1_1_view_1_1_component_widget_ad9ee29ee48f84d1156ae64dc9a5c5be9}} 
+Q\+Label $\ast$ {\bfseries m\+\_\+type\+Label}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_component_widget_a9047fabb76db695a82eaf2010f178140}\label{classrev_1_1_view_1_1_component_widget_a9047fabb76db695a82eaf2010f178140}} 
+\mbox{\hyperlink{classrev_1_1_component}{Component}} $\ast$ {\bfseries m\+\_\+component}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Base class for all component widgets. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/components/G\+Component\+Widgets.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/components/G\+Component\+Widgets.\+cpp\end{DoxyCompactItemize}

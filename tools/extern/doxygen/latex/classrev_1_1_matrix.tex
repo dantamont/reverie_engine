@@ -1,0 +1,248 @@
+\hypertarget{classrev_1_1_matrix}{}\section{rev\+::Matrix$<$ D, R, C $>$ Class Template Reference}
+\label{classrev_1_1_matrix}\index{rev::Matrix$<$ D, R, C $>$@{rev::Matrix$<$ D, R, C $>$}}
+
+
+A class representing a C\+O\+L\+U\+MN M\+A\+J\+OR matrix of any size.  
+
+
+
+
+{\ttfamily \#include $<$G\+Matrix.\+h$>$}
+
+Inheritance diagram for rev\+::Matrix$<$ D, R, C $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_matrix}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a8465b5f74c7b1fe7789540b8e79d3994}\label{classrev_1_1_matrix_a8465b5f74c7b1fe7789540b8e79d3994}} 
+{\bfseries Matrix} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a59c4d868bcf66ef77a7287f62e4949f2}\label{classrev_1_1_matrix_a59c4d868bcf66ef77a7287f62e4949f2}} 
+{\bfseries Matrix} (const Q\+Json\+Value \&json)
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_ade93031fe8835f85307ea6585ad963a1}\label{classrev_1_1_matrix_ade93031fe8835f85307ea6585ad963a1}} 
+{\bfseries Matrix} (D default\+Value)
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_abd93c114c15529b0a7206afa9cedc33f}\label{classrev_1_1_matrix_abd93c114c15529b0a7206afa9cedc33f}} 
+{\bfseries Matrix} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector}}$<$ D, R $>$ \&column)
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_ae00cc806412fe72cc48e4b2b6a8e8fe1}\label{classrev_1_1_matrix_ae00cc806412fe72cc48e4b2b6a8e8fe1}} 
+{\bfseries Matrix} (const std\+::array$<$ \mbox{\hyperlink{classrev_1_1_vector}{Vector}}$<$ D, R $>$, C $>$ \&columns)
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_ad2738ccdc1559e181671b5631f670482}\label{classrev_1_1_matrix_ad2738ccdc1559e181671b5631f670482}} 
+{\bfseries Matrix} (const std\+::array$<$ D, R $\ast$C $>$ \&data)
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a20d0d57312ed75a2228eabd993c0ca86}\label{classrev_1_1_matrix_a20d0d57312ed75a2228eabd993c0ca86}} 
+{\bfseries Matrix} (const std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_vector}{Vector}}$<$ D, R $>$$>$ \&columns)
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_aa87421fadd81ceb348038c9ebacbd50e}\label{classrev_1_1_matrix_aa87421fadd81ceb348038c9ebacbd50e}} 
+{\bfseries Matrix} (const D $\ast$array\+Ptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_aae4e1f02e3bcd1ed50f46500128c1fb2}\label{classrev_1_1_matrix_aae4e1f02e3bcd1ed50f46500128c1fb2}} 
+{\bfseries Matrix} (const std\+::vector$<$ std\+::vector$<$ D $>$$>$ \&columns)
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a8879f1d195fe62e690fa985ec133d1be}\label{classrev_1_1_matrix_a8879f1d195fe62e690fa985ec133d1be}} 
+{\bfseries $\sim$\+Matrix} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+{\em 
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}}\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a20ce3d94cee45fe041901e47eadae699}\label{classrev_1_1_matrix_a20ce3d94cee45fe041901e47eadae699}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_matrix_a20ce3d94cee45fe041901e47eadae699}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const
+\begin{DoxyCompactList}\small\item\em Convert to and from Json\+: \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_ac21aff4570624074262ba29ef07caa72}\label{classrev_1_1_matrix_ac21aff4570624074262ba29ef07caa72}} 
+void {\bfseries load\+From\+Json} (const Q\+Json\+Value \&json)
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a8ce903db9525aaeca4e7aa0e59169ea2}\label{classrev_1_1_matrix_a8ce903db9525aaeca4e7aa0e59169ea2}} 
+const D \& {\bfseries at} (size\+\_\+t row, size\+\_\+t column) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a9534f77065f4755fafffc4fd9658dfe6}\label{classrev_1_1_matrix_a9534f77065f4755fafffc4fd9658dfe6}} 
+D \& {\bfseries at} (size\+\_\+t row, size\+\_\+t column)
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a333da8d363e3f4475c36ff6f6064e8a1}\label{classrev_1_1_matrix_a333da8d363e3f4475c36ff6f6064e8a1}} 
+uint32\+\_\+t \mbox{\hyperlink{classrev_1_1_matrix_a333da8d363e3f4475c36ff6f6064e8a1}{num\+Rows}} () const
+\begin{DoxyCompactList}\small\item\em Number of rows in the matrix. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a8bcf22ce81956d0714a085cb4ba63dbc}\label{classrev_1_1_matrix_a8bcf22ce81956d0714a085cb4ba63dbc}} 
+uint32\+\_\+t \mbox{\hyperlink{classrev_1_1_matrix_a8bcf22ce81956d0714a085cb4ba63dbc}{num\+Columns}} () const
+\begin{DoxyCompactList}\small\item\em Number of columns in the matrix. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a0d601ef22d6cd045fa23b978f15f6af3}\label{classrev_1_1_matrix_a0d601ef22d6cd045fa23b978f15f6af3}} 
+bool \mbox{\hyperlink{classrev_1_1_matrix_a0d601ef22d6cd045fa23b978f15f6af3}{is\+Square}} () const
+\begin{DoxyCompactList}\small\item\em Whether the matrix is square or not. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a40ddf66e2af814bc2efb8dc3760e7090}\label{classrev_1_1_matrix_a40ddf66e2af814bc2efb8dc3760e7090}} 
+const \mbox{\hyperlink{classrev_1_1_vector}{Vector}}$<$ D, R $>$ \& \mbox{\hyperlink{classrev_1_1_matrix_a40ddf66e2af814bc2efb8dc3760e7090}{get\+Column}} (size\+\_\+t index) const
+\begin{DoxyCompactList}\small\item\em Obtain column at the given index. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a1b64cb2a08794869e61dfcabaa3ab02a}\label{classrev_1_1_matrix_a1b64cb2a08794869e61dfcabaa3ab02a}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector}}$<$ D, R $>$ \& {\bfseries column} (size\+\_\+t index)
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a323c186a0bbf60a47b918cb27bfbaea0}\label{classrev_1_1_matrix_a323c186a0bbf60a47b918cb27bfbaea0}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector}}$<$ D, C $>$ \mbox{\hyperlink{classrev_1_1_matrix_a323c186a0bbf60a47b918cb27bfbaea0}{get\+Row}} (size\+\_\+t index) const
+\begin{DoxyCompactList}\small\item\em Obtain row at the given index. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_aafb4e418b6cb89f4c0d73bd126782ef2}\label{classrev_1_1_matrix_aafb4e418b6cb89f4c0d73bd126782ef2}} 
+const \mbox{\hyperlink{classrev_1_1_matrix}{Matrix}}$<$ D, C, R $>$ \mbox{\hyperlink{classrev_1_1_matrix_aafb4e418b6cb89f4c0d73bd126782ef2}{transposed}} () const
+\begin{DoxyCompactList}\small\item\em Return a transposed version of this matrix. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a00221a77493da4c84afb88a1360c62d8}\label{classrev_1_1_matrix_a00221a77493da4c84afb88a1360c62d8}} 
+const std\+::array$<$ \mbox{\hyperlink{classrev_1_1_vector}{Vector}}$<$ D, R $>$, C $>$ \& \mbox{\hyperlink{classrev_1_1_matrix_a00221a77493da4c84afb88a1360c62d8}{get\+Array}} () const
+\begin{DoxyCompactList}\small\item\em return internal array \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a5e5eb20c5791117b78e2eb8d060f545f}\label{classrev_1_1_matrix_a5e5eb20c5791117b78e2eb8d060f545f}} 
+std\+::array$<$ \mbox{\hyperlink{classrev_1_1_vector}{Vector}}$<$ D, R $>$, C $>$ \& {\bfseries array} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a98bd2813d4f448fb5191b7e315fea381}\label{classrev_1_1_matrix_a98bd2813d4f448fb5191b7e315fea381}} 
+const D $\ast$ {\bfseries get\+Data} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a959e129ac237039a94000a95ab0dbfe6}\label{classrev_1_1_matrix_a959e129ac237039a94000a95ab0dbfe6}} 
+D $\ast$ {\bfseries data} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a4172cd4018dfd0ed53fe81557bae3d52}\label{classrev_1_1_matrix_a4172cd4018dfd0ed53fe81557bae3d52}} 
+void \mbox{\hyperlink{classrev_1_1_matrix_a4172cd4018dfd0ed53fe81557bae3d52}{normalize\+Columns}} ()
+\begin{DoxyCompactList}\small\item\em normalize the columns of the matrix \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classrev_1_1_matrix_a323a777d775cc672a918ee57efbba10d}{columns\+Match}} (const \mbox{\hyperlink{classrev_1_1_matrix}{Matrix}} \&source)
+\begin{DoxyCompactList}\small\item\em Returns whether or not the two given matrices contain the same column vectors. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_af29efc9d926de7c3e8d6a49ff1ccfb4f}\label{classrev_1_1_matrix_af29efc9d926de7c3e8d6a49ff1ccfb4f}} 
+std\+::vector$<$ std\+::vector$<$ D $>$ $>$ \mbox{\hyperlink{classrev_1_1_matrix_af29efc9d926de7c3e8d6a49ff1ccfb4f}{as\+Std\+Vector}} () const
+\begin{DoxyCompactList}\small\item\em Get as std\+::vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_abfa9a150eb63accefec555d55dd0d4d1}\label{classrev_1_1_matrix_abfa9a150eb63accefec555d55dd0d4d1}} 
+void \mbox{\hyperlink{classrev_1_1_matrix_abfa9a150eb63accefec555d55dd0d4d1}{check\+Validity}} ()
+\begin{DoxyCompactList}\small\item\em Check static assertions for validity of matrix. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a8b260b42103e9076599e9e5f8205cada}\label{classrev_1_1_matrix_a8b260b42103e9076599e9e5f8205cada}} 
+void {\bfseries check\+Validity} (const std\+::vector$<$ std\+::vector$<$ D $>$$>$ \&columns)
+\item 
+const \mbox{\hyperlink{classrev_1_1_vector}{Vector}}$<$ D, C $>$ \mbox{\hyperlink{classrev_1_1_matrix_a1b1a8827bda6414891c3cf29500119da}{operator $\ast$}} (const std\+::vector$<$ D $>$ \&vec) const
+\begin{DoxyCompactList}\small\item\em Multiply matrix by an array. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a1b7dcd6bf8c33784abaa0d6762b51879}\label{classrev_1_1_matrix_a1b7dcd6bf8c33784abaa0d6762b51879}} 
+void \mbox{\hyperlink{classrev_1_1_matrix_a1b7dcd6bf8c33784abaa0d6762b51879}{initialize}} ()
+\begin{DoxyCompactList}\small\item\em check\+Validity matrix of the given dimensions \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a7ab4a6480c014639d29fe088bb3bf795}\label{classrev_1_1_matrix_a7ab4a6480c014639d29fe088bb3bf795}} 
+void \mbox{\hyperlink{classrev_1_1_matrix_a7ab4a6480c014639d29fe088bb3bf795}{initialize}} (int default\+Value)
+\begin{DoxyCompactList}\small\item\em check\+Validity matrix of the given dimensions with the given value for all elements \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a674e074f9ecf2b36d050b51babc3acaf}\label{classrev_1_1_matrix_a674e074f9ecf2b36d050b51babc3acaf}} 
+std\+::array$<$ \mbox{\hyperlink{classrev_1_1_vector}{Vector}}$<$ D, R $>$, C $>$ \mbox{\hyperlink{classrev_1_1_matrix_a674e074f9ecf2b36d050b51babc3acaf}{m\+\_\+mtx}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_vector}{Vector}} of columns representing the matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_aecc2950843b75b014486ee8d17a5851c}\label{classrev_1_1_matrix_aecc2950843b75b014486ee8d17a5851c}} 
+{\footnotesize template$<$class D , size\+\_\+t RR, size\+\_\+t CC$>$ }\\class \mbox{\hyperlink{classrev_1_1_matrix_aecc2950843b75b014486ee8d17a5851c}{Matrix}}
+\begin{DoxyCompactList}\small\item\em Since the matrix class is templated, it needs to be friends with all possible templates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Operators}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a2b79057d2ed8e7c3de774cde98717c28}\label{classrev_1_1_matrix_a2b79057d2ed8e7c3de774cde98717c28}} 
+const \mbox{\hyperlink{classrev_1_1_matrix}{Matrix}}$<$ D, R, C $>$ {\bfseries operator $\ast$} (const \mbox{\hyperlink{classrev_1_1_matrix}{Matrix}}$<$ D, R, C $>$ \&matrix, D factor)
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a48d7bc1a38c2e64457467619613d9982}\label{classrev_1_1_matrix_a48d7bc1a38c2e64457467619613d9982}} 
+const \mbox{\hyperlink{classrev_1_1_matrix}{Matrix}}$<$ D, R, C $>$ {\bfseries operator/} (const \mbox{\hyperlink{classrev_1_1_matrix}{Matrix}}$<$ D, R, C $>$ \&matrix, D divisor)
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_ae155ccfe9d112451dfeeedbb02082a67}\label{classrev_1_1_matrix_ae155ccfe9d112451dfeeedbb02082a67}} 
+\mbox{\hyperlink{classrev_1_1_matrix}{Matrix}}$<$ D, R, C $>$ {\bfseries operator+} (const \mbox{\hyperlink{classrev_1_1_matrix}{Matrix}}$<$ D, R, C $>$ \&m1, const \mbox{\hyperlink{classrev_1_1_matrix}{Matrix}}$<$ D, R, C $>$ \&m2)
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_af29e5c618452bcd0c1cf703459ab6bc4}\label{classrev_1_1_matrix_af29e5c618452bcd0c1cf703459ab6bc4}} 
+\mbox{\hyperlink{classrev_1_1_matrix}{Matrix}}$<$ D, R, C $>$ {\bfseries operator-\/} (const \mbox{\hyperlink{classrev_1_1_matrix}{Matrix}}$<$ D, R, C $>$ \&m1, const \mbox{\hyperlink{classrev_1_1_matrix}{Matrix}}$<$ D, R, C $>$ \&m2)
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a20346d9b251ec3b546e4b7bca02e1bb5}\label{classrev_1_1_matrix_a20346d9b251ec3b546e4b7bca02e1bb5}} 
+{\footnotesize template$<$size\+\_\+t CC$>$ }\\\mbox{\hyperlink{classrev_1_1_matrix}{Matrix}}$<$ D, R, CC $>$ {\bfseries operator $\ast$} (const \mbox{\hyperlink{classrev_1_1_matrix}{Matrix}}$<$ D, R, C $>$ \&m1, const \mbox{\hyperlink{classrev_1_1_matrix}{Matrix}}$<$ D, C, CC $>$ \&m2)
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a19b0def09d44e81421a4ec172575c272}\label{classrev_1_1_matrix_a19b0def09d44e81421a4ec172575c272}} 
+\mbox{\hyperlink{classrev_1_1_matrix}{Matrix}}$<$ D, R, C $>$ {\bfseries operator $\ast$} (D factor, const \mbox{\hyperlink{classrev_1_1_matrix}{Matrix}}$<$ D, R, C $>$ \&matrix)
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_aa6418d0e275104b994586dd320db559e}\label{classrev_1_1_matrix_aa6418d0e275104b994586dd320db559e}} 
+\mbox{\hyperlink{classrev_1_1_matrix}{Matrix}} \& {\bfseries operator=} (const \mbox{\hyperlink{classrev_1_1_matrix}{Matrix}}$<$ D, R, C $>$ \&source)
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_acbc3980c84732236d5c026351d146088}\label{classrev_1_1_matrix_acbc3980c84732236d5c026351d146088}} 
+\mbox{\hyperlink{classrev_1_1_matrix}{Matrix}} \& {\bfseries operator=} (const std\+::array$<$ D, R $\ast$C $>$ \&source)
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_ac3a4426617041d54a5900f0db122fcd1}\label{classrev_1_1_matrix_ac3a4426617041d54a5900f0db122fcd1}} 
+const D \& {\bfseries operator()} (int row, int column) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a7e72360901e54d0bbcd0475d89513a2d}\label{classrev_1_1_matrix_a7e72360901e54d0bbcd0475d89513a2d}} 
+D \& {\bfseries operator()} (int row, int column)
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_ae4645d33621e20dba66777624e269bb3}\label{classrev_1_1_matrix_ae4645d33621e20dba66777624e269bb3}} 
+D \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (int index)
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_ae28c7f193b02d96adf50f949fa7d2033}\label{classrev_1_1_matrix_ae28c7f193b02d96adf50f949fa7d2033}} 
+const \mbox{\hyperlink{classrev_1_1_vector}{Vector}}$<$ D, R $>$ {\bfseries operator $\ast$} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector}}$<$ D, C $>$ \&source) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a9c4e5b52a547f41bdf0df31af9da96bc}\label{classrev_1_1_matrix_a9c4e5b52a547f41bdf0df31af9da96bc}} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classrev_1_1_matrix}{Matrix}}$<$ D, R, C $>$ \&source) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_aef06255f76028255c4121ee04351c5a6}\label{classrev_1_1_matrix_aef06255f76028255c4121ee04351c5a6}} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{classrev_1_1_matrix}{Matrix}}$<$ D, R, C $>$ \&source) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a80b357b6947037824719712e671e1d2b}\label{classrev_1_1_matrix_a80b357b6947037824719712e671e1d2b}} 
+\mbox{\hyperlink{classrev_1_1_matrix}{Matrix}}$<$ D, R, C $>$ \& {\bfseries operator $\ast$=} (D scale)
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_aad6fbad2119fa2db6e98e4ac8e40c941}\label{classrev_1_1_matrix_aad6fbad2119fa2db6e98e4ac8e40c941}} 
+\mbox{\hyperlink{classrev_1_1_matrix}{Matrix}}$<$ D, R, C $>$ \& {\bfseries operator+=} (const \mbox{\hyperlink{classrev_1_1_matrix}{Matrix}}$<$ D, R, C $>$ \&source)
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_af55209c362c30b47ae77e217f614b8bb}\label{classrev_1_1_matrix_af55209c362c30b47ae77e217f614b8bb}} 
+\mbox{\hyperlink{classrev_1_1_matrix}{Matrix}}$<$ D, R, C $>$ \& {\bfseries operator+=} (D scale)
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a44e3eeb00e5437d702ea130c2bfacc2b}\label{classrev_1_1_matrix_a44e3eeb00e5437d702ea130c2bfacc2b}} 
+\mbox{\hyperlink{classrev_1_1_matrix}{Matrix}}$<$ D, R, C $>$ \& {\bfseries operator-\/=} (const \mbox{\hyperlink{classrev_1_1_matrix}{Matrix}}$<$ D, R, C $>$ \&source)
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_ab6ce88aa0d4b82a7718d8480bead76e7}\label{classrev_1_1_matrix_ab6ce88aa0d4b82a7718d8480bead76e7}} 
+\mbox{\hyperlink{classrev_1_1_matrix}{Matrix}}$<$ D, R, C $>$ \& {\bfseries operator-\/=} (D scale)
+\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_a2199777baea7cb111b0483cc13e12393}\label{classrev_1_1_matrix_a2199777baea7cb111b0483cc13e12393}} 
+\mbox{\hyperlink{classrev_1_1_matrix_a2199777baea7cb111b0483cc13e12393}{operator Q\+String}} () const
+\begin{DoxyCompactList}\small\item\em Implicit conversion to Q\+String for use with q\+Debug. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_matrix_ae09e5d1019a882aaf23423bc88dbb307}\label{classrev_1_1_matrix_ae09e5d1019a882aaf23423bc88dbb307}} 
+const \mbox{\hyperlink{classrev_1_1_matrix}{Matrix}}$<$ D, R, C $>$ {\bfseries operator-\/} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class D, size\+\_\+t R, size\+\_\+t C$>$\newline
+class rev\+::\+Matrix$<$ D, R, C $>$}
+
+A class representing a C\+O\+L\+U\+MN M\+A\+J\+OR matrix of any size. 
+
+Template takes in the numeric type (e.\+g. float, double), and size of \mbox{\hyperlink{classrev_1_1_matrix}{Matrix}} \begin{DoxyNote}{Note}
+Uses std\+::move call to instantiate with a std\+::vector, so does not preserve input 
+\end{DoxyNote}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_matrix_a323a777d775cc672a918ee57efbba10d}\label{classrev_1_1_matrix_a323a777d775cc672a918ee57efbba10d}} 
+\index{rev::Matrix$<$ D, R, C $>$@{rev::Matrix$<$ D, R, C $>$}!columnsMatch@{columnsMatch}}
+\index{columnsMatch@{columnsMatch}!rev::Matrix$<$ D, R, C $>$@{rev::Matrix$<$ D, R, C $>$}}
+\subsubsection{\texorpdfstring{columnsMatch()}{columnsMatch()}}
+{\footnotesize\ttfamily template$<$class D, size\+\_\+t R, size\+\_\+t C$>$ \\
+bool \mbox{\hyperlink{classrev_1_1_matrix}{rev\+::\+Matrix}}$<$ D, R, C $>$\+::columns\+Match (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_matrix}{Matrix}}$<$ D, R, C $>$ \&}]{source }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns whether or not the two given matrices contain the same column vectors. 
+
+This match is irrespective of column order \mbox{\Hypertarget{classrev_1_1_matrix_a1b1a8827bda6414891c3cf29500119da}\label{classrev_1_1_matrix_a1b1a8827bda6414891c3cf29500119da}} 
+\index{rev::Matrix$<$ D, R, C $>$@{rev::Matrix$<$ D, R, C $>$}!operator $\ast$@{operator $\ast$}}
+\index{operator $\ast$@{operator $\ast$}!rev::Matrix$<$ D, R, C $>$@{rev::Matrix$<$ D, R, C $>$}}
+\subsubsection{\texorpdfstring{operator $\ast$()}{operator *()}}
+{\footnotesize\ttfamily template$<$class D, size\+\_\+t R, size\+\_\+t C$>$ \\
+const \mbox{\hyperlink{classrev_1_1_vector}{Vector}}$<$D, C$>$ \mbox{\hyperlink{classrev_1_1_matrix}{rev\+::\+Matrix}}$<$ D, R, C $>$\+::operator $\ast$ (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ D $>$ \&}]{vec }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Multiply matrix by an array. 
+
+Size of array is assumed to match the matrix 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/geometry/G\+Matrix.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,149 @@
+\hypertarget{classrev_1_1_skeleton}{}\section{rev\+::Skeleton Class Reference}
+\label{classrev_1_1_skeleton}\index{rev::Skeleton@{rev::Skeleton}}
+Inheritance diagram for rev\+::Skeleton\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_skeleton}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_acdd083c8975288192d3a0dd56c2734f4}\label{classrev_1_1_skeleton_acdd083c8975288192d3a0dd56c2734f4}} 
+\mbox{\hyperlink{classrev_1_1_skeleton_acdd083c8975288192d3a0dd56c2734f4}{Skeleton}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_skeleton}{Skeleton}} name is name of root node. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_a92d90c515cad2c0f0b5685383af564e7}\label{classrev_1_1_skeleton_a92d90c515cad2c0f0b5685383af564e7}} 
+{\bfseries Skeleton} (const \mbox{\hyperlink{classrev_1_1_skeleton}{Skeleton}} \&other)
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_a8b919efbe5ab9c7896a699170d5ce46d}\label{classrev_1_1_skeleton_a8b919efbe5ab9c7896a699170d5ce46d}} 
+{\bfseries Skeleton} (const \mbox{\hyperlink{classrev_1_1_skeleton}{Skeleton}} \&other, bool just\+Bones)
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_a2758b38fe7bf7688853a98976bcb6157}\label{classrev_1_1_skeleton_a2758b38fe7bf7688853a98976bcb6157}} 
+{\bfseries $\sim$\+Skeleton} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methhods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_a0df67772aee38fa2dbaead05951b65dc}\label{classrev_1_1_skeleton_a0df67772aee38fa2dbaead05951b65dc}} 
+const \mbox{\hyperlink{classrev_1_1_a_a_b_b}{A\+A\+BB}} \& {\bfseries bounding\+Box} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_a0fd9fc350c2caa1693ebd14850a1dc1f}\label{classrev_1_1_skeleton_a0fd9fc350c2caa1693ebd14850a1dc1f}} 
+virtual Resource\+Type \mbox{\hyperlink{classrev_1_1_skeleton_a0fd9fc350c2caa1693ebd14850a1dc1f}{get\+Resource\+Type}} () const override
+\begin{DoxyCompactList}\small\item\em Get the type of resource stored by this handle. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_a572082d61689a0effafe7691fa723a0e}\label{classrev_1_1_skeleton_a572082d61689a0effafe7691fa723a0e}} 
+void \mbox{\hyperlink{classrev_1_1_skeleton_a572082d61689a0effafe7691fa723a0e}{on\+Removal}} (\mbox{\hyperlink{classrev_1_1_resource_cache}{Resource\+Cache}} $\ast$cache=nullptr) override
+\begin{DoxyCompactList}\small\item\em What action to perform on removal of the resource. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_a00b6b49047db0293ad3a26fbd74be904}\label{classrev_1_1_skeleton_a00b6b49047db0293ad3a26fbd74be904}} 
+bool \mbox{\hyperlink{classrev_1_1_skeleton_a00b6b49047db0293ad3a26fbd74be904}{is\+Malformed}} () const
+\begin{DoxyCompactList}\small\item\em Whether or not the skeleton is malformed for inverse kinematics. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_a19d28390c0486a7fad737d84360260d5}\label{classrev_1_1_skeleton_a19d28390c0486a7fad737d84360260d5}} 
+const \mbox{\hyperlink{classrev_1_1_skeleton_joint}{Skeleton\+Joint}} $\ast$ {\bfseries root} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_ab03b4c20a06b50056c77fa7685a78bc1}\label{classrev_1_1_skeleton_ab03b4c20a06b50056c77fa7685a78bc1}} 
+\mbox{\hyperlink{classrev_1_1_skeleton_joint}{Skeleton\+Joint}} $\ast$ {\bfseries root} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_a8d718e857c60cf725444f95f28ab3358}\label{classrev_1_1_skeleton_a8d718e857c60cf725444f95f28ab3358}} 
+const std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} $>$ \& {\bfseries inverse\+Bind\+Pose} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_a4233e58d0d75de4817a38a4725309f02}\label{classrev_1_1_skeleton_a4233e58d0d75de4817a38a4725309f02}} 
+const \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} \& {\bfseries global\+Inverse\+Transform} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_a5bb31ff52109b274c4a04acc43ff70d4}\label{classrev_1_1_skeleton_a5bb31ff52109b274c4a04acc43ff70d4}} 
+void {\bfseries set\+Global\+Inverse\+Transform} (const \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} \&mat)
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_ad1768b810c81af585fb6ff6e773c8f39}\label{classrev_1_1_skeleton_ad1768b810c81af585fb6ff6e773c8f39}} 
+bool \mbox{\hyperlink{classrev_1_1_skeleton_ad1768b810c81af585fb6ff6e773c8f39}{has\+Root}} () const
+\begin{DoxyCompactList}\small\item\em whether or not the skeleton has a root node \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_aa1b1ed888cd08d47497998070a1b4d92}\label{classrev_1_1_skeleton_aa1b1ed888cd08d47497998070a1b4d92}} 
+void \mbox{\hyperlink{classrev_1_1_skeleton_aa1b1ed888cd08d47497998070a1b4d92}{add\+Root\+Node}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name)
+\begin{DoxyCompactList}\small\item\em Add root node if doesn\textquotesingle{}t exist. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_ae59814a9c7beb63c0ca2598497eddb34}\label{classrev_1_1_skeleton_ae59814a9c7beb63c0ca2598497eddb34}} 
+const std\+::vector$<$ uint32\+\_\+t $>$ \& \mbox{\hyperlink{classrev_1_1_skeleton_ae59814a9c7beb63c0ca2598497eddb34}{bone\+Nodes}} () const
+\begin{DoxyCompactList}\small\item\em Get the vector of nodes that have bones. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_a8187661a458f7d5c6534a1b7d7aa34bd}\label{classrev_1_1_skeleton_a8187661a458f7d5c6534a1b7d7aa34bd}} 
+uint32\+\_\+t \mbox{\hyperlink{classrev_1_1_skeleton_a8187661a458f7d5c6534a1b7d7aa34bd}{num\+Bones}} () const
+\begin{DoxyCompactList}\small\item\em Get the number of bones in the skeleton. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_a89c844c01f3200f42fa812d691af3cb5}\label{classrev_1_1_skeleton_a89c844c01f3200f42fa812d691af3cb5}} 
+const std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_skeleton_joint}{Skeleton\+Joint}} $>$ \& \mbox{\hyperlink{classrev_1_1_skeleton_a89c844c01f3200f42fa812d691af3cb5}{nodes}} () const
+\begin{DoxyCompactList}\small\item\em Get the vector of nodes in the skeleton. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_a9b121e7a33dbef031c75e1b9098302dc}\label{classrev_1_1_skeleton_a9b121e7a33dbef031c75e1b9098302dc}} 
+\mbox{\hyperlink{classrev_1_1_skeleton}{Skeleton}} \mbox{\hyperlink{classrev_1_1_skeleton_a9b121e7a33dbef031c75e1b9098302dc}{pruned\+Bone\+Skeleton}} () const
+\begin{DoxyCompactList}\small\item\em Return hierarchy with just bones (root may not have a bone) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_af80a524f62a0f16323b946c7bfb3cecc}\label{classrev_1_1_skeleton_af80a524f62a0f16323b946c7bfb3cecc}} 
+const \mbox{\hyperlink{classrev_1_1_skeleton_joint}{Skeleton\+Joint}} \& \mbox{\hyperlink{classrev_1_1_skeleton_af80a524f62a0f16323b946c7bfb3cecc}{get\+Node}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name) const
+\begin{DoxyCompactList}\small\item\em Get the node with the given name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_aa712c7b484dfff57439020d88cf5dbb6}\label{classrev_1_1_skeleton_aa712c7b484dfff57439020d88cf5dbb6}} 
+\mbox{\hyperlink{classrev_1_1_skeleton_joint}{Skeleton\+Joint}} \& {\bfseries get\+Node} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name)
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_a39bfc43f07ca5c9f463fd70accae2801}\label{classrev_1_1_skeleton_a39bfc43f07ca5c9f463fd70accae2801}} 
+\mbox{\hyperlink{classrev_1_1_skeleton_joint}{Skeleton\+Joint}} \& {\bfseries get\+Node} (const uint32\+\_\+t \&idx)
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_ababdca72b05ab41792b6f0e3063f53dc}\label{classrev_1_1_skeleton_ababdca72b05ab41792b6f0e3063f53dc}} 
+const \mbox{\hyperlink{classrev_1_1_skeleton_joint}{Skeleton\+Joint}} \& {\bfseries get\+Node} (const uint32\+\_\+t \&idx) const
+\item 
+uint32\+\_\+t \mbox{\hyperlink{classrev_1_1_skeleton_a34309a211bf14c61cdf910746de75c80}{add\+Child}} (uint32\+\_\+t parent\+Index, const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&unique\+Name)
+\begin{DoxyCompactList}\small\item\em Add a child node to the node at the specified index. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_skeleton_a3fcd885297975b4ce830363d7255fdf0}{identity\+Pose}} (std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} $>$ \&out\+Pose) const
+\begin{DoxyCompactList}\small\item\em Return default pose of the skeleton. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_ab3de46f7df060875c8cd82b16ddd5a00}\label{classrev_1_1_skeleton_ab3de46f7df060875c8cd82b16ddd5a00}} 
+void \mbox{\hyperlink{classrev_1_1_skeleton_ab3de46f7df060875c8cd82b16ddd5a00}{generate\+Bounding\+Box}} ()
+\begin{DoxyCompactList}\small\item\em Generate the bounding box for the skeleton. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_a54a2a68828f99f864406a3713e8ad9a5}\label{classrev_1_1_skeleton_a54a2a68828f99f864406a3713e8ad9a5}} 
+class {\bfseries Skeleton\+Joint}
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_ac3e0a085a76d6fcad904e95ebbe2c6a5}\label{classrev_1_1_skeleton_ac3e0a085a76d6fcad904e95ebbe2c6a5}} 
+class {\bfseries Model\+Reader}
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_af47625f50036c466946f960db7320bcf}\label{classrev_1_1_skeleton_af47625f50036c466946f960db7320bcf}} 
+class {\bfseries Animation}
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_a395c52c1b342efdb79f36b2d4b2f1565}\label{classrev_1_1_skeleton_a395c52c1b342efdb79f36b2d4b2f1565}} 
+class {\bfseries Node\+Animation}
+\item 
+\mbox{\Hypertarget{classrev_1_1_skeleton_a2bf2a0e9b454c55aa5dcb5aa4698697b}\label{classrev_1_1_skeleton_a2bf2a0e9b454c55aa5dcb5aa4698697b}} 
+class {\bfseries Model}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_skeleton_a34309a211bf14c61cdf910746de75c80}\label{classrev_1_1_skeleton_a34309a211bf14c61cdf910746de75c80}} 
+\index{rev::Skeleton@{rev::Skeleton}!addChild@{addChild}}
+\index{addChild@{addChild}!rev::Skeleton@{rev::Skeleton}}
+\subsubsection{\texorpdfstring{addChild()}{addChild()}}
+{\footnotesize\ttfamily uint32\+\_\+t rev\+::\+Skeleton\+::add\+Child (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{parent\+Index,  }\item[{const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&}]{unique\+Name }\end{DoxyParamCaption})}
+
+
+
+Add a child node to the node at the specified index. 
+
+\begin{DoxyReturn}{Returns}
+Returns the index of the child node in m\+\_\+nodes 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classrev_1_1_skeleton_a3fcd885297975b4ce830363d7255fdf0}\label{classrev_1_1_skeleton_a3fcd885297975b4ce830363d7255fdf0}} 
+\index{rev::Skeleton@{rev::Skeleton}!identityPose@{identityPose}}
+\index{identityPose@{identityPose}!rev::Skeleton@{rev::Skeleton}}
+\subsubsection{\texorpdfstring{identityPose()}{identityPose()}}
+{\footnotesize\ttfamily void rev\+::\+Skeleton\+::identity\+Pose (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} $>$ \&}]{out\+Pose }\end{DoxyParamCaption}) const}
+
+
+
+Return default pose of the skeleton. 
+
+This is just a list of identity matrices of the proper length. \begin{DoxyNote}{Note}
+To get the bind pose of the skeleton, inverse the inverse\+Bind\+Transform for each bone in the vector 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/geometry/G\+Skeleton.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/geometry/G\+Skeleton.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,283 @@
+\hypertarget{classrev_1_1_resource_cache}{}\section{rev\+::Resource\+Cache Class Reference}
+\label{classrev_1_1_resource_cache}\index{rev::ResourceCache@{rev::ResourceCache}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing a resource cache.  
+
+
+
+
+{\ttfamily \#include $<$G\+Resource\+Cache.\+h$>$}
+
+Inheritance diagram for rev\+::Resource\+Cache\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{classrev_1_1_resource_cache}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a803d6de05e0ffd1be9f3e8cdc62b645a}\label{classrev_1_1_resource_cache_a803d6de05e0ffd1be9f3e8cdc62b645a}} 
+typedef std\+::deque$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ $>$ {\bfseries Resource\+List}
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a45e02c74189094fb33835e5cd9dc15fc}\label{classrev_1_1_resource_cache_a45e02c74189094fb33835e5cd9dc15fc}} 
+typedef \mbox{\hyperlink{classrev_1_1_threaded_map}{Threaded\+Map}}$<$ \mbox{\hyperlink{classrev_1_1_uuid}{Uuid}}, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ $>$ {\bfseries Resource\+Map}
+\end{DoxyCompactItemize}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_aa5f04dcdc5fa34036f639671ba4ca4af}\label{classrev_1_1_resource_cache_aa5f04dcdc5fa34036f639671ba4ca4af}} 
+void \mbox{\hyperlink{classrev_1_1_resource_cache_aa5f04dcdc5fa34036f639671ba4ca4af}{run\+Post\+Construction}} (const \mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \&handle\+Id, const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&handle\+Name)
+\begin{DoxyCompactList}\small\item\em Run the post-\/construction method of the given resource handle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a41227d1d18312fca28722a546eea778e}\label{classrev_1_1_resource_cache_a41227d1d18312fca28722a546eea778e}} 
+void {\bfseries resource\+Changed} (const \mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \&handle)
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_ab4231c5ec96d7971de9f2d0b401ca360}\label{classrev_1_1_resource_cache_ab4231c5ec96d7971de9f2d0b401ca360}} 
+void {\bfseries resource\+Added} (const \mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \&handle)
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a9b8f589a98a246d27cfe61c0099208c7}\label{classrev_1_1_resource_cache_a9b8f589a98a246d27cfe61c0099208c7}} 
+void {\bfseries resource\+Deleted} (const \mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \&handle)
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a4e461fa311935681d520cbad94a2b35e}\label{classrev_1_1_resource_cache_a4e461fa311935681d520cbad94a2b35e}} 
+void {\bfseries done\+Loading\+Resources} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_af523582dd1171a7709c32152e55fe806}\label{classrev_1_1_resource_cache_af523582dd1171a7709c32152e55fe806}} 
+void {\bfseries started\+Loading\+Resources} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a2f9009078e9ac52f9ec33545523d0fd8}\label{classrev_1_1_resource_cache_a2f9009078e9ac52f9ec33545523d0fd8}} 
+void {\bfseries done\+Loading\+Resource} (const \mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \&resource\+Handle, const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&handle\+Name)
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a0fe870b4a3e0b148df0a35da180ed402}\label{classrev_1_1_resource_cache_a0fe870b4a3e0b148df0a35da180ed402}} 
+void {\bfseries resource\+Needs\+Reload} (const \mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \&resource\+Handle)
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_af37abcfc41c1c1303140cf20487b164b}\label{classrev_1_1_resource_cache_af37abcfc41c1c1303140cf20487b164b}} 
+{\bfseries Resource\+Cache} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, \mbox{\hyperlink{classrev_1_1_process_manager}{Process\+Manager}} $\ast$\mbox{\hyperlink{classrev_1_1_resource_cache_a375d3dd14e3d469e93005b9e059c8a89}{process\+Manager}}, const size\+\_\+t size\+In\+Mb)
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a5b92e94d9b51204099ebb2f9ac311721}\label{classrev_1_1_resource_cache_a5b92e94d9b51204099ebb2f9ac311721}} 
+{\bfseries $\sim$\+Resource\+Cache} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_afabc839a82b2487aa70cda5f5c533aff}\label{classrev_1_1_resource_cache_afabc839a82b2487aa70cda5f5c533aff}} 
+const Resource\+List \& {\bfseries top\+Level\+Resources} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a72dd4fc324d1fb4eb76f91605a91ea33}\label{classrev_1_1_resource_cache_a72dd4fc324d1fb4eb76f91605a91ea33}} 
+Q\+Mutex \& {\bfseries resource\+Map\+Mutex} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a375d3dd14e3d469e93005b9e059c8a89}\label{classrev_1_1_resource_cache_a375d3dd14e3d469e93005b9e059c8a89}} 
+\mbox{\hyperlink{classrev_1_1_process_manager}{Process\+Manager}} $\ast$ \mbox{\hyperlink{classrev_1_1_resource_cache_a375d3dd14e3d469e93005b9e059c8a89}{process\+Manager}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_process}{Process}} manager for pushing load requests. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a6619ed989863f007ed31af50f93ee17b}\label{classrev_1_1_resource_cache_a6619ed989863f007ed31af50f93ee17b}} 
+const \mbox{\hyperlink{classrev_1_1_threaded_map}{Resource\+Map}} \& {\bfseries resources} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a74abc6fbfd69f13eda21aa3e4214afc9}\label{classrev_1_1_resource_cache_a74abc6fbfd69f13eda21aa3e4214afc9}} 
+const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_polygon_cache}{Polygon\+Cache}} $>$ \& {\bfseries polygon\+Cache} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a3f740cd92338f7c4243b46c2a4b6fdc1}\label{classrev_1_1_resource_cache_a3f740cd92338f7c4243b46c2a4b6fdc1}} 
+size\+\_\+t \mbox{\hyperlink{classrev_1_1_resource_cache_a3f740cd92338f7c4243b46c2a4b6fdc1}{get\+Max\+Cost}} () const
+\begin{DoxyCompactList}\small\item\em The max cost of the cache. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a0fff35652c17159635226dc24538f608}\label{classrev_1_1_resource_cache_a0fff35652c17159635226dc24538f608}} 
+void {\bfseries set\+Max\+Cost} (size\+\_\+t cost)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_ad611f6e8ffb0d69ff36f70230366b73e}\label{classrev_1_1_resource_cache_ad611f6e8ffb0d69ff36f70230366b73e}} 
+bool \mbox{\hyperlink{classrev_1_1_resource_cache_ad611f6e8ffb0d69ff36f70230366b73e}{is\+Loading\+Resources}} () const
+\begin{DoxyCompactList}\small\item\em Whether or not the resource cache is currently loading any resources. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a1a5eff8ef331510ee169bac03ed96d22}\label{classrev_1_1_resource_cache_a1a5eff8ef331510ee169bac03ed96d22}} 
+void \mbox{\hyperlink{classrev_1_1_resource_cache_a1a5eff8ef331510ee169bac03ed96d22}{increment\+Load\+Count}} ()
+\begin{DoxyCompactList}\small\item\em Increment count of loading resources. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a1a286e97bd8730cefeb452ae2b2756a6}\label{classrev_1_1_resource_cache_a1a286e97bd8730cefeb452ae2b2756a6}} 
+void {\bfseries decrement\+Load\+Count} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a7c86feb360759a4be4fee0b8d029cf03}\label{classrev_1_1_resource_cache_a7c86feb360759a4be4fee0b8d029cf03}} 
+bool \mbox{\hyperlink{classrev_1_1_resource_cache_a7c86feb360759a4be4fee0b8d029cf03}{cleared\+Removable}} () const
+\begin{DoxyCompactList}\small\item\em Return true if all removable resources have been removed. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classrev_1_1_resource_cache_a48e9d7baa0b5c323a27aade413181f36}{insert\+Handle}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \&resource)
+\begin{DoxyCompactList}\small\item\em Insert a resource into the cache. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a04f4f8aa00b3acf190a13e6542e742c9}\label{classrev_1_1_resource_cache_a04f4f8aa00b3acf190a13e6542e742c9}} 
+bool {\bfseries insert\+Handle} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \&resource, bool $\ast$cleared\+Resources)
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_ab5af062519ea38a958ef59640e0345cf}\label{classrev_1_1_resource_cache_ab5af062519ea38a958ef59640e0345cf}} 
+void \mbox{\hyperlink{classrev_1_1_resource_cache_ab5af062519ea38a958ef59640e0345cf}{clear}} ()
+\begin{DoxyCompactList}\small\item\em Clears all resources. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a2238b0144c3f08fb5213e038f725e4d6}\label{classrev_1_1_resource_cache_a2238b0144c3f08fb5213e038f725e4d6}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \mbox{\hyperlink{classrev_1_1_resource_cache_a2238b0144c3f08fb5213e038f725e4d6}{get\+Handle}} (const \mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \&uuid) const
+\begin{DoxyCompactList}\small\item\em Return resource handle by U\+U\+ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_ada4184b38c0bff91c416ba14587cd3c6}\label{classrev_1_1_resource_cache_ada4184b38c0bff91c416ba14587cd3c6}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \mbox{\hyperlink{classrev_1_1_resource_cache_ada4184b38c0bff91c416ba14587cd3c6}{get\+Handle}} (const Q\+Json\+Value \&handle\+Json) const
+\begin{DoxyCompactList}\small\item\em Obtain handle corresponding to the given J\+S\+ON, or create if it does not exist. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a04bd21a7349c334df284dcc8f9cd99b5}\label{classrev_1_1_resource_cache_a04bd21a7349c334df284dcc8f9cd99b5}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \mbox{\hyperlink{classrev_1_1_resource_cache_a04bd21a7349c334df284dcc8f9cd99b5}{get\+Handle\+With\+Name}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name, Resource\+Type type) const
+\begin{DoxyCompactList}\small\item\em Return a handle given it\textquotesingle{}s name and type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a7d860682efe1eb737fa7d04ccc152bf3}\label{classrev_1_1_resource_cache_a7d860682efe1eb737fa7d04ccc152bf3}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \mbox{\hyperlink{classrev_1_1_resource_cache_a7d860682efe1eb737fa7d04ccc152bf3}{get\+Top\+Level\+Handle\+With\+Path}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&filepath) const
+\begin{DoxyCompactList}\small\item\em This routine will only return top-\/level handles. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_aa1cc7dcb9b002f0567695f5909de90bb}\label{classrev_1_1_resource_cache_aa1cc7dcb9b002f0567695f5909de90bb}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \mbox{\hyperlink{classrev_1_1_resource_cache_aa1cc7dcb9b002f0567695f5909de90bb}{guarantee\+Handle\+With\+Path}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&filepath, Resource\+Type type, Resource\+Behavior\+Flags flags=0)
+\begin{DoxyCompactList}\small\item\em Retrieve or create a top-\/level handle. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a35bb620ee7260f5ef41bcabe87d7d327}\label{classrev_1_1_resource_cache_a35bb620ee7260f5ef41bcabe87d7d327}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ {\bfseries guarantee\+Handle\+With\+Path} (const std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} $>$ \&filepaths, Resource\+Type type, Resource\+Behavior\+Flags flags=0)
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_ae947d8b31bcf5d4fd78bc302f87bd2d2}\label{classrev_1_1_resource_cache_ae947d8b31bcf5d4fd78bc302f87bd2d2}} 
+virtual void \mbox{\hyperlink{classrev_1_1_resource_cache_ae947d8b31bcf5d4fd78bc302f87bd2d2}{post\+Construction}} () override
+\begin{DoxyCompactList}\small\item\em Called after construction of the manager. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a7c10e4c0ec08c45c7561b40a284c9b24}\label{classrev_1_1_resource_cache_a7c10e4c0ec08c45c7561b40a284c9b24}} 
+bool \mbox{\hyperlink{classrev_1_1_resource_cache_a7c10e4c0ec08c45c7561b40a284c9b24}{remove}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \&resource\+Handle, Resource\+Delete\+Flags delete\+Flags=0)
+\begin{DoxyCompactList}\small\item\em Delete the given resource. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_ac93222a125af7450bd2745753864785f}\label{classrev_1_1_resource_cache_ac93222a125af7450bd2745753864785f}} 
+bool {\bfseries remove} (\mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $\ast$resource\+Handle, Resource\+Delete\+Flags delete\+Flags=0)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a95ae2d3e5a5d0d47d8eff2ebd1109b3c}\label{classrev_1_1_resource_cache_a95ae2d3e5a5d0d47d8eff2ebd1109b3c}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_resource_cache_a95ae2d3e5a5d0d47d8eff2ebd1109b3c}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a56a55526f1d5282731cca2781d37d073}\label{classrev_1_1_resource_cache_a56a55526f1d5282731cca2781d37d073}} 
+virtual void \mbox{\hyperlink{classrev_1_1_resource_cache_a56a55526f1d5282731cca2781d37d073}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_resource_cache_ac6abc543146d0f487cfffb79d33d35e0}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_resource_cache_a4ed6a3f7ea5e8ea20287a5bce1fa05b9}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+{\em Reload a resource handle\textquotesingle{}s resource }\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a057b608b4c5af1ff11a81128f106fa9a}\label{classrev_1_1_resource_cache_a057b608b4c5af1ff11a81128f106fa9a}} 
+class {\bfseries Resource\+Handle}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Methods}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a88856e828fa242e2bfba334a2a42c955}\label{classrev_1_1_resource_cache_a88856e828fa242e2bfba334a2a42c955}} 
+void \mbox{\hyperlink{classrev_1_1_resource_cache_a88856e828fa242e2bfba334a2a42c955}{clear\+Resources}} ()
+\begin{DoxyCompactList}\small\item\em Clear all resources that aren\textquotesingle{}t core resources. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_ac7214358b8395f6c856351158b457342}\label{classrev_1_1_resource_cache_ac7214358b8395f6c856351158b457342}} 
+const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \& \mbox{\hyperlink{classrev_1_1_resource_cache_ac7214358b8395f6c856351158b457342}{oldest\+Resource}} () const
+\begin{DoxyCompactList}\small\item\em Returns the oldest object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a35fa0940582ba813d28d33eab88bed87}\label{classrev_1_1_resource_cache_a35fa0940582ba813d28d33eab88bed87}} 
+void \mbox{\hyperlink{classrev_1_1_resource_cache_a35fa0940582ba813d28d33eab88bed87}{log\+Current\+Cost}} () const
+\begin{DoxyCompactList}\small\item\em Log current cost. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_ae3fd0138866cfe03e5e5a3558fbc0b19}\label{classrev_1_1_resource_cache_ae3fd0138866cfe03e5e5a3558fbc0b19}} 
+void {\bfseries initialize\+Core\+Resources} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_ae9a6f6ba47fd8ab42dfe1e4522a94029}\label{classrev_1_1_resource_cache_ae9a6f6ba47fd8ab42dfe1e4522a94029}} 
+static qint64 \mbox{\hyperlink{classrev_1_1_resource_cache_ae9a6f6ba47fd8ab42dfe1e4522a94029}{get\+Max\+Memory\+Mb}} ()
+\begin{DoxyCompactList}\small\item\em Return max memory allowed by the system, in megabytes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Members}
+\label{_amgrp1407774ea7c5b7991aa8e311379c78d1}%
+Recursive routine for constructing a resource \begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a9f8b8e9321a559bdb205d26c7ae438ad}\label{classrev_1_1_resource_cache_a9f8b8e9321a559bdb205d26c7ae438ad}} 
+static Q\+Mutex \mbox{\hyperlink{classrev_1_1_resource_cache_a9f8b8e9321a559bdb205d26c7ae438ad}{s\+\_\+resource\+Mutex}} = Q\+Mutex()
+\begin{DoxyCompactList}\small\item\em Mutex for managing resource map and list. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a2c953d9ae3fc3ba9b30f72090477ed65}\label{classrev_1_1_resource_cache_a2c953d9ae3fc3ba9b30f72090477ed65}} 
+Resource\+List \mbox{\hyperlink{classrev_1_1_resource_cache_a2c953d9ae3fc3ba9b30f72090477ed65}{m\+\_\+top\+Level\+Resources}}
+\begin{DoxyCompactList}\small\item\em Top-\/level resources, sorted by most recently used. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classrev_1_1_threaded_map}{Resource\+Map}} \mbox{\hyperlink{classrev_1_1_resource_cache_aabbe4f877eda212ea0b12e30cd5c519e}{m\+\_\+resources}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_map}{Map}} of all resources for easy access. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a72b85c53b12ec228c33e7906aded6aed}\label{classrev_1_1_resource_cache_a72b85c53b12ec228c33e7906aded6aed}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_polygon_cache}{Polygon\+Cache}} $>$ \mbox{\hyperlink{classrev_1_1_resource_cache_a72b85c53b12ec228c33e7906aded6aed}{m\+\_\+polygon\+Cache}}
+\begin{DoxyCompactList}\small\item\em Cache dedicated to storing generated polygons. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a20583eb6f96119d6c5d2bd9dfcc782f5}\label{classrev_1_1_resource_cache_a20583eb6f96119d6c5d2bd9dfcc782f5}} 
+size\+\_\+t \mbox{\hyperlink{classrev_1_1_resource_cache_a20583eb6f96119d6c5d2bd9dfcc782f5}{m\+\_\+max\+Cost}}
+\begin{DoxyCompactList}\small\item\em Max allowed cost in the cache. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a59a405f4165f5d35bdbe17589f27323b}\label{classrev_1_1_resource_cache_a59a405f4165f5d35bdbe17589f27323b}} 
+size\+\_\+t \mbox{\hyperlink{classrev_1_1_resource_cache_a59a405f4165f5d35bdbe17589f27323b}{m\+\_\+current\+Cost}}
+\begin{DoxyCompactList}\small\item\em Current cost in the cache. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a0efa494ac6d630bdcc41192599ffe3e4}\label{classrev_1_1_resource_cache_a0efa494ac6d630bdcc41192599ffe3e4}} 
+std\+::atomic$<$ uint32\+\_\+t $>$ \mbox{\hyperlink{classrev_1_1_resource_cache_a0efa494ac6d630bdcc41192599ffe3e4}{m\+\_\+load\+Count}} = 0
+\begin{DoxyCompactList}\small\item\em count of currently loading objects \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_resource_cache_aa8ea5605d35ba8b7f35307da5e970ddf}\label{classrev_1_1_resource_cache_aa8ea5605d35ba8b7f35307da5e970ddf}} 
+\mbox{\hyperlink{classrev_1_1_process_manager}{Process\+Manager}} $\ast$ \mbox{\hyperlink{classrev_1_1_resource_cache_aa8ea5605d35ba8b7f35307da5e970ddf}{m\+\_\+process\+Manager}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_process}{Process}} manager for pushing load requests. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing a resource cache. 
+
+Total cost represents available R\+AM (in MB) 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_resource_cache_ac6abc543146d0f487cfffb79d33d35e0}\label{classrev_1_1_resource_cache_ac6abc543146d0f487cfffb79d33d35e0}} 
+\index{rev::ResourceCache@{rev::ResourceCache}!className@{className}}
+\index{className@{className}!rev::ResourceCache@{rev::ResourceCache}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Resource\+Cache\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_service_a484d71757ea6e8780488602cb421a4a5}{rev\+::\+Service}}.
+
+\mbox{\Hypertarget{classrev_1_1_resource_cache_a48e9d7baa0b5c323a27aade413181f36}\label{classrev_1_1_resource_cache_a48e9d7baa0b5c323a27aade413181f36}} 
+\index{rev::ResourceCache@{rev::ResourceCache}!insertHandle@{insertHandle}}
+\index{insertHandle@{insertHandle}!rev::ResourceCache@{rev::ResourceCache}}
+\subsubsection{\texorpdfstring{insertHandle()}{insertHandle()}}
+{\footnotesize\ttfamily bool rev\+::\+Resource\+Cache\+::insert\+Handle (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \&}]{resource }\end{DoxyParamCaption})}
+
+
+
+Insert a resource into the cache. 
+
+Returns true if successful insert \mbox{\Hypertarget{classrev_1_1_resource_cache_a4ed6a3f7ea5e8ea20287a5bce1fa05b9}\label{classrev_1_1_resource_cache_a4ed6a3f7ea5e8ea20287a5bce1fa05b9}} 
+\index{rev::ResourceCache@{rev::ResourceCache}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::ResourceCache@{rev::ResourceCache}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Resource\+Cache\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_service_a831f5bf8c53584ec830aaee38ea58e7b}{rev\+::\+Service}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_resource_cache_aabbe4f877eda212ea0b12e30cd5c519e}\label{classrev_1_1_resource_cache_aabbe4f877eda212ea0b12e30cd5c519e}} 
+\index{rev::ResourceCache@{rev::ResourceCache}!m\_resources@{m\_resources}}
+\index{m\_resources@{m\_resources}!rev::ResourceCache@{rev::ResourceCache}}
+\subsubsection{\texorpdfstring{m\_resources}{m\_resources}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_threaded_map}{Resource\+Map}} rev\+::\+Resource\+Cache\+::m\+\_\+resources\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\mbox{\hyperlink{classrev_1_1_map}{Map}} of all resources for easy access. 
+
+Indexed by U\+U\+ID \begin{DoxyNote}{Note}
+Contains all resources 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/resource/G\+Resource\+Cache.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/resource/G\+Resource\+Cache.\+cpp\end{DoxyCompactItemize}

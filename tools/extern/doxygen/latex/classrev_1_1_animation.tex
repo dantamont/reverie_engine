@@ -1,0 +1,104 @@
+\hypertarget{classrev_1_1_animation}{}\section{rev\+::Animation Class Reference}
+\label{classrev_1_1_animation}\index{rev::Animation@{rev::Animation}}
+Inheritance diagram for rev\+::Animation\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_animation}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructorrs}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_aef1f58a3ddf40f0baa0d27a7ebf455f5}\label{classrev_1_1_animation_aef1f58a3ddf40f0baa0d27a7ebf455f5}} 
+{\bfseries Animation} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_a99746b21a9eb899e4c7fd6eec2c18b38}\label{classrev_1_1_animation_a99746b21a9eb899e4c7fd6eec2c18b38}} 
+{\bfseries $\sim$\+Animation} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_a138ece8cd4f88af57d56969d734ba964}\label{classrev_1_1_animation_a138ece8cd4f88af57d56969d734ba964}} 
+const std\+::vector$<$ float $>$ \& \mbox{\hyperlink{classrev_1_1_animation_a138ece8cd4f88af57d56969d734ba964}{frame\+Times}} () const
+\begin{DoxyCompactList}\small\item\em The times for each animation frame, in number of ticks. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_a2b1dd3bdf5ae52f7887fff3c57cde32c}\label{classrev_1_1_animation_a2b1dd3bdf5ae52f7887fff3c57cde32c}} 
+virtual Resource\+Type \mbox{\hyperlink{classrev_1_1_animation_a2b1dd3bdf5ae52f7887fff3c57cde32c}{get\+Resource\+Type}} () const override
+\begin{DoxyCompactList}\small\item\em Get the type of resource stored by this handle. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_a48425a721bc28ff38a6767d6f28fadad}\label{classrev_1_1_animation_a48425a721bc28ff38a6767d6f28fadad}} 
+float \mbox{\hyperlink{classrev_1_1_animation_a48425a721bc28ff38a6767d6f28fadad}{get\+Time\+Duration}} () const
+\begin{DoxyCompactList}\small\item\em Return duration in seconds of the animation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_a01a60150390cb890290201a86b5341c7}\label{classrev_1_1_animation_a01a60150390cb890290201a86b5341c7}} 
+float \mbox{\hyperlink{classrev_1_1_animation_a01a60150390cb890290201a86b5341c7}{get\+Rate}} () const
+\begin{DoxyCompactList}\small\item\em Return F\+PS of the animation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_animation_a11aab8f1b8487fbdb895e9855f7230e2}{get\+Animation\+Frame}} (float time\+In\+Sec, const \mbox{\hyperlink{structrev_1_1_animation_settings}{Animation\+Settings}} \&settings, Animation\+Playback\+Mode mode, bool \&is\+Done\+Playing, \mbox{\hyperlink{structrev_1_1_blend_set}{Blend\+Set}} \&out\+Frames, uint32\+\_\+t clip\+Index=0)
+\begin{DoxyCompactList}\small\item\em Return map of bone transforms at the given animation time (in seconds) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_a6e598616f9992b4f1adbd1d5d58c95ed}\label{classrev_1_1_animation_a6e598616f9992b4f1adbd1d5d58c95ed}} 
+float \mbox{\hyperlink{classrev_1_1_animation_a6e598616f9992b4f1adbd1d5d58c95ed}{get\+Animation\+Time}} (float time\+In\+Sec, const \mbox{\hyperlink{structrev_1_1_animation_settings}{Animation\+Settings}} \&settings, Animation\+Playback\+Mode mode, bool \&is\+Done\+Playing) const
+\begin{DoxyCompactList}\small\item\em Get the animation time from the given inputs. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_a461f736b34f017cca7fc77f5e0f0716b}\label{classrev_1_1_animation_a461f736b34f017cca7fc77f5e0f0716b}} 
+void \mbox{\hyperlink{classrev_1_1_animation_a461f736b34f017cca7fc77f5e0f0716b}{on\+Removal}} (\mbox{\hyperlink{classrev_1_1_resource_cache}{Resource\+Cache}} $\ast$cache=nullptr) override
+\begin{DoxyCompactList}\small\item\em What to do on removal from resource cache. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Attributes}
+\begin{Indent}\textbf{ Public Members}\par
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_node_animation}{Node\+Animation}} $>$ \mbox{\hyperlink{classrev_1_1_animation_adb990389fc3a35fadae1a59246aa329e}{m\+\_\+node\+Animations}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_map}{Map}} of all node animations. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_a73017925f3b37e1eac6e56c8dd585276}\label{classrev_1_1_animation_a73017925f3b37e1eac6e56c8dd585276}} 
+double \mbox{\hyperlink{classrev_1_1_animation_a73017925f3b37e1eac6e56c8dd585276}{m\+\_\+ticks\+Per\+Second}} = 0
+\begin{DoxyCompactList}\small\item\em Tick-\/rate of the animation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_a62bdd3aa8adf2866f047ab8e2183f263}\label{classrev_1_1_animation_a62bdd3aa8adf2866f047ab8e2183f263}} 
+double \mbox{\hyperlink{classrev_1_1_animation_a62bdd3aa8adf2866f047ab8e2183f263}{m\+\_\+duration\+In\+Ticks}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_animation}{Animation}} duration (in number of frames) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_a3f865edcdfaee9ca5f2a218ee723105e}\label{classrev_1_1_animation_a3f865edcdfaee9ca5f2a218ee723105e}} 
+std\+::vector$<$ float $>$ \mbox{\hyperlink{classrev_1_1_animation_a3f865edcdfaee9ca5f2a218ee723105e}{m\+\_\+times}}
+\begin{DoxyCompactList}\small\item\em Time in ticks for each frame of the animation (assumed to be the same for T, S, R) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_a4c1dafb178def2885f9801e31c51e593}\label{classrev_1_1_animation_a4c1dafb178def2885f9801e31c51e593}} 
+uint32\+\_\+t \mbox{\hyperlink{classrev_1_1_animation_a4c1dafb178def2885f9801e31c51e593}{m\+\_\+num\+Non\+Bones}} = 0
+\begin{DoxyCompactList}\small\item\em The number of animations that correspond to nodes without bones. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_a4e00b80c01b68e71248f41dc3a335519}\label{classrev_1_1_animation_a4e00b80c01b68e71248f41dc3a335519}} 
+static \mbox{\hyperlink{classrev_1_1_thread_pool}{Thread\+Pool}} {\bfseries A\+N\+I\+M\+A\+T\+I\+O\+N\+\_\+\+T\+H\+R\+E\+A\+D\+P\+O\+OL}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_animation_a11aab8f1b8487fbdb895e9855f7230e2}\label{classrev_1_1_animation_a11aab8f1b8487fbdb895e9855f7230e2}} 
+\index{rev::Animation@{rev::Animation}!getAnimationFrame@{getAnimationFrame}}
+\index{getAnimationFrame@{getAnimationFrame}!rev::Animation@{rev::Animation}}
+\subsubsection{\texorpdfstring{getAnimationFrame()}{getAnimationFrame()}}
+{\footnotesize\ttfamily void rev\+::\+Animation\+::get\+Animation\+Frame (\begin{DoxyParamCaption}\item[{float}]{time\+In\+Sec,  }\item[{const \mbox{\hyperlink{structrev_1_1_animation_settings}{Animation\+Settings}} \&}]{settings,  }\item[{Animation\+Playback\+Mode}]{mode,  }\item[{bool \&}]{is\+Done\+Playing,  }\item[{\mbox{\hyperlink{structrev_1_1_blend_set}{Blend\+Set}} \&}]{out\+Frames,  }\item[{uint32\+\_\+t}]{clip\+Index = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Return map of bone transforms at the given animation time (in seconds) 
+
+\mbox{\hyperlink{classrev_1_1_transform}{Transform}} vector is ordered by bone ID @params\mbox{[}in\mbox{]} clip\+Index the index of the clip in the blend queue for which the frame is being retrieved Speed factor is multiplicative Returns false if done playing 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_animation_adb990389fc3a35fadae1a59246aa329e}\label{classrev_1_1_animation_adb990389fc3a35fadae1a59246aa329e}} 
+\index{rev::Animation@{rev::Animation}!m\_nodeAnimations@{m\_nodeAnimations}}
+\index{m\_nodeAnimations@{m\_nodeAnimations}!rev::Animation@{rev::Animation}}
+\subsubsection{\texorpdfstring{m\_nodeAnimations}{m\_nodeAnimations}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classrev_1_1_node_animation}{Node\+Animation}}$>$ rev\+::\+Animation\+::m\+\_\+node\+Animations}
+
+
+
+\mbox{\hyperlink{classrev_1_1_map}{Map}} of all node animations. 
+
+Animations are in the order of which their nodes are reached in a breadth-\/first-\/search (B\+FS) of the joint hierarchy \begin{DoxyNote}{Note}
+Animations may exist for nodes without bones, so a vector ordered by bones is not sufficient 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/animation/G\+Animation.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/animation/G\+Animation.\+cpp\end{DoxyCompactItemize}

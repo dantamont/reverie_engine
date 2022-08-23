@@ -1,0 +1,734 @@
+\hypertarget{class_eigen_1_1_vectorwise_op}{}\section{Eigen\+::Vectorwise\+Op$<$ Expression\+Type, Direction $>$ Class Template Reference}
+\label{class_eigen_1_1_vectorwise_op}\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+
+
+Pseudo expression providing partial reduction operations.  
+
+
+
+
+{\ttfamily \#include $<$Vectorwise\+Op.\+h$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_extended_type}{Extended\+Type}}
+\item 
+struct \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_lp_norm_return_type}{Lp\+Norm\+Return\+Type}}
+\item 
+struct \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_opposite_extended_type}{Opposite\+Extended\+Type}}
+\item 
+struct \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_redux_return_type}{Redux\+Return\+Type}}
+\item 
+struct \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_return_type}{Return\+Type}}
+\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a6558f8f5769f437ce63955d012728135}\label{class_eigen_1_1_vectorwise_op_a6558f8f5769f437ce63955d012728135}} 
+enum \{ {\bfseries is\+Vertical} = (Direction==Vertical) ? 1 \+: 0, 
+{\bfseries is\+Horizontal} = (Direction==Horizontal) ? 1 \+: 0
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a4a3def00496da41fd51b7fb8daa4c19c}\label{class_eigen_1_1_vectorwise_op_a4a3def00496da41fd51b7fb8daa4c19c}} 
+enum \{ {\bfseries H\+Normalized\+\_\+\+Size}, 
+{\bfseries H\+Normalized\+\_\+\+Size\+Minus\+One} = H\+Normalized\+\_\+\+Size==Dynamic ? Dynamic \+: H\+Normalized\+\_\+\+Size-\/1
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a4cb7d0cf1e410781e57a4b67577941fd}\label{class_eigen_1_1_vectorwise_op_a4cb7d0cf1e410781e57a4b67577941fd}} 
+typedef Expression\+Type\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_aa87e1223d69489f1f016d25d99c8cf5f}\label{class_eigen_1_1_vectorwise_op_aa87e1223d69489f1f016d25d99c8cf5f}} 
+typedef Expression\+Type\+::\+Real\+Scalar {\bfseries Real\+Scalar}
+\item 
+typedef Eigen\+::\+Index \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a4907c654e5810edd98e4162093b19532}{Index}}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a897184183f7ca0939f1ee309a4d1a167}\label{class_eigen_1_1_vectorwise_op_a897184183f7ca0939f1ee309a4d1a167}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1ref__selector}{internal\+::ref\+\_\+selector}}$<$ Expression\+Type $>$\+::non\+\_\+const\+\_\+type {\bfseries Expression\+Type\+Nested}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a737bf612fa7628a7d806bd6057b59f21}\label{class_eigen_1_1_vectorwise_op_a737bf612fa7628a7d806bd6057b59f21}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Expression\+Type\+Nested}} $>$\+::type {\bfseries Expression\+Type\+Nested\+Cleaned}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a48238275ccc794871f0375896942dc14}\label{class_eigen_1_1_vectorwise_op_a48238275ccc794871f0375896942dc14}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_return_type}{Return\+Type}}$<$ internal\+::member\+\_\+min\+Coeff $>$\+::Type {\bfseries Min\+Coeff\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a1370f955f04a91586c742146142917f3}\label{class_eigen_1_1_vectorwise_op_a1370f955f04a91586c742146142917f3}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_return_type}{Return\+Type}}$<$ internal\+::member\+\_\+max\+Coeff $>$\+::Type {\bfseries Max\+Coeff\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a67f6c24a812336e281bcf8162d8040d7}\label{class_eigen_1_1_vectorwise_op_a67f6c24a812336e281bcf8162d8040d7}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_return_type}{Return\+Type}}$<$ internal\+::member\+\_\+squared\+Norm, Real\+Scalar $>$\+::Type {\bfseries Squared\+Norm\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_afc93e0b7463d0eb85599d4ce46007fa8}\label{class_eigen_1_1_vectorwise_op_afc93e0b7463d0eb85599d4ce46007fa8}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_return_type}{Return\+Type}}$<$ internal\+::member\+\_\+norm, Real\+Scalar $>$\+::Type {\bfseries Norm\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a70c1ca30bae03271321ec5de7e33a867}\label{class_eigen_1_1_vectorwise_op_a70c1ca30bae03271321ec5de7e33a867}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_return_type}{Return\+Type}}$<$ internal\+::member\+\_\+blue\+Norm, Real\+Scalar $>$\+::Type {\bfseries Blue\+Norm\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a890caf6708ce641e2ecdc08eecb0284e}\label{class_eigen_1_1_vectorwise_op_a890caf6708ce641e2ecdc08eecb0284e}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_return_type}{Return\+Type}}$<$ internal\+::member\+\_\+stable\+Norm, Real\+Scalar $>$\+::Type {\bfseries Stable\+Norm\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a159233a83bb9cdf3653748c0915ea7b2}\label{class_eigen_1_1_vectorwise_op_a159233a83bb9cdf3653748c0915ea7b2}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_return_type}{Return\+Type}}$<$ internal\+::member\+\_\+hypot\+Norm, Real\+Scalar $>$\+::Type {\bfseries Hypot\+Norm\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a97e0cb8e04b09389b8e9bbbb97c44871}\label{class_eigen_1_1_vectorwise_op_a97e0cb8e04b09389b8e9bbbb97c44871}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_return_type}{Return\+Type}}$<$ internal\+::member\+\_\+sum $>$\+::Type {\bfseries Sum\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_abbac270de0591725661c5329395db586}\label{class_eigen_1_1_vectorwise_op_abbac270de0591725661c5329395db586}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_return_type}{Return\+Type}}$<$ internal\+::member\+\_\+mean $>$\+::Type {\bfseries Mean\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_af20f1dc78338df553296e7cdb7836f3e}\label{class_eigen_1_1_vectorwise_op_af20f1dc78338df553296e7cdb7836f3e}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_return_type}{Return\+Type}}$<$ internal\+::member\+\_\+all $>$\+::Type {\bfseries All\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a1a9f45c1a8ae261357be82909374cd6b}\label{class_eigen_1_1_vectorwise_op_a1a9f45c1a8ae261357be82909374cd6b}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_return_type}{Return\+Type}}$<$ internal\+::member\+\_\+any $>$\+::Type {\bfseries Any\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_aba8dcafdbab5f9964b3ba9e68525ef35}\label{class_eigen_1_1_vectorwise_op_aba8dcafdbab5f9964b3ba9e68525ef35}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_partial_redux_expr}{Partial\+Redux\+Expr}}$<$ Expression\+Type, internal\+::member\+\_\+count$<$ \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a4907c654e5810edd98e4162093b19532}{Index}} $>$, Direction $>$ {\bfseries Count\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_ab5f3ce92718978e329012c75b3661838}\label{class_eigen_1_1_vectorwise_op_ab5f3ce92718978e329012c75b3661838}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_return_type}{Return\+Type}}$<$ internal\+::member\+\_\+prod $>$\+::Type {\bfseries Prod\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a7747054450f740d031416b602693fba3}\label{class_eigen_1_1_vectorwise_op_a7747054450f740d031416b602693fba3}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_reverse}{Reverse}}$<$ const Expression\+Type, Direction $>$ {\bfseries Const\+Reverse\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a18b03561c0b677e71a8b8ff03768ff47}\label{class_eigen_1_1_vectorwise_op_a18b03561c0b677e71a8b8ff03768ff47}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_reverse}{Reverse}}$<$ Expression\+Type, Direction $>$ {\bfseries Reverse\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_abfe9aeb1ded98c24c09837a8da037a60}\label{class_eigen_1_1_vectorwise_op_abfe9aeb1ded98c24c09837a8da037a60}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_replicate}{Replicate}}$<$ Expression\+Type,(is\+Vertical?Dynamic\+:1),(is\+Horizontal?Dynamic\+:1)$>$ {\bfseries Replicate\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a988c7bd3e6ae202e287a59c0a6d3d67c}\label{class_eigen_1_1_vectorwise_op_a988c7bd3e6ae202e287a59c0a6d3d67c}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_homogeneous}{Homogeneous}}$<$ Expression\+Type, Direction $>$ {\bfseries Homogeneous\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a1dbae778809df72722f2ecaa2e4174e0}\label{class_eigen_1_1_vectorwise_op_a1dbae778809df72722f2ecaa2e4174e0}} 
+typedef Expression\+Type\+::\+Plain\+Object {\bfseries Cross\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a4bf5c62a154671b541238e73feb182b4}\label{class_eigen_1_1_vectorwise_op_a4bf5c62a154671b541238e73feb182b4}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$ const Expression\+Type, Direction==Vertical ? int(H\+Normalized\+\_\+\+Size\+Minus\+One) \+:int(\mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Expression\+Type $>$\+::Rows\+At\+Compile\+Time), Direction==Horizontal ? int(H\+Normalized\+\_\+\+Size\+Minus\+One) \+:int(\mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Expression\+Type $>$\+::Cols\+At\+Compile\+Time)$>$ {\bfseries H\+Normalized\+\_\+\+Block}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_acaa761de8914859a48224986dc78e077}\label{class_eigen_1_1_vectorwise_op_acaa761de8914859a48224986dc78e077}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$ const Expression\+Type, Direction==Vertical ? 1 \+:int(\mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Expression\+Type $>$\+::Rows\+At\+Compile\+Time), Direction==Horizontal ? 1 \+:int(\mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Expression\+Type $>$\+::Cols\+At\+Compile\+Time)$>$ {\bfseries H\+Normalized\+\_\+\+Factors}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a0c6fef40103ff8b5f727cc9c8eeb3b5f}\label{class_eigen_1_1_vectorwise_op_a0c6fef40103ff8b5f727cc9c8eeb3b5f}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{Cwise\+Binary\+Op}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__quotient__op}{internal\+::scalar\+\_\+quotient\+\_\+op}}$<$ typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Expression\+Type $>$\+::Scalar $>$, const \mbox{\hyperlink{class_eigen_1_1_block}{H\+Normalized\+\_\+\+Block}}, const \mbox{\hyperlink{class_eigen_1_1_replicate}{Replicate}}$<$ \mbox{\hyperlink{class_eigen_1_1_block}{H\+Normalized\+\_\+\+Factors}}, Direction==Vertical ? H\+Normalized\+\_\+\+Size\+Minus\+One \+:1, Direction==Horizontal ? H\+Normalized\+\_\+\+Size\+Minus\+One \+:1 $>$ $>$ {\bfseries H\+Normalized\+Return\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_ad321af7262d0da2e21440f966bba745a}\label{class_eigen_1_1_vectorwise_op_ad321af7262d0da2e21440f966bba745a}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC {\bfseries Vectorwise\+Op} (Expression\+Type \&matrix)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a5687aca3b433944afc39f8cdd058562e}\label{class_eigen_1_1_vectorwise_op_a5687aca3b433944afc39f8cdd058562e}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const Expression\+Type \& {\bfseries \+\_\+expression} () const
+\item 
+{\footnotesize template$<$typename Binary\+Op $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_redux_return_type}{Redux\+Return\+Type}}$<$ Binary\+Op $>$\+::Type \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a798df97b5445eb6370fe5c90be2f7962}{redux}} (const Binary\+Op \&func=Binary\+Op()) const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_partial_redux_expr}{Min\+Coeff\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a05f6f60662c06b4987e7eaf747a032c0}{min\+Coeff}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_partial_redux_expr}{Max\+Coeff\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a48457cc94227563bca448496aaad8e9c}{max\+Coeff}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_partial_redux_expr}{Squared\+Norm\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a6f23ba41822436d3176d718596be8fd0}{squared\+Norm}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_partial_redux_expr}{Norm\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a1c098483dfb35329f11b769cb5c1b6c1}{norm}} () const
+\item 
+{\footnotesize template$<$int p$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_lp_norm_return_type}{Lp\+Norm\+Return\+Type}}$<$ p $>$\+::Type \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a87b514857655134e74ee313d865ab6d6}{lp\+Norm}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_partial_redux_expr}{Blue\+Norm\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_ae1d431dae7e328e1e6d08d2fb5dc6c22}{blue\+Norm}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_partial_redux_expr}{Stable\+Norm\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_adfa17a946f1bd845b85cba8cf34732ac}{stable\+Norm}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_partial_redux_expr}{Hypot\+Norm\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a9ae3feb2723628a3bcff6eabda2fa77d}{hypot\+Norm}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_partial_redux_expr}{Sum\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a2005154bdb90789c0eb55343be9694c1}{sum}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_partial_redux_expr}{Mean\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_aea15d46c791ef6d17860fc8a61a5fbd6}{mean}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_partial_redux_expr}{All\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a2762ceabf1fecc22506ed304d0099f6c}{all}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_partial_redux_expr}{Any\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a7a513e04b7198f2fc565f636309337cc}{any}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_partial_redux_expr}{Count\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_abf7ae4a00d195d06d46ad6c269d8508f}{count}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_partial_redux_expr}{Prod\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a6863499c3e7ea8635784376806abcf9f}{prod}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_reverse}{Const\+Reverse\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a058b821b65e2e27839853d9a25b0216c}{reverse}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_reverse}{Reverse\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a094915725d604015221205e8c4ccb993}{reverse}} ()
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_replicate}{Replicate\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a5f0c8dc9e9c4aeaa2057f15800f5c18c}{replicate}} (\mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a4907c654e5810edd98e4162093b19532}{Index}} factor) const
+\item 
+{\footnotesize template$<$int Factor$>$ }\\const \mbox{\hyperlink{class_eigen_1_1_replicate}{Replicate}}$<$ Expression\+Type, is\+Vertical $\ast$Factor+is\+Horizontal, is\+Horizontal $\ast$Factor+is\+Vertical $>$ E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_adafbfe5f623bc8fdc9877eb073f1ba5c}{replicate}} (\mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a4907c654e5810edd98e4162093b19532}{Index}} factor=Factor) const
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Expression\+Type \& \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a61f54a2994758cc098671d5f0f36cfa6}{operator=}} (const \mbox{\hyperlink{class_eigen_1_1_dense_base}{Dense\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Expression\+Type \& \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_ad60d01ea6717f9ef6fd7941cf8b99db7}{operator+=}} (const \mbox{\hyperlink{class_eigen_1_1_dense_base}{Dense\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Expression\+Type \& \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_acf1e97639651a9b617680ba3b3ece24a}{operator-\/=}} (const \mbox{\hyperlink{class_eigen_1_1_dense_base}{Dense\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Expression\+Type \& \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_ad83aa84cc84b091fc69b1baaf9cac36e}{operator $\ast$=}} (const \mbox{\hyperlink{class_eigen_1_1_dense_base}{Dense\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Expression\+Type \& \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_ac04267f84ef1c52d88f452667cf757ae}{operator/=}} (const \mbox{\hyperlink{class_eigen_1_1_dense_base}{Dense\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{Cwise\+Binary\+Op}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__sum__op}{internal\+::scalar\+\_\+sum\+\_\+op}}$<$ Scalar, typename Other\+Derived\+::\+Scalar $>$, const Expression\+Type\+Nested\+Cleaned, const typename \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_extended_type}{Extended\+Type}}$<$ Other\+Derived $>$\+::Type $>$ \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_ad38bb674b896bfc8f96baeb487aa2184}{operator+}} (const \mbox{\hyperlink{class_eigen_1_1_dense_base}{Dense\+Base}}$<$ Other\+Derived $>$ \&other) const
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{Cwise\+Binary\+Op}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__difference__op}{internal\+::scalar\+\_\+difference\+\_\+op}}$<$ Scalar, typename Other\+Derived\+::\+Scalar $>$, const Expression\+Type\+Nested\+Cleaned, const typename \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_extended_type}{Extended\+Type}}$<$ Other\+Derived $>$\+::Type $>$ \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a5aced68defd8d0fd08829386b6c285fb}{operator-\/}} (const \mbox{\hyperlink{class_eigen_1_1_dense_base}{Dense\+Base}}$<$ Other\+Derived $>$ \&other) const
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{Cwise\+Binary\+Op}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__product__op}{internal\+::scalar\+\_\+product\+\_\+op}}$<$ Scalar $>$, const Expression\+Type\+Nested\+Cleaned, const typename \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_extended_type}{Extended\+Type}}$<$ Other\+Derived $>$\+::Type $>$ E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_ae5190ecc9dad889b78a91720ea76d8d7}{operator $\ast$}} (const \mbox{\hyperlink{class_eigen_1_1_dense_base}{Dense\+Base}}$<$ Other\+Derived $>$ \&other) const
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{Cwise\+Binary\+Op}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__quotient__op}{internal\+::scalar\+\_\+quotient\+\_\+op}}$<$ Scalar $>$, const Expression\+Type\+Nested\+Cleaned, const typename \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_extended_type}{Extended\+Type}}$<$ Other\+Derived $>$\+::Type $>$ \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_ae36a76f1da78cb2ea74447c86ac68580}{operator/}} (const \mbox{\hyperlink{class_eigen_1_1_dense_base}{Dense\+Base}}$<$ Other\+Derived $>$ \&other) const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{Cwise\+Binary\+Op}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__quotient__op}{internal\+::scalar\+\_\+quotient\+\_\+op}}$<$ Scalar $>$, const Expression\+Type\+Nested\+Cleaned, const typename \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_opposite_extended_type}{Opposite\+Extended\+Type}}$<$ typename \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_return_type}{Return\+Type}}$<$ internal\+::member\+\_\+norm, Real\+Scalar $>$\+::Type $>$\+::Type $>$ \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a38799c77ec92e4b856804b7f0bc35c67}{normalized}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a1d22c9442537bd654edb4604db7b7b57}{normalize}} ()
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_ab9dd7c273eb2ba8defaab2d55156936b}{reverse\+In\+Place}} ()
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_homogeneous}{Homogeneous\+Return\+Type}} \mbox{\hyperlink{group___geometry___module_ga7ae337c185a1de2343f12be4577c75fc}{homogeneous}} () const
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const Cross\+Return\+Type \mbox{\hyperlink{group___geometry___module_gab3efae0c028a63a41cccb94d978d1437}{cross}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Other\+Derived $>$ \&other) const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{H\+Normalized\+Return\+Type}} \mbox{\hyperlink{group___geometry___module_ga8d3b6f7178b905b0e4418fd4900c4463}{hnormalized}} () const
+\begin{DoxyCompactList}\small\item\em column or row-\/wise homogeneous normalization \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_ad2884ab2a7720186e5adcc323e3a6e8e}\label{class_eigen_1_1_vectorwise_op_ad2884ab2a7720186e5adcc323e3a6e8e}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{internal\+::conditional}}$<$ is\+Vertical, typename Expression\+Type\+::\+Col\+Xpr, typename Expression\+Type\+::\+Row\+Xpr $>$\+::type {\bfseries Sub\+Vector}
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a0d5388d48f6227996ebe175be831c581}\label{class_eigen_1_1_vectorwise_op_a0d5388d48f6227996ebe175be831c581}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Sub\+Vector}} {\bfseries sub\+Vector} (\mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a4907c654e5810edd98e4162093b19532}{Index}} i)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_ac15de133a3c8a936949826e57415865d}\label{class_eigen_1_1_vectorwise_op_ac15de133a3c8a936949826e57415865d}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a4907c654e5810edd98e4162093b19532}{Index}} {\bfseries sub\+Vectors} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_aa1a4b259684079b6615269c32ccff492}\label{class_eigen_1_1_vectorwise_op_aa1a4b259684079b6615269c32ccff492}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_extended_type}{Extended\+Type}}$<$ Other\+Derived $>$\+::Type {\bfseries extended\+To} (const \mbox{\hyperlink{class_eigen_1_1_dense_base}{Dense\+Base}}$<$ Other\+Derived $>$ \&other) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a768712a7d82deb259f70c5b161e77bcc}\label{class_eigen_1_1_vectorwise_op_a768712a7d82deb259f70c5b161e77bcc}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_opposite_extended_type}{Opposite\+Extended\+Type}}$<$ Other\+Derived $>$\+::Type {\bfseries extended\+To\+Opposite} (const \mbox{\hyperlink{class_eigen_1_1_dense_base}{Dense\+Base}}$<$ Other\+Derived $>$ \&other) const
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a335b750b0ff7454428c49d375d448bb3}\label{class_eigen_1_1_vectorwise_op_a335b750b0ff7454428c49d375d448bb3}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Expression\+Type\+Nested}} {\bfseries m\+\_\+matrix}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename Expression\+Type, int Direction$>$\newline
+class Eigen\+::\+Vectorwise\+Op$<$ Expression\+Type, Direction $>$}
+
+Pseudo expression providing partial reduction operations. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Expression\+Type} & the type of the object on which to do partial reductions \\
+\hline
+{\em Direction} & indicates the direction of the redux (\#\+Vertical or \#\+Horizontal)\\
+\hline
+\end{DoxyTemplParams}
+This class represents a pseudo expression with partial reduction features. It is the return type of \mbox{\hyperlink{class_eigen_1_1_dense_base_a1c0e1b6067ec1de6cb8799da55aa7d30}{Dense\+Base\+::colwise()}} and \mbox{\hyperlink{class_eigen_1_1_dense_base_a6daa3a3156ca0e0722bf78638e1c7f28}{Dense\+Base\+::rowwise()}} and most of the time this is the only way it is used.
+
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_dense_base_a1c0e1b6067ec1de6cb8799da55aa7d30}{Dense\+Base\+::colwise()}}, \mbox{\hyperlink{class_eigen_1_1_dense_base_a6daa3a3156ca0e0722bf78638e1c7f28}{Dense\+Base\+::rowwise()}}, class \mbox{\hyperlink{class_eigen_1_1_partial_redux_expr}{Partial\+Redux\+Expr}} 
+\end{DoxySeeAlso}
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a4907c654e5810edd98e4162093b19532}\label{class_eigen_1_1_vectorwise_op_a4907c654e5810edd98e4162093b19532}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!Index@{Index}}
+\index{Index@{Index}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{Index}{Index}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type, int Direction$>$ \\
+typedef Eigen\+::\+Index \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::\mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a4907c654e5810edd98e4162093b19532}{Index}}}
+
+\begin{DoxyRefDesc}{Deprecated}
+\item[\mbox{\hyperlink{deprecated__deprecated000015}{Deprecated}}]since Eigen 3.\+3 \end{DoxyRefDesc}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a2762ceabf1fecc22506ed304d0099f6c}\label{class_eigen_1_1_vectorwise_op_a2762ceabf1fecc22506ed304d0099f6c}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!all@{all}}
+\index{all@{all}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{all()}{all()}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type, int Direction$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_partial_redux_expr}{All\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::all (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a row (or column) vector expression representing whether {\bfseries{all}} coefficients of each respective column (or row) are {\ttfamily true}. This expression can be assigned to a vector with entries of type {\ttfamily bool}.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_dense_base_ae42ab60296c120e9f45ce3b44e1761a4}{Dense\+Base\+::all()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a7a513e04b7198f2fc565f636309337cc}\label{class_eigen_1_1_vectorwise_op_a7a513e04b7198f2fc565f636309337cc}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!any@{any}}
+\index{any@{any}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{any()}{any()}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type, int Direction$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_partial_redux_expr}{Any\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::any (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a row (or column) vector expression representing whether {\bfseries{at}} {\bfseries{least}} one coefficient of each respective column (or row) is {\ttfamily true}. This expression can be assigned to a vector with entries of type {\ttfamily bool}.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_dense_base_abfbf4cb72dd577e62fbe035b1c53e695}{Dense\+Base\+::any()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_ae1d431dae7e328e1e6d08d2fb5dc6c22}\label{class_eigen_1_1_vectorwise_op_ae1d431dae7e328e1e6d08d2fb5dc6c22}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!blueNorm@{blueNorm}}
+\index{blueNorm@{blueNorm}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{blueNorm()}{blueNorm()}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type, int Direction$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_partial_redux_expr}{Blue\+Norm\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::blue\+Norm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a row (or column) vector expression of the norm of each column (or row) of the referenced expression, using Blue\textquotesingle{}s algorithm. This is a vector with real entries, even if the original matrix has complex entries.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+Dense\+Base\+::blue\+Norm() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_abf7ae4a00d195d06d46ad6c269d8508f}\label{class_eigen_1_1_vectorwise_op_abf7ae4a00d195d06d46ad6c269d8508f}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!count@{count}}
+\index{count@{count}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{count()}{count()}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type, int Direction$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_partial_redux_expr}{Count\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a row (or column) vector expression representing the number of {\ttfamily true} coefficients of each respective column (or row). This expression can be assigned to a vector whose entries have the same type as is used to index entries of the original matrix; for dense matrices, this is {\ttfamily std\+::ptrdiff\+\_\+t} .
+\end{DoxyReturn}
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_dense_base_a229be090c665b9bf7d1fcdfd1ab6e0c1}{Dense\+Base\+::count()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a9ae3feb2723628a3bcff6eabda2fa77d}\label{class_eigen_1_1_vectorwise_op_a9ae3feb2723628a3bcff6eabda2fa77d}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!hypotNorm@{hypotNorm}}
+\index{hypotNorm@{hypotNorm}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{hypotNorm()}{hypotNorm()}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type, int Direction$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_partial_redux_expr}{Hypot\+Norm\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::hypot\+Norm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a row (or column) vector expression of the norm of each column (or row) of the referenced expression, avoiding underflow and overflow using a concatenation of hypot() calls. This is a vector with real entries, even if the original matrix has complex entries.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+Dense\+Base\+::hypot\+Norm() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a87b514857655134e74ee313d865ab6d6}\label{class_eigen_1_1_vectorwise_op_a87b514857655134e74ee313d865ab6d6}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!lpNorm@{lpNorm}}
+\index{lpNorm@{lpNorm}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{lpNorm()}{lpNorm()}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type, int Direction$>$ \\
+template$<$int p$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_lp_norm_return_type}{Lp\+Norm\+Return\+Type}}$<$p$>$\+::Type \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::lp\+Norm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a row (or column) vector expression of the norm of each column (or row) of the referenced expression. This is a vector with real entries, even if the original matrix has complex entries.
+\end{DoxyReturn}
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{See also}
+Dense\+Base\+::norm() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a48457cc94227563bca448496aaad8e9c}\label{class_eigen_1_1_vectorwise_op_a48457cc94227563bca448496aaad8e9c}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!maxCoeff@{maxCoeff}}
+\index{maxCoeff@{maxCoeff}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{maxCoeff()}{maxCoeff()}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type, int Direction$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_partial_redux_expr}{Max\+Coeff\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::max\+Coeff (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a row (or column) vector expression of the largest coefficient of each column (or row) of the referenced expression.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+the result is undefined if {\ttfamily $\ast$this} contains NaN.
+\end{DoxyWarning}
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_dense_base_ac0d151ec47eb7a44a3a5ba1587ddbeb4}{Dense\+Base\+::max\+Coeff()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_aea15d46c791ef6d17860fc8a61a5fbd6}\label{class_eigen_1_1_vectorwise_op_aea15d46c791ef6d17860fc8a61a5fbd6}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!mean@{mean}}
+\index{mean@{mean}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{mean()}{mean()}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type, int Direction$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_partial_redux_expr}{Mean\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::mean (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a row (or column) vector expression of the mean of each column (or row) of the referenced expression.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_dense_base_a89d85ac0cf349eb53481c148033459d7}{Dense\+Base\+::mean()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a05f6f60662c06b4987e7eaf747a032c0}\label{class_eigen_1_1_vectorwise_op_a05f6f60662c06b4987e7eaf747a032c0}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!minCoeff@{minCoeff}}
+\index{minCoeff@{minCoeff}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{minCoeff()}{minCoeff()}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type, int Direction$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_partial_redux_expr}{Min\+Coeff\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::min\+Coeff (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a row (or column) vector expression of the smallest coefficient of each column (or row) of the referenced expression.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+the result is undefined if {\ttfamily $\ast$this} contains NaN.
+\end{DoxyWarning}
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_dense_base_a6634944be3d4fef551b57ffad30467f2}{Dense\+Base\+::min\+Coeff()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a1c098483dfb35329f11b769cb5c1b6c1}\label{class_eigen_1_1_vectorwise_op_a1c098483dfb35329f11b769cb5c1b6c1}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!norm@{norm}}
+\index{norm@{norm}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{norm()}{norm()}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type, int Direction$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_partial_redux_expr}{Norm\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::norm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a row (or column) vector expression of the norm of each column (or row) of the referenced expression. This is a vector with real entries, even if the original matrix has complex entries.
+\end{DoxyReturn}
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{See also}
+Dense\+Base\+::norm() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a1d22c9442537bd654edb4604db7b7b57}\label{class_eigen_1_1_vectorwise_op_a1d22c9442537bd654edb4604db7b7b57}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!normalize@{normalize}}
+\index{normalize@{normalize}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{normalize()}{normalize()}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type, int Direction$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::normalize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Normalize in-\/place each row or columns of the referenced matrix. \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_matrix_base_a1a2dd2fd1597ee6d51098aa3bb7c86f4}{Matrix\+Base\+::normalize()}}, \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a38799c77ec92e4b856804b7f0bc35c67}{normalized()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a38799c77ec92e4b856804b7f0bc35c67}\label{class_eigen_1_1_vectorwise_op_a38799c77ec92e4b856804b7f0bc35c67}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!normalized@{normalized}}
+\index{normalized@{normalized}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{normalized()}{normalized()}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type, int Direction$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{Cwise\+Binary\+Op}}$<$\mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__quotient__op}{internal\+::scalar\+\_\+quotient\+\_\+op}}$<$Scalar$>$, const Expression\+Type\+Nested\+Cleaned, const typename \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_opposite_extended_type}{Opposite\+Extended\+Type}}$<$typename \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_return_type}{Return\+Type}}$<$internal\+::member\+\_\+norm,Real\+Scalar$>$\+::Type$>$\+::Type$>$ \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::normalized (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+an expression where each column (or row) of the referenced matrix are normalized. The referenced matrix is {\bfseries{not}} modified. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_matrix_base_a6ede5c8ebe9631fed9004fedbf9e4016}{Matrix\+Base\+::normalized()}}, \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a1d22c9442537bd654edb4604db7b7b57}{normalize()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_ae5190ecc9dad889b78a91720ea76d8d7}\label{class_eigen_1_1_vectorwise_op_ae5190ecc9dad889b78a91720ea76d8d7}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!operator $\ast$@{operator $\ast$}}
+\index{operator $\ast$@{operator $\ast$}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{operator $\ast$()}{operator *()}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type, int Direction$>$ \\
+template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{Cwise\+Binary\+Op}}$<$\mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__product__op}{internal\+::scalar\+\_\+product\+\_\+op}}$<$Scalar$>$, const Expression\+Type\+Nested\+Cleaned, const typename \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_extended_type}{Extended\+Type}}$<$Other\+Derived$>$\+::Type$>$ E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::operator $\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_dense_base}{Dense\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the expression where each subvector is the product of the vector {\itshape other} by the corresponding subvector of {\ttfamily $\ast$this} \mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_ad83aa84cc84b091fc69b1baaf9cac36e}\label{class_eigen_1_1_vectorwise_op_ad83aa84cc84b091fc69b1baaf9cac36e}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!operator $\ast$=@{operator $\ast$=}}
+\index{operator $\ast$=@{operator $\ast$=}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{operator $\ast$=()}{operator *=()}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type, int Direction$>$ \\
+template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Expression\+Type\& \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::operator $\ast$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_dense_base}{Dense\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Multiples each subvector of {\ttfamily $\ast$this} by the vector {\itshape other} \mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_ad38bb674b896bfc8f96baeb487aa2184}\label{class_eigen_1_1_vectorwise_op_ad38bb674b896bfc8f96baeb487aa2184}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!operator+@{operator+}}
+\index{operator+@{operator+}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type, int Direction$>$ \\
+template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{Cwise\+Binary\+Op}}$<$\mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__sum__op}{internal\+::scalar\+\_\+sum\+\_\+op}}$<$Scalar,typename Other\+Derived\+::\+Scalar$>$, const Expression\+Type\+Nested\+Cleaned, const typename \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_extended_type}{Extended\+Type}}$<$Other\+Derived$>$\+::Type$>$ \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_dense_base}{Dense\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the expression of the sum of the vector {\itshape other} to each subvector of {\ttfamily $\ast$this} \mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_ad60d01ea6717f9ef6fd7941cf8b99db7}\label{class_eigen_1_1_vectorwise_op_ad60d01ea6717f9ef6fd7941cf8b99db7}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type, int Direction$>$ \\
+template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Expression\+Type\& \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::operator+= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_dense_base}{Dense\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Adds the vector {\itshape other} to each subvector of {\ttfamily $\ast$this} \mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a5aced68defd8d0fd08829386b6c285fb}\label{class_eigen_1_1_vectorwise_op_a5aced68defd8d0fd08829386b6c285fb}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{operator-\/()}{operator-()}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type, int Direction$>$ \\
+template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{Cwise\+Binary\+Op}}$<$\mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__difference__op}{internal\+::scalar\+\_\+difference\+\_\+op}}$<$Scalar,typename Other\+Derived\+::\+Scalar$>$, const Expression\+Type\+Nested\+Cleaned, const typename \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_extended_type}{Extended\+Type}}$<$Other\+Derived$>$\+::Type$>$ \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_dense_base}{Dense\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the expression of the difference between each subvector of {\ttfamily $\ast$this} and the vector {\itshape other} \mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_acf1e97639651a9b617680ba3b3ece24a}\label{class_eigen_1_1_vectorwise_op_acf1e97639651a9b617680ba3b3ece24a}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{operator-\/=()}{operator-=()}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type, int Direction$>$ \\
+template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Expression\+Type\& \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::operator-\/= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_dense_base}{Dense\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Substracts the vector {\itshape other} to each subvector of {\ttfamily $\ast$this} \mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_ae36a76f1da78cb2ea74447c86ac68580}\label{class_eigen_1_1_vectorwise_op_ae36a76f1da78cb2ea74447c86ac68580}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!operator/@{operator/}}
+\index{operator/@{operator/}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{operator/()}{operator/()}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type, int Direction$>$ \\
+template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{Cwise\+Binary\+Op}}$<$\mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__quotient__op}{internal\+::scalar\+\_\+quotient\+\_\+op}}$<$Scalar$>$, const Expression\+Type\+Nested\+Cleaned, const typename \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_extended_type}{Extended\+Type}}$<$Other\+Derived$>$\+::Type$>$ \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::operator/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_dense_base}{Dense\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the expression where each subvector is the quotient of the corresponding subvector of {\ttfamily $\ast$this} by the vector {\itshape other} \mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_ac04267f84ef1c52d88f452667cf757ae}\label{class_eigen_1_1_vectorwise_op_ac04267f84ef1c52d88f452667cf757ae}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!operator/=@{operator/=}}
+\index{operator/=@{operator/=}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{operator/=()}{operator/=()}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type, int Direction$>$ \\
+template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Expression\+Type\& \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::operator/= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_dense_base}{Dense\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Divides each subvector of {\ttfamily $\ast$this} by the vector {\itshape other} \mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a61f54a2994758cc098671d5f0f36cfa6}\label{class_eigen_1_1_vectorwise_op_a61f54a2994758cc098671d5f0f36cfa6}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type, int Direction$>$ \\
+template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Expression\+Type\& \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_dense_base}{Dense\+Base}}$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Copies the vector {\itshape other} to each subvector of {\ttfamily $\ast$this} \mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a6863499c3e7ea8635784376806abcf9f}\label{class_eigen_1_1_vectorwise_op_a6863499c3e7ea8635784376806abcf9f}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!prod@{prod}}
+\index{prod@{prod}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{prod()}{prod()}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type, int Direction$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_partial_redux_expr}{Prod\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::prod (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a row (or column) vector expression of the product of each column (or row) of the referenced expression.
+\end{DoxyReturn}
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_dense_base_a175ceb201923b4c6767770559e47e40e}{Dense\+Base\+::prod()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a798df97b5445eb6370fe5c90be2f7962}\label{class_eigen_1_1_vectorwise_op_a798df97b5445eb6370fe5c90be2f7962}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!redux@{redux}}
+\index{redux@{redux}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{redux()}{redux()}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type, int Direction$>$ \\
+template$<$typename Binary\+Op $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{struct_eigen_1_1_vectorwise_op_1_1_redux_return_type}{Redux\+Return\+Type}}$<$Binary\+Op$>$\+::Type \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::redux (\begin{DoxyParamCaption}\item[{const Binary\+Op \&}]{func = {\ttfamily BinaryOp()} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a row or column vector expression of {\ttfamily $\ast$this} reduxed by {\itshape func} 
+\end{DoxyReturn}
+The template parameter {\itshape Binary\+Op} is the type of the functor of the custom redux operator. Note that func must be an associative operator.
+
+\begin{DoxySeeAlso}{See also}
+class \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Vectorwise\+Op}}, \mbox{\hyperlink{class_eigen_1_1_dense_base_a1c0e1b6067ec1de6cb8799da55aa7d30}{Dense\+Base\+::colwise()}}, \mbox{\hyperlink{class_eigen_1_1_dense_base_a6daa3a3156ca0e0722bf78638e1c7f28}{Dense\+Base\+::rowwise()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a5f0c8dc9e9c4aeaa2057f15800f5c18c}\label{class_eigen_1_1_vectorwise_op_a5f0c8dc9e9c4aeaa2057f15800f5c18c}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!replicate@{replicate}}
+\index{replicate@{replicate}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{replicate()}{replicate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type , int Direction$>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::\mbox{\hyperlink{class_eigen_1_1_replicate}{Replicate\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::replicate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a4907c654e5810edd98e4162093b19532}{Index}}}]{factor }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+an expression of the replication of each column (or row) of {\ttfamily $\ast$this} 
+\end{DoxyReturn}
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a5f0c8dc9e9c4aeaa2057f15800f5c18c}{Vectorwise\+Op\+::replicate()}}, Dense\+Base\+::replicate(), class \mbox{\hyperlink{class_eigen_1_1_replicate}{Replicate}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_adafbfe5f623bc8fdc9877eb073f1ba5c}\label{class_eigen_1_1_vectorwise_op_adafbfe5f623bc8fdc9877eb073f1ba5c}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!replicate@{replicate}}
+\index{replicate@{replicate}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{replicate()}{replicate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type, int Direction$>$ \\
+template$<$int Factor$>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_replicate}{Replicate}}$<$Expression\+Type,is\+Vertical$\ast$Factor+is\+Horizontal,is\+Horizontal$\ast$Factor+is\+Vertical$>$ E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::replicate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a4907c654e5810edd98e4162093b19532}{Index}}}]{factor = {\ttfamily Factor} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+an expression of the replication of each column (or row) of {\ttfamily $\ast$this} 
+\end{DoxyReturn}
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{See also}
+Vectorwise\+Op\+::replicate(\+Index), Dense\+Base\+::replicate(), class \mbox{\hyperlink{class_eigen_1_1_replicate}{Replicate}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a058b821b65e2e27839853d9a25b0216c}\label{class_eigen_1_1_vectorwise_op_a058b821b65e2e27839853d9a25b0216c}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!reverse@{reverse}}
+\index{reverse@{reverse}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{reverse()}{reverse()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type, int Direction$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_reverse}{Const\+Reverse\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::reverse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a matrix expression where each column (or row) are reversed.
+\end{DoxyReturn}
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_dense_base_a38ea394036d8b096abf322469c80198f}{Dense\+Base\+::reverse()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a094915725d604015221205e8c4ccb993}\label{class_eigen_1_1_vectorwise_op_a094915725d604015221205e8c4ccb993}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!reverse@{reverse}}
+\index{reverse@{reverse}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{reverse()}{reverse()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type, int Direction$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_reverse}{Reverse\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::reverse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a writable matrix expression where each column (or row) are reversed.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a058b821b65e2e27839853d9a25b0216c}{reverse() const }} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_ab9dd7c273eb2ba8defaab2d55156936b}\label{class_eigen_1_1_vectorwise_op_ab9dd7c273eb2ba8defaab2d55156936b}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!reverseInPlace@{reverseInPlace}}
+\index{reverseInPlace@{reverseInPlace}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{reverseInPlace()}{reverseInPlace()}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type , int Direction$>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::reverse\+In\+Place (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This is the \char`\"{}in place\char`\"{} version of \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a058b821b65e2e27839853d9a25b0216c}{Vectorwise\+Op\+::reverse}}\+: it reverses each column or row of {\ttfamily $\ast$this}.
+
+In most cases it is probably better to simply use the reversed expression of a matrix. However, when reversing the matrix data itself is really needed, then this \char`\"{}in-\/place\char`\"{} version is probably the right choice because it provides the following additional benefits\+:
+\begin{DoxyItemize}
+\item less error prone\+: doing the same operation with .\mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a094915725d604015221205e8c4ccb993}{reverse()}} requires special care\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{m = m.reverse().eval(); }
+\end{DoxyCode}
+
+\item this A\+PI enables reverse operations without the need for a temporary
+\end{DoxyItemize}
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_dense_base_adb8045155ea45f7961fc2a5170e1d921}{Dense\+Base\+::reverse\+In\+Place()}}, \mbox{\hyperlink{class_eigen_1_1_vectorwise_op_a094915725d604015221205e8c4ccb993}{reverse()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a6f23ba41822436d3176d718596be8fd0}\label{class_eigen_1_1_vectorwise_op_a6f23ba41822436d3176d718596be8fd0}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!squaredNorm@{squaredNorm}}
+\index{squaredNorm@{squaredNorm}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{squaredNorm()}{squaredNorm()}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type, int Direction$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_partial_redux_expr}{Squared\+Norm\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::squared\+Norm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a row (or column) vector expression of the squared norm of each column (or row) of the referenced expression. This is a vector with real entries, even if the original matrix has complex entries.
+\end{DoxyReturn}
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{See also}
+Dense\+Base\+::squared\+Norm() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_adfa17a946f1bd845b85cba8cf34732ac}\label{class_eigen_1_1_vectorwise_op_adfa17a946f1bd845b85cba8cf34732ac}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!stableNorm@{stableNorm}}
+\index{stableNorm@{stableNorm}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{stableNorm()}{stableNorm()}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type, int Direction$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_partial_redux_expr}{Stable\+Norm\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::stable\+Norm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a row (or column) vector expression of the norm of each column (or row) of the referenced expression, avoiding underflow and overflow. This is a vector with real entries, even if the original matrix has complex entries.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+Dense\+Base\+::stable\+Norm() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_vectorwise_op_a2005154bdb90789c0eb55343be9694c1}\label{class_eigen_1_1_vectorwise_op_a2005154bdb90789c0eb55343be9694c1}} 
+\index{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}!sum@{sum}}
+\index{sum@{sum}!Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$@{Eigen::VectorwiseOp$<$ ExpressionType, Direction $>$}}
+\subsubsection{\texorpdfstring{sum()}{sum()}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type, int Direction$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_partial_redux_expr}{Sum\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_vectorwise_op}{Eigen\+::\+Vectorwise\+Op}}$<$ Expression\+Type, Direction $>$\+::sum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a row (or column) vector expression of the sum of each column (or row) of the referenced expression.
+\end{DoxyReturn}
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_dense_base_a4dee689c76ff86da9d8e49950604597b}{Dense\+Base\+::sum()}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Core/util/Forward\+Declarations.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Core/Vectorwise\+Op.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Core/Replicate.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Core/Reverse.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Geometry/Homogeneous.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Geometry/Ortho\+Methods.\+h\end{DoxyCompactItemize}

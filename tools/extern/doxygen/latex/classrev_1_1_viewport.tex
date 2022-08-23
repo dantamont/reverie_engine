@@ -1,0 +1,152 @@
+\hypertarget{classrev_1_1_viewport}{}\section{rev\+::Viewport Class Reference}
+\label{classrev_1_1_viewport}\index{rev::Viewport@{rev::Viewport}}
+
+
+Settings for viewport.  
+
+
+
+
+{\ttfamily \#include $<$G\+Viewport.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_viewport_a5eb2af494374676e5d8dd0f1550bb98b}\label{classrev_1_1_viewport_a5eb2af494374676e5d8dd0f1550bb98b}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_viewport_a5eb2af494374676e5d8dd0f1550bb98b}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_viewport_a63bf4e34f70e482cf534d6171d2b0070}\label{classrev_1_1_viewport_a63bf4e34f70e482cf534d6171d2b0070}} 
+void \mbox{\hyperlink{classrev_1_1_viewport_a63bf4e34f70e482cf534d6171d2b0070}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty())
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_viewport_a4540d302fe18d3c54180d957b3cb2bb1}\label{classrev_1_1_viewport_a4540d302fe18d3c54180d957b3cb2bb1}} 
+int {\bfseries get\+Depth} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_viewport_a12bd4740101a21615921c90df3abd4c6}\label{classrev_1_1_viewport_a12bd4740101a21615921c90df3abd4c6}} 
+void {\bfseries set\+Depth} (int depth)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_viewport_a6054e1dfe7c8c91360f19dde8cdde766}\label{classrev_1_1_viewport_a6054e1dfe7c8c91360f19dde8cdde766}} 
+bool \mbox{\hyperlink{classrev_1_1_viewport_a6054e1dfe7c8c91360f19dde8cdde766}{in\+Bounds}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector2}} \&widget\+Pos, const \mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} \&renderer, float \&out\+ClipX, float \&out\+ClipY) const
+\begin{DoxyCompactList}\small\item\em Check if mouse is in bounds. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_viewport_a3dea0dbd5ee93f697941ef2da31e9185}{widget\+To\+Clip}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector2}} \&widget\+Space, const \mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} \&renderer, float \&out\+ClipX, float \&out\+ClipY) const
+\begin{DoxyCompactList}\small\item\em Convert from widget (device) coordinates to homogeneous clip coordinates. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classrev_1_1_viewport_ae4a69bf1e2757fa69131123282c63c08}{get\+Clip\+Depth}} ()
+\begin{DoxyCompactList}\small\item\em Get depth in clip-\/space bounds \mbox{[}-\/1, 1\mbox{]}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_viewport_a8cc0f28fc48c36886eed242cbdca085b}\label{classrev_1_1_viewport_a8cc0f28fc48c36886eed242cbdca085b}} 
+void \mbox{\hyperlink{classrev_1_1_viewport_a8cc0f28fc48c36886eed242cbdca085b}{set\+G\+L\+Viewport}} (const \mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} \&r) const
+\begin{DoxyCompactList}\small\item\em Set viewport in GL. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_viewport_a519ee6e5e008829cf72991ed6abcda4d}\label{classrev_1_1_viewport_a519ee6e5e008829cf72991ed6abcda4d}} 
+void {\bfseries set\+G\+L\+Viewport} (const \mbox{\hyperlink{classrev_1_1_frame_buffer}{Frame\+Buffer}} \&fbo) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_viewport_acb068c8adc27c3dbfa24d29c574cdc23}\label{classrev_1_1_viewport_acb068c8adc27c3dbfa24d29c574cdc23}} 
+void {\bfseries resize\+Frame\+Buffer} (uint32\+\_\+t width, uint32\+\_\+t height, \mbox{\hyperlink{classrev_1_1_frame_buffer}{Frame\+Buffer}} \&fbo) const
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_viewport_a0eaa6b946c0614c7e5ed0e579eb7edfb}\label{classrev_1_1_viewport_a0eaa6b946c0614c7e5ed0e579eb7edfb}} 
+static Q\+Size {\bfseries Screen\+Dimensions} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_viewport_a00f71d5cdcee7cbf8dd28073b8b53337}\label{classrev_1_1_viewport_a00f71d5cdcee7cbf8dd28073b8b53337}} 
+static \mbox{\hyperlink{classrev_1_1_vector}{Vector2}} {\bfseries Screen\+Dimensions\+Vec} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_viewport_add59faf6443b88b2876baf379f2fd3ea}\label{classrev_1_1_viewport_add59faf6443b88b2876baf379f2fd3ea}} 
+static float \mbox{\hyperlink{classrev_1_1_viewport_add59faf6443b88b2876baf379f2fd3ea}{Screen\+D\+PI}} ()
+\begin{DoxyCompactList}\small\item\em Return screen width and height in pixels. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_viewport_ab1a8ea23ee407757a966eec57c368706}\label{classrev_1_1_viewport_ab1a8ea23ee407757a966eec57c368706}} 
+static float {\bfseries Screen\+D\+P\+IX} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_viewport_a948b6889aae2a961c765cfc7519fe5a7}\label{classrev_1_1_viewport_a948b6889aae2a961c765cfc7519fe5a7}} 
+static float {\bfseries Screen\+D\+P\+IY} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Attributes}
+\begin{Indent}\textbf{ Public members}\par
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{classrev_1_1_viewport_aa2800b651ac224ff1c5142b79bedcb18}{m\+\_\+xn}} = 0
+\begin{DoxyCompactList}\small\item\em Normalized x-\/coordinate of camera on screen \mbox{[}-\/1, 1\mbox{]}. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classrev_1_1_viewport_a2f7f203e1175985f91f10b479b03fb22}{m\+\_\+yn}} = 0
+\begin{DoxyCompactList}\small\item\em Normalized y-\/coordinate of camera on screen \mbox{[}-\/1, 1\mbox{]}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_viewport_af824d048e25744148390baf1ef5d6439}\label{classrev_1_1_viewport_af824d048e25744148390baf1ef5d6439}} 
+double \mbox{\hyperlink{classrev_1_1_viewport_af824d048e25744148390baf1ef5d6439}{m\+\_\+width}} = 1
+\begin{DoxyCompactList}\small\item\em Percent screen width of camera. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_viewport_aa5626d213293db093c3ae20e34f22304}\label{classrev_1_1_viewport_aa5626d213293db093c3ae20e34f22304}} 
+double \mbox{\hyperlink{classrev_1_1_viewport_aa5626d213293db093c3ae20e34f22304}{m\+\_\+height}} = 1
+\begin{DoxyCompactList}\small\item\em Percent screen height of camera. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+Settings for viewport. 
+
+Currently 36 bytes 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_viewport_ae4a69bf1e2757fa69131123282c63c08}\label{classrev_1_1_viewport_ae4a69bf1e2757fa69131123282c63c08}} 
+\index{rev::Viewport@{rev::Viewport}!getClipDepth@{getClipDepth}}
+\index{getClipDepth@{getClipDepth}!rev::Viewport@{rev::Viewport}}
+\subsubsection{\texorpdfstring{getClipDepth()}{getClipDepth()}}
+{\footnotesize\ttfamily float rev\+::\+Viewport\+::get\+Clip\+Depth (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get depth in clip-\/space bounds \mbox{[}-\/1, 1\mbox{]}. 
+
+This routine is for setting F\+BO quad depth in quad shader \mbox{\Hypertarget{classrev_1_1_viewport_a3dea0dbd5ee93f697941ef2da31e9185}\label{classrev_1_1_viewport_a3dea0dbd5ee93f697941ef2da31e9185}} 
+\index{rev::Viewport@{rev::Viewport}!widgetToClip@{widgetToClip}}
+\index{widgetToClip@{widgetToClip}!rev::Viewport@{rev::Viewport}}
+\subsubsection{\texorpdfstring{widgetToClip()}{widgetToClip()}}
+{\footnotesize\ttfamily void rev\+::\+Viewport\+::widget\+To\+Clip (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector2}} \&}]{widget\+Space,  }\item[{const \mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} \&}]{renderer,  }\item[{float \&}]{out\+ClipX,  }\item[{float \&}]{out\+ClipY }\end{DoxyParamCaption}) const}
+
+
+
+Convert from widget (device) coordinates to homogeneous clip coordinates. 
+
+If given a z component (-\/1 to 1, mapped from depth buffer \mbox{[}0,1\mbox{]} via (2.\+0 $\ast$ depth -\/ 1.\+0)) with w = 1.\+0, the clip coordinates can then be converted to world coordinates by multiplying by the inverse projection/view matrix and performing a perspective divide 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em widget\+Space} & 2D pixel coordinates within the render target, with (0, 0) in the upper-\/left corner, X = right, Y = down \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+See\+: \href{https://computergraphics.stackexchange.com/questions/1769/world-coordinates-normalised-device-coordinates-and-device-coordinates}{\texttt{ https\+://computergraphics.\+stackexchange.\+com/questions/1769/world-\/coordinates-\/normalised-\/device-\/coordinates-\/and-\/device-\/coordinates}} 
+\end{DoxyNote}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_viewport_aa2800b651ac224ff1c5142b79bedcb18}\label{classrev_1_1_viewport_aa2800b651ac224ff1c5142b79bedcb18}} 
+\index{rev::Viewport@{rev::Viewport}!m\_xn@{m\_xn}}
+\index{m\_xn@{m\_xn}!rev::Viewport@{rev::Viewport}}
+\subsubsection{\texorpdfstring{m\_xn}{m\_xn}}
+{\footnotesize\ttfamily double rev\+::\+Viewport\+::m\+\_\+xn = 0}
+
+
+
+Normalized x-\/coordinate of camera on screen \mbox{[}-\/1, 1\mbox{]}. 
+
+Coordinate is center of viewport \mbox{\Hypertarget{classrev_1_1_viewport_a2f7f203e1175985f91f10b479b03fb22}\label{classrev_1_1_viewport_a2f7f203e1175985f91f10b479b03fb22}} 
+\index{rev::Viewport@{rev::Viewport}!m\_yn@{m\_yn}}
+\index{m\_yn@{m\_yn}!rev::Viewport@{rev::Viewport}}
+\subsubsection{\texorpdfstring{m\_yn}{m\_yn}}
+{\footnotesize\ttfamily double rev\+::\+Viewport\+::m\+\_\+yn = 0}
+
+
+
+Normalized y-\/coordinate of camera on screen \mbox{[}-\/1, 1\mbox{]}. 
+
+Coordinate is center of viewport 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/view/G\+Viewport.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/view/G\+Viewport.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,94 @@
+\hypertarget{classrev_1_1_add_shader_command}{}\section{rev\+::Add\+Shader\+Command Class Reference}
+\label{classrev_1_1_add_shader_command}\index{rev::AddShaderCommand@{rev::AddShaderCommand}}
+
+
+Add a shader program.  
+
+
+
+
+{\ttfamily \#include $<$G\+Resource\+Widgets.\+h$>$}
+
+Inheritance diagram for rev\+::Add\+Shader\+Command\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_add_shader_command}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_add_shader_command_a811884bacf80a763de62025f08537106}\label{classrev_1_1_add_shader_command_a811884bacf80a763de62025f08537106}} 
+{\bfseries Add\+Shader\+Command} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, const Q\+String \&text, Q\+Undo\+Command $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_add_shader_command_a0960ade9c414b9fd7a1fb716adbe2f8e}\label{classrev_1_1_add_shader_command_a0960ade9c414b9fd7a1fb716adbe2f8e}} 
+{\bfseries $\sim$\+Add\+Shader\+Command} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_add_shader_command_a0e7bbdad5644ce7e7bedb5176e81253d}\label{classrev_1_1_add_shader_command_a0e7bbdad5644ce7e7bedb5176e81253d}} 
+virtual void \mbox{\hyperlink{classrev_1_1_add_shader_command_a0e7bbdad5644ce7e7bedb5176e81253d}{redo}} () override
+\begin{DoxyCompactList}\small\item\em Redoes the command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_add_shader_command_ad577a61b454f9e1a06f81e01ce6c2b76}\label{classrev_1_1_add_shader_command_ad577a61b454f9e1a06f81e01ce6c2b76}} 
+virtual void \mbox{\hyperlink{classrev_1_1_add_shader_command_ad577a61b454f9e1a06f81e01ce6c2b76}{undo}} () override
+\begin{DoxyCompactList}\small\item\em Undoes the command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_add_shader_command_afd4d5bce90dad6a7985b0bbb45cb4ed8}\label{classrev_1_1_add_shader_command_afd4d5bce90dad6a7985b0bbb45cb4ed8}} 
+void \mbox{\hyperlink{classrev_1_1_add_shader_command_afd4d5bce90dad6a7985b0bbb45cb4ed8}{create\+Shader\+Widget}} ()
+\begin{DoxyCompactList}\small\item\em Create shader widget. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_add_shader_command_acf56e6ca4237284ca9c090cee7d56d86}\label{classrev_1_1_add_shader_command_acf56e6ca4237284ca9c090cee7d56d86}} 
+Q\+Widget $\ast$ \mbox{\hyperlink{classrev_1_1_add_shader_command_acf56e6ca4237284ca9c090cee7d56d86}{m\+\_\+shader\+Widget}}
+\begin{DoxyCompactList}\small\item\em shader widget \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_add_shader_command_a11eb6db98c255349d03b0d332f98a1ab}\label{classrev_1_1_add_shader_command_a11eb6db98c255349d03b0d332f98a1ab}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_file_load_widget}{View\+::\+File\+Load\+Widget}} $\ast$ {\bfseries m\+\_\+vertex\+Widget}
+\item 
+\mbox{\Hypertarget{classrev_1_1_add_shader_command_ac5ccd5cf6bc4f9d2c9eba84f97fd24de}\label{classrev_1_1_add_shader_command_ac5ccd5cf6bc4f9d2c9eba84f97fd24de}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_file_load_widget}{View\+::\+File\+Load\+Widget}} $\ast$ {\bfseries m\+\_\+fragment\+Widget}
+\item 
+\mbox{\Hypertarget{classrev_1_1_add_shader_command_afe0db0e70638064265f89866166f7a31}\label{classrev_1_1_add_shader_command_afe0db0e70638064265f89866166f7a31}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_file_load_widget}{View\+::\+File\+Load\+Widget}} $\ast$ {\bfseries m\+\_\+geometry\+Widget}
+\item 
+\mbox{\Hypertarget{classrev_1_1_add_shader_command_a619a35169853e4850c47a414687d94f8}\label{classrev_1_1_add_shader_command_a619a35169853e4850c47a414687d94f8}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_file_load_widget}{View\+::\+File\+Load\+Widget}} $\ast$ {\bfseries m\+\_\+compute\+Widget}
+\item 
+\mbox{\Hypertarget{classrev_1_1_add_shader_command_aa9fce2066628c4e4944f1541f142b458}\label{classrev_1_1_add_shader_command_aa9fce2066628c4e4944f1541f142b458}} 
+Q\+String {\bfseries m\+\_\+frag\+File}
+\item 
+\mbox{\Hypertarget{classrev_1_1_add_shader_command_a5e48e0b750346ae692beca75b161283a}\label{classrev_1_1_add_shader_command_a5e48e0b750346ae692beca75b161283a}} 
+Q\+String {\bfseries m\+\_\+vert\+File}
+\item 
+\mbox{\Hypertarget{classrev_1_1_add_shader_command_a7c094f1ded830d24cb629c1ec6dba031}\label{classrev_1_1_add_shader_command_a7c094f1ded830d24cb629c1ec6dba031}} 
+Q\+String {\bfseries m\+\_\+geom\+File}
+\item 
+\mbox{\Hypertarget{classrev_1_1_add_shader_command_ab9299e298e4c1b5efb8d11276622ae8e}\label{classrev_1_1_add_shader_command_ab9299e298e4c1b5efb8d11276622ae8e}} 
+Q\+String {\bfseries m\+\_\+comp\+File}
+\item 
+\mbox{\Hypertarget{classrev_1_1_add_shader_command_ac065e80b3a13427da03e241e1e02adb5}\label{classrev_1_1_add_shader_command_ac065e80b3a13427da03e241e1e02adb5}} 
+\mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \mbox{\hyperlink{classrev_1_1_add_shader_command_ac065e80b3a13427da03e241e1e02adb5}{m\+\_\+shader\+Program\+ID}}
+\begin{DoxyCompactList}\small\item\em The shader program added by this command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_add_shader_command_ab40df54b085d2d7ae4851cd399525be1}\label{classrev_1_1_add_shader_command_ab40df54b085d2d7ae4851cd399525be1}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_add_shader_command_ab40df54b085d2d7ae4851cd399525be1}{m\+\_\+shader\+Json}}
+\begin{DoxyCompactList}\small\item\em The J\+S\+ON for the shader added by this command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Add a shader program. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Resource\+Widgets.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Resource\+Widgets.\+cpp\end{DoxyCompactItemize}

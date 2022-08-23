@@ -1,0 +1,119 @@
+\hypertarget{classrev_1_1_animation_state}{}\section{rev\+::Animation\+State Class Reference}
+\label{classrev_1_1_animation_state}\index{rev::AnimationState@{rev::AnimationState}}
+
+
+Instantiation of an animation.  
+
+
+
+
+{\ttfamily \#include $<$G\+Animation\+State.\+h$>$}
+
+Inheritance diagram for rev\+::Animation\+State\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.692308cm]{classrev_1_1_animation_state}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_state_ae4f7f7efb0064a17766cc19648f9007c}\label{classrev_1_1_animation_state_ae4f7f7efb0064a17766cc19648f9007c}} 
+{\bfseries Animation\+State} (\mbox{\hyperlink{classrev_1_1_animation_state_machine}{Animation\+State\+Machine}} $\ast$state\+Machine)
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_state_a371298b79c5177eff453ab611627f6bc}\label{classrev_1_1_animation_state_a371298b79c5177eff453ab611627f6bc}} 
+{\bfseries Animation\+State} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name, \mbox{\hyperlink{classrev_1_1_animation_state_machine}{Animation\+State\+Machine}} $\ast$state\+Machine)
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_state_aef79ced34e28e828ffb86c696fee3478}\label{classrev_1_1_animation_state_aef79ced34e28e828ffb86c696fee3478}} 
+{\bfseries $\sim$\+Animation\+State} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_state_af22deea416df8b753322cfdd48f0335e}\label{classrev_1_1_animation_state_af22deea416df8b753322cfdd48f0335e}} 
+const std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_animation_clip}{Animation\+Clip}} $>$ \& {\bfseries clips} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_state_a2cd8ab6f9d80bbf198f60b0991c1d5b3}\label{classrev_1_1_animation_state_a2cd8ab6f9d80bbf198f60b0991c1d5b3}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_animation_clip}{Animation\+Clip}} $>$ \& {\bfseries clips} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_state_afd8e70ee6e514f63e0e3a7feebaf3834}\label{classrev_1_1_animation_state_afd8e70ee6e514f63e0e3a7feebaf3834}} 
+virtual Animation\+State\+Type \mbox{\hyperlink{classrev_1_1_animation_state_afd8e70ee6e514f63e0e3a7feebaf3834}{state\+Type}} () const override
+\begin{DoxyCompactList}\small\item\em Return the animation state type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_state_a73d7fcb803f0ee20da181246a1e62236}\label{classrev_1_1_animation_state_a73d7fcb803f0ee20da181246a1e62236}} 
+virtual void \mbox{\hyperlink{classrev_1_1_animation_state_a73d7fcb803f0ee20da181246a1e62236}{on\+Entry}} (\mbox{\hyperlink{classrev_1_1_motion}{Motion}} \&motion) const override
+\begin{DoxyCompactList}\small\item\em What happens on the transition into this state. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_state_a142ff73005264f15fa3298d07eaad29c}\label{classrev_1_1_animation_state_a142ff73005264f15fa3298d07eaad29c}} 
+virtual void \mbox{\hyperlink{classrev_1_1_animation_state_a142ff73005264f15fa3298d07eaad29c}{on\+Exit}} (\mbox{\hyperlink{classrev_1_1_motion}{Motion}} \&motion) const override
+\begin{DoxyCompactList}\small\item\em What happens on the transition out of this state. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_state_a79d18b40a93030ecf121622d793ee907}\label{classrev_1_1_animation_state_a79d18b40a93030ecf121622d793ee907}} 
+void \mbox{\hyperlink{classrev_1_1_animation_state_a79d18b40a93030ecf121622d793ee907}{add\+Clip}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \&animation)
+\begin{DoxyCompactList}\small\item\em Add an animation clip (base animation) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_state_af175847fa07fa394c5edf1d227b7648d}\label{classrev_1_1_animation_state_af175847fa07fa394c5edf1d227b7648d}} 
+void \mbox{\hyperlink{classrev_1_1_animation_state_af175847fa07fa394c5edf1d227b7648d}{remove\+Clip}} (const \mbox{\hyperlink{classrev_1_1_animation_clip}{Animation\+Clip}} \&clip)
+\begin{DoxyCompactList}\small\item\em Remove the specified animation clip. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_state_a7ae957bef5074c327a6a705aa59ed3f7}\label{classrev_1_1_animation_state_a7ae957bef5074c327a6a705aa59ed3f7}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_animation_state_a7ae957bef5074c327a6a705aa59ed3f7}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_state_a39caf170734be10eee5bab2839481997}\label{classrev_1_1_animation_state_a39caf170734be10eee5bab2839481997}} 
+virtual void \mbox{\hyperlink{classrev_1_1_animation_state_a39caf170734be10eee5bab2839481997}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_animation_state_a4d204d9ea91c34e1a546421dcc80f0e5}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_animation_state_abaccd2a331d4b77be5942e5e907be3dc}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Instantiation of an animation. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_animation_state_a4d204d9ea91c34e1a546421dcc80f0e5}\label{classrev_1_1_animation_state_a4d204d9ea91c34e1a546421dcc80f0e5}} 
+\index{rev::AnimationState@{rev::AnimationState}!className@{className}}
+\index{className@{className}!rev::AnimationState@{rev::AnimationState}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Animation\+State\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_base_animation_state_a40d8ab21aeed4a7d7e0f88004c08d060}{rev\+::\+Base\+Animation\+State}}.
+
+\mbox{\Hypertarget{classrev_1_1_animation_state_abaccd2a331d4b77be5942e5e907be3dc}\label{classrev_1_1_animation_state_abaccd2a331d4b77be5942e5e907be3dc}} 
+\index{rev::AnimationState@{rev::AnimationState}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::AnimationState@{rev::AnimationState}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Animation\+State\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_base_animation_state_a97dd6a934ca133d2024b1db68dd3316d}{rev\+::\+Base\+Animation\+State}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/animation/G\+Animation\+State.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/animation/G\+Animation\+State.\+cpp\end{DoxyCompactItemize}

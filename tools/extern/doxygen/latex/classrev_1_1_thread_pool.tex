@@ -1,0 +1,56 @@
+\hypertarget{classrev_1_1_thread_pool}{}\section{rev\+::Thread\+Pool Class Reference}
+\label{classrev_1_1_thread_pool}\index{rev::ThreadPool@{rev::ThreadPool}}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_thread_pool_aa8a4c29931931b16cbc300d8fcc3d8dc}\label{classrev_1_1_thread_pool_aa8a4c29931931b16cbc300d8fcc3d8dc}} 
+{\bfseries Thread\+Pool} (uint32\+\_\+t num\+Threads=std\+::thread\+::hardware\+\_\+concurrency())
+\item 
+\mbox{\Hypertarget{classrev_1_1_thread_pool_aed57174265018369b9a0fdafc848c9d0}\label{classrev_1_1_thread_pool_aed57174265018369b9a0fdafc848c9d0}} 
+{\bfseries $\sim$\+Thread\+Pool} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_thread_pool_a8fbb372c4f8b800cfa6d3c4808032a89}\label{classrev_1_1_thread_pool_a8fbb372c4f8b800cfa6d3c4808032a89}} 
+uint32\+\_\+t {\bfseries max\+Thread\+Count} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_thread_pool_a0ee0ed1b559460333d762ee1ccd3cdea}\label{classrev_1_1_thread_pool_a0ee0ed1b559460333d762ee1ccd3cdea}} 
+uint32\+\_\+t {\bfseries active\+Thread\+Count} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_thread_pool_abc9c37e36d4d0b895eda53b4708d0b60}\label{classrev_1_1_thread_pool_abc9c37e36d4d0b895eda53b4708d0b60}} 
+uint32\+\_\+t \mbox{\hyperlink{classrev_1_1_thread_pool_abc9c37e36d4d0b895eda53b4708d0b60}{get\+Index}} (std\+::thread\+::id thread\+Id)
+\begin{DoxyCompactList}\small\item\em Obtain the index of the thread with the specified ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_thread_pool_a8eacc0a9e498e5e6a20fe841be8d1dc1}\label{classrev_1_1_thread_pool_a8eacc0a9e498e5e6a20fe841be8d1dc1}} 
+void \mbox{\hyperlink{classrev_1_1_thread_pool_a8eacc0a9e498e5e6a20fe841be8d1dc1}{throw\+On\+Failure}} ()
+\begin{DoxyCompactList}\small\item\em Check if a thread has failed, rethrowing an error if it has. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_thread_pool_ae98254768c80a90eaca5694894abc306}\label{classrev_1_1_thread_pool_ae98254768c80a90eaca5694894abc306}} 
+{\footnotesize template$<$class F , class... Args$>$ }\\auto \mbox{\hyperlink{classrev_1_1_thread_pool_ae98254768c80a90eaca5694894abc306}{add\+Task}} (F \&\&f, Args \&\&... args) -\/$>$ std\+::future$<$ typename std\+::invoke\+\_\+result\+\_\+t$<$ F, Args... $>$$>$
+\begin{DoxyCompactList}\small\item\em Add a job to the pool\textquotesingle{}s task queue. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_thread_pool_a27a1665943f692ce27429a514e5ec209}{shutdown}} ()
+\begin{DoxyCompactList}\small\item\em Specialization to take a lambda function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_thread_pool_a27a1665943f692ce27429a514e5ec209}\label{classrev_1_1_thread_pool_a27a1665943f692ce27429a514e5ec209}} 
+\index{rev::ThreadPool@{rev::ThreadPool}!shutdown@{shutdown}}
+\index{shutdown@{shutdown}!rev::ThreadPool@{rev::ThreadPool}}
+\subsubsection{\texorpdfstring{shutdown()}{shutdown()}}
+{\footnotesize\ttfamily void rev\+::\+Thread\+Pool\+::shutdown (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Specialization to take a lambda function. 
+
+Shutdown all of the threads in the pool 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/threading/\mbox{\hyperlink{_g_threadpool_8h}{G\+Threadpool.\+h}}\end{DoxyCompactItemize}

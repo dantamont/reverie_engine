@@ -1,0 +1,589 @@
+\hypertarget{class_eigen_1_1_aligned_box}{}\section{Eigen\+::Aligned\+Box$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$ Class Template Reference}
+\label{class_eigen_1_1_aligned_box}\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+
+
+An axis aligned box.  
+
+
+
+
+{\ttfamily \#include $<$Aligned\+Box.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_a5662be619deba3ff232f9c6a521aed4c}\label{class_eigen_1_1_aligned_box_a5662be619deba3ff232f9c6a521aed4c}} 
+enum \{ {\bfseries Ambient\+Dim\+At\+Compile\+Time} = \+\_\+\+Ambient\+Dim
+ \}
+\item 
+enum \mbox{\hyperlink{class_eigen_1_1_aligned_box_ae4aa935b36004fffc49c7a3a85e2d378}{Corner\+Type}} \{ \newline
+\mbox{\hyperlink{class_eigen_1_1_aligned_box_ae4aa935b36004fffc49c7a3a85e2d378a600b5a58e77104ef7281dba6dcffb808}{Min}} =0, 
+{\bfseries Max} =1, 
+\mbox{\hyperlink{class_eigen_1_1_aligned_box_ae4aa935b36004fffc49c7a3a85e2d378a384d9fbe2c6b6b69a8ea7c5632a61f5c}{Bottom\+Left}} =0, 
+{\bfseries Bottom\+Right} =1, 
+\newline
+{\bfseries Top\+Left} =2, 
+{\bfseries Top\+Right} =3, 
+\mbox{\hyperlink{class_eigen_1_1_aligned_box_ae4aa935b36004fffc49c7a3a85e2d378a66786d5e4ba263c9725c3476fc421281}{Bottom\+Left\+Floor}} =0, 
+{\bfseries Bottom\+Right\+Floor} =1, 
+\newline
+{\bfseries Top\+Left\+Floor} =2, 
+{\bfseries Top\+Right\+Floor} =3, 
+{\bfseries Bottom\+Left\+Ceil} =4, 
+{\bfseries Bottom\+Right\+Ceil} =5, 
+\newline
+{\bfseries Top\+Left\+Ceil} =6, 
+{\bfseries Top\+Right\+Ceil} =7
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_a37cedc71a1b9fd2a4fd64b9039766e4e}\label{class_eigen_1_1_aligned_box_a37cedc71a1b9fd2a4fd64b9039766e4e}} 
+typedef \+\_\+\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_a6c4cc47999fea11dc1a3dfb6830238b0}\label{class_eigen_1_1_aligned_box_a6c4cc47999fea11dc1a3dfb6830238b0}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ Scalar $>$ {\bfseries Scalar\+Traits}
+\item 
+typedef Eigen\+::\+Index \mbox{\hyperlink{class_eigen_1_1_aligned_box_a774ef355da13d6bee6a6e7244c15231a}{Index}}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_add3256591bc5c7aeeec7dd1f778150a3}\label{class_eigen_1_1_aligned_box_add3256591bc5c7aeeec7dd1f778150a3}} 
+typedef Scalar\+Traits\+::\+Real {\bfseries Real\+Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_a45b593f77fd7fd0b21bb0fad8ff49d74}\label{class_eigen_1_1_aligned_box_a45b593f77fd7fd0b21bb0fad8ff49d74}} 
+typedef Scalar\+Traits\+::\+Non\+Integer {\bfseries Non\+Integer}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_af2fead656b16575b24fb27216f3026ab}\label{class_eigen_1_1_aligned_box_af2fead656b16575b24fb27216f3026ab}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, Ambient\+Dim\+At\+Compile\+Time, 1 $>$ {\bfseries Vector\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_ab4b0120bd528cd001944f91cfe59b1bf}\label{class_eigen_1_1_aligned_box_ab4b0120bd528cd001944f91cfe59b1bf}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{Cwise\+Binary\+Op}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__sum__op}{internal\+::scalar\+\_\+sum\+\_\+op}}$<$ Scalar $>$, const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}}, const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} $>$ {\bfseries Vector\+Type\+Sum}
+\end{DoxyCompactItemize}
+\textbf{ }\par
+
+\textbf{ }\par
+
+\textbf{ }\par
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_aligned_box_aeb7682d3d8676752e9b789b51d950872}{Aligned\+Box}} ()
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_aligned_box_a23c536bbeb17416e4c39b1dd346408f6}{Aligned\+Box}} (\mbox{\hyperlink{class_eigen_1_1_aligned_box_a774ef355da13d6bee6a6e7244c15231a}{Index}} \+\_\+dim)
+\item 
+{\footnotesize template$<$typename Other\+Vector\+Type1 , typename Other\+Vector\+Type2 $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_aligned_box_afbede45e6cc624de2033d219a158f248}{Aligned\+Box}} (const Other\+Vector\+Type1 \&\+\_\+min, const Other\+Vector\+Type2 \&\+\_\+max)
+\item 
+{\footnotesize template$<$typename Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_aligned_box_a2d851323bca421a59fb73b1258d130e7}{Aligned\+Box}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived $>$ \&p)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_aligned_box_a774ef355da13d6bee6a6e7244c15231a}{Index}} \mbox{\hyperlink{class_eigen_1_1_aligned_box_ab774df3608d0be913a3aa5d67476a521}{dim}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC bool \mbox{\hyperlink{class_eigen_1_1_aligned_box_a441638bbddbd4c8924cec736e7af7f96}{is\+Null}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void \mbox{\hyperlink{class_eigen_1_1_aligned_box_a1e0e312d7bd3468d7e15edb4f139fd13}{set\+Null}} ()
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC bool \mbox{\hyperlink{class_eigen_1_1_aligned_box_a0d194e2e56c3bef854e88ca2aba04c9e}{is\+Empty}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void \mbox{\hyperlink{class_eigen_1_1_aligned_box_ae946a0964de83d4e688fa462fe6d6725}{set\+Empty}} ()
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&() \mbox{\hyperlink{class_eigen_1_1_aligned_box_a4b23dedc65215a939c1794f83017c58d}{min}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&() \mbox{\hyperlink{class_eigen_1_1_aligned_box_a36f4c48fdbf74637e54422b9c386f24d}{min}} ()
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&() \mbox{\hyperlink{class_eigen_1_1_aligned_box_ad10b1fa3021f705e3104d09b8842c37e}{max}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&() \mbox{\hyperlink{class_eigen_1_1_aligned_box_a1a49b1c085de932a5dd36faf92b8f4de}{max}} ()
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_aligned_box_a53e595641b2d163739098a1983db5414}{E\+I\+G\+E\+N\+\_\+\+E\+X\+P\+R\+\_\+\+B\+I\+N\+A\+R\+Y\+O\+P\+\_\+\+S\+C\+A\+L\+A\+R\+\_\+\+R\+E\+T\+U\+R\+N\+\_\+\+T\+Y\+PE}} (\mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{Vector\+Type\+Sum}}, Real\+Scalar, quotient) center() const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{Cwise\+Binary\+Op}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__difference__op}{internal\+::scalar\+\_\+difference\+\_\+op}}$<$ Scalar, Scalar $>$, const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}}, const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} $>$ \mbox{\hyperlink{class_eigen_1_1_aligned_box_a139c2e08625f54e4c6b0007257afdae2}{sizes}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Scalar \mbox{\hyperlink{class_eigen_1_1_aligned_box_af737027346c35a1c3027d36c9c891dc5}{volume}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{Cwise\+Binary\+Op}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__difference__op}{internal\+::scalar\+\_\+difference\+\_\+op}}$<$ Scalar, Scalar $>$, const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}}, const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} $>$ \mbox{\hyperlink{class_eigen_1_1_aligned_box_a37ff7dfbe2d9aff6920c7f92b02af8d4}{diagonal}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \mbox{\hyperlink{class_eigen_1_1_aligned_box_a32e631ff4bfb088e664f696034e63100}{corner}} (\mbox{\hyperlink{class_eigen_1_1_aligned_box_ae4aa935b36004fffc49c7a3a85e2d378}{Corner\+Type}} corner) const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \mbox{\hyperlink{class_eigen_1_1_aligned_box_a3cd54685b5378b5e77fa2c62ca7e2797}{sample}} () const
+\item 
+{\footnotesize template$<$typename Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC bool \mbox{\hyperlink{class_eigen_1_1_aligned_box_a1882f21e5e56c877ea35505644ef5833}{contains}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived $>$ \&p) const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC bool \mbox{\hyperlink{class_eigen_1_1_aligned_box_aadae71332cb6be09f93150edb1b6f99a}{contains}} (const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}} \&b) const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC bool \mbox{\hyperlink{class_eigen_1_1_aligned_box_a75a5af80f40892bfa267c0245f0d4d12}{intersects}} (const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}} \&b) const
+\item 
+{\footnotesize template$<$typename Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}} \& \mbox{\hyperlink{class_eigen_1_1_aligned_box_a6dfe79aa0435d6db3ed06b0e3b9f79b6}{extend}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived $>$ \&p)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}} \& \mbox{\hyperlink{class_eigen_1_1_aligned_box_ace56bb9d36d9b3e15fb50df80272ed77}{extend}} (const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}} \&b)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}} \& \mbox{\hyperlink{class_eigen_1_1_aligned_box_a7df756eb446280c7d738ac5ce73d4032}{clamp}} (const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}} \&b)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}} \mbox{\hyperlink{class_eigen_1_1_aligned_box_ac31024e7fccb025810535eb5a673ed14}{intersection}} (const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}} \&b) const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}} \mbox{\hyperlink{class_eigen_1_1_aligned_box_a8182b7661c4b244285ca0f831363b00a}{merged}} (const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}} \&b) const
+\item 
+{\footnotesize template$<$typename Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}} \& \mbox{\hyperlink{class_eigen_1_1_aligned_box_af869911480769d718514cd008dd191dc}{translate}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived $>$ \&a\+\_\+t)
+\item 
+{\footnotesize template$<$typename Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Scalar \mbox{\hyperlink{class_eigen_1_1_aligned_box_aa6d9ffc81bd77da631fef6559f45cf13}{squared\+Exterior\+Distance}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived $>$ \&p) const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Scalar \mbox{\hyperlink{class_eigen_1_1_aligned_box_ae9a0ba701f64f431ccfa63e79062a901}{squared\+Exterior\+Distance}} (const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}} \&b) const
+\item 
+{\footnotesize template$<$typename Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Non\+Integer \mbox{\hyperlink{class_eigen_1_1_aligned_box_afe02b2ef5cdc1e1cd45eddee33cf1be5}{exterior\+Distance}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived $>$ \&p) const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Non\+Integer \mbox{\hyperlink{class_eigen_1_1_aligned_box_adf8c0e000b283ad22f00474356916686}{exterior\+Distance}} (const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}} \&b) const
+\item 
+{\footnotesize template$<$typename New\+Scalar\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1cast__return__type}{internal\+::cast\+\_\+return\+\_\+type}}$<$ \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}}, \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}}$<$ New\+Scalar\+Type, Ambient\+Dim\+At\+Compile\+Time $>$ $>$\+::type \mbox{\hyperlink{class_eigen_1_1_aligned_box_a269eb719d3e093d9c1cb4309b815c51b}{cast}} () const
+\item 
+{\footnotesize template$<$typename Other\+Scalar\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_aligned_box_afa9f0963fda762e5ca3633caec7bf8f2}{Aligned\+Box}} (const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}}$<$ Other\+Scalar\+Type, Ambient\+Dim\+At\+Compile\+Time $>$ \&other)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC bool \mbox{\hyperlink{class_eigen_1_1_aligned_box_a9d21b1102d3b6944a80a563d3974c83c}{is\+Approx}} (const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}} \&other, const Real\+Scalar \&prec=Scalar\+Traits\+::dummy\+\_\+precision()) const
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_a083e6c4e560a6d766486afa9b209f456}\label{class_eigen_1_1_aligned_box_a083e6c4e560a6d766486afa9b209f456}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} {\bfseries m\+\_\+min}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_acfc2c4b47b571843aad1e68e823022be}\label{class_eigen_1_1_aligned_box_acfc2c4b47b571843aad1e68e823022be}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} {\bfseries m\+\_\+max}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim$>$\newline
+class Eigen\+::\+Aligned\+Box$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$}
+
+An axis aligned box. 
+
+\textbackslash{}geometry\+\_\+module
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Scalar} & the type of the scalar coefficients \\
+\hline
+{\em \+\_\+\+Ambient\+Dim} & the dimension of the ambient space, can be a compile time value or Dynamic.\\
+\hline
+\end{DoxyTemplParams}
+This class represents an axis aligned box as a pair of the minimal and maximal corners. \begin{DoxyWarning}{Warning}
+The result of most methods is undefined when applied to an empty box. You can check for empty boxes using \mbox{\hyperlink{class_eigen_1_1_aligned_box_a0d194e2e56c3bef854e88ca2aba04c9e}{is\+Empty()}}. 
+\end{DoxyWarning}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__alignedboxtypedefs}{Global aligned box typedefs}} 
+\end{DoxySeeAlso}
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_a774ef355da13d6bee6a6e7244c15231a}\label{class_eigen_1_1_aligned_box_a774ef355da13d6bee6a6e7244c15231a}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!Index@{Index}}
+\index{Index@{Index}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{Index}{Index}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+typedef Eigen\+::\+Index \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::\mbox{\hyperlink{class_eigen_1_1_aligned_box_a774ef355da13d6bee6a6e7244c15231a}{Index}}}
+
+\begin{DoxyRefDesc}{Deprecated}
+\item[\mbox{\hyperlink{deprecated__deprecated000025}{Deprecated}}]since Eigen 3.\+3 \end{DoxyRefDesc}
+
+
+\subsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_ae4aa935b36004fffc49c7a3a85e2d378}\label{class_eigen_1_1_aligned_box_ae4aa935b36004fffc49c7a3a85e2d378}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!CornerType@{CornerType}}
+\index{CornerType@{CornerType}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{CornerType}{CornerType}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+enum \mbox{\hyperlink{class_eigen_1_1_aligned_box_ae4aa935b36004fffc49c7a3a85e2d378}{Eigen\+::\+Aligned\+Box\+::\+Corner\+Type}}}
+
+Define constants to name the corners of a 1D, 2D or 3D axis aligned bounding box \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Min@{Min}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!Min@{Min}}}\mbox{\Hypertarget{class_eigen_1_1_aligned_box_ae4aa935b36004fffc49c7a3a85e2d378a600b5a58e77104ef7281dba6dcffb808}\label{class_eigen_1_1_aligned_box_ae4aa935b36004fffc49c7a3a85e2d378a600b5a58e77104ef7281dba6dcffb808}} 
+Min&1D names \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BottomLeft@{BottomLeft}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!BottomLeft@{BottomLeft}}}\mbox{\Hypertarget{class_eigen_1_1_aligned_box_ae4aa935b36004fffc49c7a3a85e2d378a384d9fbe2c6b6b69a8ea7c5632a61f5c}\label{class_eigen_1_1_aligned_box_ae4aa935b36004fffc49c7a3a85e2d378a384d9fbe2c6b6b69a8ea7c5632a61f5c}} 
+Bottom\+Left&Identifier for 2D corner \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BottomLeftFloor@{BottomLeftFloor}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!BottomLeftFloor@{BottomLeftFloor}}}\mbox{\Hypertarget{class_eigen_1_1_aligned_box_ae4aa935b36004fffc49c7a3a85e2d378a66786d5e4ba263c9725c3476fc421281}\label{class_eigen_1_1_aligned_box_ae4aa935b36004fffc49c7a3a85e2d378a66786d5e4ba263c9725c3476fc421281}} 
+Bottom\+Left\+Floor&Identifier for 3D corner \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_aeb7682d3d8676752e9b789b51d950872}\label{class_eigen_1_1_aligned_box_aeb7682d3d8676752e9b789b51d950872}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!AlignedBox@{AlignedBox}}
+\index{AlignedBox@{AlignedBox}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{AlignedBox()}{AlignedBox()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::\mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default constructor initializing a null box. \mbox{\Hypertarget{class_eigen_1_1_aligned_box_a23c536bbeb17416e4c39b1dd346408f6}\label{class_eigen_1_1_aligned_box_a23c536bbeb17416e4c39b1dd346408f6}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!AlignedBox@{AlignedBox}}
+\index{AlignedBox@{AlignedBox}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{AlignedBox()}{AlignedBox()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::\mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_aligned_box_a774ef355da13d6bee6a6e7244c15231a}{Index}}}]{\+\_\+dim }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Constructs a null box with {\itshape \+\_\+dim} the dimension of the ambient space. \mbox{\Hypertarget{class_eigen_1_1_aligned_box_afbede45e6cc624de2033d219a158f248}\label{class_eigen_1_1_aligned_box_afbede45e6cc624de2033d219a158f248}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!AlignedBox@{AlignedBox}}
+\index{AlignedBox@{AlignedBox}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{AlignedBox()}{AlignedBox()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+template$<$typename Other\+Vector\+Type1 , typename Other\+Vector\+Type2 $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::\mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}} (\begin{DoxyParamCaption}\item[{const Other\+Vector\+Type1 \&}]{\+\_\+min,  }\item[{const Other\+Vector\+Type2 \&}]{\+\_\+max }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructs a box with extremities {\itshape \+\_\+min} and {\itshape \+\_\+max}. \begin{DoxyWarning}{Warning}
+If either component of {\itshape \+\_\+min} is larger than the same component of {\itshape \+\_\+max}, the constructed box is empty. 
+\end{DoxyWarning}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_a2d851323bca421a59fb73b1258d130e7}\label{class_eigen_1_1_aligned_box_a2d851323bca421a59fb73b1258d130e7}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!AlignedBox@{AlignedBox}}
+\index{AlignedBox@{AlignedBox}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{AlignedBox()}{AlignedBox()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+template$<$typename Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::\mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived $>$ \&}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Constructs a box containing a single point {\itshape p}. \mbox{\Hypertarget{class_eigen_1_1_aligned_box_afa9f0963fda762e5ca3633caec7bf8f2}\label{class_eigen_1_1_aligned_box_afa9f0963fda762e5ca3633caec7bf8f2}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!AlignedBox@{AlignedBox}}
+\index{AlignedBox@{AlignedBox}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{AlignedBox()}{AlignedBox()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+template$<$typename Other\+Scalar\+Type $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::\mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}}$<$ Other\+Scalar\+Type, Ambient\+Dim\+At\+Compile\+Time $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Copy constructor with scalar type conversion 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_a269eb719d3e093d9c1cb4309b815c51b}\label{class_eigen_1_1_aligned_box_a269eb719d3e093d9c1cb4309b815c51b}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!cast@{cast}}
+\index{cast@{cast}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{cast()}{cast()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+template$<$typename New\+Scalar\+Type $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1cast__return__type}{internal\+::cast\+\_\+return\+\_\+type}}$<$\mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}}, \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}}$<$New\+Scalar\+Type,Ambient\+Dim\+At\+Compile\+Time$>$ $>$\+::type \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::cast (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily $\ast$this} with scalar type casted to {\itshape New\+Scalar\+Type} 
+\end{DoxyReturn}
+Note that if {\itshape New\+Scalar\+Type} is equal to the current scalar type of {\ttfamily $\ast$this} then this function smartly returns a const reference to {\ttfamily $\ast$this}. \mbox{\Hypertarget{class_eigen_1_1_aligned_box_a7df756eb446280c7d738ac5ce73d4032}\label{class_eigen_1_1_aligned_box_a7df756eb446280c7d738ac5ce73d4032}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!clamp@{clamp}}
+\index{clamp@{clamp}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{clamp()}{clamp()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}}\& \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::clamp (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$ \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Clamps {\ttfamily $\ast$this} by the box {\itshape b} and returns a reference to {\ttfamily $\ast$this}. \begin{DoxyNote}{Note}
+If the boxes don\textquotesingle{}t intersect, the resulting box is empty. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_aligned_box_ac31024e7fccb025810535eb5a673ed14}{intersection()}}, \mbox{\hyperlink{class_eigen_1_1_aligned_box_a75a5af80f40892bfa267c0245f0d4d12}{intersects()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_a1882f21e5e56c877ea35505644ef5833}\label{class_eigen_1_1_aligned_box_a1882f21e5e56c877ea35505644ef5833}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!contains@{contains}}
+\index{contains@{contains}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{contains()}{contains()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+template$<$typename Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC bool \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::contains (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived $>$ \&}]{p }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+true if the point {\itshape p} is inside the box {\ttfamily $\ast$this}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_aadae71332cb6be09f93150edb1b6f99a}\label{class_eigen_1_1_aligned_box_aadae71332cb6be09f93150edb1b6f99a}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!contains@{contains}}
+\index{contains@{contains}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{contains()}{contains()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC bool \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::contains (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$ \&}]{b }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+true if the box {\itshape b} is entirely inside the box {\ttfamily $\ast$this}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_a32e631ff4bfb088e664f696034e63100}\label{class_eigen_1_1_aligned_box_a32e631ff4bfb088e664f696034e63100}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!corner@{corner}}
+\index{corner@{corner}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{corner()}{corner()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::corner (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_aligned_box_ae4aa935b36004fffc49c7a3a85e2d378}{Corner\+Type}}}]{corner }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the vertex of the bounding box at the corner defined by the corner-\/id corner. It works only for a 1D, 2D or 3D bounding box. For 1D bounding boxes corners are named by 2 enum constants\+: Bottom\+Left and Bottom\+Right. For 2D bounding boxes, corners are named by 4 enum constants\+: Bottom\+Left, Bottom\+Right, Top\+Left, Top\+Right. For 3D bounding boxes, the following names are added\+: Bottom\+Left\+Ceil, Bottom\+Right\+Ceil, Top\+Left\+Ceil, Top\+Right\+Ceil. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_a37ff7dfbe2d9aff6920c7f92b02af8d4}\label{class_eigen_1_1_aligned_box_a37ff7dfbe2d9aff6920c7f92b02af8d4}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!diagonal@{diagonal}}
+\index{diagonal@{diagonal}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{diagonal()}{diagonal()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{Cwise\+Binary\+Op}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__difference__op}{internal\+::scalar\+\_\+difference\+\_\+op}}$<$Scalar,Scalar$>$, const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}}, const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}}$>$ \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::diagonal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+an expression for the bounding box diagonal vector if the length of the diagonal is needed\+: \mbox{\hyperlink{class_eigen_1_1_aligned_box_a37ff7dfbe2d9aff6920c7f92b02af8d4}{diagonal()}}.norm() will provide it. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_ab774df3608d0be913a3aa5d67476a521}\label{class_eigen_1_1_aligned_box_ab774df3608d0be913a3aa5d67476a521}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!dim@{dim}}
+\index{dim@{dim}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{dim()}{dim()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_aligned_box_a774ef355da13d6bee6a6e7244c15231a}{Index}} \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::dim (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the dimension in which the box holds 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_a53e595641b2d163739098a1983db5414}\label{class_eigen_1_1_aligned_box_a53e595641b2d163739098a1983db5414}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!EIGEN\_EXPR\_BINARYOP\_SCALAR\_RETURN\_TYPE@{EIGEN\_EXPR\_BINARYOP\_SCALAR\_RETURN\_TYPE}}
+\index{EIGEN\_EXPR\_BINARYOP\_SCALAR\_RETURN\_TYPE@{EIGEN\_EXPR\_BINARYOP\_SCALAR\_RETURN\_TYPE}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{EIGEN\_EXPR\_BINARYOP\_SCALAR\_RETURN\_TYPE()}{EIGEN\_EXPR\_BINARYOP\_SCALAR\_RETURN\_TYPE()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::E\+I\+G\+E\+N\+\_\+\+E\+X\+P\+R\+\_\+\+B\+I\+N\+A\+R\+Y\+O\+P\+\_\+\+S\+C\+A\+L\+A\+R\+\_\+\+R\+E\+T\+U\+R\+N\+\_\+\+T\+Y\+PE (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{Vector\+Type\+Sum}}}]{,  }\item[{Real\+Scalar}]{,  }\item[{quotient}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the center of the box 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_a6dfe79aa0435d6db3ed06b0e3b9f79b6}\label{class_eigen_1_1_aligned_box_a6dfe79aa0435d6db3ed06b0e3b9f79b6}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!extend@{extend}}
+\index{extend@{extend}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{extend()}{extend()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+template$<$typename Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}}\& \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::extend (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived $>$ \&}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Extends {\ttfamily $\ast$this} such that it contains the point {\itshape p} and returns a reference to {\ttfamily $\ast$this}. \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_aligned_box_ace56bb9d36d9b3e15fb50df80272ed77}{extend(const Aligned\+Box\&)}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_ace56bb9d36d9b3e15fb50df80272ed77}\label{class_eigen_1_1_aligned_box_ace56bb9d36d9b3e15fb50df80272ed77}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!extend@{extend}}
+\index{extend@{extend}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{extend()}{extend()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}}\& \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::extend (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$ \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Extends {\ttfamily $\ast$this} such that it contains the box {\itshape b} and returns a reference to {\ttfamily $\ast$this}. \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_aligned_box_a8182b7661c4b244285ca0f831363b00a}{merged}}, \mbox{\hyperlink{class_eigen_1_1_aligned_box_a6dfe79aa0435d6db3ed06b0e3b9f79b6}{extend(const Matrix\+Base\&)}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_afe02b2ef5cdc1e1cd45eddee33cf1be5}\label{class_eigen_1_1_aligned_box_afe02b2ef5cdc1e1cd45eddee33cf1be5}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!exteriorDistance@{exteriorDistance}}
+\index{exteriorDistance@{exteriorDistance}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{exteriorDistance()}{exteriorDistance()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+template$<$typename Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Non\+Integer \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::exterior\+Distance (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived $>$ \&}]{p }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the distance between the point {\itshape p} and the box {\ttfamily $\ast$this}, and zero if {\itshape p} is inside the box. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+squared\+Exterior\+Distance(const Matrix\+Base\&), exterior\+Distance(const Aligned\+Box\&) 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_adf8c0e000b283ad22f00474356916686}\label{class_eigen_1_1_aligned_box_adf8c0e000b283ad22f00474356916686}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!exteriorDistance@{exteriorDistance}}
+\index{exteriorDistance@{exteriorDistance}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{exteriorDistance()}{exteriorDistance()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Non\+Integer \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::exterior\+Distance (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$ \&}]{b }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the distance between the boxes {\itshape b} and {\ttfamily $\ast$this}, and zero if the boxes intersect. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+squared\+Exterior\+Distance(const Aligned\+Box\&), exterior\+Distance(const Matrix\+Base\&) 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_ac31024e7fccb025810535eb5a673ed14}\label{class_eigen_1_1_aligned_box_ac31024e7fccb025810535eb5a673ed14}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!intersection@{intersection}}
+\index{intersection@{intersection}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{intersection()}{intersection()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}} \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::intersection (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$ \&}]{b }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns an \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}} that is the intersection of {\itshape b} and {\ttfamily $\ast$this} \begin{DoxyNote}{Note}
+If the boxes don\textquotesingle{}t intersect, the resulting box is empty. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_aligned_box_a75a5af80f40892bfa267c0245f0d4d12}{intersects()}}, \mbox{\hyperlink{class_eigen_1_1_aligned_box_a7df756eb446280c7d738ac5ce73d4032}{clamp}}, \mbox{\hyperlink{class_eigen_1_1_aligned_box_a1882f21e5e56c877ea35505644ef5833}{contains()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_a75a5af80f40892bfa267c0245f0d4d12}\label{class_eigen_1_1_aligned_box_a75a5af80f40892bfa267c0245f0d4d12}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!intersects@{intersects}}
+\index{intersects@{intersects}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{intersects()}{intersects()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC bool \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::intersects (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$ \&}]{b }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+true if the box {\itshape b} is intersecting the box {\ttfamily $\ast$this}. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_aligned_box_ac31024e7fccb025810535eb5a673ed14}{intersection}}, \mbox{\hyperlink{class_eigen_1_1_aligned_box_a7df756eb446280c7d738ac5ce73d4032}{clamp}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_a9d21b1102d3b6944a80a563d3974c83c}\label{class_eigen_1_1_aligned_box_a9d21b1102d3b6944a80a563d3974c83c}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!isApprox@{isApprox}}
+\index{isApprox@{isApprox}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{isApprox()}{isApprox()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC bool \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::is\+Approx (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$ \&}]{other,  }\item[{const Real\+Scalar \&}]{prec = {\ttfamily ScalarTraits\+:\+:dummy\+\_\+precision()} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if {\ttfamily $\ast$this} is approximately equal to {\itshape other}, within the precision determined by {\itshape prec}.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+Matrix\+Base\+::is\+Approx() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_a0d194e2e56c3bef854e88ca2aba04c9e}\label{class_eigen_1_1_aligned_box_a0d194e2e56c3bef854e88ca2aba04c9e}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!isEmpty@{isEmpty}}
+\index{isEmpty@{isEmpty}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{isEmpty()}{isEmpty()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC bool \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::is\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+true if the box is empty. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_aligned_box_ae946a0964de83d4e688fa462fe6d6725}{set\+Empty}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_a441638bbddbd4c8924cec736e7af7f96}\label{class_eigen_1_1_aligned_box_a441638bbddbd4c8924cec736e7af7f96}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!isNull@{isNull}}
+\index{isNull@{isNull}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{isNull()}{isNull()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC bool \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::is\+Null (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyRefDesc}{Deprecated}
+\item[\mbox{\hyperlink{deprecated__deprecated000026}{Deprecated}}]use \mbox{\hyperlink{class_eigen_1_1_aligned_box_a0d194e2e56c3bef854e88ca2aba04c9e}{is\+Empty()}} \end{DoxyRefDesc}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_ad10b1fa3021f705e3104d09b8842c37e}\label{class_eigen_1_1_aligned_box_ad10b1fa3021f705e3104d09b8842c37e}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!max@{max}}
+\index{max@{max}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{max()}{max()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}}\&() \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::max (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the maximal corner 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_a1a49b1c085de932a5dd36faf92b8f4de}\label{class_eigen_1_1_aligned_box_a1a49b1c085de932a5dd36faf92b8f4de}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!max@{max}}
+\index{max@{max}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{max()}{max()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}}\&() \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::max (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a non const reference to the maximal corner 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_a8182b7661c4b244285ca0f831363b00a}\label{class_eigen_1_1_aligned_box_a8182b7661c4b244285ca0f831363b00a}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!merged@{merged}}
+\index{merged@{merged}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{merged()}{merged()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}} \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::merged (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$ \&}]{b }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns an \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}} that is the union of {\itshape b} and {\ttfamily $\ast$this}. \begin{DoxyNote}{Note}
+Merging with an empty box may result in a box bigger than {\ttfamily $\ast$this}. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_aligned_box_ace56bb9d36d9b3e15fb50df80272ed77}{extend(const Aligned\+Box\&)}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_a4b23dedc65215a939c1794f83017c58d}\label{class_eigen_1_1_aligned_box_a4b23dedc65215a939c1794f83017c58d}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!min@{min}}
+\index{min@{min}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{min()}{min()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}}\&() \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::min (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the minimal corner 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_a36f4c48fdbf74637e54422b9c386f24d}\label{class_eigen_1_1_aligned_box_a36f4c48fdbf74637e54422b9c386f24d}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!min@{min}}
+\index{min@{min}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{min()}{min()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}}\&() \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::min (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a non const reference to the minimal corner 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_a3cd54685b5378b5e77fa2c62ca7e2797}\label{class_eigen_1_1_aligned_box_a3cd54685b5378b5e77fa2c62ca7e2797}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!sample@{sample}}
+\index{sample@{sample}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{sample()}{sample()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::sample (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a random point inside the bounding box sampled with a uniform distribution 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_ae946a0964de83d4e688fa462fe6d6725}\label{class_eigen_1_1_aligned_box_ae946a0964de83d4e688fa462fe6d6725}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!setEmpty@{setEmpty}}
+\index{setEmpty@{setEmpty}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{setEmpty()}{setEmpty()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::set\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Makes {\ttfamily $\ast$this} an empty box. \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_aligned_box_a0d194e2e56c3bef854e88ca2aba04c9e}{is\+Empty}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_a1e0e312d7bd3468d7e15edb4f139fd13}\label{class_eigen_1_1_aligned_box_a1e0e312d7bd3468d7e15edb4f139fd13}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!setNull@{setNull}}
+\index{setNull@{setNull}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{setNull()}{setNull()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::set\+Null (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyRefDesc}{Deprecated}
+\item[\mbox{\hyperlink{deprecated__deprecated000027}{Deprecated}}]use \mbox{\hyperlink{class_eigen_1_1_aligned_box_ae946a0964de83d4e688fa462fe6d6725}{set\+Empty()}} \end{DoxyRefDesc}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_a139c2e08625f54e4c6b0007257afdae2}\label{class_eigen_1_1_aligned_box_a139c2e08625f54e4c6b0007257afdae2}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!sizes@{sizes}}
+\index{sizes@{sizes}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{sizes()}{sizes()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_cwise_binary_op}{Cwise\+Binary\+Op}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1scalar__difference__op}{internal\+::scalar\+\_\+difference\+\_\+op}}$<$Scalar,Scalar$>$, const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}}, const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}}$>$ \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::sizes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the lengths of the sides of the bounding box. Note that this function does not get the same result for integral or floating scalar types\+: see 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_aa6d9ffc81bd77da631fef6559f45cf13}\label{class_eigen_1_1_aligned_box_aa6d9ffc81bd77da631fef6559f45cf13}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!squaredExteriorDistance@{squaredExteriorDistance}}
+\index{squaredExteriorDistance@{squaredExteriorDistance}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{squaredExteriorDistance()}{squaredExteriorDistance()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Scalar , int Ambient\+Dim$>$ \\
+template$<$typename Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Scalar \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ Scalar, Ambient\+Dim $>$\+::squared\+Exterior\+Distance (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived $>$ \&}]{p }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the squared distance between the point {\itshape p} and the box {\ttfamily $\ast$this}, and zero if {\itshape p} is inside the box. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+exterior\+Distance(const Matrix\+Base\&), squared\+Exterior\+Distance(const Aligned\+Box\&) 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_ae9a0ba701f64f431ccfa63e79062a901}\label{class_eigen_1_1_aligned_box_ae9a0ba701f64f431ccfa63e79062a901}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!squaredExteriorDistance@{squaredExteriorDistance}}
+\index{squaredExteriorDistance@{squaredExteriorDistance}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{squaredExteriorDistance()}{squaredExteriorDistance()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Scalar , int Ambient\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Scalar \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ Scalar, Ambient\+Dim $>$\+::squared\+Exterior\+Distance (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$ \&}]{b }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the squared distance between the boxes {\itshape b} and {\ttfamily $\ast$this}, and zero if the boxes intersect. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+exterior\+Distance(const Aligned\+Box\&), squared\+Exterior\+Distance(const Matrix\+Base\&) 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_aligned_box_af869911480769d718514cd008dd191dc}\label{class_eigen_1_1_aligned_box_af869911480769d718514cd008dd191dc}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!translate@{translate}}
+\index{translate@{translate}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{translate()}{translate()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+template$<$typename Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Aligned\+Box}}\& \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::translate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived $>$ \&}]{a\+\_\+t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Translate {\ttfamily $\ast$this} by the vector {\itshape t} and returns a reference to {\ttfamily $\ast$this}. \mbox{\Hypertarget{class_eigen_1_1_aligned_box_af737027346c35a1c3027d36c9c891dc5}\label{class_eigen_1_1_aligned_box_af737027346c35a1c3027d36c9c891dc5}} 
+\index{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}!volume@{volume}}
+\index{volume@{volume}!Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$@{Eigen::AlignedBox$<$ \_Scalar, \_AmbientDim $>$}}
+\subsubsection{\texorpdfstring{volume()}{volume()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Scalar \mbox{\hyperlink{class_eigen_1_1_aligned_box}{Eigen\+::\+Aligned\+Box}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim $>$\+::volume (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the volume of the bounding box 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Core/util/Forward\+Declarations.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Geometry/Aligned\+Box.\+h\end{DoxyCompactItemize}

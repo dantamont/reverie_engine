@@ -1,0 +1,63 @@
+\hypertarget{classrev_1_1_bounding_sphere}{}\section{rev\+::Bounding\+Sphere Class Reference}
+\label{classrev_1_1_bounding_sphere}\index{rev::BoundingSphere@{rev::BoundingSphere}}
+Inheritance diagram for rev\+::Bounding\+Sphere\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_bounding_sphere}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructor/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_sphere_aee2c7fdeec1f0af8939664363bcf249e}\label{classrev_1_1_bounding_sphere_aee2c7fdeec1f0af8939664363bcf249e}} 
+{\bfseries Bounding\+Sphere} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_sphere_ac169db24ed8437d1068dc3c3aef74bc9}\label{classrev_1_1_bounding_sphere_ac169db24ed8437d1068dc3c3aef74bc9}} 
+{\bfseries $\sim$\+Bounding\+Sphere} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_sphere_ab28c8224c307374d8a4cf6c4dfbe56ed}\label{classrev_1_1_bounding_sphere_ab28c8224c307374d8a4cf6c4dfbe56ed}} 
+\mbox{\hyperlink{structrev_1_1_bounding_sphere_data}{Bounding\+Sphere\+Data}} \& {\bfseries data} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_sphere_a22c1f63c994e549f8e576f7e37039f5f}\label{classrev_1_1_bounding_sphere_a22c1f63c994e549f8e576f7e37039f5f}} 
+const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \& {\bfseries origin} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_sphere_a738ad66dd81d2b7bcc61a9c84497b5d8}\label{classrev_1_1_bounding_sphere_a738ad66dd81d2b7bcc61a9c84497b5d8}} 
+void {\bfseries set\+Origin} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&origin)
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_sphere_ab03a1f78a2f06b63bb9ec56c34dc2417}\label{classrev_1_1_bounding_sphere_ab03a1f78a2f06b63bb9ec56c34dc2417}} 
+const float \& {\bfseries radius} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_sphere_aa5766140d4afef5110d0556d643dbb54}\label{classrev_1_1_bounding_sphere_aa5766140d4afef5110d0556d643dbb54}} 
+void {\bfseries set\+Radius} (const float \&radius)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_sphere_a4c50638928295078da816bf042706562}\label{classrev_1_1_bounding_sphere_a4c50638928295078da816bf042706562}} 
+virtual bool {\bfseries intersects} (const \mbox{\hyperlink{classrev_1_1_colliding_geometry}{Colliding\+Geometry}} \&other) const override
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_sphere_a97a3789887e7ba7dfe7df4727272bdff}\label{classrev_1_1_bounding_sphere_a97a3789887e7ba7dfe7df4727272bdff}} 
+virtual void {\bfseries recalculate\+Bounds} (const \mbox{\hyperlink{classrev_1_1_transform}{Transform}} \&transform, \mbox{\hyperlink{classrev_1_1_colliding_geometry}{Colliding\+Geometry}} \&out) const override
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_sphere_a50c6f7e4345b3352b4ce3a795750d329}\label{classrev_1_1_bounding_sphere_a50c6f7e4345b3352b4ce3a795750d329}} 
+\mbox{\hyperlink{structrev_1_1_bounding_sphere_data}{Bounding\+Sphere\+Data}} {\bfseries m\+\_\+data}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/geometry/G\+Collisions.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/geometry/G\+Collisions.\+cpp\end{DoxyCompactItemize}

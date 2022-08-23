@@ -1,0 +1,108 @@
+\hypertarget{classrev_1_1_capsule_controller_description}{}\section{rev\+::Capsule\+Controller\+Description Class Reference}
+\label{classrev_1_1_capsule_controller_description}\index{rev::CapsuleControllerDescription@{rev::CapsuleControllerDescription}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing a box controller description.  
+
+
+
+
+{\ttfamily \#include $<$G\+Character\+Controller.\+h$>$}
+
+Inheritance diagram for rev\+::Capsule\+Controller\+Description\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.654028cm]{classrev_1_1_capsule_controller_description}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_capsule_controller_description_a3afbcd8b5e42fe09548a87cac3750fd7}\label{classrev_1_1_capsule_controller_description_a3afbcd8b5e42fe09548a87cac3750fd7}} 
+{\bfseries Capsule\+Controller\+Description} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_capsule_controller_description_a2795c0ce5be5e4df421536c87927cd51}\label{classrev_1_1_capsule_controller_description_a2795c0ce5be5e4df421536c87927cd51}} 
+virtual {\bfseries $\sim$\+Capsule\+Controller\+Description} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_capsule_controller_description_a485765e643aa0a7b1e5337396a853f62}\label{classrev_1_1_capsule_controller_description_a485765e643aa0a7b1e5337396a853f62}} 
+virtual std\+::shared\+\_\+ptr$<$ physx\+::\+Px\+Controller\+Desc $>$ {\bfseries to\+PhysX} () const override
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_capsule_controller_description_ab1b1e43ac60b2325def70b18b8a96bcb}\label{classrev_1_1_capsule_controller_description_ab1b1e43ac60b2325def70b18b8a96bcb}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_capsule_controller_description_ab1b1e43ac60b2325def70b18b8a96bcb}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_capsule_controller_description_a9fce8c0c9fd824cce2d8c24b5336e3e5}\label{classrev_1_1_capsule_controller_description_a9fce8c0c9fd824cce2d8c24b5336e3e5}} 
+virtual void \mbox{\hyperlink{classrev_1_1_capsule_controller_description_a9fce8c0c9fd824cce2d8c24b5336e3e5}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_capsule_controller_description_aca7d4aff153f3db30084d730966ceb05}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_capsule_controller_description_adb2e0dbf5b569df3b0536b888b0af21c}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Attributes}
+\begin{Indent}\textbf{ Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_capsule_controller_description_a2cd9ee97e1833650c568279677283fa7}\label{classrev_1_1_capsule_controller_description_a2cd9ee97e1833650c568279677283fa7}} 
+float {\bfseries m\+\_\+radius} = 1.\+0
+\item 
+\mbox{\Hypertarget{classrev_1_1_capsule_controller_description_a1d1fb877091c2216c18871fe2316cf30}\label{classrev_1_1_capsule_controller_description_a1d1fb877091c2216c18871fe2316cf30}} 
+float {\bfseries m\+\_\+height} = 1.\+0
+\item 
+\mbox{\Hypertarget{classrev_1_1_capsule_controller_description_a5a82ebf2ac2e667529610133a053edab}\label{classrev_1_1_capsule_controller_description_a5a82ebf2ac2e667529610133a053edab}} 
+size\+\_\+t {\bfseries m\+\_\+climbing\+Mode} = 0
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing a box controller description. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_capsule_controller_description_aca7d4aff153f3db30084d730966ceb05}\label{classrev_1_1_capsule_controller_description_aca7d4aff153f3db30084d730966ceb05}} 
+\index{rev::CapsuleControllerDescription@{rev::CapsuleControllerDescription}!className@{className}}
+\index{className@{className}!rev::CapsuleControllerDescription@{rev::CapsuleControllerDescription}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Capsule\+Controller\+Description\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_controller_description_a8170f2acabf587228bae29aba6c1a90b}{rev\+::\+Controller\+Description}}.
+
+\mbox{\Hypertarget{classrev_1_1_capsule_controller_description_adb2e0dbf5b569df3b0536b888b0af21c}\label{classrev_1_1_capsule_controller_description_adb2e0dbf5b569df3b0536b888b0af21c}} 
+\index{rev::CapsuleControllerDescription@{rev::CapsuleControllerDescription}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::CapsuleControllerDescription@{rev::CapsuleControllerDescription}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Capsule\+Controller\+Description\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_controller_description_a95ae000783dd5460060582a129c9251d}{rev\+::\+Controller\+Description}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Character\+Controller.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Character\+Controller.\+cpp\end{DoxyCompactItemize}

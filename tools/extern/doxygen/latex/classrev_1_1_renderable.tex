@@ -1,0 +1,193 @@
+\hypertarget{classrev_1_1_renderable}{}\section{rev\+::Renderable Class Reference}
+\label{classrev_1_1_renderable}\index{rev::Renderable@{rev::Renderable}}
+
+
+\mbox{\hyperlink{classrev_1_1_renderable}{Renderable}} types.  
+
+
+
+
+{\ttfamily \#include $<$G\+Renderable.\+h$>$}
+
+Inheritance diagram for rev\+::Renderable\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.790698cm]{classrev_1_1_renderable}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_renderable_a4fac061dba00072f498254cd2dd3efa6}\label{classrev_1_1_renderable_a4fac061dba00072f498254cd2dd3efa6}} 
+typedef \mbox{\hyperlink{classrev_1_1_flags}{Flags}}$<$ Renderable\+Ignore\+Flag $>$ {\bfseries Ignore\+Flags}
+\item 
+\mbox{\Hypertarget{classrev_1_1_renderable_a716bfbfdb0fb4f7e7914e109d0627e04}\label{classrev_1_1_renderable_a716bfbfdb0fb4f7e7914e109d0627e04}} 
+typedef \mbox{\hyperlink{classrev_1_1_flags}{Flags}}$<$ Renderable\+Pass\+Flag $>$ {\bfseries Pass\+Flags}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_renderable_a893230704f623b8fb835912392e86fb3}\label{classrev_1_1_renderable_a893230704f623b8fb835912392e86fb3}} 
+{\bfseries Renderable} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_renderable_acbe62bc185ba92be472f996dd08456c2}\label{classrev_1_1_renderable_acbe62bc185ba92be472f996dd08456c2}} 
+virtual {\bfseries $\sim$\+Renderable} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_renderable_a3991d71c4a25e42d586f0614bfa4ded6}\label{classrev_1_1_renderable_a3991d71c4a25e42d586f0614bfa4ded6}} 
+{\footnotesize template$<$typename T $>$ }\\T $\ast$ \mbox{\hyperlink{classrev_1_1_renderable_a3991d71c4a25e42d586f0614bfa4ded6}{as}} ()
+\begin{DoxyCompactList}\small\item\em Return as subclass of the renderable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_renderable_a353c19ed75be285e098c03b75dc31b1f}\label{classrev_1_1_renderable_a353c19ed75be285e098c03b75dc31b1f}} 
+\mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $\ast$ \mbox{\hyperlink{classrev_1_1_renderable_a353c19ed75be285e098c03b75dc31b1f}{mesh}} () const
+\begin{DoxyCompactList}\small\item\em The mesh associated with this renderable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_renderable_a6bbd903ae2970a92510e4dc8675dd361}\label{classrev_1_1_renderable_a6bbd903ae2970a92510e4dc8675dd361}} 
+\mbox{\hyperlink{classrev_1_1_material}{Material}} $\ast$ \mbox{\hyperlink{classrev_1_1_renderable_a6bbd903ae2970a92510e4dc8675dd361}{material}} () const
+\begin{DoxyCompactList}\small\item\em The material associated with this renderable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_renderable_af2724587c44155e7e4f7f74c81f580cd}\label{classrev_1_1_renderable_af2724587c44155e7e4f7f74c81f580cd}} 
+const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \& {\bfseries mesh\+Handle} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_renderable_ab8386d2e3720caed2f1680f67fc9388a}\label{classrev_1_1_renderable_ab8386d2e3720caed2f1680f67fc9388a}} 
+const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \& {\bfseries material\+Handle} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classrev_1_1_renderable_a4418624ac4442899026f95c20e065467}{set\+Uniforms}} (\mbox{\hyperlink{classrev_1_1_draw_command}{Draw\+Command}} \&draw\+Command) const
+\begin{DoxyCompactList}\small\item\em Set uniforms in the given draw command from this renderable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_renderable_af47d53f5444a3c30e53a18b45576acf5}\label{classrev_1_1_renderable_af47d53f5444a3c30e53a18b45576acf5}} 
+virtual void \mbox{\hyperlink{classrev_1_1_renderable_af47d53f5444a3c30e53a18b45576acf5}{draw}} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program, \mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} $\ast$context=nullptr, \mbox{\hyperlink{classrev_1_1_render_settings}{Render\+Settings}} $\ast$settings=nullptr, size\+\_\+t draw\+Flags=0)
+\begin{DoxyCompactList}\small\item\em Draw the renderable given a shader program. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classrev_1_1_renderable_a5acb035c13043156c23602406f1c8819}{reload}} ()
+\begin{DoxyCompactList}\small\item\em Update any data needed for rendering, e.\+g. vertex data, render settings, etc. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_renderable_a136396ec9244339ac909a566a39b03fb}{add\+World\+Bounds}} (const \mbox{\hyperlink{classrev_1_1_transform}{Transform}} \&world, \mbox{\hyperlink{classrev_1_1_bounding_geometry}{Bounding\+Boxes}} \&out\+Bounds) const
+\begin{DoxyCompactList}\small\item\em Verify that the renderable is valid. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_renderable_aa3e4a7497abcf7c5a2f1e9360cc5e094}\label{classrev_1_1_renderable_aa3e4a7497abcf7c5a2f1e9360cc5e094}} 
+virtual size\+\_\+t \mbox{\hyperlink{classrev_1_1_renderable_aa3e4a7497abcf7c5a2f1e9360cc5e094}{get\+Sort\+ID}} ()=0
+\begin{DoxyCompactList}\small\item\em Get ID to sort renderable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_renderable_a3f1c9e3482bf07c4701b99980359c726}\label{classrev_1_1_renderable_a3f1c9e3482bf07c4701b99980359c726}} 
+void \mbox{\hyperlink{classrev_1_1_renderable_a3f1c9e3482bf07c4701b99980359c726}{initialize\+Empty\+Mesh}} (\mbox{\hyperlink{classrev_1_1_resource_cache}{Resource\+Cache}} \&cache, Resource\+Behavior\+Flags flags)
+\begin{DoxyCompactList}\small\item\em Initialize an empty mesh handle for the renderable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_renderable_a4c49eec6b82ea4c882f2353c84ea4d7d}\label{classrev_1_1_renderable_a4c49eec6b82ea4c882f2353c84ea4d7d}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_renderable_a4c49eec6b82ea4c882f2353c84ea4d7d}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_renderable_adb5db6c93ccc90765b18d160b9226164}\label{classrev_1_1_renderable_adb5db6c93ccc90765b18d160b9226164}} 
+virtual void \mbox{\hyperlink{classrev_1_1_renderable_adb5db6c93ccc90765b18d160b9226164}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classrev_1_1_renderable_ac1fe33dec408d65bbae10e24fbedc6bc}{pre\+Draw}} ()
+\begin{DoxyCompactList}\small\item\em Miscellaneous actions to be performed before drawing. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_renderable_abb193adc67d748cdc82c92084d13589b}\label{classrev_1_1_renderable_abb193adc67d748cdc82c92084d13589b}} 
+virtual void \mbox{\hyperlink{classrev_1_1_renderable_abb193adc67d748cdc82c92084d13589b}{bind\+Uniforms}} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program)
+\begin{DoxyCompactList}\small\item\em Set uniforms for the renderable in the given shader. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_renderable_af53565ffc3740a6da4d6ab4b35f49a98}\label{classrev_1_1_renderable_af53565ffc3740a6da4d6ab4b35f49a98}} 
+virtual void {\bfseries release\+Uniforms} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program)
+\item 
+\mbox{\Hypertarget{classrev_1_1_renderable_a560bb5898b2961ca72ad9e9ed0e30ced}\label{classrev_1_1_renderable_a560bb5898b2961ca72ad9e9ed0e30ced}} 
+virtual void \mbox{\hyperlink{classrev_1_1_renderable_a560bb5898b2961ca72ad9e9ed0e30ced}{bind\+Textures}} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$shader\+Program=nullptr, \mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} $\ast$context=nullptr)
+\begin{DoxyCompactList}\small\item\em Bind the textures used by this renderable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_renderable_aa1b81e9f1e89909f7a7c5e7122d031d9}\label{classrev_1_1_renderable_aa1b81e9f1e89909f7a7c5e7122d031d9}} 
+virtual void \mbox{\hyperlink{classrev_1_1_renderable_aa1b81e9f1e89909f7a7c5e7122d031d9}{release\+Textures}} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$shader\+Program=nullptr, \mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} $\ast$context=nullptr)
+\begin{DoxyCompactList}\small\item\em Release the textures used by this renderable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_renderable_acc6965aa24276111faf6046865e2e722}\label{classrev_1_1_renderable_acc6965aa24276111faf6046865e2e722}} 
+virtual void \mbox{\hyperlink{classrev_1_1_renderable_acc6965aa24276111faf6046865e2e722}{draw\+Geometry}} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program, \mbox{\hyperlink{classrev_1_1_render_settings}{Render\+Settings}} $\ast$settings=nullptr)
+\begin{DoxyCompactList}\small\item\em Draw geometry associated with this renderable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_renderable_aaa0043cabf448307e58669f7e70c4351}\label{classrev_1_1_renderable_aaa0043cabf448307e58669f7e70c4351}} 
+void \mbox{\hyperlink{classrev_1_1_renderable_aaa0043cabf448307e58669f7e70c4351}{print\+Error}} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&error)
+\begin{DoxyCompactList}\small\item\em Print GL error. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_renderable_a52a681f065c8a22ef1f7450bad6d3af2}\label{classrev_1_1_renderable_a52a681f065c8a22ef1f7450bad6d3af2}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \mbox{\hyperlink{classrev_1_1_renderable_a52a681f065c8a22ef1f7450bad6d3af2}{m\+\_\+mesh\+Handle}}
+\begin{DoxyCompactList}\small\item\em The mesh associated with the renderable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_renderable_ab949c66b11dff316935cc37dbc30fc31}\label{classrev_1_1_renderable_ab949c66b11dff316935cc37dbc30fc31}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \mbox{\hyperlink{classrev_1_1_renderable_ab949c66b11dff316935cc37dbc30fc31}{m\+\_\+mat\+Handle}}
+\begin{DoxyCompactList}\small\item\em The material associated with the renderable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{classrev_1_1_renderable}{Renderable}} types. 
+
+\mbox{\hyperlink{struct_class}{Class}} representing an object that generates a draw item
+
+This is not necessarily an \char`\"{}instantiation\char`\"{} of something that is drawable, as a renderable object may be drawn multiple times in a render pass with different transforms 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_renderable_a136396ec9244339ac909a566a39b03fb}\label{classrev_1_1_renderable_a136396ec9244339ac909a566a39b03fb}} 
+\index{rev::Renderable@{rev::Renderable}!addWorldBounds@{addWorldBounds}}
+\index{addWorldBounds@{addWorldBounds}!rev::Renderable@{rev::Renderable}}
+\subsubsection{\texorpdfstring{addWorldBounds()}{addWorldBounds()}}
+{\footnotesize\ttfamily void rev\+::\+Renderable\+::add\+World\+Bounds (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_transform}{Transform}} \&}]{world,  }\item[{\mbox{\hyperlink{classrev_1_1_bounding_geometry}{Bounding\+Boxes}} \&}]{out\+Bounds }\end{DoxyParamCaption}) const}
+
+
+
+Verify that the renderable is valid. 
+
+Obtain the world-\/space bounds of the renderable given a transform \mbox{\Hypertarget{classrev_1_1_renderable_ac1fe33dec408d65bbae10e24fbedc6bc}\label{classrev_1_1_renderable_ac1fe33dec408d65bbae10e24fbedc6bc}} 
+\index{rev::Renderable@{rev::Renderable}!preDraw@{preDraw}}
+\index{preDraw@{preDraw}!rev::Renderable@{rev::Renderable}}
+\subsubsection{\texorpdfstring{preDraw()}{preDraw()}}
+{\footnotesize\ttfamily virtual void rev\+::\+Renderable\+::pre\+Draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Miscellaneous actions to be performed before drawing. 
+
+Is a good place for any viewport changes to be made 
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_glyph_a8abb4e9ab9d6a23c87450284b86dc636}{rev\+::\+Glyph}}, and \mbox{\hyperlink{classrev_1_1_model_chunk_a59831075966c33b791a59ab6a5f29937}{rev\+::\+Model\+Chunk}}.
+
+\mbox{\Hypertarget{classrev_1_1_renderable_a5acb035c13043156c23602406f1c8819}\label{classrev_1_1_renderable_a5acb035c13043156c23602406f1c8819}} 
+\index{rev::Renderable@{rev::Renderable}!reload@{reload}}
+\index{reload@{reload}!rev::Renderable@{rev::Renderable}}
+\subsubsection{\texorpdfstring{reload()}{reload()}}
+{\footnotesize\ttfamily void rev\+::\+Renderable\+::reload (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Update any data needed for rendering, e.\+g. vertex data, render settings, etc. 
+
+Should generate bounding boxes in this routine 
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_glyph_a6742f5a33859665b06159a289a359fa4}{rev\+::\+Glyph}}, \mbox{\hyperlink{classrev_1_1_lines_a25311363c75d2acd0235e6786c076007}{rev\+::\+Lines}}, \mbox{\hyperlink{classrev_1_1_cube_map_component_ace8f36c985acb2621b2c11b8c05b514e}{rev\+::\+Cube\+Map\+Component}}, \mbox{\hyperlink{classrev_1_1_points_a9053da710d5444f2f8b467ffc1c4ecfd}{rev\+::\+Points}}, and \mbox{\hyperlink{classrev_1_1_label_ab32773f4ee881a3041bfbc0ba36137d7}{rev\+::\+Label}}.
+
+\mbox{\Hypertarget{classrev_1_1_renderable_a4418624ac4442899026f95c20e065467}\label{classrev_1_1_renderable_a4418624ac4442899026f95c20e065467}} 
+\index{rev::Renderable@{rev::Renderable}!setUniforms@{setUniforms}}
+\index{setUniforms@{setUniforms}!rev::Renderable@{rev::Renderable}}
+\subsubsection{\texorpdfstring{setUniforms()}{setUniforms()}}
+{\footnotesize\ttfamily void rev\+::\+Renderable\+::set\+Uniforms (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classrev_1_1_draw_command}{Draw\+Command}} \&}]{draw\+Command }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Set uniforms in the given draw command from this renderable. 
+
+\begin{DoxyNote}{Note}
+This is used by the \mbox{\hyperlink{classrev_1_1_lines}{Lines}} and \mbox{\hyperlink{classrev_1_1_points}{Points}} renderables for debug rendering 
+\end{DoxyNote}
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_lines_a35469d8c869e1a6ca1906bb43cfc4861}{rev\+::\+Lines}}, and \mbox{\hyperlink{classrev_1_1_points_a598b47126cab4485664cb83f07ba2651}{rev\+::\+Points}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/mixins/G\+Renderable.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/mixins/G\+Renderable.\+cpp\end{DoxyCompactItemize}

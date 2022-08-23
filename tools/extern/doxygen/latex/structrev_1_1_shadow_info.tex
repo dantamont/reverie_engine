@@ -1,0 +1,66 @@
+\hypertarget{structrev_1_1_shadow_info}{}\section{rev\+::Shadow\+Info Struct Reference}
+\label{structrev_1_1_shadow_info}\index{rev::ShadowInfo@{rev::ShadowInfo}}
+
+
+Struct containing data associating a light with a shadow map.  
+
+
+
+
+{\ttfamily \#include $<$G\+Shadow\+Map.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_shadow_info_a9b8f7e46a21268630980938137b104e4}\label{structrev_1_1_shadow_info_a9b8f7e46a21268630980938137b104e4}} 
+float \mbox{\hyperlink{structrev_1_1_shadow_info_a9b8f7e46a21268630980938137b104e4}{far\+Clip\+Plane}} () const
+\begin{DoxyCompactList}\small\item\em Get far clip plane for point light. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_shadow_info_a39325ef5cd4290c1b89a2f6199e391e6}\label{structrev_1_1_shadow_info_a39325ef5cd4290c1b89a2f6199e391e6}} 
+void {\bfseries set\+Far\+Clip\+Plane} (float clip)
+\item 
+\mbox{\Hypertarget{structrev_1_1_shadow_info_a3f3678ea6f00dc0db14a1862cec97ddf}\label{structrev_1_1_shadow_info_a3f3678ea6f00dc0db14a1862cec97ddf}} 
+float \mbox{\hyperlink{structrev_1_1_shadow_info_a3f3678ea6f00dc0db14a1862cec97ddf}{near\+Clip\+Plane}} () const
+\begin{DoxyCompactList}\small\item\em Get near clip plane for point light. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_shadow_info_a5944cfba8a0ae18689988f210b6a3a66}\label{structrev_1_1_shadow_info_a5944cfba8a0ae18689988f210b6a3a66}} 
+void {\bfseries set\+Near\+Clip\+Plane} (float clip)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \mbox{\hyperlink{structrev_1_1_shadow_info_aecab5e4cf1c5c85fa6c4a4ce619348a8}{m\+\_\+map\+Index\+Biases\+Far\+Clip}}
+\begin{DoxyCompactList}\small\item\em the Index of the shadow map to use for shadow rendering \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_shadow_info_a90595e5d6d20bd3317bd9af0d3808d6f}\label{structrev_1_1_shadow_info_a90595e5d6d20bd3317bd9af0d3808d6f}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector4}} {\bfseries \+\_\+\+\_\+pad0\+\_\+\+\_\+}
+\item 
+\mbox{\Hypertarget{structrev_1_1_shadow_info_a83eb5b4432069dd59d276b747ddeaa8b}\label{structrev_1_1_shadow_info_a83eb5b4432069dd59d276b747ddeaa8b}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector4}} {\bfseries \+\_\+\+\_\+pad1\+\_\+\+\_\+}
+\item 
+\mbox{\Hypertarget{structrev_1_1_shadow_info_a32b296fa102e118c274031f046f8b495}\label{structrev_1_1_shadow_info_a32b296fa102e118c274031f046f8b495}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector4}} {\bfseries \+\_\+\+\_\+pad2\+\_\+\+\_\+}
+\item 
+\mbox{\Hypertarget{structrev_1_1_shadow_info_a6cb0a6fb606a98aba9932904dc4dc458}\label{structrev_1_1_shadow_info_a6cb0a6fb606a98aba9932904dc4dc458}} 
+\mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} \mbox{\hyperlink{structrev_1_1_shadow_info_a6cb0a6fb606a98aba9932904dc4dc458}{m\+\_\+attributes\+Or\+Light\+Matrix}}
+\begin{DoxyCompactList}\small\item\em The light space matrix of the light corresponding to this set of Shadow Info. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Struct containing data associating a light with a shadow map. 
+
+For use in shadows S\+S\+BO 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structrev_1_1_shadow_info_aecab5e4cf1c5c85fa6c4a4ce619348a8}\label{structrev_1_1_shadow_info_aecab5e4cf1c5c85fa6c4a4ce619348a8}} 
+\index{rev::ShadowInfo@{rev::ShadowInfo}!m\_mapIndexBiasesFarClip@{m\_mapIndexBiasesFarClip}}
+\index{m\_mapIndexBiasesFarClip@{m\_mapIndexBiasesFarClip}!rev::ShadowInfo@{rev::ShadowInfo}}
+\subsubsection{\texorpdfstring{m\_mapIndexBiasesFarClip}{m\_mapIndexBiasesFarClip}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_vector}{Vector4}} rev\+::\+Shadow\+Info\+::m\+\_\+map\+Index\+Biases\+Far\+Clip}
+
+
+
+the Index of the shadow map to use for shadow rendering 
+
+\mbox{\hyperlink{classrev_1_1_map}{Map}} index, biases for fixing aliasing, and far clip of light camera 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/lighting/G\+Shadow\+Map.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,588 @@
+\hypertarget{class_eigen_1_1_col_piv_householder_q_r}{}\section{Eigen\+::Col\+Piv\+Householder\+QR$<$ \+\_\+\+Matrix\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_col_piv_householder_q_r}\index{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}}
+
+
+Householder rank-\/revealing QR decomposition of a matrix with column-\/pivoting.  
+
+
+
+
+{\ttfamily \#include $<$Col\+Piv\+Householder\+Q\+R.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_aefe2f8b963967e6ca91a23284d1f5da1}\label{class_eigen_1_1_col_piv_householder_q_r_aefe2f8b963967e6ca91a23284d1f5da1}} 
+enum \{ {\bfseries Rows\+At\+Compile\+Time} = Matrix\+Type\+::Rows\+At\+Compile\+Time, 
+{\bfseries Cols\+At\+Compile\+Time} = Matrix\+Type\+::Cols\+At\+Compile\+Time, 
+{\bfseries Max\+Rows\+At\+Compile\+Time} = Matrix\+Type\+::Max\+Rows\+At\+Compile\+Time, 
+{\bfseries Max\+Cols\+At\+Compile\+Time} = Matrix\+Type\+::Max\+Cols\+At\+Compile\+Time
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a8276f0f98a2d82532146ae8b5967f6e9}\label{class_eigen_1_1_col_piv_householder_q_r_a8276f0f98a2d82532146ae8b5967f6e9}} 
+typedef \+\_\+\+Matrix\+Type {\bfseries Matrix\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a7a1da52a50e75161a8ea7b3f72934129}\label{class_eigen_1_1_col_piv_householder_q_r_a7a1da52a50e75161a8ea7b3f72934129}} 
+typedef Matrix\+Type\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a55487671adbf44783c3c8b109cb0a14d}\label{class_eigen_1_1_col_piv_householder_q_r_a55487671adbf44783c3c8b109cb0a14d}} 
+typedef Matrix\+Type\+::\+Real\+Scalar {\bfseries Real\+Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_aa5d396f5f75b59073a6ed5c0f54bfd42}\label{class_eigen_1_1_col_piv_householder_q_r_aa5d396f5f75b59073a6ed5c0f54bfd42}} 
+typedef Matrix\+Type\+::\+Storage\+Index {\bfseries Storage\+Index}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a5773b249a76bed6f46e04b9a2c832019}\label{class_eigen_1_1_col_piv_householder_q_r_a5773b249a76bed6f46e04b9a2c832019}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1plain__diag__type}{internal\+::plain\+\_\+diag\+\_\+type}}$<$ Matrix\+Type $>$\+::type {\bfseries H\+Coeffs\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a04a1ec15296f9c62857e98e7699fe2a9}\label{class_eigen_1_1_col_piv_householder_q_r_a04a1ec15296f9c62857e98e7699fe2a9}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}}$<$ Cols\+At\+Compile\+Time, Max\+Cols\+At\+Compile\+Time $>$ {\bfseries Permutation\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a6a936341a807b4c526edeae544ed3c50}\label{class_eigen_1_1_col_piv_householder_q_r_a6a936341a807b4c526edeae544ed3c50}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1plain__row__type}{internal\+::plain\+\_\+row\+\_\+type}}$<$ Matrix\+Type, Index $>$\+::type {\bfseries Int\+Row\+Vector\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_ad2e5d38156d09b36f4c57b7746092ad1}\label{class_eigen_1_1_col_piv_householder_q_r_ad2e5d38156d09b36f4c57b7746092ad1}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1plain__row__type}{internal\+::plain\+\_\+row\+\_\+type}}$<$ Matrix\+Type $>$\+::type {\bfseries Row\+Vector\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_afb69477038a2efe1a09072fa46030be9}\label{class_eigen_1_1_col_piv_householder_q_r_afb69477038a2efe1a09072fa46030be9}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1plain__row__type}{internal\+::plain\+\_\+row\+\_\+type}}$<$ Matrix\+Type, Real\+Scalar $>$\+::type {\bfseries Real\+Row\+Vector\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a55b37f691cf7c54edd525b551eefe566}\label{class_eigen_1_1_col_piv_householder_q_r_a55b37f691cf7c54edd525b551eefe566}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_householder_sequence}{Householder\+Sequence}}$<$ Matrix\+Type, typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ typename H\+Coeffs\+Type\+::\+Conjugate\+Return\+Type $>$\+::type $>$ {\bfseries Householder\+Sequence\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_aa3945dfd3f2109bd7f26a4acefe9f769}\label{class_eigen_1_1_col_piv_householder_q_r_aa3945dfd3f2109bd7f26a4acefe9f769}} 
+typedef Matrix\+Type\+::\+Plain\+Object {\bfseries Plain\+Object}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_a9d8a92c2a2f0debe5454812372237ed4}{Col\+Piv\+Householder\+QR}} ()
+\begin{DoxyCompactList}\small\item\em Default Constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_a5965d4fdebc04b2df71d67ff0b2d0c2c}{Col\+Piv\+Householder\+QR}} (Index rows, Index cols)
+\begin{DoxyCompactList}\small\item\em Default Constructor with memory preallocation. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Input\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_a1aa6a5b95380df0ceb224cb833316d4f}{Col\+Piv\+Householder\+QR}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&matrix)
+\begin{DoxyCompactList}\small\item\em Constructs a QR factorization from a given matrix. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Input\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_a65782010a93a4c9ef4a9191ac8fe30bc}{Col\+Piv\+Householder\+QR}} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&matrix)
+\begin{DoxyCompactList}\small\item\em Constructs a QR factorization from a given matrix. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Rhs $>$ }\\const \mbox{\hyperlink{class_eigen_1_1_solve}{Solve}}$<$ \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Col\+Piv\+Householder\+QR}}, Rhs $>$ \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_aaa9c4af89930ab3bb7612ed9ae33d3f5}{solve}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&b) const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_householder_sequence}{Householder\+Sequence\+Type}} \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_a28ab9d8916ca609c5469c4c192fbfa28}{householderQ}} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a8d7cb1ac2cbb00a283f59f6d26ae763c}\label{class_eigen_1_1_col_piv_householder_q_r_a8d7cb1ac2cbb00a283f59f6d26ae763c}} 
+\mbox{\hyperlink{class_eigen_1_1_householder_sequence}{Householder\+Sequence\+Type}} {\bfseries matrixQ} () const
+\item 
+const Matrix\+Type \& \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_aa572ac050c8d4fadd4f08a87f6b1e62b}{matrix\+QR}} () const
+\item 
+const Matrix\+Type \& \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_a44c534d47bde6b67ce4b5247d142ef30}{matrixR}} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a1cf5d190eae8bdea76a850a5374c4b0c}\label{class_eigen_1_1_col_piv_householder_q_r_a1cf5d190eae8bdea76a850a5374c4b0c}} 
+{\footnotesize template$<$typename Input\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Col\+Piv\+Householder\+QR}} \& {\bfseries compute} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&matrix)
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_ab6ad43e6a6fb75726eae0d5499948f4a}{cols\+Permutation}} () const
+\item 
+Matrix\+Type\+::\+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_ac87c3bf42098d6f7324dafbc50fa83f7}{abs\+Determinant}} () const
+\item 
+Matrix\+Type\+::\+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_afdc29438a335871f67449c253369ce12}{log\+Abs\+Determinant}} () const
+\item 
+Index \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_a2a59aaa689613ce5ef0c9130ad33940e}{rank}} () const
+\item 
+Index \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_a7c9294565d179226133770160b827be1}{dimension\+Of\+Kernel}} () const
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_a0031998053c9c7345c9458f7443aa263}{is\+Injective}} () const
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_a87a7d06e0b0479e5b56b19c2a4f56365}{is\+Surjective}} () const
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_a945720f8d683f8ebe97fa807edd3142a}{is\+Invertible}} () const
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_inverse}{Inverse}}$<$ \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Col\+Piv\+Householder\+QR}} $>$ \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_a31c45402e74774d9cd13af0e57a6b72f}{inverse}} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a7b149d8acc35378384bd8cd1b7335545}\label{class_eigen_1_1_col_piv_householder_q_r_a7b149d8acc35378384bd8cd1b7335545}} 
+Index {\bfseries rows} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a5d8f3537c8589e6dcdec278081d50f3c}\label{class_eigen_1_1_col_piv_householder_q_r_a5d8f3537c8589e6dcdec278081d50f3c}} 
+Index {\bfseries cols} () const
+\item 
+const \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{H\+Coeffs\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_ac5943d19aa5fd96340c7df6874fcb1b9}{h\+Coeffs}} () const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Col\+Piv\+Householder\+QR}} \& \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_ae712cdc9f0e521cfc8061bee58ff55ee}{set\+Threshold}} (const Real\+Scalar \&\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_a72276adb1aa11f870f50d0bd58af014d}{threshold}})
+\item 
+\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Col\+Piv\+Householder\+QR}} \& \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_a648df14c457ceceb09d933d06d3bdded}{set\+Threshold}} (Default\+\_\+t)
+\item 
+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_a72276adb1aa11f870f50d0bd58af014d}{threshold}} () const
+\item 
+Index \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_a796610bab81f0527aa1ae440c71f58a4}{nonzero\+Pivots}} () const
+\item 
+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_aac8c43d720170980f582d01494df9e8f}{max\+Pivot}} () const
+\item 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_a5c756a789175197cab3eff3a3e479ef2}{info}} () const
+\begin{DoxyCompactList}\small\item\em Reports whether the QR factorization was succesful. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a22731a654f7568409c6a0d5592a192ba}\label{class_eigen_1_1_col_piv_householder_q_r_a22731a654f7568409c6a0d5592a192ba}} 
+{\footnotesize template$<$typename Rhs\+Type , typename Dst\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void {\bfseries \+\_\+solve\+\_\+impl} (const Rhs\+Type \&rhs, Dst\+Type \&dst) const
+\item 
+{\footnotesize template$<$typename Input\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Col\+Piv\+Householder\+QR}}$<$ Matrix\+Type $>$ \& \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_a608016776319abe8fe96b85f83c8dd3d}{compute}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&matrix)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_ae6bdb186aa81c7b4fae575c6e055ab47}\label{class_eigen_1_1_col_piv_householder_q_r_ae6bdb186aa81c7b4fae575c6e055ab47}} 
+{\footnotesize template$<$typename Rhs\+Type , typename Dst\+Type $>$ }\\void {\bfseries \+\_\+solve\+\_\+impl} (const Rhs\+Type \&rhs, Dst\+Type \&dst) const
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a7bc043db5ef8072bc9be198404123a56}\label{class_eigen_1_1_col_piv_householder_q_r_a7bc043db5ef8072bc9be198404123a56}} 
+void {\bfseries compute\+In\+Place} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a5a0113f1df3e804a7798ebaaaa2354ca}\label{class_eigen_1_1_col_piv_householder_q_r_a5a0113f1df3e804a7798ebaaaa2354ca}} 
+static void {\bfseries check\+\_\+template\+\_\+parameters} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_ae4b89d0232954e45e269669f32449c98}\label{class_eigen_1_1_col_piv_householder_q_r_ae4b89d0232954e45e269669f32449c98}} 
+Matrix\+Type {\bfseries m\+\_\+qr}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a36023f1cfaf9676147c244aedddfffea}\label{class_eigen_1_1_col_piv_householder_q_r_a36023f1cfaf9676147c244aedddfffea}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{H\+Coeffs\+Type}} {\bfseries m\+\_\+h\+Coeffs}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_ae8c60cd69becab7d4b6dae2c3013fc3b}\label{class_eigen_1_1_col_piv_householder_q_r_ae8c60cd69becab7d4b6dae2c3013fc3b}} 
+\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Type}} {\bfseries m\+\_\+cols\+Permutation}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a704ec5134f897483b899aab024b4d6c0}\label{class_eigen_1_1_col_piv_householder_q_r_a704ec5134f897483b899aab024b4d6c0}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Int\+Row\+Vector\+Type}} {\bfseries m\+\_\+cols\+Transpositions}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a1c729c46a632871176a4f68ff80500fe}\label{class_eigen_1_1_col_piv_householder_q_r_a1c729c46a632871176a4f68ff80500fe}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Row\+Vector\+Type}} {\bfseries m\+\_\+temp}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_aaa3f7ab88d949abfd1251de47fc4f801}\label{class_eigen_1_1_col_piv_householder_q_r_aaa3f7ab88d949abfd1251de47fc4f801}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Real\+Row\+Vector\+Type}} {\bfseries m\+\_\+col\+Norms\+Updated}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_af8a22d9fe93d43e15c307057b68599ea}\label{class_eigen_1_1_col_piv_householder_q_r_af8a22d9fe93d43e15c307057b68599ea}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Real\+Row\+Vector\+Type}} {\bfseries m\+\_\+col\+Norms\+Direct}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a512037be99a84c29b835280670113b5c}\label{class_eigen_1_1_col_piv_householder_q_r_a512037be99a84c29b835280670113b5c}} 
+bool {\bfseries m\+\_\+is\+Initialized}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_ad155de2c03a65d9be81a9174efe6e43a}\label{class_eigen_1_1_col_piv_householder_q_r_ad155de2c03a65d9be81a9174efe6e43a}} 
+bool {\bfseries m\+\_\+use\+Prescribed\+Threshold}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a9a4f85e7fb5dbb8d46781550f567e1fc}\label{class_eigen_1_1_col_piv_householder_q_r_a9a4f85e7fb5dbb8d46781550f567e1fc}} 
+Real\+Scalar {\bfseries m\+\_\+prescribed\+Threshold}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a65f1f2cae0c047868da485c8db81f1a3}\label{class_eigen_1_1_col_piv_householder_q_r_a65f1f2cae0c047868da485c8db81f1a3}} 
+Real\+Scalar {\bfseries m\+\_\+maxpivot}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_ab99a6c9cc74ca1441d955605cccad919}\label{class_eigen_1_1_col_piv_householder_q_r_ab99a6c9cc74ca1441d955605cccad919}} 
+Index {\bfseries m\+\_\+nonzero\+\_\+pivots}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a43597f3b3ae67cc05edac305ef24dad7}\label{class_eigen_1_1_col_piv_householder_q_r_a43597f3b3ae67cc05edac305ef24dad7}} 
+Index {\bfseries m\+\_\+det\+\_\+pq}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a6c741054e65697365ce75f1bbec5802b}\label{class_eigen_1_1_col_piv_householder_q_r_a6c741054e65697365ce75f1bbec5802b}} 
+class {\bfseries Complete\+Orthogonal\+Decomposition$<$ Matrix\+Type $>$}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Matrix\+Type$>$\newline
+class Eigen\+::\+Col\+Piv\+Householder\+Q\+R$<$ \+\_\+\+Matrix\+Type $>$}
+
+Householder rank-\/revealing QR decomposition of a matrix with column-\/pivoting. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Matrix\+Type} & the type of the matrix of which we are computing the QR decomposition\\
+\hline
+\end{DoxyTemplParams}
+This class performs a rank-\/revealing QR decomposition of a matrix {\bfseries{A}} into matrices {\bfseries{P}}, {\bfseries{Q}} and {\bfseries{R}} such that \[ \mathbf{A} \, \mathbf{P} = \mathbf{Q} \, \mathbf{R} \] by using Householder transformations. Here, {\bfseries{P}} is a permutation matrix, {\bfseries{Q}} a unitary matrix and {\bfseries{R}} an upper triangular matrix.
+
+This decomposition performs column pivoting in order to be rank-\/revealing and improve numerical stability. It is slower than \mbox{\hyperlink{class_eigen_1_1_householder_q_r}{Householder\+QR}}, and faster than \mbox{\hyperlink{class_eigen_1_1_full_piv_householder_q_r}{Full\+Piv\+Householder\+QR}}.
+
+This class supports the \mbox{\hyperlink{}{inplace decomposition }} mechanism.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_matrix_base_adee8c19c833245bbb00a591dce68e8a4}{Matrix\+Base\+::col\+Piv\+Householder\+Qr()}} 
+\end{DoxySeeAlso}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a9d8a92c2a2f0debe5454812372237ed4}\label{class_eigen_1_1_col_piv_householder_q_r_a9d8a92c2a2f0debe5454812372237ed4}} 
+\index{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}!ColPivHouseholderQR@{ColPivHouseholderQR}}
+\index{ColPivHouseholderQR@{ColPivHouseholderQR}!Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{ColPivHouseholderQR()}{ColPivHouseholderQR()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Eigen\+::\+Col\+Piv\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Col\+Piv\+Householder\+QR}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default Constructor. 
+
+The default constructor is useful in cases in which the user intends to perform decompositions via Col\+Piv\+Householder\+Q\+R\+::compute(const Matrix\+Type\&). \mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a5965d4fdebc04b2df71d67ff0b2d0c2c}\label{class_eigen_1_1_col_piv_householder_q_r_a5965d4fdebc04b2df71d67ff0b2d0c2c}} 
+\index{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}!ColPivHouseholderQR@{ColPivHouseholderQR}}
+\index{ColPivHouseholderQR@{ColPivHouseholderQR}!Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{ColPivHouseholderQR()}{ColPivHouseholderQR()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Eigen\+::\+Col\+Piv\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Col\+Piv\+Householder\+QR}} (\begin{DoxyParamCaption}\item[{Index}]{rows,  }\item[{Index}]{cols }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default Constructor with memory preallocation. 
+
+Like the default constructor but with preallocation of the internal data according to the specified problem {\itshape size}. \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_a9d8a92c2a2f0debe5454812372237ed4}{Col\+Piv\+Householder\+Q\+R()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a1aa6a5b95380df0ceb224cb833316d4f}\label{class_eigen_1_1_col_piv_householder_q_r_a1aa6a5b95380df0ceb224cb833316d4f}} 
+\index{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}!ColPivHouseholderQR@{ColPivHouseholderQR}}
+\index{ColPivHouseholderQR@{ColPivHouseholderQR}!Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{ColPivHouseholderQR()}{ColPivHouseholderQR()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type$>$ \\
+template$<$typename Input\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Eigen\+::\+Col\+Piv\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Col\+Piv\+Householder\+QR}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructs a QR factorization from a given matrix. 
+
+This constructor computes the QR factorization of the matrix {\itshape matrix} by calling the method compute(). It is a short cut for\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ColPivHouseholderQR<MatrixType> qr(matrix.rows(), matrix.cols());}
+\DoxyCodeLine{qr.compute(matrix);}
+\end{DoxyCode}
+
+
+\begin{DoxySeeAlso}{See also}
+compute() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a65782010a93a4c9ef4a9191ac8fe30bc}\label{class_eigen_1_1_col_piv_householder_q_r_a65782010a93a4c9ef4a9191ac8fe30bc}} 
+\index{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}!ColPivHouseholderQR@{ColPivHouseholderQR}}
+\index{ColPivHouseholderQR@{ColPivHouseholderQR}!Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{ColPivHouseholderQR()}{ColPivHouseholderQR()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type$>$ \\
+template$<$typename Input\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Eigen\+::\+Col\+Piv\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Col\+Piv\+Householder\+QR}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructs a QR factorization from a given matrix. 
+
+This overloaded constructor is provided for \mbox{\hyperlink{}{inplace decomposition }} when {\ttfamily Matrix\+Type} is a \mbox{\hyperlink{class_eigen_1_1_ref}{Eigen\+::\+Ref}}.
+
+\begin{DoxySeeAlso}{See also}
+Col\+Piv\+Householder\+Q\+R(const Eigen\+Base\&) 
+\end{DoxySeeAlso}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_ac87c3bf42098d6f7324dafbc50fa83f7}\label{class_eigen_1_1_col_piv_householder_q_r_ac87c3bf42098d6f7324dafbc50fa83f7}} 
+\index{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}!absDeterminant@{absDeterminant}}
+\index{absDeterminant@{absDeterminant}!Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{absDeterminant()}{absDeterminant()}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type $>$ \\
+Matrix\+Type\+::\+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Eigen\+::\+Col\+Piv\+Householder\+QR}}$<$ Matrix\+Type $>$\+::abs\+Determinant (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+the absolute value of the determinant of the matrix of which $\ast$this is the QR decomposition. It has only linear complexity (that is, O(n) where n is the dimension of the square matrix) as the QR decomposition has already been computed.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This is only for square matrices.
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+a determinant can be very big or small, so for matrices of large enough dimension, there is a risk of overflow/underflow. One way to work around that is to use \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_afdc29438a335871f67449c253369ce12}{log\+Abs\+Determinant()}} instead.
+\end{DoxyWarning}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_afdc29438a335871f67449c253369ce12}{log\+Abs\+Determinant()}}, \mbox{\hyperlink{class_eigen_1_1_matrix_base_a7ad8f77004bb956b603bb43fd2e3c061}{Matrix\+Base\+::determinant()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_ab6ad43e6a6fb75726eae0d5499948f4a}\label{class_eigen_1_1_col_piv_householder_q_r_ab6ad43e6a6fb75726eae0d5499948f4a}} 
+\index{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}!colsPermutation@{colsPermutation}}
+\index{colsPermutation@{colsPermutation}!Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{colsPermutation()}{colsPermutation()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type$>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Type}}\& \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Eigen\+::\+Col\+Piv\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::cols\+Permutation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a const reference to the column permutation matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a608016776319abe8fe96b85f83c8dd3d}\label{class_eigen_1_1_col_piv_householder_q_r_a608016776319abe8fe96b85f83c8dd3d}} 
+\index{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}!compute@{compute}}
+\index{compute@{compute}!Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{compute()}{compute()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type$>$ \\
+template$<$typename Input\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Col\+Piv\+Householder\+QR}}$<$Matrix\+Type$>$\& \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Eigen\+::\+Col\+Piv\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::compute (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&}]{matrix }\end{DoxyParamCaption})}
+
+Performs the QR factorization of the given matrix {\itshape matrix}. The result of the factorization is stored into {\ttfamily $\ast$this}, and a reference to {\ttfamily $\ast$this} is returned.
+
+\begin{DoxySeeAlso}{See also}
+class \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Col\+Piv\+Householder\+QR}}, Col\+Piv\+Householder\+Q\+R(const Matrix\+Type\&) 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a7c9294565d179226133770160b827be1}\label{class_eigen_1_1_col_piv_householder_q_r_a7c9294565d179226133770160b827be1}} 
+\index{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}!dimensionOfKernel@{dimensionOfKernel}}
+\index{dimensionOfKernel@{dimensionOfKernel}!Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{dimensionOfKernel()}{dimensionOfKernel()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type$>$ \\
+Index \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Eigen\+::\+Col\+Piv\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::dimension\+Of\+Kernel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the dimension of the kernel of the matrix of which $\ast$this is the QR decomposition.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This method has to determine which pivots should be considered nonzero. For that, it uses the threshold value that you can control by calling \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_ae712cdc9f0e521cfc8061bee58ff55ee}{set\+Threshold(const Real\+Scalar\&)}}. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_ac5943d19aa5fd96340c7df6874fcb1b9}\label{class_eigen_1_1_col_piv_householder_q_r_ac5943d19aa5fd96340c7df6874fcb1b9}} 
+\index{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}!hCoeffs@{hCoeffs}}
+\index{hCoeffs@{hCoeffs}!Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{hCoeffs()}{hCoeffs()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type$>$ \\
+const \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{H\+Coeffs\+Type}}\& \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Eigen\+::\+Col\+Piv\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::h\+Coeffs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a const reference to the vector of Householder coefficients used to represent the factor {\ttfamily Q}.
+\end{DoxyReturn}
+For advanced uses only. \mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a28ab9d8916ca609c5469c4c192fbfa28}\label{class_eigen_1_1_col_piv_householder_q_r_a28ab9d8916ca609c5469c4c192fbfa28}} 
+\index{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}!householderQ@{householderQ}}
+\index{householderQ@{householderQ}!Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{householderQ()}{householderQ()}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Col\+Piv\+Householder\+QR}}$<$ Matrix\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_householder_sequence}{Householder\+Sequence\+Type}} \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Eigen\+::\+Col\+Piv\+Householder\+QR}}$<$ Matrix\+Type $>$\+::householderQ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+the matrix Q as a sequence of householder transformations. You can extract the meaningful part only by using\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{qr.householderQ().setLength(qr.nonzeroPivots()) }
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a5c756a789175197cab3eff3a3e479ef2}\label{class_eigen_1_1_col_piv_householder_q_r_a5c756a789175197cab3eff3a3e479ef2}} 
+\index{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}!info@{info}}
+\index{info@{info}!Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{info()}{info()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type$>$ \\
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Eigen\+::\+Col\+Piv\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reports whether the QR factorization was succesful. 
+
+\begin{DoxyNote}{Note}
+This function always returns {\ttfamily Success}. It is provided for compatibility with other factorization routines. 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+{\ttfamily Success} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a31c45402e74774d9cd13af0e57a6b72f}\label{class_eigen_1_1_col_piv_householder_q_r_a31c45402e74774d9cd13af0e57a6b72f}} 
+\index{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}!inverse@{inverse}}
+\index{inverse@{inverse}!Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{inverse()}{inverse()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type$>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_inverse}{Inverse}}$<$\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Col\+Piv\+Householder\+QR}}$>$ \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Eigen\+::\+Col\+Piv\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::inverse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the inverse of the matrix of which $\ast$this is the QR decomposition.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+If this matrix is not invertible, the returned matrix has undefined coefficients. Use \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_a945720f8d683f8ebe97fa807edd3142a}{is\+Invertible()}} to first determine whether this matrix is invertible. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a0031998053c9c7345c9458f7443aa263}\label{class_eigen_1_1_col_piv_householder_q_r_a0031998053c9c7345c9458f7443aa263}} 
+\index{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}!isInjective@{isInjective}}
+\index{isInjective@{isInjective}!Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{isInjective()}{isInjective()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type$>$ \\
+bool \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Eigen\+::\+Col\+Piv\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::is\+Injective (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+true if the matrix of which $\ast$this is the QR decomposition represents an injective linear map, i.\+e. has trivial kernel; false otherwise.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This method has to determine which pivots should be considered nonzero. For that, it uses the threshold value that you can control by calling \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_ae712cdc9f0e521cfc8061bee58ff55ee}{set\+Threshold(const Real\+Scalar\&)}}. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a945720f8d683f8ebe97fa807edd3142a}\label{class_eigen_1_1_col_piv_householder_q_r_a945720f8d683f8ebe97fa807edd3142a}} 
+\index{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}!isInvertible@{isInvertible}}
+\index{isInvertible@{isInvertible}!Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{isInvertible()}{isInvertible()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type$>$ \\
+bool \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Eigen\+::\+Col\+Piv\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::is\+Invertible (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+true if the matrix of which $\ast$this is the QR decomposition is invertible.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This method has to determine which pivots should be considered nonzero. For that, it uses the threshold value that you can control by calling \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_ae712cdc9f0e521cfc8061bee58ff55ee}{set\+Threshold(const Real\+Scalar\&)}}. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a87a7d06e0b0479e5b56b19c2a4f56365}\label{class_eigen_1_1_col_piv_householder_q_r_a87a7d06e0b0479e5b56b19c2a4f56365}} 
+\index{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}!isSurjective@{isSurjective}}
+\index{isSurjective@{isSurjective}!Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{isSurjective()}{isSurjective()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type$>$ \\
+bool \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Eigen\+::\+Col\+Piv\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::is\+Surjective (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+true if the matrix of which $\ast$this is the QR decomposition represents a surjective linear map; false otherwise.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This method has to determine which pivots should be considered nonzero. For that, it uses the threshold value that you can control by calling \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_ae712cdc9f0e521cfc8061bee58ff55ee}{set\+Threshold(const Real\+Scalar\&)}}. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_afdc29438a335871f67449c253369ce12}\label{class_eigen_1_1_col_piv_householder_q_r_afdc29438a335871f67449c253369ce12}} 
+\index{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}!logAbsDeterminant@{logAbsDeterminant}}
+\index{logAbsDeterminant@{logAbsDeterminant}!Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{logAbsDeterminant()}{logAbsDeterminant()}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type $>$ \\
+Matrix\+Type\+::\+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Eigen\+::\+Col\+Piv\+Householder\+QR}}$<$ Matrix\+Type $>$\+::log\+Abs\+Determinant (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+the natural log of the absolute value of the determinant of the matrix of which $\ast$this is the QR decomposition. It has only linear complexity (that is, O(n) where n is the dimension of the square matrix) as the QR decomposition has already been computed.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This is only for square matrices.
+
+This method is useful to work around the risk of overflow/underflow that\textquotesingle{}s inherent to determinant computation.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_ac87c3bf42098d6f7324dafbc50fa83f7}{abs\+Determinant()}}, \mbox{\hyperlink{class_eigen_1_1_matrix_base_a7ad8f77004bb956b603bb43fd2e3c061}{Matrix\+Base\+::determinant()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_aa572ac050c8d4fadd4f08a87f6b1e62b}\label{class_eigen_1_1_col_piv_householder_q_r_aa572ac050c8d4fadd4f08a87f6b1e62b}} 
+\index{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}!matrixQR@{matrixQR}}
+\index{matrixQR@{matrixQR}!Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{matrixQR()}{matrixQR()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type$>$ \\
+const Matrix\+Type\& \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Eigen\+::\+Col\+Piv\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::matrix\+QR (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to the matrix where the Householder QR decomposition is stored 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a44c534d47bde6b67ce4b5247d142ef30}\label{class_eigen_1_1_col_piv_householder_q_r_a44c534d47bde6b67ce4b5247d142ef30}} 
+\index{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}!matrixR@{matrixR}}
+\index{matrixR@{matrixR}!Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{matrixR()}{matrixR()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type$>$ \\
+const Matrix\+Type\& \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Eigen\+::\+Col\+Piv\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::matrixR (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to the matrix where the result Householder QR is stored 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+The strict lower part of this matrix contains internal values. Only the upper triangular part should be referenced. To get it, use 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_a44c534d47bde6b67ce4b5247d142ef30}{matrixR}}().template triangularView<Upper>() }
+\end{DoxyCode}
+ For rank-\/deficient matrices, use 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_a44c534d47bde6b67ce4b5247d142ef30}{matrixR}}().topLeftCorner(\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_a2a59aaa689613ce5ef0c9130ad33940e}{rank}}(), \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_a2a59aaa689613ce5ef0c9130ad33940e}{rank}}()).template triangularView<Upper>()}
+\end{DoxyCode}
+ 
+\end{DoxyWarning}
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_aac8c43d720170980f582d01494df9e8f}\label{class_eigen_1_1_col_piv_householder_q_r_aac8c43d720170980f582d01494df9e8f}} 
+\index{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}!maxPivot@{maxPivot}}
+\index{maxPivot@{maxPivot}!Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{maxPivot()}{maxPivot()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type$>$ \\
+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Eigen\+::\+Col\+Piv\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::max\+Pivot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the absolute value of the biggest pivot, i.\+e. the biggest diagonal coefficient of R. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a796610bab81f0527aa1ae440c71f58a4}\label{class_eigen_1_1_col_piv_householder_q_r_a796610bab81f0527aa1ae440c71f58a4}} 
+\index{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}!nonzeroPivots@{nonzeroPivots}}
+\index{nonzeroPivots@{nonzeroPivots}!Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{nonzeroPivots()}{nonzeroPivots()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type$>$ \\
+Index \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Eigen\+::\+Col\+Piv\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::nonzero\+Pivots (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of nonzero pivots in the QR decomposition. Here nonzero is meant in the exact sense, not in a fuzzy sense. So that notion isn\textquotesingle{}t really intrinsically interesting, but it is still useful when implementing algorithms.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_a2a59aaa689613ce5ef0c9130ad33940e}{rank()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a2a59aaa689613ce5ef0c9130ad33940e}\label{class_eigen_1_1_col_piv_householder_q_r_a2a59aaa689613ce5ef0c9130ad33940e}} 
+\index{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}!rank@{rank}}
+\index{rank@{rank}!Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{rank()}{rank()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type$>$ \\
+Index \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Eigen\+::\+Col\+Piv\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::rank (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the rank of the matrix of which $\ast$this is the QR decomposition.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This method has to determine which pivots should be considered nonzero. For that, it uses the threshold value that you can control by calling \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_ae712cdc9f0e521cfc8061bee58ff55ee}{set\+Threshold(const Real\+Scalar\&)}}. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_ae712cdc9f0e521cfc8061bee58ff55ee}\label{class_eigen_1_1_col_piv_householder_q_r_ae712cdc9f0e521cfc8061bee58ff55ee}} 
+\index{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}!setThreshold@{setThreshold}}
+\index{setThreshold@{setThreshold}!Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{setThreshold()}{setThreshold()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Col\+Piv\+Householder\+QR}}\& \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Eigen\+::\+Col\+Piv\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::set\+Threshold (\begin{DoxyParamCaption}\item[{const Real\+Scalar \&}]{threshold }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Allows to prescribe a threshold to be used by certain methods, such as \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_a2a59aaa689613ce5ef0c9130ad33940e}{rank()}}, who need to determine when pivots are to be considered nonzero. This is not used for the QR decomposition itself.
+
+When it needs to get the threshold value, Eigen calls \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_a72276adb1aa11f870f50d0bd58af014d}{threshold()}}. By default, this uses a formula to automatically determine a reasonable threshold. Once you have called the present method \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_ae712cdc9f0e521cfc8061bee58ff55ee}{set\+Threshold(const Real\+Scalar\&)}}, your value is used instead.
+
+
+\begin{DoxyParams}{Parameters}
+{\em threshold} & The new value to use as the threshold.\\
+\hline
+\end{DoxyParams}
+A pivot will be considered nonzero if its absolute value is strictly greater than $ \vert pivot \vert \leqslant threshold \times \vert maxpivot \vert $ where maxpivot is the biggest pivot.
+
+If you want to come back to the default behavior, call \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_a648df14c457ceceb09d933d06d3bdded}{set\+Threshold(\+Default\+\_\+t)}} \mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a648df14c457ceceb09d933d06d3bdded}\label{class_eigen_1_1_col_piv_householder_q_r_a648df14c457ceceb09d933d06d3bdded}} 
+\index{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}!setThreshold@{setThreshold}}
+\index{setThreshold@{setThreshold}!Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{setThreshold()}{setThreshold()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Col\+Piv\+Householder\+QR}}\& \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Eigen\+::\+Col\+Piv\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::set\+Threshold (\begin{DoxyParamCaption}\item[{Default\+\_\+t}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Allows to come back to the default behavior, letting Eigen use its default formula for determining the threshold.
+
+You should pass the special object Eigen\+::\+Default as parameter here. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{qr.setThreshold(Eigen::Default); }
+\end{DoxyCode}
+
+
+See the documentation of \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_ae712cdc9f0e521cfc8061bee58ff55ee}{set\+Threshold(const Real\+Scalar\&)}}. \mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_aaa9c4af89930ab3bb7612ed9ae33d3f5}\label{class_eigen_1_1_col_piv_householder_q_r_aaa9c4af89930ab3bb7612ed9ae33d3f5}} 
+\index{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}!solve@{solve}}
+\index{solve@{solve}!Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{solve()}{solve()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type$>$ \\
+template$<$typename Rhs $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_solve}{Solve}}$<$\mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Col\+Piv\+Householder\+QR}}, Rhs$>$ \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Eigen\+::\+Col\+Piv\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::solve (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&}]{b }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+This method finds a solution x to the equation Ax=b, where A is the matrix of which $\ast$this is the QR decomposition, if any exists.
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & the right-\/hand-\/side of the equation to solve.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a solution.
+\end{DoxyReturn}
+\textbackslash{}note\+\_\+about\+\_\+checking\+\_\+solutions
+
+\textbackslash{}note\+\_\+about\+\_\+arbitrary\+\_\+choice\+\_\+of\+\_\+solution
+
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+ \mbox{\Hypertarget{class_eigen_1_1_col_piv_householder_q_r_a72276adb1aa11f870f50d0bd58af014d}\label{class_eigen_1_1_col_piv_householder_q_r_a72276adb1aa11f870f50d0bd58af014d}} 
+\index{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}!threshold@{threshold}}
+\index{threshold@{threshold}!Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$@{Eigen::ColPivHouseholderQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{threshold()}{threshold()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type$>$ \\
+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r}{Eigen\+::\+Col\+Piv\+Householder\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::threshold (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the threshold that will be used by certain methods such as \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_a2a59aaa689613ce5ef0c9130ad33940e}{rank()}}.
+
+See the documentation of \mbox{\hyperlink{class_eigen_1_1_col_piv_householder_q_r_ae712cdc9f0e521cfc8061bee58ff55ee}{set\+Threshold(const Real\+Scalar\&)}}. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Core/util/Forward\+Declarations.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Q\+R/Col\+Piv\+Householder\+Q\+R.\+h\end{DoxyCompactItemize}

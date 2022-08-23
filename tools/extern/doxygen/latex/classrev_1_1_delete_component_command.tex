@@ -1,0 +1,47 @@
+\hypertarget{classrev_1_1_delete_component_command}{}\section{rev\+::Delete\+Component\+Command Class Reference}
+\label{classrev_1_1_delete_component_command}\index{rev::DeleteComponentCommand@{rev::DeleteComponentCommand}}
+Inheritance diagram for rev\+::Delete\+Component\+Command\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.752094cm]{classrev_1_1_delete_component_command}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_delete_component_command_a871b37b8131e9be0d8e23fd53b50fd66}\label{classrev_1_1_delete_component_command_a871b37b8131e9be0d8e23fd53b50fd66}} 
+{\bfseries Delete\+Component\+Command} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$object, \mbox{\hyperlink{classrev_1_1_component}{Component}} $\ast$component, const Q\+String \&text, Q\+Undo\+Command $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_delete_component_command_a6f475c07baf9ff68ff5f4aedb2919873}\label{classrev_1_1_delete_component_command_a6f475c07baf9ff68ff5f4aedb2919873}} 
+{\bfseries $\sim$\+Delete\+Component\+Command} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_delete_component_command_aedf38bd7f5d4d10202855ca5c6307c93}\label{classrev_1_1_delete_component_command_aedf38bd7f5d4d10202855ca5c6307c93}} 
+virtual void \mbox{\hyperlink{classrev_1_1_delete_component_command_aedf38bd7f5d4d10202855ca5c6307c93}{redo}} () override
+\begin{DoxyCompactList}\small\item\em Redoes the add scenario command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_delete_component_command_a5391877014769b8f7272119ccc533cab}\label{classrev_1_1_delete_component_command_a5391877014769b8f7272119ccc533cab}} 
+virtual void \mbox{\hyperlink{classrev_1_1_delete_component_command_a5391877014769b8f7272119ccc533cab}{undo}} () override
+\begin{DoxyCompactList}\small\item\em Undoes the add scenario command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_delete_component_command_a3eb8171130bf61399cc05f5e43bcf414}\label{classrev_1_1_delete_component_command_a3eb8171130bf61399cc05f5e43bcf414}} 
+\mbox{\hyperlink{classrev_1_1_component}{Component}} $\ast$ \mbox{\hyperlink{classrev_1_1_delete_component_command_a3eb8171130bf61399cc05f5e43bcf414}{m\+\_\+component}}
+\begin{DoxyCompactList}\small\item\em The component removed by this command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_delete_component_command_aab52022e1e44ddc4b5e7876d384106a1}\label{classrev_1_1_delete_component_command_aab52022e1e44ddc4b5e7876d384106a1}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_delete_component_command_aab52022e1e44ddc4b5e7876d384106a1}{m\+\_\+component\+Json}}
+\begin{DoxyCompactList}\small\item\em The J\+S\+ON for the component removed by this command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/model\+\_\+control/commands/commands/G\+Component\+Command.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/model\+\_\+control/commands/commands/G\+Component\+Command.\+cpp\end{DoxyCompactItemize}

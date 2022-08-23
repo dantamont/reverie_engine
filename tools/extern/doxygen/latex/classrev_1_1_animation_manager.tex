@@ -1,0 +1,130 @@
+\hypertarget{classrev_1_1_animation_manager}{}\section{rev\+::Animation\+Manager Class Reference}
+\label{classrev_1_1_animation_manager}\index{rev::AnimationManager@{rev::AnimationManager}}
+
+
+\mbox{\hyperlink{classrev_1_1_animation_manager}{Animation\+Manager}} class.  
+
+
+
+
+{\ttfamily \#include $<$G\+Animation\+Manager.\+h$>$}
+
+Inheritance diagram for rev\+::Animation\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{classrev_1_1_animation_manager}
+\end{center}
+\end{figure}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_manager_ad3db3464d9362909800a7e0d4d996552}\label{classrev_1_1_animation_manager_ad3db3464d9362909800a7e0d4d996552}} 
+void {\bfseries added\+Motion} (const \mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \&motion\+ID)
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_manager_a82aac0ef62aae2f55f28c8b54d0bfd3e}\label{classrev_1_1_animation_manager_a82aac0ef62aae2f55f28c8b54d0bfd3e}} 
+void {\bfseries removed\+Motion} (const \mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \&motion\+ID)
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_manager_a0cb0042aa327c355d64b2fef321408fd}\label{classrev_1_1_animation_manager_a0cb0042aa327c355d64b2fef321408fd}} 
+{\bfseries Animation\+Manager} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$\mbox{\hyperlink{classrev_1_1_manager_a0fbd0df6b4f3caf42b557f9702f48171}{engine}})
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_manager_ad11b0b35ef03f67f6bdde06b3fb6a3c1}\label{classrev_1_1_animation_manager_ad11b0b35ef03f67f6bdde06b3fb6a3c1}} 
+{\bfseries $\sim$\+Animation\+Manager} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_manager_a78d6e30b45c3c71967a46ea9c93cb7ae}\label{classrev_1_1_animation_manager_a78d6e30b45c3c71967a46ea9c93cb7ae}} 
+const std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_animation_state_machine}{Animation\+State\+Machine}} $\ast$ $>$ \& {\bfseries state\+Machines} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_manager_a1c2b783020ec953cf2ad5c08d528d2b1}\label{classrev_1_1_animation_manager_a1c2b783020ec953cf2ad5c08d528d2b1}} 
+\mbox{\hyperlink{classrev_1_1_animation_state_machine}{Animation\+State\+Machine}} $\ast$ \mbox{\hyperlink{classrev_1_1_animation_manager_a1c2b783020ec953cf2ad5c08d528d2b1}{get\+State\+Machine}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name)
+\begin{DoxyCompactList}\small\item\em Return the state machine with the specified name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_manager_a223671b03d008db7cc3a95c23514abef}\label{classrev_1_1_animation_manager_a223671b03d008db7cc3a95c23514abef}} 
+\mbox{\hyperlink{classrev_1_1_animation_state_machine}{Animation\+State\+Machine}} $\ast$ {\bfseries get\+State\+Machine} (const \mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \&uuid)
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_manager_ae83ed0e214745d1473a4697f6b94a0bd}\label{classrev_1_1_animation_manager_ae83ed0e214745d1473a4697f6b94a0bd}} 
+\mbox{\hyperlink{classrev_1_1_animation_state_machine}{Animation\+State\+Machine}} $\ast$ \mbox{\hyperlink{classrev_1_1_animation_manager_ae83ed0e214745d1473a4697f6b94a0bd}{add\+State\+Machine}} ()
+\begin{DoxyCompactList}\small\item\em Create and add a new state machine to the manager. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_manager_a4a12cd419b9b91ec381b08decb9b7dab}\label{classrev_1_1_animation_manager_a4a12cd419b9b91ec381b08decb9b7dab}} 
+void {\bfseries clear} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_manager_a13f4d23b154d3ad28022bdcc6f681a58}\label{classrev_1_1_animation_manager_a13f4d23b154d3ad28022bdcc6f681a58}} 
+virtual void \mbox{\hyperlink{classrev_1_1_animation_manager_a13f4d23b154d3ad28022bdcc6f681a58}{post\+Construction}} () override final
+\begin{DoxyCompactList}\small\item\em Called after construction. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_animation_manager_a75045d17ce187cc554ff1b2f12e2fea5}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_animation_manager_a7654304032196589413ddb5fec41981b}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_manager_a0bfcefed62d79afbe99835fd8f7e61fb}\label{classrev_1_1_animation_manager_a0bfcefed62d79afbe99835fd8f7e61fb}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_animation_manager_a0bfcefed62d79afbe99835fd8f7e61fb}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_manager_af3bccbb4ab0d8f2b129f851ac5f50ff6}\label{classrev_1_1_animation_manager_af3bccbb4ab0d8f2b129f851ac5f50ff6}} 
+virtual void \mbox{\hyperlink{classrev_1_1_animation_manager_af3bccbb4ab0d8f2b129f851ac5f50ff6}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_manager_a56cb374407bf7d366cf0571582986e31}\label{classrev_1_1_animation_manager_a56cb374407bf7d366cf0571582986e31}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_animation_state_machine}{Animation\+State\+Machine}} $\ast$ $>$ \mbox{\hyperlink{classrev_1_1_animation_manager_a56cb374407bf7d366cf0571582986e31}{m\+\_\+state\+Machines}}
+\begin{DoxyCompactList}\small\item\em State machines. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{classrev_1_1_animation_manager}{Animation\+Manager}} class. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_animation_manager_a75045d17ce187cc554ff1b2f12e2fea5}\label{classrev_1_1_animation_manager_a75045d17ce187cc554ff1b2f12e2fea5}} 
+\index{rev::AnimationManager@{rev::AnimationManager}!className@{className}}
+\index{className@{className}!rev::AnimationManager@{rev::AnimationManager}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Animation\+Manager\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_service_a484d71757ea6e8780488602cb421a4a5}{rev\+::\+Service}}.
+
+\mbox{\Hypertarget{classrev_1_1_animation_manager_a7654304032196589413ddb5fec41981b}\label{classrev_1_1_animation_manager_a7654304032196589413ddb5fec41981b}} 
+\index{rev::AnimationManager@{rev::AnimationManager}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::AnimationManager@{rev::AnimationManager}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Animation\+Manager\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_service_a831f5bf8c53584ec830aaee38ea58e7b}{rev\+::\+Service}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/animation/G\+Animation\+Manager.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/animation/G\+Animation\+Manager.\+cpp\end{DoxyCompactItemize}

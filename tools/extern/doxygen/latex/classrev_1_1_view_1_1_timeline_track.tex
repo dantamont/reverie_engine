@@ -1,0 +1,93 @@
+\hypertarget{classrev_1_1_view_1_1_timeline_track}{}\section{rev\+::View\+::Timeline\+Track Class Reference}
+\label{classrev_1_1_view_1_1_timeline_track}\index{rev::View::TimelineTrack@{rev::View::TimelineTrack}}
+Inheritance diagram for rev\+::View\+::Timeline\+Track\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_view_1_1_timeline_track}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_track_a756d234bad609d975da905102981efb2}\label{classrev_1_1_view_1_1_timeline_track_a756d234bad609d975da905102981efb2}} 
+void {\bfseries set\+Text} (const Q\+String \&text, bool is\+Bold=false, bool refresh\+Ticks=false)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_track_adae81b9452a4edb38af24cf0eba2578f}\label{classrev_1_1_view_1_1_timeline_track_adae81b9452a4edb38af24cf0eba2578f}} 
+void {\bfseries set\+Length} (float length)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_track_a41817d0f68e78d90c0e1e1766f9e0d04}\label{classrev_1_1_view_1_1_timeline_track_a41817d0f68e78d90c0e1e1766f9e0d04}} 
+void {\bfseries set\+Color} (const Q\+Color \&color)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_track_a6d80925c946cb5d0b96c0eb81ce8fb2a}\label{classrev_1_1_view_1_1_timeline_track_a6d80925c946cb5d0b96c0eb81ce8fb2a}} 
+void {\bfseries set\+Is\+Row\+Header} (bool is\+Header)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_track_ab3152dca358628b6f0608bf6ddd88b97}\label{classrev_1_1_view_1_1_timeline_track_ab3152dca358628b6f0608bf6ddd88b97}} 
+int \mbox{\hyperlink{classrev_1_1_view_1_1_timeline_track_ab3152dca358628b6f0608bf6ddd88b97}{get\+Row\+Index}} () const
+\begin{DoxyCompactList}\small\item\em Get the row index of the track, based on it\textquotesingle{}s vertical position. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_track_a2fa1c3d2b2d9e14f7ae8af3b3387b7c7}\label{classrev_1_1_view_1_1_timeline_track_a2fa1c3d2b2d9e14f7ae8af3b3387b7c7}} 
+int {\bfseries get\+Row\+Index} (qreal sceneY) const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Q\+Graphics\+Item Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_track_abbdcd942dac9cec5897f6cd816451ede}\label{classrev_1_1_view_1_1_timeline_track_abbdcd942dac9cec5897f6cd816451ede}} 
+virtual Q\+RectF {\bfseries bounding\+Rect} () const override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_track_a713dfe8e7dcf771a002fe1fbb7d7c5e9}\label{classrev_1_1_view_1_1_timeline_track_a713dfe8e7dcf771a002fe1fbb7d7c5e9}} 
+virtual void {\bfseries paint} (Q\+Painter $\ast$painter, const Q\+Style\+Option\+Graphics\+Item $\ast$option, Q\+Widget $\ast$widget) override
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Private Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_track_af54db21fd77c405a6159c8545b935879}\label{classrev_1_1_view_1_1_timeline_track_af54db21fd77c405a6159c8545b935879}} 
+virtual void {\bfseries mouse\+Press\+Event} (Q\+Graphics\+Scene\+Mouse\+Event $\ast$event) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_track_a0ebd39a8f3bacaf492f4978343ab261b}\label{classrev_1_1_view_1_1_timeline_track_a0ebd39a8f3bacaf492f4978343ab261b}} 
+virtual void {\bfseries mouse\+Move\+Event} (Q\+Graphics\+Scene\+Mouse\+Event $\ast$event) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_track_a0ba9c0434d1bbfc8d953614698b57387}\label{classrev_1_1_view_1_1_timeline_track_a0ba9c0434d1bbfc8d953614698b57387}} 
+virtual void {\bfseries mouse\+Release\+Event} (Q\+Graphics\+Scene\+Mouse\+Event $\ast$event) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_track_aee7ef43b10adf1a44b5ca1316359ffe9}\label{classrev_1_1_view_1_1_timeline_track_aee7ef43b10adf1a44b5ca1316359ffe9}} 
+virtual void {\bfseries mouse\+Double\+Click\+Event} (Q\+Graphics\+Scene\+Mouse\+Event $\ast$event) override
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Private Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_track_a4156359794b5495c8e51889871421401}\label{classrev_1_1_view_1_1_timeline_track_a4156359794b5495c8e51889871421401}} 
+Q\+Color \mbox{\hyperlink{classrev_1_1_view_1_1_timeline_track_a4156359794b5495c8e51889871421401}{m\+\_\+color}}
+\begin{DoxyCompactList}\small\item\em Base color of the track. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_track_ab2b4d03d6bc48847e968caf46b1a70cc}\label{classrev_1_1_view_1_1_timeline_track_ab2b4d03d6bc48847e968caf46b1a70cc}} 
+size\+\_\+t \mbox{\hyperlink{classrev_1_1_view_1_1_timeline_track_ab2b4d03d6bc48847e968caf46b1a70cc}{m\+\_\+length}}
+\begin{DoxyCompactList}\small\item\em Length of the track in the scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_track_a034729704242b0e4e8c7b320b3db1848}\label{classrev_1_1_view_1_1_timeline_track_a034729704242b0e4e8c7b320b3db1848}} 
+Q\+PointF {\bfseries m\+\_\+old\+Pos}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_track_ac945672757600522d11d808d038bc025}\label{classrev_1_1_view_1_1_timeline_track_ac945672757600522d11d808d038bc025}} 
+Q\+PointF {\bfseries m\+\_\+old\+Mouse\+Pos}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_track_a21a649b2f8b79e26d7df807ecdfa238a}\label{classrev_1_1_view_1_1_timeline_track_a21a649b2f8b79e26d7df807ecdfa238a}} 
+Q\+Graphics\+Text\+Item $\ast$ {\bfseries m\+\_\+label}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_track_afcf45fb90ba4142b1c8ee5ff1af39064}\label{classrev_1_1_view_1_1_timeline_track_afcf45fb90ba4142b1c8ee5ff1af39064}} 
+size\+\_\+t {\bfseries m\+\_\+font\+Height} = 0
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_track_af1e8cba429a2960c27873d15e4430cfa}\label{classrev_1_1_view_1_1_timeline_track_af1e8cba429a2960c27873d15e4430cfa}} 
+size\+\_\+t {\bfseries m\+\_\+text\+Width} = 0
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_track_aa93b4a76f3d0f7deb5986b5a7515a3ec}\label{classrev_1_1_view_1_1_timeline_track_aa93b4a76f3d0f7deb5986b5a7515a3ec}} 
+bool {\bfseries m\+\_\+is\+Row\+Header}
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/timeline/G\+Timeline\+Track.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/timeline/G\+Timeline\+Track.\+cpp\end{DoxyCompactItemize}

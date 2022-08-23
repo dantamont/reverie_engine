@@ -1,0 +1,57 @@
+\hypertarget{structrev_1_1_camera_controller_1_1_controller_profile}{}\section{rev\+::Camera\+Controller\+::Controller\+Profile Struct Reference}
+\label{structrev_1_1_camera_controller_1_1_controller_profile}\index{rev::CameraController::ControllerProfile@{rev::CameraController::ControllerProfile}}
+
+
+Profile for the controller\textquotesingle{}s behavior.  
+
+
+
+
+{\ttfamily \#include $<$G\+Camera\+Component.\+h$>$}
+
+Inheritance diagram for rev\+::Camera\+Controller\+::Controller\+Profile\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{structrev_1_1_camera_controller_1_1_controller_profile}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_camera_controller_1_1_controller_profile_ace91a1dc0967f3485a051e6569b97e0d}\label{structrev_1_1_camera_controller_1_1_controller_profile_ace91a1dc0967f3485a051e6569b97e0d}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{structrev_1_1_camera_controller_1_1_controller_profile_ace91a1dc0967f3485a051e6569b97e0d}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_camera_controller_1_1_controller_profile_a2a5e3ec386567e088564959d5ea3a00d}\label{structrev_1_1_camera_controller_1_1_controller_profile_a2a5e3ec386567e088564959d5ea3a00d}} 
+virtual void \mbox{\hyperlink{structrev_1_1_camera_controller_1_1_controller_profile_a2a5e3ec386567e088564959d5ea3a00d}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_camera_controller_1_1_controller_profile_a048ca07925328c3fe82ad5e5156f08f5}\label{structrev_1_1_camera_controller_1_1_controller_profile_a048ca07925328c3fe82ad5e5156f08f5}} 
+\mbox{\hyperlink{classtsl_1_1robin__map}{tsl\+::robin\+\_\+map}}$<$ \mbox{\hyperlink{classrev_1_1_camera_controller_aa9e6df05f604325e6844cc37f5ec711c}{Movement\+Type}}, bool $>$ \mbox{\hyperlink{structrev_1_1_camera_controller_1_1_controller_profile_a048ca07925328c3fe82ad5e5156f08f5}{m\+\_\+movement\+Types}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_map}{Map}} of enabled movement types. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_camera_controller_1_1_controller_profile_a8bb030b00f80993f85cb527bcea02a9c}\label{structrev_1_1_camera_controller_1_1_controller_profile_a8bb030b00f80993f85cb527bcea02a9c}} 
+real\+\_\+g \mbox{\hyperlink{structrev_1_1_camera_controller_1_1_controller_profile_a8bb030b00f80993f85cb527bcea02a9c}{m\+\_\+zoom\+Scaling}} = real\+\_\+g(-\/0.\+25)
+\begin{DoxyCompactList}\small\item\em The camera look-\/at point (if mode sets target) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_camera_controller_1_1_controller_profile_a4a399477a3a8949411a27a86250db764}\label{structrev_1_1_camera_controller_1_1_controller_profile_a4a399477a3a8949411a27a86250db764}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} {\bfseries m\+\_\+translate\+Scaling} = \mbox{\hyperlink{classrev_1_1_vector}{Vector3}}(real\+\_\+g(1.\+0), real\+\_\+g(1.\+0), real\+\_\+g(1.\+0))
+\item 
+\mbox{\Hypertarget{structrev_1_1_camera_controller_1_1_controller_profile_a9a5a35c61bcd8afaeda09982dab3eb7f}\label{structrev_1_1_camera_controller_1_1_controller_profile_a9a5a35c61bcd8afaeda09982dab3eb7f}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector2}} {\bfseries m\+\_\+rotate\+Scaling} = \mbox{\hyperlink{classrev_1_1_vector}{Vector2}}(real\+\_\+g(1.\+0), real\+\_\+g(-\/1.\+0))
+\item 
+\mbox{\Hypertarget{structrev_1_1_camera_controller_1_1_controller_profile_abc057be34677907f7b252c8154d813bd}\label{structrev_1_1_camera_controller_1_1_controller_profile_abc057be34677907f7b252c8154d813bd}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector2}} {\bfseries m\+\_\+pan\+Scaling} = \mbox{\hyperlink{classrev_1_1_vector}{Vector2}}(real\+\_\+g(-\/1.\+0), real\+\_\+g(1.\+0))
+\item 
+\mbox{\Hypertarget{structrev_1_1_camera_controller_1_1_controller_profile_a98989c659e6c59986d4962633cd7c705}\label{structrev_1_1_camera_controller_1_1_controller_profile_a98989c659e6c59986d4962633cd7c705}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector2}} {\bfseries m\+\_\+tilt\+Scaling} = \mbox{\hyperlink{classrev_1_1_vector}{Vector2}}(real\+\_\+g(-\/1.\+0), real\+\_\+g(1.\+0))
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Profile for the controller\textquotesingle{}s behavior. 
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+Camera\+Component.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+Camera\+Component.\+cpp\end{DoxyCompactItemize}

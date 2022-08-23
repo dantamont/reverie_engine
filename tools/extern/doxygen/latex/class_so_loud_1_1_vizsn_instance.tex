@@ -1,0 +1,105 @@
+\hypertarget{class_so_loud_1_1_vizsn_instance}{}\section{So\+Loud\+::Vizsn\+Instance Class Reference}
+\label{class_so_loud_1_1_vizsn_instance}\index{SoLoud::VizsnInstance@{SoLoud::VizsnInstance}}
+Inheritance diagram for So\+Loud\+::Vizsn\+Instance\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_so_loud_1_1_vizsn_instance}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vizsn_instance_a71faee929aab7331344e670203c19757}\label{class_so_loud_1_1_vizsn_instance_a71faee929aab7331344e670203c19757}} 
+{\bfseries Vizsn\+Instance} (\mbox{\hyperlink{class_so_loud_1_1_vizsn}{Vizsn}} $\ast$a\+Parent)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vizsn_instance_a46cd3e0b5b9c19fd061b37bfa1bc3029}\label{class_so_loud_1_1_vizsn_instance_a46cd3e0b5b9c19fd061b37bfa1bc3029}} 
+virtual unsigned int {\bfseries get\+Audio} (float $\ast$a\+Buffer, unsigned int a\+Samples\+To\+Read, unsigned int a\+Buffer\+Size)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vizsn_instance_a964d8b02914dbd77ff218ed0bd7942f7}\label{class_so_loud_1_1_vizsn_instance_a964d8b02914dbd77ff218ed0bd7942f7}} 
+virtual bool {\bfseries has\+Ended} ()
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vizsn_instance_a9982d49b9f424e59fa1c220358c97e9b}\label{class_so_loud_1_1_vizsn_instance_a9982d49b9f424e59fa1c220358c97e9b}} 
+float {\bfseries vcsrc} (int a\+Pitch, int a\+Voicetype)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vizsn_instance_ac042ac1b8c7fe3ab78706e460824193a}\label{class_so_loud_1_1_vizsn_instance_ac042ac1b8c7fe3ab78706e460824193a}} 
+float {\bfseries noisrc} ()
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vizsn_instance_a09a129caeb1bb46096392617874ae077}\label{class_so_loud_1_1_vizsn_instance_a09a129caeb1bb46096392617874ae077}} 
+float {\bfseries genwave} ()
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vizsn_instance_a5ce14ec8a36c6d82a407f1473ccbd9f3}\label{class_so_loud_1_1_vizsn_instance_a5ce14ec8a36c6d82a407f1473ccbd9f3}} 
+void {\bfseries setphone} (\mbox{\hyperlink{struct_so_loud_1_1_vizsn_bank}{Vizsn\+Bank}} $\ast$aB, char aP, float a\+Pitch)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vizsn_instance_a7af97b0c1cd9f9a4f416834ae2b6ef57}\label{class_so_loud_1_1_vizsn_instance_a7af97b0c1cd9f9a4f416834ae2b6ef57}} 
+void {\bfseries slide\+Prepare} (int a\+Numtix)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vizsn_instance_aec2d139411c46b19003722a233629290}\label{class_so_loud_1_1_vizsn_instance_aec2d139411c46b19003722a233629290}} 
+void {\bfseries slide\+Tick} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vizsn_instance_ae0a60340140e5d0a94a419f3f1f193c7}\label{class_so_loud_1_1_vizsn_instance_ae0a60340140e5d0a94a419f3f1f193c7}} 
+\mbox{\hyperlink{class_so_loud_1_1_vizsn}{Vizsn}} $\ast$ {\bfseries m\+Parent}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vizsn_instance_abd75772eaa59cbaacd92de26e5665549}\label{class_so_loud_1_1_vizsn_instance_abd75772eaa59cbaacd92de26e5665549}} 
+\mbox{\hyperlink{struct_so_loud_1_1_vizsn_bank}{Vizsn\+Bank}} {\bfseries m\+Bank0}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vizsn_instance_a4787be082d3a32fd5f6de069250c372d}\label{class_so_loud_1_1_vizsn_instance_a4787be082d3a32fd5f6de069250c372d}} 
+\mbox{\hyperlink{struct_so_loud_1_1_vizsn_bank}{Vizsn\+Bank}} {\bfseries m\+Bank1}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vizsn_instance_a8adcf1cfde2649c0d4ff42f01646266d}\label{class_so_loud_1_1_vizsn_instance_a8adcf1cfde2649c0d4ff42f01646266d}} 
+\mbox{\hyperlink{struct_so_loud_1_1_vizsn_bank}{Vizsn\+Bank}} {\bfseries m\+Bank0to1}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vizsn_instance_aae97fafd08ff6627057b8c9aa07744d2}\label{class_so_loud_1_1_vizsn_instance_aae97fafd08ff6627057b8c9aa07744d2}} 
+int {\bfseries m\+Nper}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vizsn_instance_a6b53df9e709af7d6a1f1d5b31cb18a78}\label{class_so_loud_1_1_vizsn_instance_a6b53df9e709af7d6a1f1d5b31cb18a78}} 
+int {\bfseries m\+Nmod}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vizsn_instance_ac35c153d376532df34e8a8ce060abf95}\label{class_so_loud_1_1_vizsn_instance_ac35c153d376532df34e8a8ce060abf95}} 
+int {\bfseries m\+Nopen}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vizsn_instance_ac6a4628d0246ad7d6af16238e4ea4831}\label{class_so_loud_1_1_vizsn_instance_ac6a4628d0246ad7d6af16238e4ea4831}} 
+int {\bfseries m\+Echobuf} \mbox{[}1024\mbox{]}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vizsn_instance_aaf4ecc8dccc6ec21e96e41ab31f2d5a9}\label{class_so_loud_1_1_vizsn_instance_aaf4ecc8dccc6ec21e96e41ab31f2d5a9}} 
+int {\bfseries m\+Ptr}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vizsn_instance_a640c04b88e800dae9a2598edd4735b9d}\label{class_so_loud_1_1_vizsn_instance_a640c04b88e800dae9a2598edd4735b9d}} 
+int {\bfseries m\+Current\+Voice\+Type}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vizsn_instance_a9175f0fddd4852df9db4150b8e287e7c}\label{class_so_loud_1_1_vizsn_instance_a9175f0fddd4852df9db4150b8e287e7c}} 
+float {\bfseries m\+Pitch}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vizsn_instance_abceab99283f213871a42c53a204b4b2c}\label{class_so_loud_1_1_vizsn_instance_abceab99283f213871a42c53a204b4b2c}} 
+char $\ast$ {\bfseries mS}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vizsn_instance_a6fa5296064bf18ab2600923fd629c0a1}\label{class_so_loud_1_1_vizsn_instance_a6fa5296064bf18ab2600923fd629c0a1}} 
+float {\bfseries m\+Buf} \mbox{[}2048\mbox{]}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vizsn_instance_a2c94013bcf88771bab8bb50ef875fc03}\label{class_so_loud_1_1_vizsn_instance_a2c94013bcf88771bab8bb50ef875fc03}} 
+unsigned int {\bfseries m\+Bufwrite}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vizsn_instance_ad73ca635bcdeec83b28406d2de0fe2ad}\label{class_so_loud_1_1_vizsn_instance_ad73ca635bcdeec83b28406d2de0fe2ad}} 
+unsigned int {\bfseries m\+Bufread}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vizsn_instance_a86d027cf9c243ed128cce6923d1d6ec3}\label{class_so_loud_1_1_vizsn_instance_a86d027cf9c243ed128cce6923d1d6ec3}} 
+int {\bfseries mA}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vizsn_instance_a243306baecbc569ca5f6cd8182885411}\label{class_so_loud_1_1_vizsn_instance_a243306baecbc569ca5f6cd8182885411}} 
+int {\bfseries mB}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vizsn_instance_a7cab4a2845aca41226ab64e462d26dd2}\label{class_so_loud_1_1_vizsn_instance_a7cab4a2845aca41226ab64e462d26dd2}} 
+int {\bfseries m\+Orgv}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vizsn_instance_ae47ae1264d4ae53d19a29f6b5bc0b8ce}\label{class_so_loud_1_1_vizsn_instance_ae47ae1264d4ae53d19a29f6b5bc0b8ce}} 
+float {\bfseries m\+Glotlast}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/include/soloud\+\_\+vizsn.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/src/audiosource/vizsn/soloud\+\_\+vizsn.\+cpp\end{DoxyCompactItemize}

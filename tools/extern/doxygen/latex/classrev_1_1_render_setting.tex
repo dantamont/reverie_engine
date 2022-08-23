@@ -1,0 +1,99 @@
+\hypertarget{classrev_1_1_render_setting}{}\section{rev\+::Render\+Setting Class Reference}
+\label{classrev_1_1_render_setting}\index{rev::RenderSetting@{rev::RenderSetting}}
+
+
+Represents a single setting that can be bound and released in GL.  
+
+
+
+
+{\ttfamily \#include $<$G\+Render\+Settings.\+h$>$}
+
+Inheritance diagram for rev\+::Render\+Setting\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_render_setting}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_setting_a6c5633939272e38b7e07c03ecb8a4e93}\label{classrev_1_1_render_setting_a6c5633939272e38b7e07c03ecb8a4e93}} 
+{\bfseries Render\+Setting} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_setting_aae6e515bafc7a3bc99695e244da92e5f}\label{classrev_1_1_render_setting_aae6e515bafc7a3bc99695e244da92e5f}} 
+{\bfseries $\sim$\+Render\+Setting} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_setting_a825be40cc5e75622c77b5fe47907dbc9}\label{classrev_1_1_render_setting_a825be40cc5e75622c77b5fe47907dbc9}} 
+virtual Render\+Setting\+Type {\bfseries setting\+Type} () const =0
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_setting_afa5175ab44131d2b4e3775eaf00b1331}\label{classrev_1_1_render_setting_afa5175ab44131d2b4e3775eaf00b1331}} 
+void {\bfseries bind} (\mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} \&context)
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_setting_a6f5e62beca0fbcea32ebb8a40b94fe6f}\label{classrev_1_1_render_setting_a6f5e62beca0fbcea32ebb8a40b94fe6f}} 
+void {\bfseries release} (\mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} \&context)
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_setting_aaba8ba2f667a902dd8c501e80e96827c}\label{classrev_1_1_render_setting_aaba8ba2f667a902dd8c501e80e96827c}} 
+bool \mbox{\hyperlink{classrev_1_1_render_setting_aaba8ba2f667a902dd8c501e80e96827c}{is\+Set}} (\mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} \&context) const
+\begin{DoxyCompactList}\small\item\em Whether this render setting has been set in GL. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_setting_a59d0d5debdfa3bb7bb591b8202d8da0c}\label{classrev_1_1_render_setting_a59d0d5debdfa3bb7bb591b8202d8da0c}} 
+virtual void \mbox{\hyperlink{classrev_1_1_render_setting_a59d0d5debdfa3bb7bb591b8202d8da0c}{set}} (\mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} \&context) const =0
+\begin{DoxyCompactList}\small\item\em Set settings in Open\+GL. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_setting_a3556177d8908d11717e84227e503ef9b}\label{classrev_1_1_render_setting_a3556177d8908d11717e84227e503ef9b}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_render_setting_a3556177d8908d11717e84227e503ef9b}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_setting_a50a744d8c17df4e61ce2c36e06164d3f}\label{classrev_1_1_render_setting_a50a744d8c17df4e61ce2c36e06164d3f}} 
+virtual void \mbox{\hyperlink{classrev_1_1_render_setting_a50a744d8c17df4e61ce2c36e06164d3f}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_setting_ac53fdf6d60af40a524bc248083fce710}\label{classrev_1_1_render_setting_ac53fdf6d60af40a524bc248083fce710}} 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_render_setting}{Render\+Setting}} $>$ \mbox{\hyperlink{classrev_1_1_render_setting_ac53fdf6d60af40a524bc248083fce710}{Create}} (const Q\+Json\+Value \&json)
+\begin{DoxyCompactList}\small\item\em Creat a render setting from J\+S\+ON. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_setting_a37b0c3c4ca3d8b5af1e15073204f2a9b}\label{classrev_1_1_render_setting_a37b0c3c4ca3d8b5af1e15073204f2a9b}} 
+void \mbox{\hyperlink{classrev_1_1_render_setting_a37b0c3c4ca3d8b5af1e15073204f2a9b}{make\+Current}} (\mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} \&context) const
+\begin{DoxyCompactList}\small\item\em Set this as the current setting in \mbox{\hyperlink{classrev_1_1_render_settings}{Render\+Settings}} cache. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_setting_acb8cf7205c0be0ccf848efc9598bd07c}\label{classrev_1_1_render_setting_acb8cf7205c0be0ccf848efc9598bd07c}} 
+virtual void \mbox{\hyperlink{classrev_1_1_render_setting_acb8cf7205c0be0ccf848efc9598bd07c}{cache\+Settings}} (\mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} \&context)=0
+\begin{DoxyCompactList}\small\item\em Cache GL settings for use within application. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_setting_abf433a9c39697ef25510a90f4cf565b0}\label{classrev_1_1_render_setting_abf433a9c39697ef25510a90f4cf565b0}} 
+class {\bfseries Render\+Settings}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_setting_adbc71e71bb875e994e20b698201b22a5}\label{classrev_1_1_render_setting_adbc71e71bb875e994e20b698201b22a5}} 
+class {\bfseries Render\+Context}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Represents a single setting that can be bound and released in GL. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/renderer/G\+Render\+Settings.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/renderer/G\+Render\+Settings.\+cpp\end{DoxyCompactItemize}

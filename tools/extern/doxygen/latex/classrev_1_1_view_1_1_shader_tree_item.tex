@@ -1,0 +1,117 @@
+\hypertarget{classrev_1_1_view_1_1_shader_tree_item}{}\section{rev\+::View\+::Shader\+Tree\+Item Class Reference}
+\label{classrev_1_1_view_1_1_shader_tree_item}\index{rev::View::ShaderTreeItem@{rev::View::ShaderTreeItem}}
+Inheritance diagram for rev\+::View\+::Shader\+Tree\+Item\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_view_1_1_shader_tree_item}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_shader_tree_item_a3a530b20fd73dfbdaec04fbd3d5cefa2}\label{classrev_1_1_view_1_1_shader_tree_item_a3a530b20fd73dfbdaec04fbd3d5cefa2}} 
+enum {\bfseries Shader\+Item\+Type} \{ {\bfseries k\+Shader\+Preset} = 2000
+ \}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_shader_tree_item_ae5c31af17dd32f93ee924c4dd2438c65}\label{classrev_1_1_view_1_1_shader_tree_item_ae5c31af17dd32f93ee924c4dd2438c65}} 
+{\bfseries Shader\+Tree\+Item} (\mbox{\hyperlink{classrev_1_1_shader_preset}{Shader\+Preset}} $\ast$layer)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_shader_tree_item_ab4e2e34530c99c4b88bea19dbedb5fce}\label{classrev_1_1_view_1_1_shader_tree_item_ab4e2e34530c99c4b88bea19dbedb5fce}} 
+{\bfseries $\sim$\+Shader\+Tree\+Item} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_shader_tree_item_af7456acaae6ab27a4c215a1ee9cdf930}{set\+Widget}} () override
+\begin{DoxyCompactList}\small\item\em Set the widget for this item in the given tree widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_shader_tree_item_a8399c61de7e6e49f8f10a83e9b3d2f12}\label{classrev_1_1_view_1_1_shader_tree_item_a8399c61de7e6e49f8f10a83e9b3d2f12}} 
+virtual void {\bfseries remove\+Widget} (int column=0) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_shader_tree_item_a31bb8cd0912fb5b93de909319d4e7a73}\label{classrev_1_1_view_1_1_shader_tree_item_a31bb8cd0912fb5b93de909319d4e7a73}} 
+\mbox{\hyperlink{classrev_1_1_shader_preset}{Shader\+Preset}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_shader_tree_item_a31bb8cd0912fb5b93de909319d4e7a73}{shader\+Preset}} ()
+\begin{DoxyCompactList}\small\item\em Return sorting layer represented by this tree item. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_shader_tree_item_a584f2bbdcdc412c785857bb2af103977}\label{classrev_1_1_view_1_1_shader_tree_item_a584f2bbdcdc412c785857bb2af103977}} 
+Shader\+Item\+Type \mbox{\hyperlink{classrev_1_1_view_1_1_shader_tree_item_a584f2bbdcdc412c785857bb2af103977}{item\+Type}} () const
+\begin{DoxyCompactList}\small\item\em Get the resource item type of this tree item. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_shader_tree_item_a806fb3144f055fee3e4352c09375e57f}\label{classrev_1_1_view_1_1_shader_tree_item_a806fb3144f055fee3e4352c09375e57f}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_shader_tree_widget}{View\+::\+Shader\+Tree\+Widget}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_shader_tree_item_a806fb3144f055fee3e4352c09375e57f}{shader\+Tree\+Widget}} () const
+\begin{DoxyCompactList}\small\item\em Convenience method for retrieving casted inspector widget. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ rev\+::Object overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_shader_tree_item_aa343381f05afa92936c6ffbbe106b2b6}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_shader_tree_item_a684fab698c34ef0456cb86ec590b6385}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_shader_tree_item_aca44ab1adacfadfb2725f0db9f6bd6af}\label{classrev_1_1_view_1_1_shader_tree_item_aca44ab1adacfadfb2725f0db9f6bd6af}} 
+class {\bfseries Shader\+Tree\+Widget}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_view_1_1_shader_tree_item_aa343381f05afa92936c6ffbbe106b2b6}\label{classrev_1_1_view_1_1_shader_tree_item_aa343381f05afa92936c6ffbbe106b2b6}} 
+\index{rev::View::ShaderTreeItem@{rev::View::ShaderTreeItem}!className@{className}}
+\index{className@{className}!rev::View::ShaderTreeItem@{rev::View::ShaderTreeItem}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+View\+::\+Shader\+Tree\+Item\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a8a12a6ceece6cab7a2299da2b5e6a54b}{rev\+::\+View\+::\+Tree\+Item$<$ Shader\+Preset $>$}}.
+
+\mbox{\Hypertarget{classrev_1_1_view_1_1_shader_tree_item_a684fab698c34ef0456cb86ec590b6385}\label{classrev_1_1_view_1_1_shader_tree_item_a684fab698c34ef0456cb86ec590b6385}} 
+\index{rev::View::ShaderTreeItem@{rev::View::ShaderTreeItem}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::View::ShaderTreeItem@{rev::View::ShaderTreeItem}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+View\+::\+Shader\+Tree\+Item\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a3bb552a87176f4b12848e43dfdd287b2}{rev\+::\+View\+::\+Tree\+Item$<$ Shader\+Preset $>$}}.
+
+\mbox{\Hypertarget{classrev_1_1_view_1_1_shader_tree_item_af7456acaae6ab27a4c215a1ee9cdf930}\label{classrev_1_1_view_1_1_shader_tree_item_af7456acaae6ab27a4c215a1ee9cdf930}} 
+\index{rev::View::ShaderTreeItem@{rev::View::ShaderTreeItem}!setWidget@{setWidget}}
+\index{setWidget@{setWidget}!rev::View::ShaderTreeItem@{rev::View::ShaderTreeItem}}
+\subsubsection{\texorpdfstring{setWidget()}{setWidget()}}
+{\footnotesize\ttfamily void rev\+::\+View\+::\+Shader\+Tree\+Item\+::set\+Widget (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Set the widget for this item in the given tree widget. 
+
+\begin{DoxyNote}{Note}
+This is only called on the double click event 
+\end{DoxyNote}
+
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a24faa4e374ec0728c7eda8f50ca575df}{rev\+::\+View\+::\+Tree\+Item$<$ Shader\+Preset $>$}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Shader\+Tree\+Widget.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Shader\+Tree\+Widget.\+cpp\end{DoxyCompactItemize}

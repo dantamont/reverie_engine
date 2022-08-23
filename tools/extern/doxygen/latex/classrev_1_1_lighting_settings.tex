@@ -1,0 +1,197 @@
+\hypertarget{classrev_1_1_lighting_settings}{}\section{rev\+::Lighting\+Settings Class Reference}
+\label{classrev_1_1_lighting_settings}\index{rev::LightingSettings@{rev::LightingSettings}}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_a454685bb794cbd744f2b483fe7eda341}\label{classrev_1_1_lighting_settings_a454685bb794cbd744f2b483fe7eda341}} 
+enum {\bfseries Lighting\+Model} \{ {\bfseries k\+Phong}, 
+{\bfseries k\+Blinn\+Phong}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_a609d80df02d371192e7eb0a062996799}\label{classrev_1_1_lighting_settings_a609d80df02d371192e7eb0a062996799}} 
+{\bfseries Lighting\+Settings} (\mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} \&context, uint32\+\_\+t \mbox{\hyperlink{classrev_1_1_lighting_settings_a82d6920a58c781e45bf89ec9254e83f1}{max\+Num\+Lights}}=1024, uint32\+\_\+t num\+Kernel\+Samples=64)
+\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_aa826ce51ff32b1172afeb4a1bd7bf5c9}\label{classrev_1_1_lighting_settings_aa826ce51ff32b1172afeb4a1bd7bf5c9}} 
+std\+::array$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_texture}{Texture}} $>$, 3 $>$ \& \mbox{\hyperlink{classrev_1_1_lighting_settings_aa826ce51ff32b1172afeb4a1bd7bf5c9}{shadow\+Textures}} ()
+\begin{DoxyCompactList}\small\item\em Shadow textures. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_a82d6920a58c781e45bf89ec9254e83f1}\label{classrev_1_1_lighting_settings_a82d6920a58c781e45bf89ec9254e83f1}} 
+const unsigned int \& \mbox{\hyperlink{classrev_1_1_lighting_settings_a82d6920a58c781e45bf89ec9254e83f1}{max\+Num\+Lights}} () const
+\begin{DoxyCompactList}\small\item\em Maximum number of lights allowed in scenario. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_a282ebbac846e1ac629805f19998dc136}\label{classrev_1_1_lighting_settings_a282ebbac846e1ac629805f19998dc136}} 
+\mbox{\hyperlink{classrev_1_1_buffer_queue}{Shader\+Storage\+Buffer\+Queue}} \& \mbox{\hyperlink{classrev_1_1_lighting_settings_a282ebbac846e1ac629805f19998dc136}{light\+Buffers}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_light}{Light}} buffer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_a14c7e333337ebae0339d92b1e6aba94b}\label{classrev_1_1_lighting_settings_a14c7e333337ebae0339d92b1e6aba94b}} 
+\mbox{\hyperlink{classrev_1_1_buffer_queue}{Shader\+Storage\+Buffer\+Queue}} \& \mbox{\hyperlink{classrev_1_1_lighting_settings_a14c7e333337ebae0339d92b1e6aba94b}{shadow\+Buffers}} ()
+\begin{DoxyCompactList}\small\item\em Shadow buffer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_a916e3416f01c731948a7b6ac140b51d0}\label{classrev_1_1_lighting_settings_a916e3416f01c731948a7b6ac140b51d0}} 
+\mbox{\hyperlink{classrev_1_1_shader_storage_buffer}{Shader\+Storage\+Buffer}} \& \mbox{\hyperlink{classrev_1_1_lighting_settings_a916e3416f01c731948a7b6ac140b51d0}{ssao\+Buffer}} ()
+\begin{DoxyCompactList}\small\item\em S\+S\+AO buffers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_a8f276d54d8012baf4a2fefb90d30ae0b}\label{classrev_1_1_lighting_settings_a8f276d54d8012baf4a2fefb90d30ae0b}} 
+const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_texture}{Texture}} $>$ \& {\bfseries noise\+Texture} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_ad0d616bd78012da58d5d451fb7c97aea}\label{classrev_1_1_lighting_settings_ad0d616bd78012da58d5d451fb7c97aea}} 
+uint32\+\_\+t {\bfseries noise\+Size} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_a31308a19d20e73392cd92f3512685fd1}\label{classrev_1_1_lighting_settings_a31308a19d20e73392cd92f3512685fd1}} 
+uint32\+\_\+t {\bfseries num\+Kernel\+Samples} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_a4978a588e73288c27dfdbb05abad98b4}\label{classrev_1_1_lighting_settings_a4978a588e73288c27dfdbb05abad98b4}} 
+float {\bfseries ssao\+Bias} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_acf9d24721ce663ab6ea39c4623e35712}\label{classrev_1_1_lighting_settings_acf9d24721ce663ab6ea39c4623e35712}} 
+float {\bfseries ssao\+Radius} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_a80329ac21618fbc7ac570876a3cab780}\label{classrev_1_1_lighting_settings_a80329ac21618fbc7ac570876a3cab780}} 
+\mbox{\hyperlink{classrev_1_1_buffer_queue}{Shader\+Storage\+Buffer\+Queue}} \& {\bfseries point\+Light\+Matrix\+Buffers} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_a2ccbb739a3834dc0ae03fbb073766ac4}\label{classrev_1_1_lighting_settings_a2ccbb739a3834dc0ae03fbb073766ac4}} 
+\mbox{\hyperlink{classrev_1_1_buffer_queue}{Shader\+Storage\+Buffer\+Queue}} \& {\bfseries point\+Light\+Attribute\+Buffers} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_a111cfbea081f04aa2978a3b267aebe4f}\label{classrev_1_1_lighting_settings_a111cfbea081f04aa2978a3b267aebe4f}} 
+\mbox{\hyperlink{classrev_1_1_frame_buffer}{Frame\+Buffer}} \& {\bfseries point\+Light\+Frame\+Buffer} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_a696bce282acafd366d54755af617f565}\label{classrev_1_1_lighting_settings_a696bce282acafd366d54755af617f565}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_shadow_map}{Shadow\+Map}} $\ast$ $>$ \& \mbox{\hyperlink{classrev_1_1_lighting_settings_a696bce282acafd366d54755af617f565}{shadow\+Maps}} ()
+\begin{DoxyCompactList}\small\item\em Shadow maps. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_aa5165eae550402228c9ec87d97c74728}\label{classrev_1_1_lighting_settings_aa5165eae550402228c9ec87d97c74728}} 
+bool \mbox{\hyperlink{classrev_1_1_lighting_settings_aa5165eae550402228c9ec87d97c74728}{can\+Add\+Shadow}} (Light\+::\+Light\+Type light\+Type, int $\ast$available\+Index=nullptr)
+\begin{DoxyCompactList}\small\item\em Whether or not more shadows can be added for the specified light type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_a3f9b88253315f4410a604855c8f536c1}\label{classrev_1_1_lighting_settings_a3f9b88253315f4410a604855c8f536c1}} 
+void {\bfseries add\+Shadow} (\mbox{\hyperlink{classrev_1_1_shadow_map}{Shadow\+Map}} $\ast$sm, uint32\+\_\+t shadow\+Index, uint32\+\_\+t light\+Index)
+\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_a0826366a95b8bcd1b5ede2bae7d939f5}\label{classrev_1_1_lighting_settings_a0826366a95b8bcd1b5ede2bae7d939f5}} 
+void {\bfseries remove\+Shadow} (\mbox{\hyperlink{classrev_1_1_shadow_map}{Shadow\+Map}} $\ast$sm, uint32\+\_\+t index)
+\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_a3f9ee4ede906a6ffc0b56e6457625170}\label{classrev_1_1_lighting_settings_a3f9ee4ede906a6ffc0b56e6457625170}} 
+int \mbox{\hyperlink{classrev_1_1_lighting_settings_a3f9ee4ede906a6ffc0b56e6457625170}{reserve\+Light\+Index}} ()
+\begin{DoxyCompactList}\small\item\em Reserve an index for a light to be added, returning the index. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_ab387a4ab2e46ec2d76a0919d5a5504ca}\label{classrev_1_1_lighting_settings_ab387a4ab2e46ec2d76a0919d5a5504ca}} 
+void \mbox{\hyperlink{classrev_1_1_lighting_settings_ab387a4ab2e46ec2d76a0919d5a5504ca}{check\+Lights}} () const
+\begin{DoxyCompactList}\small\item\em Check that there aren\textquotesingle{}t too many lights. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_aea54d0058d96513442a6e62ea7b9aa03}\label{classrev_1_1_lighting_settings_aea54d0058d96513442a6e62ea7b9aa03}} 
+void \mbox{\hyperlink{classrev_1_1_lighting_settings_aea54d0058d96513442a6e62ea7b9aa03}{clear\+Lights}} ()
+\begin{DoxyCompactList}\small\item\em Clear all light data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_a98b65a2c66476ac638abdab07c8b344d}\label{classrev_1_1_lighting_settings_a98b65a2c66476ac638abdab07c8b344d}} 
+\mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} \& {\bfseries m\+\_\+context}
+\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Lights}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_a8b4e94ac35edfed0ad1b69ed576e5c5a}\label{classrev_1_1_lighting_settings_a8b4e94ac35edfed0ad1b69ed576e5c5a}} 
+unsigned int \mbox{\hyperlink{classrev_1_1_lighting_settings_a8b4e94ac35edfed0ad1b69ed576e5c5a}{m\+\_\+light\+Count}} = 0
+\begin{DoxyCompactList}\small\item\em Count of lights. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_add3c187e92cadd47241ad7433411bb28}\label{classrev_1_1_lighting_settings_add3c187e92cadd47241ad7433411bb28}} 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{classrev_1_1_lighting_settings_add3c187e92cadd47241ad7433411bb28}{m\+\_\+deleted\+Indices}}
+\begin{DoxyCompactList}\small\item\em Indices of deleted lights in attribute lists. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_aa32b8e7e0571867210245f9acc59febc}\label{classrev_1_1_lighting_settings_aa32b8e7e0571867210245f9acc59febc}} 
+Lighting\+Model \mbox{\hyperlink{classrev_1_1_lighting_settings_aa32b8e7e0571867210245f9acc59febc}{m\+\_\+lighting\+Model}} = Lighting\+Model\+::k\+Blinn\+Phong
+\begin{DoxyCompactList}\small\item\em The lighting model to use. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_a1b31def0acbff323d96c228206c8c29e}\label{classrev_1_1_lighting_settings_a1b31def0acbff323d96c228206c8c29e}} 
+\mbox{\hyperlink{classrev_1_1_buffer_queue}{Shader\+Storage\+Buffer\+Queue}} \mbox{\hyperlink{classrev_1_1_lighting_settings_a1b31def0acbff323d96c228206c8c29e}{m\+\_\+light\+Buffers}}
+\begin{DoxyCompactList}\small\item\em Buffer of light data for reference in shaders. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_a3e6955d62c3ec999191356fc07a97f72}\label{classrev_1_1_lighting_settings_a3e6955d62c3ec999191356fc07a97f72}} 
+const unsigned int \mbox{\hyperlink{classrev_1_1_lighting_settings_a3e6955d62c3ec999191356fc07a97f72}{m\+\_\+max\+Lights}}
+\begin{DoxyCompactList}\small\item\em The max number of lights allowed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_a981d9328e684ee5a6ad0b3da4d777eef}\label{classrev_1_1_lighting_settings_a981d9328e684ee5a6ad0b3da4d777eef}} 
+\mbox{\hyperlink{classrev_1_1_light}{Light}} \mbox{\hyperlink{classrev_1_1_lighting_settings_a981d9328e684ee5a6ad0b3da4d777eef}{m\+\_\+disabled\+Light}}
+\begin{DoxyCompactList}\small\item\em @ brief An empty, disabled light to cap of the lights list \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Shadows}\par
+\begin{DoxyCompactItemize}
+\item 
+std\+::array$<$ int, N\+U\+M\+\_\+\+S\+H\+A\+D\+O\+W\+S\+\_\+\+P\+E\+R\+\_\+\+L\+I\+G\+H\+T\+\_\+\+T\+Y\+PE $\ast$N\+U\+M\+\_\+\+S\+H\+A\+D\+O\+W\+\_\+\+M\+A\+P\+\_\+\+T\+E\+X\+T\+U\+R\+ES $>$ \mbox{\hyperlink{classrev_1_1_lighting_settings_aa2e60999ab440042e19efbd3fd5fb8f4}{m\+\_\+shadow\+Indices}}
+\begin{DoxyCompactList}\small\item\em Indices of lights corresponding to each available shadow slot. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_ab5cef2f13b9022411cbd36bf157d5f79}\label{classrev_1_1_lighting_settings_ab5cef2f13b9022411cbd36bf157d5f79}} 
+\mbox{\hyperlink{classrev_1_1_buffer_queue}{Shader\+Storage\+Buffer\+Queue}} \mbox{\hyperlink{classrev_1_1_lighting_settings_ab5cef2f13b9022411cbd36bf157d5f79}{m\+\_\+shadows}}
+\begin{DoxyCompactList}\small\item\em Buffer of shadow data for reference in shaders. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_a0dc7b49ef1716a7389577a1f464f133b}\label{classrev_1_1_lighting_settings_a0dc7b49ef1716a7389577a1f464f133b}} 
+\mbox{\hyperlink{classrev_1_1_buffer_queue}{Shader\+Storage\+Buffer\+Queue}} \mbox{\hyperlink{classrev_1_1_lighting_settings_a0dc7b49ef1716a7389577a1f464f133b}{m\+\_\+point\+Light\+Matrices}}
+\begin{DoxyCompactList}\small\item\em Buffer of point shadow map light (world to clip) matrices for reference in shaders. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_a3555466ee12861e99e05c8f00eed260f}\label{classrev_1_1_lighting_settings_a3555466ee12861e99e05c8f00eed260f}} 
+\mbox{\hyperlink{classrev_1_1_buffer_queue}{Shader\+Storage\+Buffer\+Queue}} {\bfseries m\+\_\+point\+Light\+Attributes}
+\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_a31018b552efdc657a908960bbaf35471}\label{classrev_1_1_lighting_settings_a31018b552efdc657a908960bbaf35471}} 
+\mbox{\hyperlink{classrev_1_1_frame_buffer}{Frame\+Buffer}} \mbox{\hyperlink{classrev_1_1_lighting_settings_a31018b552efdc657a908960bbaf35471}{m\+\_\+point\+Light\+Frame\+Buffer}}
+\begin{DoxyCompactList}\small\item\em Framebuffer for point-\/light rendering. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_a48a6efaab62fd28cbfeca6df30a9dc0c}\label{classrev_1_1_lighting_settings_a48a6efaab62fd28cbfeca6df30a9dc0c}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_shadow_map}{Shadow\+Map}} $\ast$ $>$ \mbox{\hyperlink{classrev_1_1_lighting_settings_a48a6efaab62fd28cbfeca6df30a9dc0c}{m\+\_\+shadow\+Maps}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_vector}{Vector}} of all shadow maps in the settings. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_af7d7bb65d740a0daec925ddc846e233d}\label{classrev_1_1_lighting_settings_af7d7bb65d740a0daec925ddc846e233d}} 
+std\+::array$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_texture}{Texture}} $>$, 3 $>$ \mbox{\hyperlink{classrev_1_1_lighting_settings_af7d7bb65d740a0daec925ddc846e233d}{m\+\_\+shadow\+Map\+Textures}}
+\begin{DoxyCompactList}\small\item\em Shadow map textures. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_a27862a9fe512b352f98ec1c054680edd}\label{classrev_1_1_lighting_settings_a27862a9fe512b352f98ec1c054680edd}} 
+class {\bfseries Light}
+\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_a2e7fdda96fb4e8a740d14d78a6808157}\label{classrev_1_1_lighting_settings_a2e7fdda96fb4e8a740d14d78a6808157}} 
+class {\bfseries Light\+Component}
+\end{DoxyCompactItemize}
+\subsection*{S\+S\+AO}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_ad154c45c95c7afc1bb5c78ab08516713}\label{classrev_1_1_lighting_settings_ad154c45c95c7afc1bb5c78ab08516713}} 
+uint32\+\_\+t \mbox{\hyperlink{classrev_1_1_lighting_settings_ad154c45c95c7afc1bb5c78ab08516713}{m\+\_\+num\+Kernal\+Samples}}
+\begin{DoxyCompactList}\small\item\em The number of samples to take per S\+S\+AO kernel. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_a8a6080b1d7c88ec69db80addafdc7a5f}\label{classrev_1_1_lighting_settings_a8a6080b1d7c88ec69db80addafdc7a5f}} 
+float {\bfseries m\+\_\+ssao\+Radius}
+\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_a74a8a2ce06b7e422fc0ad772ca79e52a}\label{classrev_1_1_lighting_settings_a74a8a2ce06b7e422fc0ad772ca79e52a}} 
+float {\bfseries m\+\_\+ssao\+Bias}
+\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_ac9e0cd27f2e9ec078e5bfc521be78229}\label{classrev_1_1_lighting_settings_ac9e0cd27f2e9ec078e5bfc521be78229}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_texture}{Texture}} $>$ \mbox{\hyperlink{classrev_1_1_lighting_settings_ac9e0cd27f2e9ec078e5bfc521be78229}{m\+\_\+noise\+Texture}}
+\begin{DoxyCompactList}\small\item\em Repeating texture of random rotations (about view normal\textquotesingle{}s z) for tiling over screen (to improve S\+S\+AO results) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classrev_1_1_shader_storage_buffer}{Shader\+Storage\+Buffer}} \mbox{\hyperlink{classrev_1_1_lighting_settings_a9264e10cb4df67df2f04edd37dd87d25}{m\+\_\+ssao\+Buffer}}
+\begin{DoxyCompactList}\small\item\em Buffer containing S\+S\+AO data. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_adf0d3516709226e6ddf1c2566beb0f58}\label{classrev_1_1_lighting_settings_adf0d3516709226e6ddf1c2566beb0f58}} 
+void \mbox{\hyperlink{classrev_1_1_lighting_settings_adf0d3516709226e6ddf1c2566beb0f58}{generate\+Sample\+Kernel}} ()
+\begin{DoxyCompactList}\small\item\em Randomly generate a sample kernal for S\+S\+AO\textquotesingle{}s unit hemisphere. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_a4601d6a9e08682e799e50fdfafff8921}\label{classrev_1_1_lighting_settings_a4601d6a9e08682e799e50fdfafff8921}} 
+void \mbox{\hyperlink{classrev_1_1_lighting_settings_a4601d6a9e08682e799e50fdfafff8921}{initialize\+Noise\+Texture}} ()
+\begin{DoxyCompactList}\small\item\em Initialize noise texture. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_lighting_settings_aa2e60999ab440042e19efbd3fd5fb8f4}\label{classrev_1_1_lighting_settings_aa2e60999ab440042e19efbd3fd5fb8f4}} 
+\index{rev::LightingSettings@{rev::LightingSettings}!m\_shadowIndices@{m\_shadowIndices}}
+\index{m\_shadowIndices@{m\_shadowIndices}!rev::LightingSettings@{rev::LightingSettings}}
+\subsubsection{\texorpdfstring{m\_shadowIndices}{m\_shadowIndices}}
+{\footnotesize\ttfamily std\+::array$<$int, N\+U\+M\+\_\+\+S\+H\+A\+D\+O\+W\+S\+\_\+\+P\+E\+R\+\_\+\+L\+I\+G\+H\+T\+\_\+\+T\+Y\+PE $\ast$ N\+U\+M\+\_\+\+S\+H\+A\+D\+O\+W\+\_\+\+M\+A\+P\+\_\+\+T\+E\+X\+T\+U\+R\+ES$>$ rev\+::\+Lighting\+Settings\+::m\+\_\+shadow\+Indices\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Indices of lights corresponding to each available shadow slot. 
+
+A negative index indicates no assigned light \mbox{\Hypertarget{classrev_1_1_lighting_settings_a9264e10cb4df67df2f04edd37dd87d25}\label{classrev_1_1_lighting_settings_a9264e10cb4df67df2f04edd37dd87d25}} 
+\index{rev::LightingSettings@{rev::LightingSettings}!m\_ssaoBuffer@{m\_ssaoBuffer}}
+\index{m\_ssaoBuffer@{m\_ssaoBuffer}!rev::LightingSettings@{rev::LightingSettings}}
+\subsubsection{\texorpdfstring{m\_ssaoBuffer}{m\_ssaoBuffer}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_shader_storage_buffer}{Shader\+Storage\+Buffer}} rev\+::\+Lighting\+Settings\+::m\+\_\+ssao\+Buffer\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Buffer containing S\+S\+AO data. 
+
+Contains kernel samples 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/lighting/G\+Light\+Settings.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/lighting/G\+Light\+Settings.\+cpp\end{DoxyCompactItemize}

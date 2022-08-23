@@ -1,0 +1,89 @@
+\hypertarget{class_eigen_1_1_vector_block}{}\section{Eigen\+::Vector\+Block$<$ Vector\+Type, Size $>$ Class Template Reference}
+\label{class_eigen_1_1_vector_block}\index{Eigen::VectorBlock$<$ VectorType, Size $>$@{Eigen::VectorBlock$<$ VectorType, Size $>$}}
+
+
+Expression of a fixed-\/size or dynamic-\/size sub-\/vector.  
+
+
+
+
+{\ttfamily \#include $<$Vector\+Block.\+h$>$}
+
+Inheritance diagram for Eigen\+::Vector\+Block$<$ Vector\+Type, Size $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.902605cm]{class_eigen_1_1_vector_block}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_vector_block_a4bd5eb61b2c420218269a111d717dbb7}{Vector\+Block}} (Vector\+Type \&vector, Index start, Index size)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_vector_block_a94bcec1eda40d989b2fbcc70f343fa8f}{Vector\+Block}} (Vector\+Type \&vector, Index start)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename Vector\+Type, int Size$>$\newline
+class Eigen\+::\+Vector\+Block$<$ Vector\+Type, Size $>$}
+
+Expression of a fixed-\/size or dynamic-\/size sub-\/vector. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Vector\+Type} & the type of the object in which we are taking a sub-\/vector \\
+\hline
+{\em Size} & size of the sub-\/vector we are taking at compile time (optional)\\
+\hline
+\end{DoxyTemplParams}
+This class represents an expression of either a fixed-\/size or dynamic-\/size sub-\/vector. It is the return type of \mbox{\hyperlink{class_eigen_1_1_dense_base_a12704b924ecc7161a38b123901e9cc9e}{Dense\+Base\+::segment(\+Index,\+Index)}} and Dense\+Base\+::segment$<$int$>$(\+Index) and most of the time this is the only way it is used.
+
+However, if you want to directly maniputate sub-\/vector expressions, for instance if you want to write a function returning such an expression, you will need to use this class.
+
+Here is an example illustrating the dynamic case\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxyNote}{Note}
+Even though this expression has dynamic size, in the case where {\itshape Vector\+Type} has fixed size, this expression inherits a fixed maximal size which means that evaluating it does not cause a dynamic memory allocation.
+\end{DoxyNote}
+Here is an example illustrating the fixed-\/size case\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxySeeAlso}{See also}
+class \mbox{\hyperlink{class_eigen_1_1_block}{Block}}, Dense\+Base\+::segment(\+Index,\+Index,\+Index,\+Index), \mbox{\hyperlink{class_eigen_1_1_dense_base_a12704b924ecc7161a38b123901e9cc9e}{Dense\+Base\+::segment(\+Index,\+Index)}} 
+\end{DoxySeeAlso}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_vector_block_a4bd5eb61b2c420218269a111d717dbb7}\label{class_eigen_1_1_vector_block_a4bd5eb61b2c420218269a111d717dbb7}} 
+\index{Eigen::VectorBlock$<$ VectorType, Size $>$@{Eigen::VectorBlock$<$ VectorType, Size $>$}!VectorBlock@{VectorBlock}}
+\index{VectorBlock@{VectorBlock}!Eigen::VectorBlock$<$ VectorType, Size $>$@{Eigen::VectorBlock$<$ VectorType, Size $>$}}
+\subsubsection{\texorpdfstring{VectorBlock()}{VectorBlock()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Vector\+Type, int Size$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_vector_block}{Eigen\+::\+Vector\+Block}}$<$ Vector\+Type, Size $>$\+::\mbox{\hyperlink{class_eigen_1_1_vector_block}{Vector\+Block}} (\begin{DoxyParamCaption}\item[{Vector\+Type \&}]{vector,  }\item[{Index}]{start,  }\item[{Index}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Dynamic-\/size constructor \mbox{\Hypertarget{class_eigen_1_1_vector_block_a94bcec1eda40d989b2fbcc70f343fa8f}\label{class_eigen_1_1_vector_block_a94bcec1eda40d989b2fbcc70f343fa8f}} 
+\index{Eigen::VectorBlock$<$ VectorType, Size $>$@{Eigen::VectorBlock$<$ VectorType, Size $>$}!VectorBlock@{VectorBlock}}
+\index{VectorBlock@{VectorBlock}!Eigen::VectorBlock$<$ VectorType, Size $>$@{Eigen::VectorBlock$<$ VectorType, Size $>$}}
+\subsubsection{\texorpdfstring{VectorBlock()}{VectorBlock()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Vector\+Type, int Size$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_vector_block}{Eigen\+::\+Vector\+Block}}$<$ Vector\+Type, Size $>$\+::\mbox{\hyperlink{class_eigen_1_1_vector_block}{Vector\+Block}} (\begin{DoxyParamCaption}\item[{Vector\+Type \&}]{vector,  }\item[{Index}]{start }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Fixed-\/size constructor 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Core/util/Forward\+Declarations.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Core/Vector\+Block.\+h\end{DoxyCompactItemize}

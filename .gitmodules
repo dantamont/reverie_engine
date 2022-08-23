@@ -1,12 +1,28 @@
-[submodule "third_party/physx/physx.submodule"]
-	path = third_party/physx/physx.submodule
+[submodule "extern/physx/physx.submodule"]
+	path = extern/physx/physx.submodule
 	url = https://github.com/dantamont/PhysX.git
 	branch = 4.1
-[submodule "third_party/assimp/assimp.submodule"]
-	path = third_party/assimp/assimp.submodule
-	url = https://github.com/dantamont/assimp.git
-	branch = master
-[submodule "third_party/freetype/freetype.submodule"]
-	path = third_party/freetype/freetype.submodule
+[submodule "extern/freetype/freetype.submodule"]
+	path = extern/freetype/freetype.submodule
 	url = https://github.com/dantamont/freetype.git
 	branch = master
+[submodule "extern/eigen/eigen.submodule"]
+	path = extern/eigen/eigen.submodule
+	url = https://gitlab.com/daintybubainty/eigen_clone.git
+	branch = main
+[submodule "extern/json/json.submodule"]
+	path = extern/json/json.submodule
+	url = https://github.com/nlohmann/json.git
+	branch = release/3.10.2
+[submodule "extern/googletest/googletest.submodule"]
+	path = extern/googletest/googletest.submodule
+	url = https://github.com/dantamont/googletest.git
+	branch = master
+[submodule "extern/pybind11/pybind11.submodule"]
+	path = extern/pybind11/pybind11.submodule
+	url = https://github.com/dantamont/pybind11.git
+	branch = master
+[submodule "extern/assimp/assimp.submodule"]
+	path = extern/assimp/assimp.submodule
+	url = https://github.com/dantamont/assimp.git
+	branch = release/assimp_5.2.4

@@ -1,0 +1,125 @@
+\hypertarget{structrev_1_1_shader_input_info}{}\section{rev\+::Shader\+Input\+Info Struct Reference}
+\label{structrev_1_1_shader_input_info}\index{rev::ShaderInputInfo@{rev::ShaderInputInfo}}
+
+
+struct containing a uniform\textquotesingle{}s name and type  
+
+
+
+
+{\ttfamily \#include $<$G\+Shader.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Construction/\+Destruction}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_shader_input_info_a6d8db790a14df243a617daef499e39c3}\label{structrev_1_1_shader_input_info_a6d8db790a14df243a617daef499e39c3}} 
+{\bfseries Shader\+Input\+Info} ()
+\item 
+\mbox{\Hypertarget{structrev_1_1_shader_input_info_a98ddf1ba219ea89655c3c4e23b0ef13b}\label{structrev_1_1_shader_input_info_a98ddf1ba219ea89655c3c4e23b0ef13b}} 
+{\bfseries Shader\+Input\+Info} (const \mbox{\hyperlink{structrev_1_1_shader_input_info}{Shader\+Input\+Info}} \&info)
+\item 
+\mbox{\Hypertarget{structrev_1_1_shader_input_info_a1802ff6817903cbbd31e6f70b3bba834}\label{structrev_1_1_shader_input_info_a1802ff6817903cbbd31e6f70b3bba834}} 
+{\bfseries Shader\+Input\+Info} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name, const Shader\+Variable\+Type \&type, Input\+Type input\+Type)
+\item 
+\mbox{\Hypertarget{structrev_1_1_shader_input_info_a1f93e45234ad4096ee1da7a54dab2c9d}\label{structrev_1_1_shader_input_info_a1f93e45234ad4096ee1da7a54dab2c9d}} 
+{\bfseries Shader\+Input\+Info} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name, const Shader\+Variable\+Type \&type, Input\+Type input\+Type, bool is\+Array)
+\item 
+\mbox{\Hypertarget{structrev_1_1_shader_input_info_a92cc3a1e01dcccf0bf5a49249d90acb7}\label{structrev_1_1_shader_input_info_a92cc3a1e01dcccf0bf5a49249d90acb7}} 
+{\bfseries Shader\+Input\+Info} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name, const Shader\+Variable\+Type \&type, Input\+Type input\+Type, bool is\+Array, int id)
+\item 
+\mbox{\Hypertarget{structrev_1_1_shader_input_info_a71dfaf97d23ba09f93a886b0e29a617f}\label{structrev_1_1_shader_input_info_a71dfaf97d23ba09f93a886b0e29a617f}} 
+{\bfseries $\sim$\+Shader\+Input\+Info} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_shader_input_info_a30e338d237bd4ac2c2001e671f78a27d}\label{structrev_1_1_shader_input_info_a30e338d237bd4ac2c2001e671f78a27d}} 
+bool {\bfseries is\+Array} () const
+\item 
+\mbox{\Hypertarget{structrev_1_1_shader_input_info_a73384310db7397a3cc53daaec2545354}\label{structrev_1_1_shader_input_info_a73384310db7397a3cc53daaec2545354}} 
+bool {\bfseries in\+Block\+Or\+Buffer} () const
+\item 
+\mbox{\Hypertarget{structrev_1_1_shader_input_info_a0546fc959db5cfe499b47c3563eae3b6}\label{structrev_1_1_shader_input_info_a0546fc959db5cfe499b47c3563eae3b6}} 
+const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \& {\bfseries name} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_shader_input_info_ab803505bdea37d9a7353a923c3b747a7}\label{structrev_1_1_shader_input_info_ab803505bdea37d9a7353a923c3b747a7}} 
+Q\+String \mbox{\hyperlink{structrev_1_1_shader_input_info_ab803505bdea37d9a7353a923c3b747a7}{as\+G\+L\+SL}} () const
+\begin{DoxyCompactList}\small\item\em Return G\+L\+SL representation of the buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Attributes}
+\begin{Indent}\textbf{ Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_shader_input_info_a43ab2680f94bb2bdfbca0cfe65199231}\label{structrev_1_1_shader_input_info_a43ab2680f94bb2bdfbca0cfe65199231}} 
+\mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} {\bfseries m\+\_\+name}
+\item 
+\mbox{\Hypertarget{structrev_1_1_shader_input_info_ac73fbe1e6a9bd891aeadd9558243398c}\label{structrev_1_1_shader_input_info_ac73fbe1e6a9bd891aeadd9558243398c}} 
+Shader\+Variable\+Type {\bfseries m\+\_\+variable\+Type} = Shader\+Variable\+Type\+::k\+None
+\item 
+\mbox{\Hypertarget{structrev_1_1_shader_input_info_a94a7a71933e469c347af2db838320bba}\label{structrev_1_1_shader_input_info_a94a7a71933e469c347af2db838320bba}} 
+std\+::type\+\_\+index {\bfseries m\+\_\+variable\+C\+Type}
+\item 
+\mbox{\Hypertarget{structrev_1_1_shader_input_info_a7befac0cadcc54f29cc414aec39a0176}\label{structrev_1_1_shader_input_info_a7befac0cadcc54f29cc414aec39a0176}} 
+Q\+String {\bfseries m\+\_\+variable\+Type\+Str}
+\item 
+\mbox{\Hypertarget{structrev_1_1_shader_input_info_a75486c198dd1d90b6ca46ebbf6e6166a}\label{structrev_1_1_shader_input_info_a75486c198dd1d90b6ca46ebbf6e6166a}} 
+Input\+Type {\bfseries m\+\_\+input\+Type} = Input\+Type\+::k\+None
+\item 
+\mbox{\Hypertarget{structrev_1_1_shader_input_info_aba718a705f6f167711995a4f6a6b46e9}\label{structrev_1_1_shader_input_info_aba718a705f6f167711995a4f6a6b46e9}} 
+Q\+Flags$<$ Shader\+Input\+Flag $>$ {\bfseries m\+\_\+flags}
+\item 
+\mbox{\Hypertarget{structrev_1_1_shader_input_info_ab910f7afc77d76ce8faf26e3cf75b366}\label{structrev_1_1_shader_input_info_ab910f7afc77d76ce8faf26e3cf75b366}} 
+int {\bfseries m\+\_\+uniform\+ID} = -\/1
+\item 
+\mbox{\Hypertarget{structrev_1_1_shader_input_info_ad3cd075b0abf462bd28437378108188a}\label{structrev_1_1_shader_input_info_ad3cd075b0abf462bd28437378108188a}} 
+int {\bfseries m\+\_\+local\+Index} = -\/1
+\item 
+\mbox{\Hypertarget{structrev_1_1_shader_input_info_a07c60644b5f5d6d7f149c57b70eb4db4}\label{structrev_1_1_shader_input_info_a07c60644b5f5d6d7f149c57b70eb4db4}} 
+int {\bfseries m\+\_\+array\+Size} = -\/1
+\item 
+\mbox{\Hypertarget{structrev_1_1_shader_input_info_a473f2e3b49f87edde2dea4bcfefe72d7}\label{structrev_1_1_shader_input_info_a473f2e3b49f87edde2dea4bcfefe72d7}} 
+Precision\+Qualifier {\bfseries m\+\_\+precision} = Precision\+Qualifier\+::k\+None
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_shader_input_info_a29a34d46b94617505904bf50ffccb72e}\label{structrev_1_1_shader_input_info_a29a34d46b94617505904bf50ffccb72e}} 
+enum {\bfseries Input\+Type} \{ \newline
+{\bfseries k\+None} = -\/1, 
+{\bfseries k\+Uniform}, 
+{\bfseries k\+In}, 
+{\bfseries k\+Out}, 
+\newline
+{\bfseries Buffer\+Field}
+ \}
+\item 
+\mbox{\Hypertarget{structrev_1_1_shader_input_info_a66d85b80da1c85d109c7231bff7621cd}\label{structrev_1_1_shader_input_info_a66d85b80da1c85d109c7231bff7621cd}} 
+enum {\bfseries Precision\+Qualifier} \{ {\bfseries k\+None} = -\/1, 
+{\bfseries k\+High}, 
+{\bfseries k\+Medium}, 
+{\bfseries k\+Low}
+ \}
+\item 
+\mbox{\Hypertarget{structrev_1_1_shader_input_info_a2292bc0024d72d229b5170a3e1c0eed7}\label{structrev_1_1_shader_input_info_a2292bc0024d72d229b5170a3e1c0eed7}} 
+enum {\bfseries Shader\+Input\+Flag} \{ {\bfseries k\+Is\+Array} = 1 $<$$<$ 0, 
+{\bfseries k\+In\+Block\+Or\+Buffer} = 1 $<$$<$ 1
+ \}
+\item 
+\mbox{\Hypertarget{structrev_1_1_shader_input_info_ad9e4eed81be0a33e736e3e8d117b4add}\label{structrev_1_1_shader_input_info_ad9e4eed81be0a33e736e3e8d117b4add}} 
+static bool \mbox{\hyperlink{structrev_1_1_shader_input_info_ad9e4eed81be0a33e736e3e8d117b4add}{Is\+Valid\+G\+L\+Type}} (int type\+Int)
+\begin{DoxyCompactList}\small\item\em Determines if the given value is a valid Shader\+Variable\+Type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+struct containing a uniform\textquotesingle{}s name and type 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/shaders/G\+Shader.\+h\end{DoxyCompactItemize}

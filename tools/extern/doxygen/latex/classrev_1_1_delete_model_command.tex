@@ -1,0 +1,59 @@
+\hypertarget{classrev_1_1_delete_model_command}{}\section{rev\+::Delete\+Model\+Command Class Reference}
+\label{classrev_1_1_delete_model_command}\index{rev::DeleteModelCommand@{rev::DeleteModelCommand}}
+
+
+Delete a model.  
+
+
+
+
+{\ttfamily \#include $<$G\+Resource\+Widgets.\+h$>$}
+
+Inheritance diagram for rev\+::Delete\+Model\+Command\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_delete_model_command}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_delete_model_command_a98170f731f9c94e12d1be242abd623e0}\label{classrev_1_1_delete_model_command_a98170f731f9c94e12d1be242abd623e0}} 
+{\bfseries Delete\+Model\+Command} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, \mbox{\hyperlink{classrev_1_1_model}{Model}} $\ast$model, const Q\+String \&text, Q\+Undo\+Command $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_delete_model_command_a2e686aa7a573ecdd79248065d81006ea}\label{classrev_1_1_delete_model_command_a2e686aa7a573ecdd79248065d81006ea}} 
+{\bfseries $\sim$\+Delete\+Model\+Command} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_delete_model_command_acf6418b5408f4546c833b3c0ae71b16a}\label{classrev_1_1_delete_model_command_acf6418b5408f4546c833b3c0ae71b16a}} 
+virtual void \mbox{\hyperlink{classrev_1_1_delete_model_command_acf6418b5408f4546c833b3c0ae71b16a}{redo}} () override
+\begin{DoxyCompactList}\small\item\em Redoes the command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_delete_model_command_a2e3963f47d868836858082b0770073c1}\label{classrev_1_1_delete_model_command_a2e3963f47d868836858082b0770073c1}} 
+virtual void \mbox{\hyperlink{classrev_1_1_delete_model_command_a2e3963f47d868836858082b0770073c1}{undo}} () override
+\begin{DoxyCompactList}\small\item\em Undoes the command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_delete_model_command_adc9540fb8fcd7954523a09fda3b73691}\label{classrev_1_1_delete_model_command_adc9540fb8fcd7954523a09fda3b73691}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_delete_model_command_adc9540fb8fcd7954523a09fda3b73691}{m\+\_\+model\+Json}}
+\begin{DoxyCompactList}\small\item\em The J\+S\+ON for the model removed by this command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_delete_model_command_a8f34477113f1490bd6d49795284f0601}\label{classrev_1_1_delete_model_command_a8f34477113f1490bd6d49795284f0601}} 
+\mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} {\bfseries m\+\_\+model\+Name}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Delete a model. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Resource\+Widgets.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Resource\+Widgets.\+cpp\end{DoxyCompactItemize}

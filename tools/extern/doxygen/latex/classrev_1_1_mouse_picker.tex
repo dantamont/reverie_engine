@@ -1,0 +1,82 @@
+\hypertarget{classrev_1_1_mouse_picker}{}\section{rev\+::Mouse\+Picker Class Reference}
+\label{classrev_1_1_mouse_picker}\index{rev::MousePicker@{rev::MousePicker}}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_picker_aedd6e983c0e82e2cb55f156e8ea2b0fc}\label{classrev_1_1_mouse_picker_aedd6e983c0e82e2cb55f156e8ea2b0fc}} 
+{\bfseries Mouse\+Picker} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_picker_a1cae511caacc78d2d3814183d18cfb25}\label{classrev_1_1_mouse_picker_a1cae511caacc78d2d3814183d18cfb25}} 
+virtual {\bfseries $\sim$\+Mouse\+Picker} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_picker_a960536c49e478b469009ba97e2c50f86}\label{classrev_1_1_mouse_picker_a960536c49e478b469009ba97e2c50f86}} 
+bool \mbox{\hyperlink{classrev_1_1_mouse_picker_a960536c49e478b469009ba97e2c50f86}{is\+Mouse\+Over}} (\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$scene\+Object) const
+\begin{DoxyCompactList}\small\item\em If the mouse is hovering over the scene object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_picker_a95b7b887e5e467a15992df531e123713}\label{classrev_1_1_mouse_picker_a95b7b887e5e467a15992df531e123713}} 
+bool \mbox{\hyperlink{classrev_1_1_mouse_picker_a95b7b887e5e467a15992df531e123713}{is\+Mouse\+Over}} (\mbox{\hyperlink{classrev_1_1_renderable}{Renderable}} $\ast$renderable) const
+\begin{DoxyCompactList}\small\item\em If the mouse is hovering over the renderable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_picker_aa79df0676626723ebb352b7b715c885e}\label{classrev_1_1_mouse_picker_aa79df0676626723ebb352b7b715c885e}} 
+void \mbox{\hyperlink{classrev_1_1_mouse_picker_aa79df0676626723ebb352b7b715c885e}{update\+Mouse\+Over}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector2}} \&widget\+Mouse\+Pos, const \mbox{\hyperlink{classrev_1_1_camera}{Camera}} \&camera, const \mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} \&renderer)
+\begin{DoxyCompactList}\small\item\em Update the camera\textquotesingle{}s pixel\+Color based on location of mouse cursor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_picker_aa7d459c701b98d06468d0ba7205f000f}\label{classrev_1_1_mouse_picker_aa7d459c701b98d06468d0ba7205f000f}} 
+{\footnotesize template$<$size\+\_\+t N, typename Out\+Type $>$ }\\static void \mbox{\hyperlink{classrev_1_1_mouse_picker_aa7d459c701b98d06468d0ba7205f000f}{Get\+Channel\+Id}} (uint32\+\_\+t id, Out\+Type $\ast$out\+Color)
+\begin{DoxyCompactList}\small\item\em Convert an ID to a unique, three-\/channel color. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_picker_aa948b50521b57682f59dcb1e509c8135}\label{classrev_1_1_mouse_picker_aa948b50521b57682f59dcb1e509c8135}} 
+{\footnotesize template$<$size\+\_\+t N, typename Out\+Type $>$ }\\static \mbox{\hyperlink{classrev_1_1_vector}{Vector}}$<$ Out\+Type, N $>$ {\bfseries Get\+Channel\+Id} (uint32\+\_\+t id)
+\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_picker_a92a58d878cb80c71152205f2b926ad11}\label{classrev_1_1_mouse_picker_a92a58d878cb80c71152205f2b926ad11}} 
+{\footnotesize template$<$size\+\_\+t N, typename Color\+Type $>$ }\\static uint32\+\_\+t \mbox{\hyperlink{classrev_1_1_mouse_picker_a92a58d878cb80c71152205f2b926ad11}{Get\+Color\+Id}} (Color\+Type $\ast$color)
+\begin{DoxyCompactList}\small\item\em Convert a three-\/channel color to a one-\/dimensional Id. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_picker_a8828a656ec9e6235690744b7b3e7c38b}\label{classrev_1_1_mouse_picker_a8828a656ec9e6235690744b7b3e7c38b}} 
+void \mbox{\hyperlink{classrev_1_1_mouse_picker_a8828a656ec9e6235690744b7b3e7c38b}{get\+Pixel\+Color}} (\mbox{\hyperlink{classrev_1_1_vector}{Vector}}$<$ int, 4 $>$ \&out\+Color, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&widget\+Pos, const \mbox{\hyperlink{classrev_1_1_camera}{Camera}} \&camera, const \mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} \&renderer, uint32\+\_\+t attachment\+Index, uint32\+\_\+t sample\+Half\+Width=0)
+\begin{DoxyCompactList}\small\item\em Get color at specified widget position for the specified camera. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_picker_a59517810edbce044ff3b795271be355b}\label{classrev_1_1_mouse_picker_a59517810edbce044ff3b795271be355b}} 
+void \mbox{\hyperlink{classrev_1_1_mouse_picker_a59517810edbce044ff3b795271be355b}{get\+Pixel\+Color}} (\mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \&out\+Color, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&widget\+Pos, const \mbox{\hyperlink{classrev_1_1_camera}{Camera}} \&camera, const \mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} \&renderer, uint32\+\_\+t attachment\+Index, uint32\+\_\+t sample\+Half\+Width=0)
+\begin{DoxyCompactList}\small\item\em Get color at specified widget position for the specified camera, as a float. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector4i}} \mbox{\hyperlink{classrev_1_1_mouse_picker_a46d15ba956fa03838715d53f2b7bc8d4}{m\+\_\+mouse\+Over\+Color}}
+\begin{DoxyCompactList}\small\item\em The view-\/space normal that is moused over. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_picker_a8a76c283e42ecc801d575787920361b0}\label{classrev_1_1_mouse_picker_a8a76c283e42ecc801d575787920361b0}} 
+\mbox{\hyperlink{structrev_1_1_mouse_hover_info}{Mouse\+Hover\+Info}} \mbox{\hyperlink{classrev_1_1_mouse_picker_a8a76c283e42ecc801d575787920361b0}{m\+\_\+hover\+Info}}
+\begin{DoxyCompactList}\small\item\em The current scene object and hoverable hovered over. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_mouse_picker_a46d15ba956fa03838715d53f2b7bc8d4}\label{classrev_1_1_mouse_picker_a46d15ba956fa03838715d53f2b7bc8d4}} 
+\index{rev::MousePicker@{rev::MousePicker}!m\_mouseOverColor@{m\_mouseOverColor}}
+\index{m\_mouseOverColor@{m\_mouseOverColor}!rev::MousePicker@{rev::MousePicker}}
+\subsubsection{\texorpdfstring{m\_mouseOverColor}{m\_mouseOverColor}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_vector}{Vector4i}} rev\+::\+Mouse\+Picker\+::m\+\_\+mouse\+Over\+Color\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The view-\/space normal that is moused over. 
+
+The last mouse color hovered over
+
+Invalid if any channel is negative. Was using alpha channel, but fails if blending in color pass 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/geometry/G\+Mouse\+Picking.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/geometry/G\+Mouse\+Picking.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,70 @@
+\hypertarget{classrev_1_1_view_1_1_resource_json_widget}{}\section{rev\+::View\+::Resource\+Json\+Widget Class Reference}
+\label{classrev_1_1_view_1_1_resource_json_widget}\index{rev::View::ResourceJsonWidget@{rev::View::ResourceJsonWidget}}
+Inheritance diagram for rev\+::View\+::Resource\+Json\+Widget\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.828283cm]{classrev_1_1_view_1_1_resource_json_widget}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_json_widget_ae1501048186f60522473104ec0023942}\label{classrev_1_1_view_1_1_resource_json_widget_ae1501048186f60522473104ec0023942}} 
+{\bfseries Resource\+Json\+Widget} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \&resource, Q\+Widget $\ast$parent=0)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_json_widget_affb64a02e9131ffae95df96fd63b77d0}\label{classrev_1_1_view_1_1_resource_json_widget_affb64a02e9131ffae95df96fd63b77d0}} 
+{\bfseries $\sim$\+Resource\+Json\+Widget} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Events}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_json_widget_a3a93eb972d51bc3da960a3d076ef8e6d}\label{classrev_1_1_view_1_1_resource_json_widget_a3a93eb972d51bc3da960a3d076ef8e6d}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_resource_json_widget_a3a93eb972d51bc3da960a3d076ef8e6d}{wheel\+Event}} (Q\+Wheel\+Event $\ast$event) override
+\begin{DoxyCompactList}\small\item\em Scroll event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_json_widget_abc3a703617956a59548319de976dc207}\label{classrev_1_1_view_1_1_resource_json_widget_abc3a703617956a59548319de976dc207}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ {\bfseries resource\+Handle} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_json_widget_a1db80965216735b2a4cacb71449d46d1}\label{classrev_1_1_view_1_1_resource_json_widget_a1db80965216735b2a4cacb71449d46d1}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_resource_json_widget_a1db80965216735b2a4cacb71449d46d1}{initialize\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to check\+Validity widgets. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_json_widget_a5ec531752761cd10e78bf68a7d3104c5}\label{classrev_1_1_view_1_1_resource_json_widget_a5ec531752761cd10e78bf68a7d3104c5}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_resource_json_widget_a5ec531752761cd10e78bf68a7d3104c5}{initialize\+Connections}} () override
+\begin{DoxyCompactList}\small\item\em Methods to check\+Validity connections for this widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_json_widget_a0bee48c697624331be75efae81ed5986}\label{classrev_1_1_view_1_1_resource_json_widget_a0bee48c697624331be75efae81ed5986}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_resource_json_widget_a0bee48c697624331be75efae81ed5986}{layout\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to ay out widgets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_json_widget_aba199dc728974fc2631980a13ef1b3cf}\label{classrev_1_1_view_1_1_resource_json_widget_aba199dc728974fc2631980a13ef1b3cf}} 
+Q\+Label $\ast$ {\bfseries m\+\_\+type\+Label}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_json_widget_ae8a33cb9a01a05cc37788f155312dce4}\label{classrev_1_1_view_1_1_resource_json_widget_ae8a33cb9a01a05cc37788f155312dce4}} 
+\mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \mbox{\hyperlink{classrev_1_1_view_1_1_resource_json_widget_ae8a33cb9a01a05cc37788f155312dce4}{m\+\_\+resource\+Handle\+ID}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_serializable}{Serializable}} object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_json_widget_a248e5f537ca39fb8e06b0f016fad904c}\label{classrev_1_1_view_1_1_resource_json_widget_a248e5f537ca39fb8e06b0f016fad904c}} 
+\mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} {\bfseries m\+\_\+resource\+Name}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_json_widget_af9b80b69d5fb0919d894a793272fe1a3}\label{classrev_1_1_view_1_1_resource_json_widget_af9b80b69d5fb0919d894a793272fe1a3}} 
+Q\+Text\+Edit $\ast$ {\bfseries m\+\_\+text\+Edit}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_json_widget_a5fdcd5d442b51918fc3290a90161e214}\label{classrev_1_1_view_1_1_resource_json_widget_a5fdcd5d442b51918fc3290a90161e214}} 
+Q\+Push\+Button $\ast$ {\bfseries m\+\_\+confirm\+Button} = nullptr
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Resource\+Widgets.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Resource\+Widgets.\+cpp\end{DoxyCompactItemize}

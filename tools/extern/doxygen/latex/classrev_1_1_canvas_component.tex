@@ -1,0 +1,217 @@
+\hypertarget{classrev_1_1_canvas_component}{}\section{rev\+::Canvas\+Component Class Reference}
+\label{classrev_1_1_canvas_component}\index{rev::CanvasComponent@{rev::CanvasComponent}}
+Inheritance diagram for rev\+::Canvas\+Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_canvas_component}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_a6747334c92ba516a6a2bdd41afc86dd0}\label{classrev_1_1_canvas_component_a6747334c92ba516a6a2bdd41afc86dd0}} 
+{\bfseries Canvas\+Component} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_a6e8b70ba07f2fcc805fe6872c3a93cae}\label{classrev_1_1_canvas_component_a6e8b70ba07f2fcc805fe6872c3a93cae}} 
+{\bfseries Canvas\+Component} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \&object)
+\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_a7f0522a03a393d735cf65d0063541942}\label{classrev_1_1_canvas_component_a7f0522a03a393d735cf65d0063541942}} 
+{\bfseries $\sim$\+Canvas\+Component} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_a3d3c700a258d2e3571b28fca33c7b177}\label{classrev_1_1_canvas_component_a3d3c700a258d2e3571b28fca33c7b177}} 
+const std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_glyph}{Glyph}} $>$ $>$ \& {\bfseries glyphs} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_a71690bbf5d7a7fa2faaecf50ccb13199}\label{classrev_1_1_canvas_component_a71690bbf5d7a7fa2faaecf50ccb13199}} 
+Glyph\+Mode {\bfseries glyph\+Mode} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_ab996e413ed00a8c4713e377939e24398}\label{classrev_1_1_canvas_component_ab996e413ed00a8c4713e377939e24398}} 
+\mbox{\hyperlink{classrev_1_1_flags}{Flags}}$<$ Billboard\+Flag $>$ \& \mbox{\hyperlink{classrev_1_1_canvas_component_ab996e413ed00a8c4713e377939e24398}{flags}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_flags}{Flags}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_a8553ace0a3fc9cbeb33e843974c344f2}\label{classrev_1_1_canvas_component_a8553ace0a3fc9cbeb33e843974c344f2}} 
+bool {\bfseries scales\+With\+Distance} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_a2c140715960c0cc4c33bccc1efa09ae5}\label{classrev_1_1_canvas_component_a2c140715960c0cc4c33bccc1efa09ae5}} 
+void {\bfseries set\+Scale\+With\+Distance} (bool scale)
+\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_a27e40092dbd9c39ca699d7f0cd6dcd1a}\label{classrev_1_1_canvas_component_a27e40092dbd9c39ca699d7f0cd6dcd1a}} 
+bool {\bfseries faces\+Camera} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_a1ed99111b6deee5caa1317ac148accae}\label{classrev_1_1_canvas_component_a1ed99111b6deee5caa1317ac148accae}} 
+void {\bfseries set\+Face\+Camera} (bool face)
+\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_a1f08760f900fa58ea435d870fa66f676}\label{classrev_1_1_canvas_component_a1f08760f900fa58ea435d870fa66f676}} 
+bool {\bfseries always\+On\+Top} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_ae64b52e5d3212e7fcbdd3c63a977dff0}\label{classrev_1_1_canvas_component_ae64b52e5d3212e7fcbdd3c63a977dff0}} 
+void {\bfseries set\+On\+Top} (bool on\+Top)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_ad38cc4a5b7fc425589041dc2db01050d}\label{classrev_1_1_canvas_component_ad38cc4a5b7fc425589041dc2db01050d}} 
+void {\bfseries set\+Glyph\+Mode} (Glyph\+Mode mode)
+\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_acbdb374b706733c1a000f792949ef4d4}\label{classrev_1_1_canvas_component_acbdb374b706733c1a000f792949ef4d4}} 
+void \mbox{\hyperlink{classrev_1_1_canvas_component_acbdb374b706733c1a000f792949ef4d4}{create\+Draw\+Commands}} (std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_draw_command}{Draw\+Command}} $>$$>$ \&out\+Draw\+Commands, \mbox{\hyperlink{classrev_1_1_scene_camera}{Scene\+Camera}} \&camera, \mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program, \mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$prepass\+Program=nullptr)
+\begin{DoxyCompactList}\small\item\em Create the draw commands for the canvas component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_ae66d5fab87de6ff1b092391738f8029b}\label{classrev_1_1_canvas_component_ae66d5fab87de6ff1b092391738f8029b}} 
+void {\bfseries add\+Glyph} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_glyph}{Glyph}} $>$ \&glyph, bool set\+Parent=true)
+\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_a95812ec81bda9d151c59574a381aca68}\label{classrev_1_1_canvas_component_a95812ec81bda9d151c59574a381aca68}} 
+void {\bfseries add\+Glyph} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_glyph}{Glyph}} $>$ \&glyph, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_glyph}{Glyph}} $>$ \&parent)
+\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_a81d914149431534f44f2be44e950bbe0}\label{classrev_1_1_canvas_component_a81d914149431534f44f2be44e950bbe0}} 
+void {\bfseries remove\+Glyph} (const \mbox{\hyperlink{classrev_1_1_glyph}{Glyph}} \&glyph)
+\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_aadbafdf25d69a23c64f405be6849d50b}\label{classrev_1_1_canvas_component_aadbafdf25d69a23c64f405be6849d50b}} 
+void {\bfseries remove\+Glyph} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_glyph}{Glyph}} $>$ \&glyph)
+\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_aef0cf347a5658cefd2feeb9f9ff651df}\label{classrev_1_1_canvas_component_aef0cf347a5658cefd2feeb9f9ff651df}} 
+Q\+Size {\bfseries main\+G\+L\+Widget\+Dimensions} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_a41cc91c5d469ae91e64d81f5c76ff7d6}\label{classrev_1_1_canvas_component_a41cc91c5d469ae91e64d81f5c76ff7d6}} 
+void \mbox{\hyperlink{classrev_1_1_canvas_component_a41cc91c5d469ae91e64d81f5c76ff7d6}{resize\+Viewport}} ()
+\begin{DoxyCompactList}\small\item\em Resize viewport for the canvas component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_a070122de08c09c7c4230874925dda2a1}\label{classrev_1_1_canvas_component_a070122de08c09c7c4230874925dda2a1}} 
+void \mbox{\hyperlink{classrev_1_1_canvas_component_a070122de08c09c7c4230874925dda2a1}{clear}} ()
+\begin{DoxyCompactList}\small\item\em Clear the canvas. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_a340b193abeb0e1aa67e577a52b34905d}\label{classrev_1_1_canvas_component_a340b193abeb0e1aa67e577a52b34905d}} 
+virtual void \mbox{\hyperlink{classrev_1_1_canvas_component_a340b193abeb0e1aa67e577a52b34905d}{enable}} () override
+\begin{DoxyCompactList}\small\item\em Enable the behavior of this script component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_add4c216d48391a4f3490afd28590d2c3}\label{classrev_1_1_canvas_component_add4c216d48391a4f3490afd28590d2c3}} 
+virtual void \mbox{\hyperlink{classrev_1_1_canvas_component_add4c216d48391a4f3490afd28590d2c3}{disable}} () override
+\begin{DoxyCompactList}\small\item\em Disable the behavior of this script component. \end{DoxyCompactList}\item 
+virtual int \mbox{\hyperlink{classrev_1_1_canvas_component_a8d5d6c277edd55e7fd0bbfb29045d44a}{max\+Allowed}} () const override
+\begin{DoxyCompactList}\small\item\em Max number of allowed components per scene object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_a5bcdaf86ce8a5dab791aae8439be4491}\label{classrev_1_1_canvas_component_a5bcdaf86ce8a5dab791aae8439be4491}} 
+virtual void \mbox{\hyperlink{classrev_1_1_canvas_component_a5bcdaf86ce8a5dab791aae8439be4491}{add\+Required\+Components}} () override
+\begin{DoxyCompactList}\small\item\em Add any required components for this component to be added to scene or object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_canvas_component_a922be6d092caa93f116babd47dd6343a}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_canvas_component_aecd2d20165561426ae2eb73226626945}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_a204a29a0f44b4afe36b85055543d69cf}\label{classrev_1_1_canvas_component_a204a29a0f44b4afe36b85055543d69cf}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_canvas_component_a204a29a0f44b4afe36b85055543d69cf}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_a0be9ba52e0b3f9b5af14b69b26392e71}\label{classrev_1_1_canvas_component_a0be9ba52e0b3f9b5af14b69b26392e71}} 
+virtual void \mbox{\hyperlink{classrev_1_1_canvas_component_a0be9ba52e0b3f9b5af14b69b26392e71}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_a950de206d4975204c656ef8a306a8771}\label{classrev_1_1_canvas_component_a950de206d4975204c656ef8a306a8771}} 
+uint32\+\_\+t \mbox{\hyperlink{classrev_1_1_canvas_component_a950de206d4975204c656ef8a306a8771}{get\+Index}} (const \mbox{\hyperlink{classrev_1_1_glyph}{Glyph}} \&glyph) const
+\begin{DoxyCompactList}\small\item\em Get index of the specified glyph in the internal glyph vector. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_ac182202887f3c48ce09b5ee93c7ca522}\label{classrev_1_1_canvas_component_ac182202887f3c48ce09b5ee93c7ca522}} 
+void \mbox{\hyperlink{classrev_1_1_canvas_component_ac182202887f3c48ce09b5ee93c7ca522}{resize}} ()
+\begin{DoxyCompactList}\small\item\em Reload all glyphs if screen dimensions changed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_a3d509bb4253d5ccd44f995907b4a6b7c}\label{classrev_1_1_canvas_component_a3d509bb4253d5ccd44f995907b4a6b7c}} 
+Q\+Size \mbox{\hyperlink{classrev_1_1_canvas_component_a3d509bb4253d5ccd44f995907b4a6b7c}{m\+\_\+dimensions}}
+\begin{DoxyCompactList}\small\item\em Most recently cached widget dimensions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_a4b5101f7fc7280122760b0c1f0fc08fe}\label{classrev_1_1_canvas_component_a4b5101f7fc7280122760b0c1f0fc08fe}} 
+Glyph\+Mode \mbox{\hyperlink{classrev_1_1_canvas_component_a4b5101f7fc7280122760b0c1f0fc08fe}{m\+\_\+glyph\+Mode}}
+\begin{DoxyCompactList}\small\item\em The rendering mode of the glyph. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_a7939896e50934a12ef1e6e17f1a00277}\label{classrev_1_1_canvas_component_a7939896e50934a12ef1e6e17f1a00277}} 
+\mbox{\hyperlink{classrev_1_1_flags}{Flags}}$<$ Billboard\+Flag $>$ \mbox{\hyperlink{classrev_1_1_canvas_component_a7939896e50934a12ef1e6e17f1a00277}{m\+\_\+flags}}
+\begin{DoxyCompactList}\small\item\em The flags for the glyph. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_glyph}{Glyph}} $>$ $>$ \mbox{\hyperlink{classrev_1_1_canvas_component_a3f46cf00013223f6b45b9b3403b7b8de}{m\+\_\+glyphs}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_viewport}{Viewport}} settings, deprecated. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_a37318fbecf18c41ff3a283d6c40c924c}\label{classrev_1_1_canvas_component_a37318fbecf18c41ff3a283d6c40c924c}} 
+std\+::vector$<$ size\+\_\+t $>$ \mbox{\hyperlink{classrev_1_1_canvas_component_a37318fbecf18c41ff3a283d6c40c924c}{m\+\_\+deleted\+Glyph\+Indices}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_vector}{Vector}} of deleted glyph indices to avoid resizing vector on removal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_canvas_component_ab616e39a2270ec8574bc4b64ecc6a788}\label{classrev_1_1_canvas_component_ab616e39a2270ec8574bc4b64ecc6a788}} 
+class {\bfseries Glyph}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_canvas_component_a922be6d092caa93f116babd47dd6343a}\label{classrev_1_1_canvas_component_a922be6d092caa93f116babd47dd6343a}} 
+\index{rev::CanvasComponent@{rev::CanvasComponent}!className@{className}}
+\index{className@{className}!rev::CanvasComponent@{rev::CanvasComponent}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Canvas\+Component\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_canvas_component_a8d5d6c277edd55e7fd0bbfb29045d44a}\label{classrev_1_1_canvas_component_a8d5d6c277edd55e7fd0bbfb29045d44a}} 
+\index{rev::CanvasComponent@{rev::CanvasComponent}!maxAllowed@{maxAllowed}}
+\index{maxAllowed@{maxAllowed}!rev::CanvasComponent@{rev::CanvasComponent}}
+\subsubsection{\texorpdfstring{maxAllowed()}{maxAllowed()}}
+{\footnotesize\ttfamily virtual int rev\+::\+Canvas\+Component\+::max\+Allowed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Max number of allowed components per scene object. 
+
+\begin{DoxyNote}{Note}
+Limiting to one because it would be a poor design to allow more than one canvas per object 
+\end{DoxyNote}
+
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_component_afb80a97b6b36368c88a47e5f3cd3ed2f}{rev\+::\+Component}}.
+
+\mbox{\Hypertarget{classrev_1_1_canvas_component_aecd2d20165561426ae2eb73226626945}\label{classrev_1_1_canvas_component_aecd2d20165561426ae2eb73226626945}} 
+\index{rev::CanvasComponent@{rev::CanvasComponent}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::CanvasComponent@{rev::CanvasComponent}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Canvas\+Component\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_canvas_component_a3f46cf00013223f6b45b9b3403b7b8de}\label{classrev_1_1_canvas_component_a3f46cf00013223f6b45b9b3403b7b8de}} 
+\index{rev::CanvasComponent@{rev::CanvasComponent}!m\_glyphs@{m\_glyphs}}
+\index{m\_glyphs@{m\_glyphs}!rev::CanvasComponent@{rev::CanvasComponent}}
+\subsubsection{\texorpdfstring{m\_glyphs}{m\_glyphs}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classrev_1_1_glyph}{Glyph}}$>$ $>$ rev\+::\+Canvas\+Component\+::m\+\_\+glyphs\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\mbox{\hyperlink{classrev_1_1_viewport}{Viewport}} settings, deprecated. 
+
+Holds information about projection All of the glyphs on this canvas 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+Canvas\+Component.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+Canvas\+Component.\+cpp\end{DoxyCompactItemize}

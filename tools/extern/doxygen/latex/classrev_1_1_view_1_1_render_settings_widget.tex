@@ -1,0 +1,84 @@
+\hypertarget{classrev_1_1_view_1_1_render_settings_widget}{}\section{rev\+::View\+::Render\+Settings\+Widget Class Reference}
+\label{classrev_1_1_view_1_1_render_settings_widget}\index{rev::View::RenderSettingsWidget@{rev::View::RenderSettingsWidget}}
+Inheritance diagram for rev\+::View\+::Render\+Settings\+Widget\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.772277cm]{classrev_1_1_view_1_1_render_settings_widget}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_settings_widget_a78ae05b70845e9ebab2aaaa1063e57af}\label{classrev_1_1_view_1_1_render_settings_widget_a78ae05b70845e9ebab2aaaa1063e57af}} 
+{\bfseries Render\+Settings\+Widget} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, \mbox{\hyperlink{classrev_1_1_render_settings}{Render\+Settings}} \&settings, Q\+Widget $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_settings_widget_abb519c0707ee8ee87cd8b4ce47b8c1c1}\label{classrev_1_1_view_1_1_render_settings_widget_abb519c0707ee8ee87cd8b4ce47b8c1c1}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_render_settings_widget_abb519c0707ee8ee87cd8b4ce47b8c1c1}{update}} () override
+\begin{DoxyCompactList}\small\item\em Update the parameter widget. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_settings_widget_a95938e4f5b225d8519923a5ee5c33fd6}\label{classrev_1_1_view_1_1_render_settings_widget_a95938e4f5b225d8519923a5ee5c33fd6}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_render_settings_widget_a95938e4f5b225d8519923a5ee5c33fd6}{initialize\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to check\+Validity widgets. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_settings_widget_a890b1c5457a60f7f5c406563c713efdb}\label{classrev_1_1_view_1_1_render_settings_widget_a890b1c5457a60f7f5c406563c713efdb}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_render_settings_widget_a890b1c5457a60f7f5c406563c713efdb}{initialize\+Connections}} () override
+\begin{DoxyCompactList}\small\item\em Methods to check\+Validity connections for this widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_settings_widget_a359b86008952aadc2ff6a71c8be484cb}\label{classrev_1_1_view_1_1_render_settings_widget_a359b86008952aadc2ff6a71c8be484cb}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_render_settings_widget_a359b86008952aadc2ff6a71c8be484cb}{layout\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to ay out widgets. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_settings_widget_a2acad438de0e25c441042761b958828b}\label{classrev_1_1_view_1_1_render_settings_widget_a2acad438de0e25c441042761b958828b}} 
+int {\bfseries get\+Depth\+Mode} (int mode\+Widget\+Index) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_settings_widget_ace83fafe6b2126e3100a6d55d738040c}\label{classrev_1_1_view_1_1_render_settings_widget_ace83fafe6b2126e3100a6d55d738040c}} 
+int {\bfseries get\+Culled\+Face} (int face\+Widget\+Index) const
+\item 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_render_settings_widget_a3b4cb80743160e4e88a4c68ad041906d}{context\+Menu\+Event}} (Q\+Context\+Menu\+Event $\ast$event) override
+\begin{DoxyCompactList}\small\item\em Generates a context menu, overriding default implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_settings_widget_a6f28ce3ea463a251c92225226b506ccb}\label{classrev_1_1_view_1_1_render_settings_widget_a6f28ce3ea463a251c92225226b506ccb}} 
+\mbox{\hyperlink{classrev_1_1_render_settings}{Render\+Settings}} \& {\bfseries m\+\_\+render\+Settings}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_settings_widget_a12fac04d6427641d140eee2cef18f0d4}\label{classrev_1_1_view_1_1_render_settings_widget_a12fac04d6427641d140eee2cef18f0d4}} 
+Q\+Combo\+Box $\ast$ {\bfseries m\+\_\+blend\+Mode}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_settings_widget_a2fc207c57525ac95e7f36abd40cdaff3}\label{classrev_1_1_view_1_1_render_settings_widget_a2fc207c57525ac95e7f36abd40cdaff3}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_transparency_type_widget}{Transparency\+Type\+Widget}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_render_settings_widget_a2fc207c57525ac95e7f36abd40cdaff3}{m\+\_\+transparency}}
+\begin{DoxyCompactList}\small\item\em Transparency widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_settings_widget_aafedb9d837f9c56c52da514b130ca1b0}\label{classrev_1_1_view_1_1_render_settings_widget_aafedb9d837f9c56c52da514b130ca1b0}} 
+Q\+Combo\+Box $\ast$ {\bfseries m\+\_\+depth\+Mode}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_settings_widget_a20c8fd8ae0fa963baf508c81189a0b14}\label{classrev_1_1_view_1_1_render_settings_widget_a20c8fd8ae0fa963baf508c81189a0b14}} 
+Q\+Check\+Box $\ast$ {\bfseries m\+\_\+depth\+Test}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_settings_widget_afd7e7762b41e80388efed58f69eee1ad}\label{classrev_1_1_view_1_1_render_settings_widget_afd7e7762b41e80388efed58f69eee1ad}} 
+Q\+Combo\+Box $\ast$ {\bfseries m\+\_\+culled\+Face}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_settings_widget_a5840bebc542479cab3028f454d446369}\label{classrev_1_1_view_1_1_render_settings_widget_a5840bebc542479cab3028f454d446369}} 
+Q\+Check\+Box $\ast$ {\bfseries m\+\_\+cull\+Face}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_settings_widget_a3b4cb80743160e4e88a4c68ad041906d}\label{classrev_1_1_view_1_1_render_settings_widget_a3b4cb80743160e4e88a4c68ad041906d}} 
+\index{rev::View::RenderSettingsWidget@{rev::View::RenderSettingsWidget}!contextMenuEvent@{contextMenuEvent}}
+\index{contextMenuEvent@{contextMenuEvent}!rev::View::RenderSettingsWidget@{rev::View::RenderSettingsWidget}}
+\subsubsection{\texorpdfstring{contextMenuEvent()}{contextMenuEvent()}}
+{\footnotesize\ttfamily void rev\+::\+View\+::\+Render\+Settings\+Widget\+::context\+Menu\+Event (\begin{DoxyParamCaption}\item[{Q\+Context\+Menu\+Event $\ast$}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}}
+
+
+
+Generates a context menu, overriding default implementation. 
+
+\begin{DoxyNote}{Note}
+Context menus can be executed either asynchronously using the popup() function or synchronously using the exec() function 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/parameters/G\+Renderable\+Widget.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/parameters/G\+Renderable\+Widget.\+cpp\end{DoxyCompactItemize}

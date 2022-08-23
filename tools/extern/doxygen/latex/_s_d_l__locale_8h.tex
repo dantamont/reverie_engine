@@ -1,0 +1,54 @@
+\hypertarget{_s_d_l__locale_8h}{}\section{C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/\+S\+D\+L2/\+S\+D\+L\+\_\+locale.h File Reference}
+\label{_s_d_l__locale_8h}\index{C:/Users/dante/Documents/Projects/grand-\/blue-\/engine/reverie/src/third\_party/SDL2/SDL\_locale.h@{C:/Users/dante/Documents/Projects/grand-\/blue-\/engine/reverie/src/third\_party/SDL2/SDL\_locale.h}}
+{\ttfamily \#include \char`\"{}S\+D\+L\+\_\+stdinc.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}S\+D\+L\+\_\+error.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}begin\+\_\+code.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}close\+\_\+code.\+h\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_s_d_l___locale}{S\+D\+L\+\_\+\+Locale}}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_s_d_l__locale_8h_aa4dae66ea43e05a81c60d4a77120dfa7}\label{_s_d_l__locale_8h_aa4dae66ea43e05a81c60d4a77120dfa7}} 
+typedef struct \mbox{\hyperlink{struct_s_d_l___locale}{S\+D\+L\+\_\+\+Locale}} {\bfseries S\+D\+L\+\_\+\+Locale}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+D\+E\+C\+L\+S\+P\+EC \mbox{\hyperlink{struct_s_d_l___locale}{S\+D\+L\+\_\+\+Locale}} $\ast$S\+D\+L\+C\+A\+LL \mbox{\hyperlink{_s_d_l__locale_8h_a380c4a6bedcc09f5d107619afadd1c41}{S\+D\+L\+\_\+\+Get\+Preferred\+Locales}} (void)
+\begin{DoxyCompactList}\small\item\em Report the user\textquotesingle{}s preferred locale. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Include file for S\+DL locale services 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_s_d_l__locale_8h_a380c4a6bedcc09f5d107619afadd1c41}\label{_s_d_l__locale_8h_a380c4a6bedcc09f5d107619afadd1c41}} 
+\index{SDL\_locale.h@{SDL\_locale.h}!SDL\_GetPreferredLocales@{SDL\_GetPreferredLocales}}
+\index{SDL\_GetPreferredLocales@{SDL\_GetPreferredLocales}!SDL\_locale.h@{SDL\_locale.h}}
+\subsubsection{\texorpdfstring{SDL\_GetPreferredLocales()}{SDL\_GetPreferredLocales()}}
+{\footnotesize\ttfamily D\+E\+C\+L\+S\+P\+EC \mbox{\hyperlink{struct_s_d_l___locale}{S\+D\+L\+\_\+\+Locale}}$\ast$ S\+D\+L\+C\+A\+LL S\+D\+L\+\_\+\+Get\+Preferred\+Locales (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Report the user\textquotesingle{}s preferred locale. 
+
+This returns an array of \mbox{\hyperlink{struct_s_d_l___locale}{S\+D\+L\+\_\+\+Locale}} structs, the final item zeroed out. When the caller is done with this array, it should call S\+D\+L\+\_\+free() on the returned value; all the memory involved is allocated in a single block, so a single S\+D\+L\+\_\+free() will suffice.
+
+Returned language strings are in the format xx, where \textquotesingle{}xx\textquotesingle{} is an I\+S\+O-\/639 language specifier (such as \char`\"{}en\char`\"{} for English, \char`\"{}de\char`\"{} for German, etc). Country strings are in the format YY, where \char`\"{}\+Y\+Y\char`\"{} is an I\+S\+O-\/3166 country code (such as \char`\"{}\+U\+S\char`\"{} for the United States, \char`\"{}\+C\+A\char`\"{} for Canada, etc). Country might be N\+U\+LL if there\textquotesingle{}s no specific guidance on them (so you might get \{ \char`\"{}en\char`\"{}, \char`\"{}\+U\+S\char`\"{} \} for American English, but \{ \char`\"{}en\char`\"{}, N\+U\+LL \} means \char`\"{}\+English
+language, generically\char`\"{}). Language strings are never N\+U\+LL, except to terminate the array.
+
+Please note that not all of these strings are 2 characters; some are three or more.
+
+The returned list of locales are in the order of the user\textquotesingle{}s preference. For example, a German citizen that is fluent in US English and knows enough Japanese to navigate around Tokyo might have a list like\+: \{ \char`\"{}de\char`\"{}, \char`\"{}en\+\_\+\+U\+S\char`\"{}, \char`\"{}jp\char`\"{}, N\+U\+LL \}. Someone from England might prefer British English (where \char`\"{}color\char`\"{} is spelled \char`\"{}colour\char`\"{}, etc), but will settle for anything like it\+: \{ \char`\"{}en\+\_\+\+G\+B\char`\"{}, \char`\"{}en\char`\"{}, N\+U\+LL \}.
+
+This function returns N\+U\+LL on error, including when the platform does not supply this information at all.
+
+This might be a \char`\"{}slow\char`\"{} call that has to query the operating system. It\textquotesingle{}s best to ask for this once and save the results. However, this list can change, usually because the user has changed a system preference outside of your program; S\+DL will send an S\+D\+L\+\_\+\+L\+O\+C\+A\+L\+E\+C\+H\+A\+N\+G\+ED event in this case, if possible, and you can call this function again to get an updated copy of preferred locales.
+
+\begin{DoxyReturn}{Returns}
+array of locales, terminated with a locale with a N\+U\+LL language field. Will return N\+U\+LL on error. 
+\end{DoxyReturn}

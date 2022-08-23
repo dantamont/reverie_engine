@@ -1,0 +1,104 @@
+\hypertarget{classrev_1_1_post_processing_effect}{}\section{rev\+::Post\+Processing\+Effect Class Reference}
+\label{classrev_1_1_post_processing_effect}\index{rev::PostProcessingEffect@{rev::PostProcessingEffect}}
+Inheritance diagram for rev\+::Post\+Processing\+Effect\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.485207cm]{classrev_1_1_post_processing_effect}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_post_processing_effect_a287b64467204f25987588507efe3cee3}\label{classrev_1_1_post_processing_effect_a287b64467204f25987588507efe3cee3}} 
+enum {\bfseries Effect\+Flag} \{ {\bfseries k\+Set\+Check\+Point} = 1 $<$$<$ 0, 
+{\bfseries k\+Use\+Check\+Point} = 1 $<$$<$ 1, 
+{\bfseries k\+Use\+Camera\+Texture} = 1 $<$$<$ 2
+ \}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_post_processing_effect_aa6651b75c8eb2e601c8863004ceece46}\label{classrev_1_1_post_processing_effect_aa6651b75c8eb2e601c8863004ceece46}} 
+{\bfseries Post\+Processing\+Effect} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_post_processing_effect_ad352f87dd78810cfbf88044020e99be7}\label{classrev_1_1_post_processing_effect_ad352f87dd78810cfbf88044020e99be7}} 
+{\bfseries Post\+Processing\+Effect} (const Q\+String \&name)
+\item 
+\mbox{\Hypertarget{classrev_1_1_post_processing_effect_a2f5a8a25ec8268ee6f39b21620a90b60}\label{classrev_1_1_post_processing_effect_a2f5a8a25ec8268ee6f39b21620a90b60}} 
+virtual {\bfseries $\sim$\+Post\+Processing\+Effect} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_post_processing_effect_aecd2c5d40cbcb8909f7e75d59b02e3c8}\label{classrev_1_1_post_processing_effect_aecd2c5d40cbcb8909f7e75d59b02e3c8}} 
+bool {\bfseries has\+Check\+Point} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_post_processing_effect_a8b70f3710513c614016cbad37eabbde0}\label{classrev_1_1_post_processing_effect_a8b70f3710513c614016cbad37eabbde0}} 
+void {\bfseries set\+Check\+Point} (bool sc)
+\item 
+\mbox{\Hypertarget{classrev_1_1_post_processing_effect_abaac5a6eeab77379f0a15c317eff83be}\label{classrev_1_1_post_processing_effect_abaac5a6eeab77379f0a15c317eff83be}} 
+bool {\bfseries uses\+Check\+Point} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_post_processing_effect_aa5fe91b00179f4ea34950cbcd3730707}\label{classrev_1_1_post_processing_effect_aa5fe91b00179f4ea34950cbcd3730707}} 
+void {\bfseries use\+Check\+Point} (bool use)
+\item 
+\mbox{\Hypertarget{classrev_1_1_post_processing_effect_a235195311c61616e52635dd3dcbf96f7}\label{classrev_1_1_post_processing_effect_a235195311c61616e52635dd3dcbf96f7}} 
+bool {\bfseries uses\+Camera\+Texture} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_post_processing_effect_a869dab1d10383931d1af7154ef0c739a}\label{classrev_1_1_post_processing_effect_a869dab1d10383931d1af7154ef0c739a}} 
+void {\bfseries use\+Camera\+Texture} (bool use)
+\item 
+\mbox{\Hypertarget{classrev_1_1_post_processing_effect_a72d16b7bf0343a67cb77f54571b83d96}\label{classrev_1_1_post_processing_effect_a72d16b7bf0343a67cb77f54571b83d96}} 
+const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_shader_preset}{Shader\+Preset}} $>$ \& {\bfseries shader\+Preset} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_post_processing_effect_ab0ad07ad568b98b74964f2824f99db2e}\label{classrev_1_1_post_processing_effect_ab0ad07ad568b98b74964f2824f99db2e}} 
+void \mbox{\hyperlink{classrev_1_1_post_processing_effect_ab0ad07ad568b98b74964f2824f99db2e}{add\+Stage}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_post_processing_effect_stage}{Post\+Processing\+Effect\+Stage}} $>$ \&stage)
+\begin{DoxyCompactList}\small\item\em Add a post-\/processing stage to the effect. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_post_processing_effect_a0100bdd75fdafaa88df96f9dbd4cf760}{reinitialize}} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core)
+\begin{DoxyCompactList}\small\item\em Initialize the post-\/processing effect. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_post_processing_effect_a6e84d39eee209f0727e98b6373d698df}\label{classrev_1_1_post_processing_effect_a6e84d39eee209f0727e98b6373d698df}} 
+virtual void \mbox{\hyperlink{classrev_1_1_post_processing_effect_a6e84d39eee209f0727e98b6373d698df}{apply\+Effect}} (\mbox{\hyperlink{classrev_1_1_post_processing_chain}{Post\+Processing\+Chain}} \&chain)
+\begin{DoxyCompactList}\small\item\em Render effect to quad. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_post_processing_effect_ac4c2a0304105696aab9938d1839ef70c}\label{classrev_1_1_post_processing_effect_ac4c2a0304105696aab9938d1839ef70c}} 
+Q\+Flags$<$ Effect\+Flag $>$ \mbox{\hyperlink{classrev_1_1_post_processing_effect_ac4c2a0304105696aab9938d1839ef70c}{m\+\_\+effect\+Flags}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_flags}{Flags}} associated with this effect. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_post_processing_effect_a52372e9b16b4fbcf560a4d7ddaeb4d78}\label{classrev_1_1_post_processing_effect_a52372e9b16b4fbcf560a4d7ddaeb4d78}} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_post_processing_effect_stage}{Post\+Processing\+Effect\+Stage}} $>$ $>$ \mbox{\hyperlink{classrev_1_1_post_processing_effect_a52372e9b16b4fbcf560a4d7ddaeb4d78}{m\+\_\+stages}}
+\begin{DoxyCompactList}\small\item\em Different stages within this effect, to combine into a shader program. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_post_processing_effect_a7ffe4c041853abef2165c5262734ced6}\label{classrev_1_1_post_processing_effect_a7ffe4c041853abef2165c5262734ced6}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_shader_preset}{Shader\+Preset}} $>$ \mbox{\hyperlink{classrev_1_1_post_processing_effect_a7ffe4c041853abef2165c5262734ced6}{m\+\_\+shader\+Preset}}
+\begin{DoxyCompactList}\small\item\em The shader preset/program representing this effect. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_post_processing_effect_a0100bdd75fdafaa88df96f9dbd4cf760}\label{classrev_1_1_post_processing_effect_a0100bdd75fdafaa88df96f9dbd4cf760}} 
+\index{rev::PostProcessingEffect@{rev::PostProcessingEffect}!reinitialize@{reinitialize}}
+\index{reinitialize@{reinitialize}!rev::PostProcessingEffect@{rev::PostProcessingEffect}}
+\subsubsection{\texorpdfstring{reinitialize()}{reinitialize()}}
+{\footnotesize\ttfamily void rev\+::\+Post\+Processing\+Effect\+::reinitialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$}]{core }\end{DoxyParamCaption})}
+
+
+
+Initialize the post-\/processing effect. 
+
+\mbox{\hyperlink{classrev_1_1_process}{Process}} shaders 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/postprocessing/G\+Post\+Processing\+Effect.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/postprocessing/G\+Post\+Processing\+Effect.\+cpp\end{DoxyCompactItemize}

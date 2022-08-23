@@ -1,0 +1,133 @@
+\hypertarget{classrev_1_1_buffer_queue}{}\section{rev\+::Buffer\+Queue$<$ Buffer\+Type, N $>$ Class Template Reference}
+\label{classrev_1_1_buffer_queue}\index{rev::BufferQueue$<$ BufferType, N $>$@{rev::BufferQueue$<$ BufferType, N $>$}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing a set of GL buffers to be updated.  
+
+
+
+
+{\ttfamily \#include $<$G\+Buffer\+Queue.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename ... Buffer\+Args$>$ }\\\mbox{\hyperlink{classrev_1_1_buffer_queue_a593525b33b1dae5e5f3b6dcb40489b0d}{Buffer\+Queue}} (Buffer\+Args \&\&... args)
+\begin{DoxyCompactList}\small\item\em Initialize queue however one would a buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_buffer_queue_acd4b22879289f5183d38796ec7f96053}\label{classrev_1_1_buffer_queue_acd4b22879289f5183d38796ec7f96053}} 
+Buffer\+Type \& {\bfseries write\+Buffer} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_buffer_queue_a68ceb8c1756f6535bdc9436544ea1cf0}\label{classrev_1_1_buffer_queue_a68ceb8c1756f6535bdc9436544ea1cf0}} 
+Buffer\+Type \& {\bfseries read\+Buffer} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_buffer_queue_ab5cd55cf1c81794df3e02c9697e3121f}\label{classrev_1_1_buffer_queue_ab5cd55cf1c81794df3e02c9697e3121f}} 
+{\footnotesize template$<$typename T $>$ }\\T $\ast$ {\bfseries data} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_buffer_queue_a934dcdde9b879478e38a1ab276b4b16a}\label{classrev_1_1_buffer_queue_a934dcdde9b879478e38a1ab276b4b16a}} 
+void \mbox{\hyperlink{classrev_1_1_buffer_queue_a934dcdde9b879478e38a1ab276b4b16a}{clear}} ()
+\begin{DoxyCompactList}\small\item\em Clear the contained buffers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_buffer_queue_a502dfd45dc9187d9147f96f2afb87a84}\label{classrev_1_1_buffer_queue_a502dfd45dc9187d9147f96f2afb87a84}} 
+void \mbox{\hyperlink{classrev_1_1_buffer_queue_a502dfd45dc9187d9147f96f2afb87a84}{set\+Bind\+Points}} (size\+\_\+t bind\+Point)
+\begin{DoxyCompactList}\small\item\em Set bind point of each of the buffers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_buffer_queue_a66652ae3ebfc58c3179de94eea0a9a99}\label{classrev_1_1_buffer_queue_a66652ae3ebfc58c3179de94eea0a9a99}} 
+void {\bfseries set\+Names} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name)
+\item 
+\mbox{\Hypertarget{classrev_1_1_buffer_queue_aac98888fa8ba547322632221e2f4128e}\label{classrev_1_1_buffer_queue_aac98888fa8ba547322632221e2f4128e}} 
+void \mbox{\hyperlink{classrev_1_1_buffer_queue_aac98888fa8ba547322632221e2f4128e}{queue\+Update}} (const void $\ast$data, unsigned long offset, unsigned long size\+In\+Bytes)
+\begin{DoxyCompactList}\small\item\em Add a buffer command to the queue. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{classrev_1_1_buffer_queue_a394c0cafdcabefca01f6f4dfa16d9009}{queue\+Update}} (const T \&data, unsigned long count\+Offset)
+\begin{DoxyCompactList}\small\item\em Add a buffer command to the queue, assuming a specific data type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_buffer_queue_a026fa64e3932c2eb841105eb7b74c76a}\label{classrev_1_1_buffer_queue_a026fa64e3932c2eb841105eb7b74c76a}} 
+void \mbox{\hyperlink{classrev_1_1_buffer_queue_a026fa64e3932c2eb841105eb7b74c76a}{swap\+Buffers}} ()
+\begin{DoxyCompactList}\small\item\em Swap buffers for triple buffering. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_buffer_queue_a6ce10d9b7ffd61c40e9ec76fb19b1d19}\label{classrev_1_1_buffer_queue_a6ce10d9b7ffd61c40e9ec76fb19b1d19}} 
+bool \mbox{\hyperlink{classrev_1_1_buffer_queue_a6ce10d9b7ffd61c40e9ec76fb19b1d19}{flush\+Buffer}} ()
+\begin{DoxyCompactList}\small\item\em Flush all pending updates into the buffer, returning true if there were updates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_buffer_queue_a365a371f1f2d799e61bd8b961d27a50b}\label{classrev_1_1_buffer_queue_a365a371f1f2d799e61bd8b961d27a50b}} 
+bool {\bfseries m\+\_\+initialized} = false
+\item 
+\mbox{\Hypertarget{classrev_1_1_buffer_queue_a0fa634d78b8bba1bb67fc6f0b5dd19b4}\label{classrev_1_1_buffer_queue_a0fa634d78b8bba1bb67fc6f0b5dd19b4}} 
+size\+\_\+t \mbox{\hyperlink{classrev_1_1_buffer_queue_a0fa634d78b8bba1bb67fc6f0b5dd19b4}{m\+\_\+read\+Buffer}} = 0
+\begin{DoxyCompactList}\small\item\em the buffer currently being written into \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_buffer_queue_a17684ce8858b7e4fdc3f04a47c9ec097}\label{classrev_1_1_buffer_queue_a17684ce8858b7e4fdc3f04a47c9ec097}} 
+size\+\_\+t {\bfseries m\+\_\+write\+Buffer} = 1
+\item 
+\mbox{\Hypertarget{classrev_1_1_buffer_queue_aa32afdb6929831074792523d870f8617}\label{classrev_1_1_buffer_queue_aa32afdb6929831074792523d870f8617}} 
+std\+::mutex {\bfseries m\+\_\+mutex}
+\item 
+\mbox{\Hypertarget{classrev_1_1_buffer_queue_a0abc19266f74cdf17b7fe870abfc852a}\label{classrev_1_1_buffer_queue_a0abc19266f74cdf17b7fe870abfc852a}} 
+char $\ast$ \mbox{\hyperlink{classrev_1_1_buffer_queue_a0abc19266f74cdf17b7fe870abfc852a}{m\+\_\+data}} = nullptr
+\begin{DoxyCompactList}\small\item\em Local cache of buffer data to copy into write buffer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_buffer_queue_ab87ae9d35c791eeee06e572a6c6d856b}\label{classrev_1_1_buffer_queue_ab87ae9d35c791eeee06e572a6c6d856b}} 
+std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_buffer_command}{Buffer\+Command}} $>$ \mbox{\hyperlink{classrev_1_1_buffer_queue_ab87ae9d35c791eeee06e572a6c6d856b}{m\+\_\+incoming\+Commands}}
+\begin{DoxyCompactList}\small\item\em Received data. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_buffer_queue_ab402d5b59aae904f3bb4d61e47d37799}\label{classrev_1_1_buffer_queue_ab402d5b59aae904f3bb4d61e47d37799}} 
+std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_buffer_command}{Buffer\+Command}} $>$ \mbox{\hyperlink{classrev_1_1_buffer_queue_ab402d5b59aae904f3bb4d61e47d37799}{m\+\_\+commands}}
+\begin{DoxyCompactList}\small\item\em Data used to update the buffer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_buffer_queue_a41e12d622a76521edecaf6103dee00b5}\label{classrev_1_1_buffer_queue_a41e12d622a76521edecaf6103dee00b5}} 
+std\+::array$<$ Buffer\+Type, N $>$ \mbox{\hyperlink{classrev_1_1_buffer_queue_a41e12d622a76521edecaf6103dee00b5}{m\+\_\+buffers}}
+\begin{DoxyCompactList}\small\item\em The buffers used for updating the queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename Buffer\+Type, size\+\_\+t N$>$\newline
+class rev\+::\+Buffer\+Queue$<$ Buffer\+Type, N $>$}
+
+\mbox{\hyperlink{struct_class}{Class}} representing a set of GL buffers to be updated. 
+
+Used to implement double or triple buffering 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classrev_1_1_buffer_queue_a593525b33b1dae5e5f3b6dcb40489b0d}\label{classrev_1_1_buffer_queue_a593525b33b1dae5e5f3b6dcb40489b0d}} 
+\index{rev::BufferQueue$<$ BufferType, N $>$@{rev::BufferQueue$<$ BufferType, N $>$}!BufferQueue@{BufferQueue}}
+\index{BufferQueue@{BufferQueue}!rev::BufferQueue$<$ BufferType, N $>$@{rev::BufferQueue$<$ BufferType, N $>$}}
+\subsubsection{\texorpdfstring{BufferQueue()}{BufferQueue()}}
+{\footnotesize\ttfamily template$<$typename Buffer\+Type, size\+\_\+t N$>$ \\
+template$<$typename ... Buffer\+Args$>$ \\
+\mbox{\hyperlink{classrev_1_1_buffer_queue}{rev\+::\+Buffer\+Queue}}$<$ Buffer\+Type, N $>$\+::\mbox{\hyperlink{classrev_1_1_buffer_queue}{Buffer\+Queue}} (\begin{DoxyParamCaption}\item[{Buffer\+Args \&\&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Initialize queue however one would a buffer. 
+
+\begin{DoxyNote}{Note}
+Variadic template is used to avoid having to modify this if buffer initialization changes 
+\end{DoxyNote}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_buffer_queue_a394c0cafdcabefca01f6f4dfa16d9009}\label{classrev_1_1_buffer_queue_a394c0cafdcabefca01f6f4dfa16d9009}} 
+\index{rev::BufferQueue$<$ BufferType, N $>$@{rev::BufferQueue$<$ BufferType, N $>$}!queueUpdate@{queueUpdate}}
+\index{queueUpdate@{queueUpdate}!rev::BufferQueue$<$ BufferType, N $>$@{rev::BufferQueue$<$ BufferType, N $>$}}
+\subsubsection{\texorpdfstring{queueUpdate()}{queueUpdate()}}
+{\footnotesize\ttfamily template$<$typename Buffer\+Type, size\+\_\+t N$>$ \\
+template$<$typename T $>$ \\
+void \mbox{\hyperlink{classrev_1_1_buffer_queue}{rev\+::\+Buffer\+Queue}}$<$ Buffer\+Type, N $>$\+::queue\+Update (\begin{DoxyParamCaption}\item[{const T \&}]{data,  }\item[{unsigned long}]{count\+Offset }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Add a buffer command to the queue, assuming a specific data type. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em count\+Offset} & the offset at which to insert data into the buffer, in units of sizeof(\+T) \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/buffers/G\+Buffer\+Queue.\+h\end{DoxyCompactItemize}

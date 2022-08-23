@@ -1,0 +1,97 @@
+\hypertarget{classrev_1_1_view_1_1_node_view_port}{}\section{rev\+::View\+::Node\+View\+Port Class Reference}
+\label{classrev_1_1_view_1_1_node_view_port}\index{rev::View::NodeViewPort@{rev::View::NodeViewPort}}
+Inheritance diagram for rev\+::View\+::Node\+View\+Port\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_view_1_1_node_view_port}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_port_ac6f5acc3aae0f54893e8a4e5fedeb899}\label{classrev_1_1_view_1_1_node_view_port_ac6f5acc3aae0f54893e8a4e5fedeb899}} 
+{\bfseries Node\+View\+Port} (Q\+Graphics\+Item $\ast$parent=N\+U\+LL)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_port_adc0f5e266eca88f297f2a91f6a78138e}\label{classrev_1_1_view_1_1_node_view_port_adc0f5e266eca88f297f2a91f6a78138e}} 
+int {\bfseries type} () const override
+\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_port_acb7afa44da91d2a93d71cb92cf1dbc9f}\label{classrev_1_1_view_1_1_node_view_port_acb7afa44da91d2a93d71cb92cf1dbc9f}} 
+bool \mbox{\hyperlink{classrev_1_1_view_1_1_node_view_port_acb7afa44da91d2a93d71cb92cf1dbc9f}{is\+Connected}} (\mbox{\hyperlink{classrev_1_1_view_1_1_node_view_port}{Node\+View\+Port}} $\ast$)
+\begin{DoxyCompactList}\small\item\em Whether or not this port is connected to the other port. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_port_a7e440da1051d7431cf51f7a306af870d}\label{classrev_1_1_view_1_1_node_view_port_a7e440da1051d7431cf51f7a306af870d}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_node_view_port_a7e440da1051d7431cf51f7a306af870d}{set\+Port\+Name}} (const Q\+String \&name)
+\begin{DoxyCompactList}\small\item\em Set the name of this port. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_port_a7c9cffd4cefc29032b7130d62bc77c2e}\label{classrev_1_1_view_1_1_node_view_port_a7c9cffd4cefc29032b7130d62bc77c2e}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_node_view_port_a7c9cffd4cefc29032b7130d62bc77c2e}{set\+Is\+Output}} (bool is\+Output)
+\begin{DoxyCompactList}\small\item\em Set whether the port is an input or an output. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_node_view_port_a2d80923d0c891ffa3a233d3e008dc289}{set\+Port\+Flags}} (qint32 index)
+\begin{DoxyCompactList}\small\item\em Set the flags for the port. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_port_a486140b78b847b26ca0dda246e75eded}\label{classrev_1_1_view_1_1_node_view_port_a486140b78b847b26ca0dda246e75eded}} 
+size\+\_\+t \mbox{\hyperlink{classrev_1_1_view_1_1_node_view_port_a486140b78b847b26ca0dda246e75eded}{num\+Connections}} () const
+\begin{DoxyCompactList}\small\item\em The number of ports connected to this port. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_port_a1d88fc732ada10c451a323bbfd6d2703}\label{classrev_1_1_view_1_1_node_view_port_a1d88fc732ada10c451a323bbfd6d2703}} 
+bool {\bfseries is\+Input} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_port_ace7e5e26c5713bfde5bc3fe09e67a088}\label{classrev_1_1_view_1_1_node_view_port_ace7e5e26c5713bfde5bc3fe09e67a088}} 
+bool {\bfseries is\+Output} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_port_aa5e415b9d334e540a3e85a026c4bf475}\label{classrev_1_1_view_1_1_node_view_port_aa5e415b9d334e540a3e85a026c4bf475}} 
+qint32 {\bfseries radius} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_port_a59b0910256495905c119837035b239a3}\label{classrev_1_1_view_1_1_node_view_port_a59b0910256495905c119837035b239a3}} 
+Q\+Vector$<$ \mbox{\hyperlink{classrev_1_1_view_1_1_node_view_connection}{Node\+View\+Connection}} $\ast$ $>$ \& {\bfseries connections} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_port_ae07c6699f0e96f95d1ee4f9a34ccd119}\label{classrev_1_1_view_1_1_node_view_port_ae07c6699f0e96f95d1ee4f9a34ccd119}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_node_view_block}{Node\+View\+Block}} $\ast$ {\bfseries block} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_port_aa7d84114a0878856912eb4ee8eea2a61}\label{classrev_1_1_view_1_1_node_view_port_aa7d84114a0878856912eb4ee8eea2a61}} 
+void {\bfseries set\+Block} (\mbox{\hyperlink{classrev_1_1_view_1_1_node_view_block}{Node\+View\+Block}} $\ast$block)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_port_a244a4efe2b815ba1b473da1e150f76c3}\label{classrev_1_1_view_1_1_node_view_port_a244a4efe2b815ba1b473da1e150f76c3}} 
+quint64 {\bfseries index} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_port_a674d00e58a7e34e0f0c96810f3c87cbf}\label{classrev_1_1_view_1_1_node_view_port_a674d00e58a7e34e0f0c96810f3c87cbf}} 
+void {\bfseries set\+Index} (quint64 index)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_port_a384383ce50c4818f1f81d1b0626b55d6}\label{classrev_1_1_view_1_1_node_view_port_a384383ce50c4818f1f81d1b0626b55d6}} 
+const Q\+String \& {\bfseries port\+Name} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_port_a3968ec7da920e13cf15bbaa63ad87dab}\label{classrev_1_1_view_1_1_node_view_port_a3968ec7da920e13cf15bbaa63ad87dab}} 
+int {\bfseries port\+Flags} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_port_a2294c07c146aff6356b6f4ee5c8f62a6}\label{classrev_1_1_view_1_1_node_view_port_a2294c07c146aff6356b6f4ee5c8f62a6}} 
+virtual Q\+Variant \mbox{\hyperlink{classrev_1_1_view_1_1_node_view_port_a2294c07c146aff6356b6f4ee5c8f62a6}{item\+Change}} (Graphics\+Item\+Change change, const Q\+Variant \&value) override
+\begin{DoxyCompactList}\small\item\em What happens on item change. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_port_a632d84fb6b95ca9a53234864c74c5a7a}\label{classrev_1_1_view_1_1_node_view_port_a632d84fb6b95ca9a53234864c74c5a7a}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_node_view_port_a632d84fb6b95ca9a53234864c74c5a7a}{paint}} (Q\+Painter $\ast$painter, const Q\+Style\+Option\+Graphics\+Item $\ast$option, Q\+Widget $\ast$widget=nullptr) override
+\begin{DoxyCompactList}\small\item\em Override paint routine for handling selection and hover. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_port_a2d80923d0c891ffa3a233d3e008dc289}\label{classrev_1_1_view_1_1_node_view_port_a2d80923d0c891ffa3a233d3e008dc289}} 
+\index{rev::View::NodeViewPort@{rev::View::NodeViewPort}!setPortFlags@{setPortFlags}}
+\index{setPortFlags@{setPortFlags}!rev::View::NodeViewPort@{rev::View::NodeViewPort}}
+\subsubsection{\texorpdfstring{setPortFlags()}{setPortFlags()}}
+{\footnotesize\ttfamily void rev\+::\+View\+::\+Node\+View\+Port\+::set\+Port\+Flags (\begin{DoxyParamCaption}\item[{qint32}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Set the flags for the port. 
+
+Currently, flags control whether the port is a type or a name 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/nodes/G\+Node\+View\+Port.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/nodes/G\+Node\+View\+Port.\+cpp\end{DoxyCompactItemize}

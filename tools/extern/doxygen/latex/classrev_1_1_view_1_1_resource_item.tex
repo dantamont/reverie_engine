@@ -1,0 +1,143 @@
+\hypertarget{classrev_1_1_view_1_1_resource_item}{}\section{rev\+::View\+::Resource\+Item Class Reference}
+\label{classrev_1_1_view_1_1_resource_item}\index{rev::View::ResourceItem@{rev::View::ResourceItem}}
+Inheritance diagram for rev\+::View\+::Resource\+Item\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_view_1_1_resource_item}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_item_a445ba0a05bf4c8075d88f4beec5d91e6}\label{classrev_1_1_view_1_1_resource_item_a445ba0a05bf4c8075d88f4beec5d91e6}} 
+enum {\bfseries Resource\+Item\+Type} \{ {\bfseries k\+Resource\+Handle} = 2000, 
+{\bfseries k\+Category}
+ \}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_item_a80257c2d601a02ef7ce40e2e6c89bca5}\label{classrev_1_1_view_1_1_resource_item_a80257c2d601a02ef7ce40e2e6c89bca5}} 
+{\bfseries Resource\+Item} (const Q\+String \&text)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_item_a6f98f9aab64d2a9a4e3b06e822b204ed}\label{classrev_1_1_view_1_1_resource_item_a6f98f9aab64d2a9a4e3b06e822b204ed}} 
+{\bfseries Resource\+Item} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \&handle)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_item_a7d93bfa96791485c73a52f8da76d5c8b}\label{classrev_1_1_view_1_1_resource_item_a7d93bfa96791485c73a52f8da76d5c8b}} 
+{\bfseries $\sim$\+Resource\+Item} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_item_a3d50a484be0b2c7d004abfaf48740ebd}\label{classrev_1_1_view_1_1_resource_item_a3d50a484be0b2c7d004abfaf48740ebd}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ {\bfseries handle} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_item_a4256ff7d43c6e0ed6896c176f82301e7}\label{classrev_1_1_view_1_1_resource_item_a4256ff7d43c6e0ed6896c176f82301e7}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_resource_item_a4256ff7d43c6e0ed6896c176f82301e7}{perform\+Action}} (\mbox{\hyperlink{classrev_1_1_undo_command}{Undo\+Command}} $\ast$command)
+\begin{DoxyCompactList}\small\item\em Perform an action from this item. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_resource_item_a3bb7af636d29308aa374f0845a69e483}{set\+Widget}} ()
+\begin{DoxyCompactList}\small\item\em Set the widget for this item in the given tree widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_item_a5d7155aa6f71f439fbf7098ff5c29f4b}\label{classrev_1_1_view_1_1_resource_item_a5d7155aa6f71f439fbf7098ff5c29f4b}} 
+void {\bfseries remove\+Widget} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_item_af34c72d5770e32e795089465b3f3025b}\label{classrev_1_1_view_1_1_resource_item_af34c72d5770e32e795089465b3f3025b}} 
+const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \& \mbox{\hyperlink{classrev_1_1_view_1_1_resource_item_af34c72d5770e32e795089465b3f3025b}{handle}} () const
+\begin{DoxyCompactList}\small\item\em Return handle represented by this tree item. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_item_a6b42cb2befbe8779b1f77e4b74e7c78d}\label{classrev_1_1_view_1_1_resource_item_a6b42cb2befbe8779b1f77e4b74e7c78d}} 
+Resource\+Item\+Type \mbox{\hyperlink{classrev_1_1_view_1_1_resource_item_a6b42cb2befbe8779b1f77e4b74e7c78d}{item\+Type}} () const
+\begin{DoxyCompactList}\small\item\em Get the resource item type of this tree item. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_item_ad604e34c293e888280ba760ccfa7098f}\label{classrev_1_1_view_1_1_resource_item_ad604e34c293e888280ba760ccfa7098f}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_resource_tree_widget}{View\+::\+Resource\+Tree\+Widget}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_resource_item_ad604e34c293e888280ba760ccfa7098f}{resource\+Tree\+Widget}} () const
+\begin{DoxyCompactList}\small\item\em Convenience method for retrieving casted inspector widget. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ rev\+::Object overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_resource_item_ab53eb0848ac7e530ad5dc8220bf8609a}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_resource_item_a15af214f49adc7e9e793a0a1d43a4e60}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_item_a167c16a1b69604ed956b8a140f962f98}\label{classrev_1_1_view_1_1_resource_item_a167c16a1b69604ed956b8a140f962f98}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \mbox{\hyperlink{classrev_1_1_view_1_1_resource_item_a167c16a1b69604ed956b8a140f962f98}{m\+\_\+handle}}
+\begin{DoxyCompactList}\small\item\em Pointer to the object corresponding to this tree item. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_item_a77a1390deba7fa8fd5bff2e4342f9988}\label{classrev_1_1_view_1_1_resource_item_a77a1390deba7fa8fd5bff2e4342f9988}} 
+Q\+Widget $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_resource_item_a77a1390deba7fa8fd5bff2e4342f9988}{m\+\_\+widget}}
+\begin{DoxyCompactList}\small\item\em Pointer to widget if this item has one. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_item_a350b4d2b555fb1075041d366ade3f718}\label{classrev_1_1_view_1_1_resource_item_a350b4d2b555fb1075041d366ade3f718}} 
+class {\bfseries Component\+Tree\+Widget}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Methods}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_item_addcf2986b6d0c432af165c616a1c5141}\label{classrev_1_1_view_1_1_resource_item_addcf2986b6d0c432af165c616a1c5141}} 
+static Resource\+Item\+Type \mbox{\hyperlink{classrev_1_1_view_1_1_resource_item_addcf2986b6d0c432af165c616a1c5141}{get\+Item\+Type}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_object}{Object}} $>$ object)
+\begin{DoxyCompactList}\small\item\em Get the resource item type of the given object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_item_a3fabbf0594db7faad55b686b564fd026}\label{classrev_1_1_view_1_1_resource_item_a3fabbf0594db7faad55b686b564fd026}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_resource_item_a3fabbf0594db7faad55b686b564fd026}{initialize\+Item}} ()
+\begin{DoxyCompactList}\small\item\em Initialize the component tree item. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_item_ab53eb0848ac7e530ad5dc8220bf8609a}\label{classrev_1_1_view_1_1_resource_item_ab53eb0848ac7e530ad5dc8220bf8609a}} 
+\index{rev::View::ResourceItem@{rev::View::ResourceItem}!className@{className}}
+\index{className@{className}!rev::View::ResourceItem@{rev::View::ResourceItem}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+View\+::\+Resource\+Item\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_item_a15af214f49adc7e9e793a0a1d43a4e60}\label{classrev_1_1_view_1_1_resource_item_a15af214f49adc7e9e793a0a1d43a4e60}} 
+\index{rev::View::ResourceItem@{rev::View::ResourceItem}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::View::ResourceItem@{rev::View::ResourceItem}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+View\+::\+Resource\+Item\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_item_a3bb7af636d29308aa374f0845a69e483}\label{classrev_1_1_view_1_1_resource_item_a3bb7af636d29308aa374f0845a69e483}} 
+\index{rev::View::ResourceItem@{rev::View::ResourceItem}!setWidget@{setWidget}}
+\index{setWidget@{setWidget}!rev::View::ResourceItem@{rev::View::ResourceItem}}
+\subsubsection{\texorpdfstring{setWidget()}{setWidget()}}
+{\footnotesize\ttfamily void rev\+::\+View\+::\+Resource\+Item\+::set\+Widget (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Set the widget for this item in the given tree widget. 
+
+\begin{DoxyNote}{Note}
+This is only called on the double click event 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Resource\+Widgets.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Resource\+Widgets.\+cpp\end{DoxyCompactItemize}

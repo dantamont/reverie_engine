@@ -1,0 +1,141 @@
+\hypertarget{classrev_1_1_file_log_handler}{}\section{rev\+::File\+Log\+Handler Class Reference}
+\label{classrev_1_1_file_log_handler}\index{rev::FileLogHandler@{rev::FileLogHandler}}
+
+
+A Log\+Handler that outputs messages to a file.  
+
+
+
+
+{\ttfamily \#include $<$G\+Logger.\+h$>$}
+
+Inheritance diagram for rev\+::File\+Log\+Handler\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_file_log_handler}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classrev_1_1_file_log_handler_a032982146b91183085989aab43889a80}{File\+Log\+Handler}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&\mbox{\hyperlink{classrev_1_1_file_log_handler_a3e7f75dec53ac63527608306e70495c0}{filename}})
+\begin{DoxyCompactList}\small\item\em Create a Log\+Handler to write log messages to a file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classrev_1_1_file_log_handler_a62a9455e06ffeb350555e967f982ec8e}{File\+Log\+Handler}} (Log\+Level \mbox{\hyperlink{classrev_1_1_abstract_log_handler_ab27fb35504e3aaa820c4e57f406893ea}{level}}, const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&\mbox{\hyperlink{classrev_1_1_file_log_handler_a3e7f75dec53ac63527608306e70495c0}{filename}})
+\begin{DoxyCompactList}\small\item\em Create a Log\+Handler to write log messages to a file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_log_handler_a75c6b9477a7f973ba489c9b31347e995}\label{classrev_1_1_file_log_handler_a75c6b9477a7f973ba489c9b31347e995}} 
+{\bfseries $\sim$\+File\+Log\+Handler} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \& \mbox{\hyperlink{classrev_1_1_file_log_handler_a3e7f75dec53ac63527608306e70495c0}{filename}} ()
+\begin{DoxyCompactList}\small\item\em Full path to log file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_file_log_handler_a224769152d428b0fec646c2965bb42e8}{set\+Filename}} (\mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&\mbox{\hyperlink{classrev_1_1_file_log_handler_a3e7f75dec53ac63527608306e70495c0}{filename}})
+\begin{DoxyCompactList}\small\item\em Set file path. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_file_log_handler_a72c47a3c1a5ec720f47e5d48fa7ee697}\label{classrev_1_1_file_log_handler_a72c47a3c1a5ec720f47e5d48fa7ee697}} 
+bool {\bfseries is\+Open} () const
+\item 
+virtual void \mbox{\hyperlink{classrev_1_1_file_log_handler_ae562434aed64d166aaa1d8660984a3be}{output}} (\mbox{\hyperlink{classrev_1_1_log_record}{Log\+Record}} \&log\+\_\+record) override
+\begin{DoxyCompactList}\small\item\em Output a log record to file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A Log\+Handler that outputs messages to a file. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classrev_1_1_file_log_handler_a032982146b91183085989aab43889a80}\label{classrev_1_1_file_log_handler_a032982146b91183085989aab43889a80}} 
+\index{rev::FileLogHandler@{rev::FileLogHandler}!FileLogHandler@{FileLogHandler}}
+\index{FileLogHandler@{FileLogHandler}!rev::FileLogHandler@{rev::FileLogHandler}}
+\subsubsection{\texorpdfstring{FileLogHandler()}{FileLogHandler()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily rev\+::\+File\+Log\+Handler\+::\+File\+Log\+Handler (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&}]{filename }\end{DoxyParamCaption})}
+
+
+
+Create a Log\+Handler to write log messages to a file. 
+
+Outputs messages at Debug or higher in level. 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em filename} & The full path of a file. If the file does not exist, it will be created, otherwise it will be truncated. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrev_1_1_file_log_handler_a62a9455e06ffeb350555e967f982ec8e}\label{classrev_1_1_file_log_handler_a62a9455e06ffeb350555e967f982ec8e}} 
+\index{rev::FileLogHandler@{rev::FileLogHandler}!FileLogHandler@{FileLogHandler}}
+\index{FileLogHandler@{FileLogHandler}!rev::FileLogHandler@{rev::FileLogHandler}}
+\subsubsection{\texorpdfstring{FileLogHandler()}{FileLogHandler()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily rev\+::\+File\+Log\+Handler\+::\+File\+Log\+Handler (\begin{DoxyParamCaption}\item[{Log\+Level}]{level,  }\item[{const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&}]{filename }\end{DoxyParamCaption})}
+
+
+
+Create a Log\+Handler to write log messages to a file. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em level} & Messages with a log level higher than this will be written out to the file. \\
+\hline
+\mbox{\texttt{ in}}  & {\em filename} & The full path of a file. If the file does not exist, it will be created, otherwise it will be truncated. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_file_log_handler_a3e7f75dec53ac63527608306e70495c0}\label{classrev_1_1_file_log_handler_a3e7f75dec53ac63527608306e70495c0}} 
+\index{rev::FileLogHandler@{rev::FileLogHandler}!filename@{filename}}
+\index{filename@{filename}!rev::FileLogHandler@{rev::FileLogHandler}}
+\subsubsection{\texorpdfstring{filename()}{filename()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}}\& rev\+::\+File\+Log\+Handler\+::filename (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Full path to log file. 
+
+\begin{DoxyReturn}{Returns}
+file path 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classrev_1_1_file_log_handler_ae562434aed64d166aaa1d8660984a3be}\label{classrev_1_1_file_log_handler_ae562434aed64d166aaa1d8660984a3be}} 
+\index{rev::FileLogHandler@{rev::FileLogHandler}!output@{output}}
+\index{output@{output}!rev::FileLogHandler@{rev::FileLogHandler}}
+\subsubsection{\texorpdfstring{output()}{output()}}
+{\footnotesize\ttfamily void rev\+::\+File\+Log\+Handler\+::output (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classrev_1_1_log_record}{Log\+Record}} \&}]{log\+\_\+record }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Output a log record to file. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em log\+\_\+record} & The data for the log to be output. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classrev_1_1_abstract_log_handler_a0154255c9435f0ee66975be2d450b177}{rev\+::\+Abstract\+Log\+Handler}}.
+
+\mbox{\Hypertarget{classrev_1_1_file_log_handler_a224769152d428b0fec646c2965bb42e8}\label{classrev_1_1_file_log_handler_a224769152d428b0fec646c2965bb42e8}} 
+\index{rev::FileLogHandler@{rev::FileLogHandler}!setFilename@{setFilename}}
+\index{setFilename@{setFilename}!rev::FileLogHandler@{rev::FileLogHandler}}
+\subsubsection{\texorpdfstring{setFilename()}{setFilename()}}
+{\footnotesize\ttfamily void rev\+::\+File\+Log\+Handler\+::set\+Filename (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&}]{filename }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set file path. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em filename} & The path for output. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/G\+Logger.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/G\+Logger.\+cpp\end{DoxyCompactItemize}

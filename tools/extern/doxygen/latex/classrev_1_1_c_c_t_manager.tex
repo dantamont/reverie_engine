@@ -1,0 +1,142 @@
+\hypertarget{classrev_1_1_c_c_t_manager}{}\section{rev\+::C\+C\+T\+Manager Class Reference}
+\label{classrev_1_1_c_c_t_manager}\index{rev::CCTManager@{rev::CCTManager}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing a Character Controller \mbox{\hyperlink{classrev_1_1_manager}{Manager}} See\+: \href{https://gameworksdocs.nvidia.com/PhysX/4.0/documentation/PhysXGuide/Manual/CharacterControllers.html}{\texttt{ https\+://gameworksdocs.\+nvidia.\+com/\+Phys\+X/4.\+0/documentation/\+Phys\+X\+Guide/\+Manual/\+Character\+Controllers.\+html}}.  
+
+
+
+
+{\ttfamily \#include $<$G\+Character\+Controller.\+h$>$}
+
+Inheritance diagram for rev\+::C\+C\+T\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_c_c_t_manager}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_c_c_t_manager_ac7d025b5e1b8a8d786952361eafad037}\label{classrev_1_1_c_c_t_manager_ac7d025b5e1b8a8d786952361eafad037}} 
+{\bfseries C\+C\+T\+Manager} (\mbox{\hyperlink{classrev_1_1_physics_scene}{Physics\+Scene}} \&scene)
+\item 
+\mbox{\Hypertarget{classrev_1_1_c_c_t_manager_a5313752f02a302cb66cb6d6316ab91df}\label{classrev_1_1_c_c_t_manager_a5313752f02a302cb66cb6d6316ab91df}} 
+virtual {\bfseries $\sim$\+C\+C\+T\+Manager} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_c_c_t_manager_af88234772b1761eccdb7280d8be79ede}\label{classrev_1_1_c_c_t_manager_af88234772b1761eccdb7280d8be79ede}} 
+std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_character_controller}{Character\+Controller}} $>$ $>$ \& {\bfseries controllers} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_c_c_t_manager_a37b2293bcbb88bfdff22358dfcdf2585}\label{classrev_1_1_c_c_t_manager_a37b2293bcbb88bfdff22358dfcdf2585}} 
+\mbox{\hyperlink{classrev_1_1_character_controller}{Character\+Controller}} $\ast$ \mbox{\hyperlink{classrev_1_1_c_c_t_manager_a37b2293bcbb88bfdff22358dfcdf2585}{Create\+Controller}} (const Q\+Json\+Value \&json)
+\begin{DoxyCompactList}\small\item\em Initialize a character controller. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_c_c_t_manager_a4384656a33377004249dd78c7cb91ddb}\label{classrev_1_1_c_c_t_manager_a4384656a33377004249dd78c7cb91ddb}} 
+\mbox{\hyperlink{classrev_1_1_character_controller}{Character\+Controller}} $\ast$ {\bfseries Create\+Controller} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_controller_description}{Controller\+Description}} $>$ \&desc, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \&scene\+Object)
+\item 
+\mbox{\Hypertarget{classrev_1_1_c_c_t_manager_a15a1612d21baeea5093166f916fd6151}\label{classrev_1_1_c_c_t_manager_a15a1612d21baeea5093166f916fd6151}} 
+uint32\+\_\+t {\bfseries get\+Num\+Controllers} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_c_c_t_manager_a74392bf29accc20e598c085a0d2c7652}\label{classrev_1_1_c_c_t_manager_a74392bf29accc20e598c085a0d2c7652}} 
+\mbox{\hyperlink{classrev_1_1_character_controller}{Character\+Controller}} $\ast$ {\bfseries get\+Controller} (uint32\+\_\+t idx)
+\item 
+\mbox{\Hypertarget{classrev_1_1_c_c_t_manager_a9a2f380449ddce258519ed7dd936a957}\label{classrev_1_1_c_c_t_manager_a9a2f380449ddce258519ed7dd936a957}} 
+void {\bfseries remove\+Controller} (const \mbox{\hyperlink{classrev_1_1_character_controller}{Character\+Controller}} \&controller)
+\item 
+\mbox{\Hypertarget{classrev_1_1_c_c_t_manager_a46400d007bcd7008a54654c91333b433}\label{classrev_1_1_c_c_t_manager_a46400d007bcd7008a54654c91333b433}} 
+void \mbox{\hyperlink{classrev_1_1_c_c_t_manager_a46400d007bcd7008a54654c91333b433}{clear\+Controllers}} ()
+\begin{DoxyCompactList}\small\item\em Clears all controllers from the manager. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_c_c_t_manager_acf44c6e660fbcc62ee57c168600b00c9}\label{classrev_1_1_c_c_t_manager_acf44c6e660fbcc62ee57c168600b00c9}} 
+void \mbox{\hyperlink{classrev_1_1_c_c_t_manager_acf44c6e660fbcc62ee57c168600b00c9}{toggle\+Overlap\+Recovery}} (bool flag)
+\begin{DoxyCompactList}\small\item\em If true, tries to correct character controller overlap with static geometry. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_c_c_t_manager_acf34fb3460e945b8956c024469c88bb6}\label{classrev_1_1_c_c_t_manager_acf34fb3460e945b8956c024469c88bb6}} 
+void \mbox{\hyperlink{classrev_1_1_c_c_t_manager_acf34fb3460e945b8956c024469c88bb6}{toggle\+Precise\+Sweeps}} (bool flag)
+\begin{DoxyCompactList}\small\item\em Can disable precise collision tests, generally when overlap recovery is toggled on. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_c_c_t_manager_aee2b28ec3132bf37fa4325239267fd79}\label{classrev_1_1_c_c_t_manager_aee2b28ec3132bf37fa4325239267fd79}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_c_c_t_manager_aee2b28ec3132bf37fa4325239267fd79}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_c_c_t_manager_a0f58012e22b87718149fb3ace2719f93}\label{classrev_1_1_c_c_t_manager_a0f58012e22b87718149fb3ace2719f93}} 
+virtual void \mbox{\hyperlink{classrev_1_1_c_c_t_manager_a0f58012e22b87718149fb3ace2719f93}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_c_c_t_manager_aef919c90f9877381d2f2c1ef24839741}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_c_c_t_manager_af40188f0c27823159bf272a0d867892b}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_c_c_t_manager_a181a4f07169c51ed4cd281f0c08e574f}\label{classrev_1_1_c_c_t_manager_a181a4f07169c51ed4cd281f0c08e574f}} 
+\mbox{\hyperlink{classrev_1_1_scene}{Scene}} $\ast$ \mbox{\hyperlink{classrev_1_1_c_c_t_manager_a181a4f07169c51ed4cd281f0c08e574f}{m\+\_\+scene}}
+\begin{DoxyCompactList}\small\item\em Weak pointer to the scene that this actor belongs to. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_c_c_t_manager_a88520aaa37c2d1871d99559e5d7a881c}\label{classrev_1_1_c_c_t_manager_a88520aaa37c2d1871d99559e5d7a881c}} 
+physx\+::\+Px\+Controller\+Manager $\ast$ {\bfseries m\+\_\+controller\+Manager}
+\item 
+\mbox{\Hypertarget{classrev_1_1_c_c_t_manager_a3070ffeed0a93f47bcf4afeb5435e16d}\label{classrev_1_1_c_c_t_manager_a3070ffeed0a93f47bcf4afeb5435e16d}} 
+std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_character_controller}{Character\+Controller}} $>$ $>$ \mbox{\hyperlink{classrev_1_1_c_c_t_manager_a3070ffeed0a93f47bcf4afeb5435e16d}{m\+\_\+controllers}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_vector}{Vector}} of character controllers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_c_c_t_manager_aac6deedeabebc6401d4e2d55e3ca83f1}\label{classrev_1_1_c_c_t_manager_aac6deedeabebc6401d4e2d55e3ca83f1}} 
+class {\bfseries Character\+Controller}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing a Character Controller \mbox{\hyperlink{classrev_1_1_manager}{Manager}} See\+: \href{https://gameworksdocs.nvidia.com/PhysX/4.0/documentation/PhysXGuide/Manual/CharacterControllers.html}{\texttt{ https\+://gameworksdocs.\+nvidia.\+com/\+Phys\+X/4.\+0/documentation/\+Phys\+X\+Guide/\+Manual/\+Character\+Controllers.\+html}}. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_c_c_t_manager_aef919c90f9877381d2f2c1ef24839741}\label{classrev_1_1_c_c_t_manager_aef919c90f9877381d2f2c1ef24839741}} 
+\index{rev::CCTManager@{rev::CCTManager}!className@{className}}
+\index{className@{className}!rev::CCTManager@{rev::CCTManager}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+C\+C\+T\+Manager\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_c_c_t_manager_af40188f0c27823159bf272a0d867892b}\label{classrev_1_1_c_c_t_manager_af40188f0c27823159bf272a0d867892b}} 
+\index{rev::CCTManager@{rev::CCTManager}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::CCTManager@{rev::CCTManager}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+C\+C\+T\+Manager\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Character\+Controller.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Character\+Controller.\+cpp\end{DoxyCompactItemize}

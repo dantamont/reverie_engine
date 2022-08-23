@@ -1,0 +1,67 @@
+\hypertarget{classrev_1_1_quantity}{}\section{rev\+::Quantity$<$ Enum\+Val, I\+Type $>$ Class Template Reference}
+\label{classrev_1_1_quantity}\index{rev::Quantity$<$ EnumVal, IType $>$@{rev::Quantity$<$ EnumVal, IType $>$}}
+
+
+A quantity, consisting of a value and units.  
+
+
+
+
+{\ttfamily \#include $<$G\+Quantity.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructor/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_quantity_a4c5e726ef231caf7a5568061d32b2d6f}\label{classrev_1_1_quantity_a4c5e726ef231caf7a5568061d32b2d6f}} 
+{\bfseries Quantity} (I\+Type value)
+\item 
+\mbox{\Hypertarget{classrev_1_1_quantity_a3a3354d3c56dfcf9d6b67e5e6d0425f9}\label{classrev_1_1_quantity_a3a3354d3c56dfcf9d6b67e5e6d0425f9}} 
+{\bfseries $\sim$\+Quantity} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_quantity_ad9fbe956ade91e4908d8523bd2111800}\label{classrev_1_1_quantity_ad9fbe956ade91e4908d8523bd2111800}} 
+I\+Type {\bfseries value} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_quantity_addec9794f58b5b6c4263ce712706f24b}\label{classrev_1_1_quantity_addec9794f58b5b6c4263ce712706f24b}} 
+decltype(Enum\+Val) {\bfseries units} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_quantity_a91e8bb6cb84dab0bd6688f47f06c1834}\label{classrev_1_1_quantity_a91e8bb6cb84dab0bd6688f47f06c1834}} 
+{\footnotesize template$<$auto To\+Units$>$ }\\\mbox{\hyperlink{classrev_1_1_quantity}{Quantity}}$<$ To\+Units $>$ {\bfseries to} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Operators}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_quantity_a36865cf4903dde1b45134d1a1097c766}\label{classrev_1_1_quantity_a36865cf4903dde1b45134d1a1097c766}} 
+{\bfseries operator I\+Type} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_quantity_a0279cbafcc6e1ce2ea3a708916dfea9b}\label{classrev_1_1_quantity_a0279cbafcc6e1ce2ea3a708916dfea9b}} 
+\mbox{\hyperlink{classrev_1_1_quantity__impl}{Quantity\+\_\+impl}}$<$ decltype(Enum\+Val), Enum\+Val, I\+Type $>$ \mbox{\hyperlink{classrev_1_1_quantity_a0279cbafcc6e1ce2ea3a708916dfea9b}{m\+\_\+impl}}
+\begin{DoxyCompactList}\small\item\em The encapsulated implementation of a quantity, wrapped for cleaner syntax. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$auto Enum\+Val, typename I\+Type = double$>$\newline
+class rev\+::\+Quantity$<$ Enum\+Val, I\+Type $>$}
+
+A quantity, consisting of a value and units. 
+
+This templated implementation introduces no memory overhead, and provides a framework for convenient unit conversions 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/\mbox{\hyperlink{_g_quantity_8h}{G\+Quantity.\+h}}\end{DoxyCompactItemize}

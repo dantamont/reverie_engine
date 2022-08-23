@@ -1,0 +1,119 @@
+\hypertarget{classrev_1_1_view_1_1_glyph_item}{}\section{rev\+::View\+::Glyph\+Item Class Reference}
+\label{classrev_1_1_view_1_1_glyph_item}\index{rev::View::GlyphItem@{rev::View::GlyphItem}}
+Inheritance diagram for rev\+::View\+::Glyph\+Item\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_view_1_1_glyph_item}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_glyph_item_a34480911a5e76aad447ad74b5abaaab7}\label{classrev_1_1_view_1_1_glyph_item_a34480911a5e76aad447ad74b5abaaab7}} 
+enum {\bfseries Glyph\+Item\+Type} \{ {\bfseries k\+Label} = 2000, 
+{\bfseries k\+Icon} = 2001, 
+{\bfseries k\+Sprite} = 2002
+ \}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_glyph_item_a22d54cd16d93b586eb050675776613fd}\label{classrev_1_1_view_1_1_glyph_item_a22d54cd16d93b586eb050675776613fd}} 
+{\bfseries Glyph\+Item} (\mbox{\hyperlink{classrev_1_1_glyph}{Glyph}} $\ast$\mbox{\hyperlink{classrev_1_1_view_1_1_glyph_item_a0d40db611729397860483a41a1c8d7b9}{glyph}}, Glyph\+Item\+Type type=k\+Label)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_glyph_item_a9f119fa36d19be7af0d9ae2ec808dc77}\label{classrev_1_1_view_1_1_glyph_item_a9f119fa36d19be7af0d9ae2ec808dc77}} 
+{\bfseries $\sim$\+Glyph\+Item} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_glyph_item_a0afc24f14c725056ad457f43881ea279}{set\+Widget}} () override
+\begin{DoxyCompactList}\small\item\em Set the widget for this item in the given tree widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_glyph_item_a698b0f2c08bdf331131589c287b883c6}\label{classrev_1_1_view_1_1_glyph_item_a698b0f2c08bdf331131589c287b883c6}} 
+virtual void {\bfseries remove\+Widget} (int column=0) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_glyph_item_a0d40db611729397860483a41a1c8d7b9}\label{classrev_1_1_view_1_1_glyph_item_a0d40db611729397860483a41a1c8d7b9}} 
+\mbox{\hyperlink{classrev_1_1_glyph}{Glyph}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_glyph_item_a0d40db611729397860483a41a1c8d7b9}{glyph}} ()
+\begin{DoxyCompactList}\small\item\em Return glyph represented by this tree item. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_glyph_item_af155961a9570856af111ac2c2453d850}\label{classrev_1_1_view_1_1_glyph_item_af155961a9570856af111ac2c2453d850}} 
+Glyph\+Item\+Type \mbox{\hyperlink{classrev_1_1_view_1_1_glyph_item_af155961a9570856af111ac2c2453d850}{item\+Type}} () const
+\begin{DoxyCompactList}\small\item\em Get the resource item type of this tree item. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_glyph_item_a045537727702af8c24043466a63f36b7}\label{classrev_1_1_view_1_1_glyph_item_a045537727702af8c24043466a63f36b7}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_canvas_glyph_widget}{View\+::\+Canvas\+Glyph\+Widget}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_glyph_item_a045537727702af8c24043466a63f36b7}{canvas\+Glyph\+Widget}} () const
+\begin{DoxyCompactList}\small\item\em Convenience method for retrieving casted inspector widget. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ rev\+::Object overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_glyph_item_aeae051c75cc6ac7cccf256041721e840}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_glyph_item_a8fa3b57d04a71e8d5f9eb7593c7d2f0f}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_glyph_item_a94f2d9343147cb7748698bd8a3b0a89b}\label{classrev_1_1_view_1_1_glyph_item_a94f2d9343147cb7748698bd8a3b0a89b}} 
+class {\bfseries Canvas\+Glyph\+Widget}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_view_1_1_glyph_item_aeae051c75cc6ac7cccf256041721e840}\label{classrev_1_1_view_1_1_glyph_item_aeae051c75cc6ac7cccf256041721e840}} 
+\index{rev::View::GlyphItem@{rev::View::GlyphItem}!className@{className}}
+\index{className@{className}!rev::View::GlyphItem@{rev::View::GlyphItem}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+View\+::\+Glyph\+Item\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a8a12a6ceece6cab7a2299da2b5e6a54b}{rev\+::\+View\+::\+Tree\+Item$<$ Glyph $>$}}.
+
+\mbox{\Hypertarget{classrev_1_1_view_1_1_glyph_item_a8fa3b57d04a71e8d5f9eb7593c7d2f0f}\label{classrev_1_1_view_1_1_glyph_item_a8fa3b57d04a71e8d5f9eb7593c7d2f0f}} 
+\index{rev::View::GlyphItem@{rev::View::GlyphItem}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::View::GlyphItem@{rev::View::GlyphItem}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+View\+::\+Glyph\+Item\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a3bb552a87176f4b12848e43dfdd287b2}{rev\+::\+View\+::\+Tree\+Item$<$ Glyph $>$}}.
+
+\mbox{\Hypertarget{classrev_1_1_view_1_1_glyph_item_a0afc24f14c725056ad457f43881ea279}\label{classrev_1_1_view_1_1_glyph_item_a0afc24f14c725056ad457f43881ea279}} 
+\index{rev::View::GlyphItem@{rev::View::GlyphItem}!setWidget@{setWidget}}
+\index{setWidget@{setWidget}!rev::View::GlyphItem@{rev::View::GlyphItem}}
+\subsubsection{\texorpdfstring{setWidget()}{setWidget()}}
+{\footnotesize\ttfamily void rev\+::\+View\+::\+Glyph\+Item\+::set\+Widget (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Set the widget for this item in the given tree widget. 
+
+\begin{DoxyNote}{Note}
+This is only called on the double click event 
+\end{DoxyNote}
+
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a24faa4e374ec0728c7eda8f50ca575df}{rev\+::\+View\+::\+Tree\+Item$<$ Glyph $>$}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Canvas\+Glyph\+Widget.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Canvas\+Glyph\+Widget.\+cpp\end{DoxyCompactItemize}

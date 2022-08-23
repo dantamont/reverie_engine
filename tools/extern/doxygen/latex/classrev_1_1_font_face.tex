@@ -1,0 +1,84 @@
+\hypertarget{classrev_1_1_font_face}{}\section{rev\+::Font\+Face Class Reference}
+\label{classrev_1_1_font_face}\index{rev::FontFace@{rev::FontFace}}
+
+
+Wrapper for a freetype font face.  
+
+
+
+
+{\ttfamily \#include $<$G\+Font\+Face.\+h$>$}
+
+Inheritance diagram for rev\+::Font\+Face\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_font_face}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_font_face_abece5d91c8b6b856560ad5f728e4751f}\label{classrev_1_1_font_face_abece5d91c8b6b856560ad5f728e4751f}} 
+{\bfseries Font\+Face} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_font_face_a286b13b064454403eac466a824c21a44}\label{classrev_1_1_font_face_a286b13b064454403eac466a824c21a44}} 
+{\bfseries Font\+Face} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name, bool is\+Core, const Q\+String \&path, Font\+Encoding encoding=Font\+Encoding\+::k\+A\+S\+C\+II)
+\item 
+\mbox{\Hypertarget{classrev_1_1_font_face_a9d49f221eef1b01d8f0eb65d05b15082}\label{classrev_1_1_font_face_a9d49f221eef1b01d8f0eb65d05b15082}} 
+{\bfseries $\sim$\+Font\+Face} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_font_face_af5d1a3ffd36763616376d3522b991e83}\label{classrev_1_1_font_face_af5d1a3ffd36763616376d3522b991e83}} 
+\mbox{\hyperlink{structrev_1_1_font_bitmap}{Font\+Bitmap}} $\ast$ \mbox{\hyperlink{classrev_1_1_font_face_af5d1a3ffd36763616376d3522b991e83}{bitmap}} (uint32\+\_\+t font\+Pixel\+Size)
+\begin{DoxyCompactList}\small\item\em Return the bitmap with the given pixel size. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_font_face_ab6b327ecdd973227d3488f9152565d7b}\label{classrev_1_1_font_face_ab6b327ecdd973227d3488f9152565d7b}} 
+\mbox{\hyperlink{structrev_1_1_character_set}{Character\+Set}} $\ast$ \mbox{\hyperlink{classrev_1_1_font_face_ab6b327ecdd973227d3488f9152565d7b}{character\+Set}} (uint32\+\_\+t font\+Pixel\+Size)
+\begin{DoxyCompactList}\small\item\em Return the character set with the given pixel size. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_font_face_aea43fffbb7f8880f91c90c26d4cd4d95}\label{classrev_1_1_font_face_aea43fffbb7f8880f91c90c26d4cd4d95}} 
+void \mbox{\hyperlink{classrev_1_1_font_face_aea43fffbb7f8880f91c90c26d4cd4d95}{ensure\+Font\+Size}} (float font\+Size, \mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core)
+\begin{DoxyCompactList}\small\item\em Check if has a texture of the size, and load if it doesn\textquotesingle{}t. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_font_face_a1fc92c1eaf9fc79e7ffe6027f77b37ee}\label{classrev_1_1_font_face_a1fc92c1eaf9fc79e7ffe6027f77b37ee}} 
+\mbox{\hyperlink{structrev_1_1_font_character}{Font\+Character}} \& \mbox{\hyperlink{classrev_1_1_font_face_a1fc92c1eaf9fc79e7ffe6027f77b37ee}{get\+Character}} (unsigned long char\+Code, float font\+Point\+Size)
+\begin{DoxyCompactList}\small\item\em Get a character for the font face given the specified character code. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_font_face_a82f4e01254aeebcffa30559ebbdf1fd1}\label{classrev_1_1_font_face_a82f4e01254aeebcffa30559ebbdf1fd1}} 
+int \mbox{\hyperlink{classrev_1_1_font_face_a82f4e01254aeebcffa30559ebbdf1fd1}{get\+Line\+Spacing}} (float font\+Point\+Size) const
+\begin{DoxyCompactList}\small\item\em Get line spacing (in pixels) for the given font point size. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_font_face_aba69afe56e1642dd968b214005fbcefc}\label{classrev_1_1_font_face_aba69afe56e1642dd968b214005fbcefc}} 
+void \mbox{\hyperlink{classrev_1_1_font_face_aba69afe56e1642dd968b214005fbcefc}{bind\+Texture}} (float font\+Size)
+\begin{DoxyCompactList}\small\item\em Bind the fontface texture. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_font_face_ac3da64b8fee649f4c6ea5c6759b0a84d}\label{classrev_1_1_font_face_ac3da64b8fee649f4c6ea5c6759b0a84d}} 
+void {\bfseries release\+Texture} (float font\+Size)
+\item 
+\mbox{\Hypertarget{classrev_1_1_font_face_a676891ee78f3ca11da83832f9ca5e0dc}\label{classrev_1_1_font_face_a676891ee78f3ca11da83832f9ca5e0dc}} 
+const \mbox{\hyperlink{classrev_1_1_vector}{Vector}}$<$ int, 2 $>$ \mbox{\hyperlink{classrev_1_1_font_face_a676891ee78f3ca11da83832f9ca5e0dc}{get\+Bitmap\+Size}} (float height)
+\begin{DoxyCompactList}\small\item\em Retrieve the bitmap for the specified font size. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_font_face_ac5c2a42a17d60d1b151302bbae923997}\label{classrev_1_1_font_face_ac5c2a42a17d60d1b151302bbae923997}} 
+void \mbox{\hyperlink{classrev_1_1_font_face_ac5c2a42a17d60d1b151302bbae923997}{load\+Bitmap}} (float height)
+\begin{DoxyCompactList}\small\item\em Generate a bitmap for the specified font point size. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_font_face_a93bdc9c699a1b944eac72728790621c2}\label{classrev_1_1_font_face_a93bdc9c699a1b944eac72728790621c2}} 
+void \mbox{\hyperlink{classrev_1_1_font_face_a93bdc9c699a1b944eac72728790621c2}{load\+Glyphs}} ()
+\begin{DoxyCompactList}\small\item\em Load glyphs for this font. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_font_face_afddbc5f8f0d3f3cc3acdf0794ef3c6c7}\label{classrev_1_1_font_face_afddbc5f8f0d3f3cc3acdf0794ef3c6c7}} 
+bool \mbox{\hyperlink{classrev_1_1_font_face_afddbc5f8f0d3f3cc3acdf0794ef3c6c7}{save\+Bitmap}} (float font\+Size, const Q\+String \&filepath)
+\begin{DoxyCompactList}\small\item\em Save bitmap to a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_font_face_a99d5ac5c07f195eaf9fdd9278e34684e}\label{classrev_1_1_font_face_a99d5ac5c07f195eaf9fdd9278e34684e}} 
+F\+T\+\_\+\+Face \mbox{\hyperlink{classrev_1_1_font_face_a99d5ac5c07f195eaf9fdd9278e34684e}{m\+\_\+face}} = nullptr
+\begin{DoxyCompactList}\small\item\em the Wrapped freetype face \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Wrapper for a freetype font face. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/canvas/G\+Font\+Face.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/canvas/G\+Font\+Face.\+cpp\end{DoxyCompactItemize}

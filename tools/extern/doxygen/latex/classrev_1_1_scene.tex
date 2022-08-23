@@ -1,0 +1,308 @@
+\hypertarget{classrev_1_1_scene}{}\section{rev\+::Scene Class Reference}
+\label{classrev_1_1_scene}\index{rev::Scene@{rev::Scene}}
+
+
+A scene consisting of \mbox{\hyperlink{classrev_1_1_scene}{Scene}} Objects.  
+
+
+
+
+{\ttfamily \#include $<$G\+Scene.\+h$>$}
+
+Inheritance diagram for rev\+::Scene\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.377049cm]{classrev_1_1_scene}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_ac530b7ec518da081f75fcabf6b8f088a}\label{classrev_1_1_scene_ac530b7ec518da081f75fcabf6b8f088a}} 
+{\bfseries Scene} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a6b5c5f3b8474597b3aa38e0706af5128}\label{classrev_1_1_scene_a6b5c5f3b8474597b3aa38e0706af5128}} 
+{\bfseries Scene} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$\mbox{\hyperlink{classrev_1_1_scene_afdede377110c092bafeb649e0b8469a8}{engine}})
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_ae08d8f6d9197b3df8034d86526bab13d}\label{classrev_1_1_scene_ae08d8f6d9197b3df8034d86526bab13d}} 
+{\bfseries Scene} (\mbox{\hyperlink{classrev_1_1_scenario}{Scenario}} $\ast$scenario)
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a16686c338278cb20fb7d8e575fd8ee3c}\label{classrev_1_1_scene_a16686c338278cb20fb7d8e575fd8ee3c}} 
+{\bfseries $\sim$\+Scene} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a6130a8500e3106d944072ba309339e82}\label{classrev_1_1_scene_a6130a8500e3106d944072ba309339e82}} 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_scene_a6130a8500e3106d944072ba309339e82}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_adce7b89900d921df3df9b4f6136fda83}\label{classrev_1_1_scene_adce7b89900d921df3df9b4f6136fda83}} 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_scene_adce7b89900d921df3df9b4f6136fda83}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_afdede377110c092bafeb649e0b8469a8}\label{classrev_1_1_scene_afdede377110c092bafeb649e0b8469a8}} 
+\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$ \mbox{\hyperlink{classrev_1_1_scene_afdede377110c092bafeb649e0b8469a8}{engine}} () const
+\begin{DoxyCompactList}\small\item\em Retrieve pointer to the engine. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_aae02506bba76e87821a1b287c3d5c6ff}\label{classrev_1_1_scene_aae02506bba76e87821a1b287c3d5c6ff}} 
+std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_component}{Component}} $\ast$ $>$ $>$ \& \mbox{\hyperlink{classrev_1_1_scene_aae02506bba76e87821a1b287c3d5c6ff}{components}} ()
+\begin{DoxyCompactList}\small\item\em The components for this scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_adf8c99a2415d7745cb9aa90ca6faee2d}\label{classrev_1_1_scene_adf8c99a2415d7745cb9aa90ca6faee2d}} 
+\mbox{\hyperlink{classrev_1_1_scenario}{Scenario}} $\ast$ {\bfseries scenario} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a6efd182a0c738481cca83cd2f1567091}\label{classrev_1_1_scene_a6efd182a0c738481cca83cd2f1567091}} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ $>$ \& \mbox{\hyperlink{classrev_1_1_scene_a6efd182a0c738481cca83cd2f1567091}{top\+Level\+Scene\+Objects}} ()
+\begin{DoxyCompactList}\small\item\em Return objects in the scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a186ccbe8784c778e1070a86d05d69e79}\label{classrev_1_1_scene_a186ccbe8784c778e1070a86d05d69e79}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_camera_component}{Camera\+Component}} $\ast$ $>$ \& \mbox{\hyperlink{classrev_1_1_scene_a186ccbe8784c778e1070a86d05d69e79}{cameras}} ()
+\begin{DoxyCompactList}\small\item\em Return cameras in the scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a07e6b225d513f53dd34ae4bc9825fb7b}\label{classrev_1_1_scene_a07e6b225d513f53dd34ae4bc9825fb7b}} 
+const std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_camera_component}{Camera\+Component}} $\ast$ $>$ \& {\bfseries cameras} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_aeeffe5fed10af2409c2b116e3db7a306}\label{classrev_1_1_scene_aeeffe5fed10af2409c2b116e3db7a306}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_canvas_component}{Canvas\+Component}} $\ast$ $>$ \& \mbox{\hyperlink{classrev_1_1_scene_aeeffe5fed10af2409c2b116e3db7a306}{canvases}} ()
+\begin{DoxyCompactList}\small\item\em Return all canvases in the scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_ab14c73e1c955993c3efafc22651b593a}\label{classrev_1_1_scene_ab14c73e1c955993c3efafc22651b593a}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_cube_map_component}{Cube\+Map\+Component}} $\ast$ $>$ \& \mbox{\hyperlink{classrev_1_1_scene_ab14c73e1c955993c3efafc22651b593a}{cube\+Maps}} ()
+\begin{DoxyCompactList}\small\item\em Return all cubemap components in the scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_ad1b65794224cab17fee34e9f752941a4}\label{classrev_1_1_scene_ad1b65794224cab17fee34e9f752941a4}} 
+\mbox{\hyperlink{classrev_1_1_cube_map_component}{Cube\+Map\+Component}} $\ast$ \mbox{\hyperlink{classrev_1_1_scene_ad1b65794224cab17fee34e9f752941a4}{default\+Cube\+Map}} ()
+\begin{DoxyCompactList}\small\item\em Default skybox. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a94d87146dc535d166b654754c86fb788}\label{classrev_1_1_scene_a94d87146dc535d166b654754c86fb788}} 
+void {\bfseries set\+Default\+Cube\+Map} (\mbox{\hyperlink{classrev_1_1_cube_map_component}{Cube\+Map\+Component}} $\ast$map)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a2667cda57a29b95a94356bb7f24892d1}\label{classrev_1_1_scene_a2667cda57a29b95a94356bb7f24892d1}} 
+void \mbox{\hyperlink{classrev_1_1_scene_a2667cda57a29b95a94356bb7f24892d1}{raycast}} (const \mbox{\hyperlink{classrev_1_1_world_ray}{World\+Ray}} \&ray, std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_world_ray_hit}{World\+Ray\+Hit}} $>$ \&out\+Hits)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_raycast}{Raycast}} all 3D objects in the scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a2a68c0b0841b2e5583f6dc74a4d27284}\label{classrev_1_1_scene_a2a68c0b0841b2e5583f6dc74a4d27284}} 
+const \mbox{\hyperlink{classrev_1_1_a_a_b_b}{A\+A\+BB}} \& \mbox{\hyperlink{classrev_1_1_scene_a2a68c0b0841b2e5583f6dc74a4d27284}{get\+Visible\+Frustum\+Bounds}} () const
+\begin{DoxyCompactList}\small\item\em Get frustum containing all currently visible scene geometry. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a4ddc84312f605e1279a7a4d6eb8c2568}\label{classrev_1_1_scene_a4ddc84312f605e1279a7a4d6eb8c2568}} 
+void {\bfseries update\+Visible\+Frustum\+Bounds} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_aa63a72cfa74736d38ef7348aa373b54f}\label{classrev_1_1_scene_aa63a72cfa74736d38ef7348aa373b54f}} 
+void \mbox{\hyperlink{classrev_1_1_scene_aa63a72cfa74736d38ef7348aa373b54f}{create\+Draw\+Commands}} (\mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} \&renderer)
+\begin{DoxyCompactList}\small\item\em Generate the draw commands for the scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_afdf268e5ce3d6fb47fb990ab360b808c}\label{classrev_1_1_scene_afdf268e5ce3d6fb47fb990ab360b808c}} 
+void \mbox{\hyperlink{classrev_1_1_scene_afdf268e5ce3d6fb47fb990ab360b808c}{add\+Camera}} (\mbox{\hyperlink{classrev_1_1_camera_component}{Camera\+Component}} $\ast$camera)
+\begin{DoxyCompactList}\small\item\em Adds a camera to this scene\textquotesingle{}s cache of cameras on component contruction. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a6faa5dad91774a08773fa081a3c5733d}\label{classrev_1_1_scene_a6faa5dad91774a08773fa081a3c5733d}} 
+void {\bfseries remove\+Camera} (\mbox{\hyperlink{classrev_1_1_camera_component}{Camera\+Component}} $\ast$camera)
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_ae889f6d5be111c5e373edd6b8aff9b66}\label{classrev_1_1_scene_ae889f6d5be111c5e373edd6b8aff9b66}} 
+void \mbox{\hyperlink{classrev_1_1_scene_ae889f6d5be111c5e373edd6b8aff9b66}{add\+Canvas}} (\mbox{\hyperlink{classrev_1_1_canvas_component}{Canvas\+Component}} $\ast$canvas)
+\begin{DoxyCompactList}\small\item\em Adds a canvas\textquotesingle{}s object to this scene\textquotesingle{}s cache of canvas objects on component contruction. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a79e627b538c3f890d4c18fefc2192f96}\label{classrev_1_1_scene_a79e627b538c3f890d4c18fefc2192f96}} 
+void {\bfseries remove\+Canvas} (\mbox{\hyperlink{classrev_1_1_canvas_component}{Canvas\+Component}} $\ast$canvas)
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_ad85589e15d7c958764e4ea08eb608baa}\label{classrev_1_1_scene_ad85589e15d7c958764e4ea08eb608baa}} 
+void \mbox{\hyperlink{classrev_1_1_scene_ad85589e15d7c958764e4ea08eb608baa}{add\+Cube\+Map}} (\mbox{\hyperlink{classrev_1_1_cube_map_component}{Cube\+Map\+Component}} $\ast$map)
+\begin{DoxyCompactList}\small\item\em Adds a cubemap\textquotesingle{}s object to this scene\textquotesingle{}s cache of cubemap objects on component contruction. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a07cb475a6c036754f33b9486d01b8579}\label{classrev_1_1_scene_a07cb475a6c036754f33b9486d01b8579}} 
+void {\bfseries remove\+Cube\+Map} (\mbox{\hyperlink{classrev_1_1_cube_map_component}{Cube\+Map\+Component}} $\ast$map)
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a899b4053b0b2aa5459c34b010af73e08}\label{classrev_1_1_scene_a899b4053b0b2aa5459c34b010af73e08}} 
+\mbox{\hyperlink{classrev_1_1_cube_map_component}{Cube\+Map\+Component}} $\ast$ {\bfseries get\+Cube\+Map} (const \mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \&uuid)
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a1219b5b7c2bf10da6d22eaeefcd8fc42}\label{classrev_1_1_scene_a1219b5b7c2bf10da6d22eaeefcd8fc42}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_physics_scene}{Physics\+Scene}} $>$ \mbox{\hyperlink{classrev_1_1_scene_a1219b5b7c2bf10da6d22eaeefcd8fc42}{physics}} ()
+\begin{DoxyCompactList}\small\item\em Physics scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a3216094681ea373d58df53f4468b846f}\label{classrev_1_1_scene_a3216094681ea373d58df53f4468b846f}} 
+\mbox{\hyperlink{classrev_1_1_physics_scene_component}{Physics\+Scene\+Component}} $\ast$ \mbox{\hyperlink{classrev_1_1_scene_a3216094681ea373d58df53f4468b846f}{physics\+Component}} ()
+\begin{DoxyCompactList}\small\item\em Physics scene component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a69816677f641c352b90f88c625177b8c}\label{classrev_1_1_scene_a69816677f641c352b90f88c625177b8c}} 
+void \mbox{\hyperlink{classrev_1_1_scene_a69816677f641c352b90f88c625177b8c}{add\+Physics}} ()
+\begin{DoxyCompactList}\small\item\em Add physics to the scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a2d9b518d5cf16a06c178e884c5466b7a}\label{classrev_1_1_scene_a2d9b518d5cf16a06c178e884c5466b7a}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \mbox{\hyperlink{classrev_1_1_scene_a2d9b518d5cf16a06c178e884c5466b7a}{get\+Scene\+Object}} (uint32\+\_\+t id) const
+\begin{DoxyCompactList}\small\item\em Obtain scene object by U\+U\+ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a2656b1e943fb5834ff499cc82807b9bd}\label{classrev_1_1_scene_a2656b1e943fb5834ff499cc82807b9bd}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ {\bfseries get\+Scene\+Object\+By\+Name} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_abbd0ea70a217a39fee461d288a31da36}\label{classrev_1_1_scene_abbd0ea70a217a39fee461d288a31da36}} 
+bool \mbox{\hyperlink{classrev_1_1_scene_abbd0ea70a217a39fee461d288a31da36}{has\+Top\+Level\+Object}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \&object)
+\begin{DoxyCompactList}\small\item\em Whether the scene has the object or not. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a3c08faa015cd0c0581e32b87a9028e42}\label{classrev_1_1_scene_a3c08faa015cd0c0581e32b87a9028e42}} 
+void \mbox{\hyperlink{classrev_1_1_scene_a3c08faa015cd0c0581e32b87a9028e42}{add\+Object}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \&object)
+\begin{DoxyCompactList}\small\item\em Add an object to the scene. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_scene_ae6b55d9ed736c0687ba1b60bd07faff7}{remove\+Object}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ object, bool erase\+From\+Top\+Level=true)
+\begin{DoxyCompactList}\small\item\em Remove an object from the scene entirely. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_aa775a4d4e56d28a9b5af5a616e6f9532}\label{classrev_1_1_scene_aa775a4d4e56d28a9b5af5a616e6f9532}} 
+void \mbox{\hyperlink{classrev_1_1_scene_aa775a4d4e56d28a9b5af5a616e6f9532}{demote\+Object}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \&object)
+\begin{DoxyCompactList}\small\item\em Remove object from top level list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_scene_a6048d220281a8cd6249bf2685bd5de6c}{clear}} ()
+\begin{DoxyCompactList}\small\item\em Clear the scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a057b3f0ad447cbd1dbea3c7a048057cf}\label{classrev_1_1_scene_a057b3f0ad447cbd1dbea3c7a048057cf}} 
+void \mbox{\hyperlink{classrev_1_1_scene_a057b3f0ad447cbd1dbea3c7a048057cf}{bind\+Uniforms}} (\mbox{\hyperlink{classrev_1_1_draw_command}{Draw\+Command}} \&command)
+\begin{DoxyCompactList}\small\item\em Set uniforms to the given render command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a65dfa00e79a7eb6541c79553beae6a71}\label{classrev_1_1_scene_a65dfa00e79a7eb6541c79553beae6a71}} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ $>$\+::iterator \mbox{\hyperlink{classrev_1_1_scene_a65dfa00e79a7eb6541c79553beae6a71}{get\+Iterator}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \&object)
+\begin{DoxyCompactList}\small\item\em Iterator in scene map of given object. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classrev_1_1_scene_a1d6dd18469c4b598dcc51f4a006f22ee}{add\+Component}} (\mbox{\hyperlink{classrev_1_1_component}{Component}} $\ast$component)
+\begin{DoxyCompactList}\small\item\em Add component to the scene object. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classrev_1_1_scene_a0ef96cdbc7ef9ed34ed8cf05aba6ff97}{remove\+Component}} (\mbox{\hyperlink{classrev_1_1_component}{Component}} $\ast$component, bool delete\+Pointer=true)
+\begin{DoxyCompactList}\small\item\em Remove component from the scene object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a0330f69d72467b466e1af6ad0385ec0c}\label{classrev_1_1_scene_a0330f69d72467b466e1af6ad0385ec0c}} 
+bool \mbox{\hyperlink{classrev_1_1_scene_a0330f69d72467b466e1af6ad0385ec0c}{can\+Add}} (\mbox{\hyperlink{classrev_1_1_component}{Component}} $\ast$component)
+\begin{DoxyCompactList}\small\item\em Whether or not component can be added. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Loadable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a99ffc0ebd57ff22d21ef9ba070245528}\label{classrev_1_1_scene_a99ffc0ebd57ff22d21ef9ba070245528}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_scene_a99ffc0ebd57ff22d21ef9ba070245528}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_aa218caf44e39da5302228db1110dc452}\label{classrev_1_1_scene_aa218caf44e39da5302228db1110dc452}} 
+virtual void \mbox{\hyperlink{classrev_1_1_scene_aa218caf44e39da5302228db1110dc452}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_ac7d6271d06920fc9497d224566260f19}\label{classrev_1_1_scene_ac7d6271d06920fc9497d224566260f19}} 
+void \mbox{\hyperlink{classrev_1_1_scene_ac7d6271d06920fc9497d224566260f19}{set\+Component}} (\mbox{\hyperlink{classrev_1_1_component}{Component}} $\ast$component)
+\begin{DoxyCompactList}\small\item\em Add a component to the scene object, replacing all others of it\textquotesingle{}s type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a53231c87311406b05ad40e6c9e30847d}\label{classrev_1_1_scene_a53231c87311406b05ad40e6c9e30847d}} 
+void \mbox{\hyperlink{classrev_1_1_scene_a53231c87311406b05ad40e6c9e30847d}{initialize}} ()
+\begin{DoxyCompactList}\small\item\em Initialize a scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a93085773a86bdcb6c0aceca59e812d6f}\label{classrev_1_1_scene_a93085773a86bdcb6c0aceca59e812d6f}} 
+void \mbox{\hyperlink{classrev_1_1_scene_a93085773a86bdcb6c0aceca59e812d6f}{post\+Construction}} ()
+\begin{DoxyCompactList}\small\item\em Post-\/construct a scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classrev_1_1_scenario}{Scenario}} $\ast$ \mbox{\hyperlink{classrev_1_1_scene_a4dedf53fbaa9c912c39a89de89cdc628}{m\+\_\+scenario}}
+\begin{DoxyCompactList}\small\item\em Pointer to scenario. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_aa4f69d3d9fe082f610af8d9f8b733b53}\label{classrev_1_1_scene_aa4f69d3d9fe082f610af8d9f8b733b53}} 
+\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$ \mbox{\hyperlink{classrev_1_1_scene_aa4f69d3d9fe082f610af8d9f8b733b53}{m\+\_\+engine}}
+\begin{DoxyCompactList}\small\item\em Pointer to the engine. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_adad8ff5af185afe5f242b4f482506585}\label{classrev_1_1_scene_adad8ff5af185afe5f242b4f482506585}} 
+\mbox{\hyperlink{classrev_1_1_a_a_b_b}{A\+A\+BB}} \mbox{\hyperlink{classrev_1_1_scene_adad8ff5af185afe5f242b4f482506585}{m\+\_\+view\+Bounds}}
+\begin{DoxyCompactList}\small\item\em The bounds encompassing all view frustums in the scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a9b01518155723d2b5c712de4f94f32d2}\label{classrev_1_1_scene_a9b01518155723d2b5c712de4f94f32d2}} 
+std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_component}{Component}} $\ast$ $>$ $>$ \mbox{\hyperlink{classrev_1_1_scene_a9b01518155723d2b5c712de4f94f32d2}{m\+\_\+components}}
+\begin{DoxyCompactList}\small\item\em The components attached to this scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_aa224ac3c09a8ceb03d9fa7f6ca3540de}\label{classrev_1_1_scene_aa224ac3c09a8ceb03d9fa7f6ca3540de}} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ $>$ \mbox{\hyperlink{classrev_1_1_scene_aa224ac3c09a8ceb03d9fa7f6ca3540de}{m\+\_\+top\+Level\+Scene\+Objects}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_vector}{Vector}} of top-\/level objects in this scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a22aa63d75de9c391f34e38d1f7b0a66d}\label{classrev_1_1_scene_a22aa63d75de9c391f34e38d1f7b0a66d}} 
+std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_uniform}{Uniform}} $>$ \mbox{\hyperlink{classrev_1_1_scene_a22aa63d75de9c391f34e38d1f7b0a66d}{m\+\_\+uniforms}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_vector}{Vector}} of uniforms for the scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_aa997d96f8254396a7ce8cfe8b5c088be}\label{classrev_1_1_scene_aa997d96f8254396a7ce8cfe8b5c088be}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_canvas_component}{Canvas\+Component}} $\ast$ $>$ \mbox{\hyperlink{classrev_1_1_scene_aa997d96f8254396a7ce8cfe8b5c088be}{m\+\_\+canvases}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_vector}{Vector}} of all canvas components, was storing scene objects, which was causing ownership issues. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a9f94a314b4dbd703663c1593ef8ca45e}\label{classrev_1_1_scene_a9f94a314b4dbd703663c1593ef8ca45e}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_camera_component}{Camera\+Component}} $\ast$ $>$ \mbox{\hyperlink{classrev_1_1_scene_a9f94a314b4dbd703663c1593ef8ca45e}{m\+\_\+cameras}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_vector}{Vector}} of all cameras in the scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_aef7ccf729c345de08e1e63d020862dfd}\label{classrev_1_1_scene_aef7ccf729c345de08e1e63d020862dfd}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_cube_map_component}{Cube\+Map\+Component}} $\ast$ $>$ \mbox{\hyperlink{classrev_1_1_scene_aef7ccf729c345de08e1e63d020862dfd}{m\+\_\+cube\+Maps}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_map}{Map}} of all cubemap in the scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a81545f9f87efa17f20d9750782b702ef}\label{classrev_1_1_scene_a81545f9f87efa17f20d9750782b702ef}} 
+\mbox{\hyperlink{classrev_1_1_cube_map_component}{Cube\+Map\+Component}} $\ast$ {\bfseries m\+\_\+default\+Cube\+Map} = nullptr
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a27862a9fe512b352f98ec1c054680edd}\label{classrev_1_1_scene_a27862a9fe512b352f98ec1c054680edd}} 
+class {\bfseries Light}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a8aa97ba078be6635ba5a8b6c7a3b66a4}\label{classrev_1_1_scene_a8aa97ba078be6635ba5a8b6c7a3b66a4}} 
+class {\bfseries Scenario}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_a737b3cb474f324a74e7da2d3aeca10c9}\label{classrev_1_1_scene_a737b3cb474f324a74e7da2d3aeca10c9}} 
+class {\bfseries Scene\+Object}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_abd93146f051659465d62718a985e4171}\label{classrev_1_1_scene_abd93146f051659465d62718a985e4171}} 
+class {\bfseries Physics\+Scene}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A scene consisting of \mbox{\hyperlink{classrev_1_1_scene}{Scene}} Objects. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_scene_a1d6dd18469c4b598dcc51f4a006f22ee}\label{classrev_1_1_scene_a1d6dd18469c4b598dcc51f4a006f22ee}} 
+\index{rev::Scene@{rev::Scene}!addComponent@{addComponent}}
+\index{addComponent@{addComponent}!rev::Scene@{rev::Scene}}
+\subsubsection{\texorpdfstring{addComponent()}{addComponent()}}
+{\footnotesize\ttfamily bool rev\+::\+Scene\+::add\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classrev_1_1_component}{Component}} $\ast$}]{component }\end{DoxyParamCaption})}
+
+
+
+Add component to the scene object. 
+
+Returns true if component successfully added \mbox{\Hypertarget{classrev_1_1_scene_a6048d220281a8cd6249bf2685bd5de6c}\label{classrev_1_1_scene_a6048d220281a8cd6249bf2685bd5de6c}} 
+\index{rev::Scene@{rev::Scene}!clear@{clear}}
+\index{clear@{clear}!rev::Scene@{rev::Scene}}
+\subsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily void rev\+::\+Scene\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Clear the scene. 
+
+Removes all scene objects from static map \mbox{\Hypertarget{classrev_1_1_scene_a0ef96cdbc7ef9ed34ed8cf05aba6ff97}\label{classrev_1_1_scene_a0ef96cdbc7ef9ed34ed8cf05aba6ff97}} 
+\index{rev::Scene@{rev::Scene}!removeComponent@{removeComponent}}
+\index{removeComponent@{removeComponent}!rev::Scene@{rev::Scene}}
+\subsubsection{\texorpdfstring{removeComponent()}{removeComponent()}}
+{\footnotesize\ttfamily bool rev\+::\+Scene\+::remove\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classrev_1_1_component}{Component}} $\ast$}]{component,  }\item[{bool}]{delete\+Pointer = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Remove component from the scene object. 
+
+Returns true if component successfully remopved 
+\begin{DoxyParams}{Parameters}
+{\em delete\+Pointer} & Whether or not to delete the pointer to the removed component \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrev_1_1_scene_ae6b55d9ed736c0687ba1b60bd07faff7}\label{classrev_1_1_scene_ae6b55d9ed736c0687ba1b60bd07faff7}} 
+\index{rev::Scene@{rev::Scene}!removeObject@{removeObject}}
+\index{removeObject@{removeObject}!rev::Scene@{rev::Scene}}
+\subsubsection{\texorpdfstring{removeObject()}{removeObject()}}
+{\footnotesize\ttfamily void rev\+::\+Scene\+::remove\+Object (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$}]{object,  }\item[{bool}]{erase\+From\+Top\+Level = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Remove an object from the scene entirely. 
+
+\begin{DoxyNote}{Note}
+Need to pass pointer as a value, so ref count doesn\textquotesingle{}t hit zero and cause problems 
+\end{DoxyNote}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_scene_a4dedf53fbaa9c912c39a89de89cdc628}\label{classrev_1_1_scene_a4dedf53fbaa9c912c39a89de89cdc628}} 
+\index{rev::Scene@{rev::Scene}!m\_scenario@{m\_scenario}}
+\index{m\_scenario@{m\_scenario}!rev::Scene@{rev::Scene}}
+\subsubsection{\texorpdfstring{m\_scenario}{m\_scenario}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_scenario}{Scenario}}$\ast$ rev\+::\+Scene\+::m\+\_\+scenario\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Pointer to scenario. 
+
+\begin{DoxyNote}{Note}
+Since scenario is a Q\+Object, this raw pointer is safe 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/scene/G\+Scene.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/scene/G\+Scene.\+cpp\end{DoxyCompactItemize}

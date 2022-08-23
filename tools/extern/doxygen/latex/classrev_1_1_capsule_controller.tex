@@ -1,0 +1,84 @@
+\hypertarget{classrev_1_1_capsule_controller}{}\section{rev\+::Capsule\+Controller Class Reference}
+\label{classrev_1_1_capsule_controller}\index{rev::CapsuleController@{rev::CapsuleController}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing a capsule character controller.  
+
+
+
+
+{\ttfamily \#include $<$G\+Character\+Controller.\+h$>$}
+
+Inheritance diagram for rev\+::Capsule\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.544304cm]{classrev_1_1_capsule_controller}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_capsule_controller_ae84f32dd5807ef003ea7f394f5edab50}\label{classrev_1_1_capsule_controller_ae84f32dd5807ef003ea7f394f5edab50}} 
+enum {\bfseries Climbing\+Mode} \{ {\bfseries k\+Easy}, 
+{\bfseries k\+Constrained}
+ \}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_capsule_controller_aefd6868f58be667cf804bc5275d4d261}\label{classrev_1_1_capsule_controller_aefd6868f58be667cf804bc5275d4d261}} 
+float {\bfseries get\+Radius} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_capsule_controller_a72258167c3e00d5f05bbf835457f4cff}\label{classrev_1_1_capsule_controller_a72258167c3e00d5f05bbf835457f4cff}} 
+bool {\bfseries set\+Radius} (float radius)
+\item 
+\mbox{\Hypertarget{classrev_1_1_capsule_controller_aff5b7debec71d8d7fe2eb67d40dd6ea4}\label{classrev_1_1_capsule_controller_aff5b7debec71d8d7fe2eb67d40dd6ea4}} 
+float \mbox{\hyperlink{classrev_1_1_capsule_controller_aff5b7debec71d8d7fe2eb67d40dd6ea4}{get\+Height}} () const
+\begin{DoxyCompactList}\small\item\em Setting the height will not preserve the bottom position of the capsule, the center will remain. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_capsule_controller_ad4d073e51d9530381838db9cbc9eb6dd}\label{classrev_1_1_capsule_controller_ad4d073e51d9530381838db9cbc9eb6dd}} 
+bool {\bfseries set\+Height} (float height)
+\item 
+\mbox{\Hypertarget{classrev_1_1_capsule_controller_a81baecaa81b779091b214378fd55084a}\label{classrev_1_1_capsule_controller_a81baecaa81b779091b214378fd55084a}} 
+Climbing\+Mode {\bfseries get\+Climbing\+Mode} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_capsule_controller_a8c70c270e5ce0645dd315ef41ed75385}\label{classrev_1_1_capsule_controller_a8c70c270e5ce0645dd315ef41ed75385}} 
+bool {\bfseries set\+Climbing\+Mode} (Climbing\+Mode mode)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Constructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_capsule_controller_a5a19acaae62761e032eb72bb30b0f928}\label{classrev_1_1_capsule_controller_a5a19acaae62761e032eb72bb30b0f928}} 
+{\bfseries Capsule\+Controller} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_capsule_controller_description}{Capsule\+Controller\+Description}} $>$ desc, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \&\mbox{\hyperlink{classrev_1_1_character_controller_aafc51e1eb03ebd5f8f86d88b56067a64}{scene\+Object}})
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Protected methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_capsule_controller_a9443b81e25386ecc8c0afbef3eba5a1b}\label{classrev_1_1_capsule_controller_a9443b81e25386ecc8c0afbef3eba5a1b}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_capsule_controller_description}{Capsule\+Controller\+Description}} $>$ {\bfseries description} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_capsule_controller_ad481baa6d4404db63f9f62df3bf71b70}\label{classrev_1_1_capsule_controller_ad481baa6d4404db63f9f62df3bf71b70}} 
+physx\+::\+Px\+Capsule\+Controller $\ast$ {\bfseries controller} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_capsule_controller_aed3d0fdf6b78428902946828649415c9}\label{classrev_1_1_capsule_controller_aed3d0fdf6b78428902946828649415c9}} 
+class {\bfseries C\+C\+T\+Manager}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing a capsule character controller. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Character\+Controller.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Character\+Controller.\+cpp\end{DoxyCompactItemize}

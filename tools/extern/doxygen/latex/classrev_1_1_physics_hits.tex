@@ -1,0 +1,57 @@
+\hypertarget{classrev_1_1_physics_hits}{}\section{rev\+::Physics\+Hits$<$ Hit\+Type $>$ Class Template Reference}
+\label{classrev_1_1_physics_hits}\index{rev::PhysicsHits$<$ HitType $>$@{rev::PhysicsHits$<$ HitType $>$}}
+
+
+Template class representing a set of hits of any type.  
+
+
+
+
+{\ttfamily \#include $<$G\+Physics\+Query.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_hits_acb56d51ea64e0a1388fc385901dea353}\label{classrev_1_1_physics_hits_acb56d51ea64e0a1388fc385901dea353}} 
+\mbox{\hyperlink{classrev_1_1_physics_hit}{Physics\+Hit}}$<$ Hit\+Type $>$ \mbox{\hyperlink{classrev_1_1_physics_hits_acb56d51ea64e0a1388fc385901dea353}{block}} () const
+\begin{DoxyCompactList}\small\item\em Returns the closest blocking hit result, invalid if has\+Block is false. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_hits_aedb654a646bdf1ba4c01f4eb0acd1fca}\label{classrev_1_1_physics_hits_aedb654a646bdf1ba4c01f4eb0acd1fca}} 
+bool \mbox{\hyperlink{classrev_1_1_physics_hits_aedb654a646bdf1ba4c01f4eb0acd1fca}{has\+Block}} () const
+\begin{DoxyCompactList}\small\item\em Whether or not there is a blocking hit. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_hits_a0424b0c01a33dc3c3ff1495f4b0bfeac}\label{classrev_1_1_physics_hits_a0424b0c01a33dc3c3ff1495f4b0bfeac}} 
+uint32\+\_\+t \mbox{\hyperlink{classrev_1_1_physics_hits_a0424b0c01a33dc3c3ff1495f4b0bfeac}{get\+Num\+Hits}} () const
+\begin{DoxyCompactList}\small\item\em Return the total number of hits, both blocking and touching. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_hits_aeb626da8bf23b148c12dacb17b03be8e}\label{classrev_1_1_physics_hits_aeb626da8bf23b148c12dacb17b03be8e}} 
+uint32\+\_\+t \mbox{\hyperlink{classrev_1_1_physics_hits_aeb626da8bf23b148c12dacb17b03be8e}{get\+Num\+Touches}} () const
+\begin{DoxyCompactList}\small\item\em Return the total number of touch hits. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_hits_a995d555e702fe36bde839ca88b46698f}\label{classrev_1_1_physics_hits_a995d555e702fe36bde839ca88b46698f}} 
+void \mbox{\hyperlink{classrev_1_1_physics_hits_a995d555e702fe36bde839ca88b46698f}{get\+Touches}} (std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_physics_hit}{Physics\+Hit}}$<$ Hit\+Type $>$$>$ \&touches) const
+\begin{DoxyCompactList}\small\item\em Return a vector of all touches. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_hits_a381bf9119fe38e386ed970b020943cfd}\label{classrev_1_1_physics_hits_a381bf9119fe38e386ed970b020943cfd}} 
+void \mbox{\hyperlink{classrev_1_1_physics_hits_a381bf9119fe38e386ed970b020943cfd}{get\+Hits}} (std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_physics_hit}{Physics\+Hit}}$<$ Hit\+Type $>$$>$ \&hits) const
+\begin{DoxyCompactList}\small\item\em Return a vector of all hits. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_hits_a73ac6130e502a2d3eb51477d35dc2e37}\label{classrev_1_1_physics_hits_a73ac6130e502a2d3eb51477d35dc2e37}} 
+\mbox{\hyperlink{classrev_1_1_physics_hit}{Physics\+Hit}}$<$ Hit\+Type $>$ \mbox{\hyperlink{classrev_1_1_physics_hits_a73ac6130e502a2d3eb51477d35dc2e37}{get\+Touch}} (uint32\+\_\+t index) const
+\begin{DoxyCompactList}\small\item\em Return any touch from its index in the touch array. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_hits_a5859cd857de3862ede3dff512e614f8a}\label{classrev_1_1_physics_hits_a5859cd857de3862ede3dff512e614f8a}} 
+\mbox{\hyperlink{classrev_1_1_physics_hit}{Physics\+Hit}}$<$ Hit\+Type $>$ \mbox{\hyperlink{classrev_1_1_physics_hits_a5859cd857de3862ede3dff512e614f8a}{get\+Hit}} (uint32\+\_\+t index) const
+\begin{DoxyCompactList}\small\item\em Return any hit from an index. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_hits_a1f1ea4d94cab55e4608b93b4a9912785}\label{classrev_1_1_physics_hits_a1f1ea4d94cab55e4608b93b4a9912785}} 
+physx\+::\+Px\+Hit\+Buffer$<$ Hit\+Type $>$ {\bfseries m\+\_\+hit\+Buffer}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename Hit\+Type$>$\newline
+class rev\+::\+Physics\+Hits$<$ Hit\+Type $>$}
+
+Template class representing a set of hits of any type. 
+
+Can be used for raycasts, sweeps, or overlap queries A hit can be touching (querying continues after the hit), or blocking (querying ends once the blocking hit occurs) Hits are assumed to be blocking by default 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Physics\+Query.\+h\end{DoxyCompactItemize}

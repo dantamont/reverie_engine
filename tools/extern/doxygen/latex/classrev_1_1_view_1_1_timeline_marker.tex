@@ -1,0 +1,101 @@
+\hypertarget{classrev_1_1_view_1_1_timeline_marker}{}\section{rev\+::View\+::Timeline\+Marker Class Reference}
+\label{classrev_1_1_view_1_1_timeline_marker}\index{rev::View::TimelineMarker@{rev::View::TimelineMarker}}
+Inheritance diagram for rev\+::View\+::Timeline\+Marker\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_view_1_1_timeline_marker}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_marker_a4c3b8f4a7383cb03995709874a163359}\label{classrev_1_1_view_1_1_timeline_marker_a4c3b8f4a7383cb03995709874a163359}} 
+void {\bfseries set\+Color} (const Q\+Color \&color)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_marker_aa8db54a6ba47ffd094cf277ce8450bde}\label{classrev_1_1_view_1_1_timeline_marker_aa8db54a6ba47ffd094cf277ce8450bde}} 
+void {\bfseries set\+Is\+Row\+Header} (bool is\+Header)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_marker_adb94ada833d07661b961b6728f8e6901}\label{classrev_1_1_view_1_1_timeline_marker_adb94ada833d07661b961b6728f8e6901}} 
+int \mbox{\hyperlink{classrev_1_1_view_1_1_timeline_marker_adb94ada833d07661b961b6728f8e6901}{get\+Row\+Index}} () const
+\begin{DoxyCompactList}\small\item\em Get the row index of the track, based on it\textquotesingle{}s vertical position. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_marker_ae3375edbd1c2d9d4dab5a29b0dd4cab9}\label{classrev_1_1_view_1_1_timeline_marker_ae3375edbd1c2d9d4dab5a29b0dd4cab9}} 
+int {\bfseries get\+Row\+Index} (qreal sceneY) const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Q\+Graphics\+Item Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_marker_af63c6f445edce7f0ee189a2d122311ef}\label{classrev_1_1_view_1_1_timeline_marker_af63c6f445edce7f0ee189a2d122311ef}} 
+virtual Q\+RectF {\bfseries bounding\+Rect} () const override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_marker_a08d05a6da02f895e6b48f6f2dea7e0e9}\label{classrev_1_1_view_1_1_timeline_marker_a08d05a6da02f895e6b48f6f2dea7e0e9}} 
+virtual void {\bfseries paint} (Q\+Painter $\ast$painter, const Q\+Style\+Option\+Graphics\+Item $\ast$option, Q\+Widget $\ast$widget) override
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Private Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_marker_aa70bc2c11a5c4fafa849f589ea797700}\label{classrev_1_1_view_1_1_timeline_marker_aa70bc2c11a5c4fafa849f589ea797700}} 
+virtual void {\bfseries mouse\+Press\+Event} (Q\+Graphics\+Scene\+Mouse\+Event $\ast$event) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_marker_a4b543a944e64c7fa44f2b28cfe25de32}\label{classrev_1_1_view_1_1_timeline_marker_a4b543a944e64c7fa44f2b28cfe25de32}} 
+virtual void {\bfseries mouse\+Move\+Event} (Q\+Graphics\+Scene\+Mouse\+Event $\ast$event) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_marker_a0a87e42db28b2c570f1ecc331c959e56}\label{classrev_1_1_view_1_1_timeline_marker_a0a87e42db28b2c570f1ecc331c959e56}} 
+virtual void {\bfseries mouse\+Release\+Event} (Q\+Graphics\+Scene\+Mouse\+Event $\ast$event) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_marker_a789b0572ec60cd14fe08dc472fcfc507}\label{classrev_1_1_view_1_1_timeline_marker_a789b0572ec60cd14fe08dc472fcfc507}} 
+virtual void {\bfseries mouse\+Double\+Click\+Event} (Q\+Graphics\+Scene\+Mouse\+Event $\ast$event) override
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Private Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_marker_a5a6e46e1824d8139e8895536729973d7}\label{classrev_1_1_view_1_1_timeline_marker_a5a6e46e1824d8139e8895536729973d7}} 
+Q\+Color \mbox{\hyperlink{classrev_1_1_view_1_1_timeline_marker_a5a6e46e1824d8139e8895536729973d7}{m\+\_\+color}}
+\begin{DoxyCompactList}\small\item\em Base color of the track. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_marker_a44b14be33ee7ae724e39bf78c8c0d50f}\label{classrev_1_1_view_1_1_timeline_marker_a44b14be33ee7ae724e39bf78c8c0d50f}} 
+Q\+PointF {\bfseries m\+\_\+old\+Pos}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_marker_a6f78be6041d6527a81c742438276d2f0}\label{classrev_1_1_view_1_1_timeline_marker_a6f78be6041d6527a81c742438276d2f0}} 
+Q\+PointF {\bfseries m\+\_\+old\+Mouse\+Pos}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_marker_a3871289a05fb6b0f9f86f8bbcbd1410d}\label{classrev_1_1_view_1_1_timeline_marker_a3871289a05fb6b0f9f86f8bbcbd1410d}} 
+bool {\bfseries m\+\_\+is\+Row\+Header}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Protected Attributes}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+static Q\+Vector$<$ Q\+PointF $>$ {\bfseries s\+\_\+polygon}
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_marker_a4ffe0c91df6b507815901b82385f70d6}\label{classrev_1_1_view_1_1_timeline_marker_a4ffe0c91df6b507815901b82385f70d6}} 
+\index{rev::View::TimelineMarker@{rev::View::TimelineMarker}!s\_polygon@{s\_polygon}}
+\index{s\_polygon@{s\_polygon}!rev::View::TimelineMarker@{rev::View::TimelineMarker}}
+\subsubsection{\texorpdfstring{s\_polygon}{s\_polygon}}
+{\footnotesize\ttfamily Q\+Vector$<$ Q\+PointF $>$ rev\+::\+View\+::\+Timeline\+Marker\+::s\+\_\+polygon\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    QPointF(-MARKER\_WIDTH / 2.0, MARKER\_WIDTH / 2.0),}
+\DoxyCodeLine{    QPointF(0, MARKER\_WIDTH),}
+\DoxyCodeLine{    QPointF(MARKER\_WIDTH / 2.0,  MARKER\_WIDTH / 2.0),}
+\DoxyCodeLine{    QPointF(0, 0)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/timeline/G\+Timeline\+Marker.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/timeline/G\+Timeline\+Marker.\+cpp\end{DoxyCompactItemize}

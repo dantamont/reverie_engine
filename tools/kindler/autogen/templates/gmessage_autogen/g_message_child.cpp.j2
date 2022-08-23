@@ -1,0 +1,70 @@
+/// This file is auto-generated from {{ template_file_name }}
+/// Do not modify! It will be overwritten
+
+#include "{{ library_name }}/network/messages/G{{ message_type }}.h"
+#include "fortress/encoding/binary/GSerializationProtocol.h"
+
+namespace rev {
+
+G{{ message_type }}::~G{{ message_type }}(){}
+
+void G{{ message_type }}::postConstruction()
+{
+    /// @todo Calculate serialized body size at compile time
+    GMessage::postConstruction();
+    m_header.m_serializedBodySizeBytes = getSerializedSizeInBytes() - TransportMessage::getSerializedSizeInBytes()/*serialized header size*/;
+}
+
+Uint32_t G{{ message_type }}::getSerializedSizeInBytes() const {
+    Uint32_t size = G{{ parent_type }}::getSerializedSizeInBytes();
+{%- if message_definitions.messages[message_type].members %}
+    size += sizeof(S{{ message_type }}Fields) + sizeof(Uint64_t)/*for serialization count*/; // For all message fields
+{%- endif %}
+    return size;
+}
+
+Uint32_t G{{ message_type }}::pack(Uint8_t* buffer, Uint32_t index) const{
+    Uint32_t bytesWritten = G{{ parent_type }}::pack(buffer, index);
+{%- if message_definitions.messages[message_type].members %}
+    SerializationProtocol<S{{ message_type }}Fields> serializer(m_fieldsFor{{message_type|string}});
+    bytesWritten += serializer.write(buffer, index + bytesWritten);
+{%- endif %}
+    return bytesWritten;
+}
+
+Uint32_t G{{ message_type }}::unpack(const Uint8_t* buffer, Uint32_t index){
+    Uint32_t bytesRead = G{{ parent_type }}::unpack(buffer, index);
+{%- if message_definitions.messages[message_type].members %}
+    SerializationProtocol<S{{ message_type }}Fields> deserializer(m_fieldsFor{{message_type|string}});
+    bytesRead += deserializer.read(buffer, index + bytesRead);
+{%- endif %}
+    return bytesRead;
+}
+
+void to_json(nlohmann::json& orJson, const G{{ message_type }}& korObject){
+    ToJson<G{{ parent_type }}>(orJson, korObject);
+{% if message_definitions.messages[message_type].members %}
+{% for member_name, member_value in message_definitions.messages[message_type].members.items() %}  
+    {%- if (member_value.default_value|string).find(member_value.type[1:] + "::e") != -1 %}
+    orJson["{{member_name}}"] = static_cast<Int64_t>(korObject.m_fieldsFor{{message_type|string}}.m_{{member_name}});
+    {%- else %}
+    orJson["{{member_name}}"] = korObject.m_fieldsFor{{message_type|string}}.m_{{member_name}};
+    {%- endif %}
+{%- endfor %}
+{% endif %}
+}
+
+void from_json(const nlohmann::json& korJson, G{{ message_type }}& orObject){
+    FromJson<G{{ parent_type }}>(korJson, orObject);
+{% if message_definitions.messages[message_type].members %}
+{% for member_name, member_value in message_definitions.messages[message_type].members.items() %}
+    {%- if(member_value.type|string).startswith("std::vector") and not member_value.deserialize_function %}
+        orObject.m_fieldsFor{{message_type|string}}.m_{{member_name}} = korJson["{{member_name}}"]{{member_value.deserialize_function|string}}.get<{{member_value.type|string}}>();
+    {%- else %}
+        orObject.m_fieldsFor{{message_type|string}}.m_{{member_name}} = korJson["{{member_name}}"]{{member_value.deserialize_function|string}};
+    {%- endif %}
+{%- endfor %}
+{% endif %}
+}
+
+} // End namespace

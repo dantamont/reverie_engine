@@ -1,0 +1,194 @@
+\hypertarget{classrev_1_1_lines}{}\section{rev\+::Lines Class Reference}
+\label{classrev_1_1_lines}\index{rev::Lines@{rev::Lines}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing set of line geometry.  
+
+
+
+
+{\ttfamily \#include $<$G\+Lines.\+h$>$}
+
+Inheritance diagram for rev\+::Lines\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classrev_1_1_lines}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_lines_a886da7c41d0dc52783bd9c0c684c4cb0}\label{classrev_1_1_lines_a886da7c41d0dc52783bd9c0c684c4cb0}} 
+{\bfseries Lines} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_lines_afb40a307bf76c3f68ae483789adac9f4}\label{classrev_1_1_lines_afb40a307bf76c3f68ae483789adac9f4}} 
+virtual {\bfseries $\sim$\+Lines} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_lines_a4ff63ec3b8ab90240f1de0076883aef2}\label{classrev_1_1_lines_a4ff63ec3b8ab90240f1de0076883aef2}} 
+bool {\bfseries use\+Miter} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_lines_a33145c647ab0d8804ac37ac476570aa8}\label{classrev_1_1_lines_a33145c647ab0d8804ac37ac476570aa8}} 
+void {\bfseries set\+Use\+Miter} (bool use\+Miter)
+\item 
+\mbox{\Hypertarget{classrev_1_1_lines_a7bc74dadc3857e85c41a9e90b9250ea6}\label{classrev_1_1_lines_a7bc74dadc3857e85c41a9e90b9250ea6}} 
+void {\bfseries set\+Constant\+Screen\+Thickness} (bool constant)
+\item 
+\mbox{\Hypertarget{classrev_1_1_lines_a9052ef1ce10d921063ea07ce479ffb2b}\label{classrev_1_1_lines_a9052ef1ce10d921063ea07ce479ffb2b}} 
+void {\bfseries set\+Fade\+With\+Distance} (bool fade)
+\item 
+\mbox{\Hypertarget{classrev_1_1_lines_ad258d70af65ea57f6e5c8a2c92ec4905}\label{classrev_1_1_lines_ad258d70af65ea57f6e5c8a2c92ec4905}} 
+float {\bfseries line\+Thickness} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_lines_a795616d718589973631dc609c88b2ba5}\label{classrev_1_1_lines_a795616d718589973631dc609c88b2ba5}} 
+void {\bfseries set\+Line\+Thickness} (float thickness)
+\item 
+\mbox{\Hypertarget{classrev_1_1_lines_ab6527edf962f39c50fca7d6c324e4235}\label{classrev_1_1_lines_ab6527edf962f39c50fca7d6c324e4235}} 
+const \mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \& {\bfseries line\+Color} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_lines_ad8230a2d6bcb1cfa9b6fd0b25b9c3aa4}\label{classrev_1_1_lines_ad8230a2d6bcb1cfa9b6fd0b25b9c3aa4}} 
+void {\bfseries set\+Line\+Color} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \&line\+Color)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classrev_1_1_lines_a35469d8c869e1a6ca1906bb43cfc4861}{set\+Uniforms}} (\mbox{\hyperlink{classrev_1_1_draw_command}{Draw\+Command}} \&draw\+Command) const override
+\begin{DoxyCompactList}\small\item\em Set uniforms in the given draw command from this renderable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_lines_ade537e892302af6fdbd5f2fade9fb642}\label{classrev_1_1_lines_ade537e892302af6fdbd5f2fade9fb642}} 
+void \mbox{\hyperlink{classrev_1_1_lines_ade537e892302af6fdbd5f2fade9fb642}{load\+Vertex\+Array\+Data}} (\mbox{\hyperlink{classrev_1_1_resource_cache}{Resource\+Cache}} \&cache, const \mbox{\hyperlink{classrev_1_1_vertex_array_data}{Vertex\+Array\+Data}} \&data, \mbox{\hyperlink{classrev_1_1_flags}{Flags}}$<$ Resource\+Behavior\+Flag $>$ flags, \mbox{\hyperlink{classrev_1_1_flags}{Mesh\+Generation\+Flags}} mesh\+Flags=0)
+\begin{DoxyCompactList}\small\item\em Load an existing vao as a \mbox{\hyperlink{classrev_1_1_lines}{Lines}} object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_lines_a25311363c75d2acd0235e6786c076007}\label{classrev_1_1_lines_a25311363c75d2acd0235e6786c076007}} 
+virtual void \mbox{\hyperlink{classrev_1_1_lines_a25311363c75d2acd0235e6786c076007}{reload}} () override
+\begin{DoxyCompactList}\small\item\em Update any data needed for rendering, e.\+g. vertex data, render settings, etc. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_lines_a50239aad4f1c51575d92c2b4ab4ae99a}\label{classrev_1_1_lines_a50239aad4f1c51575d92c2b4ab4ae99a}} 
+virtual size\+\_\+t \mbox{\hyperlink{classrev_1_1_lines_a50239aad4f1c51575d92c2b4ab4ae99a}{get\+Sort\+ID}} () override
+\begin{DoxyCompactList}\small\item\em Get ID to sort renderable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_lines_ae751f88ef57d60c1fba88e1be12b3b40}\label{classrev_1_1_lines_ae751f88ef57d60c1fba88e1be12b3b40}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_lines_ae751f88ef57d60c1fba88e1be12b3b40}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_lines_a68ae238c243264589023b45f27edfd44}\label{classrev_1_1_lines_a68ae238c243264589023b45f27edfd44}} 
+virtual void \mbox{\hyperlink{classrev_1_1_lines_a68ae238c243264589023b45f27edfd44}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_lines_af38c86cc7a5f11fc0627c22a5b55610a}\label{classrev_1_1_lines_af38c86cc7a5f11fc0627c22a5b55610a}} 
+virtual void \mbox{\hyperlink{classrev_1_1_lines_af38c86cc7a5f11fc0627c22a5b55610a}{bind\+Uniforms}} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program) override
+\begin{DoxyCompactList}\small\item\em Set uniforms for the \mbox{\hyperlink{classrev_1_1_lines}{Lines}} in the given shader. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_lines_aad8396022d3185b9987210aea646811c}\label{classrev_1_1_lines_aad8396022d3185b9987210aea646811c}} 
+virtual void {\bfseries release\+Uniforms} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_lines_a213a0648e65c0f7de5c174e7c9ab8628}\label{classrev_1_1_lines_a213a0648e65c0f7de5c174e7c9ab8628}} 
+virtual void \mbox{\hyperlink{classrev_1_1_lines_a213a0648e65c0f7de5c174e7c9ab8628}{draw\+Geometry}} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program, \mbox{\hyperlink{classrev_1_1_render_settings}{Render\+Settings}} $\ast$settings=nullptr) override
+\begin{DoxyCompactList}\small\item\em Draw geometry associated with this \mbox{\hyperlink{classrev_1_1_lines}{Lines}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_lines_a1bc7a28df7642ff1ddee9f1c07788070}\label{classrev_1_1_lines_a1bc7a28df7642ff1ddee9f1c07788070}} 
+void \mbox{\hyperlink{classrev_1_1_lines_a1bc7a28df7642ff1ddee9f1c07788070}{add\+Point}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&new\+Point)
+\begin{DoxyCompactList}\small\item\em Add point. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_lines_acdba9f164aa139a6e8b051afe8e76235}\label{classrev_1_1_lines_acdba9f164aa139a6e8b051afe8e76235}} 
+void {\bfseries add\+Point} (\mbox{\hyperlink{classrev_1_1_vertex_array_data}{Vertex\+Array\+Data}} \&vertex\+Data, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&new\+Point)
+\item 
+\mbox{\Hypertarget{classrev_1_1_lines_a2ed9226cd31b69e31e12713a4e835cfd}\label{classrev_1_1_lines_a2ed9226cd31b69e31e12713a4e835cfd}} 
+void \mbox{\hyperlink{classrev_1_1_lines_a2ed9226cd31b69e31e12713a4e835cfd}{add\+Triangle}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&p1, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&p2, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&p3)
+\begin{DoxyCompactList}\small\item\em Add a triangle from three points. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_lines_aa954e8fb3034c7fc6a80fbcec451652a}\label{classrev_1_1_lines_aa954e8fb3034c7fc6a80fbcec451652a}} 
+float \mbox{\hyperlink{classrev_1_1_lines_aa954e8fb3034c7fc6a80fbcec451652a}{m\+\_\+line\+Thickness}}
+\begin{DoxyCompactList}\small\item\em Line thickness (in N\+DC) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_lines_ad9c447364ffcc11deb4f5d990939cd89}\label{classrev_1_1_lines_ad9c447364ffcc11deb4f5d990939cd89}} 
+\mbox{\hyperlink{classrev_1_1_flags}{Flags}}$<$ Shape\+Options $>$ {\bfseries m\+\_\+shape\+Options}
+\item 
+\mbox{\Hypertarget{classrev_1_1_lines_a5cfcb2375c26fb852ef11deb4371bd83}\label{classrev_1_1_lines_a5cfcb2375c26fb852ef11deb4371bd83}} 
+\mbox{\hyperlink{classrev_1_1_flags}{Flags}}$<$ Effect\+Options $>$ {\bfseries m\+\_\+effect\+Options}
+\item 
+\mbox{\Hypertarget{classrev_1_1_lines_a82dcbaa05936b2cde99f6ddbec794fc5}\label{classrev_1_1_lines_a82dcbaa05936b2cde99f6ddbec794fc5}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \mbox{\hyperlink{classrev_1_1_lines_a82dcbaa05936b2cde99f6ddbec794fc5}{m\+\_\+line\+Color}}
+\begin{DoxyCompactList}\small\item\em Line color. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_lines_a270bf52546af125e874e53399ac12b5f}\label{classrev_1_1_lines_a270bf52546af125e874e53399ac12b5f}} 
+class {\bfseries Points}
+\end{DoxyCompactItemize}
+\subsection*{Static}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_lines_a35550091d7f6d71deceef02f81bcd24e}\label{classrev_1_1_lines_a35550091d7f6d71deceef02f81bcd24e}} 
+enum {\bfseries Mesh\+Generation\+Flag} \{ {\bfseries k\+Triangulate} = 1 $<$$<$ 0
+ \}
+\item 
+\mbox{\Hypertarget{classrev_1_1_lines_ae8942897689541981d4dd0e1da7d6e66}\label{classrev_1_1_lines_ae8942897689541981d4dd0e1da7d6e66}} 
+enum {\bfseries Shape\+Options} \{ {\bfseries k\+Use\+Miter} = 1, 
+{\bfseries k\+Constant\+Screen\+Thickness} = 2
+ \}
+\item 
+\mbox{\Hypertarget{classrev_1_1_lines_aaef973ead3e1af6203aa526de798fd20}\label{classrev_1_1_lines_aaef973ead3e1af6203aa526de798fd20}} 
+enum {\bfseries Effect\+Options} \{ {\bfseries k\+Fade\+With\+Distance} = 1
+ \}
+\item 
+\mbox{\Hypertarget{classrev_1_1_lines_a56d76fe4d58a67106403207ee3b5be0d}\label{classrev_1_1_lines_a56d76fe4d58a67106403207ee3b5be0d}} 
+typedef \mbox{\hyperlink{classrev_1_1_flags}{Flags}}$<$ Mesh\+Generation\+Flag $>$ {\bfseries Mesh\+Generation\+Flags}
+\item 
+\mbox{\Hypertarget{classrev_1_1_lines_a58a625a7035b3595ccfdf27ff855fbac}\label{classrev_1_1_lines_a58a625a7035b3595ccfdf27ff855fbac}} 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_lines}{Lines}} $>$ {\bfseries Get\+Cube} (\mbox{\hyperlink{classrev_1_1_resource_cache}{Resource\+Cache}} \&cache, Resource\+Behavior\+Flags handle\+Flags=0)
+\item 
+\mbox{\Hypertarget{classrev_1_1_lines_a4f541d99da5883f5c3be1410507489c4}\label{classrev_1_1_lines_a4f541d99da5883f5c3be1410507489c4}} 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_lines}{Lines}} $>$ {\bfseries Get\+Sphere} (\mbox{\hyperlink{classrev_1_1_resource_cache}{Resource\+Cache}} \&cache, int lat\+Size=20, int lon\+Size=30, Resource\+Behavior\+Flags handle\+Flags=0)
+\item 
+\mbox{\Hypertarget{classrev_1_1_lines_abb33cf87740076d5f2ac91a72eb8c62d}\label{classrev_1_1_lines_abb33cf87740076d5f2ac91a72eb8c62d}} 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_lines}{Lines}} $>$ {\bfseries Get\+Grid\+Cube} (\mbox{\hyperlink{classrev_1_1_resource_cache}{Resource\+Cache}} \&cache, float spacing=1.\+0f, int num\+Half\+Spaces=10, Resource\+Behavior\+Flags handle\+Flags=0)
+\item 
+\mbox{\Hypertarget{classrev_1_1_lines_afc77d8dfc43bf9c001de7afd0236fe65}\label{classrev_1_1_lines_afc77d8dfc43bf9c001de7afd0236fe65}} 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_lines}{Lines}} $>$ {\bfseries Get\+Plane} (\mbox{\hyperlink{classrev_1_1_resource_cache}{Resource\+Cache}} \&cache, float spacing=1.\+0f, int num\+Half\+Spaces=10, Resource\+Behavior\+Flags handle\+Flags=0)
+\item 
+\mbox{\Hypertarget{classrev_1_1_lines_a85ee449d2ff73453fdfea87346f64161}\label{classrev_1_1_lines_a85ee449d2ff73453fdfea87346f64161}} 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_lines}{Lines}} $>$ {\bfseries Get\+Prism} (\mbox{\hyperlink{classrev_1_1_resource_cache}{Resource\+Cache}} \&cache, float base\+Radius=1.\+0, float top\+Radius=1.\+0, float height=1.\+0, int sector\+Count=36, int stack\+Count=1, Resource\+Behavior\+Flags handle\+Flags=0)
+\item 
+\mbox{\Hypertarget{classrev_1_1_lines_aae664ce6dabf5f5aea9c48c1926ef105}\label{classrev_1_1_lines_aae664ce6dabf5f5aea9c48c1926ef105}} 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_lines}{Lines}} $>$ {\bfseries Get\+Capsule} (\mbox{\hyperlink{classrev_1_1_resource_cache}{Resource\+Cache}} \&cache, float radius=1.\+0, float half\+Height=1.\+0, Resource\+Behavior\+Flags handle\+Flags=0)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing set of line geometry. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_lines_a35469d8c869e1a6ca1906bb43cfc4861}\label{classrev_1_1_lines_a35469d8c869e1a6ca1906bb43cfc4861}} 
+\index{rev::Lines@{rev::Lines}!setUniforms@{setUniforms}}
+\index{setUniforms@{setUniforms}!rev::Lines@{rev::Lines}}
+\subsubsection{\texorpdfstring{setUniforms()}{setUniforms()}}
+{\footnotesize\ttfamily void rev\+::\+Lines\+::set\+Uniforms (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classrev_1_1_draw_command}{Draw\+Command}} \&}]{draw\+Command }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Set uniforms in the given draw command from this renderable. 
+
+\begin{DoxyNote}{Note}
+This is used by the \mbox{\hyperlink{classrev_1_1_lines}{Lines}} and \mbox{\hyperlink{classrev_1_1_points}{Points}} renderables for debug rendering 
+\end{DoxyNote}
+
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_renderable_a4418624ac4442899026f95c20e065467}{rev\+::\+Renderable}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/geometry/G\+Lines.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/geometry/G\+Lines.\+cpp\end{DoxyCompactItemize}

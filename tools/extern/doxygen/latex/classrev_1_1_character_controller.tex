@@ -1,0 +1,344 @@
+\hypertarget{classrev_1_1_character_controller}{}\section{rev\+::Character\+Controller Class Reference}
+\label{classrev_1_1_character_controller}\index{rev::CharacterController@{rev::CharacterController}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing a PhysX character controller See\+: \href{https://gameworksdocs.nvidia.com/PhysX/4.0/documentation/PhysXGuide/Manual/CharacterControllers.html}{\texttt{ https\+://gameworksdocs.\+nvidia.\+com/\+Phys\+X/4.\+0/documentation/\+Phys\+X\+Guide/\+Manual/\+Character\+Controllers.\+html}}.  
+
+
+
+
+{\ttfamily \#include $<$G\+Character\+Controller.\+h$>$}
+
+Inheritance diagram for rev\+::Character\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.544304cm]{classrev_1_1_character_controller}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a7a554850555108377cecdb4e2dfb2c08}\label{classrev_1_1_character_controller_a7a554850555108377cecdb4e2dfb2c08}} 
+enum {\bfseries Controller\+Type} \{ {\bfseries k\+Box} = physx\+::Px\+Controller\+Shape\+Type\+::e\+B\+OX, 
+{\bfseries k\+Capsule} = physx\+::Px\+Controller\+Shape\+Type\+::e\+C\+A\+P\+S\+U\+LE
+ \}
+\item 
+enum \mbox{\hyperlink{classrev_1_1_character_controller_ac4d525bc4df0feaaef505f1756ca7b11}{Collision\+Type}} \{ \mbox{\hyperlink{classrev_1_1_character_controller_ac4d525bc4df0feaaef505f1756ca7b11ac7eca2e7cebb02e8106321f80c310f93}{k\+Collision\+Sides}} = (1 $<$$<$ 0), 
+\mbox{\hyperlink{classrev_1_1_character_controller_ac4d525bc4df0feaaef505f1756ca7b11aa5592839aacc369330934ada3ff8483f}{k\+Collision\+Up}} = (1 $<$$<$ 1), 
+\mbox{\hyperlink{classrev_1_1_character_controller_ac4d525bc4df0feaaef505f1756ca7b11ad588d108901ee34272b13175ff385c4d}{k\+Collision\+Down}} = (1 $<$$<$ 2)
+ \}
+\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a92a3a65dd2571835150bda501c32b9f2}\label{classrev_1_1_character_controller_a92a3a65dd2571835150bda501c32b9f2}} 
+enum {\bfseries Unwalkable\+Mode} \{ {\bfseries k\+Prevent\+Climbing} = (1 $<$$<$ 0), 
+{\bfseries k\+Force\+Sliding} = (1 $<$$<$ 1)
+ \}
+\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_ab38aabcdde872edf26784e314d8a959b}\label{classrev_1_1_character_controller_ab38aabcdde872edf26784e314d8a959b}} 
+typedef Q\+Flags$<$ Unwalkable\+Mode $>$ {\bfseries Walkable\+Flags}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a7b90c82ffd3e8449adccf8b6197ea0fc}\label{classrev_1_1_character_controller_a7b90c82ffd3e8449adccf8b6197ea0fc}} 
+virtual {\bfseries $\sim$\+Character\+Controller} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_acc5a2d0a660c59d16fd7ee3a24e97c50}\label{classrev_1_1_character_controller_acc5a2d0a660c59d16fd7ee3a24e97c50}} 
+float {\bfseries height\+Offset} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a40da295c3f720014b857c09010ef9b73}\label{classrev_1_1_character_controller_a40da295c3f720014b857c09010ef9b73}} 
+void {\bfseries set\+Height\+Offset} (float offset)
+\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_af10084b64a061585feb6b87488523f8d}\label{classrev_1_1_character_controller_af10084b64a061585feb6b87488523f8d}} 
+const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \& \mbox{\hyperlink{classrev_1_1_character_controller_af10084b64a061585feb6b87488523f8d}{get\+Gravity}} () const
+\begin{DoxyCompactList}\small\item\em Optional value to set that enforces gravity on character controller. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a3744de214cc6cf9bc6faa2f739f3a981}\label{classrev_1_1_character_controller_a3744de214cc6cf9bc6faa2f739f3a981}} 
+void {\bfseries set\+Gravity} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&g)
+\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a6a725e22b05564920d6daad5e838fa84}\label{classrev_1_1_character_controller_a6a725e22b05564920d6daad5e838fa84}} 
+const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \& {\bfseries get\+Fall\+Velocity} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_aa4251059c49071441e7376c72d2752aa}\label{classrev_1_1_character_controller_aa4251059c49071441e7376c72d2752aa}} 
+void {\bfseries set\+Fall\+Velocity} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&v)
+\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a84e13b4de81748b7b23ca72bc4742ce3}\label{classrev_1_1_character_controller_a84e13b4de81748b7b23ca72bc4742ce3}} 
+float {\bfseries get\+Terminal\+Velocity} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a46083c01e8491c378e1f3286079babad}\label{classrev_1_1_character_controller_a46083c01e8491c378e1f3286079babad}} 
+bool \mbox{\hyperlink{classrev_1_1_character_controller_a46083c01e8491c378e1f3286079babad}{is\+Grounded}} () const
+\begin{DoxyCompactList}\small\item\em Whether or not the controller is grounded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a555afaeade7bf28aa4815b696cb990c8}\label{classrev_1_1_character_controller_a555afaeade7bf28aa4815b696cb990c8}} 
+Controller\+Type \mbox{\hyperlink{classrev_1_1_character_controller_a555afaeade7bf28aa4815b696cb990c8}{get\+Type}} () const
+\begin{DoxyCompactList}\small\item\em Either a box or a capsule controller. \end{DoxyCompactList}\item 
+Q\+Flags$<$ \mbox{\hyperlink{classrev_1_1_character_controller_ac4d525bc4df0feaaef505f1756ca7b11}{Character\+Controller\+::\+Collision\+Type}} $>$ \mbox{\hyperlink{classrev_1_1_character_controller_ae36c3695f38bc82cce6e96478879719b}{move}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&displacement)
+\begin{DoxyCompactList}\small\item\em Move the controller, while checking for collisions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a7cfab0a7174d6d396a2b3dfdec3408f8}\label{classrev_1_1_character_controller_a7cfab0a7174d6d396a2b3dfdec3408f8}} 
+Q\+Flags$<$ \mbox{\hyperlink{classrev_1_1_character_controller_ac4d525bc4df0feaaef505f1756ca7b11}{Character\+Controller\+::\+Collision\+Type}} $>$ {\bfseries move} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3d}} \&displacement)
+\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a02eb8ed2d6d559c7d391ba9d53a9033a}\label{classrev_1_1_character_controller_a02eb8ed2d6d559c7d391ba9d53a9033a}} 
+Q\+Flags$<$ \mbox{\hyperlink{classrev_1_1_character_controller_ac4d525bc4df0feaaef505f1756ca7b11}{Character\+Controller\+::\+Collision\+Type}} $>$ {\bfseries move} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3d}} \&displacement, const \mbox{\hyperlink{classrev_1_1_controller_filters}{Controller\+Filters}} \&filters, const physx\+::\+Px\+Obstacle\+Context $\ast$obstacles=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a2508774e29f0470edcea8745fd86352d}\label{classrev_1_1_character_controller_a2508774e29f0470edcea8745fd86352d}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \mbox{\hyperlink{classrev_1_1_character_controller_a2508774e29f0470edcea8745fd86352d}{get\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Position of the centroid off the controller. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a82788f65ab5f2d9e60d5758493d0d946}\label{classrev_1_1_character_controller_a82788f65ab5f2d9e60d5758493d0d946}} 
+bool \mbox{\hyperlink{classrev_1_1_character_controller_a82788f65ab5f2d9e60d5758493d0d946}{set\+Position}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&pos)
+\begin{DoxyCompactList}\small\item\em \char`\"{}\+Teleports\char`\"{} the C\+CT, use move to check for collisions \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_ab76d8e954e2f8a3018d1a4c9696c3a9f}\label{classrev_1_1_character_controller_ab76d8e954e2f8a3018d1a4c9696c3a9f}} 
+const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \& \mbox{\hyperlink{classrev_1_1_character_controller_ab76d8e954e2f8a3018d1a4c9696c3a9f}{get\+Initial\+Position}} () const
+\begin{DoxyCompactList}\small\item\em \char`\"{}\+Teleports\char`\"{} the C\+CT, and sets initial position, use move to check for collisions \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a821c726cac39ad3d688b10321484709c}\label{classrev_1_1_character_controller_a821c726cac39ad3d688b10321484709c}} 
+bool {\bfseries set\+Initial\+Position} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&pos)
+\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a6a7180230b996d5e19d81dc01678321a}\label{classrev_1_1_character_controller_a6a7180230b996d5e19d81dc01678321a}} 
+void {\bfseries update\+Fall\+Velocity} (float dt)
+\item 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector3d}} \mbox{\hyperlink{classrev_1_1_character_controller_af8f6c4f320f1808326dc4b13b6c056d5}{get\+Foot\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Get position at the bottom-\/center of the controller. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a23934a17c6fd0c7272b8691ed53a4646}\label{classrev_1_1_character_controller_a23934a17c6fd0c7272b8691ed53a4646}} 
+bool {\bfseries set\+Foot\+Position} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3d}} \&foot\+Pos)
+\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a11f94a42457bc8e1b183af1c8aa0ecd7}\label{classrev_1_1_character_controller_a11f94a42457bc8e1b183af1c8aa0ecd7}} 
+physx\+::\+Px\+Rigid\+Dynamic $\ast$ \mbox{\hyperlink{classrev_1_1_character_controller_a11f94a42457bc8e1b183af1c8aa0ecd7}{get\+Actor}} () const
+\begin{DoxyCompactList}\small\item\em Returns the rigid body actor associated with this controller. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a256ff87e18a371dd66d913d4b0cfb313}\label{classrev_1_1_character_controller_a256ff87e18a371dd66d913d4b0cfb313}} 
+physx\+::\+Px\+Scene $\ast$ \mbox{\hyperlink{classrev_1_1_character_controller_a256ff87e18a371dd66d913d4b0cfb313}{get\+Px\+Scene}} () const
+\begin{DoxyCompactList}\small\item\em Return the physx scene associated with this controller. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_aa8e1bbcaf0dc8b08a375476121de5368}\label{classrev_1_1_character_controller_aa8e1bbcaf0dc8b08a375476121de5368}} 
+float \mbox{\hyperlink{classrev_1_1_character_controller_aa8e1bbcaf0dc8b08a375476121de5368}{get\+Step\+Offset}} () const
+\begin{DoxyCompactList}\small\item\em How large a distance the C\+CT can climb over (for boxes). For capsules, it will be a bit larger than this. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a00f852cadee64a0cd2e388ed0415046b}\label{classrev_1_1_character_controller_a00f852cadee64a0cd2e388ed0415046b}} 
+void {\bfseries set\+Step\+Offset} (float offset)
+\item 
+void \mbox{\hyperlink{classrev_1_1_character_controller_afb094036c3828216a35d94d4116ef589}{set\+Unwalkable\+Mode}} (const Walkable\+Flags \&flags)
+\begin{DoxyCompactList}\small\item\em specifies how a C\+CT interacts with non-\/walkable parts. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_ad015a9d99792dca6b19ec232410d917f}\label{classrev_1_1_character_controller_ad015a9d99792dca6b19ec232410d917f}} 
+Walkable\+Flags {\bfseries get\+Unwalkable\+Mode} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a200e81c65f922422e7071130dc044d71}\label{classrev_1_1_character_controller_a200e81c65f922422e7071130dc044d71}} 
+float \mbox{\hyperlink{classrev_1_1_character_controller_a200e81c65f922422e7071130dc044d71}{get\+Contact\+Offset}} () const
+\begin{DoxyCompactList}\small\item\em An additional offset for what constitutes contact with the controller. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_ae29e1674243146f7eb7fac6afc531d2d}\label{classrev_1_1_character_controller_ae29e1674243146f7eb7fac6afc531d2d}} 
+void {\bfseries set\+Contact\+Offset} (float offset)
+\item 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \mbox{\hyperlink{classrev_1_1_character_controller_ada6bfbcc3bb49626a720a09aed9a3fe8}{get\+Up\+Direction}} () const
+\begin{DoxyCompactList}\small\item\em Can be set every frame, allowing the character to navigate on spherical worlds. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a356769dd23ff002829bf826a815a4b32}\label{classrev_1_1_character_controller_a356769dd23ff002829bf826a815a4b32}} 
+void {\bfseries set\+Up\+Direction} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&vec)
+\item 
+float \mbox{\hyperlink{classrev_1_1_character_controller_a6ea84a3fbd399d2e57a8c37b45971cba}{get\+Slope\+Limit}} () const
+\begin{DoxyCompactList}\small\item\em Retrieve the slope limit for the controller. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a5f84850b33838038d18167650a7411b0}\label{classrev_1_1_character_controller_a5f84850b33838038d18167650a7411b0}} 
+void \mbox{\hyperlink{classrev_1_1_character_controller_a5f84850b33838038d18167650a7411b0}{resize}} (float height)
+\begin{DoxyCompactList}\small\item\em Resizes the controller to the given height, moving the center position and preserving the bottom position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a2e553220b3d67d96bf8d01940076f444}\label{classrev_1_1_character_controller_a2e553220b3d67d96bf8d01940076f444}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_character_controller_a2e553220b3d67d96bf8d01940076f444}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a7a63776a7f4624c32b189e1b16c44245}\label{classrev_1_1_character_controller_a7a63776a7f4624c32b189e1b16c44245}} 
+virtual void \mbox{\hyperlink{classrev_1_1_character_controller_a7a63776a7f4624c32b189e1b16c44245}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_character_controller_a208a1325eb383cce3defc1badb5e53c4}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_character_controller_ae897d2d65e41a9dea75dc32e69577b8e}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Constructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_af6f4c692d2de7e386baa4dc6a1f2336f}\label{classrev_1_1_character_controller_af6f4c692d2de7e386baa4dc6a1f2336f}} 
+{\bfseries Character\+Controller} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_controller_description}{Controller\+Description}} $>$ desc, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \&\mbox{\hyperlink{classrev_1_1_character_controller_aafc51e1eb03ebd5f8f86d88b56067a64}{scene\+Object}})
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a7132d905ecf8bc3addbc0fdb771779d2}\label{classrev_1_1_character_controller_a7132d905ecf8bc3addbc0fdb771779d2}} 
+\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$ {\bfseries get\+Engine} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a13a351661fe323d245c7ae4e9d82b429}\label{classrev_1_1_character_controller_a13a351661fe323d245c7ae4e9d82b429}} 
+const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_c_c_t_manager}{C\+C\+T\+Manager}} $>$ \& {\bfseries get\+Manager} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_aafc51e1eb03ebd5f8f86d88b56067a64}\label{classrev_1_1_character_controller_aafc51e1eb03ebd5f8f86d88b56067a64}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \mbox{\hyperlink{classrev_1_1_character_controller_aafc51e1eb03ebd5f8f86d88b56067a64}{scene\+Object}} () const
+\begin{DoxyCompactList}\small\item\em Obtain pointer to this actor\textquotesingle{}s scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_afe9727b269a9d719cd780b8c9c05dabe}\label{classrev_1_1_character_controller_afe9727b269a9d719cd780b8c9c05dabe}} 
+void {\bfseries initialize} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_ac33e4701fb2ea328f026d110517ea4ce}\label{classrev_1_1_character_controller_ac33e4701fb2ea328f026d110517ea4ce}} 
+float \mbox{\hyperlink{classrev_1_1_character_controller_ac33e4701fb2ea328f026d110517ea4ce}{m\+\_\+last\+Time\+In\+Secs}} = 0
+\begin{DoxyCompactList}\small\item\em Last time a move was called. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_ae3d64e64e21b2617021fa56e8743ea8e}\label{classrev_1_1_character_controller_ae3d64e64e21b2617021fa56e8743ea8e}} 
+float \mbox{\hyperlink{classrev_1_1_character_controller_ae3d64e64e21b2617021fa56e8743ea8e}{m\+\_\+min\+Distance}} = 1e-\/6f
+\begin{DoxyCompactList}\small\item\em The minimum distance to consider, anything less will not move the character. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_ab8418cb23af7eb25cac265dfd94e4cbc}\label{classrev_1_1_character_controller_ab8418cb23af7eb25cac265dfd94e4cbc}} 
+std\+::weak\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \mbox{\hyperlink{classrev_1_1_character_controller_ab8418cb23af7eb25cac265dfd94e4cbc}{m\+\_\+scene\+Object}}
+\begin{DoxyCompactList}\small\item\em Weak pointer to the scene that this actor belongs to. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_ac17e4c44dfca188a9569826086e26a65}\label{classrev_1_1_character_controller_ac17e4c44dfca188a9569826086e26a65}} 
+physx\+::\+Px\+Controller $\ast$ {\bfseries m\+\_\+controller}
+\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a3cd59b576eb1ff95ddb1e75e95c3e722}\label{classrev_1_1_character_controller_a3cd59b576eb1ff95ddb1e75e95c3e722}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_controller_description}{Controller\+Description}} $>$ \mbox{\hyperlink{classrev_1_1_character_controller_a3cd59b576eb1ff95ddb1e75e95c3e722}{m\+\_\+description}}
+\begin{DoxyCompactList}\small\item\em The description used to initialize this controller. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_ab3502593a9cecc1c1ed02713bf25f309}\label{classrev_1_1_character_controller_ab3502593a9cecc1c1ed02713bf25f309}} 
+bool {\bfseries m\+\_\+is\+Grounded} = false
+\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a7cf376066e33abd31d8d65ee88a6a597}\label{classrev_1_1_character_controller_a7cf376066e33abd31d8d65ee88a6a597}} 
+float \mbox{\hyperlink{classrev_1_1_character_controller_a7cf376066e33abd31d8d65ee88a6a597}{m\+\_\+height\+Offset}} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em The offset from the scene object height that this capsule has. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a3ec36cc06f258f999b65da51ac6fe3a6}\label{classrev_1_1_character_controller_a3ec36cc06f258f999b65da51ac6fe3a6}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \mbox{\hyperlink{classrev_1_1_character_controller_a3ec36cc06f258f999b65da51ac6fe3a6}{m\+\_\+gravity}} = \{ 0.\+0f, -\/9.\+81f, 0.\+0f \}
+\begin{DoxyCompactList}\small\item\em Enforces gravitational acceleration on the controller. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_ae67e67ad02f33df7de540e94b6dff168}\label{classrev_1_1_character_controller_ae67e67ad02f33df7de540e94b6dff168}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} {\bfseries m\+\_\+fall\+Velocity} = \{ 0.\+0f, 0.\+0f, 0.\+0f \}
+\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a7f46b95703042bb3d08279093e1abdfc}\label{classrev_1_1_character_controller_a7f46b95703042bb3d08279093e1abdfc}} 
+float \mbox{\hyperlink{classrev_1_1_character_controller_a7f46b95703042bb3d08279093e1abdfc}{m\+\_\+terminal\+Velocity}} = 55.\+0f
+\begin{DoxyCompactList}\small\item\em Terminal velocity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_aed3d0fdf6b78428902946828649415c9}\label{classrev_1_1_character_controller_aed3d0fdf6b78428902946828649415c9}} 
+class {\bfseries C\+C\+T\+Manager}
+\item 
+\mbox{\Hypertarget{classrev_1_1_character_controller_a139cf05ac01161b7071c8a037c841683}\label{classrev_1_1_character_controller_a139cf05ac01161b7071c8a037c841683}} 
+class {\bfseries Physics\+Manager}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing a PhysX character controller See\+: \href{https://gameworksdocs.nvidia.com/PhysX/4.0/documentation/PhysXGuide/Manual/CharacterControllers.html}{\texttt{ https\+://gameworksdocs.\+nvidia.\+com/\+Phys\+X/4.\+0/documentation/\+Phys\+X\+Guide/\+Manual/\+Character\+Controllers.\+html}}. 
+
+\subsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{classrev_1_1_character_controller_ac4d525bc4df0feaaef505f1756ca7b11}\label{classrev_1_1_character_controller_ac4d525bc4df0feaaef505f1756ca7b11}} 
+\index{rev::CharacterController@{rev::CharacterController}!CollisionType@{CollisionType}}
+\index{CollisionType@{CollisionType}!rev::CharacterController@{rev::CharacterController}}
+\subsubsection{\texorpdfstring{CollisionType}{CollisionType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classrev_1_1_character_controller_ac4d525bc4df0feaaef505f1756ca7b11}{rev\+::\+Character\+Controller\+::\+Collision\+Type}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{kCollisionSides@{kCollisionSides}!rev::CharacterController@{rev::CharacterController}}\index{rev::CharacterController@{rev::CharacterController}!kCollisionSides@{kCollisionSides}}}\mbox{\Hypertarget{classrev_1_1_character_controller_ac4d525bc4df0feaaef505f1756ca7b11ac7eca2e7cebb02e8106321f80c310f93}\label{classrev_1_1_character_controller_ac4d525bc4df0feaaef505f1756ca7b11ac7eca2e7cebb02e8106321f80c310f93}} 
+k\+Collision\+Sides&Character is colliding to the sides. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{kCollisionUp@{kCollisionUp}!rev::CharacterController@{rev::CharacterController}}\index{rev::CharacterController@{rev::CharacterController}!kCollisionUp@{kCollisionUp}}}\mbox{\Hypertarget{classrev_1_1_character_controller_ac4d525bc4df0feaaef505f1756ca7b11aa5592839aacc369330934ada3ff8483f}\label{classrev_1_1_character_controller_ac4d525bc4df0feaaef505f1756ca7b11aa5592839aacc369330934ada3ff8483f}} 
+k\+Collision\+Up&Character has collision above. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{kCollisionDown@{kCollisionDown}!rev::CharacterController@{rev::CharacterController}}\index{rev::CharacterController@{rev::CharacterController}!kCollisionDown@{kCollisionDown}}}\mbox{\Hypertarget{classrev_1_1_character_controller_ac4d525bc4df0feaaef505f1756ca7b11ad588d108901ee34272b13175ff385c4d}\label{classrev_1_1_character_controller_ac4d525bc4df0feaaef505f1756ca7b11ad588d108901ee34272b13175ff385c4d}} 
+k\+Collision\+Down&Character has collision below. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_character_controller_a208a1325eb383cce3defc1badb5e53c4}\label{classrev_1_1_character_controller_a208a1325eb383cce3defc1badb5e53c4}} 
+\index{rev::CharacterController@{rev::CharacterController}!className@{className}}
+\index{className@{className}!rev::CharacterController@{rev::CharacterController}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Character\+Controller\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_character_controller_af8f6c4f320f1808326dc4b13b6c056d5}\label{classrev_1_1_character_controller_af8f6c4f320f1808326dc4b13b6c056d5}} 
+\index{rev::CharacterController@{rev::CharacterController}!getFootPosition@{getFootPosition}}
+\index{getFootPosition@{getFootPosition}!rev::CharacterController@{rev::CharacterController}}
+\subsubsection{\texorpdfstring{getFootPosition()}{getFootPosition()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_vector}{Vector3d}} rev\+::\+Character\+Controller\+::get\+Foot\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get position at the bottom-\/center of the controller. 
+
+Note, takes the contact offset into account \mbox{\Hypertarget{classrev_1_1_character_controller_a6ea84a3fbd399d2e57a8c37b45971cba}\label{classrev_1_1_character_controller_a6ea84a3fbd399d2e57a8c37b45971cba}} 
+\index{rev::CharacterController@{rev::CharacterController}!getSlopeLimit@{getSlopeLimit}}
+\index{getSlopeLimit@{getSlopeLimit}!rev::CharacterController@{rev::CharacterController}}
+\subsubsection{\texorpdfstring{getSlopeLimit()}{getSlopeLimit()}}
+{\footnotesize\ttfamily float rev\+::\+Character\+Controller\+::get\+Slope\+Limit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retrieve the slope limit for the controller. 
+
+This limit cannot be set at runtime. Changes will have no effect \mbox{\Hypertarget{classrev_1_1_character_controller_ada6bfbcc3bb49626a720a09aed9a3fe8}\label{classrev_1_1_character_controller_ada6bfbcc3bb49626a720a09aed9a3fe8}} 
+\index{rev::CharacterController@{rev::CharacterController}!getUpDirection@{getUpDirection}}
+\index{getUpDirection@{getUpDirection}!rev::CharacterController@{rev::CharacterController}}
+\subsubsection{\texorpdfstring{getUpDirection()}{getUpDirection()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} rev\+::\+Character\+Controller\+::get\+Up\+Direction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Can be set every frame, allowing the character to navigate on spherical worlds. 
+
+Note that this effectively rotates the controller, which may cause it to clip through geometry \mbox{\Hypertarget{classrev_1_1_character_controller_ae36c3695f38bc82cce6e96478879719b}\label{classrev_1_1_character_controller_ae36c3695f38bc82cce6e96478879719b}} 
+\index{rev::CharacterController@{rev::CharacterController}!move@{move}}
+\index{move@{move}!rev::CharacterController@{rev::CharacterController}}
+\subsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily Controller\+Collision\+Flags rev\+::\+Character\+Controller\+::move (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{displacement }\end{DoxyParamCaption})}
+
+
+
+Move the controller, while checking for collisions. 
+
+Elapsed time is time elapsed since the last move call \mbox{\Hypertarget{classrev_1_1_character_controller_ae897d2d65e41a9dea75dc32e69577b8e}\label{classrev_1_1_character_controller_ae897d2d65e41a9dea75dc32e69577b8e}} 
+\index{rev::CharacterController@{rev::CharacterController}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::CharacterController@{rev::CharacterController}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Character\+Controller\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_character_controller_afb094036c3828216a35d94d4116ef589}\label{classrev_1_1_character_controller_afb094036c3828216a35d94d4116ef589}} 
+\index{rev::CharacterController@{rev::CharacterController}!setUnwalkableMode@{setUnwalkableMode}}
+\index{setUnwalkableMode@{setUnwalkableMode}!rev::CharacterController@{rev::CharacterController}}
+\subsubsection{\texorpdfstring{setUnwalkableMode()}{setUnwalkableMode()}}
+{\footnotesize\ttfamily void rev\+::\+Character\+Controller\+::set\+Unwalkable\+Mode (\begin{DoxyParamCaption}\item[{const Walkable\+Flags \&}]{flags }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+specifies how a C\+CT interacts with non-\/walkable parts. 
+
+This is only used when slope\+Limit is non zero. It is currently enabled for static actors only, and not supported for spheres or capsules. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Character\+Controller.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Character\+Controller.\+cpp\end{DoxyCompactItemize}

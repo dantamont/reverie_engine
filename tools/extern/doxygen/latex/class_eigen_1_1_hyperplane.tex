@@ -1,0 +1,399 @@
+\hypertarget{class_eigen_1_1_hyperplane}{}\section{Eigen\+::Hyperplane$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$ Class Template Reference}
+\label{class_eigen_1_1_hyperplane}\index{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+
+
+A hyperplane.  
+
+
+
+
+{\ttfamily \#include $<$Hyperplane.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hyperplane_a6be3e54ea53f7aca303ff9c73c3e4e14}\label{class_eigen_1_1_hyperplane_a6be3e54ea53f7aca303ff9c73c3e4e14}} 
+enum \{ {\bfseries Ambient\+Dim\+At\+Compile\+Time} = \+\_\+\+Ambient\+Dim, 
+{\bfseries Options} = \+\_\+\+Options
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hyperplane_af1aa9421d2b1343c424e675fcd9641c9}\label{class_eigen_1_1_hyperplane_af1aa9421d2b1343c424e675fcd9641c9}} 
+typedef \+\_\+\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hyperplane_a4bf4955ffbff8fb96066f692d73a535e}\label{class_eigen_1_1_hyperplane_a4bf4955ffbff8fb96066f692d73a535e}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ Scalar $>$\+::Real {\bfseries Real\+Scalar}
+\item 
+typedef Eigen\+::\+Index \mbox{\hyperlink{class_eigen_1_1_hyperplane_a58d2307d16128a0026021374e9e10465}{Index}}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hyperplane_af948b12829ad66df7a5fbdd3dce5c483}\label{class_eigen_1_1_hyperplane_af948b12829ad66df7a5fbdd3dce5c483}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, Ambient\+Dim\+At\+Compile\+Time, 1 $>$ {\bfseries Vector\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hyperplane_adc54db10232ea442c4ded091e085ee10}\label{class_eigen_1_1_hyperplane_adc54db10232ea442c4ded091e085ee10}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, \mbox{\hyperlink{class_eigen_1_1_hyperplane_a58d2307d16128a0026021374e9e10465}{Index}}(Ambient\+Dim\+At\+Compile\+Time)==Dynamic ? Dynamic \+:\mbox{\hyperlink{class_eigen_1_1_hyperplane_a58d2307d16128a0026021374e9e10465}{Index}}(Ambient\+Dim\+At\+Compile\+Time)+1, 1, Options $>$ {\bfseries Coefficients}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hyperplane_aa738ab4416b659b642497c6939f6bfbb}\label{class_eigen_1_1_hyperplane_aa738ab4416b659b642497c6939f6bfbb}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$ \mbox{\hyperlink{class_eigen_1_1_matrix}{Coefficients}}, Ambient\+Dim\+At\+Compile\+Time, 1 $>$ {\bfseries Normal\+Return\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hyperplane_a3086b4e4a1db0904d6b4259db999da60}\label{class_eigen_1_1_hyperplane_a3086b4e4a1db0904d6b4259db999da60}} 
+typedef const \mbox{\hyperlink{class_eigen_1_1_block}{Block}}$<$ const \mbox{\hyperlink{class_eigen_1_1_matrix}{Coefficients}}, Ambient\+Dim\+At\+Compile\+Time, 1 $>$ {\bfseries Const\+Normal\+Return\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_hyperplane_a98d2a770332eec864a897a8ef5bb6025}{Hyperplane}} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hyperplane_a58fb83b9f2803be5f11fe13f4d37bf23}\label{class_eigen_1_1_hyperplane_a58fb83b9f2803be5f11fe13f4d37bf23}} 
+{\footnotesize template$<$int Other\+Options$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC {\bfseries Hyperplane} (const \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}}$<$ Scalar, Ambient\+Dim\+At\+Compile\+Time, Other\+Options $>$ \&other)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_hyperplane_a9d99b8b94daa237d51e078e85fe02e2b}{Hyperplane}} (\mbox{\hyperlink{class_eigen_1_1_hyperplane_a58d2307d16128a0026021374e9e10465}{Index}} \+\_\+dim)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_hyperplane_a4ffbf274b428ed80ccb1041db753df74}{Hyperplane}} (const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&n, const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&e)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_hyperplane_a1375e9d62e54a5ada49b6367ee2eaa8d}{Hyperplane}} (const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&n, const Scalar \&d)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_hyperplane_ab0096b58dd2a7d4e5c5d66e824c3b657}{Hyperplane}} (const \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Parametrized\+Line}}$<$ Scalar, Ambient\+Dim\+At\+Compile\+Time $>$ \&parametrized)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_hyperplane_a58d2307d16128a0026021374e9e10465}{Index}} \mbox{\hyperlink{class_eigen_1_1_hyperplane_a44f0dab75a838cdadf1df9150648b8ed}{dim}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void \mbox{\hyperlink{class_eigen_1_1_hyperplane_ac12d2a82db8f058f01b2de92d55a65e6}{normalize}} (void)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Scalar \mbox{\hyperlink{class_eigen_1_1_hyperplane_a928f4f8a7c2eb339fe8c931824d0a8c8}{signed\+Distance}} (const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&p) const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Scalar \mbox{\hyperlink{class_eigen_1_1_hyperplane_a95047840f0caed0bcb4f3ead9215d7b8}{abs\+Distance}} (const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&p) const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \mbox{\hyperlink{class_eigen_1_1_hyperplane_af74c608806686a6bd2a96a8d7e5e0247}{projection}} (const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&p) const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_block}{Const\+Normal\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_hyperplane_ad3da930fc7025604f2f174651089b2a8}{normal}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_block}{Normal\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_hyperplane_aadb7e69a0c18d532dae200e146da4258}{normal}} ()
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const Scalar \& \mbox{\hyperlink{class_eigen_1_1_hyperplane_afe2eadf3679e4a802c0e02c15049aed9}{offset}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Scalar \& \mbox{\hyperlink{class_eigen_1_1_hyperplane_afd7e3b9a09ba528523ddc4bac7555dbd}{offset}} ()
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_matrix}{Coefficients}} \& \mbox{\hyperlink{class_eigen_1_1_hyperplane_ae9e0a6a6a2c1643a788770dd08e89b3f}{coeffs}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix}{Coefficients}} \& \mbox{\hyperlink{class_eigen_1_1_hyperplane_a78975a8404b60f9eb032a80c6827338a}{coeffs}} ()
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \mbox{\hyperlink{class_eigen_1_1_hyperplane_a9cb359548dd43991c372935f6bc3df61}{intersection}} (const \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}} \&other) const
+\item 
+{\footnotesize template$<$typename Xpr\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}} \& \mbox{\hyperlink{class_eigen_1_1_hyperplane_a44d7ad009a496f78636ce69f611f2003}{transform}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Xpr\+Type $>$ \&mat, \mbox{\hyperlink{group__enums_gaee59a86102f150923b0cac6d4ff05107}{Transform\+Traits}} traits=Affine)
+\item 
+{\footnotesize template$<$int Tr\+Options$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}} \& \mbox{\hyperlink{class_eigen_1_1_hyperplane_a1705f330bad337dc4a62814b5f9c4af1}{transform}} (const \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ Scalar, Ambient\+Dim\+At\+Compile\+Time, Affine, Tr\+Options $>$ \&t, \mbox{\hyperlink{group__enums_gaee59a86102f150923b0cac6d4ff05107}{Transform\+Traits}} traits=Affine)
+\item 
+{\footnotesize template$<$typename New\+Scalar\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1cast__return__type}{internal\+::cast\+\_\+return\+\_\+type}}$<$ \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}}, \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}}$<$ New\+Scalar\+Type, Ambient\+Dim\+At\+Compile\+Time, Options $>$ $>$\+::type \mbox{\hyperlink{class_eigen_1_1_hyperplane_aa3b0071864745e33f3a7b75bb308bd46}{cast}} () const
+\item 
+{\footnotesize template$<$typename Other\+Scalar\+Type , int Other\+Options$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_hyperplane_ad4c2c28d6a4c74218c788094ed072264}{Hyperplane}} (const \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}}$<$ Other\+Scalar\+Type, Ambient\+Dim\+At\+Compile\+Time, Other\+Options $>$ \&other)
+\item 
+{\footnotesize template$<$int Other\+Options$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC bool \mbox{\hyperlink{class_eigen_1_1_hyperplane_a544f8466e85e4b95e1848dccf6015d23}{is\+Approx}} (const \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}}$<$ Scalar, Ambient\+Dim\+At\+Compile\+Time, Other\+Options $>$ \&other, const typename \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ Scalar $>$\+::Real \&prec=\mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ Scalar $>$\+::dummy\+\_\+precision()) const
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}} \mbox{\hyperlink{class_eigen_1_1_hyperplane_ae0e7dc262623fc937b1b051595b8d3f1}{Through}} (const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&p0, const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&p1)
+\item 
+static E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}} \mbox{\hyperlink{class_eigen_1_1_hyperplane_ae105a4f5f2252069b1b1251207dca4e0}{Through}} (const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&p0, const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&p1, const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&p2)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_hyperplane_a05804798a9f1d9bcda2a0a9757d16acd}\label{class_eigen_1_1_hyperplane_a05804798a9f1d9bcda2a0a9757d16acd}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Coefficients}} {\bfseries m\+\_\+coeffs}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$\newline
+class Eigen\+::\+Hyperplane$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$}
+
+A hyperplane. 
+
+\textbackslash{}geometry\+\_\+module
+
+A hyperplane is an affine subspace of dimension n-\/1 in a space of dimension n. For example, a hyperplane in a plane is a line; a hyperplane in 3-\/space is a plane.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Scalar} & the scalar type, i.\+e., the type of the coefficients \\
+\hline
+{\em \+\_\+\+Ambient\+Dim} & the dimension of the ambient space, can be a compile time value or Dynamic. Notice that the dimension of the hyperplane is \+\_\+\+Ambient\+Dim-\/1.\\
+\hline
+\end{DoxyTemplParams}
+This class represents an hyperplane as the zero set of the implicit equation $ n \cdot x + d = 0 $ where $ n $ is a unit normal vector of the plane (linear part) and $ d $ is the distance (offset) to the origin. 
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_hyperplane_a58d2307d16128a0026021374e9e10465}\label{class_eigen_1_1_hyperplane_a58d2307d16128a0026021374e9e10465}} 
+\index{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}!Index@{Index}}
+\index{Index@{Index}!Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{Index}{Index}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+typedef Eigen\+::\+Index \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Eigen\+::\+Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::\mbox{\hyperlink{class_eigen_1_1_hyperplane_a58d2307d16128a0026021374e9e10465}{Index}}}
+
+\begin{DoxyRefDesc}{Deprecated}
+\item[\mbox{\hyperlink{deprecated__deprecated000028}{Deprecated}}]since Eigen 3.\+3 \end{DoxyRefDesc}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_hyperplane_a98d2a770332eec864a897a8ef5bb6025}\label{class_eigen_1_1_hyperplane_a98d2a770332eec864a897a8ef5bb6025}} 
+\index{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}!Hyperplane@{Hyperplane}}
+\index{Hyperplane@{Hyperplane}!Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{Hyperplane()}{Hyperplane()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Eigen\+::\+Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::\mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default constructor without initialization \mbox{\Hypertarget{class_eigen_1_1_hyperplane_a9d99b8b94daa237d51e078e85fe02e2b}\label{class_eigen_1_1_hyperplane_a9d99b8b94daa237d51e078e85fe02e2b}} 
+\index{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}!Hyperplane@{Hyperplane}}
+\index{Hyperplane@{Hyperplane}!Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{Hyperplane()}{Hyperplane()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Eigen\+::\+Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::\mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_hyperplane_a58d2307d16128a0026021374e9e10465}{Index}}}]{\+\_\+dim }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Constructs a dynamic-\/size hyperplane with {\itshape \+\_\+dim} the dimension of the ambient space \mbox{\Hypertarget{class_eigen_1_1_hyperplane_a4ffbf274b428ed80ccb1041db753df74}\label{class_eigen_1_1_hyperplane_a4ffbf274b428ed80ccb1041db753df74}} 
+\index{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}!Hyperplane@{Hyperplane}}
+\index{Hyperplane@{Hyperplane}!Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{Hyperplane()}{Hyperplane()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Eigen\+::\+Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::\mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&}]{n,  }\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Construct a plane from its normal {\itshape n} and a point {\itshape e} onto the plane. \begin{DoxyWarning}{Warning}
+the vector normal is assumed to be normalized. 
+\end{DoxyWarning}
+\mbox{\Hypertarget{class_eigen_1_1_hyperplane_a1375e9d62e54a5ada49b6367ee2eaa8d}\label{class_eigen_1_1_hyperplane_a1375e9d62e54a5ada49b6367ee2eaa8d}} 
+\index{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}!Hyperplane@{Hyperplane}}
+\index{Hyperplane@{Hyperplane}!Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{Hyperplane()}{Hyperplane()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Eigen\+::\+Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::\mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&}]{n,  }\item[{const Scalar \&}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructs a plane from its normal {\itshape n} and distance to the origin {\itshape d} such that the algebraic equation of the plane is $ n \cdot x + d = 0 $. \begin{DoxyWarning}{Warning}
+the vector normal is assumed to be normalized. 
+\end{DoxyWarning}
+\mbox{\Hypertarget{class_eigen_1_1_hyperplane_ab0096b58dd2a7d4e5c5d66e824c3b657}\label{class_eigen_1_1_hyperplane_ab0096b58dd2a7d4e5c5d66e824c3b657}} 
+\index{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}!Hyperplane@{Hyperplane}}
+\index{Hyperplane@{Hyperplane}!Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{Hyperplane()}{Hyperplane()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Eigen\+::\+Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::\mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Parametrized\+Line}}$<$ Scalar, Ambient\+Dim\+At\+Compile\+Time $>$ \&}]{parametrized }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Constructs a hyperplane passing through the parametrized line {\itshape parametrized}. If the dimension of the ambient space is greater than 2, then there isn\textquotesingle{}t uniqueness, so an arbitrary choice is made. \mbox{\Hypertarget{class_eigen_1_1_hyperplane_ad4c2c28d6a4c74218c788094ed072264}\label{class_eigen_1_1_hyperplane_ad4c2c28d6a4c74218c788094ed072264}} 
+\index{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}!Hyperplane@{Hyperplane}}
+\index{Hyperplane@{Hyperplane}!Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{Hyperplane()}{Hyperplane()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+template$<$typename Other\+Scalar\+Type , int Other\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Eigen\+::\+Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::\mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}}$<$ Other\+Scalar\+Type, Ambient\+Dim\+At\+Compile\+Time, Other\+Options $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Copy constructor with scalar type conversion 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_hyperplane_a95047840f0caed0bcb4f3ead9215d7b8}\label{class_eigen_1_1_hyperplane_a95047840f0caed0bcb4f3ead9215d7b8}} 
+\index{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}!absDistance@{absDistance}}
+\index{absDistance@{absDistance}!Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{absDistance()}{absDistance()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Scalar \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Eigen\+::\+Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::abs\+Distance (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&}]{p }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the absolute distance between the plane {\ttfamily $\ast$this} and a point {\itshape p}. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_hyperplane_a928f4f8a7c2eb339fe8c931824d0a8c8}{signed\+Distance()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_hyperplane_aa3b0071864745e33f3a7b75bb308bd46}\label{class_eigen_1_1_hyperplane_aa3b0071864745e33f3a7b75bb308bd46}} 
+\index{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}!cast@{cast}}
+\index{cast@{cast}!Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{cast()}{cast()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+template$<$typename New\+Scalar\+Type $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1cast__return__type}{internal\+::cast\+\_\+return\+\_\+type}}$<$\mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}}, \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}}$<$New\+Scalar\+Type,Ambient\+Dim\+At\+Compile\+Time,Options$>$ $>$\+::type \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Eigen\+::\+Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::cast (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily $\ast$this} with scalar type casted to {\itshape New\+Scalar\+Type} 
+\end{DoxyReturn}
+Note that if {\itshape New\+Scalar\+Type} is equal to the current scalar type of {\ttfamily $\ast$this} then this function smartly returns a const reference to {\ttfamily $\ast$this}. \mbox{\Hypertarget{class_eigen_1_1_hyperplane_ae9e0a6a6a2c1643a788770dd08e89b3f}\label{class_eigen_1_1_hyperplane_ae9e0a6a6a2c1643a788770dd08e89b3f}} 
+\index{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}!coeffs@{coeffs}}
+\index{coeffs@{coeffs}!Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{coeffs()}{coeffs()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_matrix}{Coefficients}}\& \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Eigen\+::\+Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::coeffs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a constant reference to the coefficients c\+\_\+i of the plane equation\+: $ c_0*x_0 + ... + c_{d-1}*x_{d-1} + c_d = 0 $ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_hyperplane_a78975a8404b60f9eb032a80c6827338a}\label{class_eigen_1_1_hyperplane_a78975a8404b60f9eb032a80c6827338a}} 
+\index{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}!coeffs@{coeffs}}
+\index{coeffs@{coeffs}!Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{coeffs()}{coeffs()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix}{Coefficients}}\& \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Eigen\+::\+Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::coeffs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a non-\/constant reference to the coefficients c\+\_\+i of the plane equation\+: $ c_0*x_0 + ... + c_{d-1}*x_{d-1} + c_d = 0 $ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_hyperplane_a44f0dab75a838cdadf1df9150648b8ed}\label{class_eigen_1_1_hyperplane_a44f0dab75a838cdadf1df9150648b8ed}} 
+\index{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}!dim@{dim}}
+\index{dim@{dim}!Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{dim()}{dim()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_hyperplane_a58d2307d16128a0026021374e9e10465}{Index}} \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Eigen\+::\+Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::dim (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the dimension in which the plane holds 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_hyperplane_a9cb359548dd43991c372935f6bc3df61}\label{class_eigen_1_1_hyperplane_a9cb359548dd43991c372935f6bc3df61}} 
+\index{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}!intersection@{intersection}}
+\index{intersection@{intersection}!Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{intersection()}{intersection()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Eigen\+::\+Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::intersection (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the intersection of $\ast$this with {\itshape other}.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+The ambient space must be a plane, i.\+e. have dimension 2, so that {\ttfamily $\ast$this} and {\itshape other} are lines.
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+If {\itshape other} is approximately parallel to $\ast$this, this method will return any point on $\ast$this. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_eigen_1_1_hyperplane_a544f8466e85e4b95e1848dccf6015d23}\label{class_eigen_1_1_hyperplane_a544f8466e85e4b95e1848dccf6015d23}} 
+\index{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}!isApprox@{isApprox}}
+\index{isApprox@{isApprox}!Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{isApprox()}{isApprox()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+template$<$int Other\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC bool \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Eigen\+::\+Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::is\+Approx (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}}$<$ Scalar, Ambient\+Dim\+At\+Compile\+Time, Other\+Options $>$ \&}]{other,  }\item[{const typename \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ Scalar $>$\+::Real \&}]{prec = {\ttfamily \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$Scalar$>$\+:\+:dummy\+\_\+precision()} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if {\ttfamily $\ast$this} is approximately equal to {\itshape other}, within the precision determined by {\itshape prec}.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+Matrix\+Base\+::is\+Approx() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_hyperplane_ad3da930fc7025604f2f174651089b2a8}\label{class_eigen_1_1_hyperplane_ad3da930fc7025604f2f174651089b2a8}} 
+\index{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}!normal@{normal}}
+\index{normal@{normal}!Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{normal()}{normal()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_block}{Const\+Normal\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Eigen\+::\+Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::normal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a constant reference to the unit normal vector of the plane, which corresponds to the linear part of the implicit equation. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_hyperplane_aadb7e69a0c18d532dae200e146da4258}\label{class_eigen_1_1_hyperplane_aadb7e69a0c18d532dae200e146da4258}} 
+\index{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}!normal@{normal}}
+\index{normal@{normal}!Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{normal()}{normal()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_block}{Normal\+Return\+Type}} \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Eigen\+::\+Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::normal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a non-\/constant reference to the unit normal vector of the plane, which corresponds to the linear part of the implicit equation. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_hyperplane_ac12d2a82db8f058f01b2de92d55a65e6}\label{class_eigen_1_1_hyperplane_ac12d2a82db8f058f01b2de92d55a65e6}} 
+\index{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}!normalize@{normalize}}
+\index{normalize@{normalize}!Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{normalize()}{normalize()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Eigen\+::\+Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::normalize (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+normalizes {\ttfamily $\ast$this} \mbox{\Hypertarget{class_eigen_1_1_hyperplane_afe2eadf3679e4a802c0e02c15049aed9}\label{class_eigen_1_1_hyperplane_afe2eadf3679e4a802c0e02c15049aed9}} 
+\index{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}!offset@{offset}}
+\index{offset@{offset}!Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{offset()}{offset()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const Scalar\& \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Eigen\+::\+Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::offset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the distance to the origin, which is also the \char`\"{}constant term\char`\"{} of the implicit equation 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+the vector normal is assumed to be normalized. 
+\end{DoxyWarning}
+\mbox{\Hypertarget{class_eigen_1_1_hyperplane_afd7e3b9a09ba528523ddc4bac7555dbd}\label{class_eigen_1_1_hyperplane_afd7e3b9a09ba528523ddc4bac7555dbd}} 
+\index{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}!offset@{offset}}
+\index{offset@{offset}!Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{offset()}{offset()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Scalar\& \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Eigen\+::\+Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::offset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a non-\/constant reference to the distance to the origin, which is also the constant part of the implicit equation 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_hyperplane_af74c608806686a6bd2a96a8d7e5e0247}\label{class_eigen_1_1_hyperplane_af74c608806686a6bd2a96a8d7e5e0247}} 
+\index{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}!projection@{projection}}
+\index{projection@{projection}!Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{projection()}{projection()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Eigen\+::\+Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::projection (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&}]{p }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the projection of a point {\itshape p} onto the plane {\ttfamily $\ast$this}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_hyperplane_a928f4f8a7c2eb339fe8c931824d0a8c8}\label{class_eigen_1_1_hyperplane_a928f4f8a7c2eb339fe8c931824d0a8c8}} 
+\index{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}!signedDistance@{signedDistance}}
+\index{signedDistance@{signedDistance}!Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{signedDistance()}{signedDistance()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Scalar \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Eigen\+::\+Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::signed\+Distance (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&}]{p }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the signed distance between the plane {\ttfamily $\ast$this} and a point {\itshape p}. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_hyperplane_a95047840f0caed0bcb4f3ead9215d7b8}{abs\+Distance()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_hyperplane_ae0e7dc262623fc937b1b051595b8d3f1}\label{class_eigen_1_1_hyperplane_ae0e7dc262623fc937b1b051595b8d3f1}} 
+\index{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}!Through@{Through}}
+\index{Through@{Through}!Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{Through()}{Through()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+static E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}} \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Eigen\+::\+Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::Through (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&}]{p0,  }\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&}]{p1 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Constructs a hyperplane passing through the two points. If the dimension of the ambient space is greater than 2, then there isn\textquotesingle{}t uniqueness, so an arbitrary choice is made. \mbox{\Hypertarget{class_eigen_1_1_hyperplane_ae105a4f5f2252069b1b1251207dca4e0}\label{class_eigen_1_1_hyperplane_ae105a4f5f2252069b1b1251207dca4e0}} 
+\index{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}!Through@{Through}}
+\index{Through@{Through}!Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{Through()}{Through()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+static E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}} \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Eigen\+::\+Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::Through (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&}]{p0,  }\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&}]{p1,  }\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&}]{p2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Constructs a hyperplane passing through the three points. The dimension of the ambient space is required to be exactly 3. \mbox{\Hypertarget{class_eigen_1_1_hyperplane_a44d7ad009a496f78636ce69f611f2003}\label{class_eigen_1_1_hyperplane_a44d7ad009a496f78636ce69f611f2003}} 
+\index{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}!transform@{transform}}
+\index{transform@{transform}!Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{transform()}{transform()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+template$<$typename Xpr\+Type $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}}\& \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Eigen\+::\+Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::transform (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Xpr\+Type $>$ \&}]{mat,  }\item[{\mbox{\hyperlink{group__enums_gaee59a86102f150923b0cac6d4ff05107}{Transform\+Traits}}}]{traits = {\ttfamily Affine} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Applies the transformation matrix {\itshape mat} to {\ttfamily $\ast$this} and returns a reference to {\ttfamily $\ast$this}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em mat} & the Dim x Dim transformation matrix \\
+\hline
+{\em traits} & specifies whether the matrix {\itshape mat} represents an \#\+Isometry or a more generic \#\+Affine transformation. The default is \#\+Affine. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_eigen_1_1_hyperplane_a1705f330bad337dc4a62814b5f9c4af1}\label{class_eigen_1_1_hyperplane_a1705f330bad337dc4a62814b5f9c4af1}} 
+\index{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}!transform@{transform}}
+\index{transform@{transform}!Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::Hyperplane$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{transform()}{transform()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+template$<$int Tr\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}}\& \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Eigen\+::\+Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::transform (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ Scalar, Ambient\+Dim\+At\+Compile\+Time, Affine, Tr\+Options $>$ \&}]{t,  }\item[{\mbox{\hyperlink{group__enums_gaee59a86102f150923b0cac6d4ff05107}{Transform\+Traits}}}]{traits = {\ttfamily Affine} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Applies the transformation {\itshape t} to {\ttfamily $\ast$this} and returns a reference to {\ttfamily $\ast$this}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & the transformation of dimension Dim \\
+\hline
+{\em traits} & specifies whether the transformation {\itshape t} represents an \#\+Isometry or a more generic \#\+Affine transformation. The default is \#\+Affine. Other kind of transformations are not supported. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Core/util/Forward\+Declarations.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Geometry/Hyperplane.\+h\end{DoxyCompactItemize}

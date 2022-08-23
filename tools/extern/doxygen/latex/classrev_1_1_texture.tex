@@ -1,0 +1,387 @@
+\hypertarget{classrev_1_1_texture}{}\section{rev\+::Texture Class Reference}
+\label{classrev_1_1_texture}\index{rev::Texture@{rev::Texture}}
+
+
+Open\+GL texture @detailed Adds some convenience functions and presets.  
+
+
+
+
+{\ttfamily \#include $<$G\+Texture.\+h$>$}
+
+Inheritance diagram for rev\+::Texture\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classrev_1_1_texture}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_texture_a89d334db38d5630ea2873c6dea9d3b9c}\label{classrev_1_1_texture_a89d334db38d5630ea2873c6dea9d3b9c}} 
+{\bfseries Texture} (uint32\+\_\+t width, uint32\+\_\+t height, Texture\+Target\+Type target\+Type=Texture\+Target\+Type\+::k2D, Texture\+Usage\+Type type=Texture\+Usage\+Type\+::k\+None, Texture\+Filter min\+Filter=Texture\+Filter\+::k\+Linear\+Mip\+Map\+Linear, Texture\+Filter mag\+Filter=Texture\+Filter\+::k\+Linear\+Mip\+Map\+Linear, Texture\+Wrap\+Mode wrap\+Mode=Texture\+Wrap\+Mode\+::k\+Repeat, Texture\+Format format=Texture\+Format\+::k\+R\+G\+B\+A8, uint32\+\_\+t depth=1)
+\item 
+\mbox{\Hypertarget{classrev_1_1_texture_a4963fa672a5452a0840bea76df8635ee}\label{classrev_1_1_texture_a4963fa672a5452a0840bea76df8635ee}} 
+virtual {\bfseries $\sim$\+Texture} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_texture_a879821f7ed1d75d12f008e3f62ffa98e}\label{classrev_1_1_texture_a879821f7ed1d75d12f008e3f62ffa98e}} 
+virtual Resource\+Type \mbox{\hyperlink{classrev_1_1_texture_a879821f7ed1d75d12f008e3f62ffa98e}{get\+Resource\+Type}} () const override
+\begin{DoxyCompactList}\small\item\em Get the type of resource stored by this handle. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_texture_aa908bdb779ed8ccf35b54ad15dff23fa}\label{classrev_1_1_texture_aa908bdb779ed8ccf35b54ad15dff23fa}} 
+void \mbox{\hyperlink{classrev_1_1_texture_aa908bdb779ed8ccf35b54ad15dff23fa}{generate\+Mip\+Maps}} (bool gen)
+\begin{DoxyCompactList}\small\item\em Set to generate mip maps. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_texture_a45232a3c367d1a03a8affcc68db9643f}\label{classrev_1_1_texture_a45232a3c367d1a03a8affcc68db9643f}} 
+bool \mbox{\hyperlink{classrev_1_1_texture_a45232a3c367d1a03a8affcc68db9643f}{is\+Created}} () const
+\begin{DoxyCompactList}\small\item\em Whether or not the texture is created in Open\+GL. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_texture_ae4201927485626f9e7b6fbb989ce869f}\label{classrev_1_1_texture_ae4201927485626f9e7b6fbb989ce869f}} 
+bool {\bfseries has\+Mip\+Maps} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_texture_a15eddb8a87e8d7edfd4770001476994d}\label{classrev_1_1_texture_a15eddb8a87e8d7edfd4770001476994d}} 
+uint32\+\_\+t {\bfseries height} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_texture_aa66e2944cf29b24888bc36a795fc2497}\label{classrev_1_1_texture_aa66e2944cf29b24888bc36a795fc2497}} 
+uint32\+\_\+t {\bfseries width} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_texture_a7a03d22f7e3a4a357222197c6782bdf2}\label{classrev_1_1_texture_a7a03d22f7e3a4a357222197c6782bdf2}} 
+uint32\+\_\+t {\bfseries depth} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_texture_abdae8735cccb4f5f071312f7bcd5fab9}\label{classrev_1_1_texture_abdae8735cccb4f5f071312f7bcd5fab9}} 
+G\+Luint \mbox{\hyperlink{classrev_1_1_texture_abdae8735cccb4f5f071312f7bcd5fab9}{get\+ID}} ()
+\begin{DoxyCompactList}\small\item\em Return GL ID of the texture. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_texture_ad9a85dedd1ec52b99f396c7eeb20d234}\label{classrev_1_1_texture_ad9a85dedd1ec52b99f396c7eeb20d234}} 
+Texture\+Usage\+Type {\bfseries get\+Usage\+Type} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_texture_adc17f7521dd4f082c9eeebc3b7ce9df9}\label{classrev_1_1_texture_adc17f7521dd4f082c9eeebc3b7ce9df9}} 
+void {\bfseries set\+Usage\+Type} (const Texture\+Usage\+Type \&type)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_texture_aaac56d342bf3683b1cc7cbf77ea7f533}\label{classrev_1_1_texture_aaac56d342bf3683b1cc7cbf77ea7f533}} 
+\mbox{\hyperlink{classrev_1_1_image}{Image}} \mbox{\hyperlink{classrev_1_1_texture_aaac56d342bf3683b1cc7cbf77ea7f533}{get\+Image}} (Pixel\+Format format, Pixel\+Type pixel\+Type, Texture\+Format tex\+Format=Texture\+Format\+::k\+R\+G\+B\+A8) const
+\begin{DoxyCompactList}\small\item\em Return a Q\+Image of the texture. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_texture_a5cdb57e204c7cc1d2cfdf391751844d5}\label{classrev_1_1_texture_a5cdb57e204c7cc1d2cfdf391751844d5}} 
+\mbox{\hyperlink{structrev_1_1_texture_data}{Texture\+Data}} \mbox{\hyperlink{classrev_1_1_texture_a5cdb57e204c7cc1d2cfdf391751844d5}{as\+Texdata}} () const
+\begin{DoxyCompactList}\small\item\em Return as texture data. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_texture_a6f138dc148be2885fd18e15689169026}\label{classrev_1_1_texture_a6f138dc148be2885fd18e15689169026}} 
+void \mbox{\hyperlink{classrev_1_1_texture_a6f138dc148be2885fd18e15689169026}{get\+Data}} (void $\ast$out\+Data, Pixel\+Format format, Pixel\+Type pixel\+Type) const
+\begin{DoxyCompactList}\small\item\em Get data from Open\+GL texture. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_texture_ad9302cb412177bce86cce41d66c9d5e4}\label{classrev_1_1_texture_ad9302cb412177bce86cce41d66c9d5e4}} 
+void \mbox{\hyperlink{classrev_1_1_texture_ad9302cb412177bce86cce41d66c9d5e4}{set\+Data}} (const void $\ast$data, Pixel\+Format format, Pixel\+Type pixel\+Type)
+\begin{DoxyCompactList}\small\item\em Set data in the texture. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_texture_a93784b6ee73a8fa093253e843eeebd9b}\label{classrev_1_1_texture_a93784b6ee73a8fa093253e843eeebd9b}} 
+void \mbox{\hyperlink{classrev_1_1_texture_a93784b6ee73a8fa093253e843eeebd9b}{set\+Border\+Color}} (const \mbox{\hyperlink{classrev_1_1_color}{Color}} \&color)
+\begin{DoxyCompactList}\small\item\em Set border color of the texture. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_texture_a30f599dafc75209703110b96792f6842}{attach}} (\mbox{\hyperlink{classrev_1_1_frame_buffer}{Frame\+Buffer}} \&fbo, int attachment, uint32\+\_\+t depth\+Layer=0)
+\begin{DoxyCompactList}\small\item\em Attach the texture to the specified framebuffer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_texture_af8f877c5a78703dc3152c4ac30887bc7}\label{classrev_1_1_texture_af8f877c5a78703dc3152c4ac30887bc7}} 
+void \mbox{\hyperlink{classrev_1_1_texture_af8f877c5a78703dc3152c4ac30887bc7}{set\+Read\+Mode}} (Depth\+Stencil\+Mode mode)
+\begin{DoxyCompactList}\small\item\em Set read mode to depth or stencil. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_texture_af419afd3e71581892f9697081a683353}\label{classrev_1_1_texture_af419afd3e71581892f9697081a683353}} 
+void {\bfseries set\+Num\+Samples} (uint32\+\_\+t num\+Samples)
+\item 
+\mbox{\Hypertarget{classrev_1_1_texture_ad8b49b0821edca275bc16bae1fe7ea0d}\label{classrev_1_1_texture_ad8b49b0821edca275bc16bae1fe7ea0d}} 
+void {\bfseries set\+Fixed\+Sample\+Locations} (bool fixed)
+\item 
+\mbox{\Hypertarget{classrev_1_1_texture_a70447d1baf43dc4aaa9fa59e41d45dd0}\label{classrev_1_1_texture_a70447d1baf43dc4aaa9fa59e41d45dd0}} 
+void \mbox{\hyperlink{classrev_1_1_texture_a70447d1baf43dc4aaa9fa59e41d45dd0}{bind}} (int tex\+Unit=-\/1) const
+\begin{DoxyCompactList}\small\item\em bind/release the texture \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_texture_aec7c6d8f2992ec309a69f069d6e863cf}\label{classrev_1_1_texture_aec7c6d8f2992ec309a69f069d6e863cf}} 
+void {\bfseries release} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_texture_a261764c4bae8414425818e0ef8d50c71}\label{classrev_1_1_texture_a261764c4bae8414425818e0ef8d50c71}} 
+void \mbox{\hyperlink{classrev_1_1_texture_a261764c4bae8414425818e0ef8d50c71}{on\+Removal}} (\mbox{\hyperlink{classrev_1_1_resource_cache}{Resource\+Cache}} $\ast$cache=nullptr) override
+\begin{DoxyCompactList}\small\item\em Perform on removal of this texture resource. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classrev_1_1_texture_aaa505679ad69f466e6aa9027e0419684}{post\+Construction}} () override
+\begin{DoxyCompactList}\small\item\em What action to perform post-\/construction of the resource. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+{\em Get the image stored in GL }\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_texture_a7f05304af91d3ea7ab923c43d9ad75d1}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_texture_ad26e3169ee1055c346487f0db2f4ce94}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Constructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_texture_a907def25ec00edb9d3fb0fc60bec6235}\label{classrev_1_1_texture_a907def25ec00edb9d3fb0fc60bec6235}} 
+{\bfseries Texture} (const Q\+String \&file\+Path, Texture\+Usage\+Type type=Texture\+Usage\+Type\+::k\+Diffuse)
+\item 
+\mbox{\Hypertarget{classrev_1_1_texture_a3af577797f2b901ab130756637001b7f}\label{classrev_1_1_texture_a3af577797f2b901ab130756637001b7f}} 
+{\bfseries Texture} (const \mbox{\hyperlink{classrev_1_1_image}{Image}} \&image, Texture\+Usage\+Type type=Texture\+Usage\+Type\+::k\+Diffuse, Texture\+Filter min\+Filter=Texture\+Filter\+::k\+Linear, Texture\+Filter max\+Filter=Texture\+Filter\+::k\+Linear, Texture\+Wrap\+Mode wrap\+Mode=Texture\+Wrap\+Mode\+::k\+Repeat, Texture\+Target\+Type target\+Type=Texture\+Target\+Type\+::k2D)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classrev_1_1_texture_a3962635c50e3180fe611e2890f6ab0f7}{flush\+Data}} ()
+\begin{DoxyCompactList}\small\item\em Use cached images to set data for texture in Open\+GL, then clear them. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_texture_af8556538ab8cb513f9bc8340b54dcacf}\label{classrev_1_1_texture_af8556538ab8cb513f9bc8340b54dcacf}} 
+void \mbox{\hyperlink{classrev_1_1_texture_af8556538ab8cb513f9bc8340b54dcacf}{generate\+Mip\+Maps}} ()
+\begin{DoxyCompactList}\small\item\em Generate mip maps for the texture. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_texture_a9514623146b391c499192a5a157fe8f0}\label{classrev_1_1_texture_a9514623146b391c499192a5a157fe8f0}} 
+void \mbox{\hyperlink{classrev_1_1_texture_a9514623146b391c499192a5a157fe8f0}{set\+Texture\+Parameters}} ()
+\begin{DoxyCompactList}\small\item\em Set texture parameters. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_texture_a318f55a46c9642ae4bd56511871ad953}\label{classrev_1_1_texture_a318f55a46c9642ae4bd56511871ad953}} 
+void \mbox{\hyperlink{classrev_1_1_texture_a318f55a46c9642ae4bd56511871ad953}{allocate\+Memory}} ()
+\begin{DoxyCompactList}\small\item\em Allocate memory for texture data. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_texture_ab190ce0cda8c731224857f12e371e014}\label{classrev_1_1_texture_ab190ce0cda8c731224857f12e371e014}} 
+void \mbox{\hyperlink{classrev_1_1_texture_ab190ce0cda8c731224857f12e371e014}{set\+Cost}} ()
+\begin{DoxyCompactList}\small\item\em Determine and memory cost of the texture. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_texture_abe949a44a20c5c2bfb0c9c6b8c4a9968}\label{classrev_1_1_texture_abe949a44a20c5c2bfb0c9c6b8c4a9968}} 
+void \mbox{\hyperlink{classrev_1_1_texture_abe949a44a20c5c2bfb0c9c6b8c4a9968}{destroy}} ()
+\begin{DoxyCompactList}\small\item\em Destroy GL texture. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_texture_ae8b2abcf83183df650df30eefe32a7fc}\label{classrev_1_1_texture_ae8b2abcf83183df650df30eefe32a7fc}} 
+uint32\+\_\+t \mbox{\hyperlink{classrev_1_1_texture_ae8b2abcf83183df650df30eefe32a7fc}{max\+Mip\+Map\+Level}} ()
+\begin{DoxyCompactList}\small\item\em Get max number of mip-\/map levels. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_texture_ac865074da84df91e6f08e0ed066a6f86}\label{classrev_1_1_texture_ac865074da84df91e6f08e0ed066a6f86}} 
+void \mbox{\hyperlink{classrev_1_1_texture_ac865074da84df91e6f08e0ed066a6f86}{initialize}} (const \mbox{\hyperlink{classrev_1_1_image}{Image}} \&img, bool mirror)
+\begin{DoxyCompactList}\small\item\em Initialize the texture\textquotesingle{}s image (N\+OT IN GL) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_texture_a2e91480d3fb0f7658e4d87bdd28b2286}\label{classrev_1_1_texture_a2e91480d3fb0f7658e4d87bdd28b2286}} 
+void {\bfseries initialize} (const Q\+String \&file\+Path)
+\item 
+\mbox{\Hypertarget{classrev_1_1_texture_a5867a6af966a23b82575222239b57fb4}\label{classrev_1_1_texture_a5867a6af966a23b82575222239b57fb4}} 
+void \mbox{\hyperlink{classrev_1_1_texture_a5867a6af966a23b82575222239b57fb4}{initialize\+GL}} ()
+\begin{DoxyCompactList}\small\item\em Initialize the texture in GL. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_texture_aa1212b6e372a0f45d2c01f3cd203af77}\label{classrev_1_1_texture_aa1212b6e372a0f45d2c01f3cd203af77}} 
+class \mbox{\hyperlink{classrev_1_1_texture_aa1212b6e372a0f45d2c01f3cd203af77}{Material}}
+\begin{DoxyCompactList}\small\item\em enable \mbox{\hyperlink{classrev_1_1_material}{Material}} to access members of \mbox{\hyperlink{classrev_1_1_texture}{Texture}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_texture_aca1dbcaf3ade59266947732593baa1ae}\label{classrev_1_1_texture_aca1dbcaf3ade59266947732593baa1ae}} 
+enum {\bfseries Texture\+Flag} \{ {\bfseries k\+Initialized} = 1 $<$$<$ 0, 
+{\bfseries k\+Generate\+Mip\+Maps} = 1 $<$$<$ 1
+ \}
+\item 
+\mbox{\Hypertarget{classrev_1_1_texture_a327b4b13b36bd082998acf19f6d930ed}\label{classrev_1_1_texture_a327b4b13b36bd082998acf19f6d930ed}} 
+typedef Q\+Flags$<$ Texture\+Flag $>$ {\bfseries Texture\+Flags}
+\item 
+\mbox{\Hypertarget{classrev_1_1_texture_a8c9f59f11b079b2b6bdeec781a99f351}\label{classrev_1_1_texture_a8c9f59f11b079b2b6bdeec781a99f351}} 
+static uint32\+\_\+t \mbox{\hyperlink{classrev_1_1_texture_a8c9f59f11b079b2b6bdeec781a99f351}{Max\+Divisible\+Texture\+Size}} ()
+\begin{DoxyCompactList}\small\item\em Return largest allowed texture size that is a power of two (next\+Power, nearest\+Power) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_texture_af0952d3c1b80b22cf5bb2b6886ee79b8}\label{classrev_1_1_texture_af0952d3c1b80b22cf5bb2b6886ee79b8}} 
+static uint32\+\_\+t {\bfseries Max\+Texture\+Size} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_texture_ad8f110db956706bf01da753e3331588e}\label{classrev_1_1_texture_ad8f110db956706bf01da753e3331588e}} 
+static uint32\+\_\+t {\bfseries Max\+Num\+Texture\+Layers} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_texture_addee180ac1d24ad0d50591ed982ca932}\label{classrev_1_1_texture_addee180ac1d24ad0d50591ed982ca932}} 
+static uint32\+\_\+t {\bfseries Texture\+Bound\+To\+Active\+Unit} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_texture_af74ebcf4c80037057e442bf113d82bd8}\label{classrev_1_1_texture_af74ebcf4c80037057e442bf113d82bd8}} 
+static const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \& \mbox{\hyperlink{classrev_1_1_texture_af74ebcf4c80037057e442bf113d82bd8}{Get\+Uniform\+Name}} (Texture\+Usage\+Type type)
+\begin{DoxyCompactList}\small\item\em get the uniform name corresponding to the texture type \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_texture_ad65abcc1434c73e12695067c1a69ef4b}\label{classrev_1_1_texture_ad65abcc1434c73e12695067c1a69ef4b}} 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ {\bfseries Create\+Handle} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$engine, const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&texture\+Path, Texture\+Usage\+Type type, bool load\+Serially=false)
+\item 
+\mbox{\Hypertarget{classrev_1_1_texture_a434cca08735844e5486350c7f69530f7}\label{classrev_1_1_texture_a434cca08735844e5486350c7f69530f7}} 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ {\bfseries Create\+Handle} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&texture\+Path, Texture\+Usage\+Type type, \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} \&material)
+\item 
+\mbox{\Hypertarget{classrev_1_1_texture_a96317aaecdeba4ce665559ba12d9a9df}\label{classrev_1_1_texture_a96317aaecdeba4ce665559ba12d9a9df}} 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ {\bfseries Create\+Handle} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, const \mbox{\hyperlink{classrev_1_1_image}{Image}} \&image, Texture\+Usage\+Type type=Texture\+Usage\+Type\+::k\+Diffuse, Texture\+Filter min\+Filter=Texture\+Filter\+::k\+Linear\+Mip\+Map\+Linear, Texture\+Filter max\+Filter=Texture\+Filter\+::k\+Linear\+Mip\+Map\+Linear, Texture\+Wrap\+Mode wrap\+Mode=Texture\+Wrap\+Mode\+::k\+Repeat)
+\end{DoxyCompactItemize}
+\subsection*{Protected members}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_image}{Image}} $>$ \mbox{\hyperlink{classrev_1_1_texture_a34878ce75ef85c0a4dc15a37f0ae6aa7}{m\+\_\+images}}
+\begin{DoxyCompactList}\small\item\em The images used for construction of this texture. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_texture_a2df843585d744c8166752532840ca36b}\label{classrev_1_1_texture_a2df843585d744c8166752532840ca36b}} 
+uint32\+\_\+t \mbox{\hyperlink{classrev_1_1_texture_a2df843585d744c8166752532840ca36b}{m\+\_\+height}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_texture}{Texture}} dimensions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_texture_af57e4087ae4689bbd1b2fce0b65d6786}\label{classrev_1_1_texture_af57e4087ae4689bbd1b2fce0b65d6786}} 
+uint32\+\_\+t {\bfseries m\+\_\+width}
+\item 
+\mbox{\Hypertarget{classrev_1_1_texture_a8877d8fab22dcb1cde79974b23facb18}\label{classrev_1_1_texture_a8877d8fab22dcb1cde79974b23facb18}} 
+uint32\+\_\+t {\bfseries m\+\_\+depth}
+\item 
+\mbox{\Hypertarget{classrev_1_1_texture_a67b182170837fc6a56647da63df2c1fc}\label{classrev_1_1_texture_a67b182170837fc6a56647da63df2c1fc}} 
+Texture\+Flags {\bfseries m\+\_\+texture\+Flags}
+\item 
+\mbox{\Hypertarget{classrev_1_1_texture_a7de13d2432943dfc2a1c12112ce0e0d7}\label{classrev_1_1_texture_a7de13d2432943dfc2a1c12112ce0e0d7}} 
+\mbox{\hyperlink{structrev_1_1_texture_options}{Texture\+Options}} {\bfseries m\+\_\+texture\+Options}
+\item 
+G\+Luint \mbox{\hyperlink{classrev_1_1_texture_a7616bcfe5801d73b266f64b05f00d829}{m\+\_\+texture\+ID}}
+\begin{DoxyCompactList}\small\item\em The Open\+GL texture ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_texture_aa5820d7e53c42ac3d36d8280ac9c6ec4}\label{classrev_1_1_texture_aa5820d7e53c42ac3d36d8280ac9c6ec4}} 
+Texture\+Target\+Type {\bfseries m\+\_\+target\+Type}
+\item 
+\mbox{\Hypertarget{classrev_1_1_texture_a391d1ef43d440caf005b35b1a23b49d9}\label{classrev_1_1_texture_a391d1ef43d440caf005b35b1a23b49d9}} 
+Texture\+Usage\+Type {\bfseries m\+\_\+usage\+Type}
+\item 
+static const std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} $>$ \mbox{\hyperlink{classrev_1_1_texture_ac8561b11a04ffd525b10a48f46beb6e2}{s\+\_\+type\+To\+Uniform\+Vec}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_map}{Map}} of diffuse texture types and corresponding uniform name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Open\+GL texture @detailed Adds some convenience functions and presets. 
+
+\begin{DoxyNote}{Note}
+GL texture coordinates wrap around, e.\+g. 3.\+1 == 0.\+1, 1.\+2334 == 0.\+2334 etc. 
+\end{DoxyNote}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_texture_a30f599dafc75209703110b96792f6842}\label{classrev_1_1_texture_a30f599dafc75209703110b96792f6842}} 
+\index{rev::Texture@{rev::Texture}!attach@{attach}}
+\index{attach@{attach}!rev::Texture@{rev::Texture}}
+\subsubsection{\texorpdfstring{attach()}{attach()}}
+{\footnotesize\ttfamily void rev\+::\+Texture\+::attach (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classrev_1_1_frame_buffer}{Frame\+Buffer}} \&}]{fbo,  }\item[{int}]{attachment,  }\item[{uint32\+\_\+t}]{depth\+Layer = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Attach the texture to the specified framebuffer. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em attachment} & The attachment point, e.\+g. G\+L\+\_\+\+C\+O\+L\+O\+R\+\_\+\+A\+T\+T\+A\+C\+H\+M\+E\+N\+T0, G\+L\+\_\+\+D\+E\+P\+T\+H\+\_\+\+S\+T\+E\+N\+C\+I\+L\+\_\+\+A\+T\+T\+A\+C\+H\+M\+E\+NT \\
+\hline
+\mbox{\texttt{ in}}  & {\em depth\+Layer} & For texture arrays, the z-\/level of the array to attach to the framebuffer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrev_1_1_texture_a7f05304af91d3ea7ab923c43d9ad75d1}\label{classrev_1_1_texture_a7f05304af91d3ea7ab923c43d9ad75d1}} 
+\index{rev::Texture@{rev::Texture}!className@{className}}
+\index{className@{className}!rev::Texture@{rev::Texture}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Texture\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_cube_texture_a7ec1956c0d81071b9f129ddb08725734}{rev\+::\+Cube\+Texture}}.
+
+\mbox{\Hypertarget{classrev_1_1_texture_a3962635c50e3180fe611e2890f6ab0f7}\label{classrev_1_1_texture_a3962635c50e3180fe611e2890f6ab0f7}} 
+\index{rev::Texture@{rev::Texture}!flushData@{flushData}}
+\index{flushData@{flushData}!rev::Texture@{rev::Texture}}
+\subsubsection{\texorpdfstring{flushData()}{flushData()}}
+{\footnotesize\ttfamily void rev\+::\+Texture\+::flush\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Use cached images to set data for texture in Open\+GL, then clear them. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em depth\+Level} & zoffset to set texture data, only used for texture arrays \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrev_1_1_texture_ad26e3169ee1055c346487f0db2f4ce94}\label{classrev_1_1_texture_ad26e3169ee1055c346487f0db2f4ce94}} 
+\index{rev::Texture@{rev::Texture}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::Texture@{rev::Texture}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Texture\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_cube_texture_af6794b135f279b1b011d47f9a7f9d10b}{rev\+::\+Cube\+Texture}}.
+
+\mbox{\Hypertarget{classrev_1_1_texture_aaa505679ad69f466e6aa9027e0419684}\label{classrev_1_1_texture_aaa505679ad69f466e6aa9027e0419684}} 
+\index{rev::Texture@{rev::Texture}!postConstruction@{postConstruction}}
+\index{postConstruction@{postConstruction}!rev::Texture@{rev::Texture}}
+\subsubsection{\texorpdfstring{postConstruction()}{postConstruction()}}
+{\footnotesize\ttfamily void rev\+::\+Texture\+::post\+Construction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+What action to perform post-\/construction of the resource. 
+
+For performing any actions that need to be done on the main thread 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_resource_a8a6daa71820d88c86bc6c0aa474d1af7}{rev\+::\+Resource}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_texture_a34878ce75ef85c0a4dc15a37f0ae6aa7}\label{classrev_1_1_texture_a34878ce75ef85c0a4dc15a37f0ae6aa7}} 
+\index{rev::Texture@{rev::Texture}!m\_images@{m\_images}}
+\index{m\_images@{m\_images}!rev::Texture@{rev::Texture}}
+\subsubsection{\texorpdfstring{m\_images}{m\_images}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classrev_1_1_image}{Image}}$>$ rev\+::\+Texture\+::m\+\_\+images\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The images used for construction of this texture. 
+
+\begin{DoxyNote}{Note}
+A Q\+Image is like a shared pointer, in the sense that Q\+Images referencing the same underlying image (i.\+e., at the same filepath) will point to the same place in memory, and clearing one will not clear the rest. 
+\end{DoxyNote}
+\mbox{\Hypertarget{classrev_1_1_texture_a7616bcfe5801d73b266f64b05f00d829}\label{classrev_1_1_texture_a7616bcfe5801d73b266f64b05f00d829}} 
+\index{rev::Texture@{rev::Texture}!m\_textureID@{m\_textureID}}
+\index{m\_textureID@{m\_textureID}!rev::Texture@{rev::Texture}}
+\subsubsection{\texorpdfstring{m\_textureID}{m\_textureID}}
+{\footnotesize\ttfamily G\+Luint rev\+::\+Texture\+::m\+\_\+texture\+ID\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The Open\+GL texture ID. 
+
+ID is negative 1 if not yet created in Open\+GL \mbox{\Hypertarget{classrev_1_1_texture_ac8561b11a04ffd525b10a48f46beb6e2}\label{classrev_1_1_texture_ac8561b11a04ffd525b10a48f46beb6e2}} 
+\index{rev::Texture@{rev::Texture}!s\_typeToUniformVec@{s\_typeToUniformVec}}
+\index{s\_typeToUniformVec@{s\_typeToUniformVec}!rev::Texture@{rev::Texture}}
+\subsubsection{\texorpdfstring{s\_typeToUniformVec}{s\_typeToUniformVec}}
+{\footnotesize\ttfamily const std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} $>$ rev\+::\+Texture\+::s\+\_\+type\+To\+Uniform\+Vec\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"material.diffuseTexture"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"material.normalMap"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"material.ambientTexture"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"material.specularTexture"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"material.specularHighlightTexture"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"material.bumpMap"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"material.displacementTexture"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"material.opacityTexture"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"material.reflectionTexture"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"material.lightmapTexture"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"material.albedoTexture\_pbr"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"material.bumpTexture\_pbr"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"material.ambientOcclusionTexture\_pbr"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"material.roughnessTexture\_pbr"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"material.metallicTexture\_pbr"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"material.shininessTexture\_pbr"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"material.emissiveTexture\_pbr"}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\mbox{\hyperlink{classrev_1_1_map}{Map}} of diffuse texture types and corresponding uniform name. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/materials/G\+Texture.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/materials/G\+Texture.\+cpp\end{DoxyCompactItemize}

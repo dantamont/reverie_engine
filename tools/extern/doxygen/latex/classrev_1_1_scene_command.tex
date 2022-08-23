@@ -1,0 +1,101 @@
+\hypertarget{classrev_1_1_scene_command}{}\section{rev\+::Scene\+Command Class Reference}
+\label{classrev_1_1_scene_command}\index{rev::SceneCommand@{rev::SceneCommand}}
+
+
+Abstract representing a scene-\/related command.  
+
+
+
+
+{\ttfamily \#include $<$G\+Scene\+Command.\+h$>$}
+
+Inheritance diagram for rev\+::Scene\+Command\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.568807cm]{classrev_1_1_scene_command}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_command_a1af81c83fbd33e439416bf6247e77511}\label{classrev_1_1_scene_command_a1af81c83fbd33e439416bf6247e77511}} 
+{\bfseries Scene\+Command} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&text, Q\+Undo\+Command $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_command_a785ab44c501192cf7f2acf5ec6670845}\label{classrev_1_1_scene_command_a785ab44c501192cf7f2acf5ec6670845}} 
+{\bfseries Scene\+Command} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, Q\+Undo\+Command $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_command_a50f9f81858789c1d23103e3c278e6926}\label{classrev_1_1_scene_command_a50f9f81858789c1d23103e3c278e6926}} 
+{\bfseries $\sim$\+Scene\+Command} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_command_ad4d775a40a8078271b520696fd92e23f}\label{classrev_1_1_scene_command_ad4d775a40a8078271b520696fd92e23f}} 
+void \mbox{\hyperlink{classrev_1_1_scene_command_ad4d775a40a8078271b520696fd92e23f}{redo}} () override
+\begin{DoxyCompactList}\small\item\em Redoes the add scenario command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_command_a4864e03e5836c56587cdf4b88b6e47ae}\label{classrev_1_1_scene_command_a4864e03e5836c56587cdf4b88b6e47ae}} 
+void \mbox{\hyperlink{classrev_1_1_scene_command_a4864e03e5836c56587cdf4b88b6e47ae}{undo}} () override
+\begin{DoxyCompactList}\small\item\em Undoes the add scenario command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_scene_command_a9b9126f306b1775c4f74ffb8b1a49dc5}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_scene_command_a8914ef927fc5bcf9071ab857c4c636a4}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scene_command_ad2cc56c38710fc11ffc3493f5fda46f9}\label{classrev_1_1_scene_command_ad2cc56c38710fc11ffc3493f5fda46f9}} 
+\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$ \mbox{\hyperlink{classrev_1_1_scene_command_ad2cc56c38710fc11ffc3493f5fda46f9}{get\+Scene\+Object}} (const Q\+Json\+Value \&object) const
+\begin{DoxyCompactList}\small\item\em Obtain objects from their J\+S\+ON representation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scene_command_a6061e5347c9cbfe141660de95bbe67b1}\label{classrev_1_1_scene_command_a6061e5347c9cbfe141660de95bbe67b1}} 
+\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$ {\bfseries create\+Scene\+Object} (const Q\+Json\+Value \&scene, const Q\+Json\+Value \&object) const
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Abstract representing a scene-\/related command. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_scene_command_a9b9126f306b1775c4f74ffb8b1a49dc5}\label{classrev_1_1_scene_command_a9b9126f306b1775c4f74ffb8b1a49dc5}} 
+\index{rev::SceneCommand@{rev::SceneCommand}!className@{className}}
+\index{className@{className}!rev::SceneCommand@{rev::SceneCommand}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Scene\+Command\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_undo_command_ab30f020732532e7cfd5472bdee65dcdb}{rev\+::\+Undo\+Command}}.
+
+\mbox{\Hypertarget{classrev_1_1_scene_command_a8914ef927fc5bcf9071ab857c4c636a4}\label{classrev_1_1_scene_command_a8914ef927fc5bcf9071ab857c4c636a4}} 
+\index{rev::SceneCommand@{rev::SceneCommand}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::SceneCommand@{rev::SceneCommand}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Scene\+Command\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_undo_command_aea7ceb3f5ea266e697f01a65da7afec5}{rev\+::\+Undo\+Command}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/model\+\_\+control/commands/commands/G\+Scene\+Command.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/model\+\_\+control/commands/commands/G\+Scene\+Command.\+cpp\end{DoxyCompactItemize}

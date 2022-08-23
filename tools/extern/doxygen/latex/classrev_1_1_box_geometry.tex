@@ -1,0 +1,133 @@
+\hypertarget{classrev_1_1_box_geometry}{}\section{rev\+::Box\+Geometry Class Reference}
+\label{classrev_1_1_box_geometry}\index{rev::BoxGeometry@{rev::BoxGeometry}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing box geometry.  
+
+
+
+
+{\ttfamily \#include $<$G\+Physics\+Geometry.\+h$>$}
+
+Inheritance diagram for rev\+::Box\+Geometry\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_box_geometry}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_box_geometry_ab0c2ec59df4ce1f3b0455616ca980b12}\label{classrev_1_1_box_geometry_ab0c2ec59df4ce1f3b0455616ca980b12}} 
+{\bfseries Box\+Geometry} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3f}} \&extents)
+\item 
+\mbox{\Hypertarget{classrev_1_1_box_geometry_a4f112f6c660c677b6d63b9b029fee9bc}\label{classrev_1_1_box_geometry_a4f112f6c660c677b6d63b9b029fee9bc}} 
+{\bfseries Box\+Geometry} (float hx=1.\+0, float hy=1.\+0, float hz=1.\+0)
+\item 
+\mbox{\Hypertarget{classrev_1_1_box_geometry_abe55ad941301f23a2b56a7eb3fdf2a95}\label{classrev_1_1_box_geometry_abe55ad941301f23a2b56a7eb3fdf2a95}} 
+{\bfseries $\sim$\+Box\+Geometry} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_box_geometry_a41a78aae08dd587e9216f3bd1ecc4eec}\label{classrev_1_1_box_geometry_a41a78aae08dd587e9216f3bd1ecc4eec}} 
+virtual const physx\+::\+Px\+Geometry \& {\bfseries get\+Geometry} () const override
+\item 
+\mbox{\Hypertarget{classrev_1_1_box_geometry_a5e21d678924afe0f2948a44c653d53d0}\label{classrev_1_1_box_geometry_a5e21d678924afe0f2948a44c653d53d0}} 
+float {\bfseries hx} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_box_geometry_a1bfe6d6264b2b79e578ddc589eeabd13}\label{classrev_1_1_box_geometry_a1bfe6d6264b2b79e578ddc589eeabd13}} 
+float {\bfseries hy} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_box_geometry_a128c7b4204790149a363feb2985fc150}\label{classrev_1_1_box_geometry_a128c7b4204790149a363feb2985fc150}} 
+float {\bfseries hz} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_box_geometry_a3cecc300cc560032d0c0f0a1855b0f4d}\label{classrev_1_1_box_geometry_a3cecc300cc560032d0c0f0a1855b0f4d}} 
+void {\bfseries set\+Hx} (float x)
+\item 
+\mbox{\Hypertarget{classrev_1_1_box_geometry_a65f3e40394432a5f58411eac2b388065}\label{classrev_1_1_box_geometry_a65f3e40394432a5f58411eac2b388065}} 
+void {\bfseries set\+Hy} (float y)
+\item 
+\mbox{\Hypertarget{classrev_1_1_box_geometry_aed6dab340922de11bfd16cb8c5292050}\label{classrev_1_1_box_geometry_aed6dab340922de11bfd16cb8c5292050}} 
+void {\bfseries set\+Hz} (float z)
+\item 
+\mbox{\Hypertarget{classrev_1_1_box_geometry_a2ab6d5f58610eca8312f0c07f8ee9559}\label{classrev_1_1_box_geometry_a2ab6d5f58610eca8312f0c07f8ee9559}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector3d}} {\bfseries half\+Extents} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_box_geometry_a499d1d55261c8490751b9a6cd1b46c40}\label{classrev_1_1_box_geometry_a499d1d55261c8490751b9a6cd1b46c40}} 
+bool \mbox{\hyperlink{classrev_1_1_box_geometry_a499d1d55261c8490751b9a6cd1b46c40}{is\+Valid}} () const
+\begin{DoxyCompactList}\small\item\em Whether the geometry is valid or not. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_box_geometry_a363501bfd04fbb47dc60aeac0f3e56be}\label{classrev_1_1_box_geometry_a363501bfd04fbb47dc60aeac0f3e56be}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_box_geometry_a363501bfd04fbb47dc60aeac0f3e56be}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_box_geometry_abbd1f916c6bba96769fd9a06d5e3d3ca}\label{classrev_1_1_box_geometry_abbd1f916c6bba96769fd9a06d5e3d3ca}} 
+virtual void \mbox{\hyperlink{classrev_1_1_box_geometry_abbd1f916c6bba96769fd9a06d5e3d3ca}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_box_geometry_a2e815ff8c55805fdbb74eedf7b2c16c5}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_box_geometry_a2a3b42da46821366322cfecf569e2b5f}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_box_geometry_a414d0f986d2647fe5db52c4daa97a1f8}\label{classrev_1_1_box_geometry_a414d0f986d2647fe5db52c4daa97a1f8}} 
+physx\+::\+Px\+Box\+Geometry {\bfseries m\+\_\+box}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing box geometry. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_box_geometry_a2e815ff8c55805fdbb74eedf7b2c16c5}\label{classrev_1_1_box_geometry_a2e815ff8c55805fdbb74eedf7b2c16c5}} 
+\index{rev::BoxGeometry@{rev::BoxGeometry}!className@{className}}
+\index{className@{className}!rev::BoxGeometry@{rev::BoxGeometry}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Box\+Geometry\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_physics_geometry_afc74d4c03367f3bc83595acaeca7d9a8}{rev\+::\+Physics\+Geometry}}.
+
+\mbox{\Hypertarget{classrev_1_1_box_geometry_a2a3b42da46821366322cfecf569e2b5f}\label{classrev_1_1_box_geometry_a2a3b42da46821366322cfecf569e2b5f}} 
+\index{rev::BoxGeometry@{rev::BoxGeometry}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::BoxGeometry@{rev::BoxGeometry}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Box\+Geometry\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_physics_geometry_ad4311205e1a6eabeeb7773a01d11add5}{rev\+::\+Physics\+Geometry}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Physics\+Geometry.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Physics\+Geometry.\+cpp\end{DoxyCompactItemize}

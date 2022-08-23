@@ -1,0 +1,308 @@
+\hypertarget{class_eigen_1_1_parametrized_line}{}\section{Eigen\+::Parametrized\+Line$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$ Class Template Reference}
+\label{class_eigen_1_1_parametrized_line}\index{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+
+
+A parametrized line.  
+
+
+
+
+{\ttfamily \#include $<$Parametrized\+Line.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_parametrized_line_ab8f8bb2bb2429e04809177960fe46dfe}\label{class_eigen_1_1_parametrized_line_ab8f8bb2bb2429e04809177960fe46dfe}} 
+enum \{ {\bfseries Ambient\+Dim\+At\+Compile\+Time} = \+\_\+\+Ambient\+Dim, 
+{\bfseries Options} = \+\_\+\+Options
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_parametrized_line_a93db650b04cedf2952e2e98a8623ef9e}\label{class_eigen_1_1_parametrized_line_a93db650b04cedf2952e2e98a8623ef9e}} 
+typedef \+\_\+\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_parametrized_line_abc5e4b05e33efb054996160850e5fee4}\label{class_eigen_1_1_parametrized_line_abc5e4b05e33efb054996160850e5fee4}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ Scalar $>$\+::Real {\bfseries Real\+Scalar}
+\item 
+typedef Eigen\+::\+Index \mbox{\hyperlink{class_eigen_1_1_parametrized_line_a3c9f84dd8608940282b16652a296c764}{Index}}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_parametrized_line_ab82eb66b19e96584b9cb5e463a076fd6}\label{class_eigen_1_1_parametrized_line_ab82eb66b19e96584b9cb5e463a076fd6}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, Ambient\+Dim\+At\+Compile\+Time, 1, Options $>$ {\bfseries Vector\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_parametrized_line_a7c23f36d93cf3b3c2b37fd9f9eda5685}{Parametrized\+Line}} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_parametrized_line_a2e2f479073705585b025de0db0af50d8}\label{class_eigen_1_1_parametrized_line_a2e2f479073705585b025de0db0af50d8}} 
+{\footnotesize template$<$int Other\+Options$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC {\bfseries Parametrized\+Line} (const \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Parametrized\+Line}}$<$ Scalar, Ambient\+Dim\+At\+Compile\+Time, Other\+Options $>$ \&other)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_parametrized_line_ac4ba4fe484f3a3abf78edec8c60ea13a}{Parametrized\+Line}} (\mbox{\hyperlink{class_eigen_1_1_parametrized_line_a3c9f84dd8608940282b16652a296c764}{Index}} \+\_\+dim)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_parametrized_line_a1b1d3ff9dee6f252f14bc2d8f3f0bb02}{Parametrized\+Line}} (const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&origin, const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&direction)
+\item 
+{\footnotesize template$<$int Other\+Options$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_parametrized_line_a6b4a0e4a98ea57f3a2b2d5669d24e909}{Parametrized\+Line}} (const \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, Other\+Options $>$ \&hyperplane)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_parametrized_line_a3c9f84dd8608940282b16652a296c764}{Index}} \mbox{\hyperlink{class_eigen_1_1_parametrized_line_a2e8d1ca4d1570e456952b5e979e5171c}{dim}} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_parametrized_line_a587330ad5af9902fdbc8d32a89810e37}\label{class_eigen_1_1_parametrized_line_a587330ad5af9902fdbc8d32a89810e37}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \& {\bfseries origin} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_parametrized_line_a13584deae04a4078f35a8b590d3868fb}\label{class_eigen_1_1_parametrized_line_a13584deae04a4078f35a8b590d3868fb}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \& {\bfseries origin} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_parametrized_line_a38c1c1eb94eb945a70a567ceadf3c950}\label{class_eigen_1_1_parametrized_line_a38c1c1eb94eb945a70a567ceadf3c950}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \& {\bfseries direction} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_parametrized_line_a2e7606d3a6cbf501a688be8845785c5d}\label{class_eigen_1_1_parametrized_line_a2e7606d3a6cbf501a688be8845785c5d}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \& {\bfseries direction} ()
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_parametrized_line_a7dc9009fd67184754823cf90ae8f6eae}{squared\+Distance}} (const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&p) const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_parametrized_line_a1c038c9559f76794369bd2ae74e93b9f}{distance}} (const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&p) const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \mbox{\hyperlink{class_eigen_1_1_parametrized_line_a3c7a7a3db3d4380c538d55fc8df77f87}{projection}} (const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&p) const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \mbox{\hyperlink{class_eigen_1_1_parametrized_line_ae0a510cc78156974ab5a7fb8a6b2326a}{point\+At}} (const Scalar \&t) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_parametrized_line_a32a79d93c43fbfd5c70dd95432926505}\label{class_eigen_1_1_parametrized_line_a32a79d93c43fbfd5c70dd95432926505}} 
+{\footnotesize template$<$int Other\+Options$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Scalar {\bfseries intersection\+Parameter} (const \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, Other\+Options $>$ \&hyperplane) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_parametrized_line_ad88a4efe64b19c643feb03c7e21bb28b}\label{class_eigen_1_1_parametrized_line_ad88a4efe64b19c643feb03c7e21bb28b}} 
+{\footnotesize template$<$int Other\+Options$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Scalar {\bfseries intersection} (const \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, Other\+Options $>$ \&hyperplane) const
+\item 
+{\footnotesize template$<$int Other\+Options$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \mbox{\hyperlink{class_eigen_1_1_parametrized_line_a9319102677fc48d2208c949f448f4829}{intersection\+Point}} (const \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, Other\+Options $>$ \&hyperplane) const
+\item 
+{\footnotesize template$<$typename New\+Scalar\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1cast__return__type}{internal\+::cast\+\_\+return\+\_\+type}}$<$ \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Parametrized\+Line}}, \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Parametrized\+Line}}$<$ New\+Scalar\+Type, Ambient\+Dim\+At\+Compile\+Time, Options $>$ $>$\+::type \mbox{\hyperlink{class_eigen_1_1_parametrized_line_a2f48ba47cd487a3550b4371f01c3271c}{cast}} () const
+\item 
+{\footnotesize template$<$typename Other\+Scalar\+Type , int Other\+Options$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_parametrized_line_a69aed1a96062648d4e61dce3b5fb896f}{Parametrized\+Line}} (const \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Parametrized\+Line}}$<$ Other\+Scalar\+Type, Ambient\+Dim\+At\+Compile\+Time, Other\+Options $>$ \&other)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC bool \mbox{\hyperlink{class_eigen_1_1_parametrized_line_a27a86c54f66a622847470f79aec4ea2f}{is\+Approx}} (const \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Parametrized\+Line}} \&other, const typename \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ Scalar $>$\+::Real \&prec=\mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ Scalar $>$\+::dummy\+\_\+precision()) const
+\item 
+{\footnotesize template$<$int Other\+Options$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \+\_\+\+Scalar \mbox{\hyperlink{class_eigen_1_1_parametrized_line_ad476025bb806ab3c8fd14d2381139dbc}{intersection\+Parameter}} (const \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, Other\+Options $>$ \&hyperplane) const
+\item 
+{\footnotesize template$<$int Other\+Options$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \+\_\+\+Scalar \mbox{\hyperlink{class_eigen_1_1_parametrized_line_a512be7d79c7c982380e59ddf84d61252}{intersection}} (const \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, Other\+Options $>$ \&hyperplane) const
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Parametrized\+Line}} \mbox{\hyperlink{class_eigen_1_1_parametrized_line_a79fec5983b16b02100d67c81407e96fa}{Through}} (const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&p0, const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&p1)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_parametrized_line_af1f2dfe6917701c64633e50ae83692d7}\label{class_eigen_1_1_parametrized_line_af1f2dfe6917701c64633e50ae83692d7}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} {\bfseries m\+\_\+origin}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_parametrized_line_a37368bd3f68f8a5d2a5014d94c80dd6d}\label{class_eigen_1_1_parametrized_line_a37368bd3f68f8a5d2a5014d94c80dd6d}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} {\bfseries m\+\_\+direction}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$\newline
+class Eigen\+::\+Parametrized\+Line$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$}
+
+A parametrized line. 
+
+\textbackslash{}geometry\+\_\+module
+
+A parametrized line is defined by an origin point $ \mathbf{o} $ and a unit direction vector $ \mathbf{d} $ such that the line corresponds to the set $ l(t) = \mathbf{o} + t \mathbf{d} $, $ t \in \mathbf{R} $.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Scalar} & the scalar type, i.\+e., the type of the coefficients \\
+\hline
+{\em \+\_\+\+Ambient\+Dim} & the dimension of the ambient space, can be a compile time value or Dynamic. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_parametrized_line_a3c9f84dd8608940282b16652a296c764}\label{class_eigen_1_1_parametrized_line_a3c9f84dd8608940282b16652a296c764}} 
+\index{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}!Index@{Index}}
+\index{Index@{Index}!Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{Index}{Index}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+typedef Eigen\+::\+Index \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Eigen\+::\+Parametrized\+Line}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::\mbox{\hyperlink{class_eigen_1_1_parametrized_line_a3c9f84dd8608940282b16652a296c764}{Index}}}
+
+\begin{DoxyRefDesc}{Deprecated}
+\item[\mbox{\hyperlink{deprecated__deprecated000030}{Deprecated}}]since Eigen 3.\+3 \end{DoxyRefDesc}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_parametrized_line_a7c23f36d93cf3b3c2b37fd9f9eda5685}\label{class_eigen_1_1_parametrized_line_a7c23f36d93cf3b3c2b37fd9f9eda5685}} 
+\index{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}!ParametrizedLine@{ParametrizedLine}}
+\index{ParametrizedLine@{ParametrizedLine}!Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{ParametrizedLine()}{ParametrizedLine()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Eigen\+::\+Parametrized\+Line}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::\mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Parametrized\+Line}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default constructor without initialization \mbox{\Hypertarget{class_eigen_1_1_parametrized_line_ac4ba4fe484f3a3abf78edec8c60ea13a}\label{class_eigen_1_1_parametrized_line_ac4ba4fe484f3a3abf78edec8c60ea13a}} 
+\index{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}!ParametrizedLine@{ParametrizedLine}}
+\index{ParametrizedLine@{ParametrizedLine}!Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{ParametrizedLine()}{ParametrizedLine()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Eigen\+::\+Parametrized\+Line}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::\mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Parametrized\+Line}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_parametrized_line_a3c9f84dd8608940282b16652a296c764}{Index}}}]{\+\_\+dim }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Constructs a dynamic-\/size line with {\itshape \+\_\+dim} the dimension of the ambient space \mbox{\Hypertarget{class_eigen_1_1_parametrized_line_a1b1d3ff9dee6f252f14bc2d8f3f0bb02}\label{class_eigen_1_1_parametrized_line_a1b1d3ff9dee6f252f14bc2d8f3f0bb02}} 
+\index{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}!ParametrizedLine@{ParametrizedLine}}
+\index{ParametrizedLine@{ParametrizedLine}!Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{ParametrizedLine()}{ParametrizedLine()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Eigen\+::\+Parametrized\+Line}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::\mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Parametrized\+Line}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&}]{origin,  }\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&}]{direction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Initializes a parametrized line of direction {\itshape direction} and origin {\itshape origin}. \begin{DoxyWarning}{Warning}
+the vector direction is assumed to be normalized. 
+\end{DoxyWarning}
+\mbox{\Hypertarget{class_eigen_1_1_parametrized_line_a6b4a0e4a98ea57f3a2b2d5669d24e909}\label{class_eigen_1_1_parametrized_line_a6b4a0e4a98ea57f3a2b2d5669d24e909}} 
+\index{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}!ParametrizedLine@{ParametrizedLine}}
+\index{ParametrizedLine@{ParametrizedLine}!Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{ParametrizedLine()}{ParametrizedLine()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+template$<$int Other\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Eigen\+::\+Parametrized\+Line}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::\mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Parametrized\+Line}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, Other\+Options $>$ \&}]{hyperplane }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Constructs a parametrized line from a 2D hyperplane
+
+\begin{DoxyWarning}{Warning}
+the ambient space must have dimension 2 such that the hyperplane actually describes a line 
+\end{DoxyWarning}
+\mbox{\Hypertarget{class_eigen_1_1_parametrized_line_a69aed1a96062648d4e61dce3b5fb896f}\label{class_eigen_1_1_parametrized_line_a69aed1a96062648d4e61dce3b5fb896f}} 
+\index{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}!ParametrizedLine@{ParametrizedLine}}
+\index{ParametrizedLine@{ParametrizedLine}!Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{ParametrizedLine()}{ParametrizedLine()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+template$<$typename Other\+Scalar\+Type , int Other\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Eigen\+::\+Parametrized\+Line}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::\mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Parametrized\+Line}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Parametrized\+Line}}$<$ Other\+Scalar\+Type, Ambient\+Dim\+At\+Compile\+Time, Other\+Options $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Copy constructor with scalar type conversion 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_parametrized_line_a2f48ba47cd487a3550b4371f01c3271c}\label{class_eigen_1_1_parametrized_line_a2f48ba47cd487a3550b4371f01c3271c}} 
+\index{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}!cast@{cast}}
+\index{cast@{cast}!Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{cast()}{cast()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+template$<$typename New\+Scalar\+Type $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1cast__return__type}{internal\+::cast\+\_\+return\+\_\+type}}$<$\mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Parametrized\+Line}}, \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Parametrized\+Line}}$<$New\+Scalar\+Type,Ambient\+Dim\+At\+Compile\+Time,Options$>$ $>$\+::type \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Eigen\+::\+Parametrized\+Line}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::cast (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily $\ast$this} with scalar type casted to {\itshape New\+Scalar\+Type} 
+\end{DoxyReturn}
+Note that if {\itshape New\+Scalar\+Type} is equal to the current scalar type of {\ttfamily $\ast$this} then this function smartly returns a const reference to {\ttfamily $\ast$this}. \mbox{\Hypertarget{class_eigen_1_1_parametrized_line_a2e8d1ca4d1570e456952b5e979e5171c}\label{class_eigen_1_1_parametrized_line_a2e8d1ca4d1570e456952b5e979e5171c}} 
+\index{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}!dim@{dim}}
+\index{dim@{dim}!Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{dim()}{dim()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_parametrized_line_a3c9f84dd8608940282b16652a296c764}{Index}} \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Eigen\+::\+Parametrized\+Line}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::dim (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the dimension in which the line holds 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_parametrized_line_a1c038c9559f76794369bd2ae74e93b9f}\label{class_eigen_1_1_parametrized_line_a1c038c9559f76794369bd2ae74e93b9f}} 
+\index{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}!distance@{distance}}
+\index{distance@{distance}!Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{distance()}{distance()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Eigen\+::\+Parametrized\+Line}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::distance (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&}]{p }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the distance of a point {\itshape p} to its projection onto the line {\ttfamily $\ast$this}. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_parametrized_line_a7dc9009fd67184754823cf90ae8f6eae}{squared\+Distance()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_parametrized_line_a512be7d79c7c982380e59ddf84d61252}\label{class_eigen_1_1_parametrized_line_a512be7d79c7c982380e59ddf84d61252}} 
+\index{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}!intersection@{intersection}}
+\index{intersection@{intersection}!Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{intersection()}{intersection()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+template$<$int Other\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \+\_\+\+Scalar \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Eigen\+::\+Parametrized\+Line}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::intersection (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, Other\+Options $>$ \&}]{hyperplane }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyRefDesc}{Deprecated}
+\item[\mbox{\hyperlink{deprecated__deprecated000029}{Deprecated}}]use intersection\+Parameter() \end{DoxyRefDesc}
+\begin{DoxyReturn}{Returns}
+the parameter value of the intersection between {\ttfamily $\ast$this} and the given {\itshape hyperplane} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_parametrized_line_ad476025bb806ab3c8fd14d2381139dbc}\label{class_eigen_1_1_parametrized_line_ad476025bb806ab3c8fd14d2381139dbc}} 
+\index{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}!intersectionParameter@{intersectionParameter}}
+\index{intersectionParameter@{intersectionParameter}!Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{intersectionParameter()}{intersectionParameter()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+template$<$int Other\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \+\_\+\+Scalar \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Eigen\+::\+Parametrized\+Line}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::intersection\+Parameter (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, Other\+Options $>$ \&}]{hyperplane }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the parameter value of the intersection between {\ttfamily $\ast$this} and the given {\itshape hyperplane} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_parametrized_line_a9319102677fc48d2208c949f448f4829}\label{class_eigen_1_1_parametrized_line_a9319102677fc48d2208c949f448f4829}} 
+\index{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}!intersectionPoint@{intersectionPoint}}
+\index{intersectionPoint@{intersectionPoint}!Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{intersectionPoint()}{intersectionPoint()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+template$<$int Other\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Parametrized\+Line}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::\mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Eigen\+::\+Parametrized\+Line}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::intersection\+Point (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_hyperplane}{Hyperplane}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, Other\+Options $>$ \&}]{hyperplane }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the point of the intersection between {\ttfamily $\ast$this} and the given hyperplane 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_parametrized_line_a27a86c54f66a622847470f79aec4ea2f}\label{class_eigen_1_1_parametrized_line_a27a86c54f66a622847470f79aec4ea2f}} 
+\index{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}!isApprox@{isApprox}}
+\index{isApprox@{isApprox}!Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{isApprox()}{isApprox()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC bool \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Eigen\+::\+Parametrized\+Line}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::is\+Approx (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Parametrized\+Line}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$ \&}]{other,  }\item[{const typename \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ Scalar $>$\+::Real \&}]{prec = {\ttfamily \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$Scalar$>$\+:\+:dummy\+\_\+precision()} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if {\ttfamily $\ast$this} is approximately equal to {\itshape other}, within the precision determined by {\itshape prec}.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+Matrix\+Base\+::is\+Approx() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_parametrized_line_ae0a510cc78156974ab5a7fb8a6b2326a}\label{class_eigen_1_1_parametrized_line_ae0a510cc78156974ab5a7fb8a6b2326a}} 
+\index{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}!pointAt@{pointAt}}
+\index{pointAt@{pointAt}!Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{pointAt()}{pointAt()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Parametrized\+Line}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::\mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Eigen\+::\+Parametrized\+Line}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::point\+At (\begin{DoxyParamCaption}\item[{const Scalar \&}]{t }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the point at {\itshape t} along this line 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_parametrized_line_a3c7a7a3db3d4380c538d55fc8df77f87}\label{class_eigen_1_1_parametrized_line_a3c7a7a3db3d4380c538d55fc8df77f87}} 
+\index{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}!projection@{projection}}
+\index{projection@{projection}!Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{projection()}{projection()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Eigen\+::\+Parametrized\+Line}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::projection (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&}]{p }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the projection of a point {\itshape p} onto the line {\ttfamily $\ast$this}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_parametrized_line_a7dc9009fd67184754823cf90ae8f6eae}\label{class_eigen_1_1_parametrized_line_a7dc9009fd67184754823cf90ae8f6eae}} 
+\index{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}!squaredDistance@{squaredDistance}}
+\index{squaredDistance@{squaredDistance}!Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{squaredDistance()}{squaredDistance()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Eigen\+::\+Parametrized\+Line}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::squared\+Distance (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&}]{p }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the squared distance of a point {\itshape p} to its projection onto the line {\ttfamily $\ast$this}. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_parametrized_line_a1c038c9559f76794369bd2ae74e93b9f}{distance()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_parametrized_line_a79fec5983b16b02100d67c81407e96fa}\label{class_eigen_1_1_parametrized_line_a79fec5983b16b02100d67c81407e96fa}} 
+\index{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}!Through@{Through}}
+\index{Through@{Through}!Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$@{Eigen::ParametrizedLine$<$ \_Scalar, \_AmbientDim, \_Options $>$}}
+\subsubsection{\texorpdfstring{Through()}{Through()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Ambient\+Dim, int \+\_\+\+Options$>$ \\
+static E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Parametrized\+Line}} \mbox{\hyperlink{class_eigen_1_1_parametrized_line}{Eigen\+::\+Parametrized\+Line}}$<$ \+\_\+\+Scalar, \+\_\+\+Ambient\+Dim, \+\_\+\+Options $>$\+::Through (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&}]{p0,  }\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} \&}]{p1 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Constructs a parametrized line going from {\itshape p0} to {\itshape p1}. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Core/util/Forward\+Declarations.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Geometry/Parametrized\+Line.\+h\end{DoxyCompactItemize}

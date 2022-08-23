@@ -1,0 +1,30 @@
+\hypertarget{_s_d_l__bits_8h}{}\section{C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/\+S\+D\+L2/\+S\+D\+L\+\_\+bits.h File Reference}
+\label{_s_d_l__bits_8h}\index{C:/Users/dante/Documents/Projects/grand-\/blue-\/engine/reverie/src/third\_party/SDL2/SDL\_bits.h@{C:/Users/dante/Documents/Projects/grand-\/blue-\/engine/reverie/src/third\_party/SDL2/SDL\_bits.h}}
+{\ttfamily \#include \char`\"{}S\+D\+L\+\_\+stdinc.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}begin\+\_\+code.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}close\+\_\+code.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+S\+D\+L\+\_\+\+F\+O\+R\+C\+E\+\_\+\+I\+N\+L\+I\+NE int \mbox{\hyperlink{_s_d_l__bits_8h_ada8cd16089cc635936dfe1a6884729a4}{S\+D\+L\+\_\+\+Most\+Significant\+Bit\+Index32}} (Uint32 x)
+\item 
+\mbox{\Hypertarget{_s_d_l__bits_8h_a9ca9ab50814f9cfbce5c1cba379b001d}\label{_s_d_l__bits_8h_a9ca9ab50814f9cfbce5c1cba379b001d}} 
+S\+D\+L\+\_\+\+F\+O\+R\+C\+E\+\_\+\+I\+N\+L\+I\+NE S\+D\+L\+\_\+bool {\bfseries S\+D\+L\+\_\+\+Has\+Exactly\+One\+Bit\+Set32} (Uint32 x)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Functions for fiddling with bits and bitmasks.
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{_s_d_l__bits_8h_ada8cd16089cc635936dfe1a6884729a4}\label{_s_d_l__bits_8h_ada8cd16089cc635936dfe1a6884729a4}} 
+\index{SDL\_bits.h@{SDL\_bits.h}!SDL\_MostSignificantBitIndex32@{SDL\_MostSignificantBitIndex32}}
+\index{SDL\_MostSignificantBitIndex32@{SDL\_MostSignificantBitIndex32}!SDL\_bits.h@{SDL\_bits.h}}
+\subsubsection{\texorpdfstring{SDL\_MostSignificantBitIndex32()}{SDL\_MostSignificantBitIndex32()}}
+{\footnotesize\ttfamily S\+D\+L\+\_\+\+F\+O\+R\+C\+E\+\_\+\+I\+N\+L\+I\+NE int S\+D\+L\+\_\+\+Most\+Significant\+Bit\+Index32 (\begin{DoxyParamCaption}\item[{Uint32}]{x }\end{DoxyParamCaption})}
+
+Get the index of the most significant bit. Result is undefined when called with 0. This operation can also be stated as \char`\"{}count leading zeroes\char`\"{} and \char`\"{}log base 2\char`\"{}.
+
+\begin{DoxyReturn}{Returns}
+Index of the most significant bit, or -\/1 if the value is 0. 
+\end{DoxyReturn}

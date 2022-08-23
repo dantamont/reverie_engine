@@ -1,0 +1,392 @@
+\hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash}{}\section{tsl\+::detail\+\_\+ordered\+\_\+hash\+::ordered\+\_\+hash$<$ Value\+Type, Key\+Select, Value\+Select, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$ Class Template Reference}
+\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash}\index{tsl::detail\_ordered\_hash::ordered\_hash$<$ ValueType, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::detail\_ordered\_hash::ordered\_hash$<$ ValueType, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+
+
+{\ttfamily \#include $<$ordered\+\_\+hash.\+h$>$}
+
+Inheritance diagram for tsl\+::detail\+\_\+ordered\+\_\+hash\+::ordered\+\_\+hash$<$ Value\+Type, Key\+Select, Value\+Select, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.683761cm]{classtsl_1_1detail__ordered__hash_1_1ordered__hash}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{ordered\+\_\+iterator}}
+\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_aa14641f4be3e4aca317b1cb0a8bbded4}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_aa14641f4be3e4aca317b1cb0a8bbded4}} 
+using {\bfseries key\+\_\+type} = typename Key\+Select\+::key\+\_\+type
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a675a898ce63c4df6ea9ab7db1a8ffa7a}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a675a898ce63c4df6ea9ab7db1a8ffa7a}} 
+using {\bfseries value\+\_\+type} = Value\+Type
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a77c1ebd8a153b092abd1513aeed8b838}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a77c1ebd8a153b092abd1513aeed8b838}} 
+using {\bfseries size\+\_\+type} = std\+::size\+\_\+t
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_af2a6592e3f27b098824e1c3ae2b7c80f}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_af2a6592e3f27b098824e1c3ae2b7c80f}} 
+using {\bfseries difference\+\_\+type} = std\+::ptrdiff\+\_\+t
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_aec06904df31ad580930684637da4a733}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_aec06904df31ad580930684637da4a733}} 
+using {\bfseries hasher} = Hash
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a61a5c29ff6c4378ad1efba76b26228cb}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a61a5c29ff6c4378ad1efba76b26228cb}} 
+using {\bfseries key\+\_\+equal} = Key\+Equal
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ab11ec82b2c02993170fa5645797bf6f5}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ab11ec82b2c02993170fa5645797bf6f5}} 
+using {\bfseries allocator\+\_\+type} = Allocator
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_af89a4de3e6c41488b2b29fbeea4682db}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_af89a4de3e6c41488b2b29fbeea4682db}} 
+using {\bfseries reference} = value\+\_\+type \&
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a3ef2c7c6e46c43ce02aed27f44c30452}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a3ef2c7c6e46c43ce02aed27f44c30452}} 
+using {\bfseries const\+\_\+reference} = const value\+\_\+type \&
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ac4e053f630b968f7bf8d21bc00aed068}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ac4e053f630b968f7bf8d21bc00aed068}} 
+using {\bfseries pointer} = value\+\_\+type $\ast$
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a584cb2f4d6e7e7e8e1356a31677f24ec}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a584cb2f4d6e7e7e8e1356a31677f24ec}} 
+using {\bfseries const\+\_\+pointer} = const value\+\_\+type $\ast$
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a67c369d7edd1131bf9e0a8ada4e4d094}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a67c369d7edd1131bf9e0a8ada4e4d094}} 
+using {\bfseries iterator} = \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{ordered\+\_\+iterator}}$<$ false $>$
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a6dbac93fb19be2c2e929489fb0b5c385}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a6dbac93fb19be2c2e929489fb0b5c385}} 
+using {\bfseries const\+\_\+iterator} = \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{ordered\+\_\+iterator}}$<$ true $>$
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_aa7801013d5f330513e4d9743b40f8cf1}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_aa7801013d5f330513e4d9743b40f8cf1}} 
+using {\bfseries reverse\+\_\+iterator} = std\+::reverse\+\_\+iterator$<$ \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}} $>$
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a2f2940b46a61dc1af261e2a40904a7b0}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a2f2940b46a61dc1af261e2a40904a7b0}} 
+using {\bfseries const\+\_\+reverse\+\_\+iterator} = std\+::reverse\+\_\+iterator$<$ \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{const\+\_\+iterator}} $>$
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ad907d82adf51d0502fe818a7131a0936}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ad907d82adf51d0502fe818a7131a0936}} 
+using {\bfseries values\+\_\+container\+\_\+type} = Value\+Type\+Container
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a37fbdae4f952ecbd6319ae95941cf94f}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a37fbdae4f952ecbd6319ae95941cf94f}} 
+{\bfseries ordered\+\_\+hash} (size\+\_\+type bucket\+\_\+count, const Hash \&hash, const Key\+Equal \&equal, const Allocator \&alloc, float max\+\_\+load\+\_\+factor)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_af76f112b95413d15a6f0324cf7450238}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_af76f112b95413d15a6f0324cf7450238}} 
+{\bfseries ordered\+\_\+hash} (const \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash}{ordered\+\_\+hash}} \&other)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a9acd5769e752364d37e5f159f57fb6c6}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a9acd5769e752364d37e5f159f57fb6c6}} 
+{\bfseries ordered\+\_\+hash} (\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash}{ordered\+\_\+hash}} \&\&other) noexcept(std\+::is\+\_\+nothrow\+\_\+move\+\_\+constructible$<$ Hash $>$\+::value \&\&std\+::is\+\_\+nothrow\+\_\+move\+\_\+constructible$<$ Key\+Equal $>$\+::value \&\&std\+::is\+\_\+nothrow\+\_\+move\+\_\+constructible$<$ buckets\+\_\+container\+\_\+type $>$\+::value \&\&std\+::is\+\_\+nothrow\+\_\+move\+\_\+constructible$<$ values\+\_\+container\+\_\+type $>$\+::value)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_aa04c698d1b4195c7f3a27d3559c75c84}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_aa04c698d1b4195c7f3a27d3559c75c84}} 
+\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash}{ordered\+\_\+hash}} \& {\bfseries operator=} (const \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash}{ordered\+\_\+hash}} \&other)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a6256e335e27d395623051c76b615b8dc}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a6256e335e27d395623051c76b615b8dc}} 
+\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash}{ordered\+\_\+hash}} \& {\bfseries operator=} (\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash}{ordered\+\_\+hash}} \&\&other)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a6c2f778e2da712d080348bfc9ceffef2}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a6c2f778e2da712d080348bfc9ceffef2}} 
+allocator\+\_\+type {\bfseries get\+\_\+allocator} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_acf1005c4a1731f87f646632f5dbaecaa}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_acf1005c4a1731f87f646632f5dbaecaa}} 
+\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}} {\bfseries begin} () noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a3797e5b4ad5bfcb3b8a34c241564b392}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a3797e5b4ad5bfcb3b8a34c241564b392}} 
+\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{const\+\_\+iterator}} {\bfseries begin} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a2f4fa2f9d0e1c0667a293686c719d488}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a2f4fa2f9d0e1c0667a293686c719d488}} 
+\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{const\+\_\+iterator}} {\bfseries cbegin} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_aca61d14c9dbfd0dc2d686f7a9537a9f3}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_aca61d14c9dbfd0dc2d686f7a9537a9f3}} 
+\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}} {\bfseries end} () noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ae5bebf8b86ee948ff1c1d15b30aaedde}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ae5bebf8b86ee948ff1c1d15b30aaedde}} 
+\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{const\+\_\+iterator}} {\bfseries end} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_addff4eafa65088302de2aba2146ef87b}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_addff4eafa65088302de2aba2146ef87b}} 
+\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{const\+\_\+iterator}} {\bfseries cend} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a5e58be20c0cb9ee768e1e0cfb2baf240}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a5e58be20c0cb9ee768e1e0cfb2baf240}} 
+reverse\+\_\+iterator {\bfseries rbegin} () noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a8b3fe28c69edd5dc301e2a804601f57f}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a8b3fe28c69edd5dc301e2a804601f57f}} 
+const\+\_\+reverse\+\_\+iterator {\bfseries rbegin} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a6fd4a4e895fb3e5080c37148d345f8a0}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a6fd4a4e895fb3e5080c37148d345f8a0}} 
+const\+\_\+reverse\+\_\+iterator {\bfseries rcbegin} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a3c1b69948fae4dfd832816665b0c7806}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a3c1b69948fae4dfd832816665b0c7806}} 
+reverse\+\_\+iterator {\bfseries rend} () noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a7849f0c68bb6af88bd796c54ea0ac213}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a7849f0c68bb6af88bd796c54ea0ac213}} 
+const\+\_\+reverse\+\_\+iterator {\bfseries rend} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a2bedd2812a50dbb3e0dbcf741ebe62f7}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a2bedd2812a50dbb3e0dbcf741ebe62f7}} 
+const\+\_\+reverse\+\_\+iterator {\bfseries rcend} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_af5a2f1d34484b6f9ac8066ba73a09e56}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_af5a2f1d34484b6f9ac8066ba73a09e56}} 
+bool {\bfseries empty} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a4e6a685ba0823736bfc466e787eb4050}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a4e6a685ba0823736bfc466e787eb4050}} 
+size\+\_\+type {\bfseries size} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_af6b4003ac00dbe6c8dbd508e7f79e193}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_af6b4003ac00dbe6c8dbd508e7f79e193}} 
+size\+\_\+type {\bfseries max\+\_\+size} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ac55d51b91489e765945297b37da6c462}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ac55d51b91489e765945297b37da6c462}} 
+void {\bfseries clear} () noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ad0d6131e5d08cdaf625371368a467202}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ad0d6131e5d08cdaf625371368a467202}} 
+{\footnotesize template$<$typename P $>$ }\\std\+::pair$<$ \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}}, bool $>$ {\bfseries insert} (P \&\&value)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a71a2ff21a5f525dc7b5789da5103af34}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a71a2ff21a5f525dc7b5789da5103af34}} 
+{\footnotesize template$<$typename P $>$ }\\\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}} {\bfseries insert\+\_\+hint} (\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{const\+\_\+iterator}} hint, P \&\&value)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a05718b0e6ee94a6ef1519a457b093f74}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a05718b0e6ee94a6ef1519a457b093f74}} 
+{\footnotesize template$<$class Input\+It $>$ }\\void {\bfseries insert} (Input\+It first, Input\+It last)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a6511c0204e01e225609361850fad2a41}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a6511c0204e01e225609361850fad2a41}} 
+{\footnotesize template$<$class K , class M $>$ }\\std\+::pair$<$ \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}}, bool $>$ {\bfseries insert\+\_\+or\+\_\+assign} (K \&\&key, M \&\&value)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ac3a4ec1dc1dae48d7a60b06075eb2bbf}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ac3a4ec1dc1dae48d7a60b06075eb2bbf}} 
+{\footnotesize template$<$class K , class M $>$ }\\\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}} {\bfseries insert\+\_\+or\+\_\+assign} (\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{const\+\_\+iterator}} hint, K \&\&key, M \&\&obj)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a2a32ed18e284bccbd8e07b3313f83ed8}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a2a32ed18e284bccbd8e07b3313f83ed8}} 
+{\footnotesize template$<$class... Args$>$ }\\std\+::pair$<$ \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}}, bool $>$ {\bfseries emplace} (Args \&\&... args)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a5084187f2502c308f952d63f6ea0566e}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a5084187f2502c308f952d63f6ea0566e}} 
+{\footnotesize template$<$class... Args$>$ }\\\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}} {\bfseries emplace\+\_\+hint} (\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{const\+\_\+iterator}} hint, Args \&\&... args)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a8ec0d039f714770c8ddcf13f97c0aa56}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a8ec0d039f714770c8ddcf13f97c0aa56}} 
+{\footnotesize template$<$class K , class... Args$>$ }\\std\+::pair$<$ \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}}, bool $>$ {\bfseries try\+\_\+emplace} (K \&\&key, Args \&\&... value\+\_\+args)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a1ff848f035159e58e04fdf66d57b51b1}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a1ff848f035159e58e04fdf66d57b51b1}} 
+{\footnotesize template$<$class K , class... Args$>$ }\\\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}} {\bfseries try\+\_\+emplace\+\_\+hint} (\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{const\+\_\+iterator}} hint, K \&\&key, Args \&\&... args)
+\item 
+\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}} \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ae14571eebf96dca56ae81c42c345cb15}{erase}} (\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}} pos)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a3c5ee339dbb4ddec112afeb0a9e28df3}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a3c5ee339dbb4ddec112afeb0a9e28df3}} 
+\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}} {\bfseries erase} (\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{const\+\_\+iterator}} pos)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_aabca2d60f8fba8624e113072368f6730}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_aabca2d60f8fba8624e113072368f6730}} 
+\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}} {\bfseries erase} (\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{const\+\_\+iterator}} first, \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{const\+\_\+iterator}} last)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_afcb2edec16f1ee6d606f3560b8109b8e}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_afcb2edec16f1ee6d606f3560b8109b8e}} 
+{\footnotesize template$<$class K $>$ }\\size\+\_\+type {\bfseries erase} (const K \&key)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_aa950113548f28fb2cacecd765646b48b}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_aa950113548f28fb2cacecd765646b48b}} 
+{\footnotesize template$<$class K $>$ }\\size\+\_\+type {\bfseries erase} (const K \&key, std\+::size\+\_\+t hash)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ae79a8d5ab2d61f8c17517343fb172294}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ae79a8d5ab2d61f8c17517343fb172294}} 
+void {\bfseries swap} (\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash}{ordered\+\_\+hash}} \&other)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ad2e17b6465067143188af39bc9624251}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ad2e17b6465067143188af39bc9624251}} 
+{\footnotesize template$<$class K , class U  = Value\+Select, typename std\+::enable\+\_\+if$<$ has\+\_\+mapped\+\_\+type$<$ U $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\U\+::value\+\_\+type \& {\bfseries at} (const K \&key)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a6fa86865eff7674628279e9278a3720e}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a6fa86865eff7674628279e9278a3720e}} 
+{\footnotesize template$<$class K , class U  = Value\+Select, typename std\+::enable\+\_\+if$<$ has\+\_\+mapped\+\_\+type$<$ U $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\U\+::value\+\_\+type \& {\bfseries at} (const K \&key, std\+::size\+\_\+t hash)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ab724b5e7810ceb1ace5fd1b9a2e2b6c3}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ab724b5e7810ceb1ace5fd1b9a2e2b6c3}} 
+{\footnotesize template$<$class K , class U  = Value\+Select, typename std\+::enable\+\_\+if$<$ has\+\_\+mapped\+\_\+type$<$ U $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\const U\+::value\+\_\+type \& {\bfseries at} (const K \&key) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a043c2dcd264ffd1f1ae8c96193e16d96}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a043c2dcd264ffd1f1ae8c96193e16d96}} 
+{\footnotesize template$<$class K , class U  = Value\+Select, typename std\+::enable\+\_\+if$<$ has\+\_\+mapped\+\_\+type$<$ U $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\const U\+::value\+\_\+type \& {\bfseries at} (const K \&key, std\+::size\+\_\+t hash) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a0c013a0d6f215174ea0bf269d68bad4e}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a0c013a0d6f215174ea0bf269d68bad4e}} 
+{\footnotesize template$<$class K , class U  = Value\+Select, typename std\+::enable\+\_\+if$<$ has\+\_\+mapped\+\_\+type$<$ U $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\U\+::value\+\_\+type \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (K \&\&key)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a7e6124da7c9ae05f5f6897b80d4cf8dc}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a7e6124da7c9ae05f5f6897b80d4cf8dc}} 
+{\footnotesize template$<$class K $>$ }\\size\+\_\+type {\bfseries count} (const K \&key) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_af4848aba22f0271c8dd0c9e1356174a4}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_af4848aba22f0271c8dd0c9e1356174a4}} 
+{\footnotesize template$<$class K $>$ }\\size\+\_\+type {\bfseries count} (const K \&key, std\+::size\+\_\+t hash) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ad7a350d9034a207a86ae33a306db5226}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ad7a350d9034a207a86ae33a306db5226}} 
+{\footnotesize template$<$class K $>$ }\\\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}} {\bfseries find} (const K \&key)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a0fbbef4dd3fadf649bce19167bb86d84}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a0fbbef4dd3fadf649bce19167bb86d84}} 
+{\footnotesize template$<$class K $>$ }\\\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}} {\bfseries find} (const K \&key, std\+::size\+\_\+t hash)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a69478f5d912ac3c916c1734d6d3f8f86}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a69478f5d912ac3c916c1734d6d3f8f86}} 
+{\footnotesize template$<$class K $>$ }\\\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{const\+\_\+iterator}} {\bfseries find} (const K \&key) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a863d8605301cb957808cae9533617846}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a863d8605301cb957808cae9533617846}} 
+{\footnotesize template$<$class K $>$ }\\\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{const\+\_\+iterator}} {\bfseries find} (const K \&key, std\+::size\+\_\+t hash) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ac263dffa886aa3362b27c0362bcd7ede}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ac263dffa886aa3362b27c0362bcd7ede}} 
+{\footnotesize template$<$class K $>$ }\\bool {\bfseries contains} (const K \&key) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a2b528de7d05845f485fe38d948f3dd88}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a2b528de7d05845f485fe38d948f3dd88}} 
+{\footnotesize template$<$class K $>$ }\\bool {\bfseries contains} (const K \&key, std\+::size\+\_\+t hash) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a6aa00375ff5f5938d6d3f21c8838a17a}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a6aa00375ff5f5938d6d3f21c8838a17a}} 
+{\footnotesize template$<$class K $>$ }\\std\+::pair$<$ \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}}, \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}} $>$ {\bfseries equal\+\_\+range} (const K \&key)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_abee808bc3adbdc3f9d5bb414f50def89}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_abee808bc3adbdc3f9d5bb414f50def89}} 
+{\footnotesize template$<$class K $>$ }\\std\+::pair$<$ \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}}, \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}} $>$ {\bfseries equal\+\_\+range} (const K \&key, std\+::size\+\_\+t hash)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a079645dc944987e6430ea66d32972860}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a079645dc944987e6430ea66d32972860}} 
+{\footnotesize template$<$class K $>$ }\\std\+::pair$<$ \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{const\+\_\+iterator}}, \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{const\+\_\+iterator}} $>$ {\bfseries equal\+\_\+range} (const K \&key) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a2582c0867cdfd2bfc2e616bfe7c8e4a0}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a2582c0867cdfd2bfc2e616bfe7c8e4a0}} 
+{\footnotesize template$<$class K $>$ }\\std\+::pair$<$ \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{const\+\_\+iterator}}, \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{const\+\_\+iterator}} $>$ {\bfseries equal\+\_\+range} (const K \&key, std\+::size\+\_\+t hash) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_aa33d1dd1087c6efa67a30be423e75237}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_aa33d1dd1087c6efa67a30be423e75237}} 
+size\+\_\+type {\bfseries bucket\+\_\+count} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a646996c69bba00b6e374cc96dd55f853}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a646996c69bba00b6e374cc96dd55f853}} 
+size\+\_\+type {\bfseries max\+\_\+bucket\+\_\+count} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a5da2770772c0691f7b1f999861fdffa4}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a5da2770772c0691f7b1f999861fdffa4}} 
+float {\bfseries load\+\_\+factor} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_aab90a00ea0a737ddd1c4d53d9f47dd13}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_aab90a00ea0a737ddd1c4d53d9f47dd13}} 
+float {\bfseries max\+\_\+load\+\_\+factor} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a99b60d7f5bb0889815141bd573b3913d}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a99b60d7f5bb0889815141bd573b3913d}} 
+void {\bfseries max\+\_\+load\+\_\+factor} (float ml)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ac6e87a1081f7e1d4cbdcfc285f6b4477}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ac6e87a1081f7e1d4cbdcfc285f6b4477}} 
+void {\bfseries rehash} (size\+\_\+type count)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a67f04398097b6121fbca64064bbf4890}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a67f04398097b6121fbca64064bbf4890}} 
+void {\bfseries reserve} (size\+\_\+type count)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_adbd3b145ebcbd0efeb1b54d9e63b6e45}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_adbd3b145ebcbd0efeb1b54d9e63b6e45}} 
+hasher {\bfseries hash\+\_\+function} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a591a1ac7eed1dbbfad37cec6ac6417f0}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a591a1ac7eed1dbbfad37cec6ac6417f0}} 
+key\+\_\+equal {\bfseries key\+\_\+eq} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a5fb283cf1d8f5abcd089ad8b5a3f286c}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a5fb283cf1d8f5abcd089ad8b5a3f286c}} 
+\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}} {\bfseries mutable\+\_\+iterator} (\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{const\+\_\+iterator}} pos)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a692e5c6eb40e3226cdea154771ad15f6}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a692e5c6eb40e3226cdea154771ad15f6}} 
+\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}} {\bfseries nth} (size\+\_\+type index)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ad061ccba9c6563a0999868384efd461e}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ad061ccba9c6563a0999868384efd461e}} 
+\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{const\+\_\+iterator}} {\bfseries nth} (size\+\_\+type index) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a3e4ebf244bb278a214dacb82c69e661e}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a3e4ebf244bb278a214dacb82c69e661e}} 
+const\+\_\+reference {\bfseries front} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a647aa3a4fc29fe57de828cab700729c9}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a647aa3a4fc29fe57de828cab700729c9}} 
+const\+\_\+reference {\bfseries back} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a127774d982e8752258333c7ad7d3477c}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a127774d982e8752258333c7ad7d3477c}} 
+const values\+\_\+container\+\_\+type \& {\bfseries values\+\_\+container} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a17820bbf5450c3e26ea4088d0b159dfd}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a17820bbf5450c3e26ea4088d0b159dfd}} 
+{\footnotesize template$<$class U  = values\+\_\+container\+\_\+type, typename std\+::enable\+\_\+if$<$ is\+\_\+vector$<$ U $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\const values\+\_\+container\+\_\+type\+::value\+\_\+type $\ast$ {\bfseries data} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ad1855b56d175636b77cb25644e04e63a}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ad1855b56d175636b77cb25644e04e63a}} 
+{\footnotesize template$<$class U  = values\+\_\+container\+\_\+type, typename std\+::enable\+\_\+if$<$ is\+\_\+vector$<$ U $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\size\+\_\+type {\bfseries capacity} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a003efec6736ac7959c49f70e06dc4d67}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a003efec6736ac7959c49f70e06dc4d67}} 
+void {\bfseries shrink\+\_\+to\+\_\+fit} ()
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a663f448668304bb3940f7e1c8e58d0e5}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a663f448668304bb3940f7e1c8e58d0e5}} 
+{\footnotesize template$<$typename P $>$ }\\std\+::pair$<$ \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}}, bool $>$ {\bfseries insert\+\_\+at\+\_\+position} (\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{const\+\_\+iterator}} pos, P \&\&value)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a88e61ed4deea6239cc78385f6cac3030}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a88e61ed4deea6239cc78385f6cac3030}} 
+{\footnotesize template$<$class... Args$>$ }\\std\+::pair$<$ \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}}, bool $>$ {\bfseries emplace\+\_\+at\+\_\+position} (\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{const\+\_\+iterator}} pos, Args \&\&... args)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ab75bd413ef58e6261c41f8907b228756}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ab75bd413ef58e6261c41f8907b228756}} 
+{\footnotesize template$<$class K , class... Args$>$ }\\std\+::pair$<$ \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}}, bool $>$ {\bfseries try\+\_\+emplace\+\_\+at\+\_\+position} (\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{const\+\_\+iterator}} pos, K \&\&key, Args \&\&... value\+\_\+args)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ab01d3e8d15a267984a62c7a91890d334}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ab01d3e8d15a267984a62c7a91890d334}} 
+void {\bfseries pop\+\_\+back} ()
+\item 
+\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}} \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a21c48865fa368540903475db8ac6ca9e}{unordered\+\_\+erase}} (\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}} pos)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_aeb03c12aa9544721c779ba1bf6aa4209}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_aeb03c12aa9544721c779ba1bf6aa4209}} 
+\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}} {\bfseries unordered\+\_\+erase} (\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{const\+\_\+iterator}} pos)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a7c8729fc8f47b0f953bbad7519b13f7d}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a7c8729fc8f47b0f953bbad7519b13f7d}} 
+{\footnotesize template$<$class K $>$ }\\size\+\_\+type {\bfseries unordered\+\_\+erase} (const K \&key)
+\item 
+{\footnotesize template$<$class K $>$ }\\size\+\_\+type \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a46db26df8d9104bf7b9dc80fe10101e9}{unordered\+\_\+erase}} (const K \&key, std\+::size\+\_\+t hash)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a5d0140b0748a09e4a70ee93df942d9ca}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a5d0140b0748a09e4a70ee93df942d9ca}} 
+{\footnotesize template$<$class Serializer $>$ }\\void {\bfseries serialize} (Serializer \&serializer) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a9f8c19e9299e02625f7cf94c46df395b}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a9f8c19e9299e02625f7cf94c46df395b}} 
+{\footnotesize template$<$class Deserializer $>$ }\\void {\bfseries deserialize} (Deserializer \&deserializer, bool hash\+\_\+compatible)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_abef368126aac0177fcf90d85c63eedef}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_abef368126aac0177fcf90d85c63eedef}} 
+static const size\+\_\+type {\bfseries D\+E\+F\+A\+U\+L\+T\+\_\+\+I\+N\+I\+T\+\_\+\+B\+U\+C\+K\+E\+T\+S\+\_\+\+S\+I\+ZE} = 0
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_adb967b1e90588c1c9af9ecda50e80887}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_adb967b1e90588c1c9af9ecda50e80887}} 
+static constexpr float {\bfseries D\+E\+F\+A\+U\+L\+T\+\_\+\+M\+A\+X\+\_\+\+L\+O\+A\+D\+\_\+\+F\+A\+C\+T\+OR} = 0.\+75f
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_abbdc47ef7e046de65819976f1f36d3e1}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_abbdc47ef7e046de65819976f1f36d3e1}} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash}{ordered\+\_\+hash}} \&lhs, const \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash}{ordered\+\_\+hash}} \&rhs)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a5309385caa20878f7870336b4ec23e90}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a5309385caa20878f7870336b4ec23e90}} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash}{ordered\+\_\+hash}} \&lhs, const \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash}{ordered\+\_\+hash}} \&rhs)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_acd779ab70af8e3931e63d34679b8a4ca}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_acd779ab70af8e3931e63d34679b8a4ca}} 
+bool {\bfseries operator$<$} (const \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash}{ordered\+\_\+hash}} \&lhs, const \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash}{ordered\+\_\+hash}} \&rhs)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a8130f8d7e6e5119655368afc573eda17}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a8130f8d7e6e5119655368afc573eda17}} 
+bool {\bfseries operator$<$=} (const \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash}{ordered\+\_\+hash}} \&lhs, const \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash}{ordered\+\_\+hash}} \&rhs)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a17f8887588060620873c09e7358d6dd7}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a17f8887588060620873c09e7358d6dd7}} 
+bool {\bfseries operator$>$} (const \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash}{ordered\+\_\+hash}} \&lhs, const \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash}{ordered\+\_\+hash}} \&rhs)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a4b591e94eec8c892827d8a9986fe6542}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a4b591e94eec8c892827d8a9986fe6542}} 
+bool {\bfseries operator$>$=} (const \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash}{ordered\+\_\+hash}} \&lhs, const \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash}{ordered\+\_\+hash}} \&rhs)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class Value\+Type, class Key\+Select, class Value\+Select, class Hash, class Key\+Equal, class Allocator, class Value\+Type\+Container, class Index\+Type$>$\newline
+class tsl\+::detail\+\_\+ordered\+\_\+hash\+::ordered\+\_\+hash$<$ Value\+Type, Key\+Select, Value\+Select, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$}
+
+Internal common class used by \mbox{\hyperlink{classtsl_1_1ordered__map}{ordered\+\_\+map}} and \mbox{\hyperlink{classtsl_1_1ordered__set}{ordered\+\_\+set}}.
+
+Value\+Type is what will be stored by \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash}{ordered\+\_\+hash}} (usually std\+::pair$<$\+Key, T$>$ for map and Key for set).
+
+Key\+Select should be a Function\+Object which takes a Value\+Type in parameter and return a reference to the key.
+
+Value\+Select should be a Function\+Object which takes a Value\+Type in parameter and return a reference to the value. Value\+Select should be void if there is no value (in set for example).
+
+Value\+Type\+Container is the container which will be used to store Value\+Type values. Usually a std\+::deque$<$\+Value\+Type, Allocator$>$ or std\+::vector$<$\+Value\+Type, Allocator$>$.
+
+The \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash}{ordered\+\_\+hash}} structure is a hash table which preserves the order of insertion of the elements. To do so, it stores the values in the Value\+Type\+Container (m\+\_\+values) using emplace\+\_\+back at each insertion of a new element. Another structure (m\+\_\+buckets of type std\+::vector$<$bucket\+\_\+entry$>$) will serve as buckets array for the hash table part. Each bucket stores an index which corresponds to the index in m\+\_\+values where the bucket\textquotesingle{}s value is and the (truncated) hash of this value. An index is used instead of a pointer to the value to reduce the size of each bucket entry.
+
+To resolve collisions in the buckets array, the structures use robin hood linear probing with backward shift deletion. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ae14571eebf96dca56ae81c42c345cb15}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_ae14571eebf96dca56ae81c42c345cb15}} 
+\index{tsl::detail\_ordered\_hash::ordered\_hash$<$ ValueType, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::detail\_ordered\_hash::ordered\_hash$<$ ValueType, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!erase@{erase}}
+\index{erase@{erase}!tsl::detail\_ordered\_hash::ordered\_hash$<$ ValueType, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::detail\_ordered\_hash::ordered\_hash$<$ ValueType, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{erase()}{erase()}}
+{\footnotesize\ttfamily template$<$class Value\+Type, class Key\+Select, class Value\+Select, class Hash, class Key\+Equal, class Allocator, class Value\+Type\+Container, class Index\+Type$>$ \\
+\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}} \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash}{tsl\+::detail\+\_\+ordered\+\_\+hash\+::ordered\+\_\+hash}}$<$ Value\+Type, Key\+Select, Value\+Select, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::erase (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}}}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here to avoid {\ttfamily template$<$class K$>$ size\+\_\+type erase(const K\& key)} being used when we use an {\ttfamily iterator} instead of a {\ttfamily const\+\_\+iterator}. \mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a21c48865fa368540903475db8ac6ca9e}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a21c48865fa368540903475db8ac6ca9e}} 
+\index{tsl::detail\_ordered\_hash::ordered\_hash$<$ ValueType, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::detail\_ordered\_hash::ordered\_hash$<$ ValueType, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!unordered\_erase@{unordered\_erase}}
+\index{unordered\_erase@{unordered\_erase}!tsl::detail\_ordered\_hash::ordered\_hash$<$ ValueType, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::detail\_ordered\_hash::ordered\_hash$<$ ValueType, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{unordered\_erase()}{unordered\_erase()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Value\+Type, class Key\+Select, class Value\+Select, class Hash, class Key\+Equal, class Allocator, class Value\+Type\+Container, class Index\+Type$>$ \\
+\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}} \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash}{tsl\+::detail\+\_\+ordered\+\_\+hash\+::ordered\+\_\+hash}}$<$ Value\+Type, Key\+Select, Value\+Select, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::unordered\+\_\+erase (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash_1_1ordered__iterator}{iterator}}}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here to avoid {\ttfamily template$<$class K$>$ size\+\_\+type unordered\+\_\+erase(const K\& key)} being used when we use a iterator instead of a const\+\_\+iterator. \mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a46db26df8d9104bf7b9dc80fe10101e9}\label{classtsl_1_1detail__ordered__hash_1_1ordered__hash_a46db26df8d9104bf7b9dc80fe10101e9}} 
+\index{tsl::detail\_ordered\_hash::ordered\_hash$<$ ValueType, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::detail\_ordered\_hash::ordered\_hash$<$ ValueType, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}!unordered\_erase@{unordered\_erase}}
+\index{unordered\_erase@{unordered\_erase}!tsl::detail\_ordered\_hash::ordered\_hash$<$ ValueType, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$@{tsl::detail\_ordered\_hash::ordered\_hash$<$ ValueType, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, ValueTypeContainer, IndexType $>$}}
+\subsubsection{\texorpdfstring{unordered\_erase()}{unordered\_erase()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Value\+Type, class Key\+Select, class Value\+Select, class Hash, class Key\+Equal, class Allocator, class Value\+Type\+Container, class Index\+Type$>$ \\
+template$<$class K $>$ \\
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1ordered__hash}{tsl\+::detail\+\_\+ordered\+\_\+hash\+::ordered\+\_\+hash}}$<$ Value\+Type, Key\+Select, Value\+Select, Hash, Key\+Equal, Allocator, Value\+Type\+Container, Index\+Type $>$\+::unordered\+\_\+erase (\begin{DoxyParamCaption}\item[{const K \&}]{key,  }\item[{std\+::size\+\_\+t}]{hash }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+If we are not erasing the last element in m\+\_\+values, we swap the element we are erasing with the last element. We then would just have to do a pop\+\_\+back() in m\+\_\+values.
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/tsl/ordered\+\_\+hash.\+h\end{DoxyCompactItemize}

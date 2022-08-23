@@ -1,0 +1,180 @@
+\hypertarget{classrev_1_1_controller_description}{}\section{rev\+::Controller\+Description Struct Reference}
+\label{classrev_1_1_controller_description}\index{rev::ControllerDescription@{rev::ControllerDescription}}
+Inheritance diagram for rev\+::Controller\+Description\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.654028cm]{classrev_1_1_controller_description}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_controller_description_af616574e08eed353c357d600bb1982e6}\label{classrev_1_1_controller_description_af616574e08eed353c357d600bb1982e6}} 
+{\bfseries Controller\+Description} (Controller\+Type type)
+\item 
+\mbox{\Hypertarget{classrev_1_1_controller_description_a42f9f265be028f29429dc8264366aa45}\label{classrev_1_1_controller_description_a42f9f265be028f29429dc8264366aa45}} 
+virtual {\bfseries $\sim$\+Controller\+Description} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_controller_description_a38cf89621db3d6e90223cd7957594603}\label{classrev_1_1_controller_description_a38cf89621db3d6e90223cd7957594603}} 
+virtual std\+::shared\+\_\+ptr$<$ physx\+::\+Px\+Controller\+Desc $>$ {\bfseries to\+PhysX} () const =0
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_controller_description_a04b38c93df3e931878b3910ccc5d2288}\label{classrev_1_1_controller_description_a04b38c93df3e931878b3910ccc5d2288}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_controller_description_a04b38c93df3e931878b3910ccc5d2288}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_controller_description_aec9447e90449cb173dbe55da5ce3c320}\label{classrev_1_1_controller_description_aec9447e90449cb173dbe55da5ce3c320}} 
+virtual void \mbox{\hyperlink{classrev_1_1_controller_description_aec9447e90449cb173dbe55da5ce3c320}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_controller_description_a8170f2acabf587228bae29aba6c1a90b}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_controller_description_a95ae000783dd5460060582a129c9251d}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Attributes}
+\begin{Indent}\textbf{ Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_controller_description_a18ce82bf458ce2c5b859bab4584d6972}\label{classrev_1_1_controller_description_a18ce82bf458ce2c5b859bab4584d6972}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} {\bfseries m\+\_\+initial\+Position} = \{0.\+0, 0.\+0, 0.\+0\}
+\item 
+\mbox{\Hypertarget{classrev_1_1_controller_description_aebad37f72d865a6fad72523987603f26}\label{classrev_1_1_controller_description_aebad37f72d865a6fad72523987603f26}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} {\bfseries m\+\_\+up\+Direction} = \{0.\+0f, 1.\+0f, 0.\+0f\}
+\item 
+\mbox{\Hypertarget{classrev_1_1_controller_description_a7252bc83f4e789d8b75f05c7d0c1e4d5}\label{classrev_1_1_controller_description_a7252bc83f4e789d8b75f05c7d0c1e4d5}} 
+float {\bfseries m\+\_\+slope\+Limit} = 0.\+707f
+\item 
+\mbox{\Hypertarget{classrev_1_1_controller_description_a2d4d84fdb68e945a2fecf4864dad5031}\label{classrev_1_1_controller_description_a2d4d84fdb68e945a2fecf4864dad5031}} 
+float {\bfseries m\+\_\+invisible\+Wall\+Height} = 0.\+0f
+\item 
+float \mbox{\hyperlink{classrev_1_1_controller_description_ac7d3b080b8a9969824150ef5be4b8f32}{m\+\_\+max\+Jump\+Height}} = 0.\+0f
+\item 
+\mbox{\Hypertarget{classrev_1_1_controller_description_a39dcdf5a73f9a987c277336c5b513bf5}\label{classrev_1_1_controller_description_a39dcdf5a73f9a987c277336c5b513bf5}} 
+float {\bfseries m\+\_\+contact\+Offset} = 0.\+1f
+\item 
+\mbox{\Hypertarget{classrev_1_1_controller_description_a0237374fb299c7286cdb61c77438df91}\label{classrev_1_1_controller_description_a0237374fb299c7286cdb61c77438df91}} 
+float {\bfseries m\+\_\+step\+Offset} = 0.\+5f
+\item 
+\mbox{\Hypertarget{classrev_1_1_controller_description_a613129ed2070e4feb3e8ab33882fe9e9}\label{classrev_1_1_controller_description_a613129ed2070e4feb3e8ab33882fe9e9}} 
+float {\bfseries m\+\_\+density} = 10.\+0f
+\item 
+\mbox{\Hypertarget{classrev_1_1_controller_description_a51a9f63da49b18f750bf576aa6bcb428}\label{classrev_1_1_controller_description_a51a9f63da49b18f750bf576aa6bcb428}} 
+float {\bfseries m\+\_\+scale\+Coeff} = 0.\+99f
+\item 
+\mbox{\Hypertarget{classrev_1_1_controller_description_a0b6d99ad1f04394b8d2f3ce7133cb242}\label{classrev_1_1_controller_description_a0b6d99ad1f04394b8d2f3ce7133cb242}} 
+float {\bfseries m\+\_\+volume\+Growth} = 1.\+5f
+\item 
+\mbox{\Hypertarget{classrev_1_1_controller_description_aa8e8bba30a424bd1444d6492f4a1e9f5}\label{classrev_1_1_controller_description_aa8e8bba30a424bd1444d6492f4a1e9f5}} 
+physx\+::\+Px\+User\+Controller\+Hit\+Report $\ast$ \mbox{\hyperlink{classrev_1_1_controller_description_aa8e8bba30a424bd1444d6492f4a1e9f5}{m\+\_\+report\+Callback}} = nullptr
+\begin{DoxyCompactList}\small\item\em Specifies a user report callback. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_controller_description_a56004c49753317bab0bbba99a1217592}\label{classrev_1_1_controller_description_a56004c49753317bab0bbba99a1217592}} 
+physx\+::\+Px\+Controller\+Behavior\+Callback $\ast$ \mbox{\hyperlink{classrev_1_1_controller_description_a56004c49753317bab0bbba99a1217592}{m\+\_\+behavior\+Callback}} = nullptr
+\begin{DoxyCompactList}\small\item\em Specifies a user behavior callback. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_controller_description_a3687860a2c8f31b9c4bf203d006dfe87}\label{classrev_1_1_controller_description_a3687860a2c8f31b9c4bf203d006dfe87}} 
+bool \mbox{\hyperlink{classrev_1_1_controller_description_a3687860a2c8f31b9c4bf203d006dfe87}{m\+\_\+register\+Deletion\+Listener}} = true
+\begin{DoxyCompactList}\small\item\em Use a deletion listener to get informed about released objects and clear internal caches if needed. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_physics_material}{Physics\+Material}} $>$ \mbox{\hyperlink{classrev_1_1_controller_description_a2f7d222b7aca3fd4e7036200f5480167}{m\+\_\+material}} = nullptr
+\begin{DoxyCompactList}\small\item\em The material for the actor associated with the controller. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_controller_description_a4fc2bd6dcda9910754548a38d6a4a2ae}\label{classrev_1_1_controller_description_a4fc2bd6dcda9910754548a38d6a4a2ae}} 
+int \mbox{\hyperlink{classrev_1_1_controller_description_a4fc2bd6dcda9910754548a38d6a4a2ae}{m\+\_\+unwalkable\+Mode}} = 0
+\begin{DoxyCompactList}\small\item\em 0 just prevents climbing, 1 also forces slidiing \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_controller_description_ab6cee2522f72edb9decfaf8b139e5b30}\label{classrev_1_1_controller_description_ab6cee2522f72edb9decfaf8b139e5b30}} 
+void $\ast$ \mbox{\hyperlink{classrev_1_1_controller_description_ab6cee2522f72edb9decfaf8b139e5b30}{m\+\_\+user\+Data}} = nullptr
+\begin{DoxyCompactList}\small\item\em User specified data associated with the controller. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_controller_description_a03f5cbdd3bf10a6fbde2df5b51633f32}\label{classrev_1_1_controller_description_a03f5cbdd3bf10a6fbde2df5b51633f32}} 
+Controller\+Type {\bfseries m\+\_\+type}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_controller_description_a7b779b2f48d7aa57801dc23edcfaeca4}\label{classrev_1_1_controller_description_a7b779b2f48d7aa57801dc23edcfaeca4}} 
+void \mbox{\hyperlink{classrev_1_1_controller_description_a7b779b2f48d7aa57801dc23edcfaeca4}{load\+Into\+Physx}} (std\+::shared\+\_\+ptr$<$ physx\+::\+Px\+Controller\+Desc $>$ px\+Desc) const
+\begin{DoxyCompactList}\small\item\em Load attributes into the given physx description. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_controller_description_abdd36062c3af5cb2803f427767fc8787}\label{classrev_1_1_controller_description_abdd36062c3af5cb2803f427767fc8787}} 
+enum {\bfseries Controller\+Type} \{ {\bfseries k\+Box}, 
+{\bfseries k\+Capsule}
+ \}
+\item 
+\mbox{\Hypertarget{classrev_1_1_controller_description_a7f3283c20640f0e365a3136bf5a21caf}\label{classrev_1_1_controller_description_a7f3283c20640f0e365a3136bf5a21caf}} 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_controller_description}{Controller\+Description}} $>$ {\bfseries create} (const Q\+Json\+Value \&json)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_controller_description_a8170f2acabf587228bae29aba6c1a90b}\label{classrev_1_1_controller_description_a8170f2acabf587228bae29aba6c1a90b}} 
+\index{rev::ControllerDescription@{rev::ControllerDescription}!className@{className}}
+\index{className@{className}!rev::ControllerDescription@{rev::ControllerDescription}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Controller\+Description\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_capsule_controller_description_aca7d4aff153f3db30084d730966ceb05}{rev\+::\+Capsule\+Controller\+Description}}, and \mbox{\hyperlink{classrev_1_1_box_controller_description_a88d4d2d35a8f8d38b1dd90f33dba96bd}{rev\+::\+Box\+Controller\+Description}}.
+
+\mbox{\Hypertarget{classrev_1_1_controller_description_a95ae000783dd5460060582a129c9251d}\label{classrev_1_1_controller_description_a95ae000783dd5460060582a129c9251d}} 
+\index{rev::ControllerDescription@{rev::ControllerDescription}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::ControllerDescription@{rev::ControllerDescription}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Controller\+Description\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_capsule_controller_description_adb2e0dbf5b569df3b0536b888b0af21c}{rev\+::\+Capsule\+Controller\+Description}}, and \mbox{\hyperlink{classrev_1_1_box_controller_description_adb539380f3f2033d6d6fbfe1b36a69c8}{rev\+::\+Box\+Controller\+Description}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_controller_description_a2f7d222b7aca3fd4e7036200f5480167}\label{classrev_1_1_controller_description_a2f7d222b7aca3fd4e7036200f5480167}} 
+\index{rev::ControllerDescription@{rev::ControllerDescription}!m\_material@{m\_material}}
+\index{m\_material@{m\_material}!rev::ControllerDescription@{rev::ControllerDescription}}
+\subsubsection{\texorpdfstring{m\_material}{m\_material}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classrev_1_1_physics_material}{Physics\+Material}}$>$ rev\+::\+Controller\+Description\+::m\+\_\+material = nullptr}
+
+
+
+The material for the actor associated with the controller. 
+
+The controller internally creates a rigid body actor.\+This parameter specifies the material of the actor. \mbox{\Hypertarget{classrev_1_1_controller_description_ac7d3b080b8a9969824150ef5be4b8f32}\label{classrev_1_1_controller_description_ac7d3b080b8a9969824150ef5be4b8f32}} 
+\index{rev::ControllerDescription@{rev::ControllerDescription}!m\_maxJumpHeight@{m\_maxJumpHeight}}
+\index{m\_maxJumpHeight@{m\_maxJumpHeight}!rev::ControllerDescription@{rev::ControllerDescription}}
+\subsubsection{\texorpdfstring{m\_maxJumpHeight}{m\_maxJumpHeight}}
+{\footnotesize\ttfamily float rev\+::\+Controller\+Description\+::m\+\_\+max\+Jump\+Height = 0.\+0f}
+
+The \textquotesingle{}max\+Jump\+Height\textquotesingle{} variable is used to extend the size of the collision volume downward. This way, all the non-\/walkable triangles are properly found by the collision queries and it becomes impossible to \textquotesingle{}jump over\textquotesingle{} invisible walls. 
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Character\+Controller.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Character\+Controller.\+cpp\end{DoxyCompactItemize}

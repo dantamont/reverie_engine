@@ -1,0 +1,31 @@
+/// This file is auto-generated from {{ template_file_name }}
+/// Do not modify! It will be overwritten
+
+#include "{{ library_name }}/network/messages/GMessagePort.h"
+#include "{{ library_name }}/network/messages/GMessage.h"
+{%- for type in message_types %}
+#include "{{ library_name }}/network/messages/G{{ type }}.h"
+{%- endfor %}
+
+namespace rev {
+
+void GMessagePort::processMessage(GMessage* message){
+    const GMessage::MessageType& messageType = message->messageType();
+    switch(messageType){
+{%- for type in message_types %}
+    case GMessage::MessageType::e{{ type }}:
+        processMessage(&message->as<G{{ type }}>());
+        break;
+{%- endfor %}
+    default:
+        assert(false && "Invalid message type");
+    }
+}
+{% for type in message_types %}
+void GMessagePort::processMessage(G{{ type }}* message){
+    assert(false && "Unhandled message of type G{{ type }}");
+}
+{% endfor %}
+
+
+} // End namespace

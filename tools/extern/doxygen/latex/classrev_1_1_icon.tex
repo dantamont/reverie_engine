@@ -1,0 +1,69 @@
+\hypertarget{classrev_1_1_icon}{}\section{rev\+::Icon Class Reference}
+\label{classrev_1_1_icon}\index{rev::Icon@{rev::Icon}}
+
+
+\mbox{\hyperlink{classrev_1_1_icon}{Icon}} class.  
+
+
+
+
+{\ttfamily \#include $<$G\+Icon.\+h$>$}
+
+Inheritance diagram for rev\+::Icon\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=6.000000cm]{classrev_1_1_icon}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_icon_ad594b804eccb8eaa82b387af7d73b028}\label{classrev_1_1_icon_ad594b804eccb8eaa82b387af7d73b028}} 
+{\bfseries Icon} (\mbox{\hyperlink{classrev_1_1_canvas_component}{Canvas\+Component}} $\ast$canvas)
+\item 
+\mbox{\Hypertarget{classrev_1_1_icon_aa063a3fd745c54e780594195b546a21f}\label{classrev_1_1_icon_aa063a3fd745c54e780594195b546a21f}} 
+{\bfseries $\sim$\+Icon} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_icon_a6ffe16ff8c880b23695383a242117630}\label{classrev_1_1_icon_a6ffe16ff8c880b23695383a242117630}} 
+virtual Glyph\+Type {\bfseries glyph\+Type} () const override
+\item 
+\mbox{\Hypertarget{classrev_1_1_icon_af05cb7f6f6f53daaab546b4b8eb622e9}\label{classrev_1_1_icon_af05cb7f6f6f53daaab546b4b8eb622e9}} 
+const Q\+String \& {\bfseries icon\+Name} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_icon_a3aca47792a70a37c1b77929a06e2db37}\label{classrev_1_1_icon_a3aca47792a70a37c1b77929a06e2db37}} 
+void \mbox{\hyperlink{classrev_1_1_icon_a3aca47792a70a37c1b77929a06e2db37}{set\+Font\+Awesome\+Icon}} (const Q\+String \&icon\+Name)
+\begin{DoxyCompactList}\small\item\em Set to given font awesome icon. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_icon_abe623ff9743234e9b14e7491e2d5ce99}\label{classrev_1_1_icon_abe623ff9743234e9b14e7491e2d5ce99}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_icon_abe623ff9743234e9b14e7491e2d5ce99}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_icon_a7d9e06ba68fe87de8244f5c8156ef1da}\label{classrev_1_1_icon_a7d9e06ba68fe87de8244f5c8156ef1da}} 
+virtual void \mbox{\hyperlink{classrev_1_1_icon_a7d9e06ba68fe87de8244f5c8156ef1da}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Private Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_icon_a2c341638a8eb36edcfad7d8f61d9c7a6}\label{classrev_1_1_icon_a2c341638a8eb36edcfad7d8f61d9c7a6}} 
+Q\+String {\bfseries m\+\_\+icon\+Name}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{classrev_1_1_icon}{Icon}} class. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/canvas/G\+Icon.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/canvas/G\+Icon.\+cpp\end{DoxyCompactItemize}

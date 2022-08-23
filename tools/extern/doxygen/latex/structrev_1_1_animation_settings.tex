@@ -1,0 +1,59 @@
+\hypertarget{structrev_1_1_animation_settings}{}\section{rev\+::Animation\+Settings Struct Reference}
+\label{structrev_1_1_animation_settings}\index{rev::AnimationSettings@{rev::AnimationSettings}}
+
+
+Represents settings for animation playback.  
+
+
+
+
+{\ttfamily \#include $<$G\+Animation.\+h$>$}
+
+Inheritance diagram for rev\+::Animation\+Settings\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{structrev_1_1_animation_settings}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_animation_settings_a48896b1b3d8a363841124b0bb2bbf238}\label{structrev_1_1_animation_settings_a48896b1b3d8a363841124b0bb2bbf238}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{structrev_1_1_animation_settings_a48896b1b3d8a363841124b0bb2bbf238}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_animation_settings_aa3ad45ee2f3fd528a3bde0f81ebb212b}\label{structrev_1_1_animation_settings_aa3ad45ee2f3fd528a3bde0f81ebb212b}} 
+virtual void \mbox{\hyperlink{structrev_1_1_animation_settings_aa3ad45ee2f3fd528a3bde0f81ebb212b}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_animation_settings_a80fb275fac210ee41115e80625e9ffb1}\label{structrev_1_1_animation_settings_a80fb275fac210ee41115e80625e9ffb1}} 
+float \mbox{\hyperlink{structrev_1_1_animation_settings_a80fb275fac210ee41115e80625e9ffb1}{m\+\_\+speed\+Factor}} = 1.\+0
+\begin{DoxyCompactList}\small\item\em Multiplicative speed factor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_animation_settings_a73705b7991a16099dccee39eba140d2f}\label{structrev_1_1_animation_settings_a73705b7991a16099dccee39eba140d2f}} 
+float \mbox{\hyperlink{structrev_1_1_animation_settings_a73705b7991a16099dccee39eba140d2f}{m\+\_\+blend\+Weight}} = 1.\+0
+\begin{DoxyCompactList}\small\item\em For blending the clip with others. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_animation_settings_ad3bc64855c887bd0aa2e90562e0eea65}\label{structrev_1_1_animation_settings_ad3bc64855c887bd0aa2e90562e0eea65}} 
+int \mbox{\hyperlink{structrev_1_1_animation_settings_ad3bc64855c887bd0aa2e90562e0eea65}{m\+\_\+tick\+Offset}} = 0
+\begin{DoxyCompactList}\small\item\em For offsetting playback by some number of ticks. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_animation_settings_a5cdfdb718b84619d74c3c5c46d46101b}\label{structrev_1_1_animation_settings_a5cdfdb718b84619d74c3c5c46d46101b}} 
+float \mbox{\hyperlink{structrev_1_1_animation_settings_a5cdfdb718b84619d74c3c5c46d46101b}{m\+\_\+time\+Offset\+Sec}} = 0
+\begin{DoxyCompactList}\small\item\em For offsetting playback by some number of seconds. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_animation_settings_a1b221d0d02069dc93448b625435fd21d}\label{structrev_1_1_animation_settings_a1b221d0d02069dc93448b625435fd21d}} 
+int \mbox{\hyperlink{structrev_1_1_animation_settings_a1b221d0d02069dc93448b625435fd21d}{m\+\_\+num\+Plays}} = -\/1
+\begin{DoxyCompactList}\small\item\em The number of times to play the animation (for loop and ping-\/pong) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_animation_settings_ac2c405457970fc0ef9ceb51a174d1ca6}\label{structrev_1_1_animation_settings_ac2c405457970fc0ef9ceb51a174d1ca6}} 
+int \mbox{\hyperlink{structrev_1_1_animation_settings_ac2c405457970fc0ef9ceb51a174d1ca6}{m\+\_\+animation\+Time}} = -\/1
+\begin{DoxyCompactList}\small\item\em Cached animation time, for use if animation is to be frozen (note, N\+OT in seconds) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Represents settings for animation playback. 
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/animation/G\+Animation.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/animation/G\+Animation.\+cpp\end{DoxyCompactItemize}

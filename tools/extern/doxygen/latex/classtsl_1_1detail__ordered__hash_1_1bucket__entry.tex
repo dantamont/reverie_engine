@@ -1,0 +1,70 @@
+\hypertarget{classtsl_1_1detail__ordered__hash_1_1bucket__entry}{}\section{tsl\+::detail\+\_\+ordered\+\_\+hash\+::bucket\+\_\+entry$<$ Index\+Type $>$ Class Template Reference}
+\label{classtsl_1_1detail__ordered__hash_1_1bucket__entry}\index{tsl::detail\_ordered\_hash::bucket\_entry$<$ IndexType $>$@{tsl::detail\_ordered\_hash::bucket\_entry$<$ IndexType $>$}}
+
+
+{\ttfamily \#include $<$ordered\+\_\+hash.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1bucket__entry_ab8e3cb37e3bfd0a27f95de35b030cee1}\label{classtsl_1_1detail__ordered__hash_1_1bucket__entry_ab8e3cb37e3bfd0a27f95de35b030cee1}} 
+using {\bfseries index\+\_\+type} = Index\+Type
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1bucket__entry_a5ba01b224f4307dd9166dd33271a2ed4}\label{classtsl_1_1detail__ordered__hash_1_1bucket__entry_a5ba01b224f4307dd9166dd33271a2ed4}} 
+using {\bfseries truncated\+\_\+hash\+\_\+type} = typename std\+::conditional$<$ std\+::numeric\+\_\+limits$<$ Index\+Type $>$\+::max()$<$=std\+::numeric\+\_\+limits$<$ std\+::uint\+\_\+least32\+\_\+t $>$\+::max(), std\+::uint\+\_\+least32\+\_\+t, std\+::size\+\_\+t $>$\+::type
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1bucket__entry_a6b5c833e49d58772e587ee04856cdd04}\label{classtsl_1_1detail__ordered__hash_1_1bucket__entry_a6b5c833e49d58772e587ee04856cdd04}} 
+bool {\bfseries empty} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1bucket__entry_a1385e3151af674c73667d46bebd11891}\label{classtsl_1_1detail__ordered__hash_1_1bucket__entry_a1385e3151af674c73667d46bebd11891}} 
+void {\bfseries clear} () noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1bucket__entry_a0e104fb2cc41f26e8a5a5f65d84d1f88}\label{classtsl_1_1detail__ordered__hash_1_1bucket__entry_a0e104fb2cc41f26e8a5a5f65d84d1f88}} 
+index\+\_\+type {\bfseries index} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1bucket__entry_aca1503b55a0883d5f74214e4f1cf165d}\label{classtsl_1_1detail__ordered__hash_1_1bucket__entry_aca1503b55a0883d5f74214e4f1cf165d}} 
+index\+\_\+type \& {\bfseries index\+\_\+ref} () noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1bucket__entry_abc46ae9e0dacde8b6654db5ea59aa058}\label{classtsl_1_1detail__ordered__hash_1_1bucket__entry_abc46ae9e0dacde8b6654db5ea59aa058}} 
+void {\bfseries set\+\_\+index} (index\+\_\+type index) noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1bucket__entry_a7c0f35febd94bf54b12a440e2cfd076e}\label{classtsl_1_1detail__ordered__hash_1_1bucket__entry_a7c0f35febd94bf54b12a440e2cfd076e}} 
+truncated\+\_\+hash\+\_\+type {\bfseries truncated\+\_\+hash} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1bucket__entry_affa6ce73df4e2b6c7642284ce05cfe9f}\label{classtsl_1_1detail__ordered__hash_1_1bucket__entry_affa6ce73df4e2b6c7642284ce05cfe9f}} 
+truncated\+\_\+hash\+\_\+type \& {\bfseries truncated\+\_\+hash\+\_\+ref} () noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1bucket__entry_a0d5533c1744dbf882c94592f46cde412}\label{classtsl_1_1detail__ordered__hash_1_1bucket__entry_a0d5533c1744dbf882c94592f46cde412}} 
+void {\bfseries set\+\_\+hash} (std\+::size\+\_\+t hash) noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1bucket__entry_a566a0eca96bd424303445f564285e755}\label{classtsl_1_1detail__ordered__hash_1_1bucket__entry_a566a0eca96bd424303445f564285e755}} 
+{\footnotesize template$<$class Serializer $>$ }\\void {\bfseries serialize} (Serializer \&serializer) const
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1bucket__entry_a70dea086db20aa8418fcb0514b90bb47}\label{classtsl_1_1detail__ordered__hash_1_1bucket__entry_a70dea086db20aa8418fcb0514b90bb47}} 
+{\footnotesize template$<$class Deserializer $>$ }\\static \mbox{\hyperlink{classtsl_1_1detail__ordered__hash_1_1bucket__entry}{bucket\+\_\+entry}} {\bfseries deserialize} (Deserializer \&deserializer)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1bucket__entry_a72745ca4ede0207b69b89bdec7415741}\label{classtsl_1_1detail__ordered__hash_1_1bucket__entry_a72745ca4ede0207b69b89bdec7415741}} 
+static truncated\+\_\+hash\+\_\+type {\bfseries truncate\+\_\+hash} (std\+::size\+\_\+t hash) noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__ordered__hash_1_1bucket__entry_a4e8c683675e1c4a9f3311a5b1fa38568}\label{classtsl_1_1detail__ordered__hash_1_1bucket__entry_a4e8c683675e1c4a9f3311a5b1fa38568}} 
+static std\+::size\+\_\+t {\bfseries max\+\_\+size} () noexcept
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class Index\+Type$>$\newline
+class tsl\+::detail\+\_\+ordered\+\_\+hash\+::bucket\+\_\+entry$<$ Index\+Type $>$}
+
+Each bucket entry stores an index which is the index in m\+\_\+values corresponding to the bucket\textquotesingle{}s value and a hash (which may be truncated to 32 bits depending on Index\+Type) corresponding to the hash of the value.
+
+The size of Index\+Type limits the size of the hash table to std\+::numeric\+\_\+limits$<$\+Index\+Type$>$\+::max() -\/ 1 elements (-\/1 due to a reserved value used to mark a bucket as empty). 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/tsl/ordered\+\_\+hash.\+h\end{DoxyCompactItemize}
