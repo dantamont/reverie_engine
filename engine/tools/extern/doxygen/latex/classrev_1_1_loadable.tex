@@ -1,0 +1,79 @@
+\hypertarget{classrev_1_1_loadable}{}\section{rev\+::Loadable Class Reference}
+\label{classrev_1_1_loadable}\index{rev::Loadable@{rev::Loadable}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing an object that can be loaded and saved from a file.  
+
+
+
+
+{\ttfamily \#include $<$G\+Loadable.\+h$>$}
+
+Inheritance diagram for rev\+::Loadable\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.377919cm]{classrev_1_1_loadable}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_loadable_a0c39880424f12f4c758f59ee829a0247}\label{classrev_1_1_loadable_a0c39880424f12f4c758f59ee829a0247}} 
+enum \mbox{\hyperlink{classrev_1_1_loadable_a0c39880424f12f4c758f59ee829a0247}{Format}} \{ {\bfseries k\+Json}, 
+{\bfseries k\+Binary}
+ \}
+\begin{DoxyCompactList}\small\item\em Formats that data can be loaded from. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_loadable_a2afb5add9e1083db139014cb8128dc62}\label{classrev_1_1_loadable_a2afb5add9e1083db139014cb8128dc62}} 
+{\bfseries Loadable} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&filepath)
+\item 
+\mbox{\Hypertarget{classrev_1_1_loadable_abb954162ad6d892a63b98d19f2edce37}\label{classrev_1_1_loadable_abb954162ad6d892a63b98d19f2edce37}} 
+{\bfseries Loadable} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_loadable_a51d448b27a3783e76a549fc2617407d8}\label{classrev_1_1_loadable_a51d448b27a3783e76a549fc2617407d8}} 
+virtual {\bfseries $\sim$\+Loadable} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_loadable_a1f9ab14b66f43ef9bc0faf0d15eab29c}\label{classrev_1_1_loadable_a1f9ab14b66f43ef9bc0faf0d15eab29c}} 
+const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \& {\bfseries get\+Path} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_loadable_aa3fee814c8f85e53911fbef2b59aa4d4}\label{classrev_1_1_loadable_aa3fee814c8f85e53911fbef2b59aa4d4}} 
+void {\bfseries set\+Path} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&path)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_loadable_a465ea3cb3d278ea34575e7809b594fa6}\label{classrev_1_1_loadable_a465ea3cb3d278ea34575e7809b594fa6}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_loadable_a465ea3cb3d278ea34575e7809b594fa6}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_loadable_a35b1315688cc8910c15f5b6165a99efc}\label{classrev_1_1_loadable_a35b1315688cc8910c15f5b6165a99efc}} 
+virtual void \mbox{\hyperlink{classrev_1_1_loadable_a35b1315688cc8910c15f5b6165a99efc}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Private Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_loadable_a097470bcd420656515053dd0b5a6a49f}\label{classrev_1_1_loadable_a097470bcd420656515053dd0b5a6a49f}} 
+\mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \mbox{\hyperlink{classrev_1_1_loadable_a097470bcd420656515053dd0b5a6a49f}{m\+\_\+path}}
+\begin{DoxyCompactList}\small\item\em Filepath to the object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing an object that can be loaded and saved from a file. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/mixins/G\+Loadable.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/mixins/G\+Loadable.\+cpp\end{DoxyCompactItemize}

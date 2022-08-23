@@ -1,0 +1,85 @@
+\hypertarget{classrev_1_1_state_connection}{}\section{rev\+::State\+Connection Class Reference}
+\label{classrev_1_1_state_connection}\index{rev::StateConnection@{rev::StateConnection}}
+
+
+A connection between two states in the state machine.  
+
+
+
+
+{\ttfamily \#include $<$G\+Anim\+State\+Machine.\+h$>$}
+
+Inheritance diagram for rev\+::State\+Connection\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_state_connection}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_state_connection_a23281cab2ce38a4dfa14ba9ddc0e0648}\label{classrev_1_1_state_connection_a23281cab2ce38a4dfa14ba9ddc0e0648}} 
+{\bfseries State\+Connection} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_state_connection_a72ac911d2f0ac63b603f4b28e8ef8851}\label{classrev_1_1_state_connection_a72ac911d2f0ac63b603f4b28e8ef8851}} 
+{\bfseries State\+Connection} (\mbox{\hyperlink{classrev_1_1_base_animation_state}{Base\+Animation\+State}} $\ast$start, \mbox{\hyperlink{classrev_1_1_base_animation_state}{Base\+Animation\+State}} $\ast$end)
+\item 
+\mbox{\Hypertarget{classrev_1_1_state_connection_a789a069cd8cb12d2995a34fd9966355d}\label{classrev_1_1_state_connection_a789a069cd8cb12d2995a34fd9966355d}} 
+{\bfseries $\sim$\+State\+Connection} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_state_connection_a9af84257cfeaa775feaa75014a0eee0a}\label{classrev_1_1_state_connection_a9af84257cfeaa775feaa75014a0eee0a}} 
+const \mbox{\hyperlink{classrev_1_1_animation_transition}{Animation\+Transition}} $\ast$ {\bfseries transition} (\mbox{\hyperlink{classrev_1_1_animation_state_machine}{Animation\+State\+Machine}} $\ast$sm) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_state_connection_ad625fc848326caec0a029146d9091a8a}\label{classrev_1_1_state_connection_ad625fc848326caec0a029146d9091a8a}} 
+int {\bfseries transition\+Index} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_state_connection_ac9d6ed46d286ca24bda5d24e4863e3ff}\label{classrev_1_1_state_connection_ac9d6ed46d286ca24bda5d24e4863e3ff}} 
+bool {\bfseries has\+Transition} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_state_connection_ab1600296c8b76655aacff20645aea67e}\label{classrev_1_1_state_connection_ab1600296c8b76655aacff20645aea67e}} 
+void {\bfseries set\+Transition\+Index} (int transition\+Index)
+\item 
+\mbox{\Hypertarget{classrev_1_1_state_connection_af9a8f83fdbd13e846fcceb64a75ae43e}\label{classrev_1_1_state_connection_af9a8f83fdbd13e846fcceb64a75ae43e}} 
+int {\bfseries machine\+Index} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_state_connection_a4cb47bf9adaaad020399b09f2a67e5f2}\label{classrev_1_1_state_connection_a4cb47bf9adaaad020399b09f2a67e5f2}} 
+void {\bfseries set\+Machine\+Index} (int idx)
+\item 
+\mbox{\Hypertarget{classrev_1_1_state_connection_a7716f34b19202da4992c13223c4631aa}\label{classrev_1_1_state_connection_a7716f34b19202da4992c13223c4631aa}} 
+\mbox{\hyperlink{classrev_1_1_base_animation_state}{Base\+Animation\+State}} $\ast$ {\bfseries start} (\mbox{\hyperlink{classrev_1_1_animation_state_machine}{Animation\+State\+Machine}} $\ast$sm)
+\item 
+\mbox{\Hypertarget{classrev_1_1_state_connection_ab8b94605cd35eab2e6a58ceeeaf78e7e}\label{classrev_1_1_state_connection_ab8b94605cd35eab2e6a58ceeeaf78e7e}} 
+const \mbox{\hyperlink{classrev_1_1_base_animation_state}{Base\+Animation\+State}} $\ast$ {\bfseries start} (\mbox{\hyperlink{classrev_1_1_animation_state_machine}{Animation\+State\+Machine}} $\ast$sm) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_state_connection_adaf7b82596ae2597b9001a4be9edbda6}\label{classrev_1_1_state_connection_adaf7b82596ae2597b9001a4be9edbda6}} 
+\mbox{\hyperlink{classrev_1_1_base_animation_state}{Base\+Animation\+State}} $\ast$ {\bfseries end} (\mbox{\hyperlink{classrev_1_1_animation_state_machine}{Animation\+State\+Machine}} $\ast$sm)
+\item 
+\mbox{\Hypertarget{classrev_1_1_state_connection_a111e9a5f922d53e9135daf737add220f}\label{classrev_1_1_state_connection_a111e9a5f922d53e9135daf737add220f}} 
+const \mbox{\hyperlink{classrev_1_1_base_animation_state}{Base\+Animation\+State}} $\ast$ {\bfseries end} (\mbox{\hyperlink{classrev_1_1_animation_state_machine}{Animation\+State\+Machine}} $\ast$sm) const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_state_connection_a43187be7c2ac626b24d9e73ad143fd11}\label{classrev_1_1_state_connection_a43187be7c2ac626b24d9e73ad143fd11}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_state_connection_a43187be7c2ac626b24d9e73ad143fd11}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_state_connection_ada1cf9656afa9b1f8e00602023e76945}\label{classrev_1_1_state_connection_ada1cf9656afa9b1f8e00602023e76945}} 
+virtual void \mbox{\hyperlink{classrev_1_1_state_connection_ada1cf9656afa9b1f8e00602023e76945}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A connection between two states in the state machine. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/animation/G\+Anim\+State\+Machine.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/animation/G\+Anim\+State\+Machine.\+cpp\end{DoxyCompactItemize}

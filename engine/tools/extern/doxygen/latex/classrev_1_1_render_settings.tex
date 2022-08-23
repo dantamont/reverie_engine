@@ -1,0 +1,103 @@
+\hypertarget{classrev_1_1_render_settings}{}\section{rev\+::Render\+Settings Class Reference}
+\label{classrev_1_1_render_settings}\index{rev::RenderSettings@{rev::RenderSettings}}
+
+
+Handles setting global GL settings when rendering.  
+
+
+
+
+{\ttfamily \#include $<$G\+Render\+Settings.\+h$>$}
+
+Inheritance diagram for rev\+::Render\+Settings\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_render_settings}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_settings_af4f637851f187bd1d03f2faebfff6c6c}\label{classrev_1_1_render_settings_af4f637851f187bd1d03f2faebfff6c6c}} 
+{\bfseries Render\+Settings} (const Q\+Json\+Value \&json)
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_settings_ac45917dd702aba2777aec75e1450ab23}\label{classrev_1_1_render_settings_ac45917dd702aba2777aec75e1450ab23}} 
+{\bfseries Render\+Settings} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_settings_aee2658ac24feb0b14f768b87e4f5dbe4}\label{classrev_1_1_render_settings_aee2658ac24feb0b14f768b87e4f5dbe4}} 
+{\bfseries $\sim$\+Render\+Settings} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_settings_a6b0eacc578a72ea1c5ad4427e3ca3aec}\label{classrev_1_1_render_settings_a6b0eacc578a72ea1c5ad4427e3ca3aec}} 
+const Transparency\+Render\+Mode \& {\bfseries transparency\+Type} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_settings_a2030e2f2554e27c6bb58df52358b330e}\label{classrev_1_1_render_settings_a2030e2f2554e27c6bb58df52358b330e}} 
+void {\bfseries set\+Transparency\+Type} (const Transparency\+Render\+Mode \&type)
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_settings_a7ba3eddfa6ebb67e301e50fa0a09dd28}\label{classrev_1_1_render_settings_a7ba3eddfa6ebb67e301e50fa0a09dd28}} 
+Primitive\+Mode {\bfseries shape\+Mode} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_settings_ab6ecb849a5dab4bd27f25cd241a49973}\label{classrev_1_1_render_settings_ab6ecb849a5dab4bd27f25cd241a49973}} 
+void {\bfseries set\+Shape\+Mode} (Primitive\+Mode shape\+Mode)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_settings_a22de4ba13b017b1e527964a73f70d0ac}\label{classrev_1_1_render_settings_a22de4ba13b017b1e527964a73f70d0ac}} 
+const \mbox{\hyperlink{classrev_1_1_render_setting}{Render\+Setting}} $\ast$ \mbox{\hyperlink{classrev_1_1_render_settings_a22de4ba13b017b1e527964a73f70d0ac}{setting}} (Render\+Setting\+Type type) const
+\begin{DoxyCompactList}\small\item\em Return setting of the specified type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_settings_a1c3110980f91c25c55fd920b9dc80431}\label{classrev_1_1_render_settings_a1c3110980f91c25c55fd920b9dc80431}} 
+void \mbox{\hyperlink{classrev_1_1_render_settings_a1c3110980f91c25c55fd920b9dc80431}{override\+Settings}} (const \mbox{\hyperlink{classrev_1_1_render_settings}{Render\+Settings}} \&other)
+\begin{DoxyCompactList}\small\item\em Override settings with specified render settings. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_settings_a67827b17d1ef1fc60fb4bec634861d07}\label{classrev_1_1_render_settings_a67827b17d1ef1fc60fb4bec634861d07}} 
+void \mbox{\hyperlink{classrev_1_1_render_settings_a67827b17d1ef1fc60fb4bec634861d07}{add\+Default\+Blend}} ()
+\begin{DoxyCompactList}\small\item\em Add default blend to the settings. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_settings_a8e21bf38ccbfe9dcc2d50971a83f5b11}\label{classrev_1_1_render_settings_a8e21bf38ccbfe9dcc2d50971a83f5b11}} 
+void \mbox{\hyperlink{classrev_1_1_render_settings_a8e21bf38ccbfe9dcc2d50971a83f5b11}{add\+Setting}} (const \mbox{\hyperlink{classrev_1_1_render_setting}{Render\+Setting}} \&\mbox{\hyperlink{classrev_1_1_render_settings_a22de4ba13b017b1e527964a73f70d0ac}{setting}})
+\begin{DoxyCompactList}\small\item\em Add a setting to toggle. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_settings_ab82b7abd0fa20feaa86c0a307e251855}\label{classrev_1_1_render_settings_ab82b7abd0fa20feaa86c0a307e251855}} 
+{\footnotesize template$<$typename T , typename ... Args$>$ }\\\mbox{\hyperlink{classrev_1_1_render_setting}{Render\+Setting}} \& {\bfseries add\+Setting} (Args \&\&... args)
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_settings_ad7c8f477a5dbb4b1a9374ef13c9de01c}\label{classrev_1_1_render_settings_ad7c8f477a5dbb4b1a9374ef13c9de01c}} 
+void \mbox{\hyperlink{classrev_1_1_render_settings_ad7c8f477a5dbb4b1a9374ef13c9de01c}{bind}} (\mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} \&context)
+\begin{DoxyCompactList}\small\item\em \char`\"{}\+Bind\char`\"{} the render settings, applying changes in open\+GL \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_settings_a02f6eae0984b6101500b44445496e60e}\label{classrev_1_1_render_settings_a02f6eae0984b6101500b44445496e60e}} 
+void \mbox{\hyperlink{classrev_1_1_render_settings_a02f6eae0984b6101500b44445496e60e}{release}} (\mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} \&context)
+\begin{DoxyCompactList}\small\item\em \char`\"{}\+Release\char`\"{} the render settings, undoing changes to Open\+GL \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_settings_ad19f8cf3fc0fe9cbb6a50a703a7f3029}\label{classrev_1_1_render_settings_ad19f8cf3fc0fe9cbb6a50a703a7f3029}} 
+void \mbox{\hyperlink{classrev_1_1_render_settings_ad19f8cf3fc0fe9cbb6a50a703a7f3029}{clear\+Settings}} ()
+\begin{DoxyCompactList}\small\item\em Clear all settings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_settings_ac670c3a426c83cdbad17e635e6ee670b}\label{classrev_1_1_render_settings_ac670c3a426c83cdbad17e635e6ee670b}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_render_settings_ac670c3a426c83cdbad17e635e6ee670b}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_settings_a89e8078e8004befe8b9a388e7fce6d69}\label{classrev_1_1_render_settings_a89e8078e8004befe8b9a388e7fce6d69}} 
+virtual void \mbox{\hyperlink{classrev_1_1_render_settings_a89e8078e8004befe8b9a388e7fce6d69}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_settings_a453bc36036f083f5f584ecd2bf54b8ba}\label{classrev_1_1_render_settings_a453bc36036f083f5f584ecd2bf54b8ba}} 
+static void \mbox{\hyperlink{classrev_1_1_render_settings_a453bc36036f083f5f584ecd2bf54b8ba}{Cache\+Settings}} (\mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} \&context)
+\begin{DoxyCompactList}\small\item\em Cache settings from Open\+GL. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Handles setting global GL settings when rendering. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/renderer/G\+Render\+Settings.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/renderer/G\+Render\+Settings.\+cpp\end{DoxyCompactItemize}

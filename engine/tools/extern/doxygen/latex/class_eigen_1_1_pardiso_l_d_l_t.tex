@@ -1,0 +1,88 @@
+\hypertarget{class_eigen_1_1_pardiso_l_d_l_t}{}\section{Eigen\+::Pardiso\+L\+D\+LT$<$ Matrix\+Type, Options $>$ Class Template Reference}
+\label{class_eigen_1_1_pardiso_l_d_l_t}\index{Eigen::PardisoLDLT$<$ MatrixType, Options $>$@{Eigen::PardisoLDLT$<$ MatrixType, Options $>$}}
+
+
+A sparse direct Cholesky (\mbox{\hyperlink{class_eigen_1_1_l_d_l_t}{L\+D\+LT}}) factorization and solver based on the P\+A\+R\+D\+I\+SO library.  
+
+
+
+
+{\ttfamily \#include $<$Pardiso\+Support.\+h$>$}
+
+Inheritance diagram for Eigen\+::Pardiso\+L\+D\+LT$<$ Matrix\+Type, Options $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_eigen_1_1_pardiso_l_d_l_t}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_l_d_l_t_ac883b5f1719dbf8d1e1869b49a7f301d}\label{class_eigen_1_1_pardiso_l_d_l_t_ac883b5f1719dbf8d1e1869b49a7f301d}} 
+enum \{ {\bfseries Up\+Lo} = Options\&(Upper$\vert$\+Lower)
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_l_d_l_t_ae18a83f05749b82202c0e2fabcb7a5ef}\label{class_eigen_1_1_pardiso_l_d_l_t_ae18a83f05749b82202c0e2fabcb7a5ef}} 
+typedef Base\+::\+Storage\+Index {\bfseries Storage\+Index}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_l_d_l_t_a6305c6f32af14b1e956185ec38ae5fbe}\label{class_eigen_1_1_pardiso_l_d_l_t_a6305c6f32af14b1e956185ec38ae5fbe}} 
+{\bfseries Pardiso\+L\+D\+LT} (const Matrix\+Type \&matrix)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_l_d_l_t_ac9934f8e3bf712157ca2639a5fa63f50}\label{class_eigen_1_1_pardiso_l_d_l_t_ac9934f8e3bf712157ca2639a5fa63f50}} 
+void {\bfseries get\+Matrix} (const Matrix\+Type \&matrix)
+\end{DoxyCompactItemize}
+\subsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_l_d_l_t_a2b656497d36453d2638b6ec7522c1d39}\label{class_eigen_1_1_pardiso_l_d_l_t_a2b656497d36453d2638b6ec7522c1d39}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_pardiso_impl}{Pardiso\+Impl}}$<$ \mbox{\hyperlink{class_eigen_1_1_pardiso_l_d_l_t}{Pardiso\+L\+D\+LT}}$<$ Matrix\+Type, Options $>$ $>$ {\bfseries Base}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_l_d_l_t_a1185bbdb29c3fd4f89b28f09c559adee}\label{class_eigen_1_1_pardiso_l_d_l_t_a1185bbdb29c3fd4f89b28f09c559adee}} 
+typedef Base\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_l_d_l_t_a0f2b16e45d24849737bcf3bba02ca1c8}\label{class_eigen_1_1_pardiso_l_d_l_t_a0f2b16e45d24849737bcf3bba02ca1c8}} 
+typedef Base\+::\+Real\+Scalar {\bfseries Real\+Scalar}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pardiso_l_d_l_t_a47a1936c390c8845f892507eeeb25426}\label{class_eigen_1_1_pardiso_l_d_l_t_a47a1936c390c8845f892507eeeb25426}} 
+class {\bfseries Pardiso\+Impl$<$ Pardiso\+L\+D\+L\+T$<$ Matrix\+Type, Options $>$ $>$}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename Matrix\+Type, int Options$>$\newline
+class Eigen\+::\+Pardiso\+L\+D\+L\+T$<$ Matrix\+Type, Options $>$}
+
+A sparse direct Cholesky (\mbox{\hyperlink{class_eigen_1_1_l_d_l_t}{L\+D\+LT}}) factorization and solver based on the P\+A\+R\+D\+I\+SO library. 
+
+This class allows to solve for A.\+X = B sparse linear problems via a L\+D\+L$^\wedge$T Cholesky factorization using the Intel M\+KL P\+A\+R\+D\+I\+SO library. The sparse matrix A is assumed to be selfajoint and positive definite. For complex matrices, A can also be symmetric only, see the {\itshape Options} template parameter. The vectors or matrices X and B can be either dense or sparse.
+
+By default, it runs in in-\/core mode. To enable P\+A\+R\+D\+I\+SO\textquotesingle{}s out-\/of-\/core feature, set\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{solver.pardisoParameterArray()[59] = 1; }
+\end{DoxyCode}
+
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Matrix\+Type} & the type of the sparse matrix A, it must be a Sparse\+Matrix$<$$>$ \\
+\hline
+{\em Options} & can be any bitwise combination of Upper, Lower, and Symmetric. The default is Upper, meaning only the upper triangular part has to be used. Symmetric can be used for symmetric, non-\/selfadjoint complex matrices, the default being to assume a selfadjoint matrix. Upper$\vert$\+Lower can be used to tell both triangular parts can be used as input.\\
+\hline
+\end{DoxyTemplParams}
+\textbackslash{}implsparsesolverconcept
+
+\begin{DoxySeeAlso}{See also}
+Tutorial\+Sparse\+Solver\+Concept, class \mbox{\hyperlink{class_eigen_1_1_simplicial_l_d_l_t}{Simplicial\+L\+D\+LT}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Pardiso\+Support/Pardiso\+Support.\+h\end{DoxyCompactItemize}

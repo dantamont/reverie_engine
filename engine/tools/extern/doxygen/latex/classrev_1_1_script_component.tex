@@ -1,0 +1,127 @@
+\hypertarget{classrev_1_1_script_component}{}\section{rev\+::Script\+Component Class Reference}
+\label{classrev_1_1_script_component}\index{rev::ScriptComponent@{rev::ScriptComponent}}
+
+
+A python script to be attached to a \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}}.  
+
+
+
+
+{\ttfamily \#include $<$G\+Script\+Component.\+h$>$}
+
+Inheritance diagram for rev\+::Script\+Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_script_component}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_component_ab86660c4d414d96e323ef85e2ba55f5c}\label{classrev_1_1_script_component_ab86660c4d414d96e323ef85e2ba55f5c}} 
+{\bfseries Script\+Component} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \&object)
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_component_a1857b906d42f5a81de6f6f76bfb81b33}\label{classrev_1_1_script_component_a1857b906d42f5a81de6f6f76bfb81b33}} 
+{\bfseries $\sim$\+Script\+Component} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_component_adeaf7db8351b9d910d9b9571f99a0b01}\label{classrev_1_1_script_component_adeaf7db8351b9d910d9b9571f99a0b01}} 
+void \mbox{\hyperlink{classrev_1_1_script_component_adeaf7db8351b9d910d9b9571f99a0b01}{reset}} ()
+\begin{DoxyCompactList}\small\item\em Reset and resize the script associated with this component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_script_component_ad4191c86c71ab6ac6b28413cab458262}\label{classrev_1_1_script_component_ad4191c86c71ab6ac6b28413cab458262}} 
+void \mbox{\hyperlink{classrev_1_1_script_component_ad4191c86c71ab6ac6b28413cab458262}{initialize\+Behavior}} (const Q\+String \&filepath)
+\begin{DoxyCompactList}\small\item\em Set the script file and check\+Validity behavior. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_script_component_abc78b813835cd55f5c1d9f68cba0f6c7}\label{classrev_1_1_script_component_abc78b813835cd55f5c1d9f68cba0f6c7}} 
+virtual void \mbox{\hyperlink{classrev_1_1_script_component_abc78b813835cd55f5c1d9f68cba0f6c7}{enable}} () override
+\begin{DoxyCompactList}\small\item\em Enable the behavior of this script component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_script_component_a14650265f0ca62894e0df37f7917d368}\label{classrev_1_1_script_component_a14650265f0ca62894e0df37f7917d368}} 
+virtual void \mbox{\hyperlink{classrev_1_1_script_component_a14650265f0ca62894e0df37f7917d368}{disable}} () override
+\begin{DoxyCompactList}\small\item\em Disable the behavior of this script component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_component_ada94eceb00866916e17188a067bee367}\label{classrev_1_1_script_component_ada94eceb00866916e17188a067bee367}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scripted_process}{Scripted\+Process}} $>$ \mbox{\hyperlink{classrev_1_1_script_component_ada94eceb00866916e17188a067bee367}{process}} ()
+\begin{DoxyCompactList}\small\item\em The process associated with the script component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_script_component_adc582fb9734167e0e4ba53a0b2760582}\label{classrev_1_1_script_component_adc582fb9734167e0e4ba53a0b2760582}} 
+\mbox{\hyperlink{classrev_1_1_python_class_script}{Python\+Class\+Script}} $\ast$ \mbox{\hyperlink{classrev_1_1_script_component_adc582fb9734167e0e4ba53a0b2760582}{script}} ()
+\begin{DoxyCompactList}\small\item\em Return the python class script used by this component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_script_component_a2665164dc38caad07e5759aec4563dee}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_script_component_a469f8cd22b928cef2b98297b3b0285dd}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_component_a306a355a44150e13e883299e41f95503}\label{classrev_1_1_script_component_a306a355a44150e13e883299e41f95503}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_script_component_a306a355a44150e13e883299e41f95503}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_script_component_ae4f9224bb6c9239c8faf7408a46108d8}\label{classrev_1_1_script_component_ae4f9224bb6c9239c8faf7408a46108d8}} 
+virtual void \mbox{\hyperlink{classrev_1_1_script_component_ae4f9224bb6c9239c8faf7408a46108d8}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_component_ab21eaba5b5e5fdfdf08b92e58ea8f66f}\label{classrev_1_1_script_component_ab21eaba5b5e5fdfdf08b92e58ea8f66f}} 
+Q\+String \mbox{\hyperlink{classrev_1_1_script_component_ab21eaba5b5e5fdfdf08b92e58ea8f66f}{m\+\_\+path}}
+\begin{DoxyCompactList}\small\item\em Path to the python script for this component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_script_component_a6cf553b24ea26e45e54a1f6b4a6177f7}\label{classrev_1_1_script_component_a6cf553b24ea26e45e54a1f6b4a6177f7}} 
+\mbox{\hyperlink{classrev_1_1_python_class_script}{Python\+Class\+Script}} $\ast$ \mbox{\hyperlink{classrev_1_1_script_component_a6cf553b24ea26e45e54a1f6b4a6177f7}{m\+\_\+script}}
+\begin{DoxyCompactList}\small\item\em The python script for this component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_script_component_a6ea48eab12b953829a021286a9dbf2f1}\label{classrev_1_1_script_component_a6ea48eab12b953829a021286a9dbf2f1}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scripted_process}{Scripted\+Process}} $>$ \mbox{\hyperlink{classrev_1_1_script_component_a6ea48eab12b953829a021286a9dbf2f1}{m\+\_\+script\+Process}}
+\begin{DoxyCompactList}\small\item\em The process associated with this script component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A python script to be attached to a \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}}. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_script_component_a2665164dc38caad07e5759aec4563dee}\label{classrev_1_1_script_component_a2665164dc38caad07e5759aec4563dee}} 
+\index{rev::ScriptComponent@{rev::ScriptComponent}!className@{className}}
+\index{className@{className}!rev::ScriptComponent@{rev::ScriptComponent}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Script\+Component\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_component_a07619152d5acafe7a536df3a6a476349}{rev\+::\+Component}}.
+
+\mbox{\Hypertarget{classrev_1_1_script_component_a469f8cd22b928cef2b98297b3b0285dd}\label{classrev_1_1_script_component_a469f8cd22b928cef2b98297b3b0285dd}} 
+\index{rev::ScriptComponent@{rev::ScriptComponent}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::ScriptComponent@{rev::ScriptComponent}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Script\+Component\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_component_ae2827b14c278588b95e01c4743fae674}{rev\+::\+Component}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+Script\+Component.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+Script\+Component.\+cpp\end{DoxyCompactItemize}

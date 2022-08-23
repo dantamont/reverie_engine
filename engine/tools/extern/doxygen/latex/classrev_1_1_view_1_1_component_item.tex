@@ -1,0 +1,165 @@
+\hypertarget{classrev_1_1_view_1_1_component_item}{}\section{rev\+::View\+::Component\+Item Class Reference}
+\label{classrev_1_1_view_1_1_component_item}\index{rev::View::ComponentItem@{rev::View::ComponentItem}}
+Inheritance diagram for rev\+::View\+::Component\+Item\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_view_1_1_component_item}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{Indent}\textbf{ Enums and Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_component_item_a546725d583d4dab351a487cb5218430a}\label{classrev_1_1_view_1_1_component_item_a546725d583d4dab351a487cb5218430a}} 
+enum {\bfseries Component\+Item\+Type} \{ \newline
+{\bfseries k\+Transform} = 2000, 
+{\bfseries k\+Shader}, 
+{\bfseries k\+Camera}, 
+{\bfseries k\+Light}, 
+\newline
+{\bfseries k\+Script}, 
+{\bfseries k\+State\+Machine}, 
+{\bfseries k\+Model}, 
+{\bfseries k\+Listener}, 
+\newline
+{\bfseries k\+Rigid\+Body}, 
+{\bfseries k\+Physics\+Scene}, 
+{\bfseries k\+Canvas}, 
+{\bfseries k\+Character\+Controller}, 
+\newline
+{\bfseries k\+Bone\+Animation}, 
+{\bfseries k\+Cube\+Map}, 
+{\bfseries k\+Audio\+Source}, 
+{\bfseries k\+Audio\+Listener}, 
+\newline
+{\bfseries k\+N\+U\+M\+\_\+\+C\+O\+M\+P\+O\+N\+E\+N\+T\+\_\+\+T\+Y\+P\+ES}, 
+{\bfseries k\+Scene\+Object\+Settings}, 
+{\bfseries k\+Blueprint}
+ \}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_component_item_af8e587b4c7eda12b3d8de419ba2f61b0}\label{classrev_1_1_view_1_1_component_item_af8e587b4c7eda12b3d8de419ba2f61b0}} 
+{\bfseries Component\+Item} (\mbox{\hyperlink{classrev_1_1_component}{Component}} $\ast$\mbox{\hyperlink{classrev_1_1_view_1_1_component_item_a40d3b3bc333954297e9239d42e6b3b43}{component}})
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_component_item_a6295dfc8b7f45a9984701e65ba1142e3}\label{classrev_1_1_view_1_1_component_item_a6295dfc8b7f45a9984701e65ba1142e3}} 
+{\bfseries Component\+Item} (\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$scene\+Object)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_component_item_af560bfcc2e6ad27cad828e5cfb49970c}\label{classrev_1_1_view_1_1_component_item_af560bfcc2e6ad27cad828e5cfb49970c}} 
+{\bfseries $\sim$\+Component\+Item} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_component_item_af5a38c8f4ac22951d9ec4886667c83d0}\label{classrev_1_1_view_1_1_component_item_af5a38c8f4ac22951d9ec4886667c83d0}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_component_item_af5a38c8f4ac22951d9ec4886667c83d0}{perform\+Action}} (\mbox{\hyperlink{classrev_1_1_undo_command}{Undo\+Command}} $\ast$command)
+\begin{DoxyCompactList}\small\item\em Perform an action from this item. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_component_item_a0f694632880dffcee4c0225e9e022bb9}{set\+Widget}} () override
+\begin{DoxyCompactList}\small\item\em Set the widget for this item in the given tree widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_component_item_ac825ab3e2f38c4b02ced8bd97f93e4e9}\label{classrev_1_1_view_1_1_component_item_ac825ab3e2f38c4b02ced8bd97f93e4e9}} 
+void {\bfseries remove\+Widget} (int column=0) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_component_item_a40d3b3bc333954297e9239d42e6b3b43}\label{classrev_1_1_view_1_1_component_item_a40d3b3bc333954297e9239d42e6b3b43}} 
+\mbox{\hyperlink{classrev_1_1_component}{Component}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_component_item_a40d3b3bc333954297e9239d42e6b3b43}{component}} ()
+\begin{DoxyCompactList}\small\item\em Return component represented by this tree item. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_component_item_ab04516f5aceb0cb18fccd841e3868762}\label{classrev_1_1_view_1_1_component_item_ab04516f5aceb0cb18fccd841e3868762}} 
+Component\+Item\+Type \mbox{\hyperlink{classrev_1_1_view_1_1_component_item_ab04516f5aceb0cb18fccd841e3868762}{component\+Type}} () const
+\begin{DoxyCompactList}\small\item\em Get the component type of this tree item. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_component_item_a6bcbc2d1a73de3ba487038a3a586df90}\label{classrev_1_1_view_1_1_component_item_a6bcbc2d1a73de3ba487038a3a586df90}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_component_tree_widget}{View\+::\+Component\+Tree\+Widget}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_component_item_a6bcbc2d1a73de3ba487038a3a586df90}{component\+Widget}} () const
+\begin{DoxyCompactList}\small\item\em Convenience method for retrieving casted inspector widget. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ rev\+::Object overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_component_item_ab841f5681c0a147d32680d0f3a1f62e7}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_component_item_a75651a2035c376c2fa679eb614b430a3}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_component_item_a5d7f850e51ced5f45d72ff57daf65b71}\label{classrev_1_1_view_1_1_component_item_a5d7f850e51ced5f45d72ff57daf65b71}} 
+Component\+Item\+Type \mbox{\hyperlink{classrev_1_1_view_1_1_component_item_a5d7f850e51ced5f45d72ff57daf65b71}{get\+Component\+Type}} (\mbox{\hyperlink{classrev_1_1_component}{Component}} $\ast$\mbox{\hyperlink{classrev_1_1_view_1_1_component_item_a40d3b3bc333954297e9239d42e6b3b43}{component}})
+\begin{DoxyCompactList}\small\item\em Set the component type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_component_item_ad2d01127e546cf110555381e013c5a39}\label{classrev_1_1_view_1_1_component_item_ad2d01127e546cf110555381e013c5a39}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_component_item_ad2d01127e546cf110555381e013c5a39}{initialize\+Item}} ()
+\begin{DoxyCompactList}\small\item\em Initialize the component tree item. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_component_item_afe2481c3d494ae79ee14882fe5b1abf1}\label{classrev_1_1_view_1_1_component_item_afe2481c3d494ae79ee14882fe5b1abf1}} 
+\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$ {\bfseries m\+\_\+scene\+Object}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_component_item_a350b4d2b555fb1075041d366ade3f718}\label{classrev_1_1_view_1_1_component_item_a350b4d2b555fb1075041d366ade3f718}} 
+class {\bfseries Component\+Tree\+Widget}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_view_1_1_component_item_ab841f5681c0a147d32680d0f3a1f62e7}\label{classrev_1_1_view_1_1_component_item_ab841f5681c0a147d32680d0f3a1f62e7}} 
+\index{rev::View::ComponentItem@{rev::View::ComponentItem}!className@{className}}
+\index{className@{className}!rev::View::ComponentItem@{rev::View::ComponentItem}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+View\+::\+Component\+Item\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a8a12a6ceece6cab7a2299da2b5e6a54b}{rev\+::\+View\+::\+Tree\+Item$<$ Component $>$}}.
+
+\mbox{\Hypertarget{classrev_1_1_view_1_1_component_item_a75651a2035c376c2fa679eb614b430a3}\label{classrev_1_1_view_1_1_component_item_a75651a2035c376c2fa679eb614b430a3}} 
+\index{rev::View::ComponentItem@{rev::View::ComponentItem}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::View::ComponentItem@{rev::View::ComponentItem}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+View\+::\+Component\+Item\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a3bb552a87176f4b12848e43dfdd287b2}{rev\+::\+View\+::\+Tree\+Item$<$ Component $>$}}.
+
+\mbox{\Hypertarget{classrev_1_1_view_1_1_component_item_a0f694632880dffcee4c0225e9e022bb9}\label{classrev_1_1_view_1_1_component_item_a0f694632880dffcee4c0225e9e022bb9}} 
+\index{rev::View::ComponentItem@{rev::View::ComponentItem}!setWidget@{setWidget}}
+\index{setWidget@{setWidget}!rev::View::ComponentItem@{rev::View::ComponentItem}}
+\subsubsection{\texorpdfstring{setWidget()}{setWidget()}}
+{\footnotesize\ttfamily void rev\+::\+View\+::\+Component\+Item\+::set\+Widget (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Set the widget for this item in the given tree widget. 
+
+\begin{DoxyNote}{Note}
+This is only called on the double click event 
+\end{DoxyNote}
+
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_view_1_1_tree_item_a24faa4e374ec0728c7eda8f50ca575df}{rev\+::\+View\+::\+Tree\+Item$<$ Component $>$}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/model\+\_\+control/models/G\+Component\+Models.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/model\+\_\+control/models/G\+Component\+Models.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,288 @@
+\hypertarget{class_eigen_1_1_sparse_compressed_base}{}\section{Eigen\+::Sparse\+Compressed\+Base$<$ Derived $>$ Class Template Reference}
+\label{class_eigen_1_1_sparse_compressed_base}\index{Eigen::SparseCompressedBase$<$ Derived $>$@{Eigen::SparseCompressedBase$<$ Derived $>$}}
+
+
+Common base class for sparse \mbox{[}compressed\mbox{]}-\/\{row$\vert$column\}-\/storage format.  
+
+
+
+
+{\ttfamily \#include $<$Sparse\+Compressed\+Base.\+h$>$}
+
+Inheritance diagram for Eigen\+::Sparse\+Compressed\+Base$<$ Derived $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.623188cm]{class_eigen_1_1_sparse_compressed_base}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_1_1_inner_iterator}{Inner\+Iterator}}
+\item 
+class \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_1_1_reverse_inner_iterator}{Reverse\+Inner\+Iterator}}
+\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_compressed_base_a4da19e5347a0db1b4f56bac77c1e9afb}\label{class_eigen_1_1_sparse_compressed_base_a4da19e5347a0db1b4f56bac77c1e9afb}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Derived $>$ {\bfseries Base}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_a03de8b3da2c142ce8698a76123b3e7d3}{non\+Zeros}} () const
+\item 
+const Scalar $\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_a0f44c739398794ea77f310b745cc5627}{value\+Ptr}} () const
+\item 
+Scalar $\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_a0f12f72d14b6c277d09be9f5ce2eab95}{value\+Ptr}} ()
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_a0b540ba724726ebe953f8c0df06081ed}{Storage\+Index}} $\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_aa64818e1aa43015dad01b114b2ab4687}{inner\+Index\+Ptr}} () const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_a0b540ba724726ebe953f8c0df06081ed}{Storage\+Index}} $\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_a197111c1289644f1ea38fe683ccdd82a}{inner\+Index\+Ptr}} ()
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_a0b540ba724726ebe953f8c0df06081ed}{Storage\+Index}} $\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_a2624d4c2661c582de168246c56e8d71e}{outer\+Index\+Ptr}} () const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_a0b540ba724726ebe953f8c0df06081ed}{Storage\+Index}} $\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_a53a82f962686e18c8dc07a4b9a85ed7b}{outer\+Index\+Ptr}} ()
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_a0b540ba724726ebe953f8c0df06081ed}{Storage\+Index}} $\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_afc056a3895eae1a4c4767252ff04966a}{inner\+Non\+Zero\+Ptr}} () const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_a0b540ba724726ebe953f8c0df06081ed}{Storage\+Index}} $\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_a411e972b097e6aef225415a4c2d0a0b5}{inner\+Non\+Zero\+Ptr}} ()
+\item 
+bool \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_a837934b33a80fe996ff20500373d3a61}{is\+Compressed}} () const
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_map}{Map}}$<$ const \mbox{\hyperlink{class_eigen_1_1_array}{Array}}$<$ Scalar, Dynamic, 1 $>$ $>$ \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_a101b155485ae59ea1261c4f6040f3dc4}{coeffs}} () const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_map}{Map}}$<$ \mbox{\hyperlink{class_eigen_1_1_array}{Array}}$<$ Scalar, Dynamic, 1 $>$ $>$ \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_a7cf299e08d2a4f6d6869e631e51b12fe}{coeffs}} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_compressed_base_a379e2a65ec661cceaddc225120ad5cb1}\label{class_eigen_1_1_sparse_compressed_base_a379e2a65ec661cceaddc225120ad5cb1}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\Derived \& {\bfseries operator=} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_compressed_base_a3365b1d14b9f6c5d832169b3d07511a4}\label{class_eigen_1_1_sparse_compressed_base_a3365b1d14b9f6c5d832169b3d07511a4}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\Derived \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_return_by_value}{Return\+By\+Value}}$<$ Other\+Derived $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_compressed_base_aa171e4de58f2bddb8da0358961c6d3fd}\label{class_eigen_1_1_sparse_compressed_base_aa171e4de58f2bddb8da0358961c6d3fd}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\Derived \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_compressed_base_af2eba8c3ea2424df618f3e90f1b5254b}\label{class_eigen_1_1_sparse_compressed_base_af2eba8c3ea2424df618f3e90f1b5254b}} 
+Derived \& {\bfseries operator=} (const Derived \&other)
+\end{DoxyCompactItemize}
+\subsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_compressed_base_acc50cb384fd20531686be881851168cc}\label{class_eigen_1_1_sparse_compressed_base_acc50cb384fd20531686be881851168cc}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Base\+::\+Index\+Vector}} {\bfseries Index\+Vector}
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_compressed_base_afcc0c2006138eb8705a2f7f020b4ff1b}\label{class_eigen_1_1_sparse_compressed_base_afcc0c2006138eb8705a2f7f020b4ff1b}} 
+\mbox{\hyperlink{class_eigen_1_1_map}{Eigen\+::\+Map}}$<$ \mbox{\hyperlink{class_eigen_1_1_matrix}{Index\+Vector}} $>$ {\bfseries inner\+Non\+Zeros} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_compressed_base_a75ea52c348fcbf2eb7728d86a604c34a}\label{class_eigen_1_1_sparse_compressed_base_a75ea52c348fcbf2eb7728d86a604c34a}} 
+const \mbox{\hyperlink{class_eigen_1_1_map}{Eigen\+::\+Map}}$<$ const \mbox{\hyperlink{class_eigen_1_1_matrix}{Index\+Vector}} $>$ {\bfseries inner\+Non\+Zeros} () const
+\item 
+\mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_af79f020db965367d97eb954fc68d8f99}{Sparse\+Compressed\+Base}} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename Derived$>$\newline
+class Eigen\+::\+Sparse\+Compressed\+Base$<$ Derived $>$}
+
+Common base class for sparse \mbox{[}compressed\mbox{]}-\/\{row$\vert$column\}-\/storage format. 
+
+This class defines the common interface for all derived classes implementing the compressed sparse storage format, such as\+:
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}
+\item Ref$<$\+Sparse\+Matrix\+Type,\+Options$>$
+\item Map$<$\+Sparse\+Matrix\+Type$>$ 
+\end{DoxyItemize}
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_compressed_base_af79f020db965367d97eb954fc68d8f99}\label{class_eigen_1_1_sparse_compressed_base_af79f020db965367d97eb954fc68d8f99}} 
+\index{Eigen::SparseCompressedBase$<$ Derived $>$@{Eigen::SparseCompressedBase$<$ Derived $>$}!SparseCompressedBase@{SparseCompressedBase}}
+\index{SparseCompressedBase@{SparseCompressedBase}!Eigen::SparseCompressedBase$<$ Derived $>$@{Eigen::SparseCompressedBase$<$ Derived $>$}}
+\subsubsection{\texorpdfstring{SparseCompressedBase()}{SparseCompressedBase()}}
+{\footnotesize\ttfamily template$<$typename Derived$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base}{Eigen\+::\+Sparse\+Compressed\+Base}}$<$ Derived $>$\+::\mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base}{Sparse\+Compressed\+Base}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+Default constructor. Do nothing. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_compressed_base_a101b155485ae59ea1261c4f6040f3dc4}\label{class_eigen_1_1_sparse_compressed_base_a101b155485ae59ea1261c4f6040f3dc4}} 
+\index{Eigen::SparseCompressedBase$<$ Derived $>$@{Eigen::SparseCompressedBase$<$ Derived $>$}!coeffs@{coeffs}}
+\index{coeffs@{coeffs}!Eigen::SparseCompressedBase$<$ Derived $>$@{Eigen::SparseCompressedBase$<$ Derived $>$}}
+\subsubsection{\texorpdfstring{coeffs()}{coeffs()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Derived$>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_map}{Map}}$<$const \mbox{\hyperlink{class_eigen_1_1_array}{Array}}$<$Scalar,Dynamic,1$>$ $>$ \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base}{Eigen\+::\+Sparse\+Compressed\+Base}}$<$ Derived $>$\+::coeffs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a read-\/only view of the stored coefficients as a 1D array expression.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+this method is for {\bfseries{compressed}} {\bfseries{storage}} {\bfseries{only}}, and it will trigger an assertion otherwise.
+\end{DoxyWarning}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_a0f12f72d14b6c277d09be9f5ce2eab95}{value\+Ptr()}}, \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_a837934b33a80fe996ff20500373d3a61}{is\+Compressed()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_compressed_base_a7cf299e08d2a4f6d6869e631e51b12fe}\label{class_eigen_1_1_sparse_compressed_base_a7cf299e08d2a4f6d6869e631e51b12fe}} 
+\index{Eigen::SparseCompressedBase$<$ Derived $>$@{Eigen::SparseCompressedBase$<$ Derived $>$}!coeffs@{coeffs}}
+\index{coeffs@{coeffs}!Eigen::SparseCompressedBase$<$ Derived $>$@{Eigen::SparseCompressedBase$<$ Derived $>$}}
+\subsubsection{\texorpdfstring{coeffs()}{coeffs()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Derived$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_map}{Map}}$<$\mbox{\hyperlink{class_eigen_1_1_array}{Array}}$<$Scalar,Dynamic,1$>$ $>$ \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base}{Eigen\+::\+Sparse\+Compressed\+Base}}$<$ Derived $>$\+::coeffs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a read-\/write view of the stored coefficients as a 1D array expression
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+this method is for {\bfseries{compressed}} {\bfseries{storage}} {\bfseries{only}}, and it will trigger an assertion otherwise.
+\end{DoxyWarning}
+Here is an example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ and the output is\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_a0f12f72d14b6c277d09be9f5ce2eab95}{value\+Ptr()}}, \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_a837934b33a80fe996ff20500373d3a61}{is\+Compressed()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_compressed_base_aa64818e1aa43015dad01b114b2ab4687}\label{class_eigen_1_1_sparse_compressed_base_aa64818e1aa43015dad01b114b2ab4687}} 
+\index{Eigen::SparseCompressedBase$<$ Derived $>$@{Eigen::SparseCompressedBase$<$ Derived $>$}!innerIndexPtr@{innerIndexPtr}}
+\index{innerIndexPtr@{innerIndexPtr}!Eigen::SparseCompressedBase$<$ Derived $>$@{Eigen::SparseCompressedBase$<$ Derived $>$}}
+\subsubsection{\texorpdfstring{innerIndexPtr()}{innerIndexPtr()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Derived$>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_a0b540ba724726ebe953f8c0df06081ed}{Storage\+Index}}$\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base}{Eigen\+::\+Sparse\+Compressed\+Base}}$<$ Derived $>$\+::inner\+Index\+Ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a const pointer to the array of inner indices. This function is aimed at interoperability with other libraries. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_a0f12f72d14b6c277d09be9f5ce2eab95}{value\+Ptr()}}, \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_a53a82f962686e18c8dc07a4b9a85ed7b}{outer\+Index\+Ptr()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_compressed_base_a197111c1289644f1ea38fe683ccdd82a}\label{class_eigen_1_1_sparse_compressed_base_a197111c1289644f1ea38fe683ccdd82a}} 
+\index{Eigen::SparseCompressedBase$<$ Derived $>$@{Eigen::SparseCompressedBase$<$ Derived $>$}!innerIndexPtr@{innerIndexPtr}}
+\index{innerIndexPtr@{innerIndexPtr}!Eigen::SparseCompressedBase$<$ Derived $>$@{Eigen::SparseCompressedBase$<$ Derived $>$}}
+\subsubsection{\texorpdfstring{innerIndexPtr()}{innerIndexPtr()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Derived$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_a0b540ba724726ebe953f8c0df06081ed}{Storage\+Index}}$\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base}{Eigen\+::\+Sparse\+Compressed\+Base}}$<$ Derived $>$\+::inner\+Index\+Ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a non-\/const pointer to the array of inner indices. This function is aimed at interoperability with other libraries. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_a0f12f72d14b6c277d09be9f5ce2eab95}{value\+Ptr()}}, \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_a53a82f962686e18c8dc07a4b9a85ed7b}{outer\+Index\+Ptr()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_compressed_base_afc056a3895eae1a4c4767252ff04966a}\label{class_eigen_1_1_sparse_compressed_base_afc056a3895eae1a4c4767252ff04966a}} 
+\index{Eigen::SparseCompressedBase$<$ Derived $>$@{Eigen::SparseCompressedBase$<$ Derived $>$}!innerNonZeroPtr@{innerNonZeroPtr}}
+\index{innerNonZeroPtr@{innerNonZeroPtr}!Eigen::SparseCompressedBase$<$ Derived $>$@{Eigen::SparseCompressedBase$<$ Derived $>$}}
+\subsubsection{\texorpdfstring{innerNonZeroPtr()}{innerNonZeroPtr()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Derived$>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_a0b540ba724726ebe953f8c0df06081ed}{Storage\+Index}}$\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base}{Eigen\+::\+Sparse\+Compressed\+Base}}$<$ Derived $>$\+::inner\+Non\+Zero\+Ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a const pointer to the array of the number of non zeros of the inner vectors. This function is aimed at interoperability with other libraries. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+it returns the null pointer 0 in compressed mode 
+\end{DoxyWarning}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_compressed_base_a411e972b097e6aef225415a4c2d0a0b5}\label{class_eigen_1_1_sparse_compressed_base_a411e972b097e6aef225415a4c2d0a0b5}} 
+\index{Eigen::SparseCompressedBase$<$ Derived $>$@{Eigen::SparseCompressedBase$<$ Derived $>$}!innerNonZeroPtr@{innerNonZeroPtr}}
+\index{innerNonZeroPtr@{innerNonZeroPtr}!Eigen::SparseCompressedBase$<$ Derived $>$@{Eigen::SparseCompressedBase$<$ Derived $>$}}
+\subsubsection{\texorpdfstring{innerNonZeroPtr()}{innerNonZeroPtr()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Derived$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_a0b540ba724726ebe953f8c0df06081ed}{Storage\+Index}}$\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base}{Eigen\+::\+Sparse\+Compressed\+Base}}$<$ Derived $>$\+::inner\+Non\+Zero\+Ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a non-\/const pointer to the array of the number of non zeros of the inner vectors. This function is aimed at interoperability with other libraries. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+it returns the null pointer 0 in compressed mode 
+\end{DoxyWarning}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_compressed_base_a837934b33a80fe996ff20500373d3a61}\label{class_eigen_1_1_sparse_compressed_base_a837934b33a80fe996ff20500373d3a61}} 
+\index{Eigen::SparseCompressedBase$<$ Derived $>$@{Eigen::SparseCompressedBase$<$ Derived $>$}!isCompressed@{isCompressed}}
+\index{isCompressed@{isCompressed}!Eigen::SparseCompressedBase$<$ Derived $>$@{Eigen::SparseCompressedBase$<$ Derived $>$}}
+\subsubsection{\texorpdfstring{isCompressed()}{isCompressed()}}
+{\footnotesize\ttfamily template$<$typename Derived$>$ \\
+bool \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base}{Eigen\+::\+Sparse\+Compressed\+Base}}$<$ Derived $>$\+::is\+Compressed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+whether {\ttfamily $\ast$this} is in compressed form. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_compressed_base_a03de8b3da2c142ce8698a76123b3e7d3}\label{class_eigen_1_1_sparse_compressed_base_a03de8b3da2c142ce8698a76123b3e7d3}} 
+\index{Eigen::SparseCompressedBase$<$ Derived $>$@{Eigen::SparseCompressedBase$<$ Derived $>$}!nonZeros@{nonZeros}}
+\index{nonZeros@{nonZeros}!Eigen::SparseCompressedBase$<$ Derived $>$@{Eigen::SparseCompressedBase$<$ Derived $>$}}
+\subsubsection{\texorpdfstring{nonZeros()}{nonZeros()}}
+{\footnotesize\ttfamily template$<$typename Derived$>$ \\
+\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base}{Eigen\+::\+Sparse\+Compressed\+Base}}$<$ Derived $>$\+::non\+Zeros (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of non zero coefficients 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_compressed_base_a2624d4c2661c582de168246c56e8d71e}\label{class_eigen_1_1_sparse_compressed_base_a2624d4c2661c582de168246c56e8d71e}} 
+\index{Eigen::SparseCompressedBase$<$ Derived $>$@{Eigen::SparseCompressedBase$<$ Derived $>$}!outerIndexPtr@{outerIndexPtr}}
+\index{outerIndexPtr@{outerIndexPtr}!Eigen::SparseCompressedBase$<$ Derived $>$@{Eigen::SparseCompressedBase$<$ Derived $>$}}
+\subsubsection{\texorpdfstring{outerIndexPtr()}{outerIndexPtr()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Derived$>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_a0b540ba724726ebe953f8c0df06081ed}{Storage\+Index}}$\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base}{Eigen\+::\+Sparse\+Compressed\+Base}}$<$ Derived $>$\+::outer\+Index\+Ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a const pointer to the array of the starting positions of the inner vectors. This function is aimed at interoperability with other libraries. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+it returns the null pointer 0 for \mbox{\hyperlink{class_eigen_1_1_sparse_vector}{Sparse\+Vector}} 
+\end{DoxyWarning}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_a0f12f72d14b6c277d09be9f5ce2eab95}{value\+Ptr()}}, \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_a197111c1289644f1ea38fe683ccdd82a}{inner\+Index\+Ptr()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_compressed_base_a53a82f962686e18c8dc07a4b9a85ed7b}\label{class_eigen_1_1_sparse_compressed_base_a53a82f962686e18c8dc07a4b9a85ed7b}} 
+\index{Eigen::SparseCompressedBase$<$ Derived $>$@{Eigen::SparseCompressedBase$<$ Derived $>$}!outerIndexPtr@{outerIndexPtr}}
+\index{outerIndexPtr@{outerIndexPtr}!Eigen::SparseCompressedBase$<$ Derived $>$@{Eigen::SparseCompressedBase$<$ Derived $>$}}
+\subsubsection{\texorpdfstring{outerIndexPtr()}{outerIndexPtr()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Derived$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_a0b540ba724726ebe953f8c0df06081ed}{Storage\+Index}}$\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base}{Eigen\+::\+Sparse\+Compressed\+Base}}$<$ Derived $>$\+::outer\+Index\+Ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a non-\/const pointer to the array of the starting positions of the inner vectors. This function is aimed at interoperability with other libraries. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+it returns the null pointer 0 for \mbox{\hyperlink{class_eigen_1_1_sparse_vector}{Sparse\+Vector}} 
+\end{DoxyWarning}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_a0f12f72d14b6c277d09be9f5ce2eab95}{value\+Ptr()}}, \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_a197111c1289644f1ea38fe683ccdd82a}{inner\+Index\+Ptr()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_compressed_base_a0f44c739398794ea77f310b745cc5627}\label{class_eigen_1_1_sparse_compressed_base_a0f44c739398794ea77f310b745cc5627}} 
+\index{Eigen::SparseCompressedBase$<$ Derived $>$@{Eigen::SparseCompressedBase$<$ Derived $>$}!valuePtr@{valuePtr}}
+\index{valuePtr@{valuePtr}!Eigen::SparseCompressedBase$<$ Derived $>$@{Eigen::SparseCompressedBase$<$ Derived $>$}}
+\subsubsection{\texorpdfstring{valuePtr()}{valuePtr()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Derived$>$ \\
+const Scalar$\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base}{Eigen\+::\+Sparse\+Compressed\+Base}}$<$ Derived $>$\+::value\+Ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a const pointer to the array of values. This function is aimed at interoperability with other libraries. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_a197111c1289644f1ea38fe683ccdd82a}{inner\+Index\+Ptr()}}, \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_a53a82f962686e18c8dc07a4b9a85ed7b}{outer\+Index\+Ptr()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_compressed_base_a0f12f72d14b6c277d09be9f5ce2eab95}\label{class_eigen_1_1_sparse_compressed_base_a0f12f72d14b6c277d09be9f5ce2eab95}} 
+\index{Eigen::SparseCompressedBase$<$ Derived $>$@{Eigen::SparseCompressedBase$<$ Derived $>$}!valuePtr@{valuePtr}}
+\index{valuePtr@{valuePtr}!Eigen::SparseCompressedBase$<$ Derived $>$@{Eigen::SparseCompressedBase$<$ Derived $>$}}
+\subsubsection{\texorpdfstring{valuePtr()}{valuePtr()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Derived$>$ \\
+Scalar$\ast$ \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base}{Eigen\+::\+Sparse\+Compressed\+Base}}$<$ Derived $>$\+::value\+Ptr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a non-\/const pointer to the array of values. This function is aimed at interoperability with other libraries. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_a197111c1289644f1ea38fe683ccdd82a}{inner\+Index\+Ptr()}}, \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_a53a82f962686e18c8dc07a4b9a85ed7b}{outer\+Index\+Ptr()}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Sparse\+Core/Sparse\+Compressed\+Base.\+h\end{DoxyCompactItemize}

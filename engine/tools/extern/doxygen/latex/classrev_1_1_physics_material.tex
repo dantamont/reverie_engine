@@ -1,0 +1,147 @@
+\hypertarget{classrev_1_1_physics_material}{}\section{rev\+::Physics\+Material Class Reference}
+\label{classrev_1_1_physics_material}\index{rev::PhysicsMaterial@{rev::PhysicsMaterial}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing a physics material.  
+
+
+
+
+{\ttfamily \#include $<$G\+Physics\+Material.\+h$>$}
+
+Inheritance diagram for rev\+::Physics\+Material\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_physics_material}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_material_af7b87dab5a1bfc3de504fd00e4f9217d}\label{classrev_1_1_physics_material_af7b87dab5a1bfc3de504fd00e4f9217d}} 
+{\bfseries $\sim$\+Physics\+Material} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_material_ab2d5f56844587f38e24a210908fe353c}\label{classrev_1_1_physics_material_ab2d5f56844587f38e24a210908fe353c}} 
+float {\bfseries get\+Static\+Friction} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_material_a88eca566f9bc3b25091e78f8326fc82d}\label{classrev_1_1_physics_material_a88eca566f9bc3b25091e78f8326fc82d}} 
+void {\bfseries set\+Static\+Friction} (float f) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_material_af5731a9b7ff7671bb1d61c22d8cfb362}\label{classrev_1_1_physics_material_af5731a9b7ff7671bb1d61c22d8cfb362}} 
+float {\bfseries get\+Dynamic\+Friction} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_material_ac7a6251f117d8a03373f2afcd7fd9b39}\label{classrev_1_1_physics_material_ac7a6251f117d8a03373f2afcd7fd9b39}} 
+void {\bfseries set\+Dynamic\+Friction} (float f) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_material_a22586c89e8340b32570853768f8c0b7d}\label{classrev_1_1_physics_material_a22586c89e8340b32570853768f8c0b7d}} 
+float {\bfseries get\+Restitution} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_material_a46eda01ed172b69cc55de9fadd9fe08b}\label{classrev_1_1_physics_material_a46eda01ed172b69cc55de9fadd9fe08b}} 
+void {\bfseries set\+Restitution} (float r)
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_material_a734b0bfd2b275299ca8623f51c91a696}\label{classrev_1_1_physics_material_a734b0bfd2b275299ca8623f51c91a696}} 
+physx\+::\+Px\+Material $\ast$ {\bfseries get\+Material} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_material_ad46e98c5f2369a13b9f8b9ef2353a6f6}\label{classrev_1_1_physics_material_ad46e98c5f2369a13b9f8b9ef2353a6f6}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_physics_material_ad46e98c5f2369a13b9f8b9ef2353a6f6}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_material_ab229e436cb511a89a1e2d78e5cfd0fa3}\label{classrev_1_1_physics_material_ab229e436cb511a89a1e2d78e5cfd0fa3}} 
+virtual void \mbox{\hyperlink{classrev_1_1_physics_material_ab229e436cb511a89a1e2d78e5cfd0fa3}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_physics_material_ad5c1131d40a32771183345da25d1a38c}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_physics_material_a6f593676796ebfff0aec28984f7b34b0}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{Indent}\textbf{ Statics}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_material_ac7b0be5040f40efc0849e3e7128cca1d}\label{classrev_1_1_physics_material_ac7b0be5040f40efc0849e3e7128cca1d}} 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_physics_material}{Physics\+Material}} $>$ {\bfseries Create} (const Q\+Json\+Value \&json)
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_material_ade87a20c409e18693c6dc5822ea18b4a}\label{classrev_1_1_physics_material_ade87a20c409e18693c6dc5822ea18b4a}} 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_physics_material}{Physics\+Material}} $>$ {\bfseries Create} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name, float static\+Friction=0.\+5f, float dynamic\+Friction=0.\+5f, float restitution=0.\+1f)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Constructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_material_a28504daf60a46ad0cd3d76eb961892be}\label{classrev_1_1_physics_material_a28504daf60a46ad0cd3d76eb961892be}} 
+{\bfseries Physics\+Material} (const Q\+Json\+Value \&json)
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_material_a94a059e1ff707eb3b9579890f18efeb8}\label{classrev_1_1_physics_material_a94a059e1ff707eb3b9579890f18efeb8}} 
+{\bfseries Physics\+Material} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name, float static\+Friction=0.\+5f, float dynamic\+Friction=0.\+5f, float restitution=0.\+1f)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Protected Member Functions}
+\begin{Indent}\textbf{ Private Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_material_aa04c7055a9e5d7f6d2c3a5358efda59a}\label{classrev_1_1_physics_material_aa04c7055a9e5d7f6d2c3a5358efda59a}} 
+static void \mbox{\hyperlink{classrev_1_1_physics_material_aa04c7055a9e5d7f6d2c3a5358efda59a}{Add\+To\+Manager}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_physics_material}{Physics\+Material}} $>$ mtl)
+\begin{DoxyCompactList}\small\item\em Add this material to the physics manager static map. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Private Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_material_a18a274228d0ff33dd763e69c91dba327}\label{classrev_1_1_physics_material_a18a274228d0ff33dd763e69c91dba327}} 
+physx\+::\+Px\+Material $\ast$ \mbox{\hyperlink{classrev_1_1_physics_material_a18a274228d0ff33dd763e69c91dba327}{m\+\_\+material}}
+\begin{DoxyCompactList}\small\item\em The physx material for this wrapper. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing a physics material. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_physics_material_ad5c1131d40a32771183345da25d1a38c}\label{classrev_1_1_physics_material_ad5c1131d40a32771183345da25d1a38c}} 
+\index{rev::PhysicsMaterial@{rev::PhysicsMaterial}!className@{className}}
+\index{className@{className}!rev::PhysicsMaterial@{rev::PhysicsMaterial}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Physics\+Material\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_physics_base_ad997bc1504ff6dccccbc3d8d0ea6e6a5}{rev\+::\+Physics\+Base}}.
+
+\mbox{\Hypertarget{classrev_1_1_physics_material_a6f593676796ebfff0aec28984f7b34b0}\label{classrev_1_1_physics_material_a6f593676796ebfff0aec28984f7b34b0}} 
+\index{rev::PhysicsMaterial@{rev::PhysicsMaterial}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::PhysicsMaterial@{rev::PhysicsMaterial}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Physics\+Material\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_physics_base_acf58cc81cff2ca957dcc68fe9a9a84a1}{rev\+::\+Physics\+Base}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Physics\+Material.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Physics\+Material.\+cpp\end{DoxyCompactItemize}

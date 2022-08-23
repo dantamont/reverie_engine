@@ -1,0 +1,101 @@
+\hypertarget{classrev_1_1_component_command}{}\section{rev\+::Component\+Command Class Reference}
+\label{classrev_1_1_component_command}\index{rev::ComponentCommand@{rev::ComponentCommand}}
+
+
+Abstract representing a component-\/related command.  
+
+
+
+
+{\ttfamily \#include $<$G\+Component\+Command.\+h$>$}
+
+Inheritance diagram for rev\+::Component\+Command\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.660131cm]{classrev_1_1_component_command}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_component_command_a620ebad0f454245b20a72f800996791f}\label{classrev_1_1_component_command_a620ebad0f454245b20a72f800996791f}} 
+{\bfseries Component\+Command} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, \mbox{\hyperlink{classrev_1_1_scene}{Scene}} $\ast$object, const Q\+String \&text, Q\+Undo\+Command $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_component_command_a672e3a27215dcb1c6a54a3d2ae36c9de}\label{classrev_1_1_component_command_a672e3a27215dcb1c6a54a3d2ae36c9de}} 
+{\bfseries Component\+Command} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$object, const Q\+String \&text, Q\+Undo\+Command $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_component_command_aec04cde2cc99f497c99386a8b8b1ca79}\label{classrev_1_1_component_command_aec04cde2cc99f497c99386a8b8b1ca79}} 
+{\bfseries $\sim$\+Component\+Command} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_component_command_aae80875b6d800510998da9f51c9dcafd}\label{classrev_1_1_component_command_aae80875b6d800510998da9f51c9dcafd}} 
+virtual void \mbox{\hyperlink{classrev_1_1_component_command_aae80875b6d800510998da9f51c9dcafd}{redo}} () override
+\begin{DoxyCompactList}\small\item\em Redoes the command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_component_command_a31a932e9812bb5b3b967b4e370bf193a}\label{classrev_1_1_component_command_a31a932e9812bb5b3b967b4e370bf193a}} 
+virtual void \mbox{\hyperlink{classrev_1_1_component_command_a31a932e9812bb5b3b967b4e370bf193a}{undo}} () override
+\begin{DoxyCompactList}\small\item\em Undoes the command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_component_command_a9fa769c52b149facb70c80bbc03a2be0}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_component_command_a7b4e11189228c9d9e5ff81598cb325f6}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_component_command_a6b9da1d49471c1416583e10895d8184d}\label{classrev_1_1_component_command_a6b9da1d49471c1416583e10895d8184d}} 
+\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$ \mbox{\hyperlink{classrev_1_1_component_command_a6b9da1d49471c1416583e10895d8184d}{m\+\_\+scene\+Object}} = nullptr
+\begin{DoxyCompactList}\small\item\em Pointer to the scene or scene object relating to this component command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_component_command_acae83bab58ae33978be06e436f13cb69}\label{classrev_1_1_component_command_acae83bab58ae33978be06e436f13cb69}} 
+\mbox{\hyperlink{classrev_1_1_scene}{Scene}} $\ast$ {\bfseries m\+\_\+scene} = nullptr
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Abstract representing a component-\/related command. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_component_command_a9fa769c52b149facb70c80bbc03a2be0}\label{classrev_1_1_component_command_a9fa769c52b149facb70c80bbc03a2be0}} 
+\index{rev::ComponentCommand@{rev::ComponentCommand}!className@{className}}
+\index{className@{className}!rev::ComponentCommand@{rev::ComponentCommand}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Component\+Command\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_undo_command_ab30f020732532e7cfd5472bdee65dcdb}{rev\+::\+Undo\+Command}}.
+
+\mbox{\Hypertarget{classrev_1_1_component_command_a7b4e11189228c9d9e5ff81598cb325f6}\label{classrev_1_1_component_command_a7b4e11189228c9d9e5ff81598cb325f6}} 
+\index{rev::ComponentCommand@{rev::ComponentCommand}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::ComponentCommand@{rev::ComponentCommand}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Component\+Command\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_undo_command_aea7ceb3f5ea266e697f01a65da7afec5}{rev\+::\+Undo\+Command}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/model\+\_\+control/commands/commands/G\+Component\+Command.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/model\+\_\+control/commands/commands/G\+Component\+Command.\+cpp\end{DoxyCompactItemize}

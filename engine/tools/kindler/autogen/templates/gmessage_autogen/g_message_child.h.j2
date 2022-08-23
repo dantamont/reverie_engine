@@ -1,0 +1,87 @@
+/// This file is auto-generated from {{ template_file_name }}
+/// Do not modify! It will be overwritten
+
+#pragma once
+{% if message_definitions.messages[message_type].members %}
+{%- for member_name, member_value in message_definitions.messages[message_type].members.items() %}
+{%- if (member_value.default_value|string).find(member_value.type[1:] + "::e") != -1 %}
+#include "enums/{{member_value.type}}Enum.h"
+{%- endif %}
+{%- endfor %}
+{%- endif %}
+#include "{{ library_name }}/network/messages/G{{ parent_type }}.h"
+
+namespace rev {
+
+/// @class G{{ message_type }}
+/// @brief Class representing a {{ message_type }}
+class G{{ message_type }}: public G{{ parent_type }} {
+public:
+    {# /// @brief Obtain the size of the message body in bytes
+    static constexpr Uint32_t Get{{ message_type }}StaticBodySizeInBytes(){
+        return Get{{ message_type }}StaticSizeInBytes() - sizeof(GMessageHeader);
+    }
+
+    /// @brief Obtain the size of the message in bytes, including the header
+    static constexpr Uint32_t Get{{ message_type }}StaticSizeInBytes(){
+        constexpr Uint32_t size = G{{ parent_type }}::Get{{ parent_type }}StaticSizeInBytes();
+{%- if message_definitions.messages[message_type].members %}
+        size += sizeof(S{{ message_type }}Fields); // For all message fields
+{%- endif %}
+        return size;
+    } #}
+    G{{ message_type }}() = default;
+    virtual ~G{{ message_type }}();
+
+    /// @brief The message type
+    virtual const MessageType messageType() const override {
+        return MessageType::e{{ message_type }};
+    }{% if message_definitions.messages[message_type].members %}
+{%- for member_name, member_value in message_definitions.messages[message_type].members.items() %}
+    
+    /// @brief {{ member_value.description }}
+    const {{member_value.type}}& get{{(member_name|string)[:1].upper() + (member_name|string)[1:]}}() const { return m_fieldsFor{{message_type|string}}.m_{{member_name}}; }
+
+    /// @brief {{ member_value.description }}
+    void set{{(member_name|string)[:1].upper() + (member_name|string)[1:]}}(const {{member_value.type}}& {{member_name}}) { m_fieldsFor{{message_type|string}}.m_{{member_name}} = {{member_name}}; }
+
+{%- endfor %}
+{%- endif %}
+
+    /// @brief For construction with any virtual function calls
+    virtual void postConstruction();
+
+    /// @brief Return the size of the message
+    virtual Uint32_t getSerializedSizeInBytes() const override;
+
+    /// @brief Pack the message to a buffer
+    /// @details Returns the number of bytes written
+    virtual Uint32_t pack(Uint8_t* buffer, Uint32_t index = 0) const override;
+
+    /// @brief Unpack the message from a buffer
+    virtual Uint32_t unpack(const Uint8_t* buffer, Uint32_t index = 0) override;
+
+    /// @brief Convert from the given class type to JSON
+    /// @note Actually defined in namespace outside of class, so this should be recognized by nlohmann JSON
+    /// @param orJson 
+    /// @param korObject
+    friend void to_json(nlohmann::json& orJson, const G{{ message_type }}& korObject);
+
+    /// @brief Convert from JSON to the given class type
+    /// @param korJson 
+    /// @param orObject 
+    friend void from_json(const nlohmann::json& korJson, G{{ message_type }}& orObject);
+
+protected:
+{% if message_definitions.messages[message_type].members %}
+    /// @brief Struct encapsulating the members for this message
+    struct S{{ message_type }}Fields{ {% for member_name, member_value in message_definitions.messages[message_type].members.items() %}
+        {{member_value.type}} m_{{member_name}} { {{member_value.default_value}} }; ///< {{ member_value.description }}
+{%- endfor %}
+    };
+    S{{ message_type }}Fields m_fieldsFor{{message_type|string}}; ///< The fields for this message type
+{% endif %}
+};
+
+
+} /// End namespace

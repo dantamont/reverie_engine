@@ -1,0 +1,65 @@
+\hypertarget{classrev_1_1_manager}{}\section{rev\+::Manager Class Reference}
+\label{classrev_1_1_manager}\index{rev::Manager@{rev::Manager}}
+
+
+Generic manager class @detailed Manages some aspect of the application.  
+
+
+
+
+{\ttfamily \#include $<$G\+Manager.\+h$>$}
+
+Inheritance diagram for rev\+::Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=12.000000cm]{classrev_1_1_manager}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_manager_ac027eb508d344bb74b15ad64f983306e}\label{classrev_1_1_manager_ac027eb508d344bb74b15ad64f983306e}} 
+{\bfseries Manager} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, const Q\+String \&name)
+\item 
+\mbox{\Hypertarget{classrev_1_1_manager_a96b6daea26ca2d94fddd74e40b4dd4a8}\label{classrev_1_1_manager_a96b6daea26ca2d94fddd74e40b4dd4a8}} 
+virtual {\bfseries $\sim$\+Manager} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_manager_a0fbd0df6b4f3caf42b557f9702f48171}\label{classrev_1_1_manager_a0fbd0df6b4f3caf42b557f9702f48171}} 
+\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$ \mbox{\hyperlink{classrev_1_1_manager_a0fbd0df6b4f3caf42b557f9702f48171}{engine}} () const
+\begin{DoxyCompactList}\small\item\em Get engine from the manager. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_manager_ace17f455b4762c5a6b16092b43a939b8}\label{classrev_1_1_manager_ace17f455b4762c5a6b16092b43a939b8}} 
+virtual void \mbox{\hyperlink{classrev_1_1_manager_ace17f455b4762c5a6b16092b43a939b8}{post\+Construction}} () override
+\begin{DoxyCompactList}\small\item\em Called after construction of the manager. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Private Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_manager_ad485178788ef4b3abc83a8bd525311be}\label{classrev_1_1_manager_ad485178788ef4b3abc83a8bd525311be}} 
+\mbox{\hyperlink{classrev_1_1_main_window}{Main\+Window}} $\ast$ \mbox{\hyperlink{classrev_1_1_manager_ad485178788ef4b3abc83a8bd525311be}{main\+Window}} ()
+\begin{DoxyCompactList}\small\item\em Obtain the main window. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_manager_a88aa9988893e0d186b4086e1feeb82e5}\label{classrev_1_1_manager_a88aa9988893e0d186b4086e1feeb82e5}} 
+void \mbox{\hyperlink{classrev_1_1_manager_a88aa9988893e0d186b4086e1feeb82e5}{show\+Message\+Box}} (const Q\+String \&title, const Q\+String \&text)
+\begin{DoxyCompactList}\small\item\em Show a dialog with the given title and text. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_manager_ab7f9a3dbf9fdac6903e045e2ebbc290b}\label{classrev_1_1_manager_ab7f9a3dbf9fdac6903e045e2ebbc290b}} 
+\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$ \mbox{\hyperlink{classrev_1_1_manager_ab7f9a3dbf9fdac6903e045e2ebbc290b}{m\+\_\+engine}}
+\begin{DoxyCompactList}\small\item\em Core engine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Generic manager class @detailed Manages some aspect of the application. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/G\+Manager.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/G\+Manager.\+cpp\end{DoxyCompactItemize}

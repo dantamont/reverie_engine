@@ -1,0 +1,77 @@
+\hypertarget{classrev_1_1_view_1_1_node_view_editor}{}\section{rev\+::View\+::Node\+View\+Editor Class Reference}
+\label{classrev_1_1_view_1_1_node_view_editor}\index{rev::View::NodeViewEditor@{rev::View::NodeViewEditor}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} for manipulating nodes in the node view.  
+
+
+
+
+{\ttfamily \#include $<$G\+Node\+View\+Editor.\+h$>$}
+
+Inheritance diagram for rev\+::View\+::Node\+View\+Editor\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_view_1_1_node_view_editor}
+\end{center}
+\end{figure}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_editor_ad641defe10408055ca3d5926913385b1}\label{classrev_1_1_view_1_1_node_view_editor_ad641defe10408055ca3d5926913385b1}} 
+void {\bfseries mouse\+Event\+Filtered} (Q\+Graphics\+Scene\+Mouse\+Event $\ast$mouse\+Event)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_editor_afae3d23deffeed4312ceff5e23b51852}\label{classrev_1_1_view_1_1_node_view_editor_afae3d23deffeed4312ceff5e23b51852}} 
+void {\bfseries connected\+Ports} (\mbox{\hyperlink{classrev_1_1_view_1_1_node_view_connection}{Node\+View\+Connection}} $\ast$connection)
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_editor_ae901fbfc912257ae1ff411e23573656e}\label{classrev_1_1_view_1_1_node_view_editor_ae901fbfc912257ae1ff411e23573656e}} 
+{\bfseries Node\+View\+Editor} (size\+\_\+t num\+Connections\+Per\+Port=1, Q\+Object $\ast$parent=N\+U\+LL)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_editor_a8157d39a2ab51ef8dd2ac71f12b4eef0}\label{classrev_1_1_view_1_1_node_view_editor_a8157d39a2ab51ef8dd2ac71f12b4eef0}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_node_view_editor_a8157d39a2ab51ef8dd2ac71f12b4eef0}{install}} (Q\+Graphics\+Scene $\ast$scene)
+\begin{DoxyCompactList}\small\item\em Install as an event filter of the specified scene. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classrev_1_1_view_1_1_node_view_editor_a909735398dd3e02ed57ed8b51ef6f760}{event\+Filter}} (Q\+Object $\ast$object, Q\+Event $\ast$event)
+\begin{DoxyCompactList}\small\item\em The event filter function called when the scene receives events. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_editor_ae8bb751c9a36f6848d01b8f3e27a7cf0}\label{classrev_1_1_view_1_1_node_view_editor_ae8bb751c9a36f6848d01b8f3e27a7cf0}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_node_view_editor_ae8bb751c9a36f6848d01b8f3e27a7cf0}{save}} (Q\+Data\+Stream \&stream)
+\begin{DoxyCompactList}\small\item\em Save the entire scene to a data stream. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_editor_a0953a204f815acdd1eed322d83bdbee5}\label{classrev_1_1_view_1_1_node_view_editor_a0953a204f815acdd1eed322d83bdbee5}} 
+void {\bfseries load} (Q\+Data\+Stream \&stream)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_editor_a4d8fd4e5053de3c296f703464e7977a8}\label{classrev_1_1_view_1_1_node_view_editor_a4d8fd4e5053de3c296f703464e7977a8}} 
+Q\+Graphics\+Item $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_node_view_editor_a4d8fd4e5053de3c296f703464e7977a8}{item\+At}} (const Q\+PointF \&point)
+\begin{DoxyCompactList}\small\item\em Return the graphics item at the given point. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_editor_a6da473f88e7b7ada16420bfd0a99aa22}\label{classrev_1_1_view_1_1_node_view_editor_a6da473f88e7b7ada16420bfd0a99aa22}} 
+void {\bfseries show\+Block\+Menu} (const Q\+Point \&point, \mbox{\hyperlink{classrev_1_1_view_1_1_node_view_block}{Node\+View\+Block}} $\ast$block)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_editor_aca1fdc6a61b38c6c9b3f2576faf62f71}\label{classrev_1_1_view_1_1_node_view_editor_aca1fdc6a61b38c6c9b3f2576faf62f71}} 
+void {\bfseries show\+Connection\+Menu} (const Q\+Point \&point, \mbox{\hyperlink{classrev_1_1_view_1_1_node_view_connection}{Node\+View\+Connection}} $\ast$connection)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} for manipulating nodes in the node view. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_editor_a909735398dd3e02ed57ed8b51ef6f760}\label{classrev_1_1_view_1_1_node_view_editor_a909735398dd3e02ed57ed8b51ef6f760}} 
+\index{rev::View::NodeViewEditor@{rev::View::NodeViewEditor}!eventFilter@{eventFilter}}
+\index{eventFilter@{eventFilter}!rev::View::NodeViewEditor@{rev::View::NodeViewEditor}}
+\subsubsection{\texorpdfstring{eventFilter()}{eventFilter()}}
+{\footnotesize\ttfamily bool rev\+::\+View\+::\+Node\+View\+Editor\+::event\+Filter (\begin{DoxyParamCaption}\item[{Q\+Object $\ast$}]{object,  }\item[{Q\+Event $\ast$}]{event }\end{DoxyParamCaption})}
+
+
+
+The event filter function called when the scene receives events. 
+
+\begin{DoxyReturn}{Returns}
+True if the event should be filtered, i.\+e., stopped; otherwise must return false 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/nodes/G\+Node\+View\+Editor.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/nodes/G\+Node\+View\+Editor.\+cpp\end{DoxyCompactItemize}

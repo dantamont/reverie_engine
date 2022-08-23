@@ -1,0 +1,57 @@
+\hypertarget{classrev_1_1_view_1_1_timeline}{}\section{rev\+::View\+::Timeline Class Reference}
+\label{classrev_1_1_view_1_1_timeline}\index{rev::View::Timeline@{rev::View::Timeline}}
+Inheritance diagram for rev\+::View\+::Timeline\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_view_1_1_timeline}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructor/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_ab2afadb3286a9e4578906fd08459cf06}\label{classrev_1_1_view_1_1_timeline_ab2afadb3286a9e4578906fd08459cf06}} 
+{\bfseries Timeline} (bool set\+Tick\+Labels, Q\+Object $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_abcace8b99ba030d0b810636d612ed6de}\label{classrev_1_1_view_1_1_timeline_abcace8b99ba030d0b810636d612ed6de}} 
+{\bfseries $\sim$\+Timeline} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_a900577233264ff96cde4d06631e537b5}\label{classrev_1_1_view_1_1_timeline_a900577233264ff96cde4d06631e537b5}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_timeline_scene}{Timeline\+Scene}} $\ast$ {\bfseries scene} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_a799aabed771789fc6e5fda58e0610b02}\label{classrev_1_1_view_1_1_timeline_a799aabed771789fc6e5fda58e0610b02}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_timeline_view}{Timeline\+View}} $\ast$ {\bfseries view} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_addcddc95713226590980159120377694}\label{classrev_1_1_view_1_1_timeline_addcddc95713226590980159120377694}} 
+void {\bfseries refresh\+Tick\+Labels} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_a91d21eaf875b2a7b1602ff32e6cc0289}\label{classrev_1_1_view_1_1_timeline_a91d21eaf875b2a7b1602ff32e6cc0289}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_timeline_a91d21eaf875b2a7b1602ff32e6cc0289}{set\+Title}} (const Q\+String \&title)
+\begin{DoxyCompactList}\small\item\em Set title for the timeline. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_a05f6dc434265f21a00e27e4c89675ea0}\label{classrev_1_1_view_1_1_timeline_a05f6dc434265f21a00e27e4c89675ea0}} 
+size\+\_\+t \mbox{\hyperlink{classrev_1_1_view_1_1_timeline_a05f6dc434265f21a00e27e4c89675ea0}{add\+Row}} (const Q\+String \&name, bool refresh\+Ticks=true)
+\begin{DoxyCompactList}\small\item\em Add a row to the timeline with the specified name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_a6458169b3371c8f94bc23336893fdd4b}\label{classrev_1_1_view_1_1_timeline_a6458169b3371c8f94bc23336893fdd4b}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_timeline_a6458169b3371c8f94bc23336893fdd4b}{set\+Tick\+Increment}} (qreal increment)
+\begin{DoxyCompactList}\small\item\em Set major tick increment. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_af83323db315447a2a67a203877deeed6}\label{classrev_1_1_view_1_1_timeline_af83323db315447a2a67a203877deeed6}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_timeline_track}{Timeline\+Track}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_timeline_af83323db315447a2a67a203877deeed6}{add\+Track}} (size\+\_\+t row\+Index, float tick\+Value, bool refresh\+Tick\+Labels=true)
+\begin{DoxyCompactList}\small\item\em Add track in the given row. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_aaeddfd2d669955d37bb64d04111c8f87}\label{classrev_1_1_view_1_1_timeline_aaeddfd2d669955d37bb64d04111c8f87}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_timeline_marker}{Timeline\+Marker}} $\ast$ {\bfseries add\+Marker} (size\+\_\+t row\+Index, float tick\+Value, bool refresh\+Tick\+Labels=true)
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/timeline/G\+Timeline.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/timeline/G\+Timeline.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,53 @@
+\hypertarget{classrev_1_1_add_scene_object_command}{}\section{rev\+::Add\+Scene\+Object\+Command Class Reference}
+\label{classrev_1_1_add_scene_object_command}\index{rev::AddSceneObjectCommand@{rev::AddSceneObjectCommand}}
+Inheritance diagram for rev\+::Add\+Scene\+Object\+Command\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.809524cm]{classrev_1_1_add_scene_object_command}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_add_scene_object_command_ad4500088c547049f2dfeccd0eb4b0c9e}\label{classrev_1_1_add_scene_object_command_ad4500088c547049f2dfeccd0eb4b0c9e}} 
+{\bfseries Add\+Scene\+Object\+Command} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, \mbox{\hyperlink{classrev_1_1_scene}{Scene}} $\ast$scene, const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&text, \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$parent\+Object=nullptr, Q\+Undo\+Command $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_add_scene_object_command_abdaab6f02245ecc4bae804e631aa207e}\label{classrev_1_1_add_scene_object_command_abdaab6f02245ecc4bae804e631aa207e}} 
+{\bfseries Add\+Scene\+Object\+Command} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, \mbox{\hyperlink{classrev_1_1_scene}{Scene}} $\ast$scene, \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$parent\+Object=nullptr, Q\+Undo\+Command $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_add_scene_object_command_a8f1bdaf961672609436a3f4572ca2c18}\label{classrev_1_1_add_scene_object_command_a8f1bdaf961672609436a3f4572ca2c18}} 
+{\bfseries $\sim$\+Add\+Scene\+Object\+Command} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_add_scene_object_command_aefc9513fbbedd53cb8b7075f0e6468d0}\label{classrev_1_1_add_scene_object_command_aefc9513fbbedd53cb8b7075f0e6468d0}} 
+void \mbox{\hyperlink{classrev_1_1_add_scene_object_command_aefc9513fbbedd53cb8b7075f0e6468d0}{redo}} () override
+\begin{DoxyCompactList}\small\item\em Redoes the add scenario command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_add_scene_object_command_a98003785f554397ac10f76f7f12e7301}\label{classrev_1_1_add_scene_object_command_a98003785f554397ac10f76f7f12e7301}} 
+void \mbox{\hyperlink{classrev_1_1_add_scene_object_command_a98003785f554397ac10f76f7f12e7301}{undo}} () override
+\begin{DoxyCompactList}\small\item\em Undoes the add scenario command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_add_scene_object_command_ae3ad69706e15b2f8947b189e9eaeb6d6}\label{classrev_1_1_add_scene_object_command_ae3ad69706e15b2f8947b189e9eaeb6d6}} 
+uint32\+\_\+t \mbox{\hyperlink{classrev_1_1_add_scene_object_command_ae3ad69706e15b2f8947b189e9eaeb6d6}{m\+\_\+object\+Id}}
+\begin{DoxyCompactList}\small\item\em The ID of the scene object added by this command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_add_scene_object_command_a830b90f28640044916825e2b2852cf88}\label{classrev_1_1_add_scene_object_command_a830b90f28640044916825e2b2852cf88}} 
+Q\+Json\+Object \mbox{\hyperlink{classrev_1_1_add_scene_object_command_a830b90f28640044916825e2b2852cf88}{m\+\_\+parent\+Scene\+Object}}
+\begin{DoxyCompactList}\small\item\em The parent to the scene object added by this command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_add_scene_object_command_a89bd752f708a623a3ed0ff43a0cd0b3c}\label{classrev_1_1_add_scene_object_command_a89bd752f708a623a3ed0ff43a0cd0b3c}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_add_scene_object_command_a89bd752f708a623a3ed0ff43a0cd0b3c}{m\+\_\+scene}}
+\begin{DoxyCompactList}\small\item\em The scene which the scene object belongs to. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/model\+\_\+control/commands/commands/G\+Scene\+Command.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/model\+\_\+control/commands/commands/G\+Scene\+Command.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,227 @@
+\hypertarget{classrev_1_1_light}{}\section{rev\+::Light Class Reference}
+\label{classrev_1_1_light}\index{rev::Light@{rev::Light}}
+
+
+A light object in GL.  
+
+
+
+
+{\ttfamily \#include $<$G\+Light.\+h$>$}
+
+\subsection*{Public Types}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_a51b034df9a472ce8312e117d8edd458f}\label{classrev_1_1_light_a51b034df9a472ce8312e117d8edd458f}} 
+enum {\bfseries Light\+Type} \{ {\bfseries k\+Point} = 0, 
+{\bfseries k\+Directional}, 
+{\bfseries k\+Spot}
+ \}
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_afdf49a31ac80ccb6aa90f0f30bcad5fc}\label{classrev_1_1_light_afdf49a31ac80ccb6aa90f0f30bcad5fc}} 
+enum {\bfseries Light\+Flags} \{ {\bfseries k\+Enabled} = 1 $<$$<$ 0
+ \}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_a59432efc4acfd753d0895c7bd71ceb57}\label{classrev_1_1_light_a59432efc4acfd753d0895c7bd71ceb57}} 
+{\bfseries Light} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_a0857f90d0f10cef5550cc8478ac566bb}\label{classrev_1_1_light_a0857f90d0f10cef5550cc8478ac566bb}} 
+{\bfseries $\sim$\+Light} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \& \mbox{\hyperlink{classrev_1_1_light_a1f68077994136c1c7496955a51e56cc0}{get\+Position}} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_aa543a2990fbe15517b2adab9dc214342}\label{classrev_1_1_light_aa543a2990fbe15517b2adab9dc214342}} 
+void {\bfseries set\+Position} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&position)
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_adc9992832658c63f12ec8363e19b80fa}\label{classrev_1_1_light_adc9992832658c63f12ec8363e19b80fa}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \& \mbox{\hyperlink{classrev_1_1_light_adc9992832658c63f12ec8363e19b80fa}{direction}} ()
+\begin{DoxyCompactList}\small\item\em Used for spot and directional lights. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_light_a9885cd42b5b892213fb12a8175a4ea73}\label{classrev_1_1_light_a9885cd42b5b892213fb12a8175a4ea73}} 
+const \mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \& {\bfseries get\+Direction} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_aa2d5f8286ea8f484d0bffa85baf08c09}\label{classrev_1_1_light_aa2d5f8286ea8f484d0bffa85baf08c09}} 
+void {\bfseries set\+Direction} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&dir)
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_af30b1c7c5840fab9c57109b7dcd8b724}\label{classrev_1_1_light_af30b1c7c5840fab9c57109b7dcd8b724}} 
+const \mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \& {\bfseries get\+Diffuse\+Color} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_afa4a28ab1a886cc8c203f63dd41e8c8b}\label{classrev_1_1_light_afa4a28ab1a886cc8c203f63dd41e8c8b}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \& {\bfseries diffuse\+Color} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_a256a3cbb04876f5ce932c5a70ea339a8}\label{classrev_1_1_light_a256a3cbb04876f5ce932c5a70ea339a8}} 
+const \mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \& {\bfseries get\+Ambient\+Color} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_aa634cedc62b9cf6e0314657485f9a891}\label{classrev_1_1_light_aa634cedc62b9cf6e0314657485f9a891}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \& {\bfseries ambient\+Color} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_a695412c2df89f50bed7936185a5a25a3}\label{classrev_1_1_light_a695412c2df89f50bed7936185a5a25a3}} 
+const \mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \& {\bfseries get\+Specular\+Color} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_a782fc5f4c248ccd6a0e4b09f1e3c5784}\label{classrev_1_1_light_a782fc5f4c248ccd6a0e4b09f1e3c5784}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \& {\bfseries specular\+Color} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_a0e863d80e9fe0dd56722cd5301d491ca}\label{classrev_1_1_light_a0e863d80e9fe0dd56722cd5301d491ca}} 
+int \mbox{\hyperlink{classrev_1_1_light_a0e863d80e9fe0dd56722cd5301d491ca}{get\+Index}} () const
+\begin{DoxyCompactList}\small\item\em Return index of the light for use in shader. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_light_a5139f605293e5e52ddb603aa481bf1f1}\label{classrev_1_1_light_a5139f605293e5e52ddb603aa481bf1f1}} 
+void {\bfseries set\+Index} (int idx)
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_a4a1a675dba56fffff57c089a92c28008}\label{classrev_1_1_light_a4a1a675dba56fffff57c089a92c28008}} 
+void {\bfseries set\+Color} (const \mbox{\hyperlink{classrev_1_1_color}{Color}} \&color)
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_adfff3b7529cbf8127a6b17d7ce3ae9d2}\label{classrev_1_1_light_adfff3b7529cbf8127a6b17d7ce3ae9d2}} 
+void {\bfseries set\+Diffuse\+Color} (const \mbox{\hyperlink{classrev_1_1_color}{Color}} \&color)
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_a7d73d8d225dfb58842548b15d223bfcb}\label{classrev_1_1_light_a7d73d8d225dfb58842548b15d223bfcb}} 
+void {\bfseries set\+Ambient\+Color} (const \mbox{\hyperlink{classrev_1_1_color}{Color}} \&color)
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_aa4d8e7a87d7bb845c16bbc904e79c8e9}\label{classrev_1_1_light_aa4d8e7a87d7bb845c16bbc904e79c8e9}} 
+void {\bfseries set\+Specular\+Color} (const \mbox{\hyperlink{classrev_1_1_color}{Color}} \&color)
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_a72de7503867b0c0c99eed87a0cdbd6d0}\label{classrev_1_1_light_a72de7503867b0c0c99eed87a0cdbd6d0}} 
+const \mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \& {\bfseries get\+Attributes} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_a3f11568c5cf305a172903d413d4bd6bd}\label{classrev_1_1_light_a3f11568c5cf305a172903d413d4bd6bd}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \& {\bfseries attributes} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_a0ce61c1b736ddc3a83f425aa08e6eaa9}\label{classrev_1_1_light_a0ce61c1b736ddc3a83f425aa08e6eaa9}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \& {\bfseries cutoffs} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_a1e8433008fa0bc410f0035b709163ddf}\label{classrev_1_1_light_a1e8433008fa0bc410f0035b709163ddf}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \& {\bfseries attenuations} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_ae16103cfbbae4f588fa31e171ff93bc1}\label{classrev_1_1_light_ae16103cfbbae4f588fa31e171ff93bc1}} 
+const \mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \& {\bfseries attenuations} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_afca0d4afb8d9a32aa2a040b1f3d4279c}\label{classrev_1_1_light_afca0d4afb8d9a32aa2a040b1f3d4279c}} 
+void {\bfseries set\+Attributes} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \&attr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_a49d4b45328881b42b230ca611a15b6ca}\label{classrev_1_1_light_a49d4b45328881b42b230ca611a15b6ca}} 
+Light\+Type {\bfseries get\+Type} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_a868dbcfeca153598b3339f186dd1890a}\label{classrev_1_1_light_a868dbcfeca153598b3339f186dd1890a}} 
+void {\bfseries set\+Type} (Light\+Type type)
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_a699be13844c0224292ec468c725aee61}\label{classrev_1_1_light_a699be13844c0224292ec468c725aee61}} 
+real\+\_\+g {\bfseries get\+Intensity} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_a91a8766430d34558d5895b6c6a995444}\label{classrev_1_1_light_a91a8766430d34558d5895b6c6a995444}} 
+void {\bfseries set\+Intensity} (real\+\_\+g brightness)
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_a9f6d565f087ffa00f7166277ad13ff5f}\label{classrev_1_1_light_a9f6d565f087ffa00f7166277ad13ff5f}} 
+real\+\_\+g {\bfseries get\+Range} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_a23fa083b76a70193723fa2310de51dbc}\label{classrev_1_1_light_a23fa083b76a70193723fa2310de51dbc}} 
+void {\bfseries set\+Range} (real\+\_\+g range)
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_a3eabf7c7e64e6c8927a52c02f2d3a414}\label{classrev_1_1_light_a3eabf7c7e64e6c8927a52c02f2d3a414}} 
+void {\bfseries set\+Range\+From\+Cutoff} (real\+\_\+g brightness\+Cutoff)
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_a4dc8b606a50122a40c1b992a9c5ef09e}\label{classrev_1_1_light_a4dc8b606a50122a40c1b992a9c5ef09e}} 
+int \& {\bfseries flags} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_a600445b5c873316a741ac6390b4e5a51}\label{classrev_1_1_light_a600445b5c873316a741ac6390b4e5a51}} 
+float \mbox{\hyperlink{classrev_1_1_light_a600445b5c873316a741ac6390b4e5a51}{get\+F\+O\+V\+Rad}} () const
+\begin{DoxyCompactList}\small\item\em Get F\+OV in radians if the light is a spot light. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_light_a276aab0378cb3974ed88a05f0ce26502}\label{classrev_1_1_light_a276aab0378cb3974ed88a05f0ce26502}} 
+void {\bfseries enable} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_acb4398ad4da62837343d90c6b51bf613}\label{classrev_1_1_light_acb4398ad4da62837343d90c6b51bf613}} 
+void {\bfseries disable} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_aaf3f4ac86bc27f4d22962da3a0ee9d36}\label{classrev_1_1_light_aaf3f4ac86bc27f4d22962da3a0ee9d36}} 
+void \mbox{\hyperlink{classrev_1_1_light_aaf3f4ac86bc27f4d22962da3a0ee9d36}{initialize\+Light}} (\mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} \&context)
+\begin{DoxyCompactList}\small\item\em Initialize static list entries for the light. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_a6cc33aa901b6d2665178ee9a6ff7605d}\label{classrev_1_1_light_a6cc33aa901b6d2665178ee9a6ff7605d}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \mbox{\hyperlink{classrev_1_1_light_a6cc33aa901b6d2665178ee9a6ff7605d}{m\+\_\+position}}
+\begin{DoxyCompactList}\small\item\em Position of the light. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_light_adb38058e93e9fe8f630feaac7abfd272}\label{classrev_1_1_light_adb38058e93e9fe8f630feaac7abfd272}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \mbox{\hyperlink{classrev_1_1_light_adb38058e93e9fe8f630feaac7abfd272}{m\+\_\+direction}} = \{0.\+0, -\/1.\+0, 0.\+0, 0.\+0\}
+\begin{DoxyCompactList}\small\item\em Direction that light is casting onto. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_light_ab5597153317ee40355ab3f6f2db2659c}\label{classrev_1_1_light_ab5597153317ee40355ab3f6f2db2659c}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \mbox{\hyperlink{classrev_1_1_light_ab5597153317ee40355ab3f6f2db2659c}{m\+\_\+ambient\+Color}} = \{ 0.\+0f, 0.\+0f, 0.\+0f, 1.\+0f \}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_color}{Color}} channels of the light. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_light_a9c97f6ee43f57a64f59ac32b2e443476}\label{classrev_1_1_light_a9c97f6ee43f57a64f59ac32b2e443476}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector4}} {\bfseries m\+\_\+diffuse\+Color}
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_aa20d6eb5eacac2e667cf9b0cadac8218}\label{classrev_1_1_light_aa20d6eb5eacac2e667cf9b0cadac8218}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector4}} {\bfseries m\+\_\+specular\+Color} = \{ 0.\+0f, 0.\+0f, 0.\+0f, 1.\+0f \}
+\item 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \mbox{\hyperlink{classrev_1_1_light_acb7615661d2b2d0bc67edb759c30cf59}{m\+\_\+attributes}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_light}{Light}} attributes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_light_a749613bbc104fdfe8834b1c8c9f2f096}\label{classrev_1_1_light_a749613bbc104fdfe8834b1c8c9f2f096}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \mbox{\hyperlink{classrev_1_1_light_a749613bbc104fdfe8834b1c8c9f2f096}{m\+\_\+more\+Attributes}} = \{ 1, 100, 0, 0 \}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_light}{Light}} intensity, range. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_light_a7ff53f54189672c9f50064c5b0323eb9}\label{classrev_1_1_light_a7ff53f54189672c9f50064c5b0323eb9}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector}}$<$ int, 4 $>$ \mbox{\hyperlink{classrev_1_1_light_a7ff53f54189672c9f50064c5b0323eb9}{m\+\_\+type\+Index\+Flags}} = \{ (int)k\+Point, 0, (size\+\_\+t)Light\+Flags\+::k\+Enabled, 0 \}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_light}{Light}} type, light index, \mbox{\hyperlink{classrev_1_1_light}{Light}} flags. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_a669551dc6cbb5993a3f23e9b0d2a9407}\label{classrev_1_1_light_a669551dc6cbb5993a3f23e9b0d2a9407}} 
+class {\bfseries Lighting\+Settings}
+\item 
+\mbox{\Hypertarget{classrev_1_1_light_a2e7fdda96fb4e8a740d14d78a6808157}\label{classrev_1_1_light_a2e7fdda96fb4e8a740d14d78a6808157}} 
+class {\bfseries Light\+Component}
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+A light object in GL. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_light_a1f68077994136c1c7496955a51e56cc0}\label{classrev_1_1_light_a1f68077994136c1c7496955a51e56cc0}} 
+\index{rev::Light@{rev::Light}!getPosition@{getPosition}}
+\index{getPosition@{getPosition}!rev::Light@{rev::Light}}
+\subsubsection{\texorpdfstring{getPosition()}{getPosition()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classrev_1_1_vector}{Vector4}}\& rev\+::\+Light\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyNote}{Note}
+Not needed for directional lights 
+\end{DoxyNote}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_light_acb7615661d2b2d0bc67edb759c30cf59}\label{classrev_1_1_light_acb7615661d2b2d0bc67edb759c30cf59}} 
+\index{rev::Light@{rev::Light}!m\_attributes@{m\_attributes}}
+\index{m\_attributes@{m\_attributes}!rev::Light@{rev::Light}}
+\subsubsection{\texorpdfstring{m\_attributes}{m\_attributes}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_vector}{Vector4}} rev\+::\+Light\+::m\+\_\+attributes\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\mbox{\hyperlink{classrev_1_1_light}{Light}} attributes. 
+
+For directional lights\+: empty For point lights\+: constant, linear, and quadratic attenuations\+: attenuation = a1 + a2 $\ast$ distance + a3 $\ast$ distance$^\wedge$2 Default (1, 0, 0) is no attenuation (infinite light distance) For spot lights, cutoffs 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/lighting/G\+Light.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/lighting/G\+Light.\+cpp\end{DoxyCompactItemize}

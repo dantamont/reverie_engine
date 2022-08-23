@@ -1,0 +1,206 @@
+\hypertarget{classrev_1_1_view_1_1_g_l_widget}{}\section{rev\+::View\+::G\+L\+Widget Class Reference}
+\label{classrev_1_1_view_1_1_g_l_widget}\index{rev::View::GLWidget@{rev::View::GLWidget}}
+Inheritance diagram for rev\+::View\+::G\+L\+Widget\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_view_1_1_g_l_widget}
+\end{center}
+\end{figure}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_af2b8ce16797d7f7db60d308a301475be}\label{classrev_1_1_view_1_1_g_l_widget_af2b8ce16797d7f7db60d308a301475be}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_g_l_widget_af2b8ce16797d7f7db60d308a301475be}{resize\+Projections}} (int width, int height)
+\begin{DoxyCompactList}\small\item\em Update aspect ratios for all render projections. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_ad03a5e3254e0310ac8bd8a4911624108}\label{classrev_1_1_view_1_1_g_l_widget_ad03a5e3254e0310ac8bd8a4911624108}} 
+void {\bfseries resize\+Projections} ()
+\end{DoxyCompactItemize}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_ab0c875c91812548023e8e888e451f08f}\label{classrev_1_1_view_1_1_g_l_widget_ab0c875c91812548023e8e888e451f08f}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_g_l_widget_ab0c875c91812548023e8e888e451f08f}{resized}} (int width, int height)
+\begin{DoxyCompactList}\small\item\em Sent on resize. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_ae160b0c7d7ed607b4710fdb0a8d2d052}\label{classrev_1_1_view_1_1_g_l_widget_ae160b0c7d7ed607b4710fdb0a8d2d052}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_g_l_widget_ae160b0c7d7ed607b4710fdb0a8d2d052}{initialized\+Context}} ()
+\begin{DoxyCompactList}\small\item\em Send on initialization. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_acea2a2885a65e3e3b305f8bd69bb24ff}\label{classrev_1_1_view_1_1_g_l_widget_acea2a2885a65e3e3b305f8bd69bb24ff}} 
+{\bfseries G\+L\+Widget} (const Q\+String \&name, \mbox{\hyperlink{classrev_1_1_core_engine}{rev\+::\+Core\+Engine}} $\ast$engine, Q\+Widget $\ast$parent)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_ab76346868e96d5258e27852911395246}\label{classrev_1_1_view_1_1_g_l_widget_ab76346868e96d5258e27852911395246}} 
+{\bfseries $\sim$\+G\+L\+Widget} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_af3c163e60e8cf26494ebaa7a66389038}\label{classrev_1_1_view_1_1_g_l_widget_af3c163e60e8cf26494ebaa7a66389038}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector2}} \mbox{\hyperlink{classrev_1_1_view_1_1_g_l_widget_af3c163e60e8cf26494ebaa7a66389038}{widget\+Mouse\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Return the position of the mouse relative to this widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_aea0d286dcf49a5a6686d09728f63f29a}\label{classrev_1_1_view_1_1_g_l_widget_aea0d286dcf49a5a6686d09728f63f29a}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} $>$ {\bfseries renderer} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_a15d9d3ef8cbb535579fa7e1fd6ebe5db}\label{classrev_1_1_view_1_1_g_l_widget_a15d9d3ef8cbb535579fa7e1fd6ebe5db}} 
+\mbox{\hyperlink{classrev_1_1_input_handler}{Input\+Handler}} \& {\bfseries input\+Handler} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_a0e760fd647e92d2415f0763e81c580dd}\label{classrev_1_1_view_1_1_g_l_widget_a0e760fd647e92d2415f0763e81c580dd}} 
+void {\bfseries add\+Render\+Projection} (\mbox{\hyperlink{classrev_1_1_render_projection}{Render\+Projection}} $\ast$rp)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_a34e97aa50cbe69e4236d007a2bf2fe47}\label{classrev_1_1_view_1_1_g_l_widget_a34e97aa50cbe69e4236d007a2bf2fe47}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_g_l_widget_a34e97aa50cbe69e4236d007a2bf2fe47}{clear}} ()
+\begin{DoxyCompactList}\small\item\em Reset widget (on engine clear) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ rev\+::Object overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_g_l_widget_a223f5d2a14ae6e2d3c988d008710e5fc}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_g_l_widget_aee5ce763da9236cf4b2a707df9f93c3b}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_afdfb2f0393e995f2f49055139beaa019}\label{classrev_1_1_view_1_1_g_l_widget_afdfb2f0393e995f2f49055139beaa019}} 
+virtual bool \mbox{\hyperlink{classrev_1_1_view_1_1_g_l_widget_afdfb2f0393e995f2f49055139beaa019}{has\+Ui}} () const
+\begin{DoxyCompactList}\small\item\em Indicates whether this \mbox{\hyperlink{classrev_1_1_service}{Service}} has a UI or not. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classrev_1_1_view_1_1_g_l_widget_a5ddbef17b0b7385faed69d79af3799e6}{is\+Service}} () const
+\begin{DoxyCompactList}\small\item\em Returns True if this \mbox{\hyperlink{classrev_1_1_abstract_service}{Abstract\+Service}} represents a service. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classrev_1_1_view_1_1_g_l_widget_a131ce2b564a067610856a7a080a091ba}{is\+Tool}} () const
+\begin{DoxyCompactList}\small\item\em Returns True if this \mbox{\hyperlink{classrev_1_1_abstract_service}{Abstract\+Service}} represents a tool. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Q\+Widget Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_a5718a1a6a9c8822d73c115f01f3b7ddd}\label{classrev_1_1_view_1_1_g_l_widget_a5718a1a6a9c8822d73c115f01f3b7ddd}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_g_l_widget_a5718a1a6a9c8822d73c115f01f3b7ddd}{resize\+Event}} (Q\+Resize\+Event $\ast$event) override
+\begin{DoxyCompactList}\small\item\em Override resize event to send out signal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_ae73b60c6086ec85b0284fa317e5e7a97}\label{classrev_1_1_view_1_1_g_l_widget_ae73b60c6086ec85b0284fa317e5e7a97}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_g_l_widget_ae73b60c6086ec85b0284fa317e5e7a97}{context\+Menu\+Event}} (Q\+Context\+Menu\+Event $\ast$event) override
+\begin{DoxyCompactList}\small\item\em Override context\+Menu\+Event. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_a9a83b84eea47fe31ce42fe838b8e1292}\label{classrev_1_1_view_1_1_g_l_widget_a9a83b84eea47fe31ce42fe838b8e1292}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_g_l_widget_a9a83b84eea47fe31ce42fe838b8e1292}{key\+Press\+Event}} (Q\+Key\+Event $\ast$event) override
+\begin{DoxyCompactList}\small\item\em Input handlers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_a35d8bb4c469a7c0409e966e9832b751a}\label{classrev_1_1_view_1_1_g_l_widget_a35d8bb4c469a7c0409e966e9832b751a}} 
+void {\bfseries key\+Release\+Event} (Q\+Key\+Event $\ast$event) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_a408eed5dd859ee363d47daad5b79fa78}\label{classrev_1_1_view_1_1_g_l_widget_a408eed5dd859ee363d47daad5b79fa78}} 
+void {\bfseries wheel\+Event} (Q\+Wheel\+Event $\ast$event) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_aec6d2806894a5089469eec8aca1e8ea7}\label{classrev_1_1_view_1_1_g_l_widget_aec6d2806894a5089469eec8aca1e8ea7}} 
+void {\bfseries mouse\+Double\+Click\+Event} (Q\+Mouse\+Event $\ast$event) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_a8a29e3021aad930a3b7bbf4596d8eb61}\label{classrev_1_1_view_1_1_g_l_widget_a8a29e3021aad930a3b7bbf4596d8eb61}} 
+void {\bfseries mouse\+Move\+Event} (Q\+Mouse\+Event $\ast$event) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_abee840222096a37921495085b3519f33}\label{classrev_1_1_view_1_1_g_l_widget_abee840222096a37921495085b3519f33}} 
+void {\bfseries mouse\+Press\+Event} (Q\+Mouse\+Event $\ast$event) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_ad827e79a38c8aca729a87281f2d81414}\label{classrev_1_1_view_1_1_g_l_widget_ad827e79a38c8aca729a87281f2d81414}} 
+void {\bfseries mouse\+Release\+Event} (Q\+Mouse\+Event $\ast$event) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_acdf6abd04212839bd08109e390547196}\label{classrev_1_1_view_1_1_g_l_widget_acdf6abd04212839bd08109e390547196}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_g_l_widget_acdf6abd04212839bd08109e390547196}{initialize\+GL}} () override
+\begin{DoxyCompactList}\small\item\em G\+L-\/specific overrides. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_a2ed48b66e84c02f0671f823db39821b0}\label{classrev_1_1_view_1_1_g_l_widget_a2ed48b66e84c02f0671f823db39821b0}} 
+void {\bfseries resize\+GL} (int w, int h) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_aa0824966d33a461a6e715e2ff036ee6a}\label{classrev_1_1_view_1_1_g_l_widget_aa0824966d33a461a6e715e2ff036ee6a}} 
+void {\bfseries paint\+GL} () override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_a19c5bb02e7379a6c684eb88530bc3cd9}\label{classrev_1_1_view_1_1_g_l_widget_a19c5bb02e7379a6c684eb88530bc3cd9}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_g_l_widget_a19c5bb02e7379a6c684eb88530bc3cd9}{initialize\+Connections}} ()
+\begin{DoxyCompactList}\small\item\em set up signal/slot connections to render manager \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_aa102efc6b3b7e05ad2dd499ba79dab06}\label{classrev_1_1_view_1_1_g_l_widget_aa102efc6b3b7e05ad2dd499ba79dab06}} 
+\mbox{\hyperlink{classrev_1_1_core_engine}{rev\+::\+Core\+Engine}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_g_l_widget_aa102efc6b3b7e05ad2dd499ba79dab06}{m\+\_\+engine}}
+\begin{DoxyCompactList}\small\item\em core engine \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_a7a83059a6eb2b0988ea431e054b5d01a}\label{classrev_1_1_view_1_1_g_l_widget_a7a83059a6eb2b0988ea431e054b5d01a}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} $>$ \mbox{\hyperlink{classrev_1_1_view_1_1_g_l_widget_a7a83059a6eb2b0988ea431e054b5d01a}{m\+\_\+renderer}}
+\begin{DoxyCompactList}\small\item\em 3D rendering object \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_a3876bc118b1964bd0e876d60ef657cfe}\label{classrev_1_1_view_1_1_g_l_widget_a3876bc118b1964bd0e876d60ef657cfe}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_render_projection}{Render\+Projection}} $\ast$ $>$ \mbox{\hyperlink{classrev_1_1_view_1_1_g_l_widget_a3876bc118b1964bd0e876d60ef657cfe}{m\+\_\+render\+Projections}}
+\begin{DoxyCompactList}\small\item\em Render projections associated with this widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_a8f6ad6d45885a5f2d248bc4589cf2b2f}\label{classrev_1_1_view_1_1_g_l_widget_a8f6ad6d45885a5f2d248bc4589cf2b2f}} 
+\mbox{\hyperlink{classrev_1_1_input_handler}{Input\+Handler}} \mbox{\hyperlink{classrev_1_1_view_1_1_g_l_widget_a8f6ad6d45885a5f2d248bc4589cf2b2f}{m\+\_\+input\+Handler}}
+\begin{DoxyCompactList}\small\item\em Input handler for the GL widget. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_a28c677eee06763681231ba62273b9fad}\label{classrev_1_1_view_1_1_g_l_widget_a28c677eee06763681231ba62273b9fad}} 
+class {\bfseries Input\+Handler}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_a223f5d2a14ae6e2d3c988d008710e5fc}\label{classrev_1_1_view_1_1_g_l_widget_a223f5d2a14ae6e2d3c988d008710e5fc}} 
+\index{rev::View::GLWidget@{rev::View::GLWidget}!className@{className}}
+\index{className@{className}!rev::View::GLWidget@{rev::View::GLWidget}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+View\+::\+G\+L\+Widget\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_a5ddbef17b0b7385faed69d79af3799e6}\label{classrev_1_1_view_1_1_g_l_widget_a5ddbef17b0b7385faed69d79af3799e6}} 
+\index{rev::View::GLWidget@{rev::View::GLWidget}!isService@{isService}}
+\index{isService@{isService}!rev::View::GLWidget@{rev::View::GLWidget}}
+\subsubsection{\texorpdfstring{isService()}{isService()}}
+{\footnotesize\ttfamily virtual bool rev\+::\+View\+::\+G\+L\+Widget\+::is\+Service (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns True if this \mbox{\hyperlink{classrev_1_1_abstract_service}{Abstract\+Service}} represents a service. 
+
+This is not a service \mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_a131ce2b564a067610856a7a080a091ba}\label{classrev_1_1_view_1_1_g_l_widget_a131ce2b564a067610856a7a080a091ba}} 
+\index{rev::View::GLWidget@{rev::View::GLWidget}!isTool@{isTool}}
+\index{isTool@{isTool}!rev::View::GLWidget@{rev::View::GLWidget}}
+\subsubsection{\texorpdfstring{isTool()}{isTool()}}
+{\footnotesize\ttfamily virtual bool rev\+::\+View\+::\+G\+L\+Widget\+::is\+Tool (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns True if this \mbox{\hyperlink{classrev_1_1_abstract_service}{Abstract\+Service}} represents a tool. 
+
+This is not a tool \mbox{\Hypertarget{classrev_1_1_view_1_1_g_l_widget_aee5ce763da9236cf4b2a707df9f93c3b}\label{classrev_1_1_view_1_1_g_l_widget_aee5ce763da9236cf4b2a707df9f93c3b}} 
+\index{rev::View::GLWidget@{rev::View::GLWidget}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::View::GLWidget@{rev::View::GLWidget}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+View\+::\+G\+L\+Widget\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/\+G\+L/G\+G\+L\+Widget.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/\+G\+L/G\+G\+L\+Widget.\+cpp\end{DoxyCompactItemize}

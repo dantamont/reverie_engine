@@ -1,0 +1,77 @@
+\hypertarget{classrev_1_1_colliding_geometry}{}\section{rev\+::Colliding\+Geometry Class Reference}
+\label{classrev_1_1_colliding_geometry}\index{rev::CollidingGeometry@{rev::CollidingGeometry}}
+
+
+Abstract class for collidable geometry.  
+
+
+
+
+{\ttfamily \#include $<$G\+Collisions.\+h$>$}
+
+Inheritance diagram for rev\+::Colliding\+Geometry\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.513514cm]{classrev_1_1_colliding_geometry}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_colliding_geometry_adada8ced179d4882290ff9c7fcb67930}\label{classrev_1_1_colliding_geometry_adada8ced179d4882290ff9c7fcb67930}} 
+enum {\bfseries Geometry\+Type} \{ \newline
+{\bfseries k\+Point}, 
+{\bfseries k\+A\+A\+BB}, 
+{\bfseries k\+Bounding\+Sphere}, 
+{\bfseries k\+Plane}, 
+\newline
+{\bfseries k\+Frustum}
+ \}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructor/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_colliding_geometry_aaa57ec1e5dcd86f9af5b1ce194fe05b7}\label{classrev_1_1_colliding_geometry_aaa57ec1e5dcd86f9af5b1ce194fe05b7}} 
+{\bfseries Colliding\+Geometry} (Geometry\+Type type)
+\item 
+\mbox{\Hypertarget{classrev_1_1_colliding_geometry_a8933214a8b918d2864f1ae217c409c09}\label{classrev_1_1_colliding_geometry_a8933214a8b918d2864f1ae217c409c09}} 
+virtual {\bfseries $\sim$\+Colliding\+Geometry} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_colliding_geometry_a007921279d0cc439f865610fa7593220}\label{classrev_1_1_colliding_geometry_a007921279d0cc439f865610fa7593220}} 
+virtual bool {\bfseries intersects} (const \mbox{\hyperlink{classrev_1_1_colliding_geometry}{Colliding\+Geometry}} \&other) const =0
+\item 
+\mbox{\Hypertarget{classrev_1_1_colliding_geometry_a93d9a6a5b2a3b07c38fd435384ee5297}\label{classrev_1_1_colliding_geometry_a93d9a6a5b2a3b07c38fd435384ee5297}} 
+virtual void {\bfseries recalculate\+Bounds} (const \mbox{\hyperlink{classrev_1_1_transform}{Transform}} \&transform, \mbox{\hyperlink{classrev_1_1_colliding_geometry}{Colliding\+Geometry}} \&out) const =0
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_colliding_geometry_ad605657cdbaf75a1a76ea8f107fb8e77}\label{classrev_1_1_colliding_geometry_ad605657cdbaf75a1a76ea8f107fb8e77}} 
+Geometry\+Type {\bfseries geometry\+Type} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_colliding_geometry_a1d74cf624a358ceb5b3a3c8e70f13582}\label{classrev_1_1_colliding_geometry_a1d74cf624a358ceb5b3a3c8e70f13582}} 
+Geometry\+Type {\bfseries m\+\_\+geometry\+Type}
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+Abstract class for collidable geometry. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/geometry/G\+Collisions.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/geometry/G\+Collisions.\+cpp\end{DoxyCompactItemize}

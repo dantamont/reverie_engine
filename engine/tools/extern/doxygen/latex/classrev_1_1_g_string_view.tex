@@ -1,0 +1,142 @@
+\hypertarget{classrev_1_1_g_string_view}{}\section{rev\+::G\+String\+View Class Reference}
+\label{classrev_1_1_g_string_view}\index{rev::GStringView@{rev::GStringView}}
+
+
+String viewer class.  
+
+
+
+
+{\ttfamily \#include $<$G\+String\+View.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_af5244bd23cd8f603e2014078642407df}\label{classrev_1_1_g_string_view_af5244bd23cd8f603e2014078642407df}} 
+\mbox{\hyperlink{classrev_1_1_g_string_view_af5244bd23cd8f603e2014078642407df}{G\+String\+View}} ()
+\begin{DoxyCompactList}\small\item\em Default construction. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_a0d2895a250341722a9cf858f92ba9d6b}\label{classrev_1_1_g_string_view_a0d2895a250341722a9cf858f92ba9d6b}} 
+\mbox{\hyperlink{classrev_1_1_g_string_view_a0d2895a250341722a9cf858f92ba9d6b}{G\+String\+View}} (const char $\ast$c\+\_\+str)
+\begin{DoxyCompactList}\small\item\em Construct with a null-\/terminated char array. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_ae81fd2f03f99106662892da30130c8d7}\label{classrev_1_1_g_string_view_ae81fd2f03f99106662892da30130c8d7}} 
+\mbox{\hyperlink{classrev_1_1_g_string_view_ae81fd2f03f99106662892da30130c8d7}{G\+String\+View}} (const char $\ast$c\+\_\+str, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Construct with a char array and the number of characters. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_ae53b0708413bf9b94296dd7fc120bec2}\label{classrev_1_1_g_string_view_ae53b0708413bf9b94296dd7fc120bec2}} 
+\mbox{\hyperlink{classrev_1_1_g_string_view_ae53b0708413bf9b94296dd7fc120bec2}{G\+String\+View}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&other)
+\begin{DoxyCompactList}\small\item\em View for an already constructed \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_a5dc3037ad67d61dc78281c6870ee6363}\label{classrev_1_1_g_string_view_a5dc3037ad67d61dc78281c6870ee6363}} 
+\mbox{\hyperlink{classrev_1_1_g_string_view_a5dc3037ad67d61dc78281c6870ee6363}{$\sim$\+G\+String\+View}} ()
+\begin{DoxyCompactList}\small\item\em Destruction. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_af89063feaa4c5985c4eabe6ddca175ce}\label{classrev_1_1_g_string_view_af89063feaa4c5985c4eabe6ddca175ce}} 
+const char $\ast$ {\bfseries c\+\_\+str} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_a562ab3a4b72edbd4319a4c8910ab8fab}\label{classrev_1_1_g_string_view_a562ab3a4b72edbd4319a4c8910ab8fab}} 
+const size\+\_\+t \& \mbox{\hyperlink{classrev_1_1_g_string_view_a562ab3a4b72edbd4319a4c8910ab8fab}{length}} () const
+\begin{DoxyCompactList}\small\item\em The size of the char array associated with this str (not including null terminator) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_ae17023d60647b5129de5ad6f5b26e175}\label{classrev_1_1_g_string_view_ae17023d60647b5129de5ad6f5b26e175}} 
+bool \mbox{\hyperlink{classrev_1_1_g_string_view_ae17023d60647b5129de5ad6f5b26e175}{contains}} (const char $\ast$c\+\_\+str) const
+\begin{DoxyCompactList}\small\item\em Whether or not this string contains the specified substring. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_ab01e31af45f32c24a19096503a67535e}\label{classrev_1_1_g_string_view_ab01e31af45f32c24a19096503a67535e}} 
+bool {\bfseries contains} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&g\+\_\+str) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_a519cfc34ceaed5b0d8658178663a3917}\label{classrev_1_1_g_string_view_a519cfc34ceaed5b0d8658178663a3917}} 
+\mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} {\bfseries as\+Lower} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_a8bc80698ffe3297677b61651e6196261}\label{classrev_1_1_g_string_view_a8bc80698ffe3297677b61651e6196261}} 
+\mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} {\bfseries as\+Upper} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_a3797885d2859e1baf99e25fadcddaed7}\label{classrev_1_1_g_string_view_a3797885d2859e1baf99e25fadcddaed7}} 
+bool {\bfseries is\+Null} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_a9787bc6f97bbbfc69445d884c6f8a1b1}\label{classrev_1_1_g_string_view_a9787bc6f97bbbfc69445d884c6f8a1b1}} 
+bool {\bfseries is\+Empty} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_a4fd3eb6a8c7aa9282d87e7935dda2ea8}\label{classrev_1_1_g_string_view_a4fd3eb6a8c7aa9282d87e7935dda2ea8}} 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_g_string_view_a4fd3eb6a8c7aa9282d87e7935dda2ea8}{m\+\_\+c\+Str}} = nullptr
+\begin{DoxyCompactList}\small\item\em The dynamically managed char array associated with this string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_aea396761e48755491246e31805a232dd}\label{classrev_1_1_g_string_view_aea396761e48755491246e31805a232dd}} 
+size\+\_\+t \mbox{\hyperlink{classrev_1_1_g_string_view_aea396761e48755491246e31805a232dd}{m\+\_\+len}} = 0
+\begin{DoxyCompactList}\small\item\em The size of the char array associated with this str (not including null terminator) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Operators}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_aa3aef2482fcd142f59ee2429482b4df0}\label{classrev_1_1_g_string_view_aa3aef2482fcd142f59ee2429482b4df0}} 
+{\bfseries operator const char $\ast$} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_a1f6bd61c8007c8ba23d9cbdeafe44af4}\label{classrev_1_1_g_string_view_a1f6bd61c8007c8ba23d9cbdeafe44af4}} 
+const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} {\bfseries operator+} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&other) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_afeaa21535fb02f0e2b155f2b58bff288}\label{classrev_1_1_g_string_view_afeaa21535fb02f0e2b155f2b58bff288}} 
+const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} {\bfseries operator+} (const char $\ast$other) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_a7d4b2288b8e5e9831929b5f70e91ea37}\label{classrev_1_1_g_string_view_a7d4b2288b8e5e9831929b5f70e91ea37}} 
+\mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \& {\bfseries operator=} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&other)
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_a59ed077d49830b6a219513a12d630aac}\label{classrev_1_1_g_string_view_a59ed077d49830b6a219513a12d630aac}} 
+\mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \& {\bfseries operator=} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&other)
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_afa3a795238140b316f6bd7dd7cb4bb8a}\label{classrev_1_1_g_string_view_afa3a795238140b316f6bd7dd7cb4bb8a}} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&other) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_a2389e64cce90fa7d66325a209f6552da}\label{classrev_1_1_g_string_view_a2389e64cce90fa7d66325a209f6552da}} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&other) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_a829062a1c9d18e40fa85db4574a1eba9}\label{classrev_1_1_g_string_view_a829062a1c9d18e40fa85db4574a1eba9}} 
+bool {\bfseries operator==} (const char $\ast$other) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_a80b111cb780dca6a41f1b5684bcfb4f3}\label{classrev_1_1_g_string_view_a80b111cb780dca6a41f1b5684bcfb4f3}} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&other) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_a9895c768a6919c912104f88ca70a3a02}\label{classrev_1_1_g_string_view_a9895c768a6919c912104f88ca70a3a02}} 
+bool {\bfseries operator!=} (const char $\ast$other) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_a650344f59e88a4eeaeea3a43885558a4}\label{classrev_1_1_g_string_view_a650344f59e88a4eeaeea3a43885558a4}} 
+bool {\bfseries operator$<$} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&other) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_a8ad64ee9a55ee2cbb7359b1d4593434d}\label{classrev_1_1_g_string_view_a8ad64ee9a55ee2cbb7359b1d4593434d}} 
+bool {\bfseries operator$<$} (const char $\ast$chars) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_ab7a0826a2b55b40af15eacb521b75f5b}\label{classrev_1_1_g_string_view_ab7a0826a2b55b40af15eacb521b75f5b}} 
+bool {\bfseries operator$>$} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&other) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_a725981a9006a5276811eae6a3bb2bd09}\label{classrev_1_1_g_string_view_a725981a9006a5276811eae6a3bb2bd09}} 
+bool {\bfseries operator$>$} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&other) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_a73e438164d8a5674a1bd7cf9c156129f}\label{classrev_1_1_g_string_view_a73e438164d8a5674a1bd7cf9c156129f}} 
+bool {\bfseries operator$>$} (const char $\ast$chars) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_a4dab54c33d8d21b3b12a5cde1ba20456}\label{classrev_1_1_g_string_view_a4dab54c33d8d21b3b12a5cde1ba20456}} 
+\mbox{\hyperlink{classrev_1_1_g_string_view_a4dab54c33d8d21b3b12a5cde1ba20456}{operator Q\+String}} () const
+\begin{DoxyCompactList}\small\item\em Implicit conversion to Q\+String for use with q\+Debug. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_a21b7f091b0235c75d3f98ba81ed3763a}\label{classrev_1_1_g_string_view_a21b7f091b0235c75d3f98ba81ed3763a}} 
+std\+::ostream \& \mbox{\hyperlink{classrev_1_1_g_string_view_a21b7f091b0235c75d3f98ba81ed3763a}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&g\+Str)
+\begin{DoxyCompactList}\small\item\em Override stream insertion operator. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_string_view_a91ea2384f589c8a978c97b6b9fdeed69}\label{classrev_1_1_g_string_view_a91ea2384f589c8a978c97b6b9fdeed69}} 
+const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} {\bfseries operator+} (const char $\ast$c, const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&g)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+String viewer class. 
+
+Encapsulates a string without making a copy 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/containers/G\+String\+View.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/containers/G\+String\+View.\+cpp\end{DoxyCompactItemize}

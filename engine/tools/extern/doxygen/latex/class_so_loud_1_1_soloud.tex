@@ -1,0 +1,538 @@
+\hypertarget{class_so_loud_1_1_soloud}{}\section{So\+Loud\+::Soloud Class Reference}
+\label{class_so_loud_1_1_soloud}\index{SoLoud::Soloud@{SoLoud::Soloud}}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_ac96d355c9a04c9bccb5540ff93555264}\label{class_so_loud_1_1_soloud_ac96d355c9a04c9bccb5540ff93555264}} 
+enum {\bfseries B\+A\+C\+K\+E\+N\+DS} \{ \newline
+{\bfseries A\+U\+TO} = 0, 
+{\bfseries S\+D\+L1}, 
+{\bfseries S\+D\+L2}, 
+{\bfseries P\+O\+R\+T\+A\+U\+D\+IO}, 
+\newline
+{\bfseries W\+I\+N\+MM}, 
+{\bfseries X\+A\+U\+D\+I\+O2}, 
+{\bfseries W\+A\+S\+A\+PI}, 
+{\bfseries A\+L\+SA}, 
+\newline
+{\bfseries J\+A\+CK}, 
+{\bfseries O\+SS}, 
+{\bfseries O\+P\+E\+N\+AL}, 
+{\bfseries C\+O\+R\+E\+A\+U\+D\+IO}, 
+\newline
+{\bfseries O\+P\+E\+N\+S\+L\+ES}, 
+{\bfseries V\+I\+T\+A\+\_\+\+H\+O\+M\+E\+B\+R\+EW}, 
+{\bfseries M\+I\+N\+I\+A\+U\+D\+IO}, 
+{\bfseries N\+O\+S\+O\+U\+ND}, 
+\newline
+{\bfseries N\+U\+L\+L\+D\+R\+I\+V\+ER}, 
+{\bfseries B\+A\+C\+K\+E\+N\+D\+\_\+\+M\+AX}
+ \}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_ae53f6fced10211ed39249c59bd24ad6b}\label{class_so_loud_1_1_soloud_ae53f6fced10211ed39249c59bd24ad6b}} 
+enum {\bfseries F\+L\+A\+GS} \{ {\bfseries C\+L\+I\+P\+\_\+\+R\+O\+U\+N\+D\+O\+FF} = 1, 
+{\bfseries E\+N\+A\+B\+L\+E\+\_\+\+V\+I\+S\+U\+A\+L\+I\+Z\+A\+T\+I\+ON} = 2, 
+{\bfseries L\+E\+F\+T\+\_\+\+H\+A\+N\+D\+E\+D\+\_\+3D} = 4, 
+{\bfseries N\+O\+\_\+\+F\+P\+U\+\_\+\+R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+C\+H\+A\+N\+GE} = 8
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_ad0d7e608a0607aa4f82382c48210058a}\label{class_so_loud_1_1_soloud_ad0d7e608a0607aa4f82382c48210058a}} 
+result {\bfseries init} (unsigned int a\+Flags=Soloud\+::\+C\+L\+I\+P\+\_\+\+R\+O\+U\+N\+D\+O\+FF, unsigned int a\+Backend=Soloud\+::\+A\+U\+TO, unsigned int a\+Samplerate=Soloud\+::\+A\+U\+TO, unsigned int a\+Buffer\+Size=Soloud\+::\+A\+U\+TO, unsigned int a\+Channels=2)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a4a9787e28373943fbf75b91eeb49e39d}\label{class_so_loud_1_1_soloud_a4a9787e28373943fbf75b91eeb49e39d}} 
+void {\bfseries deinit} ()
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_ad20993bd06c7bbd73cf841b322b5f4d8}\label{class_so_loud_1_1_soloud_ad20993bd06c7bbd73cf841b322b5f4d8}} 
+unsigned int {\bfseries get\+Version} () const
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a7201baa666cdf376e3a306b80b71ba43}\label{class_so_loud_1_1_soloud_a7201baa666cdf376e3a306b80b71ba43}} 
+const char $\ast$ {\bfseries get\+Error\+String} (result a\+Error\+Code) const
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a1db83b486cbf00062b267c3cdaca6f1a}\label{class_so_loud_1_1_soloud_a1db83b486cbf00062b267c3cdaca6f1a}} 
+unsigned int {\bfseries get\+Backend\+Id} ()
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a92dd8f90c1e44b7dbaff7c6422832d1c}\label{class_so_loud_1_1_soloud_a92dd8f90c1e44b7dbaff7c6422832d1c}} 
+const char $\ast$ {\bfseries get\+Backend\+String} ()
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_afe47adf7d9009bedc71265bf97e1ffd6}\label{class_so_loud_1_1_soloud_afe47adf7d9009bedc71265bf97e1ffd6}} 
+unsigned int {\bfseries get\+Backend\+Channels} ()
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a1e8cd90a27fc3f1cc9e3b2fc414750fe}\label{class_so_loud_1_1_soloud_a1e8cd90a27fc3f1cc9e3b2fc414750fe}} 
+unsigned int {\bfseries get\+Backend\+Samplerate} ()
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a0dcf47a9f712d0bb693cff85ca8683cd}\label{class_so_loud_1_1_soloud_a0dcf47a9f712d0bb693cff85ca8683cd}} 
+unsigned int {\bfseries get\+Backend\+Buffer\+Size} ()
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a1835694c29ac4ce0ea9e4bcaf7ef3373}\label{class_so_loud_1_1_soloud_a1835694c29ac4ce0ea9e4bcaf7ef3373}} 
+result {\bfseries set\+Speaker\+Position} (unsigned int a\+Channel, float aX, float aY, float aZ)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a4f29c0a7ae25dfcc8dd184bb0cd80fef}\label{class_so_loud_1_1_soloud_a4f29c0a7ae25dfcc8dd184bb0cd80fef}} 
+result {\bfseries get\+Speaker\+Position} (unsigned int a\+Channel, float \&aX, float \&aY, float \&aZ)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_abd8f5c6c7f1ee00ed340d09302448a9a}\label{class_so_loud_1_1_soloud_abd8f5c6c7f1ee00ed340d09302448a9a}} 
+handle {\bfseries play} (\mbox{\hyperlink{class_so_loud_1_1_audio_source}{Audio\+Source}} \&a\+Sound, float a\+Volume=-\/1.\+0f, float a\+Pan=0.\+0f, bool a\+Paused=0, unsigned int a\+Bus=0)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a371446b6bf287a9e10514dd9b113111b}\label{class_so_loud_1_1_soloud_a371446b6bf287a9e10514dd9b113111b}} 
+handle {\bfseries play\+Clocked} (time a\+Sound\+Time, \mbox{\hyperlink{class_so_loud_1_1_audio_source}{Audio\+Source}} \&a\+Sound, float a\+Volume=-\/1.\+0f, float a\+Pan=0.\+0f, unsigned int a\+Bus=0)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_aec0c42f795c8213606ce885c45d9e4e8}\label{class_so_loud_1_1_soloud_aec0c42f795c8213606ce885c45d9e4e8}} 
+handle {\bfseries play3d} (\mbox{\hyperlink{class_so_loud_1_1_audio_source}{Audio\+Source}} \&a\+Sound, float a\+PosX, float a\+PosY, float a\+PosZ, float a\+VelX=0.\+0f, float a\+Vel\+Y=0.\+0f, float a\+Vel\+Z=0.\+0f, float a\+Volume=1.\+0f, bool a\+Paused=0, unsigned int a\+Bus=0)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a5d1e394c21dc42b8e6f0a1e6a827228c}\label{class_so_loud_1_1_soloud_a5d1e394c21dc42b8e6f0a1e6a827228c}} 
+handle {\bfseries play3d\+Clocked} (time a\+Sound\+Time, \mbox{\hyperlink{class_so_loud_1_1_audio_source}{Audio\+Source}} \&a\+Sound, float a\+PosX, float a\+PosY, float a\+PosZ, float a\+VelX=0.\+0f, float a\+Vel\+Y=0.\+0f, float a\+Vel\+Z=0.\+0f, float a\+Volume=1.\+0f, unsigned int a\+Bus=0)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a15cc3cf2e21f6ba82260460c8aff266b}\label{class_so_loud_1_1_soloud_a15cc3cf2e21f6ba82260460c8aff266b}} 
+handle {\bfseries play\+Background} (\mbox{\hyperlink{class_so_loud_1_1_audio_source}{Audio\+Source}} \&a\+Sound, float a\+Volume=-\/1.\+0f, bool a\+Paused=0, unsigned int a\+Bus=0)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a5b8d1ae5f4b8b5cb45b0b93ffe130ee9}\label{class_so_loud_1_1_soloud_a5b8d1ae5f4b8b5cb45b0b93ffe130ee9}} 
+result {\bfseries seek} (handle a\+Voice\+Handle, time a\+Seconds)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a04712e8863bb2a1078251f91d4a6d776}\label{class_so_loud_1_1_soloud_a04712e8863bb2a1078251f91d4a6d776}} 
+void {\bfseries stop} (handle a\+Voice\+Handle)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_ab1fa4f692ae99cc1fac597d67958c1ce}\label{class_so_loud_1_1_soloud_ab1fa4f692ae99cc1fac597d67958c1ce}} 
+void {\bfseries stop\+All} ()
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_ab0079b4ee6360bceff408df9c2bee634}\label{class_so_loud_1_1_soloud_ab0079b4ee6360bceff408df9c2bee634}} 
+void {\bfseries stop\+Audio\+Source} (\mbox{\hyperlink{class_so_loud_1_1_audio_source}{Audio\+Source}} \&a\+Sound)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a3d3eeb1f4145f1999c45c3e2f4ed948e}\label{class_so_loud_1_1_soloud_a3d3eeb1f4145f1999c45c3e2f4ed948e}} 
+int {\bfseries count\+Audio\+Source} (\mbox{\hyperlink{class_so_loud_1_1_audio_source}{Audio\+Source}} \&a\+Sound)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_af9871d1329e2d5613d99ff34c17e1ea2}\label{class_so_loud_1_1_soloud_af9871d1329e2d5613d99ff34c17e1ea2}} 
+void {\bfseries set\+Filter\+Parameter} (handle a\+Voice\+Handle, unsigned int a\+Filter\+Id, unsigned int a\+Attribute\+Id, float a\+Value)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a83072ac27d31de55084c6160eecfa72f}\label{class_so_loud_1_1_soloud_a83072ac27d31de55084c6160eecfa72f}} 
+float {\bfseries get\+Filter\+Parameter} (handle a\+Voice\+Handle, unsigned int a\+Filter\+Id, unsigned int a\+Attribute\+Id)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a342a6968934617d9b38fa380f9dbf512}\label{class_so_loud_1_1_soloud_a342a6968934617d9b38fa380f9dbf512}} 
+void {\bfseries fade\+Filter\+Parameter} (handle a\+Voice\+Handle, unsigned int a\+Filter\+Id, unsigned int a\+Attribute\+Id, float a\+To, time a\+Time)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_ab422df9ba2b61c6453347ee99307b490}\label{class_so_loud_1_1_soloud_ab422df9ba2b61c6453347ee99307b490}} 
+void {\bfseries oscillate\+Filter\+Parameter} (handle a\+Voice\+Handle, unsigned int a\+Filter\+Id, unsigned int a\+Attribute\+Id, float a\+From, float a\+To, time a\+Time)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a86cd9de7f52d7a0fa3f59e840a914d1e}\label{class_so_loud_1_1_soloud_a86cd9de7f52d7a0fa3f59e840a914d1e}} 
+time {\bfseries get\+Stream\+Time} (handle a\+Voice\+Handle)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a4c4a9bf28dd19695533649b6f1c9f47e}\label{class_so_loud_1_1_soloud_a4c4a9bf28dd19695533649b6f1c9f47e}} 
+time {\bfseries get\+Stream\+Position} (handle a\+Voice\+Handle)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a01f9dbaf2cde0de348936d8ff0761de6}\label{class_so_loud_1_1_soloud_a01f9dbaf2cde0de348936d8ff0761de6}} 
+bool {\bfseries get\+Pause} (handle a\+Voice\+Handle)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a6aea2e6c7619dbcb087cd2536560498d}\label{class_so_loud_1_1_soloud_a6aea2e6c7619dbcb087cd2536560498d}} 
+float {\bfseries get\+Volume} (handle a\+Voice\+Handle)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_ae4d5eb33002809502ecb41fd12e9532d}\label{class_so_loud_1_1_soloud_ae4d5eb33002809502ecb41fd12e9532d}} 
+float {\bfseries get\+Overall\+Volume} (handle a\+Voice\+Handle)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a9da54ea4e9d272f164e3229a30025b1b}\label{class_so_loud_1_1_soloud_a9da54ea4e9d272f164e3229a30025b1b}} 
+float {\bfseries get\+Pan} (handle a\+Voice\+Handle)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a0fb66756e447a46acc4716cb49622d7f}\label{class_so_loud_1_1_soloud_a0fb66756e447a46acc4716cb49622d7f}} 
+float {\bfseries get\+Samplerate} (handle a\+Voice\+Handle)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a92fede186fb8d7be97be8b8138fa7c2e}\label{class_so_loud_1_1_soloud_a92fede186fb8d7be97be8b8138fa7c2e}} 
+bool {\bfseries get\+Protect\+Voice} (handle a\+Voice\+Handle)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a11dc6c58de0c215580afca91d4db4fe6}\label{class_so_loud_1_1_soloud_a11dc6c58de0c215580afca91d4db4fe6}} 
+unsigned int {\bfseries get\+Active\+Voice\+Count} ()
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_aec874424a3cb96d57b4c00b29c7deec4}\label{class_so_loud_1_1_soloud_aec874424a3cb96d57b4c00b29c7deec4}} 
+unsigned int {\bfseries get\+Voice\+Count} ()
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a94e95f482541930fc49aec27f8fc6cc9}\label{class_so_loud_1_1_soloud_a94e95f482541930fc49aec27f8fc6cc9}} 
+bool {\bfseries is\+Valid\+Voice\+Handle} (handle a\+Voice\+Handle)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a648e056e53c2b191394408d61d3c72e4}\label{class_so_loud_1_1_soloud_a648e056e53c2b191394408d61d3c72e4}} 
+float {\bfseries get\+Relative\+Play\+Speed} (handle a\+Voice\+Handle)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a5a9ae5c588a41b7c88056ed160969866}\label{class_so_loud_1_1_soloud_a5a9ae5c588a41b7c88056ed160969866}} 
+float {\bfseries get\+Post\+Clip\+Scaler} () const
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_ae3d3f2e14082b41d5160c0d291d0bb79}\label{class_so_loud_1_1_soloud_ae3d3f2e14082b41d5160c0d291d0bb79}} 
+float {\bfseries get\+Global\+Volume} () const
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a564c5101270995c1410016b8d53a982a}\label{class_so_loud_1_1_soloud_a564c5101270995c1410016b8d53a982a}} 
+unsigned int {\bfseries get\+Max\+Active\+Voice\+Count} () const
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a0d28a9886c1d1dc7389ad12fe893d8ed}\label{class_so_loud_1_1_soloud_a0d28a9886c1d1dc7389ad12fe893d8ed}} 
+bool {\bfseries get\+Looping} (handle a\+Voice\+Handle)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a10a79fdadb4bdc90c909ebe1c13c8e31}\label{class_so_loud_1_1_soloud_a10a79fdadb4bdc90c909ebe1c13c8e31}} 
+time {\bfseries get\+Loop\+Point} (handle a\+Voice\+Handle)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_ae9ba34c40e7c94c48fe313272cdb2a02}\label{class_so_loud_1_1_soloud_ae9ba34c40e7c94c48fe313272cdb2a02}} 
+void {\bfseries set\+Loop\+Point} (handle a\+Voice\+Handle, time a\+Loop\+Point)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_aabf12bbd4289f96ca0b80ab5f36561d1}\label{class_so_loud_1_1_soloud_aabf12bbd4289f96ca0b80ab5f36561d1}} 
+void {\bfseries set\+Looping} (handle a\+Voice\+Handle, bool a\+Looping)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_ad8249efec6260ec8fabdce1202255cca}\label{class_so_loud_1_1_soloud_ad8249efec6260ec8fabdce1202255cca}} 
+result {\bfseries set\+Max\+Active\+Voice\+Count} (unsigned int a\+Voice\+Count)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a637327d28bfba8c649cd1055b1b589b1}\label{class_so_loud_1_1_soloud_a637327d28bfba8c649cd1055b1b589b1}} 
+void {\bfseries set\+Inaudible\+Behavior} (handle a\+Voice\+Handle, bool a\+Must\+Tick, bool a\+Kill)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a685ac512e992520cd939460308ef90f9}\label{class_so_loud_1_1_soloud_a685ac512e992520cd939460308ef90f9}} 
+void {\bfseries set\+Global\+Volume} (float a\+Volume)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a66ddc86d64a1a1afe0e3ee729f03137e}\label{class_so_loud_1_1_soloud_a66ddc86d64a1a1afe0e3ee729f03137e}} 
+void {\bfseries set\+Post\+Clip\+Scaler} (float a\+Scaler)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a950ec356b2fabceaa35b8a7eb03cf4d3}\label{class_so_loud_1_1_soloud_a950ec356b2fabceaa35b8a7eb03cf4d3}} 
+void {\bfseries set\+Pause} (handle a\+Voice\+Handle, bool a\+Pause)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a6e88cde01e539557fcfe3afbe9d9ef09}\label{class_so_loud_1_1_soloud_a6e88cde01e539557fcfe3afbe9d9ef09}} 
+void {\bfseries set\+Pause\+All} (bool a\+Pause)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a45ac9d70d52266fb60651b0f4642d7cb}\label{class_so_loud_1_1_soloud_a45ac9d70d52266fb60651b0f4642d7cb}} 
+result {\bfseries set\+Relative\+Play\+Speed} (handle a\+Voice\+Handle, float a\+Speed)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_affa0f7f149a859bca79deb55b0c66e5c}\label{class_so_loud_1_1_soloud_affa0f7f149a859bca79deb55b0c66e5c}} 
+void {\bfseries set\+Protect\+Voice} (handle a\+Voice\+Handle, bool a\+Protect)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a1a6e400c35e543ed70c7be3ae808b4da}\label{class_so_loud_1_1_soloud_a1a6e400c35e543ed70c7be3ae808b4da}} 
+void {\bfseries set\+Samplerate} (handle a\+Voice\+Handle, float a\+Samplerate)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a2c78e611871ef145b976a5c717c8d865}\label{class_so_loud_1_1_soloud_a2c78e611871ef145b976a5c717c8d865}} 
+void {\bfseries set\+Pan} (handle a\+Voice\+Handle, float a\+Pan)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a31b07a9d4c8ff56adaf397586a7483a8}\label{class_so_loud_1_1_soloud_a31b07a9d4c8ff56adaf397586a7483a8}} 
+void {\bfseries set\+Pan\+Absolute} (handle a\+Voice\+Handle, float a\+L\+Volume, float a\+R\+Volume, float a\+L\+B\+Volume=0, float a\+R\+B\+Volume=0, float a\+C\+Volume=0, float a\+S\+Volume=0)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a1e6f5c43489244f0d6495845a310508c}\label{class_so_loud_1_1_soloud_a1e6f5c43489244f0d6495845a310508c}} 
+void {\bfseries set\+Volume} (handle a\+Voice\+Handle, float a\+Volume)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a009c703c8db214d6452b77456f57b56a}\label{class_so_loud_1_1_soloud_a009c703c8db214d6452b77456f57b56a}} 
+void {\bfseries set\+Delay\+Samples} (handle a\+Voice\+Handle, unsigned int a\+Samples)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_af6ac66de9742499dd616de099758f344}\label{class_so_loud_1_1_soloud_af6ac66de9742499dd616de099758f344}} 
+void {\bfseries fade\+Volume} (handle a\+Voice\+Handle, float a\+To, time a\+Time)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_aaac0c9adda71d06262455b78dea8d965}\label{class_so_loud_1_1_soloud_aaac0c9adda71d06262455b78dea8d965}} 
+void {\bfseries fade\+Pan} (handle a\+Voice\+Handle, float a\+To, time a\+Time)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_aa056f4f17f729fe00db005b5ecc4b565}\label{class_so_loud_1_1_soloud_aa056f4f17f729fe00db005b5ecc4b565}} 
+void {\bfseries fade\+Relative\+Play\+Speed} (handle a\+Voice\+Handle, float a\+To, time a\+Time)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a4722c8b333f053aa5e41f73283cadfad}\label{class_so_loud_1_1_soloud_a4722c8b333f053aa5e41f73283cadfad}} 
+void {\bfseries fade\+Global\+Volume} (float a\+To, time a\+Time)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_aafbb714419cbf0ac4cbc14c06aaf3fd7}\label{class_so_loud_1_1_soloud_aafbb714419cbf0ac4cbc14c06aaf3fd7}} 
+void {\bfseries schedule\+Pause} (handle a\+Voice\+Handle, time a\+Time)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a00c9b4715e18143d3f13ae9c42d2ae45}\label{class_so_loud_1_1_soloud_a00c9b4715e18143d3f13ae9c42d2ae45}} 
+void {\bfseries schedule\+Stop} (handle a\+Voice\+Handle, time a\+Time)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a260cb4446fc97249cfd9c353020bfafa}\label{class_so_loud_1_1_soloud_a260cb4446fc97249cfd9c353020bfafa}} 
+void {\bfseries oscillate\+Volume} (handle a\+Voice\+Handle, float a\+From, float a\+To, time a\+Time)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_aa8843cec3f6cfff5a3e6652f890e470e}\label{class_so_loud_1_1_soloud_aa8843cec3f6cfff5a3e6652f890e470e}} 
+void {\bfseries oscillate\+Pan} (handle a\+Voice\+Handle, float a\+From, float a\+To, time a\+Time)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a9ad9542bc726a315b130b40916b095a0}\label{class_so_loud_1_1_soloud_a9ad9542bc726a315b130b40916b095a0}} 
+void {\bfseries oscillate\+Relative\+Play\+Speed} (handle a\+Voice\+Handle, float a\+From, float a\+To, time a\+Time)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_ae91d826c1d8ba64dbf395fe9c679a82e}\label{class_so_loud_1_1_soloud_ae91d826c1d8ba64dbf395fe9c679a82e}} 
+void {\bfseries oscillate\+Global\+Volume} (float a\+From, float a\+To, time a\+Time)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a7a357dd58112d34becacfa100d6b7a19}\label{class_so_loud_1_1_soloud_a7a357dd58112d34becacfa100d6b7a19}} 
+void {\bfseries set\+Global\+Filter} (unsigned int a\+Filter\+Id, \mbox{\hyperlink{class_so_loud_1_1_filter}{Filter}} $\ast$a\+Filter)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a291ec9f5539cd530b6eec30ec83155b4}\label{class_so_loud_1_1_soloud_a291ec9f5539cd530b6eec30ec83155b4}} 
+void {\bfseries set\+Visualization\+Enable} (bool a\+Enable)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a55452a807eb49c921492b10b6cb59316}\label{class_so_loud_1_1_soloud_a55452a807eb49c921492b10b6cb59316}} 
+float $\ast$ {\bfseries calc\+F\+FT} ()
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a8851997da4b55d96f2131a838376e703}\label{class_so_loud_1_1_soloud_a8851997da4b55d96f2131a838376e703}} 
+float $\ast$ {\bfseries get\+Wave} ()
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a20327c5251ef10451a491f892eb56904}\label{class_so_loud_1_1_soloud_a20327c5251ef10451a491f892eb56904}} 
+float {\bfseries get\+Approximate\+Volume} (unsigned int a\+Channel)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a52f6f46f7ae7336142b513ae9fb85d8a}\label{class_so_loud_1_1_soloud_a52f6f46f7ae7336142b513ae9fb85d8a}} 
+unsigned int {\bfseries get\+Loop\+Count} (handle a\+Voice\+Handle)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a6d3e22a24f49a86edce0ad542d9656bb}\label{class_so_loud_1_1_soloud_a6d3e22a24f49a86edce0ad542d9656bb}} 
+float {\bfseries get\+Info} (handle a\+Voice\+Handle, unsigned int a\+Info\+Key)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_aeb0fd120e6e0239c9e718fb8789ddffe}\label{class_so_loud_1_1_soloud_aeb0fd120e6e0239c9e718fb8789ddffe}} 
+handle {\bfseries create\+Voice\+Group} ()
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_aae50bbfa2f6bd1e598ef6b5b15636e9c}\label{class_so_loud_1_1_soloud_aae50bbfa2f6bd1e598ef6b5b15636e9c}} 
+result {\bfseries destroy\+Voice\+Group} (handle a\+Voice\+Group\+Handle)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a9db61d9832918e34b27fc8f07e03181a}\label{class_so_loud_1_1_soloud_a9db61d9832918e34b27fc8f07e03181a}} 
+result {\bfseries add\+Voice\+To\+Group} (handle a\+Voice\+Group\+Handle, handle a\+Voice\+Handle)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a7e0cce56db2108f4401244a7f7b4b209}\label{class_so_loud_1_1_soloud_a7e0cce56db2108f4401244a7f7b4b209}} 
+bool {\bfseries is\+Voice\+Group} (handle a\+Voice\+Group\+Handle)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_af7805b0b20fc49629a9e45eda96ae445}\label{class_so_loud_1_1_soloud_af7805b0b20fc49629a9e45eda96ae445}} 
+bool {\bfseries is\+Voice\+Group\+Empty} (handle a\+Voice\+Group\+Handle)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a21eb58ebde3955245ac69e3aa5b5f145}\label{class_so_loud_1_1_soloud_a21eb58ebde3955245ac69e3aa5b5f145}} 
+void {\bfseries update3d\+Audio} ()
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a0e819643ca149ca31718322cdde5bf00}\label{class_so_loud_1_1_soloud_a0e819643ca149ca31718322cdde5bf00}} 
+result {\bfseries set3d\+Sound\+Speed} (float a\+Speed)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a49769664474746f5eada52300e46f2b8}\label{class_so_loud_1_1_soloud_a49769664474746f5eada52300e46f2b8}} 
+float {\bfseries get3d\+Sound\+Speed} ()
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a3f2bfc85ad456ba9987fdb6d2ea6497b}\label{class_so_loud_1_1_soloud_a3f2bfc85ad456ba9987fdb6d2ea6497b}} 
+void {\bfseries set3d\+Listener\+Parameters} (float a\+PosX, float a\+PosY, float a\+PosZ, float a\+AtX, float a\+AtY, float a\+AtZ, float a\+UpX, float a\+UpY, float a\+UpZ, float a\+VelocityX=0.\+0f, float a\+Velocity\+Y=0.\+0f, float a\+Velocity\+Z=0.\+0f)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a2a26c92f8ba7b283da730d038ca07ab5}\label{class_so_loud_1_1_soloud_a2a26c92f8ba7b283da730d038ca07ab5}} 
+void {\bfseries set3d\+Listener\+Position} (float a\+PosX, float a\+PosY, float a\+PosZ)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_aeb3d87e784043242e8a36003a1b5a1d5}\label{class_so_loud_1_1_soloud_aeb3d87e784043242e8a36003a1b5a1d5}} 
+void {\bfseries set3d\+Listener\+At} (float a\+AtX, float a\+AtY, float a\+AtZ)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a73d76cc9ab22a2179eb0f6b463b6744a}\label{class_so_loud_1_1_soloud_a73d76cc9ab22a2179eb0f6b463b6744a}} 
+void {\bfseries set3d\+Listener\+Up} (float a\+UpX, float a\+UpY, float a\+UpZ)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_acaa3d925bc946965e8320ad9b50ea34e}\label{class_so_loud_1_1_soloud_acaa3d925bc946965e8320ad9b50ea34e}} 
+void {\bfseries set3d\+Listener\+Velocity} (float a\+VelocityX, float a\+VelocityY, float a\+VelocityZ)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a3be0dac0ceb4d9580fec048746ed789b}\label{class_so_loud_1_1_soloud_a3be0dac0ceb4d9580fec048746ed789b}} 
+void {\bfseries set3d\+Source\+Parameters} (handle a\+Voice\+Handle, float a\+PosX, float a\+PosY, float a\+PosZ, float a\+VelocityX=0.\+0f, float a\+Velocity\+Y=0.\+0f, float a\+Velocity\+Z=0.\+0f)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_ac1f8eeab636353cccafdabf026495ccd}\label{class_so_loud_1_1_soloud_ac1f8eeab636353cccafdabf026495ccd}} 
+void {\bfseries set3d\+Source\+Position} (handle a\+Voice\+Handle, float a\+PosX, float a\+PosY, float a\+PosZ)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a367f584ad9e792a1042b1aa1ed02ad49}\label{class_so_loud_1_1_soloud_a367f584ad9e792a1042b1aa1ed02ad49}} 
+void {\bfseries set3d\+Source\+Velocity} (handle a\+Voice\+Handle, float a\+VelocityX, float a\+VelocityY, float a\+VelocityZ)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a16f6e9dc7eed886e42d3062e04615fd1}\label{class_so_loud_1_1_soloud_a16f6e9dc7eed886e42d3062e04615fd1}} 
+void {\bfseries set3d\+Source\+Min\+Max\+Distance} (handle a\+Voice\+Handle, float a\+Min\+Distance, float a\+Max\+Distance)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_afa03763fb26028520a0fd4af529a0aa0}\label{class_so_loud_1_1_soloud_afa03763fb26028520a0fd4af529a0aa0}} 
+void {\bfseries set3d\+Source\+Attenuation} (handle a\+Voice\+Handle, unsigned int a\+Attenuation\+Model, float a\+Attenuation\+Rolloff\+Factor)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a9909a030c0a5965bd99a8d3b3751783f}\label{class_so_loud_1_1_soloud_a9909a030c0a5965bd99a8d3b3751783f}} 
+void {\bfseries set3d\+Source\+Doppler\+Factor} (handle a\+Voice\+Handle, float a\+Doppler\+Factor)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a2979c68d9d6378463821563f2d8269e9}\label{class_so_loud_1_1_soloud_a2979c68d9d6378463821563f2d8269e9}} 
+void {\bfseries mix} (float $\ast$a\+Buffer, unsigned int a\+Samples)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_ae7aab6e58183f9d5f109e6386ff2f449}\label{class_so_loud_1_1_soloud_ae7aab6e58183f9d5f109e6386ff2f449}} 
+void {\bfseries mix\+Signed16} (short $\ast$a\+Buffer, unsigned int a\+Samples)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_af89412fb8b19db246b56eb017e75bc4a}\label{class_so_loud_1_1_soloud_af89412fb8b19db246b56eb017e75bc4a}} 
+void {\bfseries mix\+\_\+internal} (unsigned int a\+Samples)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_ade35f116017d46dd4eada7595697b74d}\label{class_so_loud_1_1_soloud_ade35f116017d46dd4eada7595697b74d}} 
+void {\bfseries postinit\+\_\+internal} (unsigned int a\+Samplerate, unsigned int a\+Buffer\+Size, unsigned int a\+Flags, unsigned int a\+Channels)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a27ea4d65943bd01e043a755468d4308b}\label{class_so_loud_1_1_soloud_a27ea4d65943bd01e043a755468d4308b}} 
+void {\bfseries calc\+Active\+Voices\+\_\+internal} ()
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a11b0b06ee69108bd8efea0dc668a8daa}\label{class_so_loud_1_1_soloud_a11b0b06ee69108bd8efea0dc668a8daa}} 
+void {\bfseries map\+Resample\+Buffers\+\_\+internal} ()
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a79111d501c5569f9d06af5dd933963f4}\label{class_so_loud_1_1_soloud_a79111d501c5569f9d06af5dd933963f4}} 
+void {\bfseries mix\+Bus\+\_\+internal} (float $\ast$a\+Buffer, unsigned int a\+Samples\+To\+Read, unsigned int a\+Buffer\+Size, float $\ast$a\+Scratch, unsigned int a\+Bus, float a\+Samplerate, unsigned int a\+Channels)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_af14d1d5b6d189c0ee77e95ae25523151}\label{class_so_loud_1_1_soloud_af14d1d5b6d189c0ee77e95ae25523151}} 
+int {\bfseries find\+Free\+Voice\+\_\+internal} ()
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a25d1fe31b9dbd04ca28c0bb35fd38491}\label{class_so_loud_1_1_soloud_a25d1fe31b9dbd04ca28c0bb35fd38491}} 
+int {\bfseries get\+Voice\+From\+Handle\+\_\+internal} (handle a\+Voice\+Handle) const
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a53c595c42ae193da8ecfcf7fa786b07c}\label{class_so_loud_1_1_soloud_a53c595c42ae193da8ecfcf7fa786b07c}} 
+handle {\bfseries get\+Handle\+From\+Voice\+\_\+internal} (unsigned int a\+Voice) const
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a15e72e6668738aa9bf63b5713f747066}\label{class_so_loud_1_1_soloud_a15e72e6668738aa9bf63b5713f747066}} 
+void {\bfseries stop\+Voice\+\_\+internal} (unsigned int a\+Voice)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_add67a52a2fd466d1ff7d2e1facbfee00}\label{class_so_loud_1_1_soloud_add67a52a2fd466d1ff7d2e1facbfee00}} 
+void {\bfseries set\+Voice\+Pan\+\_\+internal} (unsigned int a\+Voice, float a\+Pan)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a423d767c5ed56b874e5f2e0ce3c4b5d7}\label{class_so_loud_1_1_soloud_a423d767c5ed56b874e5f2e0ce3c4b5d7}} 
+result {\bfseries set\+Voice\+Relative\+Play\+Speed\+\_\+internal} (unsigned int a\+Voice, float a\+Speed)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_aed451bd929c17db9413caf8d9774450c}\label{class_so_loud_1_1_soloud_aed451bd929c17db9413caf8d9774450c}} 
+void {\bfseries set\+Voice\+Volume\+\_\+internal} (unsigned int a\+Voice, float a\+Volume)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a7a2839f1fe0b62c3d1b8605c50612d0e}\label{class_so_loud_1_1_soloud_a7a2839f1fe0b62c3d1b8605c50612d0e}} 
+void {\bfseries set\+Voice\+Pause\+\_\+internal} (unsigned int a\+Voice, int a\+Pause)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_aab04ba285f3797e598808e5ef3976ea0}\label{class_so_loud_1_1_soloud_aab04ba285f3797e598808e5ef3976ea0}} 
+void {\bfseries update\+Voice\+Volume\+\_\+internal} (unsigned int a\+Voice)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_ad570ece6204d830d97a39efc900a39e3}\label{class_so_loud_1_1_soloud_ad570ece6204d830d97a39efc900a39e3}} 
+void {\bfseries update\+Voice\+Relative\+Play\+Speed\+\_\+internal} (unsigned int a\+Voice)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a4c2910ef49b99ff623068fa1cf4ce9ab}\label{class_so_loud_1_1_soloud_a4c2910ef49b99ff623068fa1cf4ce9ab}} 
+void {\bfseries update3d\+Voices\+\_\+internal} (unsigned int $\ast$a\+Voice\+List, unsigned int a\+Voice\+Count)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_ae86bb258d76b486ea3988e046ce6d2c8}\label{class_so_loud_1_1_soloud_ae86bb258d76b486ea3988e046ce6d2c8}} 
+void {\bfseries clip\+\_\+internal} (\mbox{\hyperlink{class_so_loud_1_1_aligned_float_buffer}{Aligned\+Float\+Buffer}} \&a\+Buffer, \mbox{\hyperlink{class_so_loud_1_1_aligned_float_buffer}{Aligned\+Float\+Buffer}} \&a\+Dest\+Buffer, unsigned int a\+Samples, float a\+Volume0, float a\+Volume1)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a4bae2b6e943c368c85c7142a12ec6953}\label{class_so_loud_1_1_soloud_a4bae2b6e943c368c85c7142a12ec6953}} 
+void {\bfseries trim\+Voice\+Group\+\_\+internal} (handle a\+Voice\+Group\+Handle)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a8b3c576cee49d758d0e1280093c834ac}\label{class_so_loud_1_1_soloud_a8b3c576cee49d758d0e1280093c834ac}} 
+handle $\ast$ {\bfseries voice\+Group\+Handle\+To\+Array\+\_\+internal} (handle a\+Voice\+Group\+Handle) const
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a5bc0cacc1ba46b380848f3f11df83039}\label{class_so_loud_1_1_soloud_a5bc0cacc1ba46b380848f3f11df83039}} 
+void {\bfseries lock\+Audio\+Mutex\+\_\+internal} ()
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a8c3590472cff6b597a47ccd0a5265b7c}\label{class_so_loud_1_1_soloud_a8c3590472cff6b597a47ccd0a5265b7c}} 
+void {\bfseries unlock\+Audio\+Mutex\+\_\+internal} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a2a3c5a468a6cc39130c42ff3f7e67ed7}\label{class_so_loud_1_1_soloud_a2a3c5a468a6cc39130c42ff3f7e67ed7}} 
+void $\ast$ {\bfseries m\+Backend\+Data}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a6bb9b906b4432ebcca84091c27eb374f}\label{class_so_loud_1_1_soloud_a6bb9b906b4432ebcca84091c27eb374f}} 
+void $\ast$ {\bfseries m\+Audio\+Thread\+Mutex}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a8b96625c438e5b0b26f5746dccb145a6}\label{class_so_loud_1_1_soloud_a8b96625c438e5b0b26f5746dccb145a6}} 
+bool {\bfseries m\+Inside\+Audio\+Thread\+Mutex}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a2ab636beed7b2fe5d60424339a05874d}\label{class_so_loud_1_1_soloud_a2ab636beed7b2fe5d60424339a05874d}} 
+soloud\+Call\+Function {\bfseries m\+Backend\+Cleanup\+Func}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_ac519d07bb7442f7591502f214af635a3}\label{class_so_loud_1_1_soloud_ac519d07bb7442f7591502f214af635a3}} 
+unsigned int {\bfseries m\+Max\+Active\+Voices}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_ad2993a824d6c9149e6448209f2c7fa9d}\label{class_so_loud_1_1_soloud_ad2993a824d6c9149e6448209f2c7fa9d}} 
+unsigned int {\bfseries m\+Highest\+Voice}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_ac7c9967946184c12706a3e70774d9808}\label{class_so_loud_1_1_soloud_ac7c9967946184c12706a3e70774d9808}} 
+\mbox{\hyperlink{class_so_loud_1_1_aligned_float_buffer}{Aligned\+Float\+Buffer}} {\bfseries m\+Scratch}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a4628c0226d4d04fc0a5cd5c1f52410d9}\label{class_so_loud_1_1_soloud_a4628c0226d4d04fc0a5cd5c1f52410d9}} 
+unsigned int {\bfseries m\+Scratch\+Size}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_adcc23465b671bfba16ca902b6abf0e0c}\label{class_so_loud_1_1_soloud_adcc23465b671bfba16ca902b6abf0e0c}} 
+unsigned int {\bfseries m\+Scratch\+Needed}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_ab55d9d6d6c5c1fa3a722b86a313ca3b4}\label{class_so_loud_1_1_soloud_ab55d9d6d6c5c1fa3a722b86a313ca3b4}} 
+\mbox{\hyperlink{class_so_loud_1_1_aligned_float_buffer}{Aligned\+Float\+Buffer}} {\bfseries m\+Output\+Scratch}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a976e18d1cec97fcf369f7bcc5d679775}\label{class_so_loud_1_1_soloud_a976e18d1cec97fcf369f7bcc5d679775}} 
+\mbox{\hyperlink{class_so_loud_1_1_aligned_float_buffer}{Aligned\+Float\+Buffer}} $\ast$ {\bfseries m\+Resample\+Data}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a8bf3debeac7f8d630ae61ba1eb3fc80c}\label{class_so_loud_1_1_soloud_a8bf3debeac7f8d630ae61ba1eb3fc80c}} 
+\mbox{\hyperlink{class_so_loud_1_1_audio_source_instance}{Audio\+Source\+Instance}} $\ast$$\ast$ {\bfseries m\+Resample\+Data\+Owner}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a931cbaf9ce4c19817a306e90c953a3b1}\label{class_so_loud_1_1_soloud_a931cbaf9ce4c19817a306e90c953a3b1}} 
+\mbox{\hyperlink{class_so_loud_1_1_audio_source_instance}{Audio\+Source\+Instance}} $\ast$ {\bfseries m\+Voice} \mbox{[}V\+O\+I\+C\+E\+\_\+\+C\+O\+U\+NT\mbox{]}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a1811a1e5f7104a1d880099b7e7b70c0a}\label{class_so_loud_1_1_soloud_a1811a1e5f7104a1d880099b7e7b70c0a}} 
+unsigned int {\bfseries m\+Samplerate}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_ac3a7fa610e2ea337ffde5616e19e2037}\label{class_so_loud_1_1_soloud_ac3a7fa610e2ea337ffde5616e19e2037}} 
+unsigned int {\bfseries m\+Channels}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_ae818b4532985178526e971825e719c00}\label{class_so_loud_1_1_soloud_ae818b4532985178526e971825e719c00}} 
+unsigned int {\bfseries m\+Backend\+ID}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_af4a3897977fa03603f5371bc17c31ee6}\label{class_so_loud_1_1_soloud_af4a3897977fa03603f5371bc17c31ee6}} 
+const char $\ast$ {\bfseries m\+Backend\+String}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a2955ea1257ccbd67c1e89eb9f3ec0a41}\label{class_so_loud_1_1_soloud_a2955ea1257ccbd67c1e89eb9f3ec0a41}} 
+unsigned int {\bfseries m\+Buffer\+Size}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a57011ff042e631904b3534686a6a1064}\label{class_so_loud_1_1_soloud_a57011ff042e631904b3534686a6a1064}} 
+unsigned int {\bfseries m\+Flags}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_af1618ff2106c3eac3355651c4d50a050}\label{class_so_loud_1_1_soloud_af1618ff2106c3eac3355651c4d50a050}} 
+float {\bfseries m\+Global\+Volume}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_afa3d4d921e2c5d6dc858947abf41c6c6}\label{class_so_loud_1_1_soloud_afa3d4d921e2c5d6dc858947abf41c6c6}} 
+float {\bfseries m\+Post\+Clip\+Scaler}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_ae3fab5033ea7bb91c40a81fee2106e17}\label{class_so_loud_1_1_soloud_ae3fab5033ea7bb91c40a81fee2106e17}} 
+unsigned int {\bfseries m\+Play\+Index}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a91c8228599cba0c05eb9f609e719022f}\label{class_so_loud_1_1_soloud_a91c8228599cba0c05eb9f609e719022f}} 
+unsigned int {\bfseries m\+Audio\+Source\+ID}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_abea110ede753f609c45722f626e11429}\label{class_so_loud_1_1_soloud_abea110ede753f609c45722f626e11429}} 
+\mbox{\hyperlink{class_so_loud_1_1_fader}{Fader}} {\bfseries m\+Global\+Volume\+Fader}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_addf4c4028743a2c8e0716d4e2c0b426d}\label{class_so_loud_1_1_soloud_addf4c4028743a2c8e0716d4e2c0b426d}} 
+time {\bfseries m\+Stream\+Time}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a4588c3dfa72546c958f34b2996e2234d}\label{class_so_loud_1_1_soloud_a4588c3dfa72546c958f34b2996e2234d}} 
+time {\bfseries m\+Last\+Clocked\+Time}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_abf2fc714c822777f5b097e8995c5467f}\label{class_so_loud_1_1_soloud_abf2fc714c822777f5b097e8995c5467f}} 
+\mbox{\hyperlink{class_so_loud_1_1_filter}{Filter}} $\ast$ {\bfseries m\+Filter} \mbox{[}F\+I\+L\+T\+E\+R\+S\+\_\+\+P\+E\+R\+\_\+\+S\+T\+R\+E\+AM\mbox{]}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_ada3f485c7299b9e298ed25410e685b64}\label{class_so_loud_1_1_soloud_ada3f485c7299b9e298ed25410e685b64}} 
+\mbox{\hyperlink{class_so_loud_1_1_filter_instance}{Filter\+Instance}} $\ast$ {\bfseries m\+Filter\+Instance} \mbox{[}F\+I\+L\+T\+E\+R\+S\+\_\+\+P\+E\+R\+\_\+\+S\+T\+R\+E\+AM\mbox{]}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a3f902c7bf92ea964c6bbbe861529529b}\label{class_so_loud_1_1_soloud_a3f902c7bf92ea964c6bbbe861529529b}} 
+float {\bfseries m\+Visualization\+Channel\+Volume} \mbox{[}M\+A\+X\+\_\+\+C\+H\+A\+N\+N\+E\+LS\mbox{]}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a4b4a23f7f3d81215f02859c84bc82faf}\label{class_so_loud_1_1_soloud_a4b4a23f7f3d81215f02859c84bc82faf}} 
+float {\bfseries m\+Visualization\+Wave\+Data} \mbox{[}256\mbox{]}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a08be438dc2041cdc27ffa91233f05d20}\label{class_so_loud_1_1_soloud_a08be438dc2041cdc27ffa91233f05d20}} 
+float {\bfseries m\+F\+F\+T\+Data} \mbox{[}256\mbox{]}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_ad22b348e26af7704e8b695248affe534}\label{class_so_loud_1_1_soloud_ad22b348e26af7704e8b695248affe534}} 
+float {\bfseries m\+Wave\+Data} \mbox{[}256\mbox{]}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a46c057aa782288cc8ebb1683ee36ebfa}\label{class_so_loud_1_1_soloud_a46c057aa782288cc8ebb1683ee36ebfa}} 
+float {\bfseries m3d\+Position} \mbox{[}3\mbox{]}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a7071d7489c03f948be85b2b5113ee6e8}\label{class_so_loud_1_1_soloud_a7071d7489c03f948be85b2b5113ee6e8}} 
+float {\bfseries m3d\+At} \mbox{[}3\mbox{]}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_ab49bd2198536ce51f31c79bc61732086}\label{class_so_loud_1_1_soloud_ab49bd2198536ce51f31c79bc61732086}} 
+float {\bfseries m3d\+Up} \mbox{[}3\mbox{]}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a7c9508ed8f417a50139437dff91a97d0}\label{class_so_loud_1_1_soloud_a7c9508ed8f417a50139437dff91a97d0}} 
+float {\bfseries m3d\+Velocity} \mbox{[}3\mbox{]}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a839ec9792fea1726d9a5f8bd051e2dc8}\label{class_so_loud_1_1_soloud_a839ec9792fea1726d9a5f8bd051e2dc8}} 
+float {\bfseries m3d\+Sound\+Speed}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_afc429f49243a6e8630e8e77fb91de2b5}\label{class_so_loud_1_1_soloud_afc429f49243a6e8630e8e77fb91de2b5}} 
+float {\bfseries m3d\+Speaker\+Position} \mbox{[}3 $\ast$M\+A\+X\+\_\+\+C\+H\+A\+N\+N\+E\+LS\mbox{]}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_acfcc5483722182cbb1ed2725dfad96ab}\label{class_so_loud_1_1_soloud_acfcc5483722182cbb1ed2725dfad96ab}} 
+\mbox{\hyperlink{class_so_loud_1_1_audio_source_instance3d_data}{Audio\+Source\+Instance3d\+Data}} {\bfseries m3d\+Data} \mbox{[}V\+O\+I\+C\+E\+\_\+\+C\+O\+U\+NT\mbox{]}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a2c1dd6c4112237ba72aa4327dc8f93d9}\label{class_so_loud_1_1_soloud_a2c1dd6c4112237ba72aa4327dc8f93d9}} 
+unsigned int $\ast$$\ast$ {\bfseries m\+Voice\+Group}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_aa357dabf12da3da5a41dad5ad173c591}\label{class_so_loud_1_1_soloud_aa357dabf12da3da5a41dad5ad173c591}} 
+unsigned int {\bfseries m\+Voice\+Group\+Count}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a10b21e8eba963e5eb7ee0906bca13e2f}\label{class_so_loud_1_1_soloud_a10b21e8eba963e5eb7ee0906bca13e2f}} 
+unsigned int {\bfseries m\+Active\+Voice} \mbox{[}V\+O\+I\+C\+E\+\_\+\+C\+O\+U\+NT\mbox{]}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a1ff63234f1884fcf79c3822f472a3354}\label{class_so_loud_1_1_soloud_a1ff63234f1884fcf79c3822f472a3354}} 
+unsigned int {\bfseries m\+Active\+Voice\+Count}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_soloud_a32b6db392c5f3f268399a7441176e5c0}\label{class_so_loud_1_1_soloud_a32b6db392c5f3f268399a7441176e5c0}} 
+bool {\bfseries m\+Active\+Voice\+Dirty}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/include/soloud.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/src/core/soloud.\+cpp\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/src/core/soloud\+\_\+core\+\_\+3d.\+cpp\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/src/core/soloud\+\_\+core\+\_\+basicops.\+cpp\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/src/core/soloud\+\_\+core\+\_\+faderops.\+cpp\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/src/core/soloud\+\_\+core\+\_\+filterops.\+cpp\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/src/core/soloud\+\_\+core\+\_\+getters.\+cpp\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/src/core/soloud\+\_\+core\+\_\+setters.\+cpp\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/src/core/soloud\+\_\+core\+\_\+voicegroup.\+cpp\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/src/core/soloud\+\_\+core\+\_\+voiceops.\+cpp\end{DoxyCompactItemize}

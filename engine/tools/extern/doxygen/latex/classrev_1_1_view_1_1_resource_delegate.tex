@@ -1,0 +1,47 @@
+\hypertarget{classrev_1_1_view_1_1_resource_delegate}{}\section{rev\+::View\+::Resource\+Delegate Class Reference}
+\label{classrev_1_1_view_1_1_resource_delegate}\index{rev::View::ResourceDelegate@{rev::View::ResourceDelegate}}
+Inheritance diagram for rev\+::View\+::Resource\+Delegate\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_view_1_1_resource_delegate}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_delegate_a5a985520ff4a65807667ba246999edbe}\label{classrev_1_1_view_1_1_resource_delegate_a5a985520ff4a65807667ba246999edbe}} 
+void {\bfseries paint} (Q\+Painter $\ast$painter, const Q\+Style\+Option\+View\+Item \&option, const Q\+Model\+Index \&index) const override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_delegate_af0a0a9f68581fd0595c53db5c0b9ce5a}\label{classrev_1_1_view_1_1_resource_delegate_af0a0a9f68581fd0595c53db5c0b9ce5a}} 
+Q\+Size {\bfseries size\+Hint} (const Q\+Style\+Option\+View\+Item \&option, const Q\+Model\+Index \&index) const override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_delegate_a6d2eb94972b4258b4b03e87f41fc5f50}\label{classrev_1_1_view_1_1_resource_delegate_a6d2eb94972b4258b4b03e87f41fc5f50}} 
+Q\+Widget $\ast$ {\bfseries create\+Editor} (Q\+Widget $\ast$parent, const Q\+Style\+Option\+View\+Item \&option, const Q\+Model\+Index \&index) const override
+\item 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_resource_delegate_a19d4bd6e52584f79bb705957401a382b}{set\+Editor\+Data}} (Q\+Widget $\ast$editor, const Q\+Model\+Index \&index) const override
+\begin{DoxyCompactList}\small\item\em Sets the contents of the editor to the data for the item. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_delegate_acb469205f151d7423be2c4ba358f04c1}\label{classrev_1_1_view_1_1_resource_delegate_acb469205f151d7423be2c4ba358f04c1}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_resource_delegate_acb469205f151d7423be2c4ba358f04c1}{set\+Model\+Data}} (Q\+Widget $\ast$editor, Q\+Abstract\+Item\+Model $\ast$model, const Q\+Model\+Index \&index) const override
+\begin{DoxyCompactList}\small\item\em Gets data from the editor widget and stores it in the specified model at the item index. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resource_delegate_a19d4bd6e52584f79bb705957401a382b}\label{classrev_1_1_view_1_1_resource_delegate_a19d4bd6e52584f79bb705957401a382b}} 
+\index{rev::View::ResourceDelegate@{rev::View::ResourceDelegate}!setEditorData@{setEditorData}}
+\index{setEditorData@{setEditorData}!rev::View::ResourceDelegate@{rev::View::ResourceDelegate}}
+\subsubsection{\texorpdfstring{setEditorData()}{setEditorData()}}
+{\footnotesize\ttfamily void rev\+::\+View\+::\+Resource\+Delegate\+::set\+Editor\+Data (\begin{DoxyParamCaption}\item[{Q\+Widget $\ast$}]{editor,  }\item[{const Q\+Model\+Index \&}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Sets the contents of the editor to the data for the item. 
+
+\begin{DoxyNote}{Note}
+The index contains information about the model being used 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/list/G\+Resource\+List\+View.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/list/G\+Resource\+List\+View.\+cpp\end{DoxyCompactItemize}

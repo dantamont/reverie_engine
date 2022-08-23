@@ -1,0 +1,373 @@
+\hypertarget{classrev_1_1_quaternion}{}\section{rev\+::Quaternion Class Reference}
+\label{classrev_1_1_quaternion}\index{rev::Quaternion@{rev::Quaternion}}
+
+
+A class representing a quaternion rotation @notes See \href{http://www.opengl-tutorial.org/intermediate-tutorials/tutorial-17-quaternions/}{\texttt{ http\+://www.\+opengl-\/tutorial.\+org/intermediate-\/tutorials/tutorial-\/17-\/quaternions/}}.  
+
+
+
+
+{\ttfamily \#include $<$G\+Quaternion.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_adf8856d4daed78692ecda6e900620fa2}\label{classrev_1_1_quaternion_adf8856d4daed78692ecda6e900620fa2}} 
+\mbox{\hyperlink{classrev_1_1_quaternion_adf8856d4daed78692ecda6e900620fa2}{Quaternion}} ()
+\begin{DoxyCompactList}\small\item\em Constructs identity quaternion. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a2b9172c95dbf4b89662fe0c295841f13}\label{classrev_1_1_quaternion_a2b9172c95dbf4b89662fe0c295841f13}} 
+\mbox{\hyperlink{classrev_1_1_quaternion_a2b9172c95dbf4b89662fe0c295841f13}{Quaternion}} (const Q\+Json\+Value \&json)
+\begin{DoxyCompactList}\small\item\em Constructs a quaternion. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a04f023c8d9a64fa7fdee9097bba22de2}\label{classrev_1_1_quaternion_a04f023c8d9a64fa7fdee9097bba22de2}} 
+{\bfseries Quaternion} (real\+\_\+g x, real\+\_\+g y, real\+\_\+g z, real\+\_\+g w)
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a29cc208a1b796a34c638de54a1ebe633}\label{classrev_1_1_quaternion_a29cc208a1b796a34c638de54a1ebe633}} 
+{\bfseries Quaternion} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&vec)
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a0e3c2722216a89511c05555fccc1aa29}\label{classrev_1_1_quaternion_a0e3c2722216a89511c05555fccc1aa29}} 
+{\bfseries Quaternion} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \&vec)
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_abd5e5c81772330815ce5c1b0a70e3cdd}\label{classrev_1_1_quaternion_abd5e5c81772330815ce5c1b0a70e3cdd}} 
+{\bfseries $\sim$\+Quaternion} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a991058c72407dd9d61fbf828375f82da}\label{classrev_1_1_quaternion_a991058c72407dd9d61fbf828375f82da}} 
+double {\bfseries x} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a84271e33dfa1a614032af750c3240760}\label{classrev_1_1_quaternion_a84271e33dfa1a614032af750c3240760}} 
+double {\bfseries y} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a5f2d68d56c53eaab11270c558a60177a}\label{classrev_1_1_quaternion_a5f2d68d56c53eaab11270c558a60177a}} 
+double {\bfseries z} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a722b2892dca023ed32bbcbba7e75caf3}\label{classrev_1_1_quaternion_a722b2892dca023ed32bbcbba7e75caf3}} 
+double {\bfseries w} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a3dd2b8c078ae865b4c7d41eb11e0baee}\label{classrev_1_1_quaternion_a3dd2b8c078ae865b4c7d41eb11e0baee}} 
+void {\bfseries setX} (double x)
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_ad02127359404fd0453d4cb25523e0f4e}\label{classrev_1_1_quaternion_ad02127359404fd0453d4cb25523e0f4e}} 
+void {\bfseries setY} (double y)
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a9165ebe90b3072765de761412e10a5a6}\label{classrev_1_1_quaternion_a9165ebe90b3072765de761412e10a5a6}} 
+void {\bfseries setZ} (double z)
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a815726ec39e40b00e7569a41bd4b7c91}\label{classrev_1_1_quaternion_a815726ec39e40b00e7569a41bd4b7c91}} 
+void {\bfseries setW} (double w)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a377e6810388607422d03cd1bbe451818}\label{classrev_1_1_quaternion_a377e6810388607422d03cd1bbe451818}} 
+physx\+::\+Px\+Quat \mbox{\hyperlink{classrev_1_1_quaternion_a377e6810388607422d03cd1bbe451818}{as\+PhysX}} () const
+\begin{DoxyCompactList}\small\item\em Return as a physX quaternion. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a23138a7e539b2ba50c617f0f52ca414f}\label{classrev_1_1_quaternion_a23138a7e539b2ba50c617f0f52ca414f}} 
+real\+\_\+g \mbox{\hyperlink{classrev_1_1_quaternion_a23138a7e539b2ba50c617f0f52ca414f}{length}} () const
+\begin{DoxyCompactList}\small\item\em Return the length (norm) of the quaternion. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a1e1eb79f22dab2736c9c900e009b8d01}\label{classrev_1_1_quaternion_a1e1eb79f22dab2736c9c900e009b8d01}} 
+real\+\_\+g \mbox{\hyperlink{classrev_1_1_quaternion_a1e1eb79f22dab2736c9c900e009b8d01}{length\+Squared}} () const
+\begin{DoxyCompactList}\small\item\em Return the length (norm) of the quaternion squared. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_aa026d0ceaf60d4145310cf30b91cb53b}\label{classrev_1_1_quaternion_aa026d0ceaf60d4145310cf30b91cb53b}} 
+\mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{classrev_1_1_quaternion_aa026d0ceaf60d4145310cf30b91cb53b}{normalized}} () const
+\begin{DoxyCompactList}\small\item\em Return the normalized unit form of the quaternion. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_acad449c50646a14531d1be2304fa8461}\label{classrev_1_1_quaternion_acad449c50646a14531d1be2304fa8461}} 
+void \mbox{\hyperlink{classrev_1_1_quaternion_acad449c50646a14531d1be2304fa8461}{normalize}} ()
+\begin{DoxyCompactList}\small\item\em Normalizes this quaternion. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a5f7fdde8c7f947c438313743590163c8}\label{classrev_1_1_quaternion_a5f7fdde8c7f947c438313743590163c8}} 
+bool \mbox{\hyperlink{classrev_1_1_quaternion_a5f7fdde8c7f947c438313743590163c8}{is\+Null}} () const
+\begin{DoxyCompactList}\small\item\em Determines whether quaternion is null. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a97ec441eea21bb87631fcbe7d5c5c045}\label{classrev_1_1_quaternion_a97ec441eea21bb87631fcbe7d5c5c045}} 
+bool \mbox{\hyperlink{classrev_1_1_quaternion_a97ec441eea21bb87631fcbe7d5c5c045}{is\+Identity}} () const
+\begin{DoxyCompactList}\small\item\em Determines whether quaternion is identity. \end{DoxyCompactList}\item 
+real\+\_\+g \mbox{\hyperlink{classrev_1_1_quaternion_a3a048d2bc01cf013dfad568dab996e06}{dot}} (const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&other) const
+\begin{DoxyCompactList}\small\item\em Dot product. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a318f5fae64b1695a734b8a180edb5b4f}\label{classrev_1_1_quaternion_a318f5fae64b1695a734b8a180edb5b4f}} 
+\mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{classrev_1_1_quaternion_a318f5fae64b1695a734b8a180edb5b4f}{inverted}} () const
+\begin{DoxyCompactList}\small\item\em Returns the inverse of this quaternion. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a470ab6146f801f4b5b23405b10392989}\label{classrev_1_1_quaternion_a470ab6146f801f4b5b23405b10392989}} 
+\mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{classrev_1_1_quaternion_a470ab6146f801f4b5b23405b10392989}{conjugated}} () const
+\begin{DoxyCompactList}\small\item\em Returns the conjugate of this quaternion. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a50b9b9102a2601fc06f557cf4a9ce75d}\label{classrev_1_1_quaternion_a50b9b9102a2601fc06f557cf4a9ce75d}} 
+void \mbox{\hyperlink{classrev_1_1_quaternion_a50b9b9102a2601fc06f557cf4a9ce75d}{set\+Vector}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&vec)
+\begin{DoxyCompactList}\small\item\em Set the xyz components of the quaternion. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a425c2590f8cb3e29329d53b9563abede}\label{classrev_1_1_quaternion_a425c2590f8cb3e29329d53b9563abede}} 
+void {\bfseries set\+Vector} (real\+\_\+g aX, real\+\_\+g aY, real\+\_\+g aZ)
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a73919230823ebf8a8c8b9603a10c8dcc}\label{classrev_1_1_quaternion_a73919230823ebf8a8c8b9603a10c8dcc}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \mbox{\hyperlink{classrev_1_1_quaternion_a73919230823ebf8a8c8b9603a10c8dcc}{vector}} () const
+\begin{DoxyCompactList}\small\item\em return the xys components of the quaternion \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a59d2e09a0fd9528b41dff56fffae8b70}\label{classrev_1_1_quaternion_a59d2e09a0fd9528b41dff56fffae8b70}} 
+const real\+\_\+g $\ast$ \mbox{\hyperlink{classrev_1_1_quaternion_a59d2e09a0fd9528b41dff56fffae8b70}{get\+Data}} () const
+\begin{DoxyCompactList}\small\item\em Return the pointer to the first data entry of the quaternion. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_quaternion_a8c429750f9460c64f220ff6876beb818}{get\+Axis\+And\+Angle}} (\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&axis, real\+\_\+g \&angle) const
+\begin{DoxyCompactList}\small\item\em Get rotation axis and angle about that axis corresponding to this quaternion. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a3f6f61e364f58e30f220db8b63235547}\label{classrev_1_1_quaternion_a3f6f61e364f58e30f220db8b63235547}} 
+void {\bfseries get\+Axis\+And\+Angle} (real\+\_\+g \&x, real\+\_\+g \&y, real\+\_\+g \&z, real\+\_\+g \&angle) const
+\item 
+void \mbox{\hyperlink{classrev_1_1_quaternion_ab1f505103946b69780b2b8fb9a5876fe}{to\+Angular\+Velocity}} (\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&vel) const
+\begin{DoxyCompactList}\small\item\em Obtain a set of \mbox{\hyperlink{class_euler}{Euler}} Angles corresponding to this quaternion. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector4}} \mbox{\hyperlink{classrev_1_1_quaternion_ab91b28cc13c12075e2017c79a7378348}{to\+Vector4}} () const
+\begin{DoxyCompactList}\small\item\em Obtain euler angles corresponding to a quaternion. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_afd26e100ef475aad52a63df5b9c00aa1}\label{classrev_1_1_quaternion_afd26e100ef475aad52a63df5b9c00aa1}} 
+\mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix3x3g}} \mbox{\hyperlink{classrev_1_1_quaternion_afd26e100ef475aad52a63df5b9c00aa1}{to\+Rotation\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em Convert the quaternion to a rotation matrix. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_af2484fbd45d1dd2216910baf3efcb9be}\label{classrev_1_1_quaternion_af2484fbd45d1dd2216910baf3efcb9be}} 
+\mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} {\bfseries to\+Rotation\+Matrix4x4} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_adc0a1b774a81303aa84efbb4e757b37a}\label{classrev_1_1_quaternion_adc0a1b774a81303aa84efbb4e757b37a}} 
+void {\bfseries to\+Rotation\+Matrix} (\mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} \&out\+Matrix) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a4557e6f45074dbf51a23716bb145696b}\label{classrev_1_1_quaternion_a4557e6f45074dbf51a23716bb145696b}} 
+void \mbox{\hyperlink{classrev_1_1_quaternion_a4557e6f45074dbf51a23716bb145696b}{get\+Axes}} (\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} $\ast$x\+Axis, \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} $\ast$y\+Axis, \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} $\ast$z\+Axis) const
+\begin{DoxyCompactList}\small\item\em Returns the orthonormal axes x\+Axis, y\+Axis, z\+Axis defining this quaternion. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a644b82e41aa112ff99b66e071aa97fa1}\label{classrev_1_1_quaternion_a644b82e41aa112ff99b66e071aa97fa1}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_quaternion_a644b82e41aa112ff99b66e071aa97fa1}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a666c7d70bed999e45b351ffdff82fd63}\label{classrev_1_1_quaternion_a666c7d70bed999e45b351ffdff82fd63}} 
+void \mbox{\hyperlink{classrev_1_1_quaternion_a666c7d70bed999e45b351ffdff82fd63}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty())
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_ae636da716645072a4573f9fad8c9b30b}\label{classrev_1_1_quaternion_ae636da716645072a4573f9fad8c9b30b}} 
+static \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} {\bfseries Average\+Iteration} (const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&reference, const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} $\ast$quaternions, const std\+::vector$<$ float $>$ \&weights)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_aac19cebbeb8ffb19e891385e9d0f4efe}\label{classrev_1_1_quaternion_aac19cebbeb8ffb19e891385e9d0f4efe}} 
+real\+\_\+g {\bfseries m\+\_\+x}
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a2fdfa72b9a3f7697a89935782c8f69b2}\label{classrev_1_1_quaternion_a2fdfa72b9a3f7697a89935782c8f69b2}} 
+real\+\_\+g {\bfseries m\+\_\+y}
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a6e4d5764933ebb30d9c6f5374e8ac44d}\label{classrev_1_1_quaternion_a6e4d5764933ebb30d9c6f5374e8ac44d}} 
+real\+\_\+g {\bfseries m\+\_\+z}
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_ad3cbbec76d480734ba9a24b88b64e282}\label{classrev_1_1_quaternion_ad3cbbec76d480734ba9a24b88b64e282}} 
+real\+\_\+g {\bfseries m\+\_\+w}
+\end{DoxyCompactItemize}
+\subsection*{Static}
+\label{_amgrp84a8921b25f505d0d2077aeb5db4bc16}%
+Get quaternion from an axis angle pair
+
+Angle is given in radians \begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a9784d1cc19eca6fc5e543d6e843ba73a}\label{classrev_1_1_quaternion_a9784d1cc19eca6fc5e543d6e843ba73a}} 
+static \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} {\bfseries from\+Axis\+Angle} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&axis, real\+\_\+g angle)
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a953185164add98ff419af2d0f62956fe}\label{classrev_1_1_quaternion_a953185164add98ff419af2d0f62956fe}} 
+static \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} {\bfseries from\+Axis\+Angle} (real\+\_\+g x, real\+\_\+g y, real\+\_\+g z, real\+\_\+g angle\+Deg)
+\item 
+static \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{classrev_1_1_quaternion_a50c2a07546cc78657d87459c4e6c34fd}{from\+Euler\+Angles}} (const \mbox{\hyperlink{classrev_1_1_euler_angles}{Euler\+Angles}} \&euler\+Angles)
+\begin{DoxyCompactList}\small\item\em Obtain a quaternion from a set of \mbox{\hyperlink{class_euler}{Euler}} Angles. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a39a9e73f1a705b5d2c313db822fe53bc}\label{classrev_1_1_quaternion_a39a9e73f1a705b5d2c313db822fe53bc}} 
+{\footnotesize template$<$typename T , size\+\_\+t N$>$ }\\static \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{classrev_1_1_quaternion_a39a9e73f1a705b5d2c313db822fe53bc}{from\+Rotation\+Matrix}} (const \mbox{\hyperlink{classrev_1_1_square_matrix}{Square\+Matrix}}$<$ T, N $>$ \&rot)
+\begin{DoxyCompactList}\small\item\em Obtain a quaternion from a rotation matrix. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a4cff4e9d2e1a70d717965a840e0dd14d}\label{classrev_1_1_quaternion_a4cff4e9d2e1a70d717965a840e0dd14d}} 
+static \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \mbox{\hyperlink{classrev_1_1_quaternion_a4cff4e9d2e1a70d717965a840e0dd14d}{rotate\+Point}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&point, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&origin, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&\mbox{\hyperlink{classrev_1_1_quaternion_a73919230823ebf8a8c8b9603a10c8dcc}{vector}}, real\+\_\+g angle)
+\begin{DoxyCompactList}\small\item\em Rotates a point by the given angle (radians) around a vector originating from an origin. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{classrev_1_1_quaternion_abfe160e55cb0a142af8fec5afc038188}{from\+Axes}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&x\+Axis, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&y\+Axis, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&z\+Axis)
+\begin{DoxyCompactList}\small\item\em Obtain a quaternion from principle axes. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{classrev_1_1_quaternion_a1f172fc581c685701a8a731a5182cc1c}{from\+Direction}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&direction, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&up)
+\begin{DoxyCompactList}\small\item\em Obtain a quaternion from a direction and up vector. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a36a0ae365b9a1460668ab9fa6d1cab4d}\label{classrev_1_1_quaternion_a36a0ae365b9a1460668ab9fa6d1cab4d}} 
+static \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{classrev_1_1_quaternion_a36a0ae365b9a1460668ab9fa6d1cab4d}{from\+Angular\+Velocity}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&vel)
+\begin{DoxyCompactList}\small\item\em Convert from an \char`\"{}angular velocity\char`\"{} See\+: \href{https://forum.unity.com/threads/average-quaternions.86898/}{\texttt{ https\+://forum.\+unity.\+com/threads/average-\/quaternions.\+86898/}}. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{classrev_1_1_quaternion_ab62c7a0d6e6254c18bf5f61801e1755b}{rotation\+To}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&from, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&to)
+\begin{DoxyCompactList}\small\item\em Rotate from the \char`\"{}from\char`\"{} vector to the \char`\"{}to\char`\"{} vector. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_afec26e05d0a96fb07c4508071e0a6532}\label{classrev_1_1_quaternion_afec26e05d0a96fb07c4508071e0a6532}} 
+static \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{classrev_1_1_quaternion_afec26e05d0a96fb07c4508071e0a6532}{Slerp}} (const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} $\ast$quaternions, const std\+::vector$<$ float $>$ \&weights)
+\begin{DoxyCompactList}\small\item\em Chain a slerp between quaternions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a0b7b19a9af744c48d52b39589ac9998b}\label{classrev_1_1_quaternion_a0b7b19a9af744c48d52b39589ac9998b}} 
+static \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{classrev_1_1_quaternion_a0b7b19a9af744c48d52b39589ac9998b}{Eigen\+Average}} (const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} $\ast$quaternions, const std\+::vector$<$ float $>$ \&weights)
+\begin{DoxyCompactList}\small\item\em Find the weighted average of multiple quaternions See\+: \href{https://forum.unity.com/threads/average-quaternions.86898/}{\texttt{ https\+://forum.\+unity.\+com/threads/average-\/quaternions.\+86898/}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a15929d78006fec1c8193dc4e8877843d}\label{classrev_1_1_quaternion_a15929d78006fec1c8193dc4e8877843d}} 
+static \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{classrev_1_1_quaternion_a15929d78006fec1c8193dc4e8877843d}{Average}} (const std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} $>$ \&quaternions, const std\+::vector$<$ float $>$ \&weights)
+\begin{DoxyCompactList}\small\item\em Iterative averaging, much cheaper (faster) alternative to slerp. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_aaf87a771e2860550ab5d7a665faf16ef}\label{classrev_1_1_quaternion_aaf87a771e2860550ab5d7a665faf16ef}} 
+static \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} {\bfseries Average} (const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} $\ast$quaternions, const std\+::vector$<$ float $>$ \&weights)
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a93694b3a1f2d3fa45fff360b1c9fedb1}\label{classrev_1_1_quaternion_a93694b3a1f2d3fa45fff360b1c9fedb1}} 
+static \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} {\bfseries Iterative\+Average} (const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} $\ast$quaternions, const std\+::vector$<$ float $>$ \&weights, size\+\_\+t num\+Iterations)
+\item 
+static \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{classrev_1_1_quaternion_a4373b7eea8d53d6e19b942e5c8a0b366}{Nlerp}} (const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&q1, const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&q2, real\+\_\+g t)
+\begin{DoxyCompactList}\small\item\em Linearly interpolates between two quaternions, normalized lerp. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{classrev_1_1_quaternion_acd605fb272c8b954eb5ec0982532a81c}{Slerp}} (const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&q1, const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&q2, real\+\_\+g t)
+\begin{DoxyCompactList}\small\item\em Spherically interpolates between two quaternions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_afb84b87d32cc6ac27b1200ef9f685881}\label{classrev_1_1_quaternion_afb84b87d32cc6ac27b1200ef9f685881}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \mbox{\hyperlink{classrev_1_1_quaternion_afb84b87d32cc6ac27b1200ef9f685881}{rotated\+Vector}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&\mbox{\hyperlink{classrev_1_1_quaternion_a73919230823ebf8a8c8b9603a10c8dcc}{vector}}) const
+\begin{DoxyCompactList}\small\item\em Rotates vector with this quaternion to produce a new vector in 3D space. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Operators}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a1dc9f4d91706f1907f20b590c2e5073b}\label{classrev_1_1_quaternion_a1dc9f4d91706f1907f20b590c2e5073b}} 
+\mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \& {\bfseries operator+=} (const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&quaternion)
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a1362eeb514ab11500add8597023e188a}\label{classrev_1_1_quaternion_a1362eeb514ab11500add8597023e188a}} 
+\mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \& {\bfseries operator-\/=} (const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&quaternion)
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_ad06d85f792882e758848c26f0e57ea13}\label{classrev_1_1_quaternion_ad06d85f792882e758848c26f0e57ea13}} 
+\mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \& {\bfseries operator $\ast$=} (real\+\_\+g factor)
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a56b20d7f3a655314ca7df48a36862259}\label{classrev_1_1_quaternion_a56b20d7f3a655314ca7df48a36862259}} 
+\mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \& {\bfseries operator $\ast$=} (const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&quaternion)
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a80b443b9e97a342734cfb60b786c75a6}\label{classrev_1_1_quaternion_a80b443b9e97a342734cfb60b786c75a6}} 
+\mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \& {\bfseries operator/=} (real\+\_\+g divisor)
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_ad8307baf80313282ff56ce12f66f9c33}\label{classrev_1_1_quaternion_ad8307baf80313282ff56ce12f66f9c33}} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&q1, const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&q2)
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a28b8582c664386799189290690e40da8}\label{classrev_1_1_quaternion_a28b8582c664386799189290690e40da8}} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&q1, const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&q2)
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_ade93d386a958d857910c26f3123c7700}\label{classrev_1_1_quaternion_ade93d386a958d857910c26f3123c7700}} 
+const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} {\bfseries operator $\ast$} (const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&q1, const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&q2)
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_acf05c9f6f012c5a4f735e79b49235ad8}\label{classrev_1_1_quaternion_acf05c9f6f012c5a4f735e79b49235ad8}} 
+const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} {\bfseries operator+} (const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&q1, const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&q2)
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a423e07c7e001606fb11165d3481bc1e5}\label{classrev_1_1_quaternion_a423e07c7e001606fb11165d3481bc1e5}} 
+const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} {\bfseries operator-\/} (const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&q1, const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&q2)
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a9bff2cf294243077e5a7674998499a16}\label{classrev_1_1_quaternion_a9bff2cf294243077e5a7674998499a16}} 
+const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} {\bfseries operator $\ast$} (real\+\_\+g factor, const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&quaternion)
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a4ebbe394015f9dff21e32e82c37afcc4}\label{classrev_1_1_quaternion_a4ebbe394015f9dff21e32e82c37afcc4}} 
+const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} {\bfseries operator $\ast$} (const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&q, real\+\_\+g factor)
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a3300cd957cdd277d08f4d5179e508650}\label{classrev_1_1_quaternion_a3300cd957cdd277d08f4d5179e508650}} 
+const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} {\bfseries operator-\/} (const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&q)
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_a75448b8467abdb56ed07d5c4fa515bf5}\label{classrev_1_1_quaternion_a75448b8467abdb56ed07d5c4fa515bf5}} 
+const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} {\bfseries operator/} (const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&q1, real\+\_\+g divisor)
+\item 
+\mbox{\Hypertarget{classrev_1_1_quaternion_ad1c88b7e3f5c13dca07e6ff108416def}\label{classrev_1_1_quaternion_ad1c88b7e3f5c13dca07e6ff108416def}} 
+const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} {\bfseries operator $\ast$} (const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&q, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&vec)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A class representing a quaternion rotation @notes See \href{http://www.opengl-tutorial.org/intermediate-tutorials/tutorial-17-quaternions/}{\texttt{ http\+://www.\+opengl-\/tutorial.\+org/intermediate-\/tutorials/tutorial-\/17-\/quaternions/}}. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_quaternion_a3a048d2bc01cf013dfad568dab996e06}\label{classrev_1_1_quaternion_a3a048d2bc01cf013dfad568dab996e06}} 
+\index{rev::Quaternion@{rev::Quaternion}!dot@{dot}}
+\index{dot@{dot}!rev::Quaternion@{rev::Quaternion}}
+\subsubsection{\texorpdfstring{dot()}{dot()}}
+{\footnotesize\ttfamily real\+\_\+g rev\+::\+Quaternion\+::dot (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&}]{other }\end{DoxyParamCaption}) const}
+
+
+
+Dot product. 
+
+Gives the angle between the quaternions \mbox{\Hypertarget{classrev_1_1_quaternion_abfe160e55cb0a142af8fec5afc038188}\label{classrev_1_1_quaternion_abfe160e55cb0a142af8fec5afc038188}} 
+\index{rev::Quaternion@{rev::Quaternion}!fromAxes@{fromAxes}}
+\index{fromAxes@{fromAxes}!rev::Quaternion@{rev::Quaternion}}
+\subsubsection{\texorpdfstring{fromAxes()}{fromAxes()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} rev\+::\+Quaternion\+::from\+Axes (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{x\+Axis,  }\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{y\+Axis,  }\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{z\+Axis }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Obtain a quaternion from principle axes. 
+
+\begin{DoxyNote}{Note}
+Axes are assumed to be orthonormal 
+\end{DoxyNote}
+\mbox{\Hypertarget{classrev_1_1_quaternion_a1f172fc581c685701a8a731a5182cc1c}\label{classrev_1_1_quaternion_a1f172fc581c685701a8a731a5182cc1c}} 
+\index{rev::Quaternion@{rev::Quaternion}!fromDirection@{fromDirection}}
+\index{fromDirection@{fromDirection}!rev::Quaternion@{rev::Quaternion}}
+\subsubsection{\texorpdfstring{fromDirection()}{fromDirection()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} rev\+::\+Quaternion\+::from\+Direction (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{direction,  }\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{up }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Obtain a quaternion from a direction and up vector. 
+
+This is essentially a \char`\"{}look\+At\char`\"{} rotation \mbox{\Hypertarget{classrev_1_1_quaternion_a50c2a07546cc78657d87459c4e6c34fd}\label{classrev_1_1_quaternion_a50c2a07546cc78657d87459c4e6c34fd}} 
+\index{rev::Quaternion@{rev::Quaternion}!fromEulerAngles@{fromEulerAngles}}
+\index{fromEulerAngles@{fromEulerAngles}!rev::Quaternion@{rev::Quaternion}}
+\subsubsection{\texorpdfstring{fromEulerAngles()}{fromEulerAngles()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} rev\+::\+Quaternion\+::from\+Euler\+Angles (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_euler_angles}{Euler\+Angles}} \&}]{euler\+Angles }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Obtain a quaternion from a set of \mbox{\hyperlink{class_euler}{Euler}} Angles. 
+
+Creates a quaternion that corresponds to a rotation of euler\+Angles. euler\+Angles.\+z() radians around the z axis, euler\+Angles.\+x() radians around the x axis, and euler\+Angles.\+y() radians around the y axis (in that order). \mbox{\Hypertarget{classrev_1_1_quaternion_a8c429750f9460c64f220ff6876beb818}\label{classrev_1_1_quaternion_a8c429750f9460c64f220ff6876beb818}} 
+\index{rev::Quaternion@{rev::Quaternion}!getAxisAndAngle@{getAxisAndAngle}}
+\index{getAxisAndAngle@{getAxisAndAngle}!rev::Quaternion@{rev::Quaternion}}
+\subsubsection{\texorpdfstring{getAxisAndAngle()}{getAxisAndAngle()}}
+{\footnotesize\ttfamily void rev\+::\+Quaternion\+::get\+Axis\+And\+Angle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{axis,  }\item[{real\+\_\+g \&}]{angle }\end{DoxyParamCaption}) const}
+
+
+
+Get rotation axis and angle about that axis corresponding to this quaternion. 
+
+Returned angle is in radians \mbox{\Hypertarget{classrev_1_1_quaternion_a4373b7eea8d53d6e19b942e5c8a0b366}\label{classrev_1_1_quaternion_a4373b7eea8d53d6e19b942e5c8a0b366}} 
+\index{rev::Quaternion@{rev::Quaternion}!Nlerp@{Nlerp}}
+\index{Nlerp@{Nlerp}!rev::Quaternion@{rev::Quaternion}}
+\subsubsection{\texorpdfstring{Nlerp()}{Nlerp()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} rev\+::\+Quaternion\+::\+Nlerp (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&}]{q1,  }\item[{const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&}]{q2,  }\item[{real\+\_\+g}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Linearly interpolates between two quaternions, normalized lerp. 
+
+Interpolates along the shortest linear path between the rotational positions q1 and q2. The value t should be between 0 and 1, indicating the distance to travel between q1 and q2. The result will be \mbox{\hyperlink{classrev_1_1_quaternion_aa026d0ceaf60d4145310cf30b91cb53b}{normalized()}}. \mbox{\Hypertarget{classrev_1_1_quaternion_ab62c7a0d6e6254c18bf5f61801e1755b}\label{classrev_1_1_quaternion_ab62c7a0d6e6254c18bf5f61801e1755b}} 
+\index{rev::Quaternion@{rev::Quaternion}!rotationTo@{rotationTo}}
+\index{rotationTo@{rotationTo}!rev::Quaternion@{rev::Quaternion}}
+\subsubsection{\texorpdfstring{rotationTo()}{rotationTo()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} rev\+::\+Quaternion\+::rotation\+To (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{from,  }\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{to }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Rotate from the \char`\"{}from\char`\"{} vector to the \char`\"{}to\char`\"{} vector. 
+
+Returns the shortest arc quaternion to rotate from the direction described by the vector \char`\"{}from\char`\"{} to the direction described by the vector \char`\"{}to\char`\"{}. \mbox{\Hypertarget{classrev_1_1_quaternion_acd605fb272c8b954eb5ec0982532a81c}\label{classrev_1_1_quaternion_acd605fb272c8b954eb5ec0982532a81c}} 
+\index{rev::Quaternion@{rev::Quaternion}!Slerp@{Slerp}}
+\index{Slerp@{Slerp}!rev::Quaternion@{rev::Quaternion}}
+\subsubsection{\texorpdfstring{Slerp()}{Slerp()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} rev\+::\+Quaternion\+::\+Slerp (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&}]{q1,  }\item[{const \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} \&}]{q2,  }\item[{real\+\_\+g}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Spherically interpolates between two quaternions. 
+
+Interpolates along the shortest spherical path between the rotational positions q1 and q2. The value t should be between 0 and 1, indicating the distance to travel between q1 and q2. \mbox{\Hypertarget{classrev_1_1_quaternion_ab1f505103946b69780b2b8fb9a5876fe}\label{classrev_1_1_quaternion_ab1f505103946b69780b2b8fb9a5876fe}} 
+\index{rev::Quaternion@{rev::Quaternion}!toAngularVelocity@{toAngularVelocity}}
+\index{toAngularVelocity@{toAngularVelocity}!rev::Quaternion@{rev::Quaternion}}
+\subsubsection{\texorpdfstring{toAngularVelocity()}{toAngularVelocity()}}
+{\footnotesize\ttfamily void rev\+::\+Quaternion\+::to\+Angular\+Velocity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{vel }\end{DoxyParamCaption}) const}
+
+
+
+Obtain a set of \mbox{\hyperlink{class_euler}{Euler}} Angles corresponding to this quaternion. 
+
+Convert to an \char`\"{}angular velocity\char`\"{} See\+: \href{https://forum.unity.com/threads/average-quaternions.86898/}{\texttt{ https\+://forum.\+unity.\+com/threads/average-\/quaternions.\+86898/}} \mbox{\Hypertarget{classrev_1_1_quaternion_ab91b28cc13c12075e2017c79a7378348}\label{classrev_1_1_quaternion_ab91b28cc13c12075e2017c79a7378348}} 
+\index{rev::Quaternion@{rev::Quaternion}!toVector4@{toVector4}}
+\index{toVector4@{toVector4}!rev::Quaternion@{rev::Quaternion}}
+\subsubsection{\texorpdfstring{toVector4()}{toVector4()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_vector}{Vector4}} rev\+::\+Quaternion\+::to\+Vector4 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Obtain euler angles corresponding to a quaternion. 
+
+Calculates roll, pitch, yaw \mbox{\hyperlink{class_euler}{Euler}} angles (in radians) corresponding to this \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} Convert the quaternion to a vector 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/geometry/G\+Quaternion.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/geometry/G\+Quaternion.\+cpp\end{DoxyCompactItemize}

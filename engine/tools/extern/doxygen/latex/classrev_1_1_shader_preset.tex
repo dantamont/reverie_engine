@@ -1,0 +1,145 @@
+\hypertarget{classrev_1_1_shader_preset}{}\section{rev\+::Shader\+Preset Class Reference}
+\label{classrev_1_1_shader_preset}\index{rev::ShaderPreset@{rev::ShaderPreset}}
+Inheritance diagram for rev\+::Shader\+Preset\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_shader_preset}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_preset_a55d8c336f57bc0d4cd189e828facdb84}\label{classrev_1_1_shader_preset_a55d8c336f57bc0d4cd189e828facdb84}} 
+{\bfseries Shader\+Preset} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, const Q\+Json\+Value \&json)
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_preset_a18d6ffeaad03e1ba4daf0a9ee83a8baf}\label{classrev_1_1_shader_preset_a18d6ffeaad03e1ba4daf0a9ee83a8baf}} 
+{\bfseries Shader\+Preset} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name)
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_preset_a4d47db2a1067ce458cd9b0f41e5094a7}\label{classrev_1_1_shader_preset_a4d47db2a1067ce458cd9b0f41e5094a7}} 
+{\bfseries $\sim$\+Shader\+Preset} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_preset_a28ab8a280ef50ff3add67a16b935c994}\label{classrev_1_1_shader_preset_a28ab8a280ef50ff3add67a16b935c994}} 
+\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$ {\bfseries shader\+Program} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_preset_adb158a95a819fa15a21ba62bdb29d21d}\label{classrev_1_1_shader_preset_adb158a95a819fa15a21ba62bdb29d21d}} 
+\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$ {\bfseries prepass\+Shader\+Program} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_preset_a59d500a59989e055e5e542af3f05901a}\label{classrev_1_1_shader_preset_a59d500a59989e055e5e542af3f05901a}} 
+void {\bfseries set\+Shader\+Program} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$sp)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_preset_ac2932e1aaa271e83c8f1fc7153e6407a}\label{classrev_1_1_shader_preset_ac2932e1aaa271e83c8f1fc7153e6407a}} 
+void \mbox{\hyperlink{classrev_1_1_shader_preset_ac2932e1aaa271e83c8f1fc7153e6407a}{queue\+Uniforms}} ()
+\begin{DoxyCompactList}\small\item\em Add uniforms from this preset to the shader member\textquotesingle{}s queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_preset_a2354d904b39792aa7a586e321374a078}\label{classrev_1_1_shader_preset_a2354d904b39792aa7a586e321374a078}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_shader_preset_a2354d904b39792aa7a586e321374a078}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_preset_ac57b05ed77ae0a90de6fb8551f708bcf}\label{classrev_1_1_shader_preset_ac57b05ed77ae0a90de6fb8551f708bcf}} 
+virtual void \mbox{\hyperlink{classrev_1_1_shader_preset_ac57b05ed77ae0a90de6fb8551f708bcf}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_shader_preset_a169c46262d1da9bfb67b26f2cf44e04e}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_shader_preset_acd4d41f0101552e7512714eb307e24a8}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_preset_a73bb9ab02cb8610f6f8fe3d6ba61ff90}\label{classrev_1_1_shader_preset_a73bb9ab02cb8610f6f8fe3d6ba61ff90}} 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_shader_preset}{Shader\+Preset}} $>$ \mbox{\hyperlink{classrev_1_1_shader_preset_a73bb9ab02cb8610f6f8fe3d6ba61ff90}{Get\+Builtin}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name)
+\begin{DoxyCompactList}\small\item\em Obtain a built-\/in preset by name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_preset_a6447d2b8ff847822633142dddaa2cfc4}\label{classrev_1_1_shader_preset_a6447d2b8ff847822633142dddaa2cfc4}} 
+static void \mbox{\hyperlink{classrev_1_1_shader_preset_a6447d2b8ff847822633142dddaa2cfc4}{Initialize\+Builtins}} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$engine)
+\begin{DoxyCompactList}\small\item\em Clear builtin presets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_preset_afa882c41e7312a549c1cc373dab085ed}\label{classrev_1_1_shader_preset_afa882c41e7312a549c1cc373dab085ed}} 
+class {\bfseries Shader\+Component}
+\end{DoxyCompactItemize}
+\subsection*{Protected members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_preset_ae32094ae974bea52c26062eb19c43e19}\label{classrev_1_1_shader_preset_ae32094ae974bea52c26062eb19c43e19}} 
+\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$ {\bfseries m\+\_\+engine}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_preset_a1ac6f32d24bbc5de7f85fb1612349662}\label{classrev_1_1_shader_preset_a1ac6f32d24bbc5de7f85fb1612349662}} 
+\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$ {\bfseries m\+\_\+shader\+Program}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_preset_a89682a8b8b7d0b286d1f1f3a4b207e99}\label{classrev_1_1_shader_preset_a89682a8b8b7d0b286d1f1f3a4b207e99}} 
+\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$ {\bfseries m\+\_\+prepass\+Shader\+Program} = nullptr
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} $>$ \mbox{\hyperlink{classrev_1_1_shader_preset_a53dc7afd60ed65e3fb20c1c3a99be92b}{m\+\_\+uniform\+Names}}
+\begin{DoxyCompactList}\small\item\em Buffers associated with the preset. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_preset_accb9ec5aa5802502da69b4550185ff31}\label{classrev_1_1_shader_preset_accb9ec5aa5802502da69b4550185ff31}} 
+static std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_shader_preset}{Shader\+Preset}} $>$ $>$ \mbox{\hyperlink{classrev_1_1_shader_preset_accb9ec5aa5802502da69b4550185ff31}{s\+\_\+builtins}}
+\begin{DoxyCompactList}\small\item\em List of built-\/in shader presets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_shader_preset_a169c46262d1da9bfb67b26f2cf44e04e}\label{classrev_1_1_shader_preset_a169c46262d1da9bfb67b26f2cf44e04e}} 
+\index{rev::ShaderPreset@{rev::ShaderPreset}!className@{className}}
+\index{className@{className}!rev::ShaderPreset@{rev::ShaderPreset}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Shader\+Preset\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_shader_preset_acd4d41f0101552e7512714eb307e24a8}\label{classrev_1_1_shader_preset_acd4d41f0101552e7512714eb307e24a8}} 
+\index{rev::ShaderPreset@{rev::ShaderPreset}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::ShaderPreset@{rev::ShaderPreset}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Shader\+Preset\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_shader_preset_a53dc7afd60ed65e3fb20c1c3a99be92b}\label{classrev_1_1_shader_preset_a53dc7afd60ed65e3fb20c1c3a99be92b}} 
+\index{rev::ShaderPreset@{rev::ShaderPreset}!m\_uniformNames@{m\_uniformNames}}
+\index{m\_uniformNames@{m\_uniformNames}!rev::ShaderPreset@{rev::ShaderPreset}}
+\subsubsection{\texorpdfstring{m\_uniformNames}{m\_uniformNames}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classrev_1_1_g_string}{G\+String}}$>$ rev\+::\+Shader\+Preset\+::m\+\_\+uniform\+Names\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Buffers associated with the preset. 
+
+\mbox{\hyperlink{classrev_1_1_vector}{Vector}} of uniform names to preserve for \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/shaders/G\+Shader\+Preset.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/shaders/G\+Shader\+Preset.\+cpp\end{DoxyCompactItemize}

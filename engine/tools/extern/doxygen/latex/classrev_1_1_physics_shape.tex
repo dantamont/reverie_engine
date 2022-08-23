@@ -1,0 +1,86 @@
+\hypertarget{classrev_1_1_physics_shape}{}\section{rev\+::Physics\+Shape Class Reference}
+\label{classrev_1_1_physics_shape}\index{rev::PhysicsShape@{rev::PhysicsShape}}
+
+
+An instantiation of a physics shape.  
+
+
+
+
+{\ttfamily \#include $<$G\+Physics\+Shape.\+h$>$}
+
+Inheritance diagram for rev\+::Physics\+Shape\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_physics_shape}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_ab2c024ea298e1aa1b862b12db1681e7f}\label{classrev_1_1_physics_shape_ab2c024ea298e1aa1b862b12db1681e7f}} 
+{\bfseries Physics\+Shape} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_abfe2831e80060ace27100181bf9f662c}\label{classrev_1_1_physics_shape_abfe2831e80060ace27100181bf9f662c}} 
+{\bfseries Physics\+Shape} (\mbox{\hyperlink{classrev_1_1_physics_shape_prefab}{Physics\+Shape\+Prefab}} \&prefab, \mbox{\hyperlink{classrev_1_1_rigid_body}{Rigid\+Body}} $\ast$body)
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_af4852971fdd7242f669efcae67c87767}\label{classrev_1_1_physics_shape_af4852971fdd7242f669efcae67c87767}} 
+{\bfseries $\sim$\+Physics\+Shape} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_a5be161e41130028fc048ce5855ea1d70}\label{classrev_1_1_physics_shape_a5be161e41130028fc048ce5855ea1d70}} 
+\mbox{\hyperlink{classrev_1_1_physics_shape_prefab}{Physics\+Shape\+Prefab}} \& {\bfseries prefab} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_a1335bd466b4c05d9204d67c506400f32}\label{classrev_1_1_physics_shape_a1335bd466b4c05d9204d67c506400f32}} 
+physx\+::\+Px\+Shape $\ast$ {\bfseries px\+Shape} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_a49fe8fd19a588b4d595f7590a1d1b04b}\label{classrev_1_1_physics_shape_a49fe8fd19a588b4d595f7590a1d1b04b}} 
+void \mbox{\hyperlink{classrev_1_1_physics_shape_a49fe8fd19a588b4d595f7590a1d1b04b}{detach}} () const
+\begin{DoxyCompactList}\small\item\em Detach from the associated body. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_a10c03541676cd182f7144dd298c6953f}\label{classrev_1_1_physics_shape_a10c03541676cd182f7144dd298c6953f}} 
+void \mbox{\hyperlink{classrev_1_1_physics_shape_a10c03541676cd182f7144dd298c6953f}{toggle\+Contact}} (bool toggle)
+\begin{DoxyCompactList}\small\item\em Toggle the physics shape on or off for contact tests. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_ae4345e4ffb7f882f14315e53466b042e}\label{classrev_1_1_physics_shape_ae4345e4ffb7f882f14315e53466b042e}} 
+void \mbox{\hyperlink{classrev_1_1_physics_shape_ae4345e4ffb7f882f14315e53466b042e}{toggle\+Scene\+Queries}} (bool toggle)
+\begin{DoxyCompactList}\small\item\em Toggle the physics shape on or off for scene queries, e.\+g., raycasts. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_ac732c0fb5caef2829a1ae38307344a1f}\label{classrev_1_1_physics_shape_ac732c0fb5caef2829a1ae38307344a1f}} 
+void \mbox{\hyperlink{classrev_1_1_physics_shape_ac732c0fb5caef2829a1ae38307344a1f}{reinitialize}} ()
+\begin{DoxyCompactList}\small\item\em Called when prefab is modified. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_af14f17b2da23130c44f53f5ba7d43eda}\label{classrev_1_1_physics_shape_af14f17b2da23130c44f53f5ba7d43eda}} 
+bool {\bfseries is\+Empty} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_a5097d52b56dcecd10de6a45c1110ea76}\label{classrev_1_1_physics_shape_a5097d52b56dcecd10de6a45c1110ea76}} 
+void {\bfseries set\+Prefab} (\mbox{\hyperlink{classrev_1_1_physics_shape_prefab}{Physics\+Shape\+Prefab}} \&prefab, bool remove\+From\+Old\+Prefab=true)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_ab9677fbc0a8849136cf78204d65c4935}\label{classrev_1_1_physics_shape_ab9677fbc0a8849136cf78204d65c4935}} 
+class {\bfseries Rigidbody}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_shape_a9881a4ed7014790bc7a68fecdb9b646a}\label{classrev_1_1_physics_shape_a9881a4ed7014790bc7a68fecdb9b646a}} 
+class {\bfseries Physics\+Shape\+Prefab}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+An instantiation of a physics shape. 
+
+Simulation Shapes are enabled for contact generation, and scene query shapes are enabled for raycasts by default, shapes are enabled for both. Contact generation is not necessarily always a part of physics 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Physics\+Shape.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Physics\+Shape.\+cpp\end{DoxyCompactItemize}

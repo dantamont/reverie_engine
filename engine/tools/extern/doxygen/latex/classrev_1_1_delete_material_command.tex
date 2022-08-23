@@ -1,0 +1,62 @@
+\hypertarget{classrev_1_1_delete_material_command}{}\section{rev\+::Delete\+Material\+Command Class Reference}
+\label{classrev_1_1_delete_material_command}\index{rev::DeleteMaterialCommand@{rev::DeleteMaterialCommand}}
+
+
+Delete a material.  
+
+
+
+
+{\ttfamily \#include $<$G\+Resource\+Widgets.\+h$>$}
+
+Inheritance diagram for rev\+::Delete\+Material\+Command\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_delete_material_command}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_delete_material_command_a8da7e04fdedbaa7321b63fa0def6b827}\label{classrev_1_1_delete_material_command_a8da7e04fdedbaa7321b63fa0def6b827}} 
+{\bfseries Delete\+Material\+Command} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, \mbox{\hyperlink{classrev_1_1_material}{Material}} $\ast$material, const Q\+String \&text, Q\+Undo\+Command $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_delete_material_command_a7e47e95a0de499830cd7ab4ee89e09c2}\label{classrev_1_1_delete_material_command_a7e47e95a0de499830cd7ab4ee89e09c2}} 
+{\bfseries $\sim$\+Delete\+Material\+Command} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_delete_material_command_a4ce5dfdfc9fab1a53b24dd13bf14c361}\label{classrev_1_1_delete_material_command_a4ce5dfdfc9fab1a53b24dd13bf14c361}} 
+virtual void \mbox{\hyperlink{classrev_1_1_delete_material_command_a4ce5dfdfc9fab1a53b24dd13bf14c361}{redo}} () override
+\begin{DoxyCompactList}\small\item\em Redoes the command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_delete_material_command_a0638be7e668d6cad308b49e6651a272b}\label{classrev_1_1_delete_material_command_a0638be7e668d6cad308b49e6651a272b}} 
+virtual void \mbox{\hyperlink{classrev_1_1_delete_material_command_a0638be7e668d6cad308b49e6651a272b}{undo}} () override
+\begin{DoxyCompactList}\small\item\em Undoes the command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_delete_material_command_a8ec58d542cc2692e4de29fd7f6003577}\label{classrev_1_1_delete_material_command_a8ec58d542cc2692e4de29fd7f6003577}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_delete_material_command_a8ec58d542cc2692e4de29fd7f6003577}{m\+\_\+material\+Json}}
+\begin{DoxyCompactList}\small\item\em The J\+S\+ON for the material removed by this command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_delete_material_command_a3a77dfb478ac09b3854703185af647e9}\label{classrev_1_1_delete_material_command_a3a77dfb478ac09b3854703185af647e9}} 
+\mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} {\bfseries m\+\_\+material\+Handle\+ID}
+\item 
+\mbox{\Hypertarget{classrev_1_1_delete_material_command_ac6d99f6c1402426de1770ff2e5aae688}\label{classrev_1_1_delete_material_command_ac6d99f6c1402426de1770ff2e5aae688}} 
+\mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} {\bfseries m\+\_\+material\+Name}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Delete a material. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Resource\+Widgets.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Resource\+Widgets.\+cpp\end{DoxyCompactItemize}

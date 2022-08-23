@@ -1,0 +1,95 @@
+\hypertarget{classrev_1_1_timer}{}\section{rev\+::Timer Class Reference}
+\label{classrev_1_1_timer}\index{rev::Timer@{rev::Timer}}
+
+
+Clock class.  
+
+
+
+
+{\ttfamily \#include $<$G\+Timer.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_timer_a65dfcdf213c3f644fcf0d87e2b82404c}\label{classrev_1_1_timer_a65dfcdf213c3f644fcf0d87e2b82404c}} 
+{\bfseries Timer} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_timer_a21f0b29a2a6d6483c5b20c66e5522240}\label{classrev_1_1_timer_a21f0b29a2a6d6483c5b20c66e5522240}} 
+{\bfseries Timer} (const \mbox{\hyperlink{classrev_1_1_timer}{Timer}} \&other)
+\item 
+\mbox{\Hypertarget{classrev_1_1_timer_a0f7186567b42106a4a71ccdb859ca266}\label{classrev_1_1_timer_a0f7186567b42106a4a71ccdb859ca266}} 
+{\bfseries $\sim$\+Timer} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_timer_ad4265522ee6022a219f12a50a06c0112}\label{classrev_1_1_timer_ad4265522ee6022a219f12a50a06c0112}} 
+const clock\+::time\+\_\+point \& {\bfseries start\+Time} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Operators}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_timer_ac7d5015b2c1e2a3fbd7a7b842116aa65}\label{classrev_1_1_timer_ac7d5015b2c1e2a3fbd7a7b842116aa65}} 
+\mbox{\hyperlink{classrev_1_1_timer}{Timer}} \& {\bfseries operator=} (const \mbox{\hyperlink{classrev_1_1_timer}{Timer}} \&other)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_timer_a100d03e0d65505a158ac447c293ea3ca}\label{classrev_1_1_timer_a100d03e0d65505a158ac447c293ea3ca}} 
+bool \mbox{\hyperlink{classrev_1_1_timer_a100d03e0d65505a158ac447c293ea3ca}{is\+Running}} () const
+\begin{DoxyCompactList}\small\item\em Whether or not the clock is currently counting time. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_timer_a247793f1c050d292f160fe1a4717e0ce}\label{classrev_1_1_timer_a247793f1c050d292f160fe1a4717e0ce}} 
+clock\+::duration \mbox{\hyperlink{classrev_1_1_timer_a247793f1c050d292f160fe1a4717e0ce}{restart}} ()
+\begin{DoxyCompactList}\small\item\em Restart the timer, returning the elapsed time as a duration. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_timer_ab77f3545151315d5db1ce291d895b0c0}\label{classrev_1_1_timer_ab77f3545151315d5db1ce291d895b0c0}} 
+void \mbox{\hyperlink{classrev_1_1_timer_ab77f3545151315d5db1ce291d895b0c0}{start}} ()
+\begin{DoxyCompactList}\small\item\em Start the timer, doing nothing if already running. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_timer_ac2d4a466ecb7e182db8bf82410e8ffae}\label{classrev_1_1_timer_ac2d4a466ecb7e182db8bf82410e8ffae}} 
+void \mbox{\hyperlink{classrev_1_1_timer_ac2d4a466ecb7e182db8bf82410e8ffae}{stop}} ()
+\begin{DoxyCompactList}\small\item\em Stop the timer, caching the elapsed time. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_timer_a6029675724cda6f21f5a344526bb1ca0}\label{classrev_1_1_timer_a6029675724cda6f21f5a344526bb1ca0}} 
+void \mbox{\hyperlink{classrev_1_1_timer_a6029675724cda6f21f5a344526bb1ca0}{reset}} ()
+\begin{DoxyCompactList}\small\item\em Clear the timer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_timer_a359171f507dec770263e90cb91887493}\label{classrev_1_1_timer_a359171f507dec770263e90cb91887493}} 
+clock\+::duration \mbox{\hyperlink{classrev_1_1_timer_a359171f507dec770263e90cb91887493}{get\+Elapsed\+Duration}} () const
+\begin{DoxyCompactList}\small\item\em Get elapsed time as a clock duration. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_timer_a4ce2329776d638ba16f9010490182e36}\label{classrev_1_1_timer_a4ce2329776d638ba16f9010490182e36}} 
+{\footnotesize template$<$typename Rep $>$ }\\Rep \mbox{\hyperlink{classrev_1_1_timer_a4ce2329776d638ba16f9010490182e36}{get\+Elapsed}} () const
+\begin{DoxyCompactList}\small\item\em Return elapsed time in seconds, with given type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_timer_a9377609fe13e57e878afb45c75ff1b86}\label{classrev_1_1_timer_a9377609fe13e57e878afb45c75ff1b86}} 
+{\footnotesize template$<$typename Rep $>$ }\\static Rep \mbox{\hyperlink{classrev_1_1_timer_a9377609fe13e57e878afb45c75ff1b86}{To\+Seconds}} (const clock\+::duration \&duration)
+\begin{DoxyCompactList}\small\item\em Convience methods to convert clock durations to specified units. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_timer_ac29cfffb7ddef44f10b6e90d962af40b}\label{classrev_1_1_timer_ac29cfffb7ddef44f10b6e90d962af40b}} 
+static \mbox{\hyperlink{classrev_1_1_timer}{Timer}} \mbox{\hyperlink{classrev_1_1_timer_ac29cfffb7ddef44f10b6e90d962af40b}{From\+Elapsed\+Seconds}} (float seconds)
+\begin{DoxyCompactList}\small\item\em Create a timer that initialized the specified number of seconds ago. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_timer_a0c2e82484e41de0984da77a93785983a}\label{classrev_1_1_timer_a0c2e82484e41de0984da77a93785983a}} 
+static std\+::time\+\_\+t \mbox{\hyperlink{classrev_1_1_timer_a0c2e82484e41de0984da77a93785983a}{Steady\+To\+Time\+\_\+t}} (const clock\+::time\+\_\+point \&time)
+\begin{DoxyCompactList}\small\item\em Convert steady clock time to time\+\_\+t. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_timer_aec3cfcc2f0174839512eb5d132195992}\label{classrev_1_1_timer_aec3cfcc2f0174839512eb5d132195992}} 
+static \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \mbox{\hyperlink{classrev_1_1_timer_aec3cfcc2f0174839512eb5d132195992}{To\+String}} (const clock\+::time\+\_\+point \&time)
+\begin{DoxyCompactList}\small\item\em Return a string representation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_timer_a3612da7f9e83c708a54f7ce26eb2efad}\label{classrev_1_1_timer_a3612da7f9e83c708a54f7ce26eb2efad}} 
+static \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} {\bfseries To\+String} (const clock\+::time\+\_\+point \&time, const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&format)
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+Clock class. 
+
+For managing simulation time 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/time/G\+Timer.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/time/G\+Timer.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,167 @@
+\hypertarget{classrev_1_1_process_thread}{}\section{rev\+::Process\+Thread Class Reference}
+\label{classrev_1_1_process_thread}\index{rev::ProcessThread@{rev::ProcessThread}}
+
+
+Represents a thread-\/friendly process.  
+
+
+
+
+{\ttfamily \#include $<$G\+Process\+Thread.\+h$>$}
+
+Inheritance diagram for rev\+::Process\+Thread\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_process_thread}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_thread_aea6865a31de55bfdc4f402b63255c05b}\label{classrev_1_1_process_thread_aea6865a31de55bfdc4f402b63255c05b}} 
+{\bfseries Process\+Thread} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_thread_a410b4d950888b04964cce3ece1d7ab2c}\label{classrev_1_1_process_thread_a410b4d950888b04964cce3ece1d7ab2c}} 
+{\bfseries $\sim$\+Process\+Thread} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_thread_a64df56cb609577cf3ba2239059e7c941}\label{classrev_1_1_process_thread_a64df56cb609577cf3ba2239059e7c941}} 
+bool {\bfseries is\+Running} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_thread_a60a8d79a7c52e9cb5995d00b2f763c5b}\label{classrev_1_1_process_thread_a60a8d79a7c52e9cb5995d00b2f763c5b}} 
+std\+::mutex \& {\bfseries exception\+Mutex} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_thread_a6a5c84519c3e4e65e2af3ad1fb6172c4}\label{classrev_1_1_process_thread_a6a5c84519c3e4e65e2af3ad1fb6172c4}} 
+const std\+::exception\+\_\+ptr \& {\bfseries exception} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classrev_1_1_process_thread_a24e0793126ea3c5935c62a3034dbdca1}{update}} ()
+\begin{DoxyCompactList}\small\item\em Initialize thread with a function and its arguments. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_thread_a195f5c531ae573016492e5e1e606a827}\label{classrev_1_1_process_thread_a195f5c531ae573016492e5e1e606a827}} 
+void \mbox{\hyperlink{classrev_1_1_process_thread_a195f5c531ae573016492e5e1e606a827}{join}} ()
+\begin{DoxyCompactList}\small\item\em Stop thread. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_thread_a69578823369da4ecbc7fa12691317d2e}\label{classrev_1_1_process_thread_a69578823369da4ecbc7fa12691317d2e}} 
+virtual Weak\+Process\+Ptr \mbox{\hyperlink{classrev_1_1_process_thread_a69578823369da4ecbc7fa12691317d2e}{attach\+Process}} (Strong\+Process\+Ptr process, bool initialize=false)
+\begin{DoxyCompactList}\small\item\em Attach a process to the process manager. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_process_thread_a61ecc9b8d9234f25418adee22c062874}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_process_thread_a9a5cd59371fc8c768364dc355b6351d0}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_thread_a25f7dae242392b099a66ada5f4e98d6f}\label{classrev_1_1_process_thread_a25f7dae242392b099a66ada5f4e98d6f}} 
+void {\bfseries initialize} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_thread_a2efb807785edec85b75f478f0dc8d140}\label{classrev_1_1_process_thread_a2efb807785edec85b75f478f0dc8d140}} 
+std\+::shared\+\_\+mutex \mbox{\hyperlink{classrev_1_1_process_thread_a2efb807785edec85b75f478f0dc8d140}{m\+\_\+process\+Mutex}}
+\begin{DoxyCompactList}\small\item\em Need to control access to processes to avoid a race condition. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classrev_1_1_process_thread_a618db433e80f313fadea67ca7ffffffc}{m\+\_\+fixed\+Update\+Interval}}
+\begin{DoxyCompactList}\small\item\em Fixed update interval. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_thread_a09e5404833144772b8272a5fce75797a}\label{classrev_1_1_process_thread_a09e5404833144772b8272a5fce75797a}} 
+double \mbox{\hyperlink{classrev_1_1_process_thread_a09e5404833144772b8272a5fce75797a}{m\+\_\+min\+Update\+Interval\+Sec}}
+\begin{DoxyCompactList}\small\item\em Minimum time between updates for the thread, in seconds. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_thread_ac27abf5d26e1720633a50966e44d85a2}\label{classrev_1_1_process_thread_ac27abf5d26e1720633a50966e44d85a2}} 
+double \mbox{\hyperlink{classrev_1_1_process_thread_ac27abf5d26e1720633a50966e44d85a2}{m\+\_\+fixed\+Delta\+Time}}
+\begin{DoxyCompactList}\small\item\em Time-\/keeping for fixed updates. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_thread_aeebc0fee5637ecc724acf6b312e34506}\label{classrev_1_1_process_thread_aeebc0fee5637ecc724acf6b312e34506}} 
+bool {\bfseries m\+\_\+is\+Running}
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_thread_a6972c0eb34f36a442f089d067cc80f56}\label{classrev_1_1_process_thread_a6972c0eb34f36a442f089d067cc80f56}} 
+std\+::thread \mbox{\hyperlink{classrev_1_1_process_thread_a6972c0eb34f36a442f089d067cc80f56}{m\+\_\+thread}}
+\begin{DoxyCompactList}\small\item\em The thread where all the magic happens. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_thread_a42e6a92f6f2caf723c02dc02947d8c04}\label{classrev_1_1_process_thread_a42e6a92f6f2caf723c02dc02947d8c04}} 
+std\+::mutex {\bfseries m\+\_\+exception\+Lock}
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_thread_ae46408928e1e9279c70b471bc3bfba28}\label{classrev_1_1_process_thread_ae46408928e1e9279c70b471bc3bfba28}} 
+std\+::exception\+\_\+ptr {\bfseries m\+\_\+exception\+Ptr} = nullptr
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_thread_ae1701c7594fe2cf1c96b951a52eb0396}\label{classrev_1_1_process_thread_ae1701c7594fe2cf1c96b951a52eb0396}} 
+class {\bfseries Process\+Manager}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Represents a thread-\/friendly process. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_process_thread_a61ecc9b8d9234f25418adee22c062874}\label{classrev_1_1_process_thread_a61ecc9b8d9234f25418adee22c062874}} 
+\index{rev::ProcessThread@{rev::ProcessThread}!className@{className}}
+\index{className@{className}!rev::ProcessThread@{rev::ProcessThread}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Process\+Thread\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_process_thread_a9a5cd59371fc8c768364dc355b6351d0}\label{classrev_1_1_process_thread_a9a5cd59371fc8c768364dc355b6351d0}} 
+\index{rev::ProcessThread@{rev::ProcessThread}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::ProcessThread@{rev::ProcessThread}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Process\+Thread\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_process_thread_a24e0793126ea3c5935c62a3034dbdca1}\label{classrev_1_1_process_thread_a24e0793126ea3c5935c62a3034dbdca1}} 
+\index{rev::ProcessThread@{rev::ProcessThread}!update@{update}}
+\index{update@{update}!rev::ProcessThread@{rev::ProcessThread}}
+\subsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void rev\+::\+Process\+Thread\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialize thread with a function and its arguments. 
+
+The update loop for the thread 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_process_thread_a618db433e80f313fadea67ca7ffffffc}\label{classrev_1_1_process_thread_a618db433e80f313fadea67ca7ffffffc}} 
+\index{rev::ProcessThread@{rev::ProcessThread}!m\_fixedUpdateInterval@{m\_fixedUpdateInterval}}
+\index{m\_fixedUpdateInterval@{m\_fixedUpdateInterval}!rev::ProcessThread@{rev::ProcessThread}}
+\subsubsection{\texorpdfstring{m\_fixedUpdateInterval}{m\_fixedUpdateInterval}}
+{\footnotesize\ttfamily double rev\+::\+Process\+Thread\+::m\+\_\+fixed\+Update\+Interval\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Fixed update interval. 
+
+How much time (sec) must pass before a fixed update event is called 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/processes/G\+Process\+Thread.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/processes/G\+Process\+Thread.\+cpp\end{DoxyCompactItemize}

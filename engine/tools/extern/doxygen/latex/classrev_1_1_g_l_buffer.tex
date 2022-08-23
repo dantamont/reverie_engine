@@ -1,0 +1,236 @@
+\hypertarget{classrev_1_1_g_l_buffer}{}\section{rev\+::G\+L\+Buffer Class Reference}
+\label{classrev_1_1_g_l_buffer}\index{rev::GLBuffer@{rev::GLBuffer}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing a GL Buffer.  
+
+
+
+
+{\ttfamily \#include $<$G\+G\+Lbuffer.\+h$>$}
+
+Inheritance diagram for rev\+::G\+L\+Buffer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classrev_1_1_g_l_buffer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a8cb2953194f65b93018d4c3d6565d876}\label{classrev_1_1_g_l_buffer_a8cb2953194f65b93018d4c3d6565d876}} 
+{\bfseries G\+L\+Buffer} (\mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} \&context, G\+L\+::\+Buffer\+Type type, size\+\_\+t size\+In\+Bytes, G\+L\+::\+Buffer\+Storage\+Mode storage\+Mode=G\+L\+::\+Buffer\+Storage\+Mode\+::k\+Dynamic\+Draw, size\+\_\+t storage\+Flags=0)
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a6c2bcb730e01ecbde4a9466b2f92f4ff}\label{classrev_1_1_g_l_buffer_a6c2bcb730e01ecbde4a9466b2f92f4ff}} 
+\mbox{\hyperlink{classrev_1_1_g_l_buffer}{G\+L\+Buffer}} \& {\bfseries operator=} (\mbox{\hyperlink{classrev_1_1_g_l_buffer}{G\+L\+Buffer}} \&\&other)
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a3bc77bb3daba0003133a7b49133d268c}\label{classrev_1_1_g_l_buffer_a3bc77bb3daba0003133a7b49133d268c}} 
+\mbox{\hyperlink{classrev_1_1_g_l_buffer}{G\+L\+Buffer}} \& {\bfseries operator=} (const \mbox{\hyperlink{classrev_1_1_g_l_buffer}{G\+L\+Buffer}} \&)=delete
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a032fdc2003f4f4034ff8e4e967578031}\label{classrev_1_1_g_l_buffer_a032fdc2003f4f4034ff8e4e967578031}} 
+{\bfseries G\+L\+Buffer} (const \mbox{\hyperlink{classrev_1_1_g_l_buffer}{G\+L\+Buffer}} \&)=delete
+\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_aaadd13150c9c4fdf2554a86160d6156b}\label{classrev_1_1_g_l_buffer_aaadd13150c9c4fdf2554a86160d6156b}} 
+size\+\_\+t \mbox{\hyperlink{classrev_1_1_g_l_buffer_aaadd13150c9c4fdf2554a86160d6156b}{byte\+Size}} () const
+\begin{DoxyCompactList}\small\item\em Size in bytes of the buffer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a15e3457786a2c14008a8b14b12a82c03}\label{classrev_1_1_g_l_buffer_a15e3457786a2c14008a8b14b12a82c03}} 
+{\footnotesize template$<$typename T $>$ }\\size\+\_\+t \mbox{\hyperlink{classrev_1_1_g_l_buffer_a15e3457786a2c14008a8b14b12a82c03}{length}} () const
+\begin{DoxyCompactList}\small\item\em @brie Return length of buffer given a type \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a256280873df6cd8dc20319bf9651f269}\label{classrev_1_1_g_l_buffer_a256280873df6cd8dc20319bf9651f269}} 
+void \mbox{\hyperlink{classrev_1_1_g_l_buffer_a256280873df6cd8dc20319bf9651f269}{set\+Bind\+Point}} (uint32\+\_\+t point)
+\begin{DoxyCompactList}\small\item\em Set binding point of the buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a7b0839ae8a7e8c4d6953741aa107fc85}\label{classrev_1_1_g_l_buffer_a7b0839ae8a7e8c4d6953741aa107fc85}} 
+bool \mbox{\hyperlink{classrev_1_1_g_l_buffer_a7b0839ae8a7e8c4d6953741aa107fc85}{is\+Bound}} () const
+\begin{DoxyCompactList}\small\item\em Whether or not the GL buffer is bound to a context. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_afe409ba5cffda40f65f3b5073e5cdeac}\label{classrev_1_1_g_l_buffer_afe409ba5cffda40f65f3b5073e5cdeac}} 
+virtual void \mbox{\hyperlink{classrev_1_1_g_l_buffer_afe409ba5cffda40f65f3b5073e5cdeac}{bind}} ()
+\begin{DoxyCompactList}\small\item\em Bind the GL buffer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a66dc6c1dbeec152eb01856867debb825}\label{classrev_1_1_g_l_buffer_a66dc6c1dbeec152eb01856867debb825}} 
+virtual void \mbox{\hyperlink{classrev_1_1_g_l_buffer_a66dc6c1dbeec152eb01856867debb825}{release}} ()
+\begin{DoxyCompactList}\small\item\em Unbind the GL buffer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a0217c15947f9165dcce26525b874bdf0}\label{classrev_1_1_g_l_buffer_a0217c15947f9165dcce26525b874bdf0}} 
+void \mbox{\hyperlink{classrev_1_1_g_l_buffer_a0217c15947f9165dcce26525b874bdf0}{copy\+Into}} (\mbox{\hyperlink{classrev_1_1_g_l_buffer}{G\+L\+Buffer}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy data into another buffer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a4689f1b226bde386a92a11388c083f3a}\label{classrev_1_1_g_l_buffer_a4689f1b226bde386a92a11388c083f3a}} 
+{\footnotesize template$<$typename T $>$ }\\T $\ast$ \mbox{\hyperlink{classrev_1_1_g_l_buffer_a4689f1b226bde386a92a11388c083f3a}{data}} (size\+\_\+t access=size\+\_\+t(G\+L\+::\+Range\+Buffer\+Access\+Flag\+::k\+Read$\vert$G\+L\+::\+Range\+Buffer\+Access\+Flag\+::k\+Write))
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_map}{Map}} buffer and return data casted to the specified type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a5700d3ca77630aaa3da5d37c68a9c34b}\label{classrev_1_1_g_l_buffer_a5700d3ca77630aaa3da5d37c68a9c34b}} 
+{\footnotesize template$<$typename T $>$ }\\T $\ast$ \mbox{\hyperlink{classrev_1_1_g_l_buffer_a5700d3ca77630aaa3da5d37c68a9c34b}{data}} (size\+\_\+t offset, size\+\_\+t \mbox{\hyperlink{classrev_1_1_g_l_buffer_a15e3457786a2c14008a8b14b12a82c03}{length}}, size\+\_\+t access=size\+\_\+t(G\+L\+::\+Range\+Buffer\+Access\+Flag\+::k\+Read$\vert$G\+L\+::\+Range\+Buffer\+Access\+Flag\+::k\+Write))
+\begin{DoxyCompactList}\small\item\em @params\mbox{[}in\mbox{]} length The number of elements T to return \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a254528e7cbf6268e516511f9266c8c45}\label{classrev_1_1_g_l_buffer_a254528e7cbf6268e516511f9266c8c45}} 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{classrev_1_1_g_l_buffer_a254528e7cbf6268e516511f9266c8c45}{copy\+Data}} (std\+::vector$<$ T $>$ \&out\+Data, size\+\_\+t len, size\+\_\+t start\+Index=0, bool unmap=true)
+\begin{DoxyCompactList}\small\item\em Copy len entries of data from buffer into a vector. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{classrev_1_1_g_l_buffer_a92d217358a53b80cf8b2ed9385f30faf}{sub\+Data}} (const T \&val, size\+\_\+t offset)
+\begin{DoxyCompactList}\small\item\em Substitutes data into the buffer, no mapping or unmapping required. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a89e7255d32f69c002e30a3b196fcbf6b}\label{classrev_1_1_g_l_buffer_a89e7255d32f69c002e30a3b196fcbf6b}} 
+{\footnotesize template$<$typename T $>$ }\\void {\bfseries sub\+Data} (const T $\ast$val, size\+\_\+t offset, size\+\_\+t size=1)
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a95f11214467a384d13843d7f55a6d591}\label{classrev_1_1_g_l_buffer_a95f11214467a384d13843d7f55a6d591}} 
+void {\bfseries sub\+Data} (const void $\ast$val, size\+\_\+t offset\+Bytes, size\+\_\+t size\+Bytes)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{classrev_1_1_g_l_buffer_a1b72e5c274dbe688738533bad385d176}{set\+Data}} (const std\+::vector$<$ T $>$ \&vec, size\+\_\+t access=size\+\_\+t(G\+L\+::\+Range\+Buffer\+Access\+Flag\+::k\+Invalidate\+Buffer$\vert$G\+L\+::\+Range\+Buffer\+Access\+Flag\+::k\+Write))
+\begin{DoxyCompactList}\small\item\em Set data from a vector of inputs. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_ad1358202edb1ece3bc1c31be07941016}\label{classrev_1_1_g_l_buffer_ad1358202edb1ece3bc1c31be07941016}} 
+{\footnotesize template$<$typename T $>$ }\\void {\bfseries set\+Data} (const T \&val, size\+\_\+t offset=0, size\+\_\+t access=size\+\_\+t(G\+L\+::\+Range\+Buffer\+Access\+Flag\+::k\+Invalidate\+Buffer$\vert$G\+L\+::\+Range\+Buffer\+Access\+Flag\+::k\+Write))
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a3ac801e5d41dace8304e7f50408c8ff9}\label{classrev_1_1_g_l_buffer_a3ac801e5d41dace8304e7f50408c8ff9}} 
+void $\ast$ \mbox{\hyperlink{classrev_1_1_g_l_buffer_a3ac801e5d41dace8304e7f50408c8ff9}{map}} (size\+\_\+t access=size\+\_\+t(G\+L\+::\+Range\+Buffer\+Access\+Flag\+::k\+Read$\vert$G\+L\+::\+Range\+Buffer\+Access\+Flag\+::k\+Write), bool do\+Bind=true)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_map}{Map}} and obtain data associated with the GL buffer, M\+U\+ST be bound first. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{classrev_1_1_g_l_buffer_a36308de451b296fcb41db56e407a209d}{map}} (size\+\_\+t offset\+Bytes, size\+\_\+t size\+Bytes, size\+\_\+t access=size\+\_\+t(G\+L\+::\+Range\+Buffer\+Access\+Flag\+::k\+Read$\vert$G\+L\+::\+Range\+Buffer\+Access\+Flag\+::k\+Write), bool do\+Bind=true)
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_aa7c883e14d30a613d2716667d7f80d72}\label{classrev_1_1_g_l_buffer_aa7c883e14d30a613d2716667d7f80d72}} 
+void {\bfseries unmap} (bool do\+Release=true)
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_af6defcf631824ff5d0cbbe6878387192}\label{classrev_1_1_g_l_buffer_af6defcf631824ff5d0cbbe6878387192}} 
+void \mbox{\hyperlink{classrev_1_1_g_l_buffer_af6defcf631824ff5d0cbbe6878387192}{allocate\+Memory}} ()
+\begin{DoxyCompactList}\small\item\em Allocate memory for the buffer in Open\+GL. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a84bfd38ab666c1c75a0981b1bcd24a95}\label{classrev_1_1_g_l_buffer_a84bfd38ab666c1c75a0981b1bcd24a95}} 
+void {\bfseries allocate\+Memory} (size\+\_\+t size, G\+L\+::\+Buffer\+Storage\+Mode mode, size\+\_\+t storage\+Flags)
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a7d5ea7a4287879bab7585e59e5941106}\label{classrev_1_1_g_l_buffer_a7d5ea7a4287879bab7585e59e5941106}} 
+void \mbox{\hyperlink{classrev_1_1_g_l_buffer_a7d5ea7a4287879bab7585e59e5941106}{bind\+To\+Point}} ()
+\begin{DoxyCompactList}\small\item\em Bind to a binding point. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a9f8b200955eaad82ecd4f1ca6d02f10e}\label{classrev_1_1_g_l_buffer_a9f8b200955eaad82ecd4f1ca6d02f10e}} 
+void {\bfseries bind\+To\+Point} (size\+\_\+t binding\+Point)
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a6b37f4a960d6aefe8219347a2ea23837}\label{classrev_1_1_g_l_buffer_a6b37f4a960d6aefe8219347a2ea23837}} 
+void \mbox{\hyperlink{classrev_1_1_g_l_buffer_a6b37f4a960d6aefe8219347a2ea23837}{bind\+To\+Point}} (size\+\_\+t binding\+Point, size\+\_\+t offset, size\+\_\+t size\+In\+Bytes)
+\begin{DoxyCompactList}\small\item\em Bind a part of the buffer to a binding point, starting at offset and for size\+In\+Bytes bytes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a05bbcbc67a152da0953dfb6fd6fad291}\label{classrev_1_1_g_l_buffer_a05bbcbc67a152da0953dfb6fd6fad291}} 
+void \mbox{\hyperlink{classrev_1_1_g_l_buffer_a05bbcbc67a152da0953dfb6fd6fad291}{release\+From\+Point}} (size\+\_\+t buffer\+Point)
+\begin{DoxyCompactList}\small\item\em Release from buffer point. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a75ec3ef6ed2d7c548396b505c692f088}\label{classrev_1_1_g_l_buffer_a75ec3ef6ed2d7c548396b505c692f088}} 
+void {\bfseries release\+From\+Point} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a9136bb5687280f6afd40a5792bb231f2}\label{classrev_1_1_g_l_buffer_a9136bb5687280f6afd40a5792bb231f2}} 
+size\+\_\+t \mbox{\hyperlink{classrev_1_1_g_l_buffer_a9136bb5687280f6afd40a5792bb231f2}{count}} (size\+\_\+t stride)
+\begin{DoxyCompactList}\small\item\em Return number of elements in the buffer data, assuming the given element size. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_ae35e081deb3c4736dfd9488c2d7d7aac}\label{classrev_1_1_g_l_buffer_ae35e081deb3c4736dfd9488c2d7d7aac}} 
+G\+Lint \mbox{\hyperlink{classrev_1_1_g_l_buffer_ae35e081deb3c4736dfd9488c2d7d7aac}{get\+Bound\+Buffer}} ()
+\begin{DoxyCompactList}\small\item\em Get current binding ID from GL. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a2d116a1a6d1e7fa77b5724c6c8eefa28}\label{classrev_1_1_g_l_buffer_a2d116a1a6d1e7fa77b5724c6c8eefa28}} 
+void \mbox{\hyperlink{classrev_1_1_g_l_buffer_a2d116a1a6d1e7fa77b5724c6c8eefa28}{clear}} ()
+\begin{DoxyCompactList}\small\item\em Clear the buffer\textquotesingle{}s contents. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a709a097da776cf05042f2e89266d20f0}\label{classrev_1_1_g_l_buffer_a709a097da776cf05042f2e89266d20f0}} 
+void {\bfseries initialize} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_ac6451bf8f52b0168a3adf87209fb820f}\label{classrev_1_1_g_l_buffer_ac6451bf8f52b0168a3adf87209fb820f}} 
+void {\bfseries create\+Buffer} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a3e54063a5a1902dc2b79cd0f81b72deb}\label{classrev_1_1_g_l_buffer_a3e54063a5a1902dc2b79cd0f81b72deb}} 
+unsigned int \mbox{\hyperlink{classrev_1_1_g_l_buffer_a3e54063a5a1902dc2b79cd0f81b72deb}{m\+\_\+buffer\+ID}} = std\+::numeric\+\_\+limits$<$unsigned int$>$\+::max()
+\begin{DoxyCompactList}\small\item\em the GL ID of the GL buffer \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{classrev_1_1_g_l_buffer_a81b6e473f0b5716fe5a2aeb24fde27ff}{m\+\_\+binding\+Point}} = std\+::numeric\+\_\+limits$<$unsigned int$>$\+::max()
+\begin{DoxyCompactList}\small\item\em The binding point of the buffer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_ac6d88fd8c038e2cd89dd40d0cebd0450}\label{classrev_1_1_g_l_buffer_ac6d88fd8c038e2cd89dd40d0cebd0450}} 
+size\+\_\+t \mbox{\hyperlink{classrev_1_1_g_l_buffer_ac6d88fd8c038e2cd89dd40d0cebd0450}{m\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em Size in bytes of underlying buffer data. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a8f3c3cef8c9c165aee5415a789be1234}\label{classrev_1_1_g_l_buffer_a8f3c3cef8c9c165aee5415a789be1234}} 
+bool \mbox{\hyperlink{classrev_1_1_g_l_buffer_a8f3c3cef8c9c165aee5415a789be1234}{m\+\_\+is\+Mapped}} = false
+\begin{DoxyCompactList}\small\item\em Whether or not the buffer is currently mapped. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a314ef90b0e12e3174fddaa8cb65c0857}\label{classrev_1_1_g_l_buffer_a314ef90b0e12e3174fddaa8cb65c0857}} 
+void $\ast$ \mbox{\hyperlink{classrev_1_1_g_l_buffer_a314ef90b0e12e3174fddaa8cb65c0857}{m\+\_\+data}} = nullptr
+\begin{DoxyCompactList}\small\item\em The data mapped to this buffer in G\+PU memory. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a9582ed032ec8f98c5821b3714706f990}\label{classrev_1_1_g_l_buffer_a9582ed032ec8f98c5821b3714706f990}} 
+G\+L\+::\+Buffer\+Type \mbox{\hyperlink{classrev_1_1_g_l_buffer_a9582ed032ec8f98c5821b3714706f990}{m\+\_\+buffer\+Type}} = G\+L\+::\+Buffer\+Type\+::k\+Invalid
+\begin{DoxyCompactList}\small\item\em Type of buffer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_ab563d8763466fea7079f655756af863a}\label{classrev_1_1_g_l_buffer_ab563d8763466fea7079f655756af863a}} 
+G\+L\+::\+Buffer\+Storage\+Mode \mbox{\hyperlink{classrev_1_1_g_l_buffer_ab563d8763466fea7079f655756af863a}{m\+\_\+storage\+Mode}}
+\begin{DoxyCompactList}\small\item\em The storage mode of the buffer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a8a820a358244b54dd74bde54aa5dc1b6}\label{classrev_1_1_g_l_buffer_a8a820a358244b54dd74bde54aa5dc1b6}} 
+size\+\_\+t \mbox{\hyperlink{classrev_1_1_g_l_buffer_a8a820a358244b54dd74bde54aa5dc1b6}{m\+\_\+storage\+Flags}} = 0
+\begin{DoxyCompactList}\small\item\em Storage flags for the buffer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a19992882c4866c7157b168c6a1ea2443}\label{classrev_1_1_g_l_buffer_a19992882c4866c7157b168c6a1ea2443}} 
+\mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} $\ast$ \mbox{\hyperlink{classrev_1_1_g_l_buffer_a19992882c4866c7157b168c6a1ea2443}{m\+\_\+context}} = nullptr
+\begin{DoxyCompactList}\small\item\em The Open\+GL context that this buffers is bound within. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_aef20119bde6aff11ffd23f3ea2131b86}\label{classrev_1_1_g_l_buffer_aef20119bde6aff11ffd23f3ea2131b86}} 
+class {\bfseries Shader\+Program}
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_ad822365c23ec45fc98317c00b733bb02}\label{classrev_1_1_g_l_buffer_ad822365c23ec45fc98317c00b733bb02}} 
+struct {\bfseries Uniform\+Buffer\+Data}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing a GL Buffer. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a36308de451b296fcb41db56e407a209d}\label{classrev_1_1_g_l_buffer_a36308de451b296fcb41db56e407a209d}} 
+\index{rev::GLBuffer@{rev::GLBuffer}!map@{map}}
+\index{map@{map}!rev::GLBuffer@{rev::GLBuffer}}
+\subsubsection{\texorpdfstring{map()}{map()}}
+{\footnotesize\ttfamily void $\ast$ rev\+::\+G\+L\+Buffer\+::map (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{offset\+Bytes,  }\item[{size\+\_\+t}]{size\+Bytes,  }\item[{size\+\_\+t}]{access = {\ttfamily size\+\_\+t(GL\+:\+:RangeBufferAccessFlag\+:\+:kRead~$\vert$~GL\+:\+:RangeBufferAccessFlag\+:\+:kWrite)},  }\item[{bool}]{do\+Bind = {\ttfamily true} }\end{DoxyParamCaption})}
+
+@params\mbox{[}in\mbox{]} size\+Bytes the offset in bytes to start map @params\mbox{[}in\mbox{]} size\+Bytes the size in bytes to map \mbox{\Hypertarget{classrev_1_1_g_l_buffer_a1b72e5c274dbe688738533bad385d176}\label{classrev_1_1_g_l_buffer_a1b72e5c274dbe688738533bad385d176}} 
+\index{rev::GLBuffer@{rev::GLBuffer}!setData@{setData}}
+\index{setData@{setData}!rev::GLBuffer@{rev::GLBuffer}}
+\subsubsection{\texorpdfstring{setData()}{setData()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void rev\+::\+G\+L\+Buffer\+::set\+Data (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{vec,  }\item[{size\+\_\+t}]{access = {\ttfamily size\+\_\+t(GL\+:\+:RangeBufferAccessFlag\+:\+:kInvalidateBuffer~$\vert$~GL\+:\+:RangeBufferAccessFlag\+:\+:kWrite)} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set data from a vector of inputs. 
+
+The G\+L\+\_\+\+M\+A\+P\+\_\+\+I\+N\+V\+A\+L\+I\+D\+A\+T\+E\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+B\+IT is apparently very helpful for write performance \begin{DoxyNote}{Note}
+This maps the buffer, which requires an unmap. Sub\+Data is recommended instead 
+\end{DoxyNote}
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a92d217358a53b80cf8b2ed9385f30faf}\label{classrev_1_1_g_l_buffer_a92d217358a53b80cf8b2ed9385f30faf}} 
+\index{rev::GLBuffer@{rev::GLBuffer}!subData@{subData}}
+\index{subData@{subData}!rev::GLBuffer@{rev::GLBuffer}}
+\subsubsection{\texorpdfstring{subData()}{subData()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void rev\+::\+G\+L\+Buffer\+::sub\+Data (\begin{DoxyParamCaption}\item[{const T \&}]{val,  }\item[{size\+\_\+t}]{offset }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Substitutes data into the buffer, no mapping or unmapping required. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em offset} & offset in number of elements T from the start of the buffer \\
+\hline
+\mbox{\texttt{ in}}  & {\em size} & number of elements T to substitute into the buffer \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_g_l_buffer_a81b6e473f0b5716fe5a2aeb24fde27ff}\label{classrev_1_1_g_l_buffer_a81b6e473f0b5716fe5a2aeb24fde27ff}} 
+\index{rev::GLBuffer@{rev::GLBuffer}!m\_bindingPoint@{m\_bindingPoint}}
+\index{m\_bindingPoint@{m\_bindingPoint}!rev::GLBuffer@{rev::GLBuffer}}
+\subsubsection{\texorpdfstring{m\_bindingPoint}{m\_bindingPoint}}
+{\footnotesize\ttfamily unsigned int rev\+::\+G\+L\+Buffer\+::m\+\_\+binding\+Point = std\+::numeric\+\_\+limits$<$unsigned int$>$\+::max()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The binding point of the buffer. 
+
+Binding point won\textquotesingle{}t change for GL buffers, but may be dynamic for other buffers 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/buffers/G\+G\+Lbuffer.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/buffers/G\+G\+L\+Buffer.\+cpp\end{DoxyCompactItemize}

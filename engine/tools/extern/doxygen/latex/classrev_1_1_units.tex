@@ -1,0 +1,136 @@
+\hypertarget{classrev_1_1_units}{}\section{rev\+::Units Class Reference}
+\label{classrev_1_1_units}\index{rev::Units@{rev::Units}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} containing helper methods unit conversions.  
+
+
+
+
+{\ttfamily \#include $<$G\+Units.\+h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{Indent}\textbf{ Static Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_units_a70202264f1f94271aa12a6fcbf3d05d6}\label{classrev_1_1_units_a70202264f1f94271aa12a6fcbf3d05d6}} 
+{\footnotesize template$<$auto From, auto To, typename T $>$ }\\static T {\bfseries Convert} (T v)
+\item 
+\mbox{\Hypertarget{classrev_1_1_units_a118c348ef169b009b6995b70983c0b73}\label{classrev_1_1_units_a118c348ef169b009b6995b70983c0b73}} 
+{\footnotesize template$<$auto From, typename T $>$ }\\static T {\bfseries Convert\+To\+SI} (T v)
+\item 
+\mbox{\Hypertarget{classrev_1_1_units_aaf02cdb807948b72e6e14b5009d41214}\label{classrev_1_1_units_aaf02cdb807948b72e6e14b5009d41214}} 
+{\footnotesize template$<$auto To, typename T $>$ }\\static T {\bfseries Convert\+From\+SI} (T v)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Protected Member Functions}
+\begin{Indent}\textbf{ Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_units_a1ddfa4d1892c42aac0ade0170ad0bd2a}\label{classrev_1_1_units_a1ddfa4d1892c42aac0ade0170ad0bd2a}} 
+{\footnotesize template$<$typename Enum\+Type , Enum\+Type From, Enum\+Type To, typename T $>$ }\\static T {\bfseries Convert\+\_\+impl} (T v)
+\item 
+\mbox{\Hypertarget{classrev_1_1_units_a56caedd024f859d0f882eb60975c479a}\label{classrev_1_1_units_a56caedd024f859d0f882eb60975c479a}} 
+{\footnotesize template$<$typename Enum\+Type , Enum\+Type From, typename T $>$ }\\static T {\bfseries Convert\+To\+S\+I\+\_\+impl} (T v)
+\item 
+\mbox{\Hypertarget{classrev_1_1_units_ac5ca7785602b9b27b5bdd12f176a6660}\label{classrev_1_1_units_ac5ca7785602b9b27b5bdd12f176a6660}} 
+{\footnotesize template$<$typename Enum\+Type , Enum\+Type From$>$ }\\static constexpr double {\bfseries To\+S\+I\+Factor} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_units_a065eda31613b31fd1b5117ac65bea970}\label{classrev_1_1_units_a065eda31613b31fd1b5117ac65bea970}} 
+{\footnotesize template$<$typename Enum\+Type , Enum\+Type To, typename T $>$ }\\static T {\bfseries Convert\+From\+S\+I\+\_\+impl} (T v)
+\item 
+\mbox{\Hypertarget{classrev_1_1_units_ab2da11ec496013489c972f15be10c19b}\label{classrev_1_1_units_ab2da11ec496013489c972f15be10c19b}} 
+{\footnotesize template$<$typename Enum\+Type , Enum\+Type To$>$ }\\static constexpr double {\bfseries From\+S\+I\+Factor} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_units_a1234e0bcca56d2db3ddf425083514fe5}\label{classrev_1_1_units_a1234e0bcca56d2db3ddf425083514fe5}} 
+{\footnotesize template$<$typename T $>$ }\\static constexpr size\+\_\+t {\bfseries round} (double x, double tolerance=1e-\/8)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Protected Attributes}
+\begin{Indent}\textbf{ Members}\par
+\begin{DoxyCompactItemize}
+\item 
+static constexpr std\+::array$<$ double,(size\+\_\+t) Angular\+Units\+::\+C\+O\+U\+NT $>$ {\bfseries s\+\_\+angular\+Conversions\+To\+SI}
+\item 
+static constexpr std\+::array$<$ double,(size\+\_\+t) Distance\+Units\+::\+C\+O\+U\+NT $>$ {\bfseries s\+\_\+distance\+Conversions\+To\+SI}
+\item 
+static constexpr std\+::array$<$ double,(size\+\_\+t) Time\+Units\+::\+C\+O\+U\+NT $>$ {\bfseries s\+\_\+time\+Conversions\+To\+SI}
+\item 
+static constexpr std\+::array$<$ double,(size\+\_\+t) Mass\+Units\+::\+C\+O\+U\+NT $>$ {\bfseries s\+\_\+mass\+Conversions\+To\+SI}
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} containing helper methods unit conversions. 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_units_a1ae287c40776aae4662690a4a8b62d62}\label{classrev_1_1_units_a1ae287c40776aae4662690a4a8b62d62}} 
+\index{rev::Units@{rev::Units}!s\_angularConversionsToSI@{s\_angularConversionsToSI}}
+\index{s\_angularConversionsToSI@{s\_angularConversionsToSI}!rev::Units@{rev::Units}}
+\subsubsection{\texorpdfstring{s\_angularConversionsToSI}{s\_angularConversionsToSI}}
+{\footnotesize\ttfamily constexpr std\+::array$<$double, (size\+\_\+t)Angular\+Units\+::\+C\+O\+U\+NT$>$ rev\+::\+Units\+::s\+\_\+angular\+Conversions\+To\+SI\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{        1.0, }
+\DoxyCodeLine{        3.141592653589793238462643383279 /180.0 }
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classrev_1_1_units_acd0345324ca516d02e96db64a11bb848}\label{classrev_1_1_units_acd0345324ca516d02e96db64a11bb848}} 
+\index{rev::Units@{rev::Units}!s\_distanceConversionsToSI@{s\_distanceConversionsToSI}}
+\index{s\_distanceConversionsToSI@{s\_distanceConversionsToSI}!rev::Units@{rev::Units}}
+\subsubsection{\texorpdfstring{s\_distanceConversionsToSI}{s\_distanceConversionsToSI}}
+{\footnotesize\ttfamily constexpr std\+::array$<$double, (size\+\_\+t)Distance\+Units\+::\+C\+O\+U\+NT$>$ rev\+::\+Units\+::s\+\_\+distance\+Conversions\+To\+SI\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{        1.0, }
+\DoxyCodeLine{        1000, }
+\DoxyCodeLine{        0.01, }
+\DoxyCodeLine{        0.0254, }
+\DoxyCodeLine{        0.3048, }
+\DoxyCodeLine{        1609.344 }
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classrev_1_1_units_a00a70329b9f072215520557662371575}\label{classrev_1_1_units_a00a70329b9f072215520557662371575}} 
+\index{rev::Units@{rev::Units}!s\_massConversionsToSI@{s\_massConversionsToSI}}
+\index{s\_massConversionsToSI@{s\_massConversionsToSI}!rev::Units@{rev::Units}}
+\subsubsection{\texorpdfstring{s\_massConversionsToSI}{s\_massConversionsToSI}}
+{\footnotesize\ttfamily constexpr std\+::array$<$double, (size\+\_\+t)Mass\+Units\+::\+C\+O\+U\+NT$>$ rev\+::\+Units\+::s\+\_\+mass\+Conversions\+To\+SI\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{        1.0, }
+\DoxyCodeLine{        0.45359237 }
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classrev_1_1_units_ab92b2c5efaaead55afafbf1888fe6ca6}\label{classrev_1_1_units_ab92b2c5efaaead55afafbf1888fe6ca6}} 
+\index{rev::Units@{rev::Units}!s\_timeConversionsToSI@{s\_timeConversionsToSI}}
+\index{s\_timeConversionsToSI@{s\_timeConversionsToSI}!rev::Units@{rev::Units}}
+\subsubsection{\texorpdfstring{s\_timeConversionsToSI}{s\_timeConversionsToSI}}
+{\footnotesize\ttfamily constexpr std\+::array$<$double, (size\+\_\+t)Time\+Units\+::\+C\+O\+U\+NT$>$ rev\+::\+Units\+::s\+\_\+time\+Conversions\+To\+SI\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{        1.0, }
+\DoxyCodeLine{        60.0, }
+\DoxyCodeLine{        3600.0, }
+\DoxyCodeLine{        24.0 * 3600.0, }
+\DoxyCodeLine{        7.0 * 24.0 * 3600.0, }
+\DoxyCodeLine{        365.25 * 24.0 * 3600.0 }
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/\mbox{\hyperlink{_g_units_8h}{G\+Units.\+h}}\end{DoxyCompactItemize}

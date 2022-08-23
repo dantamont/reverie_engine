@@ -1,0 +1,156 @@
+\hypertarget{classrev_1_1_sound_manager}{}\section{rev\+::Sound\+Manager Class Reference}
+\label{classrev_1_1_sound_manager}\index{rev::SoundManager@{rev::SoundManager}}
+
+
+\mbox{\hyperlink{classrev_1_1_sound_manager}{Sound\+Manager}} class.  
+
+
+
+
+{\ttfamily \#include $<$G\+Sound\+Manager.\+h$>$}
+
+Inheritance diagram for rev\+::Sound\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{classrev_1_1_sound_manager}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sound_manager_ab023a7891c2b5834320f82e3cd23ceaa}\label{classrev_1_1_sound_manager_ab023a7891c2b5834320f82e3cd23ceaa}} 
+{\bfseries Sound\+Manager} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$\mbox{\hyperlink{classrev_1_1_manager_a0fbd0df6b4f3caf42b557f9702f48171}{engine}})
+\item 
+\mbox{\Hypertarget{classrev_1_1_sound_manager_acc5934f158ca36921465ac54f90f7f7a}\label{classrev_1_1_sound_manager_acc5934f158ca36921465ac54f90f7f7a}} 
+{\bfseries $\sim$\+Sound\+Manager} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sound_manager_aed2e05f20c63268f5113283f12154a29}\label{classrev_1_1_sound_manager_aed2e05f20c63268f5113283f12154a29}} 
+\mbox{\hyperlink{class_so_loud_1_1_soloud}{So\+Loud\+::\+Soloud}} $\ast$ \mbox{\hyperlink{classrev_1_1_sound_manager_aed2e05f20c63268f5113283f12154a29}{so\+Loud}} ()
+\begin{DoxyCompactList}\small\item\em The So\+Loud main engine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sound_manager_a4b3859fada6bfbe856a817a4cc58ea65}\label{classrev_1_1_sound_manager_a4b3859fada6bfbe856a817a4cc58ea65}} 
+void \mbox{\hyperlink{classrev_1_1_sound_manager_a4b3859fada6bfbe856a817a4cc58ea65}{set\+Listener}} (\mbox{\hyperlink{classrev_1_1_audio_listener_component}{Audio\+Listener\+Component}} $\ast$listener)
+\begin{DoxyCompactList}\small\item\em Set the listener for the scenario. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sound_manager_a255105f169d107c7d0e3bacab3799fe3}\label{classrev_1_1_sound_manager_a255105f169d107c7d0e3bacab3799fe3}} 
+void \mbox{\hyperlink{classrev_1_1_sound_manager_a255105f169d107c7d0e3bacab3799fe3}{add\+Command}} (\mbox{\hyperlink{classrev_1_1_audio_command}{Audio\+Command}} $\ast$command)
+\begin{DoxyCompactList}\small\item\em Add audio command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sound_manager_a6527212f6322a3f26fb22793a64b004d}\label{classrev_1_1_sound_manager_a6527212f6322a3f26fb22793a64b004d}} 
+void \mbox{\hyperlink{classrev_1_1_sound_manager_a6527212f6322a3f26fb22793a64b004d}{add\+Source}} (\mbox{\hyperlink{classrev_1_1_audio_source_component}{Audio\+Source\+Component}} $\ast$source)
+\begin{DoxyCompactList}\small\item\em Add an audio source component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sound_manager_ae1642be1b39bea10fc861778c6bc26d5}\label{classrev_1_1_sound_manager_ae1642be1b39bea10fc861778c6bc26d5}} 
+void \mbox{\hyperlink{classrev_1_1_sound_manager_ae1642be1b39bea10fc861778c6bc26d5}{remove\+Source}} (\mbox{\hyperlink{classrev_1_1_audio_source_component}{Audio\+Source\+Component}} $\ast$source)
+\begin{DoxyCompactList}\small\item\em remove an audio source component \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sound_manager_a15a3ab87e22cdd0143aa659c412732b4}\label{classrev_1_1_sound_manager_a15a3ab87e22cdd0143aa659c412732b4}} 
+void \mbox{\hyperlink{classrev_1_1_sound_manager_a15a3ab87e22cdd0143aa659c412732b4}{clear}} ()
+\begin{DoxyCompactList}\small\item\em Clear of all sounds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_sound_manager_a1b4c69f6b4e31741ddf76595004fd0fe}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_sound_manager_a00de07c95c3a3993ec7c2008cc2c0db3}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sound_manager_a14432c1e65156956d1e8c99e02bd964a}\label{classrev_1_1_sound_manager_a14432c1e65156956d1e8c99e02bd964a}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_sound_manager_a14432c1e65156956d1e8c99e02bd964a}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sound_manager_a5192556ef6bfa8d904b47568928d10ef}\label{classrev_1_1_sound_manager_a5192556ef6bfa8d904b47568928d10ef}} 
+virtual void \mbox{\hyperlink{classrev_1_1_sound_manager_a5192556ef6bfa8d904b47568928d10ef}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sound_manager_a149fafb76f4c64acfabce60b2b3f27ad}\label{classrev_1_1_sound_manager_a149fafb76f4c64acfabce60b2b3f27ad}} 
+void \mbox{\hyperlink{classrev_1_1_sound_manager_a149fafb76f4c64acfabce60b2b3f27ad}{audio\+Thread\+Callback}} ()
+\begin{DoxyCompactList}\small\item\em Callback controlling the audio thread. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sound_manager_a1681d7a23a41d5f1a9b5c71d1adf837e}\label{classrev_1_1_sound_manager_a1681d7a23a41d5f1a9b5c71d1adf837e}} 
+\mbox{\hyperlink{class_so_loud_1_1_soloud}{So\+Loud\+::\+Soloud}} $\ast$ \mbox{\hyperlink{classrev_1_1_sound_manager_a1681d7a23a41d5f1a9b5c71d1adf837e}{m\+\_\+so\+Loud}}
+\begin{DoxyCompactList}\small\item\em So\+Loud engine. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sound_manager_a87347a219cf1e089e88b560739eaeafa}\label{classrev_1_1_sound_manager_a87347a219cf1e089e88b560739eaeafa}} 
+\mbox{\hyperlink{classrev_1_1_audio_listener_component}{Audio\+Listener\+Component}} $\ast$ \mbox{\hyperlink{classrev_1_1_sound_manager_a87347a219cf1e089e88b560739eaeafa}{m\+\_\+listener}} = nullptr
+\begin{DoxyCompactList}\small\item\em The audio listener. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sound_manager_a8fe1c3da866a506bd284aa31dec9b206}\label{classrev_1_1_sound_manager_a8fe1c3da866a506bd284aa31dec9b206}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_audio_source_component}{Audio\+Source\+Component}} $\ast$ $>$ \mbox{\hyperlink{classrev_1_1_sound_manager_a8fe1c3da866a506bd284aa31dec9b206}{m\+\_\+source\+Components}}
+\begin{DoxyCompactList}\small\item\em All audio sources in all scenes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sound_manager_a2ee975dbd48f9a67eeadd93e47643ad4}\label{classrev_1_1_sound_manager_a2ee975dbd48f9a67eeadd93e47643ad4}} 
+std\+::vector$<$ \mbox{\hyperlink{class_so_loud_1_1_bus}{So\+Loud\+::\+Bus}} $\ast$ $>$ \mbox{\hyperlink{classrev_1_1_sound_manager_a2ee975dbd48f9a67eeadd93e47643ad4}{m\+\_\+buses}}
+\begin{DoxyCompactList}\small\item\em Audio buses. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sound_manager_ab8c068138cf36ea153175bc53b0cac8b}\label{classrev_1_1_sound_manager_ab8c068138cf36ea153175bc53b0cac8b}} 
+std\+::shared\+\_\+mutex \mbox{\hyperlink{classrev_1_1_sound_manager_ab8c068138cf36ea153175bc53b0cac8b}{m\+\_\+command\+Mutex}}
+\begin{DoxyCompactList}\small\item\em The mutex used for the audio command queue. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sound_manager_aae19c4694749931c0cfe339261502435}\label{classrev_1_1_sound_manager_aae19c4694749931c0cfe339261502435}} 
+std\+::shared\+\_\+mutex \mbox{\hyperlink{classrev_1_1_sound_manager_aae19c4694749931c0cfe339261502435}{m\+\_\+source\+Mutex}}
+\begin{DoxyCompactList}\small\item\em The mutex used to manage audio sources. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sound_manager_a5b87e5873e70adf7e1aacacec18d81ba}\label{classrev_1_1_sound_manager_a5b87e5873e70adf7e1aacacec18d81ba}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_audio_command}{Audio\+Command}} $\ast$ $>$ \mbox{\hyperlink{classrev_1_1_sound_manager_a5b87e5873e70adf7e1aacacec18d81ba}{m\+\_\+command\+Queue}}
+\begin{DoxyCompactList}\small\item\em Queue of received audio commands. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sound_manager_ac20c89ee674976352bd68391a6b68054}\label{classrev_1_1_sound_manager_ac20c89ee674976352bd68391a6b68054}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_audio_command}{Audio\+Command}} $\ast$ $>$ \mbox{\hyperlink{classrev_1_1_sound_manager_ac20c89ee674976352bd68391a6b68054}{m\+\_\+audio\+Commands}}
+\begin{DoxyCompactList}\small\item\em Audio commands to perform. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sound_manager_add4777424f4f16b3858cc019033bb610}\label{classrev_1_1_sound_manager_add4777424f4f16b3858cc019033bb610}} 
+std\+::thread \mbox{\hyperlink{classrev_1_1_sound_manager_add4777424f4f16b3858cc019033bb610}{m\+\_\+audio\+Thread}}
+\begin{DoxyCompactList}\small\item\em The audio thread. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sound_manager_afdc92d7f4cde0b683bab4746fbcb720a}\label{classrev_1_1_sound_manager_afdc92d7f4cde0b683bab4746fbcb720a}} 
+std\+::atomic\+\_\+bool \mbox{\hyperlink{classrev_1_1_sound_manager_afdc92d7f4cde0b683bab4746fbcb720a}{m\+\_\+running}} = true
+\begin{DoxyCompactList}\small\item\em Used to shut down the thread. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{classrev_1_1_sound_manager}{Sound\+Manager}} class. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_sound_manager_a1b4c69f6b4e31741ddf76595004fd0fe}\label{classrev_1_1_sound_manager_a1b4c69f6b4e31741ddf76595004fd0fe}} 
+\index{rev::SoundManager@{rev::SoundManager}!className@{className}}
+\index{className@{className}!rev::SoundManager@{rev::SoundManager}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Sound\+Manager\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_service_a484d71757ea6e8780488602cb421a4a5}{rev\+::\+Service}}.
+
+\mbox{\Hypertarget{classrev_1_1_sound_manager_a00de07c95c3a3993ec7c2008cc2c0db3}\label{classrev_1_1_sound_manager_a00de07c95c3a3993ec7c2008cc2c0db3}} 
+\index{rev::SoundManager@{rev::SoundManager}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::SoundManager@{rev::SoundManager}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Sound\+Manager\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_service_a831f5bf8c53584ec830aaee38ea58e7b}{rev\+::\+Service}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/sound/G\+Sound\+Manager.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/sound/G\+Sound\+Manager.\+cpp\end{DoxyCompactItemize}

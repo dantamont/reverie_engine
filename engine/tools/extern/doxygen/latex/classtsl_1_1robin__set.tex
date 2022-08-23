@@ -1,0 +1,548 @@
+\hypertarget{classtsl_1_1robin__set}{}\section{tsl\+::robin\+\_\+set$<$ Key, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$ Class Template Reference}
+\label{classtsl_1_1robin__set}\index{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}}
+
+
+{\ttfamily \#include $<$robin\+\_\+set.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a8db3e3872aca6e243c896f88629c1800}\label{classtsl_1_1robin__set_a8db3e3872aca6e243c896f88629c1800}} 
+using {\bfseries key\+\_\+type} = typename ht\+::key\+\_\+type
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a725215ee4af265be5e8b34278378fd33}\label{classtsl_1_1robin__set_a725215ee4af265be5e8b34278378fd33}} 
+using {\bfseries value\+\_\+type} = typename ht\+::value\+\_\+type
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a5190354763170ba325832a003505209a}\label{classtsl_1_1robin__set_a5190354763170ba325832a003505209a}} 
+using {\bfseries size\+\_\+type} = typename ht\+::size\+\_\+type
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_ad077b340c8530c7d0f44d079944ca412}\label{classtsl_1_1robin__set_ad077b340c8530c7d0f44d079944ca412}} 
+using {\bfseries difference\+\_\+type} = typename ht\+::difference\+\_\+type
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a2f7364634a24fc8621e75a786a3b8eb3}\label{classtsl_1_1robin__set_a2f7364634a24fc8621e75a786a3b8eb3}} 
+using {\bfseries hasher} = typename ht\+::hasher
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a87a4c66bea6d2374a4e672a07dab9cc6}\label{classtsl_1_1robin__set_a87a4c66bea6d2374a4e672a07dab9cc6}} 
+using {\bfseries key\+\_\+equal} = typename ht\+::key\+\_\+equal
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_ac3df0f3c733fcc6a57eb1a4f8e5cd1e2}\label{classtsl_1_1robin__set_ac3df0f3c733fcc6a57eb1a4f8e5cd1e2}} 
+using {\bfseries allocator\+\_\+type} = typename ht\+::allocator\+\_\+type
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a73d6e0f76008ad68612fb31b2199f13b}\label{classtsl_1_1robin__set_a73d6e0f76008ad68612fb31b2199f13b}} 
+using {\bfseries reference} = typename ht\+::reference
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a3059ef3803dcf3bf450ee3f0f8baef5a}\label{classtsl_1_1robin__set_a3059ef3803dcf3bf450ee3f0f8baef5a}} 
+using {\bfseries const\+\_\+reference} = typename ht\+::const\+\_\+reference
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a141684c4bc5ec83649a2864ab5dcd461}\label{classtsl_1_1robin__set_a141684c4bc5ec83649a2864ab5dcd461}} 
+using {\bfseries pointer} = typename ht\+::pointer
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_abb4e88e615e8086808a6d90315c5dbbe}\label{classtsl_1_1robin__set_abb4e88e615e8086808a6d90315c5dbbe}} 
+using {\bfseries const\+\_\+pointer} = typename ht\+::const\+\_\+pointer
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a7f039d680a15fc92ea579474f13c19bc}\label{classtsl_1_1robin__set_a7f039d680a15fc92ea579474f13c19bc}} 
+using {\bfseries iterator} = typename ht\+::iterator
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a60989fb703380eafcf4f952028045189}\label{classtsl_1_1robin__set_a60989fb703380eafcf4f952028045189}} 
+using {\bfseries const\+\_\+iterator} = typename ht\+::const\+\_\+iterator
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a2244e9c1cdd44e4ff52ea6f77c8ac4c8}\label{classtsl_1_1robin__set_a2244e9c1cdd44e4ff52ea6f77c8ac4c8}} 
+{\bfseries robin\+\_\+set} (size\+\_\+type bucket\+\_\+count, const Hash \&hash=Hash(), const Key\+Equal \&equal=Key\+Equal(), const Allocator \&alloc=Allocator())
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_aaf2f02ec405d886bf740d6812a232a25}\label{classtsl_1_1robin__set_aaf2f02ec405d886bf740d6812a232a25}} 
+{\bfseries robin\+\_\+set} (size\+\_\+type bucket\+\_\+count, const Allocator \&alloc)
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a64ce804ce882c7b6ad99fbe342cba2bf}\label{classtsl_1_1robin__set_a64ce804ce882c7b6ad99fbe342cba2bf}} 
+{\bfseries robin\+\_\+set} (size\+\_\+type bucket\+\_\+count, const Hash \&hash, const Allocator \&alloc)
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_acc606f1ab1714de40574640d8ab4b45e}\label{classtsl_1_1robin__set_acc606f1ab1714de40574640d8ab4b45e}} 
+{\bfseries robin\+\_\+set} (const Allocator \&alloc)
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_ad5f2ffb33b7fa2a855ee6fc742b8840e}\label{classtsl_1_1robin__set_ad5f2ffb33b7fa2a855ee6fc742b8840e}} 
+{\footnotesize template$<$class Input\+It $>$ }\\{\bfseries robin\+\_\+set} (Input\+It first, Input\+It last, size\+\_\+type bucket\+\_\+count=ht\+::\+D\+E\+F\+A\+U\+L\+T\+\_\+\+I\+N\+I\+T\+\_\+\+B\+U\+C\+K\+E\+T\+S\+\_\+\+S\+I\+ZE, const Hash \&hash=Hash(), const Key\+Equal \&equal=Key\+Equal(), const Allocator \&alloc=Allocator())
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a05f4783d8f4573141c52f9a6e91c6d23}\label{classtsl_1_1robin__set_a05f4783d8f4573141c52f9a6e91c6d23}} 
+{\footnotesize template$<$class Input\+It $>$ }\\{\bfseries robin\+\_\+set} (Input\+It first, Input\+It last, size\+\_\+type bucket\+\_\+count, const Allocator \&alloc)
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a602130e216f8e8ee1da2d1dc359298cb}\label{classtsl_1_1robin__set_a602130e216f8e8ee1da2d1dc359298cb}} 
+{\footnotesize template$<$class Input\+It $>$ }\\{\bfseries robin\+\_\+set} (Input\+It first, Input\+It last, size\+\_\+type bucket\+\_\+count, const Hash \&hash, const Allocator \&alloc)
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_ab296424a8ac50583c5b6121d39e51c44}\label{classtsl_1_1robin__set_ab296424a8ac50583c5b6121d39e51c44}} 
+{\bfseries robin\+\_\+set} (std\+::initializer\+\_\+list$<$ value\+\_\+type $>$ init, size\+\_\+type bucket\+\_\+count=ht\+::\+D\+E\+F\+A\+U\+L\+T\+\_\+\+I\+N\+I\+T\+\_\+\+B\+U\+C\+K\+E\+T\+S\+\_\+\+S\+I\+ZE, const Hash \&hash=Hash(), const Key\+Equal \&equal=Key\+Equal(), const Allocator \&alloc=Allocator())
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a27ddaae9e5764f679d41c298f95e9c5a}\label{classtsl_1_1robin__set_a27ddaae9e5764f679d41c298f95e9c5a}} 
+{\bfseries robin\+\_\+set} (std\+::initializer\+\_\+list$<$ value\+\_\+type $>$ init, size\+\_\+type bucket\+\_\+count, const Allocator \&alloc)
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_aece3c79d29353620376c0cb7dca59d4a}\label{classtsl_1_1robin__set_aece3c79d29353620376c0cb7dca59d4a}} 
+{\bfseries robin\+\_\+set} (std\+::initializer\+\_\+list$<$ value\+\_\+type $>$ init, size\+\_\+type bucket\+\_\+count, const Hash \&hash, const Allocator \&alloc)
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_ae312ab98399e06c3340f40bd78fdd0b5}\label{classtsl_1_1robin__set_ae312ab98399e06c3340f40bd78fdd0b5}} 
+\mbox{\hyperlink{classtsl_1_1robin__set}{robin\+\_\+set}} \& {\bfseries operator=} (std\+::initializer\+\_\+list$<$ value\+\_\+type $>$ ilist)
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_aaf6d53ce36f50c1d755afd82e37e6e17}\label{classtsl_1_1robin__set_aaf6d53ce36f50c1d755afd82e37e6e17}} 
+allocator\+\_\+type {\bfseries get\+\_\+allocator} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a4df323d6a0af575a9921bafbb18cc538}\label{classtsl_1_1robin__set_a4df323d6a0af575a9921bafbb18cc538}} 
+iterator {\bfseries begin} () noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_aa8d15bd185f748c2e2cb6a78202f8601}\label{classtsl_1_1robin__set_aa8d15bd185f748c2e2cb6a78202f8601}} 
+const\+\_\+iterator {\bfseries begin} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a357c4e870ef1d02f91b838d6c4f94561}\label{classtsl_1_1robin__set_a357c4e870ef1d02f91b838d6c4f94561}} 
+const\+\_\+iterator {\bfseries cbegin} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a84a8a821344c1043c183d7fa91b9aefa}\label{classtsl_1_1robin__set_a84a8a821344c1043c183d7fa91b9aefa}} 
+iterator {\bfseries end} () noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_aa9a2001228afe69773cecb2dc41d2c7e}\label{classtsl_1_1robin__set_aa9a2001228afe69773cecb2dc41d2c7e}} 
+const\+\_\+iterator {\bfseries end} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a9b12618040e15dd9eecd3bdd4a6e678f}\label{classtsl_1_1robin__set_a9b12618040e15dd9eecd3bdd4a6e678f}} 
+const\+\_\+iterator {\bfseries cend} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a2b8925720dcc1fb35592812c2ecb533d}\label{classtsl_1_1robin__set_a2b8925720dcc1fb35592812c2ecb533d}} 
+bool {\bfseries empty} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_af7b7677dfd5e8c53af40cfdc0c9879f3}\label{classtsl_1_1robin__set_af7b7677dfd5e8c53af40cfdc0c9879f3}} 
+size\+\_\+type {\bfseries size} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a3c76037a81ef5125732551510a72aac2}\label{classtsl_1_1robin__set_a3c76037a81ef5125732551510a72aac2}} 
+size\+\_\+type {\bfseries max\+\_\+size} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_af09c6123a04d2bfdf3b8005ac1d63d4f}\label{classtsl_1_1robin__set_af09c6123a04d2bfdf3b8005ac1d63d4f}} 
+void {\bfseries clear} () noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_aec5148db14516e0025f7a791e98f770e}\label{classtsl_1_1robin__set_aec5148db14516e0025f7a791e98f770e}} 
+std\+::pair$<$ iterator, bool $>$ {\bfseries insert} (const value\+\_\+type \&value)
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_aea6b9eb40065766503f642bdc24807d9}\label{classtsl_1_1robin__set_aea6b9eb40065766503f642bdc24807d9}} 
+std\+::pair$<$ iterator, bool $>$ {\bfseries insert} (value\+\_\+type \&\&value)
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a37befa5831834dbc09c1f863643c5cb0}\label{classtsl_1_1robin__set_a37befa5831834dbc09c1f863643c5cb0}} 
+iterator {\bfseries insert} (const\+\_\+iterator hint, const value\+\_\+type \&value)
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a3fa90cb08e8ab9e489fa58ae094b02ff}\label{classtsl_1_1robin__set_a3fa90cb08e8ab9e489fa58ae094b02ff}} 
+iterator {\bfseries insert} (const\+\_\+iterator hint, value\+\_\+type \&\&value)
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_ae7db741c23f1f3e1ee50ea22115216c5}\label{classtsl_1_1robin__set_ae7db741c23f1f3e1ee50ea22115216c5}} 
+{\footnotesize template$<$class Input\+It $>$ }\\void {\bfseries insert} (Input\+It first, Input\+It last)
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_ad3606f2531057986a11227dffda103cf}\label{classtsl_1_1robin__set_ad3606f2531057986a11227dffda103cf}} 
+void {\bfseries insert} (std\+::initializer\+\_\+list$<$ value\+\_\+type $>$ ilist)
+\item 
+{\footnotesize template$<$class... Args$>$ }\\std\+::pair$<$ iterator, bool $>$ \mbox{\hyperlink{classtsl_1_1robin__set_a350aac536c0c747908707788035f2d92}{emplace}} (Args \&\&... args)
+\item 
+{\footnotesize template$<$class... Args$>$ }\\iterator \mbox{\hyperlink{classtsl_1_1robin__set_abc4f08f83e5d7793a1fc9360575788cf}{emplace\+\_\+hint}} (const\+\_\+iterator hint, Args \&\&... args)
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a13526fc19edf624c6d347f8375b4af5c}\label{classtsl_1_1robin__set_a13526fc19edf624c6d347f8375b4af5c}} 
+iterator {\bfseries erase} (iterator pos)
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a92ea2d1690af39eaea093d166a654a82}\label{classtsl_1_1robin__set_a92ea2d1690af39eaea093d166a654a82}} 
+iterator {\bfseries erase} (const\+\_\+iterator pos)
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a2a32f993c7dc282585836ac88aa479c2}\label{classtsl_1_1robin__set_a2a32f993c7dc282585836ac88aa479c2}} 
+iterator {\bfseries erase} (const\+\_\+iterator first, const\+\_\+iterator last)
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a662db65973b6628b59130592c38187d4}\label{classtsl_1_1robin__set_a662db65973b6628b59130592c38187d4}} 
+size\+\_\+type {\bfseries erase} (const key\+\_\+type \&key)
+\item 
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1robin__set_a4d81adc873ab3959505e93a462b541c9}{erase}} (const key\+\_\+type \&key, std\+::size\+\_\+t precalculated\+\_\+hash)
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\size\+\_\+type \mbox{\hyperlink{classtsl_1_1robin__set_a73ab9452fa9af3e897603dcb8df86648}{erase}} (const K \&key)
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\size\+\_\+type \mbox{\hyperlink{classtsl_1_1robin__set_ac32644a82963c42443757a3a9f7b94d2}{erase}} (const K \&key, std\+::size\+\_\+t precalculated\+\_\+hash)
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a87f719ff247e2b90e73800d5f5f73036}\label{classtsl_1_1robin__set_a87f719ff247e2b90e73800d5f5f73036}} 
+void {\bfseries swap} (\mbox{\hyperlink{classtsl_1_1robin__set}{robin\+\_\+set}} \&other)
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a10b45514e20f2916a386d62fb3adc2ae}\label{classtsl_1_1robin__set_a10b45514e20f2916a386d62fb3adc2ae}} 
+size\+\_\+type {\bfseries count} (const Key \&key) const
+\item 
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1robin__set_af62044d0daa7d75e90ee002f38b9837a}{count}} (const Key \&key, std\+::size\+\_\+t precalculated\+\_\+hash) const
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\size\+\_\+type \mbox{\hyperlink{classtsl_1_1robin__set_a91ae518053a1ba2ed995498e27cd8649}{count}} (const K \&key) const
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\size\+\_\+type \mbox{\hyperlink{classtsl_1_1robin__set_a99c7d370f9c022a7054b2fc966ecade4}{count}} (const K \&key, std\+::size\+\_\+t precalculated\+\_\+hash) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a6984f54d7a443994e5e27e5e782604d5}\label{classtsl_1_1robin__set_a6984f54d7a443994e5e27e5e782604d5}} 
+iterator {\bfseries find} (const Key \&key)
+\item 
+iterator \mbox{\hyperlink{classtsl_1_1robin__set_a764ae0fbf914909a8d7810b7a95fb3c1}{find}} (const Key \&key, std\+::size\+\_\+t precalculated\+\_\+hash)
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a24e16da5428f23f53572ae5e701e8c71}\label{classtsl_1_1robin__set_a24e16da5428f23f53572ae5e701e8c71}} 
+const\+\_\+iterator {\bfseries find} (const Key \&key) const
+\item 
+const\+\_\+iterator \mbox{\hyperlink{classtsl_1_1robin__set_a76283e2c9497ee7d4e5eddfdb23d23bb}{find}} (const Key \&key, std\+::size\+\_\+t precalculated\+\_\+hash) const
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\iterator \mbox{\hyperlink{classtsl_1_1robin__set_ab715840532a8616bed9a39f9d92b3b17}{find}} (const K \&key)
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\iterator \mbox{\hyperlink{classtsl_1_1robin__set_a6252e181b2bb806733a5e45b90f67d35}{find}} (const K \&key, std\+::size\+\_\+t precalculated\+\_\+hash)
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\const\+\_\+iterator \mbox{\hyperlink{classtsl_1_1robin__set_a19a90ecba2c0ff2505960501375931ea}{find}} (const K \&key) const
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\const\+\_\+iterator \mbox{\hyperlink{classtsl_1_1robin__set_a22f4c432414bf50d914f382e4965a018}{find}} (const K \&key, std\+::size\+\_\+t precalculated\+\_\+hash) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_ae9ce9304b7ebbb92b2b8ae961f3d89bf}\label{classtsl_1_1robin__set_ae9ce9304b7ebbb92b2b8ae961f3d89bf}} 
+bool {\bfseries contains} (const Key \&key) const
+\item 
+bool \mbox{\hyperlink{classtsl_1_1robin__set_adbd4d95859060848234156f4d649acd8}{contains}} (const Key \&key, std\+::size\+\_\+t precalculated\+\_\+hash) const
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\bool \mbox{\hyperlink{classtsl_1_1robin__set_aa71372dea154b9ab713a27aa52552439}{contains}} (const K \&key) const
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\bool \mbox{\hyperlink{classtsl_1_1robin__set_aef184b7334d440fb7ff915205bfbfb34}{contains}} (const K \&key, std\+::size\+\_\+t precalculated\+\_\+hash) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a9ca20230c0c5d01285751024a4b798af}\label{classtsl_1_1robin__set_a9ca20230c0c5d01285751024a4b798af}} 
+std\+::pair$<$ iterator, iterator $>$ {\bfseries equal\+\_\+range} (const Key \&key)
+\item 
+std\+::pair$<$ iterator, iterator $>$ \mbox{\hyperlink{classtsl_1_1robin__set_a1c863ebce6a1bc4c2ad69e67f1331661}{equal\+\_\+range}} (const Key \&key, std\+::size\+\_\+t precalculated\+\_\+hash)
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_ad3cded602ca0cc632e8df3ca1d84547a}\label{classtsl_1_1robin__set_ad3cded602ca0cc632e8df3ca1d84547a}} 
+std\+::pair$<$ const\+\_\+iterator, const\+\_\+iterator $>$ {\bfseries equal\+\_\+range} (const Key \&key) const
+\item 
+std\+::pair$<$ const\+\_\+iterator, const\+\_\+iterator $>$ \mbox{\hyperlink{classtsl_1_1robin__set_a2c006d03e4786428ad08a543cc052170}{equal\+\_\+range}} (const Key \&key, std\+::size\+\_\+t precalculated\+\_\+hash) const
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\std\+::pair$<$ iterator, iterator $>$ \mbox{\hyperlink{classtsl_1_1robin__set_aea679f6fa9dee2077410a462dce63b93}{equal\+\_\+range}} (const K \&key)
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\std\+::pair$<$ iterator, iterator $>$ \mbox{\hyperlink{classtsl_1_1robin__set_aea03fafd11ec0cda987f105f191deaaf}{equal\+\_\+range}} (const K \&key, std\+::size\+\_\+t precalculated\+\_\+hash)
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\std\+::pair$<$ const\+\_\+iterator, const\+\_\+iterator $>$ \mbox{\hyperlink{classtsl_1_1robin__set_ae94df1b2b5d47ac44eecca743871c6c5}{equal\+\_\+range}} (const K \&key) const
+\item 
+{\footnotesize template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\std\+::pair$<$ const\+\_\+iterator, const\+\_\+iterator $>$ \mbox{\hyperlink{classtsl_1_1robin__set_a2ca1a7918565492dcc5a870186220985}{equal\+\_\+range}} (const K \&key, std\+::size\+\_\+t precalculated\+\_\+hash) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a91f7299125dad4881cf1fc8a313cbee7}\label{classtsl_1_1robin__set_a91f7299125dad4881cf1fc8a313cbee7}} 
+size\+\_\+type {\bfseries bucket\+\_\+count} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_af63a2baee29b4680f49e55f9f8e8b2ab}\label{classtsl_1_1robin__set_af63a2baee29b4680f49e55f9f8e8b2ab}} 
+size\+\_\+type {\bfseries max\+\_\+bucket\+\_\+count} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a5096d0194960278c43b23382b93c9f8f}\label{classtsl_1_1robin__set_a5096d0194960278c43b23382b93c9f8f}} 
+float {\bfseries load\+\_\+factor} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_ac59a301ebfa46d5fcd35ce529008deb5}\label{classtsl_1_1robin__set_ac59a301ebfa46d5fcd35ce529008deb5}} 
+float {\bfseries min\+\_\+load\+\_\+factor} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_afa1e914c188cba804978004b25e39abe}\label{classtsl_1_1robin__set_afa1e914c188cba804978004b25e39abe}} 
+float {\bfseries max\+\_\+load\+\_\+factor} () const
+\item 
+void \mbox{\hyperlink{classtsl_1_1robin__set_a8a57104ad0c718dcf4a3d94fb94e8cb1}{min\+\_\+load\+\_\+factor}} (float ml)
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a3ecaa65ec84bf3b33aecc891ece46b6a}\label{classtsl_1_1robin__set_a3ecaa65ec84bf3b33aecc891ece46b6a}} 
+void {\bfseries max\+\_\+load\+\_\+factor} (float ml)
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a299dc10b59d8fea28916790b3e8c0bdb}\label{classtsl_1_1robin__set_a299dc10b59d8fea28916790b3e8c0bdb}} 
+void {\bfseries rehash} (size\+\_\+type count)
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_ac7d16e96e07b5618cd330b801b822398}\label{classtsl_1_1robin__set_ac7d16e96e07b5618cd330b801b822398}} 
+void {\bfseries reserve} (size\+\_\+type count)
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_af87c41abcb19a1442b4038db6edeeec3}\label{classtsl_1_1robin__set_af87c41abcb19a1442b4038db6edeeec3}} 
+hasher {\bfseries hash\+\_\+function} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a7734224edf25d5342a490f22560a9a04}\label{classtsl_1_1robin__set_a7734224edf25d5342a490f22560a9a04}} 
+key\+\_\+equal {\bfseries key\+\_\+eq} () const
+\item 
+iterator \mbox{\hyperlink{classtsl_1_1robin__set_aebd376e4762e1e4091df9cc19917334e}{mutable\+\_\+iterator}} (const\+\_\+iterator pos)
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a55606bf1468f27f0d3b49785b48259f9}\label{classtsl_1_1robin__set_a55606bf1468f27f0d3b49785b48259f9}} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{classtsl_1_1robin__set}{robin\+\_\+set}} \&lhs, const \mbox{\hyperlink{classtsl_1_1robin__set}{robin\+\_\+set}} \&rhs)
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_a76f08c253db4505b664796a57a404ec5}\label{classtsl_1_1robin__set_a76f08c253db4505b664796a57a404ec5}} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{classtsl_1_1robin__set}{robin\+\_\+set}} \&lhs, const \mbox{\hyperlink{classtsl_1_1robin__set}{robin\+\_\+set}} \&rhs)
+\item 
+\mbox{\Hypertarget{classtsl_1_1robin__set_aac30ae29e5971fd44ddc98bbdd334c84}\label{classtsl_1_1robin__set_aac30ae29e5971fd44ddc98bbdd334c84}} 
+void {\bfseries swap} (\mbox{\hyperlink{classtsl_1_1robin__set}{robin\+\_\+set}} \&lhs, \mbox{\hyperlink{classtsl_1_1robin__set}{robin\+\_\+set}} \&rhs)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class Key, class Hash = std\+::hash$<$\+Key$>$, class Key\+Equal = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator = std\+::allocator$<$\+Key$>$, bool Store\+Hash = false, class Growth\+Policy = tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy$<$2$>$$>$\newline
+class tsl\+::robin\+\_\+set$<$ Key, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$}
+
+Implementation of a hash set using open-\/addressing and the robin hood hashing algorithm with backward shift deletion.
+
+For operations modifying the hash set (insert, erase, rehash, ...), the strong exception guarantee is only guaranteed when the expression {\ttfamily std\+::is\+\_\+nothrow\+\_\+swappable$<$Key$>$\+::value \&\& std\+::is\+\_\+nothrow\+\_\+move\+\_\+constructible$<$Key$>$\+::value} is true, otherwise if an exception is thrown during the swap or the move, the hash set may end up in a undefined state. Per the standard a {\ttfamily Key} with a noexcept copy constructor and no move constructor also satisfies the {\ttfamily std\+::is\+\_\+nothrow\+\_\+move\+\_\+constructible$<$Key$>$\+::value} criterion (and will thus guarantee the strong exception for the set).
+
+When {\ttfamily Store\+Hash} is true, 32 bits of the hash are stored alongside the values. It can improve the performance during lookups if the {\ttfamily Key\+Equal} function takes time (or engenders a cache-\/miss for example) as we then compare the stored hashes before comparing the keys. When {\ttfamily \mbox{\hyperlink{classtsl_1_1rh_1_1power__of__two__growth__policy}{tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy}}} is used as {\ttfamily Growth\+Policy}, it may also speed-\/up the rehash process as we can avoid to recalculate the hash. When it is detected that storing the hash will not incur any memory penalty due to alignment (i.\+e. {\ttfamily sizeof(\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1bucket__entry}{tsl\+::detail\+\_\+robin\+\_\+hash\+::bucket\+\_\+entry}}$<$Value\+Type, true$>$) == sizeof(\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1bucket__entry}{tsl\+::detail\+\_\+robin\+\_\+hash\+::bucket\+\_\+entry}}$<$Value\+Type, false$>$)}) and {\ttfamily \mbox{\hyperlink{classtsl_1_1rh_1_1power__of__two__growth__policy}{tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy}}} is used, the hash will be stored even if {\ttfamily Store\+Hash} is false so that we can speed-\/up the rehash (but it will not be used on lookups unless {\ttfamily Store\+Hash} is true).
+
+{\ttfamily Growth\+Policy} defines how the set grows and consequently how a hash value is mapped to a bucket. By default the set uses {\ttfamily \mbox{\hyperlink{classtsl_1_1rh_1_1power__of__two__growth__policy}{tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy}}}. This policy keeps the number of buckets to a power of two and uses a mask to set the hash to a bucket instead of the slow modulo. Other growth policies are available and you may define your own growth policy, check {\ttfamily \mbox{\hyperlink{classtsl_1_1rh_1_1power__of__two__growth__policy}{tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy}}} for the interface.
+
+{\ttfamily Key} must be swappable.
+
+{\ttfamily Key} must be copy and/or move constructible.
+
+If the destructor of {\ttfamily Key} throws an exception, the behaviour of the class is undefined.
+
+Iterators invalidation\+:
+\begin{DoxyItemize}
+\item clear, operator=, reserve, rehash\+: always invalidate the iterators.
+\item insert, emplace, emplace\+\_\+hint, operator\mbox{[}\mbox{]}\+: if there is an effective insert, invalidate the iterators.
+\item erase\+: always invalidate the iterators. 
+\end{DoxyItemize}
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classtsl_1_1robin__set_adbd4d95859060848234156f4d649acd8}\label{classtsl_1_1robin__set_adbd4d95859060848234156f4d649acd8}} 
+\index{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}!contains@{contains}}
+\index{contains@{contains}!tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}}
+\subsubsection{\texorpdfstring{contains()}{contains()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, bool Store\+Hash = false, class Growth\+Policy  = tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy$<$2$>$$>$ \\
+bool \mbox{\hyperlink{classtsl_1_1robin__set}{tsl\+::robin\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$\+::contains (\begin{DoxyParamCaption}\item[{const Key \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1robin__set_aa71372dea154b9ab713a27aa52552439}\label{classtsl_1_1robin__set_aa71372dea154b9ab713a27aa52552439}} 
+\index{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}!contains@{contains}}
+\index{contains@{contains}!tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}}
+\subsubsection{\texorpdfstring{contains()}{contains()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, bool Store\+Hash = false, class Growth\+Policy  = tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy$<$2$>$$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+bool \mbox{\hyperlink{classtsl_1_1robin__set}{tsl\+::robin\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$\+::contains (\begin{DoxyParamCaption}\item[{const K \&}]{key }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key. \mbox{\Hypertarget{classtsl_1_1robin__set_aef184b7334d440fb7ff915205bfbfb34}\label{classtsl_1_1robin__set_aef184b7334d440fb7ff915205bfbfb34}} 
+\index{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}!contains@{contains}}
+\index{contains@{contains}!tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}}
+\subsubsection{\texorpdfstring{contains()}{contains()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, bool Store\+Hash = false, class Growth\+Policy  = tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy$<$2$>$$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+bool \mbox{\hyperlink{classtsl_1_1robin__set}{tsl\+::robin\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$\+::contains (\begin{DoxyParamCaption}\item[{const K \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key.
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1robin__set_af62044d0daa7d75e90ee002f38b9837a}\label{classtsl_1_1robin__set_af62044d0daa7d75e90ee002f38b9837a}} 
+\index{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}!count@{count}}
+\index{count@{count}!tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}}
+\subsubsection{\texorpdfstring{count()}{count()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, bool Store\+Hash = false, class Growth\+Policy  = tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy$<$2$>$$>$ \\
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1robin__set}{tsl\+::robin\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$\+::count (\begin{DoxyParamCaption}\item[{const Key \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1robin__set_a91ae518053a1ba2ed995498e27cd8649}\label{classtsl_1_1robin__set_a91ae518053a1ba2ed995498e27cd8649}} 
+\index{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}!count@{count}}
+\index{count@{count}!tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}}
+\subsubsection{\texorpdfstring{count()}{count()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, bool Store\+Hash = false, class Growth\+Policy  = tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy$<$2$>$$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1robin__set}{tsl\+::robin\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$\+::count (\begin{DoxyParamCaption}\item[{const K \&}]{key }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key. \mbox{\Hypertarget{classtsl_1_1robin__set_a99c7d370f9c022a7054b2fc966ecade4}\label{classtsl_1_1robin__set_a99c7d370f9c022a7054b2fc966ecade4}} 
+\index{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}!count@{count}}
+\index{count@{count}!tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}}
+\subsubsection{\texorpdfstring{count()}{count()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, bool Store\+Hash = false, class Growth\+Policy  = tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy$<$2$>$$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1robin__set}{tsl\+::robin\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$\+::count (\begin{DoxyParamCaption}\item[{const K \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key.
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1robin__set_a350aac536c0c747908707788035f2d92}\label{classtsl_1_1robin__set_a350aac536c0c747908707788035f2d92}} 
+\index{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}!emplace@{emplace}}
+\index{emplace@{emplace}!tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}}
+\subsubsection{\texorpdfstring{emplace()}{emplace()}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, bool Store\+Hash = false, class Growth\+Policy  = tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy$<$2$>$$>$ \\
+template$<$class... Args$>$ \\
+std\+::pair$<$iterator, bool$>$ \mbox{\hyperlink{classtsl_1_1robin__set}{tsl\+::robin\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$\+::emplace (\begin{DoxyParamCaption}\item[{Args \&\&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Due to the way elements are stored, emplace will need to move or copy the key-\/value once. The method is equivalent to insert(value\+\_\+type(std\+::forward$<$\+Args$>$(args)...));
+
+Mainly here for compatibility with the std\+::unordered\+\_\+map interface. \mbox{\Hypertarget{classtsl_1_1robin__set_abc4f08f83e5d7793a1fc9360575788cf}\label{classtsl_1_1robin__set_abc4f08f83e5d7793a1fc9360575788cf}} 
+\index{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}!emplace\_hint@{emplace\_hint}}
+\index{emplace\_hint@{emplace\_hint}!tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}}
+\subsubsection{\texorpdfstring{emplace\_hint()}{emplace\_hint()}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, bool Store\+Hash = false, class Growth\+Policy  = tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy$<$2$>$$>$ \\
+template$<$class... Args$>$ \\
+iterator \mbox{\hyperlink{classtsl_1_1robin__set}{tsl\+::robin\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$\+::emplace\+\_\+hint (\begin{DoxyParamCaption}\item[{const\+\_\+iterator}]{hint,  }\item[{Args \&\&...}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Due to the way elements are stored, emplace\+\_\+hint will need to move or copy the key-\/value once. The method is equivalent to insert(hint, value\+\_\+type(std\+::forward$<$\+Args$>$(args)...));
+
+Mainly here for compatibility with the std\+::unordered\+\_\+map interface. \mbox{\Hypertarget{classtsl_1_1robin__set_a1c863ebce6a1bc4c2ad69e67f1331661}\label{classtsl_1_1robin__set_a1c863ebce6a1bc4c2ad69e67f1331661}} 
+\index{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}!equal\_range@{equal\_range}}
+\index{equal\_range@{equal\_range}!tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}}
+\subsubsection{\texorpdfstring{equal\_range()}{equal\_range()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, bool Store\+Hash = false, class Growth\+Policy  = tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy$<$2$>$$>$ \\
+std\+::pair$<$iterator, iterator$>$ \mbox{\hyperlink{classtsl_1_1robin__set}{tsl\+::robin\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$\+::equal\+\_\+range (\begin{DoxyParamCaption}\item[{const Key \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1robin__set_a2c006d03e4786428ad08a543cc052170}\label{classtsl_1_1robin__set_a2c006d03e4786428ad08a543cc052170}} 
+\index{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}!equal\_range@{equal\_range}}
+\index{equal\_range@{equal\_range}!tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}}
+\subsubsection{\texorpdfstring{equal\_range()}{equal\_range()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, bool Store\+Hash = false, class Growth\+Policy  = tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy$<$2$>$$>$ \\
+std\+::pair$<$const\+\_\+iterator, const\+\_\+iterator$>$ \mbox{\hyperlink{classtsl_1_1robin__set}{tsl\+::robin\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$\+::equal\+\_\+range (\begin{DoxyParamCaption}\item[{const Key \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1robin__set_aea679f6fa9dee2077410a462dce63b93}\label{classtsl_1_1robin__set_aea679f6fa9dee2077410a462dce63b93}} 
+\index{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}!equal\_range@{equal\_range}}
+\index{equal\_range@{equal\_range}!tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}}
+\subsubsection{\texorpdfstring{equal\_range()}{equal\_range()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, bool Store\+Hash = false, class Growth\+Policy  = tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy$<$2$>$$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+std\+::pair$<$iterator, iterator$>$ \mbox{\hyperlink{classtsl_1_1robin__set}{tsl\+::robin\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$\+::equal\+\_\+range (\begin{DoxyParamCaption}\item[{const K \&}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key. \mbox{\Hypertarget{classtsl_1_1robin__set_aea03fafd11ec0cda987f105f191deaaf}\label{classtsl_1_1robin__set_aea03fafd11ec0cda987f105f191deaaf}} 
+\index{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}!equal\_range@{equal\_range}}
+\index{equal\_range@{equal\_range}!tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}}
+\subsubsection{\texorpdfstring{equal\_range()}{equal\_range()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, bool Store\+Hash = false, class Growth\+Policy  = tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy$<$2$>$$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+std\+::pair$<$iterator, iterator$>$ \mbox{\hyperlink{classtsl_1_1robin__set}{tsl\+::robin\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$\+::equal\+\_\+range (\begin{DoxyParamCaption}\item[{const K \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key.
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1robin__set_ae94df1b2b5d47ac44eecca743871c6c5}\label{classtsl_1_1robin__set_ae94df1b2b5d47ac44eecca743871c6c5}} 
+\index{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}!equal\_range@{equal\_range}}
+\index{equal\_range@{equal\_range}!tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}}
+\subsubsection{\texorpdfstring{equal\_range()}{equal\_range()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, bool Store\+Hash = false, class Growth\+Policy  = tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy$<$2$>$$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+std\+::pair$<$const\+\_\+iterator, const\+\_\+iterator$>$ \mbox{\hyperlink{classtsl_1_1robin__set}{tsl\+::robin\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$\+::equal\+\_\+range (\begin{DoxyParamCaption}\item[{const K \&}]{key }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key. \mbox{\Hypertarget{classtsl_1_1robin__set_a2ca1a7918565492dcc5a870186220985}\label{classtsl_1_1robin__set_a2ca1a7918565492dcc5a870186220985}} 
+\index{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}!equal\_range@{equal\_range}}
+\index{equal\_range@{equal\_range}!tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}}
+\subsubsection{\texorpdfstring{equal\_range()}{equal\_range()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, bool Store\+Hash = false, class Growth\+Policy  = tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy$<$2$>$$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+std\+::pair$<$const\+\_\+iterator, const\+\_\+iterator$>$ \mbox{\hyperlink{classtsl_1_1robin__set}{tsl\+::robin\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$\+::equal\+\_\+range (\begin{DoxyParamCaption}\item[{const K \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key.
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1robin__set_a4d81adc873ab3959505e93a462b541c9}\label{classtsl_1_1robin__set_a4d81adc873ab3959505e93a462b541c9}} 
+\index{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}!erase@{erase}}
+\index{erase@{erase}!tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}}
+\subsubsection{\texorpdfstring{erase()}{erase()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, bool Store\+Hash = false, class Growth\+Policy  = tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy$<$2$>$$>$ \\
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1robin__set}{tsl\+::robin\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$\+::erase (\begin{DoxyParamCaption}\item[{const key\+\_\+type \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup to the value if you already have the hash. \mbox{\Hypertarget{classtsl_1_1robin__set_a73ab9452fa9af3e897603dcb8df86648}\label{classtsl_1_1robin__set_a73ab9452fa9af3e897603dcb8df86648}} 
+\index{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}!erase@{erase}}
+\index{erase@{erase}!tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}}
+\subsubsection{\texorpdfstring{erase()}{erase()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, bool Store\+Hash = false, class Growth\+Policy  = tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy$<$2$>$$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1robin__set}{tsl\+::robin\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$\+::erase (\begin{DoxyParamCaption}\item[{const K \&}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key. \mbox{\Hypertarget{classtsl_1_1robin__set_ac32644a82963c42443757a3a9f7b94d2}\label{classtsl_1_1robin__set_ac32644a82963c42443757a3a9f7b94d2}} 
+\index{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}!erase@{erase}}
+\index{erase@{erase}!tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}}
+\subsubsection{\texorpdfstring{erase()}{erase()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, bool Store\+Hash = false, class Growth\+Policy  = tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy$<$2$>$$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+size\+\_\+type \mbox{\hyperlink{classtsl_1_1robin__set}{tsl\+::robin\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$\+::erase (\begin{DoxyParamCaption}\item[{const K \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key.
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup to the value if you already have the hash. \mbox{\Hypertarget{classtsl_1_1robin__set_a764ae0fbf914909a8d7810b7a95fb3c1}\label{classtsl_1_1robin__set_a764ae0fbf914909a8d7810b7a95fb3c1}} 
+\index{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}!find@{find}}
+\index{find@{find}!tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}}
+\subsubsection{\texorpdfstring{find()}{find()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, bool Store\+Hash = false, class Growth\+Policy  = tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy$<$2$>$$>$ \\
+iterator \mbox{\hyperlink{classtsl_1_1robin__set}{tsl\+::robin\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$\+::find (\begin{DoxyParamCaption}\item[{const Key \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1robin__set_a76283e2c9497ee7d4e5eddfdb23d23bb}\label{classtsl_1_1robin__set_a76283e2c9497ee7d4e5eddfdb23d23bb}} 
+\index{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}!find@{find}}
+\index{find@{find}!tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}}
+\subsubsection{\texorpdfstring{find()}{find()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, bool Store\+Hash = false, class Growth\+Policy  = tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy$<$2$>$$>$ \\
+const\+\_\+iterator \mbox{\hyperlink{classtsl_1_1robin__set}{tsl\+::robin\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$\+::find (\begin{DoxyParamCaption}\item[{const Key \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1robin__set_ab715840532a8616bed9a39f9d92b3b17}\label{classtsl_1_1robin__set_ab715840532a8616bed9a39f9d92b3b17}} 
+\index{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}!find@{find}}
+\index{find@{find}!tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}}
+\subsubsection{\texorpdfstring{find()}{find()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, bool Store\+Hash = false, class Growth\+Policy  = tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy$<$2$>$$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+iterator \mbox{\hyperlink{classtsl_1_1robin__set}{tsl\+::robin\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$\+::find (\begin{DoxyParamCaption}\item[{const K \&}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key. \mbox{\Hypertarget{classtsl_1_1robin__set_a6252e181b2bb806733a5e45b90f67d35}\label{classtsl_1_1robin__set_a6252e181b2bb806733a5e45b90f67d35}} 
+\index{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}!find@{find}}
+\index{find@{find}!tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}}
+\subsubsection{\texorpdfstring{find()}{find()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, bool Store\+Hash = false, class Growth\+Policy  = tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy$<$2$>$$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+iterator \mbox{\hyperlink{classtsl_1_1robin__set}{tsl\+::robin\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$\+::find (\begin{DoxyParamCaption}\item[{const K \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key.
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1robin__set_a19a90ecba2c0ff2505960501375931ea}\label{classtsl_1_1robin__set_a19a90ecba2c0ff2505960501375931ea}} 
+\index{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}!find@{find}}
+\index{find@{find}!tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}}
+\subsubsection{\texorpdfstring{find()}{find()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, bool Store\+Hash = false, class Growth\+Policy  = tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy$<$2$>$$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+const\+\_\+iterator \mbox{\hyperlink{classtsl_1_1robin__set}{tsl\+::robin\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$\+::find (\begin{DoxyParamCaption}\item[{const K \&}]{key }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key. \mbox{\Hypertarget{classtsl_1_1robin__set_a22f4c432414bf50d914f382e4965a018}\label{classtsl_1_1robin__set_a22f4c432414bf50d914f382e4965a018}} 
+\index{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}!find@{find}}
+\index{find@{find}!tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}}
+\subsubsection{\texorpdfstring{find()}{find()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, bool Store\+Hash = false, class Growth\+Policy  = tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy$<$2$>$$>$ \\
+template$<$class K , class KE  = Key\+Equal, typename std\+::enable\+\_\+if$<$ has\+\_\+is\+\_\+transparent$<$ K\+E $>$\+::value $>$\+::type $\ast$  = nullptr$>$ \\
+const\+\_\+iterator \mbox{\hyperlink{classtsl_1_1robin__set}{tsl\+::robin\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$\+::find (\begin{DoxyParamCaption}\item[{const K \&}]{key,  }\item[{std\+::size\+\_\+t}]{precalculated\+\_\+hash }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+This overload only participates in the overload resolution if the typedef Key\+Equal\+::is\+\_\+transparent exists. If so, K must be hashable and comparable to Key.
+
+Use the hash value \textquotesingle{}precalculated\+\_\+hash\textquotesingle{} instead of hashing the key. The hash value should be the same as hash\+\_\+function()(key). Useful to speed-\/up the lookup if you already have the hash. \mbox{\Hypertarget{classtsl_1_1robin__set_a8a57104ad0c718dcf4a3d94fb94e8cb1}\label{classtsl_1_1robin__set_a8a57104ad0c718dcf4a3d94fb94e8cb1}} 
+\index{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}!min\_load\_factor@{min\_load\_factor}}
+\index{min\_load\_factor@{min\_load\_factor}!tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}}
+\subsubsection{\texorpdfstring{min\_load\_factor()}{min\_load\_factor()}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, bool Store\+Hash = false, class Growth\+Policy  = tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy$<$2$>$$>$ \\
+void \mbox{\hyperlink{classtsl_1_1robin__set}{tsl\+::robin\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$\+::min\+\_\+load\+\_\+factor (\begin{DoxyParamCaption}\item[{float}]{ml }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Set the {\ttfamily min\+\_\+load\+\_\+factor} to {\ttfamily ml}. When the {\ttfamily load\+\_\+factor} of the set goes below {\ttfamily min\+\_\+load\+\_\+factor} after some erase operations, the set will be shrunk when an insertion occurs. The erase method itself never shrinks the set.
+
+The default value of {\ttfamily min\+\_\+load\+\_\+factor} is 0.\+0f, the set never shrinks by default. \mbox{\Hypertarget{classtsl_1_1robin__set_aebd376e4762e1e4091df9cc19917334e}\label{classtsl_1_1robin__set_aebd376e4762e1e4091df9cc19917334e}} 
+\index{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}!mutable\_iterator@{mutable\_iterator}}
+\index{mutable\_iterator@{mutable\_iterator}!tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::robin\_set$<$ Key, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}}
+\subsubsection{\texorpdfstring{mutable\_iterator()}{mutable\_iterator()}}
+{\footnotesize\ttfamily template$<$class Key , class Hash  = std\+::hash$<$\+Key$>$, class Key\+Equal  = std\+::equal\+\_\+to$<$\+Key$>$, class Allocator  = std\+::allocator$<$\+Key$>$, bool Store\+Hash = false, class Growth\+Policy  = tsl\+::rh\+::power\+\_\+of\+\_\+two\+\_\+growth\+\_\+policy$<$2$>$$>$ \\
+iterator \mbox{\hyperlink{classtsl_1_1robin__set}{tsl\+::robin\+\_\+set}}$<$ Key, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$\+::mutable\+\_\+iterator (\begin{DoxyParamCaption}\item[{const\+\_\+iterator}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Convert a const\+\_\+iterator to an iterator. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/tsl/robin\+\_\+set.\+h\end{DoxyCompactItemize}

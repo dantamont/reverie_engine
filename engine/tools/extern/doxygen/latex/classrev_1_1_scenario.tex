@@ -1,0 +1,195 @@
+\hypertarget{classrev_1_1_scenario}{}\section{rev\+::Scenario Class Reference}
+\label{classrev_1_1_scenario}\index{rev::Scenario@{rev::Scenario}}
+
+
+class for managing scenes  
+
+
+
+
+{\ttfamily \#include $<$G\+Scenario.\+h$>$}
+
+Inheritance diagram for rev\+::Scenario\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_scenario}
+\end{center}
+\end{figure}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_a2607c0a93c87bc055577172b00985a7e}\label{classrev_1_1_scenario_a2607c0a93c87bc055577172b00985a7e}} 
+void \mbox{\hyperlink{classrev_1_1_scenario_a2607c0a93c87bc055577172b00985a7e}{resize\+Cameras}} (uint32\+\_\+t width, uint32\+\_\+t height)
+\begin{DoxyCompactList}\small\item\em Resize all framebuffers in the scenario that are associated with scene cameras. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_a667c37ea2af2fe8a805a3271ae5dda58}\label{classrev_1_1_scenario_a667c37ea2af2fe8a805a3271ae5dda58}} 
+void \mbox{\hyperlink{classrev_1_1_scenario_a667c37ea2af2fe8a805a3271ae5dda58}{on\+Resource\+Loaded}} (const \mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \&resource\+Id)
+\begin{DoxyCompactList}\small\item\em Update on resource load. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_af8955ba90139e237f2de1bc2bf47905e}\label{classrev_1_1_scenario_af8955ba90139e237f2de1bc2bf47905e}} 
+void {\bfseries added\+Scene} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene}{Scene}} $>$ \mbox{\hyperlink{classrev_1_1_scenario_a26b39b4561f928b2582c83e81d42b8d0}{scene}})
+\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_a13fc874aa6311b227e2691ad0a0fb12f}\label{classrev_1_1_scenario_a13fc874aa6311b227e2691ad0a0fb12f}} 
+void {\bfseries removed\+Scene} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene}{Scene}} $>$ \mbox{\hyperlink{classrev_1_1_scenario_a26b39b4561f928b2582c83e81d42b8d0}{scene}})
+\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_ad6384993101b78266d69bf2b82c1c35b}\label{classrev_1_1_scenario_ad6384993101b78266d69bf2b82c1c35b}} 
+void {\bfseries cleared\+Scene\+Objects} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_a54d53cd00d8e3c04860d0abc9e38cab0}\label{classrev_1_1_scenario_a54d53cd00d8e3c04860d0abc9e38cab0}} 
+{\bfseries Scenario} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_a3240f649ca704ea704e278a9ee3a5ccf}\label{classrev_1_1_scenario_a3240f649ca704ea704e278a9ee3a5ccf}} 
+{\bfseries Scenario} (const \mbox{\hyperlink{classrev_1_1_scenario}{Scenario}} \&scenario)=delete
+\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_a2468dc29cb73dab9f23457e3e006bd70}\label{classrev_1_1_scenario_a2468dc29cb73dab9f23457e3e006bd70}} 
+{\bfseries Scenario} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core)
+\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_a42fbd0841701f02ca28b57f01ed5a014}\label{classrev_1_1_scenario_a42fbd0841701f02ca28b57f01ed5a014}} 
+{\bfseries $\sim$\+Scenario} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_a5ee33f430218ff0d14d3f6fc46251fec}\label{classrev_1_1_scenario_a5ee33f430218ff0d14d3f6fc46251fec}} 
+bool \mbox{\hyperlink{classrev_1_1_scenario_a5ee33f430218ff0d14d3f6fc46251fec}{is\+Loading}} () const
+\begin{DoxyCompactList}\small\item\em Whether or not the scenario is currently loading. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$ \mbox{\hyperlink{classrev_1_1_scenario_a5a8f8fe6743bdad9002ee3cd1c45005f}{engine}} () const
+\begin{DoxyCompactList}\small\item\em Return pointer to core engine. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_a39ba0472e926372014a0d303cb61b6b4}\label{classrev_1_1_scenario_a39ba0472e926372014a0d303cb61b6b4}} 
+\mbox{\hyperlink{classrev_1_1_scenario_settings}{Scenario\+Settings}} \& \mbox{\hyperlink{classrev_1_1_scenario_a39ba0472e926372014a0d303cb61b6b4}{settings}} ()
+\begin{DoxyCompactList}\small\item\em Miscellaneous settings describing the scenario. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_a3ea93c3ee3840d88fb9e367fa2d97842}\label{classrev_1_1_scenario_a3ea93c3ee3840d88fb9e367fa2d97842}} 
+const std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_blueprint}{Blueprint}} $>$ \& \mbox{\hyperlink{classrev_1_1_scenario_a3ea93c3ee3840d88fb9e367fa2d97842}{blueprints}} () const
+\begin{DoxyCompactList}\small\item\em Blueprints for scene objects. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_a894472e17d606972ca7a107053bce88c}\label{classrev_1_1_scenario_a894472e17d606972ca7a107053bce88c}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_blueprint}{Blueprint}} $>$ \& {\bfseries blueprints} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_aa319e036de65f1103fd4f7b087bbae6f}\label{classrev_1_1_scenario_aa319e036de65f1103fd4f7b087bbae6f}} 
+bool \mbox{\hyperlink{classrev_1_1_scenario_aa319e036de65f1103fd4f7b087bbae6f}{is\+Visible}} (const \mbox{\hyperlink{classrev_1_1_a_a_b_b}{A\+A\+BB}} \&bounding\+Box)
+\begin{DoxyCompactList}\small\item\em Whether the given bounding box is visible in the scenario. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_ace58fa0ddfb74ab61cbc94fcd96c69d0}\label{classrev_1_1_scenario_ace58fa0ddfb74ab61cbc94fcd96c69d0}} 
+bool \mbox{\hyperlink{classrev_1_1_scenario_ace58fa0ddfb74ab61cbc94fcd96c69d0}{save}} ()
+\begin{DoxyCompactList}\small\item\em Save the scenario to a file, overwriting all contents. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_ac097d572b3bd08569f1e2916900a728d}\label{classrev_1_1_scenario_ac097d572b3bd08569f1e2916900a728d}} 
+bool {\bfseries save} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&filepath)
+\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_a26b39b4561f928b2582c83e81d42b8d0}\label{classrev_1_1_scenario_a26b39b4561f928b2582c83e81d42b8d0}} 
+const \mbox{\hyperlink{classrev_1_1_scene}{Scene}} \& \mbox{\hyperlink{classrev_1_1_scenario_a26b39b4561f928b2582c83e81d42b8d0}{scene}} () const
+\begin{DoxyCompactList}\small\item\em Get map of scenes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_a387ecaadf918186f4a6a83dcbebc959a}\label{classrev_1_1_scenario_a387ecaadf918186f4a6a83dcbebc959a}} 
+\mbox{\hyperlink{classrev_1_1_scene}{Scene}} \& {\bfseries scene} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_a5cd569d90123d785264669cab72be224}\label{classrev_1_1_scenario_a5cd569d90123d785264669cab72be224}} 
+void \mbox{\hyperlink{classrev_1_1_scenario_a5cd569d90123d785264669cab72be224}{clear}} ()
+\begin{DoxyCompactList}\small\item\em Clear the scenario. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_ad63b44ffaa1feae2adb2f9c9f312bd67}\label{classrev_1_1_scenario_ad63b44ffaa1feae2adb2f9c9f312bd67}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_scenario_ad63b44ffaa1feae2adb2f9c9f312bd67}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_a419eda534e9f6be927c4e1a8bd195b15}\label{classrev_1_1_scenario_a419eda534e9f6be927c4e1a8bd195b15}} 
+virtual void \mbox{\hyperlink{classrev_1_1_scenario_a419eda534e9f6be927c4e1a8bd195b15}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_afa03a3ce5517737e32cd0dcd2828b2fa}\label{classrev_1_1_scenario_afa03a3ce5517737e32cd0dcd2828b2fa}} 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_scenario_afa03a3ce5517737e32cd0dcd2828b2fa}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_aefcedb913f38e8f183c20476e62b194d}\label{classrev_1_1_scenario_aefcedb913f38e8f183c20476e62b194d}} 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_scenario_aefcedb913f38e8f183c20476e62b194d}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{classrev_1_1_scenario_ac313e7e73ffbd6a1e3d6fd98c2f191eb}{Load\+From\+File}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&filepath, \mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core)
+\begin{DoxyCompactList}\small\item\em Load a scenario from a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_aa6d7ad6e90bdae642d5659250a1d6638}\label{classrev_1_1_scenario_aa6d7ad6e90bdae642d5659250a1d6638}} 
+void \mbox{\hyperlink{classrev_1_1_scenario_aa6d7ad6e90bdae642d5659250a1d6638}{initialize}} ()
+\begin{DoxyCompactList}\small\item\em Initialize the scenario. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_a8f9d7c07baf107066aee60e2e6a09448}\label{classrev_1_1_scenario_a8f9d7c07baf107066aee60e2e6a09448}} 
+class {\bfseries Scenario\+Settings}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_a032858ae1fe02d2d1170981c2af2d67c}\label{classrev_1_1_scenario_a032858ae1fe02d2d1170981c2af2d67c}} 
+class {\bfseries Scene}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_a45cf072b5377477a0b9e8a4cec682735}\label{classrev_1_1_scenario_a45cf072b5377477a0b9e8a4cec682735}} 
+\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$ \mbox{\hyperlink{classrev_1_1_scenario_a45cf072b5377477a0b9e8a4cec682735}{m\+\_\+engine}}
+\begin{DoxyCompactList}\small\item\em the core engine \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_a303ba2c0aaa4d16621a409d16d35d608}\label{classrev_1_1_scenario_a303ba2c0aaa4d16621a409d16d35d608}} 
+bool \mbox{\hyperlink{classrev_1_1_scenario_a303ba2c0aaa4d16621a409d16d35d608}{m\+\_\+is\+Loading}} = false
+\begin{DoxyCompactList}\small\item\em Whether or not the scenario is loading. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_adc863e46a27e257dfdd289331cf2e64f}\label{classrev_1_1_scenario_adc863e46a27e257dfdd289331cf2e64f}} 
+\mbox{\hyperlink{classrev_1_1_scene}{Scene}} \mbox{\hyperlink{classrev_1_1_scenario_adc863e46a27e257dfdd289331cf2e64f}{m\+\_\+scene}}
+\begin{DoxyCompactList}\small\item\em The scenes in this scenario. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_a322afc25596d8040f0c67da95d1d66f4}\label{classrev_1_1_scenario_a322afc25596d8040f0c67da95d1d66f4}} 
+\mbox{\hyperlink{classrev_1_1_scenario_settings}{Scenario\+Settings}} \mbox{\hyperlink{classrev_1_1_scenario_a322afc25596d8040f0c67da95d1d66f4}{m\+\_\+settings}}
+\begin{DoxyCompactList}\small\item\em The settings associated with the scenario. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_a0e6d90d8ea1426e062806bc986d107b6}\label{classrev_1_1_scenario_a0e6d90d8ea1426e062806bc986d107b6}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_blueprint}{Blueprint}} $>$ \mbox{\hyperlink{classrev_1_1_scenario_a0e6d90d8ea1426e062806bc986d107b6}{m\+\_\+blueprints}}
+\begin{DoxyCompactList}\small\item\em Blueprints for scene objects. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scenario_af795b3a1ab4ba7cd553c3f640c59a8fa}\label{classrev_1_1_scenario_af795b3a1ab4ba7cd553c3f640c59a8fa}} 
+static unsigned int {\bfseries S\+C\+E\+N\+A\+R\+I\+O\+\_\+\+C\+O\+U\+NT} = 0
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+class for managing scenes 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_scenario_a5a8f8fe6743bdad9002ee3cd1c45005f}\label{classrev_1_1_scenario_a5a8f8fe6743bdad9002ee3cd1c45005f}} 
+\index{rev::Scenario@{rev::Scenario}!engine@{engine}}
+\index{engine@{engine}!rev::Scenario@{rev::Scenario}}
+\subsubsection{\texorpdfstring{engine()}{engine()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}}$\ast$ rev\+::\+Scenario\+::engine (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return pointer to core engine. 
+
+Used by scenes and scene objects \mbox{\Hypertarget{classrev_1_1_scenario_ac313e7e73ffbd6a1e3d6fd98c2f191eb}\label{classrev_1_1_scenario_ac313e7e73ffbd6a1e3d6fd98c2f191eb}} 
+\index{rev::Scenario@{rev::Scenario}!LoadFromFile@{LoadFromFile}}
+\index{LoadFromFile@{LoadFromFile}!rev::Scenario@{rev::Scenario}}
+\subsubsection{\texorpdfstring{LoadFromFile()}{LoadFromFile()}}
+{\footnotesize\ttfamily bool rev\+::\+Scenario\+::\+Load\+From\+File (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&}]{filepath,  }\item[{\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$}]{core }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Load a scenario from a file. 
+
+Returns false if file not found 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/scene/G\+Scenario.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/scene/G\+Scenario.\+cpp\end{DoxyCompactItemize}

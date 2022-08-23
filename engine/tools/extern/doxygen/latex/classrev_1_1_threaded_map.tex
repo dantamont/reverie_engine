@@ -1,0 +1,101 @@
+\hypertarget{classrev_1_1_threaded_map}{}\section{rev\+::Threaded\+Map$<$ K, V $>$ Class Template Reference}
+\label{classrev_1_1_threaded_map}\index{rev::ThreadedMap$<$ K, V $>$@{rev::ThreadedMap$<$ K, V $>$}}
+
+
+\mbox{\hyperlink{classrev_1_1_threaded_map}{Threaded\+Map}} class.  
+
+
+
+
+{\ttfamily \#include $<$G\+Threaded\+Map.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_map_ab12ed406c12ac8f529b825ddbc09bfe0}\label{classrev_1_1_threaded_map_ab12ed406c12ac8f529b825ddbc09bfe0}} 
+typedef \mbox{\hyperlink{classtsl_1_1robin__map}{tsl\+::robin\+\_\+map}}$<$ K, V $>$ {\bfseries Map\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Operators}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_map_a103407809740c948783f21f6c7fe7e11}\label{classrev_1_1_threaded_map_a103407809740c948783f21f6c7fe7e11}} 
+std\+::shared\+\_\+mutex \& {\bfseries mutex} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_map_a82e3bd5f37c2c3ca5bc3f4c09483b5cd}\label{classrev_1_1_threaded_map_a82e3bd5f37c2c3ca5bc3f4c09483b5cd}} 
+V \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (const K \&key)
+\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_map_ab106d422ad3db902ddb779c774aef1b1}\label{classrev_1_1_threaded_map_ab106d422ad3db902ddb779c774aef1b1}} 
+V \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (K \&\&key)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_map_a87813be39cef3a959a377a624dfd15cf}\label{classrev_1_1_threaded_map_a87813be39cef3a959a377a624dfd15cf}} 
+size\+\_\+t {\bfseries size} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_map_a2e709714aed0bbad96ae98e07830e44f}\label{classrev_1_1_threaded_map_a2e709714aed0bbad96ae98e07830e44f}} 
+size\+\_\+t {\bfseries erase} (const K \&key)
+\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_map_a6641412ad58d9c99ec0904ef64b0eed5}\label{classrev_1_1_threaded_map_a6641412ad58d9c99ec0904ef64b0eed5}} 
+Map\+Type\+::const\+\_\+iterator {\bfseries begin} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_map_a847e31db6dd3c8cc17b2df802c05fe5f}\label{classrev_1_1_threaded_map_a847e31db6dd3c8cc17b2df802c05fe5f}} 
+Map\+Type\+::const\+\_\+iterator {\bfseries end} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_map_a3b87a63fd236ce259464310f3b76cc45}\label{classrev_1_1_threaded_map_a3b87a63fd236ce259464310f3b76cc45}} 
+{\footnotesize template$<$class Unary\+Predicate $>$ }\\void \mbox{\hyperlink{classrev_1_1_threaded_map_a3b87a63fd236ce259464310f3b76cc45}{for\+Each}} (Unary\+Predicate pred) const
+\begin{DoxyCompactList}\small\item\em Perform an element-\/wise operation using the map. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_map_a69c5826f96b8950c46b3e2f2e3519a65}\label{classrev_1_1_threaded_map_a69c5826f96b8950c46b3e2f2e3519a65}} 
+{\footnotesize template$<$class Unary\+Predicate $>$ }\\void \mbox{\hyperlink{classrev_1_1_threaded_map_a69c5826f96b8950c46b3e2f2e3519a65}{for\+Each}} (Unary\+Predicate pred)
+\begin{DoxyCompactList}\small\item\em Perform an element-\/wise operation using the map. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_map_a00cb8a67b38b0f654c7a5833e82f3c71}\label{classrev_1_1_threaded_map_a00cb8a67b38b0f654c7a5833e82f3c71}} 
+{\footnotesize template$<$class Unary\+Predicate $>$ }\\auto \mbox{\hyperlink{classrev_1_1_threaded_map_a00cb8a67b38b0f654c7a5833e82f3c71}{any\+\_\+of}} (Unary\+Predicate pred) const
+\begin{DoxyCompactList}\small\item\em Find an element given a function. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_map_a072175163c509b9f9d9eba4e1dfc2aa0}\label{classrev_1_1_threaded_map_a072175163c509b9f9d9eba4e1dfc2aa0}} 
+{\footnotesize template$<$class Unary\+Predicate $>$ }\\auto \mbox{\hyperlink{classrev_1_1_threaded_map_a072175163c509b9f9d9eba4e1dfc2aa0}{find\+\_\+if}} (Unary\+Predicate pred) const
+\begin{DoxyCompactList}\small\item\em Find an element given a function. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_map_a91a9b93a055d539be36cbd751fe68407}\label{classrev_1_1_threaded_map_a91a9b93a055d539be36cbd751fe68407}} 
+bool {\bfseries has\+Key} (const K \&key) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_map_a3a0f5883b3b970a2b6fe0a023f462e12}\label{classrev_1_1_threaded_map_a3a0f5883b3b970a2b6fe0a023f462e12}} 
+const V \& {\bfseries at} (const K \&k) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_map_a50331fbac17063b5aad660408e48088b}\label{classrev_1_1_threaded_map_a50331fbac17063b5aad660408e48088b}} 
+{\footnotesize template$<$typename ... Vals$>$ }\\auto \mbox{\hyperlink{classrev_1_1_threaded_map_a50331fbac17063b5aad660408e48088b}{emplace}} (const K \&key, Vals \&\&... values)
+\begin{DoxyCompactList}\small\item\em Emplace into the map, with thread-\/safety. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Protected Member Functions}
+\begin{Indent}\textbf{ Private Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_map_afa61224c4251c924fb6206e662fcbb62}\label{classrev_1_1_threaded_map_afa61224c4251c924fb6206e662fcbb62}} 
+{\footnotesize template$<$class Input\+It , class Unary\+Predicate $>$ }\\static constexpr bool \mbox{\hyperlink{classrev_1_1_threaded_map_afa61224c4251c924fb6206e662fcbb62}{any\+\_\+of}} (Input\+It first, Input\+It last, Unary\+Predicate p)
+\begin{DoxyCompactList}\small\item\em Used for thread-\/safe any\+\_\+of. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_map_a88ea7e1cca68c03404c9e89d630bab2e}\label{classrev_1_1_threaded_map_a88ea7e1cca68c03404c9e89d630bab2e}} 
+{\footnotesize template$<$class Input\+Iterator , class Unary\+Predicate $>$ }\\static Input\+Iterator \mbox{\hyperlink{classrev_1_1_threaded_map_a88ea7e1cca68c03404c9e89d630bab2e}{find\+\_\+if}} (Input\+Iterator first, Input\+Iterator last, Unary\+Predicate pred)
+\begin{DoxyCompactList}\small\item\em Used for thread-\/safe find\+\_\+if. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Private Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_map_a232f07122899c7cdeffe34dff543986a}\label{classrev_1_1_threaded_map_a232f07122899c7cdeffe34dff543986a}} 
+std\+::shared\+\_\+mutex \mbox{\hyperlink{classrev_1_1_threaded_map_a232f07122899c7cdeffe34dff543986a}{m\+\_\+mutex}}
+\begin{DoxyCompactList}\small\item\em The mutex for controlling access to this map. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_map_a754768aff6ab0abad703d7f467b1739b}\label{classrev_1_1_threaded_map_a754768aff6ab0abad703d7f467b1739b}} 
+\mbox{\hyperlink{classtsl_1_1robin__map}{tsl\+::robin\+\_\+map}}$<$ K, V $>$ \mbox{\hyperlink{classrev_1_1_threaded_map_a754768aff6ab0abad703d7f467b1739b}{m\+\_\+map}}
+\begin{DoxyCompactList}\small\item\em The encapsulated map. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename K, typename V$>$\newline
+class rev\+::\+Threaded\+Map$<$ K, V $>$}
+
+\mbox{\hyperlink{classrev_1_1_threaded_map}{Threaded\+Map}} class. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/containers/G\+Threaded\+Map.\+h\end{DoxyCompactItemize}

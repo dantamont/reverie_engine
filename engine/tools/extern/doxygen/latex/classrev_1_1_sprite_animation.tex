@@ -1,0 +1,71 @@
+\hypertarget{classrev_1_1_sprite_animation}{}\section{rev\+::Sprite\+Animation Class Reference}
+\label{classrev_1_1_sprite_animation}\index{rev::SpriteAnimation@{rev::SpriteAnimation}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_animation_a1bd139bcf90a8fbf80d5ee5635215910}\label{classrev_1_1_sprite_animation_a1bd139bcf90a8fbf80d5ee5635215910}} 
+void {\bfseries update\+Frame} (\mbox{\hyperlink{classrev_1_1_sprite}{Sprite}} $\ast$sprite, float time\+In\+Sec)
+\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_animation_aa4a91fd47b5fc91e99ac3ef924bc3e53}\label{classrev_1_1_sprite_animation_aa4a91fd47b5fc91e99ac3ef924bc3e53}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_sprite_animation_aa4a91fd47b5fc91e99ac3ef924bc3e53}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_animation_acc55a2086ca5b1d0119ac7c17145577c}\label{classrev_1_1_sprite_animation_acc55a2086ca5b1d0119ac7c17145577c}} 
+void \mbox{\hyperlink{classrev_1_1_sprite_animation_acc55a2086ca5b1d0119ac7c17145577c}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty())
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_animation_abc4698d31aeb806ed7b7e297afa00cbe}\label{classrev_1_1_sprite_animation_abc4698d31aeb806ed7b7e297afa00cbe}} 
+uint32\+\_\+t \mbox{\hyperlink{classrev_1_1_sprite_animation_abc4698d31aeb806ed7b7e297afa00cbe}{get\+Animation\+Frame}} (\mbox{\hyperlink{classrev_1_1_sprite}{Sprite}} $\ast$sprite, float time\+In\+Sec, Sprite\+Playback\+Mode mode, bool \&done\+Playing)
+\begin{DoxyCompactList}\small\item\em Return the current frame of the animation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_animation_a3ff6d4a7c2ff75f3d0408b378b1da0a5}\label{classrev_1_1_sprite_animation_a3ff6d4a7c2ff75f3d0408b378b1da0a5}} 
+float \mbox{\hyperlink{classrev_1_1_sprite_animation_a3ff6d4a7c2ff75f3d0408b378b1da0a5}{get\+Animation\+Time}} (\mbox{\hyperlink{classrev_1_1_sprite}{Sprite}} $\ast$sprite, float time\+In\+Sec, Sprite\+Playback\+Mode mode, bool \&done\+Playing) const
+\begin{DoxyCompactList}\small\item\em Get the animation time from the given inputs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_animation_a180d7901cab12dae5476527da7380c2b}\label{classrev_1_1_sprite_animation_a180d7901cab12dae5476527da7380c2b}} 
+float \mbox{\hyperlink{classrev_1_1_sprite_animation_a180d7901cab12dae5476527da7380c2b}{m\+\_\+frame\+Sec}} = 0.\+0333333
+\begin{DoxyCompactList}\small\item\em Length of each frame. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_animation_a3ca0ff68e3235bf99b77a9d2a0f0d7a9}\label{classrev_1_1_sprite_animation_a3ca0ff68e3235bf99b77a9d2a0f0d7a9}} 
+Sprite\+Playback\+Mode \mbox{\hyperlink{classrev_1_1_sprite_animation_a3ca0ff68e3235bf99b77a9d2a0f0d7a9}{m\+\_\+playback\+Mode}} = Sprite\+Playback\+Mode\+::k\+Loop
+\begin{DoxyCompactList}\small\item\em The playback mode for the animation. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classrev_1_1_sprite_animation_a1f437cc80086b0edcde346cf899f8b6a}{m\+\_\+frame\+Count}} = -\/1
+\begin{DoxyCompactList}\small\item\em Number of frames. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_animation_a120c56de1da55c04c879263421bceee1}\label{classrev_1_1_sprite_animation_a120c56de1da55c04c879263421bceee1}} 
+int \mbox{\hyperlink{classrev_1_1_sprite_animation_a120c56de1da55c04c879263421bceee1}{m\+\_\+offset}} = 0
+\begin{DoxyCompactList}\small\item\em Offset of animation in sprite sheet. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_animation_a898dfb9463563942dcfd49dd5af74314}\label{classrev_1_1_sprite_animation_a898dfb9463563942dcfd49dd5af74314}} 
+int \mbox{\hyperlink{classrev_1_1_sprite_animation_a898dfb9463563942dcfd49dd5af74314}{m\+\_\+max\+Plays}} = -\/1
+\begin{DoxyCompactList}\small\item\em Maximum number of plays. \end{DoxyCompactList}\item 
+std\+::atomic$<$ uint32\+\_\+t $>$ \mbox{\hyperlink{classrev_1_1_sprite_animation_acd68f6c75c699ce245b51f5cf53d4e97}{m\+\_\+current\+Frame}} = 0
+\begin{DoxyCompactList}\small\item\em The current animation frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_sprite_animation_acd68f6c75c699ce245b51f5cf53d4e97}\label{classrev_1_1_sprite_animation_acd68f6c75c699ce245b51f5cf53d4e97}} 
+\index{rev::SpriteAnimation@{rev::SpriteAnimation}!m\_currentFrame@{m\_currentFrame}}
+\index{m\_currentFrame@{m\_currentFrame}!rev::SpriteAnimation@{rev::SpriteAnimation}}
+\subsubsection{\texorpdfstring{m\_currentFrame}{m\_currentFrame}}
+{\footnotesize\ttfamily std\+::atomic$<$uint32\+\_\+t$>$ rev\+::\+Sprite\+Animation\+::m\+\_\+current\+Frame = 0}
+
+
+
+The current animation frame. 
+
+\begin{DoxyNote}{Note}
+Atomic since this is updated from a process on the animation thread 
+\end{DoxyNote}
+\mbox{\Hypertarget{classrev_1_1_sprite_animation_a1f437cc80086b0edcde346cf899f8b6a}\label{classrev_1_1_sprite_animation_a1f437cc80086b0edcde346cf899f8b6a}} 
+\index{rev::SpriteAnimation@{rev::SpriteAnimation}!m\_frameCount@{m\_frameCount}}
+\index{m\_frameCount@{m\_frameCount}!rev::SpriteAnimation@{rev::SpriteAnimation}}
+\subsubsection{\texorpdfstring{m\_frameCount}{m\_frameCount}}
+{\footnotesize\ttfamily int rev\+::\+Sprite\+Animation\+::m\+\_\+frame\+Count = -\/1}
+
+
+
+Number of frames. 
+
+This is needed in the case that there are empty frames in the sprite-\/sheet 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/canvas/G\+Sprite.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/canvas/G\+Sprite.\+cpp\end{DoxyCompactItemize}

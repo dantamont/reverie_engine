@@ -1,0 +1,143 @@
+\hypertarget{classrev_1_1_vertex_array_data}{}\section{rev\+::Vertex\+Array\+Data Class Reference}
+\label{classrev_1_1_vertex_array_data}\index{rev::VertexArrayData@{rev::VertexArrayData}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing a set of vertex data.  
+
+
+
+
+{\ttfamily \#include $<$G\+Mesh.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_vertex_array_data_a288a221f31343f38c8b7d9e30c8da1fa}\label{classrev_1_1_vertex_array_data_a288a221f31343f38c8b7d9e30c8da1fa}} 
+{\bfseries Vertex\+Array\+Data} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_vertex_array_data_a6888f7e7af5138c48b3d366c6c1a10e4}\label{classrev_1_1_vertex_array_data_a6888f7e7af5138c48b3d366c6c1a10e4}} 
+virtual {\bfseries $\sim$\+Vertex\+Array\+Data} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_vertex_array_data_a9395541036c9d6eb90fd987d535ca600}\label{classrev_1_1_vertex_array_data_a9395541036c9d6eb90fd987d535ca600}} 
+\mbox{\hyperlink{classrev_1_1_g_l_1_1_vertex_array_object}{G\+L\+::\+Vertex\+Array\+Object}} \& \mbox{\hyperlink{classrev_1_1_vertex_array_data_a9395541036c9d6eb90fd987d535ca600}{vao}} ()
+\begin{DoxyCompactList}\small\item\em Return vertex array object for this V\+AO group. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_vertex_array_data_a24ebee20de6c6a4700cbba01621cb0b1}\label{classrev_1_1_vertex_array_data_a24ebee20de6c6a4700cbba01621cb0b1}} 
+void \mbox{\hyperlink{classrev_1_1_vertex_array_data_a24ebee20de6c6a4700cbba01621cb0b1}{draw\+Geometry}} (Primitive\+Mode gl\+Mode)
+\begin{DoxyCompactList}\small\item\em Perform draw of geometry. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_vertex_array_data_a266c0adc62310ec17eb29e63d1084ee1}\label{classrev_1_1_vertex_array_data_a266c0adc62310ec17eb29e63d1084ee1}} 
+void \mbox{\hyperlink{classrev_1_1_vertex_array_data_a266c0adc62310ec17eb29e63d1084ee1}{load\+Into\+V\+AO}} ()
+\begin{DoxyCompactList}\small\item\em Initialize the data for this mesh in the GL V\+AO. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_vertex_array_data_a08186af9f8cec35fb89c28b4bbb53b5e}\label{classrev_1_1_vertex_array_data_a08186af9f8cec35fb89c28b4bbb53b5e}} 
+bool \mbox{\hyperlink{classrev_1_1_vertex_array_data_a08186af9f8cec35fb89c28b4bbb53b5e}{has\+Buffers}} () const
+\begin{DoxyCompactList}\small\item\em Whether or not the V\+AO has buffers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_vertex_array_data_a75ca219e3a195e3a4bb6187a4b97b99e}\label{classrev_1_1_vertex_array_data_a75ca219e3a195e3a4bb6187a4b97b99e}} 
+void \mbox{\hyperlink{classrev_1_1_vertex_array_data_a75ca219e3a195e3a4bb6187a4b97b99e}{destroy\+Buffers}} ()
+\begin{DoxyCompactList}\small\item\em Destroy all buffers in the V\+AO. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_vertex_array_data_a975a9ca97b9d905d071181e08e68b186}\label{classrev_1_1_vertex_array_data_a975a9ca97b9d905d071181e08e68b186}} 
+void \mbox{\hyperlink{classrev_1_1_vertex_array_data_a975a9ca97b9d905d071181e08e68b186}{check\+Validity}} ()
+\begin{DoxyCompactList}\small\item\em Check that the mesh is valid. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_vertex_array_data_a316535b40fb3b9bc066a7a43a9dc0e2a}\label{classrev_1_1_vertex_array_data_a316535b40fb3b9bc066a7a43a9dc0e2a}} 
+void \mbox{\hyperlink{classrev_1_1_vertex_array_data_a316535b40fb3b9bc066a7a43a9dc0e2a}{release}} ()
+\begin{DoxyCompactList}\small\item\em Release vertex and index buffers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_vertex_array_data_a4a1911f0b5e3065ffdd8deff6e315eea}\label{classrev_1_1_vertex_array_data_a4a1911f0b5e3065ffdd8deff6e315eea}} 
+quint64 \mbox{\hyperlink{classrev_1_1_vertex_array_data_a4a1911f0b5e3065ffdd8deff6e315eea}{size\+In\+Bytes}} () const
+\begin{DoxyCompactList}\small\item\em Returns the size of the data stored in the mesh vertices. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_vertex_array_data_a506020514e8ed2d47ee4768c7320070d}\label{classrev_1_1_vertex_array_data_a506020514e8ed2d47ee4768c7320070d}} 
+unsigned int {\bfseries size\+In\+Mega\+Bytes} () const
+\item 
+bool \mbox{\hyperlink{classrev_1_1_vertex_array_data_a35c6ded4eae6cb8288f9862e14e3d928}{is\+Missing\+Data}} () const
+\begin{DoxyCompactList}\small\item\em Whether or not the mesh data has an associated material. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_vertex_array_data_a44d8ec5a7a6d63fef55fccf368fa7e00}\label{classrev_1_1_vertex_array_data_a44d8ec5a7a6d63fef55fccf368fa7e00}} 
+\mbox{\hyperlink{classrev_1_1_g_l_1_1_buffer_object}{G\+L\+::\+Buffer\+Object}} \& {\bfseries get\+Buffer} (Buffer\+Attribute\+Type type)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_vertex_array_data_a2608b4fcc9c8b702b178e67356ab5504}\label{classrev_1_1_vertex_array_data_a2608b4fcc9c8b702b178e67356ab5504}} 
+virtual const char $\ast$ {\bfseries class\+Name} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_vertex_array_data_a13db21b77c0e8bf8c79163d318fd8e6a}\label{classrev_1_1_vertex_array_data_a13db21b77c0e8bf8c79163d318fd8e6a}} 
+virtual const char $\ast$ {\bfseries namespace\+Name} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Attributes}
+\begin{Indent}\textbf{ Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_vertex_array_data_af028613b41d725c1432b2cbb1012df26}\label{classrev_1_1_vertex_array_data_af028613b41d725c1432b2cbb1012df26}} 
+\mbox{\hyperlink{classrev_1_1_g_l_1_1_vertex_array_object}{G\+L\+::\+Vertex\+Array\+Object}} \mbox{\hyperlink{classrev_1_1_vertex_array_data_af028613b41d725c1432b2cbb1012df26}{m\+\_\+vao}}
+\begin{DoxyCompactList}\small\item\em Open\+GL V\+AO, aggregates buffers, but does not store data within itself. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_vertex_array_data_ae909b5b29847ccea019dd14e350ada40}\label{classrev_1_1_vertex_array_data_ae909b5b29847ccea019dd14e350ada40}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_g_l_1_1_buffer_object}{G\+L\+::\+Buffer\+Object}} $>$ \mbox{\hyperlink{classrev_1_1_vertex_array_data_ae909b5b29847ccea019dd14e350ada40}{m\+\_\+attribute\+Buffers}}
+\begin{DoxyCompactList}\small\item\em The buffers storing data for Open\+GL. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_vertex_array_data_ab6905e041b3c02214b40d60165302976}\label{classrev_1_1_vertex_array_data_ab6905e041b3c02214b40d60165302976}} 
+\mbox{\hyperlink{classrev_1_1_g_l_1_1_buffer_object}{G\+L\+::\+Buffer\+Object}} \mbox{\hyperlink{classrev_1_1_vertex_array_data_ab6905e041b3c02214b40d60165302976}{m\+\_\+index\+Buffer}}
+\begin{DoxyCompactList}\small\item\em The buffer storing index data. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_vertex_array_data_a48140b5a9ac339bfead9dc076e4940e2}\label{classrev_1_1_vertex_array_data_a48140b5a9ac339bfead9dc076e4940e2}} 
+G\+L\+::\+Usage\+Pattern {\bfseries m\+\_\+usage\+Pattern} = G\+L\+::\+Usage\+Pattern\+::k\+Static\+Draw
+\item 
+\mbox{\Hypertarget{classrev_1_1_vertex_array_data_afa9c5e8033bc480bc8924bc966363bf7}\label{classrev_1_1_vertex_array_data_afa9c5e8033bc480bc8924bc966363bf7}} 
+\mbox{\hyperlink{structrev_1_1_vertex_attributes}{Vertex\+Attributes}} \mbox{\hyperlink{classrev_1_1_vertex_array_data_afa9c5e8033bc480bc8924bc966363bf7}{m\+\_\+attributes}}
+\begin{DoxyCompactList}\small\item\em Vertex attribute data. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_vertex_array_data_a7fa99a524bcaffafaa9907a611d8f70b}\label{classrev_1_1_vertex_array_data_a7fa99a524bcaffafaa9907a611d8f70b}} 
+std\+::vector$<$ G\+Luint $>$ \mbox{\hyperlink{classrev_1_1_vertex_array_data_a7fa99a524bcaffafaa9907a611d8f70b}{m\+\_\+indices}}
+\begin{DoxyCompactList}\small\item\em Vertex indices. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_vertex_array_data_a83d06bada150194666fdc02c043d1080}\label{classrev_1_1_vertex_array_data_a83d06bada150194666fdc02c043d1080}} 
+class {\bfseries Cube\+Map}
+\item 
+\mbox{\Hypertarget{classrev_1_1_vertex_array_data_aa89c0df06f5945a12b1d029612d199cd}\label{classrev_1_1_vertex_array_data_aa89c0df06f5945a12b1d029612d199cd}} 
+class {\bfseries Obj\+Reader}
+\item 
+\mbox{\Hypertarget{classrev_1_1_vertex_array_data_ac3e0a085a76d6fcad904e95ebbe2c6a5}\label{classrev_1_1_vertex_array_data_ac3e0a085a76d6fcad904e95ebbe2c6a5}} 
+class {\bfseries Model\+Reader}
+\item 
+\mbox{\Hypertarget{classrev_1_1_vertex_array_data_af47625f50036c466946f960db7320bcf}\label{classrev_1_1_vertex_array_data_af47625f50036c466946f960db7320bcf}} 
+class {\bfseries Animation}
+\item 
+\mbox{\Hypertarget{classrev_1_1_vertex_array_data_a395c52c1b342efdb79f36b2d4b2f1565}\label{classrev_1_1_vertex_array_data_a395c52c1b342efdb79f36b2d4b2f1565}} 
+class {\bfseries Node\+Animation}
+\item 
+\mbox{\Hypertarget{classrev_1_1_vertex_array_data_aa41a130f156b145bffb3f4b5172c4c93}\label{classrev_1_1_vertex_array_data_aa41a130f156b145bffb3f4b5172c4c93}} 
+class {\bfseries Mesh}
+\item 
+\mbox{\Hypertarget{classrev_1_1_vertex_array_data_a54a2a68828f99f864406a3713e8ad9a5}\label{classrev_1_1_vertex_array_data_a54a2a68828f99f864406a3713e8ad9a5}} 
+class {\bfseries Skeleton\+Joint}
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing a set of vertex data. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_vertex_array_data_a35c6ded4eae6cb8288f9862e14e3d928}\label{classrev_1_1_vertex_array_data_a35c6ded4eae6cb8288f9862e14e3d928}} 
+\index{rev::VertexArrayData@{rev::VertexArrayData}!isMissingData@{isMissingData}}
+\index{isMissingData@{isMissingData}!rev::VertexArrayData@{rev::VertexArrayData}}
+\subsubsection{\texorpdfstring{isMissingData()}{isMissingData()}}
+{\footnotesize\ttfamily bool rev\+::\+Vertex\+Array\+Data\+::is\+Missing\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Whether or not the mesh data has an associated material. 
+
+Return whether or not this is empty 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/geometry/G\+Mesh.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/geometry/G\+Mesh.\+cpp\end{DoxyCompactItemize}

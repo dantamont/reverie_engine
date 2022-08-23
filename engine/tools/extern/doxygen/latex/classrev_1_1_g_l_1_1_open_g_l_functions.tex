@@ -1,0 +1,80 @@
+\hypertarget{classrev_1_1_g_l_1_1_open_g_l_functions}{}\section{rev\+::GL\+::Open\+G\+L\+Functions Class Reference}
+\label{classrev_1_1_g_l_1_1_open_g_l_functions}\index{rev::GL::OpenGLFunctions@{rev::GL::OpenGLFunctions}}
+
+
+For loading 3D geometry (models) into memory @detailed Stores positional data of a model in a V\+AO.  
+
+
+
+
+{\ttfamily \#include $<$G\+G\+L\+Functions.\+h$>$}
+
+Inheritance diagram for rev\+::GL\+::Open\+G\+L\+Functions\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.209073cm]{classrev_1_1_g_l_1_1_open_g_l_functions}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_open_g_l_functions_ad12d7da8c6f1e7e13ca8e45b8d4d6144}\label{classrev_1_1_g_l_1_1_open_g_l_functions_ad12d7da8c6f1e7e13ca8e45b8d4d6144}} 
+{\bfseries Open\+G\+L\+Functions} (bool initialize=true)
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_open_g_l_functions_afb86c8d9e273ff260b85079e13c6fc44}\label{classrev_1_1_g_l_1_1_open_g_l_functions_afb86c8d9e273ff260b85079e13c6fc44}} 
+{\bfseries $\sim$\+Open\+G\+L\+Functions} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_open_g_l_functions_aee43f28d165e15c781f259f9928337d5}\label{classrev_1_1_g_l_1_1_open_g_l_functions_aee43f28d165e15c781f259f9928337d5}} 
+const char $\ast$ {\bfseries class\+Name} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_open_g_l_functions_accae603a3400762ae4966f3c07c5e613}\label{classrev_1_1_g_l_1_1_open_g_l_functions_accae603a3400762ae4966f3c07c5e613}} 
+const char $\ast$ {\bfseries namespace\+Name} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_open_g_l_functions_a7c8052d7a7af7f7deb7d109fcc7695b2}\label{classrev_1_1_g_l_1_1_open_g_l_functions_a7c8052d7a7af7f7deb7d109fcc7695b2}} 
+static const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_g_l_1_1_open_g_l_functions}{Open\+G\+L\+Functions}} $>$ \& {\bfseries Functions} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_open_g_l_functions_a1820bd2c5ec7305922d55d1fd3279a1f}\label{classrev_1_1_g_l_1_1_open_g_l_functions_a1820bd2c5ec7305922d55d1fd3279a1f}} 
+static size\+\_\+t \mbox{\hyperlink{classrev_1_1_g_l_1_1_open_g_l_functions_a1820bd2c5ec7305922d55d1fd3279a1f}{Max\+Num\+Texture\+Units}} ()
+\begin{DoxyCompactList}\small\item\em Obtain max allowed number of texture units per shader. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_open_g_l_functions_a080dd5199fa24fdfb2f928a39eafaf59}\label{classrev_1_1_g_l_1_1_open_g_l_functions_a080dd5199fa24fdfb2f928a39eafaf59}} 
+static bool \mbox{\hyperlink{classrev_1_1_g_l_1_1_open_g_l_functions_a080dd5199fa24fdfb2f928a39eafaf59}{print\+G\+L\+Error}} (const char $\ast$error\+Message)
+\begin{DoxyCompactList}\small\item\em Print all errors that have been raised in GL. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_open_g_l_functions_a11b37c13e9ca7e1666993ace9826a755}\label{classrev_1_1_g_l_1_1_open_g_l_functions_a11b37c13e9ca7e1666993ace9826a755}} 
+static bool {\bfseries print\+G\+L\+Error} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&error\+Message)
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_open_g_l_functions_ac20de746e43112c7ca67528c6e30526c}\label{classrev_1_1_g_l_1_1_open_g_l_functions_ac20de746e43112c7ca67528c6e30526c}} 
+static void Q\+O\+P\+E\+N\+G\+L\+F\+\_\+\+A\+P\+I\+E\+N\+T\+RY \mbox{\hyperlink{classrev_1_1_g_l_1_1_open_g_l_functions_ac20de746e43112c7ca67528c6e30526c}{print\+Message\+Call\+Back}} (G\+Lenum source, G\+Lenum type, G\+Luint id, G\+Lenum severity, G\+Lsizei length, const G\+Lchar $\ast$message, const void $\ast$user\+Param)
+\begin{DoxyCompactList}\small\item\em Callback for printing Open\+GL debug messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_open_g_l_functions_a9748ed213b45768ca17dc65240967db0}\label{classrev_1_1_g_l_1_1_open_g_l_functions_a9748ed213b45768ca17dc65240967db0}} 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_g_l_1_1_open_g_l_functions}{Open\+G\+L\+Functions}} $>$ \mbox{\hyperlink{classrev_1_1_g_l_1_1_open_g_l_functions_a9748ed213b45768ca17dc65240967db0}{s\+\_\+gl\+Functions}} = nullptr
+\begin{DoxyCompactList}\small\item\em Static instantiation of gl functions for error reporting. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_open_g_l_functions_ae35ab9b155c6c50befb1503b98b985d2}\label{classrev_1_1_g_l_1_1_open_g_l_functions_ae35ab9b155c6c50befb1503b98b985d2}} 
+static G\+Lint \mbox{\hyperlink{classrev_1_1_g_l_1_1_open_g_l_functions_ae35ab9b155c6c50befb1503b98b985d2}{s\+\_\+max\+Texture\+Units}} = -\/1
+\begin{DoxyCompactList}\small\item\em Cached value of max number of texture units. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+For loading 3D geometry (models) into memory @detailed Stores positional data of a model in a V\+AO. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/G\+G\+L\+Functions.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/G\+G\+L\+Functions.\+cpp\end{DoxyCompactItemize}

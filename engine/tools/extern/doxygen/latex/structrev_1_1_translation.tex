@@ -1,0 +1,90 @@
+\hypertarget{structrev_1_1_translation}{}\section{rev\+::Translation Class Reference}
+\label{structrev_1_1_translation}\index{rev::Translation@{rev::Translation}}
+
+
+Represents a translation.  
+
+
+
+
+{\ttfamily \#include $<$G\+Transform\+Components.\+h$>$}
+
+Inheritance diagram for rev\+::Translation\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{structrev_1_1_translation}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_translation_a226663b318a1849df7658094c9634d96}\label{structrev_1_1_translation_a226663b318a1849df7658094c9634d96}} 
+{\bfseries Translation} ()
+\item 
+\mbox{\Hypertarget{structrev_1_1_translation_a2a13e6395b78e9cf0b0e1f4f43ee5368}\label{structrev_1_1_translation_a2a13e6395b78e9cf0b0e1f4f43ee5368}} 
+{\bfseries Translation} (const Q\+Json\+Value \&json)
+\item 
+\mbox{\Hypertarget{structrev_1_1_translation_a6f36e580f1487cf927146380684c3cc8}\label{structrev_1_1_translation_a6f36e580f1487cf927146380684c3cc8}} 
+{\bfseries Translation} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&position, Coordinate\+Frame frame=k\+G\+L\+World)
+\item 
+\mbox{\Hypertarget{structrev_1_1_translation_a213c8b2c409f9347f5955a4ad1b52caa}\label{structrev_1_1_translation_a213c8b2c409f9347f5955a4ad1b52caa}} 
+{\bfseries Translation} (const \mbox{\hyperlink{structrev_1_1_translation}{Translation}} \&t)
+\item 
+\mbox{\Hypertarget{structrev_1_1_translation_a6df2fa48f3327480702563910dc8bcef}\label{structrev_1_1_translation_a6df2fa48f3327480702563910dc8bcef}} 
+{\bfseries $\sim$\+Translation} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_translation_a633b2fbff1cba5b8ebdc023204064bfc}\label{structrev_1_1_translation_a633b2fbff1cba5b8ebdc023204064bfc}} 
+bool {\bfseries is\+Identity} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_translation_aa60c3db4e64f25844751d9f1aa3c81f2}\label{structrev_1_1_translation_aa60c3db4e64f25844751d9f1aa3c81f2}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{structrev_1_1_translation_aa60c3db4e64f25844751d9f1aa3c81f2}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_translation_a651214522de9398381f532a6f37d724d}\label{structrev_1_1_translation_a651214522de9398381f532a6f37d724d}} 
+virtual void \mbox{\hyperlink{structrev_1_1_translation_a651214522de9398381f532a6f37d724d}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Attributes}
+\begin{Indent}\textbf{ Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_translation_ae76322082bb6287fc7e7fc2fa03ce7c2}\label{structrev_1_1_translation_ae76322082bb6287fc7e7fc2fa03ce7c2}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} {\bfseries m\+\_\+position}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Operators}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_translation_a84b7e6164412757454ef6e2628a62b1b}\label{structrev_1_1_translation_a84b7e6164412757454ef6e2628a62b1b}} 
+\mbox{\hyperlink{structrev_1_1_translation}{Translation}} {\bfseries operator+} (const \mbox{\hyperlink{structrev_1_1_translation}{Translation}} \&t) const
+\item 
+\mbox{\Hypertarget{structrev_1_1_translation_a4d14f9b824d8db9465931fb9b908a54e}\label{structrev_1_1_translation_a4d14f9b824d8db9465931fb9b908a54e}} 
+\mbox{\hyperlink{structrev_1_1_translation}{Translation}} {\bfseries operator-\/} (const \mbox{\hyperlink{structrev_1_1_translation}{Translation}} \&t) const
+\item 
+\mbox{\Hypertarget{structrev_1_1_translation_aac9ac99ea3f87fb2ab2c8f899309dc32}\label{structrev_1_1_translation_aac9ac99ea3f87fb2ab2c8f899309dc32}} 
+\mbox{\hyperlink{structrev_1_1_translation}{Translation}} {\bfseries operator $\ast$} (double c) const
+\item 
+\mbox{\Hypertarget{structrev_1_1_translation_a8c49a60c84145623cf867852e3b511d3}\label{structrev_1_1_translation_a8c49a60c84145623cf867852e3b511d3}} 
+\mbox{\hyperlink{structrev_1_1_translation}{Translation}} {\bfseries operator/} (double c) const
+\item 
+\mbox{\Hypertarget{structrev_1_1_translation_ad10fed09e16acc56f1cd31057ad68048}\label{structrev_1_1_translation_ad10fed09e16acc56f1cd31057ad68048}} 
+std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&os, const \mbox{\hyperlink{structrev_1_1_translation}{Translation}} \&t)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Represents a translation. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/geometry/G\+Transform\+Components.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/geometry/G\+Transform\+Components.\+cpp\end{DoxyCompactItemize}

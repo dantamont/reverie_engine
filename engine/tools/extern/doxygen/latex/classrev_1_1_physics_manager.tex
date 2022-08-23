@@ -1,0 +1,285 @@
+\hypertarget{classrev_1_1_physics_manager}{}\section{rev\+::Physics\+Manager Class Reference}
+\label{classrev_1_1_physics_manager}\index{rev::PhysicsManager@{rev::PhysicsManager}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing the physics manager See\+: \href{https://gameworksdocs.nvidia.com/PhysX/4.0/documentation/PhysXGuide/Manual/HelloWorld.html}{\texttt{ https\+://gameworksdocs.\+nvidia.\+com/\+Phys\+X/4.\+0/documentation/\+Phys\+X\+Guide/\+Manual/\+Hello\+World.\+html}}.  
+
+
+
+
+{\ttfamily \#include $<$G\+Physics\+Manager.\+h$>$}
+
+Inheritance diagram for rev\+::Physics\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{classrev_1_1_physics_manager}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_manager_aec636fa9e93013fba2a8cc167f75a502}\label{classrev_1_1_physics_manager_aec636fa9e93013fba2a8cc167f75a502}} 
+{\bfseries Physics\+Manager} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core)
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_manager_a69421e813acce39e43057f509ddb168f}\label{classrev_1_1_physics_manager_a69421e813acce39e43057f509ddb168f}} 
+{\bfseries $\sim$\+Physics\+Manager} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classrev_1_1_physics_manager_a9da09ceba8ff4b0f44821e7c4b43acf4}{step}} (float dt)
+\begin{DoxyCompactList}\small\item\em Get scene object from its rigid body component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_manager_a80de9755d6418460022c1f54722486e6}\label{classrev_1_1_physics_manager_a80de9755d6418460022c1f54722486e6}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_physics_manager_a80de9755d6418460022c1f54722486e6}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_manager_af2d716aa11aac97f1016cea6a60fed8e}\label{classrev_1_1_physics_manager_af2d716aa11aac97f1016cea6a60fed8e}} 
+virtual void \mbox{\hyperlink{classrev_1_1_physics_manager_af2d716aa11aac97f1016cea6a60fed8e}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_physics_manager_a557872ba7a7c0fb2074b408f185aa789}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_physics_manager_ac541c7e0460d572c5bff2e4136c779e1}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static physx\+::\+Px\+Foundation $\ast$ \mbox{\hyperlink{classrev_1_1_physics_manager_a3c3cdc497203c68d9189d1a2baf97e54}{Foundation}} ()
+\begin{DoxyCompactList}\small\item\em Foundation S\+DK singleton class. \end{DoxyCompactList}\item 
+static physx\+::\+Px\+Physics $\ast$ \mbox{\hyperlink{classrev_1_1_physics_manager_af406b7c9e1807bd55d25a2c3cc74a5ff}{Physics}} ()
+\begin{DoxyCompactList}\small\item\em Abstract singleton factory class used for instancing objects in the Physics S\+DK. \end{DoxyCompactList}\item 
+static physx\+::\+Px\+Default\+Cpu\+Dispatcher $\ast$ \mbox{\hyperlink{classrev_1_1_physics_manager_a28fdf900280695b969f127fab9c3e7f6}{Dispatcher}} ()
+\begin{DoxyCompactList}\small\item\em he Cpu\+Dispatcher is an abstract class the S\+DK uses for interfacing with the application\textquotesingle{}s thread pool. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_manager_a823d9349e40c0c08845bf3ae6db149fb}\label{classrev_1_1_physics_manager_a823d9349e40c0c08845bf3ae6db149fb}} 
+static std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_physics_scene}{Physics\+Scene}} $>$ $>$ \& \mbox{\hyperlink{classrev_1_1_physics_manager_a823d9349e40c0c08845bf3ae6db149fb}{Scenes}} ()
+\begin{DoxyCompactList}\small\item\em Pointers to all the physics scenes. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classrev_1_1_physics_shape_prefab}{Physics\+Shape\+Prefab}} $\ast$ \mbox{\hyperlink{classrev_1_1_physics_manager_ab57f5c4ff1ac9039a876ae1d2ce26978}{Default\+Shape}} ()
+\begin{DoxyCompactList}\small\item\em Pointers to all the physics shapes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_manager_acd6befa8ee9408f3b256d3da2c62c21e}\label{classrev_1_1_physics_manager_acd6befa8ee9408f3b256d3da2c62c21e}} 
+static \mbox{\hyperlink{classrev_1_1_physics_shape_prefab}{Physics\+Shape\+Prefab}} $\ast$ {\bfseries Shape} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name)
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_manager_a54e0d6d0c05d477c46d8bc09c9f498c4}\label{classrev_1_1_physics_manager_a54e0d6d0c05d477c46d8bc09c9f498c4}} 
+static void {\bfseries Remove\+Shape} (\mbox{\hyperlink{classrev_1_1_physics_shape_prefab}{Physics\+Shape\+Prefab}} $\ast$prefab)
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_manager_a2e3381f787b34a8ead625afa8941d7e3}\label{classrev_1_1_physics_manager_a2e3381f787b34a8ead625afa8941d7e3}} 
+static const std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_physics_shape_prefab}{Physics\+Shape\+Prefab}} $>$ $>$ \& {\bfseries Shape\+Prefabs} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_manager_a0be706332baa5ece6cfb1be1041a6e71}\label{classrev_1_1_physics_manager_a0be706332baa5ece6cfb1be1041a6e71}} 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_physics_material}{Physics\+Material}} $>$ {\bfseries Default\+Material} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_manager_a7ad367d7abf5df1fe39efe044c7dd4df}\label{classrev_1_1_physics_manager_a7ad367d7abf5df1fe39efe044c7dd4df}} 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_physics_material}{Physics\+Material}} $>$ {\bfseries Material} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name)
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_manager_a7bdea4199855b5be1966079f4821bb04}\label{classrev_1_1_physics_manager_a7bdea4199855b5be1966079f4821bb04}} 
+static std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_physics_material}{Physics\+Material}} $>$ $>$ \& \mbox{\hyperlink{classrev_1_1_physics_manager_a7bdea4199855b5be1966079f4821bb04}{Materials}} ()
+\begin{DoxyCompactList}\small\item\em Pointers to all physics materials. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_manager_addd6eb058f6152941391c6e60b11f7c4}\label{classrev_1_1_physics_manager_addd6eb058f6152941391c6e60b11f7c4}} 
+static void \mbox{\hyperlink{classrev_1_1_physics_manager_addd6eb058f6152941391c6e60b11f7c4}{clear}} ()
+\begin{DoxyCompactList}\small\item\em Clear all geometry and materials. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_manager_ad7e7ef4bfa4856f1a9effc5ede84bdd5}\label{classrev_1_1_physics_manager_ad7e7ef4bfa4856f1a9effc5ede84bdd5}} 
+static \mbox{\hyperlink{classrev_1_1_vector}{Vector3d}} {\bfseries to\+Vector3d} (const physx\+::\+Px\+Vec3 \&vec3)
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_manager_a873ed420164d78da7cb8a1e5a6932af9}\label{classrev_1_1_physics_manager_a873ed420164d78da7cb8a1e5a6932af9}} 
+static \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} {\bfseries to\+Vector3} (const physx\+::\+Px\+Vec3 \&vec3)
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_manager_a51442ccee345a9f33e6cea56f7154c6b}\label{classrev_1_1_physics_manager_a51442ccee345a9f33e6cea56f7154c6b}} 
+static physx\+::\+Px\+Vec3 {\bfseries to\+PhysX} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3d}} \&vec3)
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_manager_a58fdb5e46cd47300328340a8d2127e54}\label{classrev_1_1_physics_manager_a58fdb5e46cd47300328340a8d2127e54}} 
+static physx\+::\+Px\+Vec3 {\bfseries to\+PhysX} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3f}} \&vec3)
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_manager_aefff9dcc0eb57279e90f5df2defd992f}\label{classrev_1_1_physics_manager_aefff9dcc0eb57279e90f5df2defd992f}} 
+static \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} {\bfseries to\+Quaternion} (const physx\+::\+Px\+Quat \&quat)
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_manager_a9881a4ed7014790bc7a68fecdb9b646a}\label{classrev_1_1_physics_manager_a9881a4ed7014790bc7a68fecdb9b646a}} 
+class {\bfseries Physics\+Shape\+Prefab}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Methods}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_manager_ad08e061216d5c6fda062370b7897b3b5}\label{classrev_1_1_physics_manager_ad08e061216d5c6fda062370b7897b3b5}} 
+void \mbox{\hyperlink{classrev_1_1_physics_manager_ad08e061216d5c6fda062370b7897b3b5}{initialize}} ()
+\begin{DoxyCompactList}\small\item\em Initialize the manager. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_manager_a1c074c76384d28208593bfe3572279b5}\label{classrev_1_1_physics_manager_a1c074c76384d28208593bfe3572279b5}} 
+void \mbox{\hyperlink{classrev_1_1_physics_manager_a1c074c76384d28208593bfe3572279b5}{on\+Delete}} ()
+\begin{DoxyCompactList}\small\item\em Delete the manager. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{classrev_1_1_physics_manager_a8be417f082121367094ca9c5b6fc92a7}{Get\+Prefab\+Index}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name)
+\begin{DoxyCompactList}\small\item\em Get the index of the prefab with the given name/\+Uuid in the internal vector. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_manager_aafd2a3f17632a80df8a5d6cf1d15bf98}\label{classrev_1_1_physics_manager_aafd2a3f17632a80df8a5d6cf1d15bf98}} 
+static int {\bfseries Get\+Prefab\+Index} (const \mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \&uuid)
+\end{DoxyCompactItemize}
+\subsection*{Protected Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_manager_ad8c99d1f7ce1d7b5db312b8a6b4d0598}\label{classrev_1_1_physics_manager_ad8c99d1f7ce1d7b5db312b8a6b4d0598}} 
+physx\+::\+Px\+Default\+Allocator \mbox{\hyperlink{classrev_1_1_physics_manager_ad8c99d1f7ce1d7b5db312b8a6b4d0598}{m\+\_\+allocator}}
+\begin{DoxyCompactList}\small\item\em Abstract base class for an application defined memory allocator. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_manager_aac8be97053379298472743c40737e1ac}\label{classrev_1_1_physics_manager_aac8be97053379298472743c40737e1ac}} 
+\mbox{\hyperlink{classrev_1_1_error_callback}{Error\+Callback}} \mbox{\hyperlink{classrev_1_1_physics_manager_aac8be97053379298472743c40737e1ac}{m\+\_\+error\+Callback}}
+\begin{DoxyCompactList}\small\item\em User defined interface class. Used by the library to emit debug information. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_manager_afa84bdf0710ba69cf03225907ab8b5b3}\label{classrev_1_1_physics_manager_afa84bdf0710ba69cf03225907ab8b5b3}} 
+physx\+::\+Px\+Pvd $\ast$ {\bfseries m\+\_\+pvd} = nullptr
+\item 
+static physx\+::\+Px\+Foundation $\ast$ \mbox{\hyperlink{classrev_1_1_physics_manager_a88bf72ece5164ece7c4e3705e9eb2915}{s\+\_\+foundation}} = nullptr
+\begin{DoxyCompactList}\small\item\em Foundation S\+DK singleton class. \end{DoxyCompactList}\item 
+static physx\+::\+Px\+Physics $\ast$ \mbox{\hyperlink{classrev_1_1_physics_manager_abe949f3d62ca0783611f0c2a774f8a93}{s\+\_\+physics}} = nullptr
+\begin{DoxyCompactList}\small\item\em Abstract singleton factory class used for instancing objects in the Physics S\+DK. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_manager_ad381d62439da576585577523eb562248}\label{classrev_1_1_physics_manager_ad381d62439da576585577523eb562248}} 
+static physx\+::\+Px\+Default\+Cpu\+Dispatcher $\ast$ \mbox{\hyperlink{classrev_1_1_physics_manager_ad381d62439da576585577523eb562248}{s\+\_\+dispatcher}} = nullptr
+\begin{DoxyCompactList}\small\item\em A Cpu\+Dispatcher is responsible for scheduling the execution of tasks passed to it by the S\+DK. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_manager_aebac730ae1f1bc54c2519796307957ce}\label{classrev_1_1_physics_manager_aebac730ae1f1bc54c2519796307957ce}} 
+static std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_physics_scene}{Physics\+Scene}} $>$ $>$ \mbox{\hyperlink{classrev_1_1_physics_manager_aebac730ae1f1bc54c2519796307957ce}{s\+\_\+scenes}}
+\begin{DoxyCompactList}\small\item\em Pointers to all the physics scenes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_manager_ae766c981435e79ff59fb810932d51b80}\label{classrev_1_1_physics_manager_ae766c981435e79ff59fb810932d51b80}} 
+static std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_physics_shape_prefab}{Physics\+Shape\+Prefab}} $>$ $>$ \mbox{\hyperlink{classrev_1_1_physics_manager_ae766c981435e79ff59fb810932d51b80}{s\+\_\+shapes}}
+\begin{DoxyCompactList}\small\item\em Pointers to all physics shapes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_manager_a4b17ac2b54368da6bf2260180adbf246}\label{classrev_1_1_physics_manager_a4b17ac2b54368da6bf2260180adbf246}} 
+static std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_physics_material}{Physics\+Material}} $>$ $>$ \mbox{\hyperlink{classrev_1_1_physics_manager_a4b17ac2b54368da6bf2260180adbf246}{s\+\_\+materials}}
+\begin{DoxyCompactList}\small\item\em Pointers to all physics materials. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_manager_aad74979b1352cc59f32b3b586d518406}\label{classrev_1_1_physics_manager_aad74979b1352cc59f32b3b586d518406}} 
+static \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} {\bfseries s\+\_\+default\+Shape\+Key} = \char`\"{}default\+Shape\char`\"{}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_manager_a6e84872c7ee4451188fe1f397adba8a1}\label{classrev_1_1_physics_manager_a6e84872c7ee4451188fe1f397adba8a1}} 
+static \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} {\bfseries s\+\_\+default\+Material\+Key} = \char`\"{}default\+Material\char`\"{}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing the physics manager See\+: \href{https://gameworksdocs.nvidia.com/PhysX/4.0/documentation/PhysXGuide/Manual/HelloWorld.html}{\texttt{ https\+://gameworksdocs.\+nvidia.\+com/\+Phys\+X/4.\+0/documentation/\+Phys\+X\+Guide/\+Manual/\+Hello\+World.\+html}}. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_physics_manager_a557872ba7a7c0fb2074b408f185aa789}\label{classrev_1_1_physics_manager_a557872ba7a7c0fb2074b408f185aa789}} 
+\index{rev::PhysicsManager@{rev::PhysicsManager}!className@{className}}
+\index{className@{className}!rev::PhysicsManager@{rev::PhysicsManager}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Physics\+Manager\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_service_a484d71757ea6e8780488602cb421a4a5}{rev\+::\+Service}}.
+
+\mbox{\Hypertarget{classrev_1_1_physics_manager_ab57f5c4ff1ac9039a876ae1d2ce26978}\label{classrev_1_1_physics_manager_ab57f5c4ff1ac9039a876ae1d2ce26978}} 
+\index{rev::PhysicsManager@{rev::PhysicsManager}!DefaultShape@{DefaultShape}}
+\index{DefaultShape@{DefaultShape}!rev::PhysicsManager@{rev::PhysicsManager}}
+\subsubsection{\texorpdfstring{DefaultShape()}{DefaultShape()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_physics_shape_prefab}{Physics\+Shape\+Prefab}} $\ast$ rev\+::\+Physics\+Manager\+::\+Default\+Shape (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pointers to all the physics shapes. 
+
+Shapes are indexed by unique name \mbox{\Hypertarget{classrev_1_1_physics_manager_a28fdf900280695b969f127fab9c3e7f6}\label{classrev_1_1_physics_manager_a28fdf900280695b969f127fab9c3e7f6}} 
+\index{rev::PhysicsManager@{rev::PhysicsManager}!Dispatcher@{Dispatcher}}
+\index{Dispatcher@{Dispatcher}!rev::PhysicsManager@{rev::PhysicsManager}}
+\subsubsection{\texorpdfstring{Dispatcher()}{Dispatcher()}}
+{\footnotesize\ttfamily static physx\+::\+Px\+Default\+Cpu\+Dispatcher$\ast$ rev\+::\+Physics\+Manager\+::\+Dispatcher (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+he Cpu\+Dispatcher is an abstract class the S\+DK uses for interfacing with the application\textquotesingle{}s thread pool. 
+
+Typically, there will be one single Cpu\+Dispatcher for the entire application, since there is rarely a need for more than one thread pool. A Cpu\+Dispatcher instance may be shared by more than one Task\+Manager, for example if multiple scenes are being used. \mbox{\Hypertarget{classrev_1_1_physics_manager_a3c3cdc497203c68d9189d1a2baf97e54}\label{classrev_1_1_physics_manager_a3c3cdc497203c68d9189d1a2baf97e54}} 
+\index{rev::PhysicsManager@{rev::PhysicsManager}!Foundation@{Foundation}}
+\index{Foundation@{Foundation}!rev::PhysicsManager@{rev::PhysicsManager}}
+\subsubsection{\texorpdfstring{Foundation()}{Foundation()}}
+{\footnotesize\ttfamily static physx\+::\+Px\+Foundation$\ast$ rev\+::\+Physics\+Manager\+::\+Foundation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Foundation S\+DK singleton class. 
+
+Need to have an instance of this class to instance the higher level S\+D\+Ks \mbox{\Hypertarget{classrev_1_1_physics_manager_a8be417f082121367094ca9c5b6fc92a7}\label{classrev_1_1_physics_manager_a8be417f082121367094ca9c5b6fc92a7}} 
+\index{rev::PhysicsManager@{rev::PhysicsManager}!GetPrefabIndex@{GetPrefabIndex}}
+\index{GetPrefabIndex@{GetPrefabIndex}!rev::PhysicsManager@{rev::PhysicsManager}}
+\subsubsection{\texorpdfstring{GetPrefabIndex()}{GetPrefabIndex()}}
+{\footnotesize\ttfamily int rev\+::\+Physics\+Manager\+::\+Get\+Prefab\+Index (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+Get the index of the prefab with the given name/\+Uuid in the internal vector. 
+
+\begin{DoxyReturn}{Returns}
+-\/1 if prefab not found, the internal index otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classrev_1_1_physics_manager_ac541c7e0460d572c5bff2e4136c779e1}\label{classrev_1_1_physics_manager_ac541c7e0460d572c5bff2e4136c779e1}} 
+\index{rev::PhysicsManager@{rev::PhysicsManager}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::PhysicsManager@{rev::PhysicsManager}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Physics\+Manager\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_service_a831f5bf8c53584ec830aaee38ea58e7b}{rev\+::\+Service}}.
+
+\mbox{\Hypertarget{classrev_1_1_physics_manager_af406b7c9e1807bd55d25a2c3cc74a5ff}\label{classrev_1_1_physics_manager_af406b7c9e1807bd55d25a2c3cc74a5ff}} 
+\index{rev::PhysicsManager@{rev::PhysicsManager}!Physics@{Physics}}
+\index{Physics@{Physics}!rev::PhysicsManager@{rev::PhysicsManager}}
+\subsubsection{\texorpdfstring{Physics()}{Physics()}}
+{\footnotesize\ttfamily static physx\+::\+Px\+Physics$\ast$ rev\+::\+Physics\+Manager\+::\+Physics (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Abstract singleton factory class used for instancing objects in the Physics S\+DK. 
+
+Can use Px\+Physics to set global parameters which will effect all scenes, create triangle meshes. Can get an instance of this class by calling Px\+Create\+Physics() \mbox{\Hypertarget{classrev_1_1_physics_manager_a9da09ceba8ff4b0f44821e7c4b43acf4}\label{classrev_1_1_physics_manager_a9da09ceba8ff4b0f44821e7c4b43acf4}} 
+\index{rev::PhysicsManager@{rev::PhysicsManager}!step@{step}}
+\index{step@{step}!rev::PhysicsManager@{rev::PhysicsManager}}
+\subsubsection{\texorpdfstring{step()}{step()}}
+{\footnotesize\ttfamily void rev\+::\+Physics\+Manager\+::step (\begin{DoxyParamCaption}\item[{float}]{dt }\end{DoxyParamCaption})}
+
+
+
+Get scene object from its rigid body component. 
+
+Step the physics simulation void \mbox{\hyperlink{classrev_1_1_physics_manager_a9da09ceba8ff4b0f44821e7c4b43acf4}{step(float dt)}}; 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_physics_manager_a88bf72ece5164ece7c4e3705e9eb2915}\label{classrev_1_1_physics_manager_a88bf72ece5164ece7c4e3705e9eb2915}} 
+\index{rev::PhysicsManager@{rev::PhysicsManager}!s\_foundation@{s\_foundation}}
+\index{s\_foundation@{s\_foundation}!rev::PhysicsManager@{rev::PhysicsManager}}
+\subsubsection{\texorpdfstring{s\_foundation}{s\_foundation}}
+{\footnotesize\ttfamily physx\+::\+Px\+Foundation $\ast$ rev\+::\+Physics\+Manager\+::s\+\_\+foundation = nullptr\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+Foundation S\+DK singleton class. 
+
+Need to have an instance of this class to instance the higher level S\+D\+Ks \mbox{\Hypertarget{classrev_1_1_physics_manager_abe949f3d62ca0783611f0c2a774f8a93}\label{classrev_1_1_physics_manager_abe949f3d62ca0783611f0c2a774f8a93}} 
+\index{rev::PhysicsManager@{rev::PhysicsManager}!s\_physics@{s\_physics}}
+\index{s\_physics@{s\_physics}!rev::PhysicsManager@{rev::PhysicsManager}}
+\subsubsection{\texorpdfstring{s\_physics}{s\_physics}}
+{\footnotesize\ttfamily physx\+::\+Px\+Physics $\ast$ rev\+::\+Physics\+Manager\+::s\+\_\+physics = nullptr\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+Abstract singleton factory class used for instancing objects in the Physics S\+DK. 
+
+Can use Px\+Physics to set global parameters which will effect all scenes, create triangle meshes. Can get an instance of this class by calling Px\+Create\+Physics() 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Physics\+Manager.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Physics\+Manager.\+cpp\end{DoxyCompactItemize}

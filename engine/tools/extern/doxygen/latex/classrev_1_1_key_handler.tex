@@ -1,0 +1,161 @@
+\hypertarget{classrev_1_1_key_handler}{}\section{rev\+::Key\+Handler Class Reference}
+\label{classrev_1_1_key_handler}\index{rev::KeyHandler@{rev::KeyHandler}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} that handles polling-\/style inputs.  
+
+
+
+
+{\ttfamily \#include $<$G\+Input\+Handler.\+h$>$}
+
+Inheritance diagram for rev\+::Key\+Handler\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_key_handler}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_key_handler_a79f7fd7a582241dd248ece96980371e4}\label{classrev_1_1_key_handler_a79f7fd7a582241dd248ece96980371e4}} 
+{\bfseries Key\+Handler} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_key_handler_afbd953157932e565b0082277c8e9e21d}\label{classrev_1_1_key_handler_afbd953157932e565b0082277c8e9e21d}} 
+{\bfseries Key\+Handler} (\mbox{\hyperlink{classrev_1_1_input_handler}{Input\+Handler}} $\ast$handler)
+\item 
+\mbox{\Hypertarget{classrev_1_1_key_handler_a0de59f6009787a4356c7beb712ab4076}\label{classrev_1_1_key_handler_a0de59f6009787a4356c7beb712ab4076}} 
+{\bfseries $\sim$\+Key\+Handler} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_key_handler_a9c15a3540a0e2af055f06fb722dd5734}\label{classrev_1_1_key_handler_a9c15a3540a0e2af055f06fb722dd5734}} 
+bool \mbox{\hyperlink{classrev_1_1_key_handler_a9c15a3540a0e2af055f06fb722dd5734}{was\+Pressed}} (const Qt\+::\+Key \&key)
+\begin{DoxyCompactList}\small\item\em Whether a key was pressed or released. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_key_handler_a00277461b90ae94bfcd7c5cb08de6a47}\label{classrev_1_1_key_handler_a00277461b90ae94bfcd7c5cb08de6a47}} 
+bool {\bfseries was\+Pressed} (const Q\+String \&key)
+\item 
+\mbox{\Hypertarget{classrev_1_1_key_handler_a7e29733b7b0911e43ed875684bd78f51}\label{classrev_1_1_key_handler_a7e29733b7b0911e43ed875684bd78f51}} 
+bool {\bfseries was\+Released} (const Qt\+::\+Key \&key)
+\item 
+\mbox{\Hypertarget{classrev_1_1_key_handler_a0aee78367964448e0ac596010e7d1b39}\label{classrev_1_1_key_handler_a0aee78367964448e0ac596010e7d1b39}} 
+bool {\bfseries was\+Released} (const Q\+String \&key)
+\item 
+\mbox{\Hypertarget{classrev_1_1_key_handler_ac9c86bc4d6e27f53d0a0389d35381d76}\label{classrev_1_1_key_handler_ac9c86bc4d6e27f53d0a0389d35381d76}} 
+bool {\bfseries was\+Double\+Clicked} (const Qt\+::\+Key \&key)
+\item 
+\mbox{\Hypertarget{classrev_1_1_key_handler_a0825dc8d247972a499e6c1614a637430}\label{classrev_1_1_key_handler_a0825dc8d247972a499e6c1614a637430}} 
+bool {\bfseries was\+Double\+Clicked} (const Q\+String \&key)
+\item 
+\mbox{\Hypertarget{classrev_1_1_key_handler_aa3a3a4fd9df920e571811179726d8c95}\label{classrev_1_1_key_handler_aa3a3a4fd9df920e571811179726d8c95}} 
+bool \mbox{\hyperlink{classrev_1_1_key_handler_aa3a3a4fd9df920e571811179726d8c95}{is\+Held}} (const Qt\+::\+Key \&key) const
+\begin{DoxyCompactList}\small\item\em Whether the given input is held or not. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_key_handler_aac930bd00e83cbec7a57912972dafce9}\label{classrev_1_1_key_handler_aac930bd00e83cbec7a57912972dafce9}} 
+bool {\bfseries is\+Held} (const Q\+String \&key)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ rev\+::Object overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_key_handler_ae65760c99f0973da1d1290b35dfed051}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_key_handler_aa60d20ac34cf06508ce06102491a13ce}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_key_handler_afb58b5da704e085fa8ca362dbac14a6e}\label{classrev_1_1_key_handler_afb58b5da704e085fa8ca362dbac14a6e}} 
+Qt\+::\+Key \mbox{\hyperlink{classrev_1_1_key_handler_afb58b5da704e085fa8ca362dbac14a6e}{to\+Key}} (const Q\+String \&str)
+\begin{DoxyCompactList}\small\item\em Convert string to key. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_key_handler_ad9f8bc273dac3ffa6e6b05f7743aef90}\label{classrev_1_1_key_handler_ad9f8bc273dac3ffa6e6b05f7743aef90}} 
+void \mbox{\hyperlink{classrev_1_1_key_handler_ad9f8bc273dac3ffa6e6b05f7743aef90}{on\+Update}} (double delta\+Sec)
+\begin{DoxyCompactList}\small\item\em Start input collection for a new frame. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_key_handler_abcfebbe134f7056633f1c79e844f8726}\label{classrev_1_1_key_handler_abcfebbe134f7056633f1c79e844f8726}} 
+void \mbox{\hyperlink{classrev_1_1_key_handler_abcfebbe134f7056633f1c79e844f8726}{handle\+Key\+Press\+Event}} (Q\+Key\+Event $\ast$event)
+\begin{DoxyCompactList}\small\item\em Handle a key press event. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_key_handler_a74a2dcfbfbd4c6a29cbf23bda7d51cd5}\label{classrev_1_1_key_handler_a74a2dcfbfbd4c6a29cbf23bda7d51cd5}} 
+void \mbox{\hyperlink{classrev_1_1_key_handler_a74a2dcfbfbd4c6a29cbf23bda7d51cd5}{handle\+Key\+Release\+Event}} (Q\+Key\+Event $\ast$event)
+\begin{DoxyCompactList}\small\item\em Handle a key release event. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_key_handler_a04a9bdf70075dd1d3161d53d64f9996d}\label{classrev_1_1_key_handler_a04a9bdf70075dd1d3161d53d64f9996d}} 
+\mbox{\hyperlink{structrev_1_1_key_input}{Key\+Input}} \& \mbox{\hyperlink{classrev_1_1_key_handler_a04a9bdf70075dd1d3161d53d64f9996d}{get\+Input}} (const Qt\+::\+Key \&key)
+\begin{DoxyCompactList}\small\item\em Get the input corresponding to the given key, creating if it doesn\textquotesingle{}t exist. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_key_handler_aeb8f9d51fa35b0c3dbe8a68148c5f077}\label{classrev_1_1_key_handler_aeb8f9d51fa35b0c3dbe8a68148c5f077}} 
+bool \mbox{\hyperlink{classrev_1_1_key_handler_aeb8f9d51fa35b0c3dbe8a68148c5f077}{was\+Input}} (const Qt\+::\+Key \&key, const Key\+Input\+::\+Action\+Type \&action\+Type, Key\+Input\+::\+Timing\+Type timing\+Type=Key\+Input\+::k\+None)
+\begin{DoxyCompactList}\small\item\em Determine if key was inputted since the last frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_key_handler_a5724f28514a2cf7063a19c52bf11ddb7}\label{classrev_1_1_key_handler_a5724f28514a2cf7063a19c52bf11ddb7}} 
+std\+::list$<$ \mbox{\hyperlink{structrev_1_1_key_input}{Key\+Input}} $>$ \mbox{\hyperlink{classrev_1_1_key_handler_a5724f28514a2cf7063a19c52bf11ddb7}{m\+\_\+polled\+Inputs}}
+\begin{DoxyCompactList}\small\item\em Input events since last frame. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_key_handler_a8139916d687fb2226ce63c76ecd31a39}\label{classrev_1_1_key_handler_a8139916d687fb2226ce63c76ecd31a39}} 
+std\+::list$<$ \mbox{\hyperlink{structrev_1_1_key_input}{Key\+Input}} $>$ \mbox{\hyperlink{classrev_1_1_key_handler_a8139916d687fb2226ce63c76ecd31a39}{m\+\_\+inputs\+Cache}}
+\begin{DoxyCompactList}\small\item\em Cache to temporarily store input events since last frame. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_key_handler_a2b7f130f109ecf2702d5c4fd0a615612}\label{classrev_1_1_key_handler_a2b7f130f109ecf2702d5c4fd0a615612}} 
+\mbox{\hyperlink{classtsl_1_1robin__map}{tsl\+::robin\+\_\+map}}$<$ Qt\+::\+Key, \mbox{\hyperlink{structrev_1_1_key_input}{Key\+Input}} $>$ \mbox{\hyperlink{classrev_1_1_key_handler_a2b7f130f109ecf2702d5c4fd0a615612}{m\+\_\+key\+Inputs}}
+\begin{DoxyCompactList}\small\item\em All keyboard inputs. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_key_handler_a9f3037d7aa7ad5e8fa05d34d2c80a458}\label{classrev_1_1_key_handler_a9f3037d7aa7ad5e8fa05d34d2c80a458}} 
+\mbox{\hyperlink{classrev_1_1_input_handler}{Input\+Handler}} $\ast$ \mbox{\hyperlink{classrev_1_1_key_handler_a9f3037d7aa7ad5e8fa05d34d2c80a458}{m\+\_\+input\+Handler}}
+\begin{DoxyCompactList}\small\item\em Input handler. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_key_handler_a28c677eee06763681231ba62273b9fad}\label{classrev_1_1_key_handler_a28c677eee06763681231ba62273b9fad}} 
+class {\bfseries Input\+Handler}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} that handles polling-\/style inputs. 
+
+\begin{DoxyNote}{Note}
+See\+: \href{https://gamedev.stackexchange.com/questions/12146/polling-vs-event-driven-input}{\texttt{ https\+://gamedev.\+stackexchange.\+com/questions/12146/polling-\/vs-\/event-\/driven-\/input}} 
+\end{DoxyNote}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_key_handler_ae65760c99f0973da1d1290b35dfed051}\label{classrev_1_1_key_handler_ae65760c99f0973da1d1290b35dfed051}} 
+\index{rev::KeyHandler@{rev::KeyHandler}!className@{className}}
+\index{className@{className}!rev::KeyHandler@{rev::KeyHandler}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Key\+Handler\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_key_handler_aa60d20ac34cf06508ce06102491a13ce}\label{classrev_1_1_key_handler_aa60d20ac34cf06508ce06102491a13ce}} 
+\index{rev::KeyHandler@{rev::KeyHandler}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::KeyHandler@{rev::KeyHandler}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Key\+Handler\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/input/G\+Input\+Handler.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/input/G\+Input\+Handler.\+cpp\end{DoxyCompactItemize}

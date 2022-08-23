@@ -1,0 +1,121 @@
+\hypertarget{class_eigen_1_1_pastix_l_l_t}{}\section{Eigen\+::Pastix\+L\+LT$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo $>$ Class Template Reference}
+\label{class_eigen_1_1_pastix_l_l_t}\index{Eigen::PastixLLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::PastixLLT$<$ \_MatrixType, \_UpLo $>$}}
+
+
+A sparse direct supernodal Cholesky (\mbox{\hyperlink{class_eigen_1_1_l_l_t}{L\+LT}}) factorization and solver based on the Pa\+StiX library.  
+
+
+
+
+{\ttfamily \#include $<$Pa\+Sti\+X\+Support.\+h$>$}
+
+Inheritance diagram for Eigen\+::Pastix\+L\+LT$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_eigen_1_1_pastix_l_l_t}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_l_l_t_a70f658df09aa99397ae983a7dca02256}\label{class_eigen_1_1_pastix_l_l_t_a70f658df09aa99397ae983a7dca02256}} 
+enum \{ {\bfseries Up\+Lo} = \+\_\+\+Up\+Lo
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_l_l_t_a94474b44621be2dec32960c129b4f780}\label{class_eigen_1_1_pastix_l_l_t_a94474b44621be2dec32960c129b4f780}} 
+typedef \+\_\+\+Matrix\+Type {\bfseries Matrix\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_l_l_t_af2b56fad4abb8acff2a0b649a80b5196}\label{class_eigen_1_1_pastix_l_l_t_af2b56fad4abb8acff2a0b649a80b5196}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_pastix_base}{Pastix\+Base}}$<$ \mbox{\hyperlink{class_eigen_1_1_pastix_l_l_t}{Pastix\+L\+LT}}$<$ Matrix\+Type, \+\_\+\+Up\+Lo $>$ $>$ {\bfseries Base}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_l_l_t_adbf55149cb1588906b91e5e162573449}\label{class_eigen_1_1_pastix_l_l_t_adbf55149cb1588906b91e5e162573449}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Base\+::\+Col\+Sp\+Matrix}} {\bfseries Col\+Sp\+Matrix}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_l_l_t_af0e0af17977bfc585ca85d0b91d7174d}\label{class_eigen_1_1_pastix_l_l_t_af0e0af17977bfc585ca85d0b91d7174d}} 
+{\bfseries Pastix\+L\+LT} (const Matrix\+Type \&matrix)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_pastix_l_l_t_a54fcdef53903851e2d8113a6ed330b5c}{compute}} (const Matrix\+Type \&matrix)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_pastix_l_l_t_a671e8444ae2f04db3565e35caa958667}{analyze\+Pattern}} (const Matrix\+Type \&matrix)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_pastix_l_l_t_a63dac317804b18a4704a519d7bdfaaff}{factorize}} (const Matrix\+Type \&matrix)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_l_l_t_a496c7de2b4ea6665e1018fd475502a88}\label{class_eigen_1_1_pastix_l_l_t_a496c7de2b4ea6665e1018fd475502a88}} 
+void {\bfseries init} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_l_l_t_a90eb65cc498437ca71bcc65ad1645ed6}\label{class_eigen_1_1_pastix_l_l_t_a90eb65cc498437ca71bcc65ad1645ed6}} 
+void {\bfseries grab\+Matrix} (const Matrix\+Type \&matrix, \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Col\+Sp\+Matrix}} \&out)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_l_l_t_a5cdb7299e33d7f089d9e38f191aed9b9}\label{class_eigen_1_1_pastix_l_l_t_a5cdb7299e33d7f089d9e38f191aed9b9}} 
+\mbox{\hyperlink{class_eigen_1_1_array}{Array}}$<$ int, I\+P\+A\+R\+M\+\_\+\+S\+I\+ZE, 1 $>$ {\bfseries m\+\_\+iparm}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Matrix\+Type, int \+\_\+\+Up\+Lo$>$\newline
+class Eigen\+::\+Pastix\+L\+L\+T$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo $>$}
+
+A sparse direct supernodal Cholesky (\mbox{\hyperlink{class_eigen_1_1_l_l_t}{L\+LT}}) factorization and solver based on the Pa\+StiX library. 
+
+This class is used to solve the linear systems A.\+X = B via a L\+L$^\wedge$T supernodal Cholesky factorization available in the Pa\+StiX library. The matrix A should be symmetric and positive definite W\+A\+R\+N\+I\+NG Selfadjoint complex matrices are not supported in the current version of Pa\+StiX The vectors or matrices X and B can be either dense or sparse
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Matrix\+Type} & the type of the sparse matrix A, it must be a Sparse\+Matrix$<$$>$ \\
+\hline
+{\em Up\+Lo} & The part of the matrix to use \+: Lower or Upper. The default is Lower as required by Pa\+StiX\\
+\hline
+\end{DoxyTemplParams}
+\textbackslash{}implsparsesolverconcept
+
+\begin{DoxySeeAlso}{See also}
+Tutorial\+Sparse\+Solver\+Concept, class \mbox{\hyperlink{class_eigen_1_1_simplicial_l_l_t}{Simplicial\+L\+LT}} 
+\end{DoxySeeAlso}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_pastix_l_l_t_a671e8444ae2f04db3565e35caa958667}\label{class_eigen_1_1_pastix_l_l_t_a671e8444ae2f04db3565e35caa958667}} 
+\index{Eigen::PastixLLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::PastixLLT$<$ \_MatrixType, \_UpLo $>$}!analyzePattern@{analyzePattern}}
+\index{analyzePattern@{analyzePattern}!Eigen::PastixLLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::PastixLLT$<$ \_MatrixType, \_UpLo $>$}}
+\subsubsection{\texorpdfstring{analyzePattern()}{analyzePattern()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , int \+\_\+\+Up\+Lo$>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_pastix_l_l_t}{Eigen\+::\+Pastix\+L\+LT}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo $>$\+::analyze\+Pattern (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Compute the L\+L$^\wedge$T symbolic factorization of {\ttfamily matrix} using its sparsity pattern The result of this operation can be used with successive matrices having the same pattern as {\ttfamily matrix} \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_pastix_l_l_t_a63dac317804b18a4704a519d7bdfaaff}{factorize()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_pastix_l_l_t_a54fcdef53903851e2d8113a6ed330b5c}\label{class_eigen_1_1_pastix_l_l_t_a54fcdef53903851e2d8113a6ed330b5c}} 
+\index{Eigen::PastixLLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::PastixLLT$<$ \_MatrixType, \_UpLo $>$}!compute@{compute}}
+\index{compute@{compute}!Eigen::PastixLLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::PastixLLT$<$ \_MatrixType, \_UpLo $>$}}
+\subsubsection{\texorpdfstring{compute()}{compute()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , int \+\_\+\+Up\+Lo$>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_pastix_l_l_t}{Eigen\+::\+Pastix\+L\+LT}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo $>$\+::compute (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Compute the L factor of the L\+L$^\wedge$T supernodal factorization of {\ttfamily matrix} \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_pastix_l_l_t_a671e8444ae2f04db3565e35caa958667}{analyze\+Pattern()}} \mbox{\hyperlink{class_eigen_1_1_pastix_l_l_t_a63dac317804b18a4704a519d7bdfaaff}{factorize()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_pastix_l_l_t_a63dac317804b18a4704a519d7bdfaaff}\label{class_eigen_1_1_pastix_l_l_t_a63dac317804b18a4704a519d7bdfaaff}} 
+\index{Eigen::PastixLLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::PastixLLT$<$ \_MatrixType, \_UpLo $>$}!factorize@{factorize}}
+\index{factorize@{factorize}!Eigen::PastixLLT$<$ \_MatrixType, \_UpLo $>$@{Eigen::PastixLLT$<$ \_MatrixType, \_UpLo $>$}}
+\subsubsection{\texorpdfstring{factorize()}{factorize()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , int \+\_\+\+Up\+Lo$>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_pastix_l_l_t}{Eigen\+::\+Pastix\+L\+LT}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Up\+Lo $>$\+::factorize (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Compute the L\+L$^\wedge$T supernodal numerical factorization of {\ttfamily matrix} \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_pastix_l_l_t_a671e8444ae2f04db3565e35caa958667}{analyze\+Pattern()}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Pa\+Sti\+X\+Support/Pa\+Sti\+X\+Support.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,77 @@
+\hypertarget{class_cbm_tune}{}\section{Cbm\+Tune Class Reference}
+\label{class_cbm_tune}\index{CbmTune@{CbmTune}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_cbm_tune_a2ad59d0809e22fd2af152e0df85c2267}\label{class_cbm_tune_a2ad59d0809e22fd2af152e0df85c2267}} 
+int {\bfseries parse} (char $\ast$f\+Name)
+\item 
+\mbox{\Hypertarget{class_cbm_tune_ad3eb79632c110c8aec214821a6624234}\label{class_cbm_tune_ad3eb79632c110c8aec214821a6624234}} 
+void {\bfseries get\+Psid\+Header} (\mbox{\hyperlink{struct_psid_header}{Psid\+Header}} \&ph)
+\item 
+\mbox{\Hypertarget{class_cbm_tune_a88971d17cdb38453b45f8abedf2c5167}\label{class_cbm_tune_a88971d17cdb38453b45f8abedf2c5167}} 
+virtual char $\ast$ {\bfseries get\+Name} ()
+\item 
+\mbox{\Hypertarget{class_cbm_tune_a756db133010805fe2b54cc630b6da004}\label{class_cbm_tune_a756db133010805fe2b54cc630b6da004}} 
+virtual char $\ast$ {\bfseries get\+Author} ()
+\item 
+\mbox{\Hypertarget{class_cbm_tune_a7af6f800e371ba9a22277c54ec539f06}\label{class_cbm_tune_a7af6f800e371ba9a22277c54ec539f06}} 
+virtual char $\ast$ {\bfseries get\+Release\+Date} ()
+\item 
+\mbox{\Hypertarget{class_cbm_tune_a9461edf20d8da02ee29e65d296577512}\label{class_cbm_tune_a9461edf20d8da02ee29e65d296577512}} 
+virtual unsigned int {\bfseries get\+Nr\+Of\+Subtunes} ()
+\item 
+\mbox{\Hypertarget{class_cbm_tune_ae3eb96292700ab16df7d8cacd3c12cef}\label{class_cbm_tune_ae3eb96292700ab16df7d8cacd3c12cef}} 
+virtual unsigned int {\bfseries get\+Default\+Subtune} ()
+\item 
+\mbox{\Hypertarget{class_cbm_tune_ae0e314eb38bc175cb2c2f053a639f4d0}\label{class_cbm_tune_ae0e314eb38bc175cb2c2f053a639f4d0}} 
+virtual unsigned short {\bfseries get\+Init\+Address} (unsigned int nr)
+\item 
+\mbox{\Hypertarget{class_cbm_tune_afd5975813d9e74708b31d540408481d6}\label{class_cbm_tune_afd5975813d9e74708b31d540408481d6}} 
+virtual unsigned short {\bfseries get\+Play\+Address} (unsigned int nr)
+\item 
+\mbox{\Hypertarget{class_cbm_tune_a04e386349818c372ab156328f4a0aa85}\label{class_cbm_tune_a04e386349818c372ab156328f4a0aa85}} 
+virtual unsigned short {\bfseries get\+Dump\+Length} (unsigned int nr)
+\item 
+\mbox{\Hypertarget{class_cbm_tune_afef4e8540e6e05155e84c7f8e2d4d52e}\label{class_cbm_tune_afef4e8540e6e05155e84c7f8e2d4d52e}} 
+virtual unsigned short {\bfseries get\+Load\+Address} (unsigned int nr)
+\item 
+\mbox{\Hypertarget{class_cbm_tune_a858ce335914dd2abf6513eef59b870bd}\label{class_cbm_tune_a858ce335914dd2abf6513eef59b870bd}} 
+virtual unsigned char $\ast$ {\bfseries get\+Binary\+Data} (unsigned int nr)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_cbm_tune_a106c13d318860db96d319f36c2598897}\label{class_cbm_tune_a106c13d318860db96d319f36c2598897}} 
+F\+I\+LE $\ast$ {\bfseries file}
+\item 
+\mbox{\Hypertarget{class_cbm_tune_a735e6e0603b46432b54c777de50d6fb0}\label{class_cbm_tune_a735e6e0603b46432b54c777de50d6fb0}} 
+size\+\_\+t {\bfseries flen}
+\item 
+\mbox{\Hypertarget{class_cbm_tune_a8f9aed86c8d211cfd332c962cb62d0ff}\label{class_cbm_tune_a8f9aed86c8d211cfd332c962cb62d0ff}} 
+unsigned char $\ast$ {\bfseries buffer}
+\item 
+\mbox{\Hypertarget{class_cbm_tune_a73650f62ced08084d9827aff03c63140}\label{class_cbm_tune_a73650f62ced08084d9827aff03c63140}} 
+unsigned char $\ast$ {\bfseries buffer\+Ptr}
+\item 
+\mbox{\Hypertarget{class_cbm_tune_a80be5d3c04d12a659003bb79e93c4ecd}\label{class_cbm_tune_a80be5d3c04d12a659003bb79e93c4ecd}} 
+unsigned int {\bfseries data\+Index}
+\item 
+\mbox{\Hypertarget{class_cbm_tune_ab0ece74517df48be70c252bc366690cc}\label{class_cbm_tune_ab0ece74517df48be70c252bc366690cc}} 
+unsigned int {\bfseries init\+Address}
+\item 
+\mbox{\Hypertarget{class_cbm_tune_af6a90bb2c71ecfd1c6fb342bd886d39d}\label{class_cbm_tune_af6a90bb2c71ecfd1c6fb342bd886d39d}} 
+unsigned int {\bfseries play\+Address}
+\item 
+\mbox{\Hypertarget{class_cbm_tune_ae89cd00086af46ad024e38de71f2856a}\label{class_cbm_tune_ae89cd00086af46ad024e38de71f2856a}} 
+unsigned int {\bfseries load\+Address}
+\item 
+\mbox{\Hypertarget{class_cbm_tune_a98fd7202eb2a9d4c0ea8d9043cb5323b}\label{class_cbm_tune_a98fd7202eb2a9d4c0ea8d9043cb5323b}} 
+unsigned int {\bfseries dump\+Length}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/src/tools/tedsid2dump/cbmtune.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/src/tools/tedsid2dump/cbmtune.\+cpp\end{DoxyCompactItemize}

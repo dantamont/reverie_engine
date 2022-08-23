@@ -1,0 +1,44 @@
+\hypertarget{class_so_loud_1_1_thread_1_1_pool}{}\section{So\+Loud\+::Thread\+::Pool Class Reference}
+\label{class_so_loud_1_1_thread_1_1_pool}\index{SoLoud::Thread::Pool@{SoLoud::Thread::Pool}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_thread_1_1_pool_a941c254d36737e2ba09b9076e9bbe0c6}\label{class_so_loud_1_1_thread_1_1_pool_a941c254d36737e2ba09b9076e9bbe0c6}} 
+void {\bfseries init} (int a\+Thread\+Count)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_thread_1_1_pool_af5a6382384729d775638067e27704b1b}\label{class_so_loud_1_1_thread_1_1_pool_af5a6382384729d775638067e27704b1b}} 
+void {\bfseries add\+Work} (\mbox{\hyperlink{class_so_loud_1_1_thread_1_1_pool_task}{Pool\+Task}} $\ast$a\+Task)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_thread_1_1_pool_a322f40272aa6f652b90294dc37529666}\label{class_so_loud_1_1_thread_1_1_pool_a322f40272aa6f652b90294dc37529666}} 
+\mbox{\hyperlink{class_so_loud_1_1_thread_1_1_pool_task}{Pool\+Task}} $\ast$ {\bfseries get\+Work} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_thread_1_1_pool_aff7a689de8e7831fab6b1496f97016dd}\label{class_so_loud_1_1_thread_1_1_pool_aff7a689de8e7831fab6b1496f97016dd}} 
+int {\bfseries m\+Thread\+Count}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_thread_1_1_pool_a445d8cdf6c314538cbe47f36f088e112}\label{class_so_loud_1_1_thread_1_1_pool_a445d8cdf6c314538cbe47f36f088e112}} 
+\mbox{\hyperlink{struct_so_loud_1_1_thread_1_1_thread_handle_data}{Thread\+Handle}} $\ast$ {\bfseries m\+Thread}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_thread_1_1_pool_a257fdfeb3ecfcdb93b60f948a0ddb1c9}\label{class_so_loud_1_1_thread_1_1_pool_a257fdfeb3ecfcdb93b60f948a0ddb1c9}} 
+void $\ast$ {\bfseries m\+Work\+Mutex}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_thread_1_1_pool_a7a0beae198e4de16e49b17110f935935}\label{class_so_loud_1_1_thread_1_1_pool_a7a0beae198e4de16e49b17110f935935}} 
+\mbox{\hyperlink{class_so_loud_1_1_thread_1_1_pool_task}{Pool\+Task}} $\ast$ {\bfseries m\+Task\+Array} \mbox{[}M\+A\+X\+\_\+\+T\+H\+R\+E\+A\+D\+P\+O\+O\+L\+\_\+\+T\+A\+S\+KS\mbox{]}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_thread_1_1_pool_a457c4430ce72c07abadcc14a8330325b}\label{class_so_loud_1_1_thread_1_1_pool_a457c4430ce72c07abadcc14a8330325b}} 
+int {\bfseries m\+Max\+Task}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_thread_1_1_pool_aeef706e198f929175731b02163499e9e}\label{class_so_loud_1_1_thread_1_1_pool_aeef706e198f929175731b02163499e9e}} 
+int {\bfseries m\+Robin}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_thread_1_1_pool_a5577710eeb7c2dc51a5a3118734e815b}\label{class_so_loud_1_1_thread_1_1_pool_a5577710eeb7c2dc51a5a3118734e815b}} 
+volatile int {\bfseries m\+Running}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/include/soloud\+\_\+thread.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/src/core/soloud\+\_\+thread.\+cpp\end{DoxyCompactItemize}

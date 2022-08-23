@@ -1,0 +1,82 @@
+\hypertarget{classrev_1_1_reparent_scene_object_command}{}\section{rev\+::Reparent\+Scene\+Object\+Command Class Reference}
+\label{classrev_1_1_reparent_scene_object_command}\index{rev::ReparentSceneObjectCommand@{rev::ReparentSceneObjectCommand}}
+Inheritance diagram for rev\+::Reparent\+Scene\+Object\+Command\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.500000cm]{classrev_1_1_reparent_scene_object_command}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_reparent_scene_object_command_adfcec15af186579adf4faf315302dcae}\label{classrev_1_1_reparent_scene_object_command_adfcec15af186579adf4faf315302dcae}} 
+{\bfseries Reparent\+Scene\+Object\+Command} (\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$new\+Parent, \mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$object, \mbox{\hyperlink{classrev_1_1_scene}{Scene}} $\ast$new\+Scene, int child\+Index)
+\item 
+\mbox{\Hypertarget{classrev_1_1_reparent_scene_object_command_ac57e77ee9e5cf3107570c25e61ab6c4f}\label{classrev_1_1_reparent_scene_object_command_ac57e77ee9e5cf3107570c25e61ab6c4f}} 
+{\bfseries $\sim$\+Reparent\+Scene\+Object\+Command} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_reparent_scene_object_command_ad982f67e4b3c5a50f4a9a031261b638b}\label{classrev_1_1_reparent_scene_object_command_ad982f67e4b3c5a50f4a9a031261b638b}} 
+void \mbox{\hyperlink{classrev_1_1_reparent_scene_object_command_ad982f67e4b3c5a50f4a9a031261b638b}{redo}} () override
+\begin{DoxyCompactList}\small\item\em Redoes the add scenario command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_reparent_scene_object_command_a5ad5deece469b45bf3863f20ac52f6d7}\label{classrev_1_1_reparent_scene_object_command_a5ad5deece469b45bf3863f20ac52f6d7}} 
+void \mbox{\hyperlink{classrev_1_1_reparent_scene_object_command_a5ad5deece469b45bf3863f20ac52f6d7}{undo}} () override
+\begin{DoxyCompactList}\small\item\em Undoes the add scenario command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_reparent_scene_object_command_a729acee650c3be11ff321e9ae4dcc33e}\label{classrev_1_1_reparent_scene_object_command_a729acee650c3be11ff321e9ae4dcc33e}} 
+void \mbox{\hyperlink{classrev_1_1_reparent_scene_object_command_a729acee650c3be11ff321e9ae4dcc33e}{reparent\+Widget\+Item}} (\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$new\+Parent\+Object, \mbox{\hyperlink{classrev_1_1_scene}{Scene}} $\ast$new\+Scene)
+\begin{DoxyCompactList}\small\item\em Handle reparenting of widget component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_reparent_scene_object_command_a00e912368e97fa0479fb485054344be6}\label{classrev_1_1_reparent_scene_object_command_a00e912368e97fa0479fb485054344be6}} 
+\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$ {\bfseries object} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_reparent_scene_object_command_a348fa1be8b231400c441dd49b966fab8}\label{classrev_1_1_reparent_scene_object_command_a348fa1be8b231400c441dd49b966fab8}} 
+\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$ {\bfseries prev\+Parent} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_reparent_scene_object_command_ae35e7a1f554523762ae980d545d87d74}\label{classrev_1_1_reparent_scene_object_command_ae35e7a1f554523762ae980d545d87d74}} 
+\mbox{\hyperlink{classrev_1_1_scene}{Scene}} $\ast$ {\bfseries prev\+Scene} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_reparent_scene_object_command_adaea16faa90de9c33cab09e7fc743de6}\label{classrev_1_1_reparent_scene_object_command_adaea16faa90de9c33cab09e7fc743de6}} 
+\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$ {\bfseries parent} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_reparent_scene_object_command_a1ea840031ed675f2a04d27814b94f463}\label{classrev_1_1_reparent_scene_object_command_a1ea840031ed675f2a04d27814b94f463}} 
+\mbox{\hyperlink{classrev_1_1_scene}{Scene}} $\ast$ {\bfseries scene} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_reparent_scene_object_command_a5c7d2b6299c9defae980cf4a6430b723}\label{classrev_1_1_reparent_scene_object_command_a5c7d2b6299c9defae980cf4a6430b723}} 
+\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$ \mbox{\hyperlink{classrev_1_1_reparent_scene_object_command_a5c7d2b6299c9defae980cf4a6430b723}{m\+\_\+object}}
+\begin{DoxyCompactList}\small\item\em The object that is being reparented. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_reparent_scene_object_command_a9be3217a296cdc301cc95802e9219af2}\label{classrev_1_1_reparent_scene_object_command_a9be3217a296cdc301cc95802e9219af2}} 
+\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$ \mbox{\hyperlink{classrev_1_1_reparent_scene_object_command_a9be3217a296cdc301cc95802e9219af2}{m\+\_\+prev\+Parent}}
+\begin{DoxyCompactList}\small\item\em The previous parent of the object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_reparent_scene_object_command_a1160bd9b8ebd352b3280db265411c548}\label{classrev_1_1_reparent_scene_object_command_a1160bd9b8ebd352b3280db265411c548}} 
+\mbox{\hyperlink{classrev_1_1_scene}{Scene}} $\ast$ \mbox{\hyperlink{classrev_1_1_reparent_scene_object_command_a1160bd9b8ebd352b3280db265411c548}{m\+\_\+prev\+Scene}}
+\begin{DoxyCompactList}\small\item\em The previous scene of the object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_reparent_scene_object_command_aa902f2b36056c40793929bad0c2bb651}\label{classrev_1_1_reparent_scene_object_command_aa902f2b36056c40793929bad0c2bb651}} 
+\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$ \mbox{\hyperlink{classrev_1_1_reparent_scene_object_command_aa902f2b36056c40793929bad0c2bb651}{m\+\_\+parent}}
+\begin{DoxyCompactList}\small\item\em The new parent of the object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_reparent_scene_object_command_a494c27b37fce1ebf58a851fdacff4735}\label{classrev_1_1_reparent_scene_object_command_a494c27b37fce1ebf58a851fdacff4735}} 
+\mbox{\hyperlink{classrev_1_1_scene}{Scene}} $\ast$ \mbox{\hyperlink{classrev_1_1_reparent_scene_object_command_a494c27b37fce1ebf58a851fdacff4735}{m\+\_\+scene}}
+\begin{DoxyCompactList}\small\item\em The new scene of the object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_reparent_scene_object_command_a2ed8e5e38c66062bb941508c332b3124}\label{classrev_1_1_reparent_scene_object_command_a2ed8e5e38c66062bb941508c332b3124}} 
+int \mbox{\hyperlink{classrev_1_1_reparent_scene_object_command_a2ed8e5e38c66062bb941508c332b3124}{m\+\_\+child\+Index}}
+\begin{DoxyCompactList}\small\item\em Index at which to add as tree widget child. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/model\+\_\+control/commands/commands/G\+Scene\+Command.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/model\+\_\+control/commands/commands/G\+Scene\+Command.\+cpp\end{DoxyCompactItemize}

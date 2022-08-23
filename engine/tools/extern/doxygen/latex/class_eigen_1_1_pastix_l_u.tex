@@ -1,0 +1,136 @@
+\hypertarget{class_eigen_1_1_pastix_l_u}{}\section{Eigen\+::Pastix\+LU$<$ \+\_\+\+Matrix\+Type, Is\+Str\+Sym $>$ Class Template Reference}
+\label{class_eigen_1_1_pastix_l_u}\index{Eigen::PastixLU$<$ \_MatrixType, IsStrSym $>$@{Eigen::PastixLU$<$ \_MatrixType, IsStrSym $>$}}
+
+
+Interface to the Pa\+Stix solver.  
+
+
+
+
+{\ttfamily \#include $<$Pa\+Sti\+X\+Support.\+h$>$}
+
+Inheritance diagram for Eigen\+::Pastix\+LU$<$ \+\_\+\+Matrix\+Type, Is\+Str\+Sym $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_eigen_1_1_pastix_l_u}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_l_u_a381b6169c2fc056bef401bb621d72b66}\label{class_eigen_1_1_pastix_l_u_a381b6169c2fc056bef401bb621d72b66}} 
+typedef \+\_\+\+Matrix\+Type {\bfseries Matrix\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_l_u_ad19f8707fc3e419710cfbd7d1f4595a7}\label{class_eigen_1_1_pastix_l_u_ad19f8707fc3e419710cfbd7d1f4595a7}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_pastix_base}{Pastix\+Base}}$<$ \mbox{\hyperlink{class_eigen_1_1_pastix_l_u}{Pastix\+LU}}$<$ Matrix\+Type $>$ $>$ {\bfseries Base}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_l_u_ab010577a9123541027c9fc89db42107c}\label{class_eigen_1_1_pastix_l_u_ab010577a9123541027c9fc89db42107c}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Base\+::\+Col\+Sp\+Matrix}} {\bfseries Col\+Sp\+Matrix}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_l_u_a34946041be30db32d0511da40e542406}\label{class_eigen_1_1_pastix_l_u_a34946041be30db32d0511da40e542406}} 
+typedef Matrix\+Type\+::\+Storage\+Index {\bfseries Storage\+Index}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_l_u_a7d080a8a45f2fd33ba174333c60f87b8}\label{class_eigen_1_1_pastix_l_u_a7d080a8a45f2fd33ba174333c60f87b8}} 
+{\bfseries Pastix\+LU} (const Matrix\+Type \&matrix)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_pastix_l_u_adc28ee2550086c7bdfe991d624bde2ee}{compute}} (const Matrix\+Type \&matrix)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_pastix_l_u_abae3ca7f1254106d9e2d5e0f273189fa}{analyze\+Pattern}} (const Matrix\+Type \&matrix)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_pastix_l_u_ac178a87b499a2210a402787fbfd98f26}{factorize}} (const Matrix\+Type \&matrix)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_l_u_afe75c3d2574bc61dfac397b8b420c376}\label{class_eigen_1_1_pastix_l_u_afe75c3d2574bc61dfac397b8b420c376}} 
+void {\bfseries init} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_l_u_a2c8ec7fef67f389d3adde38f50dab05a}\label{class_eigen_1_1_pastix_l_u_a2c8ec7fef67f389d3adde38f50dab05a}} 
+void {\bfseries grab\+Matrix} (const Matrix\+Type \&matrix, \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Col\+Sp\+Matrix}} \&out)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_l_u_adabc5f2985161038c22285816c21ed87}\label{class_eigen_1_1_pastix_l_u_adabc5f2985161038c22285816c21ed87}} 
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Col\+Sp\+Matrix}} {\bfseries m\+\_\+transposed\+Structure}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_l_u_adbb1af75943a3e0a5155481144533113}\label{class_eigen_1_1_pastix_l_u_adbb1af75943a3e0a5155481144533113}} 
+bool {\bfseries m\+\_\+structure\+Is\+Uptodate}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_l_u_a5cdb7299e33d7f089d9e38f191aed9b9}\label{class_eigen_1_1_pastix_l_u_a5cdb7299e33d7f089d9e38f191aed9b9}} 
+\mbox{\hyperlink{class_eigen_1_1_array}{Array}}$<$ int, I\+P\+A\+R\+M\+\_\+\+S\+I\+ZE, 1 $>$ {\bfseries m\+\_\+iparm}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_pastix_l_u_a139ba50ba94931769c328fa7c373a180}\label{class_eigen_1_1_pastix_l_u_a139ba50ba94931769c328fa7c373a180}} 
+\mbox{\hyperlink{class_eigen_1_1_array}{Array}}$<$ double, D\+P\+A\+R\+M\+\_\+\+S\+I\+ZE, 1 $>$ {\bfseries m\+\_\+dparm}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Matrix\+Type, bool Is\+Str\+Sym$>$\newline
+class Eigen\+::\+Pastix\+L\+U$<$ \+\_\+\+Matrix\+Type, Is\+Str\+Sym $>$}
+
+Interface to the Pa\+Stix solver. 
+
+\mbox{\hyperlink{struct_eigen_1_1_sparse}{Sparse}} direct LU solver based on Pa\+StiX library.
+
+This class is used to solve the linear systems A.\+X = B via the Pa\+Stix library. The matrix can be either real or complex, symmetric or not.
+
+\begin{DoxySeeAlso}{See also}
+Tutorial\+Sparse\+Direct\+Solvers
+\end{DoxySeeAlso}
+This class is used to solve the linear systems A.\+X = B with a supernodal LU factorization in the Pa\+StiX library. The matrix A should be squared and nonsingular Pa\+StiX requires that the matrix A has a symmetric structural pattern. This interface can symmetrize the input matrix otherwise. The vectors or matrices X and B can be either dense or sparse.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Matrix\+Type} & the type of the sparse matrix A, it must be a Sparse\+Matrix$<$$>$ \\
+\hline
+{\em Is\+Str\+Sym} & Indicates if the input matrix has a symmetric pattern, default is false N\+O\+TE \+: Note that if the analysis and factorization phase are called separately, the input matrix will be symmetrized at each call, hence it is advised to symmetrize the matrix in a end-\/user program and set {\ttfamily Is\+Str\+Sym} to true\\
+\hline
+\end{DoxyTemplParams}
+\textbackslash{}implsparsesolverconcept
+
+\begin{DoxySeeAlso}{See also}
+Tutorial\+Sparse\+Solver\+Concept, class \mbox{\hyperlink{class_eigen_1_1_sparse_l_u}{Sparse\+LU}} 
+\end{DoxySeeAlso}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_pastix_l_u_abae3ca7f1254106d9e2d5e0f273189fa}\label{class_eigen_1_1_pastix_l_u_abae3ca7f1254106d9e2d5e0f273189fa}} 
+\index{Eigen::PastixLU$<$ \_MatrixType, IsStrSym $>$@{Eigen::PastixLU$<$ \_MatrixType, IsStrSym $>$}!analyzePattern@{analyzePattern}}
+\index{analyzePattern@{analyzePattern}!Eigen::PastixLU$<$ \_MatrixType, IsStrSym $>$@{Eigen::PastixLU$<$ \_MatrixType, IsStrSym $>$}}
+\subsubsection{\texorpdfstring{analyzePattern()}{analyzePattern()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , bool Is\+Str\+Sym$>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_pastix_l_u}{Eigen\+::\+Pastix\+LU}}$<$ \+\_\+\+Matrix\+Type, Is\+Str\+Sym $>$\+::analyze\+Pattern (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Compute the LU symbolic factorization of {\ttfamily matrix} using its sparsity pattern. Several ordering methods can be used at this step. See the Pa\+StiX user\textquotesingle{}s manual. The result of this operation can be used with successive matrices having the same pattern as {\ttfamily matrix} \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_pastix_l_u_ac178a87b499a2210a402787fbfd98f26}{factorize()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_pastix_l_u_adc28ee2550086c7bdfe991d624bde2ee}\label{class_eigen_1_1_pastix_l_u_adc28ee2550086c7bdfe991d624bde2ee}} 
+\index{Eigen::PastixLU$<$ \_MatrixType, IsStrSym $>$@{Eigen::PastixLU$<$ \_MatrixType, IsStrSym $>$}!compute@{compute}}
+\index{compute@{compute}!Eigen::PastixLU$<$ \_MatrixType, IsStrSym $>$@{Eigen::PastixLU$<$ \_MatrixType, IsStrSym $>$}}
+\subsubsection{\texorpdfstring{compute()}{compute()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , bool Is\+Str\+Sym$>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_pastix_l_u}{Eigen\+::\+Pastix\+LU}}$<$ \+\_\+\+Matrix\+Type, Is\+Str\+Sym $>$\+::compute (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Compute the LU supernodal factorization of {\ttfamily matrix}. iparm and dparm can be used to tune the Pa\+StiX parameters. see the Pa\+StiX user\textquotesingle{}s manual \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_pastix_l_u_abae3ca7f1254106d9e2d5e0f273189fa}{analyze\+Pattern()}} \mbox{\hyperlink{class_eigen_1_1_pastix_l_u_ac178a87b499a2210a402787fbfd98f26}{factorize()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_pastix_l_u_ac178a87b499a2210a402787fbfd98f26}\label{class_eigen_1_1_pastix_l_u_ac178a87b499a2210a402787fbfd98f26}} 
+\index{Eigen::PastixLU$<$ \_MatrixType, IsStrSym $>$@{Eigen::PastixLU$<$ \_MatrixType, IsStrSym $>$}!factorize@{factorize}}
+\index{factorize@{factorize}!Eigen::PastixLU$<$ \_MatrixType, IsStrSym $>$@{Eigen::PastixLU$<$ \_MatrixType, IsStrSym $>$}}
+\subsubsection{\texorpdfstring{factorize()}{factorize()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , bool Is\+Str\+Sym$>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_pastix_l_u}{Eigen\+::\+Pastix\+LU}}$<$ \+\_\+\+Matrix\+Type, Is\+Str\+Sym $>$\+::factorize (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Compute the LU supernodal factorization of {\ttfamily matrix} W\+A\+R\+N\+I\+NG The matrix {\ttfamily matrix} should have the same structural pattern as the same used in the analysis phase. \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_pastix_l_u_abae3ca7f1254106d9e2d5e0f273189fa}{analyze\+Pattern()}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Pa\+Sti\+X\+Support/Pa\+Sti\+X\+Support.\+h\end{DoxyCompactItemize}

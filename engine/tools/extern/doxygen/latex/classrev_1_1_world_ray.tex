@@ -1,0 +1,135 @@
+\hypertarget{classrev_1_1_world_ray}{}\section{rev\+::World\+Ray Class Reference}
+\label{classrev_1_1_world_ray}\index{rev::WorldRay@{rev::WorldRay}}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_world_ray_aeee6cb5f22a6c00ce4246bfd6c99f806}\label{classrev_1_1_world_ray_aeee6cb5f22a6c00ce4246bfd6c99f806}} 
+{\bfseries World\+Ray} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_world_ray_add92754c6eb87724038396efdf15ea7e}\label{classrev_1_1_world_ray_add92754c6eb87724038396efdf15ea7e}} 
+{\bfseries World\+Ray} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&origin, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&direction, real\+\_\+g max\+Distance=(float) 1e30, Raycast\+Flags flags=0)
+\item 
+\mbox{\Hypertarget{classrev_1_1_world_ray_ae7f7346c9e73fcbac1cedc151cfda1bb}\label{classrev_1_1_world_ray_ae7f7346c9e73fcbac1cedc151cfda1bb}} 
+{\bfseries $\sim$\+World\+Ray} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_world_ray_a931069ee3a418130737e6d81b4d6cf49}\label{classrev_1_1_world_ray_a931069ee3a418130737e6d81b4d6cf49}} 
+void {\bfseries set\+Raycast\+Flags} (\mbox{\hyperlink{classrev_1_1_flags}{Raycast\+Flags}} flags)
+\item 
+\mbox{\Hypertarget{classrev_1_1_world_ray_ae0f29396a6d37c4a1aaf88a97d90c29f}\label{classrev_1_1_world_ray_ae0f29396a6d37c4a1aaf88a97d90c29f}} 
+const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \& {\bfseries origin} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_world_ray_a75c0a3dd83ba8c24aefa6ff337afb5df}\label{classrev_1_1_world_ray_a75c0a3dd83ba8c24aefa6ff337afb5df}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \& {\bfseries origin} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_world_ray_a805afbb967aa1365858318733c26d2b9}\label{classrev_1_1_world_ray_a805afbb967aa1365858318733c26d2b9}} 
+void {\bfseries set\+Origin} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&origin)
+\item 
+\mbox{\Hypertarget{classrev_1_1_world_ray_aa91cd2ecf673d10c99cf6de781597f61}\label{classrev_1_1_world_ray_aa91cd2ecf673d10c99cf6de781597f61}} 
+const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \& {\bfseries direction} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_world_ray_a77dc3d9b9b6e7d4a74c1a194bdc72646}\label{classrev_1_1_world_ray_a77dc3d9b9b6e7d4a74c1a194bdc72646}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \& {\bfseries direction} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_world_ray_a0ed92f8d22856e66a18a6d803a6eba7c}\label{classrev_1_1_world_ray_a0ed92f8d22856e66a18a6d803a6eba7c}} 
+void {\bfseries initialize} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_world_ray_a9149ee734f687282551f6466e9a6ed00}\label{classrev_1_1_world_ray_a9149ee734f687282551f6466e9a6ed00}} 
+bool \mbox{\hyperlink{classrev_1_1_world_ray_a9149ee734f687282551f6466e9a6ed00}{cast}} (const \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} \&so, std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_world_ray_hit}{World\+Ray\+Hit}} $>$ \&out\+Hits) const
+\begin{DoxyCompactList}\small\item\em Test if the ray hits the specified scene object. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classrev_1_1_world_ray_a53604bdab9b5945098cc81a3cc84cc1d}{cast}} (const \mbox{\hyperlink{classrev_1_1_a_a_b_b}{A\+A\+BB}} \&aabb, double \&tmin, double \&tmax) const
+\begin{DoxyCompactList}\small\item\em Test if the ray hits the specified bounding box. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classrev_1_1_world_ray_a24c77ebf8143de984134f5424228b134}{cast}} (const \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} \&so, const \mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} \&mesh, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&object\+Origin, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&object\+Dir, std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_world_ray_hit}{World\+Ray\+Hit}} $>$ \&out\+Hits) const
+\begin{DoxyCompactList}\small\item\em Test if the ray hits the specified mesh. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_world_ray_afec02a46acff69f12467abe4910c264a}\label{classrev_1_1_world_ray_afec02a46acff69f12467abe4910c264a}} 
+static \mbox{\hyperlink{classrev_1_1_world_ray}{World\+Ray}} \mbox{\hyperlink{classrev_1_1_world_ray_afec02a46acff69f12467abe4910c264a}{From\+Mouse\+Position}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector2}} \&widget\+Pos, const \mbox{\hyperlink{classrev_1_1_camera}{Camera}} \&camera, const \mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} \&renderer)
+\begin{DoxyCompactList}\small\item\em Create a raycast from mouse widget position. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{classrev_1_1_world_ray_a42a5fcd774d2a5d62128de43d047c393}{Triangle\+Intersect}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&orig, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&dir, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&v0, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&v1, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&v2, float \&t, float \&u, float \&v, \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&out\+\_\+v0v1, \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&out\+\_\+v0v2)
+\begin{DoxyCompactList}\small\item\em Determine an intersection with a triangle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_world_ray_a53604bdab9b5945098cc81a3cc84cc1d}\label{classrev_1_1_world_ray_a53604bdab9b5945098cc81a3cc84cc1d}} 
+\index{rev::WorldRay@{rev::WorldRay}!cast@{cast}}
+\index{cast@{cast}!rev::WorldRay@{rev::WorldRay}}
+\subsubsection{\texorpdfstring{cast()}{cast()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool rev\+::\+World\+Ray\+::cast (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_a_a_b_b}{A\+A\+BB}} \&}]{aabb,  }\item[{double \&}]{tmin,  }\item[{double \&}]{tmax }\end{DoxyParamCaption}) const}
+
+
+
+Test if the ray hits the specified bounding box. 
+
+When tmin $<$ 0, the ray origin is inside the box 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em tmax} & The distance to the intersection point, such that when the ray is inside the \mbox{\hyperlink{classrev_1_1_a_a_b_b}{A\+A\+BB}}, tmax$\ast$ray.m\+\_\+direction + ray.\+m\+\_\+origin is the intersection point \\
+\hline
+\mbox{\texttt{ out}}  & {\em tmin} & The distance to the intersection point, such that when the ray is outside the \mbox{\hyperlink{classrev_1_1_a_a_b_b}{A\+A\+BB}}, tmin$\ast$ray.m\+\_\+direction + ray.\+m\+\_\+origin is the intersection point \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrev_1_1_world_ray_a24c77ebf8143de984134f5424228b134}\label{classrev_1_1_world_ray_a24c77ebf8143de984134f5424228b134}} 
+\index{rev::WorldRay@{rev::WorldRay}!cast@{cast}}
+\index{cast@{cast}!rev::WorldRay@{rev::WorldRay}}
+\subsubsection{\texorpdfstring{cast()}{cast()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool rev\+::\+World\+Ray\+::cast (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} \&}]{so,  }\item[{const \mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} \&}]{mesh,  }\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{object\+Origin,  }\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{object\+Dir,  }\item[{std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_world_ray_hit}{World\+Ray\+Hit}} $>$ \&}]{out\+Hits }\end{DoxyParamCaption}) const}
+
+
+
+Test if the ray hits the specified mesh. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em object\+Origin} & the origin of the ray in the scene object\textquotesingle{}s local object space \\
+\hline
+\mbox{\texttt{ in}}  & {\em object\+Origin} & the direction of the ray in the scene object\textquotesingle{}s local object space \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrev_1_1_world_ray_a42a5fcd774d2a5d62128de43d047c393}\label{classrev_1_1_world_ray_a42a5fcd774d2a5d62128de43d047c393}} 
+\index{rev::WorldRay@{rev::WorldRay}!TriangleIntersect@{TriangleIntersect}}
+\index{TriangleIntersect@{TriangleIntersect}!rev::WorldRay@{rev::WorldRay}}
+\subsubsection{\texorpdfstring{TriangleIntersect()}{TriangleIntersect()}}
+{\footnotesize\ttfamily bool rev\+::\+World\+Ray\+::\+Triangle\+Intersect (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{orig,  }\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{dir,  }\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{v0,  }\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{v1,  }\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{v2,  }\item[{float \&}]{t,  }\item[{float \&}]{u,  }\item[{float \&}]{v,  }\item[{\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{out\+\_\+v0v1,  }\item[{\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{out\+\_\+v0v2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Determine an intersection with a triangle. 
+
+\begin{DoxyNote}{Note}
+See\+: \href{https://gamedev.stackexchange.com/questions/114955/m%C3%B6ller-trumbore-intersection-point}{\texttt{ https\+://gamedev.\+stackexchange.\+com/questions/114955/m\%\+C3\%\+B6ller-\/trumbore-\/intersection-\/point}} 
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em orig} & The origin of the raycast \\
+\hline
+\mbox{\texttt{ in}}  & {\em dir} & The direction of the raycast \\
+\hline
+\mbox{\texttt{ in}}  & {\em t} & the distance from P (the intersection point) to the ray origin \\
+\hline
+\mbox{\texttt{ in}}  & {\em u} & the barycentric coordinate value such that P = v0 + u$\ast$v0v2 + v$\ast$v0v1 \\
+\hline
+\mbox{\texttt{ in}}  & {\em v} & the barycentric coordinate value such that P = v0 + u$\ast$v0v2 + v$\ast$v0v1 \\
+\hline
+\mbox{\texttt{ out}}  & {\em v0v1} & \\
+\hline
+\mbox{\texttt{ out}}  & {\em v0v2} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/geometry/G\+Raycast.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/geometry/G\+Raycast.\+cpp\end{DoxyCompactItemize}

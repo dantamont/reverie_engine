@@ -1,0 +1,86 @@
+\hypertarget{classrev_1_1_view_1_1_json_widget}{}\section{rev\+::View\+::Json\+Widget Class Reference}
+\label{classrev_1_1_view_1_1_json_widget}\index{rev::View::JsonWidget@{rev::View::JsonWidget}}
+Inheritance diagram for rev\+::View\+::Json\+Widget\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.254428cm]{classrev_1_1_view_1_1_json_widget}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_json_widget_ae3002e8ccddabf26f833ea0dfba7042c}\label{classrev_1_1_view_1_1_json_widget_ae3002e8ccddabf26f833ea0dfba7042c}} 
+{\bfseries Json\+Widget} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, \mbox{\hyperlink{classrev_1_1_serializable}{Serializable}} $\ast$serializable, Q\+Widget $\ast$parent=nullptr, bool init=false)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_json_widget_a35ed535b7c2801460e6ce407c89da098}\label{classrev_1_1_view_1_1_json_widget_a35ed535b7c2801460e6ce407c89da098}} 
+virtual {\bfseries $\sim$\+Json\+Widget} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_json_widget_a0747ba7f955428f8b8d36422aafefce2}\label{classrev_1_1_view_1_1_json_widget_a0747ba7f955428f8b8d36422aafefce2}} 
+void {\bfseries set\+Reload\+Json} (bool reset)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_json_widget_a1c02238594be93ae3ccad2241c573a15}\label{classrev_1_1_view_1_1_json_widget_a1c02238594be93ae3ccad2241c573a15}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_json_widget_a1c02238594be93ae3ccad2241c573a15}{update\+Text}} ()
+\begin{DoxyCompactList}\small\item\em Update text from serializable J\+S\+ON. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Private Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_json_widget_a189246620d02e9b47074935ad803dccd}\label{classrev_1_1_view_1_1_json_widget_a189246620d02e9b47074935ad803dccd}} 
+virtual bool \mbox{\hyperlink{classrev_1_1_view_1_1_json_widget_a189246620d02e9b47074935ad803dccd}{is\+Valid\+Object}} (const Q\+Json\+Object \&object)
+\begin{DoxyCompactList}\small\item\em Whether or not the specified object is valid. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_json_widget_aca1dab1372e9f7d4c6becbdf2a0efacc}\label{classrev_1_1_view_1_1_json_widget_aca1dab1372e9f7d4c6becbdf2a0efacc}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_json_widget_aca1dab1372e9f7d4c6becbdf2a0efacc}{pre\+Load}} ()
+\begin{DoxyCompactList}\small\item\em What to do prior to reloading serializable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_json_widget_a51b99db413feebdd94d1e6e2b37c81ae}\label{classrev_1_1_view_1_1_json_widget_a51b99db413feebdd94d1e6e2b37c81ae}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_json_widget_a51b99db413feebdd94d1e6e2b37c81ae}{post\+Load}} ()
+\begin{DoxyCompactList}\small\item\em What do do after reloading serializable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_json_widget_abf68acb8a9a798a65df738e53c4f3a49}\label{classrev_1_1_view_1_1_json_widget_abf68acb8a9a798a65df738e53c4f3a49}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_json_widget_abf68acb8a9a798a65df738e53c4f3a49}{initialize\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to check\+Validity widgets. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_json_widget_a34e1f8d000f6154fc0311ff9364cf1bf}\label{classrev_1_1_view_1_1_json_widget_a34e1f8d000f6154fc0311ff9364cf1bf}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_json_widget_a34e1f8d000f6154fc0311ff9364cf1bf}{initialize\+Connections}} () override
+\begin{DoxyCompactList}\small\item\em Methods to check\+Validity connections for this widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_json_widget_a113bf605e3b636744837681e393a4242}\label{classrev_1_1_view_1_1_json_widget_a113bf605e3b636744837681e393a4242}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_json_widget_a113bf605e3b636744837681e393a4242}{layout\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to ay out widgets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Private Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_json_widget_a177ec5ec376b720df02e5bed0c5d3cfe}\label{classrev_1_1_view_1_1_json_widget_a177ec5ec376b720df02e5bed0c5d3cfe}} 
+Q\+Check\+Box $\ast$ {\bfseries m\+\_\+toggle}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_json_widget_a1f336e6efb9fa196b2d816dfe29adb50}\label{classrev_1_1_view_1_1_json_widget_a1f336e6efb9fa196b2d816dfe29adb50}} 
+Q\+Label $\ast$ {\bfseries m\+\_\+type\+Label}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_json_widget_a4bbf5bfec82d7c1cbdf7f192a3a5267b}\label{classrev_1_1_view_1_1_json_widget_a4bbf5bfec82d7c1cbdf7f192a3a5267b}} 
+Q\+Text\+Edit $\ast$ {\bfseries m\+\_\+text\+Edit}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_json_widget_a063bd3a49ce192e0be76322a6c849c9b}\label{classrev_1_1_view_1_1_json_widget_a063bd3a49ce192e0be76322a6c849c9b}} 
+Q\+Push\+Button $\ast$ {\bfseries m\+\_\+confirm\+Button}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_json_widget_a51049a80aa129a43628c5a7e50251407}\label{classrev_1_1_view_1_1_json_widget_a51049a80aa129a43628c5a7e50251407}} 
+\mbox{\hyperlink{classrev_1_1_serializable}{Serializable}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_json_widget_a51049a80aa129a43628c5a7e50251407}{m\+\_\+serializable}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_serializable}{Serializable}} object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_json_widget_a0fa64da59d1231761fc7409ecc93ca16}\label{classrev_1_1_view_1_1_json_widget_a0fa64da59d1231761fc7409ecc93ca16}} 
+bool \mbox{\hyperlink{classrev_1_1_view_1_1_json_widget_a0fa64da59d1231761fc7409ecc93ca16}{m\+\_\+reload\+Json}} = false
+\begin{DoxyCompactList}\small\item\em Whether or not to reload J\+S\+ON text on text update. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/parameters/G\+Parameter\+Widgets.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/parameters/G\+Parameter\+Widgets.\+cpp\end{DoxyCompactItemize}

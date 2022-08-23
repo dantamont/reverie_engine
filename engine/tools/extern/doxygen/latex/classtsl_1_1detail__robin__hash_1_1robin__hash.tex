@@ -1,0 +1,307 @@
+\hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash}{}\section{tsl\+::detail\+\_\+robin\+\_\+hash\+::robin\+\_\+hash$<$ Value\+Type, Key\+Select, Value\+Select, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$ Class Template Reference}
+\label{classtsl_1_1detail__robin__hash_1_1robin__hash}\index{tsl::detail\_robin\_hash::robin\_hash$<$ ValueType, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::detail\_robin\_hash::robin\_hash$<$ ValueType, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}}
+
+
+{\ttfamily \#include $<$robin\+\_\+hash.\+h$>$}
+
+Inheritance diagram for tsl\+::detail\+\_\+robin\+\_\+hash\+::robin\+\_\+hash$<$ Value\+Type, Key\+Select, Value\+Select, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.499777cm]{classtsl_1_1detail__robin__hash_1_1robin__hash}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{robin\+\_\+iterator}}
+\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a283312016dcb08dd7e64bfebb94a284b}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a283312016dcb08dd7e64bfebb94a284b}} 
+using {\bfseries key\+\_\+type} = typename Key\+Select\+::key\+\_\+type
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a7040c9dfa801bb5b4e8c0333a8df43f0}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a7040c9dfa801bb5b4e8c0333a8df43f0}} 
+using {\bfseries value\+\_\+type} = Value\+Type
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_adda293c49b4383de44cfe90428b53abe}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_adda293c49b4383de44cfe90428b53abe}} 
+using {\bfseries size\+\_\+type} = std\+::size\+\_\+t
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a5cfbcd23725f53d67dc61f58e8a1379e}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a5cfbcd23725f53d67dc61f58e8a1379e}} 
+using {\bfseries difference\+\_\+type} = std\+::ptrdiff\+\_\+t
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a0b9227d7a66492cef157cd8c9dc8e319}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a0b9227d7a66492cef157cd8c9dc8e319}} 
+using {\bfseries hasher} = Hash
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a2c4de138a046875ad6861b9ec3e1259e}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a2c4de138a046875ad6861b9ec3e1259e}} 
+using {\bfseries key\+\_\+equal} = Key\+Equal
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_aeda2cef10fe15ff7953e6aa0433ada6a}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_aeda2cef10fe15ff7953e6aa0433ada6a}} 
+using {\bfseries allocator\+\_\+type} = Allocator
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a3ea7411cc9c577ff7e3173376507f8f6}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a3ea7411cc9c577ff7e3173376507f8f6}} 
+using {\bfseries reference} = value\+\_\+type \&
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a60a745268c4df3b28ef154fe0949d0f6}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a60a745268c4df3b28ef154fe0949d0f6}} 
+using {\bfseries const\+\_\+reference} = const value\+\_\+type \&
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a1b80d1395ecf1d9c06b6585030eb962f}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a1b80d1395ecf1d9c06b6585030eb962f}} 
+using {\bfseries pointer} = value\+\_\+type $\ast$
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_adf7f923f717c88e6e394dc7e32eb7d1d}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_adf7f923f717c88e6e394dc7e32eb7d1d}} 
+using {\bfseries const\+\_\+pointer} = const value\+\_\+type $\ast$
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a72c542e1ad48127eb9d7bf2cd52471e2}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a72c542e1ad48127eb9d7bf2cd52471e2}} 
+using {\bfseries iterator} = \mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{robin\+\_\+iterator}}$<$ false $>$
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_ad8c3296c96efcd99a9a57b647e32f573}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_ad8c3296c96efcd99a9a57b647e32f573}} 
+using {\bfseries const\+\_\+iterator} = \mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{robin\+\_\+iterator}}$<$ true $>$
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_a6941f1aadf678dc6ac97cf8f6517b3b6}{robin\+\_\+hash}} (size\+\_\+type bucket\+\_\+count, const Hash \&hash, const Key\+Equal \&equal, const Allocator \&alloc, float min\+\_\+load\+\_\+factor=D\+E\+F\+A\+U\+L\+T\+\_\+\+M\+I\+N\+\_\+\+L\+O\+A\+D\+\_\+\+F\+A\+C\+T\+OR, float max\+\_\+load\+\_\+factor=D\+E\+F\+A\+U\+L\+T\+\_\+\+M\+A\+X\+\_\+\+L\+O\+A\+D\+\_\+\+F\+A\+C\+T\+OR)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_aaad58cb65e5ddfea6c508bdb6fa76d09}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_aaad58cb65e5ddfea6c508bdb6fa76d09}} 
+{\bfseries robin\+\_\+hash} (const \mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash}{robin\+\_\+hash}} \&other)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_afdf28d523b69f310d550b5e4d5ce6715}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_afdf28d523b69f310d550b5e4d5ce6715}} 
+{\bfseries robin\+\_\+hash} (\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash}{robin\+\_\+hash}} \&\&other) noexcept(std\+::is\+\_\+nothrow\+\_\+move\+\_\+constructible$<$ Hash $>$\+::value \&\&std\+::is\+\_\+nothrow\+\_\+move\+\_\+constructible$<$ Key\+Equal $>$\+::value \&\&std\+::is\+\_\+nothrow\+\_\+move\+\_\+constructible$<$ Growth\+Policy $>$\+::value \&\&std\+::is\+\_\+nothrow\+\_\+move\+\_\+constructible$<$ buckets\+\_\+container\+\_\+type $>$\+::value)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a3d61bc7d267efb08f538615a48569a7b}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a3d61bc7d267efb08f538615a48569a7b}} 
+\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash}{robin\+\_\+hash}} \& {\bfseries operator=} (const \mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash}{robin\+\_\+hash}} \&other)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_ad1cd112d25acf2d6c5dddb5801dcf5a5}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_ad1cd112d25acf2d6c5dddb5801dcf5a5}} 
+\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash}{robin\+\_\+hash}} \& {\bfseries operator=} (\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash}{robin\+\_\+hash}} \&\&other)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a6d03c1998dbafb3bc2d7c63027f0b159}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a6d03c1998dbafb3bc2d7c63027f0b159}} 
+allocator\+\_\+type {\bfseries get\+\_\+allocator} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a0dffb465e7a60ffd54f0b8a6c80790a6}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a0dffb465e7a60ffd54f0b8a6c80790a6}} 
+\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{iterator}} {\bfseries begin} () noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_ae75756d501987639bbf264a193dccb7a}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_ae75756d501987639bbf264a193dccb7a}} 
+\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{const\+\_\+iterator}} {\bfseries begin} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a6b68864e2f53247e669f05364f9386df}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a6b68864e2f53247e669f05364f9386df}} 
+\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{const\+\_\+iterator}} {\bfseries cbegin} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a9535ac8fa8e808cf66064eab64ebd5ec}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a9535ac8fa8e808cf66064eab64ebd5ec}} 
+\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{iterator}} {\bfseries end} () noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a6a97a3c54e0c1aaea3128ba516131717}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a6a97a3c54e0c1aaea3128ba516131717}} 
+\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{const\+\_\+iterator}} {\bfseries end} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a945a6d53ef68a5328d2be650314aaece}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a945a6d53ef68a5328d2be650314aaece}} 
+\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{const\+\_\+iterator}} {\bfseries cend} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a24d9538f5eab01edb6621f1d41c04cfc}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a24d9538f5eab01edb6621f1d41c04cfc}} 
+bool {\bfseries empty} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_ab371573bb534343b56cec00bfd35825d}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_ab371573bb534343b56cec00bfd35825d}} 
+size\+\_\+type {\bfseries size} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a6a7d8c3c60013a360bd4f95fa186c9e5}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a6a7d8c3c60013a360bd4f95fa186c9e5}} 
+size\+\_\+type {\bfseries max\+\_\+size} () const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_afbddec95c84245c737fd2e0aa7e39fe3}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_afbddec95c84245c737fd2e0aa7e39fe3}} 
+void {\bfseries clear} () noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_aa0cf8f98045eb7275f9ded9085abf0e9}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_aa0cf8f98045eb7275f9ded9085abf0e9}} 
+{\footnotesize template$<$typename P $>$ }\\std\+::pair$<$ \mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{iterator}}, bool $>$ {\bfseries insert} (P \&\&value)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a6006219185b630530263c0cf52d7c01a}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a6006219185b630530263c0cf52d7c01a}} 
+{\footnotesize template$<$typename P $>$ }\\\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{iterator}} {\bfseries insert\+\_\+hint} (\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{const\+\_\+iterator}} hint, P \&\&value)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_aaf74fa2603261bfe3f1b547dca46e626}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_aaf74fa2603261bfe3f1b547dca46e626}} 
+{\footnotesize template$<$class Input\+It $>$ }\\void {\bfseries insert} (Input\+It first, Input\+It last)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a501965732b22e289a0b282bd904bab82}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a501965732b22e289a0b282bd904bab82}} 
+{\footnotesize template$<$class K , class M $>$ }\\std\+::pair$<$ \mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{iterator}}, bool $>$ {\bfseries insert\+\_\+or\+\_\+assign} (K \&\&key, M \&\&obj)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a308d23d9b49810b22b98eb5dd1132609}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a308d23d9b49810b22b98eb5dd1132609}} 
+{\footnotesize template$<$class K , class M $>$ }\\\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{iterator}} {\bfseries insert\+\_\+or\+\_\+assign} (\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{const\+\_\+iterator}} hint, K \&\&key, M \&\&obj)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a4a4c1de2bdaee5a515d983ca56665dbc}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a4a4c1de2bdaee5a515d983ca56665dbc}} 
+{\footnotesize template$<$class... Args$>$ }\\std\+::pair$<$ \mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{iterator}}, bool $>$ {\bfseries emplace} (Args \&\&... args)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a8375c4c7434024d76da40509cd89c72e}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a8375c4c7434024d76da40509cd89c72e}} 
+{\footnotesize template$<$class... Args$>$ }\\\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{iterator}} {\bfseries emplace\+\_\+hint} (\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{const\+\_\+iterator}} hint, Args \&\&... args)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a400f0689a0342960a00ab7b51c619f3b}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a400f0689a0342960a00ab7b51c619f3b}} 
+{\footnotesize template$<$class K , class... Args$>$ }\\std\+::pair$<$ \mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{iterator}}, bool $>$ {\bfseries try\+\_\+emplace} (K \&\&key, Args \&\&... args)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_ab57cd48ca50ec8968561a0c30cd4f3a1}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_ab57cd48ca50ec8968561a0c30cd4f3a1}} 
+{\footnotesize template$<$class K , class... Args$>$ }\\\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{iterator}} {\bfseries try\+\_\+emplace\+\_\+hint} (\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{const\+\_\+iterator}} hint, K \&\&key, Args \&\&... args)
+\item 
+\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{iterator}} \mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_a771eb1a20fab68e5d645576ec87a9225}{erase}} (\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{iterator}} pos)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a7f16b4b4434a0b48d17c37735ac8b1ef}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a7f16b4b4434a0b48d17c37735ac8b1ef}} 
+\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{iterator}} {\bfseries erase} (\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{const\+\_\+iterator}} pos)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a3a951954fc27ae886f800065d1e6ed3e}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a3a951954fc27ae886f800065d1e6ed3e}} 
+\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{iterator}} {\bfseries erase} (\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{const\+\_\+iterator}} first, \mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{const\+\_\+iterator}} last)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_aba55625f7cec2f0a0ac3b2a5a203553f}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_aba55625f7cec2f0a0ac3b2a5a203553f}} 
+{\footnotesize template$<$class K $>$ }\\size\+\_\+type {\bfseries erase} (const K \&key)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a33b6ee4e6b171405a0192e026e4b21ef}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a33b6ee4e6b171405a0192e026e4b21ef}} 
+{\footnotesize template$<$class K $>$ }\\size\+\_\+type {\bfseries erase} (const K \&key, std\+::size\+\_\+t hash)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a8fc4c65d400177124ac70f5a54a536f9}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a8fc4c65d400177124ac70f5a54a536f9}} 
+void {\bfseries swap} (\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash}{robin\+\_\+hash}} \&other)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a03d713ad22d8d2e676857bb8f6f64852}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a03d713ad22d8d2e676857bb8f6f64852}} 
+{\footnotesize template$<$class K , class U  = Value\+Select, typename std\+::enable\+\_\+if$<$ has\+\_\+mapped\+\_\+type$<$ U $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\U\+::value\+\_\+type \& {\bfseries at} (const K \&key)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_aec542fcdfb63b6a77cc1b62a4f7d6d93}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_aec542fcdfb63b6a77cc1b62a4f7d6d93}} 
+{\footnotesize template$<$class K , class U  = Value\+Select, typename std\+::enable\+\_\+if$<$ has\+\_\+mapped\+\_\+type$<$ U $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\U\+::value\+\_\+type \& {\bfseries at} (const K \&key, std\+::size\+\_\+t hash)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a5c8725ed605e3ec7ed4b14532af4bba0}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a5c8725ed605e3ec7ed4b14532af4bba0}} 
+{\footnotesize template$<$class K , class U  = Value\+Select, typename std\+::enable\+\_\+if$<$ has\+\_\+mapped\+\_\+type$<$ U $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\const U\+::value\+\_\+type \& {\bfseries at} (const K \&key) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a3c5e1823606e6245f6d7562c8ca4ba62}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a3c5e1823606e6245f6d7562c8ca4ba62}} 
+{\footnotesize template$<$class K , class U  = Value\+Select, typename std\+::enable\+\_\+if$<$ has\+\_\+mapped\+\_\+type$<$ U $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\const U\+::value\+\_\+type \& {\bfseries at} (const K \&key, std\+::size\+\_\+t hash) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a8ccbd7862f50c262daef12d45c238c57}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a8ccbd7862f50c262daef12d45c238c57}} 
+{\footnotesize template$<$class K , class U  = Value\+Select, typename std\+::enable\+\_\+if$<$ has\+\_\+mapped\+\_\+type$<$ U $>$\+::value $>$\+::type $\ast$  = nullptr$>$ }\\U\+::value\+\_\+type \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (K \&\&key)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a915500ff4656b6b8719a15d31f7ab56b}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a915500ff4656b6b8719a15d31f7ab56b}} 
+{\footnotesize template$<$class K $>$ }\\size\+\_\+type {\bfseries count} (const K \&key) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a8c6333cece791f9f1fb847a94f959d67}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a8c6333cece791f9f1fb847a94f959d67}} 
+{\footnotesize template$<$class K $>$ }\\size\+\_\+type {\bfseries count} (const K \&key, std\+::size\+\_\+t hash) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a0b90c6fc2c844cdb217d36e20d3b8348}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a0b90c6fc2c844cdb217d36e20d3b8348}} 
+{\footnotesize template$<$class K $>$ }\\\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{iterator}} {\bfseries find} (const K \&key)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_aba739652aec161a8d13c675e2c3bdabe}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_aba739652aec161a8d13c675e2c3bdabe}} 
+{\footnotesize template$<$class K $>$ }\\\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{iterator}} {\bfseries find} (const K \&key, std\+::size\+\_\+t hash)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a0e8902ef4b9ed0bb7bf8deb1ef54b638}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a0e8902ef4b9ed0bb7bf8deb1ef54b638}} 
+{\footnotesize template$<$class K $>$ }\\\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{const\+\_\+iterator}} {\bfseries find} (const K \&key) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a7f06f5524823bbb95c88a281f0047919}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a7f06f5524823bbb95c88a281f0047919}} 
+{\footnotesize template$<$class K $>$ }\\\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{const\+\_\+iterator}} {\bfseries find} (const K \&key, std\+::size\+\_\+t hash) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a59beac1bdf937af5803da9c60a3f9e37}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a59beac1bdf937af5803da9c60a3f9e37}} 
+{\footnotesize template$<$class K $>$ }\\bool {\bfseries contains} (const K \&key) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a6c06b6e22caea7cc1fb84084f076fd8b}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a6c06b6e22caea7cc1fb84084f076fd8b}} 
+{\footnotesize template$<$class K $>$ }\\bool {\bfseries contains} (const K \&key, std\+::size\+\_\+t hash) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a356fd39b766aec21d31be63e55bc3d71}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a356fd39b766aec21d31be63e55bc3d71}} 
+{\footnotesize template$<$class K $>$ }\\std\+::pair$<$ \mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{iterator}}, \mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{iterator}} $>$ {\bfseries equal\+\_\+range} (const K \&key)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a83afff6b92f5b1d14223ec98c3cda5a1}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a83afff6b92f5b1d14223ec98c3cda5a1}} 
+{\footnotesize template$<$class K $>$ }\\std\+::pair$<$ \mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{iterator}}, \mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{iterator}} $>$ {\bfseries equal\+\_\+range} (const K \&key, std\+::size\+\_\+t hash)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a77efb6417303f1ca390904e5f003cfec}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a77efb6417303f1ca390904e5f003cfec}} 
+{\footnotesize template$<$class K $>$ }\\std\+::pair$<$ \mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{const\+\_\+iterator}}, \mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{const\+\_\+iterator}} $>$ {\bfseries equal\+\_\+range} (const K \&key) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a80ab3bc3ec9afc41dfbf28b21169fb7f}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a80ab3bc3ec9afc41dfbf28b21169fb7f}} 
+{\footnotesize template$<$class K $>$ }\\std\+::pair$<$ \mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{const\+\_\+iterator}}, \mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{const\+\_\+iterator}} $>$ {\bfseries equal\+\_\+range} (const K \&key, std\+::size\+\_\+t hash) const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a82d07c98305050461c5e853f3734434b}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a82d07c98305050461c5e853f3734434b}} 
+size\+\_\+type {\bfseries bucket\+\_\+count} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_af4122f060e7d885012f98d92993ab5cb}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_af4122f060e7d885012f98d92993ab5cb}} 
+size\+\_\+type {\bfseries max\+\_\+bucket\+\_\+count} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a739073d9ee9a48ac0c89c041bd136a08}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a739073d9ee9a48ac0c89c041bd136a08}} 
+float {\bfseries load\+\_\+factor} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a28d1d3bbd5f667aec7dc30a2ab1ce8e2}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a28d1d3bbd5f667aec7dc30a2ab1ce8e2}} 
+float {\bfseries min\+\_\+load\+\_\+factor} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a967995c9781b76a6134733d104fd1893}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a967995c9781b76a6134733d104fd1893}} 
+float {\bfseries max\+\_\+load\+\_\+factor} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a12e7548cfc9b9c514e20982d7e995f1d}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a12e7548cfc9b9c514e20982d7e995f1d}} 
+void {\bfseries min\+\_\+load\+\_\+factor} (float ml)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_aa125fc16f518d067351bfa6fe968ccce}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_aa125fc16f518d067351bfa6fe968ccce}} 
+void {\bfseries max\+\_\+load\+\_\+factor} (float ml)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a254521cd5e0a7cd35a63f9a858c0f4a2}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a254521cd5e0a7cd35a63f9a858c0f4a2}} 
+void {\bfseries rehash} (size\+\_\+type count)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a8f19d2f3b2ab0e73393983b77887f8da}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a8f19d2f3b2ab0e73393983b77887f8da}} 
+void {\bfseries reserve} (size\+\_\+type count)
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a38ad0d7af051e5580f92bad7021880ab}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a38ad0d7af051e5580f92bad7021880ab}} 
+hasher {\bfseries hash\+\_\+function} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a04b60bd4bb6950d15c9313f3f5f44ea8}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a04b60bd4bb6950d15c9313f3f5f44ea8}} 
+key\+\_\+equal {\bfseries key\+\_\+eq} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_aed879d9e608af630358e1c41d28359fc}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_aed879d9e608af630358e1c41d28359fc}} 
+\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{iterator}} {\bfseries mutable\+\_\+iterator} (\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{const\+\_\+iterator}} pos)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a0603fdd5f8077d7a47cd94f9f9c1659f}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a0603fdd5f8077d7a47cd94f9f9c1659f}} 
+static const size\+\_\+type {\bfseries D\+E\+F\+A\+U\+L\+T\+\_\+\+I\+N\+I\+T\+\_\+\+B\+U\+C\+K\+E\+T\+S\+\_\+\+S\+I\+ZE} = 0
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_aa3ae0a8d79a3d44851f8194f4537793a}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_aa3ae0a8d79a3d44851f8194f4537793a}} 
+static constexpr float {\bfseries D\+E\+F\+A\+U\+L\+T\+\_\+\+M\+A\+X\+\_\+\+L\+O\+A\+D\+\_\+\+F\+A\+C\+T\+OR} = 0.\+5f
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_aa9fed0463889b71755137f0b910579e2}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_aa9fed0463889b71755137f0b910579e2}} 
+static constexpr float {\bfseries M\+I\+N\+I\+M\+U\+M\+\_\+\+M\+A\+X\+\_\+\+L\+O\+A\+D\+\_\+\+F\+A\+C\+T\+OR} = 0.\+2f
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a1ff7a2f75d4d932ca73eda86e41cc70c}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a1ff7a2f75d4d932ca73eda86e41cc70c}} 
+static constexpr float {\bfseries M\+A\+X\+I\+M\+U\+M\+\_\+\+M\+A\+X\+\_\+\+L\+O\+A\+D\+\_\+\+F\+A\+C\+T\+OR} = 0.\+95f
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a102b83e294ce89c1924b023edca9c350}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a102b83e294ce89c1924b023edca9c350}} 
+static constexpr float {\bfseries D\+E\+F\+A\+U\+L\+T\+\_\+\+M\+I\+N\+\_\+\+L\+O\+A\+D\+\_\+\+F\+A\+C\+T\+OR} = 0.\+0f
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_ae6d76e10791e5b0c92707623e9cbf66d}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_ae6d76e10791e5b0c92707623e9cbf66d}} 
+static constexpr float {\bfseries M\+I\+N\+I\+M\+U\+M\+\_\+\+M\+I\+N\+\_\+\+L\+O\+A\+D\+\_\+\+F\+A\+C\+T\+OR} = 0.\+0f
+\item 
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a62f3c366d670a5a0ad3f3f7ac3f6849b}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a62f3c366d670a5a0ad3f3f7ac3f6849b}} 
+static constexpr float {\bfseries M\+A\+X\+I\+M\+U\+M\+\_\+\+M\+I\+N\+\_\+\+L\+O\+A\+D\+\_\+\+F\+A\+C\+T\+OR} = 0.\+15f
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class Value\+Type, class Key\+Select, class Value\+Select, class Hash, class Key\+Equal, class Allocator, bool Store\+Hash, class Growth\+Policy$>$\newline
+class tsl\+::detail\+\_\+robin\+\_\+hash\+::robin\+\_\+hash$<$ Value\+Type, Key\+Select, Value\+Select, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$}
+
+Internal common class used by {\ttfamily \mbox{\hyperlink{classtsl_1_1robin__map}{robin\+\_\+map}}} and {\ttfamily \mbox{\hyperlink{classtsl_1_1robin__set}{robin\+\_\+set}}}.
+
+Value\+Type is what will be stored by {\ttfamily \mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash}{robin\+\_\+hash}}} (usually {\ttfamily std\+::pair$<$Key, T$>$} for map and {\ttfamily Key} for set).
+
+{\ttfamily Key\+Select} should be a {\ttfamily Function\+Object} which takes a {\ttfamily Value\+Type} in parameter and returns a reference to the key.
+
+{\ttfamily Value\+Select} should be a {\ttfamily Function\+Object} which takes a {\ttfamily Value\+Type} in parameter and returns a reference to the value. {\ttfamily Value\+Select} should be void if there is no value (in a set for example).
+
+The strong exception guarantee only holds if the expression {\ttfamily std\+::is\+\_\+nothrow\+\_\+swappable$<$Value\+Type$>$\+::value \&\& std\+::is\+\_\+nothrow\+\_\+move\+\_\+constructible$<$Value\+Type$>$\+::value} is true.
+
+Behaviour is undefined if the destructor of {\ttfamily Value\+Type} throws. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a6941f1aadf678dc6ac97cf8f6517b3b6}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a6941f1aadf678dc6ac97cf8f6517b3b6}} 
+\index{tsl::detail\_robin\_hash::robin\_hash$<$ ValueType, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::detail\_robin\_hash::robin\_hash$<$ ValueType, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}!robin\_hash@{robin\_hash}}
+\index{robin\_hash@{robin\_hash}!tsl::detail\_robin\_hash::robin\_hash$<$ ValueType, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::detail\_robin\_hash::robin\_hash$<$ ValueType, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}}
+\subsubsection{\texorpdfstring{robin\_hash()}{robin\_hash()}}
+{\footnotesize\ttfamily template$<$class Value\+Type, class Key\+Select, class Value\+Select, class Hash, class Key\+Equal, class Allocator, bool Store\+Hash, class Growth\+Policy$>$ \\
+\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash}{tsl\+::detail\+\_\+robin\+\_\+hash\+::robin\+\_\+hash}}$<$ Value\+Type, Key\+Select, Value\+Select, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$\+::\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash}{robin\+\_\+hash}} (\begin{DoxyParamCaption}\item[{size\+\_\+type}]{bucket\+\_\+count,  }\item[{const Hash \&}]{hash,  }\item[{const Key\+Equal \&}]{equal,  }\item[{const Allocator \&}]{alloc,  }\item[{float}]{min\+\_\+load\+\_\+factor = {\ttfamily DEFAULT\+\_\+MIN\+\_\+LOAD\+\_\+FACTOR},  }\item[{float}]{max\+\_\+load\+\_\+factor = {\ttfamily DEFAULT\+\_\+MAX\+\_\+LOAD\+\_\+FACTOR} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+C++11 doesn\textquotesingle{}t support the creation of a std\+::vector with a custom allocator and \textquotesingle{}count\textquotesingle{} default-\/inserted elements. The needed contructor {\ttfamily explicit vector(size\+\_\+type count, const Allocator\& alloc = Allocator());} is only available in C++14 and later. We thus must resize after using the {\ttfamily vector(const Allocator\& alloc)} constructor.
+
+We can\textquotesingle{}t use {\ttfamily vector(size\+\_\+type count, const T\& value, const Allocator\& alloc)} as it requires the value T to be copyable. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classtsl_1_1detail__robin__hash_1_1robin__hash_a771eb1a20fab68e5d645576ec87a9225}\label{classtsl_1_1detail__robin__hash_1_1robin__hash_a771eb1a20fab68e5d645576ec87a9225}} 
+\index{tsl::detail\_robin\_hash::robin\_hash$<$ ValueType, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::detail\_robin\_hash::robin\_hash$<$ ValueType, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}!erase@{erase}}
+\index{erase@{erase}!tsl::detail\_robin\_hash::robin\_hash$<$ ValueType, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$@{tsl::detail\_robin\_hash::robin\_hash$<$ ValueType, KeySelect, ValueSelect, Hash, KeyEqual, Allocator, StoreHash, GrowthPolicy $>$}}
+\subsubsection{\texorpdfstring{erase()}{erase()}}
+{\footnotesize\ttfamily template$<$class Value\+Type, class Key\+Select, class Value\+Select, class Hash, class Key\+Equal, class Allocator, bool Store\+Hash, class Growth\+Policy$>$ \\
+\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{iterator}} \mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash}{tsl\+::detail\+\_\+robin\+\_\+hash\+::robin\+\_\+hash}}$<$ Value\+Type, Key\+Select, Value\+Select, Hash, Key\+Equal, Allocator, Store\+Hash, Growth\+Policy $>$\+::erase (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtsl_1_1detail__robin__hash_1_1robin__hash_1_1robin__iterator}{iterator}}}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here to avoid {\ttfamily template$<$class K$>$ size\+\_\+type erase(const K\& key)} being used when we use an {\ttfamily iterator} instead of a {\ttfamily const\+\_\+iterator}. Erase bucket used a backward shift after clearing the bucket. Check if there is a new value in the bucket, if not get the next non-\/empty.
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/tsl/robin\+\_\+hash.\+h\end{DoxyCompactItemize}

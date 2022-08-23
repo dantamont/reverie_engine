@@ -1,0 +1,325 @@
+\hypertarget{class_eigen_1_1_partial_piv_l_u}{}\section{Eigen\+::Partial\+Piv\+LU$<$ \+\_\+\+Matrix\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_partial_piv_l_u}\index{Eigen::PartialPivLU$<$ \_MatrixType $>$@{Eigen::PartialPivLU$<$ \_MatrixType $>$}}
+
+
+LU decomposition of a matrix with partial pivoting, and related features.  
+
+
+
+
+{\ttfamily \#include $<$Partial\+Piv\+L\+U.\+h$>$}
+
+Inheritance diagram for Eigen\+::Partial\+Piv\+LU$<$ \+\_\+\+Matrix\+Type $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_eigen_1_1_partial_piv_l_u}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_partial_piv_l_u_ab1d2681d0e6822e8e2b7276bddb64879}\label{class_eigen_1_1_partial_piv_l_u_ab1d2681d0e6822e8e2b7276bddb64879}} 
+enum \{ {\bfseries Max\+Rows\+At\+Compile\+Time} = Matrix\+Type\+::Max\+Rows\+At\+Compile\+Time, 
+{\bfseries Max\+Cols\+At\+Compile\+Time} = Matrix\+Type\+::Max\+Cols\+At\+Compile\+Time
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_partial_piv_l_u_a0736a02bea471dbed733a1fb2cebb678}\label{class_eigen_1_1_partial_piv_l_u_a0736a02bea471dbed733a1fb2cebb678}} 
+typedef \+\_\+\+Matrix\+Type {\bfseries Matrix\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_partial_piv_l_u_a2131c6ccbf78c1dcfe862654beed1272}\label{class_eigen_1_1_partial_piv_l_u_a2131c6ccbf78c1dcfe862654beed1272}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_solver_base}{Solver\+Base}}$<$ \mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u}{Partial\+Piv\+LU}} $>$ {\bfseries Base}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_partial_piv_l_u_a5b5f010f3e7acdff7b7c72db874dc3d9}\label{class_eigen_1_1_partial_piv_l_u_a5b5f010f3e7acdff7b7c72db874dc3d9}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}}$<$ Rows\+At\+Compile\+Time, Max\+Rows\+At\+Compile\+Time $>$ {\bfseries Permutation\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_partial_piv_l_u_acf0c9c89566e8aba4fae8f470c5a8d4a}\label{class_eigen_1_1_partial_piv_l_u_acf0c9c89566e8aba4fae8f470c5a8d4a}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_transpositions}{Transpositions}}$<$ Rows\+At\+Compile\+Time, Max\+Rows\+At\+Compile\+Time $>$ {\bfseries Transposition\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_partial_piv_l_u_aaae954615fa4a1dd947fe7d380bf7206}\label{class_eigen_1_1_partial_piv_l_u_aaae954615fa4a1dd947fe7d380bf7206}} 
+typedef Matrix\+Type\+::\+Plain\+Object {\bfseries Plain\+Object}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u_a5c04818d354f94a98786d8a44cb709c6}{Partial\+Piv\+LU}} ()
+\begin{DoxyCompactList}\small\item\em Default Constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u_acf892c12d8a229b32bddc3149e32e63a}{Partial\+Piv\+LU}} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{struct_eigen_1_1_eigen_base_ac2c9348df3bb9c0044dbae6c278a8977}{size}})
+\begin{DoxyCompactList}\small\item\em Default Constructor with memory preallocation. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Input\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u_acf37214aebb54d0e186ae39ac6c41bdf}{Partial\+Piv\+LU}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&matrix)
+\item 
+{\footnotesize template$<$typename Input\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u_a4efc917d31d0e9d76781a97509309061}{Partial\+Piv\+LU}} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&matrix)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_partial_piv_l_u_a6236eb61ae6886543c407582f4ca1550}\label{class_eigen_1_1_partial_piv_l_u_a6236eb61ae6886543c407582f4ca1550}} 
+{\footnotesize template$<$typename Input\+Type $>$ }\\\mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u}{Partial\+Piv\+LU}} \& {\bfseries compute} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&matrix)
+\item 
+const Matrix\+Type \& \mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u_abea0d7e51c5591a6db152eade0892d9c}{matrix\+LU}} () const
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u_a1c637530b3215787668a75ebb2e7b882}{permutationP}} () const
+\item 
+{\footnotesize template$<$typename Rhs $>$ }\\const \mbox{\hyperlink{class_eigen_1_1_solve}{Solve}}$<$ \mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u}{Partial\+Piv\+LU}}, Rhs $>$ \mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u_a49247bd2f742a46bca1f9c2bf1b19ad8}{solve}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&b) const
+\item 
+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u_a472b46d5d9ff7c328e1dccc13805f690}{rcond}} () const
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_inverse}{Inverse}}$<$ \mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u}{Partial\+Piv\+LU}} $>$ \mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u_aef983470f92aba829e861e32e68681b5}{inverse}} () const
+\item 
+Scalar \mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u_a54c3d39c9b46ff485a8d2140b9b23193}{determinant}} () const
+\item 
+Matrix\+Type \mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u_aba7f1ee83537b0d240ebf206503a4920}{reconstructed\+Matrix}} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_partial_piv_l_u_ad7a86697af02b65b13939d319e1d6840}\label{class_eigen_1_1_partial_piv_l_u_ad7a86697af02b65b13939d319e1d6840}} 
+\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} {\bfseries rows} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_partial_piv_l_u_a9aaa1eaccfb6ee5dfab78cb6e190929a}\label{class_eigen_1_1_partial_piv_l_u_a9aaa1eaccfb6ee5dfab78cb6e190929a}} 
+\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} {\bfseries cols} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_partial_piv_l_u_ab7e88bbaf3bb0172b9be97036be68999}\label{class_eigen_1_1_partial_piv_l_u_ab7e88bbaf3bb0172b9be97036be68999}} 
+{\footnotesize template$<$typename Rhs\+Type , typename Dst\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void {\bfseries \+\_\+solve\+\_\+impl} (const Rhs\+Type \&rhs, Dst\+Type \&dst) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_partial_piv_l_u_a6e63a73644ef9fbe7856c8169287c7f5}\label{class_eigen_1_1_partial_piv_l_u_a6e63a73644ef9fbe7856c8169287c7f5}} 
+{\footnotesize template$<$bool Conjugate, typename Rhs\+Type , typename Dst\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void {\bfseries \+\_\+solve\+\_\+impl\+\_\+transposed} (const Rhs\+Type \&rhs, Dst\+Type \&dst) const
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_partial_piv_l_u_a8dc40bd1ef7ac09d58587b1b97fca91d}\label{class_eigen_1_1_partial_piv_l_u_a8dc40bd1ef7ac09d58587b1b97fca91d}} 
+void {\bfseries compute} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_partial_piv_l_u_a561b9022ead4336fdacb687f6be86a53}\label{class_eigen_1_1_partial_piv_l_u_a561b9022ead4336fdacb687f6be86a53}} 
+static void {\bfseries check\+\_\+template\+\_\+parameters} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_partial_piv_l_u_a447c0c44420cb6677fbb92d55fbab417}\label{class_eigen_1_1_partial_piv_l_u_a447c0c44420cb6677fbb92d55fbab417}} 
+Matrix\+Type {\bfseries m\+\_\+lu}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_partial_piv_l_u_aedc36fc61bd34887a3c2fe5800167f2d}\label{class_eigen_1_1_partial_piv_l_u_aedc36fc61bd34887a3c2fe5800167f2d}} 
+\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Type}} {\bfseries m\+\_\+p}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_partial_piv_l_u_aa71083e9e1ef21838a3058ec0ffd0510}\label{class_eigen_1_1_partial_piv_l_u_aa71083e9e1ef21838a3058ec0ffd0510}} 
+\mbox{\hyperlink{class_eigen_1_1_transpositions}{Transposition\+Type}} {\bfseries m\+\_\+rows\+Transpositions}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_partial_piv_l_u_a262635d8536e2e790460e3300f4a9e3c}\label{class_eigen_1_1_partial_piv_l_u_a262635d8536e2e790460e3300f4a9e3c}} 
+Real\+Scalar {\bfseries m\+\_\+l1\+\_\+norm}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_partial_piv_l_u_a5771dfc25659778e8ccc609440062f5c}\label{class_eigen_1_1_partial_piv_l_u_a5771dfc25659778e8ccc609440062f5c}} 
+signed char {\bfseries m\+\_\+det\+\_\+p}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_partial_piv_l_u_a99833b9547e2b03a5b78244241dc9188}\label{class_eigen_1_1_partial_piv_l_u_a99833b9547e2b03a5b78244241dc9188}} 
+bool {\bfseries m\+\_\+is\+Initialized}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Matrix\+Type$>$\newline
+class Eigen\+::\+Partial\+Piv\+L\+U$<$ \+\_\+\+Matrix\+Type $>$}
+
+LU decomposition of a matrix with partial pivoting, and related features. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Matrix\+Type} & the type of the matrix of which we are computing the LU decomposition\\
+\hline
+\end{DoxyTemplParams}
+This class represents a LU decomposition of a {\bfseries{square}} {\bfseries{invertible}} matrix, with partial pivoting\+: the matrix A is decomposed as A = P\+LU where L is unit-\/lower-\/triangular, U is upper-\/triangular, and P is a permutation matrix.
+
+Typically, partial pivoting LU decomposition is only considered numerically stable for square invertible matrices. Thus L\+A\+P\+A\+CK\textquotesingle{}s dgesv and dgesvx require the matrix to be square and invertible. The present class does the same. It will assert that the matrix is square, but it won\textquotesingle{}t (actually it can\textquotesingle{}t) check that the matrix is invertible\+: it is your task to check that you only use this decomposition on invertible matrices.
+
+The guaranteed safe alternative, working for all matrices, is the full pivoting LU decomposition, provided by class \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u}{Full\+Piv\+LU}}.
+
+This is {\bfseries{not}} a rank-\/revealing LU decomposition. Many features are intentionally absent from this class, such as rank computation. If you need these features, use class \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u}{Full\+Piv\+LU}}.
+
+This LU decomposition is suitable to invert invertible matrices. It is what \mbox{\hyperlink{class_eigen_1_1_matrix_base_a7712eb69e8ea3c8f7b8da1c44dbdeebf}{Matrix\+Base\+::inverse()}} uses in the general case. On the other hand, it is {\bfseries{not}} suitable to determine whether a given matrix is invertible.
+
+The data of the LU decomposition can be directly accessed through the methods \mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u_abea0d7e51c5591a6db152eade0892d9c}{matrix\+L\+U()}}, \mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u_a1c637530b3215787668a75ebb2e7b882}{permutation\+P()}}.
+
+This class supports the \mbox{\hyperlink{}{inplace decomposition }} mechanism.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_matrix_base_a6199d8aaf26c1b8ac3097fdfa7733a1e}{Matrix\+Base\+::partial\+Piv\+Lu()}}, \mbox{\hyperlink{class_eigen_1_1_matrix_base_a7ad8f77004bb956b603bb43fd2e3c061}{Matrix\+Base\+::determinant()}}, \mbox{\hyperlink{class_eigen_1_1_matrix_base_a7712eb69e8ea3c8f7b8da1c44dbdeebf}{Matrix\+Base\+::inverse()}}, Matrix\+Base\+::compute\+Inverse(), class \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u}{Full\+Piv\+LU}} 
+\end{DoxySeeAlso}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_partial_piv_l_u_a5c04818d354f94a98786d8a44cb709c6}\label{class_eigen_1_1_partial_piv_l_u_a5c04818d354f94a98786d8a44cb709c6}} 
+\index{Eigen::PartialPivLU$<$ \_MatrixType $>$@{Eigen::PartialPivLU$<$ \_MatrixType $>$}!PartialPivLU@{PartialPivLU}}
+\index{PartialPivLU@{PartialPivLU}!Eigen::PartialPivLU$<$ \_MatrixType $>$@{Eigen::PartialPivLU$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{PartialPivLU()}{PartialPivLU()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u}{Eigen\+::\+Partial\+Piv\+LU}}$<$ Matrix\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u}{Partial\+Piv\+LU}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Default Constructor. 
+
+The default constructor is useful in cases in which the user intends to perform decompositions via Partial\+Piv\+L\+U\+::compute(const Matrix\+Type\&). \mbox{\Hypertarget{class_eigen_1_1_partial_piv_l_u_acf892c12d8a229b32bddc3149e32e63a}\label{class_eigen_1_1_partial_piv_l_u_acf892c12d8a229b32bddc3149e32e63a}} 
+\index{Eigen::PartialPivLU$<$ \_MatrixType $>$@{Eigen::PartialPivLU$<$ \_MatrixType $>$}!PartialPivLU@{PartialPivLU}}
+\index{PartialPivLU@{PartialPivLU}!Eigen::PartialPivLU$<$ \_MatrixType $>$@{Eigen::PartialPivLU$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{PartialPivLU()}{PartialPivLU()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u}{Eigen\+::\+Partial\+Piv\+LU}}$<$ Matrix\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u}{Partial\+Piv\+LU}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}}}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Default Constructor with memory preallocation. 
+
+Like the default constructor but with preallocation of the internal data according to the specified problem {\itshape size}. \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u_a5c04818d354f94a98786d8a44cb709c6}{Partial\+Piv\+L\+U()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_partial_piv_l_u_acf37214aebb54d0e186ae39ac6c41bdf}\label{class_eigen_1_1_partial_piv_l_u_acf37214aebb54d0e186ae39ac6c41bdf}} 
+\index{Eigen::PartialPivLU$<$ \_MatrixType $>$@{Eigen::PartialPivLU$<$ \_MatrixType $>$}!PartialPivLU@{PartialPivLU}}
+\index{PartialPivLU@{PartialPivLU}!Eigen::PartialPivLU$<$ \_MatrixType $>$@{Eigen::PartialPivLU$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{PartialPivLU()}{PartialPivLU()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type $>$ \\
+template$<$typename Input\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u}{Eigen\+::\+Partial\+Piv\+LU}}$<$ Matrix\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u}{Partial\+Piv\+LU}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+Constructor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & the matrix of which to compute the LU decomposition.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+The matrix should have full rank (e.\+g. if it\textquotesingle{}s square, it should be invertible). If you need to deal with non-\/full rank, use class \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u}{Full\+Piv\+LU}} instead. 
+\end{DoxyWarning}
+\mbox{\Hypertarget{class_eigen_1_1_partial_piv_l_u_a4efc917d31d0e9d76781a97509309061}\label{class_eigen_1_1_partial_piv_l_u_a4efc917d31d0e9d76781a97509309061}} 
+\index{Eigen::PartialPivLU$<$ \_MatrixType $>$@{Eigen::PartialPivLU$<$ \_MatrixType $>$}!PartialPivLU@{PartialPivLU}}
+\index{PartialPivLU@{PartialPivLU}!Eigen::PartialPivLU$<$ \_MatrixType $>$@{Eigen::PartialPivLU$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{PartialPivLU()}{PartialPivLU()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type $>$ \\
+template$<$typename Input\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u}{Eigen\+::\+Partial\+Piv\+LU}}$<$ Matrix\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u}{Partial\+Piv\+LU}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Input\+Type $>$ \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+Constructor for \mbox{\hyperlink{}{inplace decomposition }}
+
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & the matrix of which to compute the LU decomposition.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+The matrix should have full rank (e.\+g. if it\textquotesingle{}s square, it should be invertible). If you need to deal with non-\/full rank, use class \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u}{Full\+Piv\+LU}} instead. 
+\end{DoxyWarning}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_partial_piv_l_u_a54c3d39c9b46ff485a8d2140b9b23193}\label{class_eigen_1_1_partial_piv_l_u_a54c3d39c9b46ff485a8d2140b9b23193}} 
+\index{Eigen::PartialPivLU$<$ \_MatrixType $>$@{Eigen::PartialPivLU$<$ \_MatrixType $>$}!determinant@{determinant}}
+\index{determinant@{determinant}!Eigen::PartialPivLU$<$ \_MatrixType $>$@{Eigen::PartialPivLU$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{determinant()}{determinant()}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u}{Partial\+Piv\+LU}}$<$ Matrix\+Type $>$\+::Scalar \mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u}{Eigen\+::\+Partial\+Piv\+LU}}$<$ Matrix\+Type $>$\+::determinant (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+the determinant of the matrix of which $\ast$this is the LU decomposition. It has only linear complexity (that is, O(n) where n is the dimension of the square matrix) as the LU decomposition has already been computed.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+For fixed-\/size matrices of size up to 4, \mbox{\hyperlink{class_eigen_1_1_matrix_base_a7ad8f77004bb956b603bb43fd2e3c061}{Matrix\+Base\+::determinant()}} offers optimized paths.
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+a determinant can be very big or small, so for matrices of large enough dimension, there is a risk of overflow/underflow.
+\end{DoxyWarning}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_matrix_base_a7ad8f77004bb956b603bb43fd2e3c061}{Matrix\+Base\+::determinant()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_partial_piv_l_u_aef983470f92aba829e861e32e68681b5}\label{class_eigen_1_1_partial_piv_l_u_aef983470f92aba829e861e32e68681b5}} 
+\index{Eigen::PartialPivLU$<$ \_MatrixType $>$@{Eigen::PartialPivLU$<$ \_MatrixType $>$}!inverse@{inverse}}
+\index{inverse@{inverse}!Eigen::PartialPivLU$<$ \_MatrixType $>$@{Eigen::PartialPivLU$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{inverse()}{inverse()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type$>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_inverse}{Inverse}}$<$\mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u}{Partial\+Piv\+LU}}$>$ \mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u}{Eigen\+::\+Partial\+Piv\+LU}}$<$ \+\_\+\+Matrix\+Type $>$\+::inverse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the inverse of the matrix of which $\ast$this is the LU decomposition.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+The matrix being decomposed here is assumed to be invertible. If you need to check for invertibility, use class \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u}{Full\+Piv\+LU}} instead.
+\end{DoxyWarning}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_matrix_base_a7712eb69e8ea3c8f7b8da1c44dbdeebf}{Matrix\+Base\+::inverse()}}, L\+U\+::inverse() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_partial_piv_l_u_abea0d7e51c5591a6db152eade0892d9c}\label{class_eigen_1_1_partial_piv_l_u_abea0d7e51c5591a6db152eade0892d9c}} 
+\index{Eigen::PartialPivLU$<$ \_MatrixType $>$@{Eigen::PartialPivLU$<$ \_MatrixType $>$}!matrixLU@{matrixLU}}
+\index{matrixLU@{matrixLU}!Eigen::PartialPivLU$<$ \_MatrixType $>$@{Eigen::PartialPivLU$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{matrixLU()}{matrixLU()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type$>$ \\
+const Matrix\+Type\& \mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u}{Eigen\+::\+Partial\+Piv\+LU}}$<$ \+\_\+\+Matrix\+Type $>$\+::matrix\+LU (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the LU decomposition matrix\+: the upper-\/triangular part is U, the unit-\/lower-\/triangular part is L (at least for square matrices; in the non-\/square case, special care is needed, see the documentation of class \mbox{\hyperlink{class_eigen_1_1_full_piv_l_u}{Full\+Piv\+LU}}).
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+matrix\+L(), matrix\+U() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_partial_piv_l_u_a1c637530b3215787668a75ebb2e7b882}\label{class_eigen_1_1_partial_piv_l_u_a1c637530b3215787668a75ebb2e7b882}} 
+\index{Eigen::PartialPivLU$<$ \_MatrixType $>$@{Eigen::PartialPivLU$<$ \_MatrixType $>$}!permutationP@{permutationP}}
+\index{permutationP@{permutationP}!Eigen::PartialPivLU$<$ \_MatrixType $>$@{Eigen::PartialPivLU$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{permutationP()}{permutationP()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type$>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Type}}\& \mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u}{Eigen\+::\+Partial\+Piv\+LU}}$<$ \+\_\+\+Matrix\+Type $>$\+::permutationP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the permutation matrix P. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_partial_piv_l_u_a472b46d5d9ff7c328e1dccc13805f690}\label{class_eigen_1_1_partial_piv_l_u_a472b46d5d9ff7c328e1dccc13805f690}} 
+\index{Eigen::PartialPivLU$<$ \_MatrixType $>$@{Eigen::PartialPivLU$<$ \_MatrixType $>$}!rcond@{rcond}}
+\index{rcond@{rcond}!Eigen::PartialPivLU$<$ \_MatrixType $>$@{Eigen::PartialPivLU$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{rcond()}{rcond()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type$>$ \\
+Real\+Scalar \mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u}{Eigen\+::\+Partial\+Piv\+LU}}$<$ \+\_\+\+Matrix\+Type $>$\+::rcond (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+an estimate of the reciprocal condition number of the matrix of which {\ttfamily $\ast$this} is the LU decomposition. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_partial_piv_l_u_aba7f1ee83537b0d240ebf206503a4920}\label{class_eigen_1_1_partial_piv_l_u_aba7f1ee83537b0d240ebf206503a4920}} 
+\index{Eigen::PartialPivLU$<$ \_MatrixType $>$@{Eigen::PartialPivLU$<$ \_MatrixType $>$}!reconstructedMatrix@{reconstructedMatrix}}
+\index{reconstructedMatrix@{reconstructedMatrix}!Eigen::PartialPivLU$<$ \_MatrixType $>$@{Eigen::PartialPivLU$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{reconstructedMatrix()}{reconstructedMatrix()}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type $>$ \\
+Matrix\+Type \mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u}{Eigen\+::\+Partial\+Piv\+LU}}$<$ Matrix\+Type $>$\+::reconstructed\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+the matrix represented by the decomposition, i.\+e., it returns the product\+: P$^\wedge$\{-\/1\} L U. This function is provided for debug purpose. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_partial_piv_l_u_a49247bd2f742a46bca1f9c2bf1b19ad8}\label{class_eigen_1_1_partial_piv_l_u_a49247bd2f742a46bca1f9c2bf1b19ad8}} 
+\index{Eigen::PartialPivLU$<$ \_MatrixType $>$@{Eigen::PartialPivLU$<$ \_MatrixType $>$}!solve@{solve}}
+\index{solve@{solve}!Eigen::PartialPivLU$<$ \_MatrixType $>$@{Eigen::PartialPivLU$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{solve()}{solve()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type$>$ \\
+template$<$typename Rhs $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_solve}{Solve}}$<$\mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u}{Partial\+Piv\+LU}}, Rhs$>$ \mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u}{Eigen\+::\+Partial\+Piv\+LU}}$<$ \+\_\+\+Matrix\+Type $>$\+::solve (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&}]{b }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+This method returns the solution x to the equation Ax=b, where A is the matrix of which $\ast$this is the LU decomposition.
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & the right-\/hand-\/side of the equation to solve. Can be a vector or a matrix, the only requirement in order for the equation to make sense is that b.\+rows()==A.\+rows(), where A is the matrix of which $\ast$this is the LU decomposition.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the solution.
+\end{DoxyReturn}
+Example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+Since this \mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u}{Partial\+Piv\+LU}} class assumes anyway that the matrix A is invertible, the solution theoretically exists and is unique regardless of b.
+
+\begin{DoxySeeAlso}{See also}
+Triangular\+View\+::solve(), \mbox{\hyperlink{class_eigen_1_1_partial_piv_l_u_aef983470f92aba829e861e32e68681b5}{inverse()}}, compute\+Inverse() 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Core/util/Forward\+Declarations.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+L\+U/Partial\+Piv\+L\+U.\+h\end{DoxyCompactItemize}

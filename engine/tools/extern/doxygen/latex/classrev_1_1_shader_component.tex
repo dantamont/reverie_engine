@@ -1,0 +1,121 @@
+\hypertarget{classrev_1_1_shader_component}{}\section{rev\+::Shader\+Component Class Reference}
+\label{classrev_1_1_shader_component}\index{rev::ShaderComponent@{rev::ShaderComponent}}
+
+
+A renderer component to be attached to a scene object.  
+
+
+
+
+{\ttfamily \#include $<$G\+Shader\+Component.\+h$>$}
+
+Inheritance diagram for rev\+::Shader\+Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_shader_component}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_component_a31c8496549d26bfe858131fb0b938cef}\label{classrev_1_1_shader_component_a31c8496549d26bfe858131fb0b938cef}} 
+{\bfseries Shader\+Component} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_component_a81b60d2ec7a99e431beca4aa4fc2e8ec}\label{classrev_1_1_shader_component_a81b60d2ec7a99e431beca4aa4fc2e8ec}} 
+{\bfseries Shader\+Component} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \&object)
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_component_a6663f3fc549344fb69ac40e88af3e515}\label{classrev_1_1_shader_component_a6663f3fc549344fb69ac40e88af3e515}} 
+{\bfseries $\sim$\+Shader\+Component} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_component_a53b8763be6b2c37b929c594555ab3943}\label{classrev_1_1_shader_component_a53b8763be6b2c37b929c594555ab3943}} 
+virtual void \mbox{\hyperlink{classrev_1_1_shader_component_a53b8763be6b2c37b929c594555ab3943}{enable}} () override
+\begin{DoxyCompactList}\small\item\em Enable the behavior of this script component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_component_aad5ee2680a6ac13607b8a5f17cc6d454}\label{classrev_1_1_shader_component_aad5ee2680a6ac13607b8a5f17cc6d454}} 
+virtual void \mbox{\hyperlink{classrev_1_1_shader_component_aad5ee2680a6ac13607b8a5f17cc6d454}{disable}} () override
+\begin{DoxyCompactList}\small\item\em Disable the behavior of this script component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_component_a1ec4c34b1c25eec0ec43d1653fa106a0}\label{classrev_1_1_shader_component_a1ec4c34b1c25eec0ec43d1653fa106a0}} 
+virtual int \mbox{\hyperlink{classrev_1_1_shader_component_a1ec4c34b1c25eec0ec43d1653fa106a0}{max\+Allowed}} () const override
+\begin{DoxyCompactList}\small\item\em Max number of allowed components per scene object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_component_af06b250469d6d0c3f484754987b258c3}\label{classrev_1_1_shader_component_af06b250469d6d0c3f484754987b258c3}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_shader_preset}{Shader\+Preset}} $>$ {\bfseries shader\+Preset} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_component_aa20fb1e4d58cdaba3d739079332b3a01}\label{classrev_1_1_shader_component_aa20fb1e4d58cdaba3d739079332b3a01}} 
+void {\bfseries set\+Shader\+Preset} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_shader_preset}{Shader\+Preset}} $>$ \&preset)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_shader_component_a62ddc1d5981e4952890a628ca5b6d12a}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_shader_component_ac052c16eed35e22f62df1d06cf346d55}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_component_a960cbabde1a566c721bcdb5640d236eb}\label{classrev_1_1_shader_component_a960cbabde1a566c721bcdb5640d236eb}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_shader_component_a960cbabde1a566c721bcdb5640d236eb}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shader_component_a0822c1517cf55d1e29197357234b67d1}\label{classrev_1_1_shader_component_a0822c1517cf55d1e29197357234b67d1}} 
+virtual void \mbox{\hyperlink{classrev_1_1_shader_component_a0822c1517cf55d1e29197357234b67d1}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shader_component_a2616789c8d868780651343dbb07a9e73}\label{classrev_1_1_shader_component_a2616789c8d868780651343dbb07a9e73}} 
+std\+::weak\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_shader_preset}{Shader\+Preset}} $>$ {\bfseries m\+\_\+shader\+Preset}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A renderer component to be attached to a scene object. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_shader_component_a62ddc1d5981e4952890a628ca5b6d12a}\label{classrev_1_1_shader_component_a62ddc1d5981e4952890a628ca5b6d12a}} 
+\index{rev::ShaderComponent@{rev::ShaderComponent}!className@{className}}
+\index{className@{className}!rev::ShaderComponent@{rev::ShaderComponent}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Shader\+Component\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_component_a07619152d5acafe7a536df3a6a476349}{rev\+::\+Component}}.
+
+\mbox{\Hypertarget{classrev_1_1_shader_component_ac052c16eed35e22f62df1d06cf346d55}\label{classrev_1_1_shader_component_ac052c16eed35e22f62df1d06cf346d55}} 
+\index{rev::ShaderComponent@{rev::ShaderComponent}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::ShaderComponent@{rev::ShaderComponent}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Shader\+Component\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_component_ae2827b14c278588b95e01c4743fae674}{rev\+::\+Component}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+Shader\+Component.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+Shader\+Component.\+cpp\end{DoxyCompactItemize}

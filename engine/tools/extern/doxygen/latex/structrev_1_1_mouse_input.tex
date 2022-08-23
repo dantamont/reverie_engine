@@ -1,0 +1,73 @@
+\hypertarget{structrev_1_1_mouse_input}{}\section{rev\+::Mouse\+Input Struct Reference}
+\label{structrev_1_1_mouse_input}\index{rev::MouseInput@{rev::MouseInput}}
+
+
+A generalization of a mouse input.  
+
+
+
+
+{\ttfamily \#include $<$G\+Input\+Handler.\+h$>$}
+
+Inheritance diagram for rev\+::Mouse\+Input\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{structrev_1_1_mouse_input}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_mouse_input_ad6f274b41f80e5eeb9e2b61e612291fa}\label{structrev_1_1_mouse_input_ad6f274b41f80e5eeb9e2b61e612291fa}} 
+{\bfseries Mouse\+Input} ()
+\item 
+\mbox{\Hypertarget{structrev_1_1_mouse_input_acec480ba41729cd23abfe7f5bec187aa}\label{structrev_1_1_mouse_input_acec480ba41729cd23abfe7f5bec187aa}} 
+{\bfseries $\sim$\+Mouse\+Input} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_mouse_input_a9aaeddbfc14b0dae0bcf4b08e6de0dd1}\label{structrev_1_1_mouse_input_a9aaeddbfc14b0dae0bcf4b08e6de0dd1}} 
+bool \mbox{\hyperlink{structrev_1_1_mouse_input_a9aaeddbfc14b0dae0bcf4b08e6de0dd1}{is\+Press}} () const
+\begin{DoxyCompactList}\small\item\em If this input is a press. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_mouse_input_ae73cc367a85fa09d08c684d45dcbef6e}\label{structrev_1_1_mouse_input_ae73cc367a85fa09d08c684d45dcbef6e}} 
+bool \mbox{\hyperlink{structrev_1_1_mouse_input_ae73cc367a85fa09d08c684d45dcbef6e}{is\+Release}} () const
+\begin{DoxyCompactList}\small\item\em If this input is a release. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_mouse_input_a03a7e6217c4ab5302a7b23c5bf8cb585}\label{structrev_1_1_mouse_input_a03a7e6217c4ab5302a7b23c5bf8cb585}} 
+bool \mbox{\hyperlink{structrev_1_1_mouse_input_a03a7e6217c4ab5302a7b23c5bf8cb585}{is\+Double\+Click}} () const
+\begin{DoxyCompactList}\small\item\em If this input is a double click. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Attributes}
+\begin{Indent}\textbf{ Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_mouse_input_ade31ae737b75cbb012ef9f13e279235f}\label{structrev_1_1_mouse_input_ade31ae737b75cbb012ef9f13e279235f}} 
+Qt\+::\+Mouse\+Button \mbox{\hyperlink{structrev_1_1_mouse_input_ade31ae737b75cbb012ef9f13e279235f}{m\+\_\+mouse\+Button}} = Qt\+::\+Mouse\+Button\+::\+No\+Button
+\begin{DoxyCompactList}\small\item\em The mouse button pressed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_mouse_input_a1a9d6be52c89bac00a98971fd309a7d2}\label{structrev_1_1_mouse_input_a1a9d6be52c89bac00a98971fd309a7d2}} 
+Qt\+::\+Mouse\+Buttons \mbox{\hyperlink{structrev_1_1_mouse_input_a1a9d6be52c89bac00a98971fd309a7d2}{m\+\_\+active\+Buttons}}
+\begin{DoxyCompactList}\small\item\em Other mouse buttons held down at time of this press. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_mouse_input_a39accf704fc44f5c691209fa08315c6d}\label{structrev_1_1_mouse_input_a39accf704fc44f5c691209fa08315c6d}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector2}} \mbox{\hyperlink{structrev_1_1_mouse_input_a39accf704fc44f5c691209fa08315c6d}{m\+\_\+angle\+Delta}}
+\begin{DoxyCompactList}\small\item\em Scroll amount (in radians), x-\/component is only for horizontal-\/scroll enabled mice. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Operators}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_mouse_input_a971eb39845d01cda9b9b47fe5a009ac7}\label{structrev_1_1_mouse_input_a971eb39845d01cda9b9b47fe5a009ac7}} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{structrev_1_1_mouse_input}{Mouse\+Input}} \&lhs, const \mbox{\hyperlink{structrev_1_1_mouse_input}{Mouse\+Input}} \&rhs)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A generalization of a mouse input. 
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/input/G\+Input\+Handler.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/input/G\+Input\+Handler.\+cpp\end{DoxyCompactItemize}

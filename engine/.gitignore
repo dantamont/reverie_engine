@@ -4,6 +4,7 @@ utils/doxygen/latex/
 
 # Resource files
 *.rc
+!extern/*.rc
 !*PythonQt-Qt5-Python38*resource.rc
 
 # VS diagnostic files
@@ -28,10 +29,17 @@ reverie/qt_generated/
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
+## Tools
+# Deployment virtual environment
+[Tt]ools/kindler/venvs/envs/*
+
+# Temp folders for testing
+[Tt]ools/kindler/autogen/tmp*
+
 # Build results
 #[Dd]ebug/
 #![Bb]in/[Dd]ebug
-[Bb]in
+[Bb]uilds
 QtColorWidgets_version.c
 [Dd]ebugPublic/
 #[Rr]elease/
@@ -41,7 +49,7 @@ bld/
 # [Bb]in/
 [Oo]bj/
 [Ll]og/
-third_party/*/bin
+extern/*/bin
 BINARIES/
 *reverie.exe
 
@@ -78,7 +86,7 @@ artifacts/
 *.ilk
 *.meta
 *.obj
-!reverie/assets/**/*.obj
+!**/apps/**/assets/**/*.[oO]bj
 *.pch
 *.pdb
 *.pgc

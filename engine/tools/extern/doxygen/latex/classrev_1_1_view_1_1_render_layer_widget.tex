@@ -1,0 +1,62 @@
+\hypertarget{classrev_1_1_view_1_1_render_layer_widget}{}\section{rev\+::View\+::Render\+Layer\+Widget Class Reference}
+\label{classrev_1_1_view_1_1_render_layer_widget}\index{rev::View::RenderLayerWidget@{rev::View::RenderLayerWidget}}
+Inheritance diagram for rev\+::View\+::Render\+Layer\+Widget\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.909250cm]{classrev_1_1_view_1_1_render_layer_widget}
+\end{center}
+\end{figure}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_widget_aacdc2f692e1ef0b5e18fb05342fea618}\label{classrev_1_1_view_1_1_render_layer_widget_aacdc2f692e1ef0b5e18fb05342fea618}} 
+void {\bfseries edited\+Render\+Layers} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_widget_a1f144a7f08cef4064861a864a3561e16}\label{classrev_1_1_view_1_1_render_layer_widget_a1f144a7f08cef4064861a864a3561e16}} 
+{\bfseries Render\+Layer\+Widget} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, \mbox{\hyperlink{structrev_1_1_sorting_layer}{Sorting\+Layer}} $\ast$sort\+Layer, Q\+Widget $\ast$parent=0)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_widget_af553aece8429b34300870e24c6ed0835}\label{classrev_1_1_view_1_1_render_layer_widget_af553aece8429b34300870e24c6ed0835}} 
+{\bfseries $\sim$\+Render\+Layer\+Widget} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Events}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_widget_a1bb0a3f9465741c7caf6c8ee94f5a88d}\label{classrev_1_1_view_1_1_render_layer_widget_a1bb0a3f9465741c7caf6c8ee94f5a88d}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_widget_a1bb0a3f9465741c7caf6c8ee94f5a88d}{wheel\+Event}} (Q\+Wheel\+Event $\ast$event) override
+\begin{DoxyCompactList}\small\item\em Scroll event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_widget_a3b7b5cdcc1ee5b133dfc4fbb4c3dacdb}\label{classrev_1_1_view_1_1_render_layer_widget_a3b7b5cdcc1ee5b133dfc4fbb4c3dacdb}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_widget_a3b7b5cdcc1ee5b133dfc4fbb4c3dacdb}{initialize\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to check\+Validity widgets. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_widget_ac29ad46f443fbb7e76fd4d159e3478da}\label{classrev_1_1_view_1_1_render_layer_widget_ac29ad46f443fbb7e76fd4d159e3478da}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_widget_ac29ad46f443fbb7e76fd4d159e3478da}{layout\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to ay out widgets. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_widget_aaa32201e491abeed77e8dd120859f545}\label{classrev_1_1_view_1_1_render_layer_widget_aaa32201e491abeed77e8dd120859f545}} 
+virtual bool \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_widget_aaa32201e491abeed77e8dd120859f545}{is\+Valid\+Object}} (const Q\+Json\+Object \&object) override
+\begin{DoxyCompactList}\small\item\em Whether or not the specified object is valid. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_widget_adfd3c4c08d0481bc30795c5e7573e6f3}\label{classrev_1_1_view_1_1_render_layer_widget_adfd3c4c08d0481bc30795c5e7573e6f3}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_widget_adfd3c4c08d0481bc30795c5e7573e6f3}{pre\+Load}} () override
+\begin{DoxyCompactList}\small\item\em What to do prior to reloading serializable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_widget_a9ee8a2cd30008949d3aa1f0103974e3f}\label{classrev_1_1_view_1_1_render_layer_widget_a9ee8a2cd30008949d3aa1f0103974e3f}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_widget_a9ee8a2cd30008949d3aa1f0103974e3f}{post\+Load}} () override
+\begin{DoxyCompactList}\small\item\em What do do after reloading serializable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_widget_a70c7039e6517e0536fa5d8695042c6d3}\label{classrev_1_1_view_1_1_render_layer_widget_a70c7039e6517e0536fa5d8695042c6d3}} 
+\mbox{\hyperlink{structrev_1_1_sorting_layer}{Sorting\+Layer}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_widget_a70c7039e6517e0536fa5d8695042c6d3}{sorting\+Layer}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_serializable}{Serializable}} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Render\+Layer\+Widget.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Render\+Layer\+Widget.\+cpp\end{DoxyCompactItemize}

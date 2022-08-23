@@ -1,0 +1,115 @@
+\hypertarget{classrev_1_1_bone_animation_component}{}\section{rev\+::Bone\+Animation\+Component Class Reference}
+\label{classrev_1_1_bone_animation_component}\index{rev::BoneAnimationComponent@{rev::BoneAnimationComponent}}
+Inheritance diagram for rev\+::Bone\+Animation\+Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.916667cm]{classrev_1_1_bone_animation_component}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_bone_animation_component_a0779d0166ed7b6d44f66403fb2867b7d}\label{classrev_1_1_bone_animation_component_a0779d0166ed7b6d44f66403fb2867b7d}} 
+{\bfseries Bone\+Animation\+Component} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_bone_animation_component_aaaddc97659eb980faea66e3d0f56ed16}\label{classrev_1_1_bone_animation_component_aaaddc97659eb980faea66e3d0f56ed16}} 
+{\bfseries Bone\+Animation\+Component} (const \mbox{\hyperlink{classrev_1_1_bone_animation_component}{Bone\+Animation\+Component}} \&other)
+\item 
+\mbox{\Hypertarget{classrev_1_1_bone_animation_component_ad1859609001ae1513de5aa624f2a77ff}\label{classrev_1_1_bone_animation_component_ad1859609001ae1513de5aa624f2a77ff}} 
+{\bfseries Bone\+Animation\+Component} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \&object)
+\item 
+\mbox{\Hypertarget{classrev_1_1_bone_animation_component_aab707141ed109c281b5bc402d59bcd06}\label{classrev_1_1_bone_animation_component_aab707141ed109c281b5bc402d59bcd06}} 
+{\bfseries $\sim$\+Bone\+Animation\+Component} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_bone_animation_component_a2c11fabab6d5e952f038017c73b20a99}\label{classrev_1_1_bone_animation_component_a2c11fabab6d5e952f038017c73b20a99}} 
+virtual void \mbox{\hyperlink{classrev_1_1_bone_animation_component_a2c11fabab6d5e952f038017c73b20a99}{enable}} () override
+\begin{DoxyCompactList}\small\item\em Enable the behavior of this component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_bone_animation_component_a3d1618efe1cca61182a741129381721f}\label{classrev_1_1_bone_animation_component_a3d1618efe1cca61182a741129381721f}} 
+virtual void \mbox{\hyperlink{classrev_1_1_bone_animation_component_a3d1618efe1cca61182a741129381721f}{disable}} () override
+\begin{DoxyCompactList}\small\item\em Disable the behavior of this component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_bone_animation_component_a089e4d7c8df32961bfc9413d7d9524a2}\label{classrev_1_1_bone_animation_component_a089e4d7c8df32961bfc9413d7d9524a2}} 
+virtual int \mbox{\hyperlink{classrev_1_1_bone_animation_component_a089e4d7c8df32961bfc9413d7d9524a2}{max\+Allowed}} () const override
+\begin{DoxyCompactList}\small\item\em Max number of allowed components per scene object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_bone_animation_component_a18a0109b7527ccd815c7a8350ef6ad1f}\label{classrev_1_1_bone_animation_component_a18a0109b7527ccd815c7a8350ef6ad1f}} 
+void \mbox{\hyperlink{classrev_1_1_bone_animation_component_a18a0109b7527ccd815c7a8350ef6ad1f}{update\+Bounds}} (const \mbox{\hyperlink{classrev_1_1_transform}{Transform}} \&transform)
+\begin{DoxyCompactList}\small\item\em Update bounds given a transform. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_bone_animation_component_ae46752102e3449e5b10ea68f87af0eb1}\label{classrev_1_1_bone_animation_component_ae46752102e3449e5b10ea68f87af0eb1}} 
+const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \& {\bfseries model\+Handle} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_bone_animation_component_a4bf58c37051692cbfe18c696b6187c97}\label{classrev_1_1_bone_animation_component_a4bf58c37051692cbfe18c696b6187c97}} 
+\mbox{\hyperlink{classrev_1_1_animation_controller}{Animation\+Controller}} \& {\bfseries animation\+Controller} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_bone_animation_component_a3eaa61a98c682a9b0f5aa804b448380b}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_bone_animation_component_af7df4b639ac2c3e9048f44c159d0dcda}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_bone_animation_component_a5f95b9168d226d048a3f75d00d98f4f5}\label{classrev_1_1_bone_animation_component_a5f95b9168d226d048a3f75d00d98f4f5}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_bone_animation_component_a5f95b9168d226d048a3f75d00d98f4f5}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_bone_animation_component_a79dbcac505e75664775b0cae9b1f5016}\label{classrev_1_1_bone_animation_component_a79dbcac505e75664775b0cae9b1f5016}} 
+virtual void \mbox{\hyperlink{classrev_1_1_bone_animation_component_a79dbcac505e75664775b0cae9b1f5016}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_bone_animation_component_a6120d7887645ee037b16f8312fe2266e}\label{classrev_1_1_bone_animation_component_a6120d7887645ee037b16f8312fe2266e}} 
+\mbox{\hyperlink{classrev_1_1_animation_controller}{Animation\+Controller}} \mbox{\hyperlink{classrev_1_1_bone_animation_component_a6120d7887645ee037b16f8312fe2266e}{m\+\_\+animation\+Controller}}
+\begin{DoxyCompactList}\small\item\em The animations used by this model component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_bone_animation_component_a3eaa61a98c682a9b0f5aa804b448380b}\label{classrev_1_1_bone_animation_component_a3eaa61a98c682a9b0f5aa804b448380b}} 
+\index{rev::BoneAnimationComponent@{rev::BoneAnimationComponent}!className@{className}}
+\index{className@{className}!rev::BoneAnimationComponent@{rev::BoneAnimationComponent}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Bone\+Animation\+Component\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_bone_animation_component_af7df4b639ac2c3e9048f44c159d0dcda}\label{classrev_1_1_bone_animation_component_af7df4b639ac2c3e9048f44c159d0dcda}} 
+\index{rev::BoneAnimationComponent@{rev::BoneAnimationComponent}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::BoneAnimationComponent@{rev::BoneAnimationComponent}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Bone\+Animation\+Component\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+Animation\+Component.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+Animation\+Component.\+cpp\end{DoxyCompactItemize}

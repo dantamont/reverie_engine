@@ -1,0 +1,67 @@
+\hypertarget{classrev_1_1_protocol}{}\section{rev\+::Protocol$<$ Field\+Types $>$ Class Template Reference}
+\label{classrev_1_1_protocol}\index{rev::Protocol$<$ FieldTypes $>$@{rev::Protocol$<$ FieldTypes $>$}}
+Inheritance diagram for rev\+::Protocol$<$ Field\+Types $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_protocol}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_protocol_ac2d8d7bfe618ea8497ae26f9fc93902d}\label{classrev_1_1_protocol_ac2d8d7bfe618ea8497ae26f9fc93902d}} 
+{\footnotesize template$<$typename ... P\+Field\+Types$>$ }\\\mbox{\hyperlink{classrev_1_1_protocol_ac2d8d7bfe618ea8497ae26f9fc93902d}{Protocol}} (P\+Field\+Types \&... fields)
+\begin{DoxyCompactList}\small\item\em Construct with indirection so \mbox{\hyperlink{classrev_1_1_protocol}{Protocol}} Fields can be used directly in construction. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_protocol_a29344f6fabdcd4f790685ef07ac54c70}\label{classrev_1_1_protocol_a29344f6fabdcd4f790685ef07ac54c70}} 
+{\bfseries Protocol} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_protocol_af6af4e8dee401be2f641c6d838ccfedd}\label{classrev_1_1_protocol_af6af4e8dee401be2f641c6d838ccfedd}} 
+virtual {\bfseries $\sim$\+Protocol} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_protocol_ac6b691a23430a2b9245d82f71c1eb393}\label{classrev_1_1_protocol_ac6b691a23430a2b9245d82f71c1eb393}} 
+const std\+::tuple$<$ \mbox{\hyperlink{structrev_1_1_protocol_field}{Protocol\+Field}}$<$ Field\+Types $>$... $>$ \& {\bfseries fields} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_protocol_a8ca7b8fa75e6026609b20d5e6c91fb43}\label{classrev_1_1_protocol_a8ca7b8fa75e6026609b20d5e6c91fb43}} 
+virtual bool \mbox{\hyperlink{classrev_1_1_protocol_a8ca7b8fa75e6026609b20d5e6c91fb43}{write}} (const \mbox{\hyperlink{classrev_1_1_file_stream}{File\+Stream}} \&stream) override
+\begin{DoxyCompactList}\small\item\em Write to a filestream. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_protocol_a5337bf3ee68d2bb8c9cd24963d101895}\label{classrev_1_1_protocol_a5337bf3ee68d2bb8c9cd24963d101895}} 
+virtual bool \mbox{\hyperlink{classrev_1_1_protocol_a5337bf3ee68d2bb8c9cd24963d101895}{read}} (const \mbox{\hyperlink{classrev_1_1_file_stream}{File\+Stream}} \&stream) override
+\begin{DoxyCompactList}\small\item\em Read from a filestream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Operators}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_protocol_a6d59a39b4a179d20a195da7d2cd0ffd2}\label{classrev_1_1_protocol_a6d59a39b4a179d20a195da7d2cd0ffd2}} 
+{\bfseries operator G\+String} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_protocol_af662e121bb3e6e0219ec340880771ef5}\label{classrev_1_1_protocol_af662e121bb3e6e0219ec340880771ef5}} 
+\mbox{\hyperlink{classrev_1_1_protocol}{Protocol}} \& {\bfseries operator=} (const \mbox{\hyperlink{classrev_1_1_protocol}{Protocol}} \&other)
+\item 
+\mbox{\Hypertarget{classrev_1_1_protocol_a34b5caf830673a709fb1a09194939483}\label{classrev_1_1_protocol_a34b5caf830673a709fb1a09194939483}} 
+\mbox{\hyperlink{classrev_1_1_file_stream}{File\+Stream}} \& \mbox{\hyperlink{classrev_1_1_protocol_a34b5caf830673a709fb1a09194939483}{operator$>$$>$}} (\mbox{\hyperlink{classrev_1_1_file_stream}{File\+Stream}} \&fs, \mbox{\hyperlink{classrev_1_1_protocol}{Protocol}} \&p)
+\begin{DoxyCompactList}\small\item\em Read from a stream. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_protocol_a5426d571ff6efb7153b172bf23c12b9d}\label{classrev_1_1_protocol_a5426d571ff6efb7153b172bf23c12b9d}} 
+\mbox{\hyperlink{classrev_1_1_protocol}{Protocol}} \& {\bfseries operator$<$$<$} (\mbox{\hyperlink{classrev_1_1_protocol}{Protocol}} \&p, \mbox{\hyperlink{classrev_1_1_file_stream}{File\+Stream}} \&fs)
+\item 
+\mbox{\Hypertarget{classrev_1_1_protocol_acf2e1efff90455be07228435d9ce0b52}\label{classrev_1_1_protocol_acf2e1efff90455be07228435d9ce0b52}} 
+\mbox{\hyperlink{classrev_1_1_file_stream}{File\+Stream}} \& \mbox{\hyperlink{classrev_1_1_protocol_acf2e1efff90455be07228435d9ce0b52}{operator$<$$<$}} (\mbox{\hyperlink{classrev_1_1_file_stream}{File\+Stream}} \&fs, \mbox{\hyperlink{classrev_1_1_protocol}{Protocol}} \&p)
+\begin{DoxyCompactList}\small\item\em Write to stream. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_protocol_a06a81710e806aa9f3f17529fd4c2bd19}\label{classrev_1_1_protocol_a06a81710e806aa9f3f17529fd4c2bd19}} 
+\mbox{\hyperlink{classrev_1_1_protocol}{Protocol}} \& {\bfseries operator$>$$>$} (\mbox{\hyperlink{classrev_1_1_protocol}{Protocol}} \&p, \mbox{\hyperlink{classrev_1_1_file_stream}{File\+Stream}} \&fs)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/containers/G\+String.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/encoding/G\+Protocol.\+h\end{DoxyCompactItemize}

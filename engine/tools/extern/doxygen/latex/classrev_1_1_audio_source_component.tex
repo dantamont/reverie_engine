@@ -1,0 +1,245 @@
+\hypertarget{classrev_1_1_audio_source_component}{}\section{rev\+::Audio\+Source\+Component Class Reference}
+\label{classrev_1_1_audio_source_component}\index{rev::AudioSourceComponent@{rev::AudioSourceComponent}}
+Inheritance diagram for rev\+::Audio\+Source\+Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_audio_source_component}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_aaeec6ffb7fc9de18021ce4911f99d44f}\label{classrev_1_1_audio_source_component_aaeec6ffb7fc9de18021ce4911f99d44f}} 
+enum {\bfseries Source\+Type} \{ {\bfseries k\+Wav}, 
+{\bfseries k\+Wav\+Stream}, 
+{\bfseries k\+Speech}
+ \}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_a3cc8ffdd4defa7d7713e8bafe388658a}\label{classrev_1_1_audio_source_component_a3cc8ffdd4defa7d7713e8bafe388658a}} 
+{\bfseries Audio\+Source\+Component} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_aa8fd9e66cc59dcb5b7a784cb302b666a}\label{classrev_1_1_audio_source_component_aa8fd9e66cc59dcb5b7a784cb302b666a}} 
+{\bfseries Audio\+Source\+Component} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \&object)
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_abd9fe0fd5f58ac595fa9bd8f98be8a33}\label{classrev_1_1_audio_source_component_abd9fe0fd5f58ac595fa9bd8f98be8a33}} 
+{\bfseries Audio\+Source\+Component} (const \mbox{\hyperlink{classrev_1_1_audio_source_component}{Audio\+Source\+Component}} \&other)
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_afe2611de438f4193606baada8465e685}\label{classrev_1_1_audio_source_component_afe2611de438f4193606baada8465e685}} 
+{\bfseries $\sim$\+Audio\+Source\+Component} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_ae1e1070cc6c81a63e7296d643712ae58}\label{classrev_1_1_audio_source_component_ae1e1070cc6c81a63e7296d643712ae58}} 
+void \mbox{\hyperlink{classrev_1_1_audio_source_component_ae1e1070cc6c81a63e7296d643712ae58}{queue\+Play}} ()
+\begin{DoxyCompactList}\small\item\em Queue this sound to be played via sound manager. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_a7916310834cbb392f9cec1b827f1cfcd}\label{classrev_1_1_audio_source_component_a7916310834cbb392f9cec1b827f1cfcd}} 
+void \mbox{\hyperlink{classrev_1_1_audio_source_component_a7916310834cbb392f9cec1b827f1cfcd}{queue\+Move}} ()
+\begin{DoxyCompactList}\small\item\em Queue all voices associated with this sound to be moved. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_a589284b330ef591ba5d99bd4308b0887}\label{classrev_1_1_audio_source_component_a589284b330ef591ba5d99bd4308b0887}} 
+virtual void \mbox{\hyperlink{classrev_1_1_audio_source_component_a589284b330ef591ba5d99bd4308b0887}{enable}} () override
+\begin{DoxyCompactList}\small\item\em Enable the behavior of this script component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_a529ec2ffc8e033d871bd8ba7441a4f12}\label{classrev_1_1_audio_source_component_a529ec2ffc8e033d871bd8ba7441a4f12}} 
+virtual void \mbox{\hyperlink{classrev_1_1_audio_source_component_a529ec2ffc8e033d871bd8ba7441a4f12}{disable}} () override
+\begin{DoxyCompactList}\small\item\em Disable the behavior of this script component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_ab2de22f97f0aa65fe43d125c3be91117}\label{classrev_1_1_audio_source_component_ab2de22f97f0aa65fe43d125c3be91117}} 
+virtual int \mbox{\hyperlink{classrev_1_1_audio_source_component_ab2de22f97f0aa65fe43d125c3be91117}{max\+Allowed}} () const override
+\begin{DoxyCompactList}\small\item\em Max number of allowed components per scene object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_a993f4dff333e522b3f55c0bf3a3ec0fe}\label{classrev_1_1_audio_source_component_a993f4dff333e522b3f55c0bf3a3ec0fe}} 
+virtual void \mbox{\hyperlink{classrev_1_1_audio_source_component_a993f4dff333e522b3f55c0bf3a3ec0fe}{pre\+Destruction}} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core) override
+\begin{DoxyCompactList}\small\item\em What to do prior to destruction of the component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_a309966a28b29c0f03bfdbedb60e3f096}\label{classrev_1_1_audio_source_component_a309966a28b29c0f03bfdbedb60e3f096}} 
+\mbox{\hyperlink{structrev_1_1_audio_component_settings}{Audio\+Component\+Settings}} \& {\bfseries voice\+Properties} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_a48be27a78c95480aa9eee87c8a7e823d}\label{classrev_1_1_audio_source_component_a48be27a78c95480aa9eee87c8a7e823d}} 
+const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \& {\bfseries audio\+Handle} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_a95e9ed32ca18362d56471a644468ca83}\label{classrev_1_1_audio_source_component_a95e9ed32ca18362d56471a644468ca83}} 
+void {\bfseries set\+Audio\+Handle} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \&handle)
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_a4fbcb479ada28051fa94a4789231a42d}\label{classrev_1_1_audio_source_component_a4fbcb479ada28051fa94a4789231a42d}} 
+\mbox{\hyperlink{classrev_1_1_audio_resource}{Audio\+Resource}} $\ast$ {\bfseries audio\+Resource} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_a4204135c4d3f0bbf5841de2fdf8bcfb9}\label{classrev_1_1_audio_source_component_a4204135c4d3f0bbf5841de2fdf8bcfb9}} 
+{\footnotesize template$<$typename T $>$ }\\T $\ast$ {\bfseries audio\+Source} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_a602f0060c13584f7d37398796ceec08a}\label{classrev_1_1_audio_source_component_a602f0060c13584f7d37398796ceec08a}} 
+{\footnotesize template$<$typename T $>$ }\\const T $\ast$ {\bfseries audio\+Source} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_audio_source_component_a71a45fbf39573c2d903ad4454ec3d658}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_audio_source_component_ae94612b38966493a4680deea4ba58792}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_a20e3a510807bf2ed64f04ae2b48f65bc}\label{classrev_1_1_audio_source_component_a20e3a510807bf2ed64f04ae2b48f65bc}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_audio_source_component_a20e3a510807bf2ed64f04ae2b48f65bc}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_a3569d576bad5ba0cf7b7a2793a91688f}\label{classrev_1_1_audio_source_component_a3569d576bad5ba0cf7b7a2793a91688f}} 
+virtual void \mbox{\hyperlink{classrev_1_1_audio_source_component_a3569d576bad5ba0cf7b7a2793a91688f}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_a10a81aadba76df906bc382bf41440596}\label{classrev_1_1_audio_source_component_a10a81aadba76df906bc382bf41440596}} 
+void \mbox{\hyperlink{classrev_1_1_audio_source_component_a10a81aadba76df906bc382bf41440596}{add\+Voice}} (int handle)
+\begin{DoxyCompactList}\small\item\em Add a voice handle. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_audio_source_component_ab2032a3b5420196c9be07659d20c304f}{play}} ()
+\begin{DoxyCompactList}\small\item\em Play a sound from this component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_a929fa05a72e070a67a042f4ba1bfeab0}\label{classrev_1_1_audio_source_component_a929fa05a72e070a67a042f4ba1bfeab0}} 
+void \mbox{\hyperlink{classrev_1_1_audio_source_component_a929fa05a72e070a67a042f4ba1bfeab0}{move}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&pos)
+\begin{DoxyCompactList}\small\item\em Move all voices associated with this audio component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_a40cdb3cb2ff088fe8c617a942619f406}\label{classrev_1_1_audio_source_component_a40cdb3cb2ff088fe8c617a942619f406}} 
+void \mbox{\hyperlink{classrev_1_1_audio_source_component_a40cdb3cb2ff088fe8c617a942619f406}{clear}} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core)
+\begin{DoxyCompactList}\small\item\em Clear the audio source. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_afdc0c33233ede66130f9fb70bcb12e53}\label{classrev_1_1_audio_source_component_afdc0c33233ede66130f9fb70bcb12e53}} 
+\mbox{\hyperlink{classrev_1_1_sound_manager}{Sound\+Manager}} $\ast$ \mbox{\hyperlink{classrev_1_1_audio_source_component_afdc0c33233ede66130f9fb70bcb12e53}{sound\+Manager}} () const
+\begin{DoxyCompactList}\small\item\em Get sound manager. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_afee8cce8778def7686f0eaebc25bc237}\label{classrev_1_1_audio_source_component_afee8cce8778def7686f0eaebc25bc237}} 
+void \mbox{\hyperlink{classrev_1_1_audio_source_component_afee8cce8778def7686f0eaebc25bc237}{update\+Voices}} ()
+\begin{DoxyCompactList}\small\item\em Update voices in this component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \mbox{\hyperlink{classrev_1_1_audio_source_component_a908a35cf39a4e7b7dd096ead05aad22d}{m\+\_\+audio\+Handle}}
+\begin{DoxyCompactList}\small\item\em Audio source. \end{DoxyCompactList}\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{classrev_1_1_audio_source_component_a81e3ba07e63f3b54f907361d813e532b}{m\+\_\+active\+Voice\+Handles}}
+\begin{DoxyCompactList}\small\item\em Voices. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classrev_1_1_audio_source_component_aff77615a5b500bfc8efeb1d82ca7f923}{m\+\_\+bus\+Index}}
+\begin{DoxyCompactList}\small\item\em Voice groups. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_ae3a688fa92edb0cdb9325110d63d9b0e}\label{classrev_1_1_audio_source_component_ae3a688fa92edb0cdb9325110d63d9b0e}} 
+std\+::shared\+\_\+mutex \mbox{\hyperlink{classrev_1_1_audio_source_component_ae3a688fa92edb0cdb9325110d63d9b0e}{m\+\_\+voice\+Mutex}}
+\begin{DoxyCompactList}\small\item\em The mutex used to manage voices. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_a05bdfe5c62a0a7f4515ff8b01f51ed6d}\label{classrev_1_1_audio_source_component_a05bdfe5c62a0a7f4515ff8b01f51ed6d}} 
+\mbox{\hyperlink{structrev_1_1_audio_component_settings}{Audio\+Component\+Settings}} \mbox{\hyperlink{classrev_1_1_audio_source_component_a05bdfe5c62a0a7f4515ff8b01f51ed6d}{m\+\_\+voice\+Properties}}
+\begin{DoxyCompactList}\small\item\em Properties specific to this audio component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_abcf6a9cabe9f178e3c032faa7f496d50}\label{classrev_1_1_audio_source_component_abcf6a9cabe9f178e3c032faa7f496d50}} 
+class {\bfseries Audio\+Component\+Widget}
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_a712297203e2f33c19e0ff8799b37c69b}\label{classrev_1_1_audio_source_component_a712297203e2f33c19e0ff8799b37c69b}} 
+class {\bfseries Audio\+Source\+Command}
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_aafc1ed305dd233e1f87f16711af11e29}\label{classrev_1_1_audio_source_component_aafc1ed305dd233e1f87f16711af11e29}} 
+class {\bfseries Play\+Audio\+Command}
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_a767cf7740fa172ae8e804bd537aff424}\label{classrev_1_1_audio_source_component_a767cf7740fa172ae8e804bd537aff424}} 
+class {\bfseries Move\+Audio\+Command}
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_aee940642f2974e262db9284c0b1d9766}\label{classrev_1_1_audio_source_component_aee940642f2974e262db9284c0b1d9766}} 
+class {\bfseries Sound\+Manager}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_a71a45fbf39573c2d903ad4454ec3d658}\label{classrev_1_1_audio_source_component_a71a45fbf39573c2d903ad4454ec3d658}} 
+\index{rev::AudioSourceComponent@{rev::AudioSourceComponent}!className@{className}}
+\index{className@{className}!rev::AudioSourceComponent@{rev::AudioSourceComponent}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Audio\+Source\+Component\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_ae94612b38966493a4680deea4ba58792}\label{classrev_1_1_audio_source_component_ae94612b38966493a4680deea4ba58792}} 
+\index{rev::AudioSourceComponent@{rev::AudioSourceComponent}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::AudioSourceComponent@{rev::AudioSourceComponent}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Audio\+Source\+Component\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_ab2032a3b5420196c9be07659d20c304f}\label{classrev_1_1_audio_source_component_ab2032a3b5420196c9be07659d20c304f}} 
+\index{rev::AudioSourceComponent@{rev::AudioSourceComponent}!play@{play}}
+\index{play@{play}!rev::AudioSourceComponent@{rev::AudioSourceComponent}}
+\subsubsection{\texorpdfstring{play()}{play()}}
+{\footnotesize\ttfamily void rev\+::\+Audio\+Source\+Component\+::play (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Play a sound from this component. 
+
+Should not be called directly, call queue\+Play instead 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_a81e3ba07e63f3b54f907361d813e532b}\label{classrev_1_1_audio_source_component_a81e3ba07e63f3b54f907361d813e532b}} 
+\index{rev::AudioSourceComponent@{rev::AudioSourceComponent}!m\_activeVoiceHandles@{m\_activeVoiceHandles}}
+\index{m\_activeVoiceHandles@{m\_activeVoiceHandles}!rev::AudioSourceComponent@{rev::AudioSourceComponent}}
+\subsubsection{\texorpdfstring{m\_activeVoiceHandles}{m\_activeVoiceHandles}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ rev\+::\+Audio\+Source\+Component\+::m\+\_\+active\+Voice\+Handles\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Voices. 
+
+a voice is an instance of a sound. \begin{DoxyNote}{Note}
+The default max number of concurrent voices is 16, virtual voices is 1024 
+\end{DoxyNote}
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_a908a35cf39a4e7b7dd096ead05aad22d}\label{classrev_1_1_audio_source_component_a908a35cf39a4e7b7dd096ead05aad22d}} 
+\index{rev::AudioSourceComponent@{rev::AudioSourceComponent}!m\_audioHandle@{m\_audioHandle}}
+\index{m\_audioHandle@{m\_audioHandle}!rev::AudioSourceComponent@{rev::AudioSourceComponent}}
+\subsubsection{\texorpdfstring{m\_audioHandle}{m\_audioHandle}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}}$>$ rev\+::\+Audio\+Source\+Component\+::m\+\_\+audio\+Handle\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Audio source. 
+
+Audio sources contain all of the information pertaining to each sound. Shorter sounds that are used frequently should use Wav, longer should use Wav\+Stream, since Wav\+Stream consumes less memory (at the cost of processing power) \begin{DoxyNote}{Note}
+Audio resources may be shared between components 
+\end{DoxyNote}
+\mbox{\Hypertarget{classrev_1_1_audio_source_component_aff77615a5b500bfc8efeb1d82ca7f923}\label{classrev_1_1_audio_source_component_aff77615a5b500bfc8efeb1d82ca7f923}} 
+\index{rev::AudioSourceComponent@{rev::AudioSourceComponent}!m\_busIndex@{m\_busIndex}}
+\index{m\_busIndex@{m\_busIndex}!rev::AudioSourceComponent@{rev::AudioSourceComponent}}
+\subsubsection{\texorpdfstring{m\_busIndex}{m\_busIndex}}
+{\footnotesize\ttfamily int rev\+::\+Audio\+Source\+Component\+::m\+\_\+bus\+Index\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Voice groups. 
+
+\begin{DoxyNote}{Note}
+The max number of voice groups is 4095 The filters applied to this particular audio source The index of the bus to use for this audio source 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+Audio\+Source\+Component.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+Audio\+Source\+Component.\+cpp\end{DoxyCompactItemize}

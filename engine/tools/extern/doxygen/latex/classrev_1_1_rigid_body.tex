@@ -1,0 +1,250 @@
+\hypertarget{classrev_1_1_rigid_body}{}\section{rev\+::Rigid\+Body Class Reference}
+\label{classrev_1_1_rigid_body}\index{rev::RigidBody@{rev::RigidBody}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing a rigid body.  
+
+
+
+
+{\ttfamily \#include $<$G\+Physics\+Actor.\+h$>$}
+
+Inheritance diagram for rev\+::Rigid\+Body\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classrev_1_1_rigid_body}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_a5d4a76bfadaa015d8e4830f19496dc48}\label{classrev_1_1_rigid_body_a5d4a76bfadaa015d8e4830f19496dc48}} 
+enum {\bfseries Rigid\+Type} \{ {\bfseries k\+Static} = 0, 
+{\bfseries k\+Dynamic}, 
+{\bfseries k\+Articulation\+Link}
+ \}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_a7a5a3f20ff12ac99795f89b64b24c9a5}\label{classrev_1_1_rigid_body_a7a5a3f20ff12ac99795f89b64b24c9a5}} 
+{\bfseries Rigid\+Body} (\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$so)
+\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_a5e7fa0ef45f25b72a525d91ac298340c}\label{classrev_1_1_rigid_body_a5e7fa0ef45f25b72a525d91ac298340c}} 
+{\bfseries Rigid\+Body} (\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$so, \mbox{\hyperlink{classrev_1_1_physics_shape_prefab}{Physics\+Shape\+Prefab}} $\ast$\mbox{\hyperlink{classrev_1_1_rigid_body_a9806bd3ece163a62e1b5c57010df9817}{shape}}, Rigid\+Type r\+Type, float density=1.\+0)
+\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_a74ccf20639a3da740a463303251d58b7}\label{classrev_1_1_rigid_body_a74ccf20639a3da740a463303251d58b7}} 
+{\bfseries $\sim$\+Rigid\+Body} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_aec8c7ffbe347ba2f21c187983cfca5a7}\label{classrev_1_1_rigid_body_aec8c7ffbe347ba2f21c187983cfca5a7}} 
+Rigid\+Body\+Flags {\bfseries rigid\+Body\+Flags} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_a84d41dfd6c4f1ebdd59b50f3be0988a5}\label{classrev_1_1_rigid_body_a84d41dfd6c4f1ebdd59b50f3be0988a5}} 
+void {\bfseries set\+Rigid\+Body\+Flags} (Rigid\+Body\+Flags flags)
+\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_a5408717d012caf6b1d7ceebb8bb4fb29}\label{classrev_1_1_rigid_body_a5408717d012caf6b1d7ceebb8bb4fb29}} 
+float {\bfseries density} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_a4b36b2804e5f8e58bd4483b97e189373}\label{classrev_1_1_rigid_body_a4b36b2804e5f8e58bd4483b97e189373}} 
+void {\bfseries set\+Density} (float density)
+\item 
+Rigid\+Type \mbox{\hyperlink{classrev_1_1_rigid_body_adfc7cfb9e55c5e70818f2c2a54063468}{rigid\+Type}} () const
+\begin{DoxyCompactList}\small\item\em The type of rigid body. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_aafcb9852356d9222c2721d2fd89de09a}\label{classrev_1_1_rigid_body_aafcb9852356d9222c2721d2fd89de09a}} 
+void {\bfseries set\+Rigid\+Type} (Rigid\+Type type)
+\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_a68564107a4fff5ef154d1d1128585136}\label{classrev_1_1_rigid_body_a68564107a4fff5ef154d1d1128585136}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_physics_shape}{Physics\+Shape}} $\ast$ $>$ \& {\bfseries shapes} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_aa06d967f38f53d8785b28c5ac5b338e3}\label{classrev_1_1_rigid_body_aa06d967f38f53d8785b28c5ac5b338e3}} 
+bool \mbox{\hyperlink{classrev_1_1_rigid_body_aa06d967f38f53d8785b28c5ac5b338e3}{is\+Kinematic}} () const
+\begin{DoxyCompactList}\small\item\em Whether the body is kinematic or not. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_rigid_body_a662213185d960bb925af824c1372330f}{clear\+Shapes}} ()
+\begin{DoxyCompactList}\small\item\em Clears shapes from the rigid body. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_a9806bd3ece163a62e1b5c57010df9817}\label{classrev_1_1_rigid_body_a9806bd3ece163a62e1b5c57010df9817}} 
+\mbox{\hyperlink{classrev_1_1_physics_shape}{Physics\+Shape}} \& \mbox{\hyperlink{classrev_1_1_rigid_body_a9806bd3ece163a62e1b5c57010df9817}{shape}} (int index=0)
+\begin{DoxyCompactList}\small\item\em Return shape at index. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_aff94accc447f1b6f63ff8fdab2a44faf}\label{classrev_1_1_rigid_body_aff94accc447f1b6f63ff8fdab2a44faf}} 
+void \mbox{\hyperlink{classrev_1_1_rigid_body_aff94accc447f1b6f63ff8fdab2a44faf}{toggle\+Contact}} (bool contact)
+\begin{DoxyCompactList}\small\item\em Toggle for scene queries. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_afb5be1d929a7a2a288b90d8fdebf4aef}\label{classrev_1_1_rigid_body_afb5be1d929a7a2a288b90d8fdebf4aef}} 
+void \mbox{\hyperlink{classrev_1_1_rigid_body_afb5be1d929a7a2a288b90d8fdebf4aef}{toggle\+Queries}} (bool is\+Queried)
+\begin{DoxyCompactList}\small\item\em Toggle for contact. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_a6b5c8def5d0e7310c17b2bc731c25c8a}\label{classrev_1_1_rigid_body_a6b5c8def5d0e7310c17b2bc731c25c8a}} 
+bool {\bfseries update\+Mass\+And\+Inertia} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_a7db3a12bb0dedb2eb8df64b2ed1c4882}\label{classrev_1_1_rigid_body_a7db3a12bb0dedb2eb8df64b2ed1c4882}} 
+void {\bfseries set\+Kinematic} (bool \mbox{\hyperlink{classrev_1_1_rigid_body_aa06d967f38f53d8785b28c5ac5b338e3}{is\+Kinematic}}, bool set\+Member)
+\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_ae2dd024bd1cfdc71aa950c8a9b973c79}\label{classrev_1_1_rigid_body_ae2dd024bd1cfdc71aa950c8a9b973c79}} 
+void \mbox{\hyperlink{classrev_1_1_rigid_body_ae2dd024bd1cfdc71aa950c8a9b973c79}{add\+Shape}} (\mbox{\hyperlink{classrev_1_1_physics_shape_prefab}{Physics\+Shape\+Prefab}} \&prefab)
+\begin{DoxyCompactList}\small\item\em Add a shape to the rigid body. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_a856285d39d3a1105fabd9f6bd8b1ec45}\label{classrev_1_1_rigid_body_a856285d39d3a1105fabd9f6bd8b1ec45}} 
+\mbox{\hyperlink{classrev_1_1_transform}{Transform}} \mbox{\hyperlink{classrev_1_1_rigid_body_a856285d39d3a1105fabd9f6bd8b1ec45}{get\+Transform}} () const
+\begin{DoxyCompactList}\small\item\em Get the transform of the rigid body. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_a2340d1c28a9e81edd2511c7edcf10e23}\label{classrev_1_1_rigid_body_a2340d1c28a9e81edd2511c7edcf10e23}} 
+void \mbox{\hyperlink{classrev_1_1_rigid_body_a2340d1c28a9e81edd2511c7edcf10e23}{set\+Transform}} (const \mbox{\hyperlink{classrev_1_1_transform}{Transform}} \&t)
+\begin{DoxyCompactList}\small\item\em Set the transform of the rigid bdy. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_a48eb02650ef0f72fb958ec31023cd81c}\label{classrev_1_1_rigid_body_a48eb02650ef0f72fb958ec31023cd81c}} 
+void \mbox{\hyperlink{classrev_1_1_rigid_body_a48eb02650ef0f72fb958ec31023cd81c}{sleep}} ()
+\begin{DoxyCompactList}\small\item\em Send the body to sleep. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_adb15fd368d12329db16cd78282bb8020}\label{classrev_1_1_rigid_body_adb15fd368d12329db16cd78282bb8020}} 
+void \mbox{\hyperlink{classrev_1_1_rigid_body_adb15fd368d12329db16cd78282bb8020}{awaken}} ()
+\begin{DoxyCompactList}\small\item\em Awaken the body. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_a879c1154ad9d6a95f473d41e9d2f140b}\label{classrev_1_1_rigid_body_a879c1154ad9d6a95f473d41e9d2f140b}} 
+void {\bfseries set\+Angular\+Damping} (float damping)
+\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_a298d7d759e3bef9a43974db529466775}\label{classrev_1_1_rigid_body_a298d7d759e3bef9a43974db529466775}} 
+void {\bfseries set\+Linear\+Velocity} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3f}} \&vel)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_ad7f161c6f63667b0cd5532ed023011ab}\label{classrev_1_1_rigid_body_ad7f161c6f63667b0cd5532ed023011ab}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_rigid_body_ad7f161c6f63667b0cd5532ed023011ab}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_af00e0ad66c49d83e81cceb008793cac3}\label{classrev_1_1_rigid_body_af00e0ad66c49d83e81cceb008793cac3}} 
+virtual void \mbox{\hyperlink{classrev_1_1_rigid_body_af00e0ad66c49d83e81cceb008793cac3}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_rigid_body_a996230070162f743c3e87f5c20fd981e}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_rigid_body_ae8e178b51dbe0e61ad0674e039864a92}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_acad7e704b6e234d947dbdf9528bf2a8a}\label{classrev_1_1_rigid_body_acad7e704b6e234d947dbdf9528bf2a8a}} 
+void {\bfseries reinitialize} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_ae3b3fabe43cb8a3b8b96bb0b9a410ff4}\label{classrev_1_1_rigid_body_ae3b3fabe43cb8a3b8b96bb0b9a410ff4}} 
+void {\bfseries reinitialize} (\mbox{\hyperlink{classrev_1_1_physics_shape_prefab}{Physics\+Shape\+Prefab}} \&prefab)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_a170b875823ee4396dad15b13d4336101}\label{classrev_1_1_rigid_body_a170b875823ee4396dad15b13d4336101}} 
+void \mbox{\hyperlink{classrev_1_1_rigid_body_a170b875823ee4396dad15b13d4336101}{initialize}} (\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$so, const \mbox{\hyperlink{classrev_1_1_transform}{Transform}} \&transform, \mbox{\hyperlink{classrev_1_1_physics_shape_prefab}{Physics\+Shape\+Prefab}} \&prefab)
+\begin{DoxyCompactList}\small\item\em Initialize the rigid body. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_physics_shape}{Physics\+Shape}} $\ast$ $>$ \mbox{\hyperlink{classrev_1_1_rigid_body_a59adf3ade36187d693f121ea7f59af9b}{m\+\_\+shapes}}
+\begin{DoxyCompactList}\small\item\em Shape instantiations. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_a7c80c64052b504ccde0d8d0c9d8fa7fa}\label{classrev_1_1_rigid_body_a7c80c64052b504ccde0d8d0c9d8fa7fa}} 
+Rigid\+Type \mbox{\hyperlink{classrev_1_1_rigid_body_a7c80c64052b504ccde0d8d0c9d8fa7fa}{m\+\_\+rigid\+Type}}
+\begin{DoxyCompactList}\small\item\em The type of rigid body, e.\+g. static vs dynamic. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classrev_1_1_rigid_body_a8e4d45b9d3506659d760acf25774eea9}{m\+\_\+is\+Kinematic}}
+\begin{DoxyCompactList}\small\item\em Whether or not the object is kinematic. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_a4768b80f1754e9c3d5b1a71612cfe706}\label{classrev_1_1_rigid_body_a4768b80f1754e9c3d5b1a71612cfe706}} 
+float {\bfseries m\+\_\+density}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_a5e13b4068a2ee5cf4769dacc39747295}\label{classrev_1_1_rigid_body_a5e13b4068a2ee5cf4769dacc39747295}} 
+class {\bfseries Rigid\+Body\+Component}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing a rigid body. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_rigid_body_a996230070162f743c3e87f5c20fd981e}\label{classrev_1_1_rigid_body_a996230070162f743c3e87f5c20fd981e}} 
+\index{rev::RigidBody@{rev::RigidBody}!className@{className}}
+\index{className@{className}!rev::RigidBody@{rev::RigidBody}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Rigid\+Body\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_physics_actor_a5bc3e96948718546204f3201971e1914}{rev\+::\+Physics\+Actor}}.
+
+\mbox{\Hypertarget{classrev_1_1_rigid_body_a662213185d960bb925af824c1372330f}\label{classrev_1_1_rigid_body_a662213185d960bb925af824c1372330f}} 
+\index{rev::RigidBody@{rev::RigidBody}!clearShapes@{clearShapes}}
+\index{clearShapes@{clearShapes}!rev::RigidBody@{rev::RigidBody}}
+\subsubsection{\texorpdfstring{clearShapes()}{clearShapes()}}
+{\footnotesize\ttfamily void rev\+::\+Rigid\+Body\+::clear\+Shapes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Clears shapes from the rigid body. 
+
+Does not need to be called on destruction, detachment is automatic \mbox{\Hypertarget{classrev_1_1_rigid_body_ae8e178b51dbe0e61ad0674e039864a92}\label{classrev_1_1_rigid_body_ae8e178b51dbe0e61ad0674e039864a92}} 
+\index{rev::RigidBody@{rev::RigidBody}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::RigidBody@{rev::RigidBody}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Rigid\+Body\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_physics_actor_ad212df8d7d61f9b855bc9d9ede2b437f}{rev\+::\+Physics\+Actor}}.
+
+\mbox{\Hypertarget{classrev_1_1_rigid_body_adfc7cfb9e55c5e70818f2c2a54063468}\label{classrev_1_1_rigid_body_adfc7cfb9e55c5e70818f2c2a54063468}} 
+\index{rev::RigidBody@{rev::RigidBody}!rigidType@{rigidType}}
+\index{rigidType@{rigidType}!rev::RigidBody@{rev::RigidBody}}
+\subsubsection{\texorpdfstring{rigidType()}{rigidType()}}
+{\footnotesize\ttfamily Rigid\+Type rev\+::\+Rigid\+Body\+::rigid\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The type of rigid body. 
+
+Setting this requires a call to the reinitialize routine in order to take effect on the underlying PhysX body 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_rigid_body_a8e4d45b9d3506659d760acf25774eea9}\label{classrev_1_1_rigid_body_a8e4d45b9d3506659d760acf25774eea9}} 
+\index{rev::RigidBody@{rev::RigidBody}!m\_isKinematic@{m\_isKinematic}}
+\index{m\_isKinematic@{m\_isKinematic}!rev::RigidBody@{rev::RigidBody}}
+\subsubsection{\texorpdfstring{m\_isKinematic}{m\_isKinematic}}
+{\footnotesize\ttfamily bool rev\+::\+Rigid\+Body\+::m\+\_\+is\+Kinematic\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Whether or not the object is kinematic. 
+
+If the object is kinematic, it may not participate in simulation collision, only for triggers or scene queries of moving objects under animation control \mbox{\Hypertarget{classrev_1_1_rigid_body_a59adf3ade36187d693f121ea7f59af9b}\label{classrev_1_1_rigid_body_a59adf3ade36187d693f121ea7f59af9b}} 
+\index{rev::RigidBody@{rev::RigidBody}!m\_shapes@{m\_shapes}}
+\index{m\_shapes@{m\_shapes}!rev::RigidBody@{rev::RigidBody}}
+\subsubsection{\texorpdfstring{m\_shapes}{m\_shapes}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classrev_1_1_physics_shape}{Physics\+Shape}}$\ast$$>$ rev\+::\+Rigid\+Body\+::m\+\_\+shapes\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Shape instantiations. 
+
+Can also be obtained with Px\+Rigid\+Actor\+::get\+Shapes 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Physics\+Actor.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Physics\+Actor.\+cpp\end{DoxyCompactItemize}

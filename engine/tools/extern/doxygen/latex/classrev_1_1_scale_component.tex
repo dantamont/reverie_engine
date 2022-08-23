@@ -1,0 +1,99 @@
+\hypertarget{classrev_1_1_scale_component}{}\section{rev\+::Scale\+Component Class Reference}
+\label{classrev_1_1_scale_component}\index{rev::ScaleComponent@{rev::ScaleComponent}}
+
+
+Represents a transform component that scales an object.  
+
+
+
+
+{\ttfamily \#include $<$G\+Transform\+Components.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scale_component_ac2ca5f05812c0771644ba5ab46283074}\label{classrev_1_1_scale_component_ac2ca5f05812c0771644ba5ab46283074}} 
+{\bfseries Scale\+Component} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_scale_component_ae701f7a49f652545f6e54dd04de32918}\label{classrev_1_1_scale_component_ae701f7a49f652545f6e54dd04de32918}} 
+{\bfseries Scale\+Component} (\mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$transform, const \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4}} \&scaling)
+\item 
+\mbox{\Hypertarget{classrev_1_1_scale_component_af72cf2bc9a9ae35511afb2c5860dfec3}\label{classrev_1_1_scale_component_af72cf2bc9a9ae35511afb2c5860dfec3}} 
+{\bfseries Scale\+Component} (\mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$transform, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&scaling)
+\item 
+\mbox{\Hypertarget{classrev_1_1_scale_component_a68b6eb240defa2aa1a0aad12a9904b2c}\label{classrev_1_1_scale_component_a68b6eb240defa2aa1a0aad12a9904b2c}} 
+{\bfseries $\sim$\+Scale\+Component} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scale_component_a0545ed9274104bf4b69adb69be1f8560}\label{classrev_1_1_scale_component_a0545ed9274104bf4b69adb69be1f8560}} 
+bool {\bfseries is\+Identity} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_scale_component_a26a2b70610802ef247b21082d3520a16}\label{classrev_1_1_scale_component_a26a2b70610802ef247b21082d3520a16}} 
+const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \& \mbox{\hyperlink{classrev_1_1_scale_component_a26a2b70610802ef247b21082d3520a16}{get\+Scale}} () const
+\begin{DoxyCompactList}\small\item\em Obtain scaling vector. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scale_component_a2ef1b1d31605a2fa8e4e898a18dcbb01}\label{classrev_1_1_scale_component_a2ef1b1d31605a2fa8e4e898a18dcbb01}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \& {\bfseries scale} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_scale_component_a817dccc097f138b2f61cacc6e2212a94}\label{classrev_1_1_scale_component_a817dccc097f138b2f61cacc6e2212a94}} 
+void \mbox{\hyperlink{classrev_1_1_scale_component_a817dccc097f138b2f61cacc6e2212a94}{set\+Scale}} (\mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$transform, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&scaling, bool update\+Transform=true)
+\begin{DoxyCompactList}\small\item\em Set scaling vector and update transform matrix. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scale_component_a320143d3ebaa71e2e2176109f747ac8c}\label{classrev_1_1_scale_component_a320143d3ebaa71e2e2176109f747ac8c}} 
+void {\bfseries set\+Scale} (\mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$transform, double x, double y, double z, bool update\+Transform=true)
+\item 
+\mbox{\Hypertarget{classrev_1_1_scale_component_a365acf6010e71727308a16a6db336f35}\label{classrev_1_1_scale_component_a365acf6010e71727308a16a6db336f35}} 
+void {\bfseries set\+Scale} (\mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$transform, double scaling, bool update\+Transform=true)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scale_component_a2b4929de363e5e31bb00a5471d197082}\label{classrev_1_1_scale_component_a2b4929de363e5e31bb00a5471d197082}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_scale_component_a2b4929de363e5e31bb00a5471d197082}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scale_component_a573fc5b73bb1561662edddb06977c63e}\label{classrev_1_1_scale_component_a573fc5b73bb1561662edddb06977c63e}} 
+virtual void \mbox{\hyperlink{classrev_1_1_scale_component_a573fc5b73bb1561662edddb06977c63e}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty())
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scale_component_a7b60d3f3263389c24c351ba28fc560fe}\label{classrev_1_1_scale_component_a7b60d3f3263389c24c351ba28fc560fe}} 
+void \mbox{\hyperlink{classrev_1_1_scale_component_a7b60d3f3263389c24c351ba28fc560fe}{compute\+Transform\+Matrix}} (\mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$transform, bool update\+Transform=true)
+\begin{DoxyCompactList}\small\item\em Compute scale matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scale_component_ac70774c0793bc91d47087313fb3e365a}\label{classrev_1_1_scale_component_ac70774c0793bc91d47087313fb3e365a}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} {\bfseries m\+\_\+scale}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scale_component_acec6255804275b9672c8856290ac478e}\label{classrev_1_1_scale_component_acec6255804275b9672c8856290ac478e}} 
+\mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4}} {\bfseries m\+\_\+transform\+Matrix}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scale_component_af851b4d9aacd1a871da33592334b8d72}\label{classrev_1_1_scale_component_af851b4d9aacd1a871da33592334b8d72}} 
+class {\bfseries Transform}
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scale_component_a807125837ec48b85a70de37d96653ec3}\label{classrev_1_1_scale_component_a807125837ec48b85a70de37d96653ec3}} 
+const \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4}} \& \mbox{\hyperlink{classrev_1_1_scale_component_a807125837ec48b85a70de37d96653ec3}{get\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em get \mbox{\hyperlink{classrev_1_1_matrix}{Matrix}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scale_component_a2f5c7ff52af9c0bc8e3b98519594738a}\label{classrev_1_1_scale_component_a2f5c7ff52af9c0bc8e3b98519594738a}} 
+static Transform\+Component\+Type \mbox{\hyperlink{classrev_1_1_scale_component_a2f5c7ff52af9c0bc8e3b98519594738a}{type}} ()
+\begin{DoxyCompactList}\small\item\em Get transform type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Represents a transform component that scales an object. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/geometry/G\+Transform\+Components.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/geometry/G\+Transform\+Components.\+cpp\end{DoxyCompactItemize}

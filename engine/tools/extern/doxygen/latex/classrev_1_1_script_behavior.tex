@@ -1,0 +1,133 @@
+\hypertarget{classrev_1_1_script_behavior}{}\section{rev\+::Script\+Behavior Class Reference}
+\label{classrev_1_1_script_behavior}\index{rev::ScriptBehavior@{rev::ScriptBehavior}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} to get wrapped up by a script to be called via python or another scripting language.  
+
+
+
+
+{\ttfamily \#include $<$G\+Script\+Behavior.\+h$>$}
+
+Inheritance diagram for rev\+::Script\+Behavior\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_script_behavior}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_behavior_ad96d293305ea21964fea2ba3b46298d0}\label{classrev_1_1_script_behavior_ad96d293305ea21964fea2ba3b46298d0}} 
+{\bfseries Script\+Behavior} (\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} \&scene\+Object)
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_behavior_a55bda80ab5388c825b263bcd6ca3d75b}\label{classrev_1_1_script_behavior_a55bda80ab5388c825b263bcd6ca3d75b}} 
+virtual {\bfseries $\sim$\+Script\+Behavior} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_behavior_a90d756fb7ea068d1e18526cbfa8d11c5}\label{classrev_1_1_script_behavior_a90d756fb7ea068d1e18526cbfa8d11c5}} 
+\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} \& {\bfseries scene\+Object} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_behavior_a78398d79eee5d9b8411214d0ff021d51}\label{classrev_1_1_script_behavior_a78398d79eee5d9b8411214d0ff021d51}} 
+void {\bfseries set\+Scene\+Object} (\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} \&so)
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_behavior_aa4b1568b4e34a798a8119b3baa84386d}\label{classrev_1_1_script_behavior_aa4b1568b4e34a798a8119b3baa84386d}} 
+\mbox{\hyperlink{classrev_1_1_input_handler}{Input\+Handler}} $\ast$ {\bfseries input\+Handler} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_behavior_ab98d81e15d86684c5b1211c32b317848}\label{classrev_1_1_script_behavior_ab98d81e15d86684c5b1211c32b317848}} 
+\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$ {\bfseries engine} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_behavior_a95df73a47c7b534487cf0bfe41de3ffd}\label{classrev_1_1_script_behavior_a95df73a47c7b534487cf0bfe41de3ffd}} 
+\mbox{\hyperlink{classrev_1_1_resource_cache}{Resource\+Cache}} $\ast$ {\bfseries resource\+Cache} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_behavior_a21be61ebbb41c9ee7c60d90f3c401cf7}\label{classrev_1_1_script_behavior_a21be61ebbb41c9ee7c60d90f3c401cf7}} 
+\mbox{\hyperlink{classrev_1_1_transform_component}{Transform\+Component}} $\ast$ {\bfseries transform} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_behavior_a2541a491c80ead762996a81a84ac153f}\label{classrev_1_1_script_behavior_a2541a491c80ead762996a81a84ac153f}} 
+\mbox{\hyperlink{classrev_1_1_scene}{Scene}} $\ast$ {\bfseries scene} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_behavior_adb27090a409f224d6a3fc2b9a56654c2}\label{classrev_1_1_script_behavior_adb27090a409f224d6a3fc2b9a56654c2}} 
+virtual void {\bfseries initialize} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_behavior_a35066924653f2bbed0ac3c153d9b5945}\label{classrev_1_1_script_behavior_a35066924653f2bbed0ac3c153d9b5945}} 
+virtual void {\bfseries update} (double delta\+Sec)
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_behavior_a0cfbd10bdf2d92cbe1684172d6786a6d}\label{classrev_1_1_script_behavior_a0cfbd10bdf2d92cbe1684172d6786a6d}} 
+virtual void {\bfseries late\+Update} (double delta\+Sec)
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_behavior_a8547152c6bcf7397a859cb483a27c785}\label{classrev_1_1_script_behavior_a8547152c6bcf7397a859cb483a27c785}} 
+virtual void {\bfseries fixed\+Update} (double delta\+Sec)
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_behavior_a6b676b7f39fade5f6a990b1fa69bc875}\label{classrev_1_1_script_behavior_a6b676b7f39fade5f6a990b1fa69bc875}} 
+virtual void {\bfseries on\+Success} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_behavior_a17cc8809c4262052a163027c55164798}\label{classrev_1_1_script_behavior_a17cc8809c4262052a163027c55164798}} 
+virtual void {\bfseries on\+Fail} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_behavior_ac44a8fbb02add6a17a664ec4d66882d8}\label{classrev_1_1_script_behavior_ac44a8fbb02add6a17a664ec4d66882d8}} 
+virtual void {\bfseries on\+Abort} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_script_behavior_abb2e3df30c7fdb8ad6b81459b14c4906}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_script_behavior_a5296bd41ce1593182019f8be6628eada}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_script_behavior_aa451d008cb7b5d795d86513286b48d03}\label{classrev_1_1_script_behavior_aa451d008cb7b5d795d86513286b48d03}} 
+class {\bfseries Py\+Script\+Behavior}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} to get wrapped up by a script to be called via python or another scripting language. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_script_behavior_abb2e3df30c7fdb8ad6b81459b14c4906}\label{classrev_1_1_script_behavior_abb2e3df30c7fdb8ad6b81459b14c4906}} 
+\index{rev::ScriptBehavior@{rev::ScriptBehavior}!className@{className}}
+\index{className@{className}!rev::ScriptBehavior@{rev::ScriptBehavior}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Script\+Behavior\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_script_behavior_a5296bd41ce1593182019f8be6628eada}\label{classrev_1_1_script_behavior_a5296bd41ce1593182019f8be6628eada}} 
+\index{rev::ScriptBehavior@{rev::ScriptBehavior}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::ScriptBehavior@{rev::ScriptBehavior}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Script\+Behavior\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/scripting/G\+Script\+Behavior.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/scripting/G\+Script\+Behavior.\+cpp\end{DoxyCompactItemize}

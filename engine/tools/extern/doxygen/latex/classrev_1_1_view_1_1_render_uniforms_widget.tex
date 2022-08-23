@@ -1,0 +1,93 @@
+\hypertarget{classrev_1_1_view_1_1_render_uniforms_widget}{}\section{rev\+::View\+::Render\+Uniforms\+Widget Class Reference}
+\label{classrev_1_1_view_1_1_render_uniforms_widget}\index{rev::View::RenderUniformsWidget@{rev::View::RenderUniformsWidget}}
+Inheritance diagram for rev\+::View\+::Render\+Uniforms\+Widget\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.705314cm]{classrev_1_1_view_1_1_render_uniforms_widget}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_uniforms_widget_a4468a5ed25870ea162bf89268e36e30f}\label{classrev_1_1_view_1_1_render_uniforms_widget_a4468a5ed25870ea162bf89268e36e30f}} 
+{\bfseries Render\+Uniforms\+Widget} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, \mbox{\hyperlink{classrev_1_1_shadable}{Shadable}} \&renderable, Q\+Widget $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_uniforms_widget_a665930fc34db86f1be03723a44c7e337}\label{classrev_1_1_view_1_1_render_uniforms_widget_a665930fc34db86f1be03723a44c7e337}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_render_uniforms_widget_a665930fc34db86f1be03723a44c7e337}{update}} () override
+\begin{DoxyCompactList}\small\item\em Update the parameter widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_uniforms_widget_a6d5287a4b9e15c5120509bf1d0b2aa8e}\label{classrev_1_1_view_1_1_render_uniforms_widget_a6d5287a4b9e15c5120509bf1d0b2aa8e}} 
+void {\bfseries set\+Current\+Uniform\+Widget} (\mbox{\hyperlink{classrev_1_1_view_1_1_uniform_widget}{Uniform\+Widget}} $\ast$uniform)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_uniforms_widget_a4c81df6d608ba3370020fca4ae37587a}\label{classrev_1_1_view_1_1_render_uniforms_widget_a4c81df6d608ba3370020fca4ae37587a}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_render_uniforms_widget_a4c81df6d608ba3370020fca4ae37587a}{initialize\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to check\+Validity widgets. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_uniforms_widget_aed8cb57092243f82d5439b1b8357973e}\label{classrev_1_1_view_1_1_render_uniforms_widget_aed8cb57092243f82d5439b1b8357973e}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_render_uniforms_widget_aed8cb57092243f82d5439b1b8357973e}{initialize\+Connections}} () override
+\begin{DoxyCompactList}\small\item\em Methods to check\+Validity connections for this widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_uniforms_widget_ad67acafd5aedf20b39eff01a054e86c7}\label{classrev_1_1_view_1_1_render_uniforms_widget_ad67acafd5aedf20b39eff01a054e86c7}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_render_uniforms_widget_ad67acafd5aedf20b39eff01a054e86c7}{layout\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to ay out widgets. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_uniforms_widget_a04c508329a345aabd8ee4f1365318dd7}\label{classrev_1_1_view_1_1_render_uniforms_widget_a04c508329a345aabd8ee4f1365318dd7}} 
+void {\bfseries clear\+Uniforms} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_uniforms_widget_a10af64f5392c7983401f5fd8eb6b19d1}\label{classrev_1_1_view_1_1_render_uniforms_widget_a10af64f5392c7983401f5fd8eb6b19d1}} 
+void {\bfseries repopulate\+Uniforms} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_uniforms_widget_a1837048f8dfa484b5b97d1e3347ee6ab}\label{classrev_1_1_view_1_1_render_uniforms_widget_a1837048f8dfa484b5b97d1e3347ee6ab}} 
+void {\bfseries add\+Uniform} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_uniforms_widget_ab7344b6f5835c59ad052899f1ddf7ccc}\label{classrev_1_1_view_1_1_render_uniforms_widget_ab7344b6f5835c59ad052899f1ddf7ccc}} 
+void {\bfseries remove\+Current\+Uniform} ()
+\item 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_render_uniforms_widget_aeafad1935f40c7fdf095c6598fc0f49c}{context\+Menu\+Event}} (Q\+Context\+Menu\+Event $\ast$event) override
+\begin{DoxyCompactList}\small\item\em Generates a context menu, overriding default implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_uniforms_widget_a124b04de39ed9788612201355aefd594}\label{classrev_1_1_view_1_1_render_uniforms_widget_a124b04de39ed9788612201355aefd594}} 
+\mbox{\hyperlink{classrev_1_1_shadable}{Shadable}} \& {\bfseries m\+\_\+renderable}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_uniforms_widget_a0d051a8205ec3239609132edad7adf9a}\label{classrev_1_1_view_1_1_render_uniforms_widget_a0d051a8205ec3239609132edad7adf9a}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+add\+Uniform}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_uniforms_widget_a0039e02673772994d1c91bf5a6a9708a}\label{classrev_1_1_view_1_1_render_uniforms_widget_a0039e02673772994d1c91bf5a6a9708a}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+remove\+Uniform}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_uniforms_widget_ab72aeb902b54f6ca95a50ede9f4d7763}\label{classrev_1_1_view_1_1_render_uniforms_widget_ab72aeb902b54f6ca95a50ede9f4d7763}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_uniform_widget}{Uniform\+Widget}} $\ast$ {\bfseries m\+\_\+current\+Uniform\+Widget} = nullptr
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_uniforms_widget_a3b4906b6b3b2f1fda250b3a3ac354eff}\label{classrev_1_1_view_1_1_render_uniforms_widget_a3b4906b6b3b2f1fda250b3a3ac354eff}} 
+Q\+Scroll\+Area $\ast$ {\bfseries m\+\_\+area}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_uniforms_widget_a7aff1dec8d4cdb83d6d83c93289532d4}\label{classrev_1_1_view_1_1_render_uniforms_widget_a7aff1dec8d4cdb83d6d83c93289532d4}} 
+Q\+Widget $\ast$ {\bfseries m\+\_\+area\+Widget}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_uniforms_widget_a7d7cd2e7b38571fba7e587276c1587ed}\label{classrev_1_1_view_1_1_render_uniforms_widget_a7d7cd2e7b38571fba7e587276c1587ed}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_view_1_1_uniform_widget}{Uniform\+Widget}} $\ast$ $>$ {\bfseries m\+\_\+uniform\+Widgets}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_uniforms_widget_aeafad1935f40c7fdf095c6598fc0f49c}\label{classrev_1_1_view_1_1_render_uniforms_widget_aeafad1935f40c7fdf095c6598fc0f49c}} 
+\index{rev::View::RenderUniformsWidget@{rev::View::RenderUniformsWidget}!contextMenuEvent@{contextMenuEvent}}
+\index{contextMenuEvent@{contextMenuEvent}!rev::View::RenderUniformsWidget@{rev::View::RenderUniformsWidget}}
+\subsubsection{\texorpdfstring{contextMenuEvent()}{contextMenuEvent()}}
+{\footnotesize\ttfamily void rev\+::\+View\+::\+Render\+Uniforms\+Widget\+::context\+Menu\+Event (\begin{DoxyParamCaption}\item[{Q\+Context\+Menu\+Event $\ast$}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}}
+
+
+
+Generates a context menu, overriding default implementation. 
+
+\begin{DoxyNote}{Note}
+Context menus can be executed either asynchronously using the popup() function or synchronously using the exec() function 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/parameters/G\+Renderable\+Widget.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/parameters/G\+Renderable\+Widget.\+cpp\end{DoxyCompactItemize}

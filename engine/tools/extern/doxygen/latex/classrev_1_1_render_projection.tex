@@ -1,0 +1,304 @@
+\hypertarget{classrev_1_1_render_projection}{}\section{rev\+::Render\+Projection Class Reference}
+\label{classrev_1_1_render_projection}\index{rev::RenderProjection@{rev::RenderProjection}}
+
+
+Used to describe view for a camera.  
+
+
+
+
+{\ttfamily \#include $<$G\+Render\+Projection.\+h$>$}
+
+Inheritance diagram for rev\+::Render\+Projection\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_render_projection}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_af87e8ebac613f1df2b5361ee170bf07d}\label{classrev_1_1_render_projection_af87e8ebac613f1df2b5361ee170bf07d}} 
+{\bfseries Render\+Projection} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a740fba25a93cc338b5159328ff9b8e86}\label{classrev_1_1_render_projection_a740fba25a93cc338b5159328ff9b8e86}} 
+{\bfseries Render\+Projection} (const \mbox{\hyperlink{classrev_1_1_render_projection}{Render\+Projection}} \&other)
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_aee5942efeefeef47f828cb4c29289d33}\label{classrev_1_1_render_projection_aee5942efeefeef47f828cb4c29289d33}} 
+{\bfseries Render\+Projection} (\mbox{\hyperlink{classrev_1_1_camera}{Camera}} $\ast$camera)
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_ad870d837379a516714d439f2c9eeca44}\label{classrev_1_1_render_projection_ad870d837379a516714d439f2c9eeca44}} 
+{\bfseries $\sim$\+Render\+Projection} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Operators}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a67c7b64759ae2fc720004f640097cc7f}\label{classrev_1_1_render_projection_a67c7b64759ae2fc720004f640097cc7f}} 
+\mbox{\hyperlink{classrev_1_1_render_projection}{Render\+Projection}} \& {\bfseries operator=} (const \mbox{\hyperlink{classrev_1_1_render_projection}{Render\+Projection}} \&other)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a05244b221e3740b6d2b05580a9ab0b5d}\label{classrev_1_1_render_projection_a05244b221e3740b6d2b05580a9ab0b5d}} 
+double {\bfseries aspect\+Ratio} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a4ca9dbe313ff922e59e023342546cfa6}\label{classrev_1_1_render_projection_a4ca9dbe313ff922e59e023342546cfa6}} 
+void {\bfseries set\+Aspect\+Ratio} (double r, bool update=true)
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_afbc3f99501213aff865753d46650827e}\label{classrev_1_1_render_projection_afbc3f99501213aff865753d46650827e}} 
+double \mbox{\hyperlink{classrev_1_1_render_projection_afbc3f99501213aff865753d46650827e}{near\+Clip\+Plane}} () const
+\begin{DoxyCompactList}\small\item\em near plane distance \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_aec2196f0f6ce65a7a23b7d01478fa4b9}\label{classrev_1_1_render_projection_aec2196f0f6ce65a7a23b7d01478fa4b9}} 
+void {\bfseries set\+Near\+Clip\+Plane} (double near\+Clip)
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_aa66eeba9942fec746879c892de6ebbd5}\label{classrev_1_1_render_projection_aa66eeba9942fec746879c892de6ebbd5}} 
+double \mbox{\hyperlink{classrev_1_1_render_projection_aa66eeba9942fec746879c892de6ebbd5}{far\+Clip\+Plane}} () const
+\begin{DoxyCompactList}\small\item\em far plane distance \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_ac3e77fcc909052f49e15cc624cc6a419}\label{classrev_1_1_render_projection_ac3e77fcc909052f49e15cc624cc6a419}} 
+void {\bfseries set\+Far\+Clip\+Plane} (double far\+Clip)
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_aa88f951ae484e7aef5542f07a991d45c}\label{classrev_1_1_render_projection_aa88f951ae484e7aef5542f07a991d45c}} 
+const \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4}} \& {\bfseries projection\+Matrix} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a670e351cf753c7a86f49ecfd1d2a842c}\label{classrev_1_1_render_projection_a670e351cf753c7a86f49ecfd1d2a842c}} 
+\mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4}} \& {\bfseries projection\+Matrix} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_ae973d60f484363b2a7c4ded4312cd8f8}\label{classrev_1_1_render_projection_ae973d60f484363b2a7c4ded4312cd8f8}} 
+const \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4}} \& {\bfseries inverse\+Projection\+Matrix} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a6c7d75b6bd5c4c27a1db4bbacbf2263c}\label{classrev_1_1_render_projection_a6c7d75b6bd5c4c27a1db4bbacbf2263c}} 
+Projection\+Type {\bfseries get\+Projection\+Type} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_aba9f4ff8b323c48ac9a5887bbc89b285}\label{classrev_1_1_render_projection_aba9f4ff8b323c48ac9a5887bbc89b285}} 
+void {\bfseries set\+Projection\+Type} (Projection\+Type type)
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a7d31bebcaf314f5fdd4e39bdfd09ac7a}\label{classrev_1_1_render_projection_a7d31bebcaf314f5fdd4e39bdfd09ac7a}} 
+double {\bfseries left\+Bound} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a87e6150e0ed631734cc20c25c110fd13}\label{classrev_1_1_render_projection_a87e6150e0ed631734cc20c25c110fd13}} 
+void {\bfseries set\+Left\+Bound} (double left)
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_af1a96a9c64e0ffad5b75d1c870a78adb}\label{classrev_1_1_render_projection_af1a96a9c64e0ffad5b75d1c870a78adb}} 
+double {\bfseries top\+Bound} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a0a2b2f3e62afc1eee277f81565e21eaf}\label{classrev_1_1_render_projection_a0a2b2f3e62afc1eee277f81565e21eaf}} 
+void {\bfseries set\+Top\+Bound} (double top)
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a694c5a26f2cbc34730e6fb7a281bec0f}\label{classrev_1_1_render_projection_a694c5a26f2cbc34730e6fb7a281bec0f}} 
+double {\bfseries right\+Bound} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a1c4cc0cd74f0756c005971cbe9395162}\label{classrev_1_1_render_projection_a1c4cc0cd74f0756c005971cbe9395162}} 
+void {\bfseries set\+Right\+Bound} (double right)
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a8fad4765e9905044ded3ffdf9a83b296}\label{classrev_1_1_render_projection_a8fad4765e9905044ded3ffdf9a83b296}} 
+double {\bfseries bottom\+Bound} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a1972dcd43d7ce8a3e29e947a9bd7d790}\label{classrev_1_1_render_projection_a1972dcd43d7ce8a3e29e947a9bd7d790}} 
+void {\bfseries set\+Bottom\+Bound} (double bottom)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a156dce9260502d08ac8e506b378b47b1}\label{classrev_1_1_render_projection_a156dce9260502d08ac8e506b378b47b1}} 
+void \mbox{\hyperlink{classrev_1_1_render_projection_a156dce9260502d08ac8e506b378b47b1}{set\+Perspective}} (float fov, float aspect\+Ratio, float near\+Clip, float far\+Clip)
+\begin{DoxyCompactList}\small\item\em Set to a perspective projection. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a4e930a9d5494deb9c90ecf7c77b71da2}\label{classrev_1_1_render_projection_a4e930a9d5494deb9c90ecf7c77b71da2}} 
+void \mbox{\hyperlink{classrev_1_1_render_projection_a4e930a9d5494deb9c90ecf7c77b71da2}{set\+Orthographic}} (float left, float right, float bottom, float top, float z\+Near=-\/1.\+0, float z\+Far=1.\+0)
+\begin{DoxyCompactList}\small\item\em Set to an orthographic projection. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a16d32ecb3c0f31238c57b192d34bfb76}\label{classrev_1_1_render_projection_a16d32ecb3c0f31238c57b192d34bfb76}} 
+float \mbox{\hyperlink{classrev_1_1_render_projection_a16d32ecb3c0f31238c57b192d34bfb76}{linearize\+Depth}} (float depth) const
+\begin{DoxyCompactList}\small\item\em linearize the given depth value \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_af1afae06c36e6442e927014dbb1b4651}\label{classrev_1_1_render_projection_af1afae06c36e6442e927014dbb1b4651}} 
+void {\bfseries set\+F\+OV} (double fov)
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a1ff19b62979c0940c048f8a203e68830}\label{classrev_1_1_render_projection_a1ff19b62979c0940c048f8a203e68830}} 
+double {\bfseries fovX} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_abc031d7f4f7e2b985ee66c3e52ee1f9b}\label{classrev_1_1_render_projection_abc031d7f4f7e2b985ee66c3e52ee1f9b}} 
+double {\bfseries fovY} () const
+\item 
+void \mbox{\hyperlink{classrev_1_1_render_projection_ae8f4a509e0244639be2b2c94b75549b7}{resize\+Projection}} (int width, int height)
+\begin{DoxyCompactList}\small\item\em Updates aspect ratio and projection matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a39d4dcdcd9d9106e32ef8a98d0d337c8}\label{classrev_1_1_render_projection_a39d4dcdcd9d9106e32ef8a98d0d337c8}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_render_projection_a39d4dcdcd9d9106e32ef8a98d0d337c8}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a771e85927f63a43a03a84f1c9eb1665f}\label{classrev_1_1_render_projection_a771e85927f63a43a03a84f1c9eb1665f}} 
+virtual void \mbox{\hyperlink{classrev_1_1_render_projection_a771e85927f63a43a03a84f1c9eb1665f}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a29cc1b4db1510f2ec00b7c2f29f972db}\label{classrev_1_1_render_projection_a29cc1b4db1510f2ec00b7c2f29f972db}} 
+Projection\+Type \mbox{\hyperlink{classrev_1_1_render_projection_a29cc1b4db1510f2ec00b7c2f29f972db}{m\+\_\+projection\+Type}}
+\begin{DoxyCompactList}\small\item\em Type of mathematical projection. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_acb07bd355dcd3ad9e76e4fac270bacb0}\label{classrev_1_1_render_projection_acb07bd355dcd3ad9e76e4fac270bacb0}} 
+\mbox{\hyperlink{classrev_1_1_camera}{Camera}} $\ast$ \mbox{\hyperlink{classrev_1_1_render_projection_acb07bd355dcd3ad9e76e4fac270bacb0}{m\+\_\+camera}}
+\begin{DoxyCompactList}\small\item\em Pointer to camera that owns this projection. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_ae57e4ecb3d830f46dc253351f98409b4}\label{classrev_1_1_render_projection_ae57e4ecb3d830f46dc253351f98409b4}} 
+double \mbox{\hyperlink{classrev_1_1_render_projection_ae57e4ecb3d830f46dc253351f98409b4}{m\+\_\+fov}}
+\begin{DoxyCompactList}\small\item\em Horizontal field of view angle (how wide view is) in degrees. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a9a1559bf143bc522359a61370d425681}\label{classrev_1_1_render_projection_a9a1559bf143bc522359a61370d425681}} 
+double \mbox{\hyperlink{classrev_1_1_render_projection_a9a1559bf143bc522359a61370d425681}{m\+\_\+z\+Near}}
+\begin{DoxyCompactList}\small\item\em near plane distance \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a2add182ecf24c3877bb6891a8a8f4206}\label{classrev_1_1_render_projection_a2add182ecf24c3877bb6891a8a8f4206}} 
+double \mbox{\hyperlink{classrev_1_1_render_projection_a2add182ecf24c3877bb6891a8a8f4206}{m\+\_\+z\+Far}}
+\begin{DoxyCompactList}\small\item\em far plane distance \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a8f87eabad951e11897ac4188fec1bab4}\label{classrev_1_1_render_projection_a8f87eabad951e11897ac4188fec1bab4}} 
+double \mbox{\hyperlink{classrev_1_1_render_projection_a8f87eabad951e11897ac4188fec1bab4}{m\+\_\+left}}
+\begin{DoxyCompactList}\small\item\em Dimensions for orthographic projection. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a17edfb41712b16db4f500a8880a04d69}\label{classrev_1_1_render_projection_a17edfb41712b16db4f500a8880a04d69}} 
+double {\bfseries m\+\_\+right}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a2d992188fc2bf20f3b0123ebd8f669b3}\label{classrev_1_1_render_projection_a2d992188fc2bf20f3b0123ebd8f669b3}} 
+double {\bfseries m\+\_\+bottom}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a68ce91371b406551485dcaa76fc15f5b}\label{classrev_1_1_render_projection_a68ce91371b406551485dcaa76fc15f5b}} 
+double {\bfseries m\+\_\+top}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a38ce8481beda3f872a3e1d212d824878}\label{classrev_1_1_render_projection_a38ce8481beda3f872a3e1d212d824878}} 
+double \mbox{\hyperlink{classrev_1_1_render_projection_a38ce8481beda3f872a3e1d212d824878}{m\+\_\+aspect\+Ratio}}
+\begin{DoxyCompactList}\small\item\em aspect ratio (width/height) of the GL widget \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4}} \mbox{\hyperlink{classrev_1_1_render_projection_ae00290a86c36083452ae9000745b9451}{m\+\_\+projection\+Matrix}}
+\begin{DoxyCompactList}\small\item\em projection matrix \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a44e7a2fe1f91f48b94e16740cf3289f0}\label{classrev_1_1_render_projection_a44e7a2fe1f91f48b94e16740cf3289f0}} 
+\mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4}} {\bfseries m\+\_\+inverse\+Projection\+Matrix}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a5ff702a2ca6b4d1a3624203c5b629772}\label{classrev_1_1_render_projection_a5ff702a2ca6b4d1a3624203c5b629772}} 
+class {\bfseries rev\+::\+Camera\+Component}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_af887e39085d8bbe0af032e498a88dafa}\label{classrev_1_1_render_projection_af887e39085d8bbe0af032e498a88dafa}} 
+class {\bfseries rev\+::\+Camera}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a3e09c238a60d5d7e90ed6fbf7b776260}\label{classrev_1_1_render_projection_a3e09c238a60d5d7e90ed6fbf7b776260}} 
+class {\bfseries rev\+::\+Scene\+Camera}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_ad3dbfdb62fb4d64bfec7f78c545574c5}\label{classrev_1_1_render_projection_ad3dbfdb62fb4d64bfec7f78c545574c5}} 
+enum {\bfseries Projection\+Type} \{ {\bfseries k\+Perspective} =0, 
+{\bfseries k\+Orthographic}
+ \}
+\item 
+static \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4}} \mbox{\hyperlink{classrev_1_1_render_projection_a5a56c0550c8869aa1688f6a49986d51e}{Orthographic}} (float left, float right, float bottom, float top, float z\+Near=-\/1.\+0, float z\+Far=1.\+0)
+\begin{DoxyCompactList}\small\item\em Generate an orthographic projection See\+: \href{http://learnwebgl.brown37.net/08_projections/projections_ortho.html}{\texttt{ http\+://learnwebgl.\+brown37.\+net/08\+\_\+projections/projections\+\_\+ortho.\+html}}. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4}} \mbox{\hyperlink{classrev_1_1_render_projection_af3d0f27f0b8e8eda47d04fee0174497c}{Perspective}} (float fov\+Deg, float aspect\+Ratio, float z\+Near=-\/1.\+0, float z\+Far=1.\+0)
+\begin{DoxyCompactList}\small\item\em Generate a perspective projection. \end{DoxyCompactList}\item 
+static float \mbox{\hyperlink{classrev_1_1_render_projection_acc7bba2e911429136f2f5c23d55684bc}{Linearized\+Depth}} (float depth, float z\+Near, float z\+Far)
+\begin{DoxyCompactList}\small\item\em Linearize a depth. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Methods}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a338998f911ea62ee1e8232e5cf59eba8}\label{classrev_1_1_render_projection_a338998f911ea62ee1e8232e5cf59eba8}} 
+void \mbox{\hyperlink{classrev_1_1_render_projection_a338998f911ea62ee1e8232e5cf59eba8}{update\+Projection}} ()
+\begin{DoxyCompactList}\small\item\em Update projection-\/dependent attributes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_render_projection_a809aadf6b38d1568019704f7969ad41b}{compute\+Projection\+Matrix}} ()
+\begin{DoxyCompactList}\small\item\em Compute the projection matrix for this render context. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a9da510db47cc9bc98d4782df4ba02eb7}\label{classrev_1_1_render_projection_a9da510db47cc9bc98d4782df4ba02eb7}} 
+static double \mbox{\hyperlink{classrev_1_1_render_projection_a9da510db47cc9bc98d4782df4ba02eb7}{hfov\+\_\+to\+\_\+vfov}} (double hfov, double aspect)
+\begin{DoxyCompactList}\small\item\em Convert between horizontal and vertical F\+OV. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_projection_a7bbdbe3ab33a710353a311718150107e}\label{classrev_1_1_render_projection_a7bbdbe3ab33a710353a311718150107e}} 
+static double {\bfseries vfov\+\_\+to\+\_\+hfov} (double vfov, double aspect)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Used to describe view for a camera. 
+
+Currently 132 bytes in size 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_render_projection_a809aadf6b38d1568019704f7969ad41b}\label{classrev_1_1_render_projection_a809aadf6b38d1568019704f7969ad41b}} 
+\index{rev::RenderProjection@{rev::RenderProjection}!computeProjectionMatrix@{computeProjectionMatrix}}
+\index{computeProjectionMatrix@{computeProjectionMatrix}!rev::RenderProjection@{rev::RenderProjection}}
+\subsubsection{\texorpdfstring{computeProjectionMatrix()}{computeProjectionMatrix()}}
+{\footnotesize\ttfamily void rev\+::\+Render\+Projection\+::compute\+Projection\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Compute the projection matrix for this render context. 
+
+\begin{DoxyNote}{Note}
+See\+: \href{http://www.songho.ca/opengl/gl_projectionmatrix.html}{\texttt{ http\+://www.\+songho.\+ca/opengl/gl\+\_\+projectionmatrix.\+html}} \href{https://www.scratchapixel.com/lessons/3d-basic-rendering/perspective-and-orthographic-projection-matrix/building-basic-perspective-projection-matrix}{\texttt{ https\+://www.\+scratchapixel.\+com/lessons/3d-\/basic-\/rendering/perspective-\/and-\/orthographic-\/projection-\/matrix/building-\/basic-\/perspective-\/projection-\/matrix}} \href{https://stackoverflow.com/questions/6060169/is-this-a-correct-perspective-fov-matrix}{\texttt{ https\+://stackoverflow.\+com/questions/6060169/is-\/this-\/a-\/correct-\/perspective-\/fov-\/matrix}} 
+\end{DoxyNote}
+\mbox{\Hypertarget{classrev_1_1_render_projection_acc7bba2e911429136f2f5c23d55684bc}\label{classrev_1_1_render_projection_acc7bba2e911429136f2f5c23d55684bc}} 
+\index{rev::RenderProjection@{rev::RenderProjection}!LinearizedDepth@{LinearizedDepth}}
+\index{LinearizedDepth@{LinearizedDepth}!rev::RenderProjection@{rev::RenderProjection}}
+\subsubsection{\texorpdfstring{LinearizedDepth()}{LinearizedDepth()}}
+{\footnotesize\ttfamily float rev\+::\+Render\+Projection\+::\+Linearized\+Depth (\begin{DoxyParamCaption}\item[{float}]{depth,  }\item[{float}]{z\+Near,  }\item[{float}]{z\+Far }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Linearize a depth. 
+
+This converts a depth from \mbox{[}0, 1\mbox{]} to true world-\/space depth \mbox{\Hypertarget{classrev_1_1_render_projection_a5a56c0550c8869aa1688f6a49986d51e}\label{classrev_1_1_render_projection_a5a56c0550c8869aa1688f6a49986d51e}} 
+\index{rev::RenderProjection@{rev::RenderProjection}!Orthographic@{Orthographic}}
+\index{Orthographic@{Orthographic}!rev::RenderProjection@{rev::RenderProjection}}
+\subsubsection{\texorpdfstring{Orthographic()}{Orthographic()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4}} rev\+::\+Render\+Projection\+::\+Orthographic (\begin{DoxyParamCaption}\item[{float}]{left,  }\item[{float}]{right,  }\item[{float}]{bottom,  }\item[{float}]{top,  }\item[{float}]{z\+Near = {\ttfamily -\/1.0},  }\item[{float}]{z\+Far = {\ttfamily 1.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Generate an orthographic projection See\+: \href{http://learnwebgl.brown37.net/08_projections/projections_ortho.html}{\texttt{ http\+://learnwebgl.\+brown37.\+net/08\+\_\+projections/projections\+\_\+ortho.\+html}}. 
+
+Maps from left-\/right to \mbox{[}-\/1, 1\mbox{]} Along the N\+CD axis \mbox{\Hypertarget{classrev_1_1_render_projection_af3d0f27f0b8e8eda47d04fee0174497c}\label{classrev_1_1_render_projection_af3d0f27f0b8e8eda47d04fee0174497c}} 
+\index{rev::RenderProjection@{rev::RenderProjection}!Perspective@{Perspective}}
+\index{Perspective@{Perspective}!rev::RenderProjection@{rev::RenderProjection}}
+\subsubsection{\texorpdfstring{Perspective()}{Perspective()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4}} rev\+::\+Render\+Projection\+::\+Perspective (\begin{DoxyParamCaption}\item[{float}]{fov\+Deg,  }\item[{float}]{aspect\+Ratio,  }\item[{float}]{z\+Near = {\ttfamily -\/1.0},  }\item[{float}]{z\+Far = {\ttfamily 1.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Generate a perspective projection. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em fov\+Deg} & F\+OV in degrees \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrev_1_1_render_projection_ae8f4a509e0244639be2b2c94b75549b7}\label{classrev_1_1_render_projection_ae8f4a509e0244639be2b2c94b75549b7}} 
+\index{rev::RenderProjection@{rev::RenderProjection}!resizeProjection@{resizeProjection}}
+\index{resizeProjection@{resizeProjection}!rev::RenderProjection@{rev::RenderProjection}}
+\subsubsection{\texorpdfstring{resizeProjection()}{resizeProjection()}}
+{\footnotesize\ttfamily void rev\+::\+Render\+Projection\+::resize\+Projection (\begin{DoxyParamCaption}\item[{int}]{width,  }\item[{int}]{height }\end{DoxyParamCaption})}
+
+
+
+Updates aspect ratio and projection matrix. 
+
+Called on resize events 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_render_projection_ae00290a86c36083452ae9000745b9451}\label{classrev_1_1_render_projection_ae00290a86c36083452ae9000745b9451}} 
+\index{rev::RenderProjection@{rev::RenderProjection}!m\_projectionMatrix@{m\_projectionMatrix}}
+\index{m\_projectionMatrix@{m\_projectionMatrix}!rev::RenderProjection@{rev::RenderProjection}}
+\subsubsection{\texorpdfstring{m\_projectionMatrix}{m\_projectionMatrix}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4}} rev\+::\+Render\+Projection\+::m\+\_\+projection\+Matrix\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+projection matrix 
+
+64 bytes 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/view/G\+Render\+Projection.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/view/G\+Render\+Projection.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,249 @@
+\hypertarget{classrev_1_1_material}{}\section{rev\+::Material Struct Reference}
+\label{classrev_1_1_material}\index{rev::Material@{rev::Material}}
+
+
+Encapsulation of texture data to contain material info @detailed Describes texture and related metadata for rendering The material may serve as an atlas (a compilation of many textures in one image)  
+
+
+
+
+{\ttfamily \#include $<$G\+Material.\+h$>$}
+
+Inheritance diagram for rev\+::Material\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_material}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_material_a26d7529a2060a74cf92e7629eb6cffb9}\label{classrev_1_1_material_a26d7529a2060a74cf92e7629eb6cffb9}} 
+const \mbox{\hyperlink{structrev_1_1_sprite_sheet_info}{Sprite\+Sheet\+Info}} \& {\bfseries sprite\+Info} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_material_afe0975d9f4a071c8593128c0a1884bdb}\label{classrev_1_1_material_afe0975d9f4a071c8593128c0a1884bdb}} 
+void {\bfseries set\+Sprite\+Info} (const \mbox{\hyperlink{structrev_1_1_sprite_sheet_info}{Sprite\+Sheet\+Info}} \&info)
+\item 
+\mbox{\Hypertarget{classrev_1_1_material_ad75df0e3377d7cd59e57d6b8c08c550a}\label{classrev_1_1_material_ad75df0e3377d7cd59e57d6b8c08c550a}} 
+virtual Resource\+Type \mbox{\hyperlink{classrev_1_1_material_ad75df0e3377d7cd59e57d6b8c08c550a}{get\+Resource\+Type}} () const override
+\begin{DoxyCompactList}\small\item\em Get the type of resource stored by this handle. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_material_adf0dd6185ac814c6c12590a250a6847d}\label{classrev_1_1_material_adf0dd6185ac814c6c12590a250a6847d}} 
+uint32\+\_\+t {\bfseries get\+Sort\+ID} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_material_ac010383d1da816d7c1ed65c3bb3f3ddb}\label{classrev_1_1_material_ac010383d1da816d7c1ed65c3bb3f3ddb}} 
+bool \mbox{\hyperlink{classrev_1_1_material_ac010383d1da816d7c1ed65c3bb3f3ddb}{is\+Bound}} (\mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} \&context) const
+\begin{DoxyCompactList}\small\item\em whether the material\textquotesingle{}s textures are bound or not \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_material_aa4e2c62ff3f480028c6d617f24378880}\label{classrev_1_1_material_aa4e2c62ff3f480028c6d617f24378880}} 
+void {\bfseries set\+Shininess} (real\+\_\+g shininess)
+\item 
+\mbox{\Hypertarget{classrev_1_1_material_a1f446f53b0b2237cdf0ef39720585bb0}\label{classrev_1_1_material_a1f446f53b0b2237cdf0ef39720585bb0}} 
+void {\bfseries set\+Specularity} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&s)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classrev_1_1_protocol}{Material\+Protocol}} $\ast$ \mbox{\hyperlink{classrev_1_1_material_af5481a063b935c733334c6ca74853c86}{create\+Protocol}} (\mbox{\hyperlink{structrev_1_1_material_data}{Material\+Data}} \&out\+Data)
+\begin{DoxyCompactList}\small\item\em Create protocol representing this material. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_material_a0dfc23e18958d9834f65fe1bc596990f}\label{classrev_1_1_material_a0dfc23e18958d9834f65fe1bc596990f}} 
+const \mbox{\hyperlink{structrev_1_1_material_properties}{Material\+Properties}} \& {\bfseries properties} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_material_a3994b054e0a3d35db61d3cf5ceb67cd3}\label{classrev_1_1_material_a3994b054e0a3d35db61d3cf5ceb67cd3}} 
+\mbox{\hyperlink{structrev_1_1_material_properties}{Material\+Properties}} \& {\bfseries properties} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_material_a61b2701ea0e64aaba4ad980185f187e2}\label{classrev_1_1_material_a61b2701ea0e64aaba4ad980185f187e2}} 
+\mbox{\hyperlink{structrev_1_1_material_data}{Material\+Data}} \mbox{\hyperlink{classrev_1_1_material_a61b2701ea0e64aaba4ad980185f187e2}{get\+Data}} () const
+\begin{DoxyCompactList}\small\item\em Generate material data from this material. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_material_ae519114a3c9b89d1ca4d363e9aae6132}{set\+Data}} (const \mbox{\hyperlink{structrev_1_1_material_data}{Material\+Data}} \&data, bool serial\+Load=false)
+\begin{DoxyCompactList}\small\item\em Set material data. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_material_a3bad58a67a885fe88ef24607ce232c5c}\label{classrev_1_1_material_a3bad58a67a885fe88ef24607ce232c5c}} 
+Q\+String \mbox{\hyperlink{classrev_1_1_material_a3bad58a67a885fe88ef24607ce232c5c}{get\+Search\+Directory}} () const
+\begin{DoxyCompactList}\small\item\em Search directory for the material and its textures. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_material_a0698c31c0012db2c0b53b3a9ad0e5fdf}\label{classrev_1_1_material_a0698c31c0012db2c0b53b3a9ad0e5fdf}} 
+void \mbox{\hyperlink{classrev_1_1_material_a0698c31c0012db2c0b53b3a9ad0e5fdf}{set\+Diffuse\+Texture}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{rev\+::\+Resource\+Handle}} $>$ diffuse)
+\begin{DoxyCompactList}\small\item\em Adds a diffuse texture. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_material_ac2556f63fbd4588e251a5a761f279613}\label{classrev_1_1_material_ac2556f63fbd4588e251a5a761f279613}} 
+void \mbox{\hyperlink{classrev_1_1_material_ac2556f63fbd4588e251a5a761f279613}{bind}} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program, \mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} \&context)
+\begin{DoxyCompactList}\small\item\em Binds all the textures associated with this material. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_material_a7925671808c692f97c6fb80e746da145}\label{classrev_1_1_material_a7925671808c692f97c6fb80e746da145}} 
+void \mbox{\hyperlink{classrev_1_1_material_a7925671808c692f97c6fb80e746da145}{release}} (\mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} \&context)
+\begin{DoxyCompactList}\small\item\em Unbinds all the textures associated with this material. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_material_aac07bf27f08e97412919f1c04597dcbc}\label{classrev_1_1_material_aac07bf27f08e97412919f1c04597dcbc}} 
+virtual void \mbox{\hyperlink{classrev_1_1_material_aac07bf27f08e97412919f1c04597dcbc}{on\+Removal}} (\mbox{\hyperlink{classrev_1_1_resource_cache}{Resource\+Cache}} $\ast$cache=nullptr) override
+\begin{DoxyCompactList}\small\item\em What action to perform on removal of the resource. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_material_af5b9c213b19fdae0e9d5223988ddbd7a}\label{classrev_1_1_material_af5b9c213b19fdae0e9d5223988ddbd7a}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_material_af5b9c213b19fdae0e9d5223988ddbd7a}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_material_a23d4b7c07e8bc9f099489be893adf923}\label{classrev_1_1_material_a23d4b7c07e8bc9f099489be893adf923}} 
+virtual void \mbox{\hyperlink{classrev_1_1_material_a23d4b7c07e8bc9f099489be893adf923}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_material_a353022875d44b057bf6de6c3c95fd5b9}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_material_abfa4020a52b5d7c82cc285f58a1fb0c5}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_material_a1dece855f6362ea95e78934b4fe21333}\label{classrev_1_1_material_a1dece855f6362ea95e78934b4fe21333}} 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \mbox{\hyperlink{classrev_1_1_material_a1dece855f6362ea95e78934b4fe21333}{Create\+Handle}} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$engine, const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&mtl\+Name)
+\begin{DoxyCompactList}\small\item\em Create a handle to a material resource. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_material_a7c2ed02ca282ea9fe29f5a5b8a6bbe64}\label{classrev_1_1_material_a7c2ed02ca282ea9fe29f5a5b8a6bbe64}} 
+static void {\bfseries clear\+Count} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_material_ae5ec2019a5b931ddd08aa82def52749a}\label{classrev_1_1_material_ae5ec2019a5b931ddd08aa82def52749a}} 
+bool \mbox{\hyperlink{classrev_1_1_material_ae5ec2019a5b931ddd08aa82def52749a}{has\+Type}} (Texture\+Usage\+Type type)
+\begin{DoxyCompactList}\small\item\em Whether the material has a texture of the specified type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_material_afafd75e0fbd55a299e8e8fb05bf20ef2}\label{classrev_1_1_material_afafd75e0fbd55a299e8e8fb05bf20ef2}} 
+void \mbox{\hyperlink{classrev_1_1_material_afafd75e0fbd55a299e8e8fb05bf20ef2}{initialize\+Texture}} (Texture\+Usage\+Type texture\+Type, const \mbox{\hyperlink{structrev_1_1_material_data}{Material\+Data}} \&data, bool serial\+Load)
+\begin{DoxyCompactList}\small\item\em Initialize texture in resource cache. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \mbox{\hyperlink{classrev_1_1_material_ab9edd16de4df74b4529ba5b775ad5efe}{resolve\+Texture\+Path}} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&texture\+Filename)
+\begin{DoxyCompactList}\small\item\em Resolve the path of a texture from the filename. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_material_a5985b241dee151cb83e98cb15bdd522d}\label{classrev_1_1_material_a5985b241dee151cb83e98cb15bdd522d}} 
+void \mbox{\hyperlink{classrev_1_1_material_a5985b241dee151cb83e98cb15bdd522d}{get\+Texture\+Data}} (\mbox{\hyperlink{structrev_1_1_material_texture_data}{Material\+Texture\+Data}} \&out\+Data) const
+\begin{DoxyCompactList}\small\item\em Generate texture data for the material. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_material_ae72301b279fcf390b000d82d9ce57479}\label{classrev_1_1_material_ae72301b279fcf390b000d82d9ce57479}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \mbox{\hyperlink{classrev_1_1_material_ae72301b279fcf390b000d82d9ce57479}{get\+Texture}} (Texture\+Usage\+Type)
+\begin{DoxyCompactList}\small\item\em Return shared\+\_\+ptr to specified texture type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_material_a84b0e6c48fbc33c8d228a5eb06db9f54}\label{classrev_1_1_material_a84b0e6c48fbc33c8d228a5eb06db9f54}} 
+void \mbox{\hyperlink{classrev_1_1_material_a84b0e6c48fbc33c8d228a5eb06db9f54}{set\+Texture}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ resource\+Handle, Texture\+Usage\+Type type)
+\begin{DoxyCompactList}\small\item\em Set the texture to the correct type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_material_aaecb079e8f798605d92ea2f653f3a365}\label{classrev_1_1_material_aaecb079e8f798605d92ea2f653f3a365}} 
+void \mbox{\hyperlink{classrev_1_1_material_aaecb079e8f798605d92ea2f653f3a365}{set\+Shader\+Uniforms\+And\+Bind\+Textures}} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program, \mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} \&context)
+\begin{DoxyCompactList}\small\item\em Set uniforms in the given shader program. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_material_a2bf2a0e9b454c55aa5dcb5aa4698697b}\label{classrev_1_1_material_a2bf2a0e9b454c55aa5dcb5aa4698697b}} 
+class {\bfseries Model}
+\item 
+\mbox{\Hypertarget{classrev_1_1_material_af08a66cdff89abe314f17f213ef57b66}\label{classrev_1_1_material_af08a66cdff89abe314f17f213ef57b66}} 
+class {\bfseries Load\+Process}
+\end{DoxyCompactItemize}
+\subsection*{Constructors/\+Destructor}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_material_af26b9c648cf59415e4cd8d47609474d4}\label{classrev_1_1_material_af26b9c648cf59415e4cd8d47609474d4}} 
+{\bfseries $\sim$\+Material} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_material_a49318b2cb181e6c5e852502104a54c74}\label{classrev_1_1_material_a49318b2cb181e6c5e852502104a54c74}} 
+{\bfseries Material} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_material_a18b2592ededb7b7443102c143fae4b2c}\label{classrev_1_1_material_a18b2592ededb7b7443102c143fae4b2c}} 
+uint32\+\_\+t {\bfseries m\+\_\+sort\+Index}
+\item 
+\mbox{\Hypertarget{classrev_1_1_material_a160517f94ab40dcdbb3a55a5500b3220}\label{classrev_1_1_material_a160517f94ab40dcdbb3a55a5500b3220}} 
+\mbox{\hyperlink{structrev_1_1_material_properties}{Material\+Properties}} \mbox{\hyperlink{classrev_1_1_material_a160517f94ab40dcdbb3a55a5500b3220}{m\+\_\+properties}}
+\begin{DoxyCompactList}\small\item\em Properties of the material. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_material_a914dd5933f9eb2f7141bfb7c64c5d7f2}\label{classrev_1_1_material_a914dd5933f9eb2f7141bfb7c64c5d7f2}} 
+\mbox{\hyperlink{structrev_1_1_sprite_sheet_info}{Sprite\+Sheet\+Info}} \mbox{\hyperlink{classrev_1_1_material_a914dd5933f9eb2f7141bfb7c64c5d7f2}{m\+\_\+sprite\+Sheet\+Info}}
+\begin{DoxyCompactList}\small\item\em Metadata if the material is a sprite sheet. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_material_a57b2243d2f2e36828e9ba98798261090}\label{classrev_1_1_material_a57b2243d2f2e36828e9ba98798261090}} 
+static uint32\+\_\+t {\bfseries s\+\_\+material\+Count} = 0
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Encapsulation of texture data to contain material info @detailed Describes texture and related metadata for rendering The material may serve as an atlas (a compilation of many textures in one image) 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_material_a353022875d44b057bf6de6c3c95fd5b9}\label{classrev_1_1_material_a353022875d44b057bf6de6c3c95fd5b9}} 
+\index{rev::Material@{rev::Material}!className@{className}}
+\index{className@{className}!rev::Material@{rev::Material}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Material\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_material_af5481a063b935c733334c6ca74853c86}\label{classrev_1_1_material_af5481a063b935c733334c6ca74853c86}} 
+\index{rev::Material@{rev::Material}!createProtocol@{createProtocol}}
+\index{createProtocol@{createProtocol}!rev::Material@{rev::Material}}
+\subsubsection{\texorpdfstring{createProtocol()}{createProtocol()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_protocol}{Material\+Protocol}} $\ast$ rev\+::\+Material\+::create\+Protocol (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrev_1_1_material_data}{Material\+Data}} \&}]{out\+Data }\end{DoxyParamCaption})}
+
+
+
+Create protocol representing this material. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em out\+Data} & The material data generated along with the protocol. Must persist until protocol use is complete \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+The material does not assume ownership of the protocol, which must be manually deallocated 
+\end{DoxyNote}
+\mbox{\Hypertarget{classrev_1_1_material_abfa4020a52b5d7c82cc285f58a1fb0c5}\label{classrev_1_1_material_abfa4020a52b5d7c82cc285f58a1fb0c5}} 
+\index{rev::Material@{rev::Material}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::Material@{rev::Material}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Material\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_material_ab9edd16de4df74b4529ba5b775ad5efe}\label{classrev_1_1_material_ab9edd16de4df74b4529ba5b775ad5efe}} 
+\index{rev::Material@{rev::Material}!resolveTexturePath@{resolveTexturePath}}
+\index{resolveTexturePath@{resolveTexturePath}!rev::Material@{rev::Material}}
+\subsubsection{\texorpdfstring{resolveTexturePath()}{resolveTexturePath()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} rev\+::\+Material\+::resolve\+Texture\+Path (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&}]{texture\+Filename }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Resolve the path of a texture from the filename. 
+
+\begin{DoxyReturn}{Returns}
+the path to the texture 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classrev_1_1_material_ae519114a3c9b89d1ca4d363e9aae6132}\label{classrev_1_1_material_ae519114a3c9b89d1ca4d363e9aae6132}} 
+\index{rev::Material@{rev::Material}!setData@{setData}}
+\index{setData@{setData}!rev::Material@{rev::Material}}
+\subsubsection{\texorpdfstring{setData()}{setData()}}
+{\footnotesize\ttfamily void rev\+::\+Material\+::set\+Data (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structrev_1_1_material_data}{Material\+Data}} \&}]{data,  }\item[{bool}]{serial\+Load = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Set material data. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em serial\+Load} & If true, load textures on this thread \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/materials/G\+Material.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/materials/G\+Material.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,65 @@
+\hypertarget{classrev_1_1_memory_manager}{}\section{rev\+::Memory\+Manager Class Reference}
+\label{classrev_1_1_memory_manager}\index{rev::MemoryManager@{rev::MemoryManager}}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static size\+\_\+t \mbox{\hyperlink{classrev_1_1_memory_manager_a10f2830d7afcd47dd9f2290602b7b5f4}{G\+E\+T\+\_\+\+P\+E\+A\+K\+\_\+\+R\+SS}} ()
+\item 
+static size\+\_\+t \mbox{\hyperlink{classrev_1_1_memory_manager_a599246d380e0d127a069076b706d6c86}{G\+E\+T\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+R\+SS}} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_memory_manager_a2ed9e3aa636cb48b6296d1b4bb7fbdb2}\label{classrev_1_1_memory_manager_a2ed9e3aa636cb48b6296d1b4bb7fbdb2}} 
+static qint64 {\bfseries G\+E\+T\+\_\+\+M\+A\+X\+\_\+\+M\+E\+M\+O\+RY} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_memory_manager_aea373e57f395e14eb41e85b4bd23dd35}\label{classrev_1_1_memory_manager_aea373e57f395e14eb41e85b4bd23dd35}} 
+static qint64 {\bfseries G\+E\+T\+\_\+\+M\+A\+X\+\_\+\+M\+E\+M\+O\+RY} (double fraction)
+\item 
+\mbox{\Hypertarget{classrev_1_1_memory_manager_ae7d5962983f4cf2577449d93d0be031c}\label{classrev_1_1_memory_manager_ae7d5962983f4cf2577449d93d0be031c}} 
+static qint64 {\bfseries G\+E\+T\+\_\+\+M\+A\+X\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+\+MB} (double fraction=1.\+0)
+\item 
+static Q\+String \mbox{\hyperlink{classrev_1_1_memory_manager_aaee5207169db829d2e942f54c83cd138}{G\+E\+T\+\_\+\+M\+A\+X\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+\+G\+B\+\_\+\+Q\+S\+TR}} (double fraction=1)
+\begin{DoxyCompactList}\small\item\em Return the maximum available memory of the system in MB. \end{DoxyCompactList}\item 
+static Q\+String \mbox{\hyperlink{classrev_1_1_memory_manager_a777e4d9a3e92912ea698838bdd631f3c}{G\+E\+T\+\_\+\+M\+A\+X\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+\+M\+B\+\_\+\+Q\+S\+TR}} (double fraction=1)
+\begin{DoxyCompactList}\small\item\em Return the maximum available memory of the system in MB. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_memory_manager_a599246d380e0d127a069076b706d6c86}\label{classrev_1_1_memory_manager_a599246d380e0d127a069076b706d6c86}} 
+\index{rev::MemoryManager@{rev::MemoryManager}!GET\_CURRENT\_RSS@{GET\_CURRENT\_RSS}}
+\index{GET\_CURRENT\_RSS@{GET\_CURRENT\_RSS}!rev::MemoryManager@{rev::MemoryManager}}
+\subsubsection{\texorpdfstring{GET\_CURRENT\_RSS()}{GET\_CURRENT\_RSS()}}
+{\footnotesize\ttfamily static size\+\_\+t rev\+::\+Memory\+Manager\+::\+G\+E\+T\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+R\+SS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Returns the current resident set size (physical memory use) measured in bytes, or zero if the value cannot be determined on this OS. \mbox{\Hypertarget{classrev_1_1_memory_manager_aaee5207169db829d2e942f54c83cd138}\label{classrev_1_1_memory_manager_aaee5207169db829d2e942f54c83cd138}} 
+\index{rev::MemoryManager@{rev::MemoryManager}!GET\_MAX\_MEMORY\_GB\_QSTR@{GET\_MAX\_MEMORY\_GB\_QSTR}}
+\index{GET\_MAX\_MEMORY\_GB\_QSTR@{GET\_MAX\_MEMORY\_GB\_QSTR}!rev::MemoryManager@{rev::MemoryManager}}
+\subsubsection{\texorpdfstring{GET\_MAX\_MEMORY\_GB\_QSTR()}{GET\_MAX\_MEMORY\_GB\_QSTR()}}
+{\footnotesize\ttfamily static Q\+String rev\+::\+Memory\+Manager\+::\+G\+E\+T\+\_\+\+M\+A\+X\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+\+G\+B\+\_\+\+Q\+S\+TR (\begin{DoxyParamCaption}\item[{double}]{fraction = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Return the maximum available memory of the system in MB. 
+
+Optional argument can be used to obtain fraction of available memory \mbox{\Hypertarget{classrev_1_1_memory_manager_a777e4d9a3e92912ea698838bdd631f3c}\label{classrev_1_1_memory_manager_a777e4d9a3e92912ea698838bdd631f3c}} 
+\index{rev::MemoryManager@{rev::MemoryManager}!GET\_MAX\_MEMORY\_MB\_QSTR@{GET\_MAX\_MEMORY\_MB\_QSTR}}
+\index{GET\_MAX\_MEMORY\_MB\_QSTR@{GET\_MAX\_MEMORY\_MB\_QSTR}!rev::MemoryManager@{rev::MemoryManager}}
+\subsubsection{\texorpdfstring{GET\_MAX\_MEMORY\_MB\_QSTR()}{GET\_MAX\_MEMORY\_MB\_QSTR()}}
+{\footnotesize\ttfamily static Q\+String rev\+::\+Memory\+Manager\+::\+G\+E\+T\+\_\+\+M\+A\+X\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+\+M\+B\+\_\+\+Q\+S\+TR (\begin{DoxyParamCaption}\item[{double}]{fraction = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Return the maximum available memory of the system in MB. 
+
+Optional argument can be used to obtain fraction of available memory \mbox{\Hypertarget{classrev_1_1_memory_manager_a10f2830d7afcd47dd9f2290602b7b5f4}\label{classrev_1_1_memory_manager_a10f2830d7afcd47dd9f2290602b7b5f4}} 
+\index{rev::MemoryManager@{rev::MemoryManager}!GET\_PEAK\_RSS@{GET\_PEAK\_RSS}}
+\index{GET\_PEAK\_RSS@{GET\_PEAK\_RSS}!rev::MemoryManager@{rev::MemoryManager}}
+\subsubsection{\texorpdfstring{GET\_PEAK\_RSS()}{GET\_PEAK\_RSS()}}
+{\footnotesize\ttfamily static size\+\_\+t rev\+::\+Memory\+Manager\+::\+G\+E\+T\+\_\+\+P\+E\+A\+K\+\_\+\+R\+SS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Returns the peak (maximum so far) resident set size (physical memory use) measured in bytes, or zero if the value cannot be determined on this OS.\begin{DoxyNote}{Note}
+Usage\+: size\+\_\+t current\+Size = \mbox{\hyperlink{classrev_1_1_memory_manager_a10f2830d7afcd47dd9f2290602b7b5f4}{G\+E\+T\+\_\+\+P\+E\+A\+K\+\_\+\+R\+S\+S()}} 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/utils/G\+Memory\+Manager.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,85 @@
+\hypertarget{classrev_1_1_g_l_1_1_vertex_array_object}{}\section{rev\+::GL\+::Vertex\+Array\+Object Class Reference}
+\label{classrev_1_1_g_l_1_1_vertex_array_object}\index{rev::GL::VertexArrayObject@{rev::GL::VertexArrayObject}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} wrapping a Q\+Open\+G\+L\+Vertex\+Array\+Object.  
+
+
+
+
+{\ttfamily \#include $<$G\+Buffers.\+h$>$}
+
+Inheritance diagram for rev\+::GL\+::Vertex\+Array\+Object\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_g_l_1_1_vertex_array_object}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_vertex_array_object_aed31de5c93596ad8107b848303b85ae8}\label{classrev_1_1_g_l_1_1_vertex_array_object_aed31de5c93596ad8107b848303b85ae8}} 
+{\bfseries Vertex\+Array\+Object} (bool create, bool \mbox{\hyperlink{classrev_1_1_g_l_1_1_vertex_array_object_a080c5dce0981855f5ad0650bedbd2a0c}{bind}})
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_vertex_array_object_a14782376b33e7ddbaadc06d9cf14fc09}\label{classrev_1_1_g_l_1_1_vertex_array_object_a14782376b33e7ddbaadc06d9cf14fc09}} 
+{\bfseries $\sim$\+Vertex\+Array\+Object} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_vertex_array_object_a84ed3eee60de547f6e35118b00f802ff}\label{classrev_1_1_g_l_1_1_vertex_array_object_a84ed3eee60de547f6e35118b00f802ff}} 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_g_l_1_1_vertex_array_object_a84ed3eee60de547f6e35118b00f802ff}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_vertex_array_object_a98604a2e7bba755dbedf60a4bf1ddfbb}\label{classrev_1_1_g_l_1_1_vertex_array_object_a98604a2e7bba755dbedf60a4bf1ddfbb}} 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_g_l_1_1_vertex_array_object_a98604a2e7bba755dbedf60a4bf1ddfbb}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_vertex_array_object_a080c5dce0981855f5ad0650bedbd2a0c}\label{classrev_1_1_g_l_1_1_vertex_array_object_a080c5dce0981855f5ad0650bedbd2a0c}} 
+bool \mbox{\hyperlink{classrev_1_1_g_l_1_1_vertex_array_object_a080c5dce0981855f5ad0650bedbd2a0c}{bind}} ()
+\begin{DoxyCompactList}\small\item\em Bind the V\+AO, returns false if failed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_vertex_array_object_adccccf9701c922d7bf1740a516ec5066}\label{classrev_1_1_g_l_1_1_vertex_array_object_adccccf9701c922d7bf1740a516ec5066}} 
+void \mbox{\hyperlink{classrev_1_1_g_l_1_1_vertex_array_object_adccccf9701c922d7bf1740a516ec5066}{initialize}} (bool bind\+\_\+=true)
+\begin{DoxyCompactList}\small\item\em Initializes the V\+AO in GL if it does not exist and and binds it. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_g_l_1_1_vertex_array_object_aa8d8fd5f855f66d7f4727ff71f84ffa6}{load\+Attribute\+Buffer}} (\mbox{\hyperlink{classrev_1_1_g_l_1_1_buffer_object}{Buffer\+Object}} \&buffer, bool bind\+This=false)
+\begin{DoxyCompactList}\small\item\em Load a buffer into the given array attribute. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_vertex_array_object_a0e59dfc145abe26c021a21135e293221}\label{classrev_1_1_g_l_1_1_vertex_array_object_a0e59dfc145abe26c021a21135e293221}} 
+virtual void \mbox{\hyperlink{classrev_1_1_g_l_1_1_vertex_array_object_a0e59dfc145abe26c021a21135e293221}{load\+Int\+Attribute}} (int attribute\+Index, int tuple\+Size, int stride, int offset)
+\begin{DoxyCompactList}\small\item\em Loads a set of attribute data into the currently bound V\+AO @detailed QT\textquotesingle{}s abstraction fails, for a raw GL example, see\+: \href{https://www.khronos.org/opengl/wiki/Tutorial2:}{\texttt{ https\+://www.\+khronos.\+org/opengl/wiki/\+Tutorial2\+:}}{\itshape V\+A\+Os,\+\_\+\+V\+B\+Os,\+\_\+\+Vertex\+\_\+and\+\_\+\+Fragment\+\_\+\+Shaders}(C\+\_\+/\+\_\+\+S\+DL) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_vertex_array_object_a0396637e00841b84531dc073fd8b6352}\label{classrev_1_1_g_l_1_1_vertex_array_object_a0396637e00841b84531dc073fd8b6352}} 
+virtual void {\bfseries load\+Float\+Attribute} (int attribute\+Index, int tuple\+Size, int stride, int offset)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} wrapping a Q\+Open\+G\+L\+Vertex\+Array\+Object. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_vertex_array_object_aa8d8fd5f855f66d7f4727ff71f84ffa6}\label{classrev_1_1_g_l_1_1_vertex_array_object_aa8d8fd5f855f66d7f4727ff71f84ffa6}} 
+\index{rev::GL::VertexArrayObject@{rev::GL::VertexArrayObject}!loadAttributeBuffer@{loadAttributeBuffer}}
+\index{loadAttributeBuffer@{loadAttributeBuffer}!rev::GL::VertexArrayObject@{rev::GL::VertexArrayObject}}
+\subsubsection{\texorpdfstring{loadAttributeBuffer()}{loadAttributeBuffer()}}
+{\footnotesize\ttfamily void rev\+::\+G\+L\+::\+Vertex\+Array\+Object\+::load\+Attribute\+Buffer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classrev_1_1_g_l_1_1_buffer_object}{Buffer\+Object}} \&}]{buffer,  }\item[{bool}]{bind\+This = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Load a buffer into the given array attribute. 
+
+\begin{DoxyNote}{Note}
+Assumes zero offset and stride equivalent to tuple\+Size $\ast$ real\+\_\+g (float or double) 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/geometry/G\+Buffers.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/geometry/G\+Buffers.\+cpp\end{DoxyCompactItemize}

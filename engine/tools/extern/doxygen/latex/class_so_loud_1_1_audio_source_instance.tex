@@ -1,0 +1,141 @@
+\hypertarget{class_so_loud_1_1_audio_source_instance}{}\section{So\+Loud\+::Audio\+Source\+Instance Class Reference}
+\label{class_so_loud_1_1_audio_source_instance}\index{SoLoud::AudioSourceInstance@{SoLoud::AudioSourceInstance}}
+Inheritance diagram for So\+Loud\+::Audio\+Source\+Instance\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=12.000000cm]{class_so_loud_1_1_audio_source_instance}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_a32c4206e75224bff3a904f300bcccc1d}\label{class_so_loud_1_1_audio_source_instance_a32c4206e75224bff3a904f300bcccc1d}} 
+enum {\bfseries F\+L\+A\+GS} \{ \newline
+{\bfseries L\+O\+O\+P\+I\+NG} = 1, 
+{\bfseries P\+R\+O\+T\+E\+C\+T\+ED} = 2, 
+{\bfseries P\+A\+U\+S\+ED} = 4, 
+{\bfseries P\+R\+O\+C\+E\+S\+S\+\_\+3D} = 8, 
+\newline
+{\bfseries L\+I\+S\+T\+E\+N\+E\+R\+\_\+\+R\+E\+L\+A\+T\+I\+VE} = 16, 
+{\bfseries I\+N\+A\+U\+D\+I\+B\+LE} = 32, 
+{\bfseries I\+N\+A\+U\+D\+I\+B\+L\+E\+\_\+\+K\+I\+LL} = 64, 
+{\bfseries I\+N\+A\+U\+D\+I\+B\+L\+E\+\_\+\+T\+I\+CK} = 128
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_aeb5f60467d4cf4837e8dab58569b3ad2}\label{class_so_loud_1_1_audio_source_instance_aeb5f60467d4cf4837e8dab58569b3ad2}} 
+void {\bfseries init} (\mbox{\hyperlink{class_so_loud_1_1_audio_source}{Audio\+Source}} \&a\+Source, int a\+Play\+Index)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_a3e5989f645633ec2f7e7c3c35c919a4a}\label{class_so_loud_1_1_audio_source_instance_a3e5989f645633ec2f7e7c3c35c919a4a}} 
+virtual unsigned int {\bfseries get\+Audio} (float $\ast$a\+Buffer, unsigned int a\+Samples\+To\+Read, unsigned int a\+Buffer\+Size)=0
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_a49b7277a667ff7b49c6e59941f2ee98c}\label{class_so_loud_1_1_audio_source_instance_a49b7277a667ff7b49c6e59941f2ee98c}} 
+virtual bool {\bfseries has\+Ended} ()=0
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_a2899ea546bc234175f8f144bc11e5252}\label{class_so_loud_1_1_audio_source_instance_a2899ea546bc234175f8f144bc11e5252}} 
+virtual result {\bfseries seek} (time a\+Seconds, float $\ast$m\+Scratch, unsigned int m\+Scratch\+Size)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_a5358006432f91affa6f679c3727aba2c}\label{class_so_loud_1_1_audio_source_instance_a5358006432f91affa6f679c3727aba2c}} 
+virtual result {\bfseries rewind} ()
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_ab21d2fbf6e0200bb377755c00c71a450}\label{class_so_loud_1_1_audio_source_instance_ab21d2fbf6e0200bb377755c00c71a450}} 
+virtual float {\bfseries get\+Info} (unsigned int a\+Info\+Key)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_a8d5eb5ba50ade05e02f016eee148c512}\label{class_so_loud_1_1_audio_source_instance_a8d5eb5ba50ade05e02f016eee148c512}} 
+unsigned int {\bfseries m\+Play\+Index}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_a34b4673ae91c521e4429cb2d4121e059}\label{class_so_loud_1_1_audio_source_instance_a34b4673ae91c521e4429cb2d4121e059}} 
+unsigned int {\bfseries m\+Loop\+Count}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_aa15d49e948ddd05cbbdfe25f205d1af0}\label{class_so_loud_1_1_audio_source_instance_aa15d49e948ddd05cbbdfe25f205d1af0}} 
+unsigned int {\bfseries m\+Flags}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_aef02eca8fd613d119af8ae7c311d79ac}\label{class_so_loud_1_1_audio_source_instance_aef02eca8fd613d119af8ae7c311d79ac}} 
+float {\bfseries m\+Pan}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_a6e8448bf071ad5bed2e3c26220acfe7c}\label{class_so_loud_1_1_audio_source_instance_a6e8448bf071ad5bed2e3c26220acfe7c}} 
+float {\bfseries m\+Channel\+Volume} \mbox{[}M\+A\+X\+\_\+\+C\+H\+A\+N\+N\+E\+LS\mbox{]}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_a2359f806f3920142413236e9b8395be1}\label{class_so_loud_1_1_audio_source_instance_a2359f806f3920142413236e9b8395be1}} 
+float {\bfseries m\+Set\+Volume}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_a2d7c99990abca8d0fc7cbbef48dfffb0}\label{class_so_loud_1_1_audio_source_instance_a2d7c99990abca8d0fc7cbbef48dfffb0}} 
+float {\bfseries m\+Overall\+Volume}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_a3acdf7327b08ca150472dc4d71b67fdd}\label{class_so_loud_1_1_audio_source_instance_a3acdf7327b08ca150472dc4d71b67fdd}} 
+float {\bfseries m\+Base\+Samplerate}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_a8ef707c6d2e9e0a9959dff7b7201684c}\label{class_so_loud_1_1_audio_source_instance_a8ef707c6d2e9e0a9959dff7b7201684c}} 
+float {\bfseries m\+Samplerate}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_abc7eba521c7cb563ab86a800e8eae1da}\label{class_so_loud_1_1_audio_source_instance_abc7eba521c7cb563ab86a800e8eae1da}} 
+unsigned int {\bfseries m\+Channels}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_a3537ce61efbe3aedd988bc9f06dc35bf}\label{class_so_loud_1_1_audio_source_instance_a3537ce61efbe3aedd988bc9f06dc35bf}} 
+float {\bfseries m\+Set\+Relative\+Play\+Speed}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_a0cb11e8db89ce102cccf056d04a91786}\label{class_so_loud_1_1_audio_source_instance_a0cb11e8db89ce102cccf056d04a91786}} 
+float {\bfseries m\+Overall\+Relative\+Play\+Speed}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_a64b8594ef39d4ab2e1f218eca7799e3b}\label{class_so_loud_1_1_audio_source_instance_a64b8594ef39d4ab2e1f218eca7799e3b}} 
+time {\bfseries m\+Stream\+Time}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_a27cd19e78183798932189dfec0157251}\label{class_so_loud_1_1_audio_source_instance_a27cd19e78183798932189dfec0157251}} 
+time {\bfseries m\+Stream\+Position}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_a6a74ae27e413b17eb14844b960b20c8b}\label{class_so_loud_1_1_audio_source_instance_a6a74ae27e413b17eb14844b960b20c8b}} 
+\mbox{\hyperlink{class_so_loud_1_1_fader}{Fader}} {\bfseries m\+Pan\+Fader}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_a7439b2234a99e6dcade4fb3fbfbffa23}\label{class_so_loud_1_1_audio_source_instance_a7439b2234a99e6dcade4fb3fbfbffa23}} 
+\mbox{\hyperlink{class_so_loud_1_1_fader}{Fader}} {\bfseries m\+Volume\+Fader}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_af260f3e8649f3d32ce3b227fd6fda8d9}\label{class_so_loud_1_1_audio_source_instance_af260f3e8649f3d32ce3b227fd6fda8d9}} 
+\mbox{\hyperlink{class_so_loud_1_1_fader}{Fader}} {\bfseries m\+Relative\+Play\+Speed\+Fader}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_a34c4daae6ac540515b48d797804464d7}\label{class_so_loud_1_1_audio_source_instance_a34c4daae6ac540515b48d797804464d7}} 
+\mbox{\hyperlink{class_so_loud_1_1_fader}{Fader}} {\bfseries m\+Pause\+Scheduler}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_aa57af3fbb565943a96dcbf5fdd896d01}\label{class_so_loud_1_1_audio_source_instance_aa57af3fbb565943a96dcbf5fdd896d01}} 
+\mbox{\hyperlink{class_so_loud_1_1_fader}{Fader}} {\bfseries m\+Stop\+Scheduler}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_adb1dc272751b38268aab744ad1eec5bc}\label{class_so_loud_1_1_audio_source_instance_adb1dc272751b38268aab744ad1eec5bc}} 
+int {\bfseries m\+Active\+Fader}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_a8179d47567eff8b07a714008a0a66a62}\label{class_so_loud_1_1_audio_source_instance_a8179d47567eff8b07a714008a0a66a62}} 
+float {\bfseries m\+Current\+Channel\+Volume} \mbox{[}M\+A\+X\+\_\+\+C\+H\+A\+N\+N\+E\+LS\mbox{]}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_a2ba43540b8967d86c7fc89bfa0dd3eee}\label{class_so_loud_1_1_audio_source_instance_a2ba43540b8967d86c7fc89bfa0dd3eee}} 
+unsigned int {\bfseries m\+Audio\+Source\+ID}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_a74029328e5ae36b2b784ff04d9b18acf}\label{class_so_loud_1_1_audio_source_instance_a74029328e5ae36b2b784ff04d9b18acf}} 
+unsigned int {\bfseries m\+Bus\+Handle}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_a92c5642b02d67061b7e9809a9984c445}\label{class_so_loud_1_1_audio_source_instance_a92c5642b02d67061b7e9809a9984c445}} 
+\mbox{\hyperlink{class_so_loud_1_1_filter_instance}{Filter\+Instance}} $\ast$ {\bfseries m\+Filter} \mbox{[}F\+I\+L\+T\+E\+R\+S\+\_\+\+P\+E\+R\+\_\+\+S\+T\+R\+E\+AM\mbox{]}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_a11747a2bae39924b1003251e9af131f8}\label{class_so_loud_1_1_audio_source_instance_a11747a2bae39924b1003251e9af131f8}} 
+\mbox{\hyperlink{class_so_loud_1_1_aligned_float_buffer}{Aligned\+Float\+Buffer}} $\ast$ {\bfseries m\+Resample\+Data} \mbox{[}2\mbox{]}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_a41f9ed9f40b5b3602fc335491a0443c2}\label{class_so_loud_1_1_audio_source_instance_a41f9ed9f40b5b3602fc335491a0443c2}} 
+unsigned int {\bfseries m\+Src\+Offset}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_a77e7ccc37e72c9a5ab812639f7f59dcb}\label{class_so_loud_1_1_audio_source_instance_a77e7ccc37e72c9a5ab812639f7f59dcb}} 
+unsigned int {\bfseries m\+Leftover\+Samples}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_a326bc9edb5b29c92a6a855a72c3e38f9}\label{class_so_loud_1_1_audio_source_instance_a326bc9edb5b29c92a6a855a72c3e38f9}} 
+unsigned int {\bfseries m\+Delay\+Samples}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_audio_source_instance_a2181a1a15315f3450e51161c2b35e21e}\label{class_so_loud_1_1_audio_source_instance_a2181a1a15315f3450e51161c2b35e21e}} 
+time {\bfseries m\+Loop\+Point}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/include/soloud\+\_\+audiosource.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/src/core/soloud\+\_\+audiosource.\+cpp\end{DoxyCompactItemize}

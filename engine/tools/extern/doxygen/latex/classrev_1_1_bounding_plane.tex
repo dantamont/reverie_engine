@@ -1,0 +1,126 @@
+\hypertarget{classrev_1_1_bounding_plane}{}\section{rev\+::Bounding\+Plane Class Reference}
+\label{classrev_1_1_bounding_plane}\index{rev::BoundingPlane@{rev::BoundingPlane}}
+Inheritance diagram for rev\+::Bounding\+Plane\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_bounding_plane}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_plane_aa005df9e9cb70dc395cf908e943fb655}\label{classrev_1_1_bounding_plane_aa005df9e9cb70dc395cf908e943fb655}} 
+enum {\bfseries Halfspace} \{ {\bfseries k\+Negative} = -\/1, 
+{\bfseries k\+Intersects} = 0, 
+{\bfseries k\+Positive} = 1
+ \}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructor/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_plane_a153f3d94f714f0f67931283f4a7ed2e3}\label{classrev_1_1_bounding_plane_a153f3d94f714f0f67931283f4a7ed2e3}} 
+{\bfseries Bounding\+Plane} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_plane_a5e11200efadda65e9241fa5f7b017d14}\label{classrev_1_1_bounding_plane_a5e11200efadda65e9241fa5f7b017d14}} 
+{\bfseries $\sim$\+Bounding\+Plane} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_plane_a23d8a0e308907256346a721ffcbf88e5}\label{classrev_1_1_bounding_plane_a23d8a0e308907256346a721ffcbf88e5}} 
+const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \& {\bfseries normal} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_plane_a662a93591a157a6c3b50ae77be83ae3c}\label{classrev_1_1_bounding_plane_a662a93591a157a6c3b50ae77be83ae3c}} 
+virtual bool {\bfseries intersects} (const \mbox{\hyperlink{classrev_1_1_colliding_geometry}{Colliding\+Geometry}} \&other) const override
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_plane_a3c9feaa524f32f3e999f32097dce04e4}\label{classrev_1_1_bounding_plane_a3c9feaa524f32f3e999f32097dce04e4}} 
+virtual void {\bfseries recalculate\+Bounds} (const \mbox{\hyperlink{classrev_1_1_transform}{Transform}} \&transform, \mbox{\hyperlink{classrev_1_1_colliding_geometry}{Colliding\+Geometry}} \&out) const override
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_plane_a20969df48ec021296720036d86707367}\label{classrev_1_1_bounding_plane_a20969df48ec021296720036d86707367}} 
+Halfspace {\bfseries classify\+Geometry} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&pt) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_plane_a504dd29f3e626a3f5e85da895b793d95}\label{classrev_1_1_bounding_plane_a504dd29f3e626a3f5e85da895b793d95}} 
+Halfspace {\bfseries classify\+Geometry} (const \mbox{\hyperlink{classrev_1_1_bounding_sphere}{Bounding\+Sphere}} \&sphere) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_plane_a80b06a2891c2904d381192260ddf70ea}\label{classrev_1_1_bounding_plane_a80b06a2891c2904d381192260ddf70ea}} 
+Halfspace {\bfseries classify\+Geometry} (const \mbox{\hyperlink{classrev_1_1_a_a_b_b}{A\+A\+BB}} \&aabb) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_plane_a9fe6865adc6e641264a8e64c82f3a01d}\label{classrev_1_1_bounding_plane_a9fe6865adc6e641264a8e64c82f3a01d}} 
+const float \& \mbox{\hyperlink{classrev_1_1_bounding_plane_a9fe6865adc6e641264a8e64c82f3a01d}{a}} () const
+\begin{DoxyCompactList}\small\item\em Plane equation coefficients. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_plane_a9119b7b663fe9705c15b1ad48a11a391}\label{classrev_1_1_bounding_plane_a9119b7b663fe9705c15b1ad48a11a391}} 
+void {\bfseries setA} (float \mbox{\hyperlink{classrev_1_1_bounding_plane_a9fe6865adc6e641264a8e64c82f3a01d}{a}})
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_plane_a93be272ae85cd456e979b3a8d4ad7c8e}\label{classrev_1_1_bounding_plane_a93be272ae85cd456e979b3a8d4ad7c8e}} 
+const float \& {\bfseries b} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_plane_a266b15a49bfc5eb0cceb02b22dbc98ca}\label{classrev_1_1_bounding_plane_a266b15a49bfc5eb0cceb02b22dbc98ca}} 
+void {\bfseries setB} (float b)
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_plane_a8b1ecde6ffefa783384d723cc7d25b36}\label{classrev_1_1_bounding_plane_a8b1ecde6ffefa783384d723cc7d25b36}} 
+const float \& {\bfseries c} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_plane_adb430c0a7f4059a137855b7f5eff5b25}\label{classrev_1_1_bounding_plane_adb430c0a7f4059a137855b7f5eff5b25}} 
+void {\bfseries setC} (float c)
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_plane_a6ef39436f59635e6d97de0a0ca91cadc}\label{classrev_1_1_bounding_plane_a6ef39436f59635e6d97de0a0ca91cadc}} 
+const float \& {\bfseries d} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_plane_a0a7951e00e8183027e11e94b4cc9f6b6}\label{classrev_1_1_bounding_plane_a0a7951e00e8183027e11e94b4cc9f6b6}} 
+void {\bfseries setD} (float d)
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_plane_a6e739026a83c94e1f799053148878bf1}\label{classrev_1_1_bounding_plane_a6e739026a83c94e1f799053148878bf1}} 
+float \mbox{\hyperlink{classrev_1_1_bounding_plane_a6e739026a83c94e1f799053148878bf1}{distance\+To\+Point}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&point)
+\begin{DoxyCompactList}\small\item\em Obtain the shortest signed distance from the plane to a point. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_plane_aa8bceef74382b2f29d54cc7ccc8a5b02}\label{classrev_1_1_bounding_plane_aa8bceef74382b2f29d54cc7ccc8a5b02}} 
+bool \mbox{\hyperlink{classrev_1_1_bounding_plane_aa8bceef74382b2f29d54cc7ccc8a5b02}{is\+Normalized}} () const
+\begin{DoxyCompactList}\small\item\em Whether or not the plane is normalixed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_plane_a26b4bcb9507ccf5f63aa390825a2e978}\label{classrev_1_1_bounding_plane_a26b4bcb9507ccf5f63aa390825a2e978}} 
+void \mbox{\hyperlink{classrev_1_1_bounding_plane_a26b4bcb9507ccf5f63aa390825a2e978}{normalize}} ()
+\begin{DoxyCompactList}\small\item\em Normalize the plane. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_plane_a703eb535e967ebf59fcb3d02e4aa4946}\label{classrev_1_1_bounding_plane_a703eb535e967ebf59fcb3d02e4aa4946}} 
+void \mbox{\hyperlink{classrev_1_1_bounding_plane_a703eb535e967ebf59fcb3d02e4aa4946}{find\+NP}} (const \mbox{\hyperlink{classrev_1_1_a_a_b_b}{A\+A\+BB}} \&aabb, \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&n, \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&p) const
+\begin{DoxyCompactList}\small\item\em Find the point farthest (p) and point nearest (n) to this plane of the given \mbox{\hyperlink{classrev_1_1_a_a_b_b}{A\+A\+BB}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \mbox{\hyperlink{classrev_1_1_bounding_plane_a46adff8de55d9fb5464369adbac24156}{m\+\_\+normal}}
+\begin{DoxyCompactList}\small\item\em Coefficients of the plane equation describing this plane. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_bounding_plane_a79dbc9157c45596da8af92399a021c55}\label{classrev_1_1_bounding_plane_a79dbc9157c45596da8af92399a021c55}} 
+float {\bfseries m\+\_\+d}
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_bounding_plane_a46adff8de55d9fb5464369adbac24156}\label{classrev_1_1_bounding_plane_a46adff8de55d9fb5464369adbac24156}} 
+\index{rev::BoundingPlane@{rev::BoundingPlane}!m\_normal@{m\_normal}}
+\index{m\_normal@{m\_normal}!rev::BoundingPlane@{rev::BoundingPlane}}
+\subsubsection{\texorpdfstring{m\_normal}{m\_normal}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} rev\+::\+Bounding\+Plane\+::m\+\_\+normal\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Coefficients of the plane equation describing this plane. 
+
+ax + by + cz + d = 0 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/geometry/G\+Collisions.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/geometry/G\+Collisions.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,96 @@
+\hypertarget{classrev_1_1_view_1_1_vector_widget}{}\section{rev\+::View\+::Vector\+Widget$<$ T, N $>$ Class Template Reference}
+\label{classrev_1_1_view_1_1_vector_widget}\index{rev::View::VectorWidget$<$ T, N $>$@{rev::View::VectorWidget$<$ T, N $>$}}
+
+
+Note that this does not employ the Q\+\_\+\+Object macro, which is incompatible with templates.  
+
+
+
+
+{\ttfamily \#include $<$G\+Vector\+Widget.\+h$>$}
+
+Inheritance diagram for rev\+::View\+::Vector\+Widget$<$ T, N $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.745098cm]{classrev_1_1_view_1_1_vector_widget}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_vector_widget_abe2ae5656ecca67135853cd6e3d9dc4f}\label{classrev_1_1_view_1_1_vector_widget_abe2ae5656ecca67135853cd6e3d9dc4f}} 
+{\bfseries Vector\+Widget} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, \mbox{\hyperlink{classrev_1_1_vector}{Vector}}$<$ T, N $>$ \&vec, Q\+Widget $\ast$parent=nullptr, double min\+Val=-\/1e20, double max\+Val=1e20, double num\+Decimals=15, const Q\+String\+List \&labels=\{\char`\"{}x\+:\char`\"{}, \char`\"{}y\+:\char`\"{}, \char`\"{}z\+:\char`\"{}, \char`\"{}w\+:\char`\"{}\}, size\+\_\+t num\+To\+Show=\+N)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_vector_widget_ab9e0648509d867fb3b44ad51d946cc09}\label{classrev_1_1_view_1_1_vector_widget_ab9e0648509d867fb3b44ad51d946cc09}} 
+virtual {\bfseries $\sim$\+Vector\+Widget} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_vector_widget_a18771ac00464f549c14171d252eb7d76}\label{classrev_1_1_view_1_1_vector_widget_a18771ac00464f549c14171d252eb7d76}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_vector_widget_a18771ac00464f549c14171d252eb7d76}{reinitialize}} (\mbox{\hyperlink{classrev_1_1_vector}{Vector}}$<$ T, N $>$ \&vec)
+\begin{DoxyCompactList}\small\item\em Reinitialize with a different vector. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_vector_widget_a125985140cf40973a8a66568e2b91c98}\label{classrev_1_1_view_1_1_vector_widget_a125985140cf40973a8a66568e2b91c98}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_vector_widget_a125985140cf40973a8a66568e2b91c98}{update}} () override
+\begin{DoxyCompactList}\small\item\em Update the parameter widget. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Private Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_vector_widget_a23cee95f3f2608fbd4c74e75444e1e16}\label{classrev_1_1_view_1_1_vector_widget_a23cee95f3f2608fbd4c74e75444e1e16}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_vector_widget_a23cee95f3f2608fbd4c74e75444e1e16}{initialize\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to check\+Validity widgets. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_vector_widget_a28cc23f8d04a16218a812b8a85e73a1c}\label{classrev_1_1_view_1_1_vector_widget_a28cc23f8d04a16218a812b8a85e73a1c}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_vector_widget_a28cc23f8d04a16218a812b8a85e73a1c}{initialize\+Connections}} () override
+\begin{DoxyCompactList}\small\item\em Methods to check\+Validity connections for this widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_vector_widget_a277fec17ba15c6a6dcd97e386570d0ea}\label{classrev_1_1_view_1_1_vector_widget_a277fec17ba15c6a6dcd97e386570d0ea}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_vector_widget_a277fec17ba15c6a6dcd97e386570d0ea}{layout\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to ay out widgets. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_vector_widget_a512e393b11921b3e934df884ec3e0f7d}\label{classrev_1_1_view_1_1_vector_widget_a512e393b11921b3e934df884ec3e0f7d}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_vector_widget_a512e393b11921b3e934df884ec3e0f7d}{update\+Vector}} ()
+\begin{DoxyCompactList}\small\item\em Update the value of the underlying vector from the widget values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_vector_widget_af2134a4b121269b38d073f965e8af90e}\label{classrev_1_1_view_1_1_vector_widget_af2134a4b121269b38d073f965e8af90e}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector}}$<$ T, N $>$ \& {\bfseries m\+\_\+vector}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_vector_widget_aa91a37addd0ab61d81ecbc5e73c16793}\label{classrev_1_1_view_1_1_vector_widget_aa91a37addd0ab61d81ecbc5e73c16793}} 
+std\+::vector$<$ Q\+Label $\ast$ $>$ {\bfseries m\+\_\+labels}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_vector_widget_a2b3ba93a152e20a0ddae9ef227b7d9c4}\label{classrev_1_1_view_1_1_vector_widget_a2b3ba93a152e20a0ddae9ef227b7d9c4}} 
+Q\+String\+List {\bfseries m\+\_\+label\+Strings}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_vector_widget_ac7a74efc981d1f9c534c3de109774982}\label{classrev_1_1_view_1_1_vector_widget_ac7a74efc981d1f9c534c3de109774982}} 
+std\+::vector$<$ Q\+Line\+Edit $\ast$ $>$ {\bfseries m\+\_\+line\+Edits}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_vector_widget_abd0a3e51aa78f66b477b2af54e27f842}\label{classrev_1_1_view_1_1_vector_widget_abd0a3e51aa78f66b477b2af54e27f842}} 
+double {\bfseries m\+\_\+min\+Allowed}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_vector_widget_a5330dd82fcbcb656984dafdfe3f97765}\label{classrev_1_1_view_1_1_vector_widget_a5330dd82fcbcb656984dafdfe3f97765}} 
+double {\bfseries m\+\_\+max\+Allowed}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_vector_widget_a73e89bf36c355e91d23141b163cd4f28}\label{classrev_1_1_view_1_1_vector_widget_a73e89bf36c355e91d23141b163cd4f28}} 
+double {\bfseries m\+\_\+num\+Decimals}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_vector_widget_a706cfa0531b681eba90dd912b9436541}\label{classrev_1_1_view_1_1_vector_widget_a706cfa0531b681eba90dd912b9436541}} 
+size\+\_\+t {\bfseries m\+\_\+num\+To\+Show}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename T, size\+\_\+t N$>$\newline
+class rev\+::\+View\+::\+Vector\+Widget$<$ T, N $>$}
+
+Note that this does not employ the Q\+\_\+\+Object macro, which is incompatible with templates. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/parameters/G\+Vector\+Widget.\+h\end{DoxyCompactItemize}

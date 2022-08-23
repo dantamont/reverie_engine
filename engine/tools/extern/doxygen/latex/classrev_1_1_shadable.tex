@@ -1,0 +1,91 @@
+\hypertarget{classrev_1_1_shadable}{}\section{rev\+::Shadable Class Reference}
+\label{classrev_1_1_shadable}\index{rev::Shadable@{rev::Shadable}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing an object that carries uniforms.  
+
+
+
+
+{\ttfamily \#include $<$G\+Renderable.\+h$>$}
+
+Inheritance diagram for rev\+::Shadable\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.436548cm]{classrev_1_1_shadable}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shadable_adcd8026674e2cbf53cf8d4e336baf5cb}\label{classrev_1_1_shadable_adcd8026674e2cbf53cf8d4e336baf5cb}} 
+{\bfseries Shadable} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_shadable_afdc68f8f5509562d4dbbaff0cfb637d9}\label{classrev_1_1_shadable_afdc68f8f5509562d4dbbaff0cfb637d9}} 
+virtual {\bfseries $\sim$\+Shadable} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shadable_a49323f95868a263bc3b4f1af5ed49ad0}\label{classrev_1_1_shadable_a49323f95868a263bc3b4f1af5ed49ad0}} 
+const std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_uniform}{Uniform}} $>$ \& {\bfseries uniforms} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_shadable_a8f6379b3cae5ce62c04c279071eb1497}\label{classrev_1_1_shadable_a8f6379b3cae5ce62c04c279071eb1497}} 
+std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_uniform}{Uniform}} $>$ \& {\bfseries uniforms} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_shadable_a6fe7b8f8c4533ee65ecf278451204da0}\label{classrev_1_1_shadable_a6fe7b8f8c4533ee65ecf278451204da0}} 
+\mbox{\hyperlink{classrev_1_1_render_settings}{Render\+Settings}} \& {\bfseries render\+Settings} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_shadable_a3c762dee4bd4df9807fc9c5b35a39d3c}\label{classrev_1_1_shadable_a3c762dee4bd4df9807fc9c5b35a39d3c}} 
+const \mbox{\hyperlink{classrev_1_1_render_settings}{Render\+Settings}} \& {\bfseries render\+Settings} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shadable_a2ea6672afd413fcce72fbada7572cd85}\label{classrev_1_1_shadable_a2ea6672afd413fcce72fbada7572cd85}} 
+void \mbox{\hyperlink{classrev_1_1_shadable_a2ea6672afd413fcce72fbada7572cd85}{add\+Uniform}} (const \mbox{\hyperlink{structrev_1_1_uniform}{Uniform}} \&uniform)
+\begin{DoxyCompactList}\small\item\em Add a uniform to the uniforms to be set. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shadable_ae0db24858d7de3f011803f6cd8e902e3}\label{classrev_1_1_shadable_ae0db24858d7de3f011803f6cd8e902e3}} 
+bool \mbox{\hyperlink{classrev_1_1_shadable_ae0db24858d7de3f011803f6cd8e902e3}{has\+Uniform}} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&uniform\+Name, int $\ast$out\+Index=nullptr)
+\begin{DoxyCompactList}\small\item\em Whether or not the command has the specified uniform. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shadable_a4b03aca245a77ad3737cb5ac7eefc40e}\label{classrev_1_1_shadable_a4b03aca245a77ad3737cb5ac7eefc40e}} 
+bool {\bfseries has\+Uniform} (const \mbox{\hyperlink{structrev_1_1_uniform}{Uniform}} \&uniform, int $\ast$out\+Index=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_shadable_a432dfb8203fb99b04e4e76543b99a6a4}\label{classrev_1_1_shadable_a432dfb8203fb99b04e4e76543b99a6a4}} 
+void \mbox{\hyperlink{classrev_1_1_shadable_a432dfb8203fb99b04e4e76543b99a6a4}{clear\+Uniforms}} ()
+\begin{DoxyCompactList}\small\item\em Clear all uniforms. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shadable_a8f0a38951d1cd43a853419a4bcb3b52e}\label{classrev_1_1_shadable_a8f0a38951d1cd43a853419a4bcb3b52e}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_shadable_a8f0a38951d1cd43a853419a4bcb3b52e}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shadable_a55a0ec592c4ab572a4edad5a306cc273}\label{classrev_1_1_shadable_a55a0ec592c4ab572a4edad5a306cc273}} 
+virtual void \mbox{\hyperlink{classrev_1_1_shadable_a55a0ec592c4ab572a4edad5a306cc273}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_shadable_ab0c12add1777dd42f68c3fdb6bc6069d}\label{classrev_1_1_shadable_ab0c12add1777dd42f68c3fdb6bc6069d}} 
+std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_uniform}{Uniform}} $>$ \mbox{\hyperlink{classrev_1_1_shadable_ab0c12add1777dd42f68c3fdb6bc6069d}{m\+\_\+uniforms}}
+\begin{DoxyCompactList}\small\item\em Uniforms corresponding to this renderable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_shadable_ab1ae3f26308c6c4ff8175e6c3d3399d5}\label{classrev_1_1_shadable_ab1ae3f26308c6c4ff8175e6c3d3399d5}} 
+\mbox{\hyperlink{classrev_1_1_render_settings}{Render\+Settings}} \mbox{\hyperlink{classrev_1_1_shadable_ab1ae3f26308c6c4ff8175e6c3d3399d5}{m\+\_\+render\+Settings}}
+\begin{DoxyCompactList}\small\item\em GL Render settings corresponding to this renderable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing an object that carries uniforms. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/mixins/G\+Renderable.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/mixins/G\+Renderable.\+cpp\end{DoxyCompactItemize}

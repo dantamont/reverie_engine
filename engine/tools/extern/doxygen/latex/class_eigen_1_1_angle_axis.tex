@@ -1,0 +1,335 @@
+\hypertarget{class_eigen_1_1_angle_axis}{}\section{Eigen\+::Angle\+Axis$<$ \+\_\+\+Scalar $>$ Class Template Reference}
+\label{class_eigen_1_1_angle_axis}\index{Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}}
+
+
+Represents a 3D rotation as a rotation angle around an arbitrary 3D axis.  
+
+
+
+
+{\ttfamily \#include $<$Angle\+Axis.\+h$>$}
+
+Inheritance diagram for Eigen\+::Angle\+Axis$<$ \+\_\+\+Scalar $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_eigen_1_1_angle_axis}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_angle_axis_aa4d3ccec7f40e12980333eb18a2315ab}\label{class_eigen_1_1_angle_axis_aa4d3ccec7f40e12980333eb18a2315ab}} 
+enum \{ {\bfseries Dim} = 3
+ \}
+\item 
+typedef \+\_\+\+Scalar \mbox{\hyperlink{class_eigen_1_1_angle_axis_acd9b10692d7d726b28670e4d3a282fe8}{Scalar}}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_angle_axis_acbafcda05b1dc5544e459f1b249c0b51}\label{class_eigen_1_1_angle_axis_acbafcda05b1dc5544e459f1b249c0b51}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_angle_axis_acd9b10692d7d726b28670e4d3a282fe8}{Scalar}}, 3, 3 $>$ {\bfseries Matrix3}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_angle_axis_a316eb5ec48f036e65a69c57c5ca16d96}\label{class_eigen_1_1_angle_axis_a316eb5ec48f036e65a69c57c5ca16d96}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_angle_axis_acd9b10692d7d726b28670e4d3a282fe8}{Scalar}}, 3, 1 $>$ {\bfseries Vector3}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_angle_axis_ae79e8f152e2b922a2f7e26b0d0c2ee57}\label{class_eigen_1_1_angle_axis_ae79e8f152e2b922a2f7e26b0d0c2ee57}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion}}$<$ \mbox{\hyperlink{class_eigen_1_1_angle_axis_acd9b10692d7d726b28670e4d3a282fe8}{Scalar}} $>$ {\bfseries Quaternion\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_angle_axis_a400d37afcd998d1ee348d37b8bd13778}{Angle\+Axis}} ()
+\item 
+{\footnotesize template$<$typename Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_angle_axis_aabac8ee9d467696cddcca18f788a850d}{Angle\+Axis}} (const \mbox{\hyperlink{class_eigen_1_1_angle_axis_acd9b10692d7d726b28670e4d3a282fe8}{Scalar}} \&\mbox{\hyperlink{class_eigen_1_1_angle_axis_a83d3c08a73c111550b7e480d3ed043d4}{angle}}, const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived $>$ \&\mbox{\hyperlink{class_eigen_1_1_angle_axis_ae40cc36c8dcd9977e1540d91a80696bb}{axis}})
+\item 
+{\footnotesize template$<$typename Quat\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_angle_axis_a7a77dfb51ed0877a144d935102866542}{Angle\+Axis}} (const \mbox{\hyperlink{class_eigen_1_1_quaternion_base}{Quaternion\+Base}}$<$ Quat\+Derived $>$ \&q)
+\item 
+{\footnotesize template$<$typename Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_angle_axis_aee190c75d9bd91d9148447821635e23d}{Angle\+Axis}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived $>$ \&m)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_angle_axis_acd9b10692d7d726b28670e4d3a282fe8}{Scalar}} \mbox{\hyperlink{class_eigen_1_1_angle_axis_a83d3c08a73c111550b7e480d3ed043d4}{angle}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_angle_axis_acd9b10692d7d726b28670e4d3a282fe8}{Scalar}} \& \mbox{\hyperlink{class_eigen_1_1_angle_axis_aff92498ed4ede5ce8978ca330efd7c4f}{angle}} ()
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector3}} \& \mbox{\hyperlink{class_eigen_1_1_angle_axis_ae40cc36c8dcd9977e1540d91a80696bb}{axis}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector3}} \& \mbox{\hyperlink{class_eigen_1_1_angle_axis_afa1d16eb73d70be903a68955ffb4c324}{axis}} ()
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion\+Type}} \mbox{\hyperlink{class_eigen_1_1_angle_axis_a7eeacfc82c898c9997814abf56b12613}{operator $\ast$}} (const \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}} \&other) const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion\+Type}} \mbox{\hyperlink{class_eigen_1_1_angle_axis_a44daf2b0465ad2a69cf6c6aa40354be2}{operator $\ast$}} (const \mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion\+Type}} \&other) const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}} \mbox{\hyperlink{class_eigen_1_1_angle_axis_a915c92f43b1a6103762d0d0d059748fb}{inverse}} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_angle_axis_af9b630081a731290c3b14b3b71b3cce2}\label{class_eigen_1_1_angle_axis_af9b630081a731290c3b14b3b71b3cce2}} 
+{\footnotesize template$<$class Quat\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_quaternion_base}{Quaternion\+Base}}$<$ Quat\+Derived $>$ \&q)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_angle_axis_afca2ee63e1f888914099472f56eb5dd6}\label{class_eigen_1_1_angle_axis_afca2ee63e1f888914099472f56eb5dd6}} 
+{\footnotesize template$<$typename Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived $>$ \&m)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_angle_axis_aafb0695f29ee7f189acdf545c169f288}\label{class_eigen_1_1_angle_axis_aafb0695f29ee7f189acdf545c169f288}} 
+{\footnotesize template$<$typename Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}} \& {\bfseries from\+Rotation\+Matrix} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived $>$ \&m)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix3}} \mbox{\hyperlink{class_eigen_1_1_angle_axis_a750ae6694e576bc6c49b635b56ef5306}{to\+Rotation\+Matrix}} (void) const
+\item 
+{\footnotesize template$<$typename New\+Scalar\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1cast__return__type}{internal\+::cast\+\_\+return\+\_\+type}}$<$ \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}}, \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}}$<$ New\+Scalar\+Type $>$ $>$\+::type \mbox{\hyperlink{class_eigen_1_1_angle_axis_a4baeb843025af6b4ce76e9a29cc08988}{cast}} () const
+\item 
+{\footnotesize template$<$typename Other\+Scalar\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_angle_axis_a5cc9091af03beb618eb16ee5f910f067}{Angle\+Axis}} (const \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}}$<$ Other\+Scalar\+Type $>$ \&other)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC bool \mbox{\hyperlink{class_eigen_1_1_angle_axis_a3f219c579dbdce81add9299b8d3938ae}{is\+Approx}} (const \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}} \&other, const typename \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_angle_axis_acd9b10692d7d726b28670e4d3a282fe8}{Scalar}} $>$\+::Real \&prec=\mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_angle_axis_acd9b10692d7d726b28670e4d3a282fe8}{Scalar}} $>$\+::dummy\+\_\+precision()) const
+\item 
+{\footnotesize template$<$typename Quat\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}}$<$ \mbox{\hyperlink{class_eigen_1_1_angle_axis_acd9b10692d7d726b28670e4d3a282fe8}{Scalar}} $>$ \& \mbox{\hyperlink{class_eigen_1_1_angle_axis_aff838a6d260ae70bd7b8ff452dfbdfb6}{operator=}} (const \mbox{\hyperlink{class_eigen_1_1_quaternion_base}{Quaternion\+Base}}$<$ Quat\+Derived $>$ \&q)
+\item 
+{\footnotesize template$<$typename Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}}$<$ \mbox{\hyperlink{class_eigen_1_1_angle_axis_acd9b10692d7d726b28670e4d3a282fe8}{Scalar}} $>$ \& \mbox{\hyperlink{class_eigen_1_1_angle_axis_ad37b53edddcbd45437999ce9e465ab90}{operator=}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived $>$ \&mat)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_angle_axis_a1b8990c0cca381b5787644c87073fe70}\label{class_eigen_1_1_angle_axis_a1b8990c0cca381b5787644c87073fe70}} 
+{\footnotesize template$<$typename Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}}$<$ \mbox{\hyperlink{class_eigen_1_1_angle_axis_acd9b10692d7d726b28670e4d3a282fe8}{Scalar}} $>$ \& \mbox{\hyperlink{class_eigen_1_1_angle_axis_a1b8990c0cca381b5787644c87073fe70}{from\+Rotation\+Matrix}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived $>$ \&mat)
+\begin{DoxyCompactList}\small\item\em Sets {\ttfamily $\ast$this} from a 3x3 rotation matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_angle_axis_a8adfaaace46b8c174257c5f791fdbf36}\label{class_eigen_1_1_angle_axis_a8adfaaace46b8c174257c5f791fdbf36}} 
+static E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}} {\bfseries Identity} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_angle_axis_a3e90efdbc2cd9003aeb01eb4fdd5533d}\label{class_eigen_1_1_angle_axis_a3e90efdbc2cd9003aeb01eb4fdd5533d}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Vector3}} {\bfseries m\+\_\+axis}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_angle_axis_af5ec2ec29583a78e217ca0db445a2728}\label{class_eigen_1_1_angle_axis_af5ec2ec29583a78e217ca0db445a2728}} 
+\mbox{\hyperlink{class_eigen_1_1_angle_axis_acd9b10692d7d726b28670e4d3a282fe8}{Scalar}} {\bfseries m\+\_\+angle}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion\+Type}} \mbox{\hyperlink{class_eigen_1_1_angle_axis_a1412c320ba2c12c3cd3746f796d1dc11}{operator $\ast$}} (const \mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion\+Type}} \&a, const \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}} \&b)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar$>$\newline
+class Eigen\+::\+Angle\+Axis$<$ \+\_\+\+Scalar $>$}
+
+Represents a 3D rotation as a rotation angle around an arbitrary 3D axis. 
+
+\textbackslash{}geometry\+\_\+module
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+Scalar} & the scalar type, i.\+e., the type of the coefficients.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+When setting up an \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}} object, the axis vector {\bfseries{must}} {\bfseries{be}} {\bfseries{normalized}}.
+\end{DoxyWarning}
+The following two typedefs are provided for convenience\+: \begin{DoxyItemize}
+\item {\ttfamily Angle\+Axisf} for {\ttfamily float} \item {\ttfamily Angle\+Axisd} for {\ttfamily double} \end{DoxyItemize}
+Combined with \mbox{\hyperlink{class_eigen_1_1_matrix_base_a1f39dde25807c1f008aa874e690b3fed}{Matrix\+Base\+::\+Unit}}\{X,Y,Z\}, \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}} can be used to easily mimic Euler-\/angles. Here is an example\+: 
+\begin{DoxyCodeInclude}{0}
+\end{DoxyCodeInclude}
+ Output\+: 
+\begin{DoxyVerbInclude}
+\end{DoxyVerbInclude}
+
+
+\begin{DoxyNote}{Note}
+This class is not aimed to be used to store a rotation transformation, but rather to make easier the creation of other rotation (\mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion}}, rotation \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}) and transformation objects.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+class \mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion}}, class \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}, \mbox{\hyperlink{class_eigen_1_1_matrix_base_ac12aa899494685551e11f238836ee600}{Matrix\+Base\+::\+Unit\+X()}} 
+\end{DoxySeeAlso}
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_angle_axis_acd9b10692d7d726b28670e4d3a282fe8}\label{class_eigen_1_1_angle_axis_acd9b10692d7d726b28670e4d3a282fe8}} 
+\index{Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}}
+\subsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+typedef \+\_\+\+Scalar \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Eigen\+::\+Angle\+Axis}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_eigen_1_1_angle_axis_acd9b10692d7d726b28670e4d3a282fe8}{Scalar}}}
+
+the scalar type of the coefficients 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_angle_axis_a400d37afcd998d1ee348d37b8bd13778}\label{class_eigen_1_1_angle_axis_a400d37afcd998d1ee348d37b8bd13778}} 
+\index{Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}!AngleAxis@{AngleAxis}}
+\index{AngleAxis@{AngleAxis}!Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}}
+\subsubsection{\texorpdfstring{AngleAxis()}{AngleAxis()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Eigen\+::\+Angle\+Axis}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default constructor without initialization. \mbox{\Hypertarget{class_eigen_1_1_angle_axis_aabac8ee9d467696cddcca18f788a850d}\label{class_eigen_1_1_angle_axis_aabac8ee9d467696cddcca18f788a850d}} 
+\index{Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}!AngleAxis@{AngleAxis}}
+\index{AngleAxis@{AngleAxis}!Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}}
+\subsubsection{\texorpdfstring{AngleAxis()}{AngleAxis()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+template$<$typename Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Eigen\+::\+Angle\+Axis}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_angle_axis_acd9b10692d7d726b28670e4d3a282fe8}{Scalar}} \&}]{angle,  }\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived $>$ \&}]{axis }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructs and initialize the angle-\/axis rotation from an {\itshape angle} in radian and an {\itshape axis} which {\bfseries{must}} {\bfseries{be}} {\bfseries{normalized}}.
+
+\begin{DoxyWarning}{Warning}
+If the {\itshape axis} vector is not normalized, then the angle-\/axis object represents an invalid rotation. 
+\end{DoxyWarning}
+\mbox{\Hypertarget{class_eigen_1_1_angle_axis_a7a77dfb51ed0877a144d935102866542}\label{class_eigen_1_1_angle_axis_a7a77dfb51ed0877a144d935102866542}} 
+\index{Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}!AngleAxis@{AngleAxis}}
+\index{AngleAxis@{AngleAxis}!Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}}
+\subsubsection{\texorpdfstring{AngleAxis()}{AngleAxis()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+template$<$typename Quat\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Eigen\+::\+Angle\+Axis}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_quaternion_base}{Quaternion\+Base}}$<$ Quat\+Derived $>$ \&}]{q }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Constructs and initialize the angle-\/axis rotation from a quaternion {\itshape q}. This function implicitly normalizes the quaternion {\itshape q}. \mbox{\Hypertarget{class_eigen_1_1_angle_axis_aee190c75d9bd91d9148447821635e23d}\label{class_eigen_1_1_angle_axis_aee190c75d9bd91d9148447821635e23d}} 
+\index{Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}!AngleAxis@{AngleAxis}}
+\index{AngleAxis@{AngleAxis}!Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}}
+\subsubsection{\texorpdfstring{AngleAxis()}{AngleAxis()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+template$<$typename Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Eigen\+::\+Angle\+Axis}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived $>$ \&}]{m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Constructs and initialize the angle-\/axis rotation from a 3x3 rotation matrix. \mbox{\Hypertarget{class_eigen_1_1_angle_axis_a5cc9091af03beb618eb16ee5f910f067}\label{class_eigen_1_1_angle_axis_a5cc9091af03beb618eb16ee5f910f067}} 
+\index{Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}!AngleAxis@{AngleAxis}}
+\index{AngleAxis@{AngleAxis}!Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}}
+\subsubsection{\texorpdfstring{AngleAxis()}{AngleAxis()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+template$<$typename Other\+Scalar\+Type $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Eigen\+::\+Angle\+Axis}}$<$ \+\_\+\+Scalar $>$\+::\mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}}$<$ Other\+Scalar\+Type $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Copy constructor with scalar type conversion 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_angle_axis_a83d3c08a73c111550b7e480d3ed043d4}\label{class_eigen_1_1_angle_axis_a83d3c08a73c111550b7e480d3ed043d4}} 
+\index{Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}!angle@{angle}}
+\index{angle@{angle}!Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}}
+\subsubsection{\texorpdfstring{angle()}{angle()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_angle_axis_acd9b10692d7d726b28670e4d3a282fe8}{Scalar}} \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Eigen\+::\+Angle\+Axis}}$<$ \+\_\+\+Scalar $>$\+::angle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the value of the rotation angle in radian 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_angle_axis_aff92498ed4ede5ce8978ca330efd7c4f}\label{class_eigen_1_1_angle_axis_aff92498ed4ede5ce8978ca330efd7c4f}} 
+\index{Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}!angle@{angle}}
+\index{angle@{angle}!Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}}
+\subsubsection{\texorpdfstring{angle()}{angle()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_angle_axis_acd9b10692d7d726b28670e4d3a282fe8}{Scalar}}\& \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Eigen\+::\+Angle\+Axis}}$<$ \+\_\+\+Scalar $>$\+::angle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a read-\/write reference to the stored angle in radian 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_angle_axis_ae40cc36c8dcd9977e1540d91a80696bb}\label{class_eigen_1_1_angle_axis_ae40cc36c8dcd9977e1540d91a80696bb}} 
+\index{Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}!axis@{axis}}
+\index{axis@{axis}!Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}}
+\subsubsection{\texorpdfstring{axis()}{axis()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector3}}\& \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Eigen\+::\+Angle\+Axis}}$<$ \+\_\+\+Scalar $>$\+::axis (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the rotation axis 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_angle_axis_afa1d16eb73d70be903a68955ffb4c324}\label{class_eigen_1_1_angle_axis_afa1d16eb73d70be903a68955ffb4c324}} 
+\index{Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}!axis@{axis}}
+\index{axis@{axis}!Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}}
+\subsubsection{\texorpdfstring{axis()}{axis()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector3}}\& \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Eigen\+::\+Angle\+Axis}}$<$ \+\_\+\+Scalar $>$\+::axis (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a read-\/write reference to the stored rotation axis.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+The rotation axis must remain a {\bfseries{unit}} vector. 
+\end{DoxyWarning}
+\mbox{\Hypertarget{class_eigen_1_1_angle_axis_a4baeb843025af6b4ce76e9a29cc08988}\label{class_eigen_1_1_angle_axis_a4baeb843025af6b4ce76e9a29cc08988}} 
+\index{Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}!cast@{cast}}
+\index{cast@{cast}!Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}}
+\subsubsection{\texorpdfstring{cast()}{cast()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+template$<$typename New\+Scalar\+Type $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1cast__return__type}{internal\+::cast\+\_\+return\+\_\+type}}$<$\mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}},\mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}}$<$New\+Scalar\+Type$>$ $>$\+::type \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Eigen\+::\+Angle\+Axis}}$<$ \+\_\+\+Scalar $>$\+::cast (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily $\ast$this} with scalar type casted to {\itshape New\+Scalar\+Type} 
+\end{DoxyReturn}
+Note that if {\itshape New\+Scalar\+Type} is equal to the current scalar type of {\ttfamily $\ast$this} then this function smartly returns a const reference to {\ttfamily $\ast$this}. \mbox{\Hypertarget{class_eigen_1_1_angle_axis_a915c92f43b1a6103762d0d0d059748fb}\label{class_eigen_1_1_angle_axis_a915c92f43b1a6103762d0d0d059748fb}} 
+\index{Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}!inverse@{inverse}}
+\index{inverse@{inverse}!Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}}
+\subsubsection{\texorpdfstring{inverse()}{inverse()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}} \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Eigen\+::\+Angle\+Axis}}$<$ \+\_\+\+Scalar $>$\+::inverse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the inverse rotation, i.\+e., an angle-\/axis with opposite rotation angle 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_angle_axis_a3f219c579dbdce81add9299b8d3938ae}\label{class_eigen_1_1_angle_axis_a3f219c579dbdce81add9299b8d3938ae}} 
+\index{Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}!isApprox@{isApprox}}
+\index{isApprox@{isApprox}!Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}}
+\subsubsection{\texorpdfstring{isApprox()}{isApprox()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC bool \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Eigen\+::\+Angle\+Axis}}$<$ \+\_\+\+Scalar $>$\+::is\+Approx (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}}$<$ \+\_\+\+Scalar $>$ \&}]{other,  }\item[{const typename \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_angle_axis_acd9b10692d7d726b28670e4d3a282fe8}{Scalar}} $>$\+::Real \&}]{prec = {\ttfamily \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$\mbox{\hyperlink{class_eigen_1_1_angle_axis_acd9b10692d7d726b28670e4d3a282fe8}{Scalar}}$>$\+:\+:dummy\+\_\+precision()} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if {\ttfamily $\ast$this} is approximately equal to {\itshape other}, within the precision determined by {\itshape prec}.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+Matrix\+Base\+::is\+Approx() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_angle_axis_a7eeacfc82c898c9997814abf56b12613}\label{class_eigen_1_1_angle_axis_a7eeacfc82c898c9997814abf56b12613}} 
+\index{Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}!operator $\ast$@{operator $\ast$}}
+\index{operator $\ast$@{operator $\ast$}!Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}}
+\subsubsection{\texorpdfstring{operator $\ast$()}{operator *()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion\+Type}} \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Eigen\+::\+Angle\+Axis}}$<$ \+\_\+\+Scalar $>$\+::operator $\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}}$<$ \+\_\+\+Scalar $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Concatenates two rotations \mbox{\Hypertarget{class_eigen_1_1_angle_axis_a44daf2b0465ad2a69cf6c6aa40354be2}\label{class_eigen_1_1_angle_axis_a44daf2b0465ad2a69cf6c6aa40354be2}} 
+\index{Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}!operator $\ast$@{operator $\ast$}}
+\index{operator $\ast$@{operator $\ast$}!Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}}
+\subsubsection{\texorpdfstring{operator $\ast$()}{operator *()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion\+Type}} \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Eigen\+::\+Angle\+Axis}}$<$ \+\_\+\+Scalar $>$\+::operator $\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion\+Type}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Concatenates two rotations \mbox{\Hypertarget{class_eigen_1_1_angle_axis_aff838a6d260ae70bd7b8ff452dfbdfb6}\label{class_eigen_1_1_angle_axis_aff838a6d260ae70bd7b8ff452dfbdfb6}} 
+\index{Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+template$<$typename Quat\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}}$<$\mbox{\hyperlink{class_eigen_1_1_angle_axis_acd9b10692d7d726b28670e4d3a282fe8}{Scalar}}$>$\& \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Eigen\+::\+Angle\+Axis}}$<$ \+\_\+\+Scalar $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_quaternion_base}{Quaternion\+Base}}$<$ Quat\+Derived $>$ \&}]{q }\end{DoxyParamCaption})}
+
+Set {\ttfamily $\ast$this} from a {\bfseries{unit}} quaternion.
+
+The resulting axis is normalized, and the computed angle is in the \mbox{[}0,pi\mbox{]} range.
+
+This function implicitly normalizes the quaternion {\itshape q}. \mbox{\Hypertarget{class_eigen_1_1_angle_axis_ad37b53edddcbd45437999ce9e465ab90}\label{class_eigen_1_1_angle_axis_ad37b53edddcbd45437999ce9e465ab90}} 
+\index{Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+template$<$typename Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}}$<$\mbox{\hyperlink{class_eigen_1_1_angle_axis_acd9b10692d7d726b28670e4d3a282fe8}{Scalar}}$>$\& \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Eigen\+::\+Angle\+Axis}}$<$ \+\_\+\+Scalar $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived $>$ \&}]{mat }\end{DoxyParamCaption})}
+
+Set {\ttfamily $\ast$this} from a 3x3 rotation matrix {\itshape mat}. \mbox{\Hypertarget{class_eigen_1_1_angle_axis_a750ae6694e576bc6c49b635b56ef5306}\label{class_eigen_1_1_angle_axis_a750ae6694e576bc6c49b635b56ef5306}} 
+\index{Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}!toRotationMatrix@{toRotationMatrix}}
+\index{toRotationMatrix@{toRotationMatrix}!Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}}
+\subsubsection{\texorpdfstring{toRotationMatrix()}{toRotationMatrix()}}
+{\footnotesize\ttfamily template$<$typename Scalar $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}}$<$ \mbox{\hyperlink{class_eigen_1_1_angle_axis_acd9b10692d7d726b28670e4d3a282fe8}{Scalar}} $>$\+::\mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix3}} E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Eigen\+::\+Angle\+Axis}}$<$ \mbox{\hyperlink{class_eigen_1_1_angle_axis_acd9b10692d7d726b28670e4d3a282fe8}{Scalar}} $>$\+::to\+Rotation\+Matrix (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+Constructs and \begin{DoxyReturn}{Returns}
+an equivalent 3x3 rotation matrix. 
+\end{DoxyReturn}
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_angle_axis_a1412c320ba2c12c3cd3746f796d1dc11}\label{class_eigen_1_1_angle_axis_a1412c320ba2c12c3cd3746f796d1dc11}} 
+\index{Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}!operator $\ast$@{operator $\ast$}}
+\index{operator $\ast$@{operator $\ast$}!Eigen::AngleAxis$<$ \_Scalar $>$@{Eigen::AngleAxis$<$ \_Scalar $>$}}
+\subsubsection{\texorpdfstring{operator $\ast$}{operator *}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion\+Type}} operator $\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion\+Type}} \&}]{a,  }\item[{const \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}}$<$ \+\_\+\+Scalar $>$ \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+Concatenates two rotations 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Core/util/Forward\+Declarations.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Geometry/Angle\+Axis.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,69 @@
+\hypertarget{classrev_1_1_view_1_1_animation_component_widget}{}\section{rev\+::View\+::Animation\+Component\+Widget Class Reference}
+\label{classrev_1_1_view_1_1_animation_component_widget}\index{rev::View::AnimationComponentWidget@{rev::View::AnimationComponentWidget}}
+
+
+Generic component widget that uses J\+S\+ON data to modify components.  
+
+
+
+
+{\ttfamily \#include $<$G\+Animation\+Component\+Widget.\+h$>$}
+
+Inheritance diagram for rev\+::View\+::Animation\+Component\+Widget\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.177305cm]{classrev_1_1_view_1_1_animation_component_widget}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_component_widget_a16069933a62f681ba91682f8e1955c6c}\label{classrev_1_1_view_1_1_animation_component_widget_a16069933a62f681ba91682f8e1955c6c}} 
+{\bfseries Animation\+Component\+Widget} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, \mbox{\hyperlink{classrev_1_1_component}{Component}} $\ast$component, Q\+Widget $\ast$parent=0)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_component_widget_a3f6a202e0357f8d9683a72114c866b5c}\label{classrev_1_1_view_1_1_animation_component_widget_a3f6a202e0357f8d9683a72114c866b5c}} 
+{\bfseries $\sim$\+Animation\+Component\+Widget} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Private Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_component_widget_af461e2f5787e78aecd97f74c326c0d67}\label{classrev_1_1_view_1_1_animation_component_widget_af461e2f5787e78aecd97f74c326c0d67}} 
+\mbox{\hyperlink{classrev_1_1_bone_animation_component}{Bone\+Animation\+Component}} $\ast$ {\bfseries animation\+Component} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_component_widget_ac07c3e8ffbd7c5937c1a606cea4c0bc8}\label{classrev_1_1_view_1_1_animation_component_widget_ac07c3e8ffbd7c5937c1a606cea4c0bc8}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_animation_component_widget_ac07c3e8ffbd7c5937c1a606cea4c0bc8}{initialize\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to check\+Validity widgets. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_component_widget_a8cd3927485e1ae7fa3a2b7970dac4989}\label{classrev_1_1_view_1_1_animation_component_widget_a8cd3927485e1ae7fa3a2b7970dac4989}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_animation_component_widget_a8cd3927485e1ae7fa3a2b7970dac4989}{initialize\+Connections}} () override
+\begin{DoxyCompactList}\small\item\em Methods to check\+Validity connections for this widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_component_widget_aa41cfb47f8cdfe28bdc6b64d8cf21f99}\label{classrev_1_1_view_1_1_animation_component_widget_aa41cfb47f8cdfe28bdc6b64d8cf21f99}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_animation_component_widget_aa41cfb47f8cdfe28bdc6b64d8cf21f99}{layout\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to ay out widgets. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_component_widget_adf14eb9b78a20b9e522ee9e490b7cc2f}\label{classrev_1_1_view_1_1_animation_component_widget_adf14eb9b78a20b9e522ee9e490b7cc2f}} 
+void {\bfseries repopulate\+State\+Machine\+List} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Private Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_component_widget_af806e1793ee00856616c0cfa2a09180f}\label{classrev_1_1_view_1_1_animation_component_widget_af806e1793ee00856616c0cfa2a09180f}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_editable_combo_box}{Editable\+Combo\+Box}} $\ast$ {\bfseries m\+\_\+state\+Machine\+Select}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_component_widget_ac6e221d10ce5048a719e88e875247715}\label{classrev_1_1_view_1_1_animation_component_widget_ac6e221d10ce5048a719e88e875247715}} 
+Q\+Push\+Button $\ast$ {\bfseries m\+\_\+launch\+Graph\+Button}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Generic component widget that uses J\+S\+ON data to modify components. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/components/G\+Animation\+Component\+Widget.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/components/G\+Animation\+Component\+Widget.\+cpp\end{DoxyCompactItemize}

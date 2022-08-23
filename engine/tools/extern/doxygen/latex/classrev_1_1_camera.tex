@@ -1,0 +1,416 @@
+\hypertarget{classrev_1_1_camera}{}\section{rev\+::Camera Class Reference}
+\label{classrev_1_1_camera}\index{rev::Camera@{rev::Camera}}
+
+
+Base camera class.  
+
+
+
+
+{\ttfamily \#include $<$G\+Camera.\+h$>$}
+
+Inheritance diagram for rev\+::Camera\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classrev_1_1_camera}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_a874590498d4368c390414ce16d6e1eee}\label{classrev_1_1_camera_a874590498d4368c390414ce16d6e1eee}} 
+{\bfseries Camera} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_a114ca6768e27205d3e0edf1d6bef1796}\label{classrev_1_1_camera_a114ca6768e27205d3e0edf1d6bef1796}} 
+{\bfseries Camera} (const \mbox{\hyperlink{classrev_1_1_camera}{Camera}} \&other)
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_a14e74afb4ae372216d9a43c61107b8ca}\label{classrev_1_1_camera_a14e74afb4ae372216d9a43c61107b8ca}} 
+{\bfseries Camera} (\mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$\mbox{\hyperlink{classrev_1_1_camera_a8d8ebfe2a7d4538910bc3d5ff934a52b}{transform}}, Q\+Open\+G\+L\+Context $\ast$gl\+Context, Aliasing\+Type frame\+Buffer\+Format=Aliasing\+Type\+::k\+M\+S\+AA, Frame\+Buffer\+::\+Buffer\+Attachment\+Type framebuffer\+Storage\+Type=Frame\+Buffer\+::\+Buffer\+Attachment\+Type\+::k\+R\+BO, uint32\+\_\+t num\+Samples=16, uint32\+\_\+t num\+Color\+Attachments=1)
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_aa32de82ce93147f40725eb38196a32ed}\label{classrev_1_1_camera_aa32de82ce93147f40725eb38196a32ed}} 
+virtual {\bfseries $\sim$\+Camera} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Operators}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_a59231cc2443861f226c3216852cfc8bd}\label{classrev_1_1_camera_a59231cc2443861f226c3216852cfc8bd}} 
+\mbox{\hyperlink{classrev_1_1_camera}{Camera}} \& {\bfseries operator=} (const \mbox{\hyperlink{classrev_1_1_camera}{Camera}} \&other)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_a7c20df11693397f984308bdb14163764}\label{classrev_1_1_camera_a7c20df11693397f984308bdb14163764}} 
+\mbox{\hyperlink{classrev_1_1_mouse_picker}{Mouse\+Picker}} \& {\bfseries mouse\+Picker} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_a6248b4c21c2ad239d23f6910a294d62f}\label{classrev_1_1_camera_a6248b4c21c2ad239d23f6910a294d62f}} 
+\mbox{\hyperlink{classrev_1_1_color}{Color}} \& {\bfseries clear\+Color} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_a83318e2ca8d87019114a483b6d987769}\label{classrev_1_1_camera_a83318e2ca8d87019114a483b6d987769}} 
+virtual Camera\+Type {\bfseries camera\+Type} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_afc7ce1c13f50a84a2d858913a65b4cd8}\label{classrev_1_1_camera_afc7ce1c13f50a84a2d858913a65b4cd8}} 
+virtual const \mbox{\hyperlink{classrev_1_1_colliding_geometry}{Colliding\+Geometry}} \& \mbox{\hyperlink{classrev_1_1_camera_afc7ce1c13f50a84a2d858913a65b4cd8}{frustum}} () const override
+\begin{DoxyCompactList}\small\item\em The view frustum for the camera. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classrev_1_1_frame_buffer_queue}{Ping\+Pong\+Frame\+Buffers}} \& \mbox{\hyperlink{classrev_1_1_camera_aa594d44b9d0e70e9bf806477ed6ed962}{frame\+Buffers}} ()
+\begin{DoxyCompactList}\small\item\em The framebuffers that this camera renders onto. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_ac8a2ec1b6903ec99db659219a83cf435}\label{classrev_1_1_camera_ac8a2ec1b6903ec99db659219a83cf435}} 
+const \mbox{\hyperlink{classrev_1_1_frame_buffer_queue}{Ping\+Pong\+Frame\+Buffers}} \& {\bfseries frame\+Buffers} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_a1b9a615be159687459a298349e5be4c1}\label{classrev_1_1_camera_a1b9a615be159687459a298349e5be4c1}} 
+const \mbox{\hyperlink{classrev_1_1_viewport}{Viewport}} \& \mbox{\hyperlink{classrev_1_1_camera_a1b9a615be159687459a298349e5be4c1}{get\+Viewport}} () const
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_viewport}{Viewport}} settings. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_afb83e879ba2ebbee6a41d953ad45b6ce}\label{classrev_1_1_camera_afb83e879ba2ebbee6a41d953ad45b6ce}} 
+\mbox{\hyperlink{classrev_1_1_viewport}{Viewport}} \& {\bfseries viewport} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_ad639af28488d974bc4411e583b359388}\label{classrev_1_1_camera_ad639af28488d974bc4411e583b359388}} 
+\mbox{\hyperlink{classrev_1_1_render_projection}{Render\+Projection}} \& \mbox{\hyperlink{classrev_1_1_camera_ad639af28488d974bc4411e583b359388}{render\+Projection}} ()
+\begin{DoxyCompactList}\small\item\em Render projection for this camera. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_a5befd900597815578d5853a23f70a8bc}\label{classrev_1_1_camera_a5befd900597815578d5853a23f70a8bc}} 
+const \mbox{\hyperlink{classrev_1_1_render_projection}{Render\+Projection}} \& {\bfseries render\+Projection} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_a34cba1cf4bb4174763481facec72c5cd}\label{classrev_1_1_camera_a34cba1cf4bb4174763481facec72c5cd}} 
+const \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4}} \& \mbox{\hyperlink{classrev_1_1_camera_a34cba1cf4bb4174763481facec72c5cd}{get\+View\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em The view matrix for this camera. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_a10c49a9e12765fce6df4298dae685a79}\label{classrev_1_1_camera_a10c49a9e12765fce6df4298dae685a79}} 
+void {\bfseries set\+View\+Matrix} (const \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4}} \&view\+Matrix)
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_ace988d597f0cf2ffe56f09768c181b61}\label{classrev_1_1_camera_ace988d597f0cf2ffe56f09768c181b61}} 
+void {\bfseries set\+View\+Matrix} (\mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4}} \&\&view\+Matrix)
+\item 
+virtual float \mbox{\hyperlink{classrev_1_1_camera_a3b0239e64437defa4469e3b914661ffc}{get\+Depth}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&position)
+\begin{DoxyCompactList}\small\item\em Get depth of an object (world-\/space) given its position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_a69ebc868339b31834d085f7032fe4f1f}\label{classrev_1_1_camera_a69ebc868339b31834d085f7032fe4f1f}} 
+bool \mbox{\hyperlink{classrev_1_1_camera_a69ebc868339b31834d085f7032fe4f1f}{can\+See}} (const \mbox{\hyperlink{classrev_1_1_colliding_geometry}{Colliding\+Geometry}} \&geometry) const
+\begin{DoxyCompactList}\small\item\em Whether or not the camera can see the specified colliding geometry. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_aa060ecbff7313e03c77f523218b171e1}\label{classrev_1_1_camera_aa060ecbff7313e03c77f523218b171e1}} 
+virtual void \mbox{\hyperlink{classrev_1_1_camera_aa060ecbff7313e03c77f523218b171e1}{bind\+Textures}} () override
+\begin{DoxyCompactList}\small\item\em Bind any textures needed for the camera. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_a8bc1c039e43edc621ea3d9e94e2a3bb0}\label{classrev_1_1_camera_a8bc1c039e43edc621ea3d9e94e2a3bb0}} 
+virtual void \mbox{\hyperlink{classrev_1_1_camera_a8bc1c039e43edc621ea3d9e94e2a3bb0}{bind\+Frame}} (Frame\+Buffer\+::\+Bind\+Type read\+Or\+Write, bool clear) override
+\begin{DoxyCompactList}\small\item\em Bind for drawing or read. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_a46b92956755ef3c1d5800930ed93de36}\label{classrev_1_1_camera_a46b92956755ef3c1d5800930ed93de36}} 
+virtual void \mbox{\hyperlink{classrev_1_1_camera_a46b92956755ef3c1d5800930ed93de36}{release\+Frame}} (Frame\+Buffer\+::\+Bind\+Type read\+Or\+Write) override
+\begin{DoxyCompactList}\small\item\em Release from drawing. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_a65f7b476c8d304ceed5ea5b5cd240dd7}\label{classrev_1_1_camera_a65f7b476c8d304ceed5ea5b5cd240dd7}} 
+virtual void \mbox{\hyperlink{classrev_1_1_camera_a65f7b476c8d304ceed5ea5b5cd240dd7}{draw\+Frame\+Buffer\+Quad}} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core)
+\begin{DoxyCompactList}\small\item\em Render a framebuffer quad to screen. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_camera_a8d45a221dc8e228d52e6787b3f6e99eb}{widget\+To\+Frame}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector2}} \&widget\+Space, const \mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} \&renderer, real\+\_\+g \&out\+FrameX, real\+\_\+g \&out\+FrameY) const
+\begin{DoxyCompactList}\small\item\em Conversions between world and widget space. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_a2f3dad5600924021016980d3bee27050}\label{classrev_1_1_camera_a2f3dad5600924021016980d3bee27050}} 
+void \mbox{\hyperlink{classrev_1_1_camera_a2f3dad5600924021016980d3bee27050}{clip\+To\+Frame}} (real\+\_\+g clipX, real\+\_\+g clipY, real\+\_\+g \&out\+FrameX, real\+\_\+g \&out\+FrameY) const
+\begin{DoxyCompactList}\small\item\em Convert from clip space to pixel-\/coordinates in framebuffer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_camera_a202e8948c33bbba3a1d63d26f06a7b4b}{widget\+To\+Ray\+Direction}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector2}} \&widget\+Space, \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&out\+Ray\+Direction, const \mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} \&renderer) const
+\begin{DoxyCompactList}\small\item\em Screen-\/space to world space conversion. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_af3be583f0c817c5251bae6c5617b41f8}\label{classrev_1_1_camera_af3be583f0c817c5251bae6c5617b41f8}} 
+const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \& \mbox{\hyperlink{classrev_1_1_camera_af3be583f0c817c5251bae6c5617b41f8}{eye}} () const
+\begin{DoxyCompactList}\small\item\em The position of the camera in world-\/space. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_ad2a8c31e8759bdcc816719e3e63c97b6}\label{classrev_1_1_camera_ad2a8c31e8759bdcc816719e3e63c97b6}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \mbox{\hyperlink{classrev_1_1_camera_ad2a8c31e8759bdcc816719e3e63c97b6}{get\+Forward\+Vec}} () const
+\begin{DoxyCompactList}\small\item\em Get forward (Z), right (X), and up (Y) vectors for the camera. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_ab4e63b181e61c322cd2c9fcf17b07d82}\label{classrev_1_1_camera_ab4e63b181e61c322cd2c9fcf17b07d82}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} {\bfseries get\+Right\+Vec} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_a5254225acf6686a8251dadf54cb0906a}\label{classrev_1_1_camera_a5254225acf6686a8251dadf54cb0906a}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} {\bfseries get\+Up\+Vec} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_a8795d2c09cac5eaf7684b6f4bd26f4e7}\label{classrev_1_1_camera_a8795d2c09cac5eaf7684b6f4bd26f4e7}} 
+void \mbox{\hyperlink{classrev_1_1_camera_a8795d2c09cac5eaf7684b6f4bd26f4e7}{zoom}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&target, real\+\_\+g delta)
+\begin{DoxyCompactList}\small\item\em Zoom to the given target point. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_camera_a5c894cef5f6e9f7e93be757fcceff737}{pan}} (\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&target, const \mbox{\hyperlink{classrev_1_1_vector}{Vector2}} \&move\+Delta)
+\begin{DoxyCompactList}\small\item\em Pan the camera, i.\+e., move the target point by a specified delta in screen-\/space (N\+DC coordinates) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_a541ef0df376f1ec5b892bb8c26959149}\label{classrev_1_1_camera_a541ef0df376f1ec5b892bb8c26959149}} 
+void \mbox{\hyperlink{classrev_1_1_camera_a541ef0df376f1ec5b892bb8c26959149}{tilt}} (\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&target, const \mbox{\hyperlink{classrev_1_1_vector}{Vector2}} \&move\+Delta)
+\begin{DoxyCompactList}\small\item\em Tilts the camera, i.\+e., rotates on its own body axis. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_camera_a82e1f7d37a5a13ebd824c296979ac736}{translate}} (\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&target, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&move\+Delta, real\+\_\+g speed\+Factor=real\+\_\+g(1.\+0))
+\begin{DoxyCompactList}\small\item\em Translate the camera, given a change in screen-\/space (N\+DC coordinates) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_a8818fa599abae940e6eee19fd52b994f}\label{classrev_1_1_camera_a8818fa599abae940e6eee19fd52b994f}} 
+void \mbox{\hyperlink{classrev_1_1_camera_a8818fa599abae940e6eee19fd52b994f}{rotate\+About\+Point}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&target, const \mbox{\hyperlink{classrev_1_1_vector}{Vector2}} \&mouse\+Delta, real\+\_\+g speed\+Factor=real\+\_\+g(1.\+0))
+\begin{DoxyCompactList}\small\item\em Rotate about a target point, given a screen-\/space mouse change in positiion. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_camera_a64f10bf208e61d9750caa1aecca5a4fa}{set\+Look\+At}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&\mbox{\hyperlink{classrev_1_1_camera_af3be583f0c817c5251bae6c5617b41f8}{eye}}, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&target, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&up)
+\begin{DoxyCompactList}\small\item\em rotate the camera about an axis \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_ab802c3a14ed9f90b621d9c25896331cf}\label{classrev_1_1_camera_ab802c3a14ed9f90b621d9c25896331cf}} 
+void \mbox{\hyperlink{classrev_1_1_camera_ab802c3a14ed9f90b621d9c25896331cf}{set\+G\+L\+Viewport}} ()
+\begin{DoxyCompactList}\small\item\em Set viewport in GL. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classrev_1_1_camera_a38127b7e39468bb9116f3bcc3b3bcb1f}{resize\+Frame}} (uint32\+\_\+t width, uint32\+\_\+t height)
+\begin{DoxyCompactList}\small\item\em Resize the camera\textquotesingle{}s framebuffer to accomodate the given width and height. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classrev_1_1_camera_aacdb899dc9745568b6c45240fd114e7d}{bind\+Uniforms}} (const \mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} $\ast$renderer, \mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$shader\+Program=nullptr) override
+\begin{DoxyCompactList}\small\item\em Set uniforms related to the camera. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_acd1e9013d25142554e044b547fb7b79f}\label{classrev_1_1_camera_acd1e9013d25142554e044b547fb7b79f}} 
+virtual void \mbox{\hyperlink{classrev_1_1_camera_acd1e9013d25142554e044b547fb7b79f}{bind\+Buffers}} ()
+\begin{DoxyCompactList}\small\item\em Bind any buffers associated with the camera. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_a40f73fbbc0852f553b3101126a47ae80}\label{classrev_1_1_camera_a40f73fbbc0852f553b3101126a47ae80}} 
+virtual void \mbox{\hyperlink{classrev_1_1_camera_a40f73fbbc0852f553b3101126a47ae80}{update\+Frustum}} (Camera\+Update\+Flags flags) override
+\begin{DoxyCompactList}\small\item\em Updates the frustum with the latest view/projection matrices from the camera. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_a756b9bbd69a59f1de3b247c3f6520667}\label{classrev_1_1_camera_a756b9bbd69a59f1de3b247c3f6520667}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_camera_a756b9bbd69a59f1de3b247c3f6520667}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_a652d49bd03f3465045b7cd92ec36106d}\label{classrev_1_1_camera_a652d49bd03f3465045b7cd92ec36106d}} 
+virtual void \mbox{\hyperlink{classrev_1_1_camera_a652d49bd03f3465045b7cd92ec36106d}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_camera_afce9a32f0fcc9e0851d73aa37441c815}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_camera_afd16ba4c2ca04aa0a4945c9aca16606d}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} \mbox{\hyperlink{classrev_1_1_camera_ad9413f1b412112c657cb6e58f7fed60f}{Look\+At\+RH}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&\mbox{\hyperlink{classrev_1_1_camera_af3be583f0c817c5251bae6c5617b41f8}{eye}}, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&target, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&up)
+\begin{DoxyCompactList}\small\item\em Calculate look-\/at matrix given the eye, target, and up vectors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_a8d8ebfe2a7d4538910bc3d5ff934a52b}\label{classrev_1_1_camera_a8d8ebfe2a7d4538910bc3d5ff934a52b}} 
+\mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$ \mbox{\hyperlink{classrev_1_1_camera_a8d8ebfe2a7d4538910bc3d5ff934a52b}{transform}} () const
+\begin{DoxyCompactList}\small\item\em Gets the transform of this camera. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_a2c9f30ef5098a73959e880d20c04404c}\label{classrev_1_1_camera_a2c9f30ef5098a73959e880d20c04404c}} 
+void \mbox{\hyperlink{classrev_1_1_camera_a2c9f30ef5098a73959e880d20c04404c}{update\+Transform}} ()
+\begin{DoxyCompactList}\small\item\em Update the transform to reflect this camera\textquotesingle{}s view matrix. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_a7f2c034ec0c8a21a339c974535c57869}\label{classrev_1_1_camera_a7f2c034ec0c8a21a339c974535c57869}} 
+void \mbox{\hyperlink{classrev_1_1_camera_a7f2c034ec0c8a21a339c974535c57869}{update\+View\+Matrix}} (const \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4}} \&world\+Matrix)
+\begin{DoxyCompactList}\small\item\em compute view matrix and frustum given a world matrix \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_a042ea5c20c27a3b2296723ea218f638b}\label{classrev_1_1_camera_a042ea5c20c27a3b2296723ea218f638b}} 
+\mbox{\hyperlink{classrev_1_1_mouse_picker}{Mouse\+Picker}} \mbox{\hyperlink{classrev_1_1_camera_a042ea5c20c27a3b2296723ea218f638b}{m\+\_\+mouse\+Picker}}
+\begin{DoxyCompactList}\small\item\em The mousepicker for the camera. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_aaaba434a7536357ef729e4685a0822fe}\label{classrev_1_1_camera_aaaba434a7536357ef729e4685a0822fe}} 
+\mbox{\hyperlink{classrev_1_1_color}{Color}} \mbox{\hyperlink{classrev_1_1_camera_aaaba434a7536357ef729e4685a0822fe}{m\+\_\+clear\+Color}}
+\begin{DoxyCompactList}\small\item\em The color to fill the background of the camera when there are no objects occluding it. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_a4db8d6afbe06d0a971a802c945212865}\label{classrev_1_1_camera_a4db8d6afbe06d0a971a802c945212865}} 
+\mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$ \mbox{\hyperlink{classrev_1_1_camera_a4db8d6afbe06d0a971a802c945212865}{m\+\_\+transform}}
+\begin{DoxyCompactList}\small\item\em The transform of the camera. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_a54a7b1364770ed20f8572f005a0fe186}\label{classrev_1_1_camera_a54a7b1364770ed20f8572f005a0fe186}} 
+\mbox{\hyperlink{classrev_1_1_frame_buffer_queue}{Ping\+Pong\+Frame\+Buffers}} \mbox{\hyperlink{classrev_1_1_camera_a54a7b1364770ed20f8572f005a0fe186}{m\+\_\+frame\+Buffers}}
+\begin{DoxyCompactList}\small\item\em The framebuffers that this camera renders onto. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classrev_1_1_viewport}{Viewport}} \mbox{\hyperlink{classrev_1_1_camera_abfe972729c47b714bd17bb8495440510}{m\+\_\+viewport}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_viewport}{Viewport}} settings. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_ae4b130d87e1c77acf6b4ee09982346e1}\label{classrev_1_1_camera_ae4b130d87e1c77acf6b4ee09982346e1}} 
+\mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4}} \mbox{\hyperlink{classrev_1_1_camera_ae4b130d87e1c77acf6b4ee09982346e1}{m\+\_\+view\+Matrix}}
+\begin{DoxyCompactList}\small\item\em View matrix (64 bytes) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classrev_1_1_render_projection}{Render\+Projection}} \mbox{\hyperlink{classrev_1_1_camera_ac0ef896bd514bc8659ab7f18183492f5}{m\+\_\+render\+Projection}}
+\begin{DoxyCompactList}\small\item\em Holds information about projection. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_camera_ae8d1d32204b3cabd0770d167a79ae658}\label{classrev_1_1_camera_ae8d1d32204b3cabd0770d167a79ae658}} 
+\mbox{\hyperlink{classrev_1_1_frustum}{Frustum}} \mbox{\hyperlink{classrev_1_1_camera_ae8d1d32204b3cabd0770d167a79ae658}{m\+\_\+frustum}}
+\begin{DoxyCompactList}\small\item\em The view frustum for the camera. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_af851b4d9aacd1a871da33592334b8d72}\label{classrev_1_1_camera_af851b4d9aacd1a871da33592334b8d72}} 
+class {\bfseries Transform}
+\item 
+\mbox{\Hypertarget{classrev_1_1_camera_a0edcec9985d6a3f36e57ef258b49815c}\label{classrev_1_1_camera_a0edcec9985d6a3f36e57ef258b49815c}} 
+class {\bfseries Transform\+Component}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Base camera class. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_camera_aacdb899dc9745568b6c45240fd114e7d}\label{classrev_1_1_camera_aacdb899dc9745568b6c45240fd114e7d}} 
+\index{rev::Camera@{rev::Camera}!bindUniforms@{bindUniforms}}
+\index{bindUniforms@{bindUniforms}!rev::Camera@{rev::Camera}}
+\subsubsection{\texorpdfstring{bindUniforms()}{bindUniforms()}}
+{\footnotesize\ttfamily void rev\+::\+Camera\+::bind\+Uniforms (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} $\ast$}]{renderer,  }\item[{\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$}]{shader\+Program = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Set uniforms related to the camera. 
+
+e.\+g. View matrix, projection matrix, etc. 
+
+Implements \mbox{\hyperlink{classrev_1_1_abstract_camera_a6dceba3b328d5e9c3543975e3ae370c0}{rev\+::\+Abstract\+Camera}}.
+
+\mbox{\Hypertarget{classrev_1_1_camera_afce9a32f0fcc9e0851d73aa37441c815}\label{classrev_1_1_camera_afce9a32f0fcc9e0851d73aa37441c815}} 
+\index{rev::Camera@{rev::Camera}!className@{className}}
+\index{className@{className}!rev::Camera@{rev::Camera}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Camera\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_scene_camera_a4fd93186927c55d2c4d48ebf941e248d}{rev\+::\+Scene\+Camera}}.
+
+\mbox{\Hypertarget{classrev_1_1_camera_aa594d44b9d0e70e9bf806477ed6ed962}\label{classrev_1_1_camera_aa594d44b9d0e70e9bf806477ed6ed962}} 
+\index{rev::Camera@{rev::Camera}!frameBuffers@{frameBuffers}}
+\index{frameBuffers@{frameBuffers}!rev::Camera@{rev::Camera}}
+\subsubsection{\texorpdfstring{frameBuffers()}{frameBuffers()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_frame_buffer_queue}{Ping\+Pong\+Frame\+Buffers}}\& rev\+::\+Camera\+::frame\+Buffers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The framebuffers that this camera renders onto. 
+
+The queue manages which framebuffers are for read/write every frame \mbox{\Hypertarget{classrev_1_1_camera_a3b0239e64437defa4469e3b914661ffc}\label{classrev_1_1_camera_a3b0239e64437defa4469e3b914661ffc}} 
+\index{rev::Camera@{rev::Camera}!getDepth@{getDepth}}
+\index{getDepth@{getDepth}!rev::Camera@{rev::Camera}}
+\subsubsection{\texorpdfstring{getDepth()}{getDepth()}}
+{\footnotesize\ttfamily float rev\+::\+Camera\+::get\+Depth (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Get depth of an object (world-\/space) given its position. 
+
+Positive is behind camera 
+
+Implements \mbox{\hyperlink{classrev_1_1_abstract_camera_aad3a00ed805121a7915574b4125a343f}{rev\+::\+Abstract\+Camera}}.
+
+\mbox{\Hypertarget{classrev_1_1_camera_ad9413f1b412112c657cb6e58f7fed60f}\label{classrev_1_1_camera_ad9413f1b412112c657cb6e58f7fed60f}} 
+\index{rev::Camera@{rev::Camera}!LookAtRH@{LookAtRH}}
+\index{LookAtRH@{LookAtRH}!rev::Camera@{rev::Camera}}
+\subsubsection{\texorpdfstring{LookAtRH()}{LookAtRH()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} rev\+::\+Camera\+::\+Look\+At\+RH (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{eye,  }\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{target,  }\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{up }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Calculate look-\/at matrix given the eye, target, and up vectors. 
+
+Eye is the camera position, target is the point being aimed at, and up is analogous to the vector from your eyes to the top of your head See\+: \href{https://www.3dgep.com/understanding-the-view-matrix/}{\texttt{ https\+://www.\+3dgep.\+com/understanding-\/the-\/view-\/matrix/}} \mbox{\Hypertarget{classrev_1_1_camera_afd16ba4c2ca04aa0a4945c9aca16606d}\label{classrev_1_1_camera_afd16ba4c2ca04aa0a4945c9aca16606d}} 
+\index{rev::Camera@{rev::Camera}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::Camera@{rev::Camera}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Camera\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_scene_camera_a8d2a68f15a75323bd1d9a5d96c7a09bc}{rev\+::\+Scene\+Camera}}.
+
+\mbox{\Hypertarget{classrev_1_1_camera_a5c894cef5f6e9f7e93be757fcceff737}\label{classrev_1_1_camera_a5c894cef5f6e9f7e93be757fcceff737}} 
+\index{rev::Camera@{rev::Camera}!pan@{pan}}
+\index{pan@{pan}!rev::Camera@{rev::Camera}}
+\subsubsection{\texorpdfstring{pan()}{pan()}}
+{\footnotesize\ttfamily void rev\+::\+Camera\+::pan (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{target,  }\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector2}} \&}]{move\+Delta }\end{DoxyParamCaption})}
+
+
+
+Pan the camera, i.\+e., move the target point by a specified delta in screen-\/space (N\+DC coordinates) 
+
+Note that the specified target will change as a result of this operation \mbox{\Hypertarget{classrev_1_1_camera_a38127b7e39468bb9116f3bcc3b3bcb1f}\label{classrev_1_1_camera_a38127b7e39468bb9116f3bcc3b3bcb1f}} 
+\index{rev::Camera@{rev::Camera}!resizeFrame@{resizeFrame}}
+\index{resizeFrame@{resizeFrame}!rev::Camera@{rev::Camera}}
+\subsubsection{\texorpdfstring{resizeFrame()}{resizeFrame()}}
+{\footnotesize\ttfamily void rev\+::\+Camera\+::resize\+Frame (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{width,  }\item[{uint32\+\_\+t}]{height }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Resize the camera\textquotesingle{}s framebuffer to accomodate the given width and height. 
+
+Width and height may be refer to either a widget or texture\textquotesingle{}s dimensions 
+
+Implements \mbox{\hyperlink{classrev_1_1_abstract_camera_aaa1843c3653515e93eecc2a255d32987}{rev\+::\+Abstract\+Camera}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_scene_camera_a2cc00ef51c784af2cdf9fe9308177c1a}{rev\+::\+Scene\+Camera}}.
+
+\mbox{\Hypertarget{classrev_1_1_camera_a64f10bf208e61d9750caa1aecca5a4fa}\label{classrev_1_1_camera_a64f10bf208e61d9750caa1aecca5a4fa}} 
+\index{rev::Camera@{rev::Camera}!setLookAt@{setLookAt}}
+\index{setLookAt@{setLookAt}!rev::Camera@{rev::Camera}}
+\subsubsection{\texorpdfstring{setLookAt()}{setLookAt()}}
+{\footnotesize\ttfamily void rev\+::\+Camera\+::set\+Look\+At (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{eye,  }\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{target,  }\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{up }\end{DoxyParamCaption})}
+
+
+
+rotate the camera about an axis 
+
+Set transform using a look-\/at matrix \mbox{\Hypertarget{classrev_1_1_camera_a82e1f7d37a5a13ebd824c296979ac736}\label{classrev_1_1_camera_a82e1f7d37a5a13ebd824c296979ac736}} 
+\index{rev::Camera@{rev::Camera}!translate@{translate}}
+\index{translate@{translate}!rev::Camera@{rev::Camera}}
+\subsubsection{\texorpdfstring{translate()}{translate()}}
+{\footnotesize\ttfamily void rev\+::\+Camera\+::translate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{target,  }\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{move\+Delta,  }\item[{real\+\_\+g}]{speed\+Factor = {\ttfamily real\+\_\+g(1.0)} }\end{DoxyParamCaption})}
+
+
+
+Translate the camera, given a change in screen-\/space (N\+DC coordinates) 
+
+Note that the specified target will change as a result of this operation \mbox{\Hypertarget{classrev_1_1_camera_a8d45a221dc8e228d52e6787b3f6e99eb}\label{classrev_1_1_camera_a8d45a221dc8e228d52e6787b3f6e99eb}} 
+\index{rev::Camera@{rev::Camera}!widgetToFrame@{widgetToFrame}}
+\index{widgetToFrame@{widgetToFrame}!rev::Camera@{rev::Camera}}
+\subsubsection{\texorpdfstring{widgetToFrame()}{widgetToFrame()}}
+{\footnotesize\ttfamily void rev\+::\+Camera\+::widget\+To\+Frame (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector2}} \&}]{widget\+Space,  }\item[{const \mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} \&}]{renderer,  }\item[{real\+\_\+g \&}]{out\+FrameX,  }\item[{real\+\_\+g \&}]{out\+FrameY }\end{DoxyParamCaption}) const}
+
+
+
+Conversions between world and widget space. 
+
+Convert from widget pixels to framebuffer (viewport) pixels \mbox{\Hypertarget{classrev_1_1_camera_a202e8948c33bbba3a1d63d26f06a7b4b}\label{classrev_1_1_camera_a202e8948c33bbba3a1d63d26f06a7b4b}} 
+\index{rev::Camera@{rev::Camera}!widgetToRayDirection@{widgetToRayDirection}}
+\index{widgetToRayDirection@{widgetToRayDirection}!rev::Camera@{rev::Camera}}
+\subsubsection{\texorpdfstring{widgetToRayDirection()}{widgetToRayDirection()}}
+{\footnotesize\ttfamily void rev\+::\+Camera\+::widget\+To\+Ray\+Direction (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector2}} \&}]{widget\+Space,  }\item[{\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{out\+Ray\+Direction,  }\item[{const \mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} \&}]{renderer }\end{DoxyParamCaption}) const}
+
+
+
+Screen-\/space to world space conversion. 
+
+should take in a G\+L-\/widget space mouse position (e.\+g., from widget\+Mouse\+Position of input handelr) 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_camera_ac0ef896bd514bc8659ab7f18183492f5}\label{classrev_1_1_camera_ac0ef896bd514bc8659ab7f18183492f5}} 
+\index{rev::Camera@{rev::Camera}!m\_renderProjection@{m\_renderProjection}}
+\index{m\_renderProjection@{m\_renderProjection}!rev::Camera@{rev::Camera}}
+\subsubsection{\texorpdfstring{m\_renderProjection}{m\_renderProjection}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_render_projection}{Render\+Projection}} rev\+::\+Camera\+::m\+\_\+render\+Projection\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Holds information about projection. 
+
+132 bytes in size \mbox{\Hypertarget{classrev_1_1_camera_abfe972729c47b714bd17bb8495440510}\label{classrev_1_1_camera_abfe972729c47b714bd17bb8495440510}} 
+\index{rev::Camera@{rev::Camera}!m\_viewport@{m\_viewport}}
+\index{m\_viewport@{m\_viewport}!rev::Camera@{rev::Camera}}
+\subsubsection{\texorpdfstring{m\_viewport}{m\_viewport}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_viewport}{Viewport}} rev\+::\+Camera\+::m\+\_\+viewport\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\mbox{\hyperlink{classrev_1_1_viewport}{Viewport}} settings. 
+
+36 bytes in size 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/view/G\+Camera.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/view/G\+Camera.\+cpp\end{DoxyCompactItemize}

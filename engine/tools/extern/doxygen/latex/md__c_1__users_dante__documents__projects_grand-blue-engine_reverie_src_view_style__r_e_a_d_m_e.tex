@@ -1,0 +1,112 @@
+simple Main\+Window class implementation with frameless window and custom dark style.
+
+It adds also support for titlebar and buttons (minimize, maximize, close)
+
+Look is based on the V\+S2013 application window (flat and frameless window)
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\multicolumn{2}{|l|}{\cellcolor{\tableheadbgcolor}\textbf{ Screenshots }}\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\multicolumn{2}{|l|}{\cellcolor{\tableheadbgcolor}\textbf{ Screenshots }}\\\cline{1-2}
+\endhead
+\cellcolor{\tableheadbgcolor}\textbf{ mac enabled}&\cellcolor{\tableheadbgcolor}\textbf{ mac disabled }\\\cline{1-2}
+ &  \\\cline{1-2}
+\end{longtabu}
+
+
+\subsection*{Qt and OS}
+
+
+\begin{DoxyItemize}
+\item tested with Qt5.\+5.\+0, Qt5.\+9.\+0 and Qt5.\+10.\+0
+\item tested on Windows 7, Windows 10,Mac\+O\+SX 10.\+12.\+5 and Mac\+OS 10.\+13.\+2
+\end{DoxyItemize}
+
+\subsection*{Py\+Qt5}
+
+Here is an \href{https://github.com/gmarull/qtmodern}{\texttt{ unofficial Python port}} of my implementation.
+
+\subsection*{How to use}
+
+
+\begin{DoxyItemize}
+\item add additional include plath to {\bfseries{framelesswindow}}
+\item add resources {\bfseries{framelesswindow.\+qrc}} and {\bfseries{darkstyle.\+qrc}}
+\item add {\ttfamily \#include \char`\"{}framelesswindow.\+h\char`\"{}} into {\bfseries{main.\+cpp}}, create window {\ttfamily Frameless\+Window frameless\+Window;} and assign your mainwindow object as content {\ttfamily frameless\+Window.\+set\+Content(main\+Window);} and show it {\ttfamily frameless\+Window.\+show();}
+\item add {\ttfamily \#include \char`\"{}\+Dark\+Style.\+h\char`\"{}} into {\bfseries{main.\+cpp}} and call {\ttfamily a.\+set\+Style(new Dark\+Style);}
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#include <QApplication>}
+\DoxyCodeLine{\#include "DarkStyle.h"}
+\DoxyCodeLine{\#include "framelesswindow.h"}
+\DoxyCodeLine{\#include "mainwindow.h"}
+\DoxyCodeLine{}
+\DoxyCodeLine{int main(int argc, char *argv[])}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  QApplication a(argc, argv);}
+\DoxyCodeLine{}
+\DoxyCodeLine{  // style our application with custom dark style}
+\DoxyCodeLine{  a.setStyle(new DarkStyle);}
+\DoxyCodeLine{}
+\DoxyCodeLine{  // create frameless window (and set windowState or title)}
+\DoxyCodeLine{  FramelessWindow framelessWindow;}
+\DoxyCodeLine{  //framelessWindow.setWindowState(Qt::WindowMaximized);}
+\DoxyCodeLine{  //framelessWindow.setWindowTitle("test title");}
+\DoxyCodeLine{  //framelessWindow.setWindowIcon(a.style()->standardIcon(QStyle::SP\_DesktopIcon));}
+\DoxyCodeLine{  }
+\DoxyCodeLine{  // create our mainwindow instance}
+\DoxyCodeLine{  MainWindow *mainWindow = new MainWindow;}
+\DoxyCodeLine{}
+\DoxyCodeLine{  // add the mainwindow to our custom frameless window}
+\DoxyCodeLine{  framelessWindow.setContent(mainWindow);}
+\DoxyCodeLine{  framelessWindow.show();}
+\DoxyCodeLine{}
+\DoxyCodeLine{  return a.exec();}
+\DoxyCodeLine{\}}
+\end{DoxyCode}
+
+
+\subsection*{features}
+
+
+\begin{DoxyItemize}
+\item frameless window
+\item custom dark style (based on {\bfseries{Fusion style}} with dark palette and custom stylesheets)
+\item title bar
+\item buttons (minimize $\vert$ restore $\vert$ maximize $\vert$ close)
+\item move window by drag the title bar
+\item dobule click title bar to toggle between window styte (maximize and normal)
+\item use of native events, like minimizing or system menu
+\end{DoxyItemize}
+
+\subsection*{todo}
+
+
+\begin{DoxyItemize}
+\item \mbox{[} \mbox{]} \href{https://github.com/Jorgen-VikingGod/Qt-Frameless-Window-DarkStyle/issues/1}{\texttt{ resize window on each corner \mbox{[}\#1\mbox{]}}} (some work done by \href{https://github.com/notecola}{\texttt{ notecola}} \+:+1\+:)
+\item \mbox{[} \mbox{]} \href{https://github.com/Jorgen-VikingGod/Qt-Frameless-Window-DarkStyle/issues/3}{\texttt{ snap on screen edges \mbox{[}\#3\mbox{]}}}
+\end{DoxyItemize}
+
+\subsection*{thanks}
+
+Many thanks goes to the \href{https://forum.qt.io/topic/80654/how-to-create-vs2013-like-frameless-window-with-dark-style}{\texttt{ Qt Forum}} and especially to \href{https://forum.qt.io/user/chris-kawa}{\texttt{ Chris Kawa}} for pointing me to some usual issues and hints of great must have features.
+
+\subsection*{Licence}
+
+\begin{quote}
+The M\+IT License
+
+Copyright (c) 2018, Juergen Skrotzky (\href{https://github.com/Jorgen-VikingGod,}{\texttt{ https\+://github.\+com/\+Jorgen-\/\+Viking\+God,}} \href{mailto:JorgenVikingGod@gmail.com}{\texttt{ Jorgen\+Viking\+God@gmail.\+com}})
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \char`\"{}\+Software\char`\"{}), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions\+:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+T\+HE S\+O\+F\+T\+W\+A\+RE IS P\+R\+O\+V\+I\+D\+ED \char`\"{}\+A\+S I\+S\char`\"{}, W\+I\+T\+H\+O\+UT W\+A\+R\+R\+A\+N\+TY OF A\+NY K\+I\+ND, E\+X\+P\+R\+E\+SS OR I\+M\+P\+L\+I\+ED, I\+N\+C\+L\+U\+D\+I\+NG B\+UT N\+OT L\+I\+M\+I\+T\+ED TO T\+HE W\+A\+R\+R\+A\+N\+T\+I\+ES OF M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY, F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE A\+ND N\+O\+N\+I\+N\+F\+R\+I\+N\+G\+E\+M\+E\+NT. IN NO E\+V\+E\+NT S\+H\+A\+LL T\+HE A\+U\+T\+H\+O\+RS OR C\+O\+P\+Y\+R\+I\+G\+HT H\+O\+L\+D\+E\+RS BE L\+I\+A\+B\+LE F\+OR A\+NY C\+L\+A\+IM, D\+A\+M\+A\+G\+ES OR O\+T\+H\+ER L\+I\+A\+B\+I\+L\+I\+TY, W\+H\+E\+T\+H\+ER IN AN A\+C\+T\+I\+ON OF C\+O\+N\+T\+R\+A\+CT, T\+O\+RT OR O\+T\+H\+E\+R\+W\+I\+SE, A\+R\+I\+S\+I\+NG F\+R\+OM, O\+UT OF OR IN C\+O\+N\+N\+E\+C\+T\+I\+ON W\+I\+TH T\+HE S\+O\+F\+T\+W\+A\+RE OR T\+HE U\+SE OR O\+T\+H\+ER D\+E\+A\+L\+I\+N\+GS IN T\+HE S\+O\+F\+T\+W\+A\+RE. \end{quote}

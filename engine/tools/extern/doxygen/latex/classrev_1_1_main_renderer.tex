@@ -1,0 +1,222 @@
+\hypertarget{classrev_1_1_main_renderer}{}\section{rev\+::Main\+Renderer Class Reference}
+\label{classrev_1_1_main_renderer}\index{rev::MainRenderer@{rev::MainRenderer}}
+Inheritance diagram for rev\+::Main\+Renderer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_main_renderer}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a5cda9287436376d54477ebb27a19549c}\label{classrev_1_1_main_renderer_a5cda9287436376d54477ebb27a19549c}} 
+enum {\bfseries Lighting\+Mode} \{ {\bfseries k\+Forward}, 
+{\bfseries k\+Deferred}
+ \}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a95e109bdddf87ce1ed32f7445f1c18c0}\label{classrev_1_1_main_renderer_a95e109bdddf87ce1ed32f7445f1c18c0}} 
+enum {\bfseries Lighting\+Flag} \{ {\bfseries k\+Clustered} = 1 $<$$<$ 0, 
+{\bfseries k\+Depth\+Pre\+Pass} = 1 $<$$<$ 1, 
+{\bfseries k\+Dynamic\+Shadows} = 1 $<$$<$ 2, 
+{\bfseries k\+S\+S\+AO} = 1 $<$$<$ 3
+ \}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_ab9e211d3f59b64d15e9496fc7ca48118}\label{classrev_1_1_main_renderer_ab9e211d3f59b64d15e9496fc7ca48118}} 
+{\bfseries Main\+Renderer} (\mbox{\hyperlink{classrev_1_1_core_engine}{rev\+::\+Core\+Engine}} $\ast$engine, \mbox{\hyperlink{classrev_1_1_view_1_1_g_l_widget}{View\+::\+G\+L\+Widget}} $\ast$widget)
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_ac8f2e2b420cee1c1b070f3e32e205f96}\label{classrev_1_1_main_renderer_ac8f2e2b420cee1c1b070f3e32e205f96}} 
+{\bfseries $\sim$\+Main\+Renderer} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_acb5358222276c4785602b4167c62e43f}\label{classrev_1_1_main_renderer_acb5358222276c4785602b4167c62e43f}} 
+Q\+Flags$<$ Lighting\+Flag $>$ \& {\bfseries lighting\+Flags} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_af45fee565d8d25dffdf016b79c4dcb4b}\label{classrev_1_1_main_renderer_af45fee565d8d25dffdf016b79c4dcb4b}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_g_l_widget}{View\+::\+G\+L\+Widget}} $\ast$ {\bfseries widget} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_adcddd1c2e4f1510e7c33a4005adb0c72}\label{classrev_1_1_main_renderer_adcddd1c2e4f1510e7c33a4005adb0c72}} 
+const \mbox{\hyperlink{classrev_1_1_view_1_1_g_l_widget}{View\+::\+G\+L\+Widget}} $\ast$ {\bfseries widget} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a0b84f192078535355c962c2eef6d5aba}\label{classrev_1_1_main_renderer_a0b84f192078535355c962c2eef6d5aba}} 
+Q\+Mutex \& {\bfseries draw\+Mutex} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a51adf76b7344651eff4026e2075dbbb0}\label{classrev_1_1_main_renderer_a51adf76b7344651eff4026e2075dbbb0}} 
+\mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} \& {\bfseries render\+Context} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a3ef9e9df40fcaeea8e9e20b23664ed7a}\label{classrev_1_1_main_renderer_a3ef9e9df40fcaeea8e9e20b23664ed7a}} 
+bool \mbox{\hyperlink{classrev_1_1_main_renderer_a3ef9e9df40fcaeea8e9e20b23664ed7a}{raycast\+Deferred\+Geometry}} (const \mbox{\hyperlink{classrev_1_1_world_ray}{World\+Ray}} \&raycast, std\+::vector$<$ int $>$ \&out\+Scene\+Object\+Ids)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_raycast}{Raycast}} deferred for hit scene objects. Return I\+Ds of scene objects. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$ \mbox{\hyperlink{classrev_1_1_main_renderer_a230ccdf12b276471661c9be6ebcb6ef6}{get\+S\+S\+A\+O\+Shader}} () const
+\begin{DoxyCompactList}\small\item\em Return default prepass shader. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a60b029e641bfc2f8f88a1501c77af3cb}\label{classrev_1_1_main_renderer_a60b029e641bfc2f8f88a1501c77af3cb}} 
+\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$ {\bfseries get\+S\+S\+A\+O\+Blur\+Shader} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a54392fc6843ff51f839c0b78dcaab69a}\label{classrev_1_1_main_renderer_a54392fc6843ff51f839c0b78dcaab69a}} 
+\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$ \mbox{\hyperlink{classrev_1_1_main_renderer_a54392fc6843ff51f839c0b78dcaab69a}{get\+Cluster\+Grid\+Shader}} () const
+\begin{DoxyCompactList}\small\item\em Return cluster grid generation compute shader. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a48ec5f456a659794b6ba347f6421b865}\label{classrev_1_1_main_renderer_a48ec5f456a659794b6ba347f6421b865}} 
+\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$ \mbox{\hyperlink{classrev_1_1_main_renderer_a48ec5f456a659794b6ba347f6421b865}{get\+Light\+Culling\+Shader}} () const
+\begin{DoxyCompactList}\small\item\em Return light culling compute shader. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_aa1417d39dd8fd8ba3d842f990252e06a}\label{classrev_1_1_main_renderer_aa1417d39dd8fd8ba3d842f990252e06a}} 
+\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$ \mbox{\hyperlink{classrev_1_1_main_renderer_aa1417d39dd8fd8ba3d842f990252e06a}{get\+Active\+Cluster\+Shader}} () const
+\begin{DoxyCompactList}\small\item\em Return active cluster compute shader. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a97adb2d18706ba30a739e458f40792dd}\label{classrev_1_1_main_renderer_a97adb2d18706ba30a739e458f40792dd}} 
+\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$ \mbox{\hyperlink{classrev_1_1_main_renderer_a97adb2d18706ba30a739e458f40792dd}{get\+Active\+Cluster\+Compress\+Shader}} () const
+\begin{DoxyCompactList}\small\item\em Return active cluster compression compute shader. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a038d00b1bbb07738981a53c9451ab6d8}\label{classrev_1_1_main_renderer_a038d00b1bbb07738981a53c9451ab6d8}} 
+const std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_render_command}{Render\+Command}} $>$ $>$ \& \mbox{\hyperlink{classrev_1_1_main_renderer_a038d00b1bbb07738981a53c9451ab6d8}{read\+Render\+Commands}} () const
+\begin{DoxyCompactList}\small\item\em Render commands from previous frame. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a543cae4a1cf7557ce41acbd8e2597222}\label{classrev_1_1_main_renderer_a543cae4a1cf7557ce41acbd8e2597222}} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_render_command}{Render\+Command}} $>$ $>$ \& \mbox{\hyperlink{classrev_1_1_main_renderer_a543cae4a1cf7557ce41acbd8e2597222}{render\+Commands}} ()
+\begin{DoxyCompactList}\small\item\em Render commands for the current frame. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a6b64ac62d7d411502a2ad07a2d9382f2}\label{classrev_1_1_main_renderer_a6b64ac62d7d411502a2ad07a2d9382f2}} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_render_command}{Render\+Command}} $>$ $>$ \& \mbox{\hyperlink{classrev_1_1_main_renderer_a6b64ac62d7d411502a2ad07a2d9382f2}{received\+Commands}} ()
+\begin{DoxyCompactList}\small\item\em Incoming render commands. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_ab9f5d1b5292ce45c0298a87463a9073e}\label{classrev_1_1_main_renderer_ab9f5d1b5292ce45c0298a87463a9073e}} 
+void \mbox{\hyperlink{classrev_1_1_main_renderer_ab9f5d1b5292ce45c0298a87463a9073e}{initialize}} ()
+\begin{DoxyCompactList}\small\item\em Reset and prepare to render geometry. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a73507819878d4870570d73689b68f543}\label{classrev_1_1_main_renderer_a73507819878d4870570d73689b68f543}} 
+void \mbox{\hyperlink{classrev_1_1_main_renderer_a73507819878d4870570d73689b68f543}{request\+Resize}} ()
+\begin{DoxyCompactList}\small\item\em Request a resize of framebuffers in the renderer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a48de9755d4873f4c031ee3ff19dff142}\label{classrev_1_1_main_renderer_a48de9755d4873f4c031ee3ff19dff142}} 
+void \mbox{\hyperlink{classrev_1_1_main_renderer_a48de9755d4873f4c031ee3ff19dff142}{pre\+Draw}} ()
+\begin{DoxyCompactList}\small\item\em What to do before draw. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a554f3098ef2bffec37e5fe2cd74c300b}\label{classrev_1_1_main_renderer_a554f3098ef2bffec37e5fe2cd74c300b}} 
+void \mbox{\hyperlink{classrev_1_1_main_renderer_a554f3098ef2bffec37e5fe2cd74c300b}{render}} ()
+\begin{DoxyCompactList}\small\item\em Render draw items. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a695025b3be3900f908bdbfad49b9bff3}\label{classrev_1_1_main_renderer_a695025b3be3900f908bdbfad49b9bff3}} 
+void \mbox{\hyperlink{classrev_1_1_main_renderer_a695025b3be3900f908bdbfad49b9bff3}{process\+Scenes}} ()
+\begin{DoxyCompactList}\small\item\em Generate draw items. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a488848fef9721e81947dee65e9dce720}\label{classrev_1_1_main_renderer_a488848fef9721e81947dee65e9dce720}} 
+void \mbox{\hyperlink{classrev_1_1_main_renderer_a488848fef9721e81947dee65e9dce720}{add\+Render\+Command}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_render_command}{Render\+Command}} $>$ \&command)
+\begin{DoxyCompactList}\small\item\em Add a render command to the renderer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a6c69bebce9647f9a1f8bd1fa35329b49}\label{classrev_1_1_main_renderer_a6c69bebce9647f9a1f8bd1fa35329b49}} 
+void {\bfseries add\+Shadow\+Map\+Command} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_draw_command}{Draw\+Command}} $>$ \&command)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a6a0ce3c1092850e6ce018c980812bec6}\label{classrev_1_1_main_renderer_a6a0ce3c1092850e6ce018c980812bec6}} 
+void \mbox{\hyperlink{classrev_1_1_main_renderer_a6a0ce3c1092850e6ce018c980812bec6}{ssao\+Pass}} (\mbox{\hyperlink{classrev_1_1_scene_camera}{Scene\+Camera}} \&camera)
+\begin{DoxyCompactList}\small\item\em S\+S\+AO pass. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_ade04bc9459699992f3b39bf79a3cb612}\label{classrev_1_1_main_renderer_ade04bc9459699992f3b39bf79a3cb612}} 
+void \mbox{\hyperlink{classrev_1_1_main_renderer_ade04bc9459699992f3b39bf79a3cb612}{initialize\+Global\+Settings}} ()
+\begin{DoxyCompactList}\small\item\em Set global GL settings. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_adff15f2c79f6d628ac7c801855471209}\label{classrev_1_1_main_renderer_adff15f2c79f6d628ac7c801855471209}} 
+void \mbox{\hyperlink{classrev_1_1_main_renderer_adff15f2c79f6d628ac7c801855471209}{preprocess\+Commands}} ()
+\begin{DoxyCompactList}\small\item\em Preprocess commands before queuing to render. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_ab3093efbd0e2653ef268451531601bbc}\label{classrev_1_1_main_renderer_ab3093efbd0e2653ef268451531601bbc}} 
+Lighting\+Mode {\bfseries m\+\_\+lighting\+Mode} = k\+Forward
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a840c9d82f6acd066c43d236c302ad1ed}\label{classrev_1_1_main_renderer_a840c9d82f6acd066c43d236c302ad1ed}} 
+Q\+Flags$<$ Lighting\+Flag $>$ {\bfseries m\+\_\+lighting\+Flags} = k\+Depth\+Pre\+Pass $\vert$ k\+Clustered $\vert$ k\+Dynamic\+Shadows $\vert$ k\+S\+S\+AO
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a54326d5cbed38d56a4a0f74f6f53f3a6}\label{classrev_1_1_main_renderer_a54326d5cbed38d56a4a0f74f6f53f3a6}} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_render_command}{Render\+Command}} $>$ $>$ \mbox{\hyperlink{classrev_1_1_main_renderer_a54326d5cbed38d56a4a0f74f6f53f3a6}{m\+\_\+render\+Commands}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_vector}{Vector}} of current render commands to iterate over. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_aaf8d617a3be54416ae540ca39246fe5c}\label{classrev_1_1_main_renderer_aaf8d617a3be54416ae540ca39246fe5c}} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_render_command}{Render\+Command}} $>$ $>$ \mbox{\hyperlink{classrev_1_1_main_renderer_aaf8d617a3be54416ae540ca39246fe5c}{m\+\_\+read\+Render\+Commands}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_vector}{Vector}} of render commands from the previous frame. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_ace19d9d76255dfcbe992cf2350165bc2}\label{classrev_1_1_main_renderer_ace19d9d76255dfcbe992cf2350165bc2}} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_draw_command}{Draw\+Command}} $>$ $>$ \mbox{\hyperlink{classrev_1_1_main_renderer_ace19d9d76255dfcbe992cf2350165bc2}{m\+\_\+shadow\+Map\+Commands}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_vector}{Vector}} of current commands to draw to shadow map. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_aba69edb2ad0b1e517078d4718f0da0d3}\label{classrev_1_1_main_renderer_aba69edb2ad0b1e517078d4718f0da0d3}} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_render_command}{Render\+Command}} $>$ $>$ \mbox{\hyperlink{classrev_1_1_main_renderer_aba69edb2ad0b1e517078d4718f0da0d3}{m\+\_\+received\+Commands}}
+\begin{DoxyCompactList}\small\item\em Cache of render commands being updated. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_ae83f24cd42ad84f6da59e8f9e60aa24c}\label{classrev_1_1_main_renderer_ae83f24cd42ad84f6da59e8f9e60aa24c}} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_draw_command}{Draw\+Command}} $>$ $>$ \mbox{\hyperlink{classrev_1_1_main_renderer_ae83f24cd42ad84f6da59e8f9e60aa24c}{m\+\_\+received\+Shadow\+Map\+Commands}}
+\begin{DoxyCompactList}\small\item\em Cache of commands to draw to shadow map. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_ac6526c50be21c4952b08ba53a4831cf9}\label{classrev_1_1_main_renderer_ac6526c50be21c4952b08ba53a4831cf9}} 
+\mbox{\hyperlink{structrev_1_1_render_frame_state}{Render\+Frame\+State}} \mbox{\hyperlink{classrev_1_1_main_renderer_ac6526c50be21c4952b08ba53a4831cf9}{m\+\_\+render\+State}}
+\begin{DoxyCompactList}\small\item\em Struct containing information about current rendering state. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a319b60735edb67eeeb139e95f6e755e4}\label{classrev_1_1_main_renderer_a319b60735edb67eeeb139e95f6e755e4}} 
+\mbox{\hyperlink{classrev_1_1_core_engine}{rev\+::\+Core\+Engine}} $\ast$ \mbox{\hyperlink{classrev_1_1_main_renderer_a319b60735edb67eeeb139e95f6e755e4}{m\+\_\+engine}}
+\begin{DoxyCompactList}\small\item\em core engine \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a261643750032e4f7e21ae48b84c870b1}\label{classrev_1_1_main_renderer_a261643750032e4f7e21ae48b84c870b1}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_g_l_widget}{View\+::\+G\+L\+Widget}} $\ast$ \mbox{\hyperlink{classrev_1_1_main_renderer_a261643750032e4f7e21ae48b84c870b1}{m\+\_\+widget}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_widget}{Widget}} for this renderer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a9ec998f471fc3f2cabf1b00c1551e0b2}\label{classrev_1_1_main_renderer_a9ec998f471fc3f2cabf1b00c1551e0b2}} 
+Q\+Elapsed\+Timer \mbox{\hyperlink{classrev_1_1_main_renderer_a9ec998f471fc3f2cabf1b00c1551e0b2}{m\+\_\+timer}}
+\begin{DoxyCompactList}\small\item\em Determines elapsed time since the creation of the renderer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a7daf751b7c3d6083653e759de8cfb8c5}\label{classrev_1_1_main_renderer_a7daf751b7c3d6083653e759de8cfb8c5}} 
+Q\+Mutex \mbox{\hyperlink{classrev_1_1_main_renderer_a7daf751b7c3d6083653e759de8cfb8c5}{m\+\_\+draw\+Mutex}}
+\begin{DoxyCompactList}\small\item\em Mutex lock for draw command containers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_afcae954f24adc25fb8802caffd130c22}\label{classrev_1_1_main_renderer_afcae954f24adc25fb8802caffd130c22}} 
+\mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} \mbox{\hyperlink{classrev_1_1_main_renderer_afcae954f24adc25fb8802caffd130c22}{m\+\_\+render\+Context}}
+\begin{DoxyCompactList}\small\item\em Render context. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a2c5b53aab2068e6ed47f7dce43b93fba}\label{classrev_1_1_main_renderer_a2c5b53aab2068e6ed47f7dce43b93fba}} 
+class {\bfseries View\+::\+G\+L\+Widget}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_ab3703ea733c8be91191d75b1546bad86}\label{classrev_1_1_main_renderer_ab3703ea733c8be91191d75b1546bad86}} 
+class {\bfseries Viewport}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_ad8bd9afbbd7af19d996da80e9d25890d}\label{classrev_1_1_main_renderer_ad8bd9afbbd7af19d996da80e9d25890d}} 
+class {\bfseries Camera}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a94ca2aa856479b6c0563ec946c418d7f}\label{classrev_1_1_main_renderer_a94ca2aa856479b6c0563ec946c418d7f}} 
+class {\bfseries Scene\+Command}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_abe74cfded879232919735bbff58fb58e}\label{classrev_1_1_main_renderer_abe74cfded879232919735bbff58fb58e}} 
+class {\bfseries Add\+Scenario\+Command}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_abf95af10e08e6eca38c79bb64e18c4d9}\label{classrev_1_1_main_renderer_abf95af10e08e6eca38c79bb64e18c4d9}} 
+class {\bfseries Add\+Scene\+Command}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a6dfbfaa4d50dc35d9c9491fd2b09ce23}\label{classrev_1_1_main_renderer_a6dfbfaa4d50dc35d9c9491fd2b09ce23}} 
+class {\bfseries Add\+Scene\+Object\+Command}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_ad2182a3292f6d37a1a8f7cc5b6fa7dae}\label{classrev_1_1_main_renderer_ad2182a3292f6d37a1a8f7cc5b6fa7dae}} 
+class {\bfseries Add\+Scene\+Object\+Component}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a4f632c0d342d5f5809141db93d2b847b}\label{classrev_1_1_main_renderer_a4f632c0d342d5f5809141db93d2b847b}} 
+class {\bfseries Render\+Command}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a8055ca5f54bb0d155837882d42454e9d}\label{classrev_1_1_main_renderer_a8055ca5f54bb0d155837882d42454e9d}} 
+class {\bfseries Draw\+Command}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_main_renderer_a230ccdf12b276471661c9be6ebcb6ef6}\label{classrev_1_1_main_renderer_a230ccdf12b276471661c9be6ebcb6ef6}} 
+\index{rev::MainRenderer@{rev::MainRenderer}!getSSAOShader@{getSSAOShader}}
+\index{getSSAOShader@{getSSAOShader}!rev::MainRenderer@{rev::MainRenderer}}
+\subsubsection{\texorpdfstring{getSSAOShader()}{getSSAOShader()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$ rev\+::\+Main\+Renderer\+::get\+S\+S\+A\+O\+Shader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Return default prepass shader. 
+
+Unused, since text doesn\textquotesingle{}t like it Return S\+S\+AO shader 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/renderer/G\+Main\+Renderer.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/renderer/G\+Main\+Renderer.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,122 @@
+\hypertarget{classrev_1_1_view_1_1_blueprint_model}{}\section{rev\+::View\+::Blueprint\+Model Class Reference}
+\label{classrev_1_1_view_1_1_blueprint_model}\index{rev::View::BlueprintModel@{rev::View::BlueprintModel}}
+Inheritance diagram for rev\+::View\+::Blueprint\+Model\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_view_1_1_blueprint_model}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_blueprint_model_abd40b692abc38e4b5ed7fbc32c6dcd7d}\label{classrev_1_1_view_1_1_blueprint_model_abd40b692abc38e4b5ed7fbc32c6dcd7d}} 
+{\bfseries Blueprint\+Model} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, Q\+Object $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_blueprint_model_a1a01840c5de031672e9615e92e0c90cb}\label{classrev_1_1_view_1_1_blueprint_model_a1a01840c5de031672e9615e92e0c90cb}} 
+Q\+Variant \mbox{\hyperlink{classrev_1_1_view_1_1_blueprint_model_a1a01840c5de031672e9615e92e0c90cb}{data}} (const Q\+Model\+Index \&index, int role=Qt\+::\+Display\+Role) const override
+\begin{DoxyCompactList}\small\item\em Return data for the specified index with the specified role. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classrev_1_1_view_1_1_blueprint_model_a3667248cf4682dd62fe544c010eda75a}{set\+Data}} (const Q\+Model\+Index \&index, const Q\+Variant \&value, int role) override
+\begin{DoxyCompactList}\small\item\em Called each time the user edits a cell. \end{DoxyCompactList}\item 
+Qt\+::\+Item\+Flags \mbox{\hyperlink{classrev_1_1_view_1_1_blueprint_model_a393e5b036724bdcb6a564e43a0cbefdf}{flags}} (const Q\+Model\+Index \&index) const override
+\begin{DoxyCompactList}\small\item\em Return the flags for the item at the given index. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_blueprint_model_a5d50906f800eaa62d42ad57aee267737}\label{classrev_1_1_view_1_1_blueprint_model_a5d50906f800eaa62d42ad57aee267737}} 
+virtual bool \mbox{\hyperlink{classrev_1_1_view_1_1_blueprint_model_a5d50906f800eaa62d42ad57aee267737}{can\+Drop\+Mime\+Data}} (const Q\+Mime\+Data $\ast$\mbox{\hyperlink{classrev_1_1_view_1_1_blueprint_model_a1a01840c5de031672e9615e92e0c90cb}{data}}, Qt\+::\+Drop\+Action action, int row, int column, const Q\+Model\+Index \&parent) const override
+\begin{DoxyCompactList}\small\item\em Default only checks if\+: 1) Data has at least one format in the list of \mbox{\hyperlink{classrev_1_1_view_1_1_blueprint_model_ac1d772e7fc75497096333c3212758d99}{mime\+Types()}} and if 2) Action is among the model\textquotesingle{}s \mbox{\hyperlink{classrev_1_1_view_1_1_blueprint_model_afac50a7db5c57c7d8debf551f07dc21c}{supported\+Drop\+Actions()}};. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classrev_1_1_view_1_1_blueprint_model_ad000f8fdde3c606931a0121f6c5647d2}{drop\+Mime\+Data}} (const Q\+Mime\+Data $\ast$\mbox{\hyperlink{classrev_1_1_view_1_1_blueprint_model_a1a01840c5de031672e9615e92e0c90cb}{data}}, Qt\+::\+Drop\+Action action, int row, int column, const Q\+Model\+Index \&parent) override
+\begin{DoxyCompactList}\small\item\em To support additional drop actions, must be reimplemented to accomodate additional mime\+Types. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_blueprint_model_ad73c20ba9e9b63b49622bcc5552e71cd}\label{classrev_1_1_view_1_1_blueprint_model_ad73c20ba9e9b63b49622bcc5552e71cd}} 
+virtual Q\+Mime\+Data $\ast$ {\bfseries mime\+Data} (const Q\+Model\+Index\+List \&indexes) const override
+\item 
+virtual Q\+String\+List \mbox{\hyperlink{classrev_1_1_view_1_1_blueprint_model_ac1d772e7fc75497096333c3212758d99}{mime\+Types}} () const override
+\begin{DoxyCompactList}\small\item\em Returns the list of supported M\+I\+ME types. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_blueprint_model_a1a7409f26a608ec66bd4e325f007ff9f}\label{classrev_1_1_view_1_1_blueprint_model_a1a7409f26a608ec66bd4e325f007ff9f}} 
+int {\bfseries row\+Count} (const Q\+Model\+Index \&parent) const override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_blueprint_model_afac50a7db5c57c7d8debf551f07dc21c}\label{classrev_1_1_view_1_1_blueprint_model_afac50a7db5c57c7d8debf551f07dc21c}} 
+Qt\+::\+Drop\+Actions \mbox{\hyperlink{classrev_1_1_view_1_1_blueprint_model_afac50a7db5c57c7d8debf551f07dc21c}{supported\+Drop\+Actions}} () const override
+\begin{DoxyCompactList}\small\item\em Default is Qt\+::\+Copy\+Action. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classrev_1_1_view_1_1_blueprint_model_ae6439b14843136ce564a2048cbc1d2fc}{remove\+Rows}} (int row, int count, const Q\+Model\+Index \&parent=Q\+Model\+Index()) override
+\begin{DoxyCompactList}\small\item\em Implement to support drag and drop operations. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_blueprint_model_a9dc8dd59a6a325449ea921f20255fd49}\label{classrev_1_1_view_1_1_blueprint_model_a9dc8dd59a6a325449ea921f20255fd49}} 
+void {\bfseries repopulate} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_view_1_1_blueprint_model_ad000f8fdde3c606931a0121f6c5647d2}\label{classrev_1_1_view_1_1_blueprint_model_ad000f8fdde3c606931a0121f6c5647d2}} 
+\index{rev::View::BlueprintModel@{rev::View::BlueprintModel}!dropMimeData@{dropMimeData}}
+\index{dropMimeData@{dropMimeData}!rev::View::BlueprintModel@{rev::View::BlueprintModel}}
+\subsubsection{\texorpdfstring{dropMimeData()}{dropMimeData()}}
+{\footnotesize\ttfamily bool rev\+::\+View\+::\+Blueprint\+Model\+::drop\+Mime\+Data (\begin{DoxyParamCaption}\item[{const Q\+Mime\+Data $\ast$}]{data,  }\item[{Qt\+::\+Drop\+Action}]{action,  }\item[{int}]{row,  }\item[{int}]{column,  }\item[{const Q\+Model\+Index \&}]{parent }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+To support additional drop actions, must be reimplemented to accomodate additional mime\+Types. 
+
+\begin{DoxyNote}{Note}
+Row and column are -\/1 when data dropped directly on parent 
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em action} & the action ending a drag and drop operation \\
+\hline
+\mbox{\texttt{ in}}  & {\em row} & the row of an item in the model where the operation ended \\
+\hline
+\mbox{\texttt{ in}}  & {\em column} & the column of an item in the model where the operation ended \\
+\hline
+\mbox{\texttt{ in}}  & {\em parent} & the index of a parent item in the model where the operation ended \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrev_1_1_view_1_1_blueprint_model_a393e5b036724bdcb6a564e43a0cbefdf}\label{classrev_1_1_view_1_1_blueprint_model_a393e5b036724bdcb6a564e43a0cbefdf}} 
+\index{rev::View::BlueprintModel@{rev::View::BlueprintModel}!flags@{flags}}
+\index{flags@{flags}!rev::View::BlueprintModel@{rev::View::BlueprintModel}}
+\subsubsection{\texorpdfstring{flags()}{flags()}}
+{\footnotesize\ttfamily Qt\+::\+Item\+Flags rev\+::\+View\+::\+Blueprint\+Model\+::flags (\begin{DoxyParamCaption}\item[{const Q\+Model\+Index \&}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Return the flags for the item at the given index. 
+
+This indicates which items can be dragged and dropped \mbox{\Hypertarget{classrev_1_1_view_1_1_blueprint_model_ac1d772e7fc75497096333c3212758d99}\label{classrev_1_1_view_1_1_blueprint_model_ac1d772e7fc75497096333c3212758d99}} 
+\index{rev::View::BlueprintModel@{rev::View::BlueprintModel}!mimeTypes@{mimeTypes}}
+\index{mimeTypes@{mimeTypes}!rev::View::BlueprintModel@{rev::View::BlueprintModel}}
+\subsubsection{\texorpdfstring{mimeTypes()}{mimeTypes()}}
+{\footnotesize\ttfamily Q\+String\+List rev\+::\+View\+::\+Blueprint\+Model\+::mime\+Types (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns the list of supported M\+I\+ME types. 
+
+\begin{DoxyNote}{Note}
+Reimplementing mime\+Data() and \mbox{\hyperlink{classrev_1_1_view_1_1_blueprint_model_ad000f8fdde3c606931a0121f6c5647d2}{drop\+Mime\+Data()}} because this is overriden 
+\end{DoxyNote}
+\mbox{\Hypertarget{classrev_1_1_view_1_1_blueprint_model_ae6439b14843136ce564a2048cbc1d2fc}\label{classrev_1_1_view_1_1_blueprint_model_ae6439b14843136ce564a2048cbc1d2fc}} 
+\index{rev::View::BlueprintModel@{rev::View::BlueprintModel}!removeRows@{removeRows}}
+\index{removeRows@{removeRows}!rev::View::BlueprintModel@{rev::View::BlueprintModel}}
+\subsubsection{\texorpdfstring{removeRows()}{removeRows()}}
+{\footnotesize\ttfamily bool rev\+::\+View\+::\+Blueprint\+Model\+::remove\+Rows (\begin{DoxyParamCaption}\item[{int}]{row,  }\item[{int}]{count,  }\item[{const Q\+Model\+Index \&}]{parent = {\ttfamily QModelIndex()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Implement to support drag and drop operations. 
+
+Remove count rows starting with the given row under parent from the model \mbox{\Hypertarget{classrev_1_1_view_1_1_blueprint_model_a3667248cf4682dd62fe544c010eda75a}\label{classrev_1_1_view_1_1_blueprint_model_a3667248cf4682dd62fe544c010eda75a}} 
+\index{rev::View::BlueprintModel@{rev::View::BlueprintModel}!setData@{setData}}
+\index{setData@{setData}!rev::View::BlueprintModel@{rev::View::BlueprintModel}}
+\subsubsection{\texorpdfstring{setData()}{setData()}}
+{\footnotesize\ttfamily bool rev\+::\+View\+::\+Blueprint\+Model\+::set\+Data (\begin{DoxyParamCaption}\item[{const Q\+Model\+Index \&}]{index,  }\item[{const Q\+Variant \&}]{value,  }\item[{int}]{role }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Called each time the user edits a cell. 
+
+\begin{DoxyNote}{Note}
+This is for changing data, not inserting it! 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/list/G\+Blueprint\+View.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/list/G\+Blueprint\+View.\+cpp\end{DoxyCompactItemize}

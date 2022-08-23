@@ -1,0 +1,211 @@
+\hypertarget{classrev_1_1_draw_command}{}\section{rev\+::Draw\+Command Class Reference}
+\label{classrev_1_1_draw_command}\index{rev::DrawCommand@{rev::DrawCommand}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing an item to be drawn.  
+
+
+
+
+{\ttfamily \#include $<$G\+Render\+Command.\+h$>$}
+
+Inheritance diagram for rev\+::Draw\+Command\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_draw_command}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_aa4c0b12ecfb72b3ba5d0db0b9ce191dc}\label{classrev_1_1_draw_command_aa4c0b12ecfb72b3ba5d0db0b9ce191dc}} 
+{\bfseries Draw\+Command} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_a19c16a6d0af276adb84188caef5343d6}\label{classrev_1_1_draw_command_a19c16a6d0af276adb84188caef5343d6}} 
+{\bfseries Draw\+Command} (\mbox{\hyperlink{classrev_1_1_renderable}{Renderable}} \&renderable, \mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&program, \mbox{\hyperlink{classrev_1_1_abstract_camera}{Abstract\+Camera}} \&camera, int scene\+Object\+Id, \mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$prepass\+Shader\+Program=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_a1b63e6631dc7ab7a55c0ae01006f9952}\label{classrev_1_1_draw_command_a1b63e6631dc7ab7a55c0ae01006f9952}} 
+{\bfseries Draw\+Command} (\mbox{\hyperlink{classrev_1_1_renderable}{Renderable}} \&renderable, \mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&program, \mbox{\hyperlink{classrev_1_1_shadow_map}{Shadow\+Map}} \&shadow\+Map, int scene\+Object\+Id)
+\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_aade51a00ff3703e561bcff8130df664f}\label{classrev_1_1_draw_command_aade51a00ff3703e561bcff8130df664f}} 
+virtual {\bfseries $\sim$\+Draw\+Command} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_a2be4b530e24b762a5526aa22c60870bc}\label{classrev_1_1_draw_command_a2be4b530e24b762a5526aa22c60870bc}} 
+int {\bfseries scene\+Object\+Id} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_a0d4ba198a110967f4c66f618fa336e4a}\label{classrev_1_1_draw_command_a0d4ba198a110967f4c66f618fa336e4a}} 
+\mbox{\hyperlink{classrev_1_1_flags}{Renderable\+Pass\+Flags}} \mbox{\hyperlink{classrev_1_1_draw_command_a0d4ba198a110967f4c66f618fa336e4a}{pass\+Flags}} () const
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_flags}{Flags}} related to the render pass behavior of the renderable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_a525e60f8e1e72033e97863c5e5f3386e}\label{classrev_1_1_draw_command_a525e60f8e1e72033e97863c5e5f3386e}} 
+void {\bfseries set\+Pass\+Flags} (\mbox{\hyperlink{classrev_1_1_flags}{Renderable\+Pass\+Flags}} flags)
+\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_a5f8a596bb45336d8930c03bb5662c44a}\label{classrev_1_1_draw_command_a5f8a596bb45336d8930c03bb5662c44a}} 
+\mbox{\hyperlink{classrev_1_1_abstract_camera}{Abstract\+Camera}} $\ast$ {\bfseries camera} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_a41c19438f352e600279b24ea650c577d}\label{classrev_1_1_draw_command_a41c19438f352e600279b24ea650c577d}} 
+\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$ {\bfseries shader\+Program} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_a18b603da60967d1b16f8aed42c7f5067}\label{classrev_1_1_draw_command_a18b603da60967d1b16f8aed42c7f5067}} 
+\mbox{\hyperlink{classrev_1_1_renderable}{Renderable}} $\ast$ {\bfseries renderable} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_a96bce8fa46e8517a55cbcba5a450290a}\label{classrev_1_1_draw_command_a96bce8fa46e8517a55cbcba5a450290a}} 
+virtual Command\+Type {\bfseries command\+Type} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_a6ebfa5967e16e7e7454c2d9f49ac3b8c}\label{classrev_1_1_draw_command_a6ebfa5967e16e7e7454c2d9f49ac3b8c}} 
+const \mbox{\hyperlink{classrev_1_1_a_a_b_b}{A\+A\+BB}} \& {\bfseries world\+Bounds} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_a30427808f9ba12a75274f40065e40343}\label{classrev_1_1_draw_command_a30427808f9ba12a75274f40065e40343}} 
+\mbox{\hyperlink{classrev_1_1_a_a_b_b}{A\+A\+BB}} \& {\bfseries world\+Bounds} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_a40faf35970224e5d2ef4554c712845fe}\label{classrev_1_1_draw_command_a40faf35970224e5d2ef4554c712845fe}} 
+void {\bfseries set\+World\+Bounds} (const \mbox{\hyperlink{classrev_1_1_a_a_b_b}{A\+A\+BB}} \&bounds)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_ab6b729b17073e5e8d0e605b3795c9159}\label{classrev_1_1_draw_command_ab6b729b17073e5e8d0e605b3795c9159}} 
+virtual void \mbox{\hyperlink{classrev_1_1_draw_command_ab6b729b17073e5e8d0e605b3795c9159}{depth\+Pre\+Pass}} (\mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} \&renderer) override
+\begin{DoxyCompactList}\small\item\em Write to depth buffer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_aa1192c05ad956275dd12674544b457b1}\label{classrev_1_1_draw_command_aa1192c05ad956275dd12674544b457b1}} 
+virtual void \mbox{\hyperlink{classrev_1_1_draw_command_aa1192c05ad956275dd12674544b457b1}{shadow\+Pass}} (\mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} \&renderer) override
+\begin{DoxyCompactList}\small\item\em Perform shadow map pass (write into shadow map) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_af16f5dcf5a8373241af0bbfa524f3ff7}\label{classrev_1_1_draw_command_af16f5dcf5a8373241af0bbfa524f3ff7}} 
+virtual void \mbox{\hyperlink{classrev_1_1_draw_command_af16f5dcf5a8373241af0bbfa524f3ff7}{perform}} (\mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} \&renderer, uint32\+\_\+t command\+Index) override
+\begin{DoxyCompactList}\small\item\em Perform the render command. Could be a draw, or a settings change. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_a216aad6b1b1ae931a661ebf94b6b72da}\label{classrev_1_1_draw_command_a216aad6b1b1ae931a661ebf94b6b72da}} 
+void \mbox{\hyperlink{classrev_1_1_draw_command_a216aad6b1b1ae931a661ebf94b6b72da}{add\+Uniform}} (const \mbox{\hyperlink{structrev_1_1_uniform}{Uniform}} \&uniform)
+\begin{DoxyCompactList}\small\item\em Set a uniform in the command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_a91ce14653726f901ffecda9533d825e2}\label{classrev_1_1_draw_command_a91ce14653726f901ffecda9533d825e2}} 
+{\footnotesize template$<$typename T $>$ }\\void {\bfseries add\+Uniform} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&uniform\+Name, const T \&uniform\+Value)
+\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_a05c44b5b93bb393e5d136fac3f832ee3}\label{classrev_1_1_draw_command_a05c44b5b93bb393e5d136fac3f832ee3}} 
+const \mbox{\hyperlink{structrev_1_1_uniform}{Uniform}} $\ast$ {\bfseries get\+Uniform} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&uniform\+Name) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_a00b016a976baa9e010327bb1d4c378b2}\label{classrev_1_1_draw_command_a00b016a976baa9e010327bb1d4c378b2}} 
+void \mbox{\hyperlink{classrev_1_1_draw_command_a00b016a976baa9e010327bb1d4c378b2}{add\+Uniforms}} (const std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_uniform}{Uniform}} $>$ \&uniforms)
+\begin{DoxyCompactList}\small\item\em Add multiple uniforms to this command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_a75a5681efc6b3e7a2b62031b9fbd34ab}\label{classrev_1_1_draw_command_a75a5681efc6b3e7a2b62031b9fbd34ab}} 
+\mbox{\hyperlink{classrev_1_1_render_settings}{Render\+Settings}} \& \mbox{\hyperlink{classrev_1_1_draw_command_a75a5681efc6b3e7a2b62031b9fbd34ab}{render\+Settings}} ()
+\begin{DoxyCompactList}\small\item\em Set render settings for the command, overriding previous ones if a new setting is specified. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_aaf5494cd936d63db1e11fa5b09125ddd}\label{classrev_1_1_draw_command_aaf5494cd936d63db1e11fa5b09125ddd}} 
+\mbox{\hyperlink{structrev_1_1_sorting_layer}{Sorting\+Layer}} $\ast$ \mbox{\hyperlink{classrev_1_1_draw_command_aaf5494cd936d63db1e11fa5b09125ddd}{render\+Layer}} () const
+\begin{DoxyCompactList}\small\item\em Obtain render layer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_a6972dbf9232948ec79e7ec1a06e8d6c7}\label{classrev_1_1_draw_command_a6972dbf9232948ec79e7ec1a06e8d6c7}} 
+void {\bfseries set\+Render\+Layer} (\mbox{\hyperlink{structrev_1_1_sorting_layer}{Sorting\+Layer}} $\ast$layer)
+\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_a5d1974133c3ce45cc845132eae177a13}\label{classrev_1_1_draw_command_a5d1974133c3ce45cc845132eae177a13}} 
+void \mbox{\hyperlink{classrev_1_1_draw_command_a5d1974133c3ce45cc845132eae177a13}{on\+Add\+To\+Queue}} () override
+\begin{DoxyCompactList}\small\item\em Initialize the draw command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_a86e43f14e10a1ec8c69d250a3a4df6a8}\label{classrev_1_1_draw_command_a86e43f14e10a1ec8c69d250a3a4df6a8}} 
+void \mbox{\hyperlink{classrev_1_1_draw_command_a86e43f14e10a1ec8c69d250a3a4df6a8}{pre\+Sort}} () override
+\begin{DoxyCompactList}\small\item\em Performed prior to sort. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_abb12f1fdd934cd4f3e974e4b849cd242}\label{classrev_1_1_draw_command_abb12f1fdd934cd4f3e974e4b849cd242}} 
+static std\+::pair$<$ float, float $>$ \mbox{\hyperlink{classrev_1_1_draw_command_abb12f1fdd934cd4f3e974e4b849cd242}{Depth\+Range}} ()
+\begin{DoxyCompactList}\small\item\em Obtain depth range values. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_af9dbb6cd2bbbad653544b8d664b7f7b1}\label{classrev_1_1_draw_command_af9dbb6cd2bbbad653544b8d664b7f7b1}} 
+static void \mbox{\hyperlink{classrev_1_1_draw_command_af9dbb6cd2bbbad653544b8d664b7f7b1}{Reset\+Depths}} ()
+\begin{DoxyCompactList}\small\item\em Reset depths for a new round of rendering. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_a2f9ac2672eae1c8f4bf4ce217c6d7f54}\label{classrev_1_1_draw_command_a2f9ac2672eae1c8f4bf4ce217c6d7f54}} 
+bool \mbox{\hyperlink{classrev_1_1_draw_command_a2f9ac2672eae1c8f4bf4ce217c6d7f54}{has\+Uniform}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&uniform\+Name, int $\ast$out\+Index=nullptr)
+\begin{DoxyCompactList}\small\item\em Whether or not the command has the specified uniform. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_ae67e095fd28c55c207fa32ca1cd06020}\label{classrev_1_1_draw_command_ae67e095fd28c55c207fa32ca1cd06020}} 
+bool {\bfseries has\+Uniform} (const \mbox{\hyperlink{structrev_1_1_uniform}{Uniform}} \&uniform, int $\ast$out\+Index=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_a8e6ba8d8c05395eac362fafd74aef773}\label{classrev_1_1_draw_command_a8e6ba8d8c05395eac362fafd74aef773}} 
+float \mbox{\hyperlink{classrev_1_1_draw_command_a8e6ba8d8c05395eac362fafd74aef773}{get\+Depth}} ()
+\begin{DoxyCompactList}\small\item\em Get the depth value used for the draw command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_a55e1dfff0acfa16c54b2907a2b672372}\label{classrev_1_1_draw_command_a55e1dfff0acfa16c54b2907a2b672372}} 
+void \mbox{\hyperlink{classrev_1_1_draw_command_a55e1dfff0acfa16c54b2907a2b672372}{update\+Camera\+Settings}} (\mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} \&renderer)
+\begin{DoxyCompactList}\small\item\em Update camera settings. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_af9c1172b54caff340fa75b18317fcb80}\label{classrev_1_1_draw_command_af9c1172b54caff340fa75b18317fcb80}} 
+void {\bfseries switch\+Cameras} (\mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} \&renderer)
+\item 
+void \mbox{\hyperlink{classrev_1_1_draw_command_afecf1ad28081f50019326cdf97cd6b28}{update\+Shader\+Uniforms}} (\mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} \&renderer, \mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program, bool ignore\+Mismatch, int command\+Index=-\/1)
+\begin{DoxyCompactList}\small\item\em On shader switch. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_acf9029ba9d104854952de266c6df3b9e}\label{classrev_1_1_draw_command_acf9029ba9d104854952de266c6df3b9e}} 
+float \mbox{\hyperlink{classrev_1_1_draw_command_acf9029ba9d104854952de266c6df3b9e}{m\+\_\+depth}}
+\begin{DoxyCompactList}\small\item\em Depth for this render command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_ad952baf7c701c97267bbafc53a9506be}\label{classrev_1_1_draw_command_ad952baf7c701c97267bbafc53a9506be}} 
+\mbox{\hyperlink{classrev_1_1_flags}{Renderable\+Pass\+Flags}} \mbox{\hyperlink{classrev_1_1_draw_command_ad952baf7c701c97267bbafc53a9506be}{m\+\_\+pass\+Flags}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_flags}{Flags}} related to the render pass behavior of the renderable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_a687e1798ce0d1606b2a973c26aac0284}\label{classrev_1_1_draw_command_a687e1798ce0d1606b2a973c26aac0284}} 
+\mbox{\hyperlink{classrev_1_1_renderable}{Renderable}} $\ast$ \mbox{\hyperlink{classrev_1_1_draw_command_a687e1798ce0d1606b2a973c26aac0284}{m\+\_\+renderable}} = nullptr
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_renderable}{Renderable}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_adf125e896530ac00e1cfe974a2929d69}\label{classrev_1_1_draw_command_adf125e896530ac00e1cfe974a2929d69}} 
+\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$ \mbox{\hyperlink{classrev_1_1_draw_command_adf125e896530ac00e1cfe974a2929d69}{m\+\_\+shader\+Program}} = nullptr
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_shader}{Shader}} stored in key. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_a0a0d96462a95f4ddd740f084f16a45bf}\label{classrev_1_1_draw_command_a0a0d96462a95f4ddd740f084f16a45bf}} 
+\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$ {\bfseries m\+\_\+prepass\+Shader\+Program} = nullptr
+\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_a153592a557ab33e74342cfa2a80852e5}\label{classrev_1_1_draw_command_a153592a557ab33e74342cfa2a80852e5}} 
+\mbox{\hyperlink{classrev_1_1_abstract_camera}{Abstract\+Camera}} $\ast$ \mbox{\hyperlink{classrev_1_1_draw_command_a153592a557ab33e74342cfa2a80852e5}{m\+\_\+camera}} = nullptr
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_camera}{Camera}} stored in key. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_aabd1fc624213690cee3fe876368a58a6}\label{classrev_1_1_draw_command_aabd1fc624213690cee3fe876368a58a6}} 
+std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_uniform}{Uniform}} $>$ \mbox{\hyperlink{classrev_1_1_draw_command_aabd1fc624213690cee3fe876368a58a6}{m\+\_\+uniforms}}
+\begin{DoxyCompactList}\small\item\em Additional uniforms to use for rendering. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_aba54d32e4279840257f3ff22e3fde210}\label{classrev_1_1_draw_command_aba54d32e4279840257f3ff22e3fde210}} 
+\mbox{\hyperlink{classrev_1_1_render_settings}{Render\+Settings}} \mbox{\hyperlink{classrev_1_1_draw_command_aba54d32e4279840257f3ff22e3fde210}{m\+\_\+render\+Settings}}
+\begin{DoxyCompactList}\small\item\em GL Render settings to override those of the renderable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_a423765fc0b3f9caaa9627b3f0d757127}\label{classrev_1_1_draw_command_a423765fc0b3f9caaa9627b3f0d757127}} 
+\mbox{\hyperlink{structrev_1_1_sorting_layer}{Sorting\+Layer}} $\ast$ \mbox{\hyperlink{classrev_1_1_draw_command_a423765fc0b3f9caaa9627b3f0d757127}{m\+\_\+render\+Layer}} = nullptr
+\begin{DoxyCompactList}\small\item\em Render layer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_a09fd2c6e7ae496a9d021baee1fe2f3a8}\label{classrev_1_1_draw_command_a09fd2c6e7ae496a9d021baee1fe2f3a8}} 
+int \mbox{\hyperlink{classrev_1_1_draw_command_a09fd2c6e7ae496a9d021baee1fe2f3a8}{m\+\_\+scene\+Object\+Id}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_scene}{Scene}} object ID is negative if there is no scene object associated with the renderable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_aa89f6cf3875cfe2a080cd29c1f6d834f}\label{classrev_1_1_draw_command_aa89f6cf3875cfe2a080cd29c1f6d834f}} 
+\mbox{\hyperlink{classrev_1_1_a_a_b_b}{A\+A\+BB}} \mbox{\hyperlink{classrev_1_1_draw_command_aa89f6cf3875cfe2a080cd29c1f6d834f}{m\+\_\+world\+Bounds}}
+\begin{DoxyCompactList}\small\item\em Bounding geometry transformed into world-\/space. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_ae19c54a67b4ab90bff90ac010ccd4d6d}\label{classrev_1_1_draw_command_ae19c54a67b4ab90bff90ac010ccd4d6d}} 
+static float \mbox{\hyperlink{classrev_1_1_draw_command_ae19c54a67b4ab90bff90ac010ccd4d6d}{s\+\_\+farthest\+Depth}} = std\+::numeric\+\_\+limits$<$float$>$\+::max()
+\begin{DoxyCompactList}\small\item\em Depth caching for normalizing depth for sort. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_draw_command_a15b93ed62b4c9d121435944fcf02d7eb}\label{classrev_1_1_draw_command_a15b93ed62b4c9d121435944fcf02d7eb}} 
+static float {\bfseries s\+\_\+nearest\+Depth} = -\/std\+::numeric\+\_\+limits$<$float$>$\+::max()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing an item to be drawn. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_draw_command_afecf1ad28081f50019326cdf97cd6b28}\label{classrev_1_1_draw_command_afecf1ad28081f50019326cdf97cd6b28}} 
+\index{rev::DrawCommand@{rev::DrawCommand}!updateShaderUniforms@{updateShaderUniforms}}
+\index{updateShaderUniforms@{updateShaderUniforms}!rev::DrawCommand@{rev::DrawCommand}}
+\subsubsection{\texorpdfstring{updateShaderUniforms()}{updateShaderUniforms()}}
+{\footnotesize\ttfamily void rev\+::\+Draw\+Command\+::update\+Shader\+Uniforms (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} \&}]{renderer,  }\item[{\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&}]{shader\+Program,  }\item[{bool}]{ignore\+Mismatch,  }\item[{int}]{command\+Index = {\ttfamily -\/1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+On shader switch. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em command\+Index} & if negative, don\textquotesingle{}t set uniform, otherwise sets g\+\_\+color\+Id uniform in shader \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/renderer/G\+Render\+Command.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/renderer/G\+Render\+Command.\+cpp\end{DoxyCompactItemize}

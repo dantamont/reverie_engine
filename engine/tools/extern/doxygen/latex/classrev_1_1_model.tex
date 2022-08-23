@@ -1,0 +1,261 @@
+\hypertarget{classrev_1_1_model}{}\section{rev\+::Model Class Reference}
+\label{classrev_1_1_model}\index{rev::Model@{rev::Model}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} for a model.  
+
+
+
+
+{\ttfamily \#include $<$G\+Model.\+h$>$}
+
+Inheritance diagram for rev\+::Model\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_model}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_a6a3b7200f5478246ce7a12bd2ea79bc8}\label{classrev_1_1_model_a6a3b7200f5478246ce7a12bd2ea79bc8}} 
+{\bfseries Model} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_a05a84ad970be8f90441edac98bd43552}\label{classrev_1_1_model_a05a84ad970be8f90441edac98bd43552}} 
+{\bfseries Model} (\mbox{\hyperlink{classrev_1_1_flags}{Model\+Flags}} flags)
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_a004b3433eebc155d3db45ab7bcf92e7e}\label{classrev_1_1_model_a004b3433eebc155d3db45ab7bcf92e7e}} 
+{\bfseries Model} (\mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} \&handle, const Q\+Json\+Value \&json)
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_a667aecda3fee184b56a0e350e7a53772}\label{classrev_1_1_model_a667aecda3fee184b56a0e350e7a53772}} 
+{\bfseries Model} (\mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} \&handle)
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_a094832b94c5d399ee5c9effdc1d0892a}\label{classrev_1_1_model_a094832b94c5d399ee5c9effdc1d0892a}} 
+{\bfseries $\sim$\+Model} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_af975ef78a207074b67f5ba2560472c36}\label{classrev_1_1_model_af975ef78a207074b67f5ba2560472c36}} 
+virtual Resource\+Type \mbox{\hyperlink{classrev_1_1_model_af975ef78a207074b67f5ba2560472c36}{get\+Resource\+Type}} () const override
+\begin{DoxyCompactList}\small\item\em Get the type of resource stored by this handle. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_a5dd57a4b155f375bb309651825462745}\label{classrev_1_1_model_a5dd57a4b155f375bb309651825462745}} 
+\mbox{\hyperlink{classrev_1_1_skeleton}{Skeleton}} $\ast$ \mbox{\hyperlink{classrev_1_1_model_a5dd57a4b155f375bb309651825462745}{skeleton}} () const
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_skeleton}{Skeleton}} for the model. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_a60bfad5b7e4cabf706832c714f88c666}\label{classrev_1_1_model_a60bfad5b7e4cabf706832c714f88c666}} 
+const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \& {\bfseries skeleton\+Handle} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_a447dba9ff21a493184e6b7568ef69726}\label{classrev_1_1_model_a447dba9ff21a493184e6b7568ef69726}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \& {\bfseries skeleton\+Handle} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_a410010f89a4ecce5b0f244bf0c71634f}\label{classrev_1_1_model_a410010f89a4ecce5b0f244bf0c71634f}} 
+bool \mbox{\hyperlink{classrev_1_1_model_a410010f89a4ecce5b0f244bf0c71634f}{is\+Animated}} () const
+\begin{DoxyCompactList}\small\item\em Whether or not the model is animated. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_a2358c427322a564c6032f8e4ca072ba0}\label{classrev_1_1_model_a2358c427322a564c6032f8e4ca072ba0}} 
+bool {\bfseries is\+Static} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_a7c5e587f8dce0d1ad0f6c7b826e46c45}\label{classrev_1_1_model_a7c5e587f8dce0d1ad0f6c7b826e46c45}} 
+void {\bfseries set\+Animated} (bool animated)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_a471f1534606eb09eb5b192b278cb1dae}\label{classrev_1_1_model_a471f1534606eb09eb5b192b278cb1dae}} 
+const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \& \mbox{\hyperlink{classrev_1_1_model_a471f1534606eb09eb5b192b278cb1dae}{get\+Material}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name)
+\begin{DoxyCompactList}\small\item\em Get material with the given name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_a9da5a506a194310f2a00d180e5f34a00}\label{classrev_1_1_model_a9da5a506a194310f2a00d180e5f34a00}} 
+void \mbox{\hyperlink{classrev_1_1_model_a9da5a506a194310f2a00d180e5f34a00}{get\+Children}} (std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$$>$ \&out\+Materials, std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$$>$ \&out\+Meshes, std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$$>$ \&out\+Animations) const
+\begin{DoxyCompactList}\small\item\em Return the materials, meshes, and animations used by this model. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_ad18633701ce36868988f084d5c8575a6}\label{classrev_1_1_model_ad18633701ce36868988f084d5c8575a6}} 
+\mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $\ast$ \mbox{\hyperlink{classrev_1_1_model_ad18633701ce36868988f084d5c8575a6}{add\+Mesh}} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&mesh\+Name)
+\begin{DoxyCompactList}\small\item\em Create a new mesh with the given name and add it to the model. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_a7f540fb69a76cc8e9d36e4317f954668}\label{classrev_1_1_model_a7f540fb69a76cc8e9d36e4317f954668}} 
+\mbox{\hyperlink{classrev_1_1_material}{Material}} $\ast$ \mbox{\hyperlink{classrev_1_1_model_a7f540fb69a76cc8e9d36e4317f954668}{add\+Material}} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&mtl\+Name)
+\begin{DoxyCompactList}\small\item\em Create a new material with the given name and add it to the model. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_a111d73ee093035786e0f2da6461bf7c6}\label{classrev_1_1_model_a111d73ee093035786e0f2da6461bf7c6}} 
+\mbox{\hyperlink{classrev_1_1_animation}{Animation}} $\ast$ \mbox{\hyperlink{classrev_1_1_model_a111d73ee093035786e0f2da6461bf7c6}{add\+Animation}} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&anim\+Name)
+\begin{DoxyCompactList}\small\item\em Create a new animation with the given name and add it to the model. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_a8ec45d819ed1b99eab8403cf93a00c04}\label{classrev_1_1_model_a8ec45d819ed1b99eab8403cf93a00c04}} 
+void \mbox{\hyperlink{classrev_1_1_model_a8ec45d819ed1b99eab8403cf93a00c04}{add\+Skeleton}} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core)
+\begin{DoxyCompactList}\small\item\em Add a skeleton to the model. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_a84d8884054d364eba1d7f80b3a5fa520}\label{classrev_1_1_model_a84d8884054d364eba1d7f80b3a5fa520}} 
+const std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_model_chunk}{Model\+Chunk}} $>$ \& {\bfseries chunks} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_ae8a0e2513811762bf820cac1a0ac6ae2}\label{classrev_1_1_model_ae8a0e2513811762bf820cac1a0ac6ae2}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_model_chunk}{Model\+Chunk}} $>$ \& {\bfseries chunks} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_a4357b87ad86d0851ef63be3f6d492644}\label{classrev_1_1_model_a4357b87ad86d0851ef63be3f6d492644}} 
+virtual void \mbox{\hyperlink{classrev_1_1_model_a4357b87ad86d0851ef63be3f6d492644}{on\+Removal}} (\mbox{\hyperlink{classrev_1_1_resource_cache}{Resource\+Cache}} $\ast$cache=nullptr) override
+\begin{DoxyCompactList}\small\item\em What action to perform on removal of the resource. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classrev_1_1_model_a30a84dac2ff91c87bf920dd3a68411e5}{post\+Construction}} () override
+\begin{DoxyCompactList}\small\item\em What action to perform post-\/construction of the model. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classrev_1_1_model_aa61390d068bc81cd1d28c8bf44c88008}{load\+Binary}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&filepath) override
+\begin{DoxyCompactList}\small\item\em Load the resource from its binary representation. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classrev_1_1_model_a2ca39792d2c6fbd73ca726a6145041ad}{save\+Binary}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&filepath) const override
+\begin{DoxyCompactList}\small\item\em Save the resource to its binary representation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_a58700632e50e5d24f7ff0075e5dc9c0f}\label{classrev_1_1_model_a58700632e50e5d24f7ff0075e5dc9c0f}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_model_a58700632e50e5d24f7ff0075e5dc9c0f}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_a91836efa1680574409121adbd0be326f}\label{classrev_1_1_model_a91836efa1680574409121adbd0be326f}} 
+virtual void \mbox{\hyperlink{classrev_1_1_model_a91836efa1680574409121adbd0be326f}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_model_a5294b11c432c67e5e89b76af767d9305}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_model_ab005d0b8d9815c0cfa80a01f46fb8a38}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_a90268a56a0fc04b229c8fee25b407e6e}\label{classrev_1_1_model_a90268a56a0fc04b229c8fee25b407e6e}} 
+bool \mbox{\hyperlink{classrev_1_1_model_a90268a56a0fc04b229c8fee25b407e6e}{check\+Mesh}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \&handle)
+\begin{DoxyCompactList}\small\item\em Checks that resource is loaded and valid to draw, and attempts to load if not loaded. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_aa4b1ad306918803d9a687c0beab92b8c}\label{classrev_1_1_model_aa4b1ad306918803d9a687c0beab92b8c}} 
+bool {\bfseries check\+Material} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \&handle)
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_a61f577407a48c0e1ef99f82d68e9e1e0}\label{classrev_1_1_model_a61f577407a48c0e1ef99f82d68e9e1e0}} 
+void {\bfseries load\+Chunks\+From\+Json} (const Q\+Json\+Object \&object)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_afdbf4a54ad622100c881d2a621ba7f5d}\label{classrev_1_1_model_afdbf4a54ad622100c881d2a621ba7f5d}} 
+\mbox{\hyperlink{classrev_1_1_flags}{Model\+Flags}} \mbox{\hyperlink{classrev_1_1_model_afdbf4a54ad622100c881d2a621ba7f5d}{m\+\_\+model\+Flags}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_flags}{Flags}} governing the behavior of the model. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_a8eb685e2fe959f7a88c9ddb91dbb6159}\label{classrev_1_1_model_a8eb685e2fe959f7a88c9ddb91dbb6159}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_model_chunk}{Model\+Chunk}} $>$ \mbox{\hyperlink{classrev_1_1_model_a8eb685e2fe959f7a88c9ddb91dbb6159}{m\+\_\+chunks}}
+\begin{DoxyCompactList}\small\item\em Vectors of meshes and associated materials. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_a5f0762fc19b59f52777e58764727ab66}\label{classrev_1_1_model_a5f0762fc19b59f52777e58764727ab66}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \mbox{\hyperlink{classrev_1_1_model_a5f0762fc19b59f52777e58764727ab66}{m\+\_\+skeleton\+Handle}} = nullptr
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_skeleton}{Skeleton}} for the model. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_a70538530bc36e033e360880ef311df61}\label{classrev_1_1_model_a70538530bc36e033e360880ef311df61}} 
+class {\bfseries Renderer}
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_ac3e0a085a76d6fcad904e95ebbe2c6a5}\label{classrev_1_1_model_ac3e0a085a76d6fcad904e95ebbe2c6a5}} 
+class {\bfseries Model\+Reader}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_a9d929d1f68eede6ddddf78f359fb5427}\label{classrev_1_1_model_a9d929d1f68eede6ddddf78f359fb5427}} 
+enum {\bfseries Model\+Flag} \{ {\bfseries k\+Is\+Animated} = 1 $<$$<$ 0
+ \}
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_a013ad8f36462d14d845cf1c5581cc5a6}\label{classrev_1_1_model_a013ad8f36462d14d845cf1c5581cc5a6}} 
+typedef \mbox{\hyperlink{classrev_1_1_flags}{Flags}}$<$ Model\+Flag $>$ {\bfseries Model\+Flags}
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_a14f2db8d40174aa831a5af96823d643c}\label{classrev_1_1_model_a14f2db8d40174aa831a5af96823d643c}} 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \mbox{\hyperlink{classrev_1_1_model_a14f2db8d40174aa831a5af96823d643c}{Create\+Handle}} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$engine)
+\begin{DoxyCompactList}\small\item\em Create handle to a model. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_a6b22472f69c93f1581b11c525dc955d0}\label{classrev_1_1_model_a6b22472f69c93f1581b11c525dc955d0}} 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ {\bfseries Create\+Handle} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$engine, const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&unique\+Name, \mbox{\hyperlink{classrev_1_1_flags}{Model\+Flags}} flags=\{\})
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} for a model. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_model_a5294b11c432c67e5e89b76af767d9305}\label{classrev_1_1_model_a5294b11c432c67e5e89b76af767d9305}} 
+\index{rev::Model@{rev::Model}!className@{className}}
+\index{className@{className}!rev::Model@{rev::Model}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Model\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_model_aa61390d068bc81cd1d28c8bf44c88008}\label{classrev_1_1_model_aa61390d068bc81cd1d28c8bf44c88008}} 
+\index{rev::Model@{rev::Model}!loadBinary@{loadBinary}}
+\index{loadBinary@{loadBinary}!rev::Model@{rev::Model}}
+\subsubsection{\texorpdfstring{loadBinary()}{loadBinary()}}
+{\footnotesize\ttfamily bool rev\+::\+Model\+::load\+Binary (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&}]{filepath }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Load the resource from its binary representation. 
+
+\begin{DoxyReturn}{Returns}
+False if unimplemented, or failed to load 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_resource_aad752eceda9dab7ea282fb50b894ad4c}{rev\+::\+Resource}}.
+
+\mbox{\Hypertarget{classrev_1_1_model_ab005d0b8d9815c0cfa80a01f46fb8a38}\label{classrev_1_1_model_ab005d0b8d9815c0cfa80a01f46fb8a38}} 
+\index{rev::Model@{rev::Model}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::Model@{rev::Model}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Model\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_model_a30a84dac2ff91c87bf920dd3a68411e5}\label{classrev_1_1_model_a30a84dac2ff91c87bf920dd3a68411e5}} 
+\index{rev::Model@{rev::Model}!postConstruction@{postConstruction}}
+\index{postConstruction@{postConstruction}!rev::Model@{rev::Model}}
+\subsubsection{\texorpdfstring{postConstruction()}{postConstruction()}}
+{\footnotesize\ttfamily void rev\+::\+Model\+::post\+Construction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+What action to perform post-\/construction of the model. 
+
+For performing any actions that need to be done on the main thread 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_resource_a8a6daa71820d88c86bc6c0aa474d1af7}{rev\+::\+Resource}}.
+
+\mbox{\Hypertarget{classrev_1_1_model_a2ca39792d2c6fbd73ca726a6145041ad}\label{classrev_1_1_model_a2ca39792d2c6fbd73ca726a6145041ad}} 
+\index{rev::Model@{rev::Model}!saveBinary@{saveBinary}}
+\index{saveBinary@{saveBinary}!rev::Model@{rev::Model}}
+\subsubsection{\texorpdfstring{saveBinary()}{saveBinary()}}
+{\footnotesize\ttfamily bool rev\+::\+Model\+::save\+Binary (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&}]{filepath }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Save the resource to its binary representation. 
+
+\begin{DoxyReturn}{Returns}
+False if unimplemented, or failed to save 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_resource_afbd64f3d18060ce32a995dbfb5472f91}{rev\+::\+Resource}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/models/G\+Model.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/models/G\+Model.\+cpp\end{DoxyCompactItemize}

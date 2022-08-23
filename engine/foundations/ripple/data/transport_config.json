@@ -1,0 +1,27 @@
+{
+    "options":{
+        "valid_range":[1024, 49151]
+    },
+    "applications": [
+        {
+            "name": "reverie", 
+            "transports": [
+                {   
+                    "name": "reverie_to_geppetto",
+                    "receive_endpoint": {"address": {"name": "localhost", "type": "IPv4"}, "port": 31457}, 
+                    "send_endpoint": {"address": {"name": "localhost", "type": "IPv4"}, "port": 31458}
+                }
+            ]
+        },
+        {
+            "name": "geppetto", 
+            "transports": [
+                {   
+                    "name": "geppetto_to_reverie",
+                    "receive_endpoint": {"address": {"name": "localhost", "type": "IPv4"}, "port": 31458}, 
+                    "send_endpoint": {"address": {"name": "localhost", "type": "IPv4"}, "port": 31457}
+                }
+            ]
+        }
+    ]
+}

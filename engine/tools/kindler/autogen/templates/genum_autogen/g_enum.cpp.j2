@@ -1,0 +1,31 @@
+/// This file is auto-generated from {{ template_file_name }}
+/// Do not modify! It will be overwritten
+
+#include "{{ library_name }}/G{{ enum_type }}Enum.h"
+
+namespace rev {
+
+G{{ enum_type }}::G{{ enum_type }}(const {{enum_definitions.enums[enum_type].type}}& enumValue):
+    m_value(static_cast<E{{ enum_type }}>(enumValue))
+{
+}
+
+G{{ enum_type }}::G{{ enum_type }}(const E{{ enum_type }}& enumValue):
+    m_value(enumValue)
+{
+}
+
+G{{ enum_type }}::~G{{ enum_type }}(){}
+
+
+const tsl::robin_map<E{{ enum_type }}, GString> G{{ enum_type }}::s_enumStrings = { {% for enum_name, enum_info in enum_definitions.enums[enum_type].members.items() %}
+    { E{{ enum_type }}::e{{ enum_name }}, "{{ enum_name }}" }{{ "," if not loop.last else "," }}
+{%- endfor %}
+};
+
+const tsl::robin_map<GString, E{{ enum_type }}> G{{ enum_type }}::s_stringEnums = { {% for enum_name, enum_info in enum_definitions.enums[enum_type].members.items() %}
+    { "{{ enum_name }}", E{{ enum_type }}::e{{ enum_name }} }{{ "," if not loop.last else "," }}
+{%- endfor %}
+};
+
+} // End namespace

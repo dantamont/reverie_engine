@@ -1,0 +1,118 @@
+\hypertarget{classrev_1_1_physics_geometry}{}\section{rev\+::Physics\+Geometry Class Reference}
+\label{classrev_1_1_physics_geometry}\index{rev::PhysicsGeometry@{rev::PhysicsGeometry}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing physics geometry See\+: \href{https://documentation.help/NVIDIA-PhysX-SDK-Guide/Shapes.html}{\texttt{ https\+://documentation.\+help/\+N\+V\+I\+D\+I\+A-\/\+Phys\+X-\/\+S\+D\+K-\/\+Guide/\+Shapes.\+html}}.  
+
+
+
+
+{\ttfamily \#include $<$G\+Physics\+Geometry.\+h$>$}
+
+Inheritance diagram for rev\+::Physics\+Geometry\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_physics_geometry}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_geometry_a279ead66e673c960f6810c6b59eae38a}\label{classrev_1_1_physics_geometry_a279ead66e673c960f6810c6b59eae38a}} 
+{\bfseries Physics\+Geometry} (Geometry\+Type type)
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_geometry_aecb4e07f21547af65501619be7486550}\label{classrev_1_1_physics_geometry_aecb4e07f21547af65501619be7486550}} 
+virtual {\bfseries $\sim$\+Physics\+Geometry} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_geometry_ac30b7c69fd9c33907ffe71f8b5e46611}\label{classrev_1_1_physics_geometry_ac30b7c69fd9c33907ffe71f8b5e46611}} 
+Geometry\+Type {\bfseries get\+Type} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_geometry_a7f3608b2f6710dca4442b6f15dd06b76}\label{classrev_1_1_physics_geometry_a7f3608b2f6710dca4442b6f15dd06b76}} 
+virtual const physx\+::\+Px\+Geometry \& {\bfseries get\+Geometry} () const =0
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_geometry_a5f40b7df54b9064a580499a0db25ef5a}\label{classrev_1_1_physics_geometry_a5f40b7df54b9064a580499a0db25ef5a}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_physics_geometry_a5f40b7df54b9064a580499a0db25ef5a}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_geometry_a78fff448c61d1a5d598551c335ee3fd6}\label{classrev_1_1_physics_geometry_a78fff448c61d1a5d598551c335ee3fd6}} 
+virtual void \mbox{\hyperlink{classrev_1_1_physics_geometry_a78fff448c61d1a5d598551c335ee3fd6}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_physics_geometry_afc74d4c03367f3bc83595acaeca7d9a8}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_physics_geometry_ad4311205e1a6eabeeb7773a01d11add5}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Statics}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_geometry_aada99b618cdc92ab91f33568f79ff9ab}\label{classrev_1_1_physics_geometry_aada99b618cdc92ab91f33568f79ff9ab}} 
+enum {\bfseries Geometry\+Type} \{ {\bfseries k\+Base} = -\/1, 
+{\bfseries k\+Box}, 
+{\bfseries k\+Sphere}, 
+{\bfseries k\+Plane}
+ \}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_geometry_ac64dd6957e27d8bfc667b576514ba017}\label{classrev_1_1_physics_geometry_ac64dd6957e27d8bfc667b576514ba017}} 
+static std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_physics_geometry}{Physics\+Geometry}} $>$ \mbox{\hyperlink{classrev_1_1_physics_geometry_ac64dd6957e27d8bfc667b576514ba017}{Create\+Geometry}} (const Q\+Json\+Object \&json)
+\begin{DoxyCompactList}\small\item\em Create geometry from J\+S\+ON. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing physics geometry See\+: \href{https://documentation.help/NVIDIA-PhysX-SDK-Guide/Shapes.html}{\texttt{ https\+://documentation.\+help/\+N\+V\+I\+D\+I\+A-\/\+Phys\+X-\/\+S\+D\+K-\/\+Guide/\+Shapes.\+html}}. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_physics_geometry_afc74d4c03367f3bc83595acaeca7d9a8}\label{classrev_1_1_physics_geometry_afc74d4c03367f3bc83595acaeca7d9a8}} 
+\index{rev::PhysicsGeometry@{rev::PhysicsGeometry}!className@{className}}
+\index{className@{className}!rev::PhysicsGeometry@{rev::PhysicsGeometry}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Physics\+Geometry\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_plane_geometry_a20bc1985065668b3e9716c8252d6b070}{rev\+::\+Plane\+Geometry}}, \mbox{\hyperlink{classrev_1_1_sphere_geometry_ac7447dddbb37769070e302792ced7ac2}{rev\+::\+Sphere\+Geometry}}, and \mbox{\hyperlink{classrev_1_1_box_geometry_a2e815ff8c55805fdbb74eedf7b2c16c5}{rev\+::\+Box\+Geometry}}.
+
+\mbox{\Hypertarget{classrev_1_1_physics_geometry_ad4311205e1a6eabeeb7773a01d11add5}\label{classrev_1_1_physics_geometry_ad4311205e1a6eabeeb7773a01d11add5}} 
+\index{rev::PhysicsGeometry@{rev::PhysicsGeometry}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::PhysicsGeometry@{rev::PhysicsGeometry}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Physics\+Geometry\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_plane_geometry_aafaa3b1c3f1e103cf4aa2d9a2ce9feb1}{rev\+::\+Plane\+Geometry}}, \mbox{\hyperlink{classrev_1_1_sphere_geometry_aef6068a1ad9dc22c0ae744898923b7a2}{rev\+::\+Sphere\+Geometry}}, and \mbox{\hyperlink{classrev_1_1_box_geometry_a2a3b42da46821366322cfecf569e2b5f}{rev\+::\+Box\+Geometry}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Physics\+Geometry.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Physics\+Geometry.\+cpp\end{DoxyCompactItemize}

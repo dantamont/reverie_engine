@@ -1,0 +1,148 @@
+\hypertarget{classrev_1_1_load_process}{}\section{rev\+::Load\+Process Class Reference}
+\label{classrev_1_1_load_process}\index{rev::LoadProcess@{rev::LoadProcess}}
+
+
+Represents a thread process to load a resource.  
+
+
+
+
+{\ttfamily \#include $<$G\+Load\+Process.\+h$>$}
+
+Inheritance diagram for rev\+::Load\+Process\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classrev_1_1_load_process}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_load_process_a249cd84625ea0946a2106bb19d415428}\label{classrev_1_1_load_process_a249cd84625ea0946a2106bb19d415428}} 
+{\bfseries Load\+Process} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \&resource\+Handle)
+\item 
+\mbox{\Hypertarget{classrev_1_1_load_process_af796052508aac2974decf4fa838e9da7}\label{classrev_1_1_load_process_af796052508aac2974decf4fa838e9da7}} 
+{\bfseries $\sim$\+Load\+Process} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_load_process_aa2216a585c3deff892ef5faebe2a736f}\label{classrev_1_1_load_process_aa2216a585c3deff892ef5faebe2a736f}} 
+virtual void \mbox{\hyperlink{classrev_1_1_load_process_aa2216a585c3deff892ef5faebe2a736f}{on\+Init}} () override
+\begin{DoxyCompactList}\small\item\em Functions to be overriden by process subclasses as needed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_load_process_ada0825aa3a4beeda9f64e3c5587c065a}\label{classrev_1_1_load_process_ada0825aa3a4beeda9f64e3c5587c065a}} 
+virtual void {\bfseries on\+Late\+Update} (double delta\+Sec) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_load_process_a39e0f64689cbad5089d5700a6d60eb4f}\label{classrev_1_1_load_process_a39e0f64689cbad5089d5700a6d60eb4f}} 
+virtual void {\bfseries on\+Success} () override
+\item 
+\mbox{\Hypertarget{classrev_1_1_load_process_a688425979ad57f23f51a1a076357e8d1}\label{classrev_1_1_load_process_a688425979ad57f23f51a1a076357e8d1}} 
+virtual void {\bfseries on\+Fail} () override
+\item 
+\mbox{\Hypertarget{classrev_1_1_load_process_a49c85382cf0e3c49020cd1c82a6de38c}\label{classrev_1_1_load_process_a49c85382cf0e3c49020cd1c82a6de38c}} 
+virtual void {\bfseries on\+Abort} () override
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_load_process_ad826a8b7aab260c491bcd4344564947d}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_load_process_aadfe0ec547dbda51e60517691617e88b}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource}{Resource}} $>$ \mbox{\hyperlink{classrev_1_1_load_process_a709d1f01ffd619787b2f497a76b20e33}{load\+Image}} ()
+\begin{DoxyCompactList}\small\item\em Load the requested resource. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_load_process_a0ad30239bab2b7cfd14bb79d2ed09608}\label{classrev_1_1_load_process_a0ad30239bab2b7cfd14bb79d2ed09608}} 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource}{Resource}} $>$ {\bfseries load\+Texture} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_load_process_ad10195aa98cf983b809f9bf0c6130d02}\label{classrev_1_1_load_process_ad10195aa98cf983b809f9bf0c6130d02}} 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource}{Resource}} $>$ {\bfseries load\+Model} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_load_process_a7dd4ac6f7ac5cc2a6187783b2cfc86d2}\label{classrev_1_1_load_process_a7dd4ac6f7ac5cc2a6187783b2cfc86d2}} 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource}{Resource}} $>$ {\bfseries load\+Mesh} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_load_process_aa4dcb74bf4377bb96523ff0af81957bf}\label{classrev_1_1_load_process_aa4dcb74bf4377bb96523ff0af81957bf}} 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource}{Resource}} $>$ {\bfseries load\+Cube\+Texture} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_load_process_acc71faa72287af46b0fe754b2e6d52af}\label{classrev_1_1_load_process_acc71faa72287af46b0fe754b2e6d52af}} 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource}{Resource}} $>$ {\bfseries load\+Material} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_load_process_a308da9f44a7fc5275637db3e02b00611}\label{classrev_1_1_load_process_a308da9f44a7fc5275637db3e02b00611}} 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource}{Resource}} $>$ {\bfseries load\+Animation} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_load_process_aef89e12de57bb85beef781dac32eba47}\label{classrev_1_1_load_process_aef89e12de57bb85beef781dac32eba47}} 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource}{Resource}} $>$ {\bfseries load\+Shader\+Program} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_load_process_a2a5bc4f3e6d2e647fc7843782cf24836}\label{classrev_1_1_load_process_a2a5bc4f3e6d2e647fc7843782cf24836}} 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource}{Resource}} $>$ {\bfseries load\+Python\+Script} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_load_process_a5d358718fdd5f6ee8415a84be10040d3}\label{classrev_1_1_load_process_a5d358718fdd5f6ee8415a84be10040d3}} 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource}{Resource}} $>$ {\bfseries load\+Audio} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_load_process_a6e8edc25c3a30bd06fd787052aceeae6}\label{classrev_1_1_load_process_a6e8edc25c3a30bd06fd787052aceeae6}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \mbox{\hyperlink{classrev_1_1_load_process_a6e8edc25c3a30bd06fd787052aceeae6}{m\+\_\+resource\+Handle}}
+\begin{DoxyCompactList}\small\item\em The handle for the resource to be loaded by this process. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Represents a thread process to load a resource. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_load_process_ad826a8b7aab260c491bcd4344564947d}\label{classrev_1_1_load_process_ad826a8b7aab260c491bcd4344564947d}} 
+\index{rev::LoadProcess@{rev::LoadProcess}!className@{className}}
+\index{className@{className}!rev::LoadProcess@{rev::LoadProcess}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Load\+Process\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_threaded_process_a7b198a27cb18d6da765cef1ed66a169c}{rev\+::\+Threaded\+Process}}.
+
+\mbox{\Hypertarget{classrev_1_1_load_process_a709d1f01ffd619787b2f497a76b20e33}\label{classrev_1_1_load_process_a709d1f01ffd619787b2f497a76b20e33}} 
+\index{rev::LoadProcess@{rev::LoadProcess}!loadImage@{loadImage}}
+\index{loadImage@{loadImage}!rev::LoadProcess@{rev::LoadProcess}}
+\subsubsection{\texorpdfstring{loadImage()}{loadImage()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource}{Resource}} $>$ rev\+::\+Load\+Process\+::load\+Image (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Load the requested resource. 
+
+Returns success status \mbox{\Hypertarget{classrev_1_1_load_process_aadfe0ec547dbda51e60517691617e88b}\label{classrev_1_1_load_process_aadfe0ec547dbda51e60517691617e88b}} 
+\index{rev::LoadProcess@{rev::LoadProcess}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::LoadProcess@{rev::LoadProcess}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Load\+Process\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_threaded_process_a102e7ef754f41bb16225c4207b6b3c58}{rev\+::\+Threaded\+Process}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/processes/G\+Load\+Process.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/processes/G\+Load\+Process.\+cpp\end{DoxyCompactItemize}

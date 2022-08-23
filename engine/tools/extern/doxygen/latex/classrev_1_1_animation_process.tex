@@ -1,0 +1,135 @@
+\hypertarget{classrev_1_1_animation_process}{}\section{rev\+::Animation\+Process Class Reference}
+\label{classrev_1_1_animation_process}\index{rev::AnimationProcess@{rev::AnimationProcess}}
+
+
+Represents a skeletal animation process.  
+
+
+
+
+{\ttfamily \#include $<$G\+Animation\+Process.\+h$>$}
+
+Inheritance diagram for rev\+::Animation\+Process\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_animation_process}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_process_a98af6fb130f7926ebf83bf416fbba777}\label{classrev_1_1_animation_process_a98af6fb130f7926ebf83bf416fbba777}} 
+{\bfseries Animation\+Process} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$engine, \mbox{\hyperlink{classrev_1_1_animation_controller}{Animation\+Controller}} $\ast$controller, const \mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$transform)
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_process_ab87c8cd6893f24632c8bd8a8eb529eca}\label{classrev_1_1_animation_process_ab87c8cd6893f24632c8bd8a8eb529eca}} 
+{\bfseries $\sim$\+Animation\+Process} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_process_acbec23dfb1a1555d9f541a9ce29c043f}\label{classrev_1_1_animation_process_acbec23dfb1a1555d9f541a9ce29c043f}} 
+std\+::shared\+\_\+mutex \& {\bfseries mutex} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_process_a379abdf42674267ee1fda2816406f031}\label{classrev_1_1_animation_process_a379abdf42674267ee1fda2816406f031}} 
+const std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4}} $>$ \& {\bfseries transforms} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_process_abb8512020d3d47ebda67e2f68f9679f4}\label{classrev_1_1_animation_process_abb8512020d3d47ebda67e2f68f9679f4}} 
+virtual void \mbox{\hyperlink{classrev_1_1_animation_process_abb8512020d3d47ebda67e2f68f9679f4}{on\+Init}} () override
+\begin{DoxyCompactList}\small\item\em Functions to be overriden by process subclasses as needed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_process_a98dee6b8ff5159610d5a6cc278b2e05a}\label{classrev_1_1_animation_process_a98dee6b8ff5159610d5a6cc278b2e05a}} 
+virtual void {\bfseries on\+Update} (double delta\+Sec) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_process_ac2f9181b3920d452a55c62961c5dd026}\label{classrev_1_1_animation_process_ac2f9181b3920d452a55c62961c5dd026}} 
+virtual void {\bfseries on\+Late\+Update} (double delta\+Sec) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_process_a5f80b828058721c03f644a4ace25648c}\label{classrev_1_1_animation_process_a5f80b828058721c03f644a4ace25648c}} 
+virtual void {\bfseries on\+Fixed\+Update} (double delta\+Sec) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_process_a53fe05262da4e6303facbb33f9500964}\label{classrev_1_1_animation_process_a53fe05262da4e6303facbb33f9500964}} 
+virtual void {\bfseries on\+Success} () override
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_process_a63879d0bcfa3d8758beb357111086d84}\label{classrev_1_1_animation_process_a63879d0bcfa3d8758beb357111086d84}} 
+virtual void {\bfseries on\+Fail} () override
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_process_a9840df249db9cf5af2c7a3fd01d1e4b5}\label{classrev_1_1_animation_process_a9840df249db9cf5af2c7a3fd01d1e4b5}} 
+virtual void {\bfseries on\+Abort} () override
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_animation_process_a1956615907f3d2d32318d91d21a0df80}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_animation_process_acb6fc0ee2382f8e5b09fd2d3f4847b27}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_process_a9571f2444829d2ef4fefc9489479ea36}\label{classrev_1_1_animation_process_a9571f2444829d2ef4fefc9489479ea36}} 
+\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$ \mbox{\hyperlink{classrev_1_1_animation_process_a9571f2444829d2ef4fefc9489479ea36}{m\+\_\+engine}}
+\begin{DoxyCompactList}\small\item\em The core engine, since processqueue doesn\textquotesingle{}t hold onto it. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_process_ae2a9c27040fceae12e8e2a151bb0e20b}\label{classrev_1_1_animation_process_ae2a9c27040fceae12e8e2a151bb0e20b}} 
+std\+::shared\+\_\+mutex \mbox{\hyperlink{classrev_1_1_animation_process_ae2a9c27040fceae12e8e2a151bb0e20b}{m\+\_\+mutex}}
+\begin{DoxyCompactList}\small\item\em Contol access to the process, since running on separate animation thread. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_process_abc39208a03524f6626070657810b8c73}\label{classrev_1_1_animation_process_abc39208a03524f6626070657810b8c73}} 
+\mbox{\hyperlink{classrev_1_1_animation_controller}{Animation\+Controller}} $\ast$ {\bfseries m\+\_\+controller}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_process_ae30d2259bbc31da675e40d453126b067}\label{classrev_1_1_animation_process_ae30d2259bbc31da675e40d453126b067}} 
+const \mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$ {\bfseries m\+\_\+transform}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_process_a440defc4cb5858f6a3cc71bdc51da41f}\label{classrev_1_1_animation_process_a440defc4cb5858f6a3cc71bdc51da41f}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4}} $>$ \mbox{\hyperlink{classrev_1_1_animation_process_a440defc4cb5858f6a3cc71bdc51da41f}{m\+\_\+transforms}}
+\begin{DoxyCompactList}\small\item\em The set of transforms for the current animation pose. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_process_ac021537b031e1f53f05a26019de4def9}\label{classrev_1_1_animation_process_ac021537b031e1f53f05a26019de4def9}} 
+double \mbox{\hyperlink{classrev_1_1_animation_process_ac021537b031e1f53f05a26019de4def9}{m\+\_\+elapsed\+Time\+Sec}} = 0
+\begin{DoxyCompactList}\small\item\em The elapsed time (in seconds) since begining playback. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Represents a skeletal animation process. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_animation_process_a1956615907f3d2d32318d91d21a0df80}\label{classrev_1_1_animation_process_a1956615907f3d2d32318d91d21a0df80}} 
+\index{rev::AnimationProcess@{rev::AnimationProcess}!className@{className}}
+\index{className@{className}!rev::AnimationProcess@{rev::AnimationProcess}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Animation\+Process\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_process_adc27ddf4c0f44dab54a5f797c7135c44}{rev\+::\+Process}}.
+
+\mbox{\Hypertarget{classrev_1_1_animation_process_acb6fc0ee2382f8e5b09fd2d3f4847b27}\label{classrev_1_1_animation_process_acb6fc0ee2382f8e5b09fd2d3f4847b27}} 
+\index{rev::AnimationProcess@{rev::AnimationProcess}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::AnimationProcess@{rev::AnimationProcess}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Animation\+Process\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_process_a7f5a6ab8af65aec3132f6a072b9fcb87}{rev\+::\+Process}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/processes/G\+Animation\+Process.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/processes/G\+Animation\+Process.\+cpp\end{DoxyCompactItemize}

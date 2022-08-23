@@ -1,0 +1,72 @@
+\hypertarget{structrev_1_1_debug_manager_1_1_debug_renderable}{}\section{rev\+::Debug\+Manager\+::Debug\+Renderable Struct Reference}
+\label{structrev_1_1_debug_manager_1_1_debug_renderable}\index{rev::DebugManager::DebugRenderable@{rev::DebugManager::DebugRenderable}}
+
+
+Struct containing a debug renderable.  
+
+
+
+
+{\ttfamily \#include $<$G\+Debug\+Manager.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_debug_manager_1_1_debug_renderable_a4c6c51ad22126c06c572998616d732ee}\label{structrev_1_1_debug_manager_1_1_debug_renderable_a4c6c51ad22126c06c572998616d732ee}} 
+{\bfseries Debug\+Renderable} ()
+\item 
+\mbox{\Hypertarget{structrev_1_1_debug_manager_1_1_debug_renderable_a0efb8361a012f06fa1507bf855ad3f9f}\label{structrev_1_1_debug_manager_1_1_debug_renderable_a0efb8361a012f06fa1507bf855ad3f9f}} 
+{\bfseries Debug\+Renderable} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_renderable}{Renderable}} $>$ \&renderable, \mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$shader\+Program, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_object}{Object}} $>$ \&\mbox{\hyperlink{structrev_1_1_debug_manager_1_1_debug_renderable_a4283f2324810d7683b4b615b54430fd1}{object}}, float duration=-\/1)
+\item 
+\mbox{\Hypertarget{structrev_1_1_debug_manager_1_1_debug_renderable_a682f77c7ae081b245abcc892348954a5}\label{structrev_1_1_debug_manager_1_1_debug_renderable_a682f77c7ae081b245abcc892348954a5}} 
+{\bfseries $\sim$\+Debug\+Renderable} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_debug_manager_1_1_debug_renderable_a8e47ef2ef136a936126c028c6f1d5a84}\label{structrev_1_1_debug_manager_1_1_debug_renderable_a8e47ef2ef136a936126c028c6f1d5a84}} 
+bool \mbox{\hyperlink{structrev_1_1_debug_manager_1_1_debug_renderable_a8e47ef2ef136a936126c028c6f1d5a84}{is\+Done}} () const
+\begin{DoxyCompactList}\small\item\em Is done drawing. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_debug_manager_1_1_debug_renderable_a395e4e34b8035c71fd650cbdaa7edc34}\label{structrev_1_1_debug_manager_1_1_debug_renderable_a395e4e34b8035c71fd650cbdaa7edc34}} 
+void \mbox{\hyperlink{structrev_1_1_debug_manager_1_1_debug_renderable_a395e4e34b8035c71fd650cbdaa7edc34}{draw}} ()
+\begin{DoxyCompactList}\small\item\em Draw the debug renderable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_debug_manager_1_1_debug_renderable_a4283f2324810d7683b4b615b54430fd1}\label{structrev_1_1_debug_manager_1_1_debug_renderable_a4283f2324810d7683b4b615b54430fd1}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_object}{Object}} $>$ \mbox{\hyperlink{structrev_1_1_debug_manager_1_1_debug_renderable_a4283f2324810d7683b4b615b54430fd1}{object}} () const
+\begin{DoxyCompactList}\small\item\em Obtain the object corresponding to the debug renderable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Attributes}
+\begin{Indent}\textbf{ Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_debug_manager_1_1_debug_renderable_add19e3d9463ea50f6763a54afbc61058}\label{structrev_1_1_debug_manager_1_1_debug_renderable_add19e3d9463ea50f6763a54afbc61058}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_renderable}{Renderable}} $>$ \mbox{\hyperlink{structrev_1_1_debug_manager_1_1_debug_renderable_add19e3d9463ea50f6763a54afbc61058}{m\+\_\+renderable}}
+\begin{DoxyCompactList}\small\item\em the renderable \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_debug_manager_1_1_debug_renderable_add3f764f16444e8ed77cd3b8d4074357}\label{structrev_1_1_debug_manager_1_1_debug_renderable_add3f764f16444e8ed77cd3b8d4074357}} 
+\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$ {\bfseries m\+\_\+shader\+Program}
+\item 
+\mbox{\Hypertarget{structrev_1_1_debug_manager_1_1_debug_renderable_ab5de96f7014bc2dac3a6510b7c96e591}\label{structrev_1_1_debug_manager_1_1_debug_renderable_ab5de96f7014bc2dac3a6510b7c96e591}} 
+std\+::weak\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_object}{Object}} $>$ \mbox{\hyperlink{structrev_1_1_debug_manager_1_1_debug_renderable_ab5de96f7014bc2dac3a6510b7c96e591}{m\+\_\+object}}
+\begin{DoxyCompactList}\small\item\em The object represented by the debug renderable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_debug_manager_1_1_debug_renderable_a39e6406ab2024f93ef11b67434b03b8e}\label{structrev_1_1_debug_manager_1_1_debug_renderable_a39e6406ab2024f93ef11b67434b03b8e}} 
+float \mbox{\hyperlink{structrev_1_1_debug_manager_1_1_debug_renderable_a39e6406ab2024f93ef11b67434b03b8e}{m\+\_\+duration\+In\+Secs}}
+\begin{DoxyCompactList}\small\item\em Duration of the renderable in seconds. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_debug_manager_1_1_debug_renderable_a806cef0a22e801d90e47aaa7da5576d1}\label{structrev_1_1_debug_manager_1_1_debug_renderable_a806cef0a22e801d90e47aaa7da5576d1}} 
+Q\+Elapsed\+Timer {\bfseries m\+\_\+timer}
+\item 
+\mbox{\Hypertarget{structrev_1_1_debug_manager_1_1_debug_renderable_ac93ea57550f050ef7d670145a0f797ca}\label{structrev_1_1_debug_manager_1_1_debug_renderable_ac93ea57550f050ef7d670145a0f797ca}} 
+bool {\bfseries m\+\_\+enabled}
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+Struct containing a debug renderable. 
+
+The renderable has an optional duration attribute, which can be set to allow for temporary drawing 
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/debugging/G\+Debug\+Manager.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/debugging/G\+Debug\+Manager.\+cpp\end{DoxyCompactItemize}

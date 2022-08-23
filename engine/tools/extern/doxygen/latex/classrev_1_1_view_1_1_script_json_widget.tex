@@ -1,0 +1,70 @@
+\hypertarget{classrev_1_1_view_1_1_script_json_widget}{}\section{rev\+::View\+::Script\+Json\+Widget Class Reference}
+\label{classrev_1_1_view_1_1_script_json_widget}\index{rev::View::ScriptJsonWidget@{rev::View::ScriptJsonWidget}}
+Inheritance diagram for rev\+::View\+::Script\+Json\+Widget\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classrev_1_1_view_1_1_script_json_widget}
+\end{center}
+\end{figure}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_script_json_widget_a4afef6118d1e02301ce3736d4b35288d}\label{classrev_1_1_view_1_1_script_json_widget_a4afef6118d1e02301ce3736d4b35288d}} 
+void {\bfseries edited\+Script\+Order} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_script_json_widget_a7e8080da0621dd178f2eaa48329df524}\label{classrev_1_1_view_1_1_script_json_widget_a7e8080da0621dd178f2eaa48329df524}} 
+{\bfseries Script\+Json\+Widget} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, \mbox{\hyperlink{structrev_1_1_sorting_layer}{Sorting\+Layer}} $\ast$sort\+Layer, Q\+Widget $\ast$parent=0)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_script_json_widget_a25522a40d58d1b5d4f8b8eb84ed94abc}\label{classrev_1_1_view_1_1_script_json_widget_a25522a40d58d1b5d4f8b8eb84ed94abc}} 
+{\bfseries $\sim$\+Script\+Json\+Widget} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Events}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_script_json_widget_a45241923d7530f4cc9b238a7f0da3e64}\label{classrev_1_1_view_1_1_script_json_widget_a45241923d7530f4cc9b238a7f0da3e64}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_script_json_widget_a45241923d7530f4cc9b238a7f0da3e64}{wheel\+Event}} (Q\+Wheel\+Event $\ast$event) override
+\begin{DoxyCompactList}\small\item\em Scroll event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_script_json_widget_a2da84b7623a78b259bd27d4c184a9b0e}\label{classrev_1_1_view_1_1_script_json_widget_a2da84b7623a78b259bd27d4c184a9b0e}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_script_json_widget_a2da84b7623a78b259bd27d4c184a9b0e}{initialize\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to check\+Validity widgets. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_script_json_widget_a350a1c2c010df85d72de28e1a7d83c38}\label{classrev_1_1_view_1_1_script_json_widget_a350a1c2c010df85d72de28e1a7d83c38}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_script_json_widget_a350a1c2c010df85d72de28e1a7d83c38}{layout\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to ay out widgets. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_script_json_widget_ae4404f8e9106bbc1f6cfeacefe86180a}\label{classrev_1_1_view_1_1_script_json_widget_ae4404f8e9106bbc1f6cfeacefe86180a}} 
+virtual bool \mbox{\hyperlink{classrev_1_1_view_1_1_script_json_widget_ae4404f8e9106bbc1f6cfeacefe86180a}{is\+Valid\+Object}} (const Q\+Json\+Object \&object) override
+\begin{DoxyCompactList}\small\item\em Whether or not the specified object is valid. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_script_json_widget_abf77c994eecceeacd0fd385b809e9400}\label{classrev_1_1_view_1_1_script_json_widget_abf77c994eecceeacd0fd385b809e9400}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_script_json_widget_abf77c994eecceeacd0fd385b809e9400}{pre\+Load}} () override
+\begin{DoxyCompactList}\small\item\em What to do prior to reloading serializable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_script_json_widget_ad2d70f558c512c29ba513088b9264680}\label{classrev_1_1_view_1_1_script_json_widget_ad2d70f558c512c29ba513088b9264680}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_script_json_widget_ad2d70f558c512c29ba513088b9264680}{post\+Load}} () override
+\begin{DoxyCompactList}\small\item\em What do do after reloading serializable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_script_json_widget_a6cf25944030e65200a68308be1ab6f46}\label{classrev_1_1_view_1_1_script_json_widget_a6cf25944030e65200a68308be1ab6f46}} 
+\mbox{\hyperlink{structrev_1_1_sorting_layer}{Sorting\+Layer}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_script_json_widget_a6cf25944030e65200a68308be1ab6f46}{sorting\+Layer}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_serializable}{Serializable}} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_script_json_widget_abb6e981b6862a16f98e40e37b6d6d33a}\label{classrev_1_1_view_1_1_script_json_widget_abb6e981b6862a16f98e40e37b6d6d33a}} 
+bool {\bfseries m\+\_\+was\+Playing} = true
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Script\+Order.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Script\+Order.\+cpp\end{DoxyCompactItemize}

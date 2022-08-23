@@ -1,0 +1,74 @@
+\hypertarget{classrev_1_1_log_record}{}\section{rev\+::Log\+Record Class Reference}
+\label{classrev_1_1_log_record}\index{rev::LogRecord@{rev::LogRecord}}
+
+
+Holds the attributes associated with a log message. Instances are passed to the \char`\"{}output\char`\"{} method of \mbox{\hyperlink{classrev_1_1_abstract_log_handler}{Abstract\+Log\+Handler}} subclasses.  
+
+
+
+
+{\ttfamily \#include $<$G\+Logger.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_log_record_a679cb091532327c6f994baa1ab74630b}\label{classrev_1_1_log_record_a679cb091532327c6f994baa1ab74630b}} 
+\mbox{\hyperlink{classrev_1_1_log_record_a679cb091532327c6f994baa1ab74630b}{Log\+Record}} ()
+\begin{DoxyCompactList}\small\item\em Create a \mbox{\hyperlink{classrev_1_1_log_record}{Log\+Record}} used by \mbox{\hyperlink{classrev_1_1_abstract_log_handler}{Abstract\+Log\+Handler}} to output log messages. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_log_record_a741c96a8bb238ae468da75c0fbb4697c}\label{classrev_1_1_log_record_a741c96a8bb238ae468da75c0fbb4697c}} 
+{\bfseries $\sim$\+Log\+Record} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \& \mbox{\hyperlink{classrev_1_1_log_record_a1d6b202d4a6b5706cbfd4a042b4b7978}{category}} () const
+\begin{DoxyCompactList}\small\item\em The category for the message. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_log_record_aee511a5db62b6e1bf0c521de615230cf}\label{classrev_1_1_log_record_aee511a5db62b6e1bf0c521de615230cf}} 
+Log\+Level \mbox{\hyperlink{classrev_1_1_log_record_aee511a5db62b6e1bf0c521de615230cf}{level}} () const
+\begin{DoxyCompactList}\small\item\em The numeric log level for the message. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_log_record_aa1b89cffc639d7b1b87ac5ca6e787491}\label{classrev_1_1_log_record_aa1b89cffc639d7b1b87ac5ca6e787491}} 
+const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \& \mbox{\hyperlink{classrev_1_1_log_record_aa1b89cffc639d7b1b87ac5ca6e787491}{message}} () const
+\begin{DoxyCompactList}\small\item\em text od the message. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_log_record_ad6020410e8e1eea719c3885b6621de5b}\label{classrev_1_1_log_record_ad6020410e8e1eea719c3885b6621de5b}} 
+const Q\+Date\+Time \& \mbox{\hyperlink{classrev_1_1_log_record_ad6020410e8e1eea719c3885b6621de5b}{timestamp}} () const
+\begin{DoxyCompactList}\small\item\em The timestamp when the log message came to the \mbox{\hyperlink{classrev_1_1_logger}{Logger}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_log_record_a4a4c24e4b441153355641a238424443e}\label{classrev_1_1_log_record_a4a4c24e4b441153355641a238424443e}} 
+void {\bfseries set\+Category} (const char $\ast$\mbox{\hyperlink{classrev_1_1_log_record_a1d6b202d4a6b5706cbfd4a042b4b7978}{category}})
+\item 
+\mbox{\Hypertarget{classrev_1_1_log_record_a8c3e1c655ad19a64b6fc1552b950ad2a}\label{classrev_1_1_log_record_a8c3e1c655ad19a64b6fc1552b950ad2a}} 
+void {\bfseries set\+Level} (Log\+Level \mbox{\hyperlink{classrev_1_1_log_record_aee511a5db62b6e1bf0c521de615230cf}{level}})
+\item 
+\mbox{\Hypertarget{classrev_1_1_log_record_ae28d794b7ea783d0ba1eb3de4ed0873f}\label{classrev_1_1_log_record_ae28d794b7ea783d0ba1eb3de4ed0873f}} 
+void {\bfseries set\+Message} (const char $\ast$\mbox{\hyperlink{classrev_1_1_log_record_aa1b89cffc639d7b1b87ac5ca6e787491}{message}})
+\item 
+\mbox{\Hypertarget{classrev_1_1_log_record_af98d089569784e042a86f624b87d7495}\label{classrev_1_1_log_record_af98d089569784e042a86f624b87d7495}} 
+void {\bfseries set\+Timestamp} (const Q\+Date\+Time \&\mbox{\hyperlink{classrev_1_1_log_record_ad6020410e8e1eea719c3885b6621de5b}{timestamp}})
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Holds the attributes associated with a log message. Instances are passed to the \char`\"{}output\char`\"{} method of \mbox{\hyperlink{classrev_1_1_abstract_log_handler}{Abstract\+Log\+Handler}} subclasses. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_log_record_a1d6b202d4a6b5706cbfd4a042b4b7978}\label{classrev_1_1_log_record_a1d6b202d4a6b5706cbfd4a042b4b7978}} 
+\index{rev::LogRecord@{rev::LogRecord}!category@{category}}
+\index{category@{category}!rev::LogRecord@{rev::LogRecord}}
+\subsubsection{\texorpdfstring{category()}{category()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}}\& rev\+::\+Log\+Record\+::category (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The category for the message. 
+
+The category is usually the full namespace name of a class where the message emanated from. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/G\+Logger.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/G\+Logger.\+cpp\end{DoxyCompactItemize}

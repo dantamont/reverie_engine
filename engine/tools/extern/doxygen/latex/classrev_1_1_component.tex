@@ -1,0 +1,251 @@
+\hypertarget{classrev_1_1_component}{}\section{rev\+::Component Class Reference}
+\label{classrev_1_1_component}\index{rev::Component@{rev::Component}}
+
+
+A component to be attached to a \mbox{\hyperlink{classrev_1_1_scene}{Scene}} or \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}}.  
+
+
+
+
+{\ttfamily \#include $<$G\+Component.\+h$>$}
+
+Inheritance diagram for rev\+::Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=12.000000cm]{classrev_1_1_component}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrev_1_1_component_1_1_constraints}{Constraints}}
+\begin{DoxyCompactList}\small\item\em The required component types to create this component, and those incompatible. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_component_aacfb2093732e9e43bdaa68da94687323}\label{classrev_1_1_component_aacfb2093732e9e43bdaa68da94687323}} 
+{\bfseries Component} (Component\+Type type, bool is\+Scene=false)
+\item 
+\mbox{\Hypertarget{classrev_1_1_component_ac1a0b2f0214dd2356f93d0b7a6610ed1}\label{classrev_1_1_component_ac1a0b2f0214dd2356f93d0b7a6610ed1}} 
+{\bfseries Component} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$engine, Component\+Type type, bool is\+Scene=false)
+\item 
+\mbox{\Hypertarget{classrev_1_1_component_a87cc1dda0057fb3790f7cf915691b1d3}\label{classrev_1_1_component_a87cc1dda0057fb3790f7cf915691b1d3}} 
+{\bfseries Component} (const \mbox{\hyperlink{classrev_1_1_component}{Component}} \&other)
+\item 
+\mbox{\Hypertarget{classrev_1_1_component_a9843b4acaa8714e75167f8dd5d29fd9c}\label{classrev_1_1_component_a9843b4acaa8714e75167f8dd5d29fd9c}} 
+{\bfseries Component} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \&object, Component\+Type type)
+\item 
+\mbox{\Hypertarget{classrev_1_1_component_ad40cffa0788af51a3fe0aa5e487ad810}\label{classrev_1_1_component_ad40cffa0788af51a3fe0aa5e487ad810}} 
+{\bfseries Component} (\mbox{\hyperlink{classrev_1_1_scene}{Scene}} $\ast$object, Component\+Type type)
+\item 
+\mbox{\Hypertarget{classrev_1_1_component_a0e1eaeca23bd6479196675dbd02df819}\label{classrev_1_1_component_a0e1eaeca23bd6479196675dbd02df819}} 
+virtual {\bfseries $\sim$\+Component} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_component_a3e6576adfc3f0d14207fa9a2270a177c}\label{classrev_1_1_component_a3e6576adfc3f0d14207fa9a2270a177c}} 
+{\footnotesize template$<$typename T $>$ }\\T $\ast$ \mbox{\hyperlink{classrev_1_1_component_a3e6576adfc3f0d14207fa9a2270a177c}{as}} ()
+\begin{DoxyCompactList}\small\item\em Return as the specified type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_component_abfb36557302212f65eef0eee1a25c759}\label{classrev_1_1_component_abfb36557302212f65eef0eee1a25c759}} 
+virtual void \mbox{\hyperlink{classrev_1_1_component_abfb36557302212f65eef0eee1a25c759}{add\+Required\+Components}} ()
+\begin{DoxyCompactList}\small\item\em Add any required components for this component to be added to scene or object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_component_a7b8395cbae3d60fea4f1e8deacbf2172}\label{classrev_1_1_component_a7b8395cbae3d60fea4f1e8deacbf2172}} 
+void \mbox{\hyperlink{classrev_1_1_component_a7b8395cbae3d60fea4f1e8deacbf2172}{toggle}} (int \mbox{\hyperlink{classrev_1_1_component_a94ce41128edb7a839f4dbaa764174cc0}{enable}})
+\begin{DoxyCompactList}\small\item\em Toggle this component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_component_ada3c59429edd654f4be848c7590b503c}\label{classrev_1_1_component_ada3c59429edd654f4be848c7590b503c}} 
+bool \mbox{\hyperlink{classrev_1_1_component_ada3c59429edd654f4be848c7590b503c}{is\+Enabled}} () const
+\begin{DoxyCompactList}\small\item\em Whether this component is enabled or not. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_component_a94ce41128edb7a839f4dbaa764174cc0}\label{classrev_1_1_component_a94ce41128edb7a839f4dbaa764174cc0}} 
+virtual void \mbox{\hyperlink{classrev_1_1_component_a94ce41128edb7a839f4dbaa764174cc0}{enable}} ()
+\begin{DoxyCompactList}\small\item\em Enable this component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_component_a53bddb242f02ae2c7cf1d4617ac98e44}\label{classrev_1_1_component_a53bddb242f02ae2c7cf1d4617ac98e44}} 
+virtual void \mbox{\hyperlink{classrev_1_1_component_a53bddb242f02ae2c7cf1d4617ac98e44}{disable}} ()
+\begin{DoxyCompactList}\small\item\em Disable this component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_component_a7f4f15735b8eb474d6fc623749d0df78}\label{classrev_1_1_component_a7f4f15735b8eb474d6fc623749d0df78}} 
+virtual void \mbox{\hyperlink{classrev_1_1_component_a7f4f15735b8eb474d6fc623749d0df78}{pre\+Destruction}} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$)
+\begin{DoxyCompactList}\small\item\em What to do prior to destruction of the component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_component_abdc9e3c96b9ffc71b8d019148c045baf}\label{classrev_1_1_component_abdc9e3c96b9ffc71b8d019148c045baf}} 
+bool {\bfseries is\+Script\+Generated} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_component_a9c079b804ad86776163e272f9ff38870}\label{classrev_1_1_component_a9c079b804ad86776163e272f9ff38870}} 
+void {\bfseries set\+Script\+Generated} (bool val)
+\item 
+\mbox{\Hypertarget{classrev_1_1_component_ab4e556410412dc7b55ee0a2163941081}\label{classrev_1_1_component_ab4e556410412dc7b55ee0a2163941081}} 
+bool {\bfseries is\+Scene\+Component} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_component_aba2a1b9f6202b20a3bc3c437bfa2d158}\label{classrev_1_1_component_aba2a1b9f6202b20a3bc3c437bfa2d158}} 
+Component\+Type \mbox{\hyperlink{classrev_1_1_component_aba2a1b9f6202b20a3bc3c437bfa2d158}{get\+Component\+Type}} () const
+\begin{DoxyCompactList}\small\item\em Get type of component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_component_a4b30248036efb20e8891011cebc9f972}\label{classrev_1_1_component_a4b30248036efb20e8891011cebc9f972}} 
+Parent\+Type \mbox{\hyperlink{classrev_1_1_component_a4b30248036efb20e8891011cebc9f972}{parent\+Type}} () const
+\begin{DoxyCompactList}\small\item\em Get parent type of the component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_component_a37eb868cea2c0ada585fe7ab3c07ae70}\label{classrev_1_1_component_a37eb868cea2c0ada585fe7ab3c07ae70}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \mbox{\hyperlink{classrev_1_1_component_a37eb868cea2c0ada585fe7ab3c07ae70}{scene\+Object}} () const
+\begin{DoxyCompactList}\small\item\em Obtain pointer to scene object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_component_a76bcbb43342679d7b693eef48546854b}\label{classrev_1_1_component_a76bcbb43342679d7b693eef48546854b}} 
+\mbox{\hyperlink{classrev_1_1_scene}{Scene}} $\ast$ \mbox{\hyperlink{classrev_1_1_component_a76bcbb43342679d7b693eef48546854b}{scene}} () const
+\begin{DoxyCompactList}\small\item\em Obtain pointer to scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_component_af7f641f8a2de42a1f7ad46af5a7797ad}\label{classrev_1_1_component_af7f641f8a2de42a1f7ad46af5a7797ad}} 
+void \mbox{\hyperlink{classrev_1_1_component_af7f641f8a2de42a1f7ad46af5a7797ad}{set\+Scene\+Object}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \&object)
+\begin{DoxyCompactList}\small\item\em Set the scene object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_component_a40579125f82f2458504d1f57c446d8c4}\label{classrev_1_1_component_a40579125f82f2458504d1f57c446d8c4}} 
+void \mbox{\hyperlink{classrev_1_1_component_a40579125f82f2458504d1f57c446d8c4}{set\+Scene}} (\mbox{\hyperlink{classrev_1_1_scene}{Scene}} $\ast$object)
+\begin{DoxyCompactList}\small\item\em Set the scene object. \end{DoxyCompactList}\item 
+virtual int \mbox{\hyperlink{classrev_1_1_component_afb80a97b6b36368c88a47e5f3cd3ed2f}{max\+Allowed}} () const
+\begin{DoxyCompactList}\small\item\em Max number of allowed components per scene object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_component_a07619152d5acafe7a536df3a6a476349}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_component_ae2827b14c278588b95e01c4743fae674}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_component_a28df7dc4f057aaccc6652a7e1343f849}\label{classrev_1_1_component_a28df7dc4f057aaccc6652a7e1343f849}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_component_a28df7dc4f057aaccc6652a7e1343f849}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_component_a88e9bc61eafc496c5de8383321b7be11}\label{classrev_1_1_component_a88e9bc61eafc496c5de8383321b7be11}} 
+virtual void \mbox{\hyperlink{classrev_1_1_component_a88e9bc61eafc496c5de8383321b7be11}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_component_a737b3cb474f324a74e7da2d3aeca10c9}\label{classrev_1_1_component_a737b3cb474f324a74e7da2d3aeca10c9}} 
+class {\bfseries Scene\+Object}
+\end{DoxyCompactItemize}
+\subsection*{Static}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_component_a4ffbe1c1d9226c20a6da19261c529c6a}\label{classrev_1_1_component_a4ffbe1c1d9226c20a6da19261c529c6a}} 
+enum {\bfseries Parent\+Type} \{ {\bfseries k\+Scene}, 
+{\bfseries k\+Scene\+Object}
+ \}
+\item 
+\mbox{\Hypertarget{classrev_1_1_component_a54de5654f783c327972579c27fe42486}\label{classrev_1_1_component_a54de5654f783c327972579c27fe42486}} 
+static \mbox{\hyperlink{structrev_1_1_component_1_1_constraints}{Constraints}} {\bfseries Get\+Requirements} (Component\+Type type)
+\item 
+\mbox{\Hypertarget{classrev_1_1_component_a3b86f3381524df05c84cd92b6159dda9}\label{classrev_1_1_component_a3b86f3381524df05c84cd92b6159dda9}} 
+static \mbox{\hyperlink{classrev_1_1_component}{Component}} $\ast$ \mbox{\hyperlink{classrev_1_1_component_a3b86f3381524df05c84cd92b6159dda9}{create}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \&object, Component\+Type type)
+\begin{DoxyCompactList}\small\item\em Creat a component from its type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_component_ab5da526f06d5f5a356602c4a973682d2}\label{classrev_1_1_component_ab5da526f06d5f5a356602c4a973682d2}} 
+static \mbox{\hyperlink{classrev_1_1_component}{Component}} $\ast$ {\bfseries create} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \&object, const Q\+Json\+Object \&json)
+\end{DoxyCompactItemize}
+\subsection*{Protected Members}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classtsl_1_1robin__map}{tsl\+::robin\+\_\+map}}$<$ Component\+Type, \mbox{\hyperlink{structrev_1_1_component_1_1_constraints}{Constraints}} $>$ \mbox{\hyperlink{classrev_1_1_component_ace286070097cd9f3e3594105613c36a3}{Type\+Constraints}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_map}{Map}} of component requirements, indexed by type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_component_a9ec46d7b5f9342526e42f8b894a2ec0d}\label{classrev_1_1_component_a9ec46d7b5f9342526e42f8b894a2ec0d}} 
+bool \mbox{\hyperlink{classrev_1_1_component_a9ec46d7b5f9342526e42f8b894a2ec0d}{m\+\_\+is\+Scene\+Component}}
+\begin{DoxyCompactList}\small\item\em If component is to be attached to a scene rather than a scene object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_component_a4b5b5705ce452e42871e8e11436963d0}\label{classrev_1_1_component_a4b5b5705ce452e42871e8e11436963d0}} 
+Scene\+Behavior\+Flags \mbox{\hyperlink{classrev_1_1_component_a4b5b5705ce452e42871e8e11436963d0}{m\+\_\+component\+Flags}}
+\begin{DoxyCompactList}\small\item\em Whether component is enabled or disabled. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_component_a3adf9282b15dc15ba1bdd5f323808151}\label{classrev_1_1_component_a3adf9282b15dc15ba1bdd5f323808151}} 
+Component\+Type \mbox{\hyperlink{classrev_1_1_component_a3adf9282b15dc15ba1bdd5f323808151}{m\+\_\+type}}
+\begin{DoxyCompactList}\small\item\em Type of component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_component_a1fc184df2274ac24e8f0c2eff011f492}\label{classrev_1_1_component_a1fc184df2274ac24e8f0c2eff011f492}} 
+std\+::weak\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \mbox{\hyperlink{classrev_1_1_component_a1fc184df2274ac24e8f0c2eff011f492}{m\+\_\+scene\+Object}}
+\begin{DoxyCompactList}\small\item\em Weak pointer to scene object associated with this component, if there is one. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_component_aa3e100f676b272d18988d08278c85de0}\label{classrev_1_1_component_aa3e100f676b272d18988d08278c85de0}} 
+\mbox{\hyperlink{classrev_1_1_scene}{Scene}} $\ast$ \mbox{\hyperlink{classrev_1_1_component_aa3e100f676b272d18988d08278c85de0}{m\+\_\+scene}}
+\begin{DoxyCompactList}\small\item\em Weak pointer to the scene associated with this component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A component to be attached to a \mbox{\hyperlink{classrev_1_1_scene}{Scene}} or \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}}. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_component_a07619152d5acafe7a536df3a6a476349}\label{classrev_1_1_component_a07619152d5acafe7a536df3a6a476349}} 
+\index{rev::Component@{rev::Component}!className@{className}}
+\index{className@{className}!rev::Component@{rev::Component}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Component\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_light_component_a627371d0bebc32f2eb91e6e5b95f81d0}{rev\+::\+Light\+Component}}, \mbox{\hyperlink{classrev_1_1_cube_map_component_a09be93995cb43696c7f7644a224b59e4}{rev\+::\+Cube\+Map\+Component}}, \mbox{\hyperlink{classrev_1_1_model_component_a31298d9d0fb5d7e43cbe6de3050d4f6a}{rev\+::\+Model\+Component}}, \mbox{\hyperlink{classrev_1_1_shader_component_a62ddc1d5981e4952890a628ca5b6d12a}{rev\+::\+Shader\+Component}}, \mbox{\hyperlink{classrev_1_1_listener_component_ab25dc63421b42bf388e9b1e57e635661}{rev\+::\+Listener\+Component}}, \mbox{\hyperlink{classrev_1_1_script_component_a2665164dc38caad07e5759aec4563dee}{rev\+::\+Script\+Component}}, \mbox{\hyperlink{classrev_1_1_physics_scene_component_a03e184a92a2fb3ed39f730e51c347cd4}{rev\+::\+Physics\+Scene\+Component}}, \mbox{\hyperlink{classrev_1_1_state_component_a1f24f3bb3f13a85784d866fb9caaeabc}{rev\+::\+State\+Component}}, \mbox{\hyperlink{classrev_1_1_rigid_body_component_aac4681f78e6e53a6fceae27502b08bc5}{rev\+::\+Rigid\+Body\+Component}}, and \mbox{\hyperlink{classrev_1_1_transform_component_a04a11c6b0b9f124c53a84226a488a1e9}{rev\+::\+Transform\+Component}}.
+
+\mbox{\Hypertarget{classrev_1_1_component_afb80a97b6b36368c88a47e5f3cd3ed2f}\label{classrev_1_1_component_afb80a97b6b36368c88a47e5f3cd3ed2f}} 
+\index{rev::Component@{rev::Component}!maxAllowed@{maxAllowed}}
+\index{maxAllowed@{maxAllowed}!rev::Component@{rev::Component}}
+\subsubsection{\texorpdfstring{maxAllowed()}{maxAllowed()}}
+{\footnotesize\ttfamily virtual int rev\+::\+Component\+::max\+Allowed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Max number of allowed components per scene object. 
+
+If left at -\/1, there is no limit 
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_camera_component_a07103046e8db3a1a5c6a6684016df0ea}{rev\+::\+Camera\+Component}}, \mbox{\hyperlink{classrev_1_1_canvas_component_a8d5d6c277edd55e7fd0bbfb29045d44a}{rev\+::\+Canvas\+Component}}, \mbox{\hyperlink{classrev_1_1_audio_source_component_ab2de22f97f0aa65fe43d125c3be91117}{rev\+::\+Audio\+Source\+Component}}, \mbox{\hyperlink{classrev_1_1_rigid_body_component_a993d378bf041f1cec6c941b1f64b3e48}{rev\+::\+Rigid\+Body\+Component}}, \mbox{\hyperlink{classrev_1_1_audio_listener_component_afb4f9251d5de8ff5e320aec4aa68bc57}{rev\+::\+Audio\+Listener\+Component}}, \mbox{\hyperlink{classrev_1_1_model_component_a9c1b2295e5a05104cd249ee53ccfa700}{rev\+::\+Model\+Component}}, \mbox{\hyperlink{classrev_1_1_char_control_component_a0bbb105cdc5c80ed066045822a70dc3b}{rev\+::\+Char\+Control\+Component}}, \mbox{\hyperlink{classrev_1_1_light_component_af11f9de700582bcf3f5f80ef66adf89b}{rev\+::\+Light\+Component}}, \mbox{\hyperlink{classrev_1_1_transform_component_aed45da6b047fa6615c1064ac8f23c8fb}{rev\+::\+Transform\+Component}}, \mbox{\hyperlink{classrev_1_1_bone_animation_component_a089e4d7c8df32961bfc9413d7d9524a2}{rev\+::\+Bone\+Animation\+Component}}, \mbox{\hyperlink{classrev_1_1_cube_map_component_a6270b3cb1d7252ff9f7542d5479edb5b}{rev\+::\+Cube\+Map\+Component}}, \mbox{\hyperlink{classrev_1_1_listener_component_a67eced059b106a622377d0223267144c}{rev\+::\+Listener\+Component}}, \mbox{\hyperlink{classrev_1_1_state_component_a801025ae9c32d3b5eaa4d50c773e14c2}{rev\+::\+State\+Component}}, \mbox{\hyperlink{classrev_1_1_shader_component_a1ec4c34b1c25eec0ec43d1653fa106a0}{rev\+::\+Shader\+Component}}, and \mbox{\hyperlink{classrev_1_1_physics_scene_component_a3cafe0564c1ef3c2eb712ee6af6a2b1e}{rev\+::\+Physics\+Scene\+Component}}.
+
+\mbox{\Hypertarget{classrev_1_1_component_ae2827b14c278588b95e01c4743fae674}\label{classrev_1_1_component_ae2827b14c278588b95e01c4743fae674}} 
+\index{rev::Component@{rev::Component}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::Component@{rev::Component}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Component\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_light_component_a517a3334919e5cd1aeacdd52c65c90c1}{rev\+::\+Light\+Component}}, \mbox{\hyperlink{classrev_1_1_cube_map_component_a5fd0d5b47d8ba3594d4daf0ed8135b83}{rev\+::\+Cube\+Map\+Component}}, \mbox{\hyperlink{classrev_1_1_model_component_ad55fe767e54742f08b338f0f13498cf8}{rev\+::\+Model\+Component}}, \mbox{\hyperlink{classrev_1_1_shader_component_ac052c16eed35e22f62df1d06cf346d55}{rev\+::\+Shader\+Component}}, \mbox{\hyperlink{classrev_1_1_listener_component_a83f62effee9c503dd7ee0b0322b0057e}{rev\+::\+Listener\+Component}}, \mbox{\hyperlink{classrev_1_1_script_component_a469f8cd22b928cef2b98297b3b0285dd}{rev\+::\+Script\+Component}}, \mbox{\hyperlink{classrev_1_1_physics_scene_component_addd583a06c948a96f86d90937a3c4c8d}{rev\+::\+Physics\+Scene\+Component}}, \mbox{\hyperlink{classrev_1_1_state_component_ae95ec4b4b31544c7b555ff80ac423162}{rev\+::\+State\+Component}}, \mbox{\hyperlink{classrev_1_1_rigid_body_component_ae206ce233b7fffd3781cc37bbfc6e17d}{rev\+::\+Rigid\+Body\+Component}}, and \mbox{\hyperlink{classrev_1_1_transform_component_a7dc2abcb1d759a29c28fc8ceb632a31d}{rev\+::\+Transform\+Component}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_component_ace286070097cd9f3e3594105613c36a3}\label{classrev_1_1_component_ace286070097cd9f3e3594105613c36a3}} 
+\index{rev::Component@{rev::Component}!TypeConstraints@{TypeConstraints}}
+\index{TypeConstraints@{TypeConstraints}!rev::Component@{rev::Component}}
+\subsubsection{\texorpdfstring{TypeConstraints}{TypeConstraints}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classtsl_1_1robin__map}{tsl\+::robin\+\_\+map}}$<$ Component\+Type, \mbox{\hyperlink{structrev_1_1_component_1_1_constraints}{Component\+::\+Constraints}} $>$ rev\+::\+Component\+::\+Type\+Constraints\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{ }
+\DoxyCodeLine{    }
+\DoxyCodeLine{    \{ComponentType::kCanvas, \{\{ \{ComponentType::kModel, \textcolor{keyword}{false}\} \}\}\}, }
+\DoxyCodeLine{    \{ComponentType::kModel,  \{\{ \{ComponentType::kCanvas, \textcolor{keyword}{false}\} \}\}\}, }
+\DoxyCodeLine{    \{ComponentType::kBoneAnimation, \{\{ \{ComponentType::kModel, \textcolor{keyword}{true}\} \}\}\}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\mbox{\hyperlink{classrev_1_1_map}{Map}} of component requirements, indexed by type. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+Component.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+Component.\+cpp\end{DoxyCompactItemize}

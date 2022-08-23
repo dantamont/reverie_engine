@@ -1,0 +1,193 @@
+\hypertarget{classrev_1_1_glyph}{}\section{rev\+::Glyph Class Reference}
+\label{classrev_1_1_glyph}\index{rev::Glyph@{rev::Glyph}}
+
+
+Represents a 2-\/dimensional entity to display on a canvas.  
+
+
+
+
+{\ttfamily \#include $<$G\+Glyph.\+h$>$}
+
+Inheritance diagram for rev\+::Glyph\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=6.000000cm]{classrev_1_1_glyph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_glyph_aeb0a19af1b570247e155195d75b39f81}\label{classrev_1_1_glyph_aeb0a19af1b570247e155195d75b39f81}} 
+{\bfseries Glyph} (\mbox{\hyperlink{classrev_1_1_canvas_component}{Canvas\+Component}} $\ast$canvas)
+\item 
+\mbox{\Hypertarget{classrev_1_1_glyph_a127328037003a238cdc4b31f9d3a665f}\label{classrev_1_1_glyph_a127328037003a238cdc4b31f9d3a665f}} 
+virtual {\bfseries $\sim$\+Glyph} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_glyph_a3a7452c65b7e68534a86e82d08a09f7d}\label{classrev_1_1_glyph_a3a7452c65b7e68534a86e82d08a09f7d}} 
+virtual Glyph\+Type {\bfseries glyph\+Type} () const =0
+\item 
+\mbox{\Hypertarget{classrev_1_1_glyph_aa8e79c6ea811d4bb2ec7eb9838223ee0}\label{classrev_1_1_glyph_aa8e79c6ea811d4bb2ec7eb9838223ee0}} 
+const \mbox{\hyperlink{classrev_1_1_transform}{Transform}} \& {\bfseries transform} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_glyph_adf90ca4e4c4315a7570a453ab2b2c05a}\label{classrev_1_1_glyph_adf90ca4e4c4315a7570a453ab2b2c05a}} 
+\mbox{\hyperlink{classrev_1_1_transform}{Transform}} \& {\bfseries transform} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_glyph_a63be3fac54319f331a241cdcba23ed8a}\label{classrev_1_1_glyph_a63be3fac54319f331a241cdcba23ed8a}} 
+Vertical\+Alignment {\bfseries vertical\+Alignment} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_glyph_a4b3b2a1aa87b5e565a18f063f9b97ae5}\label{classrev_1_1_glyph_a4b3b2a1aa87b5e565a18f063f9b97ae5}} 
+void {\bfseries set\+Vertical\+Alignment} (Vertical\+Alignment alignment)
+\item 
+\mbox{\Hypertarget{classrev_1_1_glyph_acfa83c8d97f20709f43061c7d30f9445}\label{classrev_1_1_glyph_acfa83c8d97f20709f43061c7d30f9445}} 
+Horizontal\+Alignment {\bfseries horizontal\+Alignment} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_glyph_af0db87d3147cf0f4f752669e0161447b}\label{classrev_1_1_glyph_af0db87d3147cf0f4f752669e0161447b}} 
+void {\bfseries set\+Horizontal\+Alignment} (Horizontal\+Alignment alignment)
+\item 
+\mbox{\Hypertarget{classrev_1_1_glyph_af03da526c01294a53835b9d776a2c5f4}\label{classrev_1_1_glyph_af03da526c01294a53835b9d776a2c5f4}} 
+void {\bfseries set\+Alignment} (Vertical\+Alignment vertical\+Alignment, Horizontal\+Alignment horizontal\+Alignment)
+\item 
+\mbox{\Hypertarget{classrev_1_1_glyph_aea19ee442f267bf097d79bd80566b8ea}\label{classrev_1_1_glyph_aea19ee442f267bf097d79bd80566b8ea}} 
+\mbox{\hyperlink{classrev_1_1_canvas_component}{Canvas\+Component}} $\ast$ {\bfseries canvas} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_glyph_ab3987dcab70ece94faaa7b220fcea95c}\label{classrev_1_1_glyph_ab3987dcab70ece94faaa7b220fcea95c}} 
+{\footnotesize template$<$typename T $>$ }\\T $\ast$ \mbox{\hyperlink{classrev_1_1_glyph_ab3987dcab70ece94faaa7b220fcea95c}{as}} ()
+\begin{DoxyCompactList}\small\item\em Return glyph as a subclass. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_glyph_a6742f5a33859665b06159a289a359fa4}\label{classrev_1_1_glyph_a6742f5a33859665b06159a289a359fa4}} 
+virtual void \mbox{\hyperlink{classrev_1_1_glyph_a6742f5a33859665b06159a289a359fa4}{reload}} () override
+\begin{DoxyCompactList}\small\item\em Update the glyph data. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_glyph_ad494e0a37ae2bb90560edf2edb149a6c}\label{classrev_1_1_glyph_ad494e0a37ae2bb90560edf2edb149a6c}} 
+\mbox{\hyperlink{classrev_1_1_glyph}{Glyph}} $\ast$ {\bfseries get\+Parent} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_glyph_a66d3a53d6547af42e0b789ae5e13fa99}\label{classrev_1_1_glyph_a66d3a53d6547af42e0b789ae5e13fa99}} 
+void {\bfseries set\+Parent} (int idx)
+\item 
+\mbox{\Hypertarget{classrev_1_1_glyph_a0717ebeea2f772409c06a3e64f5440ba}\label{classrev_1_1_glyph_a0717ebeea2f772409c06a3e64f5440ba}} 
+void {\bfseries set\+Parent} (\mbox{\hyperlink{classrev_1_1_glyph}{Glyph}} $\ast$glyph)
+\item 
+\mbox{\Hypertarget{classrev_1_1_glyph_a442faff419bf9bb9bf7f4a7a516db748}\label{classrev_1_1_glyph_a442faff419bf9bb9bf7f4a7a516db748}} 
+void {\bfseries set\+Parent} (\mbox{\hyperlink{classrev_1_1_canvas_component}{Canvas\+Component}} $\ast$canvas)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+{\em Return the screen (GL widget) position of the glyph }\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_glyph_a0ae8efa7d6cf4e59abcb0d672468e72d}\label{classrev_1_1_glyph_a0ae8efa7d6cf4e59abcb0d672468e72d}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_glyph_a0ae8efa7d6cf4e59abcb0d672468e72d}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_glyph_ac0772fef5969cb255a892bad0a75239d}\label{classrev_1_1_glyph_ac0772fef5969cb255a892bad0a75239d}} 
+virtual void \mbox{\hyperlink{classrev_1_1_glyph_ac0772fef5969cb255a892bad0a75239d}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classrev_1_1_glyph_a8abb4e9ab9d6a23c87450284b86dc636}{pre\+Draw}} () override
+\begin{DoxyCompactList}\small\item\em Miscellaneous actions to be performed before drawing. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_glyph_a6dff1ab1b6c1f9e7715e7726be3b1f2e}\label{classrev_1_1_glyph_a6dff1ab1b6c1f9e7715e7726be3b1f2e}} 
+virtual void \mbox{\hyperlink{classrev_1_1_glyph_a6dff1ab1b6c1f9e7715e7726be3b1f2e}{bind\+Uniforms}} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program) override
+\begin{DoxyCompactList}\small\item\em Set uniforms for the glyph. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_glyph_a78f6a7a346f425199a81c9fa964376c2}\label{classrev_1_1_glyph_a78f6a7a346f425199a81c9fa964376c2}} 
+virtual void {\bfseries release\+Uniforms} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program) override
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_glyph_ab48116ae62f65ea1dc4bb1950f3a3cec}\label{classrev_1_1_glyph_ab48116ae62f65ea1dc4bb1950f3a3cec}} 
+\mbox{\hyperlink{classrev_1_1_canvas_component}{Canvas\+Component}} $\ast$ \mbox{\hyperlink{classrev_1_1_glyph_ab48116ae62f65ea1dc4bb1950f3a3cec}{m\+\_\+canvas}}
+\begin{DoxyCompactList}\small\item\em Pointer back to the canvas component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_glyph_a3b1320c55f744f766e14d6ab3847f38b}\label{classrev_1_1_glyph_a3b1320c55f744f766e14d6ab3847f38b}} 
+Vertical\+Alignment {\bfseries m\+\_\+vertical\+Alignment}
+\item 
+\mbox{\Hypertarget{classrev_1_1_glyph_a72cfb8c5b7dc589d6c304a5c8f8e52a3}\label{classrev_1_1_glyph_a72cfb8c5b7dc589d6c304a5c8f8e52a3}} 
+Horizontal\+Alignment {\bfseries m\+\_\+horizontal\+Alignment}
+\item 
+int \mbox{\hyperlink{classrev_1_1_glyph_a2c8214da501a742bea70dde66098922a}{m\+\_\+parent\+Index}} = -\/1
+\begin{DoxyCompactList}\small\item\em The index of the parent to this glyph in the canvas glyph vector. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_glyph_a46597825ea20fe6a100c07404ec64041}\label{classrev_1_1_glyph_a46597825ea20fe6a100c07404ec64041}} 
+\mbox{\hyperlink{classrev_1_1_transform}{Transform}} \mbox{\hyperlink{classrev_1_1_glyph_a46597825ea20fe6a100c07404ec64041}{m\+\_\+transform}}
+\begin{DoxyCompactList}\small\item\em The transform of the glyph. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_glyph_a96d8001b329f610d466ec6981b3e91f3}\label{classrev_1_1_glyph_a96d8001b329f610d466ec6981b3e91f3}} 
+std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_uniform}{Uniform}} $>$ \mbox{\hyperlink{classrev_1_1_glyph_a96d8001b329f610d466ec6981b3e91f3}{m\+\_\+uniform\+Cache}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_map}{Map}} of uniforms to restore on release\+Uniforms call. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_glyph_a4b6c692fd99128d242ecb93e66129e8e}\label{classrev_1_1_glyph_a4b6c692fd99128d242ecb93e66129e8e}} 
+enum {\bfseries Glyph\+Type} \{ {\bfseries k\+Label} = 0, 
+{\bfseries k\+Icon}, 
+{\bfseries k\+Sprite}
+ \}
+\item 
+\mbox{\Hypertarget{classrev_1_1_glyph_a5c5e0b5ee824f5bc88757f5732b9fc85}\label{classrev_1_1_glyph_a5c5e0b5ee824f5bc88757f5732b9fc85}} 
+enum {\bfseries Vertical\+Alignment} \{ {\bfseries k\+Top}, 
+{\bfseries k\+Middle}, 
+{\bfseries k\+Bottom}
+ \}
+\item 
+\mbox{\Hypertarget{classrev_1_1_glyph_a8d9b34f1811e6eeacb7f1efc03ee6c2d}\label{classrev_1_1_glyph_a8d9b34f1811e6eeacb7f1efc03ee6c2d}} 
+enum {\bfseries Horizontal\+Alignment} \{ {\bfseries k\+Right}, 
+{\bfseries k\+Center}, 
+{\bfseries k\+Left}
+ \}
+\item 
+\mbox{\Hypertarget{classrev_1_1_glyph_ac7b30fe806786cc0ad7b7725dcdcc86e}\label{classrev_1_1_glyph_ac7b30fe806786cc0ad7b7725dcdcc86e}} 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_glyph}{Glyph}} $>$ {\bfseries create\+Glyph} (\mbox{\hyperlink{classrev_1_1_canvas_component}{Canvas\+Component}} $\ast$canvas, const Q\+Json\+Object \&object)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Represents a 2-\/dimensional entity to display on a canvas. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_glyph_a8abb4e9ab9d6a23c87450284b86dc636}\label{classrev_1_1_glyph_a8abb4e9ab9d6a23c87450284b86dc636}} 
+\index{rev::Glyph@{rev::Glyph}!preDraw@{preDraw}}
+\index{preDraw@{preDraw}!rev::Glyph@{rev::Glyph}}
+\subsubsection{\texorpdfstring{preDraw()}{preDraw()}}
+{\footnotesize\ttfamily void rev\+::\+Glyph\+::pre\+Draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Miscellaneous actions to be performed before drawing. 
+
+Is a good place for any viewport changes to be made 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_renderable_ac1fe33dec408d65bbae10e24fbedc6bc}{rev\+::\+Renderable}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_glyph_a2c8214da501a742bea70dde66098922a}\label{classrev_1_1_glyph_a2c8214da501a742bea70dde66098922a}} 
+\index{rev::Glyph@{rev::Glyph}!m\_parentIndex@{m\_parentIndex}}
+\index{m\_parentIndex@{m\_parentIndex}!rev::Glyph@{rev::Glyph}}
+\subsubsection{\texorpdfstring{m\_parentIndex}{m\_parentIndex}}
+{\footnotesize\ttfamily int rev\+::\+Glyph\+::m\+\_\+parent\+Index = -\/1\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The index of the parent to this glyph in the canvas glyph vector. 
+
+\begin{DoxyNote}{Note}
+If negative, has no parent 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/canvas/G\+Glyph.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/canvas/G\+Glyph.\+cpp\end{DoxyCompactItemize}

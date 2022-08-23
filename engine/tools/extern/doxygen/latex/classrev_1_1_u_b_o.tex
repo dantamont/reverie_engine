@@ -1,0 +1,199 @@
+\hypertarget{classrev_1_1_u_b_o}{}\section{rev\+::U\+BO Class Reference}
+\label{classrev_1_1_u_b_o}\index{rev::UBO@{rev::UBO}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing a \mbox{\hyperlink{structrev_1_1_uniform}{Uniform}} Buffer \mbox{\hyperlink{classrev_1_1_object}{Object}}.  
+
+
+
+
+{\ttfamily \#include $<$G\+Uniform\+Buffer\+Object.\+h$>$}
+
+Inheritance diagram for rev\+::U\+BO\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.325444cm]{classrev_1_1_u_b_o}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_acca978ed69c826e23ac5241e60bbf732}\label{classrev_1_1_u_b_o_acca978ed69c826e23ac5241e60bbf732}} 
+\mbox{\hyperlink{structrev_1_1_uniform_buffer_data}{Uniform\+Buffer\+Data}} \& {\bfseries data} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_a8672b8dbbb1df450b963046a54c40d6c}\label{classrev_1_1_u_b_o_a8672b8dbbb1df450b963046a54c40d6c}} 
+bool {\bfseries is\+Core} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_afaf932c9e40d48f4dc806b8316a32e8a}\label{classrev_1_1_u_b_o_afaf932c9e40d48f4dc806b8316a32e8a}} 
+void {\bfseries set\+Core} (bool is\+Core)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_a9a5c4c7f1879c1f87c620051e6413bf0}\label{classrev_1_1_u_b_o_a9a5c4c7f1879c1f87c620051e6413bf0}} 
+void \mbox{\hyperlink{classrev_1_1_u_b_o_a9a5c4c7f1879c1f87c620051e6413bf0}{initialize}} (const \mbox{\hyperlink{structrev_1_1_shader_buffer_info}{Shader\+Buffer\+Info}} \&info)
+\begin{DoxyCompactList}\small\item\em Initialize from buffer info. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_a7b12137b00c83334a1cf308c3ac54647}\label{classrev_1_1_u_b_o_a7b12137b00c83334a1cf308c3ac54647}} 
+bool \mbox{\hyperlink{classrev_1_1_u_b_o_a7b12137b00c83334a1cf308c3ac54647}{is\+Bound}} () const
+\begin{DoxyCompactList}\small\item\em Whether or not the \mbox{\hyperlink{classrev_1_1_u_b_o}{U\+BO}} is bound to a context. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_afc983ea5962865c3ff52de51715107ba}\label{classrev_1_1_u_b_o_afc983ea5962865c3ff52de51715107ba}} 
+void \mbox{\hyperlink{classrev_1_1_u_b_o_afc983ea5962865c3ff52de51715107ba}{bind}} ()
+\begin{DoxyCompactList}\small\item\em Bind the \mbox{\hyperlink{classrev_1_1_u_b_o}{U\+BO}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_a800aec357a633c0f0092c85705951cfe}\label{classrev_1_1_u_b_o_a800aec357a633c0f0092c85705951cfe}} 
+void \mbox{\hyperlink{classrev_1_1_u_b_o_a800aec357a633c0f0092c85705951cfe}{release}} ()
+\begin{DoxyCompactList}\small\item\em Unbind the \mbox{\hyperlink{classrev_1_1_u_b_o}{U\+BO}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_acd080c97981e0d46a007feb9483f40a9}\label{classrev_1_1_u_b_o_acd080c97981e0d46a007feb9483f40a9}} 
+bool \mbox{\hyperlink{classrev_1_1_u_b_o_acd080c97981e0d46a007feb9483f40a9}{has\+Uniform}} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&uniform\+Name) const
+\begin{DoxyCompactList}\small\item\em Whether or not the \mbox{\hyperlink{classrev_1_1_u_b_o}{U\+BO}} has the specified uniform. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_aabbb79543513c9e7ff6bbf74b5766d6b}\label{classrev_1_1_u_b_o_aabbb79543513c9e7ff6bbf74b5766d6b}} 
+const \mbox{\hyperlink{structrev_1_1_uniform}{Uniform}} \& \mbox{\hyperlink{classrev_1_1_u_b_o_aabbb79543513c9e7ff6bbf74b5766d6b}{get\+Uniform\+Value}} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&uniform\+Name) const
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structrev_1_1_uniform}{Uniform}} values. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_acc3da5616ef75a0b5ee6dc23033c5c41}\label{classrev_1_1_u_b_o_acc3da5616ef75a0b5ee6dc23033c5c41}} 
+\mbox{\hyperlink{structrev_1_1_uniform}{Uniform}} \mbox{\hyperlink{classrev_1_1_u_b_o_acc3da5616ef75a0b5ee6dc23033c5c41}{get\+Uniform\+Buffer\+Value}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&uniform\+Name)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{structrev_1_1_uniform}{Uniform}} values from buffer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_a951f7d8d9bb46f8cfb644786d327af79}\label{classrev_1_1_u_b_o_a951f7d8d9bb46f8cfb644786d327af79}} 
+{\footnotesize template$<$class Variant\+Type $>$ }\\void {\bfseries set\+Uniform\+Value} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&uniform\+Name, const Variant\+Type \&value)
+\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_a39d963f745360efc566b99507bb50fde}\label{classrev_1_1_u_b_o_a39d963f745360efc566b99507bb50fde}} 
+void {\bfseries set\+Uniform\+Value} (const \mbox{\hyperlink{structrev_1_1_uniform}{Uniform}} \&uniform)
+\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_a4b64e0f73a9057910d4a0e3ee4f0d1b3}\label{classrev_1_1_u_b_o_a4b64e0f73a9057910d4a0e3ee4f0d1b3}} 
+{\footnotesize template$<$class T $>$ }\\void \mbox{\hyperlink{classrev_1_1_u_b_o_a4b64e0f73a9057910d4a0e3ee4f0d1b3}{set\+Uniform\+Sub\+Value}} (const \mbox{\hyperlink{classrev_1_1_g_string_view}{G\+String\+View}} \&uniform\+Name, size\+\_\+t index, const T \&value)
+\begin{DoxyCompactList}\small\item\em Set a value in the specified list-\/like uniform, offset from the start of the uniform by a specified amount. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_a18066804ffa9e63014d28bee621d050f}\label{classrev_1_1_u_b_o_a18066804ffa9e63014d28bee621d050f}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_u_b_o_a18066804ffa9e63014d28bee621d050f}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_aea0f31fb27ba040d7676457eba6e3ed9}\label{classrev_1_1_u_b_o_aea0f31fb27ba040d7676457eba6e3ed9}} 
+virtual void \mbox{\hyperlink{classrev_1_1_u_b_o_aea0f31fb27ba040d7676457eba6e3ed9}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_a256028e880cb64f45ed9f4bac7da54cb}\label{classrev_1_1_u_b_o_a256028e880cb64f45ed9f4bac7da54cb}} 
+\mbox{\hyperlink{classrev_1_1_u_b_o_a256028e880cb64f45ed9f4bac7da54cb}{U\+BO}} (const \mbox{\hyperlink{structrev_1_1_shader_buffer_info}{Shader\+Buffer\+Info}} \&shader\+Struct)
+\begin{DoxyCompactList}\small\item\em Is private so that U\+B\+Os can always be added to static map on construction. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Protected methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_ae670daaa9bae897204ecf1147cb1e8bf}\label{classrev_1_1_u_b_o_ae670daaa9bae897204ecf1147cb1e8bf}} 
+void {\bfseries initialize} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_a048e1fc3bb9e4eaf1ffdf2f496eb56f7}\label{classrev_1_1_u_b_o_a048e1fc3bb9e4eaf1ffdf2f496eb56f7}} 
+void \mbox{\hyperlink{classrev_1_1_u_b_o_a048e1fc3bb9e4eaf1ffdf2f496eb56f7}{refresh\+Uniform}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&uniform\+Name)
+\begin{DoxyCompactList}\small\item\em Update a uniform in the Open\+GL buffer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_a239533420e34b09b5a47926c82777320}\label{classrev_1_1_u_b_o_a239533420e34b09b5a47926c82777320}} 
+void {\bfseries refresh\+Uniform} (const \mbox{\hyperlink{structrev_1_1_buffer_uniform}{Buffer\+Uniform}} \&buffer\+Uniform)
+\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_aa69eee1b04f41837ebb9ff224f7122b5}\label{classrev_1_1_u_b_o_aa69eee1b04f41837ebb9ff224f7122b5}} 
+void \mbox{\hyperlink{classrev_1_1_u_b_o_aa69eee1b04f41837ebb9ff224f7122b5}{allocate\+Memory}} (size\+\_\+t num\+Bytes, int usage\+Type=G\+L\+\_\+\+S\+T\+R\+E\+A\+M\+\_\+\+D\+R\+AW)
+\begin{DoxyCompactList}\small\item\em Allocate memory for the buffer in Open\+GL. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_ae7499e5c6988ffb1571ca7dfcca9a8f2}\label{classrev_1_1_u_b_o_ae7499e5c6988ffb1571ca7dfcca9a8f2}} 
+void \mbox{\hyperlink{classrev_1_1_u_b_o_ae7499e5c6988ffb1571ca7dfcca9a8f2}{bind\+To\+Point}} (size\+\_\+t binding\+Point)
+\begin{DoxyCompactList}\small\item\em Bind to a binding point. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_a35865bd2decfdf3228a34e004f935e81}\label{classrev_1_1_u_b_o_a35865bd2decfdf3228a34e004f935e81}} 
+void \mbox{\hyperlink{classrev_1_1_u_b_o_a35865bd2decfdf3228a34e004f935e81}{bind\+To\+Point}} (size\+\_\+t binding\+Point, size\+\_\+t offset, size\+\_\+t size\+In\+Bytes)
+\begin{DoxyCompactList}\small\item\em Bind a part of the buffer to a binding point, starting at offset and for size\+In\+Bytes bytes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_a9faca2e4f838b7e5b3f2c3cfdc9fde13}\label{classrev_1_1_u_b_o_a9faca2e4f838b7e5b3f2c3cfdc9fde13}} 
+void \mbox{\hyperlink{classrev_1_1_u_b_o_a9faca2e4f838b7e5b3f2c3cfdc9fde13}{populate\+Uniforms}} (const \mbox{\hyperlink{structrev_1_1_shader_buffer_info}{Shader\+Buffer\+Info}} \&buffer\+Info)
+\begin{DoxyCompactList}\small\item\em Generate spacing and size information from the given shader struct. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_a62aa20fbb46369d3f65ffd4ebc051751}\label{classrev_1_1_u_b_o_a62aa20fbb46369d3f65ffd4ebc051751}} 
+unsigned int \mbox{\hyperlink{classrev_1_1_u_b_o_a62aa20fbb46369d3f65ffd4ebc051751}{m\+\_\+buffer\+ID}}
+\begin{DoxyCompactList}\small\item\em the GL ID of the \mbox{\hyperlink{classrev_1_1_u_b_o}{U\+BO}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_a7c6faf6a2baeeccf0af48d9c8810c48b}\label{classrev_1_1_u_b_o_a7c6faf6a2baeeccf0af48d9c8810c48b}} 
+\mbox{\hyperlink{structrev_1_1_uniform_buffer_data}{Uniform\+Buffer\+Data}} \mbox{\hyperlink{classrev_1_1_u_b_o_a7c6faf6a2baeeccf0af48d9c8810c48b}{m\+\_\+data}}
+\begin{DoxyCompactList}\small\item\em The uniform data for the buffer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_aad0abf44a0e2cb1ea28d49f482703c21}\label{classrev_1_1_u_b_o_aad0abf44a0e2cb1ea28d49f482703c21}} 
+unsigned int \mbox{\hyperlink{classrev_1_1_u_b_o_aad0abf44a0e2cb1ea28d49f482703c21}{m\+\_\+binding\+Point}}
+\begin{DoxyCompactList}\small\item\em The binding point of the \mbox{\hyperlink{classrev_1_1_u_b_o}{U\+BO}}, should never change. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_a0b1a57a9bd8edd58df77c0dedfa31067}\label{classrev_1_1_u_b_o_a0b1a57a9bd8edd58df77c0dedfa31067}} 
+bool \mbox{\hyperlink{classrev_1_1_u_b_o_a0b1a57a9bd8edd58df77c0dedfa31067}{m\+\_\+is\+Core}} = false
+\begin{DoxyCompactList}\small\item\em Whether or not this \mbox{\hyperlink{classrev_1_1_u_b_o}{U\+BO}} will be deleted on scenario reload. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_aef20119bde6aff11ffd23f3ea2131b86}\label{classrev_1_1_u_b_o_aef20119bde6aff11ffd23f3ea2131b86}} 
+class {\bfseries Shader\+Program}
+\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_ad822365c23ec45fc98317c00b733bb02}\label{classrev_1_1_u_b_o_ad822365c23ec45fc98317c00b733bb02}} 
+struct {\bfseries Uniform\+Buffer\+Data}
+\end{DoxyCompactItemize}
+\subsection*{Static}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_ab002dc2829909d0df5d4459bb9c395e3}\label{classrev_1_1_u_b_o_ab002dc2829909d0df5d4459bb9c395e3}} 
+static \mbox{\hyperlink{classrev_1_1_u_b_o}{U\+BO}} $\ast$ \mbox{\hyperlink{classrev_1_1_u_b_o_ab002dc2829909d0df5d4459bb9c395e3}{s\+\_\+bound\+U\+BO}} = nullptr
+\begin{DoxyCompactList}\small\item\em The currently bound \mbox{\hyperlink{classrev_1_1_u_b_o}{U\+BO}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_a93b54ee0b5d29cc642471bca227de174}\label{classrev_1_1_u_b_o_a93b54ee0b5d29cc642471bca227de174}} 
+static \mbox{\hyperlink{classtsl_1_1robin__map}{tsl\+::robin\+\_\+map}}$<$ Q\+String, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_u_b_o}{U\+BO}} $>$ $>$ \mbox{\hyperlink{classrev_1_1_u_b_o_a93b54ee0b5d29cc642471bca227de174}{s\+\_\+\+U\+B\+O\+Map}} = \{\}
+\begin{DoxyCompactList}\small\item\em Static map of U\+B\+Os, indexed by name (U\+B\+Os should always use same name in shader) \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classtsl_1_1robin__map}{tsl\+::robin\+\_\+map}}$<$ Shader\+Variable\+Type, size\+\_\+t $>$ \mbox{\hyperlink{classrev_1_1_u_b_o_a6ab2b09b1c7b5dfc548111d73a52020d}{s\+\_\+aligned\+Type\+Sizes}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_map}{Map}} of type names to their sizes (according to std140 glsl sizing) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_a1b1324ca1dad3fb2a4b52e62b3565512}\label{classrev_1_1_u_b_o_a1b1324ca1dad3fb2a4b52e62b3565512}} 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_u_b_o}{U\+BO}} $>$ \mbox{\hyperlink{classrev_1_1_u_b_o_a1b1324ca1dad3fb2a4b52e62b3565512}{get}} (const Q\+String \&name)
+\begin{DoxyCompactList}\small\item\em Obtain the \mbox{\hyperlink{classrev_1_1_u_b_o}{U\+BO}} with the given name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_a9cebf7ec595eaede526a33eb740ff662}\label{classrev_1_1_u_b_o_a9cebf7ec595eaede526a33eb740ff662}} 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_u_b_o}{U\+BO}} $>$ {\bfseries get\+Camera\+Buffer} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_a2d72e9e68f218de2d3b856c7115b0d97}\label{classrev_1_1_u_b_o_a2d72e9e68f218de2d3b856c7115b0d97}} 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_u_b_o}{U\+BO}} $>$ {\bfseries get\+Light\+Settings\+Buffer} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_adc62687d84b4a6e838eec1c3e64c9031}\label{classrev_1_1_u_b_o_adc62687d84b4a6e838eec1c3e64c9031}} 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_u_b_o}{U\+BO}} $>$ \mbox{\hyperlink{classrev_1_1_u_b_o_adc62687d84b4a6e838eec1c3e64c9031}{create}} (const \mbox{\hyperlink{structrev_1_1_shader_buffer_info}{Shader\+Buffer\+Info}} \&ss)
+\begin{DoxyCompactList}\small\item\em Create a \mbox{\hyperlink{classrev_1_1_u_b_o}{U\+BO}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_u_b_o_af13363564831fb3754f0ea12a1717ea1}\label{classrev_1_1_u_b_o_af13363564831fb3754f0ea12a1717ea1}} 
+static void \mbox{\hyperlink{classrev_1_1_u_b_o_af13363564831fb3754f0ea12a1717ea1}{clear\+U\+B\+Os}} ()
+\begin{DoxyCompactList}\small\item\em Clear the static map of U\+B\+Os. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing a \mbox{\hyperlink{structrev_1_1_uniform}{Uniform}} Buffer \mbox{\hyperlink{classrev_1_1_object}{Object}}. 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_u_b_o_a6ab2b09b1c7b5dfc548111d73a52020d}\label{classrev_1_1_u_b_o_a6ab2b09b1c7b5dfc548111d73a52020d}} 
+\index{rev::UBO@{rev::UBO}!s\_alignedTypeSizes@{s\_alignedTypeSizes}}
+\index{s\_alignedTypeSizes@{s\_alignedTypeSizes}!rev::UBO@{rev::UBO}}
+\subsubsection{\texorpdfstring{s\_alignedTypeSizes}{s\_alignedTypeSizes}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classtsl_1_1robin__map}{tsl\+::robin\+\_\+map}}$<$ Shader\+Variable\+Type, size\+\_\+t $>$ rev\+::\+U\+B\+O\+::s\+\_\+aligned\+Type\+Sizes\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \{ShaderVariableType::kBool,        \textcolor{keyword}{sizeof}(GLfloat)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kInt,         \textcolor{keyword}{sizeof}(GLfloat)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kFloat,       \textcolor{keyword}{sizeof}(GLfloat)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kDouble,      \textcolor{keyword}{sizeof}(GLfloat)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kVec2,        2 * \textcolor{keyword}{sizeof}(GLfloat)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kVec3,        4 * \textcolor{keyword}{sizeof}(GLfloat)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kVec4,        4 * \textcolor{keyword}{sizeof}(GLfloat)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kMat2,        2 * 4 * \textcolor{keyword}{sizeof}(GLfloat)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kMat3,        3 * 4 * \textcolor{keyword}{sizeof}(GLfloat)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kMat4,        4 * 4 * \textcolor{keyword}{sizeof}(GLfloat)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kSamplerCube, \textcolor{keyword}{sizeof}(GLfloat)\},}
+\DoxyCodeLine{    \{ShaderVariableType::kSampler2D,   \textcolor{keyword}{sizeof}(GLfloat)\}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\mbox{\hyperlink{classrev_1_1_map}{Map}} of type names to their sizes (according to std140 glsl sizing) 
+
+Scalar e.\+g. int or bool\+: Each scalar has a base alignment of N. \mbox{\hyperlink{classrev_1_1_vector}{Vector}} Either 2N or 4N; This means that a vec3 has a base alignment of 4N. Array of scalars or vectors\+: Each element has a base alignment equal to that of a vec4. Matrices\+: Stored as a large array of column vectors, where each of those vectors has a base alignment of vec4. Struct\+: Equal to the computed size of its elements according to the previous rules, but padded to a multiple of the size of a vec4. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/buffers/G\+Uniform\+Buffer\+Object.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/buffers/G\+Uniform\+Buffer\+Object.\+cpp\end{DoxyCompactItemize}

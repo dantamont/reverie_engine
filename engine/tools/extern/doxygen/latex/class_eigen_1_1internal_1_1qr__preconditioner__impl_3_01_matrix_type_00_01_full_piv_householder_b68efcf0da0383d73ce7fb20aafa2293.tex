@@ -1,0 +1,30 @@
+\hypertarget{class_eigen_1_1internal_1_1qr__preconditioner__impl_3_01_matrix_type_00_01_full_piv_householder_b68efcf0da0383d73ce7fb20aafa2293}{}\section{Eigen\+::internal\+::qr\+\_\+preconditioner\+\_\+impl$<$ Matrix\+Type, Full\+Piv\+Householder\+Q\+R\+Preconditioner, Precondition\+If\+More\+Rows\+Than\+Cols, true $>$ Class Template Reference}
+\label{class_eigen_1_1internal_1_1qr__preconditioner__impl_3_01_matrix_type_00_01_full_piv_householder_b68efcf0da0383d73ce7fb20aafa2293}\index{Eigen::internal::qr\_preconditioner\_impl$<$ MatrixType, FullPivHouseholderQRPreconditioner, PreconditionIfMoreRowsThanCols, true $>$@{Eigen::internal::qr\_preconditioner\_impl$<$ MatrixType, FullPivHouseholderQRPreconditioner, PreconditionIfMoreRowsThanCols, true $>$}}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1qr__preconditioner__impl_3_01_matrix_type_00_01_full_piv_householder_b68efcf0da0383d73ce7fb20aafa2293_a9746c411fdae94bc17e32bad89ca5aef}\label{class_eigen_1_1internal_1_1qr__preconditioner__impl_3_01_matrix_type_00_01_full_piv_householder_b68efcf0da0383d73ce7fb20aafa2293_a9746c411fdae94bc17e32bad89ca5aef}} 
+enum \{ {\bfseries Rows\+At\+Compile\+Time} = Matrix\+Type\+::Rows\+At\+Compile\+Time, 
+{\bfseries Max\+Rows\+At\+Compile\+Time} = Matrix\+Type\+::Max\+Rows\+At\+Compile\+Time
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1qr__preconditioner__impl_3_01_matrix_type_00_01_full_piv_householder_b68efcf0da0383d73ce7fb20aafa2293_a6598c76a30eba4be4175fd6024520646}\label{class_eigen_1_1internal_1_1qr__preconditioner__impl_3_01_matrix_type_00_01_full_piv_householder_b68efcf0da0383d73ce7fb20aafa2293_a6598c76a30eba4be4175fd6024520646}} 
+typedef Matrix\+Type\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1qr__preconditioner__impl_3_01_matrix_type_00_01_full_piv_householder_b68efcf0da0383d73ce7fb20aafa2293_acd199f9e16acf39324487c2bcff62fc1}\label{class_eigen_1_1internal_1_1qr__preconditioner__impl_3_01_matrix_type_00_01_full_piv_householder_b68efcf0da0383d73ce7fb20aafa2293_acd199f9e16acf39324487c2bcff62fc1}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, 1, Rows\+At\+Compile\+Time, Row\+Major, 1, Max\+Rows\+At\+Compile\+Time $>$ {\bfseries Workspace\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1qr__preconditioner__impl_3_01_matrix_type_00_01_full_piv_householder_b68efcf0da0383d73ce7fb20aafa2293_aaf51bc2637a96e8069128f3ee9eb1726}\label{class_eigen_1_1internal_1_1qr__preconditioner__impl_3_01_matrix_type_00_01_full_piv_householder_b68efcf0da0383d73ce7fb20aafa2293_aaf51bc2637a96e8069128f3ee9eb1726}} 
+void {\bfseries allocate} (const \mbox{\hyperlink{class_eigen_1_1_jacobi_s_v_d}{Jacobi\+S\+VD}}$<$ Matrix\+Type, Full\+Piv\+Householder\+Q\+R\+Preconditioner $>$ \&svd)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1internal_1_1qr__preconditioner__impl_3_01_matrix_type_00_01_full_piv_householder_b68efcf0da0383d73ce7fb20aafa2293_ab9e7960349091e9d4c44b9a0a31b0931}\label{class_eigen_1_1internal_1_1qr__preconditioner__impl_3_01_matrix_type_00_01_full_piv_householder_b68efcf0da0383d73ce7fb20aafa2293_ab9e7960349091e9d4c44b9a0a31b0931}} 
+bool {\bfseries run} (\mbox{\hyperlink{class_eigen_1_1_jacobi_s_v_d}{Jacobi\+S\+VD}}$<$ Matrix\+Type, Full\+Piv\+Householder\+Q\+R\+Preconditioner $>$ \&svd, const Matrix\+Type \&matrix)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+S\+V\+D/Jacobi\+S\+V\+D.\+h\end{DoxyCompactItemize}

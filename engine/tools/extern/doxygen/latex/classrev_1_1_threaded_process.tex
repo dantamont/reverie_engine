@@ -1,0 +1,138 @@
+\hypertarget{classrev_1_1_threaded_process}{}\section{rev\+::Threaded\+Process Class Reference}
+\label{classrev_1_1_threaded_process}\index{rev::ThreadedProcess@{rev::ThreadedProcess}}
+Inheritance diagram for rev\+::Threaded\+Process\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classrev_1_1_threaded_process}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_process_a1de8871ebb29b5244054b7cf65f22378}\label{classrev_1_1_threaded_process_a1de8871ebb29b5244054b7cf65f22378}} 
+{\bfseries Threaded\+Process} (\mbox{\hyperlink{classrev_1_1_process_manager}{Process\+Manager}} $\ast$manager)
+\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_process_ad6bcc605098ff030d3f2e2dd0f6fc605}\label{classrev_1_1_threaded_process_ad6bcc605098ff030d3f2e2dd0f6fc605}} 
+virtual {\bfseries $\sim$\+Threaded\+Process} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_process_a6e057f5df8add0d2726c9e96f72c5c86}\label{classrev_1_1_threaded_process_a6e057f5df8add0d2726c9e96f72c5c86}} 
+std\+::mutex \& {\bfseries exception\+Mutex} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_process_a152d4972f920c8685dab3f5cab92a719}\label{classrev_1_1_threaded_process_a152d4972f920c8685dab3f5cab92a719}} 
+const std\+::exception\+\_\+ptr \& {\bfseries exception} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_process_ab09a1fe34fbca5cae0c19536da6fa645}\label{classrev_1_1_threaded_process_ab09a1fe34fbca5cae0c19536da6fa645}} 
+virtual void \mbox{\hyperlink{classrev_1_1_threaded_process_ab09a1fe34fbca5cae0c19536da6fa645}{on\+Init}} () override
+\begin{DoxyCompactList}\small\item\em Functions to be overriden by process subclasses as needed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_process_a8960d426258d35a803a7ca8be5c94930}\label{classrev_1_1_threaded_process_a8960d426258d35a803a7ca8be5c94930}} 
+virtual void {\bfseries on\+Update} (double delta\+Sec) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_process_ab8a97ac75e82293cca4ec855ca00d608}\label{classrev_1_1_threaded_process_ab8a97ac75e82293cca4ec855ca00d608}} 
+virtual void {\bfseries on\+Success} () override
+\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_process_ae388d550e0246cb8b8997e27d78633b0}\label{classrev_1_1_threaded_process_ae388d550e0246cb8b8997e27d78633b0}} 
+virtual void {\bfseries on\+Fail} () override
+\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_process_a1b819e6d2cef0ee71d22b82569ed10cf}\label{classrev_1_1_threaded_process_a1b819e6d2cef0ee71d22b82569ed10cf}} 
+virtual void {\bfseries on\+Abort} () override
+\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_process_a145fdd9d634933c0c0b4a2524b73bd1f}\label{classrev_1_1_threaded_process_a145fdd9d634933c0c0b4a2524b73bd1f}} 
+virtual void \mbox{\hyperlink{classrev_1_1_threaded_process_a145fdd9d634933c0c0b4a2524b73bd1f}{run}} ()
+\begin{DoxyCompactList}\small\item\em Required override for Q\+Runnable for threaded process. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_threaded_process_a7b198a27cb18d6da765cef1ed66a169c}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_threaded_process_a102e7ef754f41bb16225c4207b6b3c58}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_process_a79ec50cd7a0a3a49862a680705de979a}\label{classrev_1_1_threaded_process_a79ec50cd7a0a3a49862a680705de979a}} 
+\mbox{\hyperlink{classrev_1_1_process_manager}{Process\+Manager}} $\ast$ {\bfseries process\+Manager} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_process_a842df6b91ffb0fed1678db9d6557c9e0}\label{classrev_1_1_threaded_process_a842df6b91ffb0fed1678db9d6557c9e0}} 
+\mbox{\hyperlink{classrev_1_1_timer}{Timer}} \mbox{\hyperlink{classrev_1_1_threaded_process_a842df6b91ffb0fed1678db9d6557c9e0}{m\+\_\+timer}}
+\begin{DoxyCompactList}\small\item\em The timer for the threaded process\textquotesingle{}s update loop. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_process_a009eb6f3912ba743d77df197ae9b5ac2}\label{classrev_1_1_threaded_process_a009eb6f3912ba743d77df197ae9b5ac2}} 
+double \mbox{\hyperlink{classrev_1_1_threaded_process_a009eb6f3912ba743d77df197ae9b5ac2}{m\+\_\+fixed\+Step\+Sec}}
+\begin{DoxyCompactList}\small\item\em the fixed update interval for the process, in seconds \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_process_a13e749f587d9bb27084dd44c7b550a5c}\label{classrev_1_1_threaded_process_a13e749f587d9bb27084dd44c7b550a5c}} 
+std\+::mutex \mbox{\hyperlink{classrev_1_1_threaded_process_a13e749f587d9bb27084dd44c7b550a5c}{m\+\_\+exception\+Lock}}
+\begin{DoxyCompactList}\small\item\em For exception handling. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_process_a84419eeb57967e7ba129d0cf490c2895}\label{classrev_1_1_threaded_process_a84419eeb57967e7ba129d0cf490c2895}} 
+std\+::exception\+\_\+ptr {\bfseries m\+\_\+exception\+Ptr} = nullptr
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_threaded_process_ae1701c7594fe2cf1c96b951a52eb0396}\label{classrev_1_1_threaded_process_ae1701c7594fe2cf1c96b951a52eb0396}} 
+class {\bfseries Process\+Manager}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_threaded_process_a7b198a27cb18d6da765cef1ed66a169c}\label{classrev_1_1_threaded_process_a7b198a27cb18d6da765cef1ed66a169c}} 
+\index{rev::ThreadedProcess@{rev::ThreadedProcess}!className@{className}}
+\index{className@{className}!rev::ThreadedProcess@{rev::ThreadedProcess}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Threaded\+Process\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_process_adc27ddf4c0f44dab54a5f797c7135c44}{rev\+::\+Process}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_load_process_ad826a8b7aab260c491bcd4344564947d}{rev\+::\+Load\+Process}}.
+
+\mbox{\Hypertarget{classrev_1_1_threaded_process_a102e7ef754f41bb16225c4207b6b3c58}\label{classrev_1_1_threaded_process_a102e7ef754f41bb16225c4207b6b3c58}} 
+\index{rev::ThreadedProcess@{rev::ThreadedProcess}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::ThreadedProcess@{rev::ThreadedProcess}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Threaded\+Process\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_process_a7f5a6ab8af65aec3132f6a072b9fcb87}{rev\+::\+Process}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_load_process_aadfe0ec547dbda51e60517691617e88b}{rev\+::\+Load\+Process}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/processes/G\+Threaded\+Process.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/processes/G\+Threaded\+Process.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,105 @@
+\hypertarget{classrev_1_1_g_l_1_1_buffer_object}{}\section{rev\+::GL\+::Buffer\+Object Class Reference}
+\label{classrev_1_1_g_l_1_1_buffer_object}\index{rev::GL::BufferObject@{rev::GL::BufferObject}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} wrapping a Q\+Open\+G\+L\+Buffer.  
+
+
+
+
+{\ttfamily \#include $<$G\+Buffers.\+h$>$}
+
+Inheritance diagram for rev\+::GL\+::Buffer\+Object\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_g_l_1_1_buffer_object}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_buffer_object_a2af7b59013958e1e5a0d10d81a15c64f}\label{classrev_1_1_g_l_1_1_buffer_object_a2af7b59013958e1e5a0d10d81a15c64f}} 
+{\bfseries Buffer\+Object} (const \mbox{\hyperlink{classrev_1_1_g_l_1_1_buffer_object}{Buffer\+Object}} \&other)
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_buffer_object_acf4fa1e76930f73a4877dce3df53f801}\label{classrev_1_1_g_l_1_1_buffer_object_acf4fa1e76930f73a4877dce3df53f801}} 
+{\bfseries Buffer\+Object} (Q\+Open\+G\+L\+Buffer\+::\+Type buffer\+Type, Buffer\+Attribute\+Type \mbox{\hyperlink{classrev_1_1_g_l_1_1_buffer_object_a58c20873500175e3539430dbf63ebbcf}{attribute\+Type}}, G\+L\+::\+Usage\+Pattern pattern=G\+L\+::\+Usage\+Pattern\+::k\+Dynamic\+Draw)
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_buffer_object_a440073b7d0ccda5e0612c0c35c6e774b}\label{classrev_1_1_g_l_1_1_buffer_object_a440073b7d0ccda5e0612c0c35c6e774b}} 
+{\bfseries Buffer\+Object} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_buffer_object_a68ad733b43e0921817cb8762077f0c42}\label{classrev_1_1_g_l_1_1_buffer_object_a68ad733b43e0921817cb8762077f0c42}} 
+{\bfseries $\sim$\+Buffer\+Object} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_buffer_object_a58c20873500175e3539430dbf63ebbcf}\label{classrev_1_1_g_l_1_1_buffer_object_a58c20873500175e3539430dbf63ebbcf}} 
+const Buffer\+Attribute\+Type \& \mbox{\hyperlink{classrev_1_1_g_l_1_1_buffer_object_a58c20873500175e3539430dbf63ebbcf}{attribute\+Type}} () const
+\begin{DoxyCompactList}\small\item\em Attribute type of buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_buffer_object_a22ffb3a6972fb0046d864d281b0e9fd6}\label{classrev_1_1_g_l_1_1_buffer_object_a22ffb3a6972fb0046d864d281b0e9fd6}} 
+bool \mbox{\hyperlink{classrev_1_1_g_l_1_1_buffer_object_a22ffb3a6972fb0046d864d281b0e9fd6}{is\+Null}} () const
+\begin{DoxyCompactList}\small\item\em If this is a null buffer. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{classrev_1_1_g_l_1_1_buffer_object_a3f896c126a6156121373e6c71cdd7fe5}{get\+Contents}} (std\+::vector$<$ T $>$ \&out\+Contents)
+\begin{DoxyCompactList}\small\item\em Get contents. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_buffer_object_a6eb62abce9c776b7f2fdd44105c8dd7b}\label{classrev_1_1_g_l_1_1_buffer_object_a6eb62abce9c776b7f2fdd44105c8dd7b}} 
+{\footnotesize template$<$typename T $>$ }\\void {\bfseries get\+Contents} (int offset, int count, std\+::vector$<$ T $>$ \&out\+Contents)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Object overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_buffer_object_a0f1a209cd0a7c2d95e91ac458cd6c2aa}\label{classrev_1_1_g_l_1_1_buffer_object_a0f1a209cd0a7c2d95e91ac458cd6c2aa}} 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_g_l_1_1_buffer_object_a0f1a209cd0a7c2d95e91ac458cd6c2aa}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_buffer_object_a5f40094443e3a7b57c4227d5affa72d1}\label{classrev_1_1_g_l_1_1_buffer_object_a5f40094443e3a7b57c4227d5affa72d1}} 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_g_l_1_1_buffer_object_a5f40094443e3a7b57c4227d5affa72d1}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_buffer_object_a509bf0f1c6cde4665010d692f4d6fe4b}\label{classrev_1_1_g_l_1_1_buffer_object_a509bf0f1c6cde4665010d692f4d6fe4b}} 
+unsigned int {\bfseries get\+Tuple\+Size} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_buffer_object_ac3a7ef73c305ba1d392345ec7c68373a}\label{classrev_1_1_g_l_1_1_buffer_object_ac3a7ef73c305ba1d392345ec7c68373a}} 
+Buffer\+Attribute\+Type \mbox{\hyperlink{classrev_1_1_g_l_1_1_buffer_object_ac3a7ef73c305ba1d392345ec7c68373a}{m\+\_\+type}} = Buffer\+Attribute\+Type\+::k\+None
+\begin{DoxyCompactList}\small\item\em Type of buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_buffer_object_ad2dda0fc1c45d05c114ef20cdcbd1acc}\label{classrev_1_1_g_l_1_1_buffer_object_ad2dda0fc1c45d05c114ef20cdcbd1acc}} 
+class {\bfseries Vertex\+Array\+Object}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} wrapping a Q\+Open\+G\+L\+Buffer. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_g_l_1_1_buffer_object_a3f896c126a6156121373e6c71cdd7fe5}\label{classrev_1_1_g_l_1_1_buffer_object_a3f896c126a6156121373e6c71cdd7fe5}} 
+\index{rev::GL::BufferObject@{rev::GL::BufferObject}!getContents@{getContents}}
+\index{getContents@{getContents}!rev::GL::BufferObject@{rev::GL::BufferObject}}
+\subsubsection{\texorpdfstring{getContents()}{getContents()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void rev\+::\+G\+L\+::\+Buffer\+Object\+::get\+Contents (\begin{DoxyParamCaption}\item[{std\+::vector$<$ T $>$ \&}]{out\+Contents }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get contents. 
+
+Count is the number of elements to return 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/geometry/G\+Buffers.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/geometry/G\+Buffers.\+cpp\end{DoxyCompactItemize}

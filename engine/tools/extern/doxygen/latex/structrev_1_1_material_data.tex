@@ -1,0 +1,68 @@
+\hypertarget{structrev_1_1_material_data}{}\section{rev\+::Material\+Data Struct Reference}
+\label{structrev_1_1_material_data}\index{rev::MaterialData@{rev::MaterialData}}
+
+
+Structure for parsing in data from a file.  
+
+
+
+
+{\ttfamily \#include $<$G\+Material.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_material_data_af8b0e2db7f48782aac315184ac45ce13}\label{structrev_1_1_material_data_af8b0e2db7f48782aac315184ac45ce13}} 
+void {\bfseries initialize} ()
+\item 
+\mbox{\Hypertarget{structrev_1_1_material_data_a6d66c9aa56be6c9c60d1303e921d5f04}\label{structrev_1_1_material_data_a6d66c9aa56be6c9c60d1303e921d5f04}} 
+const \mbox{\hyperlink{structrev_1_1_texture_data}{Texture\+Data}} \& \mbox{\hyperlink{structrev_1_1_material_data_a6d66c9aa56be6c9c60d1303e921d5f04}{texture\+Data}} (Texture\+Usage\+Type type) const
+\begin{DoxyCompactList}\small\item\em Return texture of the given type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{Indent}\textbf{ Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_material_data_ae02dd4fd097e8071a53c7cd8e4ad98ba}\label{structrev_1_1_material_data_ae02dd4fd097e8071a53c7cd8e4ad98ba}} 
+\mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} {\bfseries m\+\_\+name} = \char`\"{}\char`\"{}
+\item 
+\mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \mbox{\hyperlink{structrev_1_1_material_data_ac54dbbf36395be2c78d641d06c3df440}{m\+\_\+path}} = \char`\"{}\char`\"{}
+\item 
+\mbox{\Hypertarget{structrev_1_1_material_data_a842fee758d0b1ecb3408b2664512f245}\label{structrev_1_1_material_data_a842fee758d0b1ecb3408b2664512f245}} 
+int32\+\_\+t {\bfseries m\+\_\+id}
+\item 
+\mbox{\Hypertarget{structrev_1_1_material_data_a14d380bfb9b8a5d9d5c4db8e7b9c5743}\label{structrev_1_1_material_data_a14d380bfb9b8a5d9d5c4db8e7b9c5743}} 
+\mbox{\hyperlink{structrev_1_1_material_properties}{Material\+Properties}} {\bfseries m\+\_\+properties}
+\item 
+\mbox{\Hypertarget{structrev_1_1_material_data_af060a198bc19ae3c58c767457264c8d6}\label{structrev_1_1_material_data_af060a198bc19ae3c58c767457264c8d6}} 
+\mbox{\hyperlink{structrev_1_1_material_texture_data}{Material\+Texture\+Data}} \mbox{\hyperlink{structrev_1_1_material_data_af060a198bc19ae3c58c767457264c8d6}{m\+\_\+texture\+Data}}
+\begin{DoxyCompactList}\small\item\em Properties of the textures used by this material. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_material_data_a1ce66383017e18fcb8b7c8b0a6a09841}\label{structrev_1_1_material_data_a1ce66383017e18fcb8b7c8b0a6a09841}} 
+\mbox{\hyperlink{structrev_1_1_sprite_sheet_info}{Sprite\+Sheet\+Info}} \mbox{\hyperlink{structrev_1_1_material_data_a1ce66383017e18fcb8b7c8b0a6a09841}{m\+\_\+sprite\+Sheet\+Info}}
+\begin{DoxyCompactList}\small\item\em Metadata if the material is a sprite sheet. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+Structure for parsing in data from a file. 
+
+\begin{DoxyNote}{Note}
+For structure alignment, see\+: \href{http://www.catb.org/esr/structure-packing/}{\texttt{ http\+://www.\+catb.\+org/esr/structure-\/packing/}} 
+\end{DoxyNote}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structrev_1_1_material_data_ac54dbbf36395be2c78d641d06c3df440}\label{structrev_1_1_material_data_ac54dbbf36395be2c78d641d06c3df440}} 
+\index{rev::MaterialData@{rev::MaterialData}!m\_path@{m\_path}}
+\index{m\_path@{m\_path}!rev::MaterialData@{rev::MaterialData}}
+\subsubsection{\texorpdfstring{m\_path}{m\_path}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} rev\+::\+Material\+Data\+::m\+\_\+path = \char`\"{}\char`\"{}}
+
+\begin{DoxyNote}{Note}
+May not represent an actual path, but the directory is needed for loading textures 
+\end{DoxyNote}
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/materials/G\+Material.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/materials/G\+Material.\+cpp\end{DoxyCompactItemize}

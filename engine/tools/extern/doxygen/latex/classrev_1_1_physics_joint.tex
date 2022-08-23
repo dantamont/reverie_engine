@@ -1,0 +1,141 @@
+\hypertarget{classrev_1_1_physics_joint}{}\section{rev\+::Physics\+Joint Class Reference}
+\label{classrev_1_1_physics_joint}\index{rev::PhysicsJoint@{rev::PhysicsJoint}}
+Inheritance diagram for rev\+::Physics\+Joint\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_physics_joint}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_joint_af398261619214f6db346f231c4424413}\label{classrev_1_1_physics_joint_af398261619214f6db346f231c4424413}} 
+{\bfseries Physics\+Joint} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_joint_aec55e9f372f27ecebe843a8f6ee00017}\label{classrev_1_1_physics_joint_aec55e9f372f27ecebe843a8f6ee00017}} 
+virtual {\bfseries $\sim$\+Physics\+Joint} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_joint_af362c194fe89cbc2678c6fe4ef4b848a}\label{classrev_1_1_physics_joint_af362c194fe89cbc2678c6fe4ef4b848a}} 
+virtual Physics\+Joint\+Type {\bfseries joint\+Type} () const =0
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_joint_a215e227d6a0b8ee23cb0a89446e952b4}\label{classrev_1_1_physics_joint_a215e227d6a0b8ee23cb0a89446e952b4}} 
+const char $\ast$ {\bfseries get\+Name} (const char $\ast$name) const
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_joint_a2ddaebd6aee2bf2329c09bd6cb05b993}\label{classrev_1_1_physics_joint_a2ddaebd6aee2bf2329c09bd6cb05b993}} 
+void {\bfseries set\+Name} (const char $\ast$name)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_joint_a86ea8d9e865350931d738a091488ba8f}\label{classrev_1_1_physics_joint_a86ea8d9e865350931d738a091488ba8f}} 
+{\footnotesize template$<$typename T $>$ }\\T $\ast$ \mbox{\hyperlink{classrev_1_1_physics_joint_a86ea8d9e865350931d738a091488ba8f}{as}} () const
+\begin{DoxyCompactList}\small\item\em Return the underlying physx joint as the specified type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_joint_acf0296ba46833f1bfd072cd420e9556d}\label{classrev_1_1_physics_joint_acf0296ba46833f1bfd072cd420e9556d}} 
+void \mbox{\hyperlink{classrev_1_1_physics_joint_acf0296ba46833f1bfd072cd420e9556d}{set\+Actors}} (const \mbox{\hyperlink{classrev_1_1_physics_actor}{Physics\+Actor}} \&a1, const \mbox{\hyperlink{classrev_1_1_physics_actor}{Physics\+Actor}} \&a2)
+\begin{DoxyCompactList}\small\item\em Set the actors for the joint. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_joint_a64e2b78627a68cff0d12f4d4bf87d1d0}\label{classrev_1_1_physics_joint_a64e2b78627a68cff0d12f4d4bf87d1d0}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_physics_joint_a64e2b78627a68cff0d12f4d4bf87d1d0}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_joint_aa5024444d1f39f294a17efa7071a4dbe}\label{classrev_1_1_physics_joint_aa5024444d1f39f294a17efa7071a4dbe}} 
+virtual void \mbox{\hyperlink{classrev_1_1_physics_joint_aa5024444d1f39f294a17efa7071a4dbe}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_physics_joint_aef7f21c8a657ce02326b965af8835517}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_physics_joint_a312be29fc0f85bacb01952c63e985096}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$auto Enum\+Val, typename ... Types$>$ }\\physx\+::\+Px\+Joint $\ast$ \mbox{\hyperlink{classrev_1_1_physics_joint_a2af8aa1362fb5b278518b5502d37145b}{create\+Joint}} (const Types \&... types)
+\begin{DoxyCompactList}\small\item\em Create a physx joint of the template type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_physics_joint_a8fa70ffe594aa4b76d51660c33d96123}\label{classrev_1_1_physics_joint_a8fa70ffe594aa4b76d51660c33d96123}} 
+{\footnotesize template$<$typename Enum\+Type , Enum\+Type Enum\+Value, typename ... Types$>$ }\\physx\+::\+Px\+Joint $\ast$ {\bfseries create\+Joint\+\_\+impl} (const Types \&... types)
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_joint_a41453e88af13b59082afb0c03bd18854}\label{classrev_1_1_physics_joint_a41453e88af13b59082afb0c03bd18854}} 
+bool {\bfseries check\+Joint} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_physics_joint_a552986786cea5ed58b40d411110deef4}\label{classrev_1_1_physics_joint_a552986786cea5ed58b40d411110deef4}} 
+physx\+::\+Px\+Joint $\ast$ {\bfseries m\+\_\+p\+Joint}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_physics_joint_aef7f21c8a657ce02326b965af8835517}\label{classrev_1_1_physics_joint_aef7f21c8a657ce02326b965af8835517}} 
+\index{rev::PhysicsJoint@{rev::PhysicsJoint}!className@{className}}
+\index{className@{className}!rev::PhysicsJoint@{rev::PhysicsJoint}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Physics\+Joint\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_fixed_physics_joint_a50a695b0b2cb3cb212ee03d38db3d981}{rev\+::\+Fixed\+Physics\+Joint}}.
+
+\mbox{\Hypertarget{classrev_1_1_physics_joint_a2af8aa1362fb5b278518b5502d37145b}\label{classrev_1_1_physics_joint_a2af8aa1362fb5b278518b5502d37145b}} 
+\index{rev::PhysicsJoint@{rev::PhysicsJoint}!createJoint@{createJoint}}
+\index{createJoint@{createJoint}!rev::PhysicsJoint@{rev::PhysicsJoint}}
+\subsubsection{\texorpdfstring{createJoint()}{createJoint()}}
+{\footnotesize\ttfamily template$<$auto Enum\+Val, typename ... Types$>$ \\
+physx\+::\+Px\+Joint$\ast$ rev\+::\+Physics\+Joint\+::create\+Joint (\begin{DoxyParamCaption}\item[{const Types \&...}]{types }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Create a physx joint of the template type. 
+
+This template enforces the enum class type \begin{DoxyNote}{Note}
+\href{https://stackoverflow.com/questions/9400581/template-argument-deduction-with-strongly-typed-enumerations/47484461}{\texttt{ https\+://stackoverflow.\+com/questions/9400581/template-\/argument-\/deduction-\/with-\/strongly-\/typed-\/enumerations/47484461}} 
+\end{DoxyNote}
+\mbox{\Hypertarget{classrev_1_1_physics_joint_a312be29fc0f85bacb01952c63e985096}\label{classrev_1_1_physics_joint_a312be29fc0f85bacb01952c63e985096}} 
+\index{rev::PhysicsJoint@{rev::PhysicsJoint}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::PhysicsJoint@{rev::PhysicsJoint}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Physics\+Joint\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_fixed_physics_joint_ae0bb4a64e824f0cc378b9e00be7ab469}{rev\+::\+Fixed\+Physics\+Joint}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Physics\+Joint.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Physics\+Joint.\+cpp\end{DoxyCompactItemize}

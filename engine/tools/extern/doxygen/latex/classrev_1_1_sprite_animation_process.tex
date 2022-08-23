@@ -1,0 +1,126 @@
+\hypertarget{classrev_1_1_sprite_animation_process}{}\section{rev\+::Sprite\+Animation\+Process Class Reference}
+\label{classrev_1_1_sprite_animation_process}\index{rev::SpriteAnimationProcess@{rev::SpriteAnimationProcess}}
+
+
+Represents a 2D animation process.  
+
+
+
+
+{\ttfamily \#include $<$G\+Sprite\+Animation\+Process.\+h$>$}
+
+Inheritance diagram for rev\+::Sprite\+Animation\+Process\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_sprite_animation_process}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_animation_process_a1949b23ddc1ecda2ff49a8acf3bb203c}\label{classrev_1_1_sprite_animation_process_a1949b23ddc1ecda2ff49a8acf3bb203c}} 
+{\bfseries Sprite\+Animation\+Process} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$engine, \mbox{\hyperlink{classrev_1_1_sprite}{Sprite}} $\ast$sprite)
+\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_animation_process_a116ec8955c566ea34280eddbd0eb0c6b}\label{classrev_1_1_sprite_animation_process_a116ec8955c566ea34280eddbd0eb0c6b}} 
+{\bfseries $\sim$\+Sprite\+Animation\+Process} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_animation_process_ad39f3c023b525967d5b5868697d4abc5}\label{classrev_1_1_sprite_animation_process_ad39f3c023b525967d5b5868697d4abc5}} 
+std\+::shared\+\_\+mutex \& {\bfseries mutex} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_animation_process_aaafbab60c098f876b82ba215f396653a}\label{classrev_1_1_sprite_animation_process_aaafbab60c098f876b82ba215f396653a}} 
+virtual void \mbox{\hyperlink{classrev_1_1_sprite_animation_process_aaafbab60c098f876b82ba215f396653a}{on\+Init}} () override
+\begin{DoxyCompactList}\small\item\em Functions to be overriden by process subclasses as needed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_animation_process_abc7303efd0009da2e7e3b22fad686885}\label{classrev_1_1_sprite_animation_process_abc7303efd0009da2e7e3b22fad686885}} 
+virtual void {\bfseries on\+Update} (double delta\+Sec) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_animation_process_a039d00017cda9881f76628ba58755081}\label{classrev_1_1_sprite_animation_process_a039d00017cda9881f76628ba58755081}} 
+virtual void {\bfseries on\+Late\+Update} (double delta\+Sec) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_animation_process_a8b45c2fff6831c0be5b8ed89f9373e7c}\label{classrev_1_1_sprite_animation_process_a8b45c2fff6831c0be5b8ed89f9373e7c}} 
+virtual void {\bfseries on\+Fixed\+Update} (double delta\+Sec) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_animation_process_adeb5a314bebbd5e506a60176c99131e4}\label{classrev_1_1_sprite_animation_process_adeb5a314bebbd5e506a60176c99131e4}} 
+virtual void {\bfseries on\+Success} () override
+\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_animation_process_ac87358878c1be32f3117c076b6bfb50a}\label{classrev_1_1_sprite_animation_process_ac87358878c1be32f3117c076b6bfb50a}} 
+virtual void {\bfseries on\+Fail} () override
+\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_animation_process_abba757c31d7da036671a0ad3f9101bf3}\label{classrev_1_1_sprite_animation_process_abba757c31d7da036671a0ad3f9101bf3}} 
+virtual void {\bfseries on\+Abort} () override
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_sprite_animation_process_ad475b084f8d64cfb7a06a0456b215dbb}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_sprite_animation_process_acf80fb6d112c6d00a00bfa9620247e53}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_animation_process_a50cd7d3a4b14b608e8a3e0fefd5f3dbe}\label{classrev_1_1_sprite_animation_process_a50cd7d3a4b14b608e8a3e0fefd5f3dbe}} 
+\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$ \mbox{\hyperlink{classrev_1_1_sprite_animation_process_a50cd7d3a4b14b608e8a3e0fefd5f3dbe}{m\+\_\+engine}}
+\begin{DoxyCompactList}\small\item\em The core engine, since processqueue doesn\textquotesingle{}t hold onto it. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_animation_process_a64bde39904b37d7f90c37da95d3a6498}\label{classrev_1_1_sprite_animation_process_a64bde39904b37d7f90c37da95d3a6498}} 
+std\+::shared\+\_\+mutex \mbox{\hyperlink{classrev_1_1_sprite_animation_process_a64bde39904b37d7f90c37da95d3a6498}{m\+\_\+mutex}}
+\begin{DoxyCompactList}\small\item\em Contol access to the process, since running on separate animation thread. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_animation_process_a5f5168840472809e1f14083c0ccd7b9a}\label{classrev_1_1_sprite_animation_process_a5f5168840472809e1f14083c0ccd7b9a}} 
+\mbox{\hyperlink{classrev_1_1_sprite}{Sprite}} $\ast$ \mbox{\hyperlink{classrev_1_1_sprite_animation_process_a5f5168840472809e1f14083c0ccd7b9a}{m\+\_\+sprite}}
+\begin{DoxyCompactList}\small\item\em The animated sprite. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sprite_animation_process_ae0c4bc5ba7ba8e56d17dd076773e953d}\label{classrev_1_1_sprite_animation_process_ae0c4bc5ba7ba8e56d17dd076773e953d}} 
+double \mbox{\hyperlink{classrev_1_1_sprite_animation_process_ae0c4bc5ba7ba8e56d17dd076773e953d}{m\+\_\+elapsed\+Time\+Sec}} = 0
+\begin{DoxyCompactList}\small\item\em The elapsed time (in seconds) since beginning playback. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Represents a 2D animation process. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_sprite_animation_process_ad475b084f8d64cfb7a06a0456b215dbb}\label{classrev_1_1_sprite_animation_process_ad475b084f8d64cfb7a06a0456b215dbb}} 
+\index{rev::SpriteAnimationProcess@{rev::SpriteAnimationProcess}!className@{className}}
+\index{className@{className}!rev::SpriteAnimationProcess@{rev::SpriteAnimationProcess}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Sprite\+Animation\+Process\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_process_adc27ddf4c0f44dab54a5f797c7135c44}{rev\+::\+Process}}.
+
+\mbox{\Hypertarget{classrev_1_1_sprite_animation_process_acf80fb6d112c6d00a00bfa9620247e53}\label{classrev_1_1_sprite_animation_process_acf80fb6d112c6d00a00bfa9620247e53}} 
+\index{rev::SpriteAnimationProcess@{rev::SpriteAnimationProcess}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::SpriteAnimationProcess@{rev::SpriteAnimationProcess}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Sprite\+Animation\+Process\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_process_a7f5a6ab8af65aec3132f6a072b9fcb87}{rev\+::\+Process}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/processes/G\+Sprite\+Animation\+Process.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/processes/G\+Sprite\+Animation\+Process.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,112 @@
+\hypertarget{classrev_1_1_view_1_1_timeline_scene}{}\section{rev\+::View\+::Timeline\+Scene Class Reference}
+\label{classrev_1_1_view_1_1_timeline_scene}\index{rev::View::TimelineScene@{rev::View::TimelineScene}}
+Inheritance diagram for rev\+::View\+::Timeline\+Scene\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_view_1_1_timeline_scene}
+\end{center}
+\end{figure}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_scene_a98908898ad5dd2136bf23456fe36806c}\label{classrev_1_1_view_1_1_timeline_scene_a98908898ad5dd2136bf23456fe36806c}} 
+void {\bfseries send\+Scene\+Mouse\+Event\+Signal} (Q\+Graphics\+Scene\+Mouse\+Event $\ast$event)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_scene_aba45d0c1fbcc64041e1b0e43ea23a693}\label{classrev_1_1_view_1_1_timeline_scene_aba45d0c1fbcc64041e1b0e43ea23a693}} 
+void {\bfseries released\+Timeline\+Item} (Q\+Graphics\+Item $\ast$item, Timeline\+Item\+Type type)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_scene_a1ad38f6c2c360feda5df2cf3e977b6f5}\label{classrev_1_1_view_1_1_timeline_scene_a1ad38f6c2c360feda5df2cf3e977b6f5}} 
+void {\bfseries resize\+Row\+Headers} (qreal size, bool refresh\+Ticks)
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_scene_ac30389e1ea4129b52bb5ccaf4821573f}\label{classrev_1_1_view_1_1_timeline_scene_ac30389e1ea4129b52bb5ccaf4821573f}} 
+{\bfseries Timeline\+Scene} (Q\+Widget $\ast$parent=nullptr)
+\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_scene_a403eff80e209db3f5b01b40ebadf9c3f}\label{classrev_1_1_view_1_1_timeline_scene_a403eff80e209db3f5b01b40ebadf9c3f}} 
+qreal \mbox{\hyperlink{classrev_1_1_view_1_1_timeline_scene_a403eff80e209db3f5b01b40ebadf9c3f}{tick\+Value\+ToX}} (float tick\+Value)
+\begin{DoxyCompactList}\small\item\em Convert tick value to x position. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_scene_a82a1a929ef61d10bc99e2353a82c70ec}\label{classrev_1_1_view_1_1_timeline_scene_a82a1a929ef61d10bc99e2353a82c70ec}} 
+qreal \mbox{\hyperlink{classrev_1_1_view_1_1_timeline_scene_a82a1a929ef61d10bc99e2353a82c70ec}{vertical\+Track\+Margin}} () const
+\begin{DoxyCompactList}\small\item\em Vertical space between each track. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_scene_a37accac2efb6596dc46491e400811c7d}\label{classrev_1_1_view_1_1_timeline_scene_a37accac2efb6596dc46491e400811c7d}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_timeline_scene_a37accac2efb6596dc46491e400811c7d}{set\+Tick\+Increment}} (float inc)
+\begin{DoxyCompactList}\small\item\em Set the tick increment of the timeline. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_scene_a00014597c5971ba1adfcf697ac58c471}\label{classrev_1_1_view_1_1_timeline_scene_a00014597c5971ba1adfcf697ac58c471}} 
+virtual void {\bfseries mouse\+Press\+Event} (Q\+Graphics\+Scene\+Mouse\+Event $\ast$event) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_scene_a6d8f0bb757b1c81a823fc1f6fcd3a81b}\label{classrev_1_1_view_1_1_timeline_scene_a6d8f0bb757b1c81a823fc1f6fcd3a81b}} 
+virtual void {\bfseries mouse\+Release\+Event} (Q\+Graphics\+Scene\+Mouse\+Event $\ast$event) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_scene_a1df1d8589d3fd11b32b13608b01c2ee7}\label{classrev_1_1_view_1_1_timeline_scene_a1df1d8589d3fd11b32b13608b01c2ee7}} 
+virtual void {\bfseries mouse\+Move\+Event} (Q\+Graphics\+Scene\+Mouse\+Event $\ast$event) override
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_scene_ace2c277b9d2b24d80974e0f0ba9aa187}\label{classrev_1_1_view_1_1_timeline_scene_ace2c277b9d2b24d80974e0f0ba9aa187}} 
+bool \mbox{\hyperlink{classrev_1_1_view_1_1_timeline_scene_ace2c277b9d2b24d80974e0f0ba9aa187}{m\+\_\+can\+Switch\+Rows}}
+\begin{DoxyCompactList}\small\item\em Whether or not tracks can move rows. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_scene_a2b08501481bbdd7261ef07ed6c8628c6}\label{classrev_1_1_view_1_1_timeline_scene_a2b08501481bbdd7261ef07ed6c8628c6}} 
+qreal \mbox{\hyperlink{classrev_1_1_view_1_1_timeline_scene_a2b08501481bbdd7261ef07ed6c8628c6}{m\+\_\+vertical\+Track\+Margin}}
+\begin{DoxyCompactList}\small\item\em Vertical track margin. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_scene_acfa8a8f12f3b3291fbd28efe0aa6d661}\label{classrev_1_1_view_1_1_timeline_scene_acfa8a8f12f3b3291fbd28efe0aa6d661}} 
+qreal \mbox{\hyperlink{classrev_1_1_view_1_1_timeline_scene_acfa8a8f12f3b3291fbd28efe0aa6d661}{m\+\_\+vertical\+Track\+Height}}
+\begin{DoxyCompactList}\small\item\em Track height. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_scene_a1aa43ad613aa1cd68b46401546de8374}\label{classrev_1_1_view_1_1_timeline_scene_a1aa43ad613aa1cd68b46401546de8374}} 
+qreal \mbox{\hyperlink{classrev_1_1_view_1_1_timeline_scene_a1aa43ad613aa1cd68b46401546de8374}{m\+\_\+major\+Tick\+Increment}}
+\begin{DoxyCompactList}\small\item\em Major tick numerical increment. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_scene_a10f5ae3fe28ad18e6c7d4a7eb50c2439}\label{classrev_1_1_view_1_1_timeline_scene_a10f5ae3fe28ad18e6c7d4a7eb50c2439}} 
+qreal \mbox{\hyperlink{classrev_1_1_view_1_1_timeline_scene_a10f5ae3fe28ad18e6c7d4a7eb50c2439}{m\+\_\+major\+Tick\+Width}}
+\begin{DoxyCompactList}\small\item\em Major tick width (horizontal) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_scene_a25cc1b8d4e25c6d42fcf309e71dd85d1}\label{classrev_1_1_view_1_1_timeline_scene_a25cc1b8d4e25c6d42fcf309e71dd85d1}} 
+qreal {\bfseries m\+\_\+major\+Tick\+Height}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_scene_a41c4591c89c470c3f7a02a4f118b36d8}\label{classrev_1_1_view_1_1_timeline_scene_a41c4591c89c470c3f7a02a4f118b36d8}} 
+qreal \mbox{\hyperlink{classrev_1_1_view_1_1_timeline_scene_a41c4591c89c470c3f7a02a4f118b36d8}{m\+\_\+minor\+Tick\+Height}}
+\begin{DoxyCompactList}\small\item\em Number of minor ticks. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_scene_a726211dbdcb4e458beffa00bf22fd5e3}\label{classrev_1_1_view_1_1_timeline_scene_a726211dbdcb4e458beffa00bf22fd5e3}} 
+qreal {\bfseries m\+\_\+num\+Minor\+Ticks}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_scene_a6e426d91e1c1ef99eb329ad874fc11e6}\label{classrev_1_1_view_1_1_timeline_scene_a6e426d91e1c1ef99eb329ad874fc11e6}} 
+qreal \mbox{\hyperlink{classrev_1_1_view_1_1_timeline_scene_a6e426d91e1c1ef99eb329ad874fc11e6}{m\+\_\+row\+Label\+Width}}
+\begin{DoxyCompactList}\small\item\em Width of row label column. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_scene_ac8cae7b3ef8a7d8a1a2ec1c86b8a4696}\label{classrev_1_1_view_1_1_timeline_scene_ac8cae7b3ef8a7d8a1a2ec1c86b8a4696}} 
+qreal \mbox{\hyperlink{classrev_1_1_view_1_1_timeline_scene_ac8cae7b3ef8a7d8a1a2ec1c86b8a4696}{m\+\_\+tick\+Bar\+Offset}}
+\begin{DoxyCompactList}\small\item\em Offset from top of scene of tick bar. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_scene_ad55a3c161fedb629b674fd20d7235628}\label{classrev_1_1_view_1_1_timeline_scene_ad55a3c161fedb629b674fd20d7235628}} 
+class {\bfseries Timeline}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_scene_a5bcb97c28be9925f71df877c2884f416}\label{classrev_1_1_view_1_1_timeline_scene_a5bcb97c28be9925f71df877c2884f416}} 
+class {\bfseries Timeline\+View}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_scene_af0bf8129c86a24e22a0d3d458130c67b}\label{classrev_1_1_view_1_1_timeline_scene_af0bf8129c86a24e22a0d3d458130c67b}} 
+class {\bfseries Timeline\+Track}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_scene_a07819c0d422f98e16605e266e71da017}\label{classrev_1_1_view_1_1_timeline_scene_a07819c0d422f98e16605e266e71da017}} 
+class {\bfseries Timeline\+Indicator}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_timeline_scene_ac6474e94f2ecd0fae09e8a413c88180e}\label{classrev_1_1_view_1_1_timeline_scene_ac6474e94f2ecd0fae09e8a413c88180e}} 
+class {\bfseries Timeline\+Marker}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/timeline/G\+Timeline\+Scene.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/timeline/G\+Timeline\+Scene.\+cpp\end{DoxyCompactItemize}

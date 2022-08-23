@@ -1,0 +1,128 @@
+\hypertarget{classrev_1_1_process_queue}{}\section{rev\+::Process\+Queue Class Reference}
+\label{classrev_1_1_process_queue}\index{rev::ProcessQueue@{rev::ProcessQueue}}
+
+
+\mbox{\hyperlink{classrev_1_1_process_queue}{Process\+Queue}} class.  
+
+
+
+
+{\ttfamily \#include $<$G\+Process\+Queue.\+h$>$}
+
+Inheritance diagram for rev\+::Process\+Queue\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_process_queue}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_queue_a321091d13abd739512678634110f5f21}\label{classrev_1_1_process_queue_a321091d13abd739512678634110f5f21}} 
+typedef std\+::vector$<$ Strong\+Process\+Ptr $>$ {\bfseries Process\+Vec}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_queue_a9d2bf7e6029d7505a33718dcf8a143b6}\label{classrev_1_1_process_queue_a9d2bf7e6029d7505a33718dcf8a143b6}} 
+{\bfseries Process\+Queue} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_queue_a82a5017fa353c29b6d51c47581b2c33f}\label{classrev_1_1_process_queue_a82a5017fa353c29b6d51c47581b2c33f}} 
+virtual {\bfseries $\sim$\+Process\+Queue} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_queue_a0624a4d2787e888e3033f3d41ea3cfdc}\label{classrev_1_1_process_queue_a0624a4d2787e888e3033f3d41ea3cfdc}} 
+const \mbox{\hyperlink{structrev_1_1_sorting_layers}{Sorting\+Layers}} \& {\bfseries sorting\+Layers} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_queue_aefb3c613348ef53d8c2087bb4169ee21}\label{classrev_1_1_process_queue_aefb3c613348ef53d8c2087bb4169ee21}} 
+\mbox{\hyperlink{structrev_1_1_sorting_layers}{Sorting\+Layers}} \& {\bfseries sorting\+Layers} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_queue_a00b551aea7b767006b4da241a3124cec}\label{classrev_1_1_process_queue_a00b551aea7b767006b4da241a3124cec}} 
+size\+\_\+t {\bfseries get\+Process\+Count} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_queue_ab456619639522343d6d67013d31a8e48}\label{classrev_1_1_process_queue_ab456619639522343d6d67013d31a8e48}} 
+bool \mbox{\hyperlink{classrev_1_1_process_queue_ab456619639522343d6d67013d31a8e48}{is\+Late}} () const
+\begin{DoxyCompactList}\small\item\em Whether or not the queue is in a late update. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_queue_a4133f6ad3935f23579fc0d7f35e7c553}\label{classrev_1_1_process_queue_a4133f6ad3935f23579fc0d7f35e7c553}} 
+void {\bfseries set\+Late} (bool late)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_queue_a4b36611b55717c4c116ce7f7e98d6d6e}\label{classrev_1_1_process_queue_a4b36611b55717c4c116ce7f7e98d6d6e}} 
+virtual void \mbox{\hyperlink{classrev_1_1_process_queue_a4b36611b55717c4c116ce7f7e98d6d6e}{clear\+All\+Processes}} ()
+\begin{DoxyCompactList}\small\item\em Called on destruction, clears all processes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_queue_a0eb83dd3c55e487729378c23bff10746}\label{classrev_1_1_process_queue_a0eb83dd3c55e487729378c23bff10746}} 
+void \mbox{\hyperlink{classrev_1_1_process_queue_a0eb83dd3c55e487729378c23bff10746}{refresh\+Process\+Order}} ()
+\begin{DoxyCompactList}\small\item\em Refresh order of processes to reflect sorting layer changes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_queue_aaac900cb3c10e9934401c41d230e5bf5}\label{classrev_1_1_process_queue_aaac900cb3c10e9934401c41d230e5bf5}} 
+void \mbox{\hyperlink{classrev_1_1_process_queue_aaac900cb3c10e9934401c41d230e5bf5}{on\+Remove\+Sorting\+Layer}} (size\+\_\+t layer\+Id)
+\begin{DoxyCompactList}\small\item\em Remove a sorting layer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_queue_ac8e03c241dfb5b61205de15e57e7e8c3}\label{classrev_1_1_process_queue_ac8e03c241dfb5b61205de15e57e7e8c3}} 
+virtual void \mbox{\hyperlink{classrev_1_1_process_queue_ac8e03c241dfb5b61205de15e57e7e8c3}{update\+Processes}} (double delta\+Ms)
+\begin{DoxyCompactList}\small\item\em Updates all attached processes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_queue_af6ff92d7ee013b027965e1646b995857}\label{classrev_1_1_process_queue_af6ff92d7ee013b027965e1646b995857}} 
+void \mbox{\hyperlink{classrev_1_1_process_queue_af6ff92d7ee013b027965e1646b995857}{fixed\+Update\+Processes}} (double delta\+Ms)
+\begin{DoxyCompactList}\small\item\em Fixed-\/updates all attached processes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_queue_a65c9d6fdcd1fbb49f9ec53206a3b9654}\label{classrev_1_1_process_queue_a65c9d6fdcd1fbb49f9ec53206a3b9654}} 
+virtual Weak\+Process\+Ptr \mbox{\hyperlink{classrev_1_1_process_queue_a65c9d6fdcd1fbb49f9ec53206a3b9654}{attach\+Process}} (Strong\+Process\+Ptr process, bool initialize=false)
+\begin{DoxyCompactList}\small\item\em Attach a process to the process manager. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_queue_a6b9a2b519b15b6ec721b4c9b5dfe03dc}\label{classrev_1_1_process_queue_a6b9a2b519b15b6ec721b4c9b5dfe03dc}} 
+virtual Weak\+Process\+Ptr \mbox{\hyperlink{classrev_1_1_process_queue_a6b9a2b519b15b6ec721b4c9b5dfe03dc}{reattach\+Process}} (Strong\+Process\+Ptr process)
+\begin{DoxyCompactList}\small\item\em Reattach a process (e.\+g., when the run order has changed) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_queue_a69626d3a6851997fca819d211f898b5a}\label{classrev_1_1_process_queue_a69626d3a6851997fca819d211f898b5a}} 
+virtual void \mbox{\hyperlink{classrev_1_1_process_queue_a69626d3a6851997fca819d211f898b5a}{abort\+All\+Processes}} (bool immediate)
+\begin{DoxyCompactList}\small\item\em Aborts all processes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_queue_aff7445e9d9aac2c502f9e2ed849fc150}\label{classrev_1_1_process_queue_aff7445e9d9aac2c502f9e2ed849fc150}} 
+virtual const char $\ast$ {\bfseries class\+Name} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_queue_af4c0e49e9cdee2c64ba71506d340f024}\label{classrev_1_1_process_queue_af4c0e49e9cdee2c64ba71506d340f024}} 
+virtual const char $\ast$ {\bfseries namespace\+Name} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_queue_a4012cafff5fc2b25a7e406e2fdb911a9}\label{classrev_1_1_process_queue_a4012cafff5fc2b25a7e406e2fdb911a9}} 
+virtual void \mbox{\hyperlink{classrev_1_1_process_queue_a4012cafff5fc2b25a7e406e2fdb911a9}{abort\+Process}} (Strong\+Process\+Ptr process, bool immediate)
+\begin{DoxyCompactList}\small\item\em Abort a given process. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_queue_aff1e2701a2f266cb19af1f22eef65e1e}\label{classrev_1_1_process_queue_aff1e2701a2f266cb19af1f22eef65e1e}} 
+void \mbox{\hyperlink{classrev_1_1_process_queue_aff1e2701a2f266cb19af1f22eef65e1e}{log\+Message}} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&message, Log\+Level log\+Level=Log\+Level\+::\+Info)
+\begin{DoxyCompactList}\small\item\em Send log event across threads. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_process_queue_aceb860a95d54900e44eb19781cd44e43}\label{classrev_1_1_process_queue_aceb860a95d54900e44eb19781cd44e43}} 
+std\+::atomic$<$ uint32\+\_\+t $>$ \mbox{\hyperlink{classrev_1_1_process_queue_aceb860a95d54900e44eb19781cd44e43}{m\+\_\+queue\+Flags}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_flags}{Flags}} designating the status of the queue. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_queue_aeeea5cf69a9b436c31fdcf7e19d2aac9}\label{classrev_1_1_process_queue_aeeea5cf69a9b436c31fdcf7e19d2aac9}} 
+\mbox{\hyperlink{structrev_1_1_sorting_layers}{Sorting\+Layers}} \mbox{\hyperlink{classrev_1_1_process_queue_aeeea5cf69a9b436c31fdcf7e19d2aac9}{m\+\_\+sorting\+Layers}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_map}{Map}} of sorting layers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_queue_a1fc9bc48321b06564c68f1c57af58eff}\label{classrev_1_1_process_queue_a1fc9bc48321b06564c68f1c57af58eff}} 
+Process\+Vec \mbox{\hyperlink{classrev_1_1_process_queue_a1fc9bc48321b06564c68f1c57af58eff}{m\+\_\+process\+Queue}}
+\begin{DoxyCompactList}\small\item\em Queue for temporarily staging processes to run. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_process_queue_a34c29652ceff0fc3161f493dc8faf39c}\label{classrev_1_1_process_queue_a34c29652ceff0fc3161f493dc8faf39c}} 
+Process\+Vec \mbox{\hyperlink{classrev_1_1_process_queue_a34c29652ceff0fc3161f493dc8faf39c}{m\+\_\+processes}}
+\begin{DoxyCompactList}\small\item\em All unthreaded processes, iterated over in simulation loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{classrev_1_1_process_queue}{Process\+Queue}} class. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/processes/G\+Process\+Queue.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/processes/G\+Process\+Queue.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,110 @@
+\hypertarget{classrev_1_1_flags}{}\section{rev\+::Flags$<$ Flag\+Type, I\+Type $>$ Class Template Reference}
+\label{classrev_1_1_flags}\index{rev::Flags$<$ FlagType, IType $>$@{rev::Flags$<$ FlagType, IType $>$}}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_flags_a66f6fafe3ec97ba8aaadc249e23bb8f6}\label{classrev_1_1_flags_a66f6fafe3ec97ba8aaadc249e23bb8f6}} 
+{\bfseries Flags} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_flags_ac53afc53b5fb3fc3ee9756d092d6fca8}\label{classrev_1_1_flags_ac53afc53b5fb3fc3ee9756d092d6fca8}} 
+{\bfseries Flags} (const \mbox{\hyperlink{classrev_1_1_flags}{Flags}} \&other)
+\item 
+\mbox{\Hypertarget{classrev_1_1_flags_ab40cc4d8d7f0370ab5432d7de6e9b851}\label{classrev_1_1_flags_ab40cc4d8d7f0370ab5432d7de6e9b851}} 
+{\bfseries Flags} (\mbox{\hyperlink{classrev_1_1_flags}{Flags}} \&\&other)
+\item 
+\mbox{\Hypertarget{classrev_1_1_flags_a02a60610a853a8fb83e34998794b5d77}\label{classrev_1_1_flags_a02a60610a853a8fb83e34998794b5d77}} 
+{\bfseries Flags} (I\+Type flags)
+\item 
+\mbox{\Hypertarget{classrev_1_1_flags_a98f45a7e21cbae2790a21a99fb7cafcc}\label{classrev_1_1_flags_a98f45a7e21cbae2790a21a99fb7cafcc}} 
+{\bfseries Flags} (Flag\+Type flags)
+\item 
+\mbox{\Hypertarget{classrev_1_1_flags_a427acfa0f7767e5aa8acc1a8a1fd56e2}\label{classrev_1_1_flags_a427acfa0f7767e5aa8acc1a8a1fd56e2}} 
+{\bfseries $\sim$\+Flags} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_flags_ab2053a9f5ba4a0eb13f34eb34b30dfc4}\label{classrev_1_1_flags_ab2053a9f5ba4a0eb13f34eb34b30dfc4}} 
+I\+Type \& {\bfseries value} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_flags_a6ce7475335e1a1495fe7e6a96a2a7439}\label{classrev_1_1_flags_a6ce7475335e1a1495fe7e6a96a2a7439}} 
+I\+Type {\bfseries to\+Int} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_flags_aa7437dd9a4feef1e3599ae8875f96849}\label{classrev_1_1_flags_aa7437dd9a4feef1e3599ae8875f96849}} 
+bool {\bfseries test\+Flag} (Flag\+Type flag) const noexcept
+\item 
+\mbox{\Hypertarget{classrev_1_1_flags_a0ad659588a0d63eac58f4a6fb6e668d2}\label{classrev_1_1_flags_a0ad659588a0d63eac58f4a6fb6e668d2}} 
+\mbox{\hyperlink{classrev_1_1_flags}{Flags}} \& {\bfseries set\+Flag} (Flag\+Type flag, bool on=true) noexcept
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Operators}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_flags_a7543d0fd5ec94994049a6ed65170ba6b}\label{classrev_1_1_flags_a7543d0fd5ec94994049a6ed65170ba6b}} 
+\mbox{\hyperlink{classrev_1_1_flags}{Flags}} \& {\bfseries operator=} (I\+Type other) noexcept
+\item 
+\mbox{\Hypertarget{classrev_1_1_flags_a3178fb169b671b6b52d453bd011c7b14}\label{classrev_1_1_flags_a3178fb169b671b6b52d453bd011c7b14}} 
+\mbox{\hyperlink{classrev_1_1_flags}{Flags}} \& {\bfseries operator=} (const \mbox{\hyperlink{classrev_1_1_flags}{Flags}} \&other) noexcept
+\item 
+\mbox{\Hypertarget{classrev_1_1_flags_a1ac32c3fda77e12699d105fb9fdda27e}\label{classrev_1_1_flags_a1ac32c3fda77e12699d105fb9fdda27e}} 
+\mbox{\hyperlink{classrev_1_1_flags}{Flags}} \& {\bfseries operator=} (\mbox{\hyperlink{classrev_1_1_flags}{Flags}} \&\&other) noexcept
+\item 
+\mbox{\Hypertarget{classrev_1_1_flags_a62a33396a2319aa6b5ade49ad91fb485}\label{classrev_1_1_flags_a62a33396a2319aa6b5ade49ad91fb485}} 
+\mbox{\hyperlink{classrev_1_1_flags}{Flags}} \& {\bfseries operator\&=} (I\+Type mask) noexcept
+\item 
+\mbox{\Hypertarget{classrev_1_1_flags_ac738a6e1efaad117fe3470b88399469a}\label{classrev_1_1_flags_ac738a6e1efaad117fe3470b88399469a}} 
+\mbox{\hyperlink{classrev_1_1_flags}{Flags}} \& {\bfseries operator\&=} (Flag\+Type mask) noexcept
+\item 
+\mbox{\Hypertarget{classrev_1_1_flags_a6a00a0d3bd2a0f3a9662cb38b5e7e0cb}\label{classrev_1_1_flags_a6a00a0d3bd2a0f3a9662cb38b5e7e0cb}} 
+\mbox{\hyperlink{classrev_1_1_flags}{Flags}} \& {\bfseries operator$\vert$=} (\mbox{\hyperlink{classrev_1_1_flags}{Flags}} other) noexcept
+\item 
+\mbox{\Hypertarget{classrev_1_1_flags_ae9f0324f441088189a869b7a01225175}\label{classrev_1_1_flags_ae9f0324f441088189a869b7a01225175}} 
+\mbox{\hyperlink{classrev_1_1_flags}{Flags}} \& {\bfseries operator$\vert$=} (Flag\+Type other) noexcept
+\item 
+\mbox{\Hypertarget{classrev_1_1_flags_a00be7ad5a9b3df3435a8a2f3cb314e8a}\label{classrev_1_1_flags_a00be7ad5a9b3df3435a8a2f3cb314e8a}} 
+\mbox{\hyperlink{classrev_1_1_flags}{Flags}} \& {\bfseries operator$^\wedge$=} (\mbox{\hyperlink{classrev_1_1_flags}{Flags}} other) noexcept
+\item 
+\mbox{\Hypertarget{classrev_1_1_flags_a33bdb755a0ec217a9422ce95f7d01937}\label{classrev_1_1_flags_a33bdb755a0ec217a9422ce95f7d01937}} 
+\mbox{\hyperlink{classrev_1_1_flags}{Flags}} \& {\bfseries operator$^\wedge$=} (Flag\+Type other) noexcept
+\item 
+\mbox{\Hypertarget{classrev_1_1_flags_a2c7d0a30b2ca08db2a6d0c45c4264fee}\label{classrev_1_1_flags_a2c7d0a30b2ca08db2a6d0c45c4264fee}} 
+{\bfseries operator I\+Type} () const noexcept
+\item 
+\mbox{\Hypertarget{classrev_1_1_flags_a7871593e3bb96a67b660757843665ee3}\label{classrev_1_1_flags_a7871593e3bb96a67b660757843665ee3}} 
+\mbox{\hyperlink{classrev_1_1_flags}{Flags}} {\bfseries operator$\vert$} (\mbox{\hyperlink{classrev_1_1_flags}{Flags}} other) const noexcept
+\item 
+\mbox{\Hypertarget{classrev_1_1_flags_adc4003ec072d532fce485ca7fc317474}\label{classrev_1_1_flags_adc4003ec072d532fce485ca7fc317474}} 
+\mbox{\hyperlink{classrev_1_1_flags}{Flags}} {\bfseries operator$\vert$} (Flag\+Type other) const noexcept
+\item 
+\mbox{\Hypertarget{classrev_1_1_flags_a445ce2924ec1a45c10dea31abee9d3da}\label{classrev_1_1_flags_a445ce2924ec1a45c10dea31abee9d3da}} 
+\mbox{\hyperlink{classrev_1_1_flags}{Flags}} {\bfseries operator$^\wedge$} (\mbox{\hyperlink{classrev_1_1_flags}{Flags}} other) const noexcept
+\item 
+\mbox{\Hypertarget{classrev_1_1_flags_ab5b442dcb2c9a09a133bf31ca19c78ec}\label{classrev_1_1_flags_ab5b442dcb2c9a09a133bf31ca19c78ec}} 
+\mbox{\hyperlink{classrev_1_1_flags}{Flags}} {\bfseries operator$^\wedge$} (Flag\+Type other) const noexcept
+\item 
+\mbox{\Hypertarget{classrev_1_1_flags_a8dd61258efef07e8bb1744487d1b40d4}\label{classrev_1_1_flags_a8dd61258efef07e8bb1744487d1b40d4}} 
+\mbox{\hyperlink{classrev_1_1_flags}{Flags}} {\bfseries operator \&} (I\+Type mask) const noexcept
+\item 
+\mbox{\Hypertarget{classrev_1_1_flags_ac9d45c2a0d2cda59701d727eb5a2d1ac}\label{classrev_1_1_flags_ac9d45c2a0d2cda59701d727eb5a2d1ac}} 
+\mbox{\hyperlink{classrev_1_1_flags}{Flags}} {\bfseries operator \&} (Flag\+Type other) const noexcept
+\item 
+\mbox{\Hypertarget{classrev_1_1_flags_a74f01d298e5d13e1e43cd222bfb4369e}\label{classrev_1_1_flags_a74f01d298e5d13e1e43cd222bfb4369e}} 
+\mbox{\hyperlink{classrev_1_1_flags}{Flags}} {\bfseries operator$\sim$} () const noexcept
+\item 
+\mbox{\Hypertarget{classrev_1_1_flags_adee82d94a9f5399787be3c80b6915a3e}\label{classrev_1_1_flags_adee82d94a9f5399787be3c80b6915a3e}} 
+bool {\bfseries operator!} () const noexcept
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_flags_a958f86d42a1e07f6325dab98e53a600d}\label{classrev_1_1_flags_a958f86d42a1e07f6325dab98e53a600d}} 
+{\footnotesize template$<$typename Int\+Type $>$ }\\static Q\+Flags$<$ Flag\+Type $>$ \mbox{\hyperlink{classrev_1_1_flags_a958f86d42a1e07f6325dab98e53a600d}{to\+Q\+Flags}} (Int\+Type integer)
+\begin{DoxyCompactList}\small\item\em Convert an integer to a Q\+Flags object of the specified enum type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/containers/G\+Flags.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,108 @@
+\hypertarget{classrev_1_1_box_controller_description}{}\section{rev\+::Box\+Controller\+Description Class Reference}
+\label{classrev_1_1_box_controller_description}\index{rev::BoxControllerDescription@{rev::BoxControllerDescription}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing a box controller description.  
+
+
+
+
+{\ttfamily \#include $<$G\+Character\+Controller.\+h$>$}
+
+Inheritance diagram for rev\+::Box\+Controller\+Description\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.010753cm]{classrev_1_1_box_controller_description}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_box_controller_description_a5183f05cdde5a5532d32e7bdd788464d}\label{classrev_1_1_box_controller_description_a5183f05cdde5a5532d32e7bdd788464d}} 
+{\bfseries Box\+Controller\+Description} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_box_controller_description_a98a2b0e06f0a2d4b5cb8faf5b4ea8746}\label{classrev_1_1_box_controller_description_a98a2b0e06f0a2d4b5cb8faf5b4ea8746}} 
+virtual {\bfseries $\sim$\+Box\+Controller\+Description} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_box_controller_description_af5e46420853ca0891b201cb502caf82f}\label{classrev_1_1_box_controller_description_af5e46420853ca0891b201cb502caf82f}} 
+virtual std\+::shared\+\_\+ptr$<$ physx\+::\+Px\+Controller\+Desc $>$ {\bfseries to\+PhysX} () const override
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_box_controller_description_afbb4620a33950cb847a0c6290037caca}\label{classrev_1_1_box_controller_description_afbb4620a33950cb847a0c6290037caca}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_box_controller_description_afbb4620a33950cb847a0c6290037caca}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_box_controller_description_a1aa299b0652bb1c63b4e80145ead4914}\label{classrev_1_1_box_controller_description_a1aa299b0652bb1c63b4e80145ead4914}} 
+virtual void \mbox{\hyperlink{classrev_1_1_box_controller_description_a1aa299b0652bb1c63b4e80145ead4914}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_box_controller_description_a88d4d2d35a8f8d38b1dd90f33dba96bd}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_box_controller_description_adb539380f3f2033d6d6fbfe1b36a69c8}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Attributes}
+\begin{Indent}\textbf{ Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_box_controller_description_a71a4bbcad01a28f6ffa8f26b4013cb38}\label{classrev_1_1_box_controller_description_a71a4bbcad01a28f6ffa8f26b4013cb38}} 
+float {\bfseries m\+\_\+half\+Height} = 0.\+5
+\item 
+\mbox{\Hypertarget{classrev_1_1_box_controller_description_aabb9ae5b5fe2ca0c5d55cbb0d384347a}\label{classrev_1_1_box_controller_description_aabb9ae5b5fe2ca0c5d55cbb0d384347a}} 
+float {\bfseries m\+\_\+half\+Side\+Extent} = 1.\+0
+\item 
+\mbox{\Hypertarget{classrev_1_1_box_controller_description_acb50ed308b6545a02fb59e740c202b83}\label{classrev_1_1_box_controller_description_acb50ed308b6545a02fb59e740c202b83}} 
+float {\bfseries m\+\_\+half\+Forward\+Extent} = 0.\+5
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing a box controller description. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_box_controller_description_a88d4d2d35a8f8d38b1dd90f33dba96bd}\label{classrev_1_1_box_controller_description_a88d4d2d35a8f8d38b1dd90f33dba96bd}} 
+\index{rev::BoxControllerDescription@{rev::BoxControllerDescription}!className@{className}}
+\index{className@{className}!rev::BoxControllerDescription@{rev::BoxControllerDescription}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Box\+Controller\+Description\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_controller_description_a8170f2acabf587228bae29aba6c1a90b}{rev\+::\+Controller\+Description}}.
+
+\mbox{\Hypertarget{classrev_1_1_box_controller_description_adb539380f3f2033d6d6fbfe1b36a69c8}\label{classrev_1_1_box_controller_description_adb539380f3f2033d6d6fbfe1b36a69c8}} 
+\index{rev::BoxControllerDescription@{rev::BoxControllerDescription}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::BoxControllerDescription@{rev::BoxControllerDescription}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Box\+Controller\+Description\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_controller_description_a95ae000783dd5460060582a129c9251d}{rev\+::\+Controller\+Description}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Character\+Controller.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Character\+Controller.\+cpp\end{DoxyCompactItemize}

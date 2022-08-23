@@ -1,0 +1,93 @@
+\hypertarget{classrev_1_1_view_1_1_sprite_sheet_widget}{}\section{rev\+::View\+::Sprite\+Sheet\+Widget Class Reference}
+\label{classrev_1_1_view_1_1_sprite_sheet_widget}\index{rev::View::SpriteSheetWidget@{rev::View::SpriteSheetWidget}}
+
+
+\mbox{\hyperlink{classrev_1_1_view_1_1_tool}{Tool}} for creating a sprite sheet.  
+
+
+
+
+{\ttfamily \#include $<$G\+Sprite\+Sheet\+Widget.\+h$>$}
+
+Inheritance diagram for rev\+::View\+::Sprite\+Sheet\+Widget\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_view_1_1_sprite_sheet_widget}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_sprite_sheet_widget_af8f9c2b27bb80c36ccbbb7f155b2da9b}\label{classrev_1_1_view_1_1_sprite_sheet_widget_af8f9c2b27bb80c36ccbbb7f155b2da9b}} 
+{\bfseries Sprite\+Sheet\+Widget} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, Q\+Widget $\ast$parent=0)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_sprite_sheet_widget_a4940debd3497a0d3f0fa9aef39004ee4}\label{classrev_1_1_view_1_1_sprite_sheet_widget_a4940debd3497a0d3f0fa9aef39004ee4}} 
+{\bfseries $\sim$\+Sprite\+Sheet\+Widget} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Private Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_sprite_sheet_widget_a8e1f98e6c6aabd38f1568413081c276f}\label{classrev_1_1_view_1_1_sprite_sheet_widget_a8e1f98e6c6aabd38f1568413081c276f}} 
+Q\+Image \mbox{\hyperlink{classrev_1_1_view_1_1_sprite_sheet_widget_a8e1f98e6c6aabd38f1568413081c276f}{pack\+Textures}} (const std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} $>$ \&file\+Names, Texture\+Usage\+Type usage\+Type)
+\begin{DoxyCompactList}\small\item\em Load textures for the specified texture type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_sprite_sheet_widget_a519aa3bd9da1bec3411591b16b7633dd}\label{classrev_1_1_view_1_1_sprite_sheet_widget_a519aa3bd9da1bec3411591b16b7633dd}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_sprite_sheet_widget_a519aa3bd9da1bec3411591b16b7633dd}{generate\+Material}} ()
+\begin{DoxyCompactList}\small\item\em Generate a material from the loaded textures. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_sprite_sheet_widget_a7290c68fd794be0f8ed9fe858208aac1}\label{classrev_1_1_view_1_1_sprite_sheet_widget_a7290c68fd794be0f8ed9fe858208aac1}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_sprite_sheet_widget_a7290c68fd794be0f8ed9fe858208aac1}{initialize\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to check\+Validity widgets. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_sprite_sheet_widget_acea486571bd01a9ba6110b5061f6ebb7}\label{classrev_1_1_view_1_1_sprite_sheet_widget_acea486571bd01a9ba6110b5061f6ebb7}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_sprite_sheet_widget_acea486571bd01a9ba6110b5061f6ebb7}{initialize\+Connections}} () override
+\begin{DoxyCompactList}\small\item\em Methods to check\+Validity connections for this widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_sprite_sheet_widget_a5b895d774885d3d8646d0fa7c4719655}\label{classrev_1_1_view_1_1_sprite_sheet_widget_a5b895d774885d3d8646d0fa7c4719655}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_sprite_sheet_widget_a5b895d774885d3d8646d0fa7c4719655}{layout\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to ay out widgets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Private Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_sprite_sheet_widget_aa6ff2e5f3e168b8a974a7cf39581e23d}\label{classrev_1_1_view_1_1_sprite_sheet_widget_aa6ff2e5f3e168b8a974a7cf39581e23d}} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_texture_packer}{Texture\+Packer}} $>$ $>$ \mbox{\hyperlink{classrev_1_1_view_1_1_sprite_sheet_widget_aa6ff2e5f3e168b8a974a7cf39581e23d}{m\+\_\+texture\+Packers}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_texture}{Texture}} packers, indexed by texture type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_sprite_sheet_widget_a79a662a67ede532d3b35a570a59dfc56}\label{classrev_1_1_view_1_1_sprite_sheet_widget_a79a662a67ede532d3b35a570a59dfc56}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structrev_1_1_sprite_sheet_info}{Sprite\+Sheet\+Info}} $>$ \mbox{\hyperlink{classrev_1_1_view_1_1_sprite_sheet_widget_a79a662a67ede532d3b35a570a59dfc56}{m\+\_\+sprite\+Info}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_sprite}{Sprite}} info, should be identical for each texture type, so only need one. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_sprite_sheet_widget_ac9862aac1d52cb6851831fabf120174b}\label{classrev_1_1_view_1_1_sprite_sheet_widget_ac9862aac1d52cb6851831fabf120174b}} 
+Q\+Line\+Edit $\ast$ {\bfseries m\+\_\+material\+Name}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_sprite_sheet_widget_a39989273d72bef668c895b69da34baa8}\label{classrev_1_1_view_1_1_sprite_sheet_widget_a39989273d72bef668c895b69da34baa8}} 
+Q\+Combo\+Box $\ast$ {\bfseries m\+\_\+texture\+Type}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_sprite_sheet_widget_acd1e61b05abc876ae502900e6353f11e}\label{classrev_1_1_view_1_1_sprite_sheet_widget_acd1e61b05abc876ae502900e6353f11e}} 
+Q\+Line\+Edit $\ast$ {\bfseries m\+\_\+padding\+Widget}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_sprite_sheet_widget_a109190ed063398588ee73f993f327b0a}\label{classrev_1_1_view_1_1_sprite_sheet_widget_a109190ed063398588ee73f993f327b0a}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_file_load_widget}{File\+Load\+Widget}} $\ast$ {\bfseries m\+\_\+file\+Load}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_sprite_sheet_widget_a822ed11011cd63f0dc3463724d8c5673}\label{classrev_1_1_view_1_1_sprite_sheet_widget_a822ed11011cd63f0dc3463724d8c5673}} 
+Q\+Label $\ast$ {\bfseries m\+\_\+bitmap\+Widget}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_sprite_sheet_widget_a0a159823bd43ae6eb62a4b2fd09eb7a3}\label{classrev_1_1_view_1_1_sprite_sheet_widget_a0a159823bd43ae6eb62a4b2fd09eb7a3}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_file_load_widget}{File\+Load\+Widget}} $\ast$ {\bfseries m\+\_\+output\+Directory}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_sprite_sheet_widget_a2dafdbdd3131d30b79248a52fb8ac7b8}\label{classrev_1_1_view_1_1_sprite_sheet_widget_a2dafdbdd3131d30b79248a52fb8ac7b8}} 
+Q\+Push\+Button $\ast$ {\bfseries m\+\_\+confirm\+Button}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_sprite_sheet_widget_ac9da86adcb011689d7f98eaac0aea969}\label{classrev_1_1_view_1_1_sprite_sheet_widget_ac9da86adcb011689d7f98eaac0aea969}} 
+Q\+Push\+Button $\ast$ {\bfseries m\+\_\+cancel\+Button}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{classrev_1_1_view_1_1_tool}{Tool}} for creating a sprite sheet. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tools/G\+Sprite\+Sheet\+Widget.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tools/G\+Sprite\+Sheet\+Widget.\+cpp\end{DoxyCompactItemize}

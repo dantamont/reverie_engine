@@ -1,0 +1,97 @@
+\hypertarget{classrev_1_1_render_buffer_object}{}\section{rev\+::Render\+Buffer\+Object Class Reference}
+\label{classrev_1_1_render_buffer_object}\index{rev::RenderBufferObject@{rev::RenderBufferObject}}
+
+
+An abstraction of an Open\+GL R\+BO.  
+
+
+
+
+{\ttfamily \#include $<$G\+Render\+Buffer\+Object.\+h$>$}
+
+Inheritance diagram for rev\+::Render\+Buffer\+Object\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_render_buffer_object}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_buffer_object_aae8486de1167ba4b1c0a57307f5f4aca}\label{classrev_1_1_render_buffer_object_aae8486de1167ba4b1c0a57307f5f4aca}} 
+{\bfseries Render\+Buffer\+Object} (Aliasing\+Type format, Texture\+Format internal\+Format, uint32\+\_\+t num\+Samples)
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_buffer_object_a711420db9ba1e553871b040dfd39e04d}\label{classrev_1_1_render_buffer_object_a711420db9ba1e553871b040dfd39e04d}} 
+{\bfseries $\sim$\+Render\+Buffer\+Object} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_buffer_object_adf365872964c33673353d573d20e0469}\label{classrev_1_1_render_buffer_object_adf365872964c33673353d573d20e0469}} 
+unsigned int {\bfseries rbo\+ID} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_buffer_object_af5673bc7c366748e711b23675a92233f}\label{classrev_1_1_render_buffer_object_af5673bc7c366748e711b23675a92233f}} 
+void \mbox{\hyperlink{classrev_1_1_render_buffer_object_af5673bc7c366748e711b23675a92233f}{bind}} ()
+\begin{DoxyCompactList}\small\item\em Bind the R\+BO for use. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_buffer_object_ac7c25f7173be8e7e467da0a677e534af}\label{classrev_1_1_render_buffer_object_ac7c25f7173be8e7e467da0a677e534af}} 
+void \mbox{\hyperlink{classrev_1_1_render_buffer_object_ac7c25f7173be8e7e467da0a677e534af}{release}} ()
+\begin{DoxyCompactList}\small\item\em Release the R\+BO from use. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_buffer_object_a540de162f939c8cd978b9e221829807b}\label{classrev_1_1_render_buffer_object_a540de162f939c8cd978b9e221829807b}} 
+void \mbox{\hyperlink{classrev_1_1_render_buffer_object_a540de162f939c8cd978b9e221829807b}{attach}} ()
+\begin{DoxyCompactList}\small\item\em Attach to the currently bound F\+BO. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_buffer_object_aed5228094c7de676b4ad1803e1b10b73}\label{classrev_1_1_render_buffer_object_aed5228094c7de676b4ad1803e1b10b73}} 
+void \mbox{\hyperlink{classrev_1_1_render_buffer_object_aed5228094c7de676b4ad1803e1b10b73}{set\+Color}} (uint32\+\_\+t w, uint32\+\_\+t h, uint32\+\_\+t attachment\+Index)
+\begin{DoxyCompactList}\small\item\em Set as a color attachment. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_render_buffer_object_abc3393909414facb6122c667a3323fb3}\label{classrev_1_1_render_buffer_object_abc3393909414facb6122c667a3323fb3}} 
+void \mbox{\hyperlink{classrev_1_1_render_buffer_object_abc3393909414facb6122c667a3323fb3}{set\+Depth\+Stencil}} (uint32\+\_\+t w, uint32\+\_\+t h)
+\begin{DoxyCompactList}\small\item\em Set as a depth/stencil attachment. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_buffer_object_a584bb78c33cc739b80d6063075aa0b0e}\label{classrev_1_1_render_buffer_object_a584bb78c33cc739b80d6063075aa0b0e}} 
+void {\bfseries initialize\+GL} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_buffer_object_ac8c78940a8ed0ae26b610c2e08213c30}\label{classrev_1_1_render_buffer_object_ac8c78940a8ed0ae26b610c2e08213c30}} 
+unsigned int {\bfseries m\+\_\+rbo\+ID}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_buffer_object_ae20173406fe8fb6a16cc75371f8efad4}\label{classrev_1_1_render_buffer_object_ae20173406fe8fb6a16cc75371f8efad4}} 
+unsigned int {\bfseries m\+\_\+attachment\+Type}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_buffer_object_a096cf855daa81af9569563be1e9147bd}\label{classrev_1_1_render_buffer_object_a096cf855daa81af9569563be1e9147bd}} 
+bool {\bfseries m\+\_\+is\+Bound} = false
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_buffer_object_ae9c355794cf45dfc039ff80c02a12ace}\label{classrev_1_1_render_buffer_object_ae9c355794cf45dfc039ff80c02a12ace}} 
+Aliasing\+Type {\bfseries m\+\_\+aliasing\+Type}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_buffer_object_aa206473e0d09937c6ab7dc68e10d562c}\label{classrev_1_1_render_buffer_object_aa206473e0d09937c6ab7dc68e10d562c}} 
+uint32\+\_\+t {\bfseries m\+\_\+num\+Samples}
+\item 
+\mbox{\Hypertarget{classrev_1_1_render_buffer_object_a5bb130eea7266401fb3148846b3fd41b}\label{classrev_1_1_render_buffer_object_a5bb130eea7266401fb3148846b3fd41b}} 
+Texture\+Format {\bfseries m\+\_\+internal\+Format}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+An abstraction of an Open\+GL R\+BO. 
+
+Render buffers are write-\/only, so are often used as depth and stencil attachments, since values will often not be needed from them for S\+A\+M\+P\+L\+I\+NG. Values can still be used for depth and stencil testing 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/view/G\+Render\+Buffer\+Object.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/view/G\+Render\+Buffer\+Object.\+cpp\end{DoxyCompactItemize}

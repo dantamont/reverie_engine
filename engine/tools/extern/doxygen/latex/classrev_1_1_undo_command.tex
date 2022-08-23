@@ -1,0 +1,104 @@
+\hypertarget{classrev_1_1_undo_command}{}\section{rev\+::Undo\+Command Class Reference}
+\label{classrev_1_1_undo_command}\index{rev::UndoCommand@{rev::UndoCommand}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing an undo command.  
+
+
+
+
+{\ttfamily \#include $<$G\+Undo\+Command.\+h$>$}
+
+Inheritance diagram for rev\+::Undo\+Command\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=12.000000cm]{classrev_1_1_undo_command}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_undo_command_aef51dfefc4c575f3fd952f8b909fc456}\label{classrev_1_1_undo_command_aef51dfefc4c575f3fd952f8b909fc456}} 
+{\bfseries Undo\+Command} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, const Q\+String \&text, Q\+Undo\+Command $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_undo_command_aaf8d6c99f3c116faa667ce4f03f65f5c}\label{classrev_1_1_undo_command_aaf8d6c99f3c116faa667ce4f03f65f5c}} 
+{\bfseries Undo\+Command} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, Q\+Undo\+Command $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_undo_command_a3f6a61d1bacf7290d0971f45bd1eddb3}\label{classrev_1_1_undo_command_a3f6a61d1bacf7290d0971f45bd1eddb3}} 
+{\bfseries $\sim$\+Undo\+Command} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_undo_command_a821d52d8654ff0dd5d49d6f26e746574}\label{classrev_1_1_undo_command_a821d52d8654ff0dd5d49d6f26e746574}} 
+void \mbox{\hyperlink{classrev_1_1_undo_command_a821d52d8654ff0dd5d49d6f26e746574}{perform}} ()
+\begin{DoxyCompactList}\small\item\em Convenience method to add this command to action manager. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_undo_command_a54463306d1fa3a9540b67c6064d45b4f}\label{classrev_1_1_undo_command_a54463306d1fa3a9540b67c6064d45b4f}} 
+virtual Q\+String \mbox{\hyperlink{classrev_1_1_undo_command_a54463306d1fa3a9540b67c6064d45b4f}{description}} () const
+\begin{DoxyCompactList}\small\item\em The description for this command (used in tooltips) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_undo_command_ab30f020732532e7cfd5472bdee65dcdb}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_undo_command_aea7ceb3f5ea266e697f01a65da7afec5}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_undo_command_a036421ccb2a397ff4069b844926cc727}\label{classrev_1_1_undo_command_a036421ccb2a397ff4069b844926cc727}} 
+\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$ \mbox{\hyperlink{classrev_1_1_undo_command_a036421ccb2a397ff4069b844926cc727}{m\+\_\+engine}}
+\begin{DoxyCompactList}\small\item\em Pointer to the core engine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing an undo command. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_undo_command_ab30f020732532e7cfd5472bdee65dcdb}\label{classrev_1_1_undo_command_ab30f020732532e7cfd5472bdee65dcdb}} 
+\index{rev::UndoCommand@{rev::UndoCommand}!className@{className}}
+\index{className@{className}!rev::UndoCommand@{rev::UndoCommand}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Undo\+Command\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_component_command_a9fa769c52b149facb70c80bbc03a2be0}{rev\+::\+Component\+Command}}, \mbox{\hyperlink{classrev_1_1_scene_command_a9b9126f306b1775c4f74ffb8b1a49dc5}{rev\+::\+Scene\+Command}}, and \mbox{\hyperlink{classrev_1_1_edit_line_edit_command_a08cedca4363770f54736cec4f35db942}{rev\+::\+Edit\+Line\+Edit\+Command}}.
+
+\mbox{\Hypertarget{classrev_1_1_undo_command_aea7ceb3f5ea266e697f01a65da7afec5}\label{classrev_1_1_undo_command_aea7ceb3f5ea266e697f01a65da7afec5}} 
+\index{rev::UndoCommand@{rev::UndoCommand}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::UndoCommand@{rev::UndoCommand}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Undo\+Command\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_component_command_a7b4e11189228c9d9e5ff81598cb325f6}{rev\+::\+Component\+Command}}, \mbox{\hyperlink{classrev_1_1_scene_command_a8914ef927fc5bcf9071ab857c4c636a4}{rev\+::\+Scene\+Command}}, and \mbox{\hyperlink{classrev_1_1_edit_line_edit_command_a5289fd61a70c28475698a5f4cf30753b}{rev\+::\+Edit\+Line\+Edit\+Command}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/model\+\_\+control/commands/G\+Undo\+Command.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/model\+\_\+control/commands/G\+Undo\+Command.\+cpp\end{DoxyCompactItemize}

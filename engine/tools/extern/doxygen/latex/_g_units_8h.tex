@@ -1,0 +1,58 @@
+\hypertarget{_g_units_8h}{}\section{C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/\+G\+Units.h File Reference}
+\label{_g_units_8h}\index{C:/Users/dante/Documents/Projects/grand-\/blue-\/engine/reverie/src/core/physics/GUnits.h@{C:/Users/dante/Documents/Projects/grand-\/blue-\/engine/reverie/src/core/physics/GUnits.h}}
+{\ttfamily \#include $<$array$>$}\newline
+{\ttfamily \#include $<$type\+\_\+traits$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classrev_1_1_units}{rev\+::\+Units}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_class}{Class}} containing helper methods unit conversions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_g_units_8h_a348a0d339638abac01fa8968b639a889}\label{_g_units_8h_a348a0d339638abac01fa8968b639a889}} 
+enum {\bfseries Angular\+Units} \{ {\bfseries k\+Radians} = 0, 
+{\bfseries k\+Degrees}, 
+{\bfseries C\+O\+U\+NT}
+ \}
+\item 
+\mbox{\Hypertarget{_g_units_8h_ac3523c09c68adc5e48457a381296bf7c}\label{_g_units_8h_ac3523c09c68adc5e48457a381296bf7c}} 
+enum {\bfseries Distance\+Units} \{ \newline
+{\bfseries k\+Meters} =0, 
+{\bfseries k\+Kilometers}, 
+{\bfseries k\+Centimeters}, 
+{\bfseries k\+Inches}, 
+\newline
+{\bfseries k\+Feet}, 
+{\bfseries k\+Miles}, 
+{\bfseries C\+O\+U\+NT}
+ \}
+\item 
+\mbox{\Hypertarget{_g_units_8h_a0869b05614cfeb4b0eefb85ae6a517a7}\label{_g_units_8h_a0869b05614cfeb4b0eefb85ae6a517a7}} 
+enum {\bfseries Time\+Units} \{ \newline
+{\bfseries k\+Seconds} = 0, 
+{\bfseries k\+Minutes}, 
+{\bfseries k\+Hours}, 
+{\bfseries k\+Days}, 
+\newline
+{\bfseries k\+Weeks}, 
+{\bfseries k\+Julian\+Years}, 
+{\bfseries C\+O\+U\+NT}
+ \}
+\item 
+\mbox{\Hypertarget{_g_units_8h_a81bf1b5d9af5d1d7e88bc7fb5e872ddc}\label{_g_units_8h_a81bf1b5d9af5d1d7e88bc7fb5e872ddc}} 
+enum {\bfseries Mass\+Units} \{ {\bfseries k\+Kilograms} = 0, 
+{\bfseries k\+Pounds}, 
+{\bfseries C\+O\+U\+NT}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_g_units_8h_a9efbe2779628ac1983113d0a7c904733}\label{_g_units_8h_a9efbe2779628ac1983113d0a7c904733}} 
+constexpr auto \mbox{\hyperlink{_g_units_8h_a9efbe2779628ac1983113d0a7c904733}{rev\+::\+Rad\+To\+Deg}} = Units\+::\+Convert$<$Angular\+Units\+::k\+Radians, Angular\+Units\+::k\+Degrees, double$>$
+\begin{DoxyCompactList}\small\item\em Define aliases for commonly used conversion functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Defines a class representing a set of units 

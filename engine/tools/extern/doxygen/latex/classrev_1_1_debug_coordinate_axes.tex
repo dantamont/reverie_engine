@@ -1,0 +1,106 @@
+\hypertarget{classrev_1_1_debug_coordinate_axes}{}\section{rev\+::Debug\+Coordinate\+Axes Class Reference}
+\label{classrev_1_1_debug_coordinate_axes}\index{rev::DebugCoordinateAxes@{rev::DebugCoordinateAxes}}
+
+
+Represents set of coordinate axes to render for debug objects.  
+
+
+
+
+{\ttfamily \#include $<$G\+Debug\+Manager.\+h$>$}
+
+Inheritance diagram for rev\+::Debug\+Coordinate\+Axes\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classrev_1_1_debug_coordinate_axes}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+{\em c }\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_coordinate_axes_ad7dd57bcde81c9d7b31b460fbfc46fae}\label{classrev_1_1_debug_coordinate_axes_ad7dd57bcde81c9d7b31b460fbfc46fae}} 
+{\bfseries Debug\+Coordinate\+Axes} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$engine)
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_coordinate_axes_a7376f4e2ca9b9f7a87705967a45337c1}\label{classrev_1_1_debug_coordinate_axes_a7376f4e2ca9b9f7a87705967a45337c1}} 
+virtual {\bfseries $\sim$\+Debug\+Coordinate\+Axes} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_coordinate_axes_a178fbdd8b308d409acabc84b689f2991}\label{classrev_1_1_debug_coordinate_axes_a178fbdd8b308d409acabc84b689f2991}} 
+void {\bfseries set\+Transform} (\mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$transform)
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_coordinate_axes_ab531967fba544176568110b46cb2dfc9}\label{classrev_1_1_debug_coordinate_axes_ab531967fba544176568110b46cb2dfc9}} 
+virtual size\+\_\+t \mbox{\hyperlink{classrev_1_1_debug_coordinate_axes_ab531967fba544176568110b46cb2dfc9}{get\+Sort\+ID}} () override
+\begin{DoxyCompactList}\small\item\em Get ID to sort renderable. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_debug_coordinate_axes_ad95c4e4c2f72fc599840ed0242c5ad3e}\label{classrev_1_1_debug_coordinate_axes_ad95c4e4c2f72fc599840ed0242c5ad3e}} 
+void \mbox{\hyperlink{classrev_1_1_debug_coordinate_axes_ad95c4e4c2f72fc599840ed0242c5ad3e}{clear}} ()
+\begin{DoxyCompactList}\small\item\em Clear all transient data from the coordinate axes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_coordinate_axes_a7b25b858e11f69e3177151d7aa7f0872}\label{classrev_1_1_debug_coordinate_axes_a7b25b858e11f69e3177151d7aa7f0872}} 
+virtual void \mbox{\hyperlink{classrev_1_1_debug_coordinate_axes_a7b25b858e11f69e3177151d7aa7f0872}{bind\+Uniforms}} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program) override
+\begin{DoxyCompactList}\small\item\em Set uniforms for the glyph. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_debug_coordinate_axes_a814682421af5199f9cadd61dbe523d88}\label{classrev_1_1_debug_coordinate_axes_a814682421af5199f9cadd61dbe523d88}} 
+virtual void {\bfseries release\+Uniforms} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_coordinate_axes_aff53133ea6bb7a313fc74e88c04b21bc}\label{classrev_1_1_debug_coordinate_axes_aff53133ea6bb7a313fc74e88c04b21bc}} 
+virtual void \mbox{\hyperlink{classrev_1_1_debug_coordinate_axes_aff53133ea6bb7a313fc74e88c04b21bc}{draw\+Geometry}} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program, \mbox{\hyperlink{classrev_1_1_render_settings}{Render\+Settings}} $\ast$settings=nullptr) override
+\begin{DoxyCompactList}\small\item\em Draw geometry. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_coordinate_axes_ae66e15dd16911f52ee57a9b1961e18c4}\label{classrev_1_1_debug_coordinate_axes_ae66e15dd16911f52ee57a9b1961e18c4}} 
+bool {\bfseries m\+\_\+set\+Uniforms}
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_coordinate_axes_a1ee519ba51f3487872d63fde4dd1d85e}\label{classrev_1_1_debug_coordinate_axes_a1ee519ba51f3487872d63fde4dd1d85e}} 
+\mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $\ast$ \mbox{\hyperlink{classrev_1_1_debug_coordinate_axes_a1ee519ba51f3487872d63fde4dd1d85e}{m\+\_\+cone}}
+\begin{DoxyCompactList}\small\item\em Cone for arrows. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_debug_coordinate_axes_ad264642cf9283d68a3d22c659d0961b1}\label{classrev_1_1_debug_coordinate_axes_ad264642cf9283d68a3d22c659d0961b1}} 
+\mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $\ast$ \mbox{\hyperlink{classrev_1_1_debug_coordinate_axes_ad264642cf9283d68a3d22c659d0961b1}{m\+\_\+cylinder}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_cylinder}{Cylinder}} for axes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_debug_coordinate_axes_ab41adfa50e3a8d677b02723c8f264f9e}\label{classrev_1_1_debug_coordinate_axes_ab41adfa50e3a8d677b02723c8f264f9e}} 
+float {\bfseries m\+\_\+cone\+Height}
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_coordinate_axes_a40fab235834b500bcce3a04a66cb08eb}\label{classrev_1_1_debug_coordinate_axes_a40fab235834b500bcce3a04a66cb08eb}} 
+float {\bfseries m\+\_\+column\+Height}
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_coordinate_axes_aef701e9b836de40faecfbe6b69a922b5}\label{classrev_1_1_debug_coordinate_axes_aef701e9b836de40faecfbe6b69a922b5}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_transform}{Transform}} $>$ \mbox{\hyperlink{classrev_1_1_debug_coordinate_axes_aef701e9b836de40faecfbe6b69a922b5}{m\+\_\+x\+Cone\+Transform}}
+\begin{DoxyCompactList}\small\item\em Transforms for each of the cones and cylinders. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_debug_coordinate_axes_abd0fb2139ea50533262df3d665b5ff32}\label{classrev_1_1_debug_coordinate_axes_abd0fb2139ea50533262df3d665b5ff32}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_transform}{Transform}} $>$ {\bfseries m\+\_\+y\+Cone\+Transform}
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_coordinate_axes_a5b369fb5becb3a006b1c63686b1af78b}\label{classrev_1_1_debug_coordinate_axes_a5b369fb5becb3a006b1c63686b1af78b}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_transform}{Transform}} $>$ {\bfseries m\+\_\+z\+Cone\+Transform}
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_coordinate_axes_a38420f84e930a348ee5f8461300adb9c}\label{classrev_1_1_debug_coordinate_axes_a38420f84e930a348ee5f8461300adb9c}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_transform}{Transform}} $>$ {\bfseries m\+\_\+x\+Cylinder\+Transform}
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_coordinate_axes_a0b5a1e7c3be07433673997f177df3533}\label{classrev_1_1_debug_coordinate_axes_a0b5a1e7c3be07433673997f177df3533}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_transform}{Transform}} $>$ {\bfseries m\+\_\+y\+Cylinder\+Transform}
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_coordinate_axes_ae2b417862ddf044e264a9665b6b3eb1f}\label{classrev_1_1_debug_coordinate_axes_ae2b417862ddf044e264a9665b6b3eb1f}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_transform}{Transform}} $>$ {\bfseries m\+\_\+z\+Cylinder\+Transform}
+\item 
+\mbox{\Hypertarget{classrev_1_1_debug_coordinate_axes_a7552b6a22dd7cb029c06b53034823acb}\label{classrev_1_1_debug_coordinate_axes_a7552b6a22dd7cb029c06b53034823acb}} 
+\mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$ {\bfseries m\+\_\+transform} = nullptr
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Represents set of coordinate axes to render for debug objects. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/debugging/G\+Debug\+Manager.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/debugging/G\+Debug\+Manager.\+cpp\end{DoxyCompactItemize}

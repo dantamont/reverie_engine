@@ -1,0 +1,111 @@
+\hypertarget{classrev_1_1_sort_key}{}\section{rev\+::Sort\+Key Class Reference}
+\label{classrev_1_1_sort_key}\index{rev::SortKey@{rev::SortKey}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing a configurable sort key for rendering.  
+
+
+
+
+{\ttfamily \#include $<$G\+Sort\+Key.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sort_key_a20b5f42704bb257a82393624b1993867}\label{classrev_1_1_sort_key_a20b5f42704bb257a82393624b1993867}} 
+{\bfseries Sort\+Key} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_sort_key_a4cd950be7ce999b010495cff11b24c03}\label{classrev_1_1_sort_key_a4cd950be7ce999b010495cff11b24c03}} 
+{\bfseries Sort\+Key} (unsigned long long key)
+\item 
+\mbox{\Hypertarget{classrev_1_1_sort_key_af63c335729ea244f4d4961b840f24612}\label{classrev_1_1_sort_key_af63c335729ea244f4d4961b840f24612}} 
+{\bfseries $\sim$\+Sort\+Key} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sort_key_adc3ce80e773f5451643a4b1f32f3d7b2}\label{classrev_1_1_sort_key_adc3ce80e773f5451643a4b1f32f3d7b2}} 
+unsigned long long \& {\bfseries key} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\bool \mbox{\hyperlink{classrev_1_1_sort_key_aaeedcc30c3cf8bf5dff4ccc05eb73299}{set\+Bits}} (T value, size\+\_\+t n, size\+\_\+t num\+Bits=sizeof(T) $\ast$8, size\+\_\+t right\+Shift=0)
+\begin{DoxyCompactList}\small\item\em Set number of bits at nth bit to the given value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sort_key_a25e167f30dcddb31106f5c756a090d58}\label{classrev_1_1_sort_key_a25e167f30dcddb31106f5c756a090d58}} 
+static unsigned long \mbox{\hyperlink{classrev_1_1_sort_key_a25e167f30dcddb31106f5c756a090d58}{Float\+To\+Binary}} (float number)
+\begin{DoxyCompactList}\small\item\em Convert a floating point number to and from binary. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sort_key_ad44d4a0fbf6e5263658d09b97ec85cae}\label{classrev_1_1_sort_key_ad44d4a0fbf6e5263658d09b97ec85cae}} 
+static float {\bfseries Binary\+To\+Float} (unsigned long binary)
+\item 
+\mbox{\Hypertarget{classrev_1_1_sort_key_a0aa99cec2abed8c2e6cbba87b7ed69ce}\label{classrev_1_1_sort_key_a0aa99cec2abed8c2e6cbba87b7ed69ce}} 
+static unsigned long \mbox{\hyperlink{classrev_1_1_sort_key_a0aa99cec2abed8c2e6cbba87b7ed69ce}{Float\+To\+Sorted\+Binary}} (float number)
+\begin{DoxyCompactList}\small\item\em Convert a floating point number to a binary that sorts in ascending order. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sort_key_ab0a5568d79fc0c38a0ec19562877a8a9}\label{classrev_1_1_sort_key_ab0a5568d79fc0c38a0ec19562877a8a9}} 
+{\footnotesize template$<$typename T $>$ }\\static Q\+String \mbox{\hyperlink{classrev_1_1_sort_key_ab0a5568d79fc0c38a0ec19562877a8a9}{bit\+Str}} (T val)
+\begin{DoxyCompactList}\small\item\em Return a binary number as a bit\+Str. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sort_key_a9e4b7c9f23db104b5b266db5378cd207}\label{classrev_1_1_sort_key_a9e4b7c9f23db104b5b266db5378cd207}} 
+unsigned long long \mbox{\hyperlink{classrev_1_1_sort_key_a9e4b7c9f23db104b5b266db5378cd207}{m\+\_\+key}} = 0
+\begin{DoxyCompactList}\small\item\em The actual bit-\/field key. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Operators}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sort_key_a352341e6cd6a67de188e9edf3e2c2f94}\label{classrev_1_1_sort_key_a352341e6cd6a67de188e9edf3e2c2f94}} 
+{\bfseries operator Q\+String} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_sort_key_abba0fa5bdc93876a893858eee73b6b08}\label{classrev_1_1_sort_key_abba0fa5bdc93876a893858eee73b6b08}} 
+bool {\bfseries operator$<$} (const \mbox{\hyperlink{classrev_1_1_sort_key}{Sort\+Key}} \&k1, const \mbox{\hyperlink{classrev_1_1_sort_key}{Sort\+Key}} \&k2)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing a configurable sort key for rendering. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_sort_key_aaeedcc30c3cf8bf5dff4ccc05eb73299}\label{classrev_1_1_sort_key_aaeedcc30c3cf8bf5dff4ccc05eb73299}} 
+\index{rev::SortKey@{rev::SortKey}!setBits@{setBits}}
+\index{setBits@{setBits}!rev::SortKey@{rev::SortKey}}
+\subsubsection{\texorpdfstring{setBits()}{setBits()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool rev\+::\+Sort\+Key\+::set\+Bits (\begin{DoxyParamCaption}\item[{T}]{value,  }\item[{size\+\_\+t}]{n,  }\item[{size\+\_\+t}]{num\+Bits = {\ttfamily sizeof(T)~$\ast$~8},  }\item[{size\+\_\+t}]{right\+Shift = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set number of bits at nth bit to the given value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The value to set \\
+\hline
+{\em n} & the bit at which to insert the L\+SB of the value \\
+\hline
+{\em num\+Bits} & the number of bits to insert from the specified value \\
+\hline
+{\em right\+Shift} & the number of bits to right-\/shift the value before insertion \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/renderer/G\+Sort\+Key.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/renderer/G\+Sort\+Key.\+cpp\end{DoxyCompactItemize}

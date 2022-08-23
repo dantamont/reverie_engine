@@ -1,0 +1,131 @@
+\hypertarget{classrev_1_1_rigid_body_component}{}\section{rev\+::Rigid\+Body\+Component Class Reference}
+\label{classrev_1_1_rigid_body_component}\index{rev::RigidBodyComponent@{rev::RigidBodyComponent}}
+Inheritance diagram for rev\+::Rigid\+Body\+Component\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_rigid_body_component}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_component_a9ef2b09696fe8fe3fd5d93261d6e8392}\label{classrev_1_1_rigid_body_component_a9ef2b09696fe8fe3fd5d93261d6e8392}} 
+{\bfseries Rigid\+Body\+Component} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_component_ae0b12f19c9168a6f5c13e46942defb33}\label{classrev_1_1_rigid_body_component_ae0b12f19c9168a6f5c13e46942defb33}} 
+{\bfseries Rigid\+Body\+Component} (const \mbox{\hyperlink{classrev_1_1_rigid_body_component}{Rigid\+Body\+Component}} \&comp)
+\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_component_abff7f2813a7283b3893e4223de75a138}\label{classrev_1_1_rigid_body_component_abff7f2813a7283b3893e4223de75a138}} 
+{\bfseries Rigid\+Body\+Component} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \&object)
+\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_component_af81b51a23ceb238d2326a67a4f2c2258}\label{classrev_1_1_rigid_body_component_af81b51a23ceb238d2326a67a4f2c2258}} 
+{\bfseries $\sim$\+Rigid\+Body\+Component} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_rigid_body_component_aac4681f78e6e53a6fceae27502b08bc5}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_rigid_body_component_ae206ce233b7fffd3781cc37bbfc6e17d}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_component_a1e456eb31d2256a0b767cb5a7bbba6db}\label{classrev_1_1_rigid_body_component_a1e456eb31d2256a0b767cb5a7bbba6db}} 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_rigid_body}{Rigid\+Body}} $>$ \& {\bfseries body} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_component_a993d378bf041f1cec6c941b1f64b3e48}\label{classrev_1_1_rigid_body_component_a993d378bf041f1cec6c941b1f64b3e48}} 
+virtual int \mbox{\hyperlink{classrev_1_1_rigid_body_component_a993d378bf041f1cec6c941b1f64b3e48}{max\+Allowed}} () const override
+\begin{DoxyCompactList}\small\item\em Max number of allowed components per scene object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_component_afd61876ead736f2c1b2810182cb85899}\label{classrev_1_1_rigid_body_component_afd61876ead736f2c1b2810182cb85899}} 
+void \mbox{\hyperlink{classrev_1_1_rigid_body_component_afd61876ead736f2c1b2810182cb85899}{update\+Transform\+From\+Physics}} ()
+\begin{DoxyCompactList}\small\item\em Update the physics for the current update frame. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_component_af77b5995f4cbd025ea1b9037928d449c}\label{classrev_1_1_rigid_body_component_af77b5995f4cbd025ea1b9037928d449c}} 
+void \mbox{\hyperlink{classrev_1_1_rigid_body_component_af77b5995f4cbd025ea1b9037928d449c}{refresh\+Body}} ()
+\begin{DoxyCompactList}\small\item\em Reinitialize the body with the latest settings. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_component_ae53822395d5fec4ec609c6240236d4a6}\label{classrev_1_1_rigid_body_component_ae53822395d5fec4ec609c6240236d4a6}} 
+virtual void \mbox{\hyperlink{classrev_1_1_rigid_body_component_ae53822395d5fec4ec609c6240236d4a6}{enable}} ()
+\begin{DoxyCompactList}\small\item\em Enable this component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_component_a4be42fa91b015b271d0e805a74cc24f8}\label{classrev_1_1_rigid_body_component_a4be42fa91b015b271d0e805a74cc24f8}} 
+virtual void \mbox{\hyperlink{classrev_1_1_rigid_body_component_a4be42fa91b015b271d0e805a74cc24f8}{disable}} ()
+\begin{DoxyCompactList}\small\item\em Disable this component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_component_a5032f006f786a02a22427d35cc540ed3}\label{classrev_1_1_rigid_body_component_a5032f006f786a02a22427d35cc540ed3}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_rigid_body_component_a5032f006f786a02a22427d35cc540ed3}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_component_a703615c4b6cc3916945ff598d81c95b5}\label{classrev_1_1_rigid_body_component_a703615c4b6cc3916945ff598d81c95b5}} 
+virtual void \mbox{\hyperlink{classrev_1_1_rigid_body_component_a703615c4b6cc3916945ff598d81c95b5}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_component_ac921010fa3d64fc0161ba9262b220723}\label{classrev_1_1_rigid_body_component_ac921010fa3d64fc0161ba9262b220723}} 
+void {\bfseries initialize\+Default} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_component_a2df6d63dd42a75f3a9ef3c6eb3d45017}\label{classrev_1_1_rigid_body_component_a2df6d63dd42a75f3a9ef3c6eb3d45017}} 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_rigid_body}{Rigid\+Body}} $>$ \mbox{\hyperlink{classrev_1_1_rigid_body_component_a2df6d63dd42a75f3a9ef3c6eb3d45017}{m\+\_\+rigid\+Body}} = nullptr
+\begin{DoxyCompactList}\small\item\em The rigid body for this component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_rigid_body_component_a737b3cb474f324a74e7da2d3aeca10c9}\label{classrev_1_1_rigid_body_component_a737b3cb474f324a74e7da2d3aeca10c9}} 
+class {\bfseries Scene\+Object}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_rigid_body_component_aac4681f78e6e53a6fceae27502b08bc5}\label{classrev_1_1_rigid_body_component_aac4681f78e6e53a6fceae27502b08bc5}} 
+\index{rev::RigidBodyComponent@{rev::RigidBodyComponent}!className@{className}}
+\index{className@{className}!rev::RigidBodyComponent@{rev::RigidBodyComponent}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Rigid\+Body\+Component\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_component_a07619152d5acafe7a536df3a6a476349}{rev\+::\+Component}}.
+
+\mbox{\Hypertarget{classrev_1_1_rigid_body_component_ae206ce233b7fffd3781cc37bbfc6e17d}\label{classrev_1_1_rigid_body_component_ae206ce233b7fffd3781cc37bbfc6e17d}} 
+\index{rev::RigidBodyComponent@{rev::RigidBodyComponent}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::RigidBodyComponent@{rev::RigidBodyComponent}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Rigid\+Body\+Component\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_component_ae2827b14c278588b95e01c4743fae674}{rev\+::\+Component}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+Rigid\+Body\+Component.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+Rigid\+Body\+Component.\+cpp\end{DoxyCompactItemize}

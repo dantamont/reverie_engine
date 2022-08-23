@@ -1,0 +1,57 @@
+\hypertarget{classrev_1_1_bone}{}\section{rev\+::Bone Class Reference}
+\label{classrev_1_1_bone}\index{rev::Bone@{rev::Bone}}
+
+
+{\ttfamily \#include $<$G\+Skeleton.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_bone_ab5e4ad780e922cc78057b9834b828787}\label{classrev_1_1_bone_ab5e4ad780e922cc78057b9834b828787}} 
+{\bfseries Bone} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_bone_a63a45ca871ecf0edeb23123181c0cec3}\label{classrev_1_1_bone_a63a45ca871ecf0edeb23123181c0cec3}} 
+{\bfseries Bone} (int index)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Operators}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_bone_aefd6cbe26f784141998fd9ed8d0fb302}\label{classrev_1_1_bone_aefd6cbe26f784141998fd9ed8d0fb302}} 
+\mbox{\hyperlink{classrev_1_1_bone}{Bone}} \& {\bfseries operator=} (const \mbox{\hyperlink{classrev_1_1_bone}{Bone}} \&other)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_bone_aa41a130f156b145bffb3f4b5172c4c93}\label{classrev_1_1_bone_aa41a130f156b145bffb3f4b5172c4c93}} 
+class {\bfseries Mesh}
+\item 
+\mbox{\Hypertarget{classrev_1_1_bone_ac9aadb07d0f705ed59bb01197371fd5d}\label{classrev_1_1_bone_ac9aadb07d0f705ed59bb01197371fd5d}} 
+int \mbox{\hyperlink{classrev_1_1_bone_ac9aadb07d0f705ed59bb01197371fd5d}{m\+\_\+index}} = -\/1
+\begin{DoxyCompactList}\small\item\em Index of the bone in skeleton\textquotesingle{}s vector of bone nodes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} \mbox{\hyperlink{classrev_1_1_bone_a972d9c9bf9e1f019c5ce5aeece19a703}{m\+\_\+inv\+Bind\+Pose}}
+\begin{DoxyCompactList}\small\item\em the bone offset matrix (inverse bind pose transform), \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+See\+: \href{https://gamedev.stackexchange.com/questions/26382/i-cant-figure-out-how-to-animate-my-loaded-model-with-assimp}{\texttt{ https\+://gamedev.\+stackexchange.\+com/questions/26382/i-\/cant-\/figure-\/out-\/how-\/to-\/animate-\/my-\/loaded-\/model-\/with-\/assimp}} 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_bone_a972d9c9bf9e1f019c5ce5aeece19a703}\label{classrev_1_1_bone_a972d9c9bf9e1f019c5ce5aeece19a703}} 
+\index{rev::Bone@{rev::Bone}!m\_invBindPose@{m\_invBindPose}}
+\index{m\_invBindPose@{m\_invBindPose}!rev::Bone@{rev::Bone}}
+\subsubsection{\texorpdfstring{m\_invBindPose}{m\_invBindPose}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} rev\+::\+Bone\+::m\+\_\+inv\+Bind\+Pose}
+
+
+
+the bone offset matrix (inverse bind pose transform), 
+
+defines conversion from mesh space to local bone space from mesh space 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/geometry/G\+Skeleton.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/geometry/G\+Skeleton.\+cpp\end{DoxyCompactItemize}

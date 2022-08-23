@@ -1,0 +1,50 @@
+\hypertarget{classrev_1_1_add_scenario_command}{}\section{rev\+::Add\+Scenario\+Command Class Reference}
+\label{classrev_1_1_add_scenario_command}\index{rev::AddScenarioCommand@{rev::AddScenarioCommand}}
+Inheritance diagram for rev\+::Add\+Scenario\+Command\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classrev_1_1_add_scenario_command}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_add_scenario_command_ad33645e62b7d4b3374663bb0d6a3a0ea}\label{classrev_1_1_add_scenario_command_ad33645e62b7d4b3374663bb0d6a3a0ea}} 
+{\bfseries Add\+Scenario\+Command} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&text, Q\+Undo\+Command $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_add_scenario_command_ac12c94cd08c62a09ab36537dfdc21e08}\label{classrev_1_1_add_scenario_command_ac12c94cd08c62a09ab36537dfdc21e08}} 
+{\bfseries Add\+Scenario\+Command} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, Q\+Undo\+Command $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_add_scenario_command_a5edccc24e2de82390747aa69d72e2572}\label{classrev_1_1_add_scenario_command_a5edccc24e2de82390747aa69d72e2572}} 
+{\bfseries $\sim$\+Add\+Scenario\+Command} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_add_scenario_command_a593016465eb5da9e176d566732c507ec}\label{classrev_1_1_add_scenario_command_a593016465eb5da9e176d566732c507ec}} 
+void \mbox{\hyperlink{classrev_1_1_add_scenario_command_a593016465eb5da9e176d566732c507ec}{redo}} () override
+\begin{DoxyCompactList}\small\item\em Redoes the add scenario command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_add_scenario_command_a832c99c6b18189afbc17433a7207220c}\label{classrev_1_1_add_scenario_command_a832c99c6b18189afbc17433a7207220c}} 
+void \mbox{\hyperlink{classrev_1_1_add_scenario_command_a832c99c6b18189afbc17433a7207220c}{undo}} () override
+\begin{DoxyCompactList}\small\item\em Undoes the add scenario command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_add_scenario_command_a7ef4405cb3af6a28a2541d1a343db271}\label{classrev_1_1_add_scenario_command_a7ef4405cb3af6a28a2541d1a343db271}} 
+Q\+Json\+Object \mbox{\hyperlink{classrev_1_1_add_scenario_command_a7ef4405cb3af6a28a2541d1a343db271}{m\+\_\+last\+Scenario}}
+\begin{DoxyCompactList}\small\item\em The J\+S\+ON for the scenario overwritten by the newly created scenario. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_add_scenario_command_a9d51b3d9f3af7e10c52309d0f7a05833}\label{classrev_1_1_add_scenario_command_a9d51b3d9f3af7e10c52309d0f7a05833}} 
+\mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} {\bfseries m\+\_\+last\+Scenario\+Path}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/model\+\_\+control/commands/commands/G\+Scene\+Command.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/model\+\_\+control/commands/commands/G\+Scene\+Command.\+cpp\end{DoxyCompactItemize}

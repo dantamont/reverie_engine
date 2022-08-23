@@ -1,0 +1,284 @@
+\hypertarget{classrev_1_1_main_window}{}\section{rev\+::Main\+Window Class Reference}
+\label{classrev_1_1_main_window}\index{rev::MainWindow@{rev::MainWindow}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} defining the main application window.  
+
+
+
+
+{\ttfamily \#include $<$G\+Main\+Window.\+h$>$}
+
+Inheritance diagram for rev\+::Main\+Window\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_main_window}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a0386d66da2fbb916f0e1918ecff45680}\label{classrev_1_1_main_window_a0386d66da2fbb916f0e1918ecff45680}} 
+{\bfseries Main\+Window} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]}, Q\+Widget $\ast$parent=Q\+\_\+\+N\+U\+L\+L\+P\+TR)
+\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a55fea9957874085ac7420c887f5ffbd3}\label{classrev_1_1_main_window_a55fea9957874085ac7420c887f5ffbd3}} 
+const Q\+String \& {\bfseries get\+Default\+Title} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_main_window_a3b8a0c921c8413553567f87a23861ad9}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_main_window_a3d38cd81c10da2fcb09922c9d4dfd990}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a9916d8570e8f669240213e5090173cb6}\label{classrev_1_1_main_window_a9916d8570e8f669240213e5090173cb6}} 
+void {\bfseries close\+Event} (Q\+Close\+Event $\ast$event)
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a7888e2ee862ac186661a4c3e231adefe}\label{classrev_1_1_main_window_a7888e2ee862ac186661a4c3e231adefe}} 
+void {\bfseries resize\+Event} (Q\+Resize\+Event $\ast$event)
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_aa906fdc1c8a7f4883a1d98585fb22eff}\label{classrev_1_1_main_window_aa906fdc1c8a7f4883a1d98585fb22eff}} 
+void {\bfseries show\+Event} (Q\+Show\+Event $\ast$event)
+\item 
+void \mbox{\hyperlink{classrev_1_1_main_window_a122fc9956c6d65e28bb9140343b02655}{context\+Menu\+Event}} (Q\+Context\+Menu\+Event $\ast$event) override
+\begin{DoxyCompactList}\small\item\em Generates a context menu, overriding default implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_ab62d5e29dfd0fa0823a4044001e05909}\label{classrev_1_1_main_window_ab62d5e29dfd0fa0823a4044001e05909}} 
+virtual void {\bfseries mouse\+Move\+Event} (Q\+Mouse\+Event $\ast$event) override
+\item 
+void \mbox{\hyperlink{classrev_1_1_main_window_a164619747b7c7a10d63a628154a6eeb5}{initialize\+Menus}} ()
+\begin{DoxyCompactList}\small\item\em check\+Validity the menu bar \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a811ad06cfc153c740a788f4f3613b6d8}\label{classrev_1_1_main_window_a811ad06cfc153c740a788f4f3613b6d8}} 
+void \mbox{\hyperlink{classrev_1_1_main_window_a811ad06cfc153c740a788f4f3613b6d8}{initialize\+Actions}} ()
+\begin{DoxyCompactList}\small\item\em Initialize menu bar actions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a025b814b5db0000fe2aaf88c7082b810}\label{classrev_1_1_main_window_a025b814b5db0000fe2aaf88c7082b810}} 
+void \mbox{\hyperlink{classrev_1_1_main_window_a025b814b5db0000fe2aaf88c7082b810}{display\+Status\+Bar}} ()
+\begin{DoxyCompactList}\small\item\em Display status bar. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a9b2d427fed6e6a07fbcf6aab6ae2bda8}\label{classrev_1_1_main_window_a9b2d427fed6e6a07fbcf6aab6ae2bda8}} 
+void \mbox{\hyperlink{classrev_1_1_main_window_a9b2d427fed6e6a07fbcf6aab6ae2bda8}{enable\+Scenario\+Actions}} ()
+\begin{DoxyCompactList}\small\item\em Enable/\+Disable actions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a1a05c19f51e2ebdb6da268169eee612b}\label{classrev_1_1_main_window_a1a05c19f51e2ebdb6da268169eee612b}} 
+void {\bfseries disable\+Scenario\+Actions} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_ae6fc0379097dae68d0363f4e07eb84cc}\label{classrev_1_1_main_window_ae6fc0379097dae68d0363f4e07eb84cc}} 
+Ui\+::\+Gb\+Blank\+Window $\ast$ {\bfseries m\+\_\+ui}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_afd7475b223b71f24baeb77a82020d2b6}\label{classrev_1_1_main_window_afd7475b223b71f24baeb77a82020d2b6}} 
+\mbox{\hyperlink{classrev_1_1_core_engine}{rev\+::\+Core\+Engine}} $\ast$ {\bfseries m\+\_\+engine}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_afa9a0214f263fbc0bae6d5da0e418a89}\label{classrev_1_1_main_window_afa9a0214f263fbc0bae6d5da0e418a89}} 
+Q\+Label $\ast$ \mbox{\hyperlink{classrev_1_1_main_window_afa9a0214f263fbc0bae6d5da0e418a89}{m\+\_\+info\+Label}} = nullptr
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_label}{Label}} for displaying info across GL display. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a9a70d3345fbe89a9c5f55a9fd18df4e6}\label{classrev_1_1_main_window_a9a70d3345fbe89a9c5f55a9fd18df4e6}} 
+Q\+String {\bfseries m\+\_\+default\+Title}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a1650c07c6a04abde2f24845fe1207c52}\label{classrev_1_1_main_window_a1650c07c6a04abde2f24845fe1207c52}} 
+Q\+Widget $\ast$ {\bfseries m\+\_\+script\+Order\+Widget} = nullptr
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_ac6c7d03bdce6ccd4ae7c9597162fef09}\label{classrev_1_1_main_window_ac6c7d03bdce6ccd4ae7c9597162fef09}} 
+Q\+Widget $\ast$ {\bfseries m\+\_\+render\+Layer\+Widget} = nullptr
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a40150e4c203c8fc26a08f65bdc9e6e5c}\label{classrev_1_1_main_window_a40150e4c203c8fc26a08f65bdc9e6e5c}} 
+Q\+Widget $\ast$ {\bfseries m\+\_\+shader\+Presets\+Widget} = nullptr
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_abe61daf13a58c0941b85a6657a5a6a43}\label{classrev_1_1_main_window_abe61daf13a58c0941b85a6657a5a6a43}} 
+Q\+Widget $\ast$ {\bfseries m\+\_\+sprite\+Sheet\+Widget} = nullptr
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a3b3880f6676dc41679c1d84609100ec6}\label{classrev_1_1_main_window_a3b3880f6676dc41679c1d84609100ec6}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_text_edit}{View\+::\+Text\+Edit}} $\ast$ \mbox{\hyperlink{classrev_1_1_main_window_a3b3880f6676dc41679c1d84609100ec6}{m\+\_\+search\+Paths\+Widget}} = nullptr
+\begin{DoxyCompactList}\small\item\em Widgets for file settings. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a4d3b8e73ca8cc65568d640b3a5d861f7}\label{classrev_1_1_main_window_a4d3b8e73ca8cc65568d640b3a5d861f7}} 
+Q\+Menu $\ast$ \mbox{\hyperlink{classrev_1_1_main_window_a4d3b8e73ca8cc65568d640b3a5d861f7}{m\+\_\+file\+Menu}}
+\begin{DoxyCompactList}\small\item\em Menu bar menus. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a2abe50befcb2712f3ab56d325bca0525}\label{classrev_1_1_main_window_a2abe50befcb2712f3ab56d325bca0525}} 
+Q\+Menu $\ast$ {\bfseries m\+\_\+edit\+Menu}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a9920155049da6f0eb9ec37a32630753a}\label{classrev_1_1_main_window_a9920155049da6f0eb9ec37a32630753a}} 
+Q\+Menu $\ast$ {\bfseries m\+\_\+asset\+Menu}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a52af47c10536ce070d4ce5d5e2ff6c5d}\label{classrev_1_1_main_window_a52af47c10536ce070d4ce5d5e2ff6c5d}} 
+Q\+Menu $\ast$ {\bfseries m\+\_\+tools\+Menu}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a1c4a7b09d855c7b6042ab1deb1388969}\label{classrev_1_1_main_window_a1c4a7b09d855c7b6042ab1deb1388969}} 
+Q\+Menu $\ast$ {\bfseries m\+\_\+settings\+Menu}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_aef81a2e1fc1e602bbb6024af857a512e}\label{classrev_1_1_main_window_aef81a2e1fc1e602bbb6024af857a512e}} 
+Q\+Menu $\ast$ {\bfseries m\+\_\+help\+Menu}
+\item 
+Q\+Menu\+Bar $\ast$ \mbox{\hyperlink{classrev_1_1_main_window_a453701f94612424e40e1f77d7a223a32}{m\+\_\+menu\+Bar}}
+\begin{DoxyCompactList}\small\item\em Menu bar actions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a8bc98396d235168b70445d07b42255a8}\label{classrev_1_1_main_window_a8bc98396d235168b70445d07b42255a8}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+new\+Scenario}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_ab23cbf3fb7f637ba72e34a0234058007}\label{classrev_1_1_main_window_ab23cbf3fb7f637ba72e34a0234058007}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+open\+Scenario}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a18a0d7fb2c4cc64343a2fff53abe29cb}\label{classrev_1_1_main_window_a18a0d7fb2c4cc64343a2fff53abe29cb}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+save\+Scenario}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a5a0c6d730c21d2e2b0d674cfc6da50d2}\label{classrev_1_1_main_window_a5a0c6d730c21d2e2b0d674cfc6da50d2}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+save\+Scenario\+As}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a56cf8743cfc94cddc5abdcaca84a6239}\label{classrev_1_1_main_window_a56cf8743cfc94cddc5abdcaca84a6239}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+undo}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a1c3c0d277199e04a27c8fc0f1c02dcc0}\label{classrev_1_1_main_window_a1c3c0d277199e04a27c8fc0f1c02dcc0}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+redo}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a90c52236f85c1210ce57d641876ca2c7}\label{classrev_1_1_main_window_a90c52236f85c1210ce57d641876ca2c7}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+show\+Undo\+View}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a4ec4744666a20169f550984809fe079f}\label{classrev_1_1_main_window_a4ec4744666a20169f550984809fe079f}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+load\+Texture}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_adb48f22561931433bf93bcbed57fc52a}\label{classrev_1_1_main_window_adb48f22561931433bf93bcbed57fc52a}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+add\+Material}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a904e681c6b812c024db32d33e5d68fce}\label{classrev_1_1_main_window_a904e681c6b812c024db32d33e5d68fce}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+add\+Model}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_aa049bd10254f18463dd6418203ea82ca}\label{classrev_1_1_main_window_aa049bd10254f18463dd6418203ea82ca}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+load\+Model}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a79d2c62cbbd06ed4aa8806151d076cb4}\label{classrev_1_1_main_window_a79d2c62cbbd06ed4aa8806151d076cb4}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+add\+Mesh}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a38be23b25c424848154f18fbd8f80070}\label{classrev_1_1_main_window_a38be23b25c424848154f18fbd8f80070}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+load\+Audio\+File}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a76ef826706d7937422df2399b9993c00}\label{classrev_1_1_main_window_a76ef826706d7937422df2399b9993c00}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+load\+Shader\+Program}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_acc2c3bec2f307b6757fde26c024ede05}\label{classrev_1_1_main_window_acc2c3bec2f307b6757fde26c024ede05}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+serialize\+Assets}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a4c8b7bdcad8812fda4137eadd4849025}\label{classrev_1_1_main_window_a4c8b7bdcad8812fda4137eadd4849025}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+show\+Shader\+Presets}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_aeb765e7aecd23a0a7f179f3a3397d09f}\label{classrev_1_1_main_window_aeb765e7aecd23a0a7f179f3a3397d09f}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+create\+Sprite\+Material}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_aa25edbda32c4fbedd83e270264e42bd8}\label{classrev_1_1_main_window_aa25edbda32c4fbedd83e270264e42bd8}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+show\+Script\+Order\+Settings}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a66d2b32233ec58782030cbeb0487bd86}\label{classrev_1_1_main_window_a66d2b32233ec58782030cbeb0487bd86}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+show\+Render\+Layers}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a07ae345d5d0834ea9baa8dac532c8e7a}\label{classrev_1_1_main_window_a07ae345d5d0834ea9baa8dac532c8e7a}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+scenario\+Preferences}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_ad54f50267dfbedff77169a988536c917}\label{classrev_1_1_main_window_ad54f50267dfbedff77169a988536c917}} 
+Q\+Action $\ast$ {\bfseries m\+\_\+about\+Grand\+Blue}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_main_window_a1d1f2f187440caa946ea03888dc318f5}\label{classrev_1_1_main_window_a1d1f2f187440caa946ea03888dc318f5}} 
+class {\bfseries View\+::\+Widget\+Manager}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} defining the main application window. 
+
+The main window class is used when there are docked windows, toolbars, and status bars \begin{DoxyNote}{Note}
+To avoid a border around internal widgets, a basic Q\+Widget will need to be used 
+\end{DoxyNote}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_main_window_a3b8a0c921c8413553567f87a23861ad9}\label{classrev_1_1_main_window_a3b8a0c921c8413553567f87a23861ad9}} 
+\index{rev::MainWindow@{rev::MainWindow}!className@{className}}
+\index{className@{className}!rev::MainWindow@{rev::MainWindow}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Main\+Window\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_main_window_a122fc9956c6d65e28bb9140343b02655}\label{classrev_1_1_main_window_a122fc9956c6d65e28bb9140343b02655}} 
+\index{rev::MainWindow@{rev::MainWindow}!contextMenuEvent@{contextMenuEvent}}
+\index{contextMenuEvent@{contextMenuEvent}!rev::MainWindow@{rev::MainWindow}}
+\subsubsection{\texorpdfstring{contextMenuEvent()}{contextMenuEvent()}}
+{\footnotesize\ttfamily void rev\+::\+Main\+Window\+::context\+Menu\+Event (\begin{DoxyParamCaption}\item[{Q\+Context\+Menu\+Event $\ast$}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}}
+
+
+
+Generates a context menu, overriding default implementation. 
+
+\begin{DoxyNote}{Note}
+Context menus can be executed either asynchronously using the popup() function or synchronously using the exec() function 
+\end{DoxyNote}
+\mbox{\Hypertarget{classrev_1_1_main_window_a164619747b7c7a10d63a628154a6eeb5}\label{classrev_1_1_main_window_a164619747b7c7a10d63a628154a6eeb5}} 
+\index{rev::MainWindow@{rev::MainWindow}!initializeMenus@{initializeMenus}}
+\index{initializeMenus@{initializeMenus}!rev::MainWindow@{rev::MainWindow}}
+\subsubsection{\texorpdfstring{initializeMenus()}{initializeMenus()}}
+{\footnotesize\ttfamily void rev\+::\+Main\+Window\+::initialize\+Menus (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+check\+Validity the menu bar 
+
+\begin{DoxyNote}{Note}
+See\+: \href{https://doc.qt.io/qt-5/qtwidgets-mainwindows-menus-example.html}{\texttt{ https\+://doc.\+qt.\+io/qt-\/5/qtwidgets-\/mainwindows-\/menus-\/example.\+html}} 
+\end{DoxyNote}
+\mbox{\Hypertarget{classrev_1_1_main_window_a3d38cd81c10da2fcb09922c9d4dfd990}\label{classrev_1_1_main_window_a3d38cd81c10da2fcb09922c9d4dfd990}} 
+\index{rev::MainWindow@{rev::MainWindow}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::MainWindow@{rev::MainWindow}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Main\+Window\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_main_window_a453701f94612424e40e1f77d7a223a32}\label{classrev_1_1_main_window_a453701f94612424e40e1f77d7a223a32}} 
+\index{rev::MainWindow@{rev::MainWindow}!m\_menuBar@{m\_menuBar}}
+\index{m\_menuBar@{m\_menuBar}!rev::MainWindow@{rev::MainWindow}}
+\subsubsection{\texorpdfstring{m\_menuBar}{m\_menuBar}}
+{\footnotesize\ttfamily Q\+Menu\+Bar$\ast$ rev\+::\+Main\+Window\+::m\+\_\+menu\+Bar\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Menu bar actions. 
+
+\begin{DoxyNote}{Note}
+a Q\+Action\+Group can be used to group actions such that only one can be active at a time See\+: \href{https://doc.qt.io/qt-5/qtwidgets-mainwindows-menus-example.html}{\texttt{ https\+://doc.\+qt.\+io/qt-\/5/qtwidgets-\/mainwindows-\/menus-\/example.\+html}} 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/G\+Main\+Window.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/G\+Main\+Window.\+cpp\end{DoxyCompactItemize}

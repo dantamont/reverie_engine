@@ -1,0 +1,83 @@
+\hypertarget{classrev_1_1_i_k}{}\section{rev\+::IK Class Reference}
+\label{classrev_1_1_i_k}\index{rev::IK@{rev::IK}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} for inverse kinematics @notes See\+: \href{https://discourse.urho3d.io/t/solved-ik-foot-placement/1010}{\texttt{ https\+://discourse.\+urho3d.\+io/t/solved-\/ik-\/foot-\/placement/1010}}.  
+
+
+
+
+{\ttfamily \#include $<$G\+Inverse\+Kinematics.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_af90b240fddcd2a66dbab50186855ab8b}\label{classrev_1_1_i_k_af90b240fddcd2a66dbab50186855ab8b}} 
+{\bfseries IK} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_a531fa55e74f93a0ab61eecfd6f733fd2}\label{classrev_1_1_i_k_a531fa55e74f93a0ab61eecfd6f733fd2}} 
+{\bfseries $\sim$\+IK} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classrev_1_1_i_k_a48bdf55588b6a47ae1ed832977c1905f}{Solve}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3d}} \&target, std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_vector}{Vector3d}} $>$ \&in\+Out\+Joint\+Positions, const std\+::vector$<$ double $>$ \&joint\+Distances, double tolerance=1e-\/6, size\+\_\+t max\+Num\+Iter=100)
+\begin{DoxyCompactList}\small\item\em The actual algorithm (F\+A\+B\+R\+IK) \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classrev_1_1_i_k_a69121f5a0869f28cb3f6a7ea53acb4e1}{Solve\+C\+GA}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3d}} \&target, std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_vector}{Vector3d}} $>$ \&in\+Out\+Joint\+Positions, const std\+::vector$<$ double $>$ \&joint\+Distances, double tolerance=1e-\/6, size\+\_\+t max\+Num\+Iter=100)
+\begin{DoxyCompactList}\small\item\em The F\+A\+B\+R\+IK algorithm, with C\+GA (Conformal Geometric Algebra) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classrev_1_1_i_k_ab3f0b66551237bee71819a57e5991075}{Nearest\+Point\+Sphere}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3d}} \&center, double radius, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3d}} \&point\+In\+Space, \mbox{\hyperlink{classrev_1_1_vector}{Vector3d}} \&out\+Point\+On\+Sphere)
+\begin{DoxyCompactList}\small\item\em Obtain the nearest point on a sphere from a point in space. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_i_k_a2dabde9da7f7e59de49ecd4e8be8182e}\label{classrev_1_1_i_k_a2dabde9da7f7e59de49ecd4e8be8182e}} 
+static void \mbox{\hyperlink{classrev_1_1_i_k_a2dabde9da7f7e59de49ecd4e8be8182e}{Get\+Centroid}} (const std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_vector}{Vector3d}} $>$ \&points, \mbox{\hyperlink{classrev_1_1_vector}{Vector3d}} \&out\+Centroid)
+\begin{DoxyCompactList}\small\item\em Obtain the centroid of the given set of points. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} for inverse kinematics @notes See\+: \href{https://discourse.urho3d.io/t/solved-ik-foot-placement/1010}{\texttt{ https\+://discourse.\+urho3d.\+io/t/solved-\/ik-\/foot-\/placement/1010}}. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_i_k_ab3f0b66551237bee71819a57e5991075}\label{classrev_1_1_i_k_ab3f0b66551237bee71819a57e5991075}} 
+\index{rev::IK@{rev::IK}!NearestPointSphere@{NearestPointSphere}}
+\index{NearestPointSphere@{NearestPointSphere}!rev::IK@{rev::IK}}
+\subsubsection{\texorpdfstring{NearestPointSphere()}{NearestPointSphere()}}
+{\footnotesize\ttfamily void rev\+::\+I\+K\+::\+Nearest\+Point\+Sphere (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector3d}} \&}]{center,  }\item[{double}]{radius,  }\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector3d}} \&}]{point\+In\+Space,  }\item[{\mbox{\hyperlink{classrev_1_1_vector}{Vector3d}} \&}]{out\+Point\+On\+Sphere }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+Obtain the nearest point on a sphere from a point in space. 
+
+center, radius, point\+In\+Space, point\+On\+Sphere \mbox{\Hypertarget{classrev_1_1_i_k_a48bdf55588b6a47ae1ed832977c1905f}\label{classrev_1_1_i_k_a48bdf55588b6a47ae1ed832977c1905f}} 
+\index{rev::IK@{rev::IK}!Solve@{Solve}}
+\index{Solve@{Solve}!rev::IK@{rev::IK}}
+\subsubsection{\texorpdfstring{Solve()}{Solve()}}
+{\footnotesize\ttfamily void rev\+::\+I\+K\+::\+Solve (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector3d}} \&}]{target,  }\item[{std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_vector}{Vector3d}} $>$ \&}]{in\+Out\+Joint\+Positions,  }\item[{const std\+::vector$<$ double $>$ \&}]{joint\+Distances,  }\item[{double}]{tolerance = {\ttfamily 1e-\/6},  }\item[{size\+\_\+t}]{max\+Num\+Iter = {\ttfamily 100} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The actual algorithm (F\+A\+B\+R\+IK) 
+
+See\+:http\+://www.andreasaristidou.\+com/publications/papers/\+F\+A\+B\+R\+IK.pdf \mbox{\Hypertarget{classrev_1_1_i_k_a69121f5a0869f28cb3f6a7ea53acb4e1}\label{classrev_1_1_i_k_a69121f5a0869f28cb3f6a7ea53acb4e1}} 
+\index{rev::IK@{rev::IK}!SolveCGA@{SolveCGA}}
+\index{SolveCGA@{SolveCGA}!rev::IK@{rev::IK}}
+\subsubsection{\texorpdfstring{SolveCGA()}{SolveCGA()}}
+{\footnotesize\ttfamily void rev\+::\+I\+K\+::\+Solve\+C\+GA (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector3d}} \&}]{target,  }\item[{std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_vector}{Vector3d}} $>$ \&}]{in\+Out\+Joint\+Positions,  }\item[{const std\+::vector$<$ double $>$ \&}]{joint\+Distances,  }\item[{double}]{tolerance = {\ttfamily 1e-\/6},  }\item[{size\+\_\+t}]{max\+Num\+Iter = {\ttfamily 100} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The F\+A\+B\+R\+IK algorithm, with C\+GA (Conformal Geometric Algebra) 
+
+See\+: grand-\/blue-\/engine\textbackslash{}docs\textbackslash{}\+Physics\textbackslash{}\+Inverse\+\_\+\+Kinematics\+\_\+\+C\+G\+A.\+pdf 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Inverse\+Kinematics.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Inverse\+Kinematics.\+cpp\end{DoxyCompactItemize}

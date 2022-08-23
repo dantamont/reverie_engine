@@ -1,0 +1,65 @@
+\hypertarget{class_so_loud_1_1_vic}{}\section{So\+Loud\+::Vic Class Reference}
+\label{class_so_loud_1_1_vic}\index{SoLoud::Vic@{SoLoud::Vic}}
+Inheritance diagram for So\+Loud\+::Vic\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_so_loud_1_1_vic}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vic_a395aeedca43fa56912e0e3e4ec3e005e}\label{class_so_loud_1_1_vic_a395aeedca43fa56912e0e3e4ec3e005e}} 
+enum \{ {\bfseries P\+AL} = 0, 
+{\bfseries N\+T\+SC}
+ \}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vic_aabdb92824915ee280c055a07370627ce}\label{class_so_loud_1_1_vic_aabdb92824915ee280c055a07370627ce}} 
+enum \{ \newline
+{\bfseries B\+A\+SS} = 0, 
+{\bfseries A\+L\+TO}, 
+{\bfseries S\+O\+P\+R\+A\+NO}, 
+{\bfseries N\+O\+I\+SE}, 
+\newline
+{\bfseries M\+A\+X\+\_\+\+R\+E\+GS}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vic_a0f50281a9b115fd11b81ee3eb700db79}\label{class_so_loud_1_1_vic_a0f50281a9b115fd11b81ee3eb700db79}} 
+void {\bfseries set\+Model} (int model)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vic_ad2c81766e3858af1800de741002ae928}\label{class_so_loud_1_1_vic_ad2c81766e3858af1800de741002ae928}} 
+int {\bfseries get\+Model} () const
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vic_a7ffc185753800ed704512197ad5154e2}\label{class_so_loud_1_1_vic_a7ffc185753800ed704512197ad5154e2}} 
+void {\bfseries set\+Register} (int reg, unsigned char value)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vic_a2cd7505d03ebeefd830d3e059989431c}\label{class_so_loud_1_1_vic_a2cd7505d03ebeefd830d3e059989431c}} 
+unsigned char {\bfseries get\+Register} (int reg)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vic_afab138bb8248fabecd1c2cc7890935e4}\label{class_so_loud_1_1_vic_afab138bb8248fabecd1c2cc7890935e4}} 
+virtual \mbox{\hyperlink{class_so_loud_1_1_audio_source_instance}{Audio\+Source\+Instance}} $\ast$ {\bfseries create\+Instance} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vic_ac00b13becacb0784d820514373c46353}\label{class_so_loud_1_1_vic_ac00b13becacb0784d820514373c46353}} 
+int {\bfseries m\+\_\+model}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vic_aed9212ea6caf3f4371aa0a64004e6efb}\label{class_so_loud_1_1_vic_aed9212ea6caf3f4371aa0a64004e6efb}} 
+float {\bfseries m\+\_\+clocks} \mbox{[}4\mbox{]}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vic_aa5705e69527bd7f7ac496c4176db3a95}\label{class_so_loud_1_1_vic_aa5705e69527bd7f7ac496c4176db3a95}} 
+unsigned char {\bfseries m\+\_\+regs} \mbox{[}M\+A\+X\+\_\+\+R\+E\+GS\mbox{]}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_vic_af2b4831dcb666069a29a91d5cebdb362}\label{class_so_loud_1_1_vic_af2b4831dcb666069a29a91d5cebdb362}} 
+unsigned char {\bfseries m\+\_\+noise} \mbox{[}8192\mbox{]}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/include/soloud\+\_\+vic.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/src/audiosource/vic/soloud\+\_\+vic.\+cpp\end{DoxyCompactItemize}

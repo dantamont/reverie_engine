@@ -1,0 +1,23 @@
+{
+   "network": {
+      "gateways": {
+         "mainApplication": {
+            "receivePort": 10000
+         },
+         "widgets": {
+            "receivePort": 10001
+         }
+      }
+   },
+   "rendering": {
+      "glVersionMain": 3,
+      "glVersionMinor": 2,
+      "renderBackend": 1,
+      "renderVersionMain": 4,
+      "renderVersionMinor": 4
+   },
+   "system": {
+      "mostRecentProject": "C:/Users/dante/Documents/Projects/grand-blue-engine/apps/reverie/libraries/assets/scenarios/test_project_reorg.scn",
+      "workingDirectory": "C:/Users/dante/Documents/Projects/grand-blue-engine/apps/reverie"
+   }
+}

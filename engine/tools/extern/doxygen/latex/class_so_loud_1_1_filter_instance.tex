@@ -1,0 +1,56 @@
+\hypertarget{class_so_loud_1_1_filter_instance}{}\section{So\+Loud\+::Filter\+Instance Class Reference}
+\label{class_so_loud_1_1_filter_instance}\index{SoLoud::FilterInstance@{SoLoud::FilterInstance}}
+Inheritance diagram for So\+Loud\+::Filter\+Instance\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=10.000000cm]{class_so_loud_1_1_filter_instance}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_filter_instance_a4d3ded653b15452b6d321e116590be1a}\label{class_so_loud_1_1_filter_instance_a4d3ded653b15452b6d321e116590be1a}} 
+virtual result {\bfseries init\+Params} (int a\+Num\+Params)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_filter_instance_add61b05cfd7d8bff4c189e2345e726d5}\label{class_so_loud_1_1_filter_instance_add61b05cfd7d8bff4c189e2345e726d5}} 
+virtual void {\bfseries update\+Params} (time a\+Time)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_filter_instance_ab41d19f90bbcf4186af153d3f66c1cb1}\label{class_so_loud_1_1_filter_instance_ab41d19f90bbcf4186af153d3f66c1cb1}} 
+virtual void {\bfseries filter} (float $\ast$a\+Buffer, unsigned int a\+Samples, unsigned int a\+Channels, float a\+Samplerate, time a\+Time)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_filter_instance_a00661edcc42a76bc33968b142a75c12c}\label{class_so_loud_1_1_filter_instance_a00661edcc42a76bc33968b142a75c12c}} 
+virtual void {\bfseries filter\+Channel} (float $\ast$a\+Buffer, unsigned int a\+Samples, float a\+Samplerate, time a\+Time, unsigned int a\+Channel, unsigned int a\+Channels)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_filter_instance_a2be0ea002cdd2a66dfb25fc92350573a}\label{class_so_loud_1_1_filter_instance_a2be0ea002cdd2a66dfb25fc92350573a}} 
+virtual float {\bfseries get\+Filter\+Parameter} (unsigned int a\+Attribute\+Id)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_filter_instance_acb947880faf6f27b285d95e67eaa6f8a}\label{class_so_loud_1_1_filter_instance_acb947880faf6f27b285d95e67eaa6f8a}} 
+virtual void {\bfseries set\+Filter\+Parameter} (unsigned int a\+Attribute\+Id, float a\+Value)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_filter_instance_ae45ac03d9c02644ea139af4488ca87ab}\label{class_so_loud_1_1_filter_instance_ae45ac03d9c02644ea139af4488ca87ab}} 
+virtual void {\bfseries fade\+Filter\+Parameter} (unsigned int a\+Attribute\+Id, float a\+To, time a\+Time, time a\+Start\+Time)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_filter_instance_acf4b7ba57c53b5b9d9957e4b9cdd3ed9}\label{class_so_loud_1_1_filter_instance_acf4b7ba57c53b5b9d9957e4b9cdd3ed9}} 
+virtual void {\bfseries oscillate\+Filter\+Parameter} (unsigned int a\+Attribute\+Id, float a\+From, float a\+To, time a\+Time, time a\+Start\+Time)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_filter_instance_a3543039db3c00cd19b7d01b82c29d824}\label{class_so_loud_1_1_filter_instance_a3543039db3c00cd19b7d01b82c29d824}} 
+unsigned int {\bfseries m\+Num\+Params}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_filter_instance_a4ed9e55584ed2ae59e3de878dfa8c506}\label{class_so_loud_1_1_filter_instance_a4ed9e55584ed2ae59e3de878dfa8c506}} 
+unsigned int {\bfseries m\+Param\+Changed}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_filter_instance_ab60599cfa1fcdf09e1a5753399e04048}\label{class_so_loud_1_1_filter_instance_ab60599cfa1fcdf09e1a5753399e04048}} 
+float $\ast$ {\bfseries m\+Param}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_filter_instance_ab30e49b98d87f106fc1202793120cac7}\label{class_so_loud_1_1_filter_instance_ab30e49b98d87f106fc1202793120cac7}} 
+\mbox{\hyperlink{class_so_loud_1_1_fader}{Fader}} $\ast$ {\bfseries m\+Param\+Fader}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/include/soloud\+\_\+filter.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/src/core/soloud\+\_\+filter.\+cpp\end{DoxyCompactItemize}

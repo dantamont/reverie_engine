@@ -1,0 +1,76 @@
+\hypertarget{structrev_1_1_key_input}{}\section{rev\+::Key\+Input Struct Reference}
+\label{structrev_1_1_key_input}\index{rev::KeyInput@{rev::KeyInput}}
+
+
+A generalization of a key input.  
+
+
+
+
+{\ttfamily \#include $<$G\+Input\+Handler.\+h$>$}
+
+Inheritance diagram for rev\+::Key\+Input\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{structrev_1_1_key_input}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_key_input_a85bfc77779f464272a46345d1bab01ce}\label{structrev_1_1_key_input_a85bfc77779f464272a46345d1bab01ce}} 
+{\bfseries Key\+Input} ()
+\item 
+\mbox{\Hypertarget{structrev_1_1_key_input_a33600dec51091abce9e94e804ebf80de}\label{structrev_1_1_key_input_a33600dec51091abce9e94e804ebf80de}} 
+{\bfseries $\sim$\+Key\+Input} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_key_input_ad75d03f51f923d59457ef7d1ad8ba0aa}\label{structrev_1_1_key_input_ad75d03f51f923d59457ef7d1ad8ba0aa}} 
+Q\+String \mbox{\hyperlink{structrev_1_1_key_input_ad75d03f51f923d59457ef7d1ad8ba0aa}{get\+Key\+String}} () const
+\begin{DoxyCompactList}\small\item\em Get Q\+String representation of the key input. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_key_input_a75dbb6ab9793b170570e53b0b613b098}\label{structrev_1_1_key_input_a75dbb6ab9793b170570e53b0b613b098}} 
+bool \mbox{\hyperlink{structrev_1_1_key_input_a75dbb6ab9793b170570e53b0b613b098}{has\+Same\+Keys}} (const \mbox{\hyperlink{structrev_1_1_key_input}{Key\+Input}} \&other) const
+\begin{DoxyCompactList}\small\item\em Whether this input item has the same key as another. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_key_input_ada2f0cb1e32465ef18d917966d97d7a3}\label{structrev_1_1_key_input_ada2f0cb1e32465ef18d917966d97d7a3}} 
+bool \mbox{\hyperlink{structrev_1_1_key_input_ada2f0cb1e32465ef18d917966d97d7a3}{is\+Press}} () const
+\begin{DoxyCompactList}\small\item\em If this input is a press. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_key_input_a79bcea5d74d7232eb8fd8f621f287f8d}\label{structrev_1_1_key_input_a79bcea5d74d7232eb8fd8f621f287f8d}} 
+bool \mbox{\hyperlink{structrev_1_1_key_input_a79bcea5d74d7232eb8fd8f621f287f8d}{is\+Release}} () const
+\begin{DoxyCompactList}\small\item\em If this input is a release. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_key_input_afa387e7a782937416f171aeb30597158}\label{structrev_1_1_key_input_afa387e7a782937416f171aeb30597158}} 
+bool \mbox{\hyperlink{structrev_1_1_key_input_afa387e7a782937416f171aeb30597158}{is\+Double\+Click}} () const
+\begin{DoxyCompactList}\small\item\em If this input is a double click. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Attributes}
+\begin{Indent}\textbf{ Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_key_input_aa434b63191183731528dea93f458bf31}\label{structrev_1_1_key_input_aa434b63191183731528dea93f458bf31}} 
+Qt\+::\+Key \mbox{\hyperlink{structrev_1_1_key_input_aa434b63191183731528dea93f458bf31}{m\+\_\+key}} = Qt\+::\+Key\+::\+Key\+\_\+unknown
+\begin{DoxyCompactList}\small\item\em The key pressed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_key_input_a256a76a1385a72300e3a54da987fdfaf}\label{structrev_1_1_key_input_a256a76a1385a72300e3a54da987fdfaf}} 
+Qt\+::\+Keyboard\+Modifiers \mbox{\hyperlink{structrev_1_1_key_input_a256a76a1385a72300e3a54da987fdfaf}{m\+\_\+modifiers}}
+\begin{DoxyCompactList}\small\item\em Modifiers to input (\char`\"{}\+Shift key, ctrl key, alt key, etc\char`\"{}) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Operators}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_key_input_a1f4e1244e8f122d87ef2bc8044c828e2}\label{structrev_1_1_key_input_a1f4e1244e8f122d87ef2bc8044c828e2}} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{structrev_1_1_key_input}{Key\+Input}} \&lhs, const \mbox{\hyperlink{structrev_1_1_key_input}{Key\+Input}} \&rhs)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A generalization of a key input. 
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/input/G\+Input\+Handler.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/input/G\+Input\+Handler.\+cpp\end{DoxyCompactItemize}

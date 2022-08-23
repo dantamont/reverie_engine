@@ -1,0 +1,178 @@
+\hypertarget{classrev_1_1_audio_resource}{}\section{rev\+::Audio\+Resource Class Reference}
+\label{classrev_1_1_audio_resource}\index{rev::AudioResource@{rev::AudioResource}}
+
+
+Represents an audio file.  
+
+
+
+
+{\ttfamily \#include $<$G\+Audio\+Resource.\+h$>$}
+
+Inheritance diagram for rev\+::Audio\+Resource\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_audio_resource}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_resource_a32fdcb6cac96ff61344d0558db37c786}\label{classrev_1_1_audio_resource_a32fdcb6cac96ff61344d0558db37c786}} 
+void \mbox{\hyperlink{classrev_1_1_audio_resource_a32fdcb6cac96ff61344d0558db37c786}{cache\+Settings}} ()
+\begin{DoxyCompactList}\small\item\em Cache settings into actual So\+Loud audio source. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_audio_resource_a2fe9a47cb5df37e4cede18c1f0466fe9}\label{classrev_1_1_audio_resource_a2fe9a47cb5df37e4cede18c1f0466fe9}} 
+void \mbox{\hyperlink{classrev_1_1_audio_resource_a2fe9a47cb5df37e4cede18c1f0466fe9}{load\+Audio\+Source}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&filepath)
+\begin{DoxyCompactList}\small\item\em Load audio source from file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_audio_resource_af4a0194124df44aa159839bd01cfc782}\label{classrev_1_1_audio_resource_af4a0194124df44aa159839bd01cfc782}} 
+void \mbox{\hyperlink{classrev_1_1_audio_resource_af4a0194124df44aa159839bd01cfc782}{on\+Removal}} (\mbox{\hyperlink{classrev_1_1_resource_cache}{Resource\+Cache}} $\ast$cache=nullptr) override
+\begin{DoxyCompactList}\small\item\em What to do on removal from resource cache. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classrev_1_1_audio_resource_a485cda6016a1dc52310239fb6c58e8cd}{post\+Construction}} () override
+\begin{DoxyCompactList}\small\item\em What action to perform post-\/construction of the resource. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_resource_a9c95a725ffbd8b8073ae23242020e556}\label{classrev_1_1_audio_resource_a9c95a725ffbd8b8073ae23242020e556}} 
+\mbox{\hyperlink{classrev_1_1_audio_resource_a0793d33db36716e1ba7b283b6ded8707}{Source\+Type}} {\bfseries audio\+Source\+Type} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_resource_a1501818117de2ede7349b7bfd9557da3}\label{classrev_1_1_audio_resource_a1501818117de2ede7349b7bfd9557da3}} 
+const \mbox{\hyperlink{structrev_1_1_audio_source_settings}{Audio\+Source\+Settings}} \& {\bfseries audio\+Source\+Settings} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_resource_afe186fbaa2cb356aa2a7177c4b427c74}\label{classrev_1_1_audio_resource_afe186fbaa2cb356aa2a7177c4b427c74}} 
+\mbox{\hyperlink{structrev_1_1_audio_source_settings}{Audio\+Source\+Settings}} \& {\bfseries audio\+Source\+Settings} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_resource_ad1766aa979ad2e58dede76e934cdca42}\label{classrev_1_1_audio_resource_ad1766aa979ad2e58dede76e934cdca42}} 
+\mbox{\hyperlink{class_so_loud_1_1_audio_source}{So\+Loud\+::\+Audio\+Source}} $\ast$ {\bfseries audio\+Source} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_resource_ae8aa797d001cba07c80091a7b8fec50f}\label{classrev_1_1_audio_resource_ae8aa797d001cba07c80091a7b8fec50f}} 
+{\footnotesize template$<$typename T $>$ }\\T $\ast$ {\bfseries audio\+Source} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_resource_ace54bc805789fee3e68cf0aa6a0fe202}\label{classrev_1_1_audio_resource_ace54bc805789fee3e68cf0aa6a0fe202}} 
+{\footnotesize template$<$typename T $>$ }\\const T $\ast$ {\bfseries audio\+Source} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_resource_abd008b2ca74de6b57d8a6802c8bbf7c6}\label{classrev_1_1_audio_resource_abd008b2ca74de6b57d8a6802c8bbf7c6}} 
+virtual Resource\+Type \mbox{\hyperlink{classrev_1_1_audio_resource_abd008b2ca74de6b57d8a6802c8bbf7c6}{get\+Resource\+Type}} () const override
+\begin{DoxyCompactList}\small\item\em Get the type of resource stored by this handle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_audio_resource_aef383525478a6a648fbddc068941dbea}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_audio_resource_a56de5461f5fa79c4af7c6ff2d3fdfeed}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_resource_ae3e826f1eecb1f3d5da6ae36d3f8d6c2}\label{classrev_1_1_audio_resource_ae3e826f1eecb1f3d5da6ae36d3f8d6c2}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_audio_resource_ae3e826f1eecb1f3d5da6ae36d3f8d6c2}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_audio_resource_afb8b25186db3cb75475b853affd3a495}\label{classrev_1_1_audio_resource_afb8b25186db3cb75475b853affd3a495}} 
+virtual void \mbox{\hyperlink{classrev_1_1_audio_resource_afb8b25186db3cb75475b853affd3a495}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Private members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_resource_a1569820bc8de0783e88b7b59281f319d}\label{classrev_1_1_audio_resource_a1569820bc8de0783e88b7b59281f319d}} 
+\mbox{\hyperlink{classrev_1_1_audio_resource_a0793d33db36716e1ba7b283b6ded8707}{Source\+Type}} \mbox{\hyperlink{classrev_1_1_audio_resource_a1569820bc8de0783e88b7b59281f319d}{m\+\_\+source\+Type}}
+\begin{DoxyCompactList}\small\item\em Type of audio source. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_audio_resource_aeb00de543329e23bad22a1aa64708fc4}\label{classrev_1_1_audio_resource_aeb00de543329e23bad22a1aa64708fc4}} 
+\mbox{\hyperlink{structrev_1_1_audio_source_settings}{Audio\+Source\+Settings}} {\bfseries m\+\_\+audio\+Source\+Settings}
+\item 
+\mbox{\hyperlink{class_so_loud_1_1_audio_source}{So\+Loud\+::\+Audio\+Source}} $\ast$ \mbox{\hyperlink{classrev_1_1_audio_resource_a072498f4a94de263c6ce3b2dc9e2d37c}{m\+\_\+audio\+Source}} = nullptr
+\begin{DoxyCompactList}\small\item\em Audio source. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_resource_a0793d33db36716e1ba7b283b6ded8707}\label{classrev_1_1_audio_resource_a0793d33db36716e1ba7b283b6ded8707}} 
+enum \mbox{\hyperlink{classrev_1_1_audio_resource_a0793d33db36716e1ba7b283b6ded8707}{Source\+Type}} \{ {\bfseries k\+Wav}, 
+{\bfseries k\+Wav\+Stream}, 
+{\bfseries k\+Speech}
+ \}
+\begin{DoxyCompactList}\small\item\em So\+Loud source type of the resource. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_audio_resource_ac447c522f49cccc51d3b1ce90ebe182d}\label{classrev_1_1_audio_resource_ac447c522f49cccc51d3b1ce90ebe182d}} 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ {\bfseries Audio\+Resource\+::\+Create\+Handle} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$engine, const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&audio\+Path, \mbox{\hyperlink{classrev_1_1_audio_resource_a0793d33db36716e1ba7b283b6ded8707}{Source\+Type}} source\+Type)
+\end{DoxyCompactItemize}
+\subsection*{Constructors and Destructors}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_resource_a2a8e855b1354f025428591912c6235d9}\label{classrev_1_1_audio_resource_a2a8e855b1354f025428591912c6235d9}} 
+{\bfseries $\sim$\+Audio\+Resource} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_audio_resource_ad8487f3a2b5df40487ee17722cb9a52c}\label{classrev_1_1_audio_resource_ad8487f3a2b5df40487ee17722cb9a52c}} 
+{\bfseries Audio\+Resource} (\mbox{\hyperlink{classrev_1_1_audio_resource_a0793d33db36716e1ba7b283b6ded8707}{Source\+Type}} source\+Type)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Represents an audio file. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_audio_resource_aef383525478a6a648fbddc068941dbea}\label{classrev_1_1_audio_resource_aef383525478a6a648fbddc068941dbea}} 
+\index{rev::AudioResource@{rev::AudioResource}!className@{className}}
+\index{className@{className}!rev::AudioResource@{rev::AudioResource}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Audio\+Resource\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_audio_resource_a56de5461f5fa79c4af7c6ff2d3fdfeed}\label{classrev_1_1_audio_resource_a56de5461f5fa79c4af7c6ff2d3fdfeed}} 
+\index{rev::AudioResource@{rev::AudioResource}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::AudioResource@{rev::AudioResource}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Audio\+Resource\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_audio_resource_a485cda6016a1dc52310239fb6c58e8cd}\label{classrev_1_1_audio_resource_a485cda6016a1dc52310239fb6c58e8cd}} 
+\index{rev::AudioResource@{rev::AudioResource}!postConstruction@{postConstruction}}
+\index{postConstruction@{postConstruction}!rev::AudioResource@{rev::AudioResource}}
+\subsubsection{\texorpdfstring{postConstruction()}{postConstruction()}}
+{\footnotesize\ttfamily void rev\+::\+Audio\+Resource\+::post\+Construction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+What action to perform post-\/construction of the resource. 
+
+For performing any actions that need to be done on the main thread 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_resource_a8a6daa71820d88c86bc6c0aa474d1af7}{rev\+::\+Resource}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_audio_resource_a072498f4a94de263c6ce3b2dc9e2d37c}\label{classrev_1_1_audio_resource_a072498f4a94de263c6ce3b2dc9e2d37c}} 
+\index{rev::AudioResource@{rev::AudioResource}!m\_audioSource@{m\_audioSource}}
+\index{m\_audioSource@{m\_audioSource}!rev::AudioResource@{rev::AudioResource}}
+\subsubsection{\texorpdfstring{m\_audioSource}{m\_audioSource}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_so_loud_1_1_audio_source}{So\+Loud\+::\+Audio\+Source}}$\ast$ rev\+::\+Audio\+Resource\+::m\+\_\+audio\+Source = nullptr\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Audio source. 
+
+Audio sources contain all of the information pertaining to each sound. Shorter sounds that are used frequently should use Wav, longer should use Wav\+Stream, since Wav\+Stream consumes less memory (at the cost of processing power) 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/sound/G\+Audio\+Resource.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/sound/G\+Audio\+Resource.\+cpp\end{DoxyCompactItemize}

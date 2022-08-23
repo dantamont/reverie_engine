@@ -1,0 +1,50 @@
+\hypertarget{structrev_1_1_audio_component_settings}{}\section{rev\+::Audio\+Component\+Settings Struct Reference}
+\label{structrev_1_1_audio_component_settings}\index{rev::AudioComponentSettings@{rev::AudioComponentSettings}}
+
+
+Settings for this specific audio component.  
+
+
+
+
+{\ttfamily \#include $<$G\+Audio\+Source\+Component.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_audio_component_settings_a96021f1b0b236560081652098860c854}\label{structrev_1_1_audio_component_settings_a96021f1b0b236560081652098860c854}} 
+Q\+Json\+Value {\bfseries as\+Json} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const
+\item 
+\mbox{\Hypertarget{structrev_1_1_audio_component_settings_a1fc9e0426b9e0c78ed2684889acc03f1}\label{structrev_1_1_audio_component_settings_a1fc9e0426b9e0c78ed2684889acc03f1}} 
+void \mbox{\hyperlink{structrev_1_1_audio_component_settings_a1fc9e0426b9e0c78ed2684889acc03f1}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty())
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_audio_component_settings_a7b571af9c2b6d5a371ba1ac7e26df6c2}\label{structrev_1_1_audio_component_settings_a7b571af9c2b6d5a371ba1ac7e26df6c2}} 
+bool {\bfseries test\+Flag} (Voice\+Flag flag) const
+\item 
+\mbox{\Hypertarget{structrev_1_1_audio_component_settings_a42be5431b58dfd1441f1a48678cf7c2e}\label{structrev_1_1_audio_component_settings_a42be5431b58dfd1441f1a48678cf7c2e}} 
+void {\bfseries set\+Flag} (Voice\+Flag flag, bool value)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_audio_component_settings_a04234b109ecb9a01d0f92245760be02f}\label{structrev_1_1_audio_component_settings_a04234b109ecb9a01d0f92245760be02f}} 
+size\+\_\+t \mbox{\hyperlink{structrev_1_1_audio_component_settings_a04234b109ecb9a01d0f92245760be02f}{m\+\_\+voice\+Flags}} = 0
+\begin{DoxyCompactList}\small\item\em Flag settings. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_audio_component_settings_a3dd60f362df553c816af45d4d12e1d40}\label{structrev_1_1_audio_component_settings_a3dd60f362df553c816af45d4d12e1d40}} 
+float \mbox{\hyperlink{structrev_1_1_audio_component_settings_a3dd60f362df553c816af45d4d12e1d40}{m\+\_\+volume}} = 1.\+0f
+\begin{DoxyCompactList}\small\item\em Scales on top of audio source volume. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_audio_component_settings_ae0a70ea98840079795bfffc73f2a92e1}\label{structrev_1_1_audio_component_settings_ae0a70ea98840079795bfffc73f2a92e1}} 
+float \mbox{\hyperlink{structrev_1_1_audio_component_settings_ae0a70ea98840079795bfffc73f2a92e1}{m\+\_\+pan}} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em Pan, -\/1.\+0f to 1.\+0f. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_audio_component_settings_aea8eb6869902c54490b5d3852c4b66a2}\label{structrev_1_1_audio_component_settings_aea8eb6869902c54490b5d3852c4b66a2}} 
+float \mbox{\hyperlink{structrev_1_1_audio_component_settings_aea8eb6869902c54490b5d3852c4b66a2}{m\+\_\+relative\+Play\+Speed}} = 1.\+0f
+\begin{DoxyCompactList}\small\item\em Relative play speed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Settings for this specific audio component. 
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+Audio\+Source\+Component.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/components/G\+Audio\+Source\+Component.\+cpp\end{DoxyCompactItemize}

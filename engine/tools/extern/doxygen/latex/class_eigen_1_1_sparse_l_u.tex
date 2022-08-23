@@ -1,0 +1,430 @@
+\hypertarget{class_eigen_1_1_sparse_l_u}{}\section{Eigen\+::Sparse\+LU$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_sparse_l_u}\index{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}}
+
+
+\mbox{\hyperlink{struct_eigen_1_1_sparse}{Sparse}} supernodal LU factorization for general matrices.  
+
+
+
+
+{\ttfamily \#include $<$Sparse\+L\+U.\+h$>$}
+
+Inheritance diagram for Eigen\+::Sparse\+LU$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.753654cm]{class_eigen_1_1_sparse_l_u}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_ac7ae8094247aa83bd7f8170b6166233c}\label{class_eigen_1_1_sparse_l_u_ac7ae8094247aa83bd7f8170b6166233c}} 
+enum \{ {\bfseries Cols\+At\+Compile\+Time} = Matrix\+Type\+::Cols\+At\+Compile\+Time, 
+{\bfseries Max\+Cols\+At\+Compile\+Time} = Matrix\+Type\+::Max\+Cols\+At\+Compile\+Time
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_afde6955eb546fc127e96ad2c1fc087e2}\label{class_eigen_1_1_sparse_l_u_afde6955eb546fc127e96ad2c1fc087e2}} 
+typedef \+\_\+\+Matrix\+Type {\bfseries Matrix\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a2e2e51e8f3e71a9fec516aaecef7b778}\label{class_eigen_1_1_sparse_l_u_a2e2e51e8f3e71a9fec516aaecef7b778}} 
+typedef \+\_\+\+Ordering\+Type {\bfseries Ordering\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a105a0173a3e2ff548bc643c7c4f6c149}\label{class_eigen_1_1_sparse_l_u_a105a0173a3e2ff548bc643c7c4f6c149}} 
+typedef Matrix\+Type\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a7569faba9d46aee2e8ffcf396bf09089}\label{class_eigen_1_1_sparse_l_u_a7569faba9d46aee2e8ffcf396bf09089}} 
+typedef Matrix\+Type\+::\+Real\+Scalar {\bfseries Real\+Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a8111a1271e3ba9a4995ff78837d816f5}\label{class_eigen_1_1_sparse_l_u_a8111a1271e3ba9a4995ff78837d816f5}} 
+typedef Matrix\+Type\+::\+Storage\+Index {\bfseries Storage\+Index}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_af1fb9b86b237b26d2148df843bc41220}\label{class_eigen_1_1_sparse_l_u_af1fb9b86b237b26d2148df843bc41220}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ Scalar, Col\+Major, Storage\+Index $>$ {\bfseries N\+C\+Matrix}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a1629a0610cbb03e5a4fa9b508ae4a4b6}\label{class_eigen_1_1_sparse_l_u_a1629a0610cbb03e5a4fa9b508ae4a4b6}} 
+typedef \mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix}{internal\+::\+Mapped\+Super\+Nodal\+Matrix}}$<$ Scalar, Storage\+Index $>$ {\bfseries S\+C\+Matrix}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_ac67621b3c8526fc5606a7a708427a959}\label{class_eigen_1_1_sparse_l_u_ac67621b3c8526fc5606a7a708427a959}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, Dynamic, 1 $>$ {\bfseries Scalar\+Vector}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a2564483882d758a16067085798d3e8ad}\label{class_eigen_1_1_sparse_l_u_a2564483882d758a16067085798d3e8ad}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Storage\+Index, Dynamic, 1 $>$ {\bfseries Index\+Vector}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a56c15a8364c3dea625d1f1404e7b07d1}\label{class_eigen_1_1_sparse_l_u_a56c15a8364c3dea625d1f1404e7b07d1}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}}$<$ Dynamic, Dynamic, Storage\+Index $>$ {\bfseries Permutation\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_ae4f85e309c65f3f93cbc96a43c39336d}\label{class_eigen_1_1_sparse_l_u_ae4f85e309c65f3f93cbc96a43c39336d}} 
+typedef \mbox{\hyperlink{class_eigen_1_1internal_1_1_sparse_l_u_impl}{internal\+::\+Sparse\+L\+U\+Impl}}$<$ Scalar, Storage\+Index $>$ {\bfseries Base}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_ac1678e57af46b42561cea4f149861164}\label{class_eigen_1_1_sparse_l_u_ac1678e57af46b42561cea4f149861164}} 
+{\bfseries Sparse\+LU} (const Matrix\+Type \&matrix)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_sparse_l_u_aa907ff958c4f4855145091d2686f3a8a}{analyze\+Pattern}} (const Matrix\+Type \&matrix)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_sparse_l_u_a39858b0e72f2659d596364e252b34cbc}{factorize}} (const Matrix\+Type \&matrix)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a4841f300341aab4999881ce7f6e38b40}\label{class_eigen_1_1_sparse_l_u_a4841f300341aab4999881ce7f6e38b40}} 
+void {\bfseries simplicialfactorize} (const Matrix\+Type \&matrix)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_sparse_l_u_a96a8dcb02015ab9be5777d4ba9173266}{compute}} (const Matrix\+Type \&matrix)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a5d4cc6663767bbed1efd278480ee2975}\label{class_eigen_1_1_sparse_l_u_a5d4cc6663767bbed1efd278480ee2975}} 
+Index {\bfseries rows} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a634e903f97c46b55591db2e12d1d45d1}\label{class_eigen_1_1_sparse_l_u_a634e903f97c46b55591db2e12d1d45d1}} 
+Index {\bfseries cols} () const
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_sparse_l_u_afff3bd506cd78172e5219c707562729f}{is\+Symmetric}} (bool sym)
+\item 
+\mbox{\hyperlink{struct_eigen_1_1_sparse_l_u_matrix_l_return_type}{Sparse\+L\+U\+Matrix\+L\+Return\+Type}}$<$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix}{S\+C\+Matrix}} $>$ \mbox{\hyperlink{class_eigen_1_1_sparse_l_u_a634abe55e5a076f2e10db78871105a8f}{matrixL}} () const
+\item 
+\mbox{\hyperlink{struct_eigen_1_1_sparse_l_u_matrix_u_return_type}{Sparse\+L\+U\+Matrix\+U\+Return\+Type}}$<$ \mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix}{S\+C\+Matrix}}, \mbox{\hyperlink{class_eigen_1_1_mapped_sparse_matrix}{Mapped\+Sparse\+Matrix}}$<$ Scalar, Col\+Major, Storage\+Index $>$ $>$ \mbox{\hyperlink{class_eigen_1_1_sparse_l_u_aaf395a8fca527144215ff19cc7b8b637}{matrixU}} () const
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_sparse_l_u_a691295e65c06df599876d78ac2c7fada}{rows\+Permutation}} () const
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_sparse_l_u_ab7b0d15d0d9fd1faa164298f92ca59cd}{cols\+Permutation}} () const
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_sparse_l_u_a94c726c9ebb71a60b529fe47d942ad57}{set\+Pivot\+Threshold}} (const Real\+Scalar \&thresh)
+\item 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_sparse_l_u_ab0d0c1744ffd5a1dff578a44bcef2a3d}{info}} () const
+\begin{DoxyCompactList}\small\item\em Reports whether previous computation was successful. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_eigen_1_1_sparse_l_u_a5458c4e851d7d75c8ca92c4fd02d2adb}{last\+Error\+Message}} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_aca57d33f0acf9d0d4fcf85c715b73cc6}\label{class_eigen_1_1_sparse_l_u_aca57d33f0acf9d0d4fcf85c715b73cc6}} 
+{\footnotesize template$<$typename Rhs , typename Dest $>$ }\\bool {\bfseries \+\_\+solve\+\_\+impl} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&B, \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Dest $>$ \&X\+\_\+base) const
+\item 
+Scalar \mbox{\hyperlink{class_eigen_1_1_sparse_l_u_a06fa89424239fb169d408f08252426d0}{abs\+Determinant}} ()
+\item 
+Scalar \mbox{\hyperlink{class_eigen_1_1_sparse_l_u_a89e30a7df205596784a5a73f4768eaec}{log\+Abs\+Determinant}} () const
+\item 
+Scalar \mbox{\hyperlink{class_eigen_1_1_sparse_l_u_a6651143e3b18fa90cfb3808b6fd23c4e}{sign\+Determinant}} ()
+\item 
+Scalar \mbox{\hyperlink{class_eigen_1_1_sparse_l_u_a02d63d242d27211b5c5827f5d4fd99ff}{determinant}} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a9c28d06780ee2dbddcdab9861ec63c22}\label{class_eigen_1_1_sparse_l_u_a9c28d06780ee2dbddcdab9861ec63c22}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{Sparse\+Solver\+Base}}$<$ \mbox{\hyperlink{class_eigen_1_1_sparse_l_u}{Sparse\+LU}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$ $>$ {\bfseries A\+P\+I\+Base}
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a38372b5d6f461e3a92fc7c8fb621b730}\label{class_eigen_1_1_sparse_l_u_a38372b5d6f461e3a92fc7c8fb621b730}} 
+void {\bfseries initperfvalues} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a3b8c30dd64606c6396b04c052bc88a80}\label{class_eigen_1_1_sparse_l_u_a3b8c30dd64606c6396b04c052bc88a80}} 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} {\bfseries m\+\_\+info}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a0f9049c98a8f53316c2ed9daa49c7db5}\label{class_eigen_1_1_sparse_l_u_a0f9049c98a8f53316c2ed9daa49c7db5}} 
+bool {\bfseries m\+\_\+factorization\+Is\+Ok}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a9a135b7a2548570384702a3d016043f6}\label{class_eigen_1_1_sparse_l_u_a9a135b7a2548570384702a3d016043f6}} 
+bool {\bfseries m\+\_\+analysis\+Is\+Ok}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_abc89f4bf70115b56c4eab39d7f39a88d}\label{class_eigen_1_1_sparse_l_u_abc89f4bf70115b56c4eab39d7f39a88d}} 
+std\+::string {\bfseries m\+\_\+last\+Error}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a0489466ddda50b9200444031544d317f}\label{class_eigen_1_1_sparse_l_u_a0489466ddda50b9200444031544d317f}} 
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{N\+C\+Matrix}} {\bfseries m\+\_\+mat}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a33a260e5b5860fa9e2a995d89f71234f}\label{class_eigen_1_1_sparse_l_u_a33a260e5b5860fa9e2a995d89f71234f}} 
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix}{S\+C\+Matrix}} {\bfseries m\+\_\+\+Lstore}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a5866894fb3bc03bf16c1c9c04a73610f}\label{class_eigen_1_1_sparse_l_u_a5866894fb3bc03bf16c1c9c04a73610f}} 
+\mbox{\hyperlink{class_eigen_1_1_mapped_sparse_matrix}{Mapped\+Sparse\+Matrix}}$<$ Scalar, Col\+Major, Storage\+Index $>$ {\bfseries m\+\_\+\+Ustore}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a17880d2a5075b0ad2be69e9a98b18d95}\label{class_eigen_1_1_sparse_l_u_a17880d2a5075b0ad2be69e9a98b18d95}} 
+\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Type}} {\bfseries m\+\_\+perm\+\_\+c}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a1d0cd35485f50f819b65856f6989264a}\label{class_eigen_1_1_sparse_l_u_a1d0cd35485f50f819b65856f6989264a}} 
+\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Type}} {\bfseries m\+\_\+perm\+\_\+r}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a93bdda3c848baf65f906ad810bb67667}\label{class_eigen_1_1_sparse_l_u_a93bdda3c848baf65f906ad810bb67667}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Index\+Vector}} {\bfseries m\+\_\+etree}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a6707db24747af79024d9dd86cbe92d32}\label{class_eigen_1_1_sparse_l_u_a6707db24747af79024d9dd86cbe92d32}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1_l_u___global_l_u__t}{Base\+::\+Global\+L\+U\+\_\+t}} {\bfseries m\+\_\+glu}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_abb21c4d4a3716038665e7525df123da9}\label{class_eigen_1_1_sparse_l_u_abb21c4d4a3716038665e7525df123da9}} 
+bool {\bfseries m\+\_\+symmetricmode}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a3f4b5dab545ba1f34b0d64d9a4f4fa59}\label{class_eigen_1_1_sparse_l_u_a3f4b5dab545ba1f34b0d64d9a4f4fa59}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1perfvalues}{internal\+::perfvalues}} {\bfseries m\+\_\+perfv}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_aead99552b5213cee1fada904159c289a}\label{class_eigen_1_1_sparse_l_u_aead99552b5213cee1fada904159c289a}} 
+Real\+Scalar {\bfseries m\+\_\+diagpivotthresh}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a4fe45ce540c3f7f56b01a97eaaf35825}\label{class_eigen_1_1_sparse_l_u_a4fe45ce540c3f7f56b01a97eaaf35825}} 
+Index {\bfseries m\+\_\+nnzL}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a60d8298823646bfa9b71d18a03cb83c2}\label{class_eigen_1_1_sparse_l_u_a60d8298823646bfa9b71d18a03cb83c2}} 
+Index {\bfseries m\+\_\+nnzU}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a7cfd9bd6741f16a8c7a616c7e11bbe05}\label{class_eigen_1_1_sparse_l_u_a7cfd9bd6741f16a8c7a616c7e11bbe05}} 
+Index {\bfseries m\+\_\+det\+PermR}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a13aa52a86648941a6c39b07c13d64093}\label{class_eigen_1_1_sparse_l_u_a13aa52a86648941a6c39b07c13d64093}} 
+Index {\bfseries m\+\_\+det\+PermC}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Matrix\+Type, typename \+\_\+\+Ordering\+Type$>$\newline
+class Eigen\+::\+Sparse\+L\+U$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$}
+
+\mbox{\hyperlink{struct_eigen_1_1_sparse}{Sparse}} supernodal LU factorization for general matrices. 
+
+This class implements the supernodal LU factorization for general matrices. It uses the main techniques from the sequential \mbox{\hyperlink{class_eigen_1_1_super_l_u}{Super\+LU}} package (\href{http://crd-legacy.lbl.gov/~xiaoye/SuperLU/}{\texttt{ http\+://crd-\/legacy.\+lbl.\+gov/$\sim$xiaoye/\+Super\+L\+U/}}). It handles transparently real and complex arithmetics with single and double precision, depending on the scalar type of your input matrix. The code has been optimized to provide B\+L\+A\+S-\/3 operations during supernode-\/panel updates. It benefits directly from the built-\/in high-\/performant Eigen B\+L\+AS routines. Moreover, when the size of a supernode is very small, the B\+L\+AS calls are avoided to enable a better optimization from the compiler. For best performance, you should compile it with N\+D\+E\+B\+UG flag to avoid the numerous bounds checking on vectors.
+
+An important parameter of this class is the ordering method. It is used to reorder the columns (and eventually the rows) of the matrix to reduce the number of new elements that are created during numerical factorization. The cheapest method available is C\+O\+L\+A\+MD. See \mbox{\hyperlink{}{the Ordering\+Methods module }} for the list of built-\/in and external ordering methods.
+
+Simple example with key steps 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{VectorXd x(n), b(n);}
+\DoxyCodeLine{SparseMatrix<double, ColMajor> A;}
+\DoxyCodeLine{SparseLU<SparseMatrix<scalar, ColMajor>, COLAMDOrdering<Index> >   solver;}
+\DoxyCodeLine{\textcolor{comment}{// fill A and b;}}
+\DoxyCodeLine{\textcolor{comment}{// Compute the ordering permutation vector from the structural pattern of A}}
+\DoxyCodeLine{solver.analyzePattern(A); }
+\DoxyCodeLine{\textcolor{comment}{// Compute the numerical factorization }}
+\DoxyCodeLine{solver.factorize(A); }
+\DoxyCodeLine{\textcolor{comment}{//Use the factors to solve the linear system }}
+\DoxyCodeLine{x = solver.solve(b); }
+\end{DoxyCode}
+
+
+\begin{DoxyWarning}{Warning}
+The input matrix A should be in a {\bfseries{compressed}} and {\bfseries{column-\/major}} form. Otherwise an expensive copy will be made. You can call the inexpensive make\+Compressed() to get a compressed matrix.
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+Unlike the initial \mbox{\hyperlink{class_eigen_1_1_super_l_u}{Super\+LU}} implementation, there is no step to equilibrate the matrix. For badly scaled matrices, this step can be useful to reduce the pivoting during factorization. If this is the case for your matrices, you can try the basic scaling method at \char`\"{}unsupported/\+Eigen/src/\+Iterative\+Solvers/\+Scaling.\+h\char`\"{}
+\end{DoxyNote}
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Matrix\+Type} & The type of the sparse matrix. It must be a column-\/major Sparse\+Matrix$<$$>$ \\
+\hline
+{\em \+\_\+\+Ordering\+Type} & The ordering method to use, either A\+MD, C\+O\+L\+A\+MD or M\+E\+T\+IS. Default is C\+O\+L\+M\+AD\\
+\hline
+\end{DoxyTemplParams}
+\textbackslash{}implsparsesolverconcept
+
+\begin{DoxySeeAlso}{See also}
+Tutorial\+Sparse\+Solver\+Concept 
+
+Ordering\+Methods\+\_\+\+Module 
+\end{DoxySeeAlso}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a06fa89424239fb169d408f08252426d0}\label{class_eigen_1_1_sparse_l_u_a06fa89424239fb169d408f08252426d0}} 
+\index{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}!absDeterminant@{absDeterminant}}
+\index{absDeterminant@{absDeterminant}!Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}}
+\subsubsection{\texorpdfstring{absDeterminant()}{absDeterminant()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , typename \+\_\+\+Ordering\+Type $>$ \\
+Scalar \mbox{\hyperlink{class_eigen_1_1_sparse_l_u}{Eigen\+::\+Sparse\+LU}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$\+::abs\+Determinant (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the absolute value of the determinant of the matrix of which $\ast$this is the QR decomposition.
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+a determinant can be very big or small, so for matrices of large enough dimension, there is a risk of overflow/underflow. One way to work around that is to use \mbox{\hyperlink{class_eigen_1_1_sparse_l_u_a89e30a7df205596784a5a73f4768eaec}{log\+Abs\+Determinant()}} instead.
+\end{DoxyWarning}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_l_u_a89e30a7df205596784a5a73f4768eaec}{log\+Abs\+Determinant()}}, \mbox{\hyperlink{class_eigen_1_1_sparse_l_u_a6651143e3b18fa90cfb3808b6fd23c4e}{sign\+Determinant()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_aa907ff958c4f4855145091d2686f3a8a}\label{class_eigen_1_1_sparse_l_u_aa907ff958c4f4855145091d2686f3a8a}} 
+\index{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}!analyzePattern@{analyzePattern}}
+\index{analyzePattern@{analyzePattern}!Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}}
+\subsubsection{\texorpdfstring{analyzePattern()}{analyzePattern()}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type , typename Ordering\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_sparse_l_u}{Eigen\+::\+Sparse\+LU}}$<$ Matrix\+Type, Ordering\+Type $>$\+::analyze\+Pattern (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{mat }\end{DoxyParamCaption})}
+
+Compute the column permutation to minimize the fill-\/in
+
+
+\begin{DoxyItemize}
+\item Apply this permutation to the input matrix -\/
+\item Compute the column elimination tree on the permuted matrix
+\item Postorder the elimination tree and the column permutation 
+\end{DoxyItemize}\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_ab7b0d15d0d9fd1faa164298f92ca59cd}\label{class_eigen_1_1_sparse_l_u_ab7b0d15d0d9fd1faa164298f92ca59cd}} 
+\index{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}!colsPermutation@{colsPermutation}}
+\index{colsPermutation@{colsPermutation}!Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}}
+\subsubsection{\texorpdfstring{colsPermutation()}{colsPermutation()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , typename \+\_\+\+Ordering\+Type $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Type}}\& \mbox{\hyperlink{class_eigen_1_1_sparse_l_u}{Eigen\+::\+Sparse\+LU}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$\+::cols\+Permutation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to the column matrix permutation $ P_c^T $ such that $P_r A P_c^T = L U$ 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_l_u_a691295e65c06df599876d78ac2c7fada}{rows\+Permutation()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a96a8dcb02015ab9be5777d4ba9173266}\label{class_eigen_1_1_sparse_l_u_a96a8dcb02015ab9be5777d4ba9173266}} 
+\index{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}!compute@{compute}}
+\index{compute@{compute}!Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}}
+\subsubsection{\texorpdfstring{compute()}{compute()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , typename \+\_\+\+Ordering\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_sparse_l_u}{Eigen\+::\+Sparse\+LU}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$\+::compute (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Compute the symbolic and numeric factorization of the input sparse matrix. The input matrix should be in column-\/major storage. \mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a02d63d242d27211b5c5827f5d4fd99ff}\label{class_eigen_1_1_sparse_l_u_a02d63d242d27211b5c5827f5d4fd99ff}} 
+\index{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}!determinant@{determinant}}
+\index{determinant@{determinant}!Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}}
+\subsubsection{\texorpdfstring{determinant()}{determinant()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , typename \+\_\+\+Ordering\+Type $>$ \\
+Scalar \mbox{\hyperlink{class_eigen_1_1_sparse_l_u}{Eigen\+::\+Sparse\+LU}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$\+::determinant (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The determinant of the matrix.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_l_u_a06fa89424239fb169d408f08252426d0}{abs\+Determinant()}}, \mbox{\hyperlink{class_eigen_1_1_sparse_l_u_a89e30a7df205596784a5a73f4768eaec}{log\+Abs\+Determinant()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a39858b0e72f2659d596364e252b34cbc}\label{class_eigen_1_1_sparse_l_u_a39858b0e72f2659d596364e252b34cbc}} 
+\index{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}!factorize@{factorize}}
+\index{factorize@{factorize}!Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}}
+\subsubsection{\texorpdfstring{factorize()}{factorize()}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type , typename Ordering\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_sparse_l_u}{Eigen\+::\+Sparse\+LU}}$<$ Matrix\+Type, Ordering\+Type $>$\+::factorize (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{matrix }\end{DoxyParamCaption})}
+
+
+\begin{DoxyItemize}
+\item Numerical factorization
+\item Interleaved with the symbolic factorization On exit, info is
+
+= 0\+: successful factorization
+\end{DoxyItemize}
+
+\begin{quote}
+0\+: if info = i, and i is \end{quote}
+\begin{DoxyVerb}  <= A->ncol: U(i,i) is exactly zero. The factorization has
+     been completed, but the factor U is exactly singular,
+     and division by zero will occur if it is used to solve a
+     system of equations.
+
+  > A->ncol: number of bytes allocated when memory allocation
+    failure occurred, plus A->ncol. If lwork = -1, it is
+    the estimated amount of space needed, plus A->ncol.  
+\end{DoxyVerb}
+ \mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_ab0d0c1744ffd5a1dff578a44bcef2a3d}\label{class_eigen_1_1_sparse_l_u_ab0d0c1744ffd5a1dff578a44bcef2a3d}} 
+\index{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}!info@{info}}
+\index{info@{info}!Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}}
+\subsubsection{\texorpdfstring{info()}{info()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , typename \+\_\+\+Ordering\+Type $>$ \\
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_sparse_l_u}{Eigen\+::\+Sparse\+LU}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$\+::info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reports whether previous computation was successful. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily Success} if computation was succesful, {\ttfamily Numerical\+Issue} if the LU factorization reports a problem, zero diagonal for instance {\ttfamily Invalid\+Input} if the input matrix is invalid
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+iparm() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_afff3bd506cd78172e5219c707562729f}\label{class_eigen_1_1_sparse_l_u_afff3bd506cd78172e5219c707562729f}} 
+\index{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}!isSymmetric@{isSymmetric}}
+\index{isSymmetric@{isSymmetric}!Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}}
+\subsubsection{\texorpdfstring{isSymmetric()}{isSymmetric()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , typename \+\_\+\+Ordering\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_sparse_l_u}{Eigen\+::\+Sparse\+LU}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$\+::is\+Symmetric (\begin{DoxyParamCaption}\item[{bool}]{sym }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Indicate that the pattern of the input matrix is symmetric \mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a5458c4e851d7d75c8ca92c4fd02d2adb}\label{class_eigen_1_1_sparse_l_u_a5458c4e851d7d75c8ca92c4fd02d2adb}} 
+\index{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}!lastErrorMessage@{lastErrorMessage}}
+\index{lastErrorMessage@{lastErrorMessage}!Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}}
+\subsubsection{\texorpdfstring{lastErrorMessage()}{lastErrorMessage()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , typename \+\_\+\+Ordering\+Type $>$ \\
+std\+::string \mbox{\hyperlink{class_eigen_1_1_sparse_l_u}{Eigen\+::\+Sparse\+LU}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$\+::last\+Error\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+A string describing the type of error 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a89e30a7df205596784a5a73f4768eaec}\label{class_eigen_1_1_sparse_l_u_a89e30a7df205596784a5a73f4768eaec}} 
+\index{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}!logAbsDeterminant@{logAbsDeterminant}}
+\index{logAbsDeterminant@{logAbsDeterminant}!Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}}
+\subsubsection{\texorpdfstring{logAbsDeterminant()}{logAbsDeterminant()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , typename \+\_\+\+Ordering\+Type $>$ \\
+Scalar \mbox{\hyperlink{class_eigen_1_1_sparse_l_u}{Eigen\+::\+Sparse\+LU}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$\+::log\+Abs\+Determinant (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the natural log of the absolute value of the determinant of the matrix of which $\ast$$\ast$this is the QR decomposition
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This method is useful to work around the risk of overflow/underflow that\textquotesingle{}s inherent to the determinant computation.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_l_u_a06fa89424239fb169d408f08252426d0}{abs\+Determinant()}}, \mbox{\hyperlink{class_eigen_1_1_sparse_l_u_a6651143e3b18fa90cfb3808b6fd23c4e}{sign\+Determinant()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a634abe55e5a076f2e10db78871105a8f}\label{class_eigen_1_1_sparse_l_u_a634abe55e5a076f2e10db78871105a8f}} 
+\index{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}!matrixL@{matrixL}}
+\index{matrixL@{matrixL}!Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}}
+\subsubsection{\texorpdfstring{matrixL()}{matrixL()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , typename \+\_\+\+Ordering\+Type $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1_sparse_l_u_matrix_l_return_type}{Sparse\+L\+U\+Matrix\+L\+Return\+Type}}$<$\mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix}{S\+C\+Matrix}}$>$ \mbox{\hyperlink{class_eigen_1_1_sparse_l_u}{Eigen\+::\+Sparse\+LU}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$\+::matrixL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+an expression of the matrix L, internally stored as supernodes The only operation available with this expression is the triangular solve 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{y = b; \mbox{\hyperlink{class_eigen_1_1_sparse_l_u_a634abe55e5a076f2e10db78871105a8f}{matrixL}}().solveInPlace(y);}
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_aaf395a8fca527144215ff19cc7b8b637}\label{class_eigen_1_1_sparse_l_u_aaf395a8fca527144215ff19cc7b8b637}} 
+\index{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}!matrixU@{matrixU}}
+\index{matrixU@{matrixU}!Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}}
+\subsubsection{\texorpdfstring{matrixU()}{matrixU()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , typename \+\_\+\+Ordering\+Type $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1_sparse_l_u_matrix_u_return_type}{Sparse\+L\+U\+Matrix\+U\+Return\+Type}}$<$\mbox{\hyperlink{class_eigen_1_1internal_1_1_mapped_super_nodal_matrix}{S\+C\+Matrix}},\mbox{\hyperlink{class_eigen_1_1_mapped_sparse_matrix}{Mapped\+Sparse\+Matrix}}$<$Scalar,Col\+Major,Storage\+Index$>$ $>$ \mbox{\hyperlink{class_eigen_1_1_sparse_l_u}{Eigen\+::\+Sparse\+LU}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$\+::matrixU (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+an expression of the matrix U, The only operation available with this expression is the triangular solve 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{y = b; \mbox{\hyperlink{class_eigen_1_1_sparse_l_u_aaf395a8fca527144215ff19cc7b8b637}{matrixU}}().solveInPlace(y);}
+\end{DoxyCode}
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a691295e65c06df599876d78ac2c7fada}\label{class_eigen_1_1_sparse_l_u_a691295e65c06df599876d78ac2c7fada}} 
+\index{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}!rowsPermutation@{rowsPermutation}}
+\index{rowsPermutation@{rowsPermutation}!Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}}
+\subsubsection{\texorpdfstring{rowsPermutation()}{rowsPermutation()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , typename \+\_\+\+Ordering\+Type $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Type}}\& \mbox{\hyperlink{class_eigen_1_1_sparse_l_u}{Eigen\+::\+Sparse\+LU}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$\+::rows\+Permutation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to the row matrix permutation $ P_r $ such that $P_r A P_c^T = L U$ 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_l_u_ab7b0d15d0d9fd1faa164298f92ca59cd}{cols\+Permutation()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a94c726c9ebb71a60b529fe47d942ad57}\label{class_eigen_1_1_sparse_l_u_a94c726c9ebb71a60b529fe47d942ad57}} 
+\index{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}!setPivotThreshold@{setPivotThreshold}}
+\index{setPivotThreshold@{setPivotThreshold}!Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}}
+\subsubsection{\texorpdfstring{setPivotThreshold()}{setPivotThreshold()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , typename \+\_\+\+Ordering\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_sparse_l_u}{Eigen\+::\+Sparse\+LU}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$\+::set\+Pivot\+Threshold (\begin{DoxyParamCaption}\item[{const Real\+Scalar \&}]{thresh }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Set the threshold used for a diagonal entry to be an acceptable pivot. \mbox{\Hypertarget{class_eigen_1_1_sparse_l_u_a6651143e3b18fa90cfb3808b6fd23c4e}\label{class_eigen_1_1_sparse_l_u_a6651143e3b18fa90cfb3808b6fd23c4e}} 
+\index{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}!signDeterminant@{signDeterminant}}
+\index{signDeterminant@{signDeterminant}!Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseLU$<$ \_MatrixType, \_OrderingType $>$}}
+\subsubsection{\texorpdfstring{signDeterminant()}{signDeterminant()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , typename \+\_\+\+Ordering\+Type $>$ \\
+Scalar \mbox{\hyperlink{class_eigen_1_1_sparse_l_u}{Eigen\+::\+Sparse\+LU}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$\+::sign\+Determinant (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+A number representing the sign of the determinant
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_l_u_a06fa89424239fb169d408f08252426d0}{abs\+Determinant()}}, \mbox{\hyperlink{class_eigen_1_1_sparse_l_u_a89e30a7df205596784a5a73f4768eaec}{log\+Abs\+Determinant()}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Sparse\+L\+U/Sparse\+L\+U.\+h\end{DoxyCompactItemize}

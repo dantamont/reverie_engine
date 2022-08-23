@@ -1,0 +1,106 @@
+\hypertarget{classrev_1_1_abstract_log_handler}{}\section{rev\+::Abstract\+Log\+Handler Class Reference}
+\label{classrev_1_1_abstract_log_handler}\index{rev::AbstractLogHandler@{rev::AbstractLogHandler}}
+
+
+A base class for output log.  
+
+
+
+
+{\ttfamily \#include $<$G\+Logger.\+h$>$}
+
+Inheritance diagram for rev\+::Abstract\+Log\+Handler\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.609195cm]{classrev_1_1_abstract_log_handler}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_abstract_log_handler_a7f95ac9a29ac1ebc3788de928e3b8aaa}\label{classrev_1_1_abstract_log_handler_a7f95ac9a29ac1ebc3788de928e3b8aaa}} 
+{\bfseries Abstract\+Log\+Handler} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_abstract_log_handler_a15d5ad0c7da1750b026c6ad21c19f0a1}\label{classrev_1_1_abstract_log_handler_a15d5ad0c7da1750b026c6ad21c19f0a1}} 
+{\bfseries Abstract\+Log\+Handler} (Log\+Level \mbox{\hyperlink{classrev_1_1_abstract_log_handler_ab27fb35504e3aaa820c4e57f406893ea}{level}})
+\item 
+\mbox{\Hypertarget{classrev_1_1_abstract_log_handler_a94d0836f7d113e733e21b3878d5360e1}\label{classrev_1_1_abstract_log_handler_a94d0836f7d113e733e21b3878d5360e1}} 
+{\bfseries $\sim$\+Abstract\+Log\+Handler} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_abstract_log_handler_ab27fb35504e3aaa820c4e57f406893ea}\label{classrev_1_1_abstract_log_handler_ab27fb35504e3aaa820c4e57f406893ea}} 
+Log\+Level \mbox{\hyperlink{classrev_1_1_abstract_log_handler_ab27fb35504e3aaa820c4e57f406893ea}{level}} () const
+\begin{DoxyCompactList}\small\item\em Logging level for this handler. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_abstract_log_handler_ac5451e353683fa94643feb28f73a106d}{set\+Level}} (Log\+Level \mbox{\hyperlink{classrev_1_1_abstract_log_handler_ab27fb35504e3aaa820c4e57f406893ea}{level}})
+\begin{DoxyCompactList}\small\item\em Set logging level of handler. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_abstract_log_handler_ab44f172990e72bc34d2f91101c0449db}\label{classrev_1_1_abstract_log_handler_ab44f172990e72bc34d2f91101c0449db}} 
+const \mbox{\hyperlink{classrev_1_1_log_record}{Log\+Record}} \& \mbox{\hyperlink{classrev_1_1_abstract_log_handler_ab44f172990e72bc34d2f91101c0449db}{most\+Recent\+Record}} () const
+\begin{DoxyCompactList}\small\item\em The most-\/recently handled record. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classrev_1_1_abstract_log_handler_a0154255c9435f0ee66975be2d450b177}{output}} (\mbox{\hyperlink{classrev_1_1_log_record}{Log\+Record}} \&log\+\_\+record)=0
+\begin{DoxyCompactList}\small\item\em Output a log record formatted for the handler. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_abstract_log_handler_a64ac93afd1539f30b75d9ae09b123cae}\label{classrev_1_1_abstract_log_handler_a64ac93afd1539f30b75d9ae09b123cae}} 
+\mbox{\hyperlink{classrev_1_1_log_record}{Log\+Record}} {\bfseries m\+\_\+most\+Recent\+Record}
+\item 
+\mbox{\Hypertarget{classrev_1_1_abstract_log_handler_a49948c5299b258da791bb73c2e70eb6f}\label{classrev_1_1_abstract_log_handler_a49948c5299b258da791bb73c2e70eb6f}} 
+Log\+Level {\bfseries m\+\_\+level}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A base class for output log. 
+
+All sub-\/classes must implement the \char`\"{}output\char`\"{} method that is repsonsible for formatting and outputting based on the data in a \mbox{\hyperlink{classrev_1_1_log_record}{Log\+Record}}. T\+O\+DO\+: Make this runnable on different threads \href{https://stackoverflow.com/questions/38725264/is-creating-a-separate-thread-for-a-logger-ok}{\texttt{ https\+://stackoverflow.\+com/questions/38725264/is-\/creating-\/a-\/separate-\/thread-\/for-\/a-\/logger-\/ok}} 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_abstract_log_handler_a0154255c9435f0ee66975be2d450b177}\label{classrev_1_1_abstract_log_handler_a0154255c9435f0ee66975be2d450b177}} 
+\index{rev::AbstractLogHandler@{rev::AbstractLogHandler}!output@{output}}
+\index{output@{output}!rev::AbstractLogHandler@{rev::AbstractLogHandler}}
+\subsubsection{\texorpdfstring{output()}{output()}}
+{\footnotesize\ttfamily virtual void rev\+::\+Abstract\+Log\+Handler\+::output (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classrev_1_1_log_record}{Log\+Record}} \&}]{log\+\_\+record }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Output a log record formatted for the handler. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em log\+\_\+record} & \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classrev_1_1_v_s_console_log_handler_abfe9a50069f8bb12d43a00c7e5f541e8}{rev\+::\+V\+S\+Console\+Log\+Handler}}, \mbox{\hyperlink{classrev_1_1_standard_out_handler_abba7f654fa04807e85cdb9afd0f2234e}{rev\+::\+Standard\+Out\+Handler}}, \mbox{\hyperlink{classrev_1_1_file_log_handler_ae562434aed64d166aaa1d8660984a3be}{rev\+::\+File\+Log\+Handler}}, and \mbox{\hyperlink{classrev_1_1_view_1_1_console_tool_ac8f85a1067d6aa26f66a89e475d1f24a}{rev\+::\+View\+::\+Console\+Tool}}.
+
+\mbox{\Hypertarget{classrev_1_1_abstract_log_handler_ac5451e353683fa94643feb28f73a106d}\label{classrev_1_1_abstract_log_handler_ac5451e353683fa94643feb28f73a106d}} 
+\index{rev::AbstractLogHandler@{rev::AbstractLogHandler}!setLevel@{setLevel}}
+\index{setLevel@{setLevel}!rev::AbstractLogHandler@{rev::AbstractLogHandler}}
+\subsubsection{\texorpdfstring{setLevel()}{setLevel()}}
+{\footnotesize\ttfamily void rev\+::\+Abstract\+Log\+Handler\+::set\+Level (\begin{DoxyParamCaption}\item[{Log\+Level}]{level }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set logging level of handler. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em level} & The level for the output. Only log messages with higher level than this level are output. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/G\+Logger.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/G\+Logger.\+cpp\end{DoxyCompactItemize}

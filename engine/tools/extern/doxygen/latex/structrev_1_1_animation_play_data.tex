@@ -1,0 +1,56 @@
+\hypertarget{structrev_1_1_animation_play_data}{}\section{rev\+::Animation\+Play\+Data Struct Reference}
+\label{structrev_1_1_animation_play_data}\index{rev::AnimationPlayData@{rev::AnimationPlayData}}
+
+
+Play data representing an animation that is to be blended.  
+
+
+
+
+{\ttfamily \#include $<$G\+Animation.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_animation_play_data_af07faa987e4eea761da7ef8e9eb46f80}\label{structrev_1_1_animation_play_data_af07faa987e4eea761da7ef8e9eb46f80}} 
+{\bfseries Animation\+Play\+Data} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \&anim\+Handle, const \mbox{\hyperlink{structrev_1_1_animation_settings}{Animation\+Settings}} \&settings, const Animation\+Playback\+Mode \&mode, const \mbox{\hyperlink{classrev_1_1_timer}{Timer}} \&timer, uint32\+\_\+t status\+Flags)
+\item 
+\mbox{\Hypertarget{structrev_1_1_animation_play_data_af6685d5cc0b2d8740a6acea24b0a6c5f}\label{structrev_1_1_animation_play_data_af6685d5cc0b2d8740a6acea24b0a6c5f}} 
+bool {\bfseries is\+Fading\+In} () const
+\item 
+\mbox{\Hypertarget{structrev_1_1_animation_play_data_a3e506cae0512c79cb06e8b9f2a673981}\label{structrev_1_1_animation_play_data_a3e506cae0512c79cb06e8b9f2a673981}} 
+bool {\bfseries is\+Fading\+Out} () const
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_animation_play_data_ac8f7f030306298fd45b0b566d1e2b5c9}\label{structrev_1_1_animation_play_data_ac8f7f030306298fd45b0b566d1e2b5c9}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ {\bfseries m\+\_\+animation\+Handle}
+\item 
+\mbox{\Hypertarget{structrev_1_1_animation_play_data_a71181e424cd347fcb1806b2e81c32662}\label{structrev_1_1_animation_play_data_a71181e424cd347fcb1806b2e81c32662}} 
+\mbox{\hyperlink{structrev_1_1_animation_settings}{Animation\+Settings}} {\bfseries m\+\_\+settings}
+\item 
+\mbox{\Hypertarget{structrev_1_1_animation_play_data_a5be3d9ba1bf048db21ef2e736a1ca645}\label{structrev_1_1_animation_play_data_a5be3d9ba1bf048db21ef2e736a1ca645}} 
+Animation\+Playback\+Mode {\bfseries m\+\_\+playback\+Mode}
+\item 
+\mbox{\Hypertarget{structrev_1_1_animation_play_data_a716d9133b04ff1cb3317d45e32631e06}\label{structrev_1_1_animation_play_data_a716d9133b04ff1cb3317d45e32631e06}} 
+\mbox{\hyperlink{structrev_1_1_transition_play_data}{Transition\+Play\+Data}} {\bfseries m\+\_\+transition\+Data}
+\item 
+\mbox{\Hypertarget{structrev_1_1_animation_play_data_aeddbe4e442637fe29567cba04d385611}\label{structrev_1_1_animation_play_data_aeddbe4e442637fe29567cba04d385611}} 
+\mbox{\hyperlink{classrev_1_1_timer}{Timer}} \mbox{\hyperlink{structrev_1_1_animation_play_data_aeddbe4e442637fe29567cba04d385611}{m\+\_\+timer}}
+\begin{DoxyCompactList}\small\item\em Matches the timer of the motion that generated this play data. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_animation_play_data_a7cb6b309260394609126639957ac403b}\label{structrev_1_1_animation_play_data_a7cb6b309260394609126639957ac403b}} 
+\mbox{\hyperlink{classrev_1_1_timer}{Timer}} \mbox{\hyperlink{structrev_1_1_animation_play_data_a7cb6b309260394609126639957ac403b}{m\+\_\+transition\+Timer}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_transition}{Transition}} timer, used when animation is fading in or out. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_animation_play_data_aab374fcfb8e8071f7c897752ad71163a}\label{structrev_1_1_animation_play_data_aab374fcfb8e8071f7c897752ad71163a}} 
+uint32\+\_\+t \mbox{\hyperlink{structrev_1_1_animation_play_data_aab374fcfb8e8071f7c897752ad71163a}{m\+\_\+status\+Flags}} = 0
+\begin{DoxyCompactList}\small\item\em Status flag to determine whether or not a clip is transitioning and needs to be weighted accordingly. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Play data representing an animation that is to be blended. 
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/animation/G\+Animation.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/animation/G\+Animation.\+cpp\end{DoxyCompactItemize}

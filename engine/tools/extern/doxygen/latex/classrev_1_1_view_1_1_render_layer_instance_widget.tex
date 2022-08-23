@@ -1,0 +1,69 @@
+\hypertarget{classrev_1_1_view_1_1_render_layer_instance_widget}{}\section{rev\+::View\+::Render\+Layer\+Instance\+Widget Class Reference}
+\label{classrev_1_1_view_1_1_render_layer_instance_widget}\index{rev::View::RenderLayerInstanceWidget@{rev::View::RenderLayerInstanceWidget}}
+Inheritance diagram for rev\+::View\+::Render\+Layer\+Instance\+Widget\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.352941cm]{classrev_1_1_view_1_1_render_layer_instance_widget}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_instance_widget_a8474cff9bdf0768b03e8ad6ead882a65}\label{classrev_1_1_view_1_1_render_layer_instance_widget_a8474cff9bdf0768b03e8ad6ead882a65}} 
+{\bfseries Render\+Layer\+Instance\+Widget} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, \mbox{\hyperlink{structrev_1_1_sorting_layer}{Sorting\+Layer}} $\ast$sort\+Layer, std\+::vector$<$ uint32\+\_\+t $>$ \&render\+Layers, Q\+Widget $\ast$parent=0)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_instance_widget_a9a5f714471b5a5f634b7144536e772f9}\label{classrev_1_1_view_1_1_render_layer_instance_widget_a9a5f714471b5a5f634b7144536e772f9}} 
+{\bfseries $\sim$\+Render\+Layer\+Instance\+Widget} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_instance_widget_abce58d0d1c9fdaf0a4e0a95fb1e15ea6}\label{classrev_1_1_view_1_1_render_layer_instance_widget_abce58d0d1c9fdaf0a4e0a95fb1e15ea6}} 
+std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_sorting_layer}{Sorting\+Layer}} $\ast$ $>$ {\bfseries render\+Layers} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_instance_widget_ab3d57b75fdd3ab6a3db67dc7ae5a32e7}\label{classrev_1_1_view_1_1_render_layer_instance_widget_ab3d57b75fdd3ab6a3db67dc7ae5a32e7}} 
+bool {\bfseries add\+Render\+Layer} (\mbox{\hyperlink{structrev_1_1_sorting_layer}{Sorting\+Layer}} $\ast$layer)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_instance_widget_a0578403e177027e7c3880d0a536a2f99}\label{classrev_1_1_view_1_1_render_layer_instance_widget_a0578403e177027e7c3880d0a536a2f99}} 
+bool {\bfseries remove\+Render\+Layer} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&label)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_instance_widget_afabc7fa617f72e643e15114fdd8f01ce}\label{classrev_1_1_view_1_1_render_layer_instance_widget_afabc7fa617f72e643e15114fdd8f01ce}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_instance_widget_afabc7fa617f72e643e15114fdd8f01ce}{initialize\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to check\+Validity widgets. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_instance_widget_a6c1e237844ac16c08ec9a5fd0c578d73}\label{classrev_1_1_view_1_1_render_layer_instance_widget_a6c1e237844ac16c08ec9a5fd0c578d73}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_instance_widget_a6c1e237844ac16c08ec9a5fd0c578d73}{initialize\+Connections}} () override
+\begin{DoxyCompactList}\small\item\em Methods to check\+Validity connections for this widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_instance_widget_ab6437ff0f7a6c4f0efe2cf86e6ba8ba0}\label{classrev_1_1_view_1_1_render_layer_instance_widget_ab6437ff0f7a6c4f0efe2cf86e6ba8ba0}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_render_layer_instance_widget_ab6437ff0f7a6c4f0efe2cf86e6ba8ba0}{layout\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to ay out widgets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_instance_widget_a5c111738cc58e3649a27c8c44b585760}\label{classrev_1_1_view_1_1_render_layer_instance_widget_a5c111738cc58e3649a27c8c44b585760}} 
+\mbox{\hyperlink{structrev_1_1_sorting_layer}{Sorting\+Layer}} $\ast$ {\bfseries m\+\_\+sorting\+Layer}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_instance_widget_a38af2df6109e9f2e447a9e5231f4dc45}\label{classrev_1_1_view_1_1_render_layer_instance_widget_a38af2df6109e9f2e447a9e5231f4dc45}} 
+Q\+Check\+Box $\ast$ {\bfseries m\+\_\+check\+Box}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_instance_widget_a960b4b995e7b03b0dadf29ae8d66ecb3}\label{classrev_1_1_view_1_1_render_layer_instance_widget_a960b4b995e7b03b0dadf29ae8d66ecb3}} 
+std\+::vector$<$ uint32\+\_\+t $>$ \& {\bfseries m\+\_\+render\+Layers}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_render_layer_instance_widget_ada85eef2ccf0f12fefe62f37eb125cd0}\label{classrev_1_1_view_1_1_render_layer_instance_widget_ada85eef2ccf0f12fefe62f37eb125cd0}} 
+class {\bfseries Render\+Layer\+Select\+Widget}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/parameters/G\+Render\+Layer\+Widgets.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/parameters/G\+Render\+Layer\+Widgets.\+cpp\end{DoxyCompactItemize}

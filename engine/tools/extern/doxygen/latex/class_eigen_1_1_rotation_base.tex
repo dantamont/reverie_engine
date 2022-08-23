@@ -1,0 +1,200 @@
+\hypertarget{class_eigen_1_1_rotation_base}{}\section{Eigen\+::Rotation\+Base$<$ Derived, \+\_\+\+Dim $>$ Class Template Reference}
+\label{class_eigen_1_1_rotation_base}\index{Eigen::RotationBase$<$ Derived, \_Dim $>$@{Eigen::RotationBase$<$ Derived, \_Dim $>$}}
+
+
+Common base class for compact rotation representations.  
+
+
+
+
+{\ttfamily \#include $<$Rotation\+Base.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_rotation_base_aa26a9dc8430e5b982eed294a8e5fa7c0}\label{class_eigen_1_1_rotation_base_aa26a9dc8430e5b982eed294a8e5fa7c0}} 
+enum \{ {\bfseries Dim} = \+\_\+\+Dim
+ \}
+\item 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Derived $>$\+::\mbox{\hyperlink{class_eigen_1_1_rotation_base_af9b43eac462d7aa70b018efd49c13ef4}{Scalar}} \mbox{\hyperlink{class_eigen_1_1_rotation_base_af9b43eac462d7aa70b018efd49c13ef4}{Scalar}}
+\item 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_rotation_base_af9b43eac462d7aa70b018efd49c13ef4}{Scalar}}, Dim, Dim $>$ \mbox{\hyperlink{class_eigen_1_1_rotation_base_a83602509674c9d635551998460342951}{Rotation\+Matrix\+Type}}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_rotation_base_abb59e1e7143c7ee1f753299407dc3eda}\label{class_eigen_1_1_rotation_base_abb59e1e7143c7ee1f753299407dc3eda}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_rotation_base_af9b43eac462d7aa70b018efd49c13ef4}{Scalar}}, Dim, 1 $>$ {\bfseries Vector\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_rotation_base_a1cae30fa6779f33fb835c91d4c65f54d}\label{class_eigen_1_1_rotation_base_a1cae30fa6779f33fb835c91d4c65f54d}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const Derived \& {\bfseries derived} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_rotation_base_a32a9b98ea4ea05b04a5f5f4b138daef8}\label{class_eigen_1_1_rotation_base_a32a9b98ea4ea05b04a5f5f4b138daef8}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Derived \& {\bfseries derived} ()
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_rotation_base_a83602509674c9d635551998460342951}{Rotation\+Matrix\+Type}} \mbox{\hyperlink{class_eigen_1_1_rotation_base_aac726e89402a427c605514ce31b01e42}{to\+Rotation\+Matrix}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_rotation_base_a83602509674c9d635551998460342951}{Rotation\+Matrix\+Type}} \mbox{\hyperlink{class_eigen_1_1_rotation_base_a14ce23df5f0b2593a466f8130fe6bac9}{matrix}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Derived \mbox{\hyperlink{class_eigen_1_1_rotation_base_a2835ea92940986b4220cf47538a6bc41}{inverse}} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_rotation_base_af9b43eac462d7aa70b018efd49c13ef4}{Scalar}}, Dim, Isometry $>$ \mbox{\hyperlink{class_eigen_1_1_rotation_base_aebcd2286f9c520e9d83cdb9a7287820c}{operator $\ast$}} (const \mbox{\hyperlink{class_eigen_1_1_translation}{Translation}}$<$ \mbox{\hyperlink{class_eigen_1_1_rotation_base_af9b43eac462d7aa70b018efd49c13ef4}{Scalar}}, Dim $>$ \&t) const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_rotation_base_a83602509674c9d635551998460342951}{Rotation\+Matrix\+Type}} \mbox{\hyperlink{class_eigen_1_1_rotation_base_a6ada89422adc98d1dadbb1b2eea1a062}{operator $\ast$}} (const \mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Uniform\+Scaling}}$<$ \mbox{\hyperlink{class_eigen_1_1_rotation_base_af9b43eac462d7aa70b018efd49c13ef4}{Scalar}} $>$ \&s) const
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{struct_eigen_1_1internal_1_1rotation__base__generic__product__selector}{internal\+::rotation\+\_\+base\+\_\+generic\+\_\+product\+\_\+selector}}$<$ Derived, Other\+Derived, Other\+Derived\+::\+Is\+Vector\+At\+Compile\+Time $>$\+::Return\+Type \mbox{\hyperlink{class_eigen_1_1_rotation_base_a0b0ca4567df86abd5762e72f7c02ca9c}{operator $\ast$}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Other\+Derived $>$ \&e) const
+\item 
+{\footnotesize template$<$int Mode, int Options$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_rotation_base_af9b43eac462d7aa70b018efd49c13ef4}{Scalar}}, Dim, \mbox{\hyperlink{struct_mode}{Mode}} $>$ \mbox{\hyperlink{class_eigen_1_1_rotation_base_af7d001398ec8522f6cf3066a7e2d2d93}{operator $\ast$}} (const \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_rotation_base_af9b43eac462d7aa70b018efd49c13ef4}{Scalar}}, Dim, \mbox{\hyperlink{struct_mode}{Mode}}, Options $>$ \&t) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_rotation_base_a015ba3b47831570ec525f22b79253bbe}\label{class_eigen_1_1_rotation_base_a015ba3b47831570ec525f22b79253bbe}} 
+{\footnotesize template$<$typename Other\+Vector\+Type $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_matrix}{Vector\+Type}} {\bfseries \+\_\+transform\+Vector} (const Other\+Vector\+Type \&v) const
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_rotation_base_a83602509674c9d635551998460342951}{Rotation\+Matrix\+Type}} \mbox{\hyperlink{class_eigen_1_1_rotation_base_aa9a541f4a0b00b5463478c4973f7f112}{operator $\ast$}} (const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Other\+Derived $>$ \&l, const Derived \&r)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC friend \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_rotation_base_af9b43eac462d7aa70b018efd49c13ef4}{Scalar}}, Dim, Affine $>$ \mbox{\hyperlink{class_eigen_1_1_rotation_base_a82017b7513e822b9adb8161abd1a9bbe}{operator $\ast$}} (const \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Diagonal\+Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_rotation_base_af9b43eac462d7aa70b018efd49c13ef4}{Scalar}}, Dim $>$ \&l, const Derived \&r)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename Derived, int \+\_\+\+Dim$>$\newline
+class Eigen\+::\+Rotation\+Base$<$ Derived, \+\_\+\+Dim $>$}
+
+Common base class for compact rotation representations. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Derived} & is the derived type, i.\+e., a rotation type \\
+\hline
+{\em \+\_\+\+Dim} & the dimension of the space \\
+\hline
+\end{DoxyTemplParams}
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_rotation_base_a83602509674c9d635551998460342951}\label{class_eigen_1_1_rotation_base_a83602509674c9d635551998460342951}} 
+\index{Eigen::RotationBase$<$ Derived, \_Dim $>$@{Eigen::RotationBase$<$ Derived, \_Dim $>$}!RotationMatrixType@{RotationMatrixType}}
+\index{RotationMatrixType@{RotationMatrixType}!Eigen::RotationBase$<$ Derived, \_Dim $>$@{Eigen::RotationBase$<$ Derived, \_Dim $>$}}
+\subsubsection{\texorpdfstring{RotationMatrixType}{RotationMatrixType}}
+{\footnotesize\ttfamily template$<$typename Derived, int \+\_\+\+Dim$>$ \\
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$\mbox{\hyperlink{class_eigen_1_1_rotation_base_af9b43eac462d7aa70b018efd49c13ef4}{Scalar}},Dim,Dim$>$ \mbox{\hyperlink{class_eigen_1_1_rotation_base}{Eigen\+::\+Rotation\+Base}}$<$ Derived, \+\_\+\+Dim $>$\+::\mbox{\hyperlink{class_eigen_1_1_rotation_base_a83602509674c9d635551998460342951}{Rotation\+Matrix\+Type}}}
+
+corresponding linear transformation matrix type \mbox{\Hypertarget{class_eigen_1_1_rotation_base_af9b43eac462d7aa70b018efd49c13ef4}\label{class_eigen_1_1_rotation_base_af9b43eac462d7aa70b018efd49c13ef4}} 
+\index{Eigen::RotationBase$<$ Derived, \_Dim $>$@{Eigen::RotationBase$<$ Derived, \_Dim $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!Eigen::RotationBase$<$ Derived, \_Dim $>$@{Eigen::RotationBase$<$ Derived, \_Dim $>$}}
+\subsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$typename Derived, int \+\_\+\+Dim$>$ \\
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$Derived$>$\+::\mbox{\hyperlink{class_eigen_1_1_rotation_base_af9b43eac462d7aa70b018efd49c13ef4}{Scalar}} \mbox{\hyperlink{class_eigen_1_1_rotation_base}{Eigen\+::\+Rotation\+Base}}$<$ Derived, \+\_\+\+Dim $>$\+::\mbox{\hyperlink{class_eigen_1_1_rotation_base_af9b43eac462d7aa70b018efd49c13ef4}{Scalar}}}
+
+the scalar type of the coefficients 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_rotation_base_a2835ea92940986b4220cf47538a6bc41}\label{class_eigen_1_1_rotation_base_a2835ea92940986b4220cf47538a6bc41}} 
+\index{Eigen::RotationBase$<$ Derived, \_Dim $>$@{Eigen::RotationBase$<$ Derived, \_Dim $>$}!inverse@{inverse}}
+\index{inverse@{inverse}!Eigen::RotationBase$<$ Derived, \_Dim $>$@{Eigen::RotationBase$<$ Derived, \_Dim $>$}}
+\subsubsection{\texorpdfstring{inverse()}{inverse()}}
+{\footnotesize\ttfamily template$<$typename Derived, int \+\_\+\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Derived \mbox{\hyperlink{class_eigen_1_1_rotation_base}{Eigen\+::\+Rotation\+Base}}$<$ Derived, \+\_\+\+Dim $>$\+::inverse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the inverse rotation 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_rotation_base_a14ce23df5f0b2593a466f8130fe6bac9}\label{class_eigen_1_1_rotation_base_a14ce23df5f0b2593a466f8130fe6bac9}} 
+\index{Eigen::RotationBase$<$ Derived, \_Dim $>$@{Eigen::RotationBase$<$ Derived, \_Dim $>$}!matrix@{matrix}}
+\index{matrix@{matrix}!Eigen::RotationBase$<$ Derived, \_Dim $>$@{Eigen::RotationBase$<$ Derived, \_Dim $>$}}
+\subsubsection{\texorpdfstring{matrix()}{matrix()}}
+{\footnotesize\ttfamily template$<$typename Derived, int \+\_\+\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_rotation_base_a83602509674c9d635551998460342951}{Rotation\+Matrix\+Type}} \mbox{\hyperlink{class_eigen_1_1_rotation_base}{Eigen\+::\+Rotation\+Base}}$<$ Derived, \+\_\+\+Dim $>$\+::matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+an equivalent rotation matrix This function is added to be conform with the \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} class\textquotesingle{} naming scheme. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_rotation_base_aebcd2286f9c520e9d83cdb9a7287820c}\label{class_eigen_1_1_rotation_base_aebcd2286f9c520e9d83cdb9a7287820c}} 
+\index{Eigen::RotationBase$<$ Derived, \_Dim $>$@{Eigen::RotationBase$<$ Derived, \_Dim $>$}!operator $\ast$@{operator $\ast$}}
+\index{operator $\ast$@{operator $\ast$}!Eigen::RotationBase$<$ Derived, \_Dim $>$@{Eigen::RotationBase$<$ Derived, \_Dim $>$}}
+\subsubsection{\texorpdfstring{operator $\ast$()}{operator *()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$typename Derived, int \+\_\+\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$\mbox{\hyperlink{class_eigen_1_1_rotation_base_af9b43eac462d7aa70b018efd49c13ef4}{Scalar}},Dim,Isometry$>$ \mbox{\hyperlink{class_eigen_1_1_rotation_base}{Eigen\+::\+Rotation\+Base}}$<$ Derived, \+\_\+\+Dim $>$\+::operator $\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_translation}{Translation}}$<$ \mbox{\hyperlink{class_eigen_1_1_rotation_base_af9b43eac462d7aa70b018efd49c13ef4}{Scalar}}, Dim $>$ \&}]{t }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the concatenation of the rotation {\ttfamily $\ast$this} with a translation {\itshape t} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_rotation_base_a6ada89422adc98d1dadbb1b2eea1a062}\label{class_eigen_1_1_rotation_base_a6ada89422adc98d1dadbb1b2eea1a062}} 
+\index{Eigen::RotationBase$<$ Derived, \_Dim $>$@{Eigen::RotationBase$<$ Derived, \_Dim $>$}!operator $\ast$@{operator $\ast$}}
+\index{operator $\ast$@{operator $\ast$}!Eigen::RotationBase$<$ Derived, \_Dim $>$@{Eigen::RotationBase$<$ Derived, \_Dim $>$}}
+\subsubsection{\texorpdfstring{operator $\ast$()}{operator *()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$typename Derived, int \+\_\+\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_rotation_base_a83602509674c9d635551998460342951}{Rotation\+Matrix\+Type}} \mbox{\hyperlink{class_eigen_1_1_rotation_base}{Eigen\+::\+Rotation\+Base}}$<$ Derived, \+\_\+\+Dim $>$\+::operator $\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_uniform_scaling}{Uniform\+Scaling}}$<$ \mbox{\hyperlink{class_eigen_1_1_rotation_base_af9b43eac462d7aa70b018efd49c13ef4}{Scalar}} $>$ \&}]{s }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the concatenation of the rotation {\ttfamily $\ast$this} with a uniform scaling {\itshape s} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_rotation_base_a0b0ca4567df86abd5762e72f7c02ca9c}\label{class_eigen_1_1_rotation_base_a0b0ca4567df86abd5762e72f7c02ca9c}} 
+\index{Eigen::RotationBase$<$ Derived, \_Dim $>$@{Eigen::RotationBase$<$ Derived, \_Dim $>$}!operator $\ast$@{operator $\ast$}}
+\index{operator $\ast$@{operator $\ast$}!Eigen::RotationBase$<$ Derived, \_Dim $>$@{Eigen::RotationBase$<$ Derived, \_Dim $>$}}
+\subsubsection{\texorpdfstring{operator $\ast$()}{operator *()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$typename Derived, int \+\_\+\+Dim$>$ \\
+template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{struct_eigen_1_1internal_1_1rotation__base__generic__product__selector}{internal\+::rotation\+\_\+base\+\_\+generic\+\_\+product\+\_\+selector}}$<$Derived,Other\+Derived,Other\+Derived\+::\+Is\+Vector\+At\+Compile\+Time$>$\+::Return\+Type \mbox{\hyperlink{class_eigen_1_1_rotation_base}{Eigen\+::\+Rotation\+Base}}$<$ Derived, \+\_\+\+Dim $>$\+::operator $\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Other\+Derived $>$ \&}]{e }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the concatenation of the rotation {\ttfamily $\ast$this} with a generic expression {\itshape e} {\itshape e} can be\+:
+\begin{DoxyItemize}
+\item a Dimx\+Dim linear transformation matrix
+\item a Dimx\+Dim diagonal matrix (axis aligned scaling)
+\item a vector of size Dim 
+\end{DoxyItemize}
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_rotation_base_af7d001398ec8522f6cf3066a7e2d2d93}\label{class_eigen_1_1_rotation_base_af7d001398ec8522f6cf3066a7e2d2d93}} 
+\index{Eigen::RotationBase$<$ Derived, \_Dim $>$@{Eigen::RotationBase$<$ Derived, \_Dim $>$}!operator $\ast$@{operator $\ast$}}
+\index{operator $\ast$@{operator $\ast$}!Eigen::RotationBase$<$ Derived, \_Dim $>$@{Eigen::RotationBase$<$ Derived, \_Dim $>$}}
+\subsubsection{\texorpdfstring{operator $\ast$()}{operator *()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$typename Derived, int \+\_\+\+Dim$>$ \\
+template$<$int Mode, int Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$\mbox{\hyperlink{class_eigen_1_1_rotation_base_af9b43eac462d7aa70b018efd49c13ef4}{Scalar}},Dim,\mbox{\hyperlink{struct_mode}{Mode}}$>$ \mbox{\hyperlink{class_eigen_1_1_rotation_base}{Eigen\+::\+Rotation\+Base}}$<$ Derived, \+\_\+\+Dim $>$\+::operator $\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$ \mbox{\hyperlink{class_eigen_1_1_rotation_base_af9b43eac462d7aa70b018efd49c13ef4}{Scalar}}, Dim, \mbox{\hyperlink{struct_mode}{Mode}}, Options $>$ \&}]{t }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the concatenation of the rotation {\ttfamily $\ast$this} with a transformation {\itshape t} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_rotation_base_aac726e89402a427c605514ce31b01e42}\label{class_eigen_1_1_rotation_base_aac726e89402a427c605514ce31b01e42}} 
+\index{Eigen::RotationBase$<$ Derived, \_Dim $>$@{Eigen::RotationBase$<$ Derived, \_Dim $>$}!toRotationMatrix@{toRotationMatrix}}
+\index{toRotationMatrix@{toRotationMatrix}!Eigen::RotationBase$<$ Derived, \_Dim $>$@{Eigen::RotationBase$<$ Derived, \_Dim $>$}}
+\subsubsection{\texorpdfstring{toRotationMatrix()}{toRotationMatrix()}}
+{\footnotesize\ttfamily template$<$typename Derived, int \+\_\+\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_rotation_base_a83602509674c9d635551998460342951}{Rotation\+Matrix\+Type}} \mbox{\hyperlink{class_eigen_1_1_rotation_base}{Eigen\+::\+Rotation\+Base}}$<$ Derived, \+\_\+\+Dim $>$\+::to\+Rotation\+Matrix (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+an equivalent rotation matrix 
+\end{DoxyReturn}
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_rotation_base_aa9a541f4a0b00b5463478c4973f7f112}\label{class_eigen_1_1_rotation_base_aa9a541f4a0b00b5463478c4973f7f112}} 
+\index{Eigen::RotationBase$<$ Derived, \_Dim $>$@{Eigen::RotationBase$<$ Derived, \_Dim $>$}!operator $\ast$@{operator $\ast$}}
+\index{operator $\ast$@{operator $\ast$}!Eigen::RotationBase$<$ Derived, \_Dim $>$@{Eigen::RotationBase$<$ Derived, \_Dim $>$}}
+\subsubsection{\texorpdfstring{operator $\ast$}{operator *}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Derived, int \+\_\+\+Dim$>$ \\
+template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_rotation_base_a83602509674c9d635551998460342951}{Rotation\+Matrix\+Type}} operator $\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_eigen_1_1_eigen_base}{Eigen\+Base}}$<$ Other\+Derived $>$ \&}]{l,  }\item[{const Derived \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+\begin{DoxyReturn}{Returns}
+the concatenation of a linear transformation {\itshape l} with the rotation {\itshape r} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_rotation_base_a82017b7513e822b9adb8161abd1a9bbe}\label{class_eigen_1_1_rotation_base_a82017b7513e822b9adb8161abd1a9bbe}} 
+\index{Eigen::RotationBase$<$ Derived, \_Dim $>$@{Eigen::RotationBase$<$ Derived, \_Dim $>$}!operator $\ast$@{operator $\ast$}}
+\index{operator $\ast$@{operator $\ast$}!Eigen::RotationBase$<$ Derived, \_Dim $>$@{Eigen::RotationBase$<$ Derived, \_Dim $>$}}
+\subsubsection{\texorpdfstring{operator $\ast$}{operator *}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Derived, int \+\_\+\+Dim$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC friend \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}}$<$\mbox{\hyperlink{class_eigen_1_1_rotation_base_af9b43eac462d7aa70b018efd49c13ef4}{Scalar}},Dim,Affine$>$ operator $\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_diagonal_matrix}{Diagonal\+Matrix}}$<$ \mbox{\hyperlink{class_eigen_1_1_rotation_base_af9b43eac462d7aa70b018efd49c13ef4}{Scalar}}, Dim $>$ \&}]{l,  }\item[{const Derived \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+\begin{DoxyReturn}{Returns}
+the concatenation of a scaling {\itshape l} with the rotation {\itshape r} 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Core/util/Forward\+Declarations.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Geometry/Rotation\+Base.\+h\end{DoxyCompactItemize}

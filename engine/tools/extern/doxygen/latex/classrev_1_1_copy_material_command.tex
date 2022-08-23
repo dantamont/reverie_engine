@@ -1,0 +1,67 @@
+\hypertarget{classrev_1_1_copy_material_command}{}\section{rev\+::Copy\+Material\+Command Class Reference}
+\label{classrev_1_1_copy_material_command}\index{rev::CopyMaterialCommand@{rev::CopyMaterialCommand}}
+
+
+Copy a material.  
+
+
+
+
+{\ttfamily \#include $<$G\+Resource\+Widgets.\+h$>$}
+
+Inheritance diagram for rev\+::Copy\+Material\+Command\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_copy_material_command}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_copy_material_command_a3505b8301d06dae7a60bcd7249f8543d}\label{classrev_1_1_copy_material_command_a3505b8301d06dae7a60bcd7249f8543d}} 
+{\bfseries Copy\+Material\+Command} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, const Q\+String \&text, const \mbox{\hyperlink{classrev_1_1_material}{Material}} \&model, Q\+Undo\+Command $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_copy_material_command_a3508eda7e77be41b82f6a296ce34fac9}\label{classrev_1_1_copy_material_command_a3508eda7e77be41b82f6a296ce34fac9}} 
+{\bfseries $\sim$\+Copy\+Material\+Command} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_copy_material_command_ae6be5b88db300dde50d01348e1c01ddf}\label{classrev_1_1_copy_material_command_ae6be5b88db300dde50d01348e1c01ddf}} 
+virtual void \mbox{\hyperlink{classrev_1_1_copy_material_command_ae6be5b88db300dde50d01348e1c01ddf}{redo}} () override
+\begin{DoxyCompactList}\small\item\em Redoes the command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_copy_material_command_a2a5408a4b18ebdeee07dd839bb00a466}\label{classrev_1_1_copy_material_command_a2a5408a4b18ebdeee07dd839bb00a466}} 
+virtual void \mbox{\hyperlink{classrev_1_1_copy_material_command_a2a5408a4b18ebdeee07dd839bb00a466}{undo}} () override
+\begin{DoxyCompactList}\small\item\em Undoes the command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_copy_material_command_ad486462919f3e580e0f7d9861fe1f7c0}\label{classrev_1_1_copy_material_command_ad486462919f3e580e0f7d9861fe1f7c0}} 
+Q\+String {\bfseries get\+Unique\+Name} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_copy_material_command_a6b21fe9da34a515a3ba1d2a1b05b7ade}\label{classrev_1_1_copy_material_command_a6b21fe9da34a515a3ba1d2a1b05b7ade}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_copy_material_command_a6b21fe9da34a515a3ba1d2a1b05b7ade}{m\+\_\+material\+Json}}
+\begin{DoxyCompactList}\small\item\em The J\+S\+ON for the material copied by this command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_copy_material_command_a6ca18fa194a4b19b0c38d21afcb2c011}\label{classrev_1_1_copy_material_command_a6ca18fa194a4b19b0c38d21afcb2c011}} 
+\mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} {\bfseries m\+\_\+material\+Uuid}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Copy a material. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Resource\+Widgets.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Resource\+Widgets.\+cpp\end{DoxyCompactItemize}

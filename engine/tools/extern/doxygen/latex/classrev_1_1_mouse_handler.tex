@@ -1,0 +1,249 @@
+\hypertarget{classrev_1_1_mouse_handler}{}\section{rev\+::Mouse\+Handler Class Reference}
+\label{classrev_1_1_mouse_handler}\index{rev::MouseHandler@{rev::MouseHandler}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} that handles polling-\/style inputs.  
+
+
+
+
+{\ttfamily \#include $<$G\+Input\+Handler.\+h$>$}
+
+Inheritance diagram for rev\+::Mouse\+Handler\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_mouse_handler}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_aa8f91e6ac3079ed7eb4c7207e1ebee5e}\label{classrev_1_1_mouse_handler_aa8f91e6ac3079ed7eb4c7207e1ebee5e}} 
+{\bfseries Mouse\+Handler} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_adf371917397a3e079476751f067086c1}\label{classrev_1_1_mouse_handler_adf371917397a3e079476751f067086c1}} 
+{\bfseries Mouse\+Handler} (\mbox{\hyperlink{classrev_1_1_input_handler}{Input\+Handler}} $\ast$handler)
+\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_ae1e39c849cbd004362ea834bb22a28b2}\label{classrev_1_1_mouse_handler_ae1e39c849cbd004362ea834bb22a28b2}} 
+{\bfseries $\sim$\+Mouse\+Handler} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_a10dc4366919589a4fac6acad9ab8402c}\label{classrev_1_1_mouse_handler_a10dc4366919589a4fac6acad9ab8402c}} 
+bool \mbox{\hyperlink{classrev_1_1_mouse_handler_a10dc4366919589a4fac6acad9ab8402c}{was\+Pressed}} (const Qt\+::\+Mouse\+Button \&btn)
+\begin{DoxyCompactList}\small\item\em Whether mouse button was pressed or not. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_af118b806a286c3c9c7f671a55727d0e8}\label{classrev_1_1_mouse_handler_af118b806a286c3c9c7f671a55727d0e8}} 
+bool {\bfseries was\+Pressed} (const Q\+String \&btn\+Str)
+\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_a4cfa89ee4c803631fc397917d7ba1c3b}\label{classrev_1_1_mouse_handler_a4cfa89ee4c803631fc397917d7ba1c3b}} 
+bool {\bfseries was\+Released} (const Qt\+::\+Mouse\+Button \&btn)
+\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_a26bc263173ba3fb46ed0769384759b99}\label{classrev_1_1_mouse_handler_a26bc263173ba3fb46ed0769384759b99}} 
+bool {\bfseries was\+Released} (const Q\+String \&btn\+Str)
+\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_af37828fd8593fd667222afe58ec21452}\label{classrev_1_1_mouse_handler_af37828fd8593fd667222afe58ec21452}} 
+bool {\bfseries was\+Double\+Clicked} (const Qt\+::\+Mouse\+Button \&key)
+\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_a4fde21de5c35dddb5fe7354dd3288847}\label{classrev_1_1_mouse_handler_a4fde21de5c35dddb5fe7354dd3288847}} 
+bool {\bfseries was\+Double\+Clicked} (const Q\+String \&key)
+\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_ac73bb67d6d6dd1925cfd9b6631c173a7}\label{classrev_1_1_mouse_handler_ac73bb67d6d6dd1925cfd9b6631c173a7}} 
+bool \mbox{\hyperlink{classrev_1_1_mouse_handler_ac73bb67d6d6dd1925cfd9b6631c173a7}{is\+Held}} (const Qt\+::\+Mouse\+Button \&key)
+\begin{DoxyCompactList}\small\item\em Whether the given input is held or not. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_a8eaf630786974ac4c74132f894c350f6}\label{classrev_1_1_mouse_handler_a8eaf630786974ac4c74132f894c350f6}} 
+bool {\bfseries is\+Held} (const Q\+String \&key)
+\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_a8270ea8227098ea764fb7dd801a9d4ea}\label{classrev_1_1_mouse_handler_a8270ea8227098ea764fb7dd801a9d4ea}} 
+bool \mbox{\hyperlink{classrev_1_1_mouse_handler_a8270ea8227098ea764fb7dd801a9d4ea}{was\+Scrolled}} () const
+\begin{DoxyCompactList}\small\item\em Whether or not the mouse wheel was scrolled. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_a5c6b3ea1dc198421b983a37e0a39a824}\label{classrev_1_1_mouse_handler_a5c6b3ea1dc198421b983a37e0a39a824}} 
+bool \mbox{\hyperlink{classrev_1_1_mouse_handler_a5c6b3ea1dc198421b983a37e0a39a824}{was\+Moved}} () const
+\begin{DoxyCompactList}\small\item\em Whether the mouse was moved or not. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_acfe157947bcdd8403c440dfa9bea0673}\label{classrev_1_1_mouse_handler_acfe157947bcdd8403c440dfa9bea0673}} 
+const \mbox{\hyperlink{classrev_1_1_vector}{Vector2}} \& \mbox{\hyperlink{classrev_1_1_mouse_handler_acfe157947bcdd8403c440dfa9bea0673}{scroll\+Delta}} () const
+\begin{DoxyCompactList}\small\item\em Get the change in scroll amount since the last frame. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_a5817537e8b67b021e1dbcda01c39ec1c}\label{classrev_1_1_mouse_handler_a5817537e8b67b021e1dbcda01c39ec1c}} 
+const \mbox{\hyperlink{classrev_1_1_vector}{Vector2}} \& \mbox{\hyperlink{classrev_1_1_mouse_handler_a5817537e8b67b021e1dbcda01c39ec1c}{mouse\+Delta}} () const
+\begin{DoxyCompactList}\small\item\em Get the change in mouse position since the last frame. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_ad3113a63ac820d363b5e3be6e5e0ef3c}\label{classrev_1_1_mouse_handler_ad3113a63ac820d363b5e3be6e5e0ef3c}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector2}} \mbox{\hyperlink{classrev_1_1_mouse_handler_ad3113a63ac820d363b5e3be6e5e0ef3c}{normalize\+Mouse\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Get normalized mouse position in widget space. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_a372dfc626e91d903e401d7406c0d0b62}\label{classrev_1_1_mouse_handler_a372dfc626e91d903e401d7406c0d0b62}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector2}} \mbox{\hyperlink{classrev_1_1_mouse_handler_a372dfc626e91d903e401d7406c0d0b62}{widget\+Mouse\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Get mouse position in widget space. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_acefd9cc54b0bae8f1099db82c688144a}\label{classrev_1_1_mouse_handler_acefd9cc54b0bae8f1099db82c688144a}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector2}} \mbox{\hyperlink{classrev_1_1_mouse_handler_acefd9cc54b0bae8f1099db82c688144a}{global\+Mouse\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Get global mouse position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ rev\+::Object overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_mouse_handler_ace8eaee7d8e16bfe3636c7d85615c075}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_mouse_handler_ad140db2a92a48fa1b1f70f0823a5ea16}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Attributes}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classtsl_1_1robin__map}{tsl\+::robin\+\_\+map}}$<$ Q\+String, Qt\+::\+Mouse\+Button $>$ {\bfseries M\+O\+U\+S\+E\+\_\+\+B\+U\+T\+T\+O\+N\+\_\+\+M\+AP}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_a01b44d15055a192944f8f5ca7e81c837}\label{classrev_1_1_mouse_handler_a01b44d15055a192944f8f5ca7e81c837}} 
+void \mbox{\hyperlink{classrev_1_1_mouse_handler_a01b44d15055a192944f8f5ca7e81c837}{on\+Update}} (double delta\+Sec)
+\begin{DoxyCompactList}\small\item\em Start input collection for a new frame. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_a172b8c0c4af1b578cfc64592596fde19}\label{classrev_1_1_mouse_handler_a172b8c0c4af1b578cfc64592596fde19}} 
+void \mbox{\hyperlink{classrev_1_1_mouse_handler_a172b8c0c4af1b578cfc64592596fde19}{on\+Update\+Moved}} ()
+\begin{DoxyCompactList}\small\item\em Update mouse position using input listener thread. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_a7c595abe36b9bf2d023d482c7861f000}\label{classrev_1_1_mouse_handler_a7c595abe36b9bf2d023d482c7861f000}} 
+\mbox{\hyperlink{structrev_1_1_mouse_input}{Mouse\+Input}} \& \mbox{\hyperlink{classrev_1_1_mouse_handler_a7c595abe36b9bf2d023d482c7861f000}{get\+Input}} (const Qt\+::\+Mouse\+Button \&btn)
+\begin{DoxyCompactList}\small\item\em Get the input corresponding to the given mouse button, creating if it doesn\textquotesingle{}t exist. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_af13906a94ede53c5b0b033e6cf996117}\label{classrev_1_1_mouse_handler_af13906a94ede53c5b0b033e6cf996117}} 
+bool \mbox{\hyperlink{classrev_1_1_mouse_handler_af13906a94ede53c5b0b033e6cf996117}{was\+Input}} (const Qt\+::\+Mouse\+Button \&btn, const Mouse\+Input\+::\+Action\+Type \&action\+Type, const Mouse\+Input\+::\+Timing\+Type \&timing)
+\begin{DoxyCompactList}\small\item\em Determine if key was inputted since the last frame. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_a4fc7e53163e7de99846da5e6528d05bc}\label{classrev_1_1_mouse_handler_a4fc7e53163e7de99846da5e6528d05bc}} 
+void \mbox{\hyperlink{classrev_1_1_mouse_handler_a4fc7e53163e7de99846da5e6528d05bc}{handle\+Scroll\+Event}} (Q\+Wheel\+Event $\ast$event)
+\begin{DoxyCompactList}\small\item\em Handle a scroll event. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_a7e68c8e56e96977fd5ab256dc1620ad3}\label{classrev_1_1_mouse_handler_a7e68c8e56e96977fd5ab256dc1620ad3}} 
+void \mbox{\hyperlink{classrev_1_1_mouse_handler_a7e68c8e56e96977fd5ab256dc1620ad3}{handle\+Mouse\+Press\+Event}} (Q\+Mouse\+Event $\ast$event)
+\begin{DoxyCompactList}\small\item\em Handle a mouse press event. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_a41ddc744ebaa82da9fa7a8a307e58247}\label{classrev_1_1_mouse_handler_a41ddc744ebaa82da9fa7a8a307e58247}} 
+void \mbox{\hyperlink{classrev_1_1_mouse_handler_a41ddc744ebaa82da9fa7a8a307e58247}{handle\+Mouse\+Release\+Event}} (Q\+Mouse\+Event $\ast$event)
+\begin{DoxyCompactList}\small\item\em Handle a mouse release event. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_adbb1d05d5fd5846de300fdee9bf8af89}\label{classrev_1_1_mouse_handler_adbb1d05d5fd5846de300fdee9bf8af89}} 
+void \mbox{\hyperlink{classrev_1_1_mouse_handler_adbb1d05d5fd5846de300fdee9bf8af89}{handle\+Mouse\+Double\+Click\+Event}} (Q\+Mouse\+Event $\ast$event)
+\begin{DoxyCompactList}\small\item\em Handle a mouse release event. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_a8cfe0c658ec8a5b08c65d26611682eba}\label{classrev_1_1_mouse_handler_a8cfe0c658ec8a5b08c65d26611682eba}} 
+void \mbox{\hyperlink{classrev_1_1_mouse_handler_a8cfe0c658ec8a5b08c65d26611682eba}{handle\+Mouse\+Move\+Event}} (Q\+Mouse\+Event $\ast$event)
+\begin{DoxyCompactList}\small\item\em Handle a mouse release event. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_abd865b32c0347aeb83df18fa5c301d3d}\label{classrev_1_1_mouse_handler_abd865b32c0347aeb83df18fa5c301d3d}} 
+Qt\+::\+Mouse\+Button \mbox{\hyperlink{classrev_1_1_mouse_handler_abd865b32c0347aeb83df18fa5c301d3d}{to\+Mouse\+Button}} (const Q\+String \&str)
+\begin{DoxyCompactList}\small\item\em Convert string to mouse button. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_a86bd484ca2aae7e5c292f05dc3faa950}\label{classrev_1_1_mouse_handler_a86bd484ca2aae7e5c292f05dc3faa950}} 
+std\+::list$<$ \mbox{\hyperlink{structrev_1_1_mouse_input}{Mouse\+Input}} $>$ \mbox{\hyperlink{classrev_1_1_mouse_handler_a86bd484ca2aae7e5c292f05dc3faa950}{m\+\_\+polled\+Inputs}}
+\begin{DoxyCompactList}\small\item\em Input events since last frame. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_a5b3e364a736a932a6b9d5bd63b4ad6eb}\label{classrev_1_1_mouse_handler_a5b3e364a736a932a6b9d5bd63b4ad6eb}} 
+std\+::list$<$ \mbox{\hyperlink{structrev_1_1_mouse_input}{Mouse\+Input}} $>$ \mbox{\hyperlink{classrev_1_1_mouse_handler_a5b3e364a736a932a6b9d5bd63b4ad6eb}{m\+\_\+inputs\+Cache}}
+\begin{DoxyCompactList}\small\item\em Cache to temporarily store input events since last frame. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_abe99783ed98f390844a6cd9a276845ca}\label{classrev_1_1_mouse_handler_abe99783ed98f390844a6cd9a276845ca}} 
+\mbox{\hyperlink{classtsl_1_1robin__map}{tsl\+::robin\+\_\+map}}$<$ Qt\+::\+Mouse\+Button, \mbox{\hyperlink{structrev_1_1_mouse_input}{Mouse\+Input}} $>$ \mbox{\hyperlink{classrev_1_1_mouse_handler_abe99783ed98f390844a6cd9a276845ca}{m\+\_\+mouse\+Inputs}}
+\begin{DoxyCompactList}\small\item\em All new mouse inputs. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_a2bf8de367ea96e0c62ef05471ad80932}\label{classrev_1_1_mouse_handler_a2bf8de367ea96e0c62ef05471ad80932}} 
+\mbox{\hyperlink{structrev_1_1_mouse_input}{Mouse\+Input}} \mbox{\hyperlink{classrev_1_1_mouse_handler_a2bf8de367ea96e0c62ef05471ad80932}{m\+\_\+scroll\+Input}}
+\begin{DoxyCompactList}\small\item\em Most recent scroll input. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_a7606aa87b301f74a7a5d39222e9ac808}\label{classrev_1_1_mouse_handler_a7606aa87b301f74a7a5d39222e9ac808}} 
+bool \mbox{\hyperlink{classrev_1_1_mouse_handler_a7606aa87b301f74a7a5d39222e9ac808}{m\+\_\+moved}}
+\begin{DoxyCompactList}\small\item\em Whether the mouse was moved or not. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_a582b5913a42ebcd236c657040e4eab89}\label{classrev_1_1_mouse_handler_a582b5913a42ebcd236c657040e4eab89}} 
+bool {\bfseries m\+\_\+scrolled}
+\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_ae728de1e7e3c3cc2d065679fd21d050c}\label{classrev_1_1_mouse_handler_ae728de1e7e3c3cc2d065679fd21d050c}} 
+bool {\bfseries m\+\_\+scrolled\+Cache}
+\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_a2b8ed68132084cea6014c27862e0f298}\label{classrev_1_1_mouse_handler_a2b8ed68132084cea6014c27862e0f298}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector2}} \mbox{\hyperlink{classrev_1_1_mouse_handler_a2b8ed68132084cea6014c27862e0f298}{m\+\_\+prev\+Screen\+Position}}
+\begin{DoxyCompactList}\small\item\em Previous mouse position in N\+DC (-\/1, 1) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_af85141e1a733a1abfc345bf663b62e57}\label{classrev_1_1_mouse_handler_af85141e1a733a1abfc345bf663b62e57}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector2}} \mbox{\hyperlink{classrev_1_1_mouse_handler_af85141e1a733a1abfc345bf663b62e57}{m\+\_\+mouse\+Delta}}
+\begin{DoxyCompactList}\small\item\em Change in mouse position since last frame (in N\+CD) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_adaef770c1d0da19093df712a1337fc58}\label{classrev_1_1_mouse_handler_adaef770c1d0da19093df712a1337fc58}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector2}} \mbox{\hyperlink{classrev_1_1_mouse_handler_adaef770c1d0da19093df712a1337fc58}{m\+\_\+scroll\+Delta}}
+\begin{DoxyCompactList}\small\item\em Amount scrolled since the last frame. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classrev_1_1_input_handler}{Input\+Handler}} $\ast$ \mbox{\hyperlink{classrev_1_1_mouse_handler_a3ea7f25610b26d1234e1789d4c41c29b}{m\+\_\+input\+Handler}}
+\begin{DoxyCompactList}\small\item\em The mutex used to manage mouse input retrieval. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_a28c677eee06763681231ba62273b9fad}\label{classrev_1_1_mouse_handler_a28c677eee06763681231ba62273b9fad}} 
+class {\bfseries Input\+Handler}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} that handles polling-\/style inputs. 
+
+\begin{DoxyNote}{Note}
+See\+: \href{https://gamedev.stackexchange.com/questions/12146/polling-vs-event-driven-input}{\texttt{ https\+://gamedev.\+stackexchange.\+com/questions/12146/polling-\/vs-\/event-\/driven-\/input}} 
+\end{DoxyNote}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_ace8eaee7d8e16bfe3636c7d85615c075}\label{classrev_1_1_mouse_handler_ace8eaee7d8e16bfe3636c7d85615c075}} 
+\index{rev::MouseHandler@{rev::MouseHandler}!className@{className}}
+\index{className@{className}!rev::MouseHandler@{rev::MouseHandler}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Mouse\+Handler\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_ad140db2a92a48fa1b1f70f0823a5ea16}\label{classrev_1_1_mouse_handler_ad140db2a92a48fa1b1f70f0823a5ea16}} 
+\index{rev::MouseHandler@{rev::MouseHandler}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::MouseHandler@{rev::MouseHandler}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Mouse\+Handler\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_mouse_handler_a3ea7f25610b26d1234e1789d4c41c29b}\label{classrev_1_1_mouse_handler_a3ea7f25610b26d1234e1789d4c41c29b}} 
+\index{rev::MouseHandler@{rev::MouseHandler}!m\_inputHandler@{m\_inputHandler}}
+\index{m\_inputHandler@{m\_inputHandler}!rev::MouseHandler@{rev::MouseHandler}}
+\subsubsection{\texorpdfstring{m\_inputHandler}{m\_inputHandler}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_input_handler}{Input\+Handler}}$\ast$ rev\+::\+Mouse\+Handler\+::m\+\_\+input\+Handler\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The mutex used to manage mouse input retrieval. 
+
+Mouse position used for tracking thread Input handler \mbox{\Hypertarget{classrev_1_1_mouse_handler_a1fb8ce799a2b22e2ce58268a62d8ac5e}\label{classrev_1_1_mouse_handler_a1fb8ce799a2b22e2ce58268a62d8ac5e}} 
+\index{rev::MouseHandler@{rev::MouseHandler}!MOUSE\_BUTTON\_MAP@{MOUSE\_BUTTON\_MAP}}
+\index{MOUSE\_BUTTON\_MAP@{MOUSE\_BUTTON\_MAP}!rev::MouseHandler@{rev::MouseHandler}}
+\subsubsection{\texorpdfstring{MOUSE\_BUTTON\_MAP}{MOUSE\_BUTTON\_MAP}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classtsl_1_1robin__map}{tsl\+::robin\+\_\+map}}$<$ Q\+String, Qt\+::\+Mouse\+Button $>$ rev\+::\+Mouse\+Handler\+::\+M\+O\+U\+S\+E\+\_\+\+B\+U\+T\+T\+O\+N\+\_\+\+M\+AP\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"left"}, Qt::LeftButton\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"right"}, Qt::RightButton\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"middle"}, Qt::MiddleButton\}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/input/G\+Input\+Handler.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/input/G\+Input\+Handler.\+cpp\end{DoxyCompactItemize}

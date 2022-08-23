@@ -1,0 +1,118 @@
+\hypertarget{class_eigen_1_1_matrix_wrapper}{}\section{Eigen\+::Matrix\+Wrapper$<$ Expression\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_matrix_wrapper}\index{Eigen::MatrixWrapper$<$ ExpressionType $>$@{Eigen::MatrixWrapper$<$ ExpressionType $>$}}
+
+
+Expression of an array as a mathematical vector or matrix.  
+
+
+
+
+{\ttfamily \#include $<$Array\+Wrapper.\+h$>$}
+
+Inheritance diagram for Eigen\+::Matrix\+Wrapper$<$ Expression\+Type $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_eigen_1_1_matrix_wrapper}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_wrapper_a4965287f4ee5f6c87bb8e599ebb85a95}\label{class_eigen_1_1_matrix_wrapper_a4965287f4ee5f6c87bb8e599ebb85a95}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ \mbox{\hyperlink{class_eigen_1_1_matrix_wrapper}{Matrix\+Wrapper}}$<$ Expression\+Type $>$ $>$ {\bfseries Base}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_wrapper_a69014bfe285cf528056ad468a4171d32}\label{class_eigen_1_1_matrix_wrapper_a69014bfe285cf528056ad468a4171d32}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ Expression\+Type $>$\+::type {\bfseries Nested\+Expression}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_wrapper_ae67ffe9584e383b0966a05e5f6f4657e}\label{class_eigen_1_1_matrix_wrapper_ae67ffe9584e383b0966a05e5f6f4657e}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1conditional}{internal\+::conditional}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1is__lvalue}{internal\+::is\+\_\+lvalue}}$<$ Expression\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_dense_base_a8da735a6bfc7012606acf787156d10a0}{value}}, \mbox{\hyperlink{class_eigen_1_1_dense_base_a5feed465b3a8e60c47e73ecce83e39a2}{Scalar}}, const \mbox{\hyperlink{class_eigen_1_1_dense_base_a5feed465b3a8e60c47e73ecce83e39a2}{Scalar}} $>$\+::type {\bfseries Scalar\+With\+Const\+If\+Not\+Lvalue}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_wrapper_adde79f48c3c446ad7f05efc79f301986}\label{class_eigen_1_1_matrix_wrapper_adde79f48c3c446ad7f05efc79f301986}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1ref__selector}{internal\+::ref\+\_\+selector}}$<$ Expression\+Type $>$\+::non\+\_\+const\+\_\+type {\bfseries Nested\+Expression\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_wrapper_ab647b9aa20d886b512d6c8ca6b1e5b53}\label{class_eigen_1_1_matrix_wrapper_ab647b9aa20d886b512d6c8ca6b1e5b53}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC {\bfseries Matrix\+Wrapper} (Expression\+Type \&matrix)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_wrapper_aa198af8e5c7c22f1cac8d689b474c233}\label{class_eigen_1_1_matrix_wrapper_aa198af8e5c7c22f1cac8d689b474c233}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Index {\bfseries rows} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_wrapper_a7eed37f8586009e50cc2d0cefe70c638}\label{class_eigen_1_1_matrix_wrapper_a7eed37f8586009e50cc2d0cefe70c638}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Index {\bfseries cols} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_wrapper_a3c4979f2483d6da561b1b1cd5125c893}\label{class_eigen_1_1_matrix_wrapper_a3c4979f2483d6da561b1b1cd5125c893}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Index {\bfseries outer\+Stride} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_wrapper_a4c23fb08f9e0a90792be17693274c7fa}\label{class_eigen_1_1_matrix_wrapper_a4c23fb08f9e0a90792be17693274c7fa}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Index {\bfseries inner\+Stride} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_wrapper_a16deaf2493a5dbcc915104a05b90507a}\label{class_eigen_1_1_matrix_wrapper_a16deaf2493a5dbcc915104a05b90507a}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Scalar\+With\+Const\+If\+Not\+Lvalue}} $\ast$ {\bfseries data} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_wrapper_ae324e45c1764da7b9c9a1e4c074c9b77}\label{class_eigen_1_1_matrix_wrapper_ae324e45c1764da7b9c9a1e4c074c9b77}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_dense_base_a5feed465b3a8e60c47e73ecce83e39a2}{Scalar}} $\ast$ {\bfseries data} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_wrapper_ae82548a7eae48e54d156f0468a58cfaa}\label{class_eigen_1_1_matrix_wrapper_ae82548a7eae48e54d156f0468a58cfaa}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_dense_base_a5feed465b3a8e60c47e73ecce83e39a2}{Scalar}} \& {\bfseries coeff\+Ref} (Index row\+Id, Index col\+Id) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_wrapper_ab1ca2a4f4f6dc9561bd07ee36165b5cd}\label{class_eigen_1_1_matrix_wrapper_ab1ca2a4f4f6dc9561bd07ee36165b5cd}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{class_eigen_1_1_dense_base_a5feed465b3a8e60c47e73ecce83e39a2}{Scalar}} \& {\bfseries coeff\+Ref} (Index index) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_wrapper_a53bb7f6775efcbe290550ea3111a182f}\label{class_eigen_1_1_matrix_wrapper_a53bb7f6775efcbe290550ea3111a182f}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const \mbox{\hyperlink{struct_eigen_1_1internal_1_1remove__all}{internal\+::remove\+\_\+all}}$<$ \mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Nested\+Expression\+Type}} $>$\+::type \& {\bfseries nested\+Expression} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void \mbox{\hyperlink{class_eigen_1_1_matrix_wrapper_a0244fd1071715e2b0cd60e39c1e6e56a}{resize}} (Index new\+Size)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void \mbox{\hyperlink{class_eigen_1_1_matrix_wrapper_a6b0c3c352ad14c57294b022237b7489f}{resize}} (Index rows, Index cols)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_matrix_wrapper_acaedfe1135c26554407fee7b656b7482}\label{class_eigen_1_1_matrix_wrapper_acaedfe1135c26554407fee7b656b7482}} 
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1true__type}{Nested\+Expression\+Type}} {\bfseries m\+\_\+expression}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename Expression\+Type$>$\newline
+class Eigen\+::\+Matrix\+Wrapper$<$ Expression\+Type $>$}
+
+Expression of an array as a mathematical vector or matrix. 
+
+This class is the return type of \mbox{\hyperlink{class_eigen_1_1_array_base_ac513167ec762bbf639dc375d314d91d3}{Array\+Base\+::matrix()}}, and most of the time this is the only way it is use.
+
+\begin{DoxySeeAlso}{See also}
+Matrix\+Base\+::matrix(), class \mbox{\hyperlink{class_eigen_1_1_array_wrapper}{Array\+Wrapper}} 
+\end{DoxySeeAlso}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_matrix_wrapper_a0244fd1071715e2b0cd60e39c1e6e56a}\label{class_eigen_1_1_matrix_wrapper_a0244fd1071715e2b0cd60e39c1e6e56a}} 
+\index{Eigen::MatrixWrapper$<$ ExpressionType $>$@{Eigen::MatrixWrapper$<$ ExpressionType $>$}!resize@{resize}}
+\index{resize@{resize}!Eigen::MatrixWrapper$<$ ExpressionType $>$@{Eigen::MatrixWrapper$<$ ExpressionType $>$}}
+\subsubsection{\texorpdfstring{resize()}{resize()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void \mbox{\hyperlink{class_eigen_1_1_matrix_wrapper}{Eigen\+::\+Matrix\+Wrapper}}$<$ Expression\+Type $>$\+::resize (\begin{DoxyParamCaption}\item[{Index}]{new\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Forwards the resizing request to the nested expression \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_dense_base_a13027a493a68a13496610caf3d81bd3e}{Dense\+Base\+::resize(\+Index)}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_matrix_wrapper_a6b0c3c352ad14c57294b022237b7489f}\label{class_eigen_1_1_matrix_wrapper_a6b0c3c352ad14c57294b022237b7489f}} 
+\index{Eigen::MatrixWrapper$<$ ExpressionType $>$@{Eigen::MatrixWrapper$<$ ExpressionType $>$}!resize@{resize}}
+\index{resize@{resize}!Eigen::MatrixWrapper$<$ ExpressionType $>$@{Eigen::MatrixWrapper$<$ ExpressionType $>$}}
+\subsubsection{\texorpdfstring{resize()}{resize()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Expression\+Type $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC void \mbox{\hyperlink{class_eigen_1_1_matrix_wrapper}{Eigen\+::\+Matrix\+Wrapper}}$<$ Expression\+Type $>$\+::resize (\begin{DoxyParamCaption}\item[{Index}]{rows,  }\item[{Index}]{cols }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Forwards the resizing request to the nested expression \begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_dense_base_aef40c2ee48a85a799270c8258cc12b76}{Dense\+Base\+::resize(\+Index,\+Index)}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Core/Array\+Base.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Core/Array\+Wrapper.\+h\end{DoxyCompactItemize}

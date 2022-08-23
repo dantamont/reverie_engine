@@ -1,0 +1,99 @@
+\hypertarget{classrev_1_1_view_1_1_node_view_block}{}\section{rev\+::View\+::Node\+View\+Block Class Reference}
+\label{classrev_1_1_view_1_1_node_view_block}\index{rev::View::NodeViewBlock@{rev::View::NodeViewBlock}}
+Inheritance diagram for rev\+::View\+::Node\+View\+Block\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_view_1_1_node_view_block}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_block_ae9febdc371a8ba3b363dedec85a83fff}\label{classrev_1_1_view_1_1_node_view_block_ae9febdc371a8ba3b363dedec85a83fff}} 
+{\bfseries Node\+View\+Block} (Q\+Graphics\+Item $\ast$parent=N\+U\+LL)
+\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_block_a599f838ead32d6f8e94da605d2185617}\label{classrev_1_1_view_1_1_node_view_block_a599f838ead32d6f8e94da605d2185617}} 
+qint32 {\bfseries width} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_block_a94cd36d37459c3fa359e6a538d803629}\label{classrev_1_1_view_1_1_node_view_block_a94cd36d37459c3fa359e6a538d803629}} 
+qint32 {\bfseries height} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_block_a3ab684a79589b316dc4ab03a8b6a0476}\label{classrev_1_1_view_1_1_node_view_block_a3ab684a79589b316dc4ab03a8b6a0476}} 
+qint32 {\bfseries horizontal\+Margin} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_block_a081ba7cd620828a09b5e240a92fe9055}\label{classrev_1_1_view_1_1_node_view_block_a081ba7cd620828a09b5e240a92fe9055}} 
+qint32 {\bfseries vertical\+Margin} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_block_a0c3ee10abb23802a44eb260ed21d03fa}\label{classrev_1_1_view_1_1_node_view_block_a0c3ee10abb23802a44eb260ed21d03fa}} 
+bool \mbox{\hyperlink{classrev_1_1_view_1_1_node_view_block_a0c3ee10abb23802a44eb260ed21d03fa}{input\+Ports\+Hovered\+Over}} () const
+\begin{DoxyCompactList}\small\item\em Whether or not a hover rect is highlighted. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_block_a958132b91ab4fb9fe2f1780615b5aceb}\label{classrev_1_1_view_1_1_node_view_block_a958132b91ab4fb9fe2f1780615b5aceb}} 
+bool {\bfseries output\+Ports\+Hovered\+Over} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_block_a7a66cbd1d1cdf38449e5b95c552fbf54}\label{classrev_1_1_view_1_1_node_view_block_a7a66cbd1d1cdf38449e5b95c552fbf54}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_node_view_port}{Node\+View\+Port}} $\ast$ {\bfseries add\+Port} (const Q\+String \&name, bool is\+Output, qint32 flags=0, qint32 index=-\/1)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_block_a290344cbc89d46cd0152f74b21dff8fb}\label{classrev_1_1_view_1_1_node_view_block_a290344cbc89d46cd0152f74b21dff8fb}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_node_view_block}{Node\+View\+Block}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_node_view_block_a290344cbc89d46cd0152f74b21dff8fb}{clone}} ()
+\begin{DoxyCompactList}\small\item\em Create a copy of this block and add it to the scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_block_a076ddde3f5bd8659bd99fac60b407063}\label{classrev_1_1_view_1_1_node_view_block_a076ddde3f5bd8659bd99fac60b407063}} 
+Q\+Vector$<$ \mbox{\hyperlink{classrev_1_1_view_1_1_node_view_port}{Node\+View\+Port}} $\ast$ $>$ \mbox{\hyperlink{classrev_1_1_view_1_1_node_view_block_a076ddde3f5bd8659bd99fac60b407063}{ports}} ()
+\begin{DoxyCompactList}\small\item\em Return. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_block_a827734de9c5b462f7459f5f5f1fc9bf7}\label{classrev_1_1_view_1_1_node_view_block_a827734de9c5b462f7459f5f5f1fc9bf7}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_node_view_block_a827734de9c5b462f7459f5f5f1fc9bf7}{on\+Scene\+Mouse\+Move}} (Q\+Graphics\+Scene\+Mouse\+Event $\ast$event)
+\begin{DoxyCompactList}\small\item\em What to perform on mouse move at the scene level. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Q\+Graphics\+Item Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_block_a066876c7ecf6fa0717b50fe2d11c6f46}\label{classrev_1_1_view_1_1_node_view_block_a066876c7ecf6fa0717b50fe2d11c6f46}} 
+void {\bfseries paint} (Q\+Painter $\ast$painter, const Q\+Style\+Option\+Graphics\+Item $\ast$option, Q\+Widget $\ast$widget)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_block_a54a4eac54d1e78394eb6afa565f60cff}\label{classrev_1_1_view_1_1_node_view_block_a54a4eac54d1e78394eb6afa565f60cff}} 
+int {\bfseries type} () const override
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serialization}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_block_a773748834fffe74b45a7f9da4a9d7fbc}\label{classrev_1_1_view_1_1_node_view_block_a773748834fffe74b45a7f9da4a9d7fbc}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_node_view_block_a773748834fffe74b45a7f9da4a9d7fbc}{save}} (Q\+Data\+Stream \&stream)
+\begin{DoxyCompactList}\small\item\em Save the viewport to a data stream. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_block_a07c85af4819d781da78d8a32be28b104}\label{classrev_1_1_view_1_1_node_view_block_a07c85af4819d781da78d8a32be28b104}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_node_view_block_a07c85af4819d781da78d8a32be28b104}{load}} (Q\+Data\+Stream \&, Q\+Map$<$ quint64, \mbox{\hyperlink{classrev_1_1_view_1_1_node_view_port}{Node\+View\+Port}} $\ast$ $>$ \&port\+Map)
+\begin{DoxyCompactList}\small\item\em Load the viewport from a data stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_block_a6ee26fb7663eb4a01953381464fcaa40}\label{classrev_1_1_view_1_1_node_view_block_a6ee26fb7663eb4a01953381464fcaa40}} 
+virtual Q\+Variant \mbox{\hyperlink{classrev_1_1_view_1_1_node_view_block_a6ee26fb7663eb4a01953381464fcaa40}{item\+Change}} (Graphics\+Item\+Change change, const Q\+Variant \&value) override
+\begin{DoxyCompactList}\small\item\em What to do on item changes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_block_aa44bfcffcd1658717bbbfb5c10959631}\label{classrev_1_1_view_1_1_node_view_block_aa44bfcffcd1658717bbbfb5c10959631}} 
+virtual void {\bfseries hover\+Enter\+Event} (Q\+Graphics\+Scene\+Hover\+Event $\ast$event) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_block_a689ffdee319e944987c74d23c27359ba}\label{classrev_1_1_view_1_1_node_view_block_a689ffdee319e944987c74d23c27359ba}} 
+virtual void {\bfseries hover\+Leave\+Event} (Q\+Graphics\+Scene\+Hover\+Event $\ast$event) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_block_a1d77a4ca0ab6a9de5687a386444e189f}\label{classrev_1_1_view_1_1_node_view_block_a1d77a4ca0ab6a9de5687a386444e189f}} 
+virtual void {\bfseries hover\+Move\+Event} (Q\+Graphics\+Scene\+Hover\+Event $\ast$event) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_block_ae9a58a539b8af625984401a14ee485f8}\label{classrev_1_1_view_1_1_node_view_block_ae9a58a539b8af625984401a14ee485f8}} 
+void {\bfseries create\+Hover\+Rects} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_node_view_block_a6c3e9890cc0304403ca92f8027321322}\label{classrev_1_1_view_1_1_node_view_block_a6c3e9890cc0304403ca92f8027321322}} 
+void {\bfseries clear\+Hover\+Rects} ()
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/nodes/G\+Node\+View\+Block.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/nodes/G\+Node\+View\+Block.\+cpp\end{DoxyCompactItemize}

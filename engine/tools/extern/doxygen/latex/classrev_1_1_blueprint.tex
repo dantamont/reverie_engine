@@ -1,0 +1,73 @@
+\hypertarget{classrev_1_1_blueprint}{}\section{rev\+::Blueprint Class Reference}
+\label{classrev_1_1_blueprint}\index{rev::Blueprint@{rev::Blueprint}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} for managing cached scene object configurations.  
+
+
+
+
+{\ttfamily \#include $<$G\+Blueprint.\+h$>$}
+
+Inheritance diagram for rev\+::Blueprint\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_blueprint}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_blueprint_a498ff5db2ffa509ac2b0210386d5dfd1}\label{classrev_1_1_blueprint_a498ff5db2ffa509ac2b0210386d5dfd1}} 
+{\bfseries Blueprint} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_blueprint_aa4a382e3ac06cedfc5b2db1bef87563a}\label{classrev_1_1_blueprint_aa4a382e3ac06cedfc5b2db1bef87563a}} 
+{\bfseries Blueprint} (const \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} \&scene\+Object)
+\item 
+\mbox{\Hypertarget{classrev_1_1_blueprint_a39e4fb9bf186e87f4ece12fdc1855adb}\label{classrev_1_1_blueprint_a39e4fb9bf186e87f4ece12fdc1855adb}} 
+{\bfseries $\sim$\+Blueprint} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_blueprint_ac11f321e4ca9e4dac1d91569e4fac207}\label{classrev_1_1_blueprint_ac11f321e4ca9e4dac1d91569e4fac207}} 
+const Q\+Json\+Object \& {\bfseries scene\+Object\+Json} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Operators}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_blueprint_a51ed2381a9a13c7fed1aa5fb0592a739}\label{classrev_1_1_blueprint_a51ed2381a9a13c7fed1aa5fb0592a739}} 
+\mbox{\hyperlink{classrev_1_1_blueprint}{Blueprint}} \& {\bfseries operator=} (const \mbox{\hyperlink{classrev_1_1_blueprint}{Blueprint}} \&other)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_blueprint_a62129b53dac5c59806bee958c435eef0}\label{classrev_1_1_blueprint_a62129b53dac5c59806bee958c435eef0}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_blueprint_a62129b53dac5c59806bee958c435eef0}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_blueprint_a8e1d6de6a890e357c7ab63cd097d6754}\label{classrev_1_1_blueprint_a8e1d6de6a890e357c7ab63cd097d6754}} 
+virtual void \mbox{\hyperlink{classrev_1_1_blueprint_a8e1d6de6a890e357c7ab63cd097d6754}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_blueprint_a9f43cc1f2f5a707dd043747002d4b57a}\label{classrev_1_1_blueprint_a9f43cc1f2f5a707dd043747002d4b57a}} 
+Q\+Json\+Object \mbox{\hyperlink{classrev_1_1_blueprint_a9f43cc1f2f5a707dd043747002d4b57a}{m\+\_\+so\+Json}}
+\begin{DoxyCompactList}\small\item\em Json for the scene object prefab. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} for managing cached scene object configurations. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/scene/G\+Blueprint.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/scene/G\+Blueprint.\+cpp\end{DoxyCompactItemize}

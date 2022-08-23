@@ -1,0 +1,324 @@
+\hypertarget{classrev_1_1_polygon_cache}{}\section{rev\+::Polygon\+Cache Class Reference}
+\label{classrev_1_1_polygon_cache}\index{rev::PolygonCache@{rev::PolygonCache}}
+
+
+\mbox{\hyperlink{classrev_1_1_polygon_cache}{Polygon\+Cache}} class @detailed \mbox{\hyperlink{struct_class}{Class}} for handling the rendering of basic geometry.  
+
+
+
+
+{\ttfamily \#include $<$G\+Polygon.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_a151daa54b737ac6d97d1e03f165ffd9d}\label{classrev_1_1_polygon_cache_a151daa54b737ac6d97d1e03f165ffd9d}} 
+{\bfseries Polygon\+Cache} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$engine)
+\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_a40bb8a3efb51f884205fd7071bd43a27}\label{classrev_1_1_polygon_cache_a40bb8a3efb51f884205fd7071bd43a27}} 
+{\bfseries $\sim$\+Polygon\+Cache} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_ace78aaa36c6e0db24594f6b3f4e12c14}\label{classrev_1_1_polygon_cache_ace78aaa36c6e0db24594f6b3f4e12c14}} 
+void {\bfseries initialize\+Core\+Resources} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_a9149bcb610f9f15b282d9785e8ac833a}\label{classrev_1_1_polygon_cache_a9149bcb610f9f15b282d9785e8ac833a}} 
+\mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $\ast$ \mbox{\hyperlink{classrev_1_1_polygon_cache_a9149bcb610f9f15b282d9785e8ac833a}{get\+Polygon}} (const Q\+String \&polygon\+Name)
+\begin{DoxyCompactList}\small\item\em Retrieve or generate a polygon\+: \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_a12143cd624de6a5f148e9b294045b00b}\label{classrev_1_1_polygon_cache_a12143cd624de6a5f148e9b294045b00b}} 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $>$ \mbox{\hyperlink{classrev_1_1_polygon_cache_a12143cd624de6a5f148e9b294045b00b}{create\+Polygon}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&polygon\+Name, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ handle)
+\begin{DoxyCompactList}\small\item\em Retrieve a polygon and add to the given handle. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_aa8f0835ff7c99802592ab728facfc32a}\label{classrev_1_1_polygon_cache_aa8f0835ff7c99802592ab728facfc32a}} 
+\mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $\ast$ \mbox{\hyperlink{classrev_1_1_polygon_cache_aa8f0835ff7c99802592ab728facfc32a}{get\+Grid\+Plane}} (const Q\+String \&grid\+Name)
+\begin{DoxyCompactList}\small\item\em Retrieve grid with specified spacing. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_a6848021be54d804e6ade62516e5063f9}\label{classrev_1_1_polygon_cache_a6848021be54d804e6ade62516e5063f9}} 
+\mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $\ast$ {\bfseries get\+Grid\+Plane} (float spacing=1.\+0, int half\+Num\+Spaces=5)
+\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_ac4fc2987b054fdebe3a6aafd9bc0919e}\label{classrev_1_1_polygon_cache_ac4fc2987b054fdebe3a6aafd9bc0919e}} 
+\mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $\ast$ \mbox{\hyperlink{classrev_1_1_polygon_cache_ac4fc2987b054fdebe3a6aafd9bc0919e}{get\+Grid\+Cube}} (const Q\+String \&grid\+Name)
+\begin{DoxyCompactList}\small\item\em Retrieve grid cube with specified spacing. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_abeb823bc7d3b44dfb923e6e7a1a31f86}\label{classrev_1_1_polygon_cache_abeb823bc7d3b44dfb923e6e7a1a31f86}} 
+\mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $\ast$ {\bfseries get\+Grid\+Cube} (float spacing=1.\+0, int half\+Num\+Spaces=5)
+\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_a59bee527acef7b70341c75c7a9619c66}\label{classrev_1_1_polygon_cache_a59bee527acef7b70341c75c7a9619c66}} 
+\mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $\ast$ \mbox{\hyperlink{classrev_1_1_polygon_cache_a59bee527acef7b70341c75c7a9619c66}{get\+Cylinder}} (const Q\+String \&cylinder\+Name)
+\begin{DoxyCompactList}\small\item\em Retrieve or generate a cylinder. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_a014ee276b3e789c0e9f7ef36513c1954}\label{classrev_1_1_polygon_cache_a014ee276b3e789c0e9f7ef36513c1954}} 
+\mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $\ast$ {\bfseries get\+Cylinder} (float base\+Radius=1.\+0, float top\+Radius=1.\+0, float height=1.\+0, int sector\+Count=36, int stack\+Count=1)
+\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_a9b051e3a8b8ceef9e8b96235cc2a5aba}\label{classrev_1_1_polygon_cache_a9b051e3a8b8ceef9e8b96235cc2a5aba}} 
+\mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $\ast$ \mbox{\hyperlink{classrev_1_1_polygon_cache_a9b051e3a8b8ceef9e8b96235cc2a5aba}{get\+Capsule}} (const Q\+String \&capsule\+Name)
+\begin{DoxyCompactList}\small\item\em Retrieve or generate a capsule. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_aef290227d4a311d1771afffc38ad570e}\label{classrev_1_1_polygon_cache_aef290227d4a311d1771afffc38ad570e}} 
+\mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $\ast$ {\bfseries get\+Capsule} (float radius=1.\+0f, float half\+Height=1.\+0f)
+\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_a0ab4e8676450b6eb7c0f6270e667712e}\label{classrev_1_1_polygon_cache_a0ab4e8676450b6eb7c0f6270e667712e}} 
+\mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $\ast$ \mbox{\hyperlink{classrev_1_1_polygon_cache_a0ab4e8676450b6eb7c0f6270e667712e}{get\+Square}} ()
+\begin{DoxyCompactList}\small\item\em Retrieve or generate a rectangle. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $\ast$ \mbox{\hyperlink{classrev_1_1_polygon_cache_abe26e97c86b30322ecd6745cec726e4d}{get\+Cube}} ()
+\begin{DoxyCompactList}\small\item\em Retrieve or generate a cube. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_ab0f3acfe761f18662672d22cb5e33988}\label{classrev_1_1_polygon_cache_ab0f3acfe761f18662672d22cb5e33988}} 
+\mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $\ast$ \mbox{\hyperlink{classrev_1_1_polygon_cache_ab0f3acfe761f18662672d22cb5e33988}{get\+Sphere}} (const Q\+String \&sphere\+Name)
+\begin{DoxyCompactList}\small\item\em Retrieve or generate a sphere. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_a9712fe5eb77c7331cbc3493f3bc7c5dd}\label{classrev_1_1_polygon_cache_a9712fe5eb77c7331cbc3493f3bc7c5dd}} 
+\mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $\ast$ {\bfseries get\+Sphere} (int lat\+Size, int lon\+Size)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_aa698061f5bd07abd1a296f8e241f59df}\label{classrev_1_1_polygon_cache_aa698061f5bd07abd1a296f8e241f59df}} 
+\mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $\ast$ \mbox{\hyperlink{classrev_1_1_polygon_cache_aa698061f5bd07abd1a296f8e241f59df}{get\+Existing\+Polygon}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name) const
+\begin{DoxyCompactList}\small\item\em Return a polygon if it already exists in resource cache. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_a9a70e4edebae39d93c8072fb8c2480a7}\label{classrev_1_1_polygon_cache_a9a70e4edebae39d93c8072fb8c2480a7}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \mbox{\hyperlink{classrev_1_1_polygon_cache_a9a70e4edebae39d93c8072fb8c2480a7}{add\+To\+Cache}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name, std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $>$ mesh) const
+\begin{DoxyCompactList}\small\item\em Add mesh to the resource cache. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Protected Member Functions}
+\begin{Indent}\textbf{ Static Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_afd36fc6e3aa9ec1381755c247bec8228}\label{classrev_1_1_polygon_cache_afd36fc6e3aa9ec1381755c247bec8228}} 
+static Q\+String \mbox{\hyperlink{classrev_1_1_polygon_cache_afd36fc6e3aa9ec1381755c247bec8228}{get\+Grid\+Plane\+Name}} (float spacing, int half\+Num\+Spaces)
+\begin{DoxyCompactList}\small\item\em Generate a grid name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_af866689e9f93082394d380845a03aba7}\label{classrev_1_1_polygon_cache_af866689e9f93082394d380845a03aba7}} 
+static Q\+String {\bfseries get\+Grid\+Cube\+Name} (float spacing, int half\+Num\+Spaces)
+\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_a5fa50b5cec26ec818c4b90617c48aa64}\label{classrev_1_1_polygon_cache_a5fa50b5cec26ec818c4b90617c48aa64}} 
+static Q\+String \mbox{\hyperlink{classrev_1_1_polygon_cache_a5fa50b5cec26ec818c4b90617c48aa64}{get\+Cylinder\+Name}} (float base\+Radius, float top\+Radius, float height, int sector\+Count, int stack\+Count)
+\begin{DoxyCompactList}\small\item\em Generate a unique cylinder name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_a9aa533bcca9cc240523c934fe70eccab}\label{classrev_1_1_polygon_cache_a9aa533bcca9cc240523c934fe70eccab}} 
+static Q\+String \mbox{\hyperlink{classrev_1_1_polygon_cache_a9aa533bcca9cc240523c934fe70eccab}{get\+Capsule\+Name}} (float radius, float half\+Height)
+\begin{DoxyCompactList}\small\item\em Generate a unique cylinder name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_af042c49e58f5e123cfcb76f098be3534}\label{classrev_1_1_polygon_cache_af042c49e58f5e123cfcb76f098be3534}} 
+static Q\+String \mbox{\hyperlink{classrev_1_1_polygon_cache_af042c49e58f5e123cfcb76f098be3534}{get\+Sphere\+Name}} (int num\+Lat\+Lines=20, int num\+Lon\+Lines=30)
+\begin{DoxyCompactList}\small\item\em Generate a sphere name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_af9ddd727f3d05583aac4f5e4f3a22a97}\label{classrev_1_1_polygon_cache_af9ddd727f3d05583aac4f5e4f3a22a97}} 
+static std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $>$ \mbox{\hyperlink{classrev_1_1_polygon_cache_af9ddd727f3d05583aac4f5e4f3a22a97}{create\+Square}} ()
+\begin{DoxyCompactList}\small\item\em Generate a rectangle. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_a9a749994d3fb76f6585c43322db14198}\label{classrev_1_1_polygon_cache_a9a749994d3fb76f6585c43322db14198}} 
+static std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $>$ {\bfseries create\+Rectangle} (real\+\_\+g height=1.\+0f, real\+\_\+g width=1.\+0f, real\+\_\+g z=-\/0.\+5f)
+\item 
+static std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $>$ \mbox{\hyperlink{classrev_1_1_polygon_cache_aafe80ec3d7b68ae60fbcefae0ba71001}{create\+Cube}} ()
+\begin{DoxyCompactList}\small\item\em Generate a cube. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_a8cea9a29a2b0a9eee528cf2c60380066}\label{classrev_1_1_polygon_cache_a8cea9a29a2b0a9eee528cf2c60380066}} 
+static std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $>$ \mbox{\hyperlink{classrev_1_1_polygon_cache_a8cea9a29a2b0a9eee528cf2c60380066}{create\+Grid\+Plane}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name)
+\begin{DoxyCompactList}\small\item\em Generate a verticle grid with the given spacing, at z=0. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_aa53f194bb333d7432c075184f5f8379a}\label{classrev_1_1_polygon_cache_aa53f194bb333d7432c075184f5f8379a}} 
+static std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $>$ {\bfseries create\+Grid\+Plane} (float spacing, int num\+Spaces)
+\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_a25deb4bc3a6bf3c45f02a7df65b82fd8}\label{classrev_1_1_polygon_cache_a25deb4bc3a6bf3c45f02a7df65b82fd8}} 
+static std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $>$ \mbox{\hyperlink{classrev_1_1_polygon_cache_a25deb4bc3a6bf3c45f02a7df65b82fd8}{create\+Grid\+Cube}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name)
+\begin{DoxyCompactList}\small\item\em Generate a verticle grid cube with the given spacing, at z=0. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_a641c532711d27b9b3e9f591a9dac5a5e}\label{classrev_1_1_polygon_cache_a641c532711d27b9b3e9f591a9dac5a5e}} 
+static std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $>$ {\bfseries create\+Grid\+Cube} (float spacing, int num\+Spaces)
+\item 
+static std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $>$ \mbox{\hyperlink{classrev_1_1_polygon_cache_a3fe01a9dbddcbca577c7c4eecb378e7c}{create\+Unit\+Sphere}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name)
+\begin{DoxyCompactList}\small\item\em Generate a sphere (of radius 1.\+0) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_a1e419c0550d408dc5f7c5de1d274d7c4}\label{classrev_1_1_polygon_cache_a1e419c0550d408dc5f7c5de1d274d7c4}} 
+static std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $>$ {\bfseries create\+Unit\+Sphere} (int num\+Lat\+Lines=30, int num\+Lon\+Lines=30)
+\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_a1716128c7859df644a08f01d8774e14d}\label{classrev_1_1_polygon_cache_a1716128c7859df644a08f01d8774e14d}} 
+static std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $>$ \mbox{\hyperlink{classrev_1_1_polygon_cache_a1716128c7859df644a08f01d8774e14d}{create\+Cylinder}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name)
+\begin{DoxyCompactList}\small\item\em Generate the vertices for a cylinder. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_ad3affb5933a7493a7d4d75b5a4fe2503}\label{classrev_1_1_polygon_cache_ad3affb5933a7493a7d4d75b5a4fe2503}} 
+static std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $>$ {\bfseries create\+Cylinder} (float base\+Radius, float top\+Radius, float height, int sector\+Count, int stack\+Count)
+\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_a9b47c22a27fef85ac926c71208d18192}\label{classrev_1_1_polygon_cache_a9b47c22a27fef85ac926c71208d18192}} 
+static std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $>$ \mbox{\hyperlink{classrev_1_1_polygon_cache_a9b47c22a27fef85ac926c71208d18192}{create\+Capsule}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name)
+\begin{DoxyCompactList}\small\item\em Generate the vertices for a capsule. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_a8ab80545142b5859b9042e5b79547a9a}\label{classrev_1_1_polygon_cache_a8ab80545142b5859b9042e5b79547a9a}} 
+static std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $>$ {\bfseries create\+Capsule} (float radius, float half\+Height)
+\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_adc7f6e93951085a456929bee5b4db91d}\label{classrev_1_1_polygon_cache_adc7f6e93951085a456929bee5b4db91d}} 
+static void \mbox{\hyperlink{classrev_1_1_polygon_cache_adc7f6e93951085a456929bee5b4db91d}{add\+Triangle}} (std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} $>$ \&vertices, std\+::vector$<$ G\+Luint $>$ \&indices, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&v0, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&v1, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&v2, bool clock\+Wise=false)
+\begin{DoxyCompactList}\small\item\em Add a triangle using the given vertex data. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_add04a045e14b278602bacd266950ce92}\label{classrev_1_1_polygon_cache_add04a045e14b278602bacd266950ce92}} 
+static void \mbox{\hyperlink{classrev_1_1_polygon_cache_add04a045e14b278602bacd266950ce92}{add\+Quad}} (std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} $>$ \&vertices, std\+::vector$<$ G\+Luint $>$ \&indices, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&v0, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&v1, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&v2, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&v3)
+\begin{DoxyCompactList}\small\item\em Add a quad using the given vertex data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_aaa2d93d949e161381ebf6f37e90628b2}\label{classrev_1_1_polygon_cache_aaa2d93d949e161381ebf6f37e90628b2}} 
+\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$ \mbox{\hyperlink{classrev_1_1_polygon_cache_aaa2d93d949e161381ebf6f37e90628b2}{m\+\_\+engine}}
+\begin{DoxyCompactList}\small\item\em Pointer to the core engine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_aa81a2e787af81f4fb4b7322fce0b27be}\label{classrev_1_1_polygon_cache_aa81a2e787af81f4fb4b7322fce0b27be}} 
+class {\bfseries Debug\+Manager}
+\end{DoxyCompactItemize}
+\subsection*{Static members}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_a08f12f93c70a2b00886877090312d106}\label{classrev_1_1_polygon_cache_a08f12f93c70a2b00886877090312d106}} 
+enum \mbox{\hyperlink{classrev_1_1_polygon_cache_a08f12f93c70a2b00886877090312d106}{Polygon\+Type}} \{ \newline
+{\bfseries k\+Invalid} = -\/1, 
+{\bfseries k\+Rectangle} =0, 
+{\bfseries k\+Cube}, 
+{\bfseries k\+Lat\+Lon\+Sphere}, 
+\newline
+{\bfseries k\+Grid\+Plane}, 
+{\bfseries k\+Grid\+Cube}, 
+{\bfseries k\+Cylinder}, 
+{\bfseries k\+Capsule}, 
+\newline
+{\bfseries M\+A\+X\+\_\+\+P\+O\+L\+Y\+G\+O\+N\+\_\+\+T\+Y\+PE}
+ \}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_enum}{Enum}} of polygon types. \end{DoxyCompactList}\item 
+static std\+::array$<$ \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}}, M\+A\+X\+\_\+\+P\+O\+L\+Y\+G\+O\+N\+\_\+\+T\+Y\+PE $>$ \mbox{\hyperlink{classrev_1_1_polygon_cache_a2891b8387ccc7a99bd9bf0e5c079d6cc}{s\+\_\+polygon\+Names}}
+\begin{DoxyCompactList}\small\item\em Q\+Strings used to name shape meshes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_abaffcb347a79d3efa1f0ce0cacbe9f75}\label{classrev_1_1_polygon_cache_abaffcb347a79d3efa1f0ce0cacbe9f75}} 
+static std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_vector}{Vector3f}} $>$ \mbox{\hyperlink{classrev_1_1_polygon_cache_abaffcb347a79d3efa1f0ce0cacbe9f75}{s\+\_\+cube\+Vertex\+Positions}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_vector}{Vector}} of cube vertex positions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_ac44e389dd8d3a4db92f02ab8444307fa}\label{classrev_1_1_polygon_cache_ac44e389dd8d3a4db92f02ab8444307fa}} 
+static std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_vector}{Vector3f}} $>$ \mbox{\hyperlink{classrev_1_1_polygon_cache_ac44e389dd8d3a4db92f02ab8444307fa}{s\+\_\+cube\+Normals}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_vector}{Vector}} of cube normalss. \end{DoxyCompactList}\item 
+static std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_vector}{Vector2f}} $>$ \mbox{\hyperlink{classrev_1_1_polygon_cache_af0abd3db7b87cf401996e4bdd6601cb3}{s\+\_\+cube\+Vertex\+Uvs\+Identical}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_vector}{Vector}} of cube vertex UV Coordinates with identical U\+Vs on each face. \end{DoxyCompactList}\item 
+static std\+::vector$<$ G\+Luint $>$ \mbox{\hyperlink{classrev_1_1_polygon_cache_a08172cb0065024482d30c724e071292c}{s\+\_\+cube\+Indices}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_vector}{Vector}} of cube vertex indices. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_a03a078e68c5493236d02c8fddef517a1}\label{classrev_1_1_polygon_cache_a03a078e68c5493236d02c8fddef517a1}} 
+static bool \mbox{\hyperlink{classrev_1_1_polygon_cache_a03a078e68c5493236d02c8fddef517a1}{is\+Polygon\+Name}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name)
+\begin{DoxyCompactList}\small\item\em Return true if the given string matches the name of a polygon type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_aeb34f3488bb4a94da21aef3ff6e202ca}\label{classrev_1_1_polygon_cache_aeb34f3488bb4a94da21aef3ff6e202ca}} 
+static \mbox{\hyperlink{classrev_1_1_polygon_cache_a08f12f93c70a2b00886877090312d106}{Polygon\+Type}} \mbox{\hyperlink{classrev_1_1_polygon_cache_aeb34f3488bb4a94da21aef3ff6e202ca}{type\+From\+Name}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name)
+\begin{DoxyCompactList}\small\item\em Return the type of polygon corresponding to the given name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{classrev_1_1_polygon_cache}{Polygon\+Cache}} class @detailed \mbox{\hyperlink{struct_class}{Class}} for handling the rendering of basic geometry. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_aafe80ec3d7b68ae60fbcefae0ba71001}\label{classrev_1_1_polygon_cache_aafe80ec3d7b68ae60fbcefae0ba71001}} 
+\index{rev::PolygonCache@{rev::PolygonCache}!createCube@{createCube}}
+\index{createCube@{createCube}!rev::PolygonCache@{rev::PolygonCache}}
+\subsubsection{\texorpdfstring{createCube()}{createCube()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $>$ rev\+::\+Polygon\+Cache\+::create\+Cube (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+Generate a cube. 
+
+This cube has the same UV coordinates on every side \mbox{\Hypertarget{classrev_1_1_polygon_cache_a3fe01a9dbddcbca577c7c4eecb378e7c}\label{classrev_1_1_polygon_cache_a3fe01a9dbddcbca577c7c4eecb378e7c}} 
+\index{rev::PolygonCache@{rev::PolygonCache}!createUnitSphere@{createUnitSphere}}
+\index{createUnitSphere@{createUnitSphere}!rev::PolygonCache@{rev::PolygonCache}}
+\subsubsection{\texorpdfstring{createUnitSphere()}{createUnitSphere()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $>$ rev\+::\+Polygon\+Cache\+::create\+Unit\+Sphere (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+Generate a sphere (of radius 1.\+0) 
+
+This cube has the same UV coordinates on every side \mbox{\Hypertarget{classrev_1_1_polygon_cache_abe26e97c86b30322ecd6745cec726e4d}\label{classrev_1_1_polygon_cache_abe26e97c86b30322ecd6745cec726e4d}} 
+\index{rev::PolygonCache@{rev::PolygonCache}!getCube@{getCube}}
+\index{getCube@{getCube}!rev::PolygonCache@{rev::PolygonCache}}
+\subsubsection{\texorpdfstring{getCube()}{getCube()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} $\ast$ rev\+::\+Polygon\+Cache\+::get\+Cube (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retrieve or generate a cube. 
+
+This cube has the same UV coordinates on every side 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_a08172cb0065024482d30c724e071292c}\label{classrev_1_1_polygon_cache_a08172cb0065024482d30c724e071292c}} 
+\index{rev::PolygonCache@{rev::PolygonCache}!s\_cubeIndices@{s\_cubeIndices}}
+\index{s\_cubeIndices@{s\_cubeIndices}!rev::PolygonCache@{rev::PolygonCache}}
+\subsubsection{\texorpdfstring{s\_cubeIndices}{s\_cubeIndices}}
+{\footnotesize\ttfamily std\+::vector$<$ G\+Luint $>$ rev\+::\+Polygon\+Cache\+::s\+\_\+cube\+Indices\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    0,  1,  2,      0,  2,  3,    }
+\DoxyCodeLine{    4,  5,  6,      4,  6,  7,    }
+\DoxyCodeLine{    8,  9,  10,     8,  10, 11,   }
+\DoxyCodeLine{    12, 13, 14,     12, 14, 15,   }
+\DoxyCodeLine{    16, 17, 18,     16, 18, 19,   }
+\DoxyCodeLine{    20, 21, 22,     20, 22, 23,   }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\mbox{\hyperlink{classrev_1_1_vector}{Vector}} of cube vertex indices. 
+
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_af0abd3db7b87cf401996e4bdd6601cb3}\label{classrev_1_1_polygon_cache_af0abd3db7b87cf401996e4bdd6601cb3}} 
+\index{rev::PolygonCache@{rev::PolygonCache}!s\_cubeVertexUvsIdentical@{s\_cubeVertexUvsIdentical}}
+\index{s\_cubeVertexUvsIdentical@{s\_cubeVertexUvsIdentical}!rev::PolygonCache@{rev::PolygonCache}}
+\subsubsection{\texorpdfstring{s\_cubeVertexUvsIdentical}{s\_cubeVertexUvsIdentical}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_vector}{Vector2f}} $>$ rev\+::\+Polygon\+Cache\+::s\+\_\+cube\+Vertex\+Uvs\+Identical\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{            Vector2f(0.0f, 1.0f), }
+\DoxyCodeLine{            Vector2f(0.0f, 0.0f),}
+\DoxyCodeLine{            Vector2f(1.0f, 0.0f),}
+\DoxyCodeLine{            Vector2f(1.0f, 1.0f),}
+\DoxyCodeLine{            Vector2f(0.0f, 1.0f),}
+\DoxyCodeLine{            Vector2f(0.0f, 0.0f),}
+\DoxyCodeLine{            Vector2f(1.0f, 0.0f),}
+\DoxyCodeLine{            Vector2f(1.0f, 1.0f),}
+\DoxyCodeLine{            Vector2f(0.0f, 1.0f),}
+\DoxyCodeLine{            Vector2f(0.0f, 0.0f),}
+\DoxyCodeLine{            Vector2f(1.0f, 0.0f),}
+\DoxyCodeLine{            Vector2f(1.0f, 1.0f),}
+\DoxyCodeLine{            Vector2f(0.0f, 1.0f),}
+\DoxyCodeLine{            Vector2f(0.0f, 0.0f),}
+\DoxyCodeLine{            Vector2f(1.0f, 0.0f),}
+\DoxyCodeLine{            Vector2f(1.0f, 1.0f),}
+\DoxyCodeLine{            Vector2f(0.0f, 1.0f),}
+\DoxyCodeLine{            Vector2f(0.0f, 0.0f),}
+\DoxyCodeLine{            Vector2f(1.0f, 0.0f),}
+\DoxyCodeLine{            Vector2f(1.0f, 1.0f),}
+\DoxyCodeLine{            Vector2f(0.0f, 1.0f),}
+\DoxyCodeLine{            Vector2f(0.0f, 0.0f),}
+\DoxyCodeLine{            Vector2f(1.0f, 0.0f),}
+\DoxyCodeLine{            Vector2f(1.0f, 1.0f)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\mbox{\hyperlink{classrev_1_1_vector}{Vector}} of cube vertex UV Coordinates with identical U\+Vs on each face. 
+
+\mbox{\Hypertarget{classrev_1_1_polygon_cache_a2891b8387ccc7a99bd9bf0e5c079d6cc}\label{classrev_1_1_polygon_cache_a2891b8387ccc7a99bd9bf0e5c079d6cc}} 
+\index{rev::PolygonCache@{rev::PolygonCache}!s\_polygonNames@{s\_polygonNames}}
+\index{s\_polygonNames@{s\_polygonNames}!rev::PolygonCache@{rev::PolygonCache}}
+\subsubsection{\texorpdfstring{s\_polygonNames}{s\_polygonNames}}
+{\footnotesize\ttfamily std\+::array$<$ \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}}, Polygon\+Cache\+::\+Polygon\+Type\+::\+M\+A\+X\+\_\+\+P\+O\+L\+Y\+G\+O\+N\+\_\+\+T\+Y\+PE $>$ rev\+::\+Polygon\+Cache\+::s\+\_\+polygon\+Names\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \{}
+\DoxyCodeLine{    \textcolor{stringliteral}{"rectangle"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"cube"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"latlonsphere"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"gridplane"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"gridcube"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"cylinder"},}
+\DoxyCodeLine{    \textcolor{stringliteral}{"capsule"}}
+\DoxyCodeLine{\} \}}
+
+\end{DoxyCode}
+
+
+Q\+Strings used to name shape meshes. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/geometry/G\+Polygon.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/geometry/G\+Polygon.\+cpp\end{DoxyCompactItemize}

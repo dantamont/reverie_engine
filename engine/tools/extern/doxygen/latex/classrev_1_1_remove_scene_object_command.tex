@@ -1,0 +1,56 @@
+\hypertarget{classrev_1_1_remove_scene_object_command}{}\section{rev\+::Remove\+Scene\+Object\+Command Class Reference}
+\label{classrev_1_1_remove_scene_object_command}\index{rev::RemoveSceneObjectCommand@{rev::RemoveSceneObjectCommand}}
+Inheritance diagram for rev\+::Remove\+Scene\+Object\+Command\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.425076cm]{classrev_1_1_remove_scene_object_command}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_remove_scene_object_command_a4c35495833ada9a9583fe79f98d286c0}\label{classrev_1_1_remove_scene_object_command_a4c35495833ada9a9583fe79f98d286c0}} 
+{\bfseries Remove\+Scene\+Object\+Command} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$scene\+Object, const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&text)
+\item 
+\mbox{\Hypertarget{classrev_1_1_remove_scene_object_command_aa36ba6aecda96914bed0caf4bdf1827e}\label{classrev_1_1_remove_scene_object_command_aa36ba6aecda96914bed0caf4bdf1827e}} 
+{\bfseries Remove\+Scene\+Object\+Command} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$scene\+Object)
+\item 
+\mbox{\Hypertarget{classrev_1_1_remove_scene_object_command_ac35ab23d5679435a8f89574960d65589}\label{classrev_1_1_remove_scene_object_command_ac35ab23d5679435a8f89574960d65589}} 
+{\bfseries $\sim$\+Remove\+Scene\+Object\+Command} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_remove_scene_object_command_ac62537aa198c51e1cef5771049604f00}\label{classrev_1_1_remove_scene_object_command_ac62537aa198c51e1cef5771049604f00}} 
+void \mbox{\hyperlink{classrev_1_1_remove_scene_object_command_ac62537aa198c51e1cef5771049604f00}{redo}} () override
+\begin{DoxyCompactList}\small\item\em Redoes the remove scenario command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_remove_scene_object_command_a61a1d407e574ea8b697d9dae9835763c}\label{classrev_1_1_remove_scene_object_command_a61a1d407e574ea8b697d9dae9835763c}} 
+void \mbox{\hyperlink{classrev_1_1_remove_scene_object_command_a61a1d407e574ea8b697d9dae9835763c}{undo}} () override
+\begin{DoxyCompactList}\small\item\em Undoes the remove scenario command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_remove_scene_object_command_a38734313183c06f9e48e06109dd99329}\label{classrev_1_1_remove_scene_object_command_a38734313183c06f9e48e06109dd99329}} 
+\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$ \mbox{\hyperlink{classrev_1_1_remove_scene_object_command_a38734313183c06f9e48e06109dd99329}{m\+\_\+scene\+Object}}
+\begin{DoxyCompactList}\small\item\em The scene object removed by this command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_remove_scene_object_command_ae47cc5487d8792bfdd577f395188dbd4}\label{classrev_1_1_remove_scene_object_command_ae47cc5487d8792bfdd577f395188dbd4}} 
+uint32\+\_\+t {\bfseries m\+\_\+scene\+Object\+Id}
+\item 
+\mbox{\Hypertarget{classrev_1_1_remove_scene_object_command_a846e6fd510014a48054b496118566bef}\label{classrev_1_1_remove_scene_object_command_a846e6fd510014a48054b496118566bef}} 
+\mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \mbox{\hyperlink{classrev_1_1_remove_scene_object_command_a846e6fd510014a48054b496118566bef}{m\+\_\+scene\+ID}}
+\begin{DoxyCompactList}\small\item\em The U\+U\+ID for the scene object added by undoing this command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_remove_scene_object_command_a26ec675590ee84872edfd4efd5d78e55}\label{classrev_1_1_remove_scene_object_command_a26ec675590ee84872edfd4efd5d78e55}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_remove_scene_object_command_a26ec675590ee84872edfd4efd5d78e55}{m\+\_\+scene\+Object\+Json}}
+\begin{DoxyCompactList}\small\item\em The json value representing the scene object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/model\+\_\+control/commands/commands/G\+Scene\+Command.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/model\+\_\+control/commands/commands/G\+Scene\+Command.\+cpp\end{DoxyCompactItemize}

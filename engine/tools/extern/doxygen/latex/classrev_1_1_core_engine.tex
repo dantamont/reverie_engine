@@ -1,0 +1,269 @@
+\hypertarget{classrev_1_1_core_engine}{}\section{rev\+::Core\+Engine Class Reference}
+\label{classrev_1_1_core_engine}\index{rev::CoreEngine@{rev::CoreEngine}}
+
+
+The main engine driving the application.  
+
+
+
+
+{\ttfamily \#include $<$G\+Core\+Engine.\+h$>$}
+
+Inheritance diagram for rev\+::Core\+Engine\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_core_engine}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_a4d0415e755c0f019be6388302c82ccb0}\label{classrev_1_1_core_engine_a4d0415e755c0f019be6388302c82ccb0}} 
+typedef std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scenario}{Scenario}} $>$ {\bfseries Scenario\+Ptr}
+\end{DoxyCompactItemize}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_ae00b97315f9fa1d71c0e04802b229155}\label{classrev_1_1_core_engine_ae00b97315f9fa1d71c0e04802b229155}} 
+void \mbox{\hyperlink{classrev_1_1_core_engine_ae00b97315f9fa1d71c0e04802b229155}{post\+Construction}} ()
+\begin{DoxyCompactList}\small\item\em What to run once all managers and widgets have initialized. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_a01c4d3e08f868b76a9e443ed2fe01f5f}\label{classrev_1_1_core_engine_a01c4d3e08f868b76a9e443ed2fe01f5f}} 
+void \mbox{\hyperlink{classrev_1_1_core_engine_a01c4d3e08f868b76a9e443ed2fe01f5f}{scenario\+Changed}} ()
+\begin{DoxyCompactList}\small\item\em Changed the scenario (used for signaling widgets to update display lists) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_a5174d535ea421b9bd6ed579cfc5fc678}\label{classrev_1_1_core_engine_a5174d535ea421b9bd6ed579cfc5fc678}} 
+void \mbox{\hyperlink{classrev_1_1_core_engine_a5174d535ea421b9bd6ed579cfc5fc678}{scenario\+Loaded}} ()
+\begin{DoxyCompactList}\small\item\em Loaded in a new scenario. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_a55e3d077d8201407c1e169c0cd470870}\label{classrev_1_1_core_engine_a55e3d077d8201407c1e169c0cd470870}} 
+void \mbox{\hyperlink{classrev_1_1_core_engine_a55e3d077d8201407c1e169c0cd470870}{scenario\+Needs\+Redraw}} ()
+\begin{DoxyCompactList}\small\item\em Used to signal that GL widget needs to refresh settings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_a321f652e65171ed8ade4806d9968dfe1}\label{classrev_1_1_core_engine_a321f652e65171ed8ade4806d9968dfe1}} 
+{\bfseries Core\+Engine} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_ae879a35662f745ba38825e0b07af5580}\label{classrev_1_1_core_engine_ae879a35662f745ba38825e0b07af5580}} 
+{\bfseries $\sim$\+Core\+Engine} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_a108bc2871fc4868ee7153d6ed3eacc08}\label{classrev_1_1_core_engine_a108bc2871fc4868ee7153d6ed3eacc08}} 
+bool {\bfseries is\+Constructed} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_a85af90d9ccdd477eaffe5ad9f0b6ed2f}\label{classrev_1_1_core_engine_a85af90d9ccdd477eaffe5ad9f0b6ed2f}} 
+\mbox{\hyperlink{classrev_1_1_main_window}{Main\+Window}} $\ast$ \mbox{\hyperlink{classrev_1_1_core_engine_a85af90d9ccdd477eaffe5ad9f0b6ed2f}{main\+Window}} () const
+\begin{DoxyCompactList}\small\item\em Returns the main application window. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_a7ee4e0ea2013f13ab8686b9ffce9ef8d}\label{classrev_1_1_core_engine_a7ee4e0ea2013f13ab8686b9ffce9ef8d}} 
+\mbox{\hyperlink{classrev_1_1_resource_cache}{Resource\+Cache}} $\ast$ \mbox{\hyperlink{classrev_1_1_core_engine_a7ee4e0ea2013f13ab8686b9ffce9ef8d}{resource\+Cache}} ()
+\begin{DoxyCompactList}\small\item\em Return the resource cache. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_a947684bd82d6529dfe9015e697e059c6}\label{classrev_1_1_core_engine_a947684bd82d6529dfe9015e697e059c6}} 
+\mbox{\hyperlink{classrev_1_1_event_manager}{Event\+Manager}} $\ast$ \mbox{\hyperlink{classrev_1_1_core_engine_a947684bd82d6529dfe9015e697e059c6}{event\+Manager}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_event}{Event}} manager class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_a698a11e23a298daa1dc14b3a783644dd}\label{classrev_1_1_core_engine_a698a11e23a298daa1dc14b3a783644dd}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} $>$ \mbox{\hyperlink{classrev_1_1_core_engine_a698a11e23a298daa1dc14b3a783644dd}{main\+Renderer}} ()
+\begin{DoxyCompactList}\small\item\em Return the renderer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_a235f7024bab63e59e80dc98b3557d5c7}\label{classrev_1_1_core_engine_a235f7024bab63e59e80dc98b3557d5c7}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_scene_tree_widget}{View\+::\+Scene\+Tree\+Widget}} $\ast$ \mbox{\hyperlink{classrev_1_1_core_engine_a235f7024bab63e59e80dc98b3557d5c7}{scene\+Tree\+Widget}} ()
+\begin{DoxyCompactList}\small\item\em Return the scene tree widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_a4e29ed94324adabcbaf2fd9d0d03bf8b}\label{classrev_1_1_core_engine_a4e29ed94324adabcbaf2fd9d0d03bf8b}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_component_tree_widget}{View\+::\+Component\+Tree\+Widget}} $\ast$ \mbox{\hyperlink{classrev_1_1_core_engine_a4e29ed94324adabcbaf2fd9d0d03bf8b}{component\+Widget}} ()
+\begin{DoxyCompactList}\small\item\em Return the component widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_a582224ccf066d747ff757cc43228ac20}\label{classrev_1_1_core_engine_a582224ccf066d747ff757cc43228ac20}} 
+\mbox{\hyperlink{classrev_1_1_physics_manager}{Physics\+Manager}} $\ast$ {\bfseries physics\+Manager} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_a7f1161a79ff11e82e868a8cab8bf47bb}\label{classrev_1_1_core_engine_a7f1161a79ff11e82e868a8cab8bf47bb}} 
+\mbox{\hyperlink{classrev_1_1_simulation_loop}{Simulation\+Loop}} $\ast$ {\bfseries simulation\+Loop} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_a7aaeeb2dd78b6771fee4f5083c4afe3e}\label{classrev_1_1_core_engine_a7aaeeb2dd78b6771fee4f5083c4afe3e}} 
+\mbox{\hyperlink{classrev_1_1_process_manager}{Process\+Manager}} $\ast$ {\bfseries process\+Manager} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_aa0b913aba668a621b97a847f19220bd9}\label{classrev_1_1_core_engine_aa0b913aba668a621b97a847f19220bd9}} 
+\mbox{\hyperlink{classrev_1_1_font_manager}{Font\+Manager}} $\ast$ {\bfseries font\+Manager} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_ab2a8a80e643eeb0e4f80f690cf51b929}\label{classrev_1_1_core_engine_ab2a8a80e643eeb0e4f80f690cf51b929}} 
+\mbox{\hyperlink{classrev_1_1_debug_manager}{Debug\+Manager}} $\ast$ {\bfseries debug\+Manager} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_a87fc488125522911044ff3d54984ca1d}\label{classrev_1_1_core_engine_a87fc488125522911044ff3d54984ca1d}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_widget_manager}{View\+::\+Widget\+Manager}} $\ast$ {\bfseries widget\+Manager} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_aebda2230db4f0085701ad463c99a965d}\label{classrev_1_1_core_engine_aebda2230db4f0085701ad463c99a965d}} 
+\mbox{\hyperlink{classrev_1_1_action_manager}{Action\+Manager}} $\ast$ {\bfseries action\+Manager} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_adc8b41c5c163ac43450d15a9ed856214}\label{classrev_1_1_core_engine_adc8b41c5c163ac43450d15a9ed856214}} 
+\mbox{\hyperlink{classrev_1_1_sound_manager}{Sound\+Manager}} $\ast$ {\bfseries sound\+Manager} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_adce6bf658d1c5dfc15ffabe513c6ea49}\label{classrev_1_1_core_engine_adce6bf658d1c5dfc15ffabe513c6ea49}} 
+\mbox{\hyperlink{classrev_1_1_animation_manager}{Animation\+Manager}} $\ast$ {\bfseries animation\+Manager} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_aef9645b0d33ed21de46e8afa94338994}\label{classrev_1_1_core_engine_aef9645b0d33ed21de46e8afa94338994}} 
+\mbox{\hyperlink{classrev_1_1_file_manager}{File\+Manager}} $\ast$ {\bfseries file\+Manager} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_aa7255beebe53ff902335ad0b912b1c95}\label{classrev_1_1_core_engine_aa7255beebe53ff902335ad0b912b1c95}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scenario}{Scenario}} $>$ {\bfseries scenario} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_ab2edcdfbc83b70471b1cf20e5a41b656}\label{classrev_1_1_core_engine_ab2edcdfbc83b70471b1cf20e5a41b656}} 
+void {\bfseries set\+Scenario} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scenario}{Scenario}} $>$ scenario)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_a3ae4f76452acebdbbbdf588990b70c27}\label{classrev_1_1_core_engine_a3ae4f76452acebdbbbdf588990b70c27}} 
+void \mbox{\hyperlink{classrev_1_1_core_engine_a3ae4f76452acebdbbbdf588990b70c27}{clear\+Engine}} (bool clear\+Action\+Stack, bool clear\+Scenario=true)
+\begin{DoxyCompactList}\small\item\em Clear all daata. \end{DoxyCompactList}\item 
+Q\+Open\+G\+L\+Context $\ast$ \mbox{\hyperlink{classrev_1_1_core_engine_a8963c3b3c0ef876d3ba0ba2d79714f87}{get\+G\+L\+Widget\+Context}} ()
+\begin{DoxyCompactList}\small\item\em Set the current Open\+GL context to the main GL widget context. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_ace35f1b28b25fd2c0768298ef1a6066e}\label{classrev_1_1_core_engine_ace35f1b28b25fd2c0768298ef1a6066e}} 
+void {\bfseries set\+G\+L\+Context} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_a87d7e63e422ecb6a322db71068458367}\label{classrev_1_1_core_engine_a87d7e63e422ecb6a322db71068458367}} 
+void \mbox{\hyperlink{classrev_1_1_core_engine_a87d7e63e422ecb6a322db71068458367}{set\+New\+Scenario}} ()
+\begin{DoxyCompactList}\small\item\em Create a new scenario. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_ab9809753678807b17a7fe2e9c59b3b3d}\label{classrev_1_1_core_engine_ab9809753678807b17a7fe2e9c59b3b3d}} 
+void \mbox{\hyperlink{classrev_1_1_core_engine_ab9809753678807b17a7fe2e9c59b3b3d}{initialize}} (\mbox{\hyperlink{classrev_1_1_main_window}{Main\+Window}} $\ast$\mbox{\hyperlink{classrev_1_1_core_engine_a85af90d9ccdd477eaffe5ad9f0b6ed2f}{main\+Window}})
+\begin{DoxyCompactList}\small\item\em Initialize the engine. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_a970218b2b8ff7e273401eef5c2b68626}\label{classrev_1_1_core_engine_a970218b2b8ff7e273401eef5c2b68626}} 
+void \mbox{\hyperlink{classrev_1_1_core_engine_a970218b2b8ff7e273401eef5c2b68626}{initialize\+Connections}} ()
+\begin{DoxyCompactList}\small\item\em Setup all connections. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_core_engine_a2ae64bfe54f092fe37b4415ca56df1b5}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_core_engine_aa45b34f7023b9f0e3b30f8b1259aa389}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Attributes}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_ad25340b0d6404f200024f4fda04b540b}\label{classrev_1_1_core_engine_ad25340b0d6404f200024f4fda04b540b}} 
+static unsigned int {\bfseries T\+H\+R\+E\+A\+D\+\_\+\+C\+O\+U\+NT} = 0
+\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_a932398fcdc6cb76543c04ec83425ba0b}\label{classrev_1_1_core_engine_a932398fcdc6cb76543c04ec83425ba0b}} 
+static \mbox{\hyperlink{classrev_1_1_thread_pool}{Thread\+Pool}} \mbox{\hyperlink{classrev_1_1_core_engine_a932398fcdc6cb76543c04ec83425ba0b}{H\+E\+L\+P\+E\+R\+\_\+\+T\+H\+R\+E\+A\+D\+P\+O\+OL}}
+\begin{DoxyCompactList}\small\item\em Threadpool for helping with miscellaneous engine tasks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_a9b507ebc22c20b685f806b8cb345ac1f}\label{classrev_1_1_core_engine_a9b507ebc22c20b685f806b8cb345ac1f}} 
+virtual bool \mbox{\hyperlink{classrev_1_1_core_engine_a9b507ebc22c20b685f806b8cb345ac1f}{event}} (Q\+Event $\ast$event) override
+\begin{DoxyCompactList}\small\item\em Override event handling. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_a3d552b6194f02240e3519f5699391be0}\label{classrev_1_1_core_engine_a3d552b6194f02240e3519f5699391be0}} 
+void \mbox{\hyperlink{classrev_1_1_core_engine_a3d552b6194f02240e3519f5699391be0}{initialize\+Logger}} ()
+\begin{DoxyCompactList}\small\item\em Initialize the logger. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_aca545830149611716795eb43bd8b90a0}\label{classrev_1_1_core_engine_aca545830149611716795eb43bd8b90a0}} 
+void \mbox{\hyperlink{classrev_1_1_core_engine_aca545830149611716795eb43bd8b90a0}{initialize\+Meta\+Types}} ()
+\begin{DoxyCompactList}\small\item\em Set up all custom QT metatypes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_a2b4d89b36fdeb975a860e4b6be5c6203}\label{classrev_1_1_core_engine_a2b4d89b36fdeb975a860e4b6be5c6203}} 
+void \mbox{\hyperlink{classrev_1_1_core_engine_a2b4d89b36fdeb975a860e4b6be5c6203}{initialize\+Python\+A\+PI}} ()
+\begin{DoxyCompactList}\small\item\em Initialize Python Qt A\+PI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Managers}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_ae8aeba81001c56f936eef1bd29133f9e}\label{classrev_1_1_core_engine_ae8aeba81001c56f936eef1bd29133f9e}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scenario}{Scenario}} $>$ \mbox{\hyperlink{classrev_1_1_core_engine_ae8aeba81001c56f936eef1bd29133f9e}{m\+\_\+scenario}}
+\begin{DoxyCompactList}\small\item\em The currently-\/loaded scenario containing scenes with objects to render. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_aec422a298f79872e6f7718a3a0437dab}\label{classrev_1_1_core_engine_aec422a298f79872e6f7718a3a0437dab}} 
+\mbox{\hyperlink{classrev_1_1_simulation_loop}{Simulation\+Loop}} $\ast$ \mbox{\hyperlink{classrev_1_1_core_engine_aec422a298f79872e6f7718a3a0437dab}{m\+\_\+simulation\+Loop}}
+\begin{DoxyCompactList}\small\item\em Controls the simulation loop. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_a0e328afa2710f7517c899dee793c672e}\label{classrev_1_1_core_engine_a0e328afa2710f7517c899dee793c672e}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_widget_manager}{View\+::\+Widget\+Manager}} $\ast$ \mbox{\hyperlink{classrev_1_1_core_engine_a0e328afa2710f7517c899dee793c672e}{m\+\_\+widget\+Manager}}
+\begin{DoxyCompactList}\small\item\em Manages all widgets and the main window. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_a102e8ef5e828d18dd2da6209b599f8d5}\label{classrev_1_1_core_engine_a102e8ef5e828d18dd2da6209b599f8d5}} 
+\mbox{\hyperlink{classrev_1_1_action_manager}{Action\+Manager}} $\ast$ \mbox{\hyperlink{classrev_1_1_core_engine_a102e8ef5e828d18dd2da6209b599f8d5}{m\+\_\+action\+Manager}}
+\begin{DoxyCompactList}\small\item\em Manages all actions to undo and redo. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_af2f1e84bf98584e59be5dd354738649e}\label{classrev_1_1_core_engine_af2f1e84bf98584e59be5dd354738649e}} 
+\mbox{\hyperlink{classrev_1_1_resource_cache}{Resource\+Cache}} $\ast$ \mbox{\hyperlink{classrev_1_1_core_engine_af2f1e84bf98584e59be5dd354738649e}{m\+\_\+resource\+Cache}}
+\begin{DoxyCompactList}\small\item\em Cache of all resources. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_a07ff46370ef75be249dd1fd1a53e940b}\label{classrev_1_1_core_engine_a07ff46370ef75be249dd1fd1a53e940b}} 
+\mbox{\hyperlink{classrev_1_1_event_manager}{Event\+Manager}} $\ast$ \mbox{\hyperlink{classrev_1_1_core_engine_a07ff46370ef75be249dd1fd1a53e940b}{m\+\_\+event\+Manager}}
+\begin{DoxyCompactList}\small\item\em Q\+Object for emitting signals and handling events. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_abf549aa46dbf75a1649520647966e99a}\label{classrev_1_1_core_engine_abf549aa46dbf75a1649520647966e99a}} 
+\mbox{\hyperlink{classrev_1_1_physics_manager}{Physics\+Manager}} $\ast$ \mbox{\hyperlink{classrev_1_1_core_engine_abf549aa46dbf75a1649520647966e99a}{m\+\_\+physics\+Manager}}
+\begin{DoxyCompactList}\small\item\em Physics manager. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_a126fec865019739fd0e08a4a278a10ca}\label{classrev_1_1_core_engine_a126fec865019739fd0e08a4a278a10ca}} 
+\mbox{\hyperlink{classrev_1_1_font_manager}{Font\+Manager}} $\ast$ \mbox{\hyperlink{classrev_1_1_core_engine_a126fec865019739fd0e08a4a278a10ca}{m\+\_\+font\+Manager}}
+\begin{DoxyCompactList}\small\item\em Manages application fonts. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_ac0cb5c2d56223d4dac2fd4349ffcd075}\label{classrev_1_1_core_engine_ac0cb5c2d56223d4dac2fd4349ffcd075}} 
+\mbox{\hyperlink{classrev_1_1_debug_manager}{Debug\+Manager}} $\ast$ \mbox{\hyperlink{classrev_1_1_core_engine_ac0cb5c2d56223d4dac2fd4349ffcd075}{m\+\_\+debug\+Manager}}
+\begin{DoxyCompactList}\small\item\em Manages debugging functionality of the engine. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_abf7ccca4eff794b7cf0f474c81bef09b}\label{classrev_1_1_core_engine_abf7ccca4eff794b7cf0f474c81bef09b}} 
+\mbox{\hyperlink{classrev_1_1_sound_manager}{Sound\+Manager}} $\ast$ \mbox{\hyperlink{classrev_1_1_core_engine_abf7ccca4eff794b7cf0f474c81bef09b}{m\+\_\+sound\+Manager}}
+\begin{DoxyCompactList}\small\item\em Manages all audio capabilities for the engine. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_a9f385ba1b4d0a89da58d5716b41d266e}\label{classrev_1_1_core_engine_a9f385ba1b4d0a89da58d5716b41d266e}} 
+\mbox{\hyperlink{classrev_1_1_animation_manager}{Animation\+Manager}} $\ast$ \mbox{\hyperlink{classrev_1_1_core_engine_a9f385ba1b4d0a89da58d5716b41d266e}{m\+\_\+animation\+Manager}}
+\begin{DoxyCompactList}\small\item\em Manages all animation state machines for the engine. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_a4695697be955889ae61bac923f489dac}\label{classrev_1_1_core_engine_a4695697be955889ae61bac923f489dac}} 
+\mbox{\hyperlink{classrev_1_1_file_manager}{File\+Manager}} $\ast$ \mbox{\hyperlink{classrev_1_1_core_engine_a4695697be955889ae61bac923f489dac}{m\+\_\+file\+Manager}}
+\begin{DoxyCompactList}\small\item\em Manages search and working paths. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_core_engine_ad6bce6550594298ac41384d34916396e}\label{classrev_1_1_core_engine_ad6bce6550594298ac41384d34916396e}} 
+bool {\bfseries m\+\_\+is\+Constructed}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+The main engine driving the application. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_core_engine_a2ae64bfe54f092fe37b4415ca56df1b5}\label{classrev_1_1_core_engine_a2ae64bfe54f092fe37b4415ca56df1b5}} 
+\index{rev::CoreEngine@{rev::CoreEngine}!className@{className}}
+\index{className@{className}!rev::CoreEngine@{rev::CoreEngine}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Core\+Engine\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_core_engine_a8963c3b3c0ef876d3ba0ba2d79714f87}\label{classrev_1_1_core_engine_a8963c3b3c0ef876d3ba0ba2d79714f87}} 
+\index{rev::CoreEngine@{rev::CoreEngine}!getGLWidgetContext@{getGLWidgetContext}}
+\index{getGLWidgetContext@{getGLWidgetContext}!rev::CoreEngine@{rev::CoreEngine}}
+\subsubsection{\texorpdfstring{getGLWidgetContext()}{getGLWidgetContext()}}
+{\footnotesize\ttfamily Q\+Open\+G\+L\+Context $\ast$ rev\+::\+Core\+Engine\+::get\+G\+L\+Widget\+Context (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Set the current Open\+GL context to the main GL widget context. 
+
+Context must be set before creating a V\+AO, since they are not shared between contexts \mbox{\Hypertarget{classrev_1_1_core_engine_aa45b34f7023b9f0e3b30f8b1259aa389}\label{classrev_1_1_core_engine_aa45b34f7023b9f0e3b30f8b1259aa389}} 
+\index{rev::CoreEngine@{rev::CoreEngine}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::CoreEngine@{rev::CoreEngine}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Core\+Engine\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/G\+Core\+Engine.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/G\+Core\+Engine.\+cpp\end{DoxyCompactItemize}

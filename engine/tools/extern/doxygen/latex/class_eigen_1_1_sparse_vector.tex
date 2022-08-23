@@ -1,0 +1,341 @@
+\hypertarget{class_eigen_1_1_sparse_vector}{}\section{Eigen\+::Sparse\+Vector$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$ Class Template Reference}
+\label{class_eigen_1_1_sparse_vector}\index{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+
+
+a sparse vector class  
+
+
+
+
+{\ttfamily \#include $<$Sparse\+Vector.\+h$>$}
+
+Inheritance diagram for Eigen\+::Sparse\+Vector$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_eigen_1_1_sparse_vector}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_ae31a58533de0ba94229c312ad950e1f2}\label{class_eigen_1_1_sparse_vector_ae31a58533de0ba94229c312ad950e1f2}} 
+enum \{ {\bfseries Is\+Col\+Vector} = internal\+::traits$<$Sparse\+Vector$>$\+::Is\+Col\+Vector
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_ab5d7f8c726ee7498d5fcb89fc1367fb8}\label{class_eigen_1_1_sparse_vector_ab5d7f8c726ee7498d5fcb89fc1367fb8}} 
+enum \{ {\bfseries Options} = \+\_\+\+Options
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a03a6354c77402f4876a74435ded60c28}\label{class_eigen_1_1_sparse_vector_a03a6354c77402f4876a74435ded60c28}} 
+typedef \mbox{\hyperlink{class_eigen_1_1internal_1_1_compressed_storage}{internal\+::\+Compressed\+Storage}}$<$ Scalar, \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_a0b540ba724726ebe953f8c0df06081ed}{Storage\+Index}} $>$ {\bfseries Storage}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a8ad41a4a6da46ce8a255481e98033afd}\label{class_eigen_1_1_sparse_vector_a8ad41a4a6da46ce8a255481e98033afd}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_1_1_inner_iterator}{Base\+::\+Inner\+Iterator}} {\bfseries Inner\+Iterator}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a0638716ee804346a3d6171781874ab12}\label{class_eigen_1_1_sparse_vector_a0638716ee804346a3d6171781874ab12}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_compressed_base_1_1_reverse_inner_iterator}{Base\+::\+Reverse\+Inner\+Iterator}} {\bfseries Reverse\+Inner\+Iterator}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_ac9dfac0c6c5ab7977d7be9a155309632}\label{class_eigen_1_1_sparse_vector_ac9dfac0c6c5ab7977d7be9a155309632}} 
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} {\bfseries rows} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a73149e6fcd37becc7cfde7455681b73b}\label{class_eigen_1_1_sparse_vector_a73149e6fcd37becc7cfde7455681b73b}} 
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} {\bfseries cols} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a943ca9381efe7d55dea8bae85a13aa1c}\label{class_eigen_1_1_sparse_vector_a943ca9381efe7d55dea8bae85a13aa1c}} 
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} {\bfseries inner\+Size} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a5096d0f48a7e24a113d1af743a0a6daf}\label{class_eigen_1_1_sparse_vector_a5096d0f48a7e24a113d1af743a0a6daf}} 
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} {\bfseries outer\+Size} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_ae9db0ac6f86c6d38bda07cda586d40ea}\label{class_eigen_1_1_sparse_vector_ae9db0ac6f86c6d38bda07cda586d40ea}} 
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE const Scalar $\ast$ {\bfseries value\+Ptr} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a530a69a4dbc61cb686a4423dbebc9aef}\label{class_eigen_1_1_sparse_vector_a530a69a4dbc61cb686a4423dbebc9aef}} 
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Scalar $\ast$ {\bfseries value\+Ptr} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a0f543785dbf3e86d408a3feb967ea8f1}\label{class_eigen_1_1_sparse_vector_a0f543785dbf3e86d408a3feb967ea8f1}} 
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_a0b540ba724726ebe953f8c0df06081ed}{Storage\+Index}} $\ast$ {\bfseries inner\+Index\+Ptr} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a2ac36aaf3db272cd505b2e65bfd94915}\label{class_eigen_1_1_sparse_vector_a2ac36aaf3db272cd505b2e65bfd94915}} 
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_a0b540ba724726ebe953f8c0df06081ed}{Storage\+Index}} $\ast$ {\bfseries inner\+Index\+Ptr} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a7c9cf5a25defcfac53312a2f6c54673d}\label{class_eigen_1_1_sparse_vector_a7c9cf5a25defcfac53312a2f6c54673d}} 
+const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_a0b540ba724726ebe953f8c0df06081ed}{Storage\+Index}} $\ast$ {\bfseries outer\+Index\+Ptr} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_aa3111d79cca485429590350e5df0234e}\label{class_eigen_1_1_sparse_vector_aa3111d79cca485429590350e5df0234e}} 
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_a0b540ba724726ebe953f8c0df06081ed}{Storage\+Index}} $\ast$ {\bfseries outer\+Index\+Ptr} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a7ac06f6223596f527825460b74fac4bb}\label{class_eigen_1_1_sparse_vector_a7ac06f6223596f527825460b74fac4bb}} 
+const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_a0b540ba724726ebe953f8c0df06081ed}{Storage\+Index}} $\ast$ {\bfseries inner\+Non\+Zero\+Ptr} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a3d12e66ff10c9ad2762b29cf511b2fa5}\label{class_eigen_1_1_sparse_vector_a3d12e66ff10c9ad2762b29cf511b2fa5}} 
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_a0b540ba724726ebe953f8c0df06081ed}{Storage\+Index}} $\ast$ {\bfseries inner\+Non\+Zero\+Ptr} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_afc6e85575deee06fd305b1c3c5917cc4}\label{class_eigen_1_1_sparse_vector_afc6e85575deee06fd305b1c3c5917cc4}} 
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_compressed_storage}{Storage}} \& {\bfseries data} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a30ab2cd7f19ee84cbee57728f49c5045}\label{class_eigen_1_1_sparse_vector_a30ab2cd7f19ee84cbee57728f49c5045}} 
+const \mbox{\hyperlink{class_eigen_1_1internal_1_1_compressed_storage}{Storage}} \& {\bfseries data} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_ab21d4ee0cbb2f5b89148bc3c9c9a3fe2}\label{class_eigen_1_1_sparse_vector_ab21d4ee0cbb2f5b89148bc3c9c9a3fe2}} 
+Scalar {\bfseries coeff} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_ac0a5563ed3f243f013fb9d2c17e230d0}{row}}, \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_a8f4eaa3c3921ef3823ffc69ebcc356af}{col}}) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a3892d71b3f533373d0986085afabead3}\label{class_eigen_1_1_sparse_vector_a3892d71b3f533373d0986085afabead3}} 
+Scalar {\bfseries coeff} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} i) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a99ad290fe28d882485d238f1de669a54}\label{class_eigen_1_1_sparse_vector_a99ad290fe28d882485d238f1de669a54}} 
+Scalar \& {\bfseries coeff\+Ref} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_ac0a5563ed3f243f013fb9d2c17e230d0}{row}}, \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_a8f4eaa3c3921ef3823ffc69ebcc356af}{col}})
+\item 
+Scalar \& \mbox{\hyperlink{class_eigen_1_1_sparse_vector_a4b1845ada6ae59dd7afe361e30136ace}{coeff\+Ref}} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} i)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_ac36267ff08f2ac0d884189086acf2b44}\label{class_eigen_1_1_sparse_vector_ac36267ff08f2ac0d884189086acf2b44}} 
+void {\bfseries set\+Zero} ()
+\item 
+\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1_sparse_vector_aeaa74603bb1405f622726907795c9b5a}{non\+Zeros}} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a212fbc4d4fa96fce3c68052de5a06094}\label{class_eigen_1_1_sparse_vector_a212fbc4d4fa96fce3c68052de5a06094}} 
+void {\bfseries start\+Vec} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} outer)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a06c27ca05f3da3e886edb1570bcd06ed}\label{class_eigen_1_1_sparse_vector_a06c27ca05f3da3e886edb1570bcd06ed}} 
+Scalar \& {\bfseries insert\+Back\+By\+Outer\+Inner} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} outer, \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} inner)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_ab62763544df1c3833648ec2ef5316801}\label{class_eigen_1_1_sparse_vector_ab62763544df1c3833648ec2ef5316801}} 
+Scalar \& {\bfseries insert\+Back} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} i)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a96e23ced390caac166ee246127e3b4ab}\label{class_eigen_1_1_sparse_vector_a96e23ced390caac166ee246127e3b4ab}} 
+Scalar \& {\bfseries insert\+Back\+By\+Outer\+Inner\+Unordered} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} outer, \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} inner)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a1c3bbd1393a04a89221ee617523bf9f0}\label{class_eigen_1_1_sparse_vector_a1c3bbd1393a04a89221ee617523bf9f0}} 
+Scalar \& {\bfseries insert\+Back\+Unordered} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} i)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a7d533d900cc383067284cbcb53c8adfb}\label{class_eigen_1_1_sparse_vector_a7d533d900cc383067284cbcb53c8adfb}} 
+Scalar \& {\bfseries insert} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_ac0a5563ed3f243f013fb9d2c17e230d0}{row}}, \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_a8f4eaa3c3921ef3823ffc69ebcc356af}{col}})
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a865d85cae58ced022277abb3ff98656f}\label{class_eigen_1_1_sparse_vector_a865d85cae58ced022277abb3ff98656f}} 
+Scalar \& {\bfseries insert} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} i)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_sparse_vector_a594675dd305845e55edcab61c1b21d33}{reserve}} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} reserve\+Size)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a89928f696fcaa8e59b08951b0cd3139c}\label{class_eigen_1_1_sparse_vector_a89928f696fcaa8e59b08951b0cd3139c}} 
+void {\bfseries finalize} ()
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_sparse_vector_af094e30271da69f865b5d97f338f81d1}{prune}} (const Scalar \&reference, const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_aaec8ace6efb785c81d442931c3248d88}{Real\+Scalar}} \&epsilon=\mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_aaec8ace6efb785c81d442931c3248d88}{Real\+Scalar}} $>$\+::dummy\+\_\+precision())
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_sparse_vector_a2dc842b3bb2ba3692e210565c48aff3c}{resize}} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} rows, \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} cols)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_sparse_vector_a1020011c75fb70b21257c8d04ee07514}{resize}} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} new\+Size)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_sparse_vector_ab8dbb1f73b6250c10c0860eb13ca5cca}{conservative\+Resize}} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} new\+Size)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_ab944274d5e22a048228c4f44bd1ec148}\label{class_eigen_1_1_sparse_vector_ab944274d5e22a048228c4f44bd1ec148}} 
+void {\bfseries resize\+Non\+Zeros} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_a124bc57921775eb9aa2dfd9727e23472}{size}})
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a057f549ff5d7dd2e169ceceddda993c8}\label{class_eigen_1_1_sparse_vector_a057f549ff5d7dd2e169ceceddda993c8}} 
+{\bfseries Sparse\+Vector} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_a124bc57921775eb9aa2dfd9727e23472}{size}})
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_ab38264aa528a0d6ae3198cbe2bee8cba}\label{class_eigen_1_1_sparse_vector_ab38264aa528a0d6ae3198cbe2bee8cba}} 
+{\bfseries Sparse\+Vector} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} rows, \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} cols)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a8d1871842d020303c9b320612d19fa16}\label{class_eigen_1_1_sparse_vector_a8d1871842d020303c9b320612d19fa16}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\{\bfseries Sparse\+Vector} (const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_af8aea082407cb48fabe6cfa87da675bc}\label{class_eigen_1_1_sparse_vector_af8aea082407cb48fabe6cfa87da675bc}} 
+{\bfseries Sparse\+Vector} (const \mbox{\hyperlink{class_eigen_1_1_sparse_vector}{Sparse\+Vector}} \&other)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_sparse_vector_a977f1796d4b332a0827c5a1d7b1ed561}{swap}} (\mbox{\hyperlink{class_eigen_1_1_sparse_vector}{Sparse\+Vector}} \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a456cb3a5803552f757860a584be246a2}\label{class_eigen_1_1_sparse_vector_a456cb3a5803552f757860a584be246a2}} 
+{\footnotesize template$<$int Other\+Options$>$ }\\void {\bfseries swap} (\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ Scalar, Other\+Options, \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_a0b540ba724726ebe953f8c0df06081ed}{Storage\+Index}} $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a935bfc1abd2a6d621addee147fe53fc9}\label{class_eigen_1_1_sparse_vector_a935bfc1abd2a6d621addee147fe53fc9}} 
+\mbox{\hyperlink{class_eigen_1_1_sparse_vector}{Sparse\+Vector}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_sparse_vector}{Sparse\+Vector}} \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a239370c6b972cbba899c89b7ea63d99a}\label{class_eigen_1_1_sparse_vector_a239370c6b972cbba899c89b7ea63d99a}} 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\\mbox{\hyperlink{class_eigen_1_1_sparse_vector}{Sparse\+Vector}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Other\+Derived $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a49616aae95fc196326a02878ff882da9}\label{class_eigen_1_1_sparse_vector_a49616aae95fc196326a02878ff882da9}} 
+{\footnotesize template$<$typename Lhs , typename Rhs $>$ }\\\mbox{\hyperlink{class_eigen_1_1_sparse_vector}{Sparse\+Vector}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_eigen_1_1_sparse_sparse_product}{Sparse\+Sparse\+Product}}$<$ Lhs, Rhs $>$ \&product)
+\item 
+\mbox{\hyperlink{class_eigen_1_1_sparse_vector_ad519592c203aedf33c524feb1bdaad1b}{$\sim$\+Sparse\+Vector}} ()
+\item 
+Scalar \mbox{\hyperlink{class_eigen_1_1_sparse_vector_a05e8aff0ba5c4dd4ab69e173d80d1a68}{sum}} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a0814204b79e9c9b058b15283e1012e52}\label{class_eigen_1_1_sparse_vector_a0814204b79e9c9b058b15283e1012e52}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED void {\bfseries start\+Fill} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1_sparse_vector_a594675dd305845e55edcab61c1b21d33}{reserve}})
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_ae27e747b25b443dffffc7d7e84f28a80}\label{class_eigen_1_1_sparse_vector_ae27e747b25b443dffffc7d7e84f28a80}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED Scalar \& {\bfseries fill} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} r, \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} c)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_ad78731eb1fc7ae9cee536f69ca519a62}\label{class_eigen_1_1_sparse_vector_ad78731eb1fc7ae9cee536f69ca519a62}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED Scalar \& {\bfseries fill} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} i)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_ae810cfb8596018d42403f9df886e16b8}\label{class_eigen_1_1_sparse_vector_ae810cfb8596018d42403f9df886e16b8}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED Scalar \& {\bfseries fillrand} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} r, \mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} c)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a7ff13e68ea2c54dbed8cf82bcd8718b2}\label{class_eigen_1_1_sparse_vector_a7ff13e68ea2c54dbed8cf82bcd8718b2}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED Scalar \& {\bfseries fillrand} (\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} i)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a1f80098fa17a3be50618982f711915bb}\label{class_eigen_1_1_sparse_vector_a1f80098fa17a3be50618982f711915bb}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED void {\bfseries end\+Fill} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_aafb0f5cd8a3e9128c9f4ffd33418df65}\label{class_eigen_1_1_sparse_vector_aafb0f5cd8a3e9128c9f4ffd33418df65}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED \mbox{\hyperlink{class_eigen_1_1internal_1_1_compressed_storage}{Storage}} \& {\bfseries \+\_\+data} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a98518d2737a31dfa4153f32dd6164a59}\label{class_eigen_1_1_sparse_vector_a98518d2737a31dfa4153f32dd6164a59}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+P\+R\+E\+C\+A\+T\+ED const \mbox{\hyperlink{class_eigen_1_1internal_1_1_compressed_storage}{Storage}} \& {\bfseries \+\_\+data} () const
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_ac3a4ab0ff75ba4b4bdd711ebf3501784}\label{class_eigen_1_1_sparse_vector_ac3a4ab0ff75ba4b4bdd711ebf3501784}} 
+static void {\bfseries check\+\_\+template\+\_\+parameters} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_aa23353574434152dd19220b89ed9761a}\label{class_eigen_1_1_sparse_vector_aa23353574434152dd19220b89ed9761a}} 
+\mbox{\hyperlink{class_eigen_1_1internal_1_1_compressed_storage}{Storage}} {\bfseries m\+\_\+data}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_afb561f862a7dd20b40f65c234c8a339a}\label{class_eigen_1_1_sparse_vector_afb561f862a7dd20b40f65c234c8a339a}} 
+\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} {\bfseries m\+\_\+size}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a6cf8a05d15fd30ee4fb01ecb778305c3}\label{class_eigen_1_1_sparse_vector_a6cf8a05d15fd30ee4fb01ecb778305c3}} 
+std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&s, const \mbox{\hyperlink{class_eigen_1_1_sparse_vector}{Sparse\+Vector}} \&m)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar, int \+\_\+\+Options, typename \+\_\+\+Storage\+Index$>$\newline
+class Eigen\+::\+Sparse\+Vector$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$}
+
+a sparse vector class 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Scalar} & the scalar type, i.\+e. the type of the coefficients\\
+\hline
+\end{DoxyTemplParams}
+See \href{http://www.netlib.org/linalg/html_templates/node91.html}{\texttt{ http\+://www.\+netlib.\+org/linalg/html\+\_\+templates/node91.\+html}} for details on the storage scheme.
+
+This class can be extended with the help of the plugin mechanism described on the page Topic\+Customizing\+\_\+\+Plugins by defining the preprocessor symbol {\ttfamily E\+I\+G\+E\+N\+\_\+\+S\+P\+A\+R\+S\+E\+V\+E\+C\+T\+O\+R\+\_\+\+P\+L\+U\+G\+IN}. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_ad519592c203aedf33c524feb1bdaad1b}\label{class_eigen_1_1_sparse_vector_ad519592c203aedf33c524feb1bdaad1b}} 
+\index{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$}!````~SparseVector@{$\sim$SparseVector}}
+\index{````~SparseVector@{$\sim$SparseVector}!Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\subsubsection{\texorpdfstring{$\sim$SparseVector()}{~SparseVector()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Options, typename \+\_\+\+Storage\+Index$>$ \\
+\mbox{\hyperlink{class_eigen_1_1_sparse_vector}{Eigen\+::\+Sparse\+Vector}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::$\sim$\mbox{\hyperlink{class_eigen_1_1_sparse_vector}{Sparse\+Vector}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Destructor 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a4b1845ada6ae59dd7afe361e30136ace}\label{class_eigen_1_1_sparse_vector_a4b1845ada6ae59dd7afe361e30136ace}} 
+\index{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$}!coeffRef@{coeffRef}}
+\index{coeffRef@{coeffRef}!Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\subsubsection{\texorpdfstring{coeffRef()}{coeffRef()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Options, typename \+\_\+\+Storage\+Index$>$ \\
+Scalar\& \mbox{\hyperlink{class_eigen_1_1_sparse_vector}{Eigen\+::\+Sparse\+Vector}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::coeff\+Ref (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}}}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to the coefficient value at given index {\itshape i} This operation involes a log(rho$\ast$size) binary search. If the coefficient does not exist yet, then a sorted insertion into a sequential buffer is performed.
+\end{DoxyReturn}
+This insertion might be very costly if the number of nonzeros above {\itshape i} is large. \mbox{\Hypertarget{class_eigen_1_1_sparse_vector_ab8dbb1f73b6250c10c0860eb13ca5cca}\label{class_eigen_1_1_sparse_vector_ab8dbb1f73b6250c10c0860eb13ca5cca}} 
+\index{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$}!conservativeResize@{conservativeResize}}
+\index{conservativeResize@{conservativeResize}!Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\subsubsection{\texorpdfstring{conservativeResize()}{conservativeResize()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Options, typename \+\_\+\+Storage\+Index$>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_sparse_vector}{Eigen\+::\+Sparse\+Vector}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::conservative\+Resize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}}}]{new\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Resizes the sparse vector to {\itshape new\+Size}, while leaving old values untouched.
+
+If the size of the vector is decreased, then the storage of the out-\/of bounds coefficients is kept and reserved. Call .data().squeeze() to free extra memory.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_vector_a594675dd305845e55edcab61c1b21d33}{reserve()}}, set\+Zero() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_aeaa74603bb1405f622726907795c9b5a}\label{class_eigen_1_1_sparse_vector_aeaa74603bb1405f622726907795c9b5a}} 
+\index{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$}!nonZeros@{nonZeros}}
+\index{nonZeros@{nonZeros}!Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\subsubsection{\texorpdfstring{nonZeros()}{nonZeros()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Options, typename \+\_\+\+Storage\+Index$>$ \\
+\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}} \mbox{\hyperlink{class_eigen_1_1_sparse_vector}{Eigen\+::\+Sparse\+Vector}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::non\+Zeros (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of non zero coefficients 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_af094e30271da69f865b5d97f338f81d1}\label{class_eigen_1_1_sparse_vector_af094e30271da69f865b5d97f338f81d1}} 
+\index{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$}!prune@{prune}}
+\index{prune@{prune}!Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\subsubsection{\texorpdfstring{prune()}{prune()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Options, typename \+\_\+\+Storage\+Index$>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_sparse_vector}{Eigen\+::\+Sparse\+Vector}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::prune (\begin{DoxyParamCaption}\item[{const Scalar \&}]{reference,  }\item[{const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_aaec8ace6efb785c81d442931c3248d88}{Real\+Scalar}} \&}]{epsilon = {\ttfamily \mbox{\hyperlink{struct_eigen_1_1_num_traits}{Num\+Traits}}$<$\mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base_aaec8ace6efb785c81d442931c3248d88}{Real\+Scalar}}$>$\+:\+:dummy\+\_\+precision()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+Suppresses all nonzeros which are {\bfseries{much}} {\bfseries{smaller}} {\bfseries{than}} {\itshape reference} under the tolerence {\itshape epsilon} \mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a594675dd305845e55edcab61c1b21d33}\label{class_eigen_1_1_sparse_vector_a594675dd305845e55edcab61c1b21d33}} 
+\index{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$}!reserve@{reserve}}
+\index{reserve@{reserve}!Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\subsubsection{\texorpdfstring{reserve()}{reserve()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Options, typename \+\_\+\+Storage\+Index$>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_sparse_vector}{Eigen\+::\+Sparse\+Vector}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::reserve (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}}}]{reserve\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a2dc842b3bb2ba3692e210565c48aff3c}\label{class_eigen_1_1_sparse_vector_a2dc842b3bb2ba3692e210565c48aff3c}} 
+\index{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$}!resize@{resize}}
+\index{resize@{resize}!Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\subsubsection{\texorpdfstring{resize()}{resize()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Options, typename \+\_\+\+Storage\+Index$>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_sparse_vector}{Eigen\+::\+Sparse\+Vector}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::resize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}}}]{rows,  }\item[{\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}}}]{cols }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Resizes the sparse vector to {\itshape rows} x {\itshape cols} 
+
+This method is provided for compatibility with matrices. For a column vector, {\itshape cols} must be equal to 1. For a row vector, {\itshape rows} must be equal to 1.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_vector_a1020011c75fb70b21257c8d04ee07514}{resize(\+Index)}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a1020011c75fb70b21257c8d04ee07514}\label{class_eigen_1_1_sparse_vector_a1020011c75fb70b21257c8d04ee07514}} 
+\index{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$}!resize@{resize}}
+\index{resize@{resize}!Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\subsubsection{\texorpdfstring{resize()}{resize()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Options, typename \+\_\+\+Storage\+Index$>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_sparse_vector}{Eigen\+::\+Sparse\+Vector}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::resize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_eigen_1_1_eigen_base_a554f30542cc2316add4b1ea0a492ff02}{Index}}}]{new\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Resizes the sparse vector to {\itshape new\+Size} This method deletes all entries, thus leaving an empty sparse vector
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_vector_ab8dbb1f73b6250c10c0860eb13ca5cca}{conservative\+Resize()}}, set\+Zero() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a05e8aff0ba5c4dd4ab69e173d80d1a68}\label{class_eigen_1_1_sparse_vector_a05e8aff0ba5c4dd4ab69e173d80d1a68}} 
+\index{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$}!sum@{sum}}
+\index{sum@{sum}!Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\subsubsection{\texorpdfstring{sum()}{sum()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar , int \+\_\+\+Options, typename \+\_\+\+Index $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_sparse_vector}{Sparse\+Vector}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Index $>$ $>$\+::Scalar \mbox{\hyperlink{class_eigen_1_1_sparse_vector}{Eigen\+::\+Sparse\+Vector}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Index $>$\+::sum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Overloaded for performance \mbox{\Hypertarget{class_eigen_1_1_sparse_vector_a977f1796d4b332a0827c5a1d7b1ed561}\label{class_eigen_1_1_sparse_vector_a977f1796d4b332a0827c5a1d7b1ed561}} 
+\index{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$}!swap@{swap}}
+\index{swap@{swap}!Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$@{Eigen::SparseVector$<$ \_Scalar, \_Options, \_StorageIndex $>$}}
+\subsubsection{\texorpdfstring{swap()}{swap()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Options, typename \+\_\+\+Storage\+Index$>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_sparse_vector}{Eigen\+::\+Sparse\+Vector}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$\+::swap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_eigen_1_1_sparse_vector}{Sparse\+Vector}}$<$ \+\_\+\+Scalar, \+\_\+\+Options, \+\_\+\+Storage\+Index $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Swaps the values of {\ttfamily $\ast$this} and {\itshape other}. Overloaded for performance\+: this version performs a {\itshape shallow} swap by swaping pointers and attributes only. \begin{DoxySeeAlso}{See also}
+Sparse\+Matrix\+Base\+::swap() 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Sparse\+Core/Sparse\+Util.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Sparse\+Core/Sparse\+Vector.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Sparse\+Core/Sparse\+Redux.\+h\end{DoxyCompactItemize}

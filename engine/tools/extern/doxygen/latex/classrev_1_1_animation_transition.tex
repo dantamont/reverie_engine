@@ -1,0 +1,76 @@
+\hypertarget{classrev_1_1_animation_transition}{}\section{rev\+::Animation\+Transition Class Reference}
+\label{classrev_1_1_animation_transition}\index{rev::AnimationTransition@{rev::AnimationTransition}}
+Inheritance diagram for rev\+::Animation\+Transition\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.692308cm]{classrev_1_1_animation_transition}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_transition_a1b8c2cf098d1e709bd7b4d349243b226}\label{classrev_1_1_animation_transition_a1b8c2cf098d1e709bd7b4d349243b226}} 
+{\bfseries Animation\+Transition} (\mbox{\hyperlink{classrev_1_1_animation_state_machine}{Animation\+State\+Machine}} $\ast$state\+Machine)
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_transition_af7550a4be10839f785b266a83bf9620c}\label{classrev_1_1_animation_transition_af7550a4be10839f785b266a83bf9620c}} 
+{\bfseries Animation\+Transition} (\mbox{\hyperlink{classrev_1_1_animation_state_machine}{Animation\+State\+Machine}} $\ast$state\+Machine, int connection\+Index)
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_transition_a519d70cba3ae42e539a47d799d1a4eaa}\label{classrev_1_1_animation_transition_a519d70cba3ae42e539a47d799d1a4eaa}} 
+{\bfseries $\sim$\+Animation\+Transition} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_transition_a6b140ed478cb97538c2c30b3c81e4cf2}\label{classrev_1_1_animation_transition_a6b140ed478cb97538c2c30b3c81e4cf2}} 
+\mbox{\hyperlink{classrev_1_1_transition_settings}{Transition\+Settings}} \& {\bfseries settings} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_transition_a96ca0497e3a03952ee77edf058171990}\label{classrev_1_1_animation_transition_a96ca0497e3a03952ee77edf058171990}} 
+const \mbox{\hyperlink{classrev_1_1_timer}{Timer}} \& {\bfseries timer} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_transition_a7a19dd42a7e92f1fdf1eebd9ee0b0962}\label{classrev_1_1_animation_transition_a7a19dd42a7e92f1fdf1eebd9ee0b0962}} 
+float \mbox{\hyperlink{classrev_1_1_animation_transition_a7a19dd42a7e92f1fdf1eebd9ee0b0962}{transition\+Time}} () const
+\begin{DoxyCompactList}\small\item\em Return the transition time based on the transition settings. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_transition_a7a026a83bc1812d07fcb8c7843203bdb}\label{classrev_1_1_animation_transition_a7a026a83bc1812d07fcb8c7843203bdb}} 
+bool {\bfseries is\+Done} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_transition_a3913ca07f7870fb146c0fef62fc2231b}\label{classrev_1_1_animation_transition_a3913ca07f7870fb146c0fef62fc2231b}} 
+void \mbox{\hyperlink{classrev_1_1_animation_transition_a3913ca07f7870fb146c0fef62fc2231b}{get\+Clips}} (const \mbox{\hyperlink{classrev_1_1_motion}{Motion}} \&motion, std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_animation_play_data}{Animation\+Play\+Data}} $>$ \&out\+Data, std\+::vector$<$ float $>$ \&out\+Weights, \mbox{\hyperlink{classrev_1_1_resource_cache}{Resource\+Cache}} $\ast$cache) const
+\begin{DoxyCompactList}\small\item\em Return clip data and weights. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_transition_a84aeee34c4e5fc22415095218d04d797}\label{classrev_1_1_animation_transition_a84aeee34c4e5fc22415095218d04d797}} 
+const \mbox{\hyperlink{classrev_1_1_animation_state}{Animation\+State}} $\ast$ {\bfseries start} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_transition_a0274c16a033b6517f99968b34f65c228}\label{classrev_1_1_animation_transition_a0274c16a033b6517f99968b34f65c228}} 
+const \mbox{\hyperlink{classrev_1_1_animation_state}{Animation\+State}} $\ast$ {\bfseries end} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_transition_afe908df5c5a331ee116956275fb452e2}\label{classrev_1_1_animation_transition_afe908df5c5a331ee116956275fb452e2}} 
+\mbox{\hyperlink{classrev_1_1_state_connection}{State\+Connection}} \& {\bfseries connection} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_transition_a6b344cdfaeafe3d3c803b8cfa50b745e}\label{classrev_1_1_animation_transition_a6b344cdfaeafe3d3c803b8cfa50b745e}} 
+virtual Animation\+State\+Type \mbox{\hyperlink{classrev_1_1_animation_transition_a6b344cdfaeafe3d3c803b8cfa50b745e}{state\+Type}} () const override
+\begin{DoxyCompactList}\small\item\em Return the animation state type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_transition_aadb757b2641ac8dc49a4fa158c3740ad}\label{classrev_1_1_animation_transition_aadb757b2641ac8dc49a4fa158c3740ad}} 
+virtual void \mbox{\hyperlink{classrev_1_1_animation_transition_aadb757b2641ac8dc49a4fa158c3740ad}{on\+Entry}} (\mbox{\hyperlink{classrev_1_1_motion}{Motion}} \&motion) const override
+\begin{DoxyCompactList}\small\item\em What happens on the transition into this state. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_transition_ab148167c2a64d9de728238b15505b57d}\label{classrev_1_1_animation_transition_ab148167c2a64d9de728238b15505b57d}} 
+virtual void \mbox{\hyperlink{classrev_1_1_animation_transition_ab148167c2a64d9de728238b15505b57d}{on\+Exit}} (\mbox{\hyperlink{classrev_1_1_motion}{Motion}} \&motion) const override
+\begin{DoxyCompactList}\small\item\em What happens on the transition out of this state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_transition_ac961a5f2101075d5da0d93ba3dfc3af7}\label{classrev_1_1_animation_transition_ac961a5f2101075d5da0d93ba3dfc3af7}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_animation_transition_ac961a5f2101075d5da0d93ba3dfc3af7}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_transition_acda68f4adc65694c72b98cbc175256b1}\label{classrev_1_1_animation_transition_acda68f4adc65694c72b98cbc175256b1}} 
+virtual void \mbox{\hyperlink{classrev_1_1_animation_transition_acda68f4adc65694c72b98cbc175256b1}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/animation/G\+Anim\+Transition.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/animation/G\+Anim\+Transition.\+cpp\end{DoxyCompactItemize}

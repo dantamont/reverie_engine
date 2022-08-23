@@ -1,0 +1,199 @@
+\hypertarget{classrev_1_1_point_light_camera}{}\section{rev\+::Point\+Light\+Camera Class Reference}
+\label{classrev_1_1_point_light_camera}\index{rev::PointLightCamera@{rev::PointLightCamera}}
+
+
+Represents a 360 degree capturing camera, used for point light shadow mapping.  
+
+
+
+
+{\ttfamily \#include $<$G\+Point\+Light\+Camera.\+h$>$}
+
+Inheritance diagram for rev\+::Point\+Light\+Camera\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_point_light_camera}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_point_light_camera_a58b34e47670fcad9104f12b5dfef976d}\label{classrev_1_1_point_light_camera_a58b34e47670fcad9104f12b5dfef976d}} 
+\mbox{\hyperlink{classrev_1_1_point_light_camera_a58b34e47670fcad9104f12b5dfef976d}{Point\+Light\+Camera}} (\mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$transform, \mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} $\ast$context, uint32\+\_\+t cubemap\+Index=0)
+\begin{DoxyCompactList}\small\item\em Create a sphere camera. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_point_light_camera_a18cea2dcf1031f20ae92fce06fe4d69b}\label{classrev_1_1_point_light_camera_a18cea2dcf1031f20ae92fce06fe4d69b}} 
+{\bfseries $\sim$\+Point\+Light\+Camera} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_point_light_camera_ad3476a4d5bea3a7096e6bd63b1241fbd}\label{classrev_1_1_point_light_camera_ad3476a4d5bea3a7096e6bd63b1241fbd}} 
+uint32\+\_\+t {\bfseries cubemap\+Texture\+Layer} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_point_light_camera_a03fa65577125122f61a91aba6356dc73}\label{classrev_1_1_point_light_camera_a03fa65577125122f61a91aba6356dc73}} 
+virtual Camera\+Type {\bfseries camera\+Type} () const override
+\item 
+\mbox{\Hypertarget{classrev_1_1_point_light_camera_a3ced79d7773aa041e7bd864a633932b9}\label{classrev_1_1_point_light_camera_a3ced79d7773aa041e7bd864a633932b9}} 
+const std\+::array$<$ \mbox{\hyperlink{classrev_1_1_camera}{Camera}}, 6 $>$ \& {\bfseries cameras} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_point_light_camera_ad0a687ce8342b376387144085ead2233}\label{classrev_1_1_point_light_camera_ad0a687ce8342b376387144085ead2233}} 
+std\+::array$<$ \mbox{\hyperlink{classrev_1_1_camera}{Camera}}, 6 $>$ \& {\bfseries cameras} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_point_light_camera_ac88c3528bb3048a5de9426fca201c62a}\label{classrev_1_1_point_light_camera_ac88c3528bb3048a5de9426fca201c62a}} 
+\mbox{\hyperlink{classrev_1_1_frame_buffer}{Frame\+Buffer}} \& \mbox{\hyperlink{classrev_1_1_point_light_camera_ac88c3528bb3048a5de9426fca201c62a}{frame\+Buffer}} ()
+\begin{DoxyCompactList}\small\item\em The framebuffer that this camera renders into. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_point_light_camera_a17a4129d7599f2f47abdac594d67ef1e}\label{classrev_1_1_point_light_camera_a17a4129d7599f2f47abdac594d67ef1e}} 
+float {\bfseries near\+Clip} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classrev_1_1_point_light_camera_afff4fe381e8872b5db8cbc7f573e3ca9}{resize\+Frame}} (uint32\+\_\+t width, uint32\+\_\+t height) override
+\begin{DoxyCompactList}\small\item\em Resize the camera\textquotesingle{}s framebuffer to accomodate the given width and height. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classrev_1_1_point_light_camera_a461e93ecc428b95ad7b7a244e143f924}{bind\+Uniforms}} (const \mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} $\ast$renderer, \mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$shader\+Program) override
+\begin{DoxyCompactList}\small\item\em Set uniforms related to the camera. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_point_light_camera_a04bd8c97785a08672c644469f005b2c6}\label{classrev_1_1_point_light_camera_a04bd8c97785a08672c644469f005b2c6}} 
+virtual void \mbox{\hyperlink{classrev_1_1_point_light_camera_a04bd8c97785a08672c644469f005b2c6}{bind\+Buffers}} () override
+\begin{DoxyCompactList}\small\item\em Bind any buffers associated with the camera. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_point_light_camera_a64222ae971eeebe2dc5334cdff42a6a9}\label{classrev_1_1_point_light_camera_a64222ae971eeebe2dc5334cdff42a6a9}} 
+virtual void \mbox{\hyperlink{classrev_1_1_point_light_camera_a64222ae971eeebe2dc5334cdff42a6a9}{bind\+Textures}} () override
+\begin{DoxyCompactList}\small\item\em Bind any textures needed for the camera. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_point_light_camera_a80efac8e7d45791803dc426753ed0dc8}\label{classrev_1_1_point_light_camera_a80efac8e7d45791803dc426753ed0dc8}} 
+virtual void \mbox{\hyperlink{classrev_1_1_point_light_camera_a80efac8e7d45791803dc426753ed0dc8}{bind\+Frame}} (Frame\+Buffer\+::\+Bind\+Type read\+Or\+Write=Frame\+Buffer\+::\+Bind\+Type\+::k\+Write, bool clear=true) override
+\begin{DoxyCompactList}\small\item\em Bind for drawing. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_point_light_camera_a47e9415868cce9ce1b20d1cc7a4c3960}\label{classrev_1_1_point_light_camera_a47e9415868cce9ce1b20d1cc7a4c3960}} 
+virtual void \mbox{\hyperlink{classrev_1_1_point_light_camera_a47e9415868cce9ce1b20d1cc7a4c3960}{release\+Frame}} (Frame\+Buffer\+::\+Bind\+Type read\+Or\+Write=Frame\+Buffer\+::\+Bind\+Type\+::k\+Write) override
+\begin{DoxyCompactList}\small\item\em Release from drawing. \end{DoxyCompactList}\item 
+virtual const \mbox{\hyperlink{classrev_1_1_colliding_geometry}{Colliding\+Geometry}} \& \mbox{\hyperlink{classrev_1_1_point_light_camera_a74ce57f46a3a367cc9b41a499b9996e5}{frustum}} () const override
+\begin{DoxyCompactList}\small\item\em The view frustum for the camera, which is a sphere. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_point_light_camera_a72eab2d7b17aa96faa4d93a18f4324ac}\label{classrev_1_1_point_light_camera_a72eab2d7b17aa96faa4d93a18f4324ac}} 
+virtual void \mbox{\hyperlink{classrev_1_1_point_light_camera_a72eab2d7b17aa96faa4d93a18f4324ac}{update\+Frustum}} (Camera\+Update\+Flags flags) override
+\begin{DoxyCompactList}\small\item\em Updates the frustum with the latest view/projection matrices from the camera. \end{DoxyCompactList}\item 
+virtual float \mbox{\hyperlink{classrev_1_1_point_light_camera_adfa53b5dd87fb570e4d238ccafc7cd5d}{get\+Depth}} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&position) override
+\begin{DoxyCompactList}\small\item\em Get depth of an object (world-\/space) given its position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_point_light_camera_ac9fe67ff0300bfa3cbc6861813abcd49}\label{classrev_1_1_point_light_camera_ac9fe67ff0300bfa3cbc6861813abcd49}} 
+\mbox{\hyperlink{classrev_1_1_render_context}{Render\+Context}} $\ast$ {\bfseries m\+\_\+context}
+\item 
+\mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$ \mbox{\hyperlink{classrev_1_1_point_light_camera_a27b4f5ef37da48fb185f8afa2d1cd024}{m\+\_\+transform}} = nullptr
+\begin{DoxyCompactList}\small\item\em the transform associated with the sphere camera and all sub-\/cameras \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_point_light_camera_ab0f5b0147a2e874ef490c1290f33931b}\label{classrev_1_1_point_light_camera_ab0f5b0147a2e874ef490c1290f33931b}} 
+\mbox{\hyperlink{classrev_1_1_frame_buffer}{Frame\+Buffer}} $\ast$ \mbox{\hyperlink{classrev_1_1_point_light_camera_ab0f5b0147a2e874ef490c1290f33931b}{m\+\_\+frame\+Buffer}}
+\begin{DoxyCompactList}\small\item\em The framebuffer that this camera renders onto. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_point_light_camera_a65d53152a59a5ce79855de2c00d853b8}\label{classrev_1_1_point_light_camera_a65d53152a59a5ce79855de2c00d853b8}} 
+uint32\+\_\+t \mbox{\hyperlink{classrev_1_1_point_light_camera_a65d53152a59a5ce79855de2c00d853b8}{m\+\_\+cube\+Texture\+Layer}} = 0
+\begin{DoxyCompactList}\small\item\em Optional cubemap texture offset for geometry shader. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_point_light_camera_ae69be18857cd1dd8ec50e515f9c003b0}\label{classrev_1_1_point_light_camera_ae69be18857cd1dd8ec50e515f9c003b0}} 
+std\+::array$<$ \mbox{\hyperlink{classrev_1_1_camera}{Camera}}, 6 $>$ \mbox{\hyperlink{classrev_1_1_point_light_camera_ae69be18857cd1dd8ec50e515f9c003b0}{m\+\_\+cameras}}
+\begin{DoxyCompactList}\small\item\em The six sub-\/cameras used to create a cubemap image. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_point_light_camera_aaaebfc2c82260e340d1c34794e0d8d24}\label{classrev_1_1_point_light_camera_aaaebfc2c82260e340d1c34794e0d8d24}} 
+std\+::array$<$ \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}}, 6 $>$ \mbox{\hyperlink{classrev_1_1_point_light_camera_aaaebfc2c82260e340d1c34794e0d8d24}{m\+\_\+light\+Matrices}}
+\begin{DoxyCompactList}\small\item\em The six light matrices for the camera. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classrev_1_1_point_light_camera_a79b57ce810bf4f59058643886f7abca0}{m\+\_\+near\+Clip}}
+\begin{DoxyCompactList}\small\item\em The view projection matrices for each of the cameras, used to set uniforms. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_point_light_camera_a5d8fd9025d565c2052bdf3b7c0749efd}\label{classrev_1_1_point_light_camera_a5d8fd9025d565c2052bdf3b7c0749efd}} 
+\mbox{\hyperlink{classrev_1_1_bounding_sphere}{Bounding\+Sphere}} \mbox{\hyperlink{classrev_1_1_point_light_camera_a5d8fd9025d565c2052bdf3b7c0749efd}{m\+\_\+frustum}}
+\begin{DoxyCompactList}\small\item\em The frustum for this camera, which is a sphere. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Represents a 360 degree capturing camera, used for point light shadow mapping. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_point_light_camera_a461e93ecc428b95ad7b7a244e143f924}\label{classrev_1_1_point_light_camera_a461e93ecc428b95ad7b7a244e143f924}} 
+\index{rev::PointLightCamera@{rev::PointLightCamera}!bindUniforms@{bindUniforms}}
+\index{bindUniforms@{bindUniforms}!rev::PointLightCamera@{rev::PointLightCamera}}
+\subsubsection{\texorpdfstring{bindUniforms()}{bindUniforms()}}
+{\footnotesize\ttfamily void rev\+::\+Point\+Light\+Camera\+::bind\+Uniforms (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_main_renderer}{Main\+Renderer}} $\ast$}]{renderer,  }\item[{\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} $\ast$}]{shader\+Program }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Set uniforms related to the camera. 
+
+e.\+g. View matrix, projection matrix, etc. 
+
+Implements \mbox{\hyperlink{classrev_1_1_abstract_camera_a6dceba3b328d5e9c3543975e3ae370c0}{rev\+::\+Abstract\+Camera}}.
+
+\mbox{\Hypertarget{classrev_1_1_point_light_camera_a74ce57f46a3a367cc9b41a499b9996e5}\label{classrev_1_1_point_light_camera_a74ce57f46a3a367cc9b41a499b9996e5}} 
+\index{rev::PointLightCamera@{rev::PointLightCamera}!frustum@{frustum}}
+\index{frustum@{frustum}!rev::PointLightCamera@{rev::PointLightCamera}}
+\subsubsection{\texorpdfstring{frustum()}{frustum()}}
+{\footnotesize\ttfamily virtual const \mbox{\hyperlink{classrev_1_1_colliding_geometry}{Colliding\+Geometry}}\& rev\+::\+Point\+Light\+Camera\+::frustum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The view frustum for the camera, which is a sphere. 
+
+The geometry used for culling what is in the camera\textquotesingle{}s view 
+
+Implements \mbox{\hyperlink{classrev_1_1_abstract_camera_a3bc8bb701690f7e67404a78cfb360708}{rev\+::\+Abstract\+Camera}}.
+
+\mbox{\Hypertarget{classrev_1_1_point_light_camera_adfa53b5dd87fb570e4d238ccafc7cd5d}\label{classrev_1_1_point_light_camera_adfa53b5dd87fb570e4d238ccafc7cd5d}} 
+\index{rev::PointLightCamera@{rev::PointLightCamera}!getDepth@{getDepth}}
+\index{getDepth@{getDepth}!rev::PointLightCamera@{rev::PointLightCamera}}
+\subsubsection{\texorpdfstring{getDepth()}{getDepth()}}
+{\footnotesize\ttfamily float rev\+::\+Point\+Light\+Camera\+::get\+Depth (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&}]{position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get depth of an object (world-\/space) given its position. 
+
+Will always be negative, since always in front of camera 
+
+Implements \mbox{\hyperlink{classrev_1_1_abstract_camera_aad3a00ed805121a7915574b4125a343f}{rev\+::\+Abstract\+Camera}}.
+
+\mbox{\Hypertarget{classrev_1_1_point_light_camera_afff4fe381e8872b5db8cbc7f573e3ca9}\label{classrev_1_1_point_light_camera_afff4fe381e8872b5db8cbc7f573e3ca9}} 
+\index{rev::PointLightCamera@{rev::PointLightCamera}!resizeFrame@{resizeFrame}}
+\index{resizeFrame@{resizeFrame}!rev::PointLightCamera@{rev::PointLightCamera}}
+\subsubsection{\texorpdfstring{resizeFrame()}{resizeFrame()}}
+{\footnotesize\ttfamily void rev\+::\+Point\+Light\+Camera\+::resize\+Frame (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{width,  }\item[{uint32\+\_\+t}]{height }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Resize the camera\textquotesingle{}s framebuffer to accomodate the given width and height. 
+
+Width and height may be refer to either a widget or texture\textquotesingle{}s dimensions 
+
+Implements \mbox{\hyperlink{classrev_1_1_abstract_camera_aaa1843c3653515e93eecc2a255d32987}{rev\+::\+Abstract\+Camera}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_point_light_camera_a79b57ce810bf4f59058643886f7abca0}\label{classrev_1_1_point_light_camera_a79b57ce810bf4f59058643886f7abca0}} 
+\index{rev::PointLightCamera@{rev::PointLightCamera}!m\_nearClip@{m\_nearClip}}
+\index{m\_nearClip@{m\_nearClip}!rev::PointLightCamera@{rev::PointLightCamera}}
+\subsubsection{\texorpdfstring{m\_nearClip}{m\_nearClip}}
+{\footnotesize\ttfamily float rev\+::\+Point\+Light\+Camera\+::m\+\_\+near\+Clip\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The view projection matrices for each of the cameras, used to set uniforms. 
+
+Near plane for the camera \mbox{\Hypertarget{classrev_1_1_point_light_camera_a27b4f5ef37da48fb185f8afa2d1cd024}\label{classrev_1_1_point_light_camera_a27b4f5ef37da48fb185f8afa2d1cd024}} 
+\index{rev::PointLightCamera@{rev::PointLightCamera}!m\_transform@{m\_transform}}
+\index{m\_transform@{m\_transform}!rev::PointLightCamera@{rev::PointLightCamera}}
+\subsubsection{\texorpdfstring{m\_transform}{m\_transform}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrev_1_1_transform}{Transform}}$\ast$ rev\+::\+Point\+Light\+Camera\+::m\+\_\+transform = nullptr\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+the transform associated with the sphere camera and all sub-\/cameras 
+
+\begin{DoxyNote}{Note}
+This differs from the standard camera initialization, which takes a transform pointer that it does not have ownership of 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/view/G\+Point\+Light\+Camera.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/rendering/view/G\+Point\+Light\+Camera.\+cpp\end{DoxyCompactItemize}

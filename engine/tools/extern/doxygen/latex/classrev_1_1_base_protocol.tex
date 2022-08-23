@@ -1,0 +1,70 @@
+\hypertarget{classrev_1_1_base_protocol}{}\section{rev\+::Base\+Protocol Class Reference}
+\label{classrev_1_1_base_protocol}\index{rev::BaseProtocol@{rev::BaseProtocol}}
+
+
+Abstract base class to enable storage of child Protocols.  
+
+
+
+
+{\ttfamily \#include $<$G\+Protocol.\+h$>$}
+
+Inheritance diagram for rev\+::Base\+Protocol\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_base_protocol}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_base_protocol_a84c35efe6eab77ace5c3746bb2ad8314}\label{classrev_1_1_base_protocol_a84c35efe6eab77ace5c3746bb2ad8314}} 
+{\bfseries Base\+Protocol} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_base_protocol_a36baaa195b3116e6e801ca8205ad4901}\label{classrev_1_1_base_protocol_a36baaa195b3116e6e801ca8205ad4901}} 
+virtual {\bfseries $\sim$\+Base\+Protocol} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_base_protocol_a081f9beb0c0e31ab423c6f058c0ce394}\label{classrev_1_1_base_protocol_a081f9beb0c0e31ab423c6f058c0ce394}} 
+void \mbox{\hyperlink{classrev_1_1_base_protocol_a081f9beb0c0e31ab423c6f058c0ce394}{add\+Child}} (\mbox{\hyperlink{classrev_1_1_base_protocol}{Base\+Protocol}} $\ast$child)
+\begin{DoxyCompactList}\small\item\em Add child protocol. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_base_protocol_a0b59760ff81ba9e89d0b7301475dc477}\label{classrev_1_1_base_protocol_a0b59760ff81ba9e89d0b7301475dc477}} 
+virtual bool \mbox{\hyperlink{classrev_1_1_base_protocol_a0b59760ff81ba9e89d0b7301475dc477}{write}} (const \mbox{\hyperlink{classrev_1_1_file_stream}{File\+Stream}} \&stream)
+\begin{DoxyCompactList}\small\item\em Write to a filestream. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_base_protocol_a61a4b3ce33404dc376b89fb206580e19}\label{classrev_1_1_base_protocol_a61a4b3ce33404dc376b89fb206580e19}} 
+virtual bool \mbox{\hyperlink{classrev_1_1_base_protocol_a61a4b3ce33404dc376b89fb206580e19}{read}} (const \mbox{\hyperlink{classrev_1_1_file_stream}{File\+Stream}} \&stream)
+\begin{DoxyCompactList}\small\item\em Read from a filestream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_base_protocol}{Base\+Protocol}} $\ast$ $>$ \mbox{\hyperlink{classrev_1_1_base_protocol_aaca4c68e141ae64b83dcf1b7d6797b3c}{m\+\_\+children}}
+\begin{DoxyCompactList}\small\item\em Child protocols of this protocol. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+Abstract base class to enable storage of child Protocols. 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_base_protocol_aaca4c68e141ae64b83dcf1b7d6797b3c}\label{classrev_1_1_base_protocol_aaca4c68e141ae64b83dcf1b7d6797b3c}} 
+\index{rev::BaseProtocol@{rev::BaseProtocol}!m\_children@{m\_children}}
+\index{m\_children@{m\_children}!rev::BaseProtocol@{rev::BaseProtocol}}
+\subsubsection{\texorpdfstring{m\_children}{m\_children}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classrev_1_1_base_protocol}{Base\+Protocol}}$\ast$$>$ rev\+::\+Base\+Protocol\+::m\+\_\+children\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Child protocols of this protocol. 
+
+Enables protocols to be called in a tree-\/like manner 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/encoding/G\+Protocol.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/encoding/G\+Protocol.\+cpp\end{DoxyCompactItemize}

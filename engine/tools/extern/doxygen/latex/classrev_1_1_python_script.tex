@@ -1,0 +1,138 @@
+\hypertarget{classrev_1_1_python_script}{}\section{rev\+::Python\+Script Class Reference}
+\label{classrev_1_1_python_script}\index{rev::PythonScript@{rev::PythonScript}}
+
+
+Represents a python script.  
+
+
+
+
+{\ttfamily \#include $<$G\+Python\+Script.\+h$>$}
+
+Inheritance diagram for rev\+::Python\+Script\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classrev_1_1_python_script}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_script_a49660deecce1e323345562241de4edde}\label{classrev_1_1_python_script_a49660deecce1e323345562241de4edde}} 
+{\bfseries Python\+Script} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$engine)
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_script_a91f136102e4391e606885f2518c4c51e}\label{classrev_1_1_python_script_a91f136102e4391e606885f2518c4c51e}} 
+{\bfseries Python\+Script} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$engine, const Q\+String \&filepath)
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_script_a66306640292c3006bef369519627fc42}\label{classrev_1_1_python_script_a66306640292c3006bef369519627fc42}} 
+virtual {\bfseries $\sim$\+Python\+Script} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_script_ad5385fde8c840e080a5d312792adc887}\label{classrev_1_1_python_script_ad5385fde8c840e080a5d312792adc887}} 
+virtual Resource\+Type \mbox{\hyperlink{classrev_1_1_python_script_ad5385fde8c840e080a5d312792adc887}{get\+Resource\+Type}} () const override
+\begin{DoxyCompactList}\small\item\em Get the type of resource stored by this handle. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_script_a688cec18663b61c1604b1716a44a9a13}\label{classrev_1_1_python_script_a688cec18663b61c1604b1716a44a9a13}} 
+void \mbox{\hyperlink{classrev_1_1_python_script_a688cec18663b61c1604b1716a44a9a13}{reload}} ()
+\begin{DoxyCompactList}\small\item\em Reload the script. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Loadable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_script_af070c86ce365515e240a23ef244e81ef}\label{classrev_1_1_python_script_af070c86ce365515e240a23ef244e81ef}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_python_script_af070c86ce365515e240a23ef244e81ef}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_script_aacd7f5481117edfda8c0f88a556ed4be}\label{classrev_1_1_python_script_aacd7f5481117edfda8c0f88a556ed4be}} 
+virtual void \mbox{\hyperlink{classrev_1_1_python_script_aacd7f5481117edfda8c0f88a556ed4be}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_python_script_ac593ea8f3beeb031d81837b1306bf6ba}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_python_script_ad8a903fd2749527913565f640e5239d6}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_script_ae6aee36da7a012feb44d8c2ef795d96c}\label{classrev_1_1_python_script_ae6aee36da7a012feb44d8c2ef795d96c}} 
+py\+::object \mbox{\hyperlink{classrev_1_1_python_script_ae6aee36da7a012feb44d8c2ef795d96c}{get\+Python\+Scene\+Object}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $>$ \&so) const
+\begin{DoxyCompactList}\small\item\em Get a python scene object, or create if there is none. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_script_a1aaf7198b1244df271ed91b01e226254}\label{classrev_1_1_python_script_a1aaf7198b1244df271ed91b01e226254}} 
+virtual void \mbox{\hyperlink{classrev_1_1_python_script_a1aaf7198b1244df271ed91b01e226254}{initialize}} ()=0
+\begin{DoxyCompactList}\small\item\em Initialize the script. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_script_acb1864c1f92b7c724b7e9b3b046c143e}\label{classrev_1_1_python_script_acb1864c1f92b7c724b7e9b3b046c143e}} 
+virtual void {\bfseries define\+In\+Python} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_python_script_a8ba49bbe5560857b80e1fd08128842b0}\label{classrev_1_1_python_script_a8ba49bbe5560857b80e1fd08128842b0}} 
+\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$ \mbox{\hyperlink{classrev_1_1_python_script_a8ba49bbe5560857b80e1fd08128842b0}{m\+\_\+engine}}
+\begin{DoxyCompactList}\small\item\em the core engine \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_python_script_ab860877cac2dcfc777c91e79967d4704}\label{classrev_1_1_python_script_ab860877cac2dcfc777c91e79967d4704}} 
+Q\+String \mbox{\hyperlink{classrev_1_1_python_script_ab860877cac2dcfc777c91e79967d4704}{m\+\_\+contents}}
+\begin{DoxyCompactList}\small\item\em Contents of the script. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Represents a python script. 
+
+\begin{DoxyNote}{Note}
+Filename must be the same as the class name defined in the script 
+\end{DoxyNote}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_python_script_ac593ea8f3beeb031d81837b1306bf6ba}\label{classrev_1_1_python_script_ac593ea8f3beeb031d81837b1306bf6ba}} 
+\index{rev::PythonScript@{rev::PythonScript}!className@{className}}
+\index{className@{className}!rev::PythonScript@{rev::PythonScript}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Python\+Script\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_python_class_script_adbdcf0106db89f58196a253e5d3b6831}{rev\+::\+Python\+Class\+Script}}.
+
+\mbox{\Hypertarget{classrev_1_1_python_script_ad8a903fd2749527913565f640e5239d6}\label{classrev_1_1_python_script_ad8a903fd2749527913565f640e5239d6}} 
+\index{rev::PythonScript@{rev::PythonScript}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::PythonScript@{rev::PythonScript}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Python\+Script\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_python_class_script_a3e596d1eec111c02d431496f6a750701}{rev\+::\+Python\+Class\+Script}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/scripting/G\+Python\+Script.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/scripting/G\+Python\+Script.\+cpp\end{DoxyCompactItemize}

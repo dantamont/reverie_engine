@@ -1,0 +1,206 @@
+\hypertarget{class_eigen_1_1_quaternion}{}\section{Eigen\+::Quaternion$<$ \+\_\+\+Scalar, \+\_\+\+Options $>$ Class Template Reference}
+\label{class_eigen_1_1_quaternion}\index{Eigen::Quaternion$<$ \_Scalar, \_Options $>$@{Eigen::Quaternion$<$ \_Scalar, \_Options $>$}}
+
+
+The quaternion class used to represent 3D orientations and rotations.  
+
+
+
+
+{\ttfamily \#include $<$Quaternion.\+h$>$}
+
+Inheritance diagram for Eigen\+::Quaternion$<$ \+\_\+\+Scalar, \+\_\+\+Options $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_eigen_1_1_quaternion}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_quaternion_aeaae8d33a5ecb6a234d58d1b724203d1}\label{class_eigen_1_1_quaternion_aeaae8d33a5ecb6a234d58d1b724203d1}} 
+enum 
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_quaternion_a9974b92d1db705a8c7b897a7f46f532d}\label{class_eigen_1_1_quaternion_a9974b92d1db705a8c7b897a7f46f532d}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_quaternion_base}{Quaternion\+Base}}$<$ \mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion}}$<$ \+\_\+\+Scalar, \+\_\+\+Options $>$ $>$ {\bfseries Base}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_quaternion_a57a4cacbc15fb0891b7c493c6cd20c09}\label{class_eigen_1_1_quaternion_a57a4cacbc15fb0891b7c493c6cd20c09}} 
+typedef \+\_\+\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_quaternion_ada6c13d8791ad5fb0d6d34f0cf1282cb}\label{class_eigen_1_1_quaternion_ada6c13d8791ad5fb0d6d34f0cf1282cb}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion}} $>$\+::Coefficients {\bfseries Coefficients}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_quaternion_af03ed9e94989cbc4288565590d0418f9}\label{class_eigen_1_1_quaternion_af03ed9e94989cbc4288565590d0418f9}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_quaternion_base_aed266c63b10a4028304901d9c8614199}{Base\+::\+Angle\+Axis\+Type}} {\bfseries Angle\+Axis\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_quaternion_a7f8e93e2615e56344fd0d89c2916f9be}{Quaternion}} ()
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_quaternion_a90c179492cd3ca296c85815e20773d60}{Quaternion}} (const Scalar \&\mbox{\hyperlink{class_eigen_1_1_quaternion_base_a6221021558ba509e7a5a7fc68092034d}{w}}, const Scalar \&\mbox{\hyperlink{class_eigen_1_1_quaternion_base_af5a6618608a86232397a60d11dbad13d}{x}}, const Scalar \&\mbox{\hyperlink{class_eigen_1_1_quaternion_base_a77a62575ed017e4086145714db4e6502}{y}}, const Scalar \&\mbox{\hyperlink{class_eigen_1_1_quaternion_base_af76afdeb1d1441cbf09d4989437a930e}{z}})
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_quaternion_abb9e33e5d10806b5bc8b0683e94e8f72}{Quaternion}} (const Scalar $\ast$data)
+\item 
+{\footnotesize template$<$class Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_quaternion_a272ce2dc4e30e6e0d68f455c7b1cc407}{Quaternion}} (const \mbox{\hyperlink{class_eigen_1_1_quaternion_base}{Quaternion\+Base}}$<$ Derived $>$ \&other)
+\item 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_quaternion_a7ce40a727b6532e52d7d58d399328ce7}{Quaternion}} (const \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis\+Type}} \&aa)
+\item 
+{\footnotesize template$<$typename Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_quaternion_a3a7ed649b5c8c80ec7e78baf1ed0ba4c}{Quaternion}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived $>$ \&other)
+\item 
+{\footnotesize template$<$typename Other\+Scalar , int Other\+Options$>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_quaternion_af6430466427b40d7ed79bfb6818cccc2}{Quaternion}} (const \mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion}}$<$ Other\+Scalar, Other\+Options $>$ \&other)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_quaternion_aa731707bceb19eae548aec3d7f3a0ac7}\label{class_eigen_1_1_quaternion_aa731707bceb19eae548aec3d7f3a0ac7}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Coefficients \& {\bfseries coeffs} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_quaternion_ae82658e23053295abf1b3f0875096b3b}\label{class_eigen_1_1_quaternion_ae82658e23053295abf1b3f0875096b3b}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const Coefficients \& {\bfseries coeffs} () const
+\item 
+{\footnotesize template$<$typename Derived1 , typename Derived2 $>$ }\\E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion}}$<$ Scalar, Options $>$ \mbox{\hyperlink{class_eigen_1_1_quaternion_ab37b697ccf83573b0fd414e2ec543739}{From\+Two\+Vectors}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived1 $>$ \&a, const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived2 $>$ \&b)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion}} \mbox{\hyperlink{class_eigen_1_1_quaternion_a8a61f4092bc520c7291e5b5e16e80d71}{Unit\+Random}} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_quaternion_a55e431603dc1cc6e1ef5ad4b64334be8}\label{class_eigen_1_1_quaternion_a55e431603dc1cc6e1ef5ad4b64334be8}} 
+{\footnotesize template$<$typename Derived1 , typename Derived2 $>$ }\\static E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion}} {\bfseries From\+Two\+Vectors} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived1 $>$ \&a, const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived2 $>$ \&b)
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_quaternion_afdc86fe85ae928f117b9d328cd1594ff}\label{class_eigen_1_1_quaternion_afdc86fe85ae928f117b9d328cd1594ff}} 
+static E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE void {\bfseries \+\_\+check\+\_\+template\+\_\+params} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_quaternion_af5807aeb42b535b3b79179da009e3506}\label{class_eigen_1_1_quaternion_af5807aeb42b535b3b79179da009e3506}} 
+Coefficients {\bfseries m\+\_\+coeffs}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar, int \+\_\+\+Options$>$\newline
+class Eigen\+::\+Quaternion$<$ \+\_\+\+Scalar, \+\_\+\+Options $>$}
+
+The quaternion class used to represent 3D orientations and rotations. 
+
+\textbackslash{}geometry\+\_\+module
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Scalar} & the scalar type, i.\+e., the type of the coefficients \\
+\hline
+{\em \+\_\+\+Options} & controls the memory alignment of the coefficients. Can be \# Auto\+Align or \# Dont\+Align. Default is Auto\+Align.\\
+\hline
+\end{DoxyTemplParams}
+This class represents a quaternion $ w+xi+yj+zk $ that is a convenient representation of orientations and rotations of objects in three dimensions. Compared to other representations like \mbox{\hyperlink{class_euler}{Euler}} angles or 3x3 matrices, quaternions offer the following advantages\+: \begin{DoxyItemize}
+\item {\bfseries{compact}} storage (4 scalars) \item {\bfseries{efficient}} to compose (28 flops), \item {\bfseries{stable}} spherical interpolation\end{DoxyItemize}
+The following two typedefs are provided for convenience\+: \begin{DoxyItemize}
+\item {\ttfamily Quaternionf} for {\ttfamily float} \item {\ttfamily Quaterniond} for {\ttfamily double} \end{DoxyItemize}
+\begin{DoxyWarning}{Warning}
+Operations interpreting the quaternion as rotation have undefined behavior if the quaternion is not normalized.
+\end{DoxyWarning}
+\begin{DoxySeeAlso}{See also}
+class \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis}}, class \mbox{\hyperlink{class_eigen_1_1_transform}{Transform}} 
+\end{DoxySeeAlso}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_quaternion_a7f8e93e2615e56344fd0d89c2916f9be}\label{class_eigen_1_1_quaternion_a7f8e93e2615e56344fd0d89c2916f9be}} 
+\index{Eigen::Quaternion$<$ \_Scalar, \_Options $>$@{Eigen::Quaternion$<$ \_Scalar, \_Options $>$}!Quaternion@{Quaternion}}
+\index{Quaternion@{Quaternion}!Eigen::Quaternion$<$ \_Scalar, \_Options $>$@{Eigen::Quaternion$<$ \_Scalar, \_Options $>$}}
+\subsubsection{\texorpdfstring{Quaternion()}{Quaternion()}\hspace{0.1cm}{\footnotesize\ttfamily [1/7]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_quaternion}{Eigen\+::\+Quaternion}}$<$ \+\_\+\+Scalar, \+\_\+\+Options $>$\+::\mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default constructor leaving the quaternion uninitialized. \mbox{\Hypertarget{class_eigen_1_1_quaternion_a90c179492cd3ca296c85815e20773d60}\label{class_eigen_1_1_quaternion_a90c179492cd3ca296c85815e20773d60}} 
+\index{Eigen::Quaternion$<$ \_Scalar, \_Options $>$@{Eigen::Quaternion$<$ \_Scalar, \_Options $>$}!Quaternion@{Quaternion}}
+\index{Quaternion@{Quaternion}!Eigen::Quaternion$<$ \_Scalar, \_Options $>$@{Eigen::Quaternion$<$ \_Scalar, \_Options $>$}}
+\subsubsection{\texorpdfstring{Quaternion()}{Quaternion()}\hspace{0.1cm}{\footnotesize\ttfamily [2/7]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_quaternion}{Eigen\+::\+Quaternion}}$<$ \+\_\+\+Scalar, \+\_\+\+Options $>$\+::\mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion}} (\begin{DoxyParamCaption}\item[{const Scalar \&}]{w,  }\item[{const Scalar \&}]{x,  }\item[{const Scalar \&}]{y,  }\item[{const Scalar \&}]{z }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructs and initializes the quaternion $ w+xi+yj+zk $ from its four coefficients {\itshape w}, {\itshape x}, {\itshape y} and {\itshape z}.
+
+\begin{DoxyWarning}{Warning}
+Note the order of the arguments\+: the real {\itshape w} coefficient first, while internally the coefficients are stored in the following order\+: \mbox{[}{\ttfamily x}, {\ttfamily y}, {\ttfamily z}, {\ttfamily w}\mbox{]} 
+\end{DoxyWarning}
+\mbox{\Hypertarget{class_eigen_1_1_quaternion_abb9e33e5d10806b5bc8b0683e94e8f72}\label{class_eigen_1_1_quaternion_abb9e33e5d10806b5bc8b0683e94e8f72}} 
+\index{Eigen::Quaternion$<$ \_Scalar, \_Options $>$@{Eigen::Quaternion$<$ \_Scalar, \_Options $>$}!Quaternion@{Quaternion}}
+\index{Quaternion@{Quaternion}!Eigen::Quaternion$<$ \_Scalar, \_Options $>$@{Eigen::Quaternion$<$ \_Scalar, \_Options $>$}}
+\subsubsection{\texorpdfstring{Quaternion()}{Quaternion()}\hspace{0.1cm}{\footnotesize\ttfamily [3/7]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_quaternion}{Eigen\+::\+Quaternion}}$<$ \+\_\+\+Scalar, \+\_\+\+Options $>$\+::\mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion}} (\begin{DoxyParamCaption}\item[{const Scalar $\ast$}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Constructs and initialize a quaternion from the array data \mbox{\Hypertarget{class_eigen_1_1_quaternion_a272ce2dc4e30e6e0d68f455c7b1cc407}\label{class_eigen_1_1_quaternion_a272ce2dc4e30e6e0d68f455c7b1cc407}} 
+\index{Eigen::Quaternion$<$ \_Scalar, \_Options $>$@{Eigen::Quaternion$<$ \_Scalar, \_Options $>$}!Quaternion@{Quaternion}}
+\index{Quaternion@{Quaternion}!Eigen::Quaternion$<$ \_Scalar, \_Options $>$@{Eigen::Quaternion$<$ \_Scalar, \_Options $>$}}
+\subsubsection{\texorpdfstring{Quaternion()}{Quaternion()}\hspace{0.1cm}{\footnotesize\ttfamily [4/7]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Options$>$ \\
+template$<$class Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \mbox{\hyperlink{class_eigen_1_1_quaternion}{Eigen\+::\+Quaternion}}$<$ \+\_\+\+Scalar, \+\_\+\+Options $>$\+::\mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_quaternion_base}{Quaternion\+Base}}$<$ Derived $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Copy constructor \mbox{\Hypertarget{class_eigen_1_1_quaternion_a7ce40a727b6532e52d7d58d399328ce7}\label{class_eigen_1_1_quaternion_a7ce40a727b6532e52d7d58d399328ce7}} 
+\index{Eigen::Quaternion$<$ \_Scalar, \_Options $>$@{Eigen::Quaternion$<$ \_Scalar, \_Options $>$}!Quaternion@{Quaternion}}
+\index{Quaternion@{Quaternion}!Eigen::Quaternion$<$ \_Scalar, \_Options $>$@{Eigen::Quaternion$<$ \_Scalar, \_Options $>$}}
+\subsubsection{\texorpdfstring{Quaternion()}{Quaternion()}\hspace{0.1cm}{\footnotesize\ttfamily [5/7]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_quaternion}{Eigen\+::\+Quaternion}}$<$ \+\_\+\+Scalar, \+\_\+\+Options $>$\+::\mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_angle_axis}{Angle\+Axis\+Type}} \&}]{aa }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Constructs and initializes a quaternion from the angle-\/axis {\itshape aa} \mbox{\Hypertarget{class_eigen_1_1_quaternion_a3a7ed649b5c8c80ec7e78baf1ed0ba4c}\label{class_eigen_1_1_quaternion_a3a7ed649b5c8c80ec7e78baf1ed0ba4c}} 
+\index{Eigen::Quaternion$<$ \_Scalar, \_Options $>$@{Eigen::Quaternion$<$ \_Scalar, \_Options $>$}!Quaternion@{Quaternion}}
+\index{Quaternion@{Quaternion}!Eigen::Quaternion$<$ \_Scalar, \_Options $>$@{Eigen::Quaternion$<$ \_Scalar, \_Options $>$}}
+\subsubsection{\texorpdfstring{Quaternion()}{Quaternion()}\hspace{0.1cm}{\footnotesize\ttfamily [6/7]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Options$>$ \\
+template$<$typename Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_quaternion}{Eigen\+::\+Quaternion}}$<$ \+\_\+\+Scalar, \+\_\+\+Options $>$\+::\mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Constructs and initializes a quaternion from either\+:
+\begin{DoxyItemize}
+\item a rotation matrix expression,
+\item a 4D vector expression representing quaternion coefficients. 
+\end{DoxyItemize}\mbox{\Hypertarget{class_eigen_1_1_quaternion_af6430466427b40d7ed79bfb6818cccc2}\label{class_eigen_1_1_quaternion_af6430466427b40d7ed79bfb6818cccc2}} 
+\index{Eigen::Quaternion$<$ \_Scalar, \_Options $>$@{Eigen::Quaternion$<$ \_Scalar, \_Options $>$}!Quaternion@{Quaternion}}
+\index{Quaternion@{Quaternion}!Eigen::Quaternion$<$ \_Scalar, \_Options $>$@{Eigen::Quaternion$<$ \_Scalar, \_Options $>$}}
+\subsubsection{\texorpdfstring{Quaternion()}{Quaternion()}\hspace{0.1cm}{\footnotesize\ttfamily [7/7]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Options$>$ \\
+template$<$typename Other\+Scalar , int Other\+Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_quaternion}{Eigen\+::\+Quaternion}}$<$ \+\_\+\+Scalar, \+\_\+\+Options $>$\+::\mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion}}$<$ Other\+Scalar, Other\+Options $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Explicit copy constructor with scalar conversion 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_quaternion_ab37b697ccf83573b0fd414e2ec543739}\label{class_eigen_1_1_quaternion_ab37b697ccf83573b0fd414e2ec543739}} 
+\index{Eigen::Quaternion$<$ \_Scalar, \_Options $>$@{Eigen::Quaternion$<$ \_Scalar, \_Options $>$}!FromTwoVectors@{FromTwoVectors}}
+\index{FromTwoVectors@{FromTwoVectors}!Eigen::Quaternion$<$ \_Scalar, \_Options $>$@{Eigen::Quaternion$<$ \_Scalar, \_Options $>$}}
+\subsubsection{\texorpdfstring{FromTwoVectors()}{FromTwoVectors()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar, int \+\_\+\+Options$>$ \\
+template$<$typename Derived1 , typename Derived2 $>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion}}$<$Scalar,Options$>$ \mbox{\hyperlink{class_eigen_1_1_quaternion}{Eigen\+::\+Quaternion}}$<$ \+\_\+\+Scalar, \+\_\+\+Options $>$\+::From\+Two\+Vectors (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived1 $>$ \&}]{a,  }\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Derived2 $>$ \&}]{b }\end{DoxyParamCaption})}
+
+Returns a quaternion representing a rotation between the two arbitrary vectors {\itshape a} and {\itshape b}. In other words, the built rotation represent a rotation sending the line of direction {\itshape a} to the line of direction {\itshape b}, both lines passing through the origin.
+
+\begin{DoxyReturn}{Returns}
+resulting quaternion
+\end{DoxyReturn}
+Note that the two input vectors do {\bfseries{not}} have to be normalized, and do not need to have the same norm. \mbox{\Hypertarget{class_eigen_1_1_quaternion_a8a61f4092bc520c7291e5b5e16e80d71}\label{class_eigen_1_1_quaternion_a8a61f4092bc520c7291e5b5e16e80d71}} 
+\index{Eigen::Quaternion$<$ \_Scalar, \_Options $>$@{Eigen::Quaternion$<$ \_Scalar, \_Options $>$}!UnitRandom@{UnitRandom}}
+\index{UnitRandom@{UnitRandom}!Eigen::Quaternion$<$ \_Scalar, \_Options $>$@{Eigen::Quaternion$<$ \_Scalar, \_Options $>$}}
+\subsubsection{\texorpdfstring{UnitRandom()}{UnitRandom()}}
+{\footnotesize\ttfamily template$<$typename Scalar , int Options$>$ \\
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC \mbox{\hyperlink{class_eigen_1_1_quaternion}{Quaternion}}$<$ Scalar, Options $>$ \mbox{\hyperlink{class_eigen_1_1_quaternion}{Eigen\+::\+Quaternion}}$<$ Scalar, Options $>$\+::Unit\+Random (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyReturn}{Returns}
+a random unit quaternion following a uniform distribution law on S\+O(3)
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The implementation is based on \href{http://planning.cs.uiuc.edu/node198.html}{\texttt{ http\+://planning.\+cs.\+uiuc.\+edu/node198.\+html}} 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Core/util/Forward\+Declarations.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Geometry/Quaternion.\+h\end{DoxyCompactItemize}

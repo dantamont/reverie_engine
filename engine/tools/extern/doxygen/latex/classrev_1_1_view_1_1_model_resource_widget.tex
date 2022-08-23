@@ -1,0 +1,61 @@
+\hypertarget{classrev_1_1_view_1_1_model_resource_widget}{}\section{rev\+::View\+::Model\+Resource\+Widget Class Reference}
+\label{classrev_1_1_view_1_1_model_resource_widget}\index{rev::View::ModelResourceWidget@{rev::View::ModelResourceWidget}}
+Inheritance diagram for rev\+::View\+::Model\+Resource\+Widget\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.718446cm]{classrev_1_1_view_1_1_model_resource_widget}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_model_resource_widget_a42952e916f2d33c63b5db8c9874cec68}\label{classrev_1_1_view_1_1_model_resource_widget_a42952e916f2d33c63b5db8c9874cec68}} 
+{\bfseries Model\+Resource\+Widget} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \&model\+Handle, Q\+Widget $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_model_resource_widget_a18d87c147db263a532b2d5628d9a9e5d}\label{classrev_1_1_view_1_1_model_resource_widget_a18d87c147db263a532b2d5628d9a9e5d}} 
+virtual {\bfseries $\sim$\+Model\+Resource\+Widget} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_model_resource_widget_a1de272cca2c2b11d597a8957941e82d0}\label{classrev_1_1_view_1_1_model_resource_widget_a1de272cca2c2b11d597a8957941e82d0}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_model_resource_widget_a1de272cca2c2b11d597a8957941e82d0}{update}} () override
+\begin{DoxyCompactList}\small\item\em Update the parameter widget. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_model_resource_widget_aec607dd29e14b4852c77082375adcdef}\label{classrev_1_1_view_1_1_model_resource_widget_aec607dd29e14b4852c77082375adcdef}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_model_resource_widget_aec607dd29e14b4852c77082375adcdef}{initialize\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to check\+Validity widgets. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_model_resource_widget_ac3963d08b5432a6856e12ade660b54ed}\label{classrev_1_1_view_1_1_model_resource_widget_ac3963d08b5432a6856e12ade660b54ed}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_model_resource_widget_ac3963d08b5432a6856e12ade660b54ed}{initialize\+Connections}} () override
+\begin{DoxyCompactList}\small\item\em Methods to check\+Validity connections for this widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_model_resource_widget_a40c91afe357f995da6e85790f2ddcbcb}\label{classrev_1_1_view_1_1_model_resource_widget_a40c91afe357f995da6e85790f2ddcbcb}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_model_resource_widget_a40c91afe357f995da6e85790f2ddcbcb}{layout\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to ay out widgets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_model_resource_widget_a6662595cedf6c5904de729f0a3d7cc8c}\label{classrev_1_1_view_1_1_model_resource_widget_a6662595cedf6c5904de729f0a3d7cc8c}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ {\bfseries m\+\_\+model\+Handle}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_model_resource_widget_a8106d42050a230576c315f25f6e0af5a}\label{classrev_1_1_view_1_1_model_resource_widget_a8106d42050a230576c315f25f6e0af5a}} 
+Q\+Line\+Edit $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_model_resource_widget_a8106d42050a230576c315f25f6e0af5a}{m\+\_\+name\+Widget}}
+\begin{DoxyCompactList}\small\item\em Name of the model. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_model_resource_widget_a16e616a16561aba0016ca08310d8cf78}\label{classrev_1_1_view_1_1_model_resource_widget_a16e616a16561aba0016ca08310d8cf78}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_mesh_tree_widget}{Mesh\+Tree\+Widget}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_model_resource_widget_a16e616a16561aba0016ca08310d8cf78}{m\+\_\+meshes\+Widget}}
+\begin{DoxyCompactList}\small\item\em List widget for all meshes associated with the model. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/parameters/G\+Model\+Widgets.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/parameters/G\+Model\+Widgets.\+cpp\end{DoxyCompactItemize}

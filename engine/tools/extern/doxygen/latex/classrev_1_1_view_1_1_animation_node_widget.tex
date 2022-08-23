@@ -1,0 +1,150 @@
+\hypertarget{classrev_1_1_view_1_1_animation_node_widget}{}\section{rev\+::View\+::Animation\+Node\+Widget Class Reference}
+\label{classrev_1_1_view_1_1_animation_node_widget}\index{rev::View::AnimationNodeWidget@{rev::View::AnimationNodeWidget}}
+
+
+Generic component widget that uses J\+S\+ON data to modify components.  
+
+
+
+
+{\ttfamily \#include $<$G\+Animation\+Node\+Widget.\+h$>$}
+
+Inheritance diagram for rev\+::View\+::Animation\+Node\+Widget\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.772277cm]{classrev_1_1_view_1_1_animation_node_widget}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_a66461f59955130b634dff659248e256a}\label{classrev_1_1_view_1_1_animation_node_widget_a66461f59955130b634dff659248e256a}} 
+{\bfseries Animation\+Node\+Widget} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, \mbox{\hyperlink{classrev_1_1_bone_animation_component}{Bone\+Animation\+Component}} $\ast$anim\+Comp, Q\+Widget $\ast$parent=0)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_aeb616aee0e05e8a809d6c157e90ac99a}\label{classrev_1_1_view_1_1_animation_node_widget_aeb616aee0e05e8a809d6c157e90ac99a}} 
+{\bfseries $\sim$\+Animation\+Node\+Widget} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Slots}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_a366790ba9af36e591317a5f07ca2c001}\label{classrev_1_1_view_1_1_animation_node_widget_a366790ba9af36e591317a5f07ca2c001}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_node_view_block}{Node\+View\+Block}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_animation_node_widget_a366790ba9af36e591317a5f07ca2c001}{add\+Block}} (const \mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \&uuid, const Q\+PointF \&position)
+\begin{DoxyCompactList}\small\item\em Add a block to the animation scene graph, using widget coordinates. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_a8d2df137b7d0ffa4b6bbaf597c2e291b}\label{classrev_1_1_view_1_1_animation_node_widget_a8d2df137b7d0ffa4b6bbaf597c2e291b}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_node_view_port}{Node\+View\+Port}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_animation_node_widget_a8d2df137b7d0ffa4b6bbaf597c2e291b}{add\+Port}} (const \mbox{\hyperlink{classrev_1_1_base_animation_state}{Base\+Animation\+State}} $\ast$state, bool is\+Output)
+\begin{DoxyCompactList}\small\item\em Add a port for the specified state. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_af80433cc281b8805c81faa31234da857}\label{classrev_1_1_view_1_1_animation_node_widget_af80433cc281b8805c81faa31234da857}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_node_view_connection}{Node\+View\+Connection}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_animation_node_widget_af80433cc281b8805c81faa31234da857}{add\+Connection}} (const \mbox{\hyperlink{classrev_1_1_state_connection}{State\+Connection}} \&connection)
+\begin{DoxyCompactList}\small\item\em Add a connection based on an actual state connection. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_a0211423edc17fbe37b72067c33b4dfca}\label{classrev_1_1_view_1_1_animation_node_widget_a0211423edc17fbe37b72067c33b4dfca}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_animation_node_widget_a0211423edc17fbe37b72067c33b4dfca}{on\+Mouse\+Event}} (Q\+Graphics\+Scene\+Mouse\+Event $\ast$)
+\begin{DoxyCompactList}\small\item\em Add a slot for handling mouse event in graphics scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_a3abdd071a7f19bac4c8a1c009dc9333f}\label{classrev_1_1_view_1_1_animation_node_widget_a3abdd071a7f19bac4c8a1c009dc9333f}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_animation_node_widget_a3abdd071a7f19bac4c8a1c009dc9333f}{on\+Connected\+Ports}} (\mbox{\hyperlink{classrev_1_1_view_1_1_node_view_connection}{Node\+View\+Connection}} $\ast$connection)
+\begin{DoxyCompactList}\small\item\em Slot for handling state connections. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_a77fa7ba497d5ac648b50e6d53a876509}\label{classrev_1_1_view_1_1_animation_node_widget_a77fa7ba497d5ac648b50e6d53a876509}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_animation_node_widget_a77fa7ba497d5ac648b50e6d53a876509}{on\+Disconnected\+Ports}} (\mbox{\hyperlink{classrev_1_1_state_connection}{State\+Connection}} $\ast$connection)
+\begin{DoxyCompactList}\small\item\em Slot for when ports are disconnected. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Private Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_a6391916a3075dfd8869084f9316882b5}\label{classrev_1_1_view_1_1_animation_node_widget_a6391916a3075dfd8869084f9316882b5}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_animation_node_widget_a6391916a3075dfd8869084f9316882b5}{initialize\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to check\+Validity widgets. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_a2883050d03ec4dfc5a66f87178c5b269}\label{classrev_1_1_view_1_1_animation_node_widget_a2883050d03ec4dfc5a66f87178c5b269}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_animation_node_widget_a2883050d03ec4dfc5a66f87178c5b269}{initialize\+Connections}} () override
+\begin{DoxyCompactList}\small\item\em Methods to check\+Validity connections for this widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_af53b7d8b11c0b0a6778a0f8b1664425b}\label{classrev_1_1_view_1_1_animation_node_widget_af53b7d8b11c0b0a6778a0f8b1664425b}} 
+virtual void \mbox{\hyperlink{classrev_1_1_view_1_1_animation_node_widget_af53b7d8b11c0b0a6778a0f8b1664425b}{layout\+Widgets}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{struct_method}{Method}} to ay out widgets. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_a6c483a7f77b5e6fcf46dbe8b81282a89}\label{classrev_1_1_view_1_1_animation_node_widget_a6c483a7f77b5e6fcf46dbe8b81282a89}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_animation_node_widget_a6c483a7f77b5e6fcf46dbe8b81282a89}{initialize\+Animation\+Scene}} ()
+\begin{DoxyCompactList}\small\item\em Initialize graph scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_a1240c7430e45784fc9630d47f8bdde92}\label{classrev_1_1_view_1_1_animation_node_widget_a1240c7430e45784fc9630d47f8bdde92}} 
+\mbox{\hyperlink{classrev_1_1_base_animation_state}{Base\+Animation\+State}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_animation_node_widget_a1240c7430e45784fc9630d47f8bdde92}{get\+State}} (const \mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \&uuid) const
+\begin{DoxyCompactList}\small\item\em Get the state with the specified uuid. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_a2fce6b498e72996872f5c6f05facb58a}\label{classrev_1_1_view_1_1_animation_node_widget_a2fce6b498e72996872f5c6f05facb58a}} 
+const std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_base_animation_state}{Base\+Animation\+State}} $\ast$ $>$ \& \mbox{\hyperlink{classrev_1_1_view_1_1_animation_node_widget_a2fce6b498e72996872f5c6f05facb58a}{get\+States}} () const
+\begin{DoxyCompactList}\small\item\em Get the states associated with the animation component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_a4bfc72187decf8527d9db76f817f4cf7}\label{classrev_1_1_view_1_1_animation_node_widget_a4bfc72187decf8527d9db76f817f4cf7}} 
+\mbox{\hyperlink{classrev_1_1_base_animation_state}{Base\+Animation\+State}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_animation_node_widget_a4bfc72187decf8527d9db76f817f4cf7}{get\+State}} (\mbox{\hyperlink{classrev_1_1_view_1_1_node_view_block}{Node\+View\+Block}} $\ast$block)
+\begin{DoxyCompactList}\small\item\em Get the state corresponding to a block. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_a2b2b79719f94c51de89f4027e1bd1809}\label{classrev_1_1_view_1_1_animation_node_widget_a2b2b79719f94c51de89f4027e1bd1809}} 
+\mbox{\hyperlink{classrev_1_1_state_connection}{State\+Connection}} $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_animation_node_widget_a2b2b79719f94c51de89f4027e1bd1809}{get\+Connection}} (\mbox{\hyperlink{classrev_1_1_view_1_1_node_view_connection}{Node\+View\+Connection}} $\ast$connection)
+\begin{DoxyCompactList}\small\item\em Get the state connection corresponding to a node connection. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_a68f01baa48e98b3f2136be13562e07a7}\label{classrev_1_1_view_1_1_animation_node_widget_a68f01baa48e98b3f2136be13562e07a7}} 
+void {\bfseries show\+Block\+Menu} (const Q\+Point \&point, \mbox{\hyperlink{classrev_1_1_view_1_1_node_view_block}{Node\+View\+Block}} $\ast$block)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_a5d4671fca867d082235fcb59eac7eda7}\label{classrev_1_1_view_1_1_animation_node_widget_a5d4671fca867d082235fcb59eac7eda7}} 
+void {\bfseries show\+Connection\+Menu} (const Q\+Point \&point, \mbox{\hyperlink{classrev_1_1_view_1_1_node_view_connection}{Node\+View\+Connection}} $\ast$connection)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_a94cc05e0aa1e0e4df25ad095945931bc}\label{classrev_1_1_view_1_1_animation_node_widget_a94cc05e0aa1e0e4df25ad095945931bc}} 
+void {\bfseries set\+Motion\+Widget} (\mbox{\hyperlink{classrev_1_1_motion}{Motion}} $\ast$motion)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_ab5e6d4cc629736cc16e6413ade7e2d45}\label{classrev_1_1_view_1_1_animation_node_widget_ab5e6d4cc629736cc16e6413ade7e2d45}} 
+void {\bfseries set\+State\+Widget} (\mbox{\hyperlink{classrev_1_1_base_animation_state}{Base\+Animation\+State}} $\ast$state)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_a47283c0ee89ab1388559f7902f53d551}\label{classrev_1_1_view_1_1_animation_node_widget_a47283c0ee89ab1388559f7902f53d551}} 
+void {\bfseries clear\+Detail\+Widget} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_a8b7de0f8cb68d324697501d31cb3dbdf}\label{classrev_1_1_view_1_1_animation_node_widget_a8b7de0f8cb68d324697501d31cb3dbdf}} 
+void {\bfseries layout\+Detail\+Widget} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_a740cad50ac56cd64b91fd925fc5b6bbe}\label{classrev_1_1_view_1_1_animation_node_widget_a740cad50ac56cd64b91fd925fc5b6bbe}} 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_animation_node_widget_a740cad50ac56cd64b91fd925fc5b6bbe}{initialize\+Timeline}} ()
+\begin{DoxyCompactList}\small\item\em Initialize timeline widget. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_a128026cc63f4262b6300c6e4887e2d89}\label{classrev_1_1_view_1_1_animation_node_widget_a128026cc63f4262b6300c6e4887e2d89}} 
+void {\bfseries layout\+Timeline} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_af5272946c740d2ef794cd26000e5bb23}\label{classrev_1_1_view_1_1_animation_node_widget_af5272946c740d2ef794cd26000e5bb23}} 
+void {\bfseries clear\+Timeline\+Widget} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Private Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_a2a4e6d87f63aad25261c05623babcae1}\label{classrev_1_1_view_1_1_animation_node_widget_a2a4e6d87f63aad25261c05623babcae1}} 
+Q\+Grid\+Layout $\ast$ {\bfseries m\+\_\+grid\+Layout}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_afa8dc3de7fa60d04d036999d0e5565b3}\label{classrev_1_1_view_1_1_animation_node_widget_afa8dc3de7fa60d04d036999d0e5565b3}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_animation_tree_widget}{Animation\+Tree\+Widget}} $\ast$ {\bfseries m\+\_\+motion\+Tree\+Widget}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_aabb628e24cd5998fe3371ed522b05c0c}\label{classrev_1_1_view_1_1_animation_node_widget_aabb628e24cd5998fe3371ed522b05c0c}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_animation_tree_widget}{Animation\+Tree\+Widget}} $\ast$ {\bfseries m\+\_\+state\+Tree\+Widget}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_a4ce50db278eb2c5b799465d358fb7ec3}\label{classrev_1_1_view_1_1_animation_node_widget_a4ce50db278eb2c5b799465d358fb7ec3}} 
+Q\+Widget $\ast$ {\bfseries m\+\_\+detail\+Widget}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_af7e61c2f1ec2538a00c5927101da298f}\label{classrev_1_1_view_1_1_animation_node_widget_af7e61c2f1ec2538a00c5927101da298f}} 
+\mbox{\hyperlink{classrev_1_1_bone_animation_component}{Bone\+Animation\+Component}} $\ast$ {\bfseries m\+\_\+animation\+Component}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_ad986a1422262c7b262988220d14878d5}\label{classrev_1_1_view_1_1_animation_node_widget_ad986a1422262c7b262988220d14878d5}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_node_view_editor}{Node\+View\+Editor}} $\ast$ {\bfseries m\+\_\+editor}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_af694240cdbec30217c460bc97cc50ebf}\label{classrev_1_1_view_1_1_animation_node_widget_af694240cdbec30217c460bc97cc50ebf}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_node_view_canvas}{Node\+View\+Canvas}} $\ast$ {\bfseries m\+\_\+view}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_ad8f9fe5ab933968285072c7a502687af}\label{classrev_1_1_view_1_1_animation_node_widget_ad8f9fe5ab933968285072c7a502687af}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_node_view_scene}{Node\+View\+Scene}} $\ast$ {\bfseries m\+\_\+scene}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_a989bc7673022c8fd0ae63021644c7ec6}\label{classrev_1_1_view_1_1_animation_node_widget_a989bc7673022c8fd0ae63021644c7ec6}} 
+\mbox{\hyperlink{classrev_1_1_view_1_1_timeline}{Timeline}} $\ast$ {\bfseries m\+\_\+timeline}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_animation_node_widget_a72c9edeb172214d73596204ee03abdf0}\label{classrev_1_1_view_1_1_animation_node_widget_a72c9edeb172214d73596204ee03abdf0}} 
+qint32 {\bfseries m\+\_\+min\+Block\+Spacing}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Generic component widget that uses J\+S\+ON data to modify components. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/nodes/animation/G\+Animation\+Node\+Widget.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/nodes/animation/G\+Animation\+Node\+Widget.\+cpp\end{DoxyCompactItemize}

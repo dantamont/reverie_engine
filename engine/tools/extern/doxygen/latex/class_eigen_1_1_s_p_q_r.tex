@@ -1,0 +1,229 @@
+\hypertarget{class_eigen_1_1_s_p_q_r}{}\section{Eigen\+::S\+P\+QR$<$ \+\_\+\+Matrix\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_s_p_q_r}\index{Eigen::SPQR$<$ \_MatrixType $>$@{Eigen::SPQR$<$ \_MatrixType $>$}}
+
+
+\mbox{\hyperlink{struct_eigen_1_1_sparse}{Sparse}} QR factorization based on Suite\+Sparse\+QR library.  
+
+
+
+
+{\ttfamily \#include $<$Suite\+Sparse\+Q\+R\+Support.\+h$>$}
+
+Inheritance diagram for Eigen\+::S\+P\+QR$<$ \+\_\+\+Matrix\+Type $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_eigen_1_1_s_p_q_r}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_a1b8cb657267492e84c9f53dc140fd092}\label{class_eigen_1_1_s_p_q_r_a1b8cb657267492e84c9f53dc140fd092}} 
+enum \{ {\bfseries Cols\+At\+Compile\+Time} = Dynamic, 
+{\bfseries Max\+Cols\+At\+Compile\+Time} = Dynamic
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_a79aab4f4c7b3560c35ff3964e2831168}\label{class_eigen_1_1_s_p_q_r_a79aab4f4c7b3560c35ff3964e2831168}} 
+typedef \+\_\+\+Matrix\+Type\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_aa0433fd3ee69389de7546a1daf40db04}\label{class_eigen_1_1_s_p_q_r_aa0433fd3ee69389de7546a1daf40db04}} 
+typedef \+\_\+\+Matrix\+Type\+::\+Real\+Scalar {\bfseries Real\+Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_a7154a96ee31df16cc511f275a5b02d27}\label{class_eigen_1_1_s_p_q_r_a7154a96ee31df16cc511f275a5b02d27}} 
+typedef Suite\+Sparse\+\_\+long {\bfseries Storage\+Index}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_ab91804223761e179d79bd3a1aa7c4111}\label{class_eigen_1_1_s_p_q_r_ab91804223761e179d79bd3a1aa7c4111}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ Scalar, Col\+Major, Storage\+Index $>$ {\bfseries Matrix\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_aa74de4635fdaee8773d8b320b564db5f}\label{class_eigen_1_1_s_p_q_r_aa74de4635fdaee8773d8b320b564db5f}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_map}{Map}}$<$ \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}}$<$ Dynamic, Dynamic, Storage\+Index $>$ $>$ {\bfseries Permutation\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_a444d838c0175e3879cf8236e59a3763e}\label{class_eigen_1_1_s_p_q_r_a444d838c0175e3879cf8236e59a3763e}} 
+{\bfseries S\+P\+QR} (const \+\_\+\+Matrix\+Type \&matrix)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_a79687f3c4632760f5bb3a847ebdf5b7a}\label{class_eigen_1_1_s_p_q_r_a79687f3c4632760f5bb3a847ebdf5b7a}} 
+void {\bfseries S\+P\+Q\+R\+\_\+free} ()
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_a9fb013cddbd9e634b7174f8d2a4bca33}\label{class_eigen_1_1_s_p_q_r_a9fb013cddbd9e634b7174f8d2a4bca33}} 
+void {\bfseries compute} (const \+\_\+\+Matrix\+Type \&matrix)
+\item 
+Index \mbox{\hyperlink{class_eigen_1_1_s_p_q_r_a775e28a44fd466638114edbcd17ea50a}{rows}} () const
+\item 
+Index \mbox{\hyperlink{class_eigen_1_1_s_p_q_r_aa006d40963b05c7525b5ca0b02364d84}{cols}} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_ad95a552802fd81383bda4222b0e3924b}\label{class_eigen_1_1_s_p_q_r_ad95a552802fd81383bda4222b0e3924b}} 
+{\footnotesize template$<$typename Rhs , typename Dest $>$ }\\void {\bfseries \+\_\+solve\+\_\+impl} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&b, \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Dest $>$ \&dest) const
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Matrix\+Type}} \mbox{\hyperlink{class_eigen_1_1_s_p_q_r_ad51661be35674dd6a65e27699dbb3fb9}{matrixR}} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_a93dbf1b487e28948e1ca2a33a35b6a54}\label{class_eigen_1_1_s_p_q_r_a93dbf1b487e28948e1ca2a33a35b6a54}} 
+\mbox{\hyperlink{struct_eigen_1_1_s_p_q_r_matrix_q_return_type}{S\+P\+Q\+R\+Matrix\+Q\+Return\+Type}}$<$ \mbox{\hyperlink{class_eigen_1_1_s_p_q_r}{S\+P\+QR}} $>$ \mbox{\hyperlink{class_eigen_1_1_s_p_q_r_a93dbf1b487e28948e1ca2a33a35b6a54}{matrixQ}} () const
+\begin{DoxyCompactList}\small\item\em Get an expression of the matrix Q. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_ab1b7f54ba1cd8d77506ae676fea4fec0}\label{class_eigen_1_1_s_p_q_r_ab1b7f54ba1cd8d77506ae676fea4fec0}} 
+\mbox{\hyperlink{class_eigen_1_1_map}{Permutation\+Type}} \mbox{\hyperlink{class_eigen_1_1_s_p_q_r_ab1b7f54ba1cd8d77506ae676fea4fec0}{cols\+Permutation}} () const
+\begin{DoxyCompactList}\small\item\em Get the permutation that was applied to columns of A. \end{DoxyCompactList}\item 
+Index \mbox{\hyperlink{class_eigen_1_1_s_p_q_r_a539b394ddb4894089e6634c744ea2ddc}{rank}} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_afa0db7888d808b453c23f62d62a4ad22}\label{class_eigen_1_1_s_p_q_r_afa0db7888d808b453c23f62d62a4ad22}} 
+void \mbox{\hyperlink{class_eigen_1_1_s_p_q_r_afa0db7888d808b453c23f62d62a4ad22}{set\+S\+P\+Q\+R\+Ordering}} (int ord)
+\begin{DoxyCompactList}\small\item\em Set the fill-\/reducing ordering method to be used. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_ab7b42b75f621b0d4b5b0e090e23e2ce6}\label{class_eigen_1_1_s_p_q_r_ab7b42b75f621b0d4b5b0e090e23e2ce6}} 
+void \mbox{\hyperlink{class_eigen_1_1_s_p_q_r_ab7b42b75f621b0d4b5b0e090e23e2ce6}{set\+Pivot\+Threshold}} (const Real\+Scalar \&tol)
+\begin{DoxyCompactList}\small\item\em Set the tolerance tol to treat columns with 2-\/norm $<$ =tol as zero. \end{DoxyCompactList}\item 
+cholmod\+\_\+common $\ast$ \mbox{\hyperlink{class_eigen_1_1_s_p_q_r_a8c7d48d51a1fb08a3e27b8499e5c7f49}{cholmod\+Common}} () const
+\item 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_s_p_q_r_a3ab7bacba8d2be20adc10b4d5b6c071f}{info}} () const
+\begin{DoxyCompactList}\small\item\em Reports whether previous computation was successful. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_a71bdab6a9a1a19479a93bc5d2ec732a1}\label{class_eigen_1_1_s_p_q_r_a71bdab6a9a1a19479a93bc5d2ec732a1}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{Sparse\+Solver\+Base}}$<$ \mbox{\hyperlink{class_eigen_1_1_s_p_q_r}{S\+P\+QR}}$<$ \+\_\+\+Matrix\+Type $>$ $>$ {\bfseries Base}
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_a32584a3c54a06682c99a33e6348fb5f0}\label{class_eigen_1_1_s_p_q_r_a32584a3c54a06682c99a33e6348fb5f0}} 
+bool {\bfseries m\+\_\+analysis\+Is\+Ok}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_a79b5ed2f13e6093f61155cb12ac694bc}\label{class_eigen_1_1_s_p_q_r_a79b5ed2f13e6093f61155cb12ac694bc}} 
+bool {\bfseries m\+\_\+factorization\+Is\+Ok}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_afe9e08bde850e3a7c000c3eb7ca861c5}\label{class_eigen_1_1_s_p_q_r_afe9e08bde850e3a7c000c3eb7ca861c5}} 
+bool {\bfseries m\+\_\+is\+R\+Up\+To\+Date}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_a7c68b40532aee925521d764d8a6ac0fe}\label{class_eigen_1_1_s_p_q_r_a7c68b40532aee925521d764d8a6ac0fe}} 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} {\bfseries m\+\_\+info}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_ab90ee699d875fc5b65df73b78098d984}\label{class_eigen_1_1_s_p_q_r_ab90ee699d875fc5b65df73b78098d984}} 
+int {\bfseries m\+\_\+ordering}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_a91a7255b5b0fd0ead3977d5937223fcf}\label{class_eigen_1_1_s_p_q_r_a91a7255b5b0fd0ead3977d5937223fcf}} 
+int {\bfseries m\+\_\+allow\+\_\+tol}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_aa07bafd725a77ad0e290b676a4882a21}\label{class_eigen_1_1_s_p_q_r_aa07bafd725a77ad0e290b676a4882a21}} 
+Real\+Scalar {\bfseries m\+\_\+tolerance}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_ae7015e73ae83128e56269984685fa50b}\label{class_eigen_1_1_s_p_q_r_ae7015e73ae83128e56269984685fa50b}} 
+cholmod\+\_\+sparse $\ast$ {\bfseries m\+\_\+cR}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_a2476e8e0b102f7e2276e07ec174c46ba}\label{class_eigen_1_1_s_p_q_r_a2476e8e0b102f7e2276e07ec174c46ba}} 
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Matrix\+Type}} {\bfseries m\+\_\+R}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_a401caa57a7d8d74e6b034e7a2c43f9f4}\label{class_eigen_1_1_s_p_q_r_a401caa57a7d8d74e6b034e7a2c43f9f4}} 
+Storage\+Index $\ast$ {\bfseries m\+\_\+E}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_a140c5b6f6b7f1fec2a3036416f9f912c}\label{class_eigen_1_1_s_p_q_r_a140c5b6f6b7f1fec2a3036416f9f912c}} 
+cholmod\+\_\+sparse $\ast$ {\bfseries m\+\_\+H}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_a195c4480d9a0777340fed72818f2b501}\label{class_eigen_1_1_s_p_q_r_a195c4480d9a0777340fed72818f2b501}} 
+Storage\+Index $\ast$ {\bfseries m\+\_\+\+H\+Pinv}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_a596a112237c151ca14880b2cb26ca6b8}\label{class_eigen_1_1_s_p_q_r_a596a112237c151ca14880b2cb26ca6b8}} 
+cholmod\+\_\+dense $\ast$ {\bfseries m\+\_\+\+H\+Tau}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_a409e15f8004d93f7894583f73eada675}\label{class_eigen_1_1_s_p_q_r_a409e15f8004d93f7894583f73eada675}} 
+Index {\bfseries m\+\_\+rank}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_a29ab6683b538ca30772205ac0333e25f}\label{class_eigen_1_1_s_p_q_r_a29ab6683b538ca30772205ac0333e25f}} 
+cholmod\+\_\+common {\bfseries m\+\_\+cc}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_a4f6a5ff105e5a93593a62a6563d17682}\label{class_eigen_1_1_s_p_q_r_a4f6a5ff105e5a93593a62a6563d17682}} 
+bool {\bfseries m\+\_\+use\+Default\+Threshold}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_a7f9cc5503fc6bf6062c244ae618a4b12}\label{class_eigen_1_1_s_p_q_r_a7f9cc5503fc6bf6062c244ae618a4b12}} 
+Index {\bfseries m\+\_\+rows}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_a62e1c57e79306951013fc9d5b12c30e0}\label{class_eigen_1_1_s_p_q_r_a62e1c57e79306951013fc9d5b12c30e0}} 
+{\footnotesize template$<$typename , typename $>$ }\\struct {\bfseries S\+P\+Q\+R\+\_\+\+Q\+Product}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Matrix\+Type$>$\newline
+class Eigen\+::\+S\+P\+Q\+R$<$ \+\_\+\+Matrix\+Type $>$}
+
+\mbox{\hyperlink{struct_eigen_1_1_sparse}{Sparse}} QR factorization based on Suite\+Sparse\+QR library. 
+
+This class is used to perform a multithreaded and multifrontal rank-\/revealing QR decomposition of sparse matrices. The result is then used to solve linear leasts\+\_\+square systems. Clearly, a QR factorization is returned such that A$\ast$P = Q$\ast$R where \+:
+
+P is the column permutation. Use \mbox{\hyperlink{class_eigen_1_1_s_p_q_r_ab1b7f54ba1cd8d77506ae676fea4fec0}{cols\+Permutation()}} to get it.
+
+Q is the orthogonal matrix represented as Householder reflectors. Use \mbox{\hyperlink{class_eigen_1_1_s_p_q_r_a93dbf1b487e28948e1ca2a33a35b6a54}{matrix\+Q()}} to get an expression and \mbox{\hyperlink{class_eigen_1_1_s_p_q_r_a93dbf1b487e28948e1ca2a33a35b6a54}{matrix\+Q()}}.transpose() to get the transpose. You can then apply it to a vector.
+
+R is the sparse triangular factor. Use matrix\+Q\+R() to get it as \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}. N\+O\+TE \+: The Index type of R is always Suite\+Sparse\+\_\+long. You can get it with S\+P\+Q\+R\+::\+Index
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Matrix\+Type} & The type of the sparse matrix A, must be a column-\/major Sparse\+Matrix$<$$>$\\
+\hline
+\end{DoxyTemplParams}
+\textbackslash{}implsparsesolverconcept 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_a8c7d48d51a1fb08a3e27b8499e5c7f49}\label{class_eigen_1_1_s_p_q_r_a8c7d48d51a1fb08a3e27b8499e5c7f49}} 
+\index{Eigen::SPQR$<$ \_MatrixType $>$@{Eigen::SPQR$<$ \_MatrixType $>$}!cholmodCommon@{cholmodCommon}}
+\index{cholmodCommon@{cholmodCommon}!Eigen::SPQR$<$ \_MatrixType $>$@{Eigen::SPQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{cholmodCommon()}{cholmodCommon()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+cholmod\+\_\+common$\ast$ \mbox{\hyperlink{class_eigen_1_1_s_p_q_r}{Eigen\+::\+S\+P\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::cholmod\+Common (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a pointer to the \mbox{\hyperlink{class_eigen_1_1_s_p_q_r}{S\+P\+QR}} workspace 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_aa006d40963b05c7525b5ca0b02364d84}\label{class_eigen_1_1_s_p_q_r_aa006d40963b05c7525b5ca0b02364d84}} 
+\index{Eigen::SPQR$<$ \_MatrixType $>$@{Eigen::SPQR$<$ \_MatrixType $>$}!cols@{cols}}
+\index{cols@{cols}!Eigen::SPQR$<$ \_MatrixType $>$@{Eigen::SPQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{cols()}{cols()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+Index \mbox{\hyperlink{class_eigen_1_1_s_p_q_r}{Eigen\+::\+S\+P\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::cols (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get the number of columns of the input matrix. \mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_a3ab7bacba8d2be20adc10b4d5b6c071f}\label{class_eigen_1_1_s_p_q_r_a3ab7bacba8d2be20adc10b4d5b6c071f}} 
+\index{Eigen::SPQR$<$ \_MatrixType $>$@{Eigen::SPQR$<$ \_MatrixType $>$}!info@{info}}
+\index{info@{info}!Eigen::SPQR$<$ \_MatrixType $>$@{Eigen::SPQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{info()}{info()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_s_p_q_r}{Eigen\+::\+S\+P\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reports whether previous computation was successful. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily Success} if computation was succesful, {\ttfamily Numerical\+Issue} if the sparse QR can not be computed 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_ad51661be35674dd6a65e27699dbb3fb9}\label{class_eigen_1_1_s_p_q_r_ad51661be35674dd6a65e27699dbb3fb9}} 
+\index{Eigen::SPQR$<$ \_MatrixType $>$@{Eigen::SPQR$<$ \_MatrixType $>$}!matrixR@{matrixR}}
+\index{matrixR@{matrixR}!Eigen::SPQR$<$ \_MatrixType $>$@{Eigen::SPQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{matrixR()}{matrixR()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Matrix\+Type}} \mbox{\hyperlink{class_eigen_1_1_s_p_q_r}{Eigen\+::\+S\+P\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::matrixR (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the sparse triangular factor R. It is a sparse matrix 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_a539b394ddb4894089e6634c744ea2ddc}\label{class_eigen_1_1_s_p_q_r_a539b394ddb4894089e6634c744ea2ddc}} 
+\index{Eigen::SPQR$<$ \_MatrixType $>$@{Eigen::SPQR$<$ \_MatrixType $>$}!rank@{rank}}
+\index{rank@{rank}!Eigen::SPQR$<$ \_MatrixType $>$@{Eigen::SPQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{rank()}{rank()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+Index \mbox{\hyperlink{class_eigen_1_1_s_p_q_r}{Eigen\+::\+S\+P\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::rank (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Gets the rank of the matrix. It should be equal to matrix\+Q\+R().cols if the matrix is full-\/rank \mbox{\Hypertarget{class_eigen_1_1_s_p_q_r_a775e28a44fd466638114edbcd17ea50a}\label{class_eigen_1_1_s_p_q_r_a775e28a44fd466638114edbcd17ea50a}} 
+\index{Eigen::SPQR$<$ \_MatrixType $>$@{Eigen::SPQR$<$ \_MatrixType $>$}!rows@{rows}}
+\index{rows@{rows}!Eigen::SPQR$<$ \_MatrixType $>$@{Eigen::SPQR$<$ \_MatrixType $>$}}
+\subsubsection{\texorpdfstring{rows()}{rows()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type $>$ \\
+Index \mbox{\hyperlink{class_eigen_1_1_s_p_q_r}{Eigen\+::\+S\+P\+QR}}$<$ \+\_\+\+Matrix\+Type $>$\+::rows (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get the number of rows of the input matrix and the Q matrix 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+S\+P\+Q\+R\+Support/Suite\+Sparse\+Q\+R\+Support.\+h\end{DoxyCompactItemize}

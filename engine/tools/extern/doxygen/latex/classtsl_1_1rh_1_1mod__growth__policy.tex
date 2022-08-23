@@ -1,0 +1,35 @@
+\hypertarget{classtsl_1_1rh_1_1mod__growth__policy}{}\section{tsl\+::rh\+::mod\+\_\+growth\+\_\+policy$<$ Growth\+Factor $>$ Class Template Reference}
+\label{classtsl_1_1rh_1_1mod__growth__policy}\index{tsl::rh::mod\_growth\_policy$<$ GrowthFactor $>$@{tsl::rh::mod\_growth\_policy$<$ GrowthFactor $>$}}
+
+
+{\ttfamily \#include $<$robin\+\_\+growth\+\_\+policy.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtsl_1_1rh_1_1mod__growth__policy_ab4b91e3953a09ae9432bba3c7b35e3c2}\label{classtsl_1_1rh_1_1mod__growth__policy_ab4b91e3953a09ae9432bba3c7b35e3c2}} 
+{\bfseries mod\+\_\+growth\+\_\+policy} (std\+::size\+\_\+t \&min\+\_\+bucket\+\_\+count\+\_\+in\+\_\+out)
+\item 
+\mbox{\Hypertarget{classtsl_1_1rh_1_1mod__growth__policy_a9452d5121bb6838c282760ac0e84864a}\label{classtsl_1_1rh_1_1mod__growth__policy_a9452d5121bb6838c282760ac0e84864a}} 
+std\+::size\+\_\+t {\bfseries bucket\+\_\+for\+\_\+hash} (std\+::size\+\_\+t hash) const noexcept
+\item 
+\mbox{\Hypertarget{classtsl_1_1rh_1_1mod__growth__policy_a4b19b624612cd19ecbfcba6ae38b9166}\label{classtsl_1_1rh_1_1mod__growth__policy_a4b19b624612cd19ecbfcba6ae38b9166}} 
+std\+::size\+\_\+t {\bfseries next\+\_\+bucket\+\_\+count} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1rh_1_1mod__growth__policy_a758984fba37f1fecc39a674d4471d309}\label{classtsl_1_1rh_1_1mod__growth__policy_a758984fba37f1fecc39a674d4471d309}} 
+std\+::size\+\_\+t {\bfseries max\+\_\+bucket\+\_\+count} () const
+\item 
+\mbox{\Hypertarget{classtsl_1_1rh_1_1mod__growth__policy_a8a5edf253f35ca5eb6a803cf15811ed9}\label{classtsl_1_1rh_1_1mod__growth__policy_a8a5edf253f35ca5eb6a803cf15811ed9}} 
+void {\bfseries clear} () noexcept
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class Growth\+Factor = std\+::ratio$<$3, 2$>$$>$\newline
+class tsl\+::rh\+::mod\+\_\+growth\+\_\+policy$<$ Growth\+Factor $>$}
+
+Grow the hash table by Growth\+Factor\+::num / Growth\+Factor\+::den and use a modulo to map a hash to a bucket. Slower but it can be useful if you want a slower growth. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/tsl/robin\+\_\+growth\+\_\+policy.\+h\end{DoxyCompactItemize}

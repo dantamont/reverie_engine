@@ -1,0 +1,86 @@
+\hypertarget{classrev_1_1_view_1_1_resources_model}{}\section{rev\+::View\+::Resources\+Model Class Reference}
+\label{classrev_1_1_view_1_1_resources_model}\index{rev::View::ResourcesModel@{rev::View::ResourcesModel}}
+Inheritance diagram for rev\+::View\+::Resources\+Model\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_view_1_1_resources_model}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resources_model_aaa4f82f8a178d8c2c0aba7a5d26e361e}\label{classrev_1_1_view_1_1_resources_model_aaa4f82f8a178d8c2c0aba7a5d26e361e}} 
+{\bfseries Resources\+Model} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, Q\+Object $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resources_model_abc573e0a41a33bdabd98ea8b01ab882b}\label{classrev_1_1_view_1_1_resources_model_abc573e0a41a33bdabd98ea8b01ab882b}} 
+Q\+Variant {\bfseries data} (const Q\+Model\+Index \&index, int role=Qt\+::\+Display\+Role) const override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resources_model_a37b56557e25010a0e239261d9e18507a}\label{classrev_1_1_view_1_1_resources_model_a37b56557e25010a0e239261d9e18507a}} 
+bool {\bfseries set\+Data} (const Q\+Model\+Index \&index, const Q\+Variant \&value, int role) override
+\item 
+Qt\+::\+Item\+Flags \mbox{\hyperlink{classrev_1_1_view_1_1_resources_model_afc4f37a7dd3883f2cbbff6b2780a0736}{flags}} (const Q\+Model\+Index \&index) const override
+\begin{DoxyCompactList}\small\item\em Return the flags for the item at the given index. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classrev_1_1_view_1_1_resources_model_a993b8815a725f3d2ee66008992621f48}{drop\+Mime\+Data}} (const Q\+Mime\+Data $\ast$data, Qt\+::\+Drop\+Action action, int row, int column, const Q\+Model\+Index \&parent) override
+\begin{DoxyCompactList}\small\item\em To support additional drop actions, must be reimplemented to accomodate additional mime\+Types. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resources_model_ad8ee9febcd537ccd108cbc0b02ec0e96}\label{classrev_1_1_view_1_1_resources_model_ad8ee9febcd537ccd108cbc0b02ec0e96}} 
+Q\+Mime\+Data $\ast$ {\bfseries mime\+Data} (const Q\+Model\+Index\+List \&indexes) const override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resources_model_ab501c37c67a3ff19fe33c3231fd701dc}\label{classrev_1_1_view_1_1_resources_model_ab501c37c67a3ff19fe33c3231fd701dc}} 
+Q\+String\+List \mbox{\hyperlink{classrev_1_1_view_1_1_resources_model_ab501c37c67a3ff19fe33c3231fd701dc}{mime\+Types}} () const override
+\begin{DoxyCompactList}\small\item\em Returns the list of supported M\+I\+ME types. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resources_model_ac828ff1cdd5dabd2d9c54dfddfa74137}\label{classrev_1_1_view_1_1_resources_model_ac828ff1cdd5dabd2d9c54dfddfa74137}} 
+int {\bfseries row\+Count} (const Q\+Model\+Index \&parent) const override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resources_model_a3b4a93322b29c2cfac3e095c439e2303}\label{classrev_1_1_view_1_1_resources_model_a3b4a93322b29c2cfac3e095c439e2303}} 
+Qt\+::\+Drop\+Actions {\bfseries supported\+Drop\+Actions} () const override
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resources_model_abe2d91f3afb98055634d04833a9ed2fd}\label{classrev_1_1_view_1_1_resources_model_abe2d91f3afb98055634d04833a9ed2fd}} 
+bool \mbox{\hyperlink{classrev_1_1_view_1_1_resources_model_abe2d91f3afb98055634d04833a9ed2fd}{remove\+Rows}} (int row, int count, const Q\+Model\+Index \&parent=Q\+Model\+Index()) override
+\begin{DoxyCompactList}\small\item\em Implement to support drag and drop operations. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resources_model_a4cb762e4e4d52e1ea6beb4d98263b065}\label{classrev_1_1_view_1_1_resources_model_a4cb762e4e4d52e1ea6beb4d98263b065}} 
+void {\bfseries repopulate} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resources_model_a993b8815a725f3d2ee66008992621f48}\label{classrev_1_1_view_1_1_resources_model_a993b8815a725f3d2ee66008992621f48}} 
+\index{rev::View::ResourcesModel@{rev::View::ResourcesModel}!dropMimeData@{dropMimeData}}
+\index{dropMimeData@{dropMimeData}!rev::View::ResourcesModel@{rev::View::ResourcesModel}}
+\subsubsection{\texorpdfstring{dropMimeData()}{dropMimeData()}}
+{\footnotesize\ttfamily bool rev\+::\+View\+::\+Resources\+Model\+::drop\+Mime\+Data (\begin{DoxyParamCaption}\item[{const Q\+Mime\+Data $\ast$}]{data,  }\item[{Qt\+::\+Drop\+Action}]{action,  }\item[{int}]{row,  }\item[{int}]{column,  }\item[{const Q\+Model\+Index \&}]{parent }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+To support additional drop actions, must be reimplemented to accomodate additional mime\+Types. 
+
+\begin{DoxyNote}{Note}
+Row and column are -\/1 when data dropped directly on parent 
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em action} & the action ending a drag and drop operation \\
+\hline
+\mbox{\texttt{ in}}  & {\em row} & the row of an item in the model where the operation ended \\
+\hline
+\mbox{\texttt{ in}}  & {\em column} & the column of an item in the model where the operation ended \\
+\hline
+\mbox{\texttt{ in}}  & {\em parent} & the index of a parent item in the model where the operation ended \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrev_1_1_view_1_1_resources_model_afc4f37a7dd3883f2cbbff6b2780a0736}\label{classrev_1_1_view_1_1_resources_model_afc4f37a7dd3883f2cbbff6b2780a0736}} 
+\index{rev::View::ResourcesModel@{rev::View::ResourcesModel}!flags@{flags}}
+\index{flags@{flags}!rev::View::ResourcesModel@{rev::View::ResourcesModel}}
+\subsubsection{\texorpdfstring{flags()}{flags()}}
+{\footnotesize\ttfamily Qt\+::\+Item\+Flags rev\+::\+View\+::\+Resources\+Model\+::flags (\begin{DoxyParamCaption}\item[{const Q\+Model\+Index \&}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Return the flags for the item at the given index. 
+
+This indicates whicj items can be dragged and dropped 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/list/G\+Resource\+List\+View.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/list/G\+Resource\+List\+View.\+cpp\end{DoxyCompactItemize}

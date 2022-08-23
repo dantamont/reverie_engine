@@ -1,0 +1,85 @@
+\hypertarget{class_eigen_1_1_solve_with_guess}{}\section{Eigen\+::Solve\+With\+Guess$<$ Decomposition, Rhs\+Type, Guess\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_solve_with_guess}\index{Eigen::SolveWithGuess$<$ Decomposition, RhsType, GuessType $>$@{Eigen::SolveWithGuess$<$ Decomposition, RhsType, GuessType $>$}}
+
+
+Pseudo expression representing a solving operation.  
+
+
+
+
+{\ttfamily \#include $<$Solve\+With\+Guess.\+h$>$}
+
+Inheritance diagram for Eigen\+::Solve\+With\+Guess$<$ Decomposition, Rhs\+Type, Guess\+Type $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.320755cm]{class_eigen_1_1_solve_with_guess}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_solve_with_guess_aa16d60b352ae942494ea37b974ac7b43}\label{class_eigen_1_1_solve_with_guess_aa16d60b352ae942494ea37b974ac7b43}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_solve_with_guess}{Solve\+With\+Guess}} $>$\+::Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_solve_with_guess_a028591bc4ab3fd37657a4a4e88833e3a}\label{class_eigen_1_1_solve_with_guess_a028591bc4ab3fd37657a4a4e88833e3a}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ \mbox{\hyperlink{class_eigen_1_1_solve_with_guess}{Solve\+With\+Guess}} $>$\+::Plain\+Object {\bfseries Plain\+Object}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_solve_with_guess_a9d850be775ecb321b2b7a711fdca8e75}\label{class_eigen_1_1_solve_with_guess_a9d850be775ecb321b2b7a711fdca8e75}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1generic__xpr__base}{internal\+::generic\+\_\+xpr\+\_\+base}}$<$ \mbox{\hyperlink{class_eigen_1_1_solve_with_guess}{Solve\+With\+Guess}}$<$ Decomposition, Rhs\+Type, Guess\+Type $>$, \mbox{\hyperlink{struct_eigen_1_1_matrix_xpr}{Matrix\+Xpr}}, typename \mbox{\hyperlink{struct_eigen_1_1internal_1_1traits}{internal\+::traits}}$<$ Rhs\+Type $>$\+::Storage\+Kind $>$\+::type {\bfseries Base}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_solve_with_guess_adea6251ef44d86ce8b8168d031362b76}\label{class_eigen_1_1_solve_with_guess_adea6251ef44d86ce8b8168d031362b76}} 
+typedef \mbox{\hyperlink{struct_eigen_1_1internal_1_1ref__selector}{internal\+::ref\+\_\+selector}}$<$ \mbox{\hyperlink{class_eigen_1_1_solve_with_guess}{Solve\+With\+Guess}} $>$\+::type {\bfseries Nested}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_solve_with_guess_ae703bda1fcae1dc8d60078fdd4a8ca06}\label{class_eigen_1_1_solve_with_guess_ae703bda1fcae1dc8d60078fdd4a8ca06}} 
+{\bfseries Solve\+With\+Guess} (const Decomposition \&dec, const Rhs\+Type \&rhs, const Guess\+Type \&guess)
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_solve_with_guess_a24d826dd09bb375a5a171a4d7fea7238}\label{class_eigen_1_1_solve_with_guess_a24d826dd09bb375a5a171a4d7fea7238}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Index {\bfseries rows} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_solve_with_guess_a8e557813e4cd841435a4004adc39ac58}\label{class_eigen_1_1_solve_with_guess_a8e557813e4cd841435a4004adc39ac58}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC Index {\bfseries cols} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_solve_with_guess_a1b6c66f5ae7156005a1d9c3034cabc88}\label{class_eigen_1_1_solve_with_guess_a1b6c66f5ae7156005a1d9c3034cabc88}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const Decomposition \& {\bfseries dec} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_solve_with_guess_a4f67d806525d7a0468d3128fc6a14610}\label{class_eigen_1_1_solve_with_guess_a4f67d806525d7a0468d3128fc6a14610}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const Rhs\+Type \& {\bfseries rhs} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_solve_with_guess_a8192fcb557b83ddbf9a78783eeb931c1}\label{class_eigen_1_1_solve_with_guess_a8192fcb557b83ddbf9a78783eeb931c1}} 
+E\+I\+G\+E\+N\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+F\+U\+NC const Guess\+Type \& {\bfseries guess} () const
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_solve_with_guess_ab9f552564073250e8093d05503dbe4a5}\label{class_eigen_1_1_solve_with_guess_ab9f552564073250e8093d05503dbe4a5}} 
+const Decomposition \& {\bfseries m\+\_\+dec}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_solve_with_guess_a5b3fe2344b9f82e8df3960152e87967c}\label{class_eigen_1_1_solve_with_guess_a5b3fe2344b9f82e8df3960152e87967c}} 
+const Rhs\+Type \& {\bfseries m\+\_\+rhs}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_solve_with_guess_a0943a61d3c7c8f4bb70828399a682fcf}\label{class_eigen_1_1_solve_with_guess_a0943a61d3c7c8f4bb70828399a682fcf}} 
+const Guess\+Type \& {\bfseries m\+\_\+guess}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename Decomposition, typename Rhs\+Type, typename Guess\+Type$>$\newline
+class Eigen\+::\+Solve\+With\+Guess$<$ Decomposition, Rhs\+Type, Guess\+Type $>$}
+
+Pseudo expression representing a solving operation. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Decomposition} & the type of the matrix or decomposion object \\
+\hline
+{\em Rhstype} & the type of the right-\/hand side\\
+\hline
+\end{DoxyTemplParams}
+This class represents an expression of A.\+solve(\+B) and most of the time this is the only way it is used. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Iterative\+Linear\+Solvers/Solve\+With\+Guess.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,67 @@
+\hypertarget{classrev_1_1_copy_model_command}{}\section{rev\+::Copy\+Model\+Command Class Reference}
+\label{classrev_1_1_copy_model_command}\index{rev::CopyModelCommand@{rev::CopyModelCommand}}
+
+
+Copy a model.  
+
+
+
+
+{\ttfamily \#include $<$G\+Resource\+Widgets.\+h$>$}
+
+Inheritance diagram for rev\+::Copy\+Model\+Command\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_copy_model_command}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_copy_model_command_aff1664038abfdd08866aaa8ea0d350f5}\label{classrev_1_1_copy_model_command_aff1664038abfdd08866aaa8ea0d350f5}} 
+{\bfseries Copy\+Model\+Command} (\mbox{\hyperlink{classrev_1_1_core_engine}{Core\+Engine}} $\ast$core, const Q\+String \&text, const \mbox{\hyperlink{classrev_1_1_model}{Model}} \&model, Q\+Undo\+Command $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{classrev_1_1_copy_model_command_a0a5a0208b99d6f57bbd9aa46c177687d}\label{classrev_1_1_copy_model_command_a0a5a0208b99d6f57bbd9aa46c177687d}} 
+{\bfseries $\sim$\+Copy\+Model\+Command} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_copy_model_command_a31681da3044ba81af11eaaa95a3d4b50}\label{classrev_1_1_copy_model_command_a31681da3044ba81af11eaaa95a3d4b50}} 
+virtual void \mbox{\hyperlink{classrev_1_1_copy_model_command_a31681da3044ba81af11eaaa95a3d4b50}{redo}} () override
+\begin{DoxyCompactList}\small\item\em Redoes the command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_copy_model_command_a1739ebd55f1498e044a39695f3e4396f}\label{classrev_1_1_copy_model_command_a1739ebd55f1498e044a39695f3e4396f}} 
+virtual void \mbox{\hyperlink{classrev_1_1_copy_model_command_a1739ebd55f1498e044a39695f3e4396f}{undo}} () override
+\begin{DoxyCompactList}\small\item\em Undoes the command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_copy_model_command_ae137241b0cbd3d6fbdae764fa4fbfc9f}\label{classrev_1_1_copy_model_command_ae137241b0cbd3d6fbdae764fa4fbfc9f}} 
+Q\+String {\bfseries get\+Unique\+Name} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_copy_model_command_a780bc923805ff73c6af1b831daaad3a8}\label{classrev_1_1_copy_model_command_a780bc923805ff73c6af1b831daaad3a8}} 
+\mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \mbox{\hyperlink{classrev_1_1_copy_model_command_a780bc923805ff73c6af1b831daaad3a8}{m\+\_\+model\+Handle\+ID}}
+\begin{DoxyCompactList}\small\item\em The model added by this command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_copy_model_command_a1e52d9f8e2e7c028e1ed2c6ca815d89f}\label{classrev_1_1_copy_model_command_a1e52d9f8e2e7c028e1ed2c6ca815d89f}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_copy_model_command_a1e52d9f8e2e7c028e1ed2c6ca815d89f}{m\+\_\+model\+Json}}
+\begin{DoxyCompactList}\small\item\em The J\+S\+ON for the model copied by this command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Copy a model. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Resource\+Widgets.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/tree/G\+Resource\+Widgets.\+cpp\end{DoxyCompactItemize}

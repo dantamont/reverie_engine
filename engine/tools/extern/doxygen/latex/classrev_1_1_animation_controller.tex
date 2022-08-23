@@ -1,0 +1,216 @@
+\hypertarget{classrev_1_1_animation_controller}{}\section{rev\+::Animation\+Controller Class Reference}
+\label{classrev_1_1_animation_controller}\index{rev::AnimationController@{rev::AnimationController}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing a set of controllable animations.  
+
+
+
+
+{\ttfamily \#include $<$G\+Animation\+Controller.\+h$>$}
+
+Inheritance diagram for rev\+::Animation\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_animation_controller}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_aab05d623ad2ed54f839357703dffeabb}\label{classrev_1_1_animation_controller_aab05d623ad2ed54f839357703dffeabb}} 
+{\bfseries Animation\+Controller} (\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$so, const Q\+Json\+Value \&json)
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_ae5ac3bfba05cc5a54195e3eeab3e0467}\label{classrev_1_1_animation_controller_ae5ac3bfba05cc5a54195e3eeab3e0467}} 
+{\bfseries Animation\+Controller} (\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$so, const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \&model)
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_afc86647f7867e454a24024154bb0be57}\label{classrev_1_1_animation_controller_afc86647f7867e454a24024154bb0be57}} 
+{\bfseries $\sim$\+Animation\+Controller} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_ab66ad4d409da8ecf24fe46698488d63a}\label{classrev_1_1_animation_controller_ab66ad4d409da8ecf24fe46698488d63a}} 
+const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_animation_process}{Animation\+Process}} $>$ \& {\bfseries process} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_a5b8b7acad9125953bc06b1c1ec9ebeb0}\label{classrev_1_1_animation_controller_a5b8b7acad9125953bc06b1c1ec9ebeb0}} 
+\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$ {\bfseries scene\+Object} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_ad7875a92031b008cf6e97c0316b6acc6}\label{classrev_1_1_animation_controller_ad7875a92031b008cf6e97c0316b6acc6}} 
+const \mbox{\hyperlink{classrev_1_1_animation_state_machine}{Animation\+State\+Machine}} $\ast$ {\bfseries state\+Machine} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_ae165e99494c8c88c13352edf5b2896cb}\label{classrev_1_1_animation_controller_ae165e99494c8c88c13352edf5b2896cb}} 
+\mbox{\hyperlink{classrev_1_1_animation_state_machine}{Animation\+State\+Machine}} $\ast$ {\bfseries state\+Machine} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_a0ee5b18a516a9160343e45703d122bd6}\label{classrev_1_1_animation_controller_a0ee5b18a516a9160343e45703d122bd6}} 
+void {\bfseries set\+State\+Machine} (\mbox{\hyperlink{classrev_1_1_animation_state_machine}{Animation\+State\+Machine}} $\ast$state\+Machine)
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_a42acaeb1d552b92840a489d1faf92537}\label{classrev_1_1_animation_controller_a42acaeb1d552b92840a489d1faf92537}} 
+const \mbox{\hyperlink{classrev_1_1_blend_queue}{Blend\+Queue}} \& {\bfseries blend\+Queue} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_a1fb737a40cac83a6740a4d3a5ec6f200}\label{classrev_1_1_animation_controller_a1fb737a40cac83a6740a4d3a5ec6f200}} 
+\mbox{\hyperlink{classrev_1_1_blend_queue}{Blend\+Queue}} \& {\bfseries blend\+Queue} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_a66a54baf2621ab20189d6c0ff932fed8}\label{classrev_1_1_animation_controller_a66a54baf2621ab20189d6c0ff932fed8}} 
+void \mbox{\hyperlink{classrev_1_1_animation_controller_a66a54baf2621ab20189d6c0ff932fed8}{update\+Motions}} ()
+\begin{DoxyCompactList}\small\item\em Perform motion actions, and generate any new ones from auto-\/playing motions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_ae7176279fcdec559eee67209dfc41a03}\label{classrev_1_1_animation_controller_ae7176279fcdec559eee67209dfc41a03}} 
+\mbox{\hyperlink{classrev_1_1_motion}{Motion}} $\ast$ \mbox{\hyperlink{classrev_1_1_animation_controller_ae7176279fcdec559eee67209dfc41a03}{get\+Motion}} (const \mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \&uuid)
+\begin{DoxyCompactList}\small\item\em Return a pointer to the motion with the specified U\+U\+ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_a5fdf99c4622fbed284645f659e1b6546}\label{classrev_1_1_animation_controller_a5fdf99c4622fbed284645f659e1b6546}} 
+\mbox{\hyperlink{classrev_1_1_motion}{Motion}} $\ast$ {\bfseries get\+Motion} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&name)
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_a0fc355e7ef900e2d469871dc8f58b074}\label{classrev_1_1_animation_controller_a0fc355e7ef900e2d469871dc8f58b074}} 
+const std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_motion}{Motion}} $>$ \& {\bfseries motions} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_a87acb2a03bd2c916f40a53f5c29aa359}\label{classrev_1_1_animation_controller_a87acb2a03bd2c916f40a53f5c29aa359}} 
+\mbox{\hyperlink{classrev_1_1_motion}{Motion}} $\ast$ \mbox{\hyperlink{classrev_1_1_animation_controller_a87acb2a03bd2c916f40a53f5c29aa359}{add\+Motion}} (\mbox{\hyperlink{classrev_1_1_base_animation_state}{Base\+Animation\+State}} $\ast$state)
+\begin{DoxyCompactList}\small\item\em Add a motion to the animation controller at the specified state. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_a7965d8791ae2287eeb8e844f6047bd3e}\label{classrev_1_1_animation_controller_a7965d8791ae2287eeb8e844f6047bd3e}} 
+void {\bfseries remove\+Motion} (\mbox{\hyperlink{classrev_1_1_motion}{Motion}} $\ast$motion)
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_abf513d304d844d1de3fa2cac7f80ff1b}\label{classrev_1_1_animation_controller_abf513d304d844d1de3fa2cac7f80ff1b}} 
+\mbox{\hyperlink{classrev_1_1_model}{Model}} $\ast$ \mbox{\hyperlink{classrev_1_1_animation_controller_abf513d304d844d1de3fa2cac7f80ff1b}{get\+Model}} () const
+\begin{DoxyCompactList}\small\item\em Get model for the animation controller. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_a40674a6167f0b8c035dc1a5d75dda4ab}\label{classrev_1_1_animation_controller_a40674a6167f0b8c035dc1a5d75dda4ab}} 
+void \mbox{\hyperlink{classrev_1_1_animation_controller_a40674a6167f0b8c035dc1a5d75dda4ab}{add\+State}} (\mbox{\hyperlink{classrev_1_1_animation_state}{Animation\+State}} $\ast$state)
+\begin{DoxyCompactList}\small\item\em Add state to the controller. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_af2fc11951ebac0de23eb6ee1d668ff80}\label{classrev_1_1_animation_controller_af2fc11951ebac0de23eb6ee1d668ff80}} 
+void {\bfseries add\+Transition} (\mbox{\hyperlink{classrev_1_1_animation_transition}{Animation\+Transition}} $\ast$state)
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_a3e0fb1710242082636ecf52e8da51363}\label{classrev_1_1_animation_controller_a3e0fb1710242082636ecf52e8da51363}} 
+bool {\bfseries is\+Playing} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_abdb78492ee055b9c5bdb1b25fb0ab1ae}\label{classrev_1_1_animation_controller_abdb78492ee055b9c5bdb1b25fb0ab1ae}} 
+void {\bfseries set\+Playing} (bool play)
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_a9fdf9c4ac52aaccb8398500ed2527a08}\label{classrev_1_1_animation_controller_a9fdf9c4ac52aaccb8398500ed2527a08}} 
+bool \mbox{\hyperlink{classrev_1_1_animation_controller_a9fdf9c4ac52aaccb8398500ed2527a08}{bind\+Uniforms}} (\mbox{\hyperlink{classrev_1_1_draw_command}{Draw\+Command}} \&draw\+Command)
+\begin{DoxyCompactList}\small\item\em Set uniforms in the given draw command. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_acae4e72ebb88a820983b93c5e4bfe733}\label{classrev_1_1_animation_controller_acae4e72ebb88a820983b93c5e4bfe733}} 
+bool {\bfseries bind\+Uniforms} (\mbox{\hyperlink{classrev_1_1_shader_program}{Shader\+Program}} \&shader\+Program)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_ab42f5f6ffa1cae25539eb5214e1ef162}\label{classrev_1_1_animation_controller_ab42f5f6ffa1cae25539eb5214e1ef162}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_animation_controller_ab42f5f6ffa1cae25539eb5214e1ef162}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_afcdbc146686b6db040eed8d0b6adcaaf}\label{classrev_1_1_animation_controller_afcdbc146686b6db040eed8d0b6adcaaf}} 
+virtual void \mbox{\hyperlink{classrev_1_1_animation_controller_afcdbc146686b6db040eed8d0b6adcaaf}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_animation_controller_a242d8be4d5939baeda4cde95c13cd1ef}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_animation_controller_aa20837e4b8c3730c3a66bc84e2524b02}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Private Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_aa7b3b7a5184b516602e9dad4e7dae61a}\label{classrev_1_1_animation_controller_aa7b3b7a5184b516602e9dad4e7dae61a}} 
+void {\bfseries initialize\+Process} (const \mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} \&so)
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Private Members}\par
+{\em @ }\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_a1aa3603739628c4968a3ddde8ce6248f}\label{classrev_1_1_animation_controller_a1aa3603739628c4968a3ddde8ce6248f}} 
+std\+::mutex {\bfseries m\+\_\+motion\+Action\+Mutex}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_a73a988d1702f3d6fef6306490ed02b3c}\label{classrev_1_1_animation_controller_a73a988d1702f3d6fef6306490ed02b3c}} 
+std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_motion_action}{Motion\+Action}} $>$ \mbox{\hyperlink{classrev_1_1_animation_controller_a73a988d1702f3d6fef6306490ed02b3c}{m\+\_\+motion\+Actions}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_vector}{Vector}} of motions that need to be updated. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_a9da58a34e14c344b5ffb336b05afb179}\label{classrev_1_1_animation_controller_a9da58a34e14c344b5ffb336b05afb179}} 
+std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_motion_action}{Motion\+Action}} $>$ {\bfseries m\+\_\+motion\+Action\+Queue}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_acdb883e1b3c0079d95f0d08cfae16eaa}\label{classrev_1_1_animation_controller_acdb883e1b3c0079d95f0d08cfae16eaa}} 
+bool \mbox{\hyperlink{classrev_1_1_animation_controller_acdb883e1b3c0079d95f0d08cfae16eaa}{m\+\_\+is\+Playing}} = true
+\begin{DoxyCompactList}\small\item\em Whether or not the controller is playing. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_a98e6393e0b10b57d2b1e4c6c616a9978}\label{classrev_1_1_animation_controller_a98e6393e0b10b57d2b1e4c6c616a9978}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ \mbox{\hyperlink{classrev_1_1_animation_controller_a98e6393e0b10b57d2b1e4c6c616a9978}{m\+\_\+model\+Handle}}
+\begin{DoxyCompactList}\small\item\em The model being used by the controller. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_ae14f295bb48a1974fe4793ae0d7e1b99}\label{classrev_1_1_animation_controller_ae14f295bb48a1974fe4793ae0d7e1b99}} 
+\mbox{\hyperlink{classrev_1_1_scene_object}{Scene\+Object}} $\ast$ \mbox{\hyperlink{classrev_1_1_animation_controller_ae14f295bb48a1974fe4793ae0d7e1b99}{m\+\_\+scene\+Object}}
+\begin{DoxyCompactList}\small\item\em Pointer to the scene object that this controller\textquotesingle{}s component lives on. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_a514ddefcb5735968a0aa5cf3d9018346}\label{classrev_1_1_animation_controller_a514ddefcb5735968a0aa5cf3d9018346}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_motion}{Motion}} $>$ \mbox{\hyperlink{classrev_1_1_animation_controller_a514ddefcb5735968a0aa5cf3d9018346}{m\+\_\+motions}}
+\begin{DoxyCompactList}\small\item\em Motions through animation state machine. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_aaaa26f2e750e2e66c36c13bd8bb643d5}\label{classrev_1_1_animation_controller_aaaa26f2e750e2e66c36c13bd8bb643d5}} 
+\mbox{\hyperlink{classrev_1_1_animation_state_machine}{Animation\+State\+Machine}} $\ast$ \mbox{\hyperlink{classrev_1_1_animation_controller_aaaa26f2e750e2e66c36c13bd8bb643d5}{m\+\_\+state\+Machine}}
+\begin{DoxyCompactList}\small\item\em The state machine for this controller. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_a1cf6713a4a355d5926105903c47fafd0}\label{classrev_1_1_animation_controller_a1cf6713a4a355d5926105903c47fafd0}} 
+\mbox{\hyperlink{classrev_1_1_blend_queue}{Blend\+Queue}} \mbox{\hyperlink{classrev_1_1_animation_controller_a1cf6713a4a355d5926105903c47fafd0}{m\+\_\+blend\+Queue}}
+\begin{DoxyCompactList}\small\item\em The blend queue for the controller. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_a0ecd225cd7c600b98fb9d42a98bf24f0}\label{classrev_1_1_animation_controller_a0ecd225cd7c600b98fb9d42a98bf24f0}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_animation_process}{Animation\+Process}} $>$ \mbox{\hyperlink{classrev_1_1_animation_controller_a0ecd225cd7c600b98fb9d42a98bf24f0}{m\+\_\+process}} = nullptr
+\begin{DoxyCompactList}\small\item\em The process for running the animation controller. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_a68369f3d806a081715c367d5ac0cbacc}\label{classrev_1_1_animation_controller_a68369f3d806a081715c367d5ac0cbacc}} 
+class {\bfseries Bone\+Animation\+Component}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_a983bb6633dd2561e3954ebeb6c7a9e10}\label{classrev_1_1_animation_controller_a983bb6633dd2561e3954ebeb6c7a9e10}} 
+class {\bfseries Animation\+Process}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_aacf451d09c33bff0c7868b019f411fe8}\label{classrev_1_1_animation_controller_aacf451d09c33bff0c7868b019f411fe8}} 
+class {\bfseries Blend\+Queue}
+\item 
+\mbox{\Hypertarget{classrev_1_1_animation_controller_a6c2266a15bd2360b3047560297f23316}\label{classrev_1_1_animation_controller_a6c2266a15bd2360b3047560297f23316}} 
+class {\bfseries Motion}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing a set of controllable animations. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_animation_controller_a242d8be4d5939baeda4cde95c13cd1ef}\label{classrev_1_1_animation_controller_a242d8be4d5939baeda4cde95c13cd1ef}} 
+\index{rev::AnimationController@{rev::AnimationController}!className@{className}}
+\index{className@{className}!rev::AnimationController@{rev::AnimationController}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Animation\+Controller\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_a7a2013f91169479b65cf93afdc5d9a68}{rev\+::\+Object}}.
+
+\mbox{\Hypertarget{classrev_1_1_animation_controller_aa20837e4b8c3730c3a66bc84e2524b02}\label{classrev_1_1_animation_controller_aa20837e4b8c3730c3a66bc84e2524b02}} 
+\index{rev::AnimationController@{rev::AnimationController}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::AnimationController@{rev::AnimationController}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Animation\+Controller\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_object_aaeb638d3e10f361c56c211a318a27f3d}{rev\+::\+Object}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/animation/G\+Animation\+Controller.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/animation/G\+Animation\+Controller.\+cpp\end{DoxyCompactItemize}

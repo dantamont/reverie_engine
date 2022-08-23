@@ -1,0 +1,125 @@
+\hypertarget{classrev_1_1_service}{}\section{rev\+::Service Class Reference}
+\label{classrev_1_1_service}\index{rev::Service@{rev::Service}}
+
+
+Defines a Q\+Object based \mbox{\hyperlink{classrev_1_1_service}{Service}}.  
+
+
+
+
+{\ttfamily \#include $<$G\+Service.\+h$>$}
+
+Inheritance diagram for rev\+::Service\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=12.000000cm]{classrev_1_1_service}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+{\em Create a \mbox{\hyperlink{classrev_1_1_service}{Service}} with the given name and optional parent
+
+\begin{DoxyNote}{Note}
+name must be unique 
+\end{DoxyNote}
+}\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_service_a13bfd1240fbc59e9a1a28fe0447c3a69}\label{classrev_1_1_service_a13bfd1240fbc59e9a1a28fe0447c3a69}} 
+{\bfseries Service} (const Q\+String \&name, Q\+Object $\ast$parent=nullptr, bool defer\+Post\+Construction=false)
+\item 
+\mbox{\hyperlink{classrev_1_1_service_aeb56f97a50b0bb4b296adaa4c10d97f5}{Service}} (const char $\ast$name, Q\+Object $\ast$parent=nullptr, bool defer\+Post\+Construction=false)
+\begin{DoxyCompactList}\small\item\em Create a \mbox{\hyperlink{classrev_1_1_service}{Service}} with the given name and optional parent. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_service_a25083080ff89864392afde80950f089e}\label{classrev_1_1_service_a25083080ff89864392afde80950f089e}} 
+virtual bool \mbox{\hyperlink{classrev_1_1_service_a25083080ff89864392afde80950f089e}{is\+Service}} () const override
+\begin{DoxyCompactList}\small\item\em Returns True for a \mbox{\hyperlink{classrev_1_1_service}{Service}} and its subclasses. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_service_a940c9b3fbc4e2abbf3e4237e309a25a3}\label{classrev_1_1_service_a940c9b3fbc4e2abbf3e4237e309a25a3}} 
+virtual bool \mbox{\hyperlink{classrev_1_1_service_a940c9b3fbc4e2abbf3e4237e309a25a3}{is\+Tool}} () const override
+\begin{DoxyCompactList}\small\item\em Returns False for a \mbox{\hyperlink{classrev_1_1_service}{Service}} and its subclasses. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_service_a8cd6c1c577180bf6b03adbc444ea5a45}\label{classrev_1_1_service_a8cd6c1c577180bf6b03adbc444ea5a45}} 
+Q\+String \mbox{\hyperlink{classrev_1_1_service_a8cd6c1c577180bf6b03adbc444ea5a45}{signal\+Slot\+Info}} () const
+\begin{DoxyCompactList}\small\item\em Returns information about every defined Qt Signal and Slot. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Q\+Object overrides}\par
+{\em Overrides Q\+Object\+::event }\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_service_a29b6deb954043cac75da2a038c4d4976}\label{classrev_1_1_service_a29b6deb954043cac75da2a038c4d4976}} 
+virtual bool {\bfseries event} (Q\+Event $\ast$event) override
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_service_a484d71757ea6e8780488602cb421a4a5}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_service_a831f5bf8c53584ec830aaee38ea58e7b}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Defines a Q\+Object based \mbox{\hyperlink{classrev_1_1_service}{Service}}. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classrev_1_1_service_aeb56f97a50b0bb4b296adaa4c10d97f5}\label{classrev_1_1_service_aeb56f97a50b0bb4b296adaa4c10d97f5}} 
+\index{rev::Service@{rev::Service}!Service@{Service}}
+\index{Service@{Service}!rev::Service@{rev::Service}}
+\subsubsection{\texorpdfstring{Service()}{Service()}}
+{\footnotesize\ttfamily rev\+::\+Service\+::\+Service (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name,  }\item[{Q\+Object $\ast$}]{parent = {\ttfamily nullptr},  }\item[{bool}]{defer\+Post\+Construction = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Create a \mbox{\hyperlink{classrev_1_1_service}{Service}} with the given name and optional parent. 
+
+\begin{DoxyNote}{Note}
+name must be unique 
+\end{DoxyNote}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_service_a484d71757ea6e8780488602cb421a4a5}\label{classrev_1_1_service_a484d71757ea6e8780488602cb421a4a5}} 
+\index{rev::Service@{rev::Service}!className@{className}}
+\index{className@{className}!rev::Service@{rev::Service}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Service\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_abstract_service_a0b64ee4651db7637a70265697ca62453}{rev\+::\+Abstract\+Service}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_debug_manager_a5962e13755e5a3b902f2d3f71e5948cb}{rev\+::\+Debug\+Manager}}, \mbox{\hyperlink{classrev_1_1_resource_cache_ac6abc543146d0f487cfffb79d33d35e0}{rev\+::\+Resource\+Cache}}, \mbox{\hyperlink{classrev_1_1_physics_manager_a557872ba7a7c0fb2074b408f185aa789}{rev\+::\+Physics\+Manager}}, \mbox{\hyperlink{classrev_1_1_file_manager_abfb467bdcfbacd82f041139a15d73fa0}{rev\+::\+File\+Manager}}, \mbox{\hyperlink{classrev_1_1_event_manager_a3999d64126b1b5e0d8d4a47636bfe4c5}{rev\+::\+Event\+Manager}}, \mbox{\hyperlink{classrev_1_1_sound_manager_a1b4c69f6b4e31741ddf76595004fd0fe}{rev\+::\+Sound\+Manager}}, and \mbox{\hyperlink{classrev_1_1_animation_manager_a75045d17ce187cc554ff1b2f12e2fea5}{rev\+::\+Animation\+Manager}}.
+
+\mbox{\Hypertarget{classrev_1_1_service_a831f5bf8c53584ec830aaee38ea58e7b}\label{classrev_1_1_service_a831f5bf8c53584ec830aaee38ea58e7b}} 
+\index{rev::Service@{rev::Service}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::Service@{rev::Service}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Service\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_abstract_service_a062e932eaa2eab0109288f2b32e459f7}{rev\+::\+Abstract\+Service}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classrev_1_1_debug_manager_a0f83cdbbd2ed91549fe2ae4fdf8809b6}{rev\+::\+Debug\+Manager}}, \mbox{\hyperlink{classrev_1_1_resource_cache_a4ed6a3f7ea5e8ea20287a5bce1fa05b9}{rev\+::\+Resource\+Cache}}, \mbox{\hyperlink{classrev_1_1_physics_manager_ac541c7e0460d572c5bff2e4136c779e1}{rev\+::\+Physics\+Manager}}, \mbox{\hyperlink{classrev_1_1_file_manager_a57e18b80b80bde22fb0917daae4662bc}{rev\+::\+File\+Manager}}, \mbox{\hyperlink{classrev_1_1_event_manager_a5188a25a9b785d841c39aefafd5f391e}{rev\+::\+Event\+Manager}}, \mbox{\hyperlink{classrev_1_1_sound_manager_a00de07c95c3a3993ec7c2008cc2c0db3}{rev\+::\+Sound\+Manager}}, and \mbox{\hyperlink{classrev_1_1_animation_manager_a7654304032196589413ddb5fec41981b}{rev\+::\+Animation\+Manager}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/service/G\+Service.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/service/G\+Service.\+cpp\end{DoxyCompactItemize}

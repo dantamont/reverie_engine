@@ -1,0 +1,90 @@
+\hypertarget{structrev_1_1_user_input}{}\section{rev\+::User\+Input Struct Reference}
+\label{structrev_1_1_user_input}\index{rev::UserInput@{rev::UserInput}}
+
+
+A generalization of an input.  
+
+
+
+
+{\ttfamily \#include $<$G\+Input\+Handler.\+h$>$}
+
+Inheritance diagram for rev\+::User\+Input\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{structrev_1_1_user_input}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{Indent}\textbf{ Static}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_user_input_a8e823eff6b7cb8b97b6e54d415ae67e3}\label{structrev_1_1_user_input_a8e823eff6b7cb8b97b6e54d415ae67e3}} 
+enum {\bfseries Peripheral\+Type} \{ {\bfseries k\+Unrecognized} = -\/1, 
+{\bfseries k\+Key}, 
+{\bfseries k\+Mouse}
+ \}
+\item 
+\mbox{\Hypertarget{structrev_1_1_user_input_ad273209d007485ca9177e68df6424c22}\label{structrev_1_1_user_input_ad273209d007485ca9177e68df6424c22}} 
+enum {\bfseries Action\+Type} \{ \newline
+{\bfseries k\+No\+Action}, 
+{\bfseries k\+Press}, 
+{\bfseries k\+Release}, 
+{\bfseries k\+Scroll}, 
+\newline
+{\bfseries k\+N\+U\+M\+\_\+\+A\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+P\+ES}
+ \}
+\item 
+\mbox{\Hypertarget{structrev_1_1_user_input_ab0dd92d79a3d6584ebfbcbf9312ee4ab}\label{structrev_1_1_user_input_ab0dd92d79a3d6584ebfbcbf9312ee4ab}} 
+enum {\bfseries Timing\+Type} \{ {\bfseries k\+None}, 
+{\bfseries k\+Double\+Click}
+ \}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrev_1_1_user_input_aebf5941a3de04f706a92d3d6414ef2c3}\label{structrev_1_1_user_input_aebf5941a3de04f706a92d3d6414ef2c3}} 
+{\bfseries User\+Input} (Peripheral\+Type type)
+\item 
+\mbox{\Hypertarget{structrev_1_1_user_input_a5e929ca3467b45c9995e72d43ebd9da1}\label{structrev_1_1_user_input_a5e929ca3467b45c9995e72d43ebd9da1}} 
+{\bfseries $\sim$\+User\+Input} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::array$<$ ulong, k\+N\+U\+M\+\_\+\+A\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+P\+ES $>$ \mbox{\hyperlink{structrev_1_1_user_input_ab4af0c36ad391ebe88f4a61a9768e636}{m\+\_\+time\+Stamps}}
+\begin{DoxyCompactList}\small\item\em The most recent timestamps (in ms since arbitrary time) of each action type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_user_input_a49c30d308cc111d2bcaf47846f99ee31}\label{structrev_1_1_user_input_a49c30d308cc111d2bcaf47846f99ee31}} 
+Action\+Type \mbox{\hyperlink{structrev_1_1_user_input_a49c30d308cc111d2bcaf47846f99ee31}{m\+\_\+action\+Type}} = Action\+Type\+::k\+No\+Action
+\begin{DoxyCompactList}\small\item\em Type of event. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_user_input_a8892d76994b128600062a0d6f1b59a44}\label{structrev_1_1_user_input_a8892d76994b128600062a0d6f1b59a44}} 
+Timing\+Type \mbox{\hyperlink{structrev_1_1_user_input_a8892d76994b128600062a0d6f1b59a44}{m\+\_\+timing\+Type}} = Timing\+Type\+::k\+None
+\begin{DoxyCompactList}\small\item\em Type of timing. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrev_1_1_user_input_aebfc6fa7493caba1a58dcdae72300868}\label{structrev_1_1_user_input_aebfc6fa7493caba1a58dcdae72300868}} 
+Peripheral\+Type \mbox{\hyperlink{structrev_1_1_user_input_aebfc6fa7493caba1a58dcdae72300868}{m\+\_\+input\+Type}}
+\begin{DoxyCompactList}\small\item\em Type of peripheral used for input. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A generalization of an input. 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structrev_1_1_user_input_ab4af0c36ad391ebe88f4a61a9768e636}\label{structrev_1_1_user_input_ab4af0c36ad391ebe88f4a61a9768e636}} 
+\index{rev::UserInput@{rev::UserInput}!m\_timeStamps@{m\_timeStamps}}
+\index{m\_timeStamps@{m\_timeStamps}!rev::UserInput@{rev::UserInput}}
+\subsubsection{\texorpdfstring{m\_timeStamps}{m\_timeStamps}}
+{\footnotesize\ttfamily std\+::array$<$ulong, k\+N\+U\+M\+\_\+\+A\+C\+T\+I\+O\+N\+\_\+\+T\+Y\+P\+ES$>$ rev\+::\+User\+Input\+::m\+\_\+time\+Stamps}
+
+
+
+The most recent timestamps (in ms since arbitrary time) of each action type. 
+
+Array default initializes to zero 
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/input/G\+Input\+Handler.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/input/G\+Input\+Handler.\+cpp\end{DoxyCompactItemize}

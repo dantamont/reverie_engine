@@ -1,0 +1,66 @@
+\hypertarget{class_so_loud_1_1_biquad_resonant_filter}{}\section{So\+Loud\+::Biquad\+Resonant\+Filter Class Reference}
+\label{class_so_loud_1_1_biquad_resonant_filter}\index{SoLoud::BiquadResonantFilter@{SoLoud::BiquadResonantFilter}}
+Inheritance diagram for So\+Loud\+::Biquad\+Resonant\+Filter\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_so_loud_1_1_biquad_resonant_filter}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_biquad_resonant_filter_a0f24bc97c3d6f6eb215be8e44c484071}\label{class_so_loud_1_1_biquad_resonant_filter_a0f24bc97c3d6f6eb215be8e44c484071}} 
+enum {\bfseries F\+I\+L\+T\+E\+R\+T\+Y\+PE} \{ {\bfseries L\+O\+W\+P\+A\+SS} = 0, 
+{\bfseries H\+I\+G\+H\+P\+A\+SS} = 1, 
+{\bfseries B\+A\+N\+D\+P\+A\+SS} = 2
+ \}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_biquad_resonant_filter_a50ed3775c10fd396de47dfd0df63f09d}\label{class_so_loud_1_1_biquad_resonant_filter_a50ed3775c10fd396de47dfd0df63f09d}} 
+enum {\bfseries F\+I\+L\+T\+E\+R\+A\+T\+T\+R\+I\+B\+U\+TE} \{ {\bfseries W\+ET} = 0, 
+{\bfseries T\+Y\+PE}, 
+{\bfseries F\+R\+E\+Q\+U\+E\+N\+CY}, 
+{\bfseries R\+E\+S\+O\+N\+A\+N\+CE}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_biquad_resonant_filter_af5d39bb2f782bcc8e78507c8d5c3b829}\label{class_so_loud_1_1_biquad_resonant_filter_af5d39bb2f782bcc8e78507c8d5c3b829}} 
+virtual int {\bfseries get\+Param\+Count} ()
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_biquad_resonant_filter_a95ede0d904526f72ec062f971399859c}\label{class_so_loud_1_1_biquad_resonant_filter_a95ede0d904526f72ec062f971399859c}} 
+virtual const char $\ast$ {\bfseries get\+Param\+Name} (unsigned int a\+Param\+Index)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_biquad_resonant_filter_a2a5e7f043e47d91643bfb97a74c38a48}\label{class_so_loud_1_1_biquad_resonant_filter_a2a5e7f043e47d91643bfb97a74c38a48}} 
+virtual unsigned int {\bfseries get\+Param\+Type} (unsigned int a\+Param\+Index)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_biquad_resonant_filter_a2019281e3cece0454a5e5c1083cbb944}\label{class_so_loud_1_1_biquad_resonant_filter_a2019281e3cece0454a5e5c1083cbb944}} 
+virtual float {\bfseries get\+Param\+Max} (unsigned int a\+Param\+Index)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_biquad_resonant_filter_a23f3562ccc0ea5e32f1286fa896bac78}\label{class_so_loud_1_1_biquad_resonant_filter_a23f3562ccc0ea5e32f1286fa896bac78}} 
+virtual float {\bfseries get\+Param\+Min} (unsigned int a\+Param\+Index)
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_biquad_resonant_filter_a78751dd7921e7f8d2e7f88c0323a9557}\label{class_so_loud_1_1_biquad_resonant_filter_a78751dd7921e7f8d2e7f88c0323a9557}} 
+virtual \mbox{\hyperlink{class_so_loud_1_1_biquad_resonant_filter_instance}{Biquad\+Resonant\+Filter\+Instance}} $\ast$ {\bfseries create\+Instance} ()
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_biquad_resonant_filter_a738ef9b2060b5e758ca994c916411823}\label{class_so_loud_1_1_biquad_resonant_filter_a738ef9b2060b5e758ca994c916411823}} 
+result {\bfseries set\+Params} (int a\+Type, float a\+Frequency, float a\+Resonance)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_biquad_resonant_filter_a50e3f094f703e4c2780dc935d34ee3b7}\label{class_so_loud_1_1_biquad_resonant_filter_a50e3f094f703e4c2780dc935d34ee3b7}} 
+int {\bfseries m\+Filter\+Type}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_biquad_resonant_filter_a4a87bf863804bb3a9cd0a09cc0db00b3}\label{class_so_loud_1_1_biquad_resonant_filter_a4a87bf863804bb3a9cd0a09cc0db00b3}} 
+float {\bfseries m\+Frequency}
+\item 
+\mbox{\Hypertarget{class_so_loud_1_1_biquad_resonant_filter_a06f7f1c568237c23b9d05fd7695d3a63}\label{class_so_loud_1_1_biquad_resonant_filter_a06f7f1c568237c23b9d05fd7695d3a63}} 
+float {\bfseries m\+Resonance}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/include/soloud\+\_\+biquadresonantfilter.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/src/filter/soloud\+\_\+biquadresonantfilter.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,171 @@
+\hypertarget{class_c_p_u}{}\section{C\+PU Class Reference}
+\label{class_c_p_u}\index{CPU@{CPU}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_p_u_a53e3e3ee2b8ae1276203b509fea2dbb5}\label{class_c_p_u_a53e3e3ee2b8ae1276203b509fea2dbb5}} 
+{\bfseries C\+PU} (\mbox{\hyperlink{class_memory_handler}{Memory\+Handler}} $\ast$memhandler, unsigned char $\ast$irqreg, unsigned char $\ast$cpustack)
+\item 
+\mbox{\Hypertarget{class_c_p_u_a419771ee48ade79eabce01ad5cad7c6c}\label{class_c_p_u_a419771ee48ade79eabce01ad5cad7c6c}} 
+void {\bfseries Reset} (void)
+\item 
+\mbox{\Hypertarget{class_c_p_u_a1ac1e913b2220e05a03eaf9d0d52e317}\label{class_c_p_u_a1ac1e913b2220e05a03eaf9d0d52e317}} 
+void {\bfseries softreset} (void)
+\item 
+\mbox{\Hypertarget{class_c_p_u_aa87d4f5a1708b406713be24dae039412}\label{class_c_p_u_aa87d4f5a1708b406713be24dae039412}} 
+void {\bfseries set\+PC} (unsigned int addr)
+\item 
+\mbox{\Hypertarget{class_c_p_u_aca068daade4a0e8a886b562b28bfcffa}\label{class_c_p_u_aca068daade4a0e8a886b562b28bfcffa}} 
+void {\bfseries set\+ST} (unsigned char st)
+\item 
+\mbox{\Hypertarget{class_c_p_u_aba90921db4c0e75b81c00c34574da41e}\label{class_c_p_u_aba90921db4c0e75b81c00c34574da41e}} 
+void {\bfseries process} ()
+\item 
+\mbox{\Hypertarget{class_c_p_u_aed14fc847e909a7a8e3e2c2ee88f529d}\label{class_c_p_u_aed14fc847e909a7a8e3e2c2ee88f529d}} 
+void {\bfseries stopcycle} ()
+\item 
+\mbox{\Hypertarget{class_c_p_u_a5eb4971607aa93adaad6486db2c5766a}\label{class_c_p_u_a5eb4971607aa93adaad6486db2c5766a}} 
+unsigned int {\bfseries get\+PC} ()
+\item 
+\mbox{\Hypertarget{class_c_p_u_ad2a166f6a6d190f218c5e906527d04cd}\label{class_c_p_u_ad2a166f6a6d190f218c5e906527d04cd}} 
+unsigned int {\bfseries get\+SP} ()
+\item 
+\mbox{\Hypertarget{class_c_p_u_a87800ddd302457009adb2f966c299c08}\label{class_c_p_u_a87800ddd302457009adb2f966c299c08}} 
+unsigned int {\bfseries get\+ST} ()
+\item 
+\mbox{\Hypertarget{class_c_p_u_ac818a75297688758a1cb5e04d25347a7}\label{class_c_p_u_ac818a75297688758a1cb5e04d25347a7}} 
+unsigned int {\bfseries get\+AC} ()
+\item 
+\mbox{\Hypertarget{class_c_p_u_a5684644390c2e10d3ec1361c1b5fa866}\label{class_c_p_u_a5684644390c2e10d3ec1361c1b5fa866}} 
+unsigned int {\bfseries getX} ()
+\item 
+\mbox{\Hypertarget{class_c_p_u_a760937b793b25b2b70e3349a1e0da03c}\label{class_c_p_u_a760937b793b25b2b70e3349a1e0da03c}} 
+unsigned int {\bfseries getY} ()
+\item 
+\mbox{\Hypertarget{class_c_p_u_ae4e464d65a2fd2f7cd289ed4b8e5f979}\label{class_c_p_u_ae4e464d65a2fd2f7cd289ed4b8e5f979}} 
+unsigned int {\bfseries getnextins} ()
+\item 
+\mbox{\Hypertarget{class_c_p_u_ab248d8c08a65fdef15ac179c74e301b0}\label{class_c_p_u_ab248d8c08a65fdef15ac179c74e301b0}} 
+unsigned int {\bfseries getptr} ()
+\item 
+\mbox{\Hypertarget{class_c_p_u_a959f25bde678be3feb53d8e0bf737f41}\label{class_c_p_u_a959f25bde678be3feb53d8e0bf737f41}} 
+unsigned int {\bfseries getcycle} ()
+\item 
+\mbox{\Hypertarget{class_c_p_u_aca496d86cc939db82cf3d8ffd0e4d62c}\label{class_c_p_u_aca496d86cc939db82cf3d8ffd0e4d62c}} 
+unsigned int {\bfseries getcins} ()
+\item 
+\mbox{\Hypertarget{class_c_p_u_ae14fe5dfb1f2f0e2e459e51b8dd8de85}\label{class_c_p_u_ae14fe5dfb1f2f0e2e459e51b8dd8de85}} 
+bool {\bfseries saveshot} (void $\ast$cpudump)
+\item 
+\mbox{\Hypertarget{class_c_p_u_ab8e10efe14836a01b18dc6fed89de5d7}\label{class_c_p_u_ab8e10efe14836a01b18dc6fed89de5d7}} 
+bool {\bfseries loadshot} (void $\ast$cpudump)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_p_u_aea1e18343c7fdb60c8be312e77904bbc}\label{class_c_p_u_aea1e18343c7fdb60c8be312e77904bbc}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>unsigned int {\bfseries address}\\
+\>bool {\bfseries enabled}\\
+\>bool {\bfseries slot\_free}\\
+\} {\bfseries bp} \mbox{[}11\mbox{]}\\
+
+\end{tabbing}\item 
+\mbox{\Hypertarget{class_c_p_u_a267c110e75137c82ebe098ac42f6a012}\label{class_c_p_u_a267c110e75137c82ebe098ac42f6a012}} 
+unsigned int {\bfseries nr\+\_\+activebps}
+\item 
+\mbox{\Hypertarget{class_c_p_u_aa3cd512148f8b3eb9a44daf247e93fdd}\label{class_c_p_u_aa3cd512148f8b3eb9a44daf247e93fdd}} 
+bool {\bfseries cpu\+\_\+jammed}
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_p_u_aa4e864695ffd420551762832176f158a}\label{class_c_p_u_aa4e864695ffd420551762832176f158a}} 
+static bool {\bfseries bp\+\_\+active} = false
+\item 
+\mbox{\Hypertarget{class_c_p_u_a6f8035bb0299b69d320ee0c0976277b7}\label{class_c_p_u_a6f8035bb0299b69d320ee0c0976277b7}} 
+static bool {\bfseries bp\+\_\+reached} = false
+\item 
+\mbox{\Hypertarget{class_c_p_u_a70cee1b15339fd6a9a369e7bd71b1124}\label{class_c_p_u_a70cee1b15339fd6a9a369e7bd71b1124}} 
+static const unsigned int {\bfseries nr\+\_\+of\+\_\+bps} = 11
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_p_u_aed1fb0898dc4fb96a0fb06fbf43031cc}\label{class_c_p_u_aed1fb0898dc4fb96a0fb06fbf43031cc}} 
+void {\bfseries A\+DC} (const unsigned char value)
+\item 
+\mbox{\Hypertarget{class_c_p_u_ab929f143c61d68677927e24d8d69b215}\label{class_c_p_u_ab929f143c61d68677927e24d8d69b215}} 
+void {\bfseries S\+BC} (const unsigned char value)
+\item 
+\mbox{\Hypertarget{class_c_p_u_aa06e9114ce1837d44e86a76b1c99679f}\label{class_c_p_u_aa06e9114ce1837d44e86a76b1c99679f}} 
+void {\bfseries Do\+Compare} (unsigned char reg, unsigned char value)
+\item 
+\mbox{\Hypertarget{class_c_p_u_aa739dba0e9cf2f22ac3f36452cdfa086}\label{class_c_p_u_aa739dba0e9cf2f22ac3f36452cdfa086}} 
+virtual unsigned char {\bfseries Check\+V\+Flag} ()
+\item 
+\mbox{\Hypertarget{class_c_p_u_a895846d3f1132f579f498373372e0c57}\label{class_c_p_u_a895846d3f1132f579f498373372e0c57}} 
+virtual void {\bfseries Clear\+V\+Flag} ()
+\item 
+\mbox{\Hypertarget{class_c_p_u_af4247ff4347e71b51bad1d90affdfc6a}\label{class_c_p_u_af4247ff4347e71b51bad1d90affdfc6a}} 
+void {\bfseries Set\+V\+Flag} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_p_u_a3299feb9c8d08ceef5993d4dea43d886}\label{class_c_p_u_a3299feb9c8d08ceef5993d4dea43d886}} 
+unsigned char {\bfseries currins}
+\item 
+\mbox{\Hypertarget{class_c_p_u_a3ce83df02f56f18bd02798261c18e104}\label{class_c_p_u_a3ce83df02f56f18bd02798261c18e104}} 
+unsigned char {\bfseries nextins}
+\item 
+\mbox{\Hypertarget{class_c_p_u_add91a947112960600127e2f49231a182}\label{class_c_p_u_add91a947112960600127e2f49231a182}} 
+unsigned char {\bfseries farins}
+\item 
+\mbox{\Hypertarget{class_c_p_u_ad961a49d855a1d7bc4038964bcc8112f}\label{class_c_p_u_ad961a49d855a1d7bc4038964bcc8112f}} 
+unsigned int {\bfseries ptr}
+\item 
+\mbox{\Hypertarget{class_c_p_u_a0d8e2d9c649ab1807286bd4f159204aa}\label{class_c_p_u_a0d8e2d9c649ab1807286bd4f159204aa}} 
+unsigned int {\bfseries PC}
+\item 
+\mbox{\Hypertarget{class_c_p_u_ad8850d2897da737420defff91f51dc63}\label{class_c_p_u_ad8850d2897da737420defff91f51dc63}} 
+unsigned char {\bfseries SP}
+\item 
+\mbox{\Hypertarget{class_c_p_u_aa62ee7357fbeff64b4ae5fa7c9e857a6}\label{class_c_p_u_aa62ee7357fbeff64b4ae5fa7c9e857a6}} 
+unsigned int {\bfseries ST}
+\item 
+\mbox{\Hypertarget{class_c_p_u_a0fba29ee69b43336358eb2625af1aea4}\label{class_c_p_u_a0fba29ee69b43336358eb2625af1aea4}} 
+unsigned char {\bfseries AC}
+\item 
+\mbox{\Hypertarget{class_c_p_u_a1c03f1fcdb68fd2128f3e9cc589897cf}\label{class_c_p_u_a1c03f1fcdb68fd2128f3e9cc589897cf}} 
+unsigned char {\bfseries X}
+\item 
+\mbox{\Hypertarget{class_c_p_u_ad4265738a75b1b43572c498a5fd20599}\label{class_c_p_u_ad4265738a75b1b43572c498a5fd20599}} 
+unsigned char {\bfseries Y}
+\item 
+\mbox{\Hypertarget{class_c_p_u_a04671e55a6751a3fe572330ebef97203}\label{class_c_p_u_a04671e55a6751a3fe572330ebef97203}} 
+unsigned int {\bfseries cycle}
+\item 
+\mbox{\Hypertarget{class_c_p_u_a3b1f1d8f6539bb5bf799b85497c337db}\label{class_c_p_u_a3b1f1d8f6539bb5bf799b85497c337db}} 
+unsigned int {\bfseries I\+R\+Qcount}
+\item 
+\mbox{\Hypertarget{class_c_p_u_acb7e1001b8a89f1bb3f4f421b77b01f5}\label{class_c_p_u_acb7e1001b8a89f1bb3f4f421b77b01f5}} 
+unsigned char $\ast$ {\bfseries irq\+\_\+register}
+\item 
+\mbox{\Hypertarget{class_c_p_u_a9502ebd29c4a4512540734182fb7a250}\label{class_c_p_u_a9502ebd29c4a4512540734182fb7a250}} 
+unsigned char $\ast$ {\bfseries stack}
+\item 
+\mbox{\Hypertarget{class_c_p_u_aa05666b7fbdb98c430dd7374b98f4543}\label{class_c_p_u_aa05666b7fbdb98c430dd7374b98f4543}} 
+unsigned char {\bfseries irq\+\_\+sequence}
+\item 
+\mbox{\Hypertarget{class_c_p_u_ac8d42d73e117388bbdd265e30f46e5b7}\label{class_c_p_u_ac8d42d73e117388bbdd265e30f46e5b7}} 
+\mbox{\hyperlink{class_memory_handler}{Memory\+Handler}} $\ast$ {\bfseries mem}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/src/tools/tedsid2dump/cpu.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/soloud/src/tools/tedsid2dump/cpu.\+cpp\end{DoxyCompactItemize}

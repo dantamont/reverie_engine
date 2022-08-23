@@ -1,0 +1,184 @@
+\hypertarget{classrev_1_1_model_reader}{}\section{rev\+::Model\+Reader Class Reference}
+\label{classrev_1_1_model_reader}\index{rev::ModelReader@{rev::ModelReader}}
+
+
+For loading in 3D model data from a .obj file.  
+
+
+
+
+{\ttfamily \#include $<$G\+Model\+Reader.\+h$>$}
+
+Inheritance diagram for rev\+::Model\+Reader\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_model_reader}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructor/\+Destructpr}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_af3e5308ddb39ed44b5f1d22f52748ccb}\label{classrev_1_1_model_reader_af3e5308ddb39ed44b5f1d22f52748ccb}} 
+{\bfseries Model\+Reader} (\mbox{\hyperlink{classrev_1_1_resource_cache}{Resource\+Cache}} $\ast$cache, \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} \&handle)
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_a421b0ae29dd197ae8c048b0a6161b99f}\label{classrev_1_1_model_reader_a421b0ae29dd197ae8c048b0a6161b99f}} 
+{\bfseries Model\+Reader} (const \mbox{\hyperlink{classrev_1_1_model_reader}{Model\+Reader}} \&reader)
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_a643278cd1489019007654a1745c8c3d0}\label{classrev_1_1_model_reader_a643278cd1489019007654a1745c8c3d0}} 
+{\bfseries $\sim$\+Model\+Reader} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_acabf872cd8ed7cbc5ac62a1fce61eb55}\label{classrev_1_1_model_reader_acabf872cd8ed7cbc5ac62a1fce61eb55}} 
+const ai\+Scene $\ast$ {\bfseries scene} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_a34ab5d24501659876b4de52652e85a37}\label{classrev_1_1_model_reader_a34ab5d24501659876b4de52652e85a37}} 
+std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_model_chunk_data}{Model\+Chunk\+Data}} $>$ \& {\bfseries chunks} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_a647a4f5cef7c0709e703e07c2ba904c1}\label{classrev_1_1_model_reader_a647a4f5cef7c0709e703e07c2ba904c1}} 
+void \mbox{\hyperlink{classrev_1_1_model_reader_a647a4f5cef7c0709e703e07c2ba904c1}{load\+File}} ()
+\begin{DoxyCompactList}\small\item\em Load in a file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_a32ea774167c767d30337e4d347776299}\label{classrev_1_1_model_reader_a32ea774167c767d30337e4d347776299}} 
+\mbox{\hyperlink{classrev_1_1_model}{Model}} $\ast$ \mbox{\hyperlink{classrev_1_1_model_reader_a32ea774167c767d30337e4d347776299}{load\+Model}} ()
+\begin{DoxyCompactList}\small\item\em Retrieve a model at the given filepath (loading only if not loaded) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Private methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_ab4e3bfc0f3d31aeb4fa9a133d012e2b3}\label{classrev_1_1_model_reader_ab4e3bfc0f3d31aeb4fa9a133d012e2b3}} 
+void \mbox{\hyperlink{classrev_1_1_model_reader_ab4e3bfc0f3d31aeb4fa9a133d012e2b3}{load\+Assimp}} ()
+\begin{DoxyCompactList}\small\item\em Load model using assimp. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_a03a4770f949307d5949c52221b894151}\label{classrev_1_1_model_reader_a03a4770f949307d5949c52221b894151}} 
+void \mbox{\hyperlink{classrev_1_1_model_reader_a03a4770f949307d5949c52221b894151}{load\+Materials}} ()
+\begin{DoxyCompactList}\small\item\em Load materials into the resource cache. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_a675283f2ca6721765583f58abe3aac30}\label{classrev_1_1_model_reader_a675283f2ca6721765583f58abe3aac30}} 
+void \mbox{\hyperlink{classrev_1_1_model_reader_a675283f2ca6721765583f58abe3aac30}{load\+Meshes}} ()
+\begin{DoxyCompactList}\small\item\em Construct mesh data after parsing from a file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_a727336bc87687aba1ee9152e27c6a304}\label{classrev_1_1_model_reader_a727336bc87687aba1ee9152e27c6a304}} 
+void \mbox{\hyperlink{classrev_1_1_model_reader_a727336bc87687aba1ee9152e27c6a304}{load\+Animations}} ()
+\begin{DoxyCompactList}\small\item\em load animations \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_a0c82cee6bd17b57abe2e1594f661e037}\label{classrev_1_1_model_reader_a0c82cee6bd17b57abe2e1594f661e037}} 
+const \mbox{\hyperlink{classrev_1_1_mesh}{Mesh}} \& \mbox{\hyperlink{classrev_1_1_model_reader_a0c82cee6bd17b57abe2e1594f661e037}{process\+Mesh}} (ai\+Mesh $\ast$mesh)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_process}{Process}} mesh data from a assimp mesh. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_a77ddb9065e462c65377645d418bdb8fc}\label{classrev_1_1_model_reader_a77ddb9065e462c65377645d418bdb8fc}} 
+\mbox{\hyperlink{structrev_1_1_material_data}{Material\+Data}} \mbox{\hyperlink{classrev_1_1_model_reader_a77ddb9065e462c65377645d418bdb8fc}{process\+Material}} (ai\+Material $\ast$mat)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_process}{Process}} material from A\+S\+S\+I\+MP data. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_a5636b04056abe0509ba8decabaa6f3be}\label{classrev_1_1_model_reader_a5636b04056abe0509ba8decabaa6f3be}} 
+\mbox{\hyperlink{classrev_1_1_material}{Material}} $\ast$ \mbox{\hyperlink{classrev_1_1_model_reader_a5636b04056abe0509ba8decabaa6f3be}{create\+Material}} (const \mbox{\hyperlink{structrev_1_1_material_data}{Material\+Data}} \&data)
+\begin{DoxyCompactList}\small\item\em Create material from material data. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_a79cef366af128f72f76326507a8b5da0}\label{classrev_1_1_model_reader_a79cef366af128f72f76326507a8b5da0}} 
+\mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} \mbox{\hyperlink{classrev_1_1_model_reader_a79cef366af128f72f76326507a8b5da0}{calculate\+Global\+Node\+Transform}} (const ai\+Node $\ast$root)
+\begin{DoxyCompactList}\small\item\em Calculate the object-\/space transform of the node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrev_1_1_model_reader_a8e7deec3987f6f7aa0537f43af5609d0}{process\+Texture}} (ai\+Material $\ast$mat, \mbox{\hyperlink{structrev_1_1_material_data}{Material\+Data}} \&out\+Material, ai\+Texture\+Type type)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_process}{Process}} texture type from material. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_a7f2bfbc3c0c449d9e8b981baf9840da0}\label{classrev_1_1_model_reader_a7f2bfbc3c0c449d9e8b981baf9840da0}} 
+void \mbox{\hyperlink{classrev_1_1_model_reader_a7f2bfbc3c0c449d9e8b981baf9840da0}{process\+Nodes}} (const ai\+Node $\ast$node)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_process}{Process}} nodes for metadata. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_ac7995f6db521ba8018873c463c37cb2a}\label{classrev_1_1_model_reader_ac7995f6db521ba8018873c463c37cb2a}} 
+void \mbox{\hyperlink{classrev_1_1_model_reader_ac7995f6db521ba8018873c463c37cb2a}{parse\+Node\+Hierarchy}} (ai\+Node $\ast$ai\+Node, uint32\+\_\+t current\+Node\+Index)
+\begin{DoxyCompactList}\small\item\em Recursive method for walking ai\+Mesh to construct output. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_a25a618a8189508ed1711b84cb226f3c8}\label{classrev_1_1_model_reader_a25a618a8189508ed1711b84cb226f3c8}} 
+void \mbox{\hyperlink{classrev_1_1_model_reader_a25a618a8189508ed1711b84cb226f3c8}{post\+Process\+Skeleton}} ()
+\begin{DoxyCompactList}\small\item\em Add animation data to skeleton if necessary. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_a3433790f3ec407bcd3e1c03e1b01be17}\label{classrev_1_1_model_reader_a3433790f3ec407bcd3e1c03e1b01be17}} 
+void {\bfseries post\+Process\+Skeleton} (\mbox{\hyperlink{classrev_1_1_skeleton_joint}{Skeleton\+Joint}} \&joint)
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_aafc1418bf49d7a86b11505e99271dc17}\label{classrev_1_1_model_reader_aafc1418bf49d7a86b11505e99271dc17}} 
+void \mbox{\hyperlink{classrev_1_1_model_reader_aafc1418bf49d7a86b11505e99271dc17}{post\+Process\+Model}} ()
+\begin{DoxyCompactList}\small\item\em Finalize loading of model. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_a742f03fbb91155d3515c44c5176ceb4c}\label{classrev_1_1_model_reader_a742f03fbb91155d3515c44c5176ceb4c}} 
+\mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} \mbox{\hyperlink{classrev_1_1_model_reader_a742f03fbb91155d3515c44c5176ceb4c}{to\+Matrix}} (const ai\+Matrix4x4 \&mat)
+\begin{DoxyCompactList}\small\item\em Convert an assimp matrix to a custom matrix. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_aabb6e62972d0ea92a3c6a1eaddfc4f2d}\label{classrev_1_1_model_reader_aabb6e62972d0ea92a3c6a1eaddfc4f2d}} 
+\mbox{\hyperlink{classrev_1_1_model}{Model}} $\ast$ {\bfseries model} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Private Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_ab43f5a2a8fbf6ae597c05b52157c9601}\label{classrev_1_1_model_reader_ab43f5a2a8fbf6ae597c05b52157c9601}} 
+\mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $\ast$ \mbox{\hyperlink{classrev_1_1_model_reader_ab43f5a2a8fbf6ae597c05b52157c9601}{m\+\_\+handle}}
+\begin{DoxyCompactList}\small\item\em The resource handle that the model is being loaded into. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_aff32e608229fc3466b5244cec4bd6f0b}\label{classrev_1_1_model_reader_aff32e608229fc3466b5244cec4bd6f0b}} 
+\mbox{\hyperlink{classrev_1_1_resource_cache}{Resource\+Cache}} $\ast$ \mbox{\hyperlink{classrev_1_1_model_reader_aff32e608229fc3466b5244cec4bd6f0b}{m\+\_\+resource\+Cache}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_resource}{Resource}} cache. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_a2c0ec311c6138e5072a5b03c393c05e2}\label{classrev_1_1_model_reader_a2c0ec311c6138e5072a5b03c393c05e2}} 
+Assimp\+::\+Importer \mbox{\hyperlink{classrev_1_1_model_reader_a2c0ec311c6138e5072a5b03c393c05e2}{m\+\_\+importer}}
+\begin{DoxyCompactList}\small\item\em Assimp importer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_ae6146196c488156d9141c80e36ef882f}\label{classrev_1_1_model_reader_ae6146196c488156d9141c80e36ef882f}} 
+const ai\+Scene $\ast$ \mbox{\hyperlink{classrev_1_1_model_reader_ae6146196c488156d9141c80e36ef882f}{m\+\_\+scene}}
+\begin{DoxyCompactList}\small\item\em Assimp scene. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_aed6bb03ed4361fc472c16bb71b399d53}\label{classrev_1_1_model_reader_aed6bb03ed4361fc472c16bb71b399d53}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} $>$ \mbox{\hyperlink{classrev_1_1_model_reader_aed6bb03ed4361fc472c16bb71b399d53}{m\+\_\+node\+Names}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_vector}{Vector}} of node names. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_a37b10c7b687e3325529a9f667aeb3f2a}\label{classrev_1_1_model_reader_a37b10c7b687e3325529a9f667aeb3f2a}} 
+std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_model_chunk_data}{Model\+Chunk\+Data}} $>$ \mbox{\hyperlink{classrev_1_1_model_reader_a37b10c7b687e3325529a9f667aeb3f2a}{m\+\_\+chunks}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_vector}{Vector}} of model chunk data. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_a10784912ad5d7d63e9e5564442b34339}\label{classrev_1_1_model_reader_a10784912ad5d7d63e9e5564442b34339}} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ $>$ \mbox{\hyperlink{classrev_1_1_model_reader_a10784912ad5d7d63e9e5564442b34339}{m\+\_\+mesh\+Handles}}
+\begin{DoxyCompactList}\small\item\em Loaded mesh handles. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_a876c2caef51445a3243855a8d46182b4}\label{classrev_1_1_model_reader_a876c2caef51445a3243855a8d46182b4}} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classrev_1_1_resource_handle}{Resource\+Handle}} $>$ $>$ \mbox{\hyperlink{classrev_1_1_model_reader_a876c2caef51445a3243855a8d46182b4}{m\+\_\+mat\+Handles}}
+\begin{DoxyCompactList}\small\item\em Loaded material handles. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_a782e5007156de58fd6b8bb4dad1ea8d3}\label{classrev_1_1_model_reader_a782e5007156de58fd6b8bb4dad1ea8d3}} 
+\mbox{\hyperlink{classtsl_1_1robin__map}{tsl\+::robin\+\_\+map}}$<$ \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}}, \mbox{\hyperlink{classrev_1_1_bone}{Bone}} $\ast$ $>$ \mbox{\hyperlink{classrev_1_1_model_reader_a782e5007156de58fd6b8bb4dad1ea8d3}{m\+\_\+bone\+Mapping}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_map}{Map}} of bones, according to node/bone name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_a1fd30fbcfc6db3aa58ea918233a7bdd3}\label{classrev_1_1_model_reader_a1fd30fbcfc6db3aa58ea918233a7bdd3}} 
+std\+::vector$<$ \mbox{\hyperlink{structrev_1_1_material_data}{Material\+Data}} $>$ \mbox{\hyperlink{classrev_1_1_model_reader_a1fd30fbcfc6db3aa58ea918233a7bdd3}{m\+\_\+material\+Data}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_vector}{Vector}} of material data. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_adbb9fe3fc3389a08fbe76937369c24a5}\label{classrev_1_1_model_reader_adbb9fe3fc3389a08fbe76937369c24a5}} 
+int \mbox{\hyperlink{classrev_1_1_model_reader_adbb9fe3fc3389a08fbe76937369c24a5}{m\+\_\+animated\+Joint\+Count}} = 0
+\begin{DoxyCompactList}\small\item\em Count of animated joints. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_aa37fbebc9b5bad690d06b4ac3a57afe9}\label{classrev_1_1_model_reader_aa37fbebc9b5bad690d06b4ac3a57afe9}} 
+std\+::vector$<$ \mbox{\hyperlink{classrev_1_1_animation}{Animation}} $\ast$ $>$ \mbox{\hyperlink{classrev_1_1_model_reader_aa37fbebc9b5bad690d06b4ac3a57afe9}{m\+\_\+animations}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_vector}{Vector}} of animations. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_a5c720804d952fb2fe66e3a5d19fb0f60}\label{classrev_1_1_model_reader_a5c720804d952fb2fe66e3a5d19fb0f60}} 
+bool {\bfseries m\+\_\+processed\+Skeleton} = false
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_ad5ccfb0435f44d147cc2590a36315d6d}\label{classrev_1_1_model_reader_ad5ccfb0435f44d147cc2590a36315d6d}} 
+\mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} \mbox{\hyperlink{classrev_1_1_model_reader_ad5ccfb0435f44d147cc2590a36315d6d}{m\+\_\+global\+Inverse\+Transform}}
+\begin{DoxyCompactList}\small\item\em Global inverse transformation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_model_reader_a2bf2a0e9b454c55aa5dcb5aa4698697b}\label{classrev_1_1_model_reader_a2bf2a0e9b454c55aa5dcb5aa4698697b}} 
+class {\bfseries Model}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+For loading in 3D model data from a .obj file. 
+
+\begin{DoxyNote}{Note}
+See\+: \href{https://www.ics.com/blog/qt-and-opengl-loading-3d-model-open-asset-import-library-assimp}{\texttt{ https\+://www.\+ics.\+com/blog/qt-\/and-\/opengl-\/loading-\/3d-\/model-\/open-\/asset-\/import-\/library-\/assimp}} \href{https://learnopengl.com/Model-Loading/Assimp}{\texttt{ https\+://learnopengl.\+com/\+Model-\/\+Loading/\+Assimp}} \href{https://learnopengl.com/Model-Loading/Mesh}{\texttt{ https\+://learnopengl.\+com/\+Model-\/\+Loading/\+Mesh}} \href{https://learnopengl.com/Model-Loading/Model}{\texttt{ https\+://learnopengl.\+com/\+Model-\/\+Loading/\+Model}} \href{https://github.com/Jas03x/GL_GameKit/blob/436a7921f0c342de681732f6dd850277626fc03a/src/ColladaLoader.cpp}{\texttt{ https\+://github.\+com/\+Jas03x/\+G\+L\+\_\+\+Game\+Kit/blob/436a7921f0c342de681732f6dd850277626fc03a/src/\+Collada\+Loader.\+cpp}} 
+\end{DoxyNote}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_model_reader_a8e7deec3987f6f7aa0537f43af5609d0}\label{classrev_1_1_model_reader_a8e7deec3987f6f7aa0537f43af5609d0}} 
+\index{rev::ModelReader@{rev::ModelReader}!processTexture@{processTexture}}
+\index{processTexture@{processTexture}!rev::ModelReader@{rev::ModelReader}}
+\subsubsection{\texorpdfstring{processTexture()}{processTexture()}}
+{\footnotesize\ttfamily void rev\+::\+Model\+Reader\+::process\+Texture (\begin{DoxyParamCaption}\item[{ai\+Material $\ast$}]{mat,  }\item[{\mbox{\hyperlink{structrev_1_1_material_data}{Material\+Data}} \&}]{out\+Material,  }\item[{ai\+Texture\+Type}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\mbox{\hyperlink{classrev_1_1_process}{Process}} texture type from material. 
+
+Note, this is actually used for height maps 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/readers/models/G\+Model\+Reader.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/readers/models/G\+Model\+Reader.\+cpp\end{DoxyCompactItemize}

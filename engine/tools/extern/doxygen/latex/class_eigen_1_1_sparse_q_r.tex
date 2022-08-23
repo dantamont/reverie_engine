@@ -1,0 +1,402 @@
+\hypertarget{class_eigen_1_1_sparse_q_r}{}\section{Eigen\+::Sparse\+QR$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$ Class Template Reference}
+\label{class_eigen_1_1_sparse_q_r}\index{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$}}
+
+
+\mbox{\hyperlink{struct_eigen_1_1_sparse}{Sparse}} left-\/looking rank-\/revealing QR factorization.  
+
+
+
+
+{\ttfamily \#include $<$Sparse\+Q\+R.\+h$>$}
+
+Inheritance diagram for Eigen\+::Sparse\+QR$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_eigen_1_1_sparse_q_r}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_aafa37012150856516ba08d5ebf458256}\label{class_eigen_1_1_sparse_q_r_aafa37012150856516ba08d5ebf458256}} 
+enum \{ {\bfseries Cols\+At\+Compile\+Time} = Matrix\+Type\+::Cols\+At\+Compile\+Time, 
+{\bfseries Max\+Cols\+At\+Compile\+Time} = Matrix\+Type\+::Max\+Cols\+At\+Compile\+Time
+ \}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_ad358268460ec00e9cd058846a2cbb6f5}\label{class_eigen_1_1_sparse_q_r_ad358268460ec00e9cd058846a2cbb6f5}} 
+typedef \+\_\+\+Matrix\+Type {\bfseries Matrix\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a6b2f072bb9206c83f6046f25fcc4dbbe}\label{class_eigen_1_1_sparse_q_r_a6b2f072bb9206c83f6046f25fcc4dbbe}} 
+typedef \+\_\+\+Ordering\+Type {\bfseries Ordering\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a1b368cb269850c36954d938a9e216ee9}\label{class_eigen_1_1_sparse_q_r_a1b368cb269850c36954d938a9e216ee9}} 
+typedef Matrix\+Type\+::\+Scalar {\bfseries Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a30621d97daf0e3ef2337b7c37cb8f3d9}\label{class_eigen_1_1_sparse_q_r_a30621d97daf0e3ef2337b7c37cb8f3d9}} 
+typedef Matrix\+Type\+::\+Real\+Scalar {\bfseries Real\+Scalar}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a2e4bf46ef8f961837762d60860748938}\label{class_eigen_1_1_sparse_q_r_a2e4bf46ef8f961837762d60860748938}} 
+typedef Matrix\+Type\+::\+Storage\+Index {\bfseries Storage\+Index}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_ac76f0c57477167d62af888c0d41d6efc}\label{class_eigen_1_1_sparse_q_r_ac76f0c57477167d62af888c0d41d6efc}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}}$<$ Scalar, Col\+Major, Storage\+Index $>$ {\bfseries Q\+R\+Matrix\+Type}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_ac9b87ec35a55751c2c439265b22d5931}\label{class_eigen_1_1_sparse_q_r_ac9b87ec35a55751c2c439265b22d5931}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Storage\+Index, Dynamic, 1 $>$ {\bfseries Index\+Vector}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a97c9c4b7cf2b31182acf410253682f07}\label{class_eigen_1_1_sparse_q_r_a97c9c4b7cf2b31182acf410253682f07}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}}$<$ Scalar, Dynamic, 1 $>$ {\bfseries Scalar\+Vector}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a7cddb16fd69b520c7881288d5d7cf7c6}\label{class_eigen_1_1_sparse_q_r_a7cddb16fd69b520c7881288d5d7cf7c6}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Matrix}}$<$ Dynamic, Dynamic, Storage\+Index $>$ {\bfseries Permutation\+Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_eigen_1_1_sparse_q_r_ac50f705d686d4bc687ce6acbc76447d2}{Sparse\+QR}} (const Matrix\+Type \&mat)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_sparse_q_r_aedaf52b7543de4d55c58c8f830c2aeb7}{compute}} (const Matrix\+Type \&mat)
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_sparse_q_r_a4b425ddb1358c914d764cde48853a4f6}{analyze\+Pattern}} (const Matrix\+Type \&mat)
+\begin{DoxyCompactList}\small\item\em Preprocessing step of a QR factorization. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_eigen_1_1_sparse_q_r_a55a34bacf05bd30a1dacbccad9f03c6d}{factorize}} (const Matrix\+Type \&mat)
+\begin{DoxyCompactList}\small\item\em Performs the numerical QR factorization of the input matrix. \end{DoxyCompactList}\item 
+Index \mbox{\hyperlink{class_eigen_1_1_sparse_q_r_ab9133b7ace1c19714df99f553666316d}{rows}} () const
+\item 
+Index \mbox{\hyperlink{class_eigen_1_1_sparse_q_r_a57bedc9b1351c0995bae8ad0088a6fce}{cols}} () const
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Q\+R\+Matrix\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_sparse_q_r_a564524ff13b2b6dd1e76127404f7b920}{matrixR}} () const
+\item 
+Index \mbox{\hyperlink{class_eigen_1_1_sparse_q_r_a70ec2b9e5cb62a41dc1ee2adfb54e9b0}{rank}} () const
+\item 
+\mbox{\hyperlink{struct_eigen_1_1_sparse_q_r_matrix_q_return_type}{Sparse\+Q\+R\+Matrix\+Q\+Return\+Type}}$<$ \mbox{\hyperlink{class_eigen_1_1_sparse_q_r}{Sparse\+QR}} $>$ \mbox{\hyperlink{class_eigen_1_1_sparse_q_r_ae1cc0a836c177d4f42600f8639354be1}{matrixQ}} () const
+\item 
+const \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Type}} \& \mbox{\hyperlink{class_eigen_1_1_sparse_q_r_a140930ebbf89dfd57a173761716db38f}{cols\+Permutation}} () const
+\item 
+std\+::string \mbox{\hyperlink{class_eigen_1_1_sparse_q_r_a1222e59649d77125d91f1368cf293c63}{last\+Error\+Message}} () const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_ad8a931d66ec8b8b6d383752f142242ad}\label{class_eigen_1_1_sparse_q_r_ad8a931d66ec8b8b6d383752f142242ad}} 
+{\footnotesize template$<$typename Rhs , typename Dest $>$ }\\bool {\bfseries \+\_\+solve\+\_\+impl} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&B, \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Dest $>$ \&dest) const
+\item 
+void \mbox{\hyperlink{class_eigen_1_1_sparse_q_r_adb7bfa65f99e3ef91ed58ea663a850a1}{set\+Pivot\+Threshold}} (const Real\+Scalar \&threshold)
+\item 
+{\footnotesize template$<$typename Rhs $>$ }\\const \mbox{\hyperlink{class_eigen_1_1_solve}{Solve}}$<$ \mbox{\hyperlink{class_eigen_1_1_sparse_q_r}{Sparse\+QR}}, Rhs $>$ \mbox{\hyperlink{class_eigen_1_1_sparse_q_r_aea13a2c6823cd8408ba49afde9b3d4e4}{solve}} (const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&B) const
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a8a0a30096cfe15383f2a3cd5ba6cb5a4}\label{class_eigen_1_1_sparse_q_r_a8a0a30096cfe15383f2a3cd5ba6cb5a4}} 
+{\footnotesize template$<$typename Rhs $>$ }\\const \mbox{\hyperlink{class_eigen_1_1_solve}{Solve}}$<$ \mbox{\hyperlink{class_eigen_1_1_sparse_q_r}{Sparse\+QR}}, Rhs $>$ {\bfseries solve} (const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_base}{Sparse\+Matrix\+Base}}$<$ Rhs $>$ \&B) const
+\item 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_sparse_q_r_a234b0580aaf57237393f2e73a3d38690}{info}} () const
+\begin{DoxyCompactList}\small\item\em Reports whether previous computation was successful. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a056948dc591c1030164c2dda73664640}\label{class_eigen_1_1_sparse_q_r_a056948dc591c1030164c2dda73664640}} 
+void {\bfseries \+\_\+sort\+\_\+matrix\+\_\+Q} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a552ca4344d5b520bff154f87d84f63f1}\label{class_eigen_1_1_sparse_q_r_a552ca4344d5b520bff154f87d84f63f1}} 
+typedef \mbox{\hyperlink{class_eigen_1_1_sparse_solver_base}{Sparse\+Solver\+Base}}$<$ \mbox{\hyperlink{class_eigen_1_1_sparse_q_r}{Sparse\+QR}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$ $>$ {\bfseries Base}
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_ac8bd12520c89f1ec1d977f46733df424}\label{class_eigen_1_1_sparse_q_r_ac8bd12520c89f1ec1d977f46733df424}} 
+bool {\bfseries m\+\_\+analysis\+Isok}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a0e434fe55a648f843f5e4c75e348bb45}\label{class_eigen_1_1_sparse_q_r_a0e434fe55a648f843f5e4c75e348bb45}} 
+bool {\bfseries m\+\_\+factorization\+Isok}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a24f533e32f1349dc0776ed818f712847}\label{class_eigen_1_1_sparse_q_r_a24f533e32f1349dc0776ed818f712847}} 
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} {\bfseries m\+\_\+info}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a50dfb7db82cde35cb26efda4af90c8ce}\label{class_eigen_1_1_sparse_q_r_a50dfb7db82cde35cb26efda4af90c8ce}} 
+std\+::string {\bfseries m\+\_\+last\+Error}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a3eb35d222bfcaa70705114e83e4c815f}\label{class_eigen_1_1_sparse_q_r_a3eb35d222bfcaa70705114e83e4c815f}} 
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Q\+R\+Matrix\+Type}} {\bfseries m\+\_\+pmat}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a71390c50833e5137612909c984453aa8}\label{class_eigen_1_1_sparse_q_r_a71390c50833e5137612909c984453aa8}} 
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Q\+R\+Matrix\+Type}} {\bfseries m\+\_\+R}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_af90e7e4baac8097aa2286ff76c503153}\label{class_eigen_1_1_sparse_q_r_af90e7e4baac8097aa2286ff76c503153}} 
+\mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Q\+R\+Matrix\+Type}} {\bfseries m\+\_\+Q}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a816a6f19f247613237f65b328c467454}\label{class_eigen_1_1_sparse_q_r_a816a6f19f247613237f65b328c467454}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Scalar\+Vector}} {\bfseries m\+\_\+hcoeffs}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a3cf03fa0af7d7f03e3d86d34fc3eb7a1}\label{class_eigen_1_1_sparse_q_r_a3cf03fa0af7d7f03e3d86d34fc3eb7a1}} 
+\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Type}} {\bfseries m\+\_\+perm\+\_\+c}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a3e300573ed969fbc06dcf0d2f9f3c007}\label{class_eigen_1_1_sparse_q_r_a3e300573ed969fbc06dcf0d2f9f3c007}} 
+\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Type}} {\bfseries m\+\_\+pivotperm}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a68d82ee61311e78baf0f51da641b3708}\label{class_eigen_1_1_sparse_q_r_a68d82ee61311e78baf0f51da641b3708}} 
+\mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Type}} {\bfseries m\+\_\+output\+Perm\+\_\+c}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a6d78507f2f5c20b0e84e49964f7f6663}\label{class_eigen_1_1_sparse_q_r_a6d78507f2f5c20b0e84e49964f7f6663}} 
+Real\+Scalar {\bfseries m\+\_\+threshold}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_abeff33393a04cec953b58e0ee3fe4ecb}\label{class_eigen_1_1_sparse_q_r_abeff33393a04cec953b58e0ee3fe4ecb}} 
+bool {\bfseries m\+\_\+use\+Default\+Threshold}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a46529756e4ff75196644415dfdc43306}\label{class_eigen_1_1_sparse_q_r_a46529756e4ff75196644415dfdc43306}} 
+Index {\bfseries m\+\_\+nonzeropivots}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a50c58a6962f17566a4b36b818ab9c776}\label{class_eigen_1_1_sparse_q_r_a50c58a6962f17566a4b36b818ab9c776}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Index\+Vector}} {\bfseries m\+\_\+etree}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a1f5d40c6611c8440c6be0406908a7319}\label{class_eigen_1_1_sparse_q_r_a1f5d40c6611c8440c6be0406908a7319}} 
+\mbox{\hyperlink{class_eigen_1_1_matrix}{Index\+Vector}} {\bfseries m\+\_\+first\+Row\+Elt}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_aeef52b7e7b754a39a433f74b18c7b76c}\label{class_eigen_1_1_sparse_q_r_aeef52b7e7b754a39a433f74b18c7b76c}} 
+bool {\bfseries m\+\_\+is\+Q\+Sorted}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a8463be9ca3404afb68e792a57f57a987}\label{class_eigen_1_1_sparse_q_r_a8463be9ca3404afb68e792a57f57a987}} 
+bool {\bfseries m\+\_\+is\+Etree\+Ok}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_af9b447255bbccd5da503ef3f77798701}\label{class_eigen_1_1_sparse_q_r_af9b447255bbccd5da503ef3f77798701}} 
+{\footnotesize template$<$typename , typename $>$ }\\struct {\bfseries Sparse\+Q\+R\+\_\+\+Q\+Product}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Matrix\+Type, typename \+\_\+\+Ordering\+Type$>$\newline
+class Eigen\+::\+Sparse\+Q\+R$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$}
+
+\mbox{\hyperlink{struct_eigen_1_1_sparse}{Sparse}} left-\/looking rank-\/revealing QR factorization. 
+
+This class implements a left-\/looking rank-\/revealing QR decomposition of sparse matrices. When a column has a norm less than a given tolerance it is implicitly permuted to the end. The QR factorization thus obtained is given by A$\ast$P = Q$\ast$R where R is upper triangular or trapezoidal.
+
+P is the column permutation which is the product of the fill-\/reducing and the rank-\/revealing permutations. Use \mbox{\hyperlink{class_eigen_1_1_sparse_q_r_a140930ebbf89dfd57a173761716db38f}{cols\+Permutation()}} to get it.
+
+Q is the orthogonal matrix represented as products of Householder reflectors. Use \mbox{\hyperlink{class_eigen_1_1_sparse_q_r_ae1cc0a836c177d4f42600f8639354be1}{matrix\+Q()}} to get an expression and \mbox{\hyperlink{class_eigen_1_1_sparse_q_r_ae1cc0a836c177d4f42600f8639354be1}{matrix\+Q()}}.adjoint() to get the adjoint. You can then apply it to a vector.
+
+R is the sparse triangular or trapezoidal matrix. The later occurs when A is rank-\/deficient. \mbox{\hyperlink{class_eigen_1_1_sparse_q_r_a564524ff13b2b6dd1e76127404f7b920}{matrix\+R()}}.top\+Left\+Corner(\mbox{\hyperlink{class_eigen_1_1_sparse_q_r_a70ec2b9e5cb62a41dc1ee2adfb54e9b0}{rank()}}, \mbox{\hyperlink{class_eigen_1_1_sparse_q_r_a70ec2b9e5cb62a41dc1ee2adfb54e9b0}{rank()}}) always returns a triangular factor of full rank.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Matrix\+Type} & The type of the sparse matrix A, must be a column-\/major Sparse\+Matrix$<$$>$ \\
+\hline
+{\em \+\_\+\+Ordering\+Type} & The fill-\/reducing ordering method. See the \mbox{\hyperlink{}{Ordering\+Methods }} module for the list of built-\/in and external ordering methods.\\
+\hline
+\end{DoxyTemplParams}
+\textbackslash{}implsparsesolverconcept
+
+\begin{DoxyWarning}{Warning}
+The input sparse matrix A must be in compressed mode (see \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a5ff54ffc10296f9466dc81fa888733fd}{Sparse\+Matrix\+::make\+Compressed()}}). 
+
+For complex matrices \mbox{\hyperlink{class_eigen_1_1_sparse_q_r_ae1cc0a836c177d4f42600f8639354be1}{matrix\+Q()}}.transpose() will actually return the adjoint matrix. 
+\end{DoxyWarning}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_ac50f705d686d4bc687ce6acbc76447d2}\label{class_eigen_1_1_sparse_q_r_ac50f705d686d4bc687ce6acbc76447d2}} 
+\index{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$}!SparseQR@{SparseQR}}
+\index{SparseQR@{SparseQR}!Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$}}
+\subsubsection{\texorpdfstring{SparseQR()}{SparseQR()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , typename \+\_\+\+Ordering\+Type $>$ \\
+\mbox{\hyperlink{class_eigen_1_1_sparse_q_r}{Eigen\+::\+Sparse\+QR}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$\+::\mbox{\hyperlink{class_eigen_1_1_sparse_q_r}{Sparse\+QR}} (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{mat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Construct a QR factorization of the matrix {\itshape mat}.
+
+\begin{DoxyWarning}{Warning}
+The matrix {\itshape mat} must be in compressed mode (see \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a5ff54ffc10296f9466dc81fa888733fd}{Sparse\+Matrix\+::make\+Compressed()}}).
+\end{DoxyWarning}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_q_r_aedaf52b7543de4d55c58c8f830c2aeb7}{compute()}} 
+\end{DoxySeeAlso}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a4b425ddb1358c914d764cde48853a4f6}\label{class_eigen_1_1_sparse_q_r_a4b425ddb1358c914d764cde48853a4f6}} 
+\index{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$}!analyzePattern@{analyzePattern}}
+\index{analyzePattern@{analyzePattern}!Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$}}
+\subsubsection{\texorpdfstring{analyzePattern()}{analyzePattern()}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type , typename Ordering\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_sparse_q_r}{Eigen\+::\+Sparse\+QR}}$<$ Matrix\+Type, Ordering\+Type $>$\+::analyze\+Pattern (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{mat }\end{DoxyParamCaption})}
+
+
+
+Preprocessing step of a QR factorization. 
+
+\begin{DoxyWarning}{Warning}
+The matrix {\itshape mat} must be in compressed mode (see \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a5ff54ffc10296f9466dc81fa888733fd}{Sparse\+Matrix\+::make\+Compressed()}}).
+\end{DoxyWarning}
+In this step, the fill-\/reducing permutation is computed and applied to the columns of A and the column elimination tree is computed as well. Only the sparsity pattern of {\itshape mat} is exploited.
+
+\begin{DoxyNote}{Note}
+In this step it is assumed that there is no empty row in the matrix {\itshape mat}. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a57bedc9b1351c0995bae8ad0088a6fce}\label{class_eigen_1_1_sparse_q_r_a57bedc9b1351c0995bae8ad0088a6fce}} 
+\index{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$}!cols@{cols}}
+\index{cols@{cols}!Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$}}
+\subsubsection{\texorpdfstring{cols()}{cols()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , typename \+\_\+\+Ordering\+Type $>$ \\
+Index \mbox{\hyperlink{class_eigen_1_1_sparse_q_r}{Eigen\+::\+Sparse\+QR}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$\+::cols (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of columns of the represented matrix. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a140930ebbf89dfd57a173761716db38f}\label{class_eigen_1_1_sparse_q_r_a140930ebbf89dfd57a173761716db38f}} 
+\index{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$}!colsPermutation@{colsPermutation}}
+\index{colsPermutation@{colsPermutation}!Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$}}
+\subsubsection{\texorpdfstring{colsPermutation()}{colsPermutation()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , typename \+\_\+\+Ordering\+Type $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_permutation_matrix}{Permutation\+Type}}\& \mbox{\hyperlink{class_eigen_1_1_sparse_q_r}{Eigen\+::\+Sparse\+QR}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$\+::cols\+Permutation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a const reference to the column permutation P that was applied to A such that A$\ast$P = Q$\ast$R It is the combination of the fill-\/in reducing permutation and numerical column pivoting. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_aedaf52b7543de4d55c58c8f830c2aeb7}\label{class_eigen_1_1_sparse_q_r_aedaf52b7543de4d55c58c8f830c2aeb7}} 
+\index{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$}!compute@{compute}}
+\index{compute@{compute}!Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$}}
+\subsubsection{\texorpdfstring{compute()}{compute()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , typename \+\_\+\+Ordering\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_sparse_q_r}{Eigen\+::\+Sparse\+QR}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$\+::compute (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{mat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Computes the QR factorization of the sparse matrix {\itshape mat}.
+
+\begin{DoxyWarning}{Warning}
+The matrix {\itshape mat} must be in compressed mode (see \mbox{\hyperlink{class_eigen_1_1_sparse_matrix_a5ff54ffc10296f9466dc81fa888733fd}{Sparse\+Matrix\+::make\+Compressed()}}).
+\end{DoxyWarning}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_q_r_a4b425ddb1358c914d764cde48853a4f6}{analyze\+Pattern()}}, \mbox{\hyperlink{class_eigen_1_1_sparse_q_r_a55a34bacf05bd30a1dacbccad9f03c6d}{factorize()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a55a34bacf05bd30a1dacbccad9f03c6d}\label{class_eigen_1_1_sparse_q_r_a55a34bacf05bd30a1dacbccad9f03c6d}} 
+\index{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$}!factorize@{factorize}}
+\index{factorize@{factorize}!Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$}}
+\subsubsection{\texorpdfstring{factorize()}{factorize()}}
+{\footnotesize\ttfamily template$<$typename Matrix\+Type , typename Ordering\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_sparse_q_r}{Eigen\+::\+Sparse\+QR}}$<$ Matrix\+Type, Ordering\+Type $>$\+::factorize (\begin{DoxyParamCaption}\item[{const Matrix\+Type \&}]{mat }\end{DoxyParamCaption})}
+
+
+
+Performs the numerical QR factorization of the input matrix. 
+
+The function \mbox{\hyperlink{class_eigen_1_1_sparse_q_r_a4b425ddb1358c914d764cde48853a4f6}{Sparse\+Q\+R\+::analyze\+Pattern(const Matrix\+Type\&)}} must have been called beforehand with a matrix having the same sparsity pattern than {\itshape mat}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em mat} & The sparse column-\/major matrix \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a234b0580aaf57237393f2e73a3d38690}\label{class_eigen_1_1_sparse_q_r_a234b0580aaf57237393f2e73a3d38690}} 
+\index{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$}!info@{info}}
+\index{info@{info}!Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$}}
+\subsubsection{\texorpdfstring{info()}{info()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , typename \+\_\+\+Ordering\+Type $>$ \\
+\mbox{\hyperlink{group__enums_ga85fad7b87587764e5cf6b513a9e0ee5e}{Computation\+Info}} \mbox{\hyperlink{class_eigen_1_1_sparse_q_r}{Eigen\+::\+Sparse\+QR}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$\+::info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reports whether previous computation was successful. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily Success} if computation was successful, {\ttfamily Numerical\+Issue} if the QR factorization reports a numerical problem {\ttfamily Invalid\+Input} if the input matrix is invalid
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+iparm() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a1222e59649d77125d91f1368cf293c63}\label{class_eigen_1_1_sparse_q_r_a1222e59649d77125d91f1368cf293c63}} 
+\index{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$}!lastErrorMessage@{lastErrorMessage}}
+\index{lastErrorMessage@{lastErrorMessage}!Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$}}
+\subsubsection{\texorpdfstring{lastErrorMessage()}{lastErrorMessage()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , typename \+\_\+\+Ordering\+Type $>$ \\
+std\+::string \mbox{\hyperlink{class_eigen_1_1_sparse_q_r}{Eigen\+::\+Sparse\+QR}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$\+::last\+Error\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+A string describing the type of error. This method is provided to ease debugging, not to handle errors. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_ae1cc0a836c177d4f42600f8639354be1}\label{class_eigen_1_1_sparse_q_r_ae1cc0a836c177d4f42600f8639354be1}} 
+\index{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$}!matrixQ@{matrixQ}}
+\index{matrixQ@{matrixQ}!Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$}}
+\subsubsection{\texorpdfstring{matrixQ()}{matrixQ()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , typename \+\_\+\+Ordering\+Type $>$ \\
+\mbox{\hyperlink{struct_eigen_1_1_sparse_q_r_matrix_q_return_type}{Sparse\+Q\+R\+Matrix\+Q\+Return\+Type}}$<$\mbox{\hyperlink{class_eigen_1_1_sparse_q_r}{Sparse\+QR}}$>$ \mbox{\hyperlink{class_eigen_1_1_sparse_q_r}{Eigen\+::\+Sparse\+QR}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$\+::matrixQ (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+an expression of the matrix Q as products of sparse Householder reflectors. The common usage of this function is to apply it to a dense matrix or vector 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{VectorXd B1, B2;}
+\DoxyCodeLine{\textcolor{comment}{// Initialize B1}}
+\DoxyCodeLine{B2 = \mbox{\hyperlink{class_eigen_1_1_sparse_q_r_ae1cc0a836c177d4f42600f8639354be1}{matrixQ}}() * B1;}
+\end{DoxyCode}
+
+\end{DoxyReturn}
+To get a plain \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Sparse\+Matrix}} representation of Q\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{SparseMatrix<double> Q;}
+\DoxyCodeLine{Q = SparseQR<SparseMatrix<double> >(A).\mbox{\hyperlink{class_eigen_1_1_sparse_q_r_ae1cc0a836c177d4f42600f8639354be1}{matrixQ}}();}
+\end{DoxyCode}
+ Internally, this call simply performs a sparse product between the matrix Q and a sparse identity matrix. However, due to the fact that the sparse reflectors are stored unsorted, two transpositions are needed to sort them before performing the product. \mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a564524ff13b2b6dd1e76127404f7b920}\label{class_eigen_1_1_sparse_q_r_a564524ff13b2b6dd1e76127404f7b920}} 
+\index{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$}!matrixR@{matrixR}}
+\index{matrixR@{matrixR}!Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$}}
+\subsubsection{\texorpdfstring{matrixR()}{matrixR()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , typename \+\_\+\+Ordering\+Type $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_sparse_matrix}{Q\+R\+Matrix\+Type}}\& \mbox{\hyperlink{class_eigen_1_1_sparse_q_r}{Eigen\+::\+Sparse\+QR}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$\+::matrixR (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a const reference to the {\bfseries{sparse}} upper triangular matrix R of the QR factorization. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+The entries of the returned matrix are not sorted. This means that using it in algorithms expecting sorted entries will fail. This include random coefficient accesses (Spase\+Matrix\+::coeff()), and coefficient-\/wise operations. \mbox{\hyperlink{class_eigen_1_1_matrix}{Matrix}} products and triangular solves are fine though.
+\end{DoxyWarning}
+To sort the entries, you can assign it to a row-\/major matrix, and if a column-\/major matrix is required, you can copy it again\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{SparseMatrix<double>          R  = qr.matrixR();  \textcolor{comment}{// column-major, not sorted!}}
+\DoxyCodeLine{SparseMatrix<double,RowMajor> Rr = qr.matrixR();  \textcolor{comment}{// row-major, sorted}}
+\DoxyCodeLine{SparseMatrix<double>          Rc = Rr;            \textcolor{comment}{// column-major, sorted}}
+\end{DoxyCode}
+ \mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_a70ec2b9e5cb62a41dc1ee2adfb54e9b0}\label{class_eigen_1_1_sparse_q_r_a70ec2b9e5cb62a41dc1ee2adfb54e9b0}} 
+\index{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$}!rank@{rank}}
+\index{rank@{rank}!Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$}}
+\subsubsection{\texorpdfstring{rank()}{rank()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , typename \+\_\+\+Ordering\+Type $>$ \\
+Index \mbox{\hyperlink{class_eigen_1_1_sparse_q_r}{Eigen\+::\+Sparse\+QR}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$\+::rank (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of non linearly dependent columns as determined by the pivoting threshold.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_q_r_adb7bfa65f99e3ef91ed58ea663a850a1}{set\+Pivot\+Threshold()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_ab9133b7ace1c19714df99f553666316d}\label{class_eigen_1_1_sparse_q_r_ab9133b7ace1c19714df99f553666316d}} 
+\index{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$}!rows@{rows}}
+\index{rows@{rows}!Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$}}
+\subsubsection{\texorpdfstring{rows()}{rows()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , typename \+\_\+\+Ordering\+Type $>$ \\
+Index \mbox{\hyperlink{class_eigen_1_1_sparse_q_r}{Eigen\+::\+Sparse\+QR}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$\+::rows (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the number of rows of the represented matrix. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_adb7bfa65f99e3ef91ed58ea663a850a1}\label{class_eigen_1_1_sparse_q_r_adb7bfa65f99e3ef91ed58ea663a850a1}} 
+\index{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$}!setPivotThreshold@{setPivotThreshold}}
+\index{setPivotThreshold@{setPivotThreshold}!Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$}}
+\subsubsection{\texorpdfstring{setPivotThreshold()}{setPivotThreshold()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , typename \+\_\+\+Ordering\+Type $>$ \\
+void \mbox{\hyperlink{class_eigen_1_1_sparse_q_r}{Eigen\+::\+Sparse\+QR}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$\+::set\+Pivot\+Threshold (\begin{DoxyParamCaption}\item[{const Real\+Scalar \&}]{threshold }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the threshold that is used to determine linearly dependent columns during the factorization.
+
+In practice, if during the factorization the norm of the column that has to be eliminated is below this threshold, then the entire column is treated as zero, and it is moved at the end. \mbox{\Hypertarget{class_eigen_1_1_sparse_q_r_aea13a2c6823cd8408ba49afde9b3d4e4}\label{class_eigen_1_1_sparse_q_r_aea13a2c6823cd8408ba49afde9b3d4e4}} 
+\index{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$}!solve@{solve}}
+\index{solve@{solve}!Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$@{Eigen::SparseQR$<$ \_MatrixType, \_OrderingType $>$}}
+\subsubsection{\texorpdfstring{solve()}{solve()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Matrix\+Type , typename \+\_\+\+Ordering\+Type $>$ \\
+template$<$typename Rhs $>$ \\
+const \mbox{\hyperlink{class_eigen_1_1_solve}{Solve}}$<$\mbox{\hyperlink{class_eigen_1_1_sparse_q_r}{Sparse\+QR}}, Rhs$>$ \mbox{\hyperlink{class_eigen_1_1_sparse_q_r}{Eigen\+::\+Sparse\+QR}}$<$ \+\_\+\+Matrix\+Type, \+\_\+\+Ordering\+Type $>$\+::solve (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_eigen_1_1_matrix_base}{Matrix\+Base}}$<$ Rhs $>$ \&}]{B }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the solution X of $ A X = B $ using the current decomposition of A.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{class_eigen_1_1_sparse_q_r_aedaf52b7543de4d55c58c8f830c2aeb7}{compute()}} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/third\+\_\+party/eigen/\+Eigen/src/\+Sparse\+Q\+R/Sparse\+Q\+R.\+h\end{DoxyCompactItemize}

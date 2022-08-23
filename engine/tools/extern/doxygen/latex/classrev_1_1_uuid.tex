@@ -1,0 +1,114 @@
+\hypertarget{classrev_1_1_uuid}{}\section{rev\+::Uuid Class Reference}
+\label{classrev_1_1_uuid}\index{rev::Uuid@{rev::Uuid}}
+
+
+A subclass of a Q\+Uuid.  
+
+
+
+
+{\ttfamily \#include $<$G\+U\+U\+I\+D.\+h$>$}
+
+Inheritance diagram for rev\+::Uuid\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrev_1_1_uuid}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_uuid_a67e068a002b2950cfef1f3b564db5105}\label{classrev_1_1_uuid_a67e068a002b2950cfef1f3b564db5105}} 
+{\bfseries Uuid} (const Q\+Uuid \&uuid)
+\item 
+\mbox{\Hypertarget{classrev_1_1_uuid_a706121a1fc14c18136986302afd0fc03}\label{classrev_1_1_uuid_a706121a1fc14c18136986302afd0fc03}} 
+{\bfseries Uuid} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&str)
+\item 
+\mbox{\Hypertarget{classrev_1_1_uuid_aba44251849bd621853b82b225f0943bf}\label{classrev_1_1_uuid_aba44251849bd621853b82b225f0943bf}} 
+{\bfseries Uuid} (uint32\+\_\+t id)
+\item 
+\mbox{\Hypertarget{classrev_1_1_uuid_ab0f96d6f70cca94183edfc87c5237022}\label{classrev_1_1_uuid_ab0f96d6f70cca94183edfc87c5237022}} 
+{\bfseries Uuid} (size\+\_\+t id)
+\item 
+\mbox{\Hypertarget{classrev_1_1_uuid_a07d889ebe8486bda789c09493bdddafc}\label{classrev_1_1_uuid_a07d889ebe8486bda789c09493bdddafc}} 
+{\bfseries Uuid} (const Q\+String \&str)
+\item 
+\mbox{\Hypertarget{classrev_1_1_uuid_a798fc041c206c0cf17edf5c1f54faa1c}\label{classrev_1_1_uuid_a798fc041c206c0cf17edf5c1f54faa1c}} 
+{\bfseries Uuid} (bool generate=true)
+\item 
+\mbox{\Hypertarget{classrev_1_1_uuid_ae554437653d85e28f5dbac9e2b2f94fb}\label{classrev_1_1_uuid_ae554437653d85e28f5dbac9e2b2f94fb}} 
+{\bfseries $\sim$\+Uuid} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Operators}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_uuid_a87a64751397051de460f744db0070bef}\label{classrev_1_1_uuid_a87a64751397051de460f744db0070bef}} 
+\mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} \& {\bfseries operator=} (const Q\+Uuid \&uuid)
+\item 
+\mbox{\hyperlink{classrev_1_1_uuid_ad6a1edca9a420a819804844104e51908}{operator size\+\_\+t}} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_uuid_a40bb850f70851698fc13b4329e715b0f}\label{classrev_1_1_uuid_a40bb850f70851698fc13b4329e715b0f}} 
+{\bfseries operator uint32\+\_\+t} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_uuid_aad366b52798785cf521c02c053ef030a}\label{classrev_1_1_uuid_aad366b52798785cf521c02c053ef030a}} 
+\mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \mbox{\hyperlink{classrev_1_1_uuid_aad366b52798785cf521c02c053ef030a}{as\+String}} () const
+\begin{DoxyCompactList}\small\item\em Obtain string representation of the U\+U\+ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_uuid_a179d98aa6c4777ba26aa603fc9b2bd2b}\label{classrev_1_1_uuid_a179d98aa6c4777ba26aa603fc9b2bd2b}} 
+Q\+String {\bfseries as\+Q\+String} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_uuid_a062b7559d4ed86d91a88d28b1e2e5b06}\label{classrev_1_1_uuid_a062b7559d4ed86d91a88d28b1e2e5b06}} 
+\mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \mbox{\hyperlink{classrev_1_1_uuid_a062b7559d4ed86d91a88d28b1e2e5b06}{create\+Unique\+Name}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&prefix) const
+\begin{DoxyCompactList}\small\item\em Generate a unique name from the U\+U\+ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_uuid_ac6aae840f3ef4ea0822a1ecd1a62bacc}\label{classrev_1_1_uuid_ac6aae840f3ef4ea0822a1ecd1a62bacc}} 
+\mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} {\bfseries create\+Unique\+Name} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_uuid_a4952a9d2aa2dc0d39c084589e968a420}\label{classrev_1_1_uuid_a4952a9d2aa2dc0d39c084589e968a420}} 
+Q\+String {\bfseries create\+Unique\+Q\+Name} () const
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{Indent}\textbf{ Statiic}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_uuid_a9dacdfb770ee32c78f96735f1e4fba48}\label{classrev_1_1_uuid_a9dacdfb770ee32c78f96735f1e4fba48}} 
+static \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \mbox{\hyperlink{classrev_1_1_uuid_a9dacdfb770ee32c78f96735f1e4fba48}{Unique\+Name}} (const \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} \&prefix)
+\begin{DoxyCompactList}\small\item\em Generate a unique name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_uuid_afefb7dbb593974acb21434b601630e12}\label{classrev_1_1_uuid_afefb7dbb593974acb21434b601630e12}} 
+static \mbox{\hyperlink{classrev_1_1_g_string}{G\+String}} {\bfseries Unique\+Name} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_uuid_a29bef0d3bb2173aa824a20aed5ed5d6c}\label{classrev_1_1_uuid_a29bef0d3bb2173aa824a20aed5ed5d6c}} 
+static Q\+String {\bfseries Unique\+Q\+Name} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_uuid_a59aefebe2ae6c76f33cb09a7afea05bb}\label{classrev_1_1_uuid_a59aefebe2ae6c76f33cb09a7afea05bb}} 
+static \mbox{\hyperlink{classrev_1_1_uuid}{Uuid}} {\bfseries Null\+ID} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsection{Detailed Description}
+A subclass of a Q\+Uuid. 
+
+A Universally Unique Identifier (\mbox{\hyperlink{classrev_1_1_uuid}{Uuid}}) is a standard way to uniquely identify entities in a distributed computing environment 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_uuid_ad6a1edca9a420a819804844104e51908}\label{classrev_1_1_uuid_ad6a1edca9a420a819804844104e51908}} 
+\index{rev::Uuid@{rev::Uuid}!operator size\_t@{operator size\_t}}
+\index{operator size\_t@{operator size\_t}!rev::Uuid@{rev::Uuid}}
+\subsubsection{\texorpdfstring{operator size\_t()}{operator size\_t()}}
+{\footnotesize\ttfamily rev\+::\+Uuid\+::operator size\+\_\+t (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [explicit]}}
+
+\begin{DoxyNote}{Note}
+Will only preserve ID for manually-\/specified Uuids that are smaller than sizeof(unsigned int) 
+\end{DoxyNote}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/encoding/G\+U\+U\+I\+D.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/encoding/G\+U\+U\+I\+D.\+cpp\end{DoxyCompactItemize}

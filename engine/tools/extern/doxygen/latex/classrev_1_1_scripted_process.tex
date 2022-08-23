@@ -1,0 +1,144 @@
+\hypertarget{classrev_1_1_scripted_process}{}\section{rev\+::Scripted\+Process Class Reference}
+\label{classrev_1_1_scripted_process}\index{rev::ScriptedProcess@{rev::ScriptedProcess}}
+
+
+Represents a python-\/driven, scripted process.  
+
+
+
+
+{\ttfamily \#include $<$G\+Scripted\+Process.\+h$>$}
+
+Inheritance diagram for rev\+::Scripted\+Process\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_scripted_process}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scripted_process_aa0876644fd80e9a8f764b4867008d03f}\label{classrev_1_1_scripted_process_aa0876644fd80e9a8f764b4867008d03f}} 
+{\bfseries Scripted\+Process} (\mbox{\hyperlink{classrev_1_1_script_component}{Script\+Component}} $\ast$component, \mbox{\hyperlink{classrev_1_1_process_manager}{Process\+Manager}} $\ast$manager)
+\item 
+\mbox{\Hypertarget{classrev_1_1_scripted_process_a0f830a3c90092a2c189f65b5918550aa}\label{classrev_1_1_scripted_process_a0f830a3c90092a2c189f65b5918550aa}} 
+{\bfseries $\sim$\+Scripted\+Process} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scripted_process_a0b98b3dc0daea4f005faeb1adabb99e6}\label{classrev_1_1_scripted_process_a0b98b3dc0daea4f005faeb1adabb99e6}} 
+void \mbox{\hyperlink{classrev_1_1_scripted_process_a0b98b3dc0daea4f005faeb1adabb99e6}{refresh}} ()
+\begin{DoxyCompactList}\small\item\em Refresh the behavior associated with this process (e.\+g., on file resize) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scripted_process_a6ab6bcce9ee86c2b8deca290014ae9ea}\label{classrev_1_1_scripted_process_a6ab6bcce9ee86c2b8deca290014ae9ea}} 
+virtual void \mbox{\hyperlink{classrev_1_1_scripted_process_a6ab6bcce9ee86c2b8deca290014ae9ea}{on\+Init}} () override
+\begin{DoxyCompactList}\small\item\em Functions to be overriden by process subclasses as needed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scripted_process_a5070aec52f66176beb017f3a0251264d}\label{classrev_1_1_scripted_process_a5070aec52f66176beb017f3a0251264d}} 
+virtual void {\bfseries on\+Update} (double delta\+Sec) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_scripted_process_a8252ab2a5b534c1f935927eacab4ef06}\label{classrev_1_1_scripted_process_a8252ab2a5b534c1f935927eacab4ef06}} 
+virtual void {\bfseries on\+Late\+Update} (double delta\+Sec) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_scripted_process_a26c76f5491c4c3f0a45929aa688c1fc9}\label{classrev_1_1_scripted_process_a26c76f5491c4c3f0a45929aa688c1fc9}} 
+virtual void {\bfseries on\+Fixed\+Update} (double delta\+Sec) override
+\item 
+\mbox{\Hypertarget{classrev_1_1_scripted_process_a6c1f483cbd12bb97f8d5f9992b65de74}\label{classrev_1_1_scripted_process_a6c1f483cbd12bb97f8d5f9992b65de74}} 
+virtual void {\bfseries on\+Success} () override
+\item 
+\mbox{\Hypertarget{classrev_1_1_scripted_process_a91222d15333a42c8f265703909e48c91}\label{classrev_1_1_scripted_process_a91222d15333a42c8f265703909e48c91}} 
+virtual void {\bfseries on\+Fail} () override
+\item 
+\mbox{\Hypertarget{classrev_1_1_scripted_process_ac3c7e5dd5f32116e939f918aaef4d9db}\label{classrev_1_1_scripted_process_ac3c7e5dd5f32116e939f918aaef4d9db}} 
+virtual void {\bfseries on\+Abort} () override
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ GB Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_scripted_process_acf76a8590e80b9cf16c155639d721065}{class\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_scripted_process_a160dbc327ce205f9999d8c5c276559a9}{namespace\+Name}} () const
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{Indent}\textbf{ Protected Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scripted_process_a9acda2f211086afc52555baa2d975e52}\label{classrev_1_1_scripted_process_a9acda2f211086afc52555baa2d975e52}} 
+bool \mbox{\hyperlink{classrev_1_1_scripted_process_a9acda2f211086afc52555baa2d975e52}{component\+Is\+Active}} () const
+\begin{DoxyCompactList}\small\item\em Check that the component is active. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+py\+::object \mbox{\hyperlink{classrev_1_1_scripted_process_a0ac5ba59dc533ad82292f46208c61fb5}{m\+\_\+behavior}}
+\begin{DoxyCompactList}\small\item\em The behavior driven by this component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_scripted_process_a5851c2fe7cc7267448576730f02001e5}\label{classrev_1_1_scripted_process_a5851c2fe7cc7267448576730f02001e5}} 
+\mbox{\hyperlink{classrev_1_1_script_component}{Script\+Component}} $\ast$ \mbox{\hyperlink{classrev_1_1_scripted_process_a5851c2fe7cc7267448576730f02001e5}{m\+\_\+component}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_component}{Component}} corresponding to the Python script. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Friends}
+\begin{Indent}\textbf{ Friends}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_scripted_process_ae1701c7594fe2cf1c96b951a52eb0396}\label{classrev_1_1_scripted_process_ae1701c7594fe2cf1c96b951a52eb0396}} 
+class {\bfseries Process\+Manager}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Represents a python-\/driven, scripted process. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_scripted_process_acf76a8590e80b9cf16c155639d721065}\label{classrev_1_1_scripted_process_acf76a8590e80b9cf16c155639d721065}} 
+\index{rev::ScriptedProcess@{rev::ScriptedProcess}!className@{className}}
+\index{className@{className}!rev::ScriptedProcess@{rev::ScriptedProcess}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Scripted\+Process\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_process_adc27ddf4c0f44dab54a5f797c7135c44}{rev\+::\+Process}}.
+
+\mbox{\Hypertarget{classrev_1_1_scripted_process_a160dbc327ce205f9999d8c5c276559a9}\label{classrev_1_1_scripted_process_a160dbc327ce205f9999d8c5c276559a9}} 
+\index{rev::ScriptedProcess@{rev::ScriptedProcess}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::ScriptedProcess@{rev::ScriptedProcess}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+Scripted\+Process\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_process_a7f5a6ab8af65aec3132f6a072b9fcb87}{rev\+::\+Process}}.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrev_1_1_scripted_process_a0ac5ba59dc533ad82292f46208c61fb5}\label{classrev_1_1_scripted_process_a0ac5ba59dc533ad82292f46208c61fb5}} 
+\index{rev::ScriptedProcess@{rev::ScriptedProcess}!m\_behavior@{m\_behavior}}
+\index{m\_behavior@{m\_behavior}!rev::ScriptedProcess@{rev::ScriptedProcess}}
+\subsubsection{\texorpdfstring{m\_behavior}{m\_behavior}}
+{\footnotesize\ttfamily py\+::object rev\+::\+Scripted\+Process\+::m\+\_\+behavior\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The behavior driven by this component. 
+
+Deletion $\sim$should$\sim$ be driven by the python side 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/processes/G\+Scripted\+Process.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/processes/G\+Scripted\+Process.\+cpp\end{DoxyCompactItemize}

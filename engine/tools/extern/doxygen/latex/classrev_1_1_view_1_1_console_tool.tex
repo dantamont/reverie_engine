@@ -1,0 +1,207 @@
+\hypertarget{classrev_1_1_view_1_1_console_tool}{}\section{rev\+::View\+::Console\+Tool Class Reference}
+\label{classrev_1_1_view_1_1_console_tool}\index{rev::View::ConsoleTool@{rev::View::ConsoleTool}}
+
+
+Displays \mbox{\hyperlink{classrev_1_1_logger}{Logger}} output to a window.  
+
+
+
+
+{\ttfamily \#include $<$G\+Console\+Tool.\+h$>$}
+
+Inheritance diagram for rev\+::View\+::Console\+Tool\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classrev_1_1_view_1_1_console_tool}
+\end{center}
+\end{figure}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_console_tool_a52b2ce06ea793041a71f135a4f28ae31}\label{classrev_1_1_view_1_1_console_tool_a52b2ce06ea793041a71f135a4f28ae31}} 
+void {\bfseries output\+Record\+Pvt} (const \mbox{\hyperlink{classrev_1_1_log_record}{rev\+::\+Log\+Record}} \&log\+Record)
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Class Name and Namespace}\par
+\begin{DoxyCompactItemize}
+\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_console_tool_abffa7bd8ebee59a74578c046ded1fb70}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{classrev_1_1_view_1_1_console_tool_a8168c00a344099bff9626a775408aac4}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_console_tool_a798f0c985ba008eab01ab45763a0649d}\label{classrev_1_1_view_1_1_console_tool_a798f0c985ba008eab01ab45763a0649d}} 
+{\bfseries Console\+Tool} (const Q\+String \&name, Q\+Widget $\ast$parent=0)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_console_tool_a2e30b513bb43c48661c928b20f46a811}\label{classrev_1_1_view_1_1_console_tool_a2e30b513bb43c48661c928b20f46a811}} 
+virtual {\bfseries $\sim$\+Console\+Tool} () override=default
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classrev_1_1_view_1_1_console_tool_ac8f85a1067d6aa26f66a89e475d1f24a}{output}} (\mbox{\hyperlink{classrev_1_1_log_record}{rev\+::\+Log\+Record}} \&log\+\_\+record) override
+\begin{DoxyCompactList}\small\item\em Output log messages to console. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Q\+Color \mbox{\hyperlink{classrev_1_1_view_1_1_console_tool_a29f7e03610399e9597e9af055408e40b}{foreground\+Color\+Debug}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_color}{Color}} of Debug text. \end{DoxyCompactList}\item 
+Q\+Color \mbox{\hyperlink{classrev_1_1_view_1_1_console_tool_a920e3766992555ec588137994e85bec1}{foreground\+Color\+Error}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_color}{Color}} of \mbox{\hyperlink{class_error}{Error}} text. \end{DoxyCompactList}\item 
+Q\+Color \mbox{\hyperlink{classrev_1_1_view_1_1_console_tool_a14d2d54d834150d69f4e3519fe975b0b}{foreground\+Color\+Info}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_color}{Color}} of Info text. \end{DoxyCompactList}\item 
+Q\+Color \mbox{\hyperlink{classrev_1_1_view_1_1_console_tool_a261edea33d81e305e6b62ea5d4f10abd}{foreground\+Color\+Warning}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_color}{Color}} of Warning text. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_console_tool_a723eb5715849591301cfe3cebb2c094c}\label{classrev_1_1_view_1_1_console_tool_a723eb5715849591301cfe3cebb2c094c}} 
+const Q\+Color \& {\bfseries foreground\+Color\+Debug} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_console_tool_a41a5c1fdf4b6eaafc10d96d2933ab73b}\label{classrev_1_1_view_1_1_console_tool_a41a5c1fdf4b6eaafc10d96d2933ab73b}} 
+void {\bfseries set\+Foreground\+Color\+Debug} (const Q\+Color \&fg\+\_\+color)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_console_tool_ac716afae2cdd77c9e838f96d226f2ea9}\label{classrev_1_1_view_1_1_console_tool_ac716afae2cdd77c9e838f96d226f2ea9}} 
+const Q\+Color \& {\bfseries foreground\+Color\+Error} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_console_tool_afe40dc38f6c27f936d8bbf5399a0f583}\label{classrev_1_1_view_1_1_console_tool_afe40dc38f6c27f936d8bbf5399a0f583}} 
+void {\bfseries set\+Foreground\+Color\+Error} (const Q\+Color \&fg\+\_\+color)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_console_tool_acf55b92c8ab87595e3c13037714daf4b}\label{classrev_1_1_view_1_1_console_tool_acf55b92c8ab87595e3c13037714daf4b}} 
+const Q\+Color \& {\bfseries foreground\+Color\+Info} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_console_tool_a1ef10776236b46ee068e690a206dd8a0}\label{classrev_1_1_view_1_1_console_tool_a1ef10776236b46ee068e690a206dd8a0}} 
+void {\bfseries set\+Foreground\+Color\+Info} (const Q\+Color \&fg\+\_\+color)
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_console_tool_ab61c24e50863e5e621bb38eede59eb38}\label{classrev_1_1_view_1_1_console_tool_ab61c24e50863e5e621bb38eede59eb38}} 
+const Q\+Color \& {\bfseries foreground\+Color\+Warning} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_view_1_1_console_tool_a627abbbb72a6edda228dae26756fb14c}\label{classrev_1_1_view_1_1_console_tool_a627abbbb72a6edda228dae26756fb14c}} 
+void {\bfseries set\+Foreground\+Color\+Warning} (const Q\+Color \&fg\+\_\+color)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Displays \mbox{\hyperlink{classrev_1_1_logger}{Logger}} output to a window. 
+
+\begin{DoxyNote}{Note}
+Can be styled with stylesheet 
+\end{DoxyNote}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_view_1_1_console_tool_abffa7bd8ebee59a74578c046ded1fb70}\label{classrev_1_1_view_1_1_console_tool_abffa7bd8ebee59a74578c046ded1fb70}} 
+\index{rev::View::ConsoleTool@{rev::View::ConsoleTool}!className@{className}}
+\index{className@{className}!rev::View::ConsoleTool@{rev::View::ConsoleTool}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+View\+::\+Console\+Tool\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_view_1_1_tool_acde27fd51c9e99e42da65703b496c080}{rev\+::\+View\+::\+Tool}}.
+
+\mbox{\Hypertarget{classrev_1_1_view_1_1_console_tool_a8168c00a344099bff9626a775408aac4}\label{classrev_1_1_view_1_1_console_tool_a8168c00a344099bff9626a775408aac4}} 
+\index{rev::View::ConsoleTool@{rev::View::ConsoleTool}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::View::ConsoleTool@{rev::View::ConsoleTool}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily virtual const char$\ast$ rev\+::\+View\+::\+Console\+Tool\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_view_1_1_tool_ab5359d977478b9c3e30267bcc4e4a853}{rev\+::\+View\+::\+Tool}}.
+
+\mbox{\Hypertarget{classrev_1_1_view_1_1_console_tool_ac8f85a1067d6aa26f66a89e475d1f24a}\label{classrev_1_1_view_1_1_console_tool_ac8f85a1067d6aa26f66a89e475d1f24a}} 
+\index{rev::View::ConsoleTool@{rev::View::ConsoleTool}!output@{output}}
+\index{output@{output}!rev::View::ConsoleTool@{rev::View::ConsoleTool}}
+\subsubsection{\texorpdfstring{output()}{output()}}
+{\footnotesize\ttfamily void rev\+::\+View\+::\+Console\+Tool\+::output (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classrev_1_1_log_record}{rev\+::\+Log\+Record}} \&}]{log\+\_\+record }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Output log messages to console. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em log\+\_\+record} & The data for the log to be output. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classrev_1_1_abstract_log_handler_a0154255c9435f0ee66975be2d450b177}{rev\+::\+Abstract\+Log\+Handler}}.
+
+
+
+\subsection{Property Documentation}
+\mbox{\Hypertarget{classrev_1_1_view_1_1_console_tool_a29f7e03610399e9597e9af055408e40b}\label{classrev_1_1_view_1_1_console_tool_a29f7e03610399e9597e9af055408e40b}} 
+\index{rev::View::ConsoleTool@{rev::View::ConsoleTool}!foregroundColorDebug@{foregroundColorDebug}}
+\index{foregroundColorDebug@{foregroundColorDebug}!rev::View::ConsoleTool@{rev::View::ConsoleTool}}
+\subsubsection{\texorpdfstring{foregroundColorDebug}{foregroundColorDebug}}
+{\footnotesize\ttfamily Q\+Color rev\+::\+View\+::\+Console\+Tool\+::foreground\+Color\+Debug\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}
+
+
+
+\mbox{\hyperlink{classrev_1_1_color}{Color}} of Debug text. 
+
+This value can be styled via Q\+Style\+Sheet as follows\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{rev--View--ConsoleTool \{qproperty-foregroundColorDebug: yellow;\}}
+\end{DoxyCode}
+ \mbox{\Hypertarget{classrev_1_1_view_1_1_console_tool_a920e3766992555ec588137994e85bec1}\label{classrev_1_1_view_1_1_console_tool_a920e3766992555ec588137994e85bec1}} 
+\index{rev::View::ConsoleTool@{rev::View::ConsoleTool}!foregroundColorError@{foregroundColorError}}
+\index{foregroundColorError@{foregroundColorError}!rev::View::ConsoleTool@{rev::View::ConsoleTool}}
+\subsubsection{\texorpdfstring{foregroundColorError}{foregroundColorError}}
+{\footnotesize\ttfamily Q\+Color rev\+::\+View\+::\+Console\+Tool\+::foreground\+Color\+Error\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}
+
+
+
+\mbox{\hyperlink{classrev_1_1_color}{Color}} of \mbox{\hyperlink{class_error}{Error}} text. 
+
+This value can be styled via Q\+Style\+Sheet as follows\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{rev--View--ConsoleTool \{qproperty-foregroundColorError: red;\}}
+\end{DoxyCode}
+ \mbox{\Hypertarget{classrev_1_1_view_1_1_console_tool_a14d2d54d834150d69f4e3519fe975b0b}\label{classrev_1_1_view_1_1_console_tool_a14d2d54d834150d69f4e3519fe975b0b}} 
+\index{rev::View::ConsoleTool@{rev::View::ConsoleTool}!foregroundColorInfo@{foregroundColorInfo}}
+\index{foregroundColorInfo@{foregroundColorInfo}!rev::View::ConsoleTool@{rev::View::ConsoleTool}}
+\subsubsection{\texorpdfstring{foregroundColorInfo}{foregroundColorInfo}}
+{\footnotesize\ttfamily Q\+Color rev\+::\+View\+::\+Console\+Tool\+::foreground\+Color\+Info\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}
+
+
+
+\mbox{\hyperlink{classrev_1_1_color}{Color}} of Info text. 
+
+This value can be styled via Q\+Style\+Sheet as follows\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{rev--View--ConsoleTool \{qproperty-foregroundColorInfo: yellow;\}}
+\end{DoxyCode}
+ \mbox{\Hypertarget{classrev_1_1_view_1_1_console_tool_a261edea33d81e305e6b62ea5d4f10abd}\label{classrev_1_1_view_1_1_console_tool_a261edea33d81e305e6b62ea5d4f10abd}} 
+\index{rev::View::ConsoleTool@{rev::View::ConsoleTool}!foregroundColorWarning@{foregroundColorWarning}}
+\index{foregroundColorWarning@{foregroundColorWarning}!rev::View::ConsoleTool@{rev::View::ConsoleTool}}
+\subsubsection{\texorpdfstring{foregroundColorWarning}{foregroundColorWarning}}
+{\footnotesize\ttfamily Q\+Color rev\+::\+View\+::\+Console\+Tool\+::foreground\+Color\+Warning\hspace{0.3cm}{\ttfamily [read]}, {\ttfamily [write]}}
+
+
+
+\mbox{\hyperlink{classrev_1_1_color}{Color}} of Warning text. 
+
+This value can be styled via Q\+Style\+Sheet as follows\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{rev--View--ConsoleTool \{qproperty-foregroundColorWarning: \#0080ff;\}}
+\end{DoxyCode}
+ 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/logging/G\+Console\+Tool.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/view/logging/G\+Console\+Tool.\+cpp\end{DoxyCompactItemize}

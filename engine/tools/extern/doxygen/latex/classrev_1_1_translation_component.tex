@@ -1,0 +1,99 @@
+\hypertarget{classrev_1_1_translation_component}{}\section{rev\+::Translation\+Component Class Reference}
+\label{classrev_1_1_translation_component}\index{rev::TranslationComponent@{rev::TranslationComponent}}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and Destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_translation_component_a22c0a0843909917ffd3d6993751ce729}\label{classrev_1_1_translation_component_a22c0a0843909917ffd3d6993751ce729}} 
+{\bfseries Translation\+Component} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_translation_component_a9119e9c088ee6678d25e5be0a23ea682}\label{classrev_1_1_translation_component_a9119e9c088ee6678d25e5be0a23ea682}} 
+{\bfseries Translation\+Component} (const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&translation)
+\item 
+\mbox{\Hypertarget{classrev_1_1_translation_component_af7b45ed4c1dfa36571c76e952d0ee139}\label{classrev_1_1_translation_component_af7b45ed4c1dfa36571c76e952d0ee139}} 
+{\bfseries $\sim$\+Translation\+Component} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_translation_component_af3808fef2f56557818262cef896e199c}\label{classrev_1_1_translation_component_af3808fef2f56557818262cef896e199c}} 
+bool {\bfseries is\+Identity} () const
+\item 
+const \mbox{\hyperlink{structrev_1_1_translation}{Translation}} \& \mbox{\hyperlink{classrev_1_1_translation_component_a3447ac0f8cbe55e414c97736d06b44ea}{get\+Translation}} () const
+\begin{DoxyCompactList}\small\item\em Adds to the position to this component. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_translation_component_aa9e557d81c50cd6a698fb6b81f551c2f}\label{classrev_1_1_translation_component_aa9e557d81c50cd6a698fb6b81f551c2f}} 
+const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \& \mbox{\hyperlink{classrev_1_1_translation_component_aa9e557d81c50cd6a698fb6b81f551c2f}{get\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Position/velocity/acceleration. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_translation_component_a6fa2f68ebea076c8643611047d22c2f7}\label{classrev_1_1_translation_component_a6fa2f68ebea076c8643611047d22c2f7}} 
+\mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \& {\bfseries position} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_translation_component_ad84e611b67ae17ac4919634aa560bc7d}\label{classrev_1_1_translation_component_ad84e611b67ae17ac4919634aa560bc7d}} 
+void {\bfseries set\+Position} (\mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$transform, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&p, bool update\+Transform=true)
+\item 
+\mbox{\Hypertarget{classrev_1_1_translation_component_ac6d1fe7e1759c4d4c7475889b1c9c671}\label{classrev_1_1_translation_component_ac6d1fe7e1759c4d4c7475889b1c9c671}} 
+void \mbox{\hyperlink{classrev_1_1_translation_component_ac6d1fe7e1759c4d4c7475889b1c9c671}{set\+Translation}} (\mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$transform, const \mbox{\hyperlink{structrev_1_1_translation}{Translation}} \&position, bool update\+Transform=true)
+\begin{DoxyCompactList}\small\item\em Sets the translation and updates the translation matrix. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_translation_component_a4d8e0396c2b4ae9af7290a8f9aa94c50}\label{classrev_1_1_translation_component_a4d8e0396c2b4ae9af7290a8f9aa94c50}} 
+void {\bfseries set\+Translation} (\mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$transform, const \mbox{\hyperlink{classrev_1_1_vector}{Vector3}} \&position, bool update\+Transform=true)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_translation_component_a78eb5ace43877654860ef31a4e8e67b0}\label{classrev_1_1_translation_component_a78eb5ace43877654860ef31a4e8e67b0}} 
+virtual Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_translation_component_a78eb5ace43877654860ef31a4e8e67b0}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_translation_component_a7d80852ed39078fc2b1208f4e4d7b5c6}\label{classrev_1_1_translation_component_a7d80852ed39078fc2b1208f4e4d7b5c6}} 
+virtual void \mbox{\hyperlink{classrev_1_1_translation_component_a7d80852ed39078fc2b1208f4e4d7b5c6}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty())
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_translation_component_ad0fe6fa4a7bf574165d98c75d5428c79}\label{classrev_1_1_translation_component_ad0fe6fa4a7bf574165d98c75d5428c79}} 
+void \mbox{\hyperlink{classrev_1_1_translation_component_ad0fe6fa4a7bf574165d98c75d5428c79}{compute\+Transform\+Matrix}} (\mbox{\hyperlink{classrev_1_1_transform}{Transform}} $\ast$transform, bool update\+Transform=true)
+\begin{DoxyCompactList}\small\item\em Compute scale matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_translation_component_af30fedebb3172ed5834b2e67d802adaf}\label{classrev_1_1_translation_component_af30fedebb3172ed5834b2e67d802adaf}} 
+\mbox{\hyperlink{structrev_1_1_translation}{Translation}} \mbox{\hyperlink{classrev_1_1_translation_component_af30fedebb3172ed5834b2e67d802adaf}{m\+\_\+translation}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classrev_1_1_quaternion}{Quaternion}} representing this rotation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_translation_component_adc1c31608fb273904899e1f142805843}\label{classrev_1_1_translation_component_adc1c31608fb273904899e1f142805843}} 
+\mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4g}} {\bfseries m\+\_\+transform\+Matrix}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_translation_component_af851b4d9aacd1a871da33592334b8d72}\label{classrev_1_1_translation_component_af851b4d9aacd1a871da33592334b8d72}} 
+class {\bfseries Transform}
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_translation_component_aeab70dc26867a6192e6d8949627e414b}\label{classrev_1_1_translation_component_aeab70dc26867a6192e6d8949627e414b}} 
+const \mbox{\hyperlink{classrev_1_1_square_matrix}{Matrix4x4}} \& \mbox{\hyperlink{classrev_1_1_translation_component_aeab70dc26867a6192e6d8949627e414b}{get\+Matrix}} () const
+\begin{DoxyCompactList}\small\item\em get \mbox{\hyperlink{classrev_1_1_matrix}{Matrix}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_translation_component_af206fd745797923b7db6bd24b92e5a7d}\label{classrev_1_1_translation_component_af206fd745797923b7db6bd24b92e5a7d}} 
+static Transform\+Component\+Type \mbox{\hyperlink{classrev_1_1_translation_component_af206fd745797923b7db6bd24b92e5a7d}{type}} ()
+\begin{DoxyCompactList}\small\item\em Get transform type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_translation_component_a3447ac0f8cbe55e414c97736d06b44ea}\label{classrev_1_1_translation_component_a3447ac0f8cbe55e414c97736d06b44ea}} 
+\index{rev::TranslationComponent@{rev::TranslationComponent}!getTranslation@{getTranslation}}
+\index{getTranslation@{getTranslation}!rev::TranslationComponent@{rev::TranslationComponent}}
+\subsubsection{\texorpdfstring{getTranslation()}{getTranslation()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structrev_1_1_translation}{Translation}}\& rev\+::\+Translation\+Component\+::get\+Translation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds to the position to this component. 
+
+Obtain translation 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/geometry/G\+Transform\+Components.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/geometry/G\+Transform\+Components.\+cpp\end{DoxyCompactItemize}

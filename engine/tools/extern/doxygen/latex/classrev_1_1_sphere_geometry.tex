@@ -1,0 +1,118 @@
+\hypertarget{classrev_1_1_sphere_geometry}{}\section{rev\+::Sphere\+Geometry Class Reference}
+\label{classrev_1_1_sphere_geometry}\index{rev::SphereGeometry@{rev::SphereGeometry}}
+
+
+\mbox{\hyperlink{struct_class}{Class}} representing box geometry.  
+
+
+
+
+{\ttfamily \#include $<$G\+Physics\+Geometry.\+h$>$}
+
+Inheritance diagram for rev\+::Sphere\+Geometry\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_sphere_geometry}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/\+Destructor}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sphere_geometry_a2d8439415655127fd33542c14ce685c0}\label{classrev_1_1_sphere_geometry_a2d8439415655127fd33542c14ce685c0}} 
+{\bfseries Sphere\+Geometry} ()
+\item 
+\mbox{\Hypertarget{classrev_1_1_sphere_geometry_aae14870c1e2f6acad6bfb60c3653de76}\label{classrev_1_1_sphere_geometry_aae14870c1e2f6acad6bfb60c3653de76}} 
+{\bfseries Sphere\+Geometry} (float radius)
+\item 
+\mbox{\Hypertarget{classrev_1_1_sphere_geometry_acfd1ed17644b5df842201373e7973890}\label{classrev_1_1_sphere_geometry_acfd1ed17644b5df842201373e7973890}} 
+{\bfseries $\sim$\+Sphere\+Geometry} ()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sphere_geometry_abcfd6bdced83e7194f3417092e4587df}\label{classrev_1_1_sphere_geometry_abcfd6bdced83e7194f3417092e4587df}} 
+virtual const physx\+::\+Px\+Geometry \& {\bfseries get\+Geometry} () const override
+\item 
+\mbox{\Hypertarget{classrev_1_1_sphere_geometry_a11bd845cc8d70d3e7c764a6c6e04cdce}\label{classrev_1_1_sphere_geometry_a11bd845cc8d70d3e7c764a6c6e04cdce}} 
+float {\bfseries radius} () const
+\item 
+\mbox{\Hypertarget{classrev_1_1_sphere_geometry_a4a757373fd69231e7d97ff580feccbf4}\label{classrev_1_1_sphere_geometry_a4a757373fd69231e7d97ff580feccbf4}} 
+void {\bfseries set\+Radius} (float r)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Public Methods}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sphere_geometry_a3b345a8999e79efe7cb4cf794628f7f4}\label{classrev_1_1_sphere_geometry_a3b345a8999e79efe7cb4cf794628f7f4}} 
+bool \mbox{\hyperlink{classrev_1_1_sphere_geometry_a3b345a8999e79efe7cb4cf794628f7f4}{is\+Valid}} () const
+\begin{DoxyCompactList}\small\item\em Whether the geometry is valid or not. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Serializable Overrides}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sphere_geometry_a330ba87ca07779592ac17a23d5edd350}\label{classrev_1_1_sphere_geometry_a330ba87ca07779592ac17a23d5edd350}} 
+Q\+Json\+Value \mbox{\hyperlink{classrev_1_1_sphere_geometry_a330ba87ca07779592ac17a23d5edd350}{as\+Json}} (const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) const override
+\begin{DoxyCompactList}\small\item\em Outputs this data as a valid json string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_sphere_geometry_a6ce2b58035e79941856756f8b9d70ec5}\label{classrev_1_1_sphere_geometry_a6ce2b58035e79941856756f8b9d70ec5}} 
+virtual void \mbox{\hyperlink{classrev_1_1_sphere_geometry_a6ce2b58035e79941856756f8b9d70ec5}{load\+From\+Json}} (const Q\+Json\+Value \&json, const \mbox{\hyperlink{structrev_1_1_serialization_context}{Serialization\+Context}} \&context=Serialization\+Context\+::\+Empty()) override
+\begin{DoxyCompactList}\small\item\em Populates this data using a valid json string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Object Properties}\par
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_sphere_geometry_ac7447dddbb37769070e302792ced7ac2}{class\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The name of this class. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{classrev_1_1_sphere_geometry_aef6068a1ad9dc22c0ae744898923b7a2}{namespace\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em The full namespace for this class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{Indent}\textbf{ Protected Members}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_sphere_geometry_a559a77df632268072f7af7206f51f65c}\label{classrev_1_1_sphere_geometry_a559a77df632268072f7af7206f51f65c}} 
+physx\+::\+Px\+Sphere\+Geometry {\bfseries m\+\_\+sphere}
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{struct_class}{Class}} representing box geometry. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_sphere_geometry_ac7447dddbb37769070e302792ced7ac2}\label{classrev_1_1_sphere_geometry_ac7447dddbb37769070e302792ced7ac2}} 
+\index{rev::SphereGeometry@{rev::SphereGeometry}!className@{className}}
+\index{className@{className}!rev::SphereGeometry@{rev::SphereGeometry}}
+\subsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Sphere\+Geometry\+::class\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The name of this class. 
+
+Every subclass should redefine/override this property to return its name 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_physics_geometry_afc74d4c03367f3bc83595acaeca7d9a8}{rev\+::\+Physics\+Geometry}}.
+
+\mbox{\Hypertarget{classrev_1_1_sphere_geometry_aef6068a1ad9dc22c0ae744898923b7a2}\label{classrev_1_1_sphere_geometry_aef6068a1ad9dc22c0ae744898923b7a2}} 
+\index{rev::SphereGeometry@{rev::SphereGeometry}!namespaceName@{namespaceName}}
+\index{namespaceName@{namespaceName}!rev::SphereGeometry@{rev::SphereGeometry}}
+\subsubsection{\texorpdfstring{namespaceName()}{namespaceName()}}
+{\footnotesize\ttfamily const char$\ast$ rev\+::\+Sphere\+Geometry\+::namespace\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The full namespace for this class. 
+
+Every subclass should redefine/override this property to return its full namespace. The built in logging methods will use this value for the message category 
+
+Reimplemented from \mbox{\hyperlink{classrev_1_1_physics_geometry_ad4311205e1a6eabeeb7773a01d11add5}{rev\+::\+Physics\+Geometry}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Physics\+Geometry.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/physics/G\+Physics\+Geometry.\+cpp\end{DoxyCompactItemize}

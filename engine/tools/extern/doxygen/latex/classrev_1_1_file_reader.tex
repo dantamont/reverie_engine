@@ -1,0 +1,107 @@
+\hypertarget{classrev_1_1_file_reader}{}\section{rev\+::File\+Reader Class Reference}
+\label{classrev_1_1_file_reader}\index{rev::FileReader@{rev::FileReader}}
+
+
+For loading in data from a file @detailed Stores positional data of a model in a V\+AO.  
+
+
+
+
+{\ttfamily \#include $<$G\+File\+Reader.\+h$>$}
+
+Inheritance diagram for rev\+::File\+Reader\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrev_1_1_file_reader}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_file_reader_ae7fce228b6d560622174167a5f13bf30}\label{classrev_1_1_file_reader_ae7fce228b6d560622174167a5f13bf30}} 
+{\bfseries File\+Reader} (const Q\+String \&filepath)
+\item 
+\mbox{\Hypertarget{classrev_1_1_file_reader_ae23d0acd899f3520040ffec6f4b48e01}\label{classrev_1_1_file_reader_ae23d0acd899f3520040ffec6f4b48e01}} 
+Q\+String\+List \mbox{\hyperlink{classrev_1_1_file_reader_ae23d0acd899f3520040ffec6f4b48e01}{get\+File\+Lines}} ()
+\begin{DoxyCompactList}\small\item\em Return lines contained in the file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_reader_a18f9aeb03d2fba43723ebb44d431ca8b}\label{classrev_1_1_file_reader_a18f9aeb03d2fba43723ebb44d431ca8b}} 
+bool \mbox{\hyperlink{classrev_1_1_file_reader_a18f9aeb03d2fba43723ebb44d431ca8b}{file\+Exists}} ()
+\begin{DoxyCompactList}\small\item\em Return true if file held by reader exists. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_reader_ab3a0c46034839d6b9ef58316d2c33579}\label{classrev_1_1_file_reader_ab3a0c46034839d6b9ef58316d2c33579}} 
+Q\+Byte\+Array \mbox{\hyperlink{classrev_1_1_file_reader_ab3a0c46034839d6b9ef58316d2c33579}{get\+Contents\+As\+Byte\+Array}} ()
+\begin{DoxyCompactList}\small\item\em Returns file contents. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_reader_ac94b19f231190a4606fa3015a6fa17ef}\label{classrev_1_1_file_reader_ac94b19f231190a4606fa3015a6fa17ef}} 
+Q\+String {\bfseries get\+Contents\+As\+String} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Q\+String \mbox{\hyperlink{classrev_1_1_file_reader_ab0717bd108c516abc6fb7c8c7a58e744}{Path\+To\+Name}} (const Q\+String \&path, bool extension=true, bool case\+Sensitive=false)
+\begin{DoxyCompactList}\small\item\em Generates a unique md5 hex code for a given string. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_reader_a8ee19353d4d5f0c0695422da57ac7374}\label{classrev_1_1_file_reader_a8ee19353d4d5f0c0695422da57ac7374}} 
+static Q\+String {\bfseries Dir\+From\+Path} (const Q\+String \&path)
+\item 
+\mbox{\Hypertarget{classrev_1_1_file_reader_ae7316c1b35b7705459e4c571a0f79082}\label{classrev_1_1_file_reader_ae7316c1b35b7705459e4c571a0f79082}} 
+static Q\+String \mbox{\hyperlink{classrev_1_1_file_reader_ae7316c1b35b7705459e4c571a0f79082}{Absolute\+Path}} (const char $\ast$root\+Dir, const char $\ast$rel\+Path)
+\begin{DoxyCompactList}\small\item\em Return absolute filepath from relative filepath and root directory. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_reader_a9cf9a1b8273a1aac0447209800dfa82a}\label{classrev_1_1_file_reader_a9cf9a1b8273a1aac0447209800dfa82a}} 
+static Q\+String \mbox{\hyperlink{classrev_1_1_file_reader_a9cf9a1b8273a1aac0447209800dfa82a}{Relative\+Path}} (const char $\ast$root\+Dir, const char $\ast$abs\+Path)
+\begin{DoxyCompactList}\small\item\em Return relative filepath from one path to another. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_reader_a7def97841be55267a41554f0de2351b1}\label{classrev_1_1_file_reader_a7def97841be55267a41554f0de2351b1}} 
+static Q\+String \mbox{\hyperlink{classrev_1_1_file_reader_a7def97841be55267a41554f0de2351b1}{Replace\+Extension}} (const Q\+String \&file\+Name, const char $\ast$ext)
+\begin{DoxyCompactList}\small\item\em Replace the file exension with the specified one. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_reader_aa0d8fa7a54afded5fd0ab90be32c9b20}\label{classrev_1_1_file_reader_aa0d8fa7a54afded5fd0ab90be32c9b20}} 
+static Q\+String \mbox{\hyperlink{classrev_1_1_file_reader_aa0d8fa7a54afded5fd0ab90be32c9b20}{File\+Extension}} (const Q\+String \&filepath)
+\begin{DoxyCompactList}\small\item\em Return file extension. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_reader_a17f6b0ab8ce0734005a2b85f35cf1a7d}\label{classrev_1_1_file_reader_a17f6b0ab8ce0734005a2b85f35cf1a7d}} 
+static bool \mbox{\hyperlink{classrev_1_1_file_reader_a17f6b0ab8ce0734005a2b85f35cf1a7d}{File\+Exists}} (const Q\+String \&directory, const Q\+String \&file\+Name, Q\+String \&out\+Path)
+\begin{DoxyCompactList}\small\item\em Search subdirectories and files in given directory recursively for a file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_reader_abc447e95d05297968dd43eaf02db3a2d}\label{classrev_1_1_file_reader_abc447e95d05297968dd43eaf02db3a2d}} 
+static bool \mbox{\hyperlink{classrev_1_1_file_reader_abc447e95d05297968dd43eaf02db3a2d}{File\+Exists}} (const Q\+String \&filepath)
+\begin{DoxyCompactList}\small\item\em Return true if file exists, false otherwise. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrev_1_1_file_reader_a8da6c6710c2dbfae8b2c48198c673173}\label{classrev_1_1_file_reader_a8da6c6710c2dbfae8b2c48198c673173}} 
+static Q\+String \mbox{\hyperlink{classrev_1_1_file_reader_a8da6c6710c2dbfae8b2c48198c673173}{get\+Contents\+As\+String}} (const Q\+String \&filepath)
+\begin{DoxyCompactList}\small\item\em Get contents of a file as a string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_file_reader_aa2abe38d7c958e420c036682f2741114}\label{classrev_1_1_file_reader_aa2abe38d7c958e420c036682f2741114}} 
+static Q\+Reg\+Exp {\bfseries E\+M\+P\+T\+Y\+\_\+\+L\+I\+NE}
+\item 
+\mbox{\Hypertarget{classrev_1_1_file_reader_a2e0d12974483bdf344f5b501400f9d80}\label{classrev_1_1_file_reader_a2e0d12974483bdf344f5b501400f9d80}} 
+static Q\+Reg\+Exp {\bfseries N\+E\+W\+\_\+\+L\+I\+NE}
+\item 
+\mbox{\Hypertarget{classrev_1_1_file_reader_ab97612aa73cc2b85894d8bf2038da40a}\label{classrev_1_1_file_reader_ab97612aa73cc2b85894d8bf2038da40a}} 
+static Q\+Reg\+Exp {\bfseries S\+P\+A\+C\+E\+\_\+\+O\+R\+\_\+\+T\+AB}
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classrev_1_1_file_reader_af2930ea3ca3495e363cbffd8556147eb}\label{classrev_1_1_file_reader_af2930ea3ca3495e363cbffd8556147eb}} 
+Q\+String {\bfseries m\+\_\+file\+Path}
+\item 
+\mbox{\Hypertarget{classrev_1_1_file_reader_a4258bf1b1d291a445d1f4378c332b02f}\label{classrev_1_1_file_reader_a4258bf1b1d291a445d1f4378c332b02f}} 
+Q\+String {\bfseries m\+\_\+file\+Extension}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+For loading in data from a file @detailed Stores positional data of a model in a V\+AO. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrev_1_1_file_reader_ab0717bd108c516abc6fb7c8c7a58e744}\label{classrev_1_1_file_reader_ab0717bd108c516abc6fb7c8c7a58e744}} 
+\index{rev::FileReader@{rev::FileReader}!PathToName@{PathToName}}
+\index{PathToName@{PathToName}!rev::FileReader@{rev::FileReader}}
+\subsubsection{\texorpdfstring{PathToName()}{PathToName()}}
+{\footnotesize\ttfamily Q\+String rev\+::\+File\+Reader\+::\+Path\+To\+Name (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{path,  }\item[{bool}]{extension = {\ttfamily true},  }\item[{bool}]{case\+Sensitive = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Generates a unique md5 hex code for a given string. 
+
+Return filename from a path 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/readers/G\+File\+Reader.\+h\item 
+C\+:/\+Users/dante/\+Documents/\+Projects/grand-\/blue-\/engine/reverie/src/core/readers/G\+File\+Reader.\+cpp\end{DoxyCompactItemize}
