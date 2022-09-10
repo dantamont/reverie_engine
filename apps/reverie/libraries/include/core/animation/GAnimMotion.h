@@ -13,7 +13,7 @@
 #include "fortress/types/GIdentifiable.h"
 #include "fortress/types/GNameable.h"
 #include "fortress/types/GLoadable.h"
-#include "fortress/types/GString.h"
+#include "fortress/string/GString.h"
 #include "fortress/time/GStopwatchTimer.h"
 #include "fortress/layer/framework/GFlags.h"
 

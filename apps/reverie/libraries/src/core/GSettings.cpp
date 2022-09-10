@@ -3,7 +3,7 @@
 #include <QGuiApplication>
 
 #include "fortress/containers/GSortingLayer.h"
-#include "fortress/types/GString.h"
+#include "fortress/string/GString.h"
 #include "core/GCoreEngine.h"
 #include "core/resource/GFileManager.h"
 #include "fortress/json/GJson.h"

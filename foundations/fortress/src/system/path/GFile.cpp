@@ -1,8 +1,9 @@
 #include "fortress/system/path/GPath.h"
-#include "fortress/types/GStringView.h"
-#include "fortress/types/GString.h"
+#include "fortress/string/GStringView.h"
+#include "fortress/string/GString.h"
 #include "fortress/system/path/GFile.h"
 #include "fortress/system/path/GDir.h"
+#include "fortress/streams/GFileStream.h"
 
 #include <iostream>>
 #include <fstream>
@@ -139,6 +140,17 @@ std::vector<GString> GFile::readLines() const
     }
 
     return lines;
+}
+
+void GFile::writeLines(std::vector<GString>& lines)
+{
+    FileStream myStream(m_path);
+    myStream.open(FileAccessMode::kWrite | FileAccessMode::kAppend);
+    const char newLine = '\n';
+    for(const GString& line: lines) {
+        myStream.write(line.c_str(), line.length());
+        myStream.write(&newLine, 1);
+    }
 }
 
 

@@ -2,11 +2,10 @@
 
 // Internal
 #include "core/mixins/GRenderable.h"
+#include "core/rendering/geometry/GVertexData.h"
 
 namespace rev {
 
-class VertexArrayData;
-struct VertexAttributes;
 class Mesh;
 class Lines;
 class Skeleton;
@@ -49,7 +48,7 @@ public:
     size_t numPoints() const;
 
     /// @brief Load an existing vao as a Points object
-    void loadVertexArrayData(ResourceCache& cache, const VertexArrayData& data, Flags<ResourceBehaviorFlag> flags);
+    void loadVertexData(ResourceCache& cache, const MeshVertexAttributes& data, Flags<ResourceBehaviorFlag> flags);
 
     /// @brief Update any data needed for rendering, e.g. vertex data, render settings, etc.
     virtual void reload() override;
@@ -88,7 +87,7 @@ protected:
     virtual void drawGeometry(ShaderProgram& shaderProgram, RenderSettings* settings = nullptr) override;
 
     /// @brief Add point
-    void addPoint(VertexArrayData& vertexData, const Vector3& newPoint);
+    void addPoint(MeshVertexAttributes& vertexData, const Vector3& newPoint);
 
     /// @}
 
@@ -100,13 +99,11 @@ protected:
         UniformData m_pointColor; ///< Color of points
         mutable UniformData m_screenPixelWidth; ///< Float of screen pixel width
     };
+
     PointUniforms m_uniforms;
-
-    /// @brief Point size
-    float m_pointSize;
-
-    /// @brief Point color
-    Vector4 m_pointColor;
+    MeshVertexAttributes m_vertexData; ///< Vertex data for the points. Duplicated on GPU
+    float m_pointSize; ///< Point size
+    Vector4 m_pointColor; ///< Point color
 
     /// @}
 

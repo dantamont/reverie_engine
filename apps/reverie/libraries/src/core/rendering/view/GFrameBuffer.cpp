@@ -28,37 +28,18 @@ FrameBuffer::FrameBuffer()
 {
 }
 
-FrameBuffer::FrameBuffer(const FrameBuffer & other):
-    m_currentContext(other.m_currentContext),
-    m_aliasingType(other.m_aliasingType),
-    m_attachmentType(other.m_attachmentType),
-    m_numSamples(other.m_numSamples),
-    m_textureFormat(other.m_textureFormat),
-    m_numColorAttachments(other.m_numColorAttachments),
-    m_hasDepth(other.m_hasDepth)
-{
-    initializeGL();
-    switch (other.m_attachmentType) {
-    case BufferAttachmentType::kTexture:
-        reinitialize(other.m_size.x(), other.m_size.y(), other.m_colorTextures,
-            other.m_depthStencilTexture, other.m_depthStencilAttachmentLayer);
-        break;
-    default:
-        Logger::Throw("Copy is not supported for non-texture framebuffer type");
-        break;
-    }
-}
-
 FrameBuffer::FrameBuffer(QOpenGLContext* currentContext,
-    AliasingType format, 
-    BufferAttachmentType bufferType,
+    AliasingType format,
+    BufferAttachmentType bufferColorAttachmentType,
+    BufferAttachmentType bufferDepthAttachmentType,
     TextureFormat textureFormat,
     uint32_t numSamples,
     uint32_t numColorAttachments,
     bool hasDepth) :
     m_currentContext(currentContext),
     m_aliasingType(format),
-    m_attachmentType(bufferType),
+    m_colorAttachmentType(bufferColorAttachmentType),
+    m_depthStencilAttachmentType(bufferDepthAttachmentType),
     m_numSamples(numSamples),
     m_textureFormat(textureFormat),
     m_numColorAttachments(numColorAttachments),
@@ -90,28 +71,6 @@ FrameBuffer::~FrameBuffer()
     }
 }
 
-FrameBuffer & FrameBuffer::operator=(const FrameBuffer & other)
-{
-    m_currentContext = other.m_currentContext;
-    m_aliasingType = other.m_aliasingType;
-    m_attachmentType = other.m_attachmentType;
-    m_numSamples = other.m_numSamples;
-    m_textureFormat = other.m_textureFormat;
-    m_numColorAttachments = other.m_numColorAttachments;
-
-    initializeGL(false); // Don't call reinitialize yet
-    switch (other.m_attachmentType) {
-    case BufferAttachmentType::kTexture:
-        reinitialize(other.m_size.x(), other.m_size.y(), other.m_colorTextures,
-            other.m_depthStencilTexture, other.m_depthStencilAttachmentLayer);
-        break;
-    default:
-        Logger::Throw("Copy is not supported for non-texture framebuffer type");
-        break;
-    }
-
-    return *this;
-}
 
 void FrameBuffer::drawQuad(Camera& camera, ShaderProgram& shaderProgram, uint32_t attachmentIndex)
 {
@@ -264,7 +223,7 @@ void FrameBuffer::readDepthPixels(std::vector<float>& outDepths) const
     }
     case AliasingType::kMSAA:
     {
-        if (m_attachmentType == BufferAttachmentType::kRBO) {
+        if (m_depthStencilAttachmentType == BufferAttachmentType::kRbo) {
             // RBO needed for MSAA
             // Need to blit (exchange pixels) with another framebuffer (that is not MSAA)
             blit(BlitMask::kDepthBit, *m_blitBuffer);
@@ -295,49 +254,24 @@ void FrameBuffer::readDepthPixels(std::vector<float>& outDepths) const
 
 void FrameBuffer::bindColorTexture(unsigned int texUnit, unsigned int attachmentIndex)
 {
-    // Return if no color textures
-    //if (!m_colorTextures.size()) {
-    //    return;
-    //}
+    if (m_colorAttachmentType == BufferAttachmentType::kRbo) {
+        // Need to blit (exchange pixels) with another framebuffer (that is not MSAA)
+        // In order to bind a texture for rendering
+        /// \see https://learnopengl.com/Advanced-OpenGL/Anti-Aliasing (has both methods)
+        /// \see https://stackoverflow.com/questions/46535341/opengl-msaa-in-2-different-ways-what-are-the-differences
 
-    switch (m_aliasingType) {
-    case AliasingType::kDefault:
-    {
+        if (m_isBound) {
+            Logger::Throw("Error, framebuffer should not be bound for blit");
+        }
+
+        blit(BlitMask::kColorBit, *m_blitBuffer, attachmentIndex);
+        m_blitBuffer->bindColorTexture(texUnit, attachmentIndex);
+    }
+    else {
         if (m_colorTextures.size() <= attachmentIndex) {
             Logger::Throw("Error, no texture found at index");
         }
-
-        // Bind texture
         m_colorTextures[attachmentIndex]->bind(texUnit);
-        break;
-    }
-    case AliasingType::kMSAA:
-    {
-        if (m_attachmentType == BufferAttachmentType::kRBO) {
-            // Need to blit (exchange pixels) with another framebuffer (that is not MSAA)
-            // In order to bind a texture for rendering
-            /// \see https://learnopengl.com/Advanced-OpenGL/Anti-Aliasing (has both methods)
-            /// \see https://stackoverflow.com/questions/46535341/opengl-msaa-in-2-different-ways-what-are-the-differences
-            
-            if (m_isBound) {
-                Logger::Throw("Error, framebuffer should not be bound for blit");
-            }
-
-            blit(BlitMask::kColorBit, *m_blitBuffer, attachmentIndex);
-            m_blitBuffer->bindColorTexture(texUnit, attachmentIndex);
-        }
-        else {
-            if (m_colorTextures.size() <= attachmentIndex) {
-                Logger::Throw("Error, no texture found at index");
-            }
-            //glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, m_colorTextures[attachmentIndex]);
-            m_colorTextures[attachmentIndex]->bind(texUnit);
-        }
-        break;
-    }
-    default:
-        Logger::Throw("Error, format type not recognized");
-        break;
     }
 
 #ifdef DEBUG_MODE
@@ -353,40 +287,24 @@ void FrameBuffer::bindColorTexture(unsigned int texUnit, unsigned int attachment
 
 void FrameBuffer::bindDepthTexture(unsigned int texUnit)
 {
-    switch (m_aliasingType) {
-    case AliasingType::kDefault:
-    {
-        // Bind texture
+    if (m_depthStencilAttachmentType == BufferAttachmentType::kRbo) {
+        // Need to blit (exchange pixels) with another framebuffer (that is not MSAA)
+        // In order to bind a texture for rendering
+        /// \see https://learnopengl.com/Advanced-OpenGL/Anti-Aliasing (has both methods)
+        /// \see https://stackoverflow.com/questions/46535341/opengl-msaa-in-2-different-ways-what-are-the-differences
+
+        if (m_isBound) {
+            Logger::Throw("Error, framebuffer should not be bound for blit");
+        }
+
+        blit(BlitMask::kDepthBit, *m_blitBuffer);
+        m_blitBuffer->bindDepthTexture(texUnit);
+    }
+    else {
         m_depthStencilTexture->bind(texUnit);
 
         // This is actually the default, so not strictly necessary
         m_depthStencilTexture->setReadMode(DepthStencilMode::kDepthComponent);
-
-        break;
-    }
-    case AliasingType::kMSAA:
-    {
-        if (m_attachmentType == BufferAttachmentType::kRBO) {
-            // Need to blit (exchange pixels) with another framebuffer (that is not MSAA)
-            // In order to bind a texture for rendering
-            /// \see https://learnopengl.com/Advanced-OpenGL/Anti-Aliasing (has both methods)
-            /// \see https://stackoverflow.com/questions/46535341/opengl-msaa-in-2-different-ways-what-are-the-differences
-
-            if (m_isBound) {
-                Logger::Throw("Error, framebuffer should not be bound for blit");
-            }
-
-            blit(BlitMask::kDepthBit, *m_blitBuffer);
-            m_blitBuffer->bindDepthTexture(texUnit);
-        }
-        else {
-            m_depthStencilTexture->bind(texUnit);
-        }
-        break;
-    }
-    default:
-        Logger::Throw("Error, format type not recognized");
-        break;
     }
 
 #ifdef DEBUG_MODE
@@ -433,9 +351,9 @@ void FrameBuffer::reinitialize(uint32_t w, uint32_t h, const std::vector<std::sh
 {
     gl::OpenGLFunctions& gl = *gl::OpenGLFunctions::Functions();
 
-    if (m_attachmentType != BufferAttachmentType::kTexture) {
-        Logger::Throw("Error, framebuffer does not use textures");
-    }
+    assert((m_depthStencilAttachmentType == BufferAttachmentType::kTexture ||
+        m_colorAttachmentType == BufferAttachmentType::kTexture) &&
+        "Error, framebuffer does not use textures");
 
     bind();
 
@@ -854,18 +772,18 @@ void FrameBuffer::initializeGL(bool reinitialize_)
     gl::OpenGLFunctions& gl = *gl::OpenGLFunctions::Functions();
     gl.glGenFramebuffers(1, &m_fboID);
 
-    // Initialize blitting framebuffer if type dictates
-    if (m_attachmentType == BufferAttachmentType::kRBO && 
-        m_aliasingType == AliasingType::kMSAA) {
-        if (m_blitBuffer) {
-            Logger::Throw("Error, blit buffer should be uninitialized");
-        }
+    // Initialize blitting framebuffer if there are any RBOs used, so that textures can be accessed
+    if (m_colorAttachmentType == BufferAttachmentType::kRbo ||
+        m_depthStencilAttachmentType == BufferAttachmentType::kRbo) 
+    {
+        assert(!m_blitBuffer && "Error, blit buffer should be uninitialized");
 
         // ----------------------------------------------------
         // CREATE BLIT BUFFER
         // ----------------------------------------------------
         m_blitBuffer = new FrameBuffer(m_currentContext,
             AliasingType::kDefault,
+            FrameBuffer::BufferAttachmentType::kTexture,
             FrameBuffer::BufferAttachmentType::kTexture,
             m_textureFormat,
             m_numSamples, 
@@ -892,27 +810,37 @@ void FrameBuffer::createColorAttachment(uint32_t w, uint32_t h)
     switch (m_aliasingType) {
         case AliasingType::kDefault:
         {
-            auto texture = std::make_shared<Texture>(
-                w,
-                h,
-                TextureTargetType::k2D,
-                TextureUsageType::kNone,
-                TextureFilter::kLinear,
-                TextureFilter::kLinear,
-                TextureWrapMode::kRepeat,
-                m_textureFormat
-                );
-            texture->setNumSamples(m_numSamples);
-            texture->postConstruction();
-            m_colorTextures.push_back(texture);
+            if (m_colorAttachmentType == BufferAttachmentType::kRbo) {
+                // Use RBO for MSAA
+                m_colorRBOs.push_back(std::make_shared<RenderBufferObject>(m_aliasingType, m_textureFormat, m_numSamples));
+                auto& colorBuffer = m_colorRBOs.back();
+                colorBuffer->bind();
+                colorBuffer->setColor(w, h, (uint32_t)m_colorRBOs.size() - 1);
+                colorBuffer->release(); // can unbind since memory has been allocated
+            }
+            else {
+                auto texture = std::make_shared<Texture>(
+                    w,
+                    h,
+                    TextureTargetType::k2D,
+                    TextureUsageType::kNone,
+                    TextureFilter::kLinear,
+                    TextureFilter::kLinear,
+                    TextureWrapMode::kRepeat,
+                    m_textureFormat
+                    );
+                texture->setNumSamples(m_numSamples);
+                texture->postConstruction(ResourcePostConstructionData());
+                m_colorTextures.push_back(texture);
+            }
             break;
         }
         case AliasingType::kMSAA:
         {
-            if (m_attachmentType == BufferAttachmentType::kRBO) {
+            if (m_colorAttachmentType == BufferAttachmentType::kRbo) {
                 // Use RBO for MSAA
                 m_colorRBOs.push_back(std::make_shared<RenderBufferObject>(m_aliasingType, m_textureFormat, m_numSamples));
-                auto colorBuffer = m_colorRBOs.back();
+                auto& colorBuffer = m_colorRBOs.back();
                 colorBuffer->bind();
                 colorBuffer->setColor(w, h, (uint32_t)m_colorRBOs.size() - 1);
                 colorBuffer->release(); // can unbind since memory has been allocated
@@ -929,7 +857,7 @@ void FrameBuffer::createColorAttachment(uint32_t w, uint32_t h)
                     m_textureFormat
                     );
                 texture->setNumSamples(m_numSamples);
-                texture->postConstruction();
+                texture->postConstruction(ResourcePostConstructionData());
                 m_colorTextures.push_back(texture);
             }
             break;
@@ -939,32 +867,14 @@ void FrameBuffer::createColorAttachment(uint32_t w, uint32_t h)
             break;
     }
 
-    // Attach texture
-    switch (m_aliasingType) {
-    case AliasingType::kDefault:
-    {
-        // Attach texture
+    if (m_colorAttachmentType == BufferAttachmentType::kTexture) {
+        // Using texture
         m_colorTextures.back()->attach(*this,
             GL_COLOR_ATTACHMENT0 + ((uint32_t)m_colorTextures.size() - 1)); // unnecessary since size is reset
-
-        break;
     }
-    case AliasingType::kMSAA:
-    {
-        if (m_attachmentType == BufferAttachmentType::kTexture) {
-            // Using texture for MSAA
-            m_colorTextures.back()->attach(*this,
-                GL_COLOR_ATTACHMENT0 + ((uint32_t)m_colorTextures.size() - 1)); // unnecessary since size is reset
-        }
-        else {
-            // Using RBO for MSAA
-            m_colorRBOs.back()->attach();
-        }
-        break;
-    }
-    default:
-        Logger::Throw("Error, format type not recognized");
-        break;
+    else {
+        // Using RBO
+        m_colorRBOs.back()->attach();
     }
 
 #ifdef DEBUG_MODE
@@ -984,7 +894,7 @@ void FrameBuffer::createDepthStencilAttachment(uint32_t w, uint32_t h)
     case AliasingType::kDefault:
     {
         // If not using texture, skip this and use RBO
-        if (m_attachmentType == BufferAttachmentType::kTexture) {
+        if (m_depthStencilAttachmentType == BufferAttachmentType::kTexture) {
             auto texture = std::make_shared<Texture>(
                 w,
                 h,
@@ -993,10 +903,10 @@ void FrameBuffer::createDepthStencilAttachment(uint32_t w, uint32_t h)
                 TextureFilter::kLinear,
                 TextureFilter::kLinear,
                 TextureWrapMode::kRepeat,
-                FBO_DEFAULT_DEPTH_PRECISION
+                FBO_DEFAULT_DEPTH_PRECISION /*The internal format*/
                 );
             texture->setNumSamples(m_numSamples);
-            texture->postConstruction();
+            texture->postConstruction(ResourcePostConstructionData());
             m_depthStencilTexture = texture;
         }
         else {
@@ -1012,7 +922,7 @@ void FrameBuffer::createDepthStencilAttachment(uint32_t w, uint32_t h)
     }
     case AliasingType::kMSAA:
     {
-        if (m_attachmentType == BufferAttachmentType::kTexture) {
+        if (m_depthStencilAttachmentType == BufferAttachmentType::kTexture) {
             /// \see https://doc.qt.io/qt-5/qopenglcontext.html#versionFunctions
             // https://stackoverflow.com/questions/38818382/qt5-gltexstorage2d-glbindimagetexture-undefined
             auto texture = std::make_shared<Texture>(
@@ -1027,7 +937,7 @@ void FrameBuffer::createDepthStencilAttachment(uint32_t w, uint32_t h)
                 );
             texture->setNumSamples(m_numSamples);
             texture->setFixedSampleLocations(false); //  GL_TEXTURE_FIXED_SAMPLE_LOCATIONS, must be true if mixing with render buffers in FBO
-            texture->postConstruction();
+            texture->postConstruction(ResourcePostConstructionData());
             m_depthStencilTexture = texture;
         }
         else {
@@ -1054,23 +964,12 @@ void FrameBuffer::createDepthStencilAttachment(uint32_t w, uint32_t h)
 #endif
 
     // Attach texture
-    switch (m_aliasingType) {
-    case AliasingType::kDefault:
-    case AliasingType::kMSAA:
-    {
-        // If not using texture, skip this and attach RBO
-        if (m_attachmentType == BufferAttachmentType::kTexture) {
-            // For MSAA mode, attach will handle different target type
-            m_depthStencilTexture->attach(*this, GL_DEPTH_STENCIL_ATTACHMENT);
-        }
-        else {
-            m_depthStencilRBO->attach();
-        }
-        break;
+    if (m_depthStencilAttachmentType == BufferAttachmentType::kTexture) {
+        // For MSAA mode, attach will handle different target type
+        m_depthStencilTexture->attach(*this, GL_DEPTH_STENCIL_ATTACHMENT);
     }
-    default:
-        Logger::Throw("Error, format type not recognized");
-        break;
+    else {
+        m_depthStencilRBO->attach();
     }
 
 #ifdef DEBUG_FBO

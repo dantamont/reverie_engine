@@ -5,7 +5,7 @@
 
 // Internal
 #include "fortress/types/GLoadable.h"
-#include "fortress/types/GString.h"
+#include "fortress/string/GString.h"
 #include "core/GManager.h"
 
 namespace rev {

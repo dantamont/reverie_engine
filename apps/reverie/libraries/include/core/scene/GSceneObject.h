@@ -10,7 +10,7 @@
 #include "core/scene/GSceneBehaviorFlags.h"
 #include "core/components/GComponent.h"
 #include "core/rendering/GGLFunctions.h"
-#include "core/geometry/GCollisions.h"
+#include "heave/collisions/GCollisions.h"
 #include "core/components/GTransformComponent.h"
 
 namespace rev {
@@ -149,7 +149,7 @@ public:
     void createShadowDrawCommands();
 
     /// @brief Create commands to draw into a shadow map
-    void retrieveShadowDrawCommands(OpenGlRenderer& renderer); 
+    void retrieveShadowDrawCommands(OpenGlRenderer& renderer, ShadowMap* shadowMap);
 
     std::vector<SortingLayer> renderLayers() const;
 

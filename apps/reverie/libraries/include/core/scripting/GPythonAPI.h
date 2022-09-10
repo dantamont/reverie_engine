@@ -12,7 +12,7 @@
 
 // Internal
 #include "fortress/layer/framework/GSingleton.h"
-#include "fortress/types/GString.h"
+#include "fortress/string/GString.h"
 #include "fortress/containers/math/GMatrix.h"
 #include "logging/GLogger.h"
 

@@ -256,10 +256,14 @@ void ShadowMap::initializeCamera(RenderContext& context, size_t mapIndex)
         auto camera = std::make_unique<Camera>(
             lightObjectTransform,
             &context,
-            AliasingType::kDefault,
-            FrameBuffer::BufferAttachmentType::kTexture,
-            4,  // Not using MSAA, so doesn't matter
-            0); // Don't need any color attachments
+            Camera::FrameBufferInfo{
+                AliasingType::kDefault,
+                FrameBuffer::BufferAttachmentType::kTexture,
+                FrameBuffer::BufferAttachmentType::kTexture,
+                4,  // Not using MSAA, so doesn't matter
+                0 // Don't need any color attachments
+            }
+            );
 
         // Set camera properties
         camera->renderProjection().setAspectRatio(1.0, false);

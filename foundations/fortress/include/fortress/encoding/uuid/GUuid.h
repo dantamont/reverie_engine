@@ -5,8 +5,8 @@
 #include <sstream>
 #include <iomanip>
 #include <mutex>
-#include "fortress/types/GSizedTypes.h"
-#include "fortress/types/GString.h"
+#include "fortress/numeric/GSizedTypes.h"
+#include "fortress/string/GString.h"
 #include "fortress/layer/framework/GFlags.h"
 #include "fortress/encoding/extern/tinysha1/TinySHA1.hpp"
 

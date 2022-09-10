@@ -5,7 +5,7 @@
 #include <regex>
 
 // Public
-#include "fortress/types/GStringView.h"
+#include "fortress/string/GStringView.h"
 #include "fortress/layer/framework/GFlags.h"
 
 namespace rev {
@@ -80,8 +80,8 @@ public:
     std::vector<GString> readLines() const;
 
     /// @brief Write to the file
-    /// @todo Implement
-    /// void write();
+    /// @todo Untested.
+    void writeLines(std::vector<GString>& lines);
 
 private:
 

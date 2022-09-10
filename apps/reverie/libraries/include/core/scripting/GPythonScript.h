@@ -9,7 +9,7 @@
 // Internal
 #include "fortress/types/GLoadable.h"
 #include "fortress/containers/GSortingLayer.h"
-#include "core/resource/GResource.h"
+#include "core/resource/GResourceHandle.h"
 
 namespace py = pybind11;
 namespace rev {

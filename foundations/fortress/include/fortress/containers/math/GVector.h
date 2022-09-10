@@ -15,7 +15,7 @@
 #include "fortress/json/GJson.h"
 #include "fortress/math/GInterpolation.h"
 #include "fortress/math/GMath.h"
-#include "fortress/types/GSizedTypes.h"
+#include "fortress/numeric/GSizedTypes.h"
 #include "fortress/templates/GTemplates.h"
 
 namespace rev {
@@ -45,6 +45,8 @@ class Vector {
 public:
     /// @name Static
     /// @{
+
+    typedef D ValueType;
 
     static Vector<D, N> EmptyVector() {
         return Vector<D, N>(false);

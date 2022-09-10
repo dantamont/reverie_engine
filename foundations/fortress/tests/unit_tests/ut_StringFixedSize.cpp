@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "fortress/types/GStringFixedSize.h"
+#include "fortress/string/GStringFixedSize.h"
 
 namespace rev {
 

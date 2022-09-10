@@ -3,9 +3,9 @@
 #include <atomic>
 
 #include "fortress/containers/GContainerExtensions.h"
-#include "fortress/types/GSizedTypes.h"
+#include "fortress/numeric/GSizedTypes.h"
 #include "fortress/json/GJson.h"
-#include "fortress/types/GString.h"
+#include "fortress/string/GString.h"
 
 namespace rev {
 

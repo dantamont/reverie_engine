@@ -13,7 +13,7 @@
 #include "core/physics/GPhysicsMaterial.h"
 #include "core/physics/GPhysicsManager.h"
 #include "core/physics/GPhysicsScene.h"
-#include "fortress/containers/math/GTransform.h"
+#include "heave/kinematics/GTransform.h"
 #include "core/converters/GPhysxConverter.h"
 #include "core/components/GTransformComponent.h"
 #include "fortress/system/memory/GPointerTypes.h"

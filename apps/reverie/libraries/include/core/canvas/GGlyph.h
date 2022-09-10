@@ -5,7 +5,7 @@
 // Internal
 #include "fortress/types/GLoadable.h"
 #include "core/mixins/GRenderable.h"
-#include "fortress/containers/math/GTransform.h"
+#include "heave/kinematics/GTransform.h"
 #include "core/rendering/buffers/GUniformBufferObject.h"
 
 namespace rev {

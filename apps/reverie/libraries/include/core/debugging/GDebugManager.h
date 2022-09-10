@@ -458,8 +458,8 @@ protected:
     /// @brief PhysX-based raycast for the current frame
     std::unique_ptr<PhysicsRaycast> m_physicsRaycast;
 
-    /// @brief Line shader program
-    ShaderProgram* m_lineShaderProgram;
+    ShaderProgram* m_frustumLineShaderProgram;
+    ShaderProgram* m_lineShaderProgram; ///< Line shader program
     ShaderProgram* m_simpleShaderProgram;
     ShaderProgram* m_axisShaderProgram;
     ShaderProgram* m_pointShaderProgram;

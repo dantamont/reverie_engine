@@ -322,7 +322,7 @@ void Renderable::initializeEmptyMesh(ResourceCache& cache, ResourceBehaviorFlags
 
     // Create handle for material
     static size_t count = 0;
-    m_meshHandle = ResourceHandle::create(cache.engine(),
+    m_meshHandle = ResourceHandle::Create(cache.engine(),
         EResourceType::eMesh,
         flags);
     m_meshHandle->setName("renderable_" + GString::FromNumber(count));

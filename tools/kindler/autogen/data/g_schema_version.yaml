@@ -5,7 +5,7 @@
 #  - Adding any new messages to the end of the file
 ---
 schema_version:
-  major: 178
+  major: 179
   minor: 0
   patch: 0
 ...

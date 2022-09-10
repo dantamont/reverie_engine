@@ -1,132 +1,22 @@
 #pragma once
 
 // Internal
-#include "GBuffers.h"
-#include "core/resource/GResource.h"
+#include "core/rendering/buffers/GVertexArrayObject.h"
+#include "core/rendering/buffers/GGlBuffer.h"
+#include "core/resource/GResourceHandle.h"
 #include "fortress/containers/math/GMatrix.h"
-#include "core/animation/GAnimation.h"
 #include "fortress/containers/GContainerExtensions.h"
-#include "core/geometry/GCollisions.h"
+#include "core/animation/GAnimation.h"
+#include "heave/collisions/GCollisions.h"
+#include "core/rendering/geometry/GVertexArrayData.h"
 
 namespace rev {
+
 class Model;
 class Skeleton;
 class CoreEngine;
+class RenderContext;
 enum class PrimitiveMode;
-
-/// @class VertexArrayData
-/// @brief Class representing a set of vertex data, i.e., a VAO and it's managed VBOs
-class VertexArrayData {
-public:
-    /// @name Constructors/Destructor
-    /// @{
-    VertexArrayData();
-    virtual ~VertexArrayData();
-
-    /// @}
-
-    /// @name Properties 
-    /// @{
-
-    /// @brief Return vertex array object for this VAO group
-    gl::VertexArrayObject& vao() { return m_vao; }
-
-    /// @}
-
-    /// @name Methods 
-    /// @{
-
-    /// @brief Perform draw of geometry
-    void drawGeometry(PrimitiveMode glMode, int instanceCount);
-
-    /// @brief Initialize the data for this mesh in the GL VAO
-    void loadIntoVAO();
-
-    /// @brief Whether or not the VAO has buffers
-    bool hasBuffers() const;
-
-    /// @brief Destroy all buffers in the VAO
-    void destroyBuffers();
-
-    /// @brief Check that the mesh is valid
-    void checkValidity();
-
-    /// @brief Release vertex and index buffers
-    void release();
-
-    /// @brief Returns the size of the data stored in the mesh vertices
-    quint64 sizeInBytes() const;
-    unsigned int sizeInMegaBytes() const;
-
-    // Moved to model
-    /// @brief Whether or not the mesh data has an associated material
-    //bool hasMaterial() const { return !m_materialName.isEmpty(); }
-
-    /// @brief Return whether or not this is empty
-    bool isMissingData() const { return m_attributes.empty() || m_indices.empty(); }
-
-    gl::BufferObject& getBuffer(BufferAttributeType type);
-
-    /// @}
-
-    /// @name Members 
-    /// @{
-
-    /// @brief OpenGL VAO, aggregates buffers, but does not store data within itself
-    gl::VertexArrayObject m_vao;
-
-    /// @brief The buffers storing data for OpenGL
-    std::vector<gl::BufferObject> m_attributeBuffers; // index is of type BufferAttributeType
-    
-    /// @brief The buffer storing index data
-    gl::BufferObject m_indexBuffer;
-
-
-    // See: https://www.reddit.com/r/opengl/comments/57i9cl/examples_of_when_to_use_gl_dynamic_draw/
-    // GL_STATIC_DRAW basically means "I will load this vertex data once and then never change it." This would include any static props or level geometry, but also animated models / particles if you are doing all the animation with vertex shaders on the GPU(modern engines with skeletal animation do this, for example).
-    // GL_STREAM_DRAW basically means "I am planning to change this vertex data basically every frame." If you are manipulating the vertices a lot on the CPU, and it's not feasible to use shaders instead, you probably want to use this one. Sprites or particles with complex behavior are often best served as STREAM vertices. While STATIC+shaders is preferable for animated geometry, modern hardware can spew incredible amounts of vertex data from the CPU to the GPU every frame without breaking a sweat, so you will generally not notice the performance impact.
-    // GL_DYNAMIC_DRAW basically means "I may need to occasionally update this vertex data, but not every frame." This is the least common one.It's not really suited for most forms of animation since those usually require very frequent updates. Animations where the vertex shader interpolates between occasional keyframe updates are one possible case. A game with Minecraft-style dynamic terrain might try using DYNAMIC, since the terrain changes occur less frequently than every frame. DYNAMIC also tends to be useful in more obscure scenarios, such as if you're batching different chunks of model data in the same vertex buffer, and you occasionally need to move them around.
-    // Keep in mind these 3 flags don't imply any hard and fast rules within OpenGL or the hardware. They are just hints so the driver can set things up in a way that it thinks will be the most efficient.
-    gl::UsagePattern m_usagePattern = gl::UsagePattern::kStaticDraw;
-
-    /// @brief Vertex attribute data
-    // TODO: This is stored in buffers, so maybe don't duplicate here
-    VertexAttributes m_attributes;
-
-    /// @brief Vertex indices
-    std::vector<GLuint> m_indices;
-
-    /// @}
-
-private:
-    /// @name Friends
-
-    friend class CubeMap;
-    friend class ObjReader;
-    friend class ModelReader;
-    friend class Animation;
-    friend class NodeAnimation;
-    friend class Mesh;
-    friend class SkeletonJoint;
-
-    /// @}
-
-    /// @name Private methods 
-    /// @{
-
-    /// @brief Generate VAO and its buffers
-    /// @detailed Loads attribute data into the currently bound VAO
-    /// @note QT's abstraction for VAO fails, for a raw GL example, see:
-    /// https://www.khronos.org/opengl/wiki/Tutorial2:_VAOs,_VBOs,_Vertex_and_Fragment_Shaders_(C_/_SDL)
-    virtual void loadAttributes();
-
-    /// @brief Generate VBOS (buffers), and load data
-    void loadBufferData();
-
-
-    /// @}
-};
-
 
 /// @class Mesh
 /// @brief Encapsulates a VAO as a resource
@@ -143,7 +33,6 @@ public:
     /// @{
 
     /// @brief Return map of mesh data
-    rev::VertexArrayData& vertexData() { return m_vertexData; }
     const rev::VertexArrayData& vertexData() const { return m_vertexData; }
 
     /// @brief Return bounding box for the mesh
@@ -165,10 +54,10 @@ public:
 
     /// @brief What action to perform post-construction of the resource
     /// @details For performing any actions that need to be done on the main thread
-    virtual void postConstruction() override;
+    virtual void postConstruction(const ResourcePostConstructionData& postConstructData) override;
 
     /// @brief Generate object bounds for the mesh
-    void generateBounds();
+    void generateBounds(const MeshVertexAttributes& data);
 
     /// @}
 
@@ -203,11 +92,8 @@ private:
     /// @name Private members 
     /// @{
 
-    /// @brief Map of mesh vertex data
-    rev::VertexArrayData m_vertexData;
-
-    /// @brief The bounds of the mesh
-    AABB m_objectBounds;
+    rev::VertexArrayData m_vertexData; ///< Vertex data for the mesh
+    AABB m_objectBounds; ///< The bounds of the mesh
 
     /// @}
 };

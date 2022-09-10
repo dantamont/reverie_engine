@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
-#include "core/geometry/GCollisions.h"
-#include "core/rendering/view/GFrustum.h"
+#include "heave/collisions/GCollisions.h"
+#include "heave/collisions/GFrustum.h"
 #include "fortress/containers/math/GMatrix.h"
 
 namespace rev {

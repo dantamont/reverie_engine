@@ -1,28 +1,14 @@
-/////////////////////////////////////////////////////////////////////////////////////////////
-// Includes
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-#ifndef GB_LABEL_H
-#define GB_LABEL_H
-
-// QT
+#pragma once
 
 // Internal
 #include "GGlyph.h"
 #include "fortress/containers/GColor.h"
 #include "fortress/layer/framework/GSingleton.h"
+#include "core/rendering/geometry/GVertexData.h"
 
 namespace rev {
 
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-// Forward Declarations
-/////////////////////////////////////////////////////////////////////////////////////////////
 class FontFace;
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-// Class definitions
-/////////////////////////////////////////////////////////////////////////////////////////////
 
 /// @class GlFontFace
 /// @brief Encapsulates a font-face to render a texture with OpenGL
@@ -66,7 +52,6 @@ public:
 
     ~Label();
 
-    //--------------------------------------------------------------------------------------------
     /// @name Properties
     /// @{
 
@@ -86,7 +71,6 @@ public:
 
     /// @}
 
-	//--------------------------------------------------------------------------------------------
 	/// @name Public Methods
 	/// @{
 
@@ -108,7 +92,6 @@ public:
 
 	/// @}
 
-     //-----------------------------------------------------------------------------------------------------------------
     /// @name Friend Functions
     /// @{
 
@@ -134,7 +117,6 @@ protected:
         float m_textHeight;
     };
 
-    //--------------------------------------------------------------------------------------------
     /// @name Protected Methods
     /// @{
 
@@ -175,30 +157,18 @@ protected:
 
     /// @}
 
-    //--------------------------------------------------------------------------------------------
     /// @name Protected Members
     /// @{
     
-    /// @brief The text for this label
-    QString m_text;
-
-    /// @brief The font size for this label (in points)
-    float m_fontSize;
-
-    /// @brief The name of the font face used by this label
-    QString m_fontFace;
-
-    /// @brief Max length of the line in NDC space
-    float m_lineMaxWidth;
+    QString m_text; ///< The text for this label
+    float m_fontSize; ///< The font size for this label (in points)
+    QString m_fontFace; ///< The name of the font face used by this label
+    float m_lineMaxWidth; ///< Max length of the line in NDC space
     float m_lineSpacing;
-
     Color m_color;
 
     /// @}
 };
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////
 } // End namespaces
-
-#endif

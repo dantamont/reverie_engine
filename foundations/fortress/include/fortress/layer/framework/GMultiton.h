@@ -5,7 +5,7 @@
 #include <memory>
 #include "fortress/containers/GStrictGrowContainer.h"
 #include "fortress/system/memory/GPointerTypes.h"
-#include "fortress/types/GSizedTypes.h"
+#include "fortress/numeric/GSizedTypes.h"
 
 namespace rev {
 

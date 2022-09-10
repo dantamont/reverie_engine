@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
 #include "fortress/json/GJson.h"
-#include "fortress/types/GSizedTypes.h"
+#include "fortress/numeric/GSizedTypes.h"
 
 namespace rev {
 

@@ -1,6 +1,6 @@
 #include "geppetto/qt/widgets/tree/GComponentTreeWidget.h"
 
-#include "fortress/containers/math/GTransform.h"
+#include "heave/kinematics/GTransform.h"
 
 #include "enums/GWidgetActionTypeEnum.h"
 #include "enums/GWidgetTypeEnum.h"

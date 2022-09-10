@@ -14,7 +14,7 @@
 #include "core/rendering/shaders/GUniform.h"
 #include "core/components/GComponent.h"
 #include "fortress/containers/GContainerExtensions.h"
-#include "core/geometry/GCollisions.h"
+#include "heave/collisions/GCollisions.h"
 
 #include "enums/GSimulationPlayModeEnum.h"
 
@@ -27,6 +27,7 @@ class CameraComponent;
 class CanvasComponent;
 class CubeMapComponent;
 class ShaderComponent;
+class LightComponent;
 class Light;
 class CoreEngine;
 class Renderer;
@@ -130,6 +131,10 @@ public:
     void addCubeMap(CubeMapComponent* map);
     void removeCubeMap(CubeMapComponent* map);
     CubeMapComponent* getCubeMap(const Uuid& uuid);
+
+    /// @brief Adds a light component to the scene's cache
+    void addLight(LightComponent* light);
+    void removeLight(LightComponent* light);
 
     /// @brief Physics scene
     std::shared_ptr<PhysicsScene> physics();
@@ -244,7 +249,8 @@ protected:
     std::vector<ModelComponent*> m_models; ///< Vector of all model components in the scene
     std::vector<CanvasComponent*> m_canvases; ///< Vector of all canvas components, was storing scene objects, which was causing ownership issues
     std::vector<CameraComponent*> m_cameras; ///< Vector of all cameras in the scene
-    std::vector<CubeMapComponent*> m_cubeMaps; ///< Map of all cubemap in the scene
+    std::vector<CubeMapComponent*> m_cubeMaps; ///< Vector of all cubemap in the scene
+    std::vector<LightComponent*> m_lights; ///< Map of all cubemap in the scene
     CubeMapComponent* m_defaultCubeMap = nullptr;
 
     Int32_t m_resourceAddedId{ -1 }; ///< Connection index to resource added signal

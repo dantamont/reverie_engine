@@ -4,7 +4,7 @@
 #include <thread>
 #include <mutex>
 #include "fortress/system/GSystemPlatform.h"
-#include "fortress/types/GSizedTypes.h"
+#include "fortress/numeric/GSizedTypes.h"
 
 #ifdef G_SYSTEM_PLATFORM_WINDOWS
 #ifndef WIN32_LEAN_AND_MEAN

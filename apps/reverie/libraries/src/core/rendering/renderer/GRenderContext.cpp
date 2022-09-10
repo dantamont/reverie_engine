@@ -19,9 +19,9 @@ RenderContext::RenderContext(QOpenGLContext* context, QSurface* surface):
         makeCurrent();
     }
 
-#ifdef DEBUG_MODE
-    //toggleDebugOutput();
-#endif
+//#ifdef DEBUG_MODE
+//    toggleDebugOutput();
+//#endif
 
     // Create blank (white) texture
     m_blankTexture = new Texture(1, 1,
@@ -29,7 +29,7 @@ RenderContext::RenderContext(QOpenGLContext* context, QSurface* surface):
         TextureUsageType::kNone,
         TextureFilter::kNearest,
         TextureFilter::kNearest);
-    m_blankTexture->postConstruction();
+    m_blankTexture->postConstruction(ResourcePostConstructionData());
     m_blankTexture->setData(Vector3::Ones().data(), PixelFormat::kRGB, PixelType::kFloat32);
 
     // There are 14 possible GL buffer types, so resize buffer vector
@@ -97,27 +97,6 @@ void RenderContext::resetLights()
     m_lightSettings = nullptr;
     m_lightSettings = std::make_unique<LightingSettings>(*this, s_maxLights);
 }
-
-size_t RenderContext::bufferTypeIndex(const gl::BufferType & type)
-{
-    auto iter = std::find(s_bufferTypes.begin(), 
-        s_bufferTypes.end(),
-        type);
-
-#ifdef DEBUG_MODE
-    if (iter == s_bufferTypes.end()) {
-        Logger::Throw("Error, buffer type not found");
-    }
-#endif
-
-    return iter - s_bufferTypes.begin();
-}
-
-std::vector<gl::BufferType> RenderContext::s_bufferTypes = {
-    gl::BufferType::kUniformBuffer,
-    gl::BufferType::kShaderStorage
-};
-
 
 
 // End namespaces

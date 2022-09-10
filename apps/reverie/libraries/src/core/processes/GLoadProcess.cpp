@@ -6,7 +6,7 @@
 
 #include "core/GCoreEngine.h"
 #include "core/events/GEventManager.h"
-#include "core/resource/GResource.h"
+#include "core/resource/GResourceHandle.h"
 #include "core/resource/GResourceCache.h"
 
 #include "core/sound/GAudioResource.h"
@@ -186,8 +186,8 @@ std::unique_ptr<Resource> LoadProcess::loadModel()
     }
     else {
         // For models direct-from-file, use ModelReader
-        auto reader = std::make_shared<ModelReader>(&ResourceCache::Instance(), *m_resourceHandle);
-        reader->loadModel();
+        ModelReader reader(&ResourceCache::Instance(), *m_resourceHandle);
+        reader.loadModel();
         model = std::move(m_resourceHandle->m_resource);
     }
 

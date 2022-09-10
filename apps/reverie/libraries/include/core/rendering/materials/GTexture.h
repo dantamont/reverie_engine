@@ -4,10 +4,10 @@
 #include <QOpenGLTexture>
 
 // Internal
-#include "core/resource/GResource.h"
+#include "core/resource/GResourceHandle.h"
 #include "core/rendering/GGLFunctions.h"
 #include "core/rendering/shaders/GUniform.h"
-#include "fortress/types/GString.h"
+#include "fortress/string/GString.h"
 #include "fortress/layer/framework/GFlags.h"
 #include "fortress/containers/GContainerExtensions.h"
 
@@ -564,7 +564,7 @@ public:
         TextureFilter minFilter = TextureFilter::kLinearMipMapLinear,
         TextureFilter magFilter = TextureFilter::kLinearMipMapLinear,
         TextureWrapMode wrapMode = TextureWrapMode::kRepeat,
-        TextureFormat format = TextureFormat::kRGBA8,
+        TextureFormat internalFormat = TextureFormat::kRGBA8,
         uint32_t depth = 1);
 
     virtual ~Texture();
@@ -674,7 +674,7 @@ public:
 
     /// @brief What action to perform post-construction of the resource
     /// @details For performing any actions that need to be done on the main thread
-    virtual void postConstruction() override;
+    virtual void postConstruction(const ResourcePostConstructionData& postConstructData) override;
 
     /// Get the image stored in GL
     //void getGLImage(Image& outImage);

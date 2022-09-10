@@ -6,7 +6,7 @@
 #include <shared_mutex>
 
 #include "fortress/containers/extern/tsl/robin_map.h"
-#include "fortress/types/GSizedTypes.h"
+#include "fortress/numeric/GSizedTypes.h"
 
 namespace rev {
 

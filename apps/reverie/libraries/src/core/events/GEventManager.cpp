@@ -1,7 +1,7 @@
 #include "core/events/GEventManager.h"
 
 #include "core/GCoreEngine.h"
-#include "core/resource/GResource.h"
+#include "core/resource/GResourceHandle.h"
 #include "core/resource/GResourceCache.h"
 #include "core/events/GEvent.h"
 #include "core/events/GEventListener.h"

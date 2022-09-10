@@ -3,8 +3,8 @@
 // Standard
 
 // QT
-#include "fortress/types/GSizedTypes.h"
-#include "fortress/types/GString.h"
+#include "fortress/numeric/GSizedTypes.h"
+#include "fortress/string/GString.h"
 
 // Internal
 

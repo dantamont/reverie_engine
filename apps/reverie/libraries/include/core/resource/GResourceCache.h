@@ -1,11 +1,6 @@
-#ifndef GB_RESOURCE_CACHE_H
-#define GB_RESOURCE_CACHE_H
+#pragma once
 
-/////////////////////////////////////////////////////////////////////////////////////////////
-// Includes
-/////////////////////////////////////////////////////////////////////////////////////////////
 // Standard
-//#include <list>
 #include <deque>
 #include <memory>
 #include <map>
@@ -21,7 +16,7 @@
 // Internal
 #include "core/GManager.h"
 #include "core/rendering/geometry/GPolygon.h"
-#include "GResource.h"
+#include "GResourceHandle.h"
 
 #include "fortress/layer/framework/GSignalSlot.h"
 #include "fortress/containers/concurrent/GThreadedMap.h"
@@ -29,9 +24,6 @@
 
 namespace rev {
 
-//////////////////////////////////////////////////////////////////////////////////
-// Forward Declarations
-//////////////////////////////////////////////////////////////////////////////////
 class Image;
 class PythonClassScript;
 class Texture;
@@ -46,13 +38,9 @@ class Animation;
 class CoreEngine;
 class ProcessManager;
 
-/////////////////////////////////////////////////////////////////////////////////////////////
-// Type Definitions
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-// Class definitions
-/////////////////////////////////////////////////////////////////////////////////////////////
+namespace gl {
+    class VertexArrayObject;
+};
 
 /// @class ResourceCache
 /// @brief Class representing a resource cache
@@ -63,29 +51,19 @@ public:
     typedef std::deque<std::shared_ptr<ResourceHandle>> ResourceList;
     typedef ThreadedMap<Uuid, std::shared_ptr<ResourceHandle>> ResourceMap;
 
-    //--------------------------------------------------------------------------------------------
-    /// @name Static/Enums
-    /// @{
-
-    //enum class CacheFlag {
-    //    kIsLoading = 1 << 0 // Flag that resource cache is loading resources
-    //};
-
-    /// @}
-
-	//--------------------------------------------------------------------------------------------
 	/// @name Constructors/Destructor
 	/// @{
+
     ~ResourceCache();
+
 	/// @}
 
-    //--------------------------------------------------------------------------------------------
-    /// @name Properties
+    /// @name Public Methods
     /// @{
 
     const ResourceList& topLevelResources() const { return m_topLevelResources; }
 
-    QMutex& resourceMapMutex() { return s_resourceMutex; }
+    std::mutex& resourceMapMutex() { return m_resourceMutex; }
 
     /// @brief Process manager for pushing load requests
     ProcessManager* processManager() { return m_processManager; }
@@ -105,10 +83,8 @@ public:
     size_t getMaxCost() const { return m_maxCost; }
     void setMaxCost(size_t cost) { m_maxCost = cost; }
 
-    /// @}
-	//--------------------------------------------------------------------------------------------
-	/// @name Public Methods
-	/// @{
+    /// @brief Add data to post construct a resource
+    void addPostConstructionData(const Uuid& handleId, const ResourcePostConstructionData& data);
 
     /// @brief Update resource cache with post-construction calls
     void postConstructResources();
@@ -159,7 +135,13 @@ public:
 
 	/// @}
 
-    //-----------------------------------------------------------------------------------------------------------------
+    /// @name Operators
+    /// @{
+
+    ResourceCache& operator=(const ResourceCache& other) = delete;
+
+    /// @}
+
     /// @name Friend Functions
     /// @{
 
@@ -197,19 +179,19 @@ public slots:
     //void reloadResource(std::shared_ptr<ResourceHandle> handle);
 
 protected:
-    //--------------------------------------------------------------------------------------------
     /// @name Friends
     /// @{
 
     friend class ResourceHandle;
 
     /// @}
-    //--------------------------------------------------------------------------------------------
+
     /// @name Protected Methods
     /// @{
 
     /// @brief Protected destructor since this is a singleton
     ResourceCache(CoreEngine* core, ProcessManager* processManager, const size_t sizeInMb);
+    ResourceCache(const ResourceCache& cache) = delete;
 
     /// @brief Clear all resources that aren't core resources
     //void clearResources(ResourceMap& map);
@@ -230,47 +212,24 @@ protected:
 
     /// @}
 
-    //--------------------------------------------------------------------------------------------
     /// @name Protected Members
     /// @{
 
     std::vector<Uuid> m_resourcesForPostConstruction; ///< Resources to post-construct next frame
     std::mutex m_postConstructMutex;
+    std::mutex m_resourceMutex; ///< Mutex for managing resource map and list
+    ResourceList m_topLevelResources; ///< Top-level resources, sorted by most recently used
+    ResourceMap m_resources; ///< Map of all resources for easy access, indexed by UUID
+    std::shared_ptr<PolygonCache> m_polygonCache; ///< Cache dedicated to storing generated polygons
+    tsl::robin_map<Uuid, ResourcePostConstructionData> m_resourcePostConstructionData; ///< Data to post-construct resources on the main thread
+    size_t m_maxCost; ///< Max allowed cost in the cache
+    size_t m_currentCost; ///< Current cost in the cache
+    std::atomic<uint32_t> m_loadCount = 0; ///< count of currently loading objects
+    ProcessManager* m_processManager; ///< Process manager for pushing load requests
 
-    /// @brief Mutex for managing resource map and list
-    static QMutex s_resourceMutex;
-
-    /// @brief Top-level resources, sorted by most recently used
-    ResourceList m_topLevelResources;
-
-    /// @brief Map of all resources for easy access
-    /// @details Indexed by UUID
-    /// @note Contains all resources
-    ResourceMap m_resources;
-
-    /// @brief Cache dedicated to storing generated polygons
-    std::shared_ptr<PolygonCache> m_polygonCache;
-
-    /// @brief Max allowed cost in the cache
-    size_t m_maxCost;
-
-    /// @brief Current cost in the cache
-    size_t m_currentCost;
-
-    ///// @brief whether or not the cache is currently loading an object
-    //QFlags<CacheFlag> m_cacheFlags;
-
-    /// @brief count of currently loading objects
-    std::atomic<uint32_t> m_loadCount = 0;
-
-    /// @brief Process manager for pushing load requests
-    ProcessManager* m_processManager;
-
+    //gl::VertexArrayObject* m_globalMeshVao; ///< VAO storing the indices and vertex data for ALL meshes in the scene
+    //MeshVertexAttributes m_meshVertexData; ///< Vertex data for all loaded meshes
     /// @}
-
 };
 
-/////////////////////////////////////////////////////////////////////////////////////////////
 } // End namespaces
-
-#endif

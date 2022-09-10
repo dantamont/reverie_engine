@@ -116,6 +116,9 @@ target_include_directories(
 # Includes python and eigen
 target_link_libraries(${TARGET_NAME} PUBLIC "fortress")
 
+# Heave (physics)
+target_link_libraries(${TARGET_NAME} PUBLIC "heave")
+
 # Logging
 target_link_libraries(${TARGET_NAME} PUBLIC "scribe")
 

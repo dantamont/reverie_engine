@@ -1,7 +1,7 @@
 #include "core/converters/GPhysXConverter.h"
 #include "fortress/containers/math/GVector.h"
 #include "fortress/containers/math/GQuaternion.h"
-#include "fortress/containers/math/GTransform.h"
+#include "heave/kinematics/GTransform.h"
 
 using namespace physx;
 

@@ -17,7 +17,7 @@
 // Internal
 #include "core/rendering/geometry/GVertexData.h"
 #include "core/rendering/materials/GMaterial.h"
-#include "core/geometry/GCollisions.h"
+#include "heave/collisions/GCollisions.h"
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Forward Declarations
@@ -164,7 +164,7 @@ protected:
     Assimp::Importer m_importer;
 
     /// @brief Assimp scene
-    const aiScene* m_scene;
+    const aiScene* m_scene{nullptr};
 
     /// @brief Vector of node names
     std::vector<GString> m_nodeNames;

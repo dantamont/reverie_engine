@@ -4,7 +4,6 @@
 #include <gtest/gtest.h>
 
 #include "fortress/encoding/binary/GSerializationProtocol.h"
-#include "fortress/containers/math/GTransform.h"
 
 namespace rev {
 
@@ -308,41 +307,41 @@ TEST(SerializationProtocolTest, ProtocolReadWriteToBuffer) {
     delete[] doubleReadArray;
 }
 
-
-TEST(SerializationProtocolTest, ProtocolForTransform) {
-    static_assert(
-        std::is_same_v<stripArray<TransformMatrices<Matrix4x4>>, TransformMatrices<Matrix4x4>>,
-        "Error, unexpected type");
-
-    static_assert(
-        std::is_same_v<innermost<TransformMatrices<Matrix4x4>>, TransformMatrices<Matrix4x4>>,
-        "Error, unexpected type");
-
-    static_assert(
-        std::is_same_v<innermost_value_type<TransformMatrices<Matrix4x4>>, TransformMatrices<Matrix4x4>>,
-        "Error, unexpected type");
-
-    //// Setup
-    TransformMatrices<Matrix4x4> testMatrices;
-    testMatrices.m_localMatrix.setTranslation(Vector3(1, 2, 3));
-    testMatrices.m_worldMatrix.setTranslation(Vector3(1, 4, 8));
-    SerializationProtocol<typename TransformMatrices<Matrix4x4>> protocolTest(testMatrices);
-
-    //// Test protocol read write
-    Uint8_t* buffer = new Uint8_t[128];
-
-    // Write to buffer
-    protocolTest.write(buffer);
-
-    // Read from buffer
-    TransformMatrices<Matrix4x4> outTestMatrices;
-    SerializationProtocol<typename TransformMatrices<Matrix4x4>> outProtocolTest(outTestMatrices);
-    outProtocolTest.read(buffer);
-
-    // Run tests
-    EXPECT_EQ(testMatrices.m_localMatrix, outTestMatrices.m_localMatrix);
-    EXPECT_EQ(testMatrices.m_worldMatrix, outTestMatrices.m_worldMatrix);
-}
+/// @brief Move to Heave library
+//TEST(SerializationProtocolTest, ProtocolForTransform) {
+//    static_assert(
+//        std::is_same_v<stripArray<TransformMatrices<Matrix4x4>>, TransformMatrices<Matrix4x4>>,
+//        "Error, unexpected type");
+//
+//    static_assert(
+//        std::is_same_v<innermost<TransformMatrices<Matrix4x4>>, TransformMatrices<Matrix4x4>>,
+//        "Error, unexpected type");
+//
+//    static_assert(
+//        std::is_same_v<innermost_value_type<TransformMatrices<Matrix4x4>>, TransformMatrices<Matrix4x4>>,
+//        "Error, unexpected type");
+//
+//    //// Setup
+//    TransformMatrices<Matrix4x4> testMatrices;
+//    testMatrices.m_localMatrix.setTranslation(Vector3(1, 2, 3));
+//    testMatrices.m_worldMatrix.setTranslation(Vector3(1, 4, 8));
+//    SerializationProtocol<typename TransformMatrices<Matrix4x4>> protocolTest(testMatrices);
+//
+//    //// Test protocol read write
+//    Uint8_t* buffer = new Uint8_t[128];
+//
+//    // Write to buffer
+//    protocolTest.write(buffer);
+//
+//    // Read from buffer
+//    TransformMatrices<Matrix4x4> outTestMatrices;
+//    SerializationProtocol<typename TransformMatrices<Matrix4x4>> outProtocolTest(outTestMatrices);
+//    outProtocolTest.read(buffer);
+//
+//    // Run tests
+//    EXPECT_EQ(testMatrices.m_localMatrix, outTestMatrices.m_localMatrix);
+//    EXPECT_EQ(testMatrices.m_worldMatrix, outTestMatrices.m_worldMatrix);
+//}
 
 
 // End namespaces

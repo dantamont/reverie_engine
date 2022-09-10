@@ -8,9 +8,9 @@
 #include "fortress/GGlobal.h"
 #include "fortress/encoding/binary/GEndianConverter.h"
 #include "fortress/system/GSystemPlatform.h"
-#include "fortress/types/GString.h"
+#include "fortress/string/GString.h"
 #include "fortress/layer/framework/GFlags.h"
-#include "fortress/types/GSizedTypes.h"
+#include "fortress/numeric/GSizedTypes.h"
 
 namespace rev {
 
@@ -90,12 +90,15 @@ public:
     }
 
     template<typename T>
-    inline bool write(const T* data, const Uint64_t& count) const {
+    inline bool write(const T* data, const Uint64_t& count, bool prependCount = true) const {
         // Write count to file
-        size_t result = lendian_write(&count, 1, m_fileStream);
-        if (result != 1) {
-            throw("Error, failed to write count to stream");
-            return false;
+        size_t result;
+        if (prependCount) {
+            result = lendian_write(&count, 1, m_fileStream);
+            if (result != 1) {
+                throw("Error, failed to write count to stream");
+                return false;
+            }
         }
 
         // Write actual data contents to file

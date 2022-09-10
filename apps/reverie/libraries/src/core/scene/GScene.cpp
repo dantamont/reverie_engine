@@ -127,19 +127,12 @@ void Scene::retrieveDrawCommands(OpenGlRenderer & renderer)
         m_engine->debugManager()->camera()->retrieveDrawCommands(*this, renderer, mode);
     }
 
-    // Create shadow map draw commands
-    /// @todo These commands shouldn't need to be regenerated every frame. 
-    //std::vector<ShadowMap*>& shadowMaps = renderer.renderContext().lightingSettings().shadowMaps();
-    //size_t numShadowMaps = shadowMaps.size();
-    //for (size_t i = 0; i < numShadowMaps; i++) {
-    //    shadowMaps[i]->retrieveDrawCommands(*this, renderer);
-    //}
-    for (const auto& so : m_topLevelSceneObjects) {
-        so->retrieveShadowDrawCommands(renderer);
+    // Retrieve shadow map draw commands
+    for (ShadowMap* shadowMap: renderer.renderContext().lightingSettings().shadowMaps()) {
+        for (const auto& sceneObject : m_topLevelSceneObjects) {
+            sceneObject->retrieveShadowDrawCommands(renderer, shadowMap);
+        }
     }
-
-    // Update uniform status
-    //setUniformStaleness(false);
 }
 
 void Scene::addCamera(CameraComponent * camera)
@@ -205,6 +198,21 @@ void Scene::removeModel(ModelComponent* model)
         });
 
     m_models.erase(it);
+}
+
+void Scene::addLight(LightComponent* light)
+{
+    Vec::EmplaceBack(m_lights, light);
+}
+
+void Scene::removeLight(LightComponent* light)
+{
+    auto it = std::find_if(m_lights.begin(), m_lights.end(),
+        [&](LightComponent* l) {
+            return l->getUuid() == light->getUuid();
+        });
+
+    m_lights.erase(it);
 }
 
 CubeMapComponent * Scene::getCubeMap(const Uuid & uuid)
@@ -410,6 +418,7 @@ void Scene::clear()
     m_canvases.clear();
     m_cubeMaps.clear();
     m_models.clear();
+    m_lights.clear();
     m_defaultCubeMap = nullptr;
 
     // Clear scene components

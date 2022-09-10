@@ -1,8 +1,5 @@
 #pragma once 
 
-// Internal
-#include <map>
-
 // QT
 #include <QColor>
 #include <QOpenGLExtraFunctions>
@@ -12,15 +9,18 @@
 #include "GVertexData.h"
 #include "core/rendering/GGLFunctions.h"
 #include "enums/GBasicPolygonTypeEnum.h"
+#include "fortress/containers/extern/tsl/robin_map.h"
 
 namespace rev {
 
+class Uuid;
 class CoreEngine;
 class Mesh;
 class ResourceHandle;
 
 /// @class PolygonCache
 /// @brief Class for handling the rendering of basic geometry
+/// @todo Use templates for everything, don't hard-code funciton names
 class PolygonCache {
 public:
     /// @name Static members
@@ -58,6 +58,9 @@ public:
     /// @{
 
     void initializeCoreResources();
+
+    /// @brief Obtain vertex data for the specified polygon name
+    MeshVertexAttributes& getVertexData(const GString& polygonName);
 
     /// @brief Retrieve or generate a polygon:
     Mesh* getPolygon(const QString& polygonName);
@@ -110,10 +113,17 @@ protected:
     /// @brief Add mesh to the resource cache
     std::shared_ptr<ResourceHandle> addToCache(const GString& name, std::unique_ptr<Mesh> mesh) const;
 
+    /// @brief Add post construction data to the resource cache
+    void addResourcePostConstructionData(const GString& resourceName, const Uuid& handleId) const;
+
     /// @}
 
     /// @name Static Protected Methods
     /// @{
+
+    /// @brief Generate a rectangle name
+    /// @note Only used for cube, so there aren't unique names for parameter
+    static GString getRectangleName();
 
     /// @brief Generate a grid name
     static QString getGridPlaneName(float spacing, int halfNumSpaces);
@@ -130,45 +140,45 @@ protected:
     static QString getSphereName(int numLatLines=20, int numLonLines=30);
 
     /// @brief Generate a rectangle
-    static std::unique_ptr<Mesh> createSquare();
-    static std::unique_ptr<Mesh> createRectangle(Real_t height = 1.0f,
+    std::unique_ptr<Mesh> createSquare();
+    std::unique_ptr<Mesh> createRectangle(Real_t height = 1.0f,
         Real_t width = 1.0f,
         Real_t z = -0.5f);
 
     /// @brief Generate a cube
     /// @details This cube has the same UV coordinates on every side
-    static std::unique_ptr<Mesh> createCube();
+    std::unique_ptr<Mesh> createCube();
 
     /// @brief Generate a verticle grid with the given spacing, at z=0
-    static std::unique_ptr<Mesh> createGridPlane(const GString& name);
-    static std::unique_ptr<Mesh> createGridPlane(float spacing, int numSpaces);
+    std::unique_ptr<Mesh> createGridPlane(const GString& name);
+    std::unique_ptr<Mesh> createGridPlane(float spacing, int numSpaces);
 
     /// @brief Generate a verticle grid cube with the given spacing, at z=0
-    static std::unique_ptr<Mesh> createGridCube(const GString& name);
-    static std::unique_ptr<Mesh> createGridCube(float spacing, int numSpaces);
+    std::unique_ptr<Mesh> createGridCube(const GString& name);
+    std::unique_ptr<Mesh> createGridCube(float spacing, int numSpaces);
 
 
     /// @brief Generate a sphere (of radius 1.0)
     /// @details This cube has the same UV coordinates on every side
-    static std::unique_ptr<Mesh> createUnitSphere(const GString& name);
-    static std::unique_ptr<Mesh> createUnitSphere(int numLatLines = 30,
+    std::unique_ptr<Mesh> createUnitSphere(const GString& name);
+    std::unique_ptr<Mesh> createUnitSphere(int numLatLines = 30,
         int numLonLines = 30);
 
     /// @brief Generate the vertices for a cylinder
-    static std::unique_ptr<Mesh> createCylinder(const GString& name);
-    static std::unique_ptr<Mesh> createCylinder(float baseRadius, float topRadius, float height,
+    std::unique_ptr<Mesh> createCylinder(const GString& name);
+    std::unique_ptr<Mesh> createCylinder(float baseRadius, float topRadius, float height,
         int sectorCount, int stackCount);
 
     /// @brief Generate the vertices for a capsule
-    static std::unique_ptr<Mesh> createCapsule(const GString& name);
-    static std::unique_ptr<Mesh> createCapsule(float radius, float halfHeight);
+    std::unique_ptr<Mesh> createCapsule(const GString& name);
+    std::unique_ptr<Mesh> createCapsule(float radius, float halfHeight);
 
     /// @brief Add a triangle using the given vertex data
-    static void addTriangle(std::vector<Vector3>& vertices, std::vector<GLuint>& indices,
+    static void AddTriangle(std::vector<Vector3>& vertices, std::vector<GLuint>& indices,
         const Vector3& v0, const Vector3& v1, const Vector3& v2, bool clockWise = false);
 
     /// @brief Add a quad using the given vertex data
-    static void addQuad(std::vector<Vector3>& vertices, std::vector<GLuint>& indices,
+    static void AddQuad(std::vector<Vector3>& vertices, std::vector<GLuint>& indices,
         const Vector3& v0, const Vector3& v1, const Vector3& v2, const Vector3& v3);
 
     /// @}
@@ -176,8 +186,8 @@ protected:
     /// @name Protected Members
     /// @{
 
-    /// @brief Pointer to the core engine
-    CoreEngine* m_engine;
+    CoreEngine* m_engine; ///< Pointer to the core engine
+    mutable tsl::robin_map<GString, std::unique_ptr<MeshVertexAttributes>> m_vertexData; ///< Data on CPU side for reference while creating meshes
 
     /// @}
 

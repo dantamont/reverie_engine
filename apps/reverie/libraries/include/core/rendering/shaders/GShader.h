@@ -10,9 +10,9 @@
 #include "core/rendering/GGLFunctions.h"
 #include "core/rendering/buffers/GGlBuffer.h"
 #include "GUniform.h"
-#include "fortress/types/GStringView.h"
+#include "fortress/string/GStringView.h"
 #include "fortress/containers/GContainerExtensions.h"
-#include "core/resource/GResource.h"
+#include "core/resource/GResourceHandle.h"
 
 namespace rev { 
 

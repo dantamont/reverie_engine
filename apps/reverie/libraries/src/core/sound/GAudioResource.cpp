@@ -6,7 +6,7 @@
 
 #include "core/sound/GSoundManager.h"
 #include "core/GCoreEngine.h"
-#include "core/resource/GResource.h"
+#include "core/resource/GResourceHandle.h"
 #include "core/resource/GResourceCache.h"
 
 #include <soloud.h>
@@ -155,10 +155,10 @@ void AudioResource::onRemoval(ResourceCache* cache)
     Q_UNUSED(cache);
 }
 
-void AudioResource::postConstruction()
+void AudioResource::postConstruction(const ResourcePostConstructionData& postConstructData)
 {
     // Call parent class construction routine
-    Resource::postConstruction();
+    Resource::postConstruction(postConstructData);
 
 }
 

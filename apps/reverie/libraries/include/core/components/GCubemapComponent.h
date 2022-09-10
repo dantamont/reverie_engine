@@ -5,7 +5,7 @@
 // Project
 #include "GComponent.h"
 #include "core/mixins/GRenderable.h"
-#include "core/resource/GResource.h"
+#include "core/resource/GResourceHandle.h"
 #include "fortress/containers/GColor.h"
 
 namespace rev {

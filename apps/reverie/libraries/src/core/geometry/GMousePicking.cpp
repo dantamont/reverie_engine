@@ -4,11 +4,22 @@
 #include <core/rendering/view/GCamera.h>
 #include <core/rendering/renderer/GOpenGlRenderer.h>
 #include <core/rendering/renderer/GRenderCommand.h>
+#include "fortress/numeric/GFloat16.h"
 
 namespace rev {
 
 MousePicker::MousePicker()
 {
+    static constexpr Uint32_t pixelDataCount = 4; // Number of entries per pixel
+    static constexpr Uint32_t pixelEntrySize = sizeof(Float16_t); //< Size of each pixel data entry
+    static constexpr Uint32_t s_numSamples = std::max(Uint32_t(1), s_sampleWidth * s_sampleWidth);
+    gl::OpenGLFunctions& gl = *gl::OpenGLFunctions::Functions();
+    gl.glGenBuffers(m_pboIds.size(), m_pboIds.data());
+    gl.glBindBuffer(GL_PIXEL_PACK_BUFFER, m_pboIds[0]);
+    gl.glBufferData(GL_PIXEL_PACK_BUFFER, s_numSamples * pixelDataCount * pixelEntrySize/*data size*/, 0, GL_STREAM_READ);
+    gl.glBindBuffer(GL_PIXEL_PACK_BUFFER, m_pboIds[1]);
+    gl.glBufferData(GL_PIXEL_PACK_BUFFER, s_numSamples * pixelDataCount * pixelEntrySize/*data size*/, 0, GL_STREAM_READ);
+    gl.glBindBuffer(GL_PIXEL_PACK_BUFFER, 0);
 }
 
 MousePicker::~MousePicker()
@@ -31,7 +42,7 @@ void rev::MousePicker::updateMouseOver(const Vector2 & widgetMousePos, const Cam
     //getPixelColor(m_mouseOverViewNormal, widgetMousePos, camera, renderer, 1, 1);
 
     // Third color attachment holds unique color IDs
-    getPixelColor(m_mouseOverColor, widgetMousePos, camera, renderer, 2, 1);
+    getPixelColor(m_mouseOverColor, widgetMousePos, camera, renderer, 2);
 
     if (m_mouseOverColor[0] < 0) {
         m_hoverInfo = {-1, nullptr};
@@ -65,11 +76,10 @@ void rev::MousePicker::updateMouseOver(const Vector2 & widgetMousePos, const Cam
     else {
         m_hoverInfo.m_renderablePtr = nullptr;
     }
-    //Logger::LogInfo("-----------");
 }
 
 
-void rev::MousePicker::getPixelColor(Vector<int, 4>& outColor, const Vector3 & widgetPos, const Camera & camera, const OpenGlRenderer & renderer, uint32_t attachmentIndex, uint32_t sampleHalfWidth)
+void rev::MousePicker::getPixelColor(Vector<int, 4>& outColor, const Vector3 & widgetPos, const Camera & camera, const OpenGlRenderer & renderer, uint32_t attachmentIndex)
 {
     // Check if in bounds
     Real_t frameX, frameY;
@@ -78,62 +88,72 @@ void rev::MousePicker::getPixelColor(Vector<int, 4>& outColor, const Vector3 & w
         return;
     }
 
+    static_assert(s_sampleWidth == 0, "Non-zero widths not implemented");
+
+    /// @todo Use my abstractions for this (subclass GlBuffer as PboBuffer).
     // Convert from clip to frame coordinates
-    uint32_t dim = sampleHalfWidth == 0 ? 1 : sampleHalfWidth;
-    std::vector<int> pixels;
+    uint32_t dim = s_sampleWidth == 0 ? 1 : s_sampleWidth;
+    std::vector<int> pixels; // Since each pixel is 4 bytes, int is just fine
     camera.clipToFrame(frameX, frameY, frameX, frameY);
 
-    // Convention is that 0, 0 is bottom-left, window_h - 1, window_h - 1 is top-right corner
-    /// \see 
-    // https://community.khronos.org/t/window-coordinates-in-glreadpixels/20931/2
-    // For possible speedup, investigate PBOs:
-    /// @see http://www.songho.ca/opengl/gl_pbo.html
-    /// @see https://stackoverflow.com/questions/25127751/opengl-read-pixels-faster-than-glreadpixels
-    /// @see https://stackoverflow.com/questions/56379809/glreadpixels-is-slow
-    /// @see https://stackoverflow.com/questions/19971264/making-glreadpixel-run-faster
-    camera.frameBuffers().readBuffer().readColorPixels(attachmentIndex, pixels,
+    gl::OpenGLFunctions& gl = *gl::OpenGLFunctions::Functions();
+    // "index" is used to read pixels from framebuffer to a PBO
+    // "nextIndex" is used to update pixels in the other PBO
+
+    m_pboIndex = (m_pboIndex + 1) % 2;
+    Int32_t nextIndex = (m_pboIndex + 1) % 2;
+
+    // read pixels from framebuffer to PBO
+    /// @note glReadPixels() should return immediately, since this work happens entirely on the GPU.
+    /// @note If a non-zero named buffer object is bound to the GL_PIXEL_PACK_BUFFER 
+    /// target (see glBindBuffer) while a block of pixels is requested, data is treated 
+    /// as a byte offset into the buffer object's data store rather than a pointer to 
+    /// client memory.
+    gl.glBindBuffer(GL_PIXEL_PACK_BUFFER, m_pboIds[m_pboIndex]);
+
+    /// @note The pixel type and format here are absolutely essential (particularly the type)
+    /// If the type does not match the texture format of the FBO, and the pixel format doesn't 
+    /// match the GPU internal storage type (BGRA for modern GPUs), then this will block
+    /// the CPU as a conversion is made to the requested type.
+    /// @see https://stackoverflow.com/questions/34497195/difference-between-format-and-internalformat
+    // Most GPUs store as BGRA internally
+    Uint32_t sampleHalfWidth = s_sampleWidth / 2;
+    camera.frameBuffers().readBuffer().readColorPixels(attachmentIndex, (void*)0,
         frameX - sampleHalfWidth, frameY - sampleHalfWidth, dim, dim,
-        PixelFormat::kRGBA, PixelType::kUByte8);
+        PixelFormat::kBGRA, PixelType::kFloat16);
 
-    // TODO: Implement color averaging when dim != 1x1
-    // For now, only the first sampled pixel is used to convert from an int to a color.
-    GetChannelId<4>(pixels[0], outColor.data());
-    //Logger::LogInfo(QString(colorVec));
+#ifdef DEBUG_MODE
+    const char* errStrUnbind = "Error reading pixels";
+    bool error = gl.printGLError(errStrUnbind);
+    if (error) {
+        Logger::Throw(errStrUnbind);
+    }
+#endif
 
-    return;
-}
+    // Map the PBO to process its data by CPU
+    // Ideally, the pointer would be a 16 bit float, if that existed
+    gl.glBindBuffer(GL_PIXEL_PACK_BUFFER, m_pboIds[nextIndex]);
+    Float16_t* ptr = (Float16_t*)gl.glMapBufferRange(
+        GL_PIXEL_PACK_BUFFER,
+        0,
+        dim * dim,
+        GL_MAP_READ_BIT); 
 
-void MousePicker::getPixelColor(Vector4 & outColor, const Vector3 & widgetPos, const Camera & camera, const OpenGlRenderer & renderer, uint32_t attachmentIndex, uint32_t sampleHalfWidth)
-{
-    // Check if in bounds
-    Real_t frameX, frameY;
-    if (!camera.getViewport().inBounds(widgetPos, renderer, frameX, frameY)) {
-        outColor = { -1, -1, -1, -1 };
-        return;
+    if (ptr)
+    {
+        // Convert from BGRA half floats to RGBA ints
+        outColor[2] = Int32_t(Float32_t(ptr[0]) * 255.0F);
+        outColor[1] = Int32_t(Float32_t(ptr[1]) * 255.0F);
+        outColor[0] = Int32_t(Float32_t(ptr[2]) * 255.0F);
+        outColor[3] = Int32_t(Float32_t(ptr[3]) * 255.0F);
+        gl.glUnmapBuffer(GL_PIXEL_PACK_BUFFER);
     }
 
-    // Convert from clip to frame coordinates
-    uint32_t dim = sampleHalfWidth == 0 ? 1 : sampleHalfWidth;
-    //std::vector<float> pixels;
-    camera.clipToFrame(frameX, frameY, frameX, frameY);
-
-    // Convention is that 0, 0 is bottom-left, window_h - 1, window_h - 1 is top-right corner
-    /// \see 
-    // https://community.khronos.org/t/window-coordinates-in-glreadpixels/20931/2
-    // For possible speedup, investigate PBOs:
-    // http://www.songho.ca/opengl/gl_pbo.html
-    camera.frameBuffers().readBuffer().readColorPixels(attachmentIndex, outColor.data(),
-        frameX - sampleHalfWidth, frameY - sampleHalfWidth, dim, dim,
-        PixelFormat::kRGBA, PixelType::kFloat32);
-
-    //GString ps = GString::FromNumber(pixels[0]);
-    //Logger::LogInfo("Float: " + ps);
-    //GetChannelId<4>(pixels[0], outColor.array().data());
-    //Logger::LogInfo(QString(colorVec));
-
+    // back to conventional pixel operation
+    gl.glBindBuffer(GL_PIXEL_PACK_BUFFER, 0);
+    m_previousColor = outColor;
     return;
 }
-
 
     
 // End namespaces

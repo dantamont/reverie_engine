@@ -83,18 +83,6 @@ public:
 
     void makeCurrent();
 
-    /// @brief Get the bound buffer of the given type
-    const Uuid& boundBuffer(gl::BufferType type) const {
-        size_t idx = bufferTypeIndex(type);
-        return m_boundBuffers[idx];
-    }
-
-    /// @brief Set the bound buffer of the given type
-    void setBoundBuffer(gl::BufferType type, const Uuid& uuid) {
-        size_t idx = bufferTypeIndex(type);
-        m_boundBuffers[idx] = uuid;
-    }
-
     /// @}
 
 protected:
@@ -114,13 +102,6 @@ protected:
 
     /// @}
 
-    /// @name Static methods
-    /// @{
-
-    static size_t bufferTypeIndex(const gl::BufferType& type);
-
-    /// @}
-
     /// @name Protected members
     /// @{
 
@@ -134,13 +115,6 @@ protected:
 
     /// @details Are indexed by their buffer target type, e.g. UBO, SSB, etc.
     std::vector<Uuid> m_boundBuffers; ///< Currently bound buffer IDs, can currently be an SSB
-
-    /// @}
-
-    /// @name Static members
-    /// @{
-
-    static std::vector<gl::BufferType> s_bufferTypes; ///< Vector of types corresponding to indices of bound buffer
 
     /// @}
 };

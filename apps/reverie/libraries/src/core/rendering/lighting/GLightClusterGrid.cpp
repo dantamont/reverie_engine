@@ -114,7 +114,7 @@ void LightClusterGrid::initializeBuffers(RenderContext & rc)
         m_globalLightCountBuffer->setBindPoint(6);
 
         // Set max light count in buffer
-        m_globalLightCountBuffer->data<Vector<unsigned int, 3>>()[0][1] = m_maxLightsPerTile;
+        m_globalLightCountBuffer->dataMap<Vector<unsigned int, 3>>()[0][1] = m_maxLightsPerTile;
         
         m_globalLightCountBuffer->unmap(false);
         m_globalLightCountBuffer->release();
@@ -248,7 +248,7 @@ void LightClusterGrid::updateScreenToView(unsigned int widgetWidth, unsigned int
 
     // Create screen to view struct and set in SSBO
     // Map buffer and get pointer to data
-    ScreenToView& screen2View = m_screenToViewBuffer->data<ScreenToView>()[0];
+    ScreenToView& screen2View = m_screenToViewBuffer->dataMap<ScreenToView>()[0];
 
     // Populate data
     screen2View.m_inverseProjection = m_camera->renderProjection().inverseProjectionMatrix();
@@ -268,7 +268,7 @@ void LightClusterGrid::updateScreenToView(unsigned int widgetWidth, unsigned int
 
     // Verify value
 #ifdef DEBUG_MODE
-    ScreenToView& viewToView = m_screenToViewBuffer->data<ScreenToView>()[0];
+    ScreenToView& viewToView = m_screenToViewBuffer->dataMap<ScreenToView>()[0];
     if (viewToView.m_widgetDimensions.x() != unsigned int(widgetWidth * vw)
         ||
         viewToView.m_widgetDimensions.y() != unsigned int(widgetHeight * vh)) {
@@ -299,7 +299,7 @@ void LightClusterGrid::reconstructGrid()
 
     // Update scale and bias for screenToView SSBO
     // Basically reduced a log function into a simple multiplication an addition by pre-calculating these
-    ScreenToView& screen2View = m_screenToViewBuffer->data<ScreenToView>()[0];
+    ScreenToView& screen2View = m_screenToViewBuffer->dataMap<ScreenToView>()[0];
     screen2View.m_sliceScalingFactor = (float)s_gridSizeZ / std::log2f(zFar / zNear);
     screen2View.m_sliceBiasFactor = -((float)s_gridSizeZ * std::log2f(zNear) / std::log2f(zFar / zNear));
     m_screenToViewBuffer->unmap(true);

@@ -87,6 +87,20 @@ std::vector<std::shared_ptr<DrawCommand>> ModelComponent::getMeshCommands(Abstra
     return meshCommands;
 }
 
+std::vector<std::shared_ptr<DrawCommand>> ModelComponent::getShadowMeshCommands(ShadowMap* shadowMap) const
+{
+    std::vector<std::shared_ptr<DrawCommand>> meshCommands;
+    meshCommands.reserve(m_shadowDrawCommands.size());
+    for (const auto& command : m_shadowDrawCommands) {
+        if (command->camera()->getUuid() == shadowMap->camera()->getUuid()) {
+            meshCommands.push_back(command);
+        }
+    }
+
+    return meshCommands;
+}
+
+
 void ModelComponent::clearDrawCommands()
 {
     m_meshDrawCommands.clear();
@@ -99,9 +113,12 @@ void ModelComponent::clearShadowDrawCommands()
 
 void ModelComponent::retrieveDrawCommands(std::vector<std::shared_ptr<DrawCommand>>& outCommands, AbstractCamera* camera, const SortingLayer& currentLayer)
 {
+    // Get commands specific to this mesh/camera pair
     SceneObject& so = *sceneObject();
     std::vector<std::shared_ptr<DrawCommand>> meshDrawCommands = getMeshCommands(camera, currentLayer.id());
     Uint32_t numCommands = meshDrawCommands.size();
+
+    // Iterate over which commands are visible
     outCommands.reserve(numCommands);
     for (Uint32_t i = 0; i < numCommands; i++) {
         // Update world bounds
@@ -116,18 +133,26 @@ void ModelComponent::retrieveDrawCommands(std::vector<std::shared_ptr<DrawComman
     }
 }
 
-void ModelComponent::retrieveShadowDrawCommands(std::vector<std::shared_ptr<DrawCommand>>& outCommands)
+void ModelComponent::retrieveShadowDrawCommands(std::vector<std::shared_ptr<DrawCommand>>& outCommands, ShadowMap* shadowMap)
 {
+    // Get commands specific to this mesh/shadowmap pair
     SceneObject& so = *sceneObject();
-    Uint32_t numCommands = m_shadowDrawCommands.size();
+    std::vector<std::shared_ptr<DrawCommand>> meshDrawCommands = getShadowMeshCommands(shadowMap);
+    Uint32_t numCommands = meshDrawCommands.size();
+
+    // Iterate over commands to retrieve visible ones
     outCommands.reserve(numCommands);
     for (Uint32_t i = 0; i < numCommands; i++) {
+        /// @todo Figure out shadow culling
         // Update world bounds is unnecessary since shadows are "deferred geometry", a.k.a., the bounds aren't known until draw time, or at all
-        const std::shared_ptr<DrawCommand>& command = m_shadowDrawCommands[i];
+        const std::shared_ptr<DrawCommand>& command = meshDrawCommands[i];
         //command->setRenderableWorldBounds(so.m_worldBounds.geometry()[i]);
 
         // Add command
-        outCommands.push_back(command);
+        constexpr size_t numBoxesInChunk = 1;
+        if (so.m_worldBounds.inShape(shadowMap->camera()->frustum(), i/*boxCount*/, numBoxesInChunk)) {
+            outCommands.push_back(command);
+        }
     }
 }
 

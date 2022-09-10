@@ -19,7 +19,7 @@
 
 // Internal
 #include "fortress/containers/math/GMatrix.h"
-#include "fortress/containers/math/GTransform.h"
+#include "heave/kinematics/GTransform.h"
 #include "GAnimation.h"
 
 namespace rev {

@@ -44,6 +44,8 @@ target_compile_definitions(${TARGET_NAME} PUBLIC
 # Fortress
 target_link_libraries(${TARGET_NAME} PUBLIC "fortress")
 
+# Tempo (datetime)
+target_link_libraries(${TARGET_NAME} PUBLIC "tempo")
 
 ######### Add tests subproject
 add_subdirectory(tests)

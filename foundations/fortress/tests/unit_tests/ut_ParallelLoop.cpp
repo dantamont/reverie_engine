@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "fortress/types/GSizedTypes.h"
+#include "fortress/numeric/GSizedTypes.h"
 #include "fortress/thread/GThreadpool.h"
 #include "fortress/thread/GParallelLoop.h"
 

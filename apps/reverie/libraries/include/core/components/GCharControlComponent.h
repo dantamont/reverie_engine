@@ -8,7 +8,7 @@
 // External
 
 // Project
-#include <fortress/types/GSizedTypes.h>
+#include <fortress/numeric/GSizedTypes.h>
 #include "GComponent.h"
 #include "fortress/containers/GContainerExtensions.h"
 

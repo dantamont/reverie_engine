@@ -6,7 +6,7 @@
 #include "fortress/containers/GSortingLayer.h"
 #include "fortress/process/GProcessInterface.h"
 #include "fortress/process/GProcessQueueInterface.h"
-#include "fortress/types/GSizedTypes.h"
+#include "fortress/numeric/GSizedTypes.h"
 
 namespace rev {
 

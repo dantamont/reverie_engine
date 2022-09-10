@@ -67,7 +67,7 @@ CubePaths CubeTexture::loadPathsFromCubemapFile(const GString & filepath)
 
 std::shared_ptr<ResourceHandle> CubeTexture::CreateHandle(CoreEngine * engine, const GString& filepath)
 {
-    auto handle = ResourceHandle::create(engine, (GResourceType)EResourceType::eCubeTexture);
+    auto handle = ResourceHandle::Create(engine, (GResourceType)EResourceType::eCubeTexture);
     handle->setName(filepath);
     handle->setPath(filepath);
     return handle;

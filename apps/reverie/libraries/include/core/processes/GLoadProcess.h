@@ -2,7 +2,7 @@
 
 // Internal
 #include "fortress/process/GThreadedProcess.h"
-#include "core/resource/GResource.h"
+#include "core/resource/GResourceHandle.h"
 
 namespace rev {
 

@@ -7,7 +7,7 @@
 #include "core/layer/view/widgets/graphics/GGLWidget.h"
 
 #include "core/rendering/geometry/GVertexData.h"
-#include "core/rendering/geometry/GBuffers.h"
+#include "core/rendering/buffers/GVertexArrayObject.h"
 #include "core/rendering/geometry/GPolygon.h"
 #include "core/rendering/lighting/GShadowMap.h"
 #include "core/rendering/models/GModel.h"
@@ -30,7 +30,7 @@
 #include "core/scene/GScenario.h"
 #include "core/scene/GScene.h"
 #include "core/scene/GSceneObject.h"
-#include "fortress/containers/math/GTransformComponents.h"
+#include "heave/kinematics/GTransformComponents.h"
 #include "fortress/containers/math/GEulerAngles.h"
 
 #include "core/resource/GResourceCache.h"
@@ -132,6 +132,8 @@ void OpenGlRenderer::preDraw()
     ESimulationPlayMode mode = m_engine->simulationLoop()->getPlayMode();
 
     // Update the selected pixel color for each camera
+    /// @todo Investigate why this is so slow
+    /// @see https://community.khronos.org/t/pbo-glreadpixels-not-so-fast/55783
     Vector2 widgetMousePos = m_widget->inputHandler().mouseHandler().widgetMousePosition();
     if (mode == ESimulationPlayMode::eStandard) {
         // Iterate through cameras to draw textured quads
@@ -162,12 +164,6 @@ void OpenGlRenderer::preDraw()
 
     // Swap read/write buffers
     m_renderContext.swapBuffers();
-
-    /// @see MousePicker::getPixelColor for notes on PBOs
-    /// @todo RE-121 If performance of updateMouseOver becomes unpredictable, 
-    /// create a PBO here to try and write into, and then read from the PBO
-    /// at the beginning of the next frame, before the buffers are swapped.
-    /// This might make OpenGL happier, since it is asynchronous (despite trying to hide this from the user)
 }
 
 void OpenGlRenderer::depthPrePass()

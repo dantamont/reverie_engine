@@ -2,7 +2,7 @@
 
 // Public
 #include <vector>
-#include "fortress/types/GSizedTypes.h"
+#include "fortress/numeric/GSizedTypes.h"
 #include "fortress/math/GMath.h"
 #include "fortress/json/GJson.h"
 #include "fortress/containers/math/GVector.h"

@@ -96,7 +96,7 @@ const TextureData & MaterialData::textureData(TextureUsageType type) const
 std::shared_ptr<ResourceHandle> Material::CreateHandle(CoreEngine * engine, const GString & mtlName)
 {
     // Create handle for material
-    auto handle = ResourceHandle::create(engine, (GResourceType)EResourceType::eMaterial);
+    auto handle = ResourceHandle::Create(engine, (GResourceType)EResourceType::eMaterial);
     //handle->setResourceType(EResourceType::eMaterial);
     handle->setRuntimeGenerated(true); // material is generated in engine
     handle->setName(mtlName);

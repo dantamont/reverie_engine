@@ -8,7 +8,7 @@
 #include "core/rendering/models/GModel.h"
 #include <core/canvas/GSprite.h>
 #include <core/components/GCanvasComponent.h>
-#include "fortress/containers/math/GTransform.h"
+#include "heave/kinematics/GTransform.h"
 
 #include "core/scene/GScenario.h"
 #include "core/scene/GSceneObject.h"

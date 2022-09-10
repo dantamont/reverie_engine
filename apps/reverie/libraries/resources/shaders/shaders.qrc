@@ -9,6 +9,8 @@
 		<file>canvas_gui.vert</file>
 		<file>cubemap.frag</file>
 		<file>cubemap.vert</file>
+        <file>frustum_lines.vert</file>
+        <file>frustum_lines.frag</file>
 		<file>lines.frag</file>
 		<file>lines.vert</file>
 		<file>points.frag</file>

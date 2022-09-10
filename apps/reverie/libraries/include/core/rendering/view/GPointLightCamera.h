@@ -2,7 +2,7 @@
 
 // Internal
 #include "GCamera.h"
-#include "fortress/containers/math/GTransform.h"
+#include "heave/kinematics/GTransform.h"
 
 namespace rev {
 

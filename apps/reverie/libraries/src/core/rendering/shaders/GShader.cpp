@@ -239,6 +239,7 @@ std::vector<std::pair<QString, Shader::ShaderType>> Shader::s_builtins = {
     {"basic", Shader::ShaderType::kVertex},
     {"basic_cluster", Shader::ShaderType::kVertex},
     {"lines", Shader::ShaderType::kVertex},
+    {"frustum_lines", Shader::ShaderType::kVertex},
     {"cubemap", Shader::ShaderType::kVertex},
     {"axes", Shader::ShaderType::kVertex},
     {"points", Shader::ShaderType::kVertex},

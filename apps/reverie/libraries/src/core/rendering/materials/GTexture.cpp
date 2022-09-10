@@ -173,7 +173,7 @@ std::shared_ptr<ResourceHandle> Texture::CreateHandle(CoreEngine* core,
     TextureFilter maxFilter,
     TextureWrapMode wrapMode)
 {
-    std::shared_ptr<ResourceHandle> handle = ResourceHandle::create(core, (GResourceType)EResourceType::eTexture);
+    std::shared_ptr<ResourceHandle> handle = ResourceHandle::Create(core, (GResourceType)EResourceType::eTexture);
     //handle->setResourceType(EResourceType::eTexture);
 
     // Create texture, passing ownership of image to the texture
@@ -472,11 +472,6 @@ void Texture::setReadMode(DepthStencilMode mode)
 
 void Texture::bind(int texUnit) const
 {
-    //if (m_isBound) {
-    //    Logger::Throw("Error, texture already bound");
-    //}
-    //m_isBound = true;
-
     gl::OpenGLFunctions& functions = *gl::OpenGLFunctions::Functions();
 
     // Texture unit was specified
@@ -525,7 +520,7 @@ void Texture::onRemoval(ResourceCache* cache)
     //destroy();
 }
 
-void Texture::postConstruction()
+void Texture::postConstruction(const ResourcePostConstructionData& postConstructData)
 {
 #ifdef DEBUG_MODE
     gl::OpenGLFunctions& functions = *gl::OpenGLFunctions::Functions();
@@ -569,7 +564,7 @@ void Texture::postConstruction()
     release();
 	
 	// Call parent class construction routine
-	Resource::postConstruction();
+	Resource::postConstruction(postConstructData);
 }
 
 void Texture::flushData()

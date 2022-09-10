@@ -2,7 +2,7 @@
 
 #include <filesystem>
 
-#include "fortress/types/GStringView.h"
+#include "fortress/string/GStringView.h"
 #include "fortress/system/path/GDir.h"
 #include "fortress/system/path/GFile.h"
 #include "fortress/system/path/GPath.h"
