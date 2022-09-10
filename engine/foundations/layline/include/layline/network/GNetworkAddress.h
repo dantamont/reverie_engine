@@ -6,7 +6,7 @@
 #include <asio.hpp>
 
 #include "fortress/encoding/binary/GEndianConverter.h"
-#include "fortress/types/GString.h"
+#include "fortress/string/GString.h"
 #include "layline/network/GNetworkProtocol.h"
 
 namespace rev {

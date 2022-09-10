@@ -6,7 +6,7 @@
 // Project
 #include "fortress/json/GJson.h"
 #include "fortress/types/GNameable.h"
-#include "fortress/types/GSizedTypes.h"
+#include "fortress/numeric/GSizedTypes.h"
 #include "fortress/encoding/uuid/GUuid.h"
 
 #include "geppetto/qt/widgets/tree/GTreeWidget.h"

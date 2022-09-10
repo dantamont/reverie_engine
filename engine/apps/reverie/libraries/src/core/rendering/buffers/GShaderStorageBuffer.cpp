@@ -13,9 +13,15 @@ ShaderStorageBuffer::ShaderStorageBuffer()
 {
 }
 
-ShaderStorageBuffer::ShaderStorageBuffer(RenderContext & context, size_t size, gl::BufferStorageMode storageMode, size_t storageFlags):
-    GlBuffer(context, gl::BufferType::kShaderStorage, size, storageMode, storageFlags)
+ShaderStorageBuffer::ShaderStorageBuffer(ShaderStorageBuffer&& other):
+    GlBuffer(std::move(other))
 {
+}
+
+ShaderStorageBuffer::ShaderStorageBuffer(RenderContext & context, size_t size, gl::BufferStorageMode storageMode, size_t storageFlags):
+    GlBuffer(gl::BufferType::kShaderStorage, size, storageMode, storageFlags)
+{
+    initialize(context);
 }
 
 ShaderStorageBuffer::~ShaderStorageBuffer()

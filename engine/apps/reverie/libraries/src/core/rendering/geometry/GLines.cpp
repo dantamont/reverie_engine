@@ -4,7 +4,7 @@
 #include "core/rendering/geometry/GPolygon.h"
 #include "core/rendering/shaders/GShaderProgram.h"
 #include "core/rendering/buffers/GUniformBufferObject.h"
-#include "core/resource/GResource.h"
+#include "core/resource/GResourceHandle.h"
 #include "core/rendering/geometry/GMesh.h"
 #include "core/rendering/geometry/GPolygon.h"
 #include "core/rendering/renderer/GOpenGlRenderer.h"
@@ -12,7 +12,7 @@
 #include "core/rendering/renderer/GRenderContext.h"
 
 #include "fortress/containers/GColor.h"
-#include "fortress/containers/math/GTransform.h"
+#include "heave/kinematics/GTransform.h"
 #include "fortress/system/memory/GPointerTypes.h"
 #include "fortress/layer/framework/GFlags.h"
 
@@ -31,7 +31,7 @@ std::shared_ptr<Lines> Lines::GetCube(ResourceCache& cache, ResourceBehaviorFlag
     Mesh* mesh = cache.polygonCache()->getCube();
     mesh->handle()->setBehaviorFlags(mesh->handle()->behaviorFlags() | handleFlags);
     auto lines = prot_make_shared<Lines>(cache.engine()->openGlRenderer()->renderContext().uniformContainer());
-    lines->loadVertexArrayData(cache, mesh->vertexData(), handleFlags, MeshGenerationFlag::kTriangulate);
+    lines->loadVertexData(cache, cache.polygonCache()->getVertexData(mesh->handle()->getName()), handleFlags, MeshGenerationFlag::kTriangulate);
     return lines;
 }
 
@@ -41,7 +41,7 @@ std::shared_ptr<Lines> Lines::GetSphere(ResourceCache& cache, int latSize, int l
     Mesh* mesh = cache.polygonCache()->getSphere(latSize, lonSize);
     mesh->handle()->setBehaviorFlags(mesh->handle()->behaviorFlags() | handleFlags);
     auto lines = prot_make_shared<Lines>(cache.engine()->openGlRenderer()->renderContext().uniformContainer());
-    lines->loadVertexArrayData(cache, mesh->vertexData(), handleFlags, MeshGenerationFlag::kTriangulate);
+    lines->loadVertexData(cache, cache.polygonCache()->getVertexData(mesh->handle()->getName()), handleFlags, MeshGenerationFlag::kTriangulate);
     return lines;
 }
 
@@ -51,7 +51,7 @@ std::shared_ptr<Lines> Lines::GetGridCube(ResourceCache& cache, float spacing, i
     Mesh* mesh = cache.polygonCache()->getGridCube(spacing, numHalfSpaces);
     mesh->handle()->setBehaviorFlags(mesh->handle()->behaviorFlags() | handleFlags);
     auto lines = prot_make_shared<Lines>(cache.engine()->openGlRenderer()->renderContext().uniformContainer());
-    lines->loadVertexArrayData(cache, mesh->vertexData(), handleFlags);
+    lines->loadVertexData(cache, cache.polygonCache()->getVertexData(mesh->handle()->getName()), handleFlags);
     return lines;
 }
 
@@ -61,7 +61,7 @@ std::shared_ptr<Lines> Lines::GetPlane(ResourceCache& cache, float spacing, int 
     Mesh* mesh = cache.polygonCache()->getGridPlane(spacing, numHalfSpaces);
     mesh->handle()->setBehaviorFlags(mesh->handle()->behaviorFlags() | handleFlags);
     auto lines = prot_make_shared<Lines>(cache.engine()->openGlRenderer()->renderContext().uniformContainer());
-    lines->loadVertexArrayData(cache, mesh->vertexData(), handleFlags);
+    lines->loadVertexData(cache, cache.polygonCache()->getVertexData(mesh->handle()->getName()), handleFlags);
     return lines;
 }
 
@@ -72,7 +72,7 @@ std::shared_ptr<Lines> Lines::GetPrism(ResourceCache& cache, float baseRadius, f
     Mesh* mesh = cache.polygonCache()->getCylinder(baseRadius, topRadius, height, sectorCount, stackCount);
     mesh->handle()->setBehaviorFlags(mesh->handle()->behaviorFlags() | handleFlags);
     auto lines = prot_make_shared<Lines>(cache.engine()->openGlRenderer()->renderContext().uniformContainer());
-    lines->loadVertexArrayData(cache, mesh->vertexData(), handleFlags);
+    lines->loadVertexData(cache, cache.polygonCache()->getVertexData(mesh->handle()->getName()), handleFlags);
     return lines;
 }
 
@@ -82,7 +82,7 @@ std::shared_ptr<Lines> Lines::GetCapsule(ResourceCache& cache, float radius, flo
     Mesh*mesh = cache.polygonCache()->getCapsule(radius, halfHeight);
     mesh->handle()->setBehaviorFlags(mesh->handle()->behaviorFlags() | handleFlags);
     auto lines = prot_make_shared<Lines>(cache.engine()->openGlRenderer()->renderContext().uniformContainer());
-    lines->loadVertexArrayData(cache, mesh->vertexData(), handleFlags);
+    lines->loadVertexData(cache, cache.polygonCache()->getVertexData(mesh->handle()->getName()), handleFlags);
     return lines;
 }
 
@@ -176,7 +176,7 @@ void Lines::initializeUniformValues(UniformContainer& uc)
 }
 
 
-void Lines::loadVertexArrayData(ResourceCache& cache, const VertexArrayData& data, Flags<ResourceBehaviorFlag> flags, MeshGenerationFlags meshFlags)
+void Lines::loadVertexData(ResourceCache& cache, const MeshVertexAttributes& data, Flags<ResourceBehaviorFlag> flags, MeshGenerationFlags meshFlags)
 {
     // Initialize a new mesh
     initializeEmptyMesh(cache, flags);
@@ -185,26 +185,25 @@ void Lines::loadVertexArrayData(ResourceCache& cache, const VertexArrayData& dat
     m_meshHandle->setIsLoading(true);
     if (meshFlags.testFlag(MeshGenerationFlag::kTriangulate)) {
         // Generate triangles from points
-        for (size_t i = 0; i < data.m_indices.size(); i += 3) {
-            int point1 = data.m_indices[i];
-            int point2 = data.m_indices[i + 1];
-            int point3 = data.m_indices[i + 2];
-            addTriangle(data.m_attributes.m_vertices[point1],
-                data.m_attributes.m_vertices[point2],
-                data.m_attributes.m_vertices[point3]);
+        for (size_t i = 0; i < data.get<MeshVertexAttributeType::kIndices>().size(); i += 3) {
+            int point1 = data.get<MeshVertexAttributeType::kIndices>()[i];
+            int point2 = data.get<MeshVertexAttributeType::kIndices>()[i + 1];
+            int point3 = data.get<MeshVertexAttributeType::kIndices>()[i + 2];
+            addTriangle(data.get<MeshVertexAttributeType::kPosition>()[point1],
+                data.get<MeshVertexAttributeType::kPosition>()[point2],
+                data.get<MeshVertexAttributeType::kPosition>()[point3]);
         }
     }
     else {
         // Add points as they are
         // TODO: In this case, see if the points need to be copied at all. Maybe just use the same mesh
-        for (size_t i = 0; i < data.m_indices.size(); i++) {
-            int point = data.m_indices[i];
-            addPoint(data.m_attributes.m_vertices[point]);
+        for (size_t i = 0; i < data.get<MeshVertexAttributeType::kIndices>().size(); i++) {
+            int point = data.get<MeshVertexAttributeType::kIndices>()[i];
+            addPoint(data.get<MeshVertexAttributeType::kPosition>()[point]);
         }
     }
     Mesh* mesh = m_meshHandle->resourceAs<Mesh>();
-    mesh->vertexData().loadIntoVAO();
-    mesh->generateBounds();
+    mesh->postConstruction(ResourcePostConstructionData{ false, &m_vertexData });
     m_meshHandle->setIsLoading(false);
 }
 
@@ -234,36 +233,15 @@ void Lines::loadPointData(ResourceCache& cache, const std::vector<Vector3>& data
             addPoint(data[point]);
         }
     }
+
     Mesh* mesh = m_meshHandle->resourceAs<Mesh>();
-    mesh->vertexData().loadIntoVAO();
-    mesh->generateBounds();
+    mesh->postConstruction(ResourcePostConstructionData{ false, &m_vertexData });
     m_meshHandle->setIsLoading(false);
 }
 
 void Lines::reload()
 {
-    m_meshHandle->resourceAs<Mesh>()->vertexData().loadIntoVAO();
-}
-
-void Lines::reload(const std::vector<Vector3>& data, const std::vector<Uint32_t>& indices)
-{
-    Mesh* mesh = m_meshHandle->resourceAs<Mesh>();
-    VertexArrayData& vertexData = mesh->vertexData();
-    vertexData.destroyBuffers(); // Destroy buffers in OpenGL and clear locally
-    vertexData.vao().destroy(); ///< Destroy the vao itself
-    vertexData.m_attributes.clear();
-    vertexData.m_attributeBuffers.resize((size_t)BufferAttributeType::kMAX_ATTRIBUTE_TYPE);
-
-    /// @todo Try not to be redundant with Lines::LoadPointData
-    // Load data
-    m_meshHandle->setIsLoading(true);
-    for (size_t i = 0; i < indices.size(); i++) {
-        int point = indices[i];
-        addPoint(data[point]);
-    }
-    vertexData.loadIntoVAO();
-    mesh->generateBounds();
-    m_meshHandle->setIsLoading(false);
+    assert(false && "Deprecate this");
 }
 
 void to_json(json& orJson, const Lines& korObject)
@@ -291,8 +269,8 @@ void Lines::releaseUniforms(ShaderProgram& shaderProgram)
 void Lines::drawGeometry(ShaderProgram& shaderProgram, 
     RenderSettings * settings)
 {
-    Q_UNUSED(shaderProgram)
-        Mesh* mesh = Lines::mesh();
+    Q_UNUSED(shaderProgram);
+    Mesh* mesh = Lines::mesh();
     if (!mesh) {
         return;
     }
@@ -301,41 +279,41 @@ void Lines::drawGeometry(ShaderProgram& shaderProgram,
 
 void Lines::addPoint(const Vector3 & point)
 {
-    addPoint(m_meshHandle->resourceAs<Mesh>()->vertexData(), point);
+    addPoint(m_vertexData, point);
 }
 
-void Lines::addPoint(VertexArrayData& vertexData, const Vector3 & point)
+void Lines::addPoint(MeshVertexAttributes& vertexData, const Vector3 & point)
 {
     // Set next point to this point for vertex attributes already stored
-    unsigned int size = (unsigned int)vertexData.m_attributes.m_vertices.size();
+    unsigned int size = (unsigned int)vertexData.get<MeshVertexAttributeType::kPosition>().size();
     Vector3 previousPoint = point;// If first point, no previous point to sample
     if (size) {
         // Tangent attr is used to store next point
-        vertexData.m_attributes.m_tangents[size - 1] = point;
-        vertexData.m_attributes.m_tangents[size - 2] = point;
+        vertexData.get<MeshVertexAttributeType::kTangent>()[size - 1] = point;
+        vertexData.get<MeshVertexAttributeType::kTangent>()[size - 2] = point;
         
         // Cache previous point if there is one
-        previousPoint = vertexData.m_attributes.m_vertices.back();
+        previousPoint = vertexData.get<MeshVertexAttributeType::kPosition>().back();
     }
 
     // Add vertex position
     // Adding in pairs, since two points in width-direction of line
-    Vec::EmplaceBack(vertexData.m_attributes.m_vertices, point);
-    Vec::EmplaceBack(vertexData.m_attributes.m_vertices, point);
+    Vec::EmplaceBack(vertexData.get<MeshVertexAttributeType::kPosition>(), point);
+    Vec::EmplaceBack(vertexData.get<MeshVertexAttributeType::kPosition>(), point);
 
     // Add previous point attribute
     // Normals attr is used to store previous point
-    Vec::EmplaceBack(vertexData.m_attributes.m_normals, previousPoint);
-    Vec::EmplaceBack(vertexData.m_attributes.m_normals, previousPoint);
+    Vec::EmplaceBack(vertexData.get<MeshVertexAttributeType::kNormal>(), previousPoint);
+    Vec::EmplaceBack(vertexData.get<MeshVertexAttributeType::kNormal>(), previousPoint);
 
     // Add next point attribute (same as this point until another added)
     // Tangent attr is used to store next point
-    Vec::EmplaceBack(vertexData.m_attributes.m_tangents, point);
-    Vec::EmplaceBack(vertexData.m_attributes.m_tangents, point);
+    Vec::EmplaceBack(vertexData.get<MeshVertexAttributeType::kTangent>(), point);
+    Vec::EmplaceBack(vertexData.get<MeshVertexAttributeType::kTangent>(), point);
 
     // Add direction attributes, room for three more int attributes in buffer
-    Vec::EmplaceBack(vertexData.m_attributes.m_miscInt, Vector4i(-1, 0, 0, 0));
-    Vec::EmplaceBack(vertexData.m_attributes.m_miscInt, Vector4i(1, 0, 0, 0));
+    Vec::EmplaceBack(vertexData.get<MeshVertexAttributeType::kMiscInt>(), Vector4i(-1, 0, 0, 0));
+    Vec::EmplaceBack(vertexData.get<MeshVertexAttributeType::kMiscInt>(), Vector4i(1, 0, 0, 0));
 
     // Add indices if this is the second point added
     // REMEMBER, this is creating triangles, since lines are not actually lines at all
@@ -343,7 +321,7 @@ void Lines::addPoint(VertexArrayData& vertexData, const Vector3 & point)
     if (halfSize % 2 == 1) {
         // Indices must be CCW (right-hand normal rule)
         unsigned int startIndex = size - 2;
-        vertexData.m_indices.insert(vertexData.m_indices.end(), 
+        vertexData.get<MeshVertexAttributeType::kIndices>().insert(vertexData.get<MeshVertexAttributeType::kIndices>().end(),
             {startIndex,
              startIndex + 3,
              startIndex + 2,

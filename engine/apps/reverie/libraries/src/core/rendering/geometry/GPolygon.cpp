@@ -4,7 +4,7 @@
 #include "core/GCoreEngine.h"
 #include "core/rendering/geometry/GMesh.h"
 #include "core/resource/GResourceCache.h"
-#include "core/resource/GResource.h"
+#include "core/resource/GResourceHandle.h"
 #include "fortress/constants/GConstants.h"
 #include "fortress/containers/GColor.h"
 #include "core/rendering/geometry/GCylinder.h"
@@ -228,6 +228,11 @@ void PolygonCache::initializeCoreResources()
     cubeMesh->handle()->setCore(true);
 }
 
+MeshVertexAttributes& PolygonCache::getVertexData(const GString& polygonName)
+{
+    return *m_vertexData[polygonName];
+}
+
 Mesh* PolygonCache::getPolygon(const QString& polygonName)
 {
     GBasicPolygonType type = TypeFromName(polygonName.toStdString());
@@ -270,34 +275,46 @@ std::unique_ptr<Mesh> PolygonCache::createPolygon(const GString& polygonName,
     //if (exists) Logger::Throw("Error, polygon already exists");
 
     GBasicPolygonType type = TypeFromName(polygonName);
+    std::unique_ptr<Mesh> mesh;
     switch ((EBasicPolygonType)type) {
     case EBasicPolygonType::eRectangle: {
-        return createSquare();
+        mesh = createSquare();
+        break;
     }
     case EBasicPolygonType::eCube: {
-        return createCube();
+        mesh = createCube();
+        break;
     }
     case EBasicPolygonType::eLatLonSphere: {
-        return createUnitSphere(polygonName);
+        mesh = createUnitSphere(polygonName);
+        break;
     }
     case EBasicPolygonType::eGridPlane: {
-        return createGridPlane(polygonName);
+        mesh = createGridPlane(polygonName);
+        break;
     }
     case EBasicPolygonType::eGridCube: {
-        return createGridCube(polygonName);
+        mesh = createGridCube(polygonName);
+        break;
     }
     case EBasicPolygonType::eCylinder: {
-        return createCylinder(polygonName);
+        mesh = createCylinder(polygonName);
+        break;
     }
     case EBasicPolygonType::eCapsule: {
-        return createCapsule(polygonName);
+        mesh = createCapsule(polygonName);
+        break;
     }
     default:
         Logger::Throw("PolygonCache::createPolygon:: Error, polygon type not implemented");
         break;
     }
 
-    return nullptr;
+    // Since this is only called from loadProcess::loadMesh post-construction data needs to be added
+    /// @todo Clean up how polygons and built-in resources are handled. It's gross
+    addResourcePostConstructionData(polygonName, handle->getUuid());
+
+    return mesh;
 }
 
 Mesh* PolygonCache::getGridPlane(const QString & gridName)
@@ -401,7 +418,7 @@ Mesh* PolygonCache::getCapsule(float radius, float halfHeight)
 Mesh* PolygonCache::getSquare()
 {
     // Check if rectangle exists
-    const GString& rectStr = GBasicPolygonType::ToString(EBasicPolygonType::eRectangle);
+    const GString& rectStr = GBasicPolygonType::ToString(EBasicPolygonType::eRectangle).lowerCasedFirstLetter();
     auto exists = getExistingPolygon(rectStr);
     if (exists) return exists;
 
@@ -414,7 +431,7 @@ Mesh* PolygonCache::getSquare()
 Mesh* PolygonCache::getCube()
 {
     // Check if cube found
-    const GString& cubeStr = GBasicPolygonType::ToString(EBasicPolygonType::eCube);
+    const GString& cubeStr = GBasicPolygonType::ToString(EBasicPolygonType::eCube).lowerCasedFirstLetter();
     auto exists = getExistingPolygon(cubeStr);
     if (exists) return exists;
 
@@ -458,17 +475,42 @@ Mesh* PolygonCache::getExistingPolygon(const GString & name) const
 
 std::shared_ptr<ResourceHandle> PolygonCache::addToCache(const GString& name, std::unique_ptr<Mesh> mesh) const
 {
-    auto handle = ResourceHandle::create(m_engine, (GResourceType)EResourceType::eMesh);
+    // Create handle and set status to "loading"
+    ResourceCache& cache = ResourceCache::Instance();
+    auto handle = ResourceHandle::Create(m_engine, (GResourceType)EResourceType::eMesh);
     handle->setResourceType(EResourceType::eMesh);
-    //handle->setName(mesh->getName());
     handle->setName(name);
     handle->setRuntimeGenerated(true);
     handle->setResource(std::move(mesh), false);
     handle->setIsLoading(true);
-    ResourceCache::Instance().incrementLoadCount();
-    emit ResourceCache::Instance().doneLoadingResource(handle->getUuid()); // Need to make sure that post-construction is called
+    cache.incrementLoadCount();
+
+    addResourcePostConstructionData(name, handle->getUuid());
+
+    // Trigger post-construction of mesh
+    emit cache.doneLoadingResource(handle->getUuid()); // Need to make sure that post-construction is called
 
     return handle;
+}
+
+void PolygonCache::addResourcePostConstructionData(const GString& name, const Uuid& handleId) const
+{
+    // Add data for post-construction of mesh
+    /// @note Flagged to not be deleted
+    ResourceCache& cache = ResourceCache::Instance();
+    MeshVertexAttributes* vertexData = m_vertexData.at(name).get();
+    assert(vertexData && "Error, no vertex data");
+    cache.addPostConstructionData(
+        handleId,
+        ResourcePostConstructionData{
+            false, // Do not delete vertex data after construction. Used for lines
+            (void*)vertexData
+        });
+}
+
+GString PolygonCache::getRectangleName()
+{
+    return "rectangle";
 }
 
 QString PolygonCache::getGridPlaneName(float spacing, int halfNumSpaces)
@@ -512,9 +554,9 @@ std::unique_ptr<Mesh> PolygonCache::createGridPlane(const GString & name)
 
 std::unique_ptr<Mesh> PolygonCache::createGridPlane(float spacing, int halfNumSpaces)
 {
-    // Construct mesh
-    auto mesh = std::make_unique<Mesh>();
-    VertexArrayData& vertexData = mesh->vertexData();
+    GString name = getGridPlaneName(spacing, halfNumSpaces).toStdString();
+    m_vertexData[name] = std::make_unique<MeshVertexAttributes>();
+    MeshVertexAttributes& vertexData = *m_vertexData[name];
 
     // Vertical lines
     float x = 0;
@@ -524,20 +566,22 @@ std::unique_ptr<Mesh> PolygonCache::createGridPlane(float spacing, int halfNumSp
     for (int w = -halfNumSpaces; w <= halfNumSpaces; w++) {
         Vector3f bottom(x + w * spacing, y - halfTotalSize, 0);
         Vector3f top(x + w * spacing, y + halfTotalSize, 0);
-        Vec::EmplaceBack(vertexData.m_attributes.m_vertices, bottom);
-        Vec::EmplaceBack(vertexData.m_attributes.m_vertices, top);
-        Vec::EmplaceBack(vertexData.m_indices, count++);
-        Vec::EmplaceBack(vertexData.m_indices, count++);
+        Vec::EmplaceBack(vertexData.get<MeshVertexAttributeType::kPosition>(), bottom);
+        Vec::EmplaceBack(vertexData.get<MeshVertexAttributeType::kPosition>(), top);
+        Vec::EmplaceBack(vertexData.get<MeshVertexAttributeType::kIndices>(), count++);
+        Vec::EmplaceBack(vertexData.get<MeshVertexAttributeType::kIndices>(), count++);
     }
 
     // Horizontal lines
     for (int h = -halfNumSpaces; h <= halfNumSpaces; h++) {
-        Vec::EmplaceBack(vertexData.m_attributes.m_vertices, Vector3f(x - halfTotalSize, y + h * spacing, 0));
-        Vec::EmplaceBack(vertexData.m_attributes.m_vertices, Vector3f(x + halfTotalSize, y + h * spacing, 0));
-        Vec::EmplaceBack(vertexData.m_indices, count++);
-        Vec::EmplaceBack(vertexData.m_indices, count++);
+        Vec::EmplaceBack(vertexData.get<MeshVertexAttributeType::kPosition>(), Vector3f(x - halfTotalSize, y + h * spacing, 0));
+        Vec::EmplaceBack(vertexData.get<MeshVertexAttributeType::kPosition>(), Vector3f(x + halfTotalSize, y + h * spacing, 0));
+        Vec::EmplaceBack(vertexData.get<MeshVertexAttributeType::kIndices>(), count++);
+        Vec::EmplaceBack(vertexData.get<MeshVertexAttributeType::kIndices>(), count++);
     }
 
+    // Construct mesh
+    auto mesh = std::make_unique<Mesh>();
     return mesh;
 }
 
@@ -555,9 +599,9 @@ std::unique_ptr<Mesh> PolygonCache::createGridCube(const GString & name)
 std::unique_ptr<Mesh> PolygonCache::createGridCube(float spacing,
     int halfNumSpaces)
 {
-    // Construct mesh
-    auto mesh = std::make_unique<Mesh>();
-    VertexArrayData& vertexData = mesh->vertexData();
+    GString name = getGridCubeName(spacing, halfNumSpaces).toStdString();
+    m_vertexData[name] = std::make_unique<MeshVertexAttributes>();
+    MeshVertexAttributes& vertexData = *m_vertexData[name];
 
     // Vertical lines
     float x = 0;
@@ -570,18 +614,18 @@ std::unique_ptr<Mesh> PolygonCache::createGridCube(float spacing,
         for (int w = -halfNumSpaces; w <= halfNumSpaces; w++) {
             Vector3f bottom(x + w * spacing, y - halfTotalSize, z);
             Vector3f top(x + w * spacing, y + halfTotalSize, z);
-            vertexData.m_attributes.m_vertices.push_back(bottom);
-            vertexData.m_attributes.m_vertices.push_back(top);
-            vertexData.m_indices.push_back(count++);
-            vertexData.m_indices.push_back(count++);
+            vertexData.get<MeshVertexAttributeType::kPosition>().push_back(bottom);
+            vertexData.get<MeshVertexAttributeType::kPosition>().push_back(top);
+            vertexData.get<MeshVertexAttributeType::kIndices>().push_back(count++);
+            vertexData.get<MeshVertexAttributeType::kIndices>().push_back(count++);
         }
 
         // Horizontal lines
         for (int h = -halfNumSpaces; h <= halfNumSpaces; h++) {
-            vertexData.m_attributes.m_vertices.push_back(Vector3f(x - halfTotalSize, y + h * spacing, z));
-            vertexData.m_attributes.m_vertices.push_back(Vector3f(x + halfTotalSize, y + h * spacing, z));
-            vertexData.m_indices.push_back(count++);
-            vertexData.m_indices.push_back(count++);
+            vertexData.get<MeshVertexAttributeType::kPosition>().push_back(Vector3f(x - halfTotalSize, y + h * spacing, z));
+            vertexData.get<MeshVertexAttributeType::kPosition>().push_back(Vector3f(x + halfTotalSize, y + h * spacing, z));
+            vertexData.get<MeshVertexAttributeType::kIndices>().push_back(count++);
+            vertexData.get<MeshVertexAttributeType::kIndices>().push_back(count++);
 
         }
 
@@ -589,14 +633,16 @@ std::unique_ptr<Mesh> PolygonCache::createGridCube(float spacing,
         if (i == halfNumSpaces) continue;
         for (int w = -halfNumSpaces; w <= halfNumSpaces; w++) {
             for (int h = -halfNumSpaces; h <= halfNumSpaces; h++) {
-                vertexData.m_attributes.m_vertices.push_back(Vector3f(x + w * spacing, y + h * spacing, z));
-                vertexData.m_attributes.m_vertices.push_back(Vector3f(x + w * spacing, y + h * spacing, z + spacing));
-                vertexData.m_indices.push_back(count++);
-                vertexData.m_indices.push_back(count++);
+                vertexData.get<MeshVertexAttributeType::kPosition>().push_back(Vector3f(x + w * spacing, y + h * spacing, z));
+                vertexData.get<MeshVertexAttributeType::kPosition>().push_back(Vector3f(x + w * spacing, y + h * spacing, z + spacing));
+                vertexData.get<MeshVertexAttributeType::kIndices>().push_back(count++);
+                vertexData.get<MeshVertexAttributeType::kIndices>().push_back(count++);
             }
         }
     }
 
+    // Construct mesh
+    auto mesh = std::make_unique<Mesh>();
     return mesh;
 }
 
@@ -609,8 +655,10 @@ std::unique_ptr<Mesh> PolygonCache::createSquare()
 std::unique_ptr<Mesh> PolygonCache::createRectangle(Real_t height,
     Real_t width, Real_t z)
 {
-    auto mesh = std::make_unique<Mesh>();
-    VertexArrayData& meshData = mesh->vertexData();
+
+    GString name = getRectangleName();
+    m_vertexData[name] = std::make_unique<MeshVertexAttributes>();
+    MeshVertexAttributes& vertexData = *m_vertexData[name];
 
     // Define vertex positions
     Vector3f p21(-0.5f * width, 0.5f * height, z);
@@ -624,7 +672,7 @@ std::unique_ptr<Mesh> PolygonCache::createRectangle(Real_t height,
         3,1,2//bottom right triangle (v3, v1, v2)
     };
 
-    meshData.m_indices.swap(indices);
+    vertexData.get<MeshVertexAttributeType::kIndices>().swap(indices);
 
     Color white = Color(255, 255, 255);
     Vector4 whiteVec = white.toVector<Real_t, 4>();
@@ -634,37 +682,34 @@ std::unique_ptr<Mesh> PolygonCache::createRectangle(Real_t height,
     Vector2f uv3(1.0f, 0.0f);
     Vector2f uv4(1.0f, 1.0f);
 
-    meshData.m_attributes.m_vertices = { p21, p22, p23, p24 };
-    meshData.m_attributes.m_texCoords = { uv1, uv2, uv3, uv4 };
-    meshData.m_attributes.m_colors = {whiteVec, whiteVec, whiteVec, whiteVec };
+    vertexData.get<MeshVertexAttributeType::kPosition>() = { p21, p22, p23, p24 };
+    vertexData.get<MeshVertexAttributeType::kTextureCoordinates>() = { uv1, uv2, uv3, uv4 };
+    vertexData.get<MeshVertexAttributeType::kColor>() = {whiteVec, whiteVec, whiteVec, whiteVec };
 
-    // Create bounding box for mesh
-    mesh->generateBounds();
-
+    // Create mesh
+    auto mesh = std::make_unique<Mesh>();
     return mesh;
 }
 
 std::unique_ptr<Mesh> PolygonCache::createCube()
 {
-    auto mesh = std::make_unique<Mesh>();
-    rev::VertexArrayData& meshData = mesh->vertexData();
-
     // Color
-    Color white = Color(255, 255, 255);
-    Vector4 whiteVec = white.toVector<Real_t, 4>();
+    static const Color s_white = Color(255, 255, 255);
+    static const Vector4 s_whiteVec = s_white.toVector<Real_t, 4>();
 
     // Define vertices
+    GString cubeName = GBasicPolygonType::ToString(EBasicPolygonType::eCube).lowerCasedFirstLetter();
+    m_vertexData[cubeName] = std::make_unique<MeshVertexAttributes>();
+    MeshVertexAttributes& vertexData = *m_vertexData[cubeName];
     for (size_t i = 0; i < PolygonCache::s_cubeVertexPositions.size(); i++) {
-        Vec::EmplaceBack(meshData.m_attributes.m_vertices, PolygonCache::s_cubeVertexPositions[i]);
-        Vec::EmplaceBack(meshData.m_attributes.m_normals, PolygonCache::s_cubeNormals[i]);
-        Vec::EmplaceBack(meshData.m_attributes.m_colors, whiteVec);
-        Vec::EmplaceBack(meshData.m_attributes.m_texCoords, PolygonCache::s_cubeVertexUvsIdentical[i]);
+        Vec::EmplaceBack(vertexData.get<MeshVertexAttributeType::kPosition>(), PolygonCache::s_cubeVertexPositions[i]);
+        Vec::EmplaceBack(vertexData.get<MeshVertexAttributeType::kNormal>(), PolygonCache::s_cubeNormals[i]);
+        Vec::EmplaceBack(vertexData.get<MeshVertexAttributeType::kColor>(), s_whiteVec);
+        Vec::EmplaceBack(vertexData.get<MeshVertexAttributeType::kTextureCoordinates>(), PolygonCache::s_cubeVertexUvsIdentical[i]);
     }
-    meshData.m_indices = PolygonCache::s_cubeIndices;
+    vertexData.get<MeshVertexAttributeType::kIndices>() = PolygonCache::s_cubeIndices;
 
-    // Create bounding box for mesh
-    mesh->generateBounds();
-
+    auto mesh = std::make_unique<Mesh>();
     return mesh;
 }
 
@@ -680,9 +725,9 @@ std::unique_ptr<Mesh> PolygonCache::createUnitSphere(const GString & name)
 
 std::unique_ptr<Mesh> PolygonCache::createUnitSphere(int numLatLines, int numLonLines)
 {
-    // Construct mesh
-    auto mesh = std::make_unique<Mesh>();
-    rev::VertexArrayData& meshData = mesh->vertexData();
+    GString name = getSphereName(numLatLines, numLonLines).toStdString();
+    m_vertexData[name] = std::make_unique<MeshVertexAttributes>();
+    MeshVertexAttributes& vertexData = *m_vertexData[name];
 
     float radius = 1.0;
     float x, y, z, xy;                              // vertex position
@@ -712,18 +757,18 @@ std::unique_ptr<Mesh> PolygonCache::createUnitSphere(int numLatLines, int numLon
             // vertex position (x, y, z)
             x = xy * cosf(sectorAngle);             // r * cos(u) * cos(v)
             y = xy * sinf(sectorAngle);             // r * cos(u) * sin(v)
-            meshData.m_attributes.m_vertices.push_back(Vector3f(x, y, z));
+            vertexData.get<MeshVertexAttributeType::kPosition>().push_back(Vector3f(x, y, z));
 
             // normalized vertex normal (nx, ny, nz)
             nx = x * lengthInv;
             ny = y * lengthInv;
             nz = z * lengthInv;
-            meshData.m_attributes.m_normals.push_back(Vector3f(nx, ny, nz));
+            vertexData.get<MeshVertexAttributeType::kNormal>().push_back(Vector3f(nx, ny, nz));
 
             // vertex tex coord (s, t) range between [0, 1]
             s = (float)j / sectorCount;
             t = (float)i / stackCount;
-            meshData.m_attributes.m_texCoords.push_back(Vector2f(s, t));
+            vertexData.get<MeshVertexAttributeType::kTextureCoordinates>().push_back(Vector2f(s, t));
         }
     }
 
@@ -741,23 +786,23 @@ std::unique_ptr<Mesh> PolygonCache::createUnitSphere(int numLatLines, int numLon
             // k1 => k2 => k1+1
             if (i != 0)
             {
-                meshData.m_indices.emplace_back(k1);
-                meshData.m_indices.emplace_back(k2);
-                meshData.m_indices.emplace_back(k1 + 1);
+                vertexData.get<MeshVertexAttributeType::kIndices>().emplace_back(k1);
+                vertexData.get<MeshVertexAttributeType::kIndices>().emplace_back(k2);
+                vertexData.get<MeshVertexAttributeType::kIndices>().emplace_back(k1 + 1);
             }
 
             // k1+1 => k2 => k2+1
             if (i != (stackCount - 1))
             {
-                meshData.m_indices.emplace_back(k1 + 1);
-                meshData.m_indices.emplace_back(k2);
-                meshData.m_indices.emplace_back(k2 + 1);
+                vertexData.get<MeshVertexAttributeType::kIndices>().emplace_back(k1 + 1);
+                vertexData.get<MeshVertexAttributeType::kIndices>().emplace_back(k2);
+                vertexData.get<MeshVertexAttributeType::kIndices>().emplace_back(k2 + 1);
             }
         }
     }
 
-    // Create bounding box for mesh
-    mesh->generateBounds();
+    // Create mesh
+    auto mesh = std::make_unique<Mesh>();
     return mesh;
 }
 
@@ -784,12 +829,12 @@ std::unique_ptr<Mesh> PolygonCache::createCylinder(const GString & name)
 std::unique_ptr<Mesh> PolygonCache::createCylinder(float baseRadius, float topRadius, float height,
     int sectorCount, int stackCount)
 {
-    auto mesh = std::make_unique<Mesh>();
-    auto cylinder = Cylinder(mesh->vertexData(), baseRadius, topRadius, height, sectorCount, stackCount);
+    GString name = getCylinderName(baseRadius, topRadius, height, sectorCount, stackCount).toStdString();
+    m_vertexData[name] = std::make_unique<MeshVertexAttributes>();
+    MeshVertexAttributes& vertexData = *m_vertexData[name];
+    Cylinder cylinder(vertexData, baseRadius, topRadius, height, sectorCount, stackCount);
     
-    // Create bounding box for mesh
-    mesh->generateBounds();
-
+    auto mesh = std::make_unique<Mesh>();
     return mesh;
 }
 
@@ -806,16 +851,17 @@ std::unique_ptr<Mesh> PolygonCache::createCapsule(const GString & name)
 
 std::unique_ptr<Mesh> PolygonCache::createCapsule(float radius, float halfHeight)
 {
-    auto mesh = std::make_unique<Mesh>();
-    auto capsule = Capsule(mesh->vertexData(), radius, halfHeight);
+    GString name = getCapsuleName(radius, halfHeight).toStdString();
+    m_vertexData[name] = std::make_unique<MeshVertexAttributes>();
+    MeshVertexAttributes& vertexData = *m_vertexData[name];
+    Capsule capsule(vertexData, radius, halfHeight);
 
-    // Create bounding box for mesh
-    mesh->generateBounds();
+    auto mesh = std::make_unique<Mesh>();
     return mesh;
 }
 
 
-void PolygonCache::addTriangle(std::vector<Vector3>& vertices,
+void PolygonCache::AddTriangle(std::vector<Vector3>& vertices,
     std::vector<GLuint>& indices,
     const Vector3 & v0, const Vector3 & v1, const Vector3 & v2, bool clockWise)
 {
@@ -836,7 +882,7 @@ void PolygonCache::addTriangle(std::vector<Vector3>& vertices,
     }
 }
 
-void PolygonCache::addQuad(std::vector<Vector3>& vertices, 
+void PolygonCache::AddQuad(std::vector<Vector3>& vertices, 
     std::vector<GLuint>& indices, 
     const Vector3 & v0, const Vector3 & v1, const Vector3 & v2, const Vector3 & v3)
 {

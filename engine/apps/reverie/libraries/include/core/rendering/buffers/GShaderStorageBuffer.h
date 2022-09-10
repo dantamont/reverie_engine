@@ -33,6 +33,7 @@ public:
     /// @}
 
     ShaderStorageBuffer();
+    ShaderStorageBuffer(ShaderStorageBuffer&& other);
     ShaderStorageBuffer(RenderContext& context, size_t size, gl::BufferStorageMode storageMode = gl::BufferStorageMode::kDynamicDraw, size_t storageFlags = 0);
     ~ShaderStorageBuffer();
 

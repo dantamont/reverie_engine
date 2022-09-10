@@ -1,21 +1,9 @@
-#ifndef GB_FRAME_BUFFER_QUEUE_H
-#define GB_FRAME_BUFFER_QUEUE_H
+#pragma once
 
-/////////////////////////////////////////////////////////////////////////////////////////////
-// Includes
-/////////////////////////////////////////////////////////////////////////////////////////////
 // Internal 
 #include "GFrameBuffer.h"
 
 namespace rev {
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-// Forward declarations
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-// Class Definitions
-/////////////////////////////////////////////////////////////////////////////////////////////
 
 /// @class FrameBufferQueue
 /// @brief Class representing a set of FBOs to be updated
@@ -30,28 +18,11 @@ namespace rev {
 template<size_t N>
 class FrameBufferQueue{
 public:
-    //---------------------------------------------------------------------------------------
-    /// @name Static
-    /// @{
-
-    /// @}
-
-    //---------------------------------------------------------------------------------------
     /// @name Constructors/Destructor
     /// @{
-    /// @}
 
-    FrameBufferQueue()
-    {
-    }
-
-    FrameBufferQueue(const FrameBufferQueue& other):
-        m_readBuffer(other.m_readBuffer),
-        m_writeBuffer(other.m_writeBuffer),
-        m_frameBuffers(other.m_frameBuffers)
-    {
-
-    }
+    FrameBufferQueue() = default;
+    FrameBufferQueue(const FrameBufferQueue& other) = delete;
 
     /// @brief Initialize queue however one would a buffer
     /// @note Variadic template is used to avoid having to modify this if buffer initialization changes
@@ -60,25 +31,16 @@ public:
         m_frameBuffers([&] {
             if constexpr (N == 2) {
                 // N == 2
-                return std::array<FrameBuffer, N>{ { FrameBuffer(std::forward<BufferArgs>(args)...), FrameBuffer(std::forward<BufferArgs>(args)...) } };
+                return std::array<std::unique_ptr<FrameBuffer>, N>{ { std::make_unique<FrameBuffer>(std::forward<BufferArgs>(args)...), std::make_unique<FrameBuffer>(std::forward<BufferArgs>(args)...) } };
             }
             else {
                 // N == 3
-                return std::array<FrameBuffer, N>{ { FrameBuffer(std::forward<BufferArgs>(args)...), FrameBuffer(std::forward<BufferArgs>(args)...), FrameBuffer(std::forward<BufferArgs>(args)...) } };
+                return std::array<std::unique_ptr<FrameBuffer>, N>{ { std::make_unique<FrameBuffer>(std::forward<BufferArgs>(args)...), std::make_unique<FrameBuffer>(std::forward<BufferArgs>(args)...), std::make_unique<FrameBuffer>(std::forward<BufferArgs>(args)...) } };
             }
         }()
         )// Immediate evaluation of lambda, lambdas are constexpr by default as of N4487 and P0170 of open-standard https://stackoverflow.com/questions/41011900/equivalent-ternary-operator-for-constexpr-if
     {
         static_assert(N == 2 || N == 3, "Error, framebuffer queue only supports two or three buffers");
-
-        // Instead of a for loop, perform in-place construction of FBOs
-        //if constexpr (N == 2){
-        //    m_frameBuffers = { { FrameBuffer(std::forward<BufferArgs>(args)...), FrameBuffer(std::forward<BufferArgs>(args)...) } };
-        //}
-        //else {
-        //    // N == 3
-        //    m_frameBuffers = { { FrameBuffer(std::forward<BufferArgs>(args)...), FrameBuffer(std::forward<BufferArgs>(args)...), FrameBuffer(std::forward<BufferArgs>(args)...) } };
-        //}
     }
 
     ~FrameBufferQueue() {
@@ -86,35 +48,27 @@ public:
 
     /// @}
 
-    //---------------------------------------------------------------------------------------
     /// @name Properties
     /// @{
 
-    FrameBuffer& writeBuffer() { return m_frameBuffers[m_writeBuffer]; }
-    const FrameBuffer& writeBuffer() const { return m_frameBuffers[m_writeBuffer]; }
+    FrameBuffer& writeBuffer() { return *m_frameBuffers[m_writeBuffer]; }
+    const FrameBuffer& writeBuffer() const { return *m_frameBuffers[m_writeBuffer]; }
 
-    FrameBuffer& readBuffer() { return m_frameBuffers[m_readBuffer]; }
-    const FrameBuffer& readBuffer() const { return m_frameBuffers[m_readBuffer]; }
+    FrameBuffer& readBuffer() { return *m_frameBuffers[m_readBuffer]; }
+    const FrameBuffer& readBuffer() const { return *m_frameBuffers[m_readBuffer]; }
 
-    std::array<FrameBuffer, N>& frameBuffers() { return m_frameBuffers; }
+    std::array<std::unique_ptr<FrameBuffer>, N>& frameBuffers() { return m_frameBuffers; }
 
 
     /// @}
 
-    //---------------------------------------------------------------------------------------
     /// @name Operators
     /// @{
 
-    FrameBufferQueue& operator=(const FrameBufferQueue& other) {
-        m_readBuffer = other.m_readBuffer;
-        m_writeBuffer = other.m_writeBuffer;
-        m_frameBuffers = other.m_frameBuffers;
-        return *this;
-    }
+    FrameBufferQueue& operator=(const FrameBufferQueue& other) = delete;
 
     /// @}
 
-    //---------------------------------------------------------------------------------------
     /// @name Public methods
     /// @{
 
@@ -165,19 +119,6 @@ public:
 
 
 protected:
-    //---------------------------------------------------------------------------------------
-    /// @name Static
-    /// @{
-
-    /// @}
-
-    //---------------------------------------------------------------------------------------
-    /// @name Protected methods
-    /// @{
-
-    /// @}
-
-    //---------------------------------------------------------------------------------------
     /// @name Protected members
     /// @{
 
@@ -190,7 +131,7 @@ protected:
     //std::mutex m_mutex;
 
     /// @brief The framebuffers being updated and read from
-    std::array<FrameBuffer, N> m_frameBuffers;
+    std::array<std::unique_ptr<FrameBuffer>, N> m_frameBuffers;
     
     /// @}
 
@@ -198,7 +139,4 @@ protected:
 
 typedef FrameBufferQueue<2> PingPongFrameBuffers;
 
-/////////////////////////////////////////////////////////////////////////////////////////////
 } // End namespaces
-
-#endif

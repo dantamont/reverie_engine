@@ -3,12 +3,11 @@
 // Internal
 #include "core/mixins/GRenderable.h"
 #include "fortress/layer/framework/GFlags.h"
+#include "core/rendering/geometry/GVertexData.h"
 
 namespace rev {
 
 class Color;
-class VertexArrayData;
-struct VertexAttributes;
 class Mesh;
 class ResourceCache;
 class RenderContext;
@@ -94,16 +93,13 @@ public:
     virtual void setUniforms(DrawCommand& drawCommand) const override;
 
     /// @brief Load an existing vao as a Lines object
-    void loadVertexArrayData(ResourceCache& cache, const VertexArrayData& data, Flags<ResourceBehaviorFlag> flags, MeshGenerationFlags meshFlags = 0);
+    void loadVertexData(ResourceCache& cache, const MeshVertexAttributes& data, Flags<ResourceBehaviorFlag> flags, MeshGenerationFlags meshFlags = 0);
     
     /// @brief Load a vector of points as a Lines object
     void loadPointData(ResourceCache& cache, const std::vector<Vector3>& data, const std::vector<Uint32_t>& indices, Flags<ResourceBehaviorFlag> flags, MeshGenerationFlags meshFlags = 0);
 
     /// @brief Update any data needed for rendering, e.g. vertex data, render settings, etc.
     virtual void reload() override;
-
-    /// @brief Reload new points used for line
-    void reload(const std::vector<Vector3>& data, const std::vector<Uint32_t>& indices);
 
     // TODO: Implement some control over sorting
     virtual size_t getSortID() override { return 0; }
@@ -144,7 +140,7 @@ protected:
 
     /// @brief Add point
     void addPoint(const Vector3& newPoint);
-    void addPoint(VertexArrayData& vertexData, const Vector3& newPoint);
+    void addPoint(MeshVertexAttributes& vertexData, const Vector3& newPoint);
 
     /// @brief Add a triangle from three points
     void addTriangle(const Vector3& p1, const Vector3& p2, const Vector3& p3);
@@ -163,16 +159,13 @@ protected:
         UniformData m_useMiter;
         UniformData m_fadeWithDistance;
     };
+
     LineUniformData m_uniforms;
-
-    /// @brief Line thickness (in NDC)
-    float m_lineThickness;
-
+    MeshVertexAttributes m_vertexData; ///< Vertex data for the lines. Duplicated on GPU
+    float m_lineThickness; ///< Line thickness (in NDC)
     Flags<ShapeOptions> m_shapeOptions;
     Flags<EffectOptions> m_effectOptions;
-
-    /// @brief Line color
-    Vector4 m_lineColor;
+    Vector4 m_lineColor; ///< Line color
 
     /// @}
 

@@ -39,16 +39,20 @@ namespace rev {
 SceneCamera::SceneCamera(CameraComponent* component):
     Camera(&component->sceneObject()->transform(),
         &component->sceneObject()->scene()->engine()->openGlRenderer()->renderContext(),
-        AliasingType::kMSAA,
-        FrameBuffer::BufferAttachmentType::kRBO,
-        16, // 16 samples for MSAA
-        3), // Three color buffers. First for actual color, second for normals (for SSAO) during prepass, 
+        FrameBufferInfo{ 
+            AliasingType::kMSAA, /// @todo MSAA is a huge slowdown. Better to roll my own SMAA!
+            FrameBuffer::BufferAttachmentType::kRbo, // Color attachment type
+            FrameBuffer::BufferAttachmentType::kRbo, // Depth attachment type
+            16, // 16 samples for MSAA
+            3 } // Three color buffers. First for actual color, second for normals (for SSAO) during prepass, 
+        ), 
         // third for draw command IDs
     m_component(component),
     m_cameraOptions(3),
     m_lightClusterGrid(this), 
     m_ssaoFrameBuffer(component->sceneObject()->scene()->engine()->getGLWidgetContext(),
         AliasingType::kDefault,
+        FrameBuffer::BufferAttachmentType::kTexture,
         FrameBuffer::BufferAttachmentType::kTexture,
         FBO_SSAO_TEX_FORMAT,
         //TextureFormat::kR16,
@@ -59,6 +63,7 @@ SceneCamera::SceneCamera(CameraComponent* component):
     m_ssaoBlurFrameBuffer(
         component->sceneObject()->scene()->engine()->getGLWidgetContext(),
         AliasingType::kDefault,
+        FrameBuffer::BufferAttachmentType::kTexture,
         FrameBuffer::BufferAttachmentType::kTexture,
         FBO_SSAO_TEX_FORMAT,
         //TextureFormat::kR16,

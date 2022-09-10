@@ -2,14 +2,14 @@
 
 // Internal
 #include "fortress/containers/GContainerExtensions.h"
-#include "fortress/containers/math/GTransform.h"
-#include "fortress/types/GString.h"
+#include "heave/kinematics/GTransform.h"
+#include "fortress/string/GString.h"
 #include "fortress/layer/framework/GFlags.h"
 
-#include "core/rendering/geometry/GBuffers.h"
-#include "core/resource/GResource.h"
+#include "core/rendering/buffers/GVertexArrayObject.h"
+#include "core/resource/GResourceHandle.h"
 #include "core/animation/GAnimation.h"
-#include "core/geometry/GCollisions.h"
+#include "heave/collisions/GCollisions.h"
 
 namespace rev {
 class Model;

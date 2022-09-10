@@ -200,7 +200,7 @@ public:
     void setUniformValue(Uint32_t uniformId, const UniformData& uniformData);
 
     /// @brief Override resource's post-construction routine
-    virtual void postConstruction() override;
+    virtual void postConstruction(const ResourcePostConstructionData& postConstructData) override;
 
     /// @brief What action to perform on removal of the resource
     virtual void onRemoval(ResourceCache* /*cache*/ = nullptr) override;

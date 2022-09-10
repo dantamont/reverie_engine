@@ -3,7 +3,7 @@
 // Internal
 #include "GRenderProjection.h"
 #include "GFrameBufferQueue.h"
-#include "GFrustum.h"
+#include "heave/collisions/GFrustum.h"
 #include "GViewport.h"
 #include "core/rendering/buffers/GShaderStorageBuffer.h"
 #include "core/rendering/lighting/GLightClusterGrid.h"
@@ -129,6 +129,16 @@ protected:
 /// @brief Base camera class
 class Camera : public AbstractCamera {
 public:
+
+    /// @brief Struct to initialize a framebuffer of the camera
+    struct FrameBufferInfo {
+        AliasingType m_frameBufferFormat = AliasingType::kMSAA;
+        FrameBuffer::BufferAttachmentType m_framebufferColorStorageType = FrameBuffer::BufferAttachmentType::kRbo;
+        FrameBuffer::BufferAttachmentType m_framebufferDepthStorageType = FrameBuffer::BufferAttachmentType::kRbo;
+        Uint32_t m_numSamples = 16;
+        Uint32_t m_numColorAttachments = 1;
+    };
+
     /// @name Static
     /// @{
 
@@ -138,19 +148,15 @@ public:
     /// See: https://www.3dgep.com/understanding-the-view-matrix/
     static Matrix4x4g LookAtRH(const Vector3& eye, const Vector3& target, const Vector3& up);
 
-
     /// @}
 
     /// @name Constructors/Destructor
     /// @{
     Camera();
-    Camera(const Camera& other);
+    Camera(const Camera& other) = delete;
     Camera(TransformInterface* transform, // Transform that governs the camera
         RenderContext* renderContext, 
-        AliasingType frameBufferFormat = AliasingType::kMSAA,
-        FrameBuffer::BufferAttachmentType framebufferStorageType = FrameBuffer::BufferAttachmentType::kRBO,
-        uint32_t numSamples = 16,
-        uint32_t numColorAttachments = 1);
+        const FrameBufferInfo& info);
     virtual ~Camera();
 
     /// @}
@@ -158,7 +164,7 @@ public:
     /// @name Operators
     /// @{
 
-    Camera& operator=(const Camera& other);
+    Camera& operator=(const Camera& other) = delete;
 
     /// @}
 
@@ -198,6 +204,11 @@ public:
     void setViewMatrix(Matrix4x4&& viewMatrix) {
         m_viewMatrix = std::move(viewMatrix);
     }
+
+    /// @brief The world matrix of the camera
+    /// @note For cameras, the world matrix is equivalent to the inverse view matrix
+    /// @return The world matrix of the camera
+    const Matrix4x4& worldMatrix() const;
 
     /// @brief Get depth of an object (world-space) given its position
     /// @brief Positive is behind camera

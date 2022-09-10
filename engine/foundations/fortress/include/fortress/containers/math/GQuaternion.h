@@ -8,7 +8,7 @@
 #include <array>
 
 // Internal
-#include <fortress/types/GSizedTypes.h>
+#include <fortress/numeric/GSizedTypes.h>
 #include <fortress/json/GJson.h>
 
 /////////////////////////////////////////////////////////////////////////////////////////////

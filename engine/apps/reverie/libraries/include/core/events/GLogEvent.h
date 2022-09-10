@@ -11,7 +11,7 @@
 // Internal
 #include "GEvent.h"
 #include "logging/GLogger.h"
-#include "fortress/types/GString.h"
+#include "fortress/string/GString.h"
 
 namespace rev {
 /////////////////////////////////////////////////////////////////////////////////////////////

@@ -1,6 +1,6 @@
 ﻿#include <gtest/gtest.h>
 
-#include "fortress/types/GString.h"
+#include "fortress/string/GString.h"
 #include "fortress/encoding/string/GEncodedString.h"
 #include "fortress/system/GSystemPlatform.h"
 

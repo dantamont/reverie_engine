@@ -17,9 +17,9 @@
 
 // Internal
 #include "fortress/time/GStopwatchTimer.h"
-#include "core/resource/GResource.h"
+#include "core/resource/GResourceHandle.h"
 #include "fortress/types/GLoadable.h"
-#include "fortress/containers/math/GTransform.h"
+#include "heave/kinematics/GTransform.h"
 #include "fortress/containers/GContainerExtensions.h"
 
 namespace rev {

@@ -3,7 +3,7 @@
 #include <iostream>
 #include <mutex>
 #include <sstream>
-#include "fortress/types/GSizedTypes.h"
+#include "fortress/numeric/GSizedTypes.h"
 
 namespace rev {
 

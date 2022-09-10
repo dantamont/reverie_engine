@@ -8,11 +8,11 @@
 #include "core/rendering/models/GModel.h"
 #include "core/rendering/GGLFunctions.h"
 #include "core/rendering/shaders/GUniform.h"
-#include "core/resource/GResource.h"
+#include "core/resource/GResourceHandle.h"
 
 #include "fortress/containers/GColor.h"
 #include "fortress/containers/GContainerExtensions.h"
-#include "fortress/containers/math/GTransform.h"
+#include "heave/kinematics/GTransform.h"
 #include "fortress/image/GImage.h"
 
 namespace rev {

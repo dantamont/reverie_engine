@@ -8,7 +8,7 @@ http://creativecommons.org/licenses/by/3.0/deed.en_US
  */
 
 #include "fortress/system/GSystemPlatform.h"
-#include "fortress/types/GSizedTypes.h"
+#include "fortress/numeric/GSizedTypes.h"
 
 #if defined(G_SYSTEM_PLATFORM_WINDOWS)
 /// Windows 32-bit and 64-bit

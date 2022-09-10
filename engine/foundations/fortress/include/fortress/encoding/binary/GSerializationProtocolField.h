@@ -11,7 +11,7 @@
 // Project
 #include "fortress/encoding/binary/GEndianConverter.h"
 #include "fortress/templates/GTemplates.h"
-#include "fortress/types/GString.h"
+#include "fortress/string/GString.h"
 #include "fortress/streams/GFileStream.h"
 
 namespace rev {

@@ -12,7 +12,7 @@
 
 // Project
 #include "fortress/encoding/uuid/GUuid.h"
-#include "fortress/types/GString.h"
+#include "fortress/string/GString.h"
 #include "fortress/types/GLoadable.h"
 #include "fortress/types/GNameable.h"
 

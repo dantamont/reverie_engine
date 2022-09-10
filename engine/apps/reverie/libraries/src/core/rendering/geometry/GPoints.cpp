@@ -7,11 +7,11 @@
 #include "core/rendering/shaders/GShaderProgram.h"
 #include "core/rendering/buffers/GUniformBufferObject.h"
 #include "core/resource/GResourceCache.h"
-#include "core/resource/GResource.h"
+#include "core/resource/GResourceHandle.h"
 #include "core/rendering/geometry/GMesh.h"
 #include "core/rendering/geometry/GSkeleton.h"
 #include "core/rendering/geometry/GPolygon.h"
-#include "fortress/containers/math/GTransform.h"
+#include "heave/kinematics/GTransform.h"
 #include "core/rendering/renderer/GRenderCommand.h"
 #include "core/rendering/renderer/GOpenGlRenderer.h"
 #include "core/rendering/renderer/GRenderContext.h"
@@ -41,19 +41,20 @@ Points::Points(ResourceCache& cache, const Skeleton & skeleton, Flags<ResourceBe
     // Load vertex data for skeleton bones
     // TODO: Clean this up
     initializeEmptyMesh(cache, flags);
+    RenderContext& context = m_meshHandle->engine()->openGlRenderer()->renderContext();
     Mesh* mesh = Points::mesh();
 
     uint32_t numBones = (uint32_t)skeleton.boneNodes().size();
-    mesh->vertexData().m_attributes.m_vertices.resize(numBones);
-    mesh->vertexData().m_indices.resize(numBones);
-    mesh->vertexData().m_attributes.m_miscInt.resize(numBones);
-    std::iota(mesh->vertexData().m_indices.begin(), mesh->vertexData().m_indices.end(), 0);
+    m_vertexData.get<MeshVertexAttributeType::kPosition>().resize(numBones);
+    m_vertexData.get<MeshVertexAttributeType::kIndices>().resize(numBones);
+    m_vertexData.get<MeshVertexAttributeType::kMiscInt>().resize(numBones);
+    std::iota(m_vertexData.get<MeshVertexAttributeType::kIndices>().begin(), m_vertexData.get<MeshVertexAttributeType::kIndices>().end(), 0);
     int count = 0;
-    for (auto& vec : mesh->vertexData().m_attributes.m_miscInt) {
+    for (auto& vec : m_vertexData.get<MeshVertexAttributeType::kMiscInt>()) {
         vec[0] = count;
         count++;
     }
-    mesh->vertexData().loadIntoVAO();
+    mesh->postConstruction(ResourcePostConstructionData{ false, &m_vertexData });
 }
 
 Points::Points(ResourceCache& cache, size_t numPoints, Flags<ResourceBehaviorFlag> flags) :
@@ -74,17 +75,17 @@ Points::Points(ResourceCache& cache, size_t numPoints, Flags<ResourceBehaviorFla
     m_uniforms.m_pointSize.setValue(m_pointSize, uc);
     m_uniforms.m_pointColor.setValue(m_pointColor, uc);
 
-    //mesh = std::make_shared<Mesh>();
-    mesh->vertexData().m_attributes.m_vertices.resize(numPoints);
-    mesh->vertexData().m_indices.resize(numPoints);
-    mesh->vertexData().m_attributes.m_miscInt.resize(numPoints);
-    std::iota(mesh->vertexData().m_indices.begin(), mesh->vertexData().m_indices.end(), 0);
+    m_vertexData.get<MeshVertexAttributeType::kPosition>().resize(numPoints);
+    m_vertexData.get<MeshVertexAttributeType::kIndices>().resize(numPoints);
+    m_vertexData.get<MeshVertexAttributeType::kMiscInt>().resize(numPoints);
+    std::iota(m_vertexData.get<MeshVertexAttributeType::kIndices>().begin(), m_vertexData.get<MeshVertexAttributeType::kIndices>().end(), 0);
     int count = 0;
-    for (auto& vec : mesh->vertexData().m_attributes.m_miscInt) {
+    for (auto& vec : m_vertexData.get<MeshVertexAttributeType::kMiscInt>()) {
         vec[0] = count;
         count++;
     }
-    mesh->vertexData().loadIntoVAO();
+    RenderContext& context = m_meshHandle->engine()->openGlRenderer()->renderContext();
+    mesh->postConstruction(ResourcePostConstructionData{ false, &m_vertexData });
 }
 
 Points::Points(const Lines & lines):
@@ -147,31 +148,29 @@ void Points::setUniforms(DrawCommand & drawCommand) const
 size_t Points::numPoints() const
 {
     Mesh* mesh = Points::mesh();
-    return mesh->vertexData().m_attributes.m_vertices.size();
+    return m_vertexData.get<MeshVertexAttributeType::kPosition>().size();
 }
 
-void Points::loadVertexArrayData(ResourceCache& cache, const VertexArrayData& data, Flags<ResourceBehaviorFlag> flags)
+void Points::loadVertexData(ResourceCache& cache, const MeshVertexAttributes& vertexData, Flags<ResourceBehaviorFlag> flags)
 {
     // Initialize a new mesh
     initializeEmptyMesh(cache, flags);
     m_meshHandle->setIsLoading(true);
     
     // Load data
+    RenderContext& context = m_meshHandle->engine()->openGlRenderer()->renderContext();
     Mesh* mesh = Points::mesh();
-    VertexArrayData& vdata = mesh->vertexData();
-    for (size_t i = 0; i < data.m_indices.size(); i++) {
-        int point = data.m_indices[i];
-        addPoint(vdata, data.m_attributes.m_vertices[point]);
+    for (size_t i = 0; i < vertexData.get<MeshVertexAttributeType::kIndices>().size(); i++) {
+        int point = vertexData.get<MeshVertexAttributeType::kIndices>()[i];
+        addPoint(m_vertexData, vertexData.get<MeshVertexAttributeType::kPosition>()[point]);
     }
-    vdata.loadIntoVAO();
-    mesh->generateBounds();
+    mesh->postConstruction(ResourcePostConstructionData{ false, &m_vertexData });
     m_meshHandle->setIsLoading(false);
 }
 
 void Points::reload()
 {    
-    Mesh* mesh = Points::mesh();
-    mesh->vertexData().loadIntoVAO();
+    assert(false && "Deprecate this");
 }
 
 void to_json(json& orJson, const Points& korObject)
@@ -213,16 +212,16 @@ void Points::drawGeometry(ShaderProgram& shaderProgram,
     mesh->vertexData().drawGeometry(settings->shapeMode(), 1);
 }
 
-void Points::addPoint(VertexArrayData& vertexData, const Vector3 & point)
+void Points::addPoint(MeshVertexAttributes& vertexData, const Vector3 & point)
 {
     // Set next point to this point for vertex attributes already stored
-    int size = (int)vertexData.m_attributes.m_vertices.size();
+    int size = (int)vertexData.get<MeshVertexAttributeType::kPosition>().size();
 
     // Add vertex position
-    Vec::EmplaceBack(vertexData.m_attributes.m_vertices, point);
+    Vec::EmplaceBack(vertexData.get<MeshVertexAttributeType::kPosition>(), point);
 
     // Add indices 
-    vertexData.m_indices.push_back(size);
+    vertexData.get<MeshVertexAttributeType::kIndices>().push_back(size);
 }
 
 

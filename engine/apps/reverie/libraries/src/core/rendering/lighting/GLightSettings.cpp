@@ -30,6 +30,7 @@ LightingSettings::LightingSettings(RenderContext& context, uint32_t maxNumLights
     m_pointLightFrameBuffer(context.context(),
         AliasingType::kDefault,
         FrameBuffer::BufferAttachmentType::kTexture,
+        FrameBuffer::BufferAttachmentType::kTexture,
         FBO_FLOATING_POINT_TEX_FORMAT,
         4, // Not using MSAA, so doesn't matter
         0) // No color attachments needed
@@ -87,7 +88,7 @@ LightingSettings::LightingSettings(RenderContext& context, uint32_t maxNumLights
         4/*NUM_SHADOWS_PER_LIGHT_TYPE*/, // TODO: Dynamically check this hardware limit, see prepass_shadowmap.geom
         true,
         FBO_DEFAULT_DEPTH_PRECISION);
-    pointTexture->postConstruction();
+    pointTexture->postConstruction(ResourcePostConstructionData());
     m_shadowMapTextures[(int)Light::LightType::kPoint] = pointTexture;
 
     for (uint32_t i = 1; i < 3; i++) {
@@ -103,7 +104,7 @@ LightingSettings::LightingSettings(RenderContext& context, uint32_t maxNumLights
             FBO_DEFAULT_DEPTH_PRECISION, // Could use kDepth32FStencil8X24, but don't need that precision
             numLayers); 
         mapTexture->setBorderColor(Color(std::vector<float>{1.0f, 1.0f, 1.0f, 1.0f}));
-        mapTexture->postConstruction();
+        mapTexture->postConstruction(ResourcePostConstructionData());
         m_shadowMapTextures[i] = mapTexture;
     }
 
@@ -151,7 +152,7 @@ void LightingSettings::generateSampleKernel()
     m_ssaoBuffer.subData(kernelSamples.data(), 0, m_numKernalSamples);
 
     for (uint32_t i = 0; i < 10; i++) {
-        Logger::LogDebug(std::string(m_ssaoBuffer.data<Vector4>()[i]).c_str());
+        Logger::LogDebug(std::string(m_ssaoBuffer.dataMap<Vector4>()[i]).c_str());
         m_ssaoBuffer.unmap();
     }
     //for (auto& vec : kernelSamples) {
@@ -184,7 +185,7 @@ void LightingSettings::initializeNoiseTexture()
         TextureFilter::kNearest, 
         TextureWrapMode::kRepeat, // Want to repeat for tiling
         TextureFormat::kRGB16F);
-    m_noiseTexture->postConstruction();
+    m_noiseTexture->postConstruction(ResourcePostConstructionData());
     m_noiseTexture->setData(ssaoNoise.data(), PixelFormat::kRGB, PixelType::kFloat32);
     
     // Testing data retrieval

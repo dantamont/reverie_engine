@@ -1,7 +1,7 @@
 #pragma once
 
 // Internal
-#include "fortress/types/GString.h"
+#include "fortress/string/GString.h"
 
 namespace rev {
 

@@ -29,11 +29,6 @@ ResourceCache::ResourceCache(CoreEngine* core, ProcessManager* processManager, c
     m_processManager(processManager),
     m_polygonCache(std::make_shared<PolygonCache>(core))
 {
-    // Register resource handle to send over qt
-    qRegisterMetaType<std::shared_ptr<ResourceHandle>>("rev::ResourceHandle"); // Possible deprecated
-    qRegisterMetaType<GString>("rev::GString");
-    qRegisterMetaType<GString>("GString");
-
     // Connect post-construction routine to resource cache and emit signal
     // Queued connection will ensure slot is executed in receiver's thread
     /// @fixme Make the timing of this synchronous so that behavior is more deterministic
@@ -72,7 +67,7 @@ bool ResourceCache::insertHandle(const std::shared_ptr<ResourceHandle>& resource
 bool ResourceCache::insertHandle(const std::shared_ptr<ResourceHandle>& resourceHandle, bool* clearedResources)
 {
     // Lock in case adding from another thread
-    QMutexLocker lock(&s_resourceMutex);
+    std::unique_lock lock(m_resourceMutex);
 
     // Add resourceHandle
     const Uuid& uuid = resourceHandle->getUuid();
@@ -138,8 +133,6 @@ bool ResourceCache::insertHandle(const std::shared_ptr<ResourceHandle>& resource
 
 std::shared_ptr<ResourceHandle> ResourceCache::getTopLevelHandleWithPath(const GString & filepath) const
 {
-    //QMutexLocker lock(&s_resourceMutex);
-
     auto resourceIter = std::find_if(m_topLevelResources.begin(), m_topLevelResources.end(),
         [&](const std::shared_ptr<ResourceHandle>& r) {
         return r->getPath() == filepath;
@@ -166,7 +159,7 @@ std::shared_ptr<ResourceHandle> ResourceCache::guaranteeHandleWithPath(const GSt
         }
     }
     else{
-        handle = ResourceHandle::create(m_engine, filepath, type);
+        handle = ResourceHandle::Create(m_engine, filepath, type);
         handle->setBehaviorFlags(flags);
         handle->loadResource();
     }
@@ -200,7 +193,7 @@ std::shared_ptr<ResourceHandle> ResourceCache::guaranteeHandleWithPath(const std
     }
 
     // Create handle from filepaths
-    handle = ResourceHandle::create(m_engine, filepaths[0], type);
+    handle = ResourceHandle::Create(m_engine, filepaths[0], type);
     for (size_t i = 1; i < filepaths.size(); i++) {
         handle->additionalPaths().push_back(filepaths[i]);
     }
@@ -212,8 +205,6 @@ std::shared_ptr<ResourceHandle> ResourceCache::guaranteeHandleWithPath(const std
  
  std::shared_ptr<ResourceHandle> ResourceCache::getHandleWithName(const GString & name, GResourceType type) const
  {
-     //QMutexLocker lock(&s_resourceMutex);
-
      auto resourceIter = m_resources.find_if(
          [&](const auto& resourcePair) {
          return resourcePair.second->getName() == name && resourcePair.second->getResourceType() == type;
@@ -240,8 +231,6 @@ std::shared_ptr<ResourceHandle> ResourceCache::guaranteeHandleWithPath(const std
  
 void ResourceCache::clear()
 {
-    //QMutexLocker lock(&s_resourceMutex);
-
     // Ensure that main context is current
     m_engine->setGLContext();
 
@@ -274,12 +263,6 @@ void ResourceCache::clear()
 
 std::shared_ptr<ResourceHandle> ResourceCache::getHandle(const Uuid & uuid) const
 {
-    //QMutexLocker lock(&s_resourceMutex);
-
-    //auto iter = std::find_if(m_resources.begin(), m_resources.end(),
-    //    [&](const std::pair<Uuid, std::shared_ptr<ResourceHandle>>& resourcePair) {
-    //    return resourcePair.second->getUuid() == uuid;
-    //});
     auto iter = m_resources.find_if(
         [&](const std::pair<Uuid, std::shared_ptr<ResourceHandle>>& resourcePair) {
         return resourcePair.second->getUuid() == uuid;
@@ -302,7 +285,7 @@ std::shared_ptr<ResourceHandle> ResourceCache::getHandle(const json & handleJson
         return getHandle(handleID);
     }
     else {
-        auto handle = ResourceHandle::create(m_engine, (GResourceType)EResourceType::eINVALID);
+        auto handle = ResourceHandle::Create(m_engine, (GResourceType)EResourceType::eINVALID);
         handleJson.get_to(*handle);
         handle->loadResource();
         return handle;
@@ -343,8 +326,7 @@ bool ResourceCache::remove(const std::shared_ptr<ResourceHandle>& resourceHandle
 
 bool ResourceCache::remove(ResourceHandle * resourceHandle, ResourceDeleteFlags deleteFlags)
 {
-    // Lock in case adding from another thread
-    QMutexLocker lock(&s_resourceMutex);
+    std::unique_lock lock(m_resourceMutex);
 
     // Move resource to the front of the queue, since it will either be removed, in which case
     // we don't want it in the back of the queue for another attempted removal, or it is permanent,
@@ -396,7 +378,7 @@ void ResourceCache::logCurrentCost() const
 
 void ResourceCache::initializeCoreResources()
 {
-    // Initialize shader resources
+    // Initialize core resources, mainly shader resources
     /// For info on prefix:
     /// @see https://doc.qt.io/archives/qt-4.8/resources.html#using-resources-in-the-application
     for (const std::pair<QString, Shader::ShaderType>& shaderPair : Shader::Builtins()) {
@@ -418,37 +400,31 @@ void ResourceCache::initializeCoreResources()
         std::shared_ptr<ResourceHandle> shaderHandle;
         if (shaderName.contains("ssao")) {
             // FIXME: Tweak so no longer need a special case for when vertex shader name is different than frag
-            shaderHandle = ResourceHandle::create(m_engine, ":shaders/quad.vert", EResourceType::eShaderProgram);
+            shaderHandle = ResourceHandle::Create(m_engine, ":shaders/quad.vert", EResourceType::eShaderProgram);
             shaderHandle->additionalPaths().push_back(fullShaderPath);
         }
         else if (shaderName.contains("canvas_billboard")) {
             // FIXME: Tweak so no longer need a special case for when vertex shader name is different than frag
             // Make Canvas Billboard shader
             GString fragShaderPath = GString(":shaders/") + "canvas.frag";
-            shaderHandle = ResourceHandle::create(m_engine, ":shaders/canvas_billboard.vert", EResourceType::eShaderProgram);
+            shaderHandle = ResourceHandle::Create(m_engine, ":shaders/canvas_billboard.vert", EResourceType::eShaderProgram);
             shaderHandle->additionalPaths().push_back(fragShaderPath);
         }
         else if (shaderName.contains("canvas_gui")) {
             // FIXME: Tweak so no longer need a special case for when vertex shader name is different than frag
             // Make Canvas GUI shader
             GString fragShaderPath = GString(":shaders/") + "canvas.frag";
-            shaderHandle = ResourceHandle::create(m_engine, ":shaders/canvas_gui.vert", EResourceType::eShaderProgram);
+            shaderHandle = ResourceHandle::Create(m_engine, ":shaders/canvas_gui.vert", EResourceType::eShaderProgram);
             shaderHandle->additionalPaths().push_back(fragShaderPath);
         }
         else {
-            shaderHandle = ResourceHandle::create(m_engine, fullShaderPath, EResourceType::eShaderProgram);
+            shaderHandle = ResourceHandle::Create(m_engine, fullShaderPath, EResourceType::eShaderProgram);
         }
         shaderHandle->setName(shaderName);
         shaderHandle->setCore(true);
         if (shaderPair.second == Shader::ShaderType::kVertex) {
             // Also load fragment shader if this is a vertex shader
             shaderHandle->additionalPaths().push_back(shaderPath + ".frag");
-
-            // TODO: Remove, deprecating geometry shaders
-            // Also load geometry shader if there is one
-            //if (QFileInfo(shaderPath + ".geom").exists()) {
-            //    shaderHandle->additionalPaths().push_back(shaderPath + ".geom");
-            //}
         }
         shaderHandle->loadResource();
     }
@@ -463,11 +439,18 @@ void ResourceCache::queuePostConstruction(const Uuid& uuid)
     m_resourcesForPostConstruction.push_back(uuid);
 }
 
+void ResourceCache::addPostConstructionData(const Uuid& handleId, const ResourcePostConstructionData& data)
+{
+    std::unique_lock lock(m_postConstructMutex);
+    m_resourcePostConstructionData[handleId] = data;
+}
+
 void ResourceCache::postConstructResources()
 {
     std::unique_lock lock(m_postConstructMutex);
     for (const Uuid& id : m_resourcesForPostConstruction) {
         runPostConstruction(id);
+        m_resourcePostConstructionData.erase(id);
     }
     m_resourcesForPostConstruction.clear();
 }
@@ -505,7 +488,13 @@ void ResourceCache::runPostConstruction(const Uuid& handleId) {
     if (resourceHandle->isConstructed()) {
         Logger::Throw("Error, resource already constructed");
     }
-    resourceHandle->postConstruct();
+
+    if (m_resourcePostConstructionData.contains(handleId)) {
+        resourceHandle->postConstruct(m_resourcePostConstructionData[handleId]);
+    }
+    else {
+        resourceHandle->postConstruct(ResourcePostConstructionData());
+    }
 
 #ifdef DEBUG_MODE
     Logger::LogInfo("Running post-construction of " + resourceHandle->getName());
@@ -573,7 +562,7 @@ void from_json(const json& korJson, ResourceCache& orObject)
     for (const json& resourceJson : resources) {
         // Ensuring that UUID is set from cached value. Loading from JSON after
         // creation leads to indexing problems
-        std::shared_ptr<ResourceHandle> handle = ResourceHandle::create(orObject.m_engine, resourceJson);
+        std::shared_ptr<ResourceHandle> handle = ResourceHandle::Create(orObject.m_engine, resourceJson);
 
 #ifdef DEBUG_MODE    
         functions.printGLError("Error during resource creation");
@@ -593,10 +582,6 @@ void from_json(const json& korJson, ResourceCache& orObject)
     // Save max cost to json
     korJson.at("maxCost").get_to(orObject.m_maxCost);
 }
-
-
-QMutex ResourceCache::s_resourceMutex = QMutex();
-
 
 
 } // End namespaces

@@ -5,8 +5,8 @@
 #include <regex>
 
 // Public
-#include "fortress/types/GStringView.h"
-#include "fortress/types/GSizedTypes.h"
+#include "fortress/string/GStringView.h"
+#include "fortress/numeric/GSizedTypes.h"
 
 namespace rev {
 

@@ -14,12 +14,6 @@
 
 namespace rev{
 
-LightComponent::LightComponent():
-    Component(ComponentType::kLight)
-{
-    m_lightIndex = -1; // dummy construction for Qt metadata system
-}
-
 LightComponent::LightComponent(const std::shared_ptr<SceneObject>& object, Light::LightType type):
     Component(object, ComponentType::kLight)
 {
@@ -29,6 +23,7 @@ LightComponent::LightComponent(const std::shared_ptr<SceneObject>& object, Light
     }
     setSceneObject(sceneObject());
     sceneObject()->setComponent(this);
+    sceneObject()->scene()->addLight(this);
 
     initializeLight(type);
 }
@@ -44,6 +39,8 @@ LightComponent::~LightComponent()
     if (m_shadowMap) {
         Logger::Throw("Error, failed to delete shadow map");
     }
+
+    scene()->removeLight(this);
 }
 
 void LightComponent::setDiffuseColor(const Vector4& color)

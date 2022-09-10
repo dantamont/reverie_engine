@@ -2,9 +2,9 @@
 
 // Internal
 #include "GTexture.h"
-#include <fortress/types/GSizedTypes.h>
+#include <fortress/numeric/GSizedTypes.h>
 #include "fortress/image/GTexturePacker.h"
-#include "fortress/types/GString.h"
+#include "fortress/string/GString.h"
 #include "core/rendering/lighting/GLightSettings.h" // For shadow map texture count
 
 namespace rev {  

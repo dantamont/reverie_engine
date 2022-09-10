@@ -3,7 +3,7 @@
 #include "fortress/math/GMath.h"
 #include "fortress/system/path/GFile.h"
 #include "fortress/system/path/GPath.h"
-#include "fortress/types/GStringFixedSize.h"
+#include "fortress/string/GStringFixedSize.h"
 
 #include "geppetto/qt/actions/GActionManager.h"
 #include "geppetto/qt/actions/commands/GComponentCommand.h"

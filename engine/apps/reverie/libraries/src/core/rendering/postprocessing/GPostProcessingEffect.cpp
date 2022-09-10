@@ -116,7 +116,7 @@ void PostProcessingEffect::reinitialize(CoreEngine* core)
     QString vertexSource = Shader::CombineEffectVertexShaders(vertexShaders).c_str();
 
     // Create new shader program
-    auto handle = ResourceHandle::create(core, (GResourceType)EResourceType::eShaderProgram);
+    auto handle = ResourceHandle::Create(core, (GResourceType)EResourceType::eShaderProgram);
     auto sp = std::make_unique<ShaderProgram>(vertexSource, fragSource, 1.0);
     handle->setName(m_name);
     handle->setResource(std::move(sp), false);

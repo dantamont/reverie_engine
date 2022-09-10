@@ -3,7 +3,7 @@
 #include "core/GCoreEngine.h"
 #include <core/processes/GProcessManager.h>
 #include <core/processes/GSpriteAnimationProcess.h>
-#include "core/resource/GResource.h"
+#include "core/resource/GResourceHandle.h"
 #include "core/resource/GResourceCache.h"
 #include "core/rendering/geometry/GMesh.h"
 #include "core/rendering/geometry/GPolygon.h"
@@ -224,9 +224,7 @@ void Sprite::initializeMesh(ResourceCache* cache)
     m_meshHandle = cache->getHandle(quad->handle()->getUuid());
 
     // Make sure that mesh has bounds
-    if (!quad->objectBounds().boxData().isInitialized()) {
-        quad->generateBounds();
-    }
+    assert(quad->objectBounds().boxData().isInitialized() && "Quad bounds uninitialized");
 }
 
 void Sprite::bindUniforms(ShaderProgram& shaderProgram)

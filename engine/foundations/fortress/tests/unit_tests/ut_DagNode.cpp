@@ -2,8 +2,8 @@
 
 #include <gtest/gtest.h>
 
-#include "fortress/types/GString.h"
-#include "fortress/types/GSizedTypes.h"
+#include "fortress/string/GString.h"
+#include "fortress/numeric/GSizedTypes.h"
 #include "fortress/system/memory/GPointerTypes.h"
 #include "fortress/containers/graph/GDagNode.h"
 

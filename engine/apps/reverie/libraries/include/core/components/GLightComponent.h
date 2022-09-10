@@ -27,7 +27,6 @@ class LightComponent : public Component {
 public:
     /// @name Constructors/Destructor
     /// @{
-    LightComponent(); // For Qt metatype registration
     LightComponent(const std::shared_ptr<SceneObject>& object, Light::LightType type = Light::kPoint);
     ~LightComponent();
 

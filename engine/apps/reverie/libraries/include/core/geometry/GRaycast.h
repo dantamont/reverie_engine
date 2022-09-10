@@ -1,9 +1,5 @@
-#ifndef GB_RAYCAST_H
-#define GB_RAYCAST_H
+#pragma once
 
-/////////////////////////////////////////////////////////////////////////////////////////////
-// Includes
-/////////////////////////////////////////////////////////////////////////////////////////////
 // Standard
 #include <type_traits>
 
@@ -17,26 +13,16 @@
 
 namespace rev {
 
-//////////////////////////////////////////////////////////////////////////////////
-// Forward Declarations
-//////////////////////////////////////////////////////////////////////////////////
 class Camera;
 class OpenGlRenderer;
 class SceneObject;
 class AABB;
-class Mesh;
 
-//////////////////////////////////////////////////////////////////////////////////
-// Macro Definitions
-//////////////////////////////////////////////////////////////////////////////////
+template<typename EnumType, template<typename> typename ContainerType, typename ...Types>
+struct VertexAttributes;
+enum class MeshVertexAttributeType;
+typedef VertexAttributes<MeshVertexAttributeType, std::vector, Vector3, Vector4, Vector2, Vector3, Vector3, Vector4i, Vector4> MeshVertexAttributes;
 
-/////////////////////////////////////////////////////////////////////////////////////////////
-// Type Definitions
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-// Class definitions
-/////////////////////////////////////////////////////////////////////////////////////////////
 
 /// @brief Struct containing identifying information about the hit
 struct HitInfo {
@@ -49,22 +35,11 @@ struct WorldRayHit {
 
     WorldRayHit(HitInfo&& info, Real_t distance, const Vector4& hitPoint, const Vector4& normal);
 
-    /// @brief Metadata associated with the hit
-    HitInfo m_hitInfo;
-
-    /// @brief The distance from the hit to the ray origin, to avoid recalculating
-    Real_t m_distance;
-
-    /// @brief The position of the hit in world-space
-    Vector4 m_position = Vector4::EmptyVector();
-
-    /// @brief The normal at the hit in world space
-    Vector4 m_normal = Vector4::EmptyVector();
+    HitInfo m_hitInfo; ///< Metadata associated with the hit 
+    Real_t m_distance; ///< The distance from the hit to the ray origin, to avoid recalculating
+    Vector4 m_position = Vector4::EmptyVector(); ///< The position of the hit in world-space
+    Vector4 m_normal = Vector4::EmptyVector(); ///< The normal at the hit in world space
 };
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////
 
 /// @brief Flags for controlling raycast
 enum class RaycastFlag {
@@ -75,15 +50,11 @@ enum class RaycastFlag {
 };
 typedef Flags<RaycastFlag> RaycastFlags;
 
-
-/////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////
 /// @class Raycast
 /// @brief For raycasting without relying on the physics backend
 class WorldRay {
 public:
 
-    //--------------------------------------------------------------------------------------------
     /// @name Static
     /// @{
 
@@ -107,7 +78,6 @@ public:
 
     /// @}
 
-    //--------------------------------------------------------------------------------------------
     /// @name Constructors/Destructor
     /// @{
 
@@ -117,8 +87,6 @@ public:
 
     /// @}
 
-
-    //--------------------------------------------------------------------------------------------
     /// @name Properties
     /// @{
 
@@ -135,7 +103,6 @@ public:
 
     /// @}
 
-    //--------------------------------------------------------------------------------------------
     /// @name Public methods
     /// @{
 
@@ -144,6 +111,10 @@ public:
     /// @brief Test if the ray hits the specified scene object
     bool cast(const SceneObject& so, std::vector<WorldRayHit>& outHits) const;
 
+    /// @}
+
+private:
+
     /// @brief Test if the ray hits the specified bounding box
     /// @details When tmin < 0, the ray origin is inside the box
     /// @param[out] tmax The distance to the intersection point, such that when the ray is inside the AABB, tmax*ray.m_direction + ray.m_origin is the intersection point
@@ -151,44 +122,22 @@ public:
     bool cast(const AABB& aabb, double& tmin, double& tmax) const;
 
     /// @brief Test if the ray hits the specified mesh
+    /// @details Uses Moller Trumbore algorithm
+    /// @see https://stackoverflow.com/questions/44275153/is-m%C3%B6ller-trumbore-ray-intersection-the-fastest
+    /// @see https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-rendering-a-triangle/moller-trumbore-ray-triangle-intersection
     /// @param[in] objectOrigin the origin of the ray in the scene object's local object space
-    /// @param[in] objectOrigin the direction of the ray in the scene object's local object space
-    bool cast(const SceneObject & so, const Mesh& mesh, const Vector3& objectOrigin, const Vector3& objectDir, std::vector<WorldRayHit>& outHits) const;
+    /// @param[in] objectDir the direction of the ray in the scene object's local object space
+    bool cast(const SceneObject& so, const MeshVertexAttributes& vertexData, const Vector3& objectOrigin, const Vector3& objectDir, std::vector<WorldRayHit>& outHits) const;
 
-    /// @}
 
-    //bool hadHit() const {
-    //    return m_hits.getNumHits() != 0;
-    //}
-
-    //RaycastHit firstHit() const {
-    //    return m_hits.getHit(0);
-    //}
-
-private:
-
-    //--------------------------------------------------------------------------------------------
-    /// @name Private methods
-    /// @{
-
-    /// @}
-
-    //--------------------------------------------------------------------------------------------
     /// @name Private members
     /// @{
 
     RaycastFlags m_raycastFlags;
-
     Real_t m_maxDistance = (float)1e30;
-
     Vector3 m_origin;
-
-    /// @brief Unit direction of the ray
-    Vector3 m_direction;
-
-    /// @brief Component-wise inverse of direction of the ray
-    Vector3 m_dirReciprocal;
-
+    Vector3 m_direction; ///< Unit direction of the ray
+    Vector3 m_dirReciprocal; ///< Component-wise inverse of direction of the ray
     static float s_errorTolerance;
 
     /// @}
@@ -196,8 +145,4 @@ private:
 
 
 
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
 } // End namespaces
-
-#endif

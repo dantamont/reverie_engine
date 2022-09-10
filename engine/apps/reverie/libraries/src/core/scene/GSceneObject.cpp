@@ -337,7 +337,7 @@ void SceneObject::createShadowDrawCommands()
     }
 }
 
-void SceneObject::retrieveShadowDrawCommands(OpenGlRenderer & renderer)
+void SceneObject::retrieveShadowDrawCommands(OpenGlRenderer & renderer, ShadowMap* shadowMap)
 {
     // Skip if no shader component or does not contain render layer
     ShaderComponent* sc = getComponent<ShaderComponent>(ComponentType::kShader);
@@ -352,7 +352,7 @@ void SceneObject::retrieveShadowDrawCommands(OpenGlRenderer & renderer)
                     if (modelComp) {
                         std::vector<std::shared_ptr<DrawCommand>> renderCommands;
 
-                        modelComp->retrieveShadowDrawCommands(renderCommands);
+                        modelComp->retrieveShadowDrawCommands(renderCommands, shadowMap);
 
                         BoneAnimationComponent* animComp = getComponent<BoneAnimationComponent>(ComponentType::kBoneAnimation);
                         for (const std::shared_ptr<DrawCommand>& command : renderCommands) {
@@ -380,7 +380,7 @@ void SceneObject::retrieveShadowDrawCommands(OpenGlRenderer & renderer)
 
     // Generate commands for children
     for (const std::shared_ptr<SceneObject>& child : children()) {
-        child->retrieveShadowDrawCommands(renderer);
+        child->retrieveShadowDrawCommands(renderer, shadowMap);
     }
 }
 

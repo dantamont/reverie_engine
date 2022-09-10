@@ -355,20 +355,12 @@ void DrawCommand::shadowPass(OpenGlRenderer & renderer)
     updateCameraSettings(renderer);
 
     // Bind shader
-    ShaderProgram* prepassShader;
-    if (m_prepassShaderProgram) {
-        // Use specified prepass shader for depth pass
-        prepassShader = m_prepassShaderProgram;
-    }
-    else {
-        // Default to same shader program as render
-        prepassShader = m_shaderProgram;
-    }
-    updateShaderUniforms(renderer, *prepassShader, true);
+    updateShaderUniforms(renderer, *m_prepassShaderProgram, true);
 
     // Perform depth render into shadow map
     /// @note Can't ignore textures in case of transparency :/
-    m_renderable->draw(*prepassShader,
+    /// @todo Flag objects that are transparent so that by default, textures can be ignored
+    m_renderable->draw(*m_prepassShaderProgram,
         &renderer.m_renderContext,
         &m_renderSettings,
         //(size_t)RenderableIgnoreFlag::kIgnoreTextures |
@@ -486,8 +478,9 @@ void DrawCommand::updateShaderUniforms(OpenGlRenderer & renderer, ShaderProgram 
         if (commandIndex > -1) {
             /// @todo Set this only when renderable is created
             UniformData& commandIndexUniform = renderer.m_commandIndexUniforms[commandIndex];
+            Vector4f color = MousePicker::GetChannelId<4, float>(commandIndex);
             commandIndexUniform.setValue(
-                MousePicker::GetChannelId<4, float>(commandIndex), 
+                color,
                 *m_uniformContainer);
             shaderProgram.setUniformValue(colorUniformID, commandIndexUniform);
         }

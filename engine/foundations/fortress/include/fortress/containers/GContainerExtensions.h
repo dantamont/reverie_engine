@@ -16,6 +16,30 @@
 
 namespace rev {
 
+namespace detail
+{
+
+/// @brief Compile-time construct an array using a single input value
+/// @tparam T The type of the array
+/// @tparam ...Is Pack for remaining array indices to populate
+/// @param value The input value
+/// @return 
+template <typename T, std::size_t ... Is>
+constexpr std::array<T, sizeof...(Is)>
+CreateArray(T value, std::index_sequence<Is...>)
+{
+    // cast Is to void to remove the warning: unused value
+    return { {(static_cast<void>(Is), value)...} };
+}
+
+}
+
+template <std::size_t N, typename T>
+constexpr std::array<T, N> CreateArray(const T& value)
+{
+    return detail::CreateArray(value, std::make_index_sequence<N>());
+}
+
 class Vec {
 public:
 

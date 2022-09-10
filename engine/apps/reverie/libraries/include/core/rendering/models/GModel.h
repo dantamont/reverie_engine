@@ -92,15 +92,16 @@ public:
 
     /// @brief What action to perform post-construction of the model
     /// @details For performing any actions that need to be done on the main thread
-    virtual void postConstruction() override;
+    virtual void postConstruction(const ResourcePostConstructionData& postConstructData) override;
 
-    /// @brief Load the resource from its binary representation
-    /// @return False if unimplemented, or failed to load
-    virtual bool loadBinary(const GString& filepath) override;
+    /// @todo Move this to another application or library entirely.
+    ///// @brief Load the resource from its binary representation
+    ///// @return False if unimplemented, or failed to load
+    //virtual bool loadBinary(const GString& filepath) override;
 
-    /// @brief Save the resource to its binary representation
-    /// @return False if unimplemented, or failed to save
-    virtual bool saveBinary(const GString& filepath) const override;
+    ///// @brief Save the resource to its binary representation
+    ///// @return False if unimplemented, or failed to save
+    //virtual bool saveBinary(const GString& filepath) const override;
 
 
 	/// @}

@@ -56,7 +56,7 @@
 #include "core/rendering/materials/GMaterial.h"
 
 #include "core/resource/GResourceCache.h"
-#include "core/resource/GResource.h"
+#include "core/resource/GResourceHandle.h"
 
 #include "core/scene/GScenario.h"
 #include "core/scene/GScene.h"
@@ -66,7 +66,7 @@
 #include "fortress/system/memory/GGarbageCollector.h"
 #include "fortress/system/path/GFile.h"
 #include "fortress/system/path/GPath.h"
-#include "fortress/types/GStringFixedSize.h"
+#include "fortress/string/GStringFixedSize.h"
 
 #include "geppetto/qt/actions/GActionManager.h"
 #include "geppetto/qt/actions/commands/GComponentCommand.h"

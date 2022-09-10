@@ -5,7 +5,7 @@
 #include <fstream>
 
 #include <nlohmann/json.hpp>
-#include "fortress/types/GSizedTypes.h"
+#include "fortress/numeric/GSizedTypes.h"
 
 namespace rev
 {

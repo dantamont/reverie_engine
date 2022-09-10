@@ -2,7 +2,7 @@
 
 // Project
 #include "GComponent.h"
-#include "fortress/containers/math/GTransform.h"
+#include "heave/kinematics/GTransform.h"
 #include "core/rendering/shaders/GUniform.h"
 
 namespace rev {

@@ -11,7 +11,7 @@
 
 // Project
 #include "GComponent.h"
-#include "core/geometry/GCollisions.h"
+#include "heave/collisions/GCollisions.h"
 #include "core/rendering/GGLFunctions.h"
 #include "core/mixins/GRenderable.h"
 #include "core/animation/GAnimationController.h"

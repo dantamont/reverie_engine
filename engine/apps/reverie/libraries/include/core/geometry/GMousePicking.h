@@ -102,11 +102,8 @@ protected:
     /// @{
 
     /// @brief Get color at specified widget position for the specified camera
-    void getPixelColor(Vector<int, 4>& outColor, const Vector3& widgetPos, const Camera& camera, const OpenGlRenderer& renderer, uint32_t attachmentIndex, uint32_t sampleHalfWidth = 0);
+    void getPixelColor(Vector<int, 4>& outColor, const Vector3& widgetPos, const Camera& camera, const OpenGlRenderer& renderer, uint32_t attachmentIndex);
     
-    /// @brief Get color at specified widget position for the specified camera, as a float
-    void getPixelColor(Vector4& outColor, const Vector3& widgetPos, const Camera& camera, const OpenGlRenderer& renderer, uint32_t attachmentIndex, uint32_t sampleHalfWidth = 0);
-
     /// @}
 
     /// @name Protected Members
@@ -119,6 +116,12 @@ protected:
     /// @details Invalid if any channel is negative. Was using alpha channel, but fails if blending in color pass
     Vector4i m_mouseOverColor; ///< The last mouse color hovered over
     MouseHoverInfo m_hoverInfo; ///< The current scene object and hoverable hovered over
+
+    std::array<Uint32_t, 2> m_pboIds;
+    Int32_t m_pboIndex{ 0 };
+    Vector4i m_previousColor;
+
+    static constexpr Uint32_t s_sampleWidth = 0; ///< Width of color picking sample buffer
 
     /// @}
 

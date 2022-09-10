@@ -10,9 +10,9 @@
 #include "fortress/types/GLoadable.h"
 #include "core/rendering/renderer/GRenderSettings.h"
 #include "fortress/containers/GContainerExtensions.h"
-#include "fortress/types/GStringView.h"
-#include "core/resource/GResource.h"
-#include "core/geometry/GCollisions.h"
+#include "fortress/string/GStringView.h"
+#include "core/resource/GResourceHandle.h"
+#include "heave/collisions/GCollisions.h"
 
 namespace rev {
 

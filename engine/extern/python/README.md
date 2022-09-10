@@ -7,3 +7,9 @@ Also see todo-python-embeded.md in this folder: https://gist.github.com/rgl/72b6
 I already do this with setup_python.bat (woo)
 See this for more context:
 https://stackoverflow.com/questions/49737721/adding-packages-to-python-embedded-installation-for-windows
+
+IN CASE OF ERROR:  ModuleNotFoundError: No module named 'pip._vendor'
+
+-Delete the ./38/my_arch/Lib/site-packages folder
+- run .\38\<my_arch>\python.exe -m ensurepip
+- run .\38\<my_arch>\python.exe -m pip install upgrade pip

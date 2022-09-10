@@ -4,7 +4,7 @@
 #include <QColor>
 #include <QPixmap>
 #include <QImage>
-#include "fortress/types/GString.h"
+#include "fortress/string/GString.h"
 #include "fortress/containers/GColor.h"
 #include "fortress/containers/math/GMatrix.h"
 #include "fortress/encoding/uuid/GUuid.h"

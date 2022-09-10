@@ -36,13 +36,16 @@ public:
     /// @brief Get draw commands for the given camera and render layer
     std::vector<std::shared_ptr<DrawCommand>> getMeshCommands(AbstractCamera* camera, Uint32_t renderLayerId) const;
 
+    /// @brief Get draw commands for the given shadow map
+    std::vector<std::shared_ptr<DrawCommand>> getShadowMeshCommands(ShadowMap* shadowMap) const;
+
     /// @brief Clear the draw commands for the model
     void clearDrawCommands();
     void clearShadowDrawCommands();
 
     /// @brief Update/retrieve the draw commands for the model
     void retrieveDrawCommands(std::vector<std::shared_ptr<DrawCommand>>& outCommands, AbstractCamera* cam, const SortingLayer& currentLayer);
-    void retrieveShadowDrawCommands(std::vector<std::shared_ptr<DrawCommand>>& outCommands);
+    void retrieveShadowDrawCommands(std::vector<std::shared_ptr<DrawCommand>>& outCommands, ShadowMap* shadowMap);
 
     /// @brief Called when a render layer is added to this model
     void onRenderLayerAdded(Uint32_t layerId);

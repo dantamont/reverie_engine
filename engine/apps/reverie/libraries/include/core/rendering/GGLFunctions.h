@@ -11,19 +11,6 @@ class GStringView;
 
 namespace gl {
 
-enum class UsagePattern: uint32_t
-{
-    kStreamDraw = GL_STREAM_DRAW, 
-    kStreamRead = GL_STREAM_READ, // GL_STREAM_READ
-    kStreamCopy = GL_STREAM_COPY, // GL_STREAM_COPY
-    kStaticDraw = GL_STATIC_DRAW, // GL_STATIC_DRAW
-    kStaticRead = GL_STATIC_READ, // GL_STATIC_READ
-    kStaticCopy = GL_STATIC_COPY, // GL_STATIC_COPY
-    kDynamicDraw = GL_DYNAMIC_DRAW, // GL_DYNAMIC_DRAW
-    kDynamicRead = GL_DYNAMIC_READ, // GL_DYNAMIC_READ
-    kDynamicCopy = GL_DYNAMIC_COPY  // GL_DYNAMIC_COPY
-};
-
 /// @brief Block layout options
 /// @details Each variable type in GLSL such as int, float and bool are defined to be 
 /// four-byte quantities with each entity of 4 bytes represented as N. 

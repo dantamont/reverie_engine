@@ -1,6 +1,6 @@
 #pragma once
 
-#include "fortress/types/GSizedTypes.h"
+#include "fortress/numeric/GSizedTypes.h"
 #include "layline/transport/GServerInterface.h"
 
 namespace rev {

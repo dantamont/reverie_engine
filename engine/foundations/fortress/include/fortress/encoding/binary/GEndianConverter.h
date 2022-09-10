@@ -7,7 +7,7 @@
 
 // Project
 #include "fortress/system/GSystemPlatform.h"
-#include "fortress/types/GSizedTypes.h"
+#include "fortress/numeric/GSizedTypes.h"
 
 namespace rev {
 

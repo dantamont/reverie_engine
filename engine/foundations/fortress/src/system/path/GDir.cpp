@@ -1,8 +1,8 @@
 #include "fortress/system/path/GDir.h"
 #include "fortress/system/path/GFile.h"
 #include "fortress/system/path/GPath.h"
-#include "fortress/types/GStringView.h"
-#include "fortress/types/GString.h"
+#include "fortress/string/GStringView.h"
+#include "fortress/string/GString.h"
 
 namespace rev {
 

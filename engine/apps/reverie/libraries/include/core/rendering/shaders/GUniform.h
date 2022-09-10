@@ -11,7 +11,7 @@
 // Internal 
 #include "fortress/containers/extern/tsl/robin_map.h"
 #include "fortress/containers/GVariant.h"
-#include "fortress/types/GStringView.h"
+#include "fortress/string/GStringView.h"
 #include "fortress/containers/math/GMatrix.h"
 #include "fortress/containers/GContainerExtensions.h"
 #include "core/rendering/GGLFunctions.h"

@@ -1,3 +1,4 @@
+#pragma once
 ///////////////////////////////////////////////////////////////////////////////
 // Cylinder.h
 // ==========
@@ -15,69 +16,60 @@
 // See: http://www.songho.ca/opengl/gl_cylinder.html
 ///////////////////////////////////////////////////////////////////////////////
 
-#ifndef GB_GEOMETRY_CYLINDER_H
-#define GB_GEOMETRY_CYLINDER_H
-
 #include <vector>
 #include <memory>
 #include "fortress/containers/math/GVector.h"
 
 namespace rev {
 
-///////////////////////////////////////////////////////////////////////////////
-// Forward Declarations
-///////////////////////////////////////////////////////////////////////////////
-class VertexArrayData;
-///////////////////////////////////////////////////////////////////////////////
+template<typename EnumType, template<typename> typename ContainerType, typename ...Types>
+struct VertexAttributes;
+enum class MeshVertexAttributeType;
+typedef VertexAttributes<MeshVertexAttributeType, std::vector, Vector3, Vector4, Vector2, Vector3, Vector3, Vector4i, Vector4> MeshVertexAttributes;
+
 class Cylinder
 {
 public:
-    // ctor/dtor
-    Cylinder(VertexArrayData& outVertexData, float baseRadius = 1.0f, float topRadius = 1.0f, float height = 1.0f,
+    Cylinder(MeshVertexAttributes& outVertexData, float baseRadius = 1.0f, float topRadius = 1.0f, float height = 1.0f,
         int sectorCount = 36, int stackCount = 1);
     ~Cylinder() {}
 
-    // getters/setters
     float getBaseRadius() const { return m_baseRadius; }
     float getTopRadius() const { return m_topRadius; }
     float getHeight() const { return m_height; }
     int getSectorCount() const { return m_sectorCount; }
     int getStackCount() const { return m_stackCount; }
-    void set(float baseRadius, float topRadius, float height,
-        int sectorCount, int stackCount);
-    void setBaseRadius(float radius);
-    void setTopRadius(float radius);
-    void setHeight(float radius);
-    void setSectorCount(int sectorCount);
-    void setStackCount(int stackCount);
 
-    VertexArrayData& vertexData() { return m_vertexData; }
-
-    // for indices of base/top/side parts
-    //unsigned int getBaseIndexCount() const { return ((unsigned int)m_vertexData->m_indices.size() - m_baseIndex) / 2; }
-    //unsigned int getTopIndexCount() const { return ((unsigned int)m_vertexData->m_indices.size() - m_baseIndex) / 2; }
-    //unsigned int getSideIndexCount() const { return m_baseIndex; }
-    //unsigned int getBaseStartIndex() const { return m_baseIndex; }
-    //unsigned int getTopStartIndex() const { return m_topIndex; }
-    //unsigned int getSideStartIndex() const { return 0; }   // side starts from the begining
-
-protected:
+    void set(MeshVertexAttributes& outData, float baseRadius, float topRadius, float height, int sectorCount, int stackCount);
+    void setBaseRadius(MeshVertexAttributes& outData, float radius);
+    void setTopRadius(MeshVertexAttributes& outData, float radius);
+    void setHeight(MeshVertexAttributes& outData, float radius);
+    void setSectorCount(MeshVertexAttributes& outData, int sectorCount);
+    void setStackCount(MeshVertexAttributes& outData, int stackCount);
 
 private:
-    // member functions
-    void clearArrays();
-    void buildVerticesSmooth();
-    void buildUnitCircleVertices();
-    void addVertex(float x, float y, float z);
-    void addNormal(float x, float y, float z);
-    void addTexCoord(float s, float t);
-    void addIndices(unsigned int i1, unsigned int i2, unsigned int i3);
-    std::vector<Vector3> getSideNormals();
-    Vector3 computeFaceNormal(float x1, float y1, float z1,
-        float x2, float y2, float z2,
-        float x3, float y3, float z3);
+    /// @brief build vertices of cylinder with smooth shading
+    /// where v: sector angle (0 <= v <= 360)
+    void buildVerticesSmooth(MeshVertexAttributes& outData);
 
-    // member vars
+    /// @brief generate 3D vertices of a unit circle on XY plance
+    void buildUnitCircleVertices();
+
+    /// @brief add single vertex to array
+    void addVertex(MeshVertexAttributes& outData, float x, float y, float z);
+
+    /// @brief add single normal to array
+    void addNormal(MeshVertexAttributes& outData, float x, float y, float z);
+
+    /// @brief add single texture coord to array
+    void addTexCoord(MeshVertexAttributes& outData, float s, float t);
+
+    /// @brief add 3 indices to array
+    void addIndices(MeshVertexAttributes& outData, unsigned int i1, unsigned int i2, unsigned int i3);
+
+    /// @brief generate shared normal vectors of the side of cylinder
+    std::vector<Vector3> getSideNormals();
+
     float m_baseRadius;
     float m_topRadius;
     float m_height;
@@ -86,13 +78,10 @@ private:
     unsigned int m_baseIndex;                 // starting index of base
     unsigned int m_topIndex;                  // starting index of top
     std::vector<Vector3> m_unitCircleVertices;
-    VertexArrayData& m_vertexData;
-    std::vector<unsigned int> m_lineIndices;
 
+
+    static constexpr Int32_t s_minSectorCount = 3;
+    static constexpr Int32_t s_minStackCount = 1;
 };
 
-///////////////////////////////////////////////////////////////////////////////
-// End namespaces 
-}
-
-#endif
+} // End namespaces 

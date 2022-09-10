@@ -3,6 +3,9 @@
 template <typename D>
 class Vector<D, 1> {
 public:
+
+    typedef D ValueType;
+
     static Vector<D, 1> EmptyVector() {
         return Vector<D, 1>();
     }
@@ -24,13 +27,15 @@ public:
     {
     }
 
+    explicit operator D () const { return m_value; }
+
     inline D& operator[] (std::size_t i) {
 
-        return &m_value;
+        return m_value;
     }
 
     inline const D& operator[] (std::size_t i) const {
-        return &m_value;
+        return m_value;
     }
 
     inline bool operator== (const Vector<D, 1>& other) const {

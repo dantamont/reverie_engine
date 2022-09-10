@@ -1,7 +1,7 @@
 #pragma once
 
 // Internal
-#include "core/resource/GResource.h"
+#include "core/resource/GResourceHandle.h"
 #include "fortress/containers/GContainerExtensions.h"
 
 namespace SoLoud {
@@ -134,7 +134,7 @@ public:
 
     /// @brief What action to perform post-construction of the resource
     /// @details For performing any actions that need to be done on the main thread
-    virtual void postConstruction() override;
+    virtual void postConstruction(const ResourcePostConstructionData& postConstructData) override;
 
     /// @}
 

@@ -7,7 +7,7 @@
 
 // Project
 #include "fortress/layer/framework/GSignalSlot.h"
-#include "fortress/types/GString.h"
+#include "fortress/string/GString.h"
 #include "fortress/encoding/uuid/GUuid.h"
 #include "geppetto/qt/widgets/tree/GTreeWidget.h"
 

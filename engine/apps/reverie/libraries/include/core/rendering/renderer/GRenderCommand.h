@@ -3,12 +3,12 @@
 // Internal
 #include "fortress/containers/GSortingLayer.h"
 #include "fortress/types/GLoadable.h"
-#include "fortress/types/GString.h"
+#include "fortress/string/GString.h"
 #include "fortress/containers/GContainerExtensions.h"
 #include "core/rendering/renderer/GSortKey.h"
 #include "GRenderSettings.h"
 #include "fortress/layer/framework/GFlags.h"
-#include "core/geometry/GCollisions.h"
+#include "heave/collisions/GCollisions.h"
 
 namespace rev {
 

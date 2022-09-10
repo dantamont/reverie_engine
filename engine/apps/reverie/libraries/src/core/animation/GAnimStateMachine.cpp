@@ -3,10 +3,10 @@
 #include "core/animation/GAnimTransition.h"
 #include "core/GCoreEngine.h"
 #include "core/resource/GResourceCache.h"
-#include "core/resource/GResource.h"
+#include "core/resource/GResourceHandle.h"
 
 #include "fortress/containers/math/GMatrix.h"
-#include "fortress/containers/math/GTransform.h"
+#include "heave/kinematics/GTransform.h"
 #include "fortress/math/GInterpolation.h"
 #include "fortress/thread/GParallelLoop.h"
 #include "core/processes/GAnimationProcess.h"

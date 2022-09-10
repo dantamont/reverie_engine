@@ -67,35 +67,18 @@ Camera::Camera()
 {
 }
 
-Camera::Camera(const Camera & other) :
-    m_frameBuffers(other.m_frameBuffers),
-    m_transform(other.m_transform),
-    m_viewport(other.m_viewport),
-    m_viewMatrix(other.m_viewMatrix),
-    m_frustum(other.m_frustum),
-    m_renderContext(other.m_renderContext),
-    m_clearColor(Vector4(0.55f, 0.6f, 0.93f, 0.0f))
-{
-    m_renderProjection = other.m_renderProjection;
-    m_renderProjection.m_camera = this;
-
-    // Initialize render projection
-    m_renderProjection.updateProjection();
-    updateBufferUniforms(*m_renderContext);
-}
-
 Camera::Camera(TransformInterface* transform,
-    RenderContext* renderContext, AliasingType frameBufferFormat,
-    FrameBuffer::BufferAttachmentType framebufferStorageType, uint32_t numSamples,
-    uint32_t numColorAttachments) :
+    RenderContext* renderContext, 
+    const FrameBufferInfo& fboInfo) :
     m_frustum(m_viewMatrix, m_renderProjection.projectionMatrix()),
     m_renderContext(renderContext),
     m_frameBuffers(renderContext->context(),
-        frameBufferFormat,
-        framebufferStorageType,
+        fboInfo.m_frameBufferFormat,
+        fboInfo.m_framebufferColorStorageType,
+        fboInfo.m_framebufferDepthStorageType,
         FBO_FLOATING_POINT_TEX_FORMAT,
-        numSamples,
-        numColorAttachments),
+        fboInfo.m_numSamples,
+        fboInfo.m_numColorAttachments),
     m_transform(transform),
     m_renderProjection(this),
     m_clearColor(Vector4(0.55f, 0.6f, 0.93f, 0.0f))
@@ -107,18 +90,6 @@ Camera::Camera(TransformInterface* transform,
 
 Camera::~Camera()
 {
-}
-
-Camera & Camera::operator=(const Camera & other)
-{
-    m_transform = other.m_transform;
-    m_frameBuffers = other.m_frameBuffers;
-    m_viewport = other.m_viewport;
-    m_viewMatrix = other.m_viewMatrix;
-    m_renderProjection = RenderProjection(this);
-    m_frustum = other.m_frustum;
-    updateBufferUniforms(*m_renderContext);
-    return *this;
 }
 
 Vector3 Camera::getRightVec() const
@@ -145,6 +116,11 @@ Vector3 Camera::getForwardVec() const
     // View matrix, where u is up vector, n is direction camera is looking, and v is perpenduicular to both n and u
     
     return Vector3(m_viewMatrix(2, 0), m_viewMatrix(2, 1), m_viewMatrix(2, 2));
+}
+
+const Matrix4x4& Camera::worldMatrix() const
+{
+    return m_transform->worldMatrix();
 }
 
 float Camera::getDepth(const Vector3 & position)
@@ -407,8 +383,8 @@ void Camera::setLookAt(const Vector3 & eye, const Vector3 & target, const Vector
 void Camera::setGLViewport()
 {
     // Resize viewport
-    for (FrameBuffer& fbo : m_frameBuffers.frameBuffers()) {
-        m_viewport.setGLViewport(fbo);
+    for (std::unique_ptr<FrameBuffer>& fbo : m_frameBuffers.frameBuffers()) {
+        m_viewport.setGLViewport(*fbo);
     }
     //m_renderProjection.computeProjectionMatrix();
 }
@@ -419,8 +395,8 @@ void Camera::resizeFrame(uint32_t width, uint32_t height)
     m_renderProjection.resizeProjection(width, height);
 
     // Resize framebuffer dimensions
-    for (FrameBuffer& fbo : m_frameBuffers.frameBuffers()) {
-        m_viewport.resizeFrameBuffer(width, height, fbo);
+    for (std::unique_ptr<FrameBuffer>& fbo : m_frameBuffers.frameBuffers()) {
+        m_viewport.resizeFrameBuffer(width, height, *fbo);
     }
 
     updateBufferUniforms(*m_renderContext);
@@ -510,23 +486,11 @@ void Camera::getWorldFrustumPoints(std::vector<Vector3>& outPoints) const
 {
     // The points of the corners of the frustum cube in normalized device coordinates
     static constexpr Uint32_t s_numPoints = 8;
-    static const std::array<Vector4, s_numPoints> ndcPoints =
-    {{
-        // near face
-        { 1.F,  1.F, -1.F, 1.F},
-        {-1.F,  1.F, -1.F, 1.F},
-        { 1.F, -1.F, -1.F, 1.F},
-        {-1.F, -1.F, -1.F, 1.F},
-
-        // far face
-        { 1.F,  1.F, 1.F, 1.F},
-        {-1.F,  1.F, 1.F, 1.F},
-        { 1.F, -1.F, 1.F, 1.F},
-        {-1.F, -1.F, 1.F, 1.F},
-    }};
 
     const Matrix4x4& inverseViewMatrix = m_transform->worldMatrix();
     const Matrix4x4g inverseProjView = inverseViewMatrix * m_renderProjection.m_inverseProjectionMatrix;
+
+    const std::array<Vector4, s_numPoints>& ndcPoints = Frustum::s_ndcPoints;
 
     // Detrmine world space coordinates
     outPoints.reserve(s_numPoints);

@@ -9,25 +9,28 @@
 
 namespace rev {
 
-GlBuffer::GlBuffer()
+GlBuffer::GlBuffer():
+    gl::OpenGLFunctions(false)
 {
 }
 
-GlBuffer::GlBuffer(RenderContext & context, gl::BufferType type, size_t size, gl::BufferStorageMode storageMode, size_t storageFlags) :
-    m_context(&context),
+GlBuffer::GlBuffer(GlBuffer&& other)
+{
+    *this = std::move(other);
+}
+
+GlBuffer::GlBuffer(gl::BufferType type, size_t size, gl::BufferStorageMode storageMode, size_t storageFlags) :
+    gl::OpenGLFunctions(true),
     m_bufferType(type),
     m_size(size),
     m_storageMode(storageMode),
     m_storageFlags(storageFlags)
 {
-    initialize();
 }
 
 GlBuffer::~GlBuffer()
 {
-    if (m_bufferID < s_maxIntSize) {
-        glDeleteBuffers(1, &m_bufferID);
-    }
+    destroy();
 }
 
 GlBuffer & GlBuffer::operator=(GlBuffer && other)
@@ -43,14 +46,22 @@ GlBuffer & GlBuffer::operator=(GlBuffer && other)
     m_storageFlags = other.m_storageFlags;
     m_context = other.m_context;
 
+    // Need to make sure OpenGL functions are initialized
+    if (m_context) {
+        m_context->makeCurrent();
+        initializeOpenGLFunctions();
+    }
+
     // Clear ID from other buffer so deletion doesn't remove OpenGL buffer
     other.m_bufferID = s_maxIntSize;
     return *this;
 }
 
-bool GlBuffer::isBound() const
+void GlBuffer::setRenderContext(RenderContext& context)
 {
-    return m_context->boundBuffer(m_bufferType) == m_uuid;
+    // Set context, and ensure that OpenGL functions are initialized
+    m_context = &context;
+    initializeOpenGLFunctions();
 }
 
 void GlBuffer::bind()
@@ -68,65 +79,25 @@ void GlBuffer::bind()
     }
 #endif
 
+    // Bind current buffer
+    glBindBuffer((size_t)m_bufferType, m_bufferID);
+
 #ifdef DEBUG_MODE
-    if (isBound()) {
-        GLuint boundBuffer = getBoundBuffer();
-        if (!boundBuffer) {
-            Logger::Throw("Something has gone awry");
-        }
+    error = printGLError("Failed to bind GL Buffer");
+    if (error) {
+        Logger::Throw("Error, failed to bind GL Buffer");
     }
 #endif
-
-    if (!isBound()) {
-        // Release previously bound buffer
-        if (!m_context->boundBuffer(m_bufferType).isNull()) {
-            glBindBuffer((size_t)m_bufferType, 0);
-
-#ifdef DEBUG_MODE
-            bool error = printGLError("Failed to release previous GL Buffer");
-            if (error) {
-                Logger::Throw("Error, failed to release previous GL Buffer");
-            }
-#endif
-        }
-
-        GLuint boundBuffer = getBoundBuffer();
-
-        // Bind current buffer
-        glBindBuffer((size_t)m_bufferType, m_bufferID);
-        m_context->setBoundBuffer(m_bufferType, m_uuid);
-
-        boundBuffer = getBoundBuffer();
-
-#ifdef DEBUG_MODE
-        error = printGLError("Failed to bind GL Buffer");
-        if (error) {
-            Logger::Throw("Error, failed to bind GL Buffer");
-        }
-#endif
-    }
 }
 
 void GlBuffer::release()
 {
-    if (!isBound()) {
-        Logger::Throw("Error, buffer was not bound");
-    }
     glBindBuffer((size_t)m_bufferType, 0);
 
 #ifdef DEBUG_MODE
-    GLint boundBuffer = getBoundBuffer();
-    if (boundBuffer) {
-        Logger::Throw("Error, buffer should not be bound");
-    }
-#endif
-
-    m_context->setBoundBuffer(m_bufferType, Uuid::NullID());
-
-#ifdef DEBUG_MODE
-    bool error = printGLError("Failed to release SSB");;
+    bool error = printGLError("Failed to release GL buffer");;
     if (error) {
-        Logger::Throw("Error, failed to release SSB");
+        Logger::Throw("Error, failed to release GL buffer");
     }
 #endif
 }
@@ -143,7 +114,7 @@ void GlBuffer::copyInto(GlBuffer & other)
 
     glBindBuffer(GL_COPY_READ_BUFFER, m_bufferID);
     glBindBuffer(GL_COPY_WRITE_BUFFER, other.m_bufferID);
-    glCopyBufferSubData(GL_COPY_READ_BUFFER, GL_COPY_WRITE_BUFFER, 0, 0, m_size);
+    glCopyBufferSubData(GL_COPY_READ_BUFFER, GL_COPY_WRITE_BUFFER, 0, 0, (size_t)m_size);
     glBindBuffer(GL_COPY_READ_BUFFER, 0);
     glBindBuffer(GL_COPY_WRITE_BUFFER, 0);
 
@@ -164,7 +135,7 @@ void * GlBuffer::map(size_t access, bool doBind)
 void * GlBuffer::map(size_t offsetBytes, size_t sizeBytes, size_t access, bool doBind)
 {
     if (m_isMapped) {
-        Logger::Throw("Error, already smapped this buffer");
+        Logger::Throw("Error, already mapped this buffer");
         return m_data;
     }
 
@@ -190,19 +161,11 @@ void * GlBuffer::map(size_t offsetBytes, size_t sizeBytes, size_t access, bool d
     }
 #endif
 
-    // TODO: Look into glBufferSubData instead, probably faster
     m_data = glMapBufferRange((size_t)m_bufferType,
         offsetBytes,
         sizeBytes,
         (size_t)access //| GL_MAP_PERSISTENT_BIT
     );
-
-    //#ifdef DEBUG_MODE
-    //    error = printGLError(QStringLiteral("Failed to map buffer");;
-    //    if (error) {
-    //        Logger::Throw("Failed to bind buffer before mapping");
-    //    }
-    //#endif
 
 #ifdef DEBUG_MODE
     if (!m_data) {
@@ -220,10 +183,7 @@ void * GlBuffer::map(size_t offsetBytes, size_t sizeBytes, size_t access, bool d
 void GlBuffer::unmap(bool doRelease)
 {
     // Need to bind this guy to unmap it
-    bool wasBound = isBound();
-    if (!wasBound) {
-        bind();
-    }
+    bind();
 
     if (!m_isMapped) {
         Logger::Throw("Error, this buffer is not mapped");
@@ -231,7 +191,9 @@ void GlBuffer::unmap(bool doRelease)
 
     glUnmapBuffer((size_t)m_bufferType);
     m_isMapped = false;
-    if (doRelease || !wasBound) { release(); }
+    if (doRelease) { 
+        release(); 
+    }
 }
 
 void GlBuffer::allocateMemory()
@@ -241,11 +203,12 @@ void GlBuffer::allocateMemory()
 
 void GlBuffer::allocateMemory(size_t size, gl::BufferStorageMode mode, size_t storageFlags)
 {
-    bind(); // Ensure that buffer is bound to the current context
-
-    if (!isBound()) {
-        Logger::Throw("Error, GL Buffer was not bound");
+    // Ensure that the buffer is initialized
+    if (!hasValidId()) {
+        createBuffer();
     }
+
+    bind(); // Ensure that buffer is bound to the current context
 
     if (!storageFlags) {
         // Allocate dynamic memory for the buffer
@@ -255,7 +218,7 @@ void GlBuffer::allocateMemory(size_t size, gl::BufferStorageMode mode, size_t st
             (size_t)mode);
     }
     else {
-        // Allocate immutable memory, using glBufferStorage
+        // Allocate immutable memory, using glBufferStorage and the given storage flags
         QOpenGLFunctions_4_4_Core* functions = m_context->context()->versionFunctions<QOpenGLFunctions_4_4_Core>();
         functions->initializeOpenGLFunctions();
         if (!functions) {
@@ -278,12 +241,13 @@ void GlBuffer::allocateMemory(size_t size, gl::BufferStorageMode mode, size_t st
 
 void GlBuffer::bindToPoint()
 {
-    if (m_bindingPoint < s_maxIntSize) {
-        bindToPoint(m_bindingPoint);
+#ifdef DEBUG_MODE
+    if (m_bindingPoint == s_maxIntSize) {
+        assert(m_bindingPoint < s_maxIntSize && "Error, no binding point set for this buffer");
     }
-    else {
-        Logger::Throw("Error, no binding point set for this buffer");
-    }
+#endif
+
+    bindToPoint(m_bindingPoint);
 }
 
 void GlBuffer::bindToPoint(size_t bindingPoint)
@@ -299,7 +263,6 @@ void GlBuffer::bindToPoint(size_t bindingPoint)
 
     m_bindingPoint = bindingPoint;
     glBindBufferBase((size_t)m_bufferType, bindingPoint, m_bufferID);
-    m_context->setBoundBuffer(m_bufferType, m_uuid); // Set bound buffer to this
 
 #ifdef DEBUG_MODE
     error = printGLError("Error, failed to bind buffer to point");
@@ -348,9 +311,6 @@ void GlBuffer::releaseFromPoint(size_t bufferPoint)
     m_bindingPoint = bufferPoint;
     glBindBufferBase((uint32_t)m_bufferType, bufferPoint, 0);
 
-    // Will unbind buffer in GL, so need to capture this on CPU side
-    m_context->setBoundBuffer(m_bufferType, Uuid::NullID());
-
 #ifdef DEBUG_MODE
     bool error = printGLError("Error, failed to release buffer from point");
     if (error) {
@@ -369,7 +329,7 @@ size_t GlBuffer::count(size_t stride)
     return (size_t)c;
 }
 
-void GlBuffer::initialize()
+void GlBuffer::initialize(RenderContext& context)
 {
 #ifdef DEBUG_MODE
     bool error = printGLError("Failed before initializing GL buffer");
@@ -377,6 +337,8 @@ void GlBuffer::initialize()
         Logger::Throw("Error, failed before initializing GL buffer");
     }
 #endif
+
+    m_context = &context;
 
     createBuffer();
 
@@ -396,37 +358,21 @@ void GlBuffer::createBuffer()
 #endif
 }
 
-GLint GlBuffer::getBoundBuffer()
-{
-    gl::BufferBindType bindType;
-    switch (m_bufferType) {
-    case gl::BufferType::kShaderStorage:
-        bindType = gl::BufferBindType::kShaderStorageBufferBinding;
-        break;
-    case gl::BufferType::kUniformBuffer:
-        bindType = gl::BufferBindType::kUniformBufferBinding;
-        break;
-    default:
-        Logger::Throw("Error, type not implemented");
-    }
-
-    GLint outType;
-    glGetIntegerv((size_t)bindType, &outType);
-
-    return outType;
-}
-
 void GlBuffer::clear()
-{
-    bool wasBound = isBound();
-    
-    if (!wasBound) {
-        bind();
-    }
+{    
+    bind();
+
     allocateMemory();
 
-    if (!wasBound) {
-        release();
+    release();
+}
+
+void GlBuffer::destroy()
+{
+    if (m_bufferID < s_maxIntSize) {
+        glDeleteBuffers(1, &m_bufferID);
+        m_bufferID = s_maxIntSize;
+        m_size = -1;
     }
 }
 

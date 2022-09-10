@@ -154,7 +154,7 @@ std::shared_ptr<ResourceHandle> ShaderProgram::CreateHandle(CoreEngine * engine,
     const nlohmann::json& json,
     const GString& shaderName)
 {
-    auto handle = ResourceHandle::create(engine, (GResourceType)EResourceType::eShaderProgram);
+    auto handle = ResourceHandle::Create(engine, (GResourceType)EResourceType::eShaderProgram);
     //handle->setResourceType(EResourceType::eShaderProgram);
     handle->setRuntimeGenerated(true);
 
@@ -164,7 +164,7 @@ std::shared_ptr<ResourceHandle> ShaderProgram::CreateHandle(CoreEngine * engine,
     json.get_to(*shaderProgram);
     handle->setName(shaderName);
     handle->setResource(std::move(shaderProgram), false);
-    shaderProgram->postConstruction();
+    shaderProgram->postConstruction(ResourcePostConstructionData());
     return handle;
 }
 
@@ -442,7 +442,8 @@ void ShaderProgram::bind() const
         // TODO: Pass in context so this isn't necessary
         CoreEngine* engine = m_handle->engine();
         RenderContext& context = engine->openGlRenderer()->renderContext();
-        ShaderStorageBuffer& lightBuffer = context.lightingSettings().lightBuffers().readBuffer();
+        ShaderStorageBufferQueue& bufferQueue = context.lightingSettings().lightBuffers();
+        ShaderStorageBuffer& lightBuffer = bufferQueue.readBuffer();
         lightBuffer.bindToPoint();
     }
 
@@ -450,7 +451,8 @@ void ShaderProgram::bind() const
         // TODO: Pass in context so this isn't necessary
         CoreEngine* engine = m_handle->engine();
         RenderContext& context = engine->openGlRenderer()->renderContext();
-        ShaderStorageBuffer& shadowBuffer = context.lightingSettings().shadowBuffers().readBuffer();
+        ShaderStorageBufferQueue& bufferQueue = context.lightingSettings().shadowBuffers();
+        ShaderStorageBuffer& shadowBuffer = bufferQueue.readBuffer();
         shadowBuffer.bindToPoint();
     }
 
@@ -547,9 +549,9 @@ void ShaderProgram::setUniformValue(Uint32_t uniformId, const UniformData& unifo
     currentUniform = Uniform(uniformId, uniformData);
 }
 
-void ShaderProgram::postConstruction()
+void ShaderProgram::postConstruction(const ResourcePostConstructionData& postConstructData)
 {
-    Resource::postConstruction();
+    Resource::postConstruction(postConstructData);
     
     // Post-construction was happening too late, UBOs need to be initialized before LightComponent
     // This has been moved to LoadProcess:loadShaderProgram

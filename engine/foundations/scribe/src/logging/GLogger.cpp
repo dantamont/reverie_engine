@@ -4,7 +4,7 @@
 #include <iostream>
 #include <fstream>
 
-#include "fortress/types/GStringView.h"
+#include "fortress/string/GStringView.h"
 
 namespace rev {
 

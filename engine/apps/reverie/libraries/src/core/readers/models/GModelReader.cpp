@@ -127,17 +127,18 @@ Model* ModelReader::loadModel()
         //}
     }
     else{
-        try {
-            model->loadBinary(m_handle->getPath());
-            return model;
-        }
-        catch (const std::exception& e) {
-            std::string err = e.what();
-            Logger::Throw(e);
-        }
-        catch (...) {
-            Logger::Throw("Unknown error loading binary");
-        }
+        /// @todo Process models offline in another application
+        //try {
+        //    model->loadBinary(m_handle->getPath());
+        //    return model;
+        //}
+        //catch (const std::exception& e) {
+        //    std::string err = e.what();
+        //    Logger::Throw(e);
+        //}
+        //catch (...) {
+        //    Logger::Throw("Unknown error loading binary");
+        //}
     }
 
     // Use Assimp to load model, since not serialized to my own binary format
@@ -493,7 +494,8 @@ const Mesh& ModelReader::processMesh(aiMesh * mesh)
     newMesh->handle()->setIsLoading(true); // Flag loading for post-construction
     m_meshHandles.push_back(newMesh->handle()->sharedPtr());
 
-    VertexArrayData& meshData = newMesh->m_vertexData;
+    // Create vertex data, to be deleted when mesh is post-constructed
+    MeshVertexAttributes& vertexData = *(new MeshVertexAttributes());
 
     // Initialize limits for bounding box of the mesh
     float minX = std::numeric_limits<float>::max();
@@ -519,14 +521,14 @@ const Mesh& ModelReader::processMesh(aiMesh * mesh)
         maxZ = std::max(aiVert.z, maxZ);
 
         // Append vertex data to new mesh
-        Vec::EmplaceBack(meshData.m_attributes.m_vertices, aiVert.x, aiVert.y, aiVert.z);
-        Vec::EmplaceBack(meshData.m_attributes.m_normals, aiNormal.x, aiNormal.y, aiNormal.z);
-        Vec::EmplaceBack(meshData.m_attributes.m_texCoords, aiTexCoords.x, aiTexCoords.y);
+        Vec::EmplaceBack(vertexData.get<MeshVertexAttributeType::kPosition>(), aiVert.x, aiVert.y, aiVert.z);
+        Vec::EmplaceBack(vertexData.get<MeshVertexAttributeType::kNormal>(), aiNormal.x, aiNormal.y, aiNormal.z);
+        Vec::EmplaceBack(vertexData.get<MeshVertexAttributeType::kTextureCoordinates>(), aiTexCoords.x, aiTexCoords.y);
 
         // Append tangents as well if they were generated
         if (mesh->mTangents) {
             const aiVector3D& aiTangent = mesh->mTangents[i];
-            Vec::EmplaceBack(meshData.m_attributes.m_tangents, aiTangent.x, aiTangent.y, aiTangent.z);
+            Vec::EmplaceBack(vertexData.get<MeshVertexAttributeType::kTangent>(), aiTangent.x, aiTangent.y, aiTangent.z);
         }
 
     }
@@ -535,7 +537,7 @@ const Mesh& ModelReader::processMesh(aiMesh * mesh)
     for (size_t i = 0; i < mesh->mNumFaces; i++) {
         const aiFace& face = mesh->mFaces[i];
         for (size_t j = 0; j < face.mNumIndices; j++) {
-            meshData.m_indices.push_back(face.mIndices[j]);
+            vertexData.get<MeshVertexAttributeType::kIndices>().push_back(face.mIndices[j]);
         }
     }
 
@@ -579,8 +581,8 @@ const Mesh& ModelReader::processMesh(aiMesh * mesh)
     if (mesh->mNumBones > 0) {
         // Initialize vertex attributes for bones
         std::vector<uint> counts(mesh->mNumVertices); // count of number of weights per bone
-        meshData.m_attributes.m_miscInt.resize(mesh->mNumVertices);
-        meshData.m_attributes.m_miscReal.resize(mesh->mNumVertices);
+        vertexData.get<MeshVertexAttributeType::kMiscInt>().resize(mesh->mNumVertices);
+        vertexData.get<MeshVertexAttributeType::kMiscReal>().resize(mesh->mNumVertices);
 
         unsigned int boneIndex = 0; 
         for (uint i = 0; i < mesh->mNumBones; i++) {
@@ -605,8 +607,8 @@ const Mesh& ModelReader::processMesh(aiMesh * mesh)
                 const aiVertexWeight& weight = bone->mWeights[w];
                 uint count = counts[weight.mVertexId]; 
                 uint vertexID = weight.mVertexId;
-                meshData.m_attributes.m_miscInt[vertexID][count] = boneIndex;
-                meshData.m_attributes.m_miscReal[vertexID][count] = weight.mWeight;
+                vertexData.get<MeshVertexAttributeType::kMiscInt>()[vertexID][count] = boneIndex;
+                vertexData.get<MeshVertexAttributeType::kMiscReal>()[vertexID][count] = weight.mWeight;
                 counts[weight.mVertexId]++;
             }
 
@@ -614,6 +616,12 @@ const Mesh& ModelReader::processMesh(aiMesh * mesh)
         }
 
     }
+
+    // Set vertex data in resource cache for mesh post-construction
+    ResourceCache::Instance().addPostConstructionData(
+        newMesh->handle()->getUuid(),
+        ResourcePostConstructionData{ true, (void*)&vertexData }
+    );
 
     return *newMesh;
 }

@@ -4,7 +4,7 @@
 #include "fortress/containers/math/GMatrix.h"
 #include "core/rendering/GGLFunctions.h"
 #include "core/rendering/buffers/GShaderStorageBuffer.h"
-#include "core/geometry/GCollisions.h"
+#include "heave/collisions/GCollisions.h"
 #include "core/rendering/shaders/GUniform.h" // For uniform data
 
 #define CLUSTER_BUFFER_NAME QStringLiteral("ClusterBoundsBuffer")

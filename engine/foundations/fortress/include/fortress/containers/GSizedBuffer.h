@@ -1,7 +1,7 @@
 #pragma once
 
 // Internal
-#include "fortress/types/GSizedTypes.h"
+#include "fortress/numeric/GSizedTypes.h"
 #include <array>
 
 namespace rev {

@@ -31,8 +31,8 @@ public:
     };
 
     enum class BufferAttachmentType {
-        kTexture, // Use textures wherever possible
-        kRBO // Use RBOs wherever possible
+        kTexture, // Use textures for the specified attachment
+        kRbo // Use RBOs for the specified attachment
     };
 
     enum class BindType {
@@ -47,29 +47,39 @@ public:
 
     /// @name Constructors/Destructor
     /// @{
+
     FrameBuffer();
-    FrameBuffer(const FrameBuffer& other);
+    FrameBuffer(const FrameBuffer& fbo) = delete;
     FrameBuffer(QOpenGLContext* currentContext,
         AliasingType internalFormat = AliasingType::kDefault,
-        BufferAttachmentType bufferType = BufferAttachmentType::kRBO,
+        BufferAttachmentType bufferColorAttachmentType = BufferAttachmentType::kRbo,
+        BufferAttachmentType bufferDepthAttachmentType = BufferAttachmentType::kRbo,
         TextureFormat textureFormat = FBO_FLOATING_POINT_TEX_FORMAT,
         uint32_t numSamples = 4,
         uint32_t numColorAttachments = 1,
         bool hasDepth = true);
     ~FrameBuffer();
+
     /// @}
 
     /// @name Operators
     /// @{
 
-    FrameBuffer& operator=(const FrameBuffer& other);
+    FrameBuffer& operator=(const FrameBuffer& other) = delete;
 
     /// @}
 
     /// @name Properties
     /// @{
 
-    FrameBuffer* blitBuffer() {
+    /// @brief The ID of the framebuffer in OpenGL
+    Uint32_t fboId() const { return m_fboID; }
+
+    AliasingType aliasingType() const {
+        return m_aliasingType;
+    }
+
+    FrameBuffer* blitBuffer() const {
         return m_blitBuffer;
     }
 
@@ -103,15 +113,17 @@ public:
     void saveDepthToFile(const GString& filepath);
 
     /// @brief Read pixels from specified texture
+    /// @details This function wraps glReadPixels for the given color attachment, and blits the 
+    /// framebuffer into another framebuffer if MSAA (multisampling) is enabled
     template<typename T>
     void readColorPixels(uint32_t attachmentIndex, std::vector<T>& outColor,
-        PixelFormat pixelFormat = PixelFormat::kRGB, PixelType pixelType = PixelType::kByte8) const {
+        PixelFormat pixelFormat, PixelType pixelType) const {
         readColorPixels(attachmentIndex, outColor, 0, 0, m_size.x(), m_size.y(), pixelFormat, pixelType);
     }
     template<typename T>
     void readColorPixels(uint32_t attachmentIndex, std::vector<T>& outColor,
         GLint x, GLint y, GLsizei width, GLsizei height,
-        PixelFormat pixelFormat = PixelFormat::kRGB, PixelType pixelType = PixelType::kByte8) const
+        PixelFormat pixelFormat, PixelType pixelType) const
     {
         // Resize vector to appropriate size based on pixel format/type
         uint32_t numColorEntries;
@@ -149,7 +161,7 @@ public:
     template<typename T>
     void readColorPixels(uint32_t attachmentIndex, T* outColor,
         GLint x, GLint y, GLsizei width, GLsizei height,
-        PixelFormat pixelFormat = PixelFormat::kRGB, PixelType pixelType = PixelType::kByte8) const
+        PixelFormat pixelFormat, PixelType pixelType) const
     {
         switch (m_aliasingType) {
         case AliasingType::kDefault:
@@ -173,7 +185,7 @@ public:
         }
         case AliasingType::kMSAA:
         {
-            if (m_attachmentType == BufferAttachmentType::kRBO) {
+            if (m_colorAttachmentType == BufferAttachmentType::kRbo) {
                 // RBO needed for MSAA
                 // Need to blit (exchange pixels) with another framebuffer (that is not MSAA)
                 blit(BlitMask::kColorBit, *m_blitBuffer, attachmentIndex);
@@ -190,12 +202,11 @@ public:
         }
 
 #ifdef DEBUG_MODE
-#ifdef DEBUG_FBO
+        gl::OpenGLFunctions& gl = *gl::OpenGLFunctions::Functions();
         bool error = gl.printGLError("Error, failed to read color pixels");
         if (error) {
             Logger::Throw("Error, failed to read color pixels");
         }
-#endif
 #endif
 
         release();
@@ -216,7 +227,6 @@ public:
 
     /// @brief Initialize the FBO with the specified width and height
     /// @details Uses RBO by default
-    // TODO: Add flags to control whether RBOs or textures are used
     void reinitialize(uint32_t w, uint32_t h, bool ignoreIncomplete = false);
     void reinitialize(uint32_t w, uint32_t h, const std::vector<std::shared_ptr<Texture>>& colorAttachments,
         const std::shared_ptr<Texture>& depthStencilAttachment,
@@ -322,15 +332,15 @@ protected:
     std::shared_ptr<RenderBufferObject> m_depthStencilRBO = nullptr;
 
     AliasingType m_aliasingType;
-    BufferAttachmentType m_attachmentType;
+    BufferAttachmentType m_colorAttachmentType; ///< Attachment type to use for color attachments
+    BufferAttachmentType m_depthStencilAttachmentType; ///< Attachment type to use for depth/stencil attachment
     uint32_t m_numSamples;
 
     TextureFormat m_textureFormat;
 
-    /// @brief A textured framebuffer, used to overcome:
-    /// Need to use a texture to render to a quad/post-process
-    /// Need to use a texture to read from depth buffer
-    FrameBuffer* m_blitBuffer = nullptr;
+    /// @note Need to use a texture to render to a quad/post-process
+    /// @note Need to use a texture to read from depth buffer
+    FrameBuffer* m_blitBuffer = nullptr; ///< A textured framebuffer, used to overcome:
 
 
 

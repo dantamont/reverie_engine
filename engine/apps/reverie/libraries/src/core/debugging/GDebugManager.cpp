@@ -150,8 +150,8 @@ void DebugCoordinateAxes::releaseUniforms(ShaderProgram& shaderProgram)
 void DebugCoordinateAxes::drawGeometry(ShaderProgram& shaderProgram,
     RenderSettings * settings)
 {
-    VertexArrayData& cylinderData = m_cylinder->vertexData();
-    VertexArrayData& coneData = m_cone->vertexData();
+    const VertexArrayData& cylinderData = m_cylinder->vertexData();
+    const VertexArrayData& coneData = m_cone->vertexData();
 
     // Initialize uniforms
     UniformContainer& uc = m_renderContext.uniformContainer();
@@ -324,12 +324,14 @@ DebugManager::DebugManager(CoreEngine* engine) :
     m_debugSkeletonProgram(nullptr),
     m_glWidget(nullptr),
     m_lineShaderProgram(nullptr),
+    m_frustumLineShaderProgram(nullptr),
     m_pointShaderProgram(nullptr),
     m_simpleShaderProgram(nullptr)
 {
     // Set raycast to cast against triangles
-    m_raycast->setRaycastFlags((size_t)RaycastFlag::kTestTriangles 
-        | (size_t)RaycastFlag::kSingleHitPerObject
+    m_raycast->setRaycastFlags(
+        //(size_t)RaycastFlag::kTestTriangles |
+        (size_t)RaycastFlag::kSingleHitPerObject
     );
 }
 
@@ -733,10 +735,14 @@ void DebugManager::postConstruction()
     // Set up canvas
     initializeCanvas();
 
+    // Get frustum line shader
+    ResourceCache& cache = ResourceCache::Instance();
+    m_frustumLineShaderProgram = cache.getHandleWithName("frustum_lines",
+        EResourceType::eShaderProgram)->resourceAs<ShaderProgram>();
+
     // Set up grid
     // TODO: Use actual infinite ground plane
     // https://github.com/martin-pr/possumwood/wiki/Infinite-ground-plane-using-GLSL-shaders
-    ResourceCache& cache = ResourceCache::Instance();
     m_lineShaderProgram = cache.getHandleWithName("lines",
         EResourceType::eShaderProgram)->resourceAs<ShaderProgram>();
     auto grid = std::make_shared<DebugGrid>(m_engine);
@@ -1670,8 +1676,18 @@ void DebugManager::createDrawFrustumCommand(const Camera* cam, std::vector<std::
     static constexpr Float32_t s_lineThickness = 0.01F;
     static const std::vector<Uint32_t> indices = {0, 1, 0, 2, 3, 1, 3, 2, 4, 5, 4, 6, 7, 5, 7, 6, 0, 4, 1, 5, 3, 7, 2, 6};
 
-    std::vector<Vector3> frustumPoints;
-    cam->getWorldFrustumPoints(frustumPoints);
+    // Need a vector 3 from a vector 4
+    static std::vector<Vector3> frustumPoints;
+    if (!frustumPoints.size()) {
+        std::transform(
+            Frustum::s_ndcPoints.begin(),
+            Frustum::s_ndcPoints.end(),
+            std::back_inserter(frustumPoints),
+            [](const Vector4& vec4) {
+                return Vector3(vec4);
+            }
+        );
+    }
 
     RenderContext& context = m_engine->openGlRenderer()->renderContext();
     UniformContainer& uc = context.uniformContainer();
@@ -1681,7 +1697,7 @@ void DebugManager::createDrawFrustumCommand(const Camera* cam, std::vector<std::
         // Create a new set of lines to render frustum
         frustumLines = Lines::GetShape(context, frustumPoints, indices, ResourceBehaviorFlag::kHidden);
         m_cameraFrustumRenderables.emplace_back();
-        m_cameraFrustumRenderables.back() = { frustumLines, m_lineShaderProgram };
+        m_cameraFrustumRenderables.back() = { frustumLines, m_frustumLineShaderProgram };
 
         frustumLines->setLineColor(lineColor.toVector<Float32_t, 4>(), uc);
         frustumLines->setLineThickness(s_lineThickness, uc);
@@ -1692,14 +1708,14 @@ void DebugManager::createDrawFrustumCommand(const Camera* cam, std::vector<std::
     else {
         // Use existing frustum lines
         frustumLines = std::static_pointer_cast<Lines>(m_cameraFrustumRenderables[m_frustumCount].m_renderable);
-        frustumLines->reload(frustumPoints, indices);
     }
 
-    const Matrix4x4& worldMatrix = Matrix4x4::Identity();
+    /// @note Was reloading points VAO every time, but that was very slow
+    const Matrix4x4 worldMatrix = cam->worldMatrix() * cam->renderProjection().inverseProjectionMatrix();
 
-    static Int32_t worldMatrixUniformIdLines{ -1 };
-    if (worldMatrixUniformIdLines == -1) {
-        worldMatrixUniformIdLines = m_lineShaderProgram->getUniformId(Shader::s_worldMatrixUniformName);
+    static Int32_t worldMatrixUniformIdFrustumLines{ -1 };
+    if (worldMatrixUniformIdFrustumLines == -1) {
+        worldMatrixUniformIdFrustumLines = m_frustumLineShaderProgram->getUniformId(Shader::s_worldMatrixUniformName);
     }
 
     m_debugUniforms.m_frustumWorldMatrices.ensureSize(m_frustumCount + 1);
@@ -1707,14 +1723,14 @@ void DebugManager::createDrawFrustumCommand(const Camera* cam, std::vector<std::
     worldMatrixUniform.setValue(worldMatrix, uc);
 
     auto command = std::make_shared<DrawCommand>(*frustumLines,
-        *m_lineShaderProgram,
+        *m_frustumLineShaderProgram,
         uc,
         camera()->camera(),
         (int)RenderObjectId::kDebug);
     command->setPassFlags(RenderablePassFlag::kDeferredGeometry); // Not setting bounds
     command->addUniform(
         worldMatrixUniform,
-        worldMatrixUniformIdLines, 
+        worldMatrixUniformIdFrustumLines,
         -1);
     outDrawCommands.push_back(command);
     m_frustumCount++;

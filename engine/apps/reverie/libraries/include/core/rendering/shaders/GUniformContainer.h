@@ -4,7 +4,7 @@
 
 #include "fortress/containers/math/GMatrix.h"
 #include "fortress/containers/GStrictGrowContainer.h"
-#include "fortress/types/GSizedTypes.h"
+#include "fortress/numeric/GSizedTypes.h"
 
 namespace rev {
 

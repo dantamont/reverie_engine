@@ -6,7 +6,7 @@
 
 #include "geppetto/qt/fonts/GFontManager.h"
 #include "core/GCoreEngine.h"
-#include "core/resource/GResource.h"
+#include "core/resource/GResourceHandle.h"
 #include "core/resource/GResourceCache.h"
 #include "core/rendering/geometry/GMesh.h"
 #include "core/rendering/geometry/GPolygon.h"
@@ -218,7 +218,7 @@ Label::Label(CanvasComponent * canvas,
     const QString& text,
     ResourceBehaviorFlags resourceFlags) :
     Glyph(canvas, worldMatrixVec, worldMatrixIndex),
-    //m_vertexData(std::make_shared<VertexArrayData>()),
+    //vertexData(std::make_shared<VertexArrayData>()),
     m_fontSize(fontSize),
     m_fontFace(fontFace),
     m_text(text),
@@ -240,16 +240,7 @@ FontFace * Label::getFontFace()
 
 void Label::populateVertexData()
 {
-    // Clear old attribute data
-    Mesh* mesh = Renderable::mesh();
-    //if (!mesh) {
-    //    // May be null for debug labels on scenario load
-    //    return;
-    //}
-
-    VertexArrayData& vertexData = mesh->vertexData();
-    vertexData.m_attributes.clear();
-    vertexData.m_indices.clear();
+    MeshVertexAttributes vertexData;
 
     // Iterate to generate lines
     QSize widgetSize = canvas()->mainGLWidgetDimensions();
@@ -372,26 +363,25 @@ void Label::populateVertexData()
         // Convert value of advance to pixels (2^6 = 64), and then scale
         x += (ch.m_advance >> 6) * xScale;
 
-        vertexData.m_attributes.m_vertices.insert(vertexData.m_attributes.m_vertices.end(),
+        vertexData.get<MeshVertexAttributeType::kPosition>().insert(vertexData.get<MeshVertexAttributeType::kPosition>().end(),
             vertices.begin(),
             vertices.end());
 
-        vertexData.m_attributes.m_texCoords.insert(vertexData.m_attributes.m_texCoords.end(),
+        vertexData.get<MeshVertexAttributeType::kTextureCoordinates>().insert(vertexData.get<MeshVertexAttributeType::kTextureCoordinates>().end(),
             uvs.begin(),
             uvs.end());
 
         //vertices.clear();
 
         for (int i = 0; i < 6; i++) {
-            vertexData.m_indices.push_back(count++);
+            vertexData.get<MeshVertexAttributeType::kIndices>().push_back(count++);
         }
     }
 
     // Update the vertex array data
-    vertexData.loadIntoVAO();
-
-    // Update the bounding box for the mesh
-    mesh->generateBounds();
+    RenderContext& context = m_meshHandle->engine()->openGlRenderer()->renderContext();
+    Mesh* mesh = Renderable::mesh();
+    mesh->postConstruction(ResourcePostConstructionData{ false, &vertexData });
 }
 
 Label::TextMetrics Label::getTextMetrics()

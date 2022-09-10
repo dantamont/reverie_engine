@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include "fortress/layer/framework/GSingleton.h"
-#include "fortress/types/GSizedTypes.h"
+#include "fortress/numeric/GSizedTypes.h"
 
 namespace rev {
 

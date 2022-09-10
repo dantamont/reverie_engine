@@ -71,7 +71,8 @@ public:
     /// @brief Initialize queue however one would a buffer
     /// @note Variadic template is used to avoid having to modify this if buffer initialization changes
     template<typename ...BufferArgs>
-    BufferQueue(BufferArgs&&... args) {
+    BufferQueue(BufferArgs&&... args)
+    {
         static_assert(N == 2 || N == 3, "Error, buffer queue only supports two or three buffers");
 
         for (size_t i = 0; i < N; i++) {

@@ -2,7 +2,8 @@
 
 // Internal
 #include "logging/GLogger.h"
-#include "fortress/types/GStringView.h"
+#include "fortress/string/GStringView.h"
+#include "fortress/system/path/GFile.h"
 
 namespace rev {   
 namespace gl {
@@ -95,6 +96,12 @@ void OpenGLFunctions::printMessageCallBack(GLenum source, GLenum type, GLuint id
     auto& lg = rev::Logger::Instance();
     GString msg = GString("Debug Message: ") + message;
     lg.logMessage(LogLevel::Debug, "OpenGLFunctions", msg.c_str());
+    const GString fileDir = _SOLUTION_DIR + GString("/logs/gl.txt");
+    GFile myFile(fileDir);
+    myFile.create(true);
+    if (myFile.exists()) {
+        myFile.writeLines(std::vector<GString>{msg});
+    }
 }
 
 std::shared_ptr<OpenGLFunctions> OpenGLFunctions::s_glFunctions = nullptr;

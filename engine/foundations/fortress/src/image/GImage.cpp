@@ -6,7 +6,7 @@
 #include "fortress/system/memory/GMemoryMonitor.h"
 #include "fortress/system/path/GFile.h"
 #include "fortress/system/path/GPath.h"
-#include "fortress/types/GString.h"
+#include "fortress/string/GString.h"
 
 // Include STB image
 #define STB_IMAGE_IMPLEMENTATION

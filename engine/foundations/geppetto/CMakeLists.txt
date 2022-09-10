@@ -48,6 +48,9 @@ target_compile_definitions(${TARGET_NAME} PUBLIC
 ## Add Qt
 add_library_qt(${TARGET_NAME})
 
+# Physics library for transform object
+target_link_libraries(${TARGET_NAME} PRIVATE heave)
+
 ## Color widgets
 message (STATUS "=========== Including Color Widgets =============")
 # target_include_directories(${current_target} PRIVATE "${PATH_TO_EXTERN}/color_widgets/include")

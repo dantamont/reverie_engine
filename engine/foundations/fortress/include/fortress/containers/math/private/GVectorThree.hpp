@@ -7,6 +7,9 @@ private:
     static constexpr size_t N = 3;
 
 public:
+
+    typedef D ValueType;
+
     static Vector<D, N> EmptyVector() {
         return Vector<D, N>();
     }

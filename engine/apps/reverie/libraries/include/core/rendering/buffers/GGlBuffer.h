@@ -27,6 +27,7 @@ typedef std::vector<Vector4> Vec4List;
 class RenderContext;
 
 namespace gl {
+
     enum class BufferAccessType {
         kRead = GL_READ_ONLY,
         kWrite = GL_WRITE_ONLY,
@@ -63,13 +64,13 @@ namespace gl {
 
     enum class BufferType {
         kInvalid = -1,
-        kArrayBuffer = GL_ARRAY_BUFFER,
+        kVertexBuffer = GL_ARRAY_BUFFER,
         kAtomicCounterBuffer = GL_ATOMIC_COUNTER_BUFFER,
         kCopyReadBuffer = GL_COPY_READ_BUFFER,
         kCopyWriteBuffer = GL_COPY_WRITE_BUFFER,
         kDispatchIndirectBuffer = GL_DISPATCH_INDIRECT_BUFFER,
         kDrawIndirectBuffer = GL_DRAW_INDIRECT_BUFFER,
-        kElementArrayBuffer = GL_ELEMENT_ARRAY_BUFFER,
+        kIndexBuffer = GL_ELEMENT_ARRAY_BUFFER,
         kPixelPackBuffer = GL_PIXEL_PACK_BUFFER,
         kPixelUnpackBuffer = GL_PIXEL_UNPACK_BUFFER,
         kQueryBuffer = GL_QUERY_BUFFER,
@@ -81,9 +82,16 @@ namespace gl {
 
     enum class BufferBindType {
         kShaderStorageBufferBinding = GL_SHADER_STORAGE_BUFFER_BINDING,
-        kUniformBufferBinding = GL_UNIFORM_BUFFER_BINDING
+        kUniformBufferBinding = GL_UNIFORM_BUFFER_BINDING,
+        kVertexBufferBinding = GL_ARRAY_BUFFER_BINDING,
+        kIndexBufferBinding = GL_ELEMENT_ARRAY_BUFFER_BINDING
     };
 
+    /// @see https://www.reddit.com/r/opengl/comments/57i9cl/examples_of_when_to_use_gl_dynamic_draw/
+    // GL_STATIC_DRAW basically means "I will load this vertex data once and then never change it." This would include any static props or level geometry, but also animated models / particles if you are doing all the animation with vertex shaders on the GPU(modern engines with skeletal animation do this, for example).
+    // GL_STREAM_DRAW basically means "I am planning to change this vertex data basically every frame." If you are manipulating the vertices a lot on the CPU, and it's not feasible to use shaders instead, you probably want to use this one. Sprites or particles with complex behavior are often best served as STREAM vertices. While STATIC+shaders is preferable for animated geometry, modern hardware can spew incredible amounts of vertex data from the CPU to the GPU every frame without breaking a sweat, so you will generally not notice the performance impact.
+    // GL_DYNAMIC_DRAW basically means "I may need to occasionally update this vertex data, but not every frame." This is the least common one.It's not really suited for most forms of animation since those usually require very frequent updates. Animations where the vertex shader interpolates between occasional keyframe updates are one possible case. A game with Minecraft-style dynamic terrain might try using DYNAMIC, since the terrain changes occur less frequently than every frame. DYNAMIC also tends to be useful in more obscure scenarios, such as if you're batching different chunks of model data in the same vertex buffer, and you occasionally need to move them around.
+    // Keep in mind these 3 flags don't imply any hard and fast rules within OpenGL or the hardware. They are just hints so the driver can set things up in a way that it thinks will be the most efficient.
     enum class BufferStorageMode {
         kStreamDraw = GL_STREAM_DRAW,
         kStreamRead = GL_STREAM_READ,
@@ -105,22 +113,30 @@ namespace gl {
         kDynamicStorage = GL_DYNAMIC_STORAGE_BIT, // Contents may be update through calls to glBufferSubData
         kClientStorage = GL_CLIENT_STORAGE_BIT // Determine whether to use storage that is local to the server or client to serve as backing store for buffer
     };
-}
+
+
+} // end GL namespace
 
 
 /// @class GlBuffer
 /// @brief Class representing a GL Buffer
-class GlBuffer : 
+/// @todo Maybe make the class a templated type so that switch statements aren't necessary
+class GlBuffer :
     public IdentifiableInterface, 
     public NameableInterface,
-    protected gl::OpenGLFunctions{
+    protected gl::OpenGLFunctions
+{
+protected:
+    static constexpr Uint32_t s_maxIntSize = std::numeric_limits<unsigned int>::max();
+
 public:
     /// @name Constructors/Destructor
     /// @{
     /// @}
 
     GlBuffer();
-    GlBuffer(RenderContext& context, gl::BufferType type, size_t sizeInBytes, gl::BufferStorageMode storageMode = gl::BufferStorageMode::kDynamicDraw, size_t storageFlags = 0);
+    GlBuffer(GlBuffer&& other);
+    GlBuffer(gl::BufferType type, size_t sizeInBytes, gl::BufferStorageMode storageMode = gl::BufferStorageMode::kDynamicDraw, size_t storageFlags = 0);
     virtual ~GlBuffer();
 
     /// @}
@@ -144,21 +160,26 @@ public:
     bool hasValidType() const { return m_bufferType == gl::BufferType::kInvalid; }
 
     /// @brief Size in bytes of the buffer
-    size_t byteSize() const { return m_size; }
+    Int32_t byteSize() const { return m_size; }
 
-    /// @brie Return length of buffer given a type
+    /// @brief Return length of buffer given a type
     template<typename T>
     inline size_t length() const {
         return m_size / sizeof(T);
     }
+
+    /// @brief Set the context for the buffer
+    void setRenderContext(RenderContext& context);
 
     /// @brief Set binding point of the buffer
     void setBindPoint(uint32_t point) {
         m_bindingPoint = point;
     }
 
-    /// @brief Whether or not the GL buffer is bound to a context
-    bool isBound() const;
+    /// @brief Whether or not the buffer has a valid OpenGL ID
+    bool hasValidId() const {
+        return m_bufferID != s_maxIntSize;
+    }
 
     /// @brief Bind the GL buffer
     virtual void bind();
@@ -169,22 +190,24 @@ public:
     /// @brief Copy data into another buffer
     void copyInto(GlBuffer& other);
 
-    /// @brief Map buffer and return data casted to the specified type
+    /// @brief Bind and map buffer and return data casted to the specified type
+    /// @note Data must be unmapped after use
     template<typename T>
-    T* data(size_t access = size_t(gl::RangeBufferAccessFlag::kRead | gl::RangeBufferAccessFlag::kWrite)) {
+    T* dataMap(size_t access = size_t(gl::RangeBufferAccessFlag::kRead | gl::RangeBufferAccessFlag::kWrite)) {
         return (T*)map(access, true);
     }
 
     /// @params[in] length The number of elements T to return
+    /// @note data must be unmapped after use
     template<typename T>
-    T* data(size_t offset, size_t length, size_t access = size_t(gl::RangeBufferAccessFlag::kRead | gl::RangeBufferAccessFlag::kWrite)) {
+    T* dataMap(size_t offset, size_t length, size_t access = size_t(gl::RangeBufferAccessFlag::kRead | gl::RangeBufferAccessFlag::kWrite)) {
         return (T*)map(offset * sizeof(T), length * sizeof(T), access, true);
     }
 
     /// @brief Copy len entries of data from buffer into a vector
     template<typename T>
     void copyData(std::vector<T>& outData, size_t len, size_t startIndex = 0, bool unmap = true) {
-        T* bufferData = data<T>(gl::RangeBufferAccessFlag::kRead);
+        T* bufferData = dataMap<T>(gl::RangeBufferAccessFlag::kRead);
         outData = std::vector<T>(bufferData + startIndex, bufferData + len + startIndex);
         if (unmap) {
             GlBuffer::unmap(true);
@@ -199,23 +222,19 @@ public:
         subData(&val, offset, 1);
     }
     template<typename T>
-    inline void subData(const T* val, size_t offset, size_t size = 1) {
-        subData((const void*)val, offset * sizeof(T), size * sizeof(T));
+    inline void subData(const T* val, size_t offset, size_t count = 1) {
+        subData((const void*)val, offset * sizeof(T), count * sizeof(T));
     }
+    template<>
     inline void subData(const void* val, size_t offsetBytes, size_t sizeBytes) {
-        bool wasBound = isBound();
-        if (!wasBound) {
-            bind();
-        }
+        bind();
 
         glBufferSubData((int)m_bufferType,
             offsetBytes,
             sizeBytes,
             val);
 
-        if (!wasBound) {
-            release();
-        }
+        release();
 
 #ifdef DEBUG_MODE
         bool error = printGLError("Error on glBufferSubData");
@@ -227,17 +246,17 @@ public:
 
     /// @brief Set data from a vector of inputs
     /// @details The GL_MAP_INVALIDATE_BUFFER_BIT is apparently very helpful for write performance
-    /// @note This maps the buffer, which requires an unmap. SubData is recommended instead
+    /// @note This maps the buffer, which requires an unmap. subData is recommended instead
     template<typename T>
-    void setData(const std::vector<T>& vec, size_t access = size_t(gl::RangeBufferAccessFlag::kInvalidateBuffer | gl::RangeBufferAccessFlag::kWrite)) {
-        T* bufferData = data<T>(access);
-        for (size_t i = 0; i < vec.size(); i++) {
-            bufferData[i] = vec[i];
+    void setDataMap(const T* inData, size_t dataCount, size_t access = size_t(gl::RangeBufferAccessFlag::kInvalidateBuffer | gl::RangeBufferAccessFlag::kWrite)) {
+        T* bufferData = dataMap<T>(access);
+        for (size_t i = 0; i < dataCount; i++) {
+            bufferData[i] = inData[i];
         }
     }
     template<typename T>
-    void setData(const T& val, size_t offset = 0, size_t access = size_t(gl::RangeBufferAccessFlag::kInvalidateBuffer | gl::RangeBufferAccessFlag::kWrite)) {
-        T* bufferData = data<T>(access);
+    void setDataMap(const T& val, size_t offset = 0, size_t access = size_t(gl::RangeBufferAccessFlag::kInvalidateBuffer | gl::RangeBufferAccessFlag::kWrite)) {
+        T* bufferData = dataMap<T>(access);
         bufferData[offset] = val;
     }
 
@@ -251,7 +270,15 @@ public:
 
     /// @brief Allocate memory for the buffer in OpenGL
     void allocateMemory();
-    void allocateMemory(size_t size, gl::BufferStorageMode mode, size_t storageFlags);
+    void allocateMemory(size_t byteSize, gl::BufferStorageMode mode, size_t storageFlags);
+
+    /// @brief Allocate memory for the buffer, initializing with the contents of data
+    template<typename T>
+    void allocateMemory(const T* data, size_t count) {
+        m_size = count * sizeof(T);
+        allocateMemory(m_size, m_storageMode, m_storageFlags);
+        subData(data, 0, count);
+    }
 
     /// @brief Bind to a binding point
     void bindToPoint();
@@ -268,11 +295,14 @@ public:
     /// @brief Return number of elements in the buffer data, assuming the given element size
     size_t count(size_t stride);
 
-    /// @brief Get current binding ID from GL
-    GLint getBoundBuffer();
+    /// @brief Create the buffer in OpenGL and allocate memory
+    void initialize(RenderContext& context);
 
-    /// @brief Clear the buffer's contents
+    /// @brief Clear the buffer's data contents, but do not deallocate the memory
     void clear();
+
+    /// @brief Destroy the buffer's OpenGL contents, deallocating the associated memory
+    void destroy();
 
     /// @}
 
@@ -283,7 +313,6 @@ protected:
     /// @name Protected methods
     /// @{
 
-    void initialize();
     void createBuffer();
 
     /// @}
@@ -291,12 +320,10 @@ protected:
     /// @name Protected members
     /// @{
 
-    static constexpr Uint32_t s_maxIntSize = std::numeric_limits<unsigned int>::max();
-
     /// @details Binding point won't change for GL buffers, but may be dynamic for other buffers
     unsigned int m_bindingPoint{ s_maxIntSize }; ///< The binding point of the buffer
     unsigned int m_bufferID{ s_maxIntSize }; ///< the GL ID of the GL buffer
-    size_t m_size; ///< Size in bytes of underlying buffer data
+    Int32_t m_size{ -1 }; ///< Size in bytes of underlying buffer data
     bool m_isMapped = false; ///< Whether or not the buffer is currently mapped
     void* m_data = nullptr; ///< The data mapped to this buffer in GPU memory
     gl::BufferType m_bufferType = gl::BufferType::kInvalid; ///< Type of buffer

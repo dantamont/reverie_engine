@@ -24,97 +24,62 @@
 
 namespace rev {
 
-// constants 
-const int MIN_SECTOR_COUNT = 3;
-const int MIN_STACK_COUNT = 1;
-
-
-
-
-// ctor
-
-Capsule::Capsule(VertexArrayData& outVertexData, float radius, float halfHeight, int sectors, int stacks):
-    m_vertexData(outVertexData)
+Capsule::Capsule(MeshVertexAttributes& outData, float radius, float halfHeight, int sectors, int stacks)
 {
-    set(radius, halfHeight, sectors, stacks);
+    set(outData, radius, halfHeight, sectors, stacks);
 }
 
-
-
-
-// setters
-
-void Capsule::set(float radius, float halfHeight, int sectors, int stacks)
+void Capsule::set(MeshVertexAttributes& outData, float radius, float halfHeight, int sectors, int stacks)
 {
     this->m_radius = radius;
     this->m_halfHeight = halfHeight;
     this->m_sectorCount = sectors;
-    if (sectors < MIN_SECTOR_COUNT)
-        this->m_sectorCount = MIN_SECTOR_COUNT;
+    if (sectors < s_minSectorCount)
+        this->m_sectorCount = s_minSectorCount;
     this->m_stackCount = stacks;
-    if (stacks < MIN_STACK_COUNT)
-        this->m_stackCount = MIN_STACK_COUNT;
+    if (stacks < s_minStackCount)
+        this->m_stackCount = s_minStackCount;
 
     // generate unit circle vertices first
     buildUnitCircleVertices();
-
-    buildVerticesSmooth();
+    buildVerticesSmooth(outData);
 
 }
 
-void Capsule::setRadius(float radius)
+void Capsule::setRadius(MeshVertexAttributes& outData, float radius)
 {
-    if (this->m_radius != radius)
-        set(radius, m_halfHeight, m_sectorCount, m_stackCount);
+    if (this->m_radius != radius) {
+        set(outData, radius, m_halfHeight, m_sectorCount, m_stackCount);
+    }
 }
 
 
-void Capsule::setHalfHeight(float halfHeight)
+void Capsule::setHalfHeight(MeshVertexAttributes& outData, float halfHeight)
 {
-    if (this->m_halfHeight != halfHeight)
-        set(m_radius, halfHeight, m_sectorCount, m_stackCount);
+    if (this->m_halfHeight != halfHeight) {
+        set(outData, m_radius, halfHeight, m_sectorCount, m_stackCount);
+    }
 }
 
-void Capsule::setSectorCount(int sectors)
+void Capsule::setSectorCount(MeshVertexAttributes& outData, int sectors)
 {
-    if (this->m_sectorCount != sectors)
-        set(m_radius, m_halfHeight, sectors, m_stackCount);
+    if (this->m_sectorCount != sectors) {
+        set(outData, m_radius, m_halfHeight, sectors, m_stackCount);
+    }
 }
 
-void Capsule::setStackCount(int stacks)
+void Capsule::setStackCount(MeshVertexAttributes& outData, int stacks)
 {
-    if (this->m_stackCount != stacks)
-        set(m_radius, m_halfHeight, m_sectorCount, stacks);
+    if (this->m_stackCount != stacks) {
+        set(outData, m_radius, m_halfHeight, m_sectorCount, stacks);
+    }
 }
 
-
-
-// dealloc vectors
-
-void Capsule::clearArrays()
+void Capsule::buildVerticesSmooth(MeshVertexAttributes& outData)
 {
-    m_vertexData.m_attributes.clear();
-    m_vertexData.m_indices.clear();
-    std::vector<unsigned int>().swap(m_lineIndices);
+    outData.clear();
+    buildCaps(outData);
 }
-
-
-
-
-// build vertices of Capsule with smooth shading
-// where v: sector angle (0 <= v <= 360)
-
-void Capsule::buildVerticesSmooth()
-{
-    // clear memory of prev arrays
-    clearArrays();
-
-    buildCaps();
-
-}
-
-
-// generate 3D vertices of a unit circle on XY plance
 
 void Capsule::buildUnitCircleVertices()
 {
@@ -130,10 +95,9 @@ void Capsule::buildUnitCircleVertices()
     }
 }
 
-
-void Capsule::buildCaps()
+void Capsule::buildCaps(MeshVertexAttributes& outData)
 {
-    int startIndex = m_vertexData.m_attributes.m_vertices.size() - 1;
+    int startIndex = outData.get<MeshVertexAttributeType::kPosition>().size() - 1;
 
     float x, y, z, xy;                                // vertex position
     float nx, ny, nz, lengthInv = 1.0f / m_radius;      // vertex normal
@@ -163,13 +127,13 @@ void Capsule::buildCaps()
             // vertex position (x, y, z)
             x = xy * cosf(sectorAngle);             // r * cos(u) * cos(v)
             y = xy * sinf(sectorAngle);             // r * cos(u) * sin(v)
-            addVertex(x, z, y); // flipped y and z
+            addVertex(outData, x, z, y); // flipped y and z
 
             // normalized vertex normal (nx, ny, nz)
             nx = x * lengthInv;
             ny = y * lengthInv;
             nz = z * lengthInv;
-            addNormal(nx, nz, ny); // flipped y and z
+            addNormal(outData, nx, nz, ny); // flipped y and z
 
             //// vertex tex coord (s, t) range between [0, 1]
             //s = (float)j / sectorCount;
@@ -193,13 +157,13 @@ void Capsule::buildCaps()
             // vertex position (x, y, z)
             x = xy * cosf(sectorAngle);             // r * cos(u) * cos(v)
             y = xy * sinf(sectorAngle);             // r * cos(u) * sin(v)
-            addVertex(x, z, y); // flipped y and z
+            addVertex(outData, x, z, y); // flipped y and z
 
             // normalized vertex normal (nx, ny, nz)
             nx = x * lengthInv;
             ny = y * lengthInv;
             nz = z * lengthInv;
-            addNormal(nx, nz, ny); // flipped y and z
+            addNormal(outData, nx, nz, ny); // flipped y and z
 
             //// vertex tex coord (s, t) range between [0, 1]
             //s = (float)j / sectorCount;
@@ -222,75 +186,48 @@ void Capsule::buildCaps()
             // k1 => k2 => k1+1
             if (i != 0)
             {
-                addIndices(k1, k2, k1 + 1);
+                addIndices(outData, k1, k2, k1 + 1);
             }
 
             // k1+1 => k2 => k2+1
             if (i != (stackCount - 1))
             {
-                addIndices(k1 + 1, k2, k2 + 1);
+                addIndices(outData, k1 + 1, k2, k2 + 1);
             }
         }
     }
 
-
 }
 
-
-
-
-// add single vertex to array
-
-void Capsule::addVertex(float x, float y, float z)
+void Capsule::addVertex(MeshVertexAttributes& outData, float x, float y, float z)
 {
-    Vec::EmplaceBack(m_vertexData.m_attributes.m_vertices, x, y, z);
+    Vec::EmplaceBack(outData.get<MeshVertexAttributeType::kPosition>(), x, y, z);
 }
 
-
-
-
-// add single normal to array
-
-void Capsule::addNormal(float nx, float ny, float nz)
+void Capsule::addNormal(MeshVertexAttributes& outData, float nx, float ny, float nz)
 {
-    Vec::EmplaceBack(m_vertexData.m_attributes.m_normals, nx, ny, nz);
+    Vec::EmplaceBack(outData.get<MeshVertexAttributeType::kNormal>(), nx, ny, nz);
 }
 
-
-
-
-// add single texture coord to array
-
-void Capsule::addTexCoord(float s, float t)
+void Capsule::addTexCoord(MeshVertexAttributes& outData, float s, float t)
 {
-    Vec::EmplaceBack(m_vertexData.m_attributes.m_texCoords, s, t);
+    Vec::EmplaceBack(outData.get<MeshVertexAttributeType::kTextureCoordinates>(), s, t);
 }
 
-
-
-
-// add 3 indices to array
-
-void Capsule::addIndices(unsigned int i1, unsigned int i2, unsigned int i3)
+void Capsule::addIndices(MeshVertexAttributes& outData, unsigned int i1, unsigned int i2, unsigned int i3)
 {
-    Vec::EmplaceBack(m_vertexData.m_indices, i1);
-    Vec::EmplaceBack(m_vertexData.m_indices, i2);
-    Vec::EmplaceBack(m_vertexData.m_indices, i3);
+    Vec::EmplaceBack(outData.get<MeshVertexAttributeType::kIndices>(), i1);
+    Vec::EmplaceBack(outData.get<MeshVertexAttributeType::kIndices>(), i2);
+    Vec::EmplaceBack(outData.get<MeshVertexAttributeType::kIndices>(), i3);
 }
 
-
-
-
-// generate shared normal vectors of the side of Capsule
-
-std::vector<Vector3> Capsule::getSideNormals()
+std::vector<Vector3> Capsule::getSideNormals(const MeshVertexAttributes& data)
 {
     const float PI = acos(-1);
     float sectorStep = 2 * PI / m_sectorCount;
     float sectorAngle;  // radian
 
     // compute the normal vector at 0 degree first
-    // tanA = (baseRadius-topRadius) / height
     float zAngle = atan2(0.0f, m_halfHeight * 2.0f);
     float x0 = cos(zAngle);     // nx
     float y0 = 0;               // ny
@@ -298,28 +235,25 @@ std::vector<Vector3> Capsule::getSideNormals()
 
     // rotate (x0,y0,z0) per sector angle
     std::vector<Vector3> normals;
+    normals.reserve(m_sectorCount);
     for (int i = 0; i <= m_sectorCount; ++i)
     {
         sectorAngle = i * sectorStep;
-        normals.push_back({ cos(sectorAngle)*x0 - sin(sectorAngle)*y0,   // nx
+        normals.push_back(
+            { cos(sectorAngle)*x0 - sin(sectorAngle)*y0,   // nx
             sin(sectorAngle)*x0 + cos(sectorAngle)*y0,   // ny
-            z0 });  // nz
+            z0 }
+        );  // nz
     }
 
     return normals;
 }
 
-
-
-
-// return face normal of a triangle v1-v2-v3
-// if a triangle has no surface (normal length = 0), then return a zero vector
-
-Vector3 Capsule::computeFaceNormal(float x1, float y1, float z1,  // v1
+Vector3 Capsule::ComputeFaceNormal(float x1, float y1, float z1,  // v1
     float x2, float y2, float z2,  // v2
     float x3, float y3, float z3)  // v3
 {
-    const float EPSILON = 0.000001f;
+    static constexpr float s_tolerance = 0.000001f;
 
     std::vector<float> normal(3, 0.0f);     // default return value (0,0,0)
     float nx, ny, nz;
@@ -339,7 +273,7 @@ Vector3 Capsule::computeFaceNormal(float x1, float y1, float z1,  // v1
 
     // normalize only if the length is > 0
     float length = sqrtf(nx * nx + ny * ny + nz * nz);
-    if (length > EPSILON)
+    if (length > s_tolerance)
     {
         // normalize
         float lengthInv = 1.0f / length;

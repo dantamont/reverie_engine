@@ -4,10 +4,125 @@
 
 /// Public
 #include <type_traits>
+#include <variant>
+#include <vector>
 #include <memory>
-#include "fortress/types/GSizedTypes.h"
+#include <tuple>
+#include "fortress/GGlobal.h"
+#include "fortress/numeric/GSizedTypes.h"
 
 namespace rev {
+
+/// @brief Constexpr for-loop
+/// @see https://artificial-mind.net/blog/2020/10/31/constexpr-for
+template <class F, class... Args>
+constexpr void for_each(F&& f, Args&&... args)
+{
+    (f(std::forward<Args>(args)), ...);
+}
+
+/// @brief Constexpr for-loop, for enums
+/// @details Loop over all enum values where the last enum value is the invalid one
+/// @note Only works with sequential enums.
+/// @see https://stackoverflow.com/questions/15651488/how-to-pass-a-template-function-in-a-template-argument-list
+/// @see ut_Templates.cpp for example usage
+namespace detail {
+template<typename EnumType, EnumType Value, EnumType LastValue, template<EnumType> typename FunctionType, typename ...Args>
+constexpr void for_each_enums_impl(Args&& ...args) {
+    FunctionType<Value>()(std::forward<Args>(args)...);
+    constexpr EnumType NextValue = EnumType(Int32_t(Value) + 1);
+    if constexpr (NextValue != LastValue) {
+        for_each_enums_impl<EnumType, NextValue, LastValue, FunctionType>(std::forward<Args>(args)...);
+    }
+}
+}
+
+template <auto Value, decltype(Value) LastValue, template<decltype(Value)> typename FunctionType, typename ...Args>
+constexpr void for_each_enums(Args&& ...args)
+{
+    detail::for_each_enums_impl<decltype(Value), Value, LastValue, FunctionType>(std::forward<Args>(args)...);
+}
+
+
+/// @brief Constexpr for-loop for tuple iteration and helpers
+/// @details Swallow expression expands to:
+///    (f(stuff_1), int{}), (f(stuff_2), int{}), ..., (f(stuff_n), int{})
+///    so each expression is really an int. A void is inserted between
+///    f(stuff) and int{} to avoid any overloades of the comma operator from
+///    what is returned by f. This is possible since void() cannot overload the 
+///    comma operator
+/// @example
+//  for_each(std::make_tuple(1, '2', 3.3), [](auto x) {
+//      std::cout << x << std::endl;
+//      });
+/// @note This usage of std::forward could be unsafe in other circumstances. 
+/// This is because tuple could be double-moved-from if the function it is forwarded
+/// to had different characteristics. However, std::get is safe
+/// @see https://codereview.stackexchange.com/questions/51407/stdtuple-foreach-implementation
+namespace detail {
+    template <typename Tuple, typename F, std::size_t ...Indices>
+    constexpr void for_each_tuple_impl(Tuple&& tuple, F&& f, std::index_sequence<Indices...>) {
+        using swallow = int[];
+        auto unused = swallow{
+            1, // Make sure array has at least one element
+            (f(std::get<Indices>(std::forward<Tuple>(tuple))), void(), int{})...
+        }; // This evaluates in sequential order, thanks to how brace initialization orders things
+        G_UNUSED(unused);
+    }
+}
+template <typename Tuple, typename F>
+void for_each_tuple(Tuple&& tuple, F&& f) {
+    constexpr std::size_t N = std::tuple_size<std::remove_reference_t<Tuple>>::value;
+    detail::for_each_tuple_impl(
+        std::forward<Tuple>(tuple), 
+        std::forward<F>(f),
+        std::make_index_sequence<N>{});
+}
+
+/// @brief Same as above, but allow for a different function for each sequence
+namespace detail {
+template <typename Tuple, std::size_t ...Indices, typename ...FunctionTypes>
+constexpr void for_each_tuple_impl(Tuple&& tuple, std::index_sequence<Indices...>, FunctionTypes&&... functionsIn) {
+    std::tuple<FunctionTypes...> functions = std::tie(functionsIn...);
+    using swallow = int[];
+    auto unused = swallow{
+        1, // Make sure array has at least one element
+        (std::get<Indices>(functions)(std::get<Indices>(std::forward<Tuple>(tuple))), void(), int{})...
+    }; // This evaluates in sequential order, thanks to how brace initialization orders things
+    G_UNUSED(unused);
+}
+}
+template <typename Tuple, typename ...Functions>
+void for_each_tuple(Tuple&& tuple, Functions&&... f) {
+    constexpr std::size_t N = std::tuple_size<std::remove_reference_t<Tuple>>::value;
+    static_assert(N == sizeof...(Functions), "Need one function per tuple entry");
+    detail::for_each_tuple_impl(
+        std::forward<Tuple>(tuple),
+        std::make_index_sequence<N>{},
+        std::forward<Functions>(f)...);
+}
+
+
+/// @brief Constexpr for-loop for tuple iteration and helpers
+/// @detail This is similar to for_each_tuple functions, but operates on a type instead of an instance of a tuple 
+namespace detail {
+template <typename Tuple, typename F, std::size_t ...Indices>
+constexpr void for_each_tuple_type_impl(F&& f, std::index_sequence<Indices...>) {
+    using swallow = int[];
+    (void)swallow{
+        1, // Make sure array has at least one element
+        (f(std::get<Indices>(Tuple())), void(), int{})...
+    }; // This evaluates in sequential order, thanks to how brace initialization orders things
+}
+}
+
+template <typename Tuple, typename F>
+void for_each_tuple_type(F&& f) {
+    constexpr std::size_t N = std::tuple_size<std::remove_reference_t<Tuple>>::value;
+    detail::for_each_tuple_type_impl<Tuple>(
+        std::forward<F>(f),
+        std::make_index_sequence<N>{});
+}
 
 /// @brief has_member implementation
 /// @details Implements a "has_member" helper macro to determine if a class has the given member

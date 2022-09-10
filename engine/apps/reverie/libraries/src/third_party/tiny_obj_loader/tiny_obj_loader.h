@@ -66,7 +66,7 @@ THE SOFTWARE.
 #include <map>
 #include <string>
 
-#include "fortress/types/GString.h"
+#include "fortress/string/GString.h"
 #include "fortress/containers/math/GVector.h"
 #include "core/rendering/geometry/GVertexData.h"
 #include "core/rendering/materials/GMaterial.h"
@@ -273,7 +273,7 @@ struct ObjReaderConfig {
 /// or not.
 /// Option 'default_vcols_fallback' specifies whether vertex colors should
 /// always be defined, even if no colors are given (fallback to white).
-bool loadObj(rev::VertexAttributes *attrib, std::vector<shape_t> *shapes,
+bool loadObj(rev::MeshVertexAttributes *attrib, std::vector<shape_t> *shapes,
     std::vector<rev::MaterialData> *materials, std::string *warn,
     std::string *err, const char *filename,
     const char *mtl_basedir = NULL, bool triangulate = true,
@@ -283,7 +283,7 @@ bool loadObj(rev::VertexAttributes *attrib, std::vector<shape_t> *shapes,
 /// std::istream for materials.
 /// Returns true when loading .obj become success.
 /// Returns warning and error message into `err`
-bool loadObj(rev::VertexAttributes *attrib, std::vector<shape_t> *shapes,
+bool loadObj(rev::MeshVertexAttributes *attrib, std::vector<shape_t> *shapes,
     std::vector<rev::MaterialData> *materials, std::string *warn,
     std::string *err, std::istream *inStream,
     MaterialReader *readMatFn = NULL, bool triangulate = true,
@@ -1733,7 +1733,7 @@ bool MaterialStreamReader::operator()(const std::string &matId,
 }
 
 // Called by OBJReader
-bool loadObj(rev::VertexAttributes *attrib, std::vector<shape_t> *shapes,
+bool loadObj(rev::MeshVertexAttributes *attrib, std::vector<shape_t> *shapes,
     std::vector<rev::MaterialData> *materials, std::string *warn,
     std::string *err, const char *filename, const char *mtl_basedir,
     bool trianglulate, bool default_vcols_fallback) {
@@ -1769,7 +1769,7 @@ bool loadObj(rev::VertexAttributes *attrib, std::vector<shape_t> *shapes,
         trianglulate, default_vcols_fallback);
 }
 
-bool loadObj(rev::VertexAttributes *attrib, std::vector<shape_t> *shapes,
+bool loadObj(rev::MeshVertexAttributes *attrib, std::vector<shape_t> *shapes,
     std::vector<rev::MaterialData> *materials, std::string *warn,
     std::string *err, std::istream *inStream,
     MaterialReader *readMatFn /*= NULL*/, bool triangulate,

@@ -11,7 +11,7 @@
 #include <QPushButton>
 
 // Project
-#include "fortress/types/GString.h"
+#include "fortress/string/GString.h"
 #include "fortress/types/GIdentifiable.h"
 
 #include "enums/GWidgetActionTypeEnum.h"

@@ -12,9 +12,9 @@
 // internal
 #include "fortress/containers/GContainerExtensions.h"
 #include "fortress/containers/extern/tsl/robin_map.h"
-#include "fortress/time/GDateTime.h"
+#include "time/GDateTime.h"
 #include "fortress/layer/framework/GSingleton.h"
-#include "fortress/types/GString.h"
+#include "fortress/string/GString.h"
 
 namespace rev {
 
