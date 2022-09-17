@@ -38,8 +38,8 @@ target_include_directories(${TARGET_NAME} INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}
 set(DEBUG_DEFINITIONS "DEBUG_MODE")
 set(RELEASE_DEFINITIONS "")
 target_compile_definitions(${TARGET_NAME} INTERFACE
-    $<$<CONFIG:DEBUG>:${DEBUG_DEFINITIONS}>
-    $<$<CONFIG:RELEASE>:${RELEASE_DEFINITIONS}>
+    $<$<CONFIG:Debug>:${DEBUG_DEFINITIONS}>
+    $<$<CONFIG:Release>:${RELEASE_DEFINITIONS}>
 )
 
 #### Link required libraries

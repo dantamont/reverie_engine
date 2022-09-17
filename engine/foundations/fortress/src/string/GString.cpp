@@ -240,6 +240,7 @@ GString & GString::replace(const char * old, const char * replacement)
     // Get lengths of old and new substrings
     size_t old_len = strlen(old);
     size_t repl_len = strlen(replacement);
+    Int32_t lengthDiff = repl_len - old_len;
 
     while (true) {
         // Return first occurance of old substr in tmp, or nullptr if not found
@@ -265,6 +266,9 @@ GString & GString::replace(const char * old, const char * replacement)
         // Copy replacement string
         memcpy(insert_point, replacement, repl_len);
         insert_point += repl_len;
+
+        // Update string length
+        m_contentLength += lengthDiff;
 
         // Adjust pointers, move on
         tmp = p + old_len;

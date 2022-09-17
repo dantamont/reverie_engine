@@ -129,4 +129,31 @@ TEST(DirTest, containsFile) {
     EXPECT_EQ(dir.exists(), false);
 }
 
+//TEST(DirTest, getFiles) {
+//    foo()
+//    GString dirStr(_FORTRESS_TEST_DIR + GString("/data/tmp/test_dir_create"));
+//    GDir dir(dirStr);
+//    dir.create();
+//    GString myFileStr(dirStr + GString("/my_file.txt"));
+//    GFile myFile(myFileStr);
+//    myFile.create();
+//
+//    GString myFileStr2(dirStr + GString("/another_level/my_file2.txt"));
+//    GFile myFile2(myFileStr2);
+//    myFile2.create(true);
+//
+//    EXPECT_EQ(myFile.exists(), true);
+//    EXPECT_EQ(myFile2.exists(), true);
+//    EXPECT_EQ(dir.exists(), true);
+//
+//    GString filePath;
+//    EXPECT_EQ(dir.containsFile(myFile.getFileName(), false, filePath), true);
+//    EXPECT_EQ(dir.containsFile(myFile2.getFileName(), false, filePath), false);
+//    EXPECT_EQ(dir.containsFile(myFile2.getFileName(), true, filePath), true);
+//
+//    dir.removeAll();
+//    EXPECT_EQ(dir.exists(), false);
+//}
+
+
 } /// End rev namespace

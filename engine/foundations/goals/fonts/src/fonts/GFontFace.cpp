@@ -1,24 +1,16 @@
-#include "geppetto/qt/fonts/GFontFace.h"
-#include "geppetto/qt/fonts/GFontManager.h"
+#include "fonts/GFontFace.h"
+#include "fonts/GFontManager.h"
 #include "fortress/types/GNameable.h"
 #include "fortress/image/GTexturePacker.h"
 #include "fortress/json/GJson.h"
 #include "fortress/thread/GParallelLoop.h"
 #include "fortress/containers/math/GVector.h"
-#include "geppetto/qt/style/GFontIcon.h"
 #include "fortress/system/path/GFile.h"
+#include "logging/GLogger.h"
 
-#include <QScreen>
-
-
-#define USE_THREADING false
-
+#include "screen/GScreen.h"
 
 namespace rev {
-
-
-
-// FontBitmap
 
 FontBitmap::FontBitmap()
 {
@@ -29,12 +21,22 @@ FontBitmap::~FontBitmap()
 }
 
 
-// FontFace
 
 Signal<Uint32_t> FontFace::s_clearedFontFaceSignal{};
 
-FontFace::FontFace()
+FontFace::FontFace(FontFace&& other):
+    LoadableInterface(other.m_path),
+    NameableInterface(other.m_name, other.m_nameMode),
+    m_id(other.m_id),
+    m_isCore(other.m_isCore),
+    m_encoding(other.m_encoding),
+    m_fontSize(other.m_fontSize)
 {
+    m_face = other.m_face;
+    other.m_face = nullptr;
+    m_bitmaps.swap(other.m_bitmaps);
+    m_lineHeights.swap(other.m_lineHeights);
+    m_characterSets.swap(other.m_characterSets);
 }
 
 FontFace::FontFace(const GString& name, bool isCore, const GString & path, FontEncoding encoding):
@@ -102,7 +104,7 @@ int FontFace::getLineSpacing(float fontPointSize) const
 {
     int pixelSize = pointToPixelSize(fontPointSize);
     if (m_lineHeights.find(pixelSize) == m_lineHeights.end()) {
-        assert(false && "Error, pixel size for line heights not found");
+        Logger::Throw("Error, pixel size for line heights not found");
     }
     return m_lineHeights.at(pixelSize);
 }
@@ -136,7 +138,7 @@ void FontFace::setPixelSize(uint32_t width, uint32_t height)
         height);    /* pixel_height          */
 
     if (error) {
-        assert(false && "Error setting pixel size");
+        Logger::Throw("Error setting pixel size");
     }
 
     m_fontSize = true;
@@ -149,8 +151,8 @@ void FontFace::setPixelSize(uint32_t height)
 
 void FontFace::setPointSize(float width, float height)
 {
-    int xRes = QGuiApplication::primaryScreen()->logicalDotsPerInchX();
-    int yRes = QGuiApplication::primaryScreen()->logicalDotsPerInchY();
+    int xRes = Screen::PrimaryScreen()->logicalDotsPerInchX();
+    int yRes = Screen::PrimaryScreen()->logicalDotsPerInchY();
     int error = FT_Set_Char_Size(
         m_face,             /* handle to face object           */
         int(width * 64),    /* char_width in 1/64th of points  */
@@ -158,7 +160,7 @@ void FontFace::setPointSize(float width, float height)
         xRes,               /* horizontal device resolution    */
         yRes);              /* vertical device resolution      */
     if (error) {
-        assert(false && "Error setting point size");
+        Logger::Throw("Error setting point size");
     }
     m_fontSize = height;
 }
@@ -170,7 +172,7 @@ void FontFace::setPointSize(float height)
 
 void FontFace::loadGlyphs()
 {
-    if (m_fontSize < 0) assert(false && "Error, font size not set for font face");
+    if (m_fontSize < 0) Logger::Throw("Error, font size not set for font face");
 
     uint32_t pixelSize = getPixelSize();
     switch (m_encoding) {
@@ -227,7 +229,7 @@ void FontFace::loadAllGlyphs(uint32_t pixelSize)
         //maxBelowOriginDistance = std::max(maxBelowOriginDistance, size.y() - bearing.y());
 
         if (count >= numGlyphs) {
-            assert(false && "Error, iterated too many times while loading glyphs");
+            Logger::Throw("Error, iterated too many times while loading glyphs");
             break;
         }
         count++;
@@ -309,14 +311,14 @@ int FontFace::pointToPixelSize(float pointSize)
 {
     // Points are a physical unit, where 1 point equals 1/72th of an inch in digital typography
     // Resolution is in DPI
-    float resolution = QGuiApplication::primaryScreen()->logicalDotsPerInch();
+    float resolution = Screen::PrimaryScreen()->logicalDotsPerInch();
     int pixelSize = int(pointSize * resolution / 72.0);
     return pixelSize;
 }
 
 float FontFace::pixelToPointSize(uint32_t pixelSize)
 {
-    float resolution = QGuiApplication::primaryScreen()->logicalDotsPerInch();
+    float resolution = Screen::PrimaryScreen()->logicalDotsPerInch();
     float pointSize = pixelSize * 72.0 / resolution;
     return pointSize;
 }
@@ -339,12 +341,15 @@ void FontFace::loadFont()
 
     // Check that file exists
 #ifdef DEBUG_MODE
-    assert(QFile::exists(m_path.c_str()) && "Error, file does not exist");
+    assert(GFile(m_path.c_str()).exists() && "Error, file does not exist");
+#else
+    assert(false && "Anger");
 #endif
 
     // Load font face from file
-    if (FT_New_Face(*FontManager::s_freeType, m_path.c_str(), 0, &m_face)) {
-        assert(false && "ERROR::FREETYPE: Failed to load font");
+    FT_Error error = FT_New_Face(*FontManager::s_freeType, m_path.c_str(), 0, &m_face);
+    if (error || !m_face) {
+        Logger::Throw("ERROR::FREETYPE: Failed to load font " + GString::FromNumber(error));
     }
 }
 
@@ -354,10 +359,8 @@ void FontFace::ft_loadGlyph(unsigned int glyphIndex, FT_Int32 loadFlags)
         m_face,          /* handle to face object */
         glyphIndex,      /* glyph index           */
         loadFlags);      /* load flags, see below */
-    if (error) {
-        assert(false && "Error loading glyph");
-    }
 
+    assert(!error && "Error loading glyph");
 }
 
 void FontFace::ft_loadCharacter(unsigned long charCode, FT_Int32 loadFlags)
@@ -367,7 +370,7 @@ void FontFace::ft_loadCharacter(unsigned long charCode, FT_Int32 loadFlags)
         charCode,        /* character code        */
         loadFlags);      /* load flags, see below */
     if (error) {
-        assert(false && "Error loading character");
+        Logger::Throw("Error loading character");
     }
 }
 

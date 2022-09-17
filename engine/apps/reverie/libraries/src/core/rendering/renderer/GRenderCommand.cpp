@@ -295,8 +295,8 @@ float DrawCommand::getDepth()
     }
 
     // Calculate depth
-#ifdef DEBUG_MODE
     int idx;
+#ifdef DEBUG_MODE
     if (!hasUniform(Shader::s_worldMatrixUniformName, &idx)) {
         Logger::Throw("Error, command requires a world matrix");
     }

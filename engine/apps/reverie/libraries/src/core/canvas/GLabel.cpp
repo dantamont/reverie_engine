@@ -4,7 +4,7 @@
 #include "fortress/system/memory/GPointerTypes.h"
 #include "fortress/system/path/GFile.h"
 
-#include "geppetto/qt/fonts/GFontManager.h"
+#include "fonts/GFontManager.h"
 #include "core/GCoreEngine.h"
 #include "core/resource/GResourceHandle.h"
 #include "core/resource/GResourceCache.h"

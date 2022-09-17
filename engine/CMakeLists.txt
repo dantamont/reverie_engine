@@ -1,20 +1,21 @@
 # CMake build for the Reverie Engine
-# To run cmake, add cmake/bin directory to system path
 ## TODO:
 ## Implement source_group, for organizing in IDE, see: https://stackoverflow.com/questions/31966135/cmake-source-group-not-working-correctly-with-hierarchical-project-setup
 ## Also see: https://stackoverflow.com/questions/53772946/single-cmakelists-txt-enough-for-my-project
 
 #### Project-level setup 
-cmake_minimum_required( VERSION 3.19 )
-
-## Miscellaneous settings
-# See: https://www.youtube.com/watch?v=m0DwB4OvDXk
-set(CMAKE_CXX_VISIBILITY_PRESET hidden)
-set(CMAKE_VISIBILITY_INLINES_HIDDEN yes)
+cmake_minimum_required( VERSION 3.20 )
 
 # Load in cmake utilities 
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake" "${CMAKE_SOURCE_DIR}/cmake/VersionFromGit" ${CMAKE_MODULE_PATH})
+set(
+    CMAKE_MODULE_PATH 
+    "${CMAKE_SOURCE_DIR}/cmake" 
+    "${CMAKE_SOURCE_DIR}/cmake/VersionFromGit" 
+    ${CMAKE_MODULE_PATH})
 include( MunkeiVersionFromGit )
+
+message( STATUS "Configuring preset: ${PRESET_NAME}")
+message(STATUS "Building in ${CMAKE_CONFIGURATION_TYPES} Modes")
 
 # Get project version
 version_from_git(
@@ -31,16 +32,12 @@ message( STATUS "Patch Version: ${VERSION_PATCH}")
 message( STATUS "============================= End Version Info =============================")
 
 # Create project
-project( Reverie
+# C language is set for GLFW
+project( 
+    Reverie
     VERSION ${VERSION}
-    LANGUAGES CXX
 ) 
 message( STATUS "---------Beginning cmake build of Reverie Engine---------")
-
-### Build in 64-bit
-# Need this to be a cache variable or it is not seen!
-# This may or may not be needed
-set(CMAKE_GENERATOR_PLATFORM x64 CACHE INTERNAL "")
 
 #### Set root path for auto-generated code for sub-builds
 set(AUTOGEN_ROOT_PATH ${CMAKE_BINARY_DIR}/autogen CACHE INTERNAL "")

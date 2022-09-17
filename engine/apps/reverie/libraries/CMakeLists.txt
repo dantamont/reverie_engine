@@ -78,8 +78,8 @@ endif()
 set_target_properties(${TARGET_NAME} PROPERTIES VS_DEBUGGER_COMMAND_ARGUMENTS "${REVERIE_DIR}/reverie.json" )
 
 #### Add compile options to the target 
-# target_compile_options(${TARGET_NAME} PUBLIC "$<$<CONFIG:DEBUG>:${MY_DEBUG_OPTIONS}>")
-# target_compile_options(${TARGET_NAME} PUBLIC "$<$<CONFIG:RELEASE>:${MY_RELEASE_OPTIONS}>")
+# target_compile_options(${TARGET_NAME} PUBLIC "$<$<CONFIG:Debug>:${MY_DEBUG_OPTIONS}>")
+# target_compile_options(${TARGET_NAME} PUBLIC "$<$<CONFIG:Release>:${MY_RELEASE_OPTIONS}>")
 
 #### Add include directories
 target_include_directories(${TARGET_NAME} PUBLIC "${REVERIE_DIR}/include")
@@ -94,8 +94,8 @@ target_include_directories(${TARGET_NAME} PUBLIC "${REVERIE_DIR}/include")
 set(DEBUG_DEFINITIONS "DEBUG_MODE")
 set(RELEASE_DEFINITIONS "QT_NO_DEBUG_OUTPUT")
 target_compile_definitions(${TARGET_NAME} PUBLIC
-    $<$<CONFIG:DEBUG>:${DEBUG_DEFINITIONS}>
-    $<$<CONFIG:RELEASE>:${RELEASE_DEFINITIONS}>
+    $<$<CONFIG:Debug>:${DEBUG_DEFINITIONS}>
+    $<$<CONFIG:Release>:${RELEASE_DEFINITIONS}>
 )
 
 #### Add Qt
@@ -106,24 +106,21 @@ add_library_qt(${TARGET_NAME})
 target_include_directories(
     ${TARGET_NAME}
     PUBLIC
-    $<$<CONFIG:DEBUG>:${CMAKE_CURRENT_BINARY_DIR}/reverie_lib_autogen/include_debug>
-    $<$<CONFIG:RELEASE>:${CMAKE_CURRENT_BINARY_DIR}/reverie_lib_autogen/include_release>
+    $<$<CONFIG:Debug>:${CMAKE_CURRENT_BINARY_DIR}/reverie_lib_autogen/include_debug>
+    $<$<CONFIG:Release>:${CMAKE_CURRENT_BINARY_DIR}/reverie_lib_autogen/include_release>
 )
 
 ######## Add additional libraries 
 
-# Fortress
-# Includes python and eigen
-target_link_libraries(${TARGET_NAME} PUBLIC "fortress")
-
-# Heave (physics)
-target_link_libraries(${TARGET_NAME} PUBLIC "heave")
-
-# Logging
-target_link_libraries(${TARGET_NAME} PUBLIC "scribe")
-
-# Ripple (for networking)
-target_link_libraries(${TARGET_NAME} PUBLIC "ripple")
+target_link_libraries(
+    ${TARGET_NAME} 
+    PUBLIC 
+    fortress # Includes python and eigen
+    font_lib # font rendering
+    heave #physics
+    scribe # logging
+    ripple # networking
+)
 
 # PYBIND
 # TODO: Link to pybind11_headers library instead, not sure why this currently works

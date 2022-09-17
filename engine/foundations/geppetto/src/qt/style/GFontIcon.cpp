@@ -24,7 +24,7 @@ SOFTWARE.
 
 #include "fortress/encoding/string/GEncodedString.h"
 
-#include "geppetto/qt/fonts/GFontManager.h"
+#include "fonts/GFontManager.h"
 
 namespace rev {
 
@@ -46,16 +46,16 @@ FontIcon::~FontIcon()
 
 }
 
-int FontIcon::addFont(const QString &filename)
+int FontIcon::AddFont(const QString &filename)
 {
     int id = QFontDatabase::addApplicationFont(filename);
 
     QString family = QFontDatabase::applicationFontFamilies(id).first();
-    instance()->addFamily(family);
+    Instance()->addFamily(family);
     return id;
 }
 
-FontIcon *FontIcon::instance()
+FontIcon *FontIcon::Instance()
 {
     if (!m_instance)
         m_instance = new FontIcon;
@@ -63,17 +63,18 @@ FontIcon *FontIcon::instance()
     return m_instance;
 }
 
-QIcon FontIcon::icon(const QChar &code, const QColor &baseColor, const QString &family)
+QIcon FontIcon::GetIcon(const QChar &code, const QColor &baseColor, const QString &family)
 {
-    if (instance()->families().isEmpty())
+    if (Instance()->families().isEmpty())
     {
         qWarning() << Q_FUNC_INFO << "No font family installed";
         return QIcon();
     }
 
     QString useFamily = family;
-    if (useFamily.isEmpty())
-        useFamily = instance()->families().first();
+    if (useFamily.isEmpty()) {
+        useFamily = Instance()->families().first();
+    }
 
 
     FontIconEngine * engine = new FontIconEngine;
@@ -85,17 +86,36 @@ QIcon FontIcon::icon(const QChar &code, const QColor &baseColor, const QString &
 
 }
 
-QIcon FontIcon::solidAwesomeIcon(const QString & iconName, const QColor & baseColor)
+QIcon FontIcon::SolidAwesomeIcon(const QString & iconName, const QColor & baseColor)
 {
-    QString fontFamily = FontManager::SolidFontAwesomeFamily();
+    QString fontFamily = FontIcon::SolidFontAwesomeFamily();
 
-    GStringUtf8 unicodeChar = FontManager::FaUnicodeCharacter(iconName.toStdString());
+    GStringUtf8 unicodeChar = FontIcon::FaUnicodeCharacter(iconName.toStdString());
     Uint32_t unicode = unicodeChar.unicode();
     const QChar chr(unicode);
     if (!baseColor.isValid())
-        return icon(chr, QColor(255, 255, 255, 255), fontFamily);
+        return GetIcon(chr, QColor(255, 255, 255, 255), fontFamily);
     else
-        return icon(chr, baseColor, fontFamily);
+        return GetIcon(chr, baseColor, fontFamily);
+}
+
+
+QString FontIcon::RegularFontAwesomeFamily()
+{
+    QStringList families = QFontDatabase::applicationFontFamilies(s_faRegular);
+    return families[0];
+}
+
+QString FontIcon::BrandFontAwesomeFamily()
+{
+    QStringList families = QFontDatabase::applicationFontFamilies(s_faBrands);
+    return families[0];
+}
+
+QString FontIcon::SolidFontAwesomeFamily()
+{
+    QStringList families = QFontDatabase::applicationFontFamilies(s_faSolid);
+    return families[0];
 }
 
 
@@ -110,13 +130,35 @@ void FontIcon::addFamily(const QString &family)
 }
 
 
+GStringUtf8 FontIcon::FaUnicodeCharacter(const GString& fontAwesomeIcon)
+{
+    assert(s_faInfo.contains(fontAwesomeIcon.c_str()) && "Error, font awesome icon not found");
+
+    const json& unicodeJson = s_faInfo.at(fontAwesomeIcon.c_str()).at("unicode");
+    return GStringUtf8(unicodeJson.get_ref<const std::string&>().c_str());
+}
 
 
+void FontIcon::InitializeFontAwesome(const GString& pathToJson)
+{
+    // Load fonts
+    if (s_faBrands < 0) {
+        s_faBrands = FontIcon::AddFont(":/fonts/brands-regular-400.otf");
+        assert(s_faBrands >= 0 && "FontAwesome cannot be loaded!");
+    }
+    if (s_faRegular < 0) {
+        s_faRegular = FontIcon::AddFont(":/fonts/free-regular-400.otf");
+        assert(s_faRegular >= 0 && "FontAwesome cannot be loaded!");
 
+    }
+    if (s_faSolid < 0) {
+        s_faSolid = FontIcon::AddFont(":/fonts/free-solid-900.otf");
+        assert(s_faSolid >= 0 && "FontAwesome cannot be loaded!");
+    }
 
-// FontIconEngine
-
-
+    // Load font-awesome icon metadata
+    GJson::FromFile(pathToJson.c_str(), s_faInfo);
+}
 
 FontIconEngine::FontIconEngine()
     :QIconEngine()
@@ -177,6 +219,9 @@ QIconEngine *FontIconEngine::clone() const
 }
 
 
-
+int FontIcon::s_faBrands = -1;
+int FontIcon::s_faRegular = -1;
+int FontIcon::s_faSolid = -1;
+json FontIcon::s_faInfo = json::object();
 
 } // rev

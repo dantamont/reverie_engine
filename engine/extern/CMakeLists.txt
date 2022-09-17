@@ -1,6 +1,17 @@
 ######## CMake build for extern libraries
-# Include dependency manager 
-# @todo Only used by color widgets. Use this for everything
+# Add CPM package manager
+# @todo Only used by color widgets and glfw. Use this for everything
+# @todo
+# set(CPM_DOWNLOAD_LOCATION "${CMAKE_BINARY_DIR}/cmake/CPM.cmake")
+# set(CPM_VERSION 0.18)
+
+# if(NOT EXISTS ${CPM_DOWNLOAD_LOCATION})
+#    message(STATUS "Downloading CPM.cmake")
+#    file(DOWNLOAD
+# https://github.com/TheLartians/CPM.cmake/releases/download/v${CPM_VERSION}/CPM.cmake
+# ${CPM_DOWNLOAD_LOCATION})
+# endif(NOT EXISTS ${CPM_DOWNLOAD_LOCATION})
+# include(${CPM_DOWNLOAD_LOCATION})
 include(${CMAKE_SOURCE_DIR}/cmake/cpm/cmake/CPM.cmake)
 
 # for find_qt()
@@ -13,11 +24,10 @@ set(DEPENDENCY_FOLDER Dependencies)
 # Make sure there is NO CMAKE_DEBUG_POSTFIX
 SET(CMAKE_DEBUG_POSTFIX "" CACHE STRING "Debug Postfix for lib, samples and tools") # Important to avoid having a d at the end of all libraries. See assimp top-level CMakeLists.txt, line 353
 
+#### Get GLFW
+CPMAddPackage("gh:glfw/glfw#master")
+
 #### Build color widgets
-# add_subdirectory(color_widgets)
-# set_target_properties (QtColorWidgets PROPERTIES
-    # FOLDER ${DEPENDENCY_FOLDER}/ColorWidgets
-# )
 check_architecture()
 find_qt()
 CPMAddPackage("gl:daintybubainty/Qt-Color-Widgets#master")

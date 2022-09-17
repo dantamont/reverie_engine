@@ -49,7 +49,7 @@
 #include "enums/GSimulationPlayModeEnum.h"
 #include "ripple/network/gateway/GMessageGateway.h"
 
-#include "geppetto/qt/fonts/GFontManager.h"
+#include "fonts/GFontManager.h"
 #include "geppetto/qt/style/GFontIcon.h"
 #include "geppetto/qt/widgets/GWidgetManager.h"
 
@@ -220,10 +220,10 @@ void PlayerControls::processMessage(GPlaybackDataMessage* message)
     QString chr;
     switch ((ESimulationPlayMode)m_playbackDataMessage.getPlaybackMode()) {
     case ESimulationPlayMode::eDebug:
-        chr = FontManager::FaUnicodeCharacter("gamepad").string();
+        chr = FontIcon::FaUnicodeCharacter("gamepad").string();
         break;
     case ESimulationPlayMode::eStandard:
-        chr = FontManager::FaUnicodeCharacter("binoculars").string();
+        chr = FontIcon::FaUnicodeCharacter("binoculars").string();
         break;
     }
     m_modeButton->setText(chr);

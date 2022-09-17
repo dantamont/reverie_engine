@@ -32,6 +32,7 @@ TEST(FileTest, getFileName) {
 
     name = myFile.getFileName(false, true);
     EXPECT_EQ(name, "Lorem_ipsum_1000");
+    EXPECT_EQ(name.length(), GString("Lorem_ipsum_1000").length());
 
     name = myFile.getFileName(true, false);
     EXPECT_EQ(name, "lorem_ipsum_1000.txt");

@@ -132,8 +132,6 @@ void OpenGlRenderer::preDraw()
     ESimulationPlayMode mode = m_engine->simulationLoop()->getPlayMode();
 
     // Update the selected pixel color for each camera
-    /// @todo Investigate why this is so slow
-    /// @see https://community.khronos.org/t/pbo-glreadpixels-not-so-fast/55783
     Vector2 widgetMousePos = m_widget->inputHandler().mouseHandler().widgetMousePosition();
     if (mode == ESimulationPlayMode::eStandard) {
         // Iterate through cameras to draw textured quads
