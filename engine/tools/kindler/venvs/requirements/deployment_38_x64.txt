@@ -5,7 +5,7 @@ importlib-resources==5.4.0
 Jinja2==3.0.3
 jsonschema==4.2.1
 MarkupSafe==2.0.1
-numpy==1.20.1
+numpy==1.22.0
 pyrsistent==0.18.0
 PyYAML==5.4.1
 pyyaml-include==1.2.post2
