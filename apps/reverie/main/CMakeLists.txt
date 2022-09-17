@@ -7,6 +7,7 @@ set(TARGET_NAME "reverie")
 check_architecture() # Check if architecture is 64 or 32 bit
 set_cpp_version() # Set to C++ 17
 set_compiler_options()
+generate_release_pdb()
 
 #### Build EXE
 add_executable(${TARGET_NAME} WIN32 "src/main.cpp") # Makes sure that this is a windows application, not a console app

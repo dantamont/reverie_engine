@@ -1,3 +1,5 @@
+#pragma once
+
 /*
 MIT License
 Copyright (c) 2017 Sacha Schutz
@@ -18,9 +20,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#ifndef GB_FONT_ICON_H
-#define GB_FONT_ICON_H
-
 #include <QObject>
 #include <QPainter>
 #include <QIconEngine>
@@ -28,18 +27,18 @@ SOFTWARE.
 #include <QtCore>
 #include <QPalette>
 
+#include "fortress/encoding/string/GEncodedString.h"
+#include "fortress/json/GJson.h"
+
 namespace rev {
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 class FontIcon;
 class FontIconEngine;
-#define FIcon(code) FontIcon::icon(code)
-#define SAIcon(stuff) FontIcon::solidAwesomeIcon(stuff)
+#define FIcon(code) FontIcon::Icon(code)
+#define SAIcon(stuff) FontIcon::SolidAwesomeIcon(stuff)
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @class FontIconEngine
-// See: https://github.com/dridk/FontIcon/blob/master/FontIcon/qfonticon.cpp
+/// @see https://github.com/dridk/FontIcon/blob/master/FontIcon/qfonticon.cpp
 class FontIconEngine : public QIconEngine {
 public:
     FontIconEngine();
@@ -59,19 +58,31 @@ private:
     QColor m_baseColor;
 };
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/// @class FontIcon
 class FontIcon : public QObject {
     Q_OBJECT
 
 public:
+    /// @brief Return metadata for font-awesome fonts
+    static const json& FontAwesomeInfo() {
+        return s_faInfo;
+    }
+
+    /// @brief Return a font-awesome unicode character, given the name of the icon
+    /// @param fontAwesomeIcon the name of the font-awesome icon
+    static GStringUtf8 FaUnicodeCharacter(const GString& fontAwesomeIcon);
+
+    /// @brief Initialize font awesome for application
+    /// @param[in] pathToJson file-path to the JSON file that contains font awesome metadata
+    static void InitializeFontAwesome(const GString& pathToJson);
+
     /// @brief Add Font. By default, the first one is used
-    static int addFont(const QString& filename);
-    static FontIcon * instance();
+    static int AddFont(const QString& filename);
+    static FontIcon * Instance();
 
     /// @brief Main methods. Return icons from code
-    static QIcon icon(const QChar& code, const QColor& baseColor = QColor(), const QString& family = QString());
-    static QIcon solidAwesomeIcon(const QString& iconName, const QColor& baseColor = QColor());
+    static QIcon GetIcon(const QChar& code, const QColor& baseColor = QColor(), const QString& family = QString());
+    static QIcon SolidAwesomeIcon(const QString& iconName, const QColor& baseColor = QColor());
 
     /// @brief Return added fonts
     const QStringList& families() const;
@@ -79,6 +90,11 @@ public:
 protected:
     void addFamily(const QString& family);
 
+    /// @brief Font awesome font families
+    /// @note Only actually used for Qt functionality, i.e. to create QIcons
+    static QString RegularFontAwesomeFamily();
+    static QString BrandFontAwesomeFamily();
+    static QString SolidFontAwesomeFamily();
 
 private:
     explicit FontIcon(QObject *parent = 0);
@@ -86,9 +102,12 @@ private:
     static FontIcon * m_instance;
     QStringList m_families;
 
+    static int s_faBrands; ///< ID of Font Awesome brands in font database
+    static int s_faRegular; ///< ID of Font Awesome regular in font database
+    static int s_faSolid; ///< ID of Font Awesome solid in font database
+    static json s_faInfo; ///< JSON document containing font-awesome icon metadata
+
 };
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-} // rev
 
-#endif // GB_FONT_ICON_H
+} // rev

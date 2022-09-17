@@ -1,5 +1,6 @@
 message( STATUS "\n\n*********************** Beginning sub-cmake build of Duke ***********************")
 
+#[[
 # Project-level setup ====================================================
 set(TARGET_NAME "duke")
 
@@ -39,8 +40,8 @@ set_target_properties(${TARGET_NAME} PROPERTIES VS_DEBUGGER_COMMAND_ARGUMENTS "$
 set(DEBUG_DEFINITIONS "DEBUG_MODE")
 set(RELEASE_DEFINITIONS "")
 target_compile_definitions(${TARGET_NAME} PUBLIC
-    $<$<CONFIG:DEBUG>:${DEBUG_DEFINITIONS}>
-    $<$<CONFIG:RELEASE>:${RELEASE_DEFINITIONS}>
+    $<$<CONFIG:Debug>:${DEBUG_DEFINITIONS}>
+    $<$<CONFIG:Release>:${RELEASE_DEFINITIONS}>
 )
 
 #### Link required libraries
@@ -51,3 +52,4 @@ target_link_libraries(${TARGET_NAME} PUBLIC "fortress")
 
 ######## Add tests subproject
 add_subdirectory(tests)
+]]

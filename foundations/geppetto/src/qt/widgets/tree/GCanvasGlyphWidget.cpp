@@ -3,7 +3,7 @@
 #include "fortress/system/memory/GPointerTypes.h"
 #include "enums/GGlyphTypeEnum.h"
 
-#include "geppetto/qt/fonts/GFontManager.h"
+#include "fonts/GFontManager.h"
 #include "geppetto/qt/widgets/components/GTransformComponentWidget.h"
 #include "geppetto/qt/widgets/types/GVectorWidget.h"
 #include "geppetto/qt/widgets/types/GColorWidget.h"
@@ -314,7 +314,7 @@ void IconWidget::initializeWidgets()
 
     // TODO: Use a line edit to filter combobox
     m_fontAwesomeIcon = new QComboBox();
-    const json& faInfo = FontManager::FontAwesomeInfo();
+    const json& faInfo = FontIcon::FontAwesomeInfo();
     const std::string& currentIcon = m_glyphJson["iconName"];
     int currentIndex = 0;
     int count = 0;
@@ -327,7 +327,7 @@ void IconWidget::initializeWidgets()
         if (jsonPair.key() == currentIcon) {
             currentIndex = count;
         }
-        QString icon = FontManager::FaUnicodeCharacter(jsonPair.key().c_str()).string();
+        QString icon = FontIcon::FaUnicodeCharacter(jsonPair.key().c_str()).string();
         m_fontAwesomeIcon->addItem(icon + " " + jsonPair.key().c_str(), jsonPair.key().c_str());
         count++;
     }

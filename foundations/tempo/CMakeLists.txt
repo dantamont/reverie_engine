@@ -38,17 +38,18 @@ target_include_directories(${TARGET_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/in
 set(DEBUG_DEFINITIONS "DEBUG_MODE")
 set(RELEASE_DEFINITIONS "")
 target_compile_definitions(${TARGET_NAME} PUBLIC
-    $<$<CONFIG:DEBUG>:${DEBUG_DEFINITIONS}>
-    $<$<CONFIG:RELEASE>:${RELEASE_DEFINITIONS}>
+    $<$<CONFIG:Debug>:${DEBUG_DEFINITIONS}>
+    $<$<CONFIG:Release>:${RELEASE_DEFINITIONS}>
 )
 
 #### Link required libraries
 
-# Fortress
-target_link_libraries(${TARGET_NAME} PRIVATE "fortress")
-
-# Units
-target_link_libraries(${TARGET_NAME} PRIVATE "units")
+target_link_libraries(
+    ${TARGET_NAME} 
+    PRIVATE
+    fortress
+    units
+)
 
 ######### Add tests subproject
 add_subdirectory(tests)

@@ -51,13 +51,14 @@ set_target_properties(${TARGET_NAME} PROPERTIES VS_DEBUGGER_COMMAND_ARGUMENTS "$
 set(DEBUG_DEFINITIONS "DEBUG_MODE")
 set(RELEASE_DEFINITIONS "QT_NO_DEBUG_OUTPUT")
 target_compile_definitions(${TARGET_NAME} PUBLIC
-    $<$<CONFIG:DEBUG>:${DEBUG_DEFINITIONS}>
-    $<$<CONFIG:RELEASE>:${RELEASE_DEFINITIONS}>
+    $<$<CONFIG:Debug>:${DEBUG_DEFINITIONS}>
+    $<$<CONFIG:Release>:${RELEASE_DEFINITIONS}>
 )
 
-######## Add additional libraries 
-# Google test
-target_link_libraries(${TARGET_NAME} PRIVATE gtest)
-
-# Base libary
-target_link_libraries(${TARGET_NAME} PRIVATE ${BASE_TARGET_NAME})
+######## Add additional libraries
+target_link_libraries(${TARGET_NAME} 
+    PRIVATE 
+        gtest
+        fortress
+        ${BASE_TARGET_NAME}
+)

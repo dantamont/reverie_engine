@@ -1,7 +1,10 @@
 ######## Add subprojects
 
-### Fortress library
+### Fortress (basic utilities) library
 add_subdirectory(fortress)
+
+### Graphics Object and Abstraction Layers (glfw, fonts, etc.)
+add_subdirectory(goals)
 
 ### Scribe (logging) library
 add_subdirectory(scribe)

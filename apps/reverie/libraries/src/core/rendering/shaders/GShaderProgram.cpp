@@ -830,7 +830,7 @@ void ShaderProgram::updateUniforms(const UniformContainer& uniformContainer, boo
             Logger::Throw("Error, uniform " + GString::FromNumber(uniform.getId()) +
                 " is of type " + GString(tname) + ". This uniform type is not supported: ");
 #else
-            Logger::LogError("Error, uniform " + GString(uniform.getName()) +
+            Logger::LogError("Error, uniform " + GString::FromNumber(uniform.getId()) +
                 " is of type " + GString(tname)  +". This uniform type is not supported: ");
 #endif
         }

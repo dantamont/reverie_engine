@@ -60,11 +60,9 @@ void rev::MousePicker::updateMouseOver(const Vector2 & widgetMousePos, const Cam
     uint32_t id = (uint32_t)GetColorId<3, int>(m_mouseOverColor.data());
     //Logger::LogInfo("ID: " + GString::FromNumber(id));
 
-#ifdef DEBUG_MODE
     if (id >= renderer.readRenderCommands().size()) {
         return;
     }
-#endif
 
     std::shared_ptr<DrawCommand> dc = std::dynamic_pointer_cast<DrawCommand>(renderer.readRenderCommands()[id]);
     m_hoverInfo.m_sceneObjectId = dc->sceneObjectId();

@@ -89,7 +89,9 @@ public:
     /// @name Constructors/Destructor
     /// @{
 
-    FontFace();
+    FontFace() = delete;
+    FontFace(const FontFace &) = delete;
+    FontFace(FontFace&& other);
     FontFace(const GString& name, bool isCore, const GString& path, FontEncoding encoding = FontEncoding::kASCII);
     ~FontFace();
 

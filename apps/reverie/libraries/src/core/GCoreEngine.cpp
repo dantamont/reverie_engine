@@ -46,7 +46,7 @@
 #include "core/layer/view/widgets/graphics/GInputHandler.h"
 
 #include "geppetto/qt/actions/GActionManager.h"
-#include "geppetto/qt/fonts/GFontManager.h"
+#include "fonts/GFontManager.h"
 #include "geppetto/layer/gateway/GWidgetGateway.h"
 #include "geppetto/qt/widgets/GWidgetManager.h"
 #include "geppetto/qt/widgets/tree/GSceneTreeWidget.h"
@@ -257,7 +257,11 @@ void CoreEngine::initialize(MainWindow* mainWindow)
 
     // Initialize Managers
     m_fileManager = new FileManager(this);
+
     m_fontManager = new FontManager(FileManager::GetResourcePath());
+    GString fontAwesomePath = FileManager::GetResourcePath() + "fonts/fontawesome/unicode_info.json";
+    FontIcon::InitializeFontAwesome(fontAwesomePath);
+
     m_widgetManager = new WidgetManager(mainWindow);
     m_actionManager = new ActionManager("Action Manager");
     m_widgetManager->setActionManager(m_actionManager);

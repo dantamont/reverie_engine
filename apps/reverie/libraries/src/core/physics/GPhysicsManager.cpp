@@ -240,6 +240,9 @@ void PhysicsManager::step(float dt)
             }
         }
 
+        /// @note Simulate and fetch results must always be called in pairs, but it might
+        /// be good to consider refactoring this in a way that some other processing work can be
+        /// done while the simulation is happening, as opposed to immediately fetching
         // Step simulation forward by dt
         scene->simulate(dt);
 

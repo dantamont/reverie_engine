@@ -60,6 +60,11 @@ public:
     /// @param[in] recursive If true, use a recursive search
     bool containsFile(const GString& fileName, bool recursive, GString& outPath) const;
 
+    /// @brief Search subdirectories and files in this directory for files satisfying the given search function
+    /// @details Is recursive
+    /// @param[in] searchFunction The function to use to compare file names. Returns true on a match
+    std::vector<GString> getFiles(std::function<bool(const GString&)> searchFunction) const;
+
 private:
 
     /// @brief Non-recursively search subdirectories and files in this directory for a file

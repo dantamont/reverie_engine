@@ -111,8 +111,8 @@ macro(copy_qt_dlls current_target)
             VERBATIM
             COMMAND_EXPAND_LISTS
             COMMAND ${CMAKE_COMMAND} -E copy_if_different 
-            "$<$<CONFIG:DEBUG>:${QT_DEBUG_DLLS}>"
-            "$<$<CONFIG:RELEASE>:${QT_RELEASE_DLLS}>"
+            "$<$<CONFIG:Debug>:${QT_DEBUG_DLLS}>"
+            "$<$<CONFIG:Release>:${QT_RELEASE_DLLS}>"
             "$<TARGET_FILE_DIR:${current_target}>"
     )
 
@@ -131,8 +131,8 @@ macro(copy_qt_dlls current_target)
         VERBATIM
         COMMAND_EXPAND_LISTS
         COMMAND ${CMAKE_COMMAND} -E copy_if_different 
-            "$<$<CONFIG:DEBUG>:${QT_DEBUG_PLATFORM_DLLS}>"
-            "$<$<CONFIG:RELEASE>:${QT_RELEASE_PLATFORM_DLLS}>"
+            "$<$<CONFIG:Debug>:${QT_DEBUG_PLATFORM_DLLS}>"
+            "$<$<CONFIG:Release>:${QT_RELEASE_PLATFORM_DLLS}>"
             "$<TARGET_FILE_DIR:${current_target}>/platforms"
     )
 

@@ -11,6 +11,7 @@ setup_qt_project() # Set project-level cmake variables for Qt
 set_cpp_version() # Set to C++ 17
 set_compiler_options()
 setup_opengl()
+generate_release_pdb() # Nice for debugging in Visual Studio
 
 #### Build library 
 # Add an library to be built from sources variable
@@ -39,8 +40,8 @@ set(COMMON_DEFINITIONS "LINALG_USE_EIGEN") # Use Eigen
 set(DEBUG_DEFINITIONS "DEBUG_MODE" ${COMMON_DEFINITIONS})
 set(RELEASE_DEFINITIONS ${COMMON_DEFINITIONS})
 target_compile_definitions(${TARGET_NAME} PUBLIC
-    $<$<CONFIG:DEBUG>:${DEBUG_DEFINITIONS}>
-    $<$<CONFIG:RELEASE>:${RELEASE_DEFINITIONS}>
+    $<$<CONFIG:Debug>:${DEBUG_DEFINITIONS}>
+    $<$<CONFIG:Release>:${RELEASE_DEFINITIONS}>
 )
 
 #### Link required libraries
@@ -49,26 +50,17 @@ target_compile_definitions(${TARGET_NAME} PUBLIC
 add_library_qt(${TARGET_NAME})
 
 # Physics library for transform object
-target_link_libraries(${TARGET_NAME} PRIVATE heave)
-
-## Color widgets
-message (STATUS "=========== Including Color Widgets =============")
-# target_include_directories(${current_target} PRIVATE "${PATH_TO_EXTERN}/color_widgets/include")
-target_link_libraries(${TARGET_NAME} PUBLIC QtColorWidgets)
-
-## FreeType
-message (STATUS "=========== Including FreeType =============")
-target_include_directories(${TARGET_NAME} PRIVATE "${PATH_TO_EXTERN}/freetype/freetype.submodule/include")
-target_link_libraries(${TARGET_NAME} PUBLIC freetype)
-
-## Fortress
-target_link_libraries(${TARGET_NAME} PUBLIC "fortress")
-
-## Logging
-target_link_libraries(${TARGET_NAME} PRIVATE "scribe")
-
-## Ripple (for networking)
-target_link_libraries(${TARGET_NAME} PUBLIC "ripple")
+target_link_libraries(
+    ${TARGET_NAME} 
+    PRIVATE 
+    heave
+    scribe
+    PUBLIC 
+    QtColorWidgets
+    fortress
+    ripple
+    font_lib
+)
 
 ######### Add tests subproject
 add_subdirectory(tests)

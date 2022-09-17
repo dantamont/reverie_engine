@@ -122,6 +122,24 @@ bool GDir::containsFileRecursive(const GString& fileName, GString& outFilePath) 
     return found;
 }
 
+std::vector<GString> GDir::getFiles(std::function<bool(const GString&)> searchFunction) const
+{
+    std::vector<GString> myFilePaths;
+    for (const std::filesystem::directory_entry& entry : std::filesystem::recursive_directory_iterator(m_path.c_str())) {
+        if (!entry.is_regular_file()) {
+            continue;
+        }
+
+        GString entryFileName = entry.path().filename().generic_string();
+
+        // Iterate through directories to find file
+        if (searchFunction(entryFileName)) {
+            myFilePaths.push_back(entry.path().generic_string());
+        }
+    }
+    return myFilePaths;
+}
+
 GString GDir::s_currentDirectoryPath = std::filesystem::current_path().generic_string();
 
 } // End namespaces

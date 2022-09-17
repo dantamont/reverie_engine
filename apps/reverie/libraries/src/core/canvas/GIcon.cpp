@@ -1,5 +1,5 @@
 #include "core/canvas/GIcon.h"
-#include "geppetto/qt/fonts/GFontManager.h"
+#include "geppetto/qt/style/GFontIcon.h"
 
 namespace rev {
 
@@ -18,7 +18,7 @@ Icon::~Icon()
 void Icon::setFontAwesomeIcon(const QString & iconName)
 {
     m_iconName = iconName;
-    setText(FontManager::FaUnicodeCharacter(iconName.toStdString()).string().c_str());
+    setText(FontIcon::FaUnicodeCharacter(iconName.toStdString()).string().c_str());
 }
 
 void to_json(json& orJson, const Icon& korObject)

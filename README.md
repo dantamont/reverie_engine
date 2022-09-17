@@ -1,5 +1,9 @@
 # Reverie Engine
 
+## Prerequisites
+- CMake 3.20+
+	- To run cmake, add cmake/bin directory to system path
+
 ## Setup
 To set things up properly when first pulling the repo:
 

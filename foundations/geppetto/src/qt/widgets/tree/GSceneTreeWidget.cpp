@@ -674,8 +674,6 @@ void SceneTreeWidget::initializeWidget()
     setAlternatingRowColors(true);
 
     // Set first column width
-    //QFontMetrics metrics(FontManager::solidFontAwesomeFamily());
-    //setColumnWidth(0, metrics.width("\uf468") * 3);
     setColumnWidth(0, columnWidth(0) * 0.75);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);

@@ -67,7 +67,7 @@ protected:
 
 
 /// @class SerializationProtocol
-// FIXME: WARNING, cannot read in raw pointer data if pointer has not been properly resized first
+/// @FIXME WARNING, cannot read in raw pointer data if pointer has not been properly resized first
 template<typename ...FieldTypes>
 class SerializationProtocol: public SerializationProtocolInterface {
 public:
@@ -75,8 +75,8 @@ public:
     /// @name Constructors and Destructors
     /// @{
 
-    // See: https://www.murrayc.com/permalink/2015/12/05/modern-c-variadic-template-parameters-and-tuples/
     /// @brief Construct with indirection so SerializationProtocol Fields can be used directly in construction
+    /// @see https://www.murrayc.com/permalink/2015/12/05/modern-c-variadic-template-parameters-and-tuples/
     template<typename ...PFieldTypes>
     SerializationProtocol(PFieldTypes&... fields) :
         m_fields(fields...)

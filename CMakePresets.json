@@ -1,0 +1,55 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 23,
+    "patch": 0
+  },
+  "include": [],
+  "configurePresets": [
+    {
+      "name": "common_config",
+      "displayName": "Common config",
+      "description": "Default build configuration",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_CXX_VISIBILITY_PRESET": "hidden",
+        "CMAKE_VISIBILITY_INLINES_HIDDEN": "yes",
+        "PRESET_NAME": "${presetName}"
+      },
+      "environment": {}
+    },
+    {
+      "name": "generator_ninja_multi",
+      "generator": "Ninja Multi-Config",
+      "hidden": true
+    },
+    {
+      "name": "common_x64",
+      "inherits": [ "common_config", "generator_ninja_multi" ],
+      "displayName": "Common x64",
+      "description": "Default build for using Ninja with Visual Studio 2022",
+      "binaryDir": "${sourceDir}/builds/${presetName}"
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "common_x64_debug",
+      "configurePreset": "common_x64",
+      "configuration": "Debug"
+    },
+    {
+      "name": "common_x64_release",
+      "configurePreset": "common_x64",
+      "configuration": "Release"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "common_x64",
+      "configurePreset": "common_x64",
+      "output": {"outputOnFailure": true},
+      "execution": {"noTestsAction": "error", "stopOnFailure": true}
+    }
+  ]
+}
